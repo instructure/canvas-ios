@@ -1,2 +1,5 @@
 github "Quick/Quick"
 github "Quick/Nimble"
+
+github "kylef/Mockingjay"
+

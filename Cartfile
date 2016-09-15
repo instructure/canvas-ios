@@ -1,3 +1,5 @@
+
+# Frameworks
 github "robb/Cartography" ~> 0.6
 github "antitypical/Result" ~> 2.0
 github "ReactiveCocoa/ReactiveCocoa" == 4.1.0
@@ -8,3 +10,8 @@ github "n8armstrong/DVR" "develop"
 github "google/EarlGrey" "master"
 github "xmartlabs/Eureka" ~> 1.6
 github "dennisweissmann/DeviceKit" == 0.3.3
+
+# Parent
+github "michaeltyson/TPKeyboardAvoiding" == 1.3
+github "ashleymills/Reachability.swift" == 2.3.3
+

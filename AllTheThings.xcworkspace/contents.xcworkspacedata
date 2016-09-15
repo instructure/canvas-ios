@@ -2,48 +2,67 @@
 <Workspace
    version = "1.0">
    <Group
+      location = "container:Carthage"
+      name = "Carthage">
+      <FileRef
+         location = "group:Checkouts/Cartography/Cartography.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/CWStatusBarNotification/CWStatusBarNotification/CWStatusBarNotification.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/DeviceKit/DeviceKit.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/DVR/DVR.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/EarlGrey/EarlGrey.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/Eureka/Eureka.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/Kingfisher/Kingfisher.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/Marshal/Marshal.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/Nimble/Nimble.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/Quick/Quick.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/Reachability.swift/Reachability.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/Result/Result.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/TPKeyboardAvoiding/TPKeyboardAvoidingSample.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:Parent"
+      name = "Parent">
+      <FileRef
+         location = "group:ObserverAlertKit/ObserverAlertKit.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Airwolf/Airwolf.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Parent.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
       location = "container:Frameworks"
       name = "Frameworks">
-      <Group
-         location = "container:Carthage"
-         name = "Carthage">
-         <FileRef
-            location = "group:Checkouts/Cartography/Cartography.xcodeproj">
-         </FileRef>
-         <FileRef
-            location = "group:Checkouts/CWStatusBarNotification/CWStatusBarNotification/CWStatusBarNotification.xcodeproj">
-         </FileRef>
-         <FileRef
-            location = "group:Checkouts/DeviceKit/DeviceKit.xcodeproj">
-         </FileRef>
-         <FileRef
-            location = "group:Checkouts/DVR/DVR.xcodeproj">
-         </FileRef>
-         <FileRef
-            location = "group:Checkouts/EarlGrey/EarlGrey.xcodeproj">
-         </FileRef>
-         <FileRef
-            location = "group:Checkouts/Eureka/Eureka.xcodeproj">
-         </FileRef>
-         <FileRef
-            location = "group:Checkouts/Kingfisher/Kingfisher.xcodeproj">
-         </FileRef>
-         <FileRef
-            location = "group:Checkouts/Marshal/Marshal.xcodeproj">
-         </FileRef>
-         <FileRef
-            location = "group:Checkouts/Nimble/Nimble.xcodeproj">
-         </FileRef>
-         <FileRef
-            location = "group:Checkouts/Quick/Quick.xcodeproj">
-         </FileRef>
-         <FileRef
-            location = "group:Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj">
-         </FileRef>
-         <FileRef
-            location = "group:Checkouts/Result/Result.xcodeproj">
-         </FileRef>
-      </Group>
       <FileRef
          location = "group:Assignments/Assignments.xcodeproj">
       </FileRef>
