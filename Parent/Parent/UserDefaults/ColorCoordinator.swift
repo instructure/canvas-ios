@@ -1,0 +1,104 @@
+//
+//  ColorCoordinator.swift
+//  Parent
+//
+//  Created by Brandon Pluim on 1/10/16.
+//  Copyright © 2016 Instructure Inc. All rights reserved.
+//
+
+import Foundation
+import TooLegit
+import Airwolf
+import SoPretty
+
+struct ColorScheme {
+    let tintTopColor: UIColor
+    let tintBottomColor: UIColor
+    let highlightCellColor: UIColor
+
+    static let blueColorScheme = ColorScheme(tintTopColor: UIColor(r: 0, g: 225, b: 255),
+                                                 tintBottomColor: UIColor(r: 0, g: 30, b: 194),
+                                                 highlightCellColor: UIColor(r: 0, g: 196, b: 255, a: 0.3))
+
+    static let orangeColorScheme = ColorScheme(tintTopColor: UIColor(r: 225, g: 199, b: 0),
+                                                   tintBottomColor: UIColor(r: 255, g: 0, b: 0),
+                                                   highlightCellColor: UIColor(r: 255, g: 193, b: 0, a: 0.3))
+
+    static let purpleColorScheme = ColorScheme(tintTopColor: UIColor(r: 213, g: 0, b: 119),
+                                                   tintBottomColor: UIColor(r: 53, g: 20, b: 211),
+                                                   highlightCellColor: UIColor(r: 185, g: 37, b: 255, a: 0.3))
+
+    static let greenColorScheme = ColorScheme(tintTopColor: UIColor(r: 150, g: 235, b: 0),
+                                                  tintBottomColor: UIColor(r: 3, g: 190, b: 119),
+                                                  highlightCellColor: UIColor(r: 51, g: 241, b: 42, a: 0.3))
+
+
+    
+    static let colorSchemes: [ColorScheme] = {
+        var colorSchemes: [ColorScheme] = []
+
+        colorSchemes.append(ColorScheme.orangeColorScheme)
+        colorSchemes.append(ColorScheme.blueColorScheme)
+        colorSchemes.append(ColorScheme.purpleColorScheme)
+        colorSchemes.append(ColorScheme.greenColorScheme)
+        
+        return colorSchemes
+    }()
+
+    func inverse() -> ColorScheme {
+        return ColorScheme(tintTopColor: tintBottomColor, tintBottomColor: tintTopColor, highlightCellColor: highlightCellColor)
+    }
+}
+
+class ColorCoordinator {
+    static let CurrentIndexKey = "current__color_index"
+    static let ColorSchemeDictionaryKey = "color_scheme_dictionary"
+
+    static func colorSchemeForParent() -> ColorScheme {
+        return ColorScheme.blueColorScheme
+    }
+
+    static func colorSchemeForStudent(student: Student) -> ColorScheme {
+        return colorSchemeForKey(student.id)
+    }
+
+    static func colorSchemeForStudentID(studentID: String) -> ColorScheme {
+        return colorSchemeForKey(studentID)
+    }
+
+    static func colorSchemeForKey(key: String) -> ColorScheme {
+        guard let colorSchemeIndexDictionary = NSUserDefaults.standardUserDefaults().objectForKey(ColorSchemeDictionaryKey) as? [String : Int] else {
+            var colorSchemeIndexDictionary = [String : Int]()
+            let nextIndex = nextColorSchemeIndex()
+            colorSchemeIndexDictionary[key] = nextIndex
+            NSUserDefaults.standardUserDefaults().setObject(colorSchemeIndexDictionary, forKey: ColorSchemeDictionaryKey)
+            return ColorScheme.colorSchemes[nextIndex]
+        }
+
+        var mutableIndexDictionary = colorSchemeIndexDictionary
+        guard let colorSchemeIndex = colorSchemeIndexDictionary[key] else {
+            let nextIndex = nextColorSchemeIndex()
+            mutableIndexDictionary[key] = nextIndex
+            NSUserDefaults.standardUserDefaults().setObject(mutableIndexDictionary, forKey: ColorSchemeDictionaryKey)
+            return ColorScheme.colorSchemes[nextIndex]
+        }
+
+        return ColorScheme.colorSchemes[colorSchemeIndex]
+    }
+
+    static func nextColorSchemeIndex() -> Int {
+        let defaults = NSUserDefaults.standardUserDefaults()
+
+        let currentIndex = defaults.integerForKey(CurrentIndexKey)
+        var nextIndex = currentIndex + 1
+        if nextIndex >= ColorScheme.colorSchemes.count {
+            nextIndex = 0
+        }
+
+        defaults.setInteger(nextIndex, forKey: CurrentIndexKey)
+        defaults.synchronize()
+
+        return nextIndex
+    }
+    
+}

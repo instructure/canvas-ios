@@ -164,11 +164,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
     tapGesture.delegate = (id <UIGestureRecognizerDelegate>)self;
     [_contentView addGestureRecognizer:tapGesture];
-    
-    //set up accessibility
-    self.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction;
-    self.isAccessibilityElement = YES;
-    
+
 #else
     
     [_contentView setWantsLayer:YES];
@@ -376,6 +372,18 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     for (UIView *view in [[[_itemViews allValues] sortedArrayUsingFunction:(NSInteger (*)(id, id, void *))compareViewDepth context:(__bridge void *)self] reverseObjectEnumerator])
     {
         if ([view.superview.layer hitTest:point])
+        {
+            return view;
+        }
+    }
+    return nil;
+}
+
+- (UIView *)currentAccessibleFocusedItemView
+{
+    for (UIView *view in [[[_itemViews allValues] sortedArrayUsingFunction:(NSInteger (*)(id, id, void *))compareViewDepth context:(__bridge void *)self] reverseObjectEnumerator])
+    {
+        if ([view accessibilityElementIsFocused])
         {
             return view;
         }
@@ -2074,6 +2082,9 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
 {
     //check for tapped view
     NSInteger index = [self indexOfItemView:[self itemViewAtPoint:[tapGesture locationInView:_contentView]]];
+    if (UIAccessibilityIsVoiceOverRunning()) {
+        index = [self indexOfItemView:[self currentAccessibleFocusedItemView]];
+    }
     if (index != NSNotFound)
     {
         if (!_delegate || [_delegate carousel:self shouldSelectItemAtIndex:index])

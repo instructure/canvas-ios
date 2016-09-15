@@ -10,57 +10,124 @@ import UIKit
 
 import TooLegit
 import Keymaster
+import ObserverAlertKit
+import TooLegit
+import WhizzyWig
+import Fabric
+import Crashlytics
+import Airwolf
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, SelectDomainDataSource {
 
     var window: UIWindow?
 
+    var logoImage: UIImage = UIImage(named: "parent_logo")!
+    var mobileVerifyName: String = "parent-app"
+    var tintTopColor: UIColor {
+        return ColorScheme.blueColorScheme.inverse().tintTopColor
+    }
+    var tintBottomColor: UIColor {
+        return ColorScheme.blueColorScheme.inverse().tintBottomColor
+    }
+
+    var topViewController: UIViewController {
+        var topViewControler = window!.rootViewController!
+        while topViewControler.presentedViewController != nil {
+            topViewControler = topViewControler.presentedViewController!
+        }
+        return topViewControler
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        Fabric.with([Crashlytics.self])
         
-        Router.sharedInstance.addRoutes()
-        guard let window = window else {
-            fatalError("No Window?  The Sky is falling")
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+
+        if let url = RegionPicker.defaultPicker.pickedRegion() {
+            AirwolfAPI.baseURL = url
+        } else {
+            if let _ = Keymaster.sharedInstance.mostRecentSession() { // Currently already signed in, without a region. They are already in the original default region
+                RegionPicker.defaultPicker.setRegionToDefault()
+                AirwolfAPI.baseURL = RegionPicker.defaultPicker.pickedRegion()!
+            } else {
+                RegionPicker.defaultPicker.pickBestRegion { url in
+                    if let url = url {
+                        AirwolfAPI.baseURL = url
+                    }
+                }
+            }
+        }
+
+        WhizzyWigView.setOpenURLHandler { url in
+            let webBrowser = WebBrowserViewController(useAPISafeLinks: false)
+            webBrowser.url = url
+            let nav = UINavigationController(rootViewController: webBrowser)
+            self.topViewController.presentViewController(nav, animated: true, completion: nil)
         }
         
-        let user = TooLegit.User(id: "1", loginID: "test", name: "test", sortableName: "test", email: "test@test.com", avatarURL: NSURL(string: "https://secure.gravatar.com/avatar/098f6bcd4621d373cade4e832627b4f6?s=50&d=https%3A%2F%2Fmobile-1-canvas.portal2.canvaslms.com%2Fimages%2Fmessages%2Favatar-50.png")!)
-        let session = Session(baseURL: NSURL(string: "https://mobile-1-canvas.portal2.canvaslms.com")!, user: user, token: "1~3NVQzNji8JZDHStv91GtBs6CIvNPsZ2Y94NXc2SDRo94qu2gScA6EtJ6LhH4eTC7")
-        
-        Keymaster.instance.updateMostRecentSession(session)
-        
-//        if let session = Keymaster.instance.mostRecentSession() {
-            Keymaster.instance.currentSession = session
+        Router.sharedInstance.addRoutes()
+
+        Keymaster.sharedInstance.useSharedCredentials = false
+        if let session = Keymaster.sharedInstance.mostRecentSession() {
+            Keymaster.sharedInstance.currentSession = session
             Router.sharedInstance.session = session
-            Router.sharedInstance.routeToLoggedInViewController(window)
-//        } else {
-//            Router.sharedInstance.routeToLoggedOutViewController(window)
-//        }
-        
+            Router.sharedInstance.routeToLoggedInViewController()
+        } else {
+            Router.sharedInstance.routeToLoggedOutViewController()
+        }
+
+        window!.makeKeyAndVisible()
+
+        if let notification = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
+            routeToRemindable(from: notification)
+        }
+
         return true
     }
 
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, withResponseInfo responseInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+        // On, iOS 10.0b1 application:didReceiveLocalNotification is not being called when opening the app from a local notification and making it transistion from the background. Instead, this is being called. Not
+        // sure if this is a bug or some change in API behavior.
+        // 
+        // This api exists as of 9.0, but the odd behavior only exists as of 10.0, so...
+        if #available(iOS 10.0, *) {
+            routeToRemindable(from: notification)
+        }
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        if application.applicationState == .Active {
+            let alert = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("View", comment: ""), style: .Cancel, handler: { [unowned self] _ in
+                self.routeToRemindable(from: notification)
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: { _ in }))
+            topViewController.presentViewController(alert, animated: true, completion: nil)
+        } else if application.applicationState == .Inactive {
+            routeToRemindable(from: notification)
+        }
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        if url.scheme == "canvas-parent" {
+            if let _ = Keymaster.sharedInstance.currentSession {
+                Router.sharedInstance.route(self.topViewController, toURL: url, modal: false)
+            } else if let window = self.window, vc = Router.sharedInstance.viewControllerForURL(url) {
+                Router.sharedInstance.route(window, toRootViewController: vc)
+            } else {
+                // should never get here... should either have a session or a window!
+            }
+        }
+
+        return false
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    private func routeToRemindable(from notification: UILocalNotification) {
+        if let urlString = notification.userInfo?[RemindableActionURLKey] as? String, url = NSURL(string: urlString) {
+            Router.sharedInstance.route(topViewController, toURL: url, modal: true)
+        }
     }
 
 }

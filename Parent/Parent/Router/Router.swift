@@ -134,18 +134,16 @@ class Router {
     
      Returns: A View Controller created from the handler if possible, if not it returns nil
     */
-    private func matchURL(url: NSURL) -> UIViewController? {
+    private func matchURL(matchURL: NSURL) -> UIViewController? {
         
         // Without a path, how can we route anywhere
-        guard let components = url.pathComponents where components.count > 0 else {
-            return nil
+        var urlComponents: [String] = []
+        if let path = matchURL.path as NSString? {
+            let realPath: NSString = path.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "/")).stringByReplacingOccurrencesOfString("api/v1/", withString: "")
+            urlComponents = realPath.pathComponents
         }
-        
-        var urlComponents = components
-        
-        if urlComponents.count > 2 && urlComponents[1] == "api" && urlComponents[2] == "v1" {
-            urlComponents.removeRange(1..<3)
-        }
+
+        guard urlComponents.count > 0 else { return nil }
         
         var matchingRoute : String? = nil
         var params = [String: AnyObject]()
@@ -160,14 +158,13 @@ class Router {
                 continue
             }
             
-            
             var componentsMatch = true
             for (index, component) in routePathComponents.enumerate() {
                 if component.hasPrefix(":") {
                     // remove the ":" from the path
                     let parameterKey = component.substringFromIndex(component.startIndex.advancedBy(1))
                     let parameter = urlComponents[index]
-                    if let number = self.numberFormatter .numberFromString(parameter) {
+                    if let number = self.numberFormatter.numberFromString(parameter) {
                         params[parameterKey] = number
                     } else {
                         params[parameterKey] = parameter
@@ -185,9 +182,12 @@ class Router {
             matchingRoute = route
 
             params["route"] = route
-            params["url"] = url
+            params["url"] = matchURL
             if let session = session {
                 params["session"] = session
+            }
+            for queryItem in matchURL.allQueryItems {
+                params[queryItem.name] = queryItem.value
             }
         }
         
@@ -215,14 +215,14 @@ extension UIViewController {
     */
     func transitionToViewController(viewController: UIViewController, animated: Bool, modal: Bool) {
         // for now we're just going to route using a navigationController or Modal
-        guard let navigationController = navigationController else {
-            presentViewController(viewController, animated: animated, completion: { })
-            return
-        }
-        
         if modal {
             presentViewController(viewController, animated: animated, completion: { })
         } else {
+            guard let navigationController = navigationController else {
+                presentViewController(viewController, animated: animated, completion: { })
+                return
+            }
+
             navigationController.pushViewController(viewController, animated: animated)
         }
     }

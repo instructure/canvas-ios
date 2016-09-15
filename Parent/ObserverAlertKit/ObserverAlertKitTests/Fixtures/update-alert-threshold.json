@@ -1,0 +1,44 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1464881417.598648,
+      "response" : {
+        "body" : {
+          "parent_id" : "7f6a632b-3f52-4fb2-a2ee-1dd22b8aa5e3",
+          "id" : "14648805210330.8522924964781851",
+          "alert_type" : "assignment_grade_high",
+          "threshold" : "85",
+          "student_id" : "16"
+        },
+        "status" : 200,
+        "url" : "https:\/\/airwolf-beta.inseng.net\/alertthreshold\/7f6a632b-3f52-4fb2-a2ee-1dd22b8aa5e3\/14648805210330.8522924964781851",
+        "headers" : {
+          "Status" : "200 OK",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "Server" : "nginx + Phusion Passenger",
+          "Strict-Transport-Security" : "max-age=31536000",
+          "Connection" : "keep-alive",
+          "Date" : "Thu, 02 Jun 2016 15:30:17 GMT",
+          "Content-Length" : "145",
+          "Etag" : "W\/\"91-EPPQuUILJ8DXTu+CV0s+DQ\""
+        }
+      },
+      "request" : {
+        "method" : "POST",
+        "body" : {
+          "alert_type" : "assignment_grade_high",
+          "threshold" : "85"
+        },
+        "url" : "https:\/\/airwolf-beta.inseng.net\/alertthreshold\/7f6a632b-3f52-4fb2-a2ee-1dd22b8aa5e3\/14648805210330.8522924964781851",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "Content-Type" : "application\/json",
+          "User-Agent" : "Unknown\/Unknown (Unknown; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImJwbHVpbSt3YWx0QGluc3RydWN0dXJlLmNvbSIsInBhcmVudF9pZCI6IjdmNmE2MzJiLTNmNTItNGZiMi1hMmVlLTFkZDIyYjhhYTVlMyIsInRva2VuSWQiOiIyOGY3NzMyNS1kYTgwLTRiMjMtOGU2OC03ZTgyNGQ3MGUwZjEiLCJpYXQiOjE0NjQyOTI2MjR9.GUvj26ALebZgVAZbNZ1Y7JMQsoXeQ5KV-7zEUjWQTjY"
+        }
+      }
+    }
+  ],
+  "name" : "update-alert-threshold"
+}

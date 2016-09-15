@@ -7,16 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E09E1CD1CEA66740006A46D /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E09E1CC1CEA66740006A46D /* SoAutomated.framework */; };
+		5E09E1D11CEA7A410006A46D /* AlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E09E1D01CEA7A410006A46D /* AlertTests.swift */; };
+		5E4E20601C929CD200E7D709 /* AlertThresholds+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E205F1C929CD200E7D709 /* AlertThresholds+Edits.swift */; };
+		5E619CEE1CFF69DE0065F7CC /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E619CED1CFF69C80065F7CC /* DoNotShipThis.framework */; };
+		5E66C5431CF794B500CACC18 /* AlertThresholdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E66C5421CF794B500CACC18 /* AlertThresholdTests.swift */; };
+		5E66C5451CF795F800CACC18 /* valid_alert_threshold.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E66C5441CF795F800CACC18 /* valid_alert_threshold.json */; };
+		5E66C5471CF796A000CACC18 /* AlertThreshold+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E66C5461CF796A000CACC18 /* AlertThreshold+JSON.swift */; };
+		5EBCA5811D0085210027DE6D /* insert-alert-threshold.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EBCA5801D0085210027DE6D /* insert-alert-threshold.json */; };
+		5EBCA5821D0085470027DE6D /* all-alert-thresholds.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EBCA57E1D0085010027DE6D /* all-alert-thresholds.json */; };
+		5EBCA5851D0088970027DE6D /* update-alert-threshold.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EBCA5831D0087A40027DE6D /* update-alert-threshold.json */; };
+		5EBCA5871D0089FD0027DE6D /* delete-alert-threshold.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EBCA5861D0089FD0027DE6D /* delete-alert-threshold.json */; };
+		5EBCA58A1D00C11F0027DE6D /* AlertCountCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCA5891D00C11F0027DE6D /* AlertCountCoordinatorTests.swift */; };
+		5EBCA58C1D00C8440027DE6D /* alert-thresholds-student.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EBCA58B1D00C8440027DE6D /* alert-thresholds-student.json */; };
+		5EBCA5901D00C8AE0027DE6D /* AlertThreshold+CollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCA58F1D00C8AE0027DE6D /* AlertThreshold+CollectionTests.swift */; };
+		5EC475351CFF6E060064D9EE /* all-alerts.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EC475341CFF6E060064D9EE /* all-alerts.json */; };
+		5EC475371CFF747F0064D9EE /* observee-alerts.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EC475361CFF747F0064D9EE /* observee-alerts.json */; };
+		5EC4753B1CFF7E600064D9EE /* mark-alert-dismissed.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EC4753A1CFF7E600064D9EE /* mark-alert-dismissed.json */; };
+		5EC4753D1CFF81000064D9EE /* mark-alert-read.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EC475381CFF7E0C0064D9EE /* mark-alert-read.json */; };
+		5EC475401D00767A0064D9EE /* AlertThreshold+NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC4753F1D00767A0064D9EE /* AlertThreshold+NetworkTests.swift */; };
+		5EF8A4D21CF761CD007072BF /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF8A4D11CF761CD007072BF /* Factories.swift */; };
+		5EF8A4D71CF77495007072BF /* Alert+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF8A4D61CF77495007072BF /* Alert+JSON.swift */; };
+		5EF8A4D91CF774DB007072BF /* valid_alert.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EF8A4D81CF774DB007072BF /* valid_alert.json */; };
+		5EF8A4DC1CF7834F007072BF /* Alert+NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF8A4DB1CF7834F007072BF /* Alert+NetworkTests.swift */; };
+		5EF8A4DE1CF7835C007072BF /* Alert+CollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF8A4DD1CF7835C007072BF /* Alert+CollectionTests.swift */; };
+		5EFD025D1C861C0F0071C8F5 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFD025B1C861BFF0071C8F5 /* Marshal.framework */; };
+		610AABAD1C7CA66A0078A235 /* AlertCountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AABAC1C7CA66A0078A235 /* AlertCountCoordinator.swift */; };
+		61A47BC71CEBCCCD00861155 /* Airwolf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A47BC61CEBCCBF00861155 /* Airwolf.framework */; };
+		61D6A8371C8F79F500370117 /* Alert+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A8361C8F79F500370117 /* Alert+Network.swift */; };
+		61D6A8391C8F7A2500370117 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A8381C8F7A2500370117 /* Alert.swift */; };
+		61D6A83C1C8F7A7300370117 /* AlertThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A83B1C8F7A7300370117 /* AlertThreshold.swift */; };
+		61D6A83E1C8F7A8C00370117 /* AlertThreshold+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A83D1C8F7A8C00370117 /* AlertThreshold+Network.swift */; };
+		61D6A8421C8F7B2F00370117 /* AlertAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A8401C8F7B2F00370117 /* AlertAPI.swift */; };
+		61D6A8431C8F7B2F00370117 /* AlertThresholdAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A8411C8F7B2F00370117 /* AlertThresholdAPI.swift */; };
+		61D6A8451C8F7B5700370117 /* Alert+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A8441C8F7B5700370117 /* Alert+Collections.swift */; };
+		61D6A8471C8F7F6C00370117 /* Session+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A8461C8F7F6C00370117 /* Session+Alert.swift */; };
+		61D6A84B1C8F80FE00370117 /* AlertThreshold+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A84A1C8F80FE00370117 /* AlertThreshold+Collections.swift */; };
+		61D6A84F1C9071AE00370117 /* Alert+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A84E1C9071AE00370117 /* Alert+Edits.swift */; };
 		61DC2B7E1C6BD00400AE0CE9 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DC2B7D1C6BD00400AE0CE9 /* SoPersistent.framework */; };
-		61DC2B811C6BD04F00AE0CE9 /* JaSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DC2B801C6BD04F00AE0CE9 /* JaSON.framework */; };
 		61DC2B831C6BD09100AE0CE9 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DC2B821C6BD09100AE0CE9 /* TooLegit.framework */; };
 		61DC2B851C6BD0BB00AE0CE9 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DC2B841C6BD0BA00AE0CE9 /* SoLazy.framework */; };
 		61E4E7931C6BCD370043D3B2 /* ObserverAlertKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 61E4E7921C6BCD370043D3B2 /* ObserverAlertKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61E4E79A1C6BCD370043D3B2 /* ObserverAlertKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E4E78F1C6BCD370043D3B2 /* ObserverAlertKit.framework */; };
-		61E4E79F1C6BCD370043D3B2 /* ObserverAlertKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4E79E1C6BCD370043D3B2 /* ObserverAlertKitTests.swift */; };
-		61E4E7AE1C6BCE050043D3B2 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4E7AB1C6BCE050043D3B2 /* Alert.swift */; };
 		61E4E7AF1C6BCE050043D3B2 /* ObserverAlertKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61E4E7AC1C6BCE050043D3B2 /* ObserverAlertKit.xcdatamodeld */; };
-		61E4E7B11C6BCE3B0043D3B2 /* ObservedUserAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4E7B01C6BCE3B0043D3B2 /* ObservedUserAlertsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,19 +63,52 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E09E1CC1CEA66740006A46D /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoAutomated.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Parent-fuimhnzxgmmvcgcrntfxmrqlexbi/Build/Products/Debug-iphoneos/SoAutomated.framework"; sourceTree = "<group>"; };
+		5E09E1D01CEA7A410006A46D /* AlertTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertTests.swift; sourceTree = "<group>"; };
+		5E4E205F1C929CD200E7D709 /* AlertThresholds+Edits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertThresholds+Edits.swift"; sourceTree = "<group>"; };
+		5E619CED1CFF69C80065F7CC /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DoNotShipThis.framework; path = "../Debug-iphonesimulator/DoNotShipThis.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E66C5421CF794B500CACC18 /* AlertThresholdTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertThresholdTests.swift; sourceTree = "<group>"; };
+		5E66C5441CF795F800CACC18 /* valid_alert_threshold.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_alert_threshold.json; sourceTree = "<group>"; };
+		5E66C5461CF796A000CACC18 /* AlertThreshold+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertThreshold+JSON.swift"; sourceTree = "<group>"; };
+		5EBCA57E1D0085010027DE6D /* all-alert-thresholds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "all-alert-thresholds.json"; sourceTree = "<group>"; };
+		5EBCA5801D0085210027DE6D /* insert-alert-threshold.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "insert-alert-threshold.json"; sourceTree = "<group>"; };
+		5EBCA5831D0087A40027DE6D /* update-alert-threshold.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "update-alert-threshold.json"; sourceTree = "<group>"; };
+		5EBCA5861D0089FD0027DE6D /* delete-alert-threshold.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "delete-alert-threshold.json"; sourceTree = "<group>"; };
+		5EBCA5891D00C11F0027DE6D /* AlertCountCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCountCoordinatorTests.swift; sourceTree = "<group>"; };
+		5EBCA58B1D00C8440027DE6D /* alert-thresholds-student.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "alert-thresholds-student.json"; sourceTree = "<group>"; };
+		5EBCA58F1D00C8AE0027DE6D /* AlertThreshold+CollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertThreshold+CollectionTests.swift"; sourceTree = "<group>"; };
+		5EC475341CFF6E060064D9EE /* all-alerts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "all-alerts.json"; sourceTree = "<group>"; };
+		5EC475361CFF747F0064D9EE /* observee-alerts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "observee-alerts.json"; sourceTree = "<group>"; };
+		5EC475381CFF7E0C0064D9EE /* mark-alert-read.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "mark-alert-read.json"; sourceTree = "<group>"; };
+		5EC4753A1CFF7E600064D9EE /* mark-alert-dismissed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "mark-alert-dismissed.json"; sourceTree = "<group>"; };
+		5EC4753F1D00767A0064D9EE /* AlertThreshold+NetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertThreshold+NetworkTests.swift"; sourceTree = "<group>"; };
+		5EF8A4D11CF761CD007072BF /* Factories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
+		5EF8A4D61CF77495007072BF /* Alert+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+JSON.swift"; sourceTree = "<group>"; };
+		5EF8A4D81CF774DB007072BF /* valid_alert.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_alert.json; sourceTree = "<group>"; };
+		5EF8A4DB1CF7834F007072BF /* Alert+NetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+NetworkTests.swift"; sourceTree = "<group>"; };
+		5EF8A4DD1CF7835C007072BF /* Alert+CollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+CollectionTests.swift"; sourceTree = "<group>"; };
+		5EFD025B1C861BFF0071C8F5 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		610AABAC1C7CA66A0078A235 /* AlertCountCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCountCoordinator.swift; sourceTree = "<group>"; };
+		61A47BC61CEBCCBF00861155 /* Airwolf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Airwolf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61D6A8361C8F79F500370117 /* Alert+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+Network.swift"; sourceTree = "<group>"; };
+		61D6A8381C8F7A2500370117 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		61D6A83B1C8F7A7300370117 /* AlertThreshold.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertThreshold.swift; sourceTree = "<group>"; };
+		61D6A83D1C8F7A8C00370117 /* AlertThreshold+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertThreshold+Network.swift"; sourceTree = "<group>"; };
+		61D6A8401C8F7B2F00370117 /* AlertAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAPI.swift; sourceTree = "<group>"; };
+		61D6A8411C8F7B2F00370117 /* AlertThresholdAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertThresholdAPI.swift; sourceTree = "<group>"; };
+		61D6A8441C8F7B5700370117 /* Alert+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+Collections.swift"; sourceTree = "<group>"; };
+		61D6A8461C8F7F6C00370117 /* Session+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Alert.swift"; sourceTree = "<group>"; };
+		61D6A84A1C8F80FE00370117 /* AlertThreshold+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertThreshold+Collections.swift"; sourceTree = "<group>"; };
+		61D6A84E1C9071AE00370117 /* Alert+Edits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+Edits.swift"; sourceTree = "<group>"; };
 		61DC2B7D1C6BD00400AE0CE9 /* SoPersistent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPersistent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		61DC2B801C6BD04F00AE0CE9 /* JaSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JaSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61DC2B821C6BD09100AE0CE9 /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61DC2B841C6BD0BA00AE0CE9 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61E4E78F1C6BCD370043D3B2 /* ObserverAlertKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObserverAlertKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61E4E7921C6BCD370043D3B2 /* ObserverAlertKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObserverAlertKit.h; sourceTree = "<group>"; };
 		61E4E7941C6BCD370043D3B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61E4E7991C6BCD370043D3B2 /* ObserverAlertKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObserverAlertKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		61E4E79E1C6BCD370043D3B2 /* ObserverAlertKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertKitTests.swift; sourceTree = "<group>"; };
 		61E4E7A01C6BCD370043D3B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		61E4E7AB1C6BCE050043D3B2 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		61E4E7AD1C6BCE050043D3B2 /* ObserverAlertKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ObserverAlertKit.xcdatamodel; sourceTree = "<group>"; };
-		61E4E7B01C6BCE3B0043D3B2 /* ObservedUserAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservedUserAlertsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +116,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61DC2B811C6BD04F00AE0CE9 /* JaSON.framework in Frameworks */,
+				61A47BC71CEBCCCD00861155 /* Airwolf.framework in Frameworks */,
+				5EFD025D1C861C0F0071C8F5 /* Marshal.framework in Frameworks */,
 				61DC2B7E1C6BD00400AE0CE9 /* SoPersistent.framework in Frameworks */,
 				61DC2B851C6BD0BB00AE0CE9 /* SoLazy.framework in Frameworks */,
 				61DC2B831C6BD09100AE0CE9 /* TooLegit.framework in Frameworks */,
@@ -62,18 +129,109 @@
 			buildActionMask = 2147483647;
 			files = (
 				61E4E79A1C6BCD370043D3B2 /* ObserverAlertKit.framework in Frameworks */,
+				5E619CEE1CFF69DE0065F7CC /* DoNotShipThis.framework in Frameworks */,
+				5E09E1CD1CEA66740006A46D /* SoAutomated.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E05398C1CFF37DE00560CEE /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				5EBCA58B1D00C8440027DE6D /* alert-thresholds-student.json */,
+				5EBCA57E1D0085010027DE6D /* all-alert-thresholds.json */,
+				5EC475341CFF6E060064D9EE /* all-alerts.json */,
+				5EBCA5861D0089FD0027DE6D /* delete-alert-threshold.json */,
+				5EBCA5801D0085210027DE6D /* insert-alert-threshold.json */,
+				5EC4753A1CFF7E600064D9EE /* mark-alert-dismissed.json */,
+				5EC475381CFF7E0C0064D9EE /* mark-alert-read.json */,
+				5EC475361CFF747F0064D9EE /* observee-alerts.json */,
+				5EBCA5831D0087A40027DE6D /* update-alert-threshold.json */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		5E09E1C71CEA63A70006A46D /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				5EF8A4D81CF774DB007072BF /* valid_alert.json */,
+				5E09E1D01CEA7A410006A46D /* AlertTests.swift */,
+				5EF8A4D61CF77495007072BF /* Alert+JSON.swift */,
+				5EF8A4DB1CF7834F007072BF /* Alert+NetworkTests.swift */,
+				5EF8A4DD1CF7835C007072BF /* Alert+CollectionTests.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		5E09E1CA1CEA63AA0006A46D /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				5E619CED1CFF69C80065F7CC /* DoNotShipThis.framework */,
+				5E09E1CC1CEA66740006A46D /* SoAutomated.framework */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		5E66C5411CF794A600CACC18 /* AlertThreshold */ = {
+			isa = PBXGroup;
+			children = (
+				5E66C5441CF795F800CACC18 /* valid_alert_threshold.json */,
+				5E66C5421CF794B500CACC18 /* AlertThresholdTests.swift */,
+				5E66C5461CF796A000CACC18 /* AlertThreshold+JSON.swift */,
+				5EC4753F1D00767A0064D9EE /* AlertThreshold+NetworkTests.swift */,
+				5EBCA58F1D00C8AE0027DE6D /* AlertThreshold+CollectionTests.swift */,
+			);
+			path = AlertThreshold;
+			sourceTree = "<group>";
+		};
+		5EBCA5881D00C10B0027DE6D /* AlertCountCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				5EBCA5891D00C11F0027DE6D /* AlertCountCoordinatorTests.swift */,
+			);
+			path = AlertCountCoordinator;
+			sourceTree = "<group>";
+		};
+		61D6A8351C8F79DE00370117 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				61D6A8381C8F7A2500370117 /* Alert.swift */,
+				61D6A8441C8F7B5700370117 /* Alert+Collections.swift */,
+				61D6A8361C8F79F500370117 /* Alert+Network.swift */,
+				61D6A84E1C9071AE00370117 /* Alert+Edits.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		61D6A83A1C8F7A4D00370117 /* AlertThreshold */ = {
+			isa = PBXGroup;
+			children = (
+				61D6A83B1C8F7A7300370117 /* AlertThreshold.swift */,
+				61D6A84A1C8F80FE00370117 /* AlertThreshold+Collections.swift */,
+				61D6A83D1C8F7A8C00370117 /* AlertThreshold+Network.swift */,
+				5E4E205F1C929CD200E7D709 /* AlertThresholds+Edits.swift */,
+			);
+			path = AlertThreshold;
+			sourceTree = "<group>";
+		};
+		61D6A83F1C8F7AD400370117 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				61D6A8401C8F7B2F00370117 /* AlertAPI.swift */,
+				61D6A8411C8F7B2F00370117 /* AlertThresholdAPI.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		61DC2B7F1C6BD01200AE0CE9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61A47BC61CEBCCBF00861155 /* Airwolf.framework */,
+				5EFD025B1C861BFF0071C8F5 /* Marshal.framework */,
 				61DC2B841C6BD0BA00AE0CE9 /* SoLazy.framework */,
 				61DC2B821C6BD09100AE0CE9 /* TooLegit.framework */,
-				61DC2B801C6BD04F00AE0CE9 /* JaSON.framework */,
 				61DC2B7D1C6BD00400AE0CE9 /* SoPersistent.framework */,
 			);
 			name = Frameworks;
@@ -102,9 +260,10 @@
 			isa = PBXGroup;
 			children = (
 				61E4E7AA1C6BCD810043D3B2 /* Model */,
-				61E4E7A91C6BCD700043D3B2 /* View Controllers */,
+				61D6A83F1C8F7AD400370117 /* Network */,
 				61E4E7921C6BCD370043D3B2 /* ObserverAlertKit.h */,
 				61E4E7941C6BCD370043D3B2 /* Info.plist */,
+				61D6A8461C8F7F6C00370117 /* Session+Alert.swift */,
 			);
 			path = ObserverAlertKit;
 			sourceTree = "<group>";
@@ -112,25 +271,24 @@
 		61E4E79D1C6BCD370043D3B2 /* ObserverAlertKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				61E4E79E1C6BCD370043D3B2 /* ObserverAlertKitTests.swift */,
+				5E05398C1CFF37DE00560CEE /* Fixtures */,
+				5E09E1CA1CEA63AA0006A46D /* Dependencies */,
+				5E66C5411CF794A600CACC18 /* AlertThreshold */,
+				5E09E1C71CEA63A70006A46D /* Alert */,
+				5EBCA5881D00C10B0027DE6D /* AlertCountCoordinator */,
 				61E4E7A01C6BCD370043D3B2 /* Info.plist */,
+				5EF8A4D11CF761CD007072BF /* Factories.swift */,
 			);
 			path = ObserverAlertKitTests;
-			sourceTree = "<group>";
-		};
-		61E4E7A91C6BCD700043D3B2 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				61E4E7B01C6BCE3B0043D3B2 /* ObservedUserAlertsViewController.swift */,
-			);
-			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		61E4E7AA1C6BCD810043D3B2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				61E4E7AB1C6BCE050043D3B2 /* Alert.swift */,
 				61E4E7AC1C6BCE050043D3B2 /* ObserverAlertKit.xcdatamodeld */,
+				610AABAC1C7CA66A0078A235 /* AlertCountCoordinator.swift */,
+				61D6A8351C8F79DE00370117 /* Alert */,
+				61D6A83A1C8F7A4D00370117 /* AlertThreshold */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -233,6 +391,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EF8A4D91CF774DB007072BF /* valid_alert.json in Resources */,
+				5EBCA5871D0089FD0027DE6D /* delete-alert-threshold.json in Resources */,
+				5EBCA5851D0088970027DE6D /* update-alert-threshold.json in Resources */,
+				5EC475351CFF6E060064D9EE /* all-alerts.json in Resources */,
+				5EC4753B1CFF7E600064D9EE /* mark-alert-dismissed.json in Resources */,
+				5EC4753D1CFF81000064D9EE /* mark-alert-read.json in Resources */,
+				5EBCA5821D0085470027DE6D /* all-alert-thresholds.json in Resources */,
+				5E66C5451CF795F800CACC18 /* valid_alert_threshold.json in Resources */,
+				5EBCA58C1D00C8440027DE6D /* alert-thresholds-student.json in Resources */,
+				5EC475371CFF747F0064D9EE /* observee-alerts.json in Resources */,
+				5EBCA5811D0085210027DE6D /* insert-alert-threshold.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,9 +412,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61E4E7AE1C6BCE050043D3B2 /* Alert.swift in Sources */,
+				61D6A8471C8F7F6C00370117 /* Session+Alert.swift in Sources */,
 				61E4E7AF1C6BCE050043D3B2 /* ObserverAlertKit.xcdatamodeld in Sources */,
-				61E4E7B11C6BCE3B0043D3B2 /* ObservedUserAlertsViewController.swift in Sources */,
+				61D6A84B1C8F80FE00370117 /* AlertThreshold+Collections.swift in Sources */,
+				5E4E20601C929CD200E7D709 /* AlertThresholds+Edits.swift in Sources */,
+				610AABAD1C7CA66A0078A235 /* AlertCountCoordinator.swift in Sources */,
+				61D6A8371C8F79F500370117 /* Alert+Network.swift in Sources */,
+				61D6A8391C8F7A2500370117 /* Alert.swift in Sources */,
+				61D6A84F1C9071AE00370117 /* Alert+Edits.swift in Sources */,
+				61D6A83E1C8F7A8C00370117 /* AlertThreshold+Network.swift in Sources */,
+				61D6A8451C8F7B5700370117 /* Alert+Collections.swift in Sources */,
+				61D6A8431C8F7B2F00370117 /* AlertThresholdAPI.swift in Sources */,
+				61D6A83C1C8F7A7300370117 /* AlertThreshold.swift in Sources */,
+				61D6A8421C8F7B2F00370117 /* AlertAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,7 +432,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61E4E79F1C6BCD370043D3B2 /* ObserverAlertKitTests.swift in Sources */,
+				5E66C5471CF796A000CACC18 /* AlertThreshold+JSON.swift in Sources */,
+				5EF8A4D21CF761CD007072BF /* Factories.swift in Sources */,
+				5EBCA58A1D00C11F0027DE6D /* AlertCountCoordinatorTests.swift in Sources */,
+				5EF8A4DE1CF7835C007072BF /* Alert+CollectionTests.swift in Sources */,
+				5EBCA5901D00C8AE0027DE6D /* AlertThreshold+CollectionTests.swift in Sources */,
+				5EC475401D00767A0064D9EE /* AlertThreshold+NetworkTests.swift in Sources */,
+				5E09E1D11CEA7A410006A46D /* AlertTests.swift in Sources */,
+				5EF8A4D71CF77495007072BF /* Alert+JSON.swift in Sources */,
+				5E66C5431CF794B500CACC18 /* AlertThresholdTests.swift in Sources */,
+				5EF8A4DC1CF7834F007072BF /* Alert+NetworkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,8 +553,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/ObserverAlertKitTests",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = ObserverAlertKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ObserverAlertKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -383,8 +576,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/ObserverAlertKitTests",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = ObserverAlertKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ObserverAlertKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
