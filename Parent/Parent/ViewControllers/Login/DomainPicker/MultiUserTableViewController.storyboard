@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1AB-Xi-vDU">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Multi User Table View Controller-->
+        <scene sceneID="3Sg-Xs-V2U">
+            <objects>
+                <tableViewController id="1AB-Xi-vDU" customClass="MultiUserTableViewController" customModule="Keymaster" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0Ef-rC-Hdq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MultiUserCellReuseIdentifier" id="7bT-UP-Odz" customClass="MultiUserTableViewCell" customModule="Keymaster" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7bT-UP-Odz" id="DuW-5E-0Gh">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsD-5o-zJa">
+                                            <rect key="frame" x="56" y="2" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1E-IJ-Na3">
+                                            <rect key="frame" x="56" y="23" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SeZ-zT-ncP">
+                                            <rect key="frame" x="8" y="2" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="VT5-DX-gO8"/>
+                                                <constraint firstAttribute="height" constant="40" id="b6r-lt-zvn"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cS8-ib-heu">
+                                            <rect key="frame" x="562" y="7" width="30" height="30"/>
+                                            <state key="normal" title="X"/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="cS8-ib-heu" firstAttribute="centerY" secondItem="DuW-5E-0Gh" secondAttribute="centerY" id="69C-og-j0k"/>
+                                        <constraint firstItem="wsD-5o-zJa" firstAttribute="leading" secondItem="SeZ-zT-ncP" secondAttribute="trailing" constant="8" id="8Mr-X6-ZFt"/>
+                                        <constraint firstItem="wsD-5o-zJa" firstAttribute="top" secondItem="SeZ-zT-ncP" secondAttribute="top" id="96S-AX-3LR"/>
+                                        <constraint firstItem="SeZ-zT-ncP" firstAttribute="leading" secondItem="DuW-5E-0Gh" secondAttribute="leading" constant="8" id="PXx-ss-Bfb"/>
+                                        <constraint firstItem="cS8-ib-heu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="S1E-IJ-Na3" secondAttribute="trailing" constant="8" id="Pu4-ob-MVZ"/>
+                                        <constraint firstItem="SeZ-zT-ncP" firstAttribute="centerY" secondItem="DuW-5E-0Gh" secondAttribute="centerY" id="mFh-8Q-Ndf"/>
+                                        <constraint firstItem="S1E-IJ-Na3" firstAttribute="top" secondItem="wsD-5o-zJa" secondAttribute="bottom" id="p0e-kv-Ha3"/>
+                                        <constraint firstItem="cS8-ib-heu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wsD-5o-zJa" secondAttribute="trailing" constant="8" id="pGr-du-usJ"/>
+                                        <constraint firstItem="S1E-IJ-Na3" firstAttribute="leading" secondItem="wsD-5o-zJa" secondAttribute="leading" id="qJi-hs-P2N"/>
+                                        <constraint firstAttribute="trailing" secondItem="cS8-ib-heu" secondAttribute="trailing" constant="8" id="rfj-8g-0gr"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="avatarImageView" destination="SeZ-zT-ncP" id="fKO-qH-y2o"/>
+                                    <outlet property="deleteButton" destination="cS8-ib-heu" id="tz2-ae-wN3"/>
+                                    <outlet property="domainLabel" destination="S1E-IJ-Na3" id="jjO-mU-lZS"/>
+                                    <outlet property="nameLabel" destination="wsD-5o-zJa" id="c6b-Ob-8L0"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1AB-Xi-vDU" id="tt5-Uu-EeH"/>
+                            <outlet property="delegate" destination="1AB-Xi-vDU" id="cVi-7c-A0X"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RiU-CM-dpW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1240" y="277"/>
+        </scene>
+    </scenes>
+</document>

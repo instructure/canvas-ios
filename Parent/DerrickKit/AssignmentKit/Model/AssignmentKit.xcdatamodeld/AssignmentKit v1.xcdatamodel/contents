@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="1.0" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15A279b" minimumToolsVersion="Xcode 7.0">
+    <entity name="Assignment" representedClassName="AssignmentKit.Assignment" syncable="YES">
+        <attribute name="courseID" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="details" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
+        <attribute name="due" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
+        <attribute name="rawActivityURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rawKind" attributeType="String" defaultValueString="Assignment" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Assignment" positionX="-10449" positionY="-2907" width="128" height="148"/>
+    </elements>
+</model>

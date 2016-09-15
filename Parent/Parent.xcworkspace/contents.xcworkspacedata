@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "container:Parent.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ObserverAlertKit/ObserverAlertKit.xcodeproj">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "Carthage">
+      <FileRef
+         location = "group:Carthage/Checkouts/ios-frameworks/Calendar/Calendar.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/ios-frameworks/Enrollments/Enrollments.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/JaSON/JaSON.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/ios-frameworks/Keytester/Keytester.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/ios-frameworks/Peeps/Peeps.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/Result/Result.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/ios-frameworks/SoLazy/SoLazy.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/ios-frameworks/SoPersistent/SoPersistent.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/ios-frameworks/SoPretty/SoPretty.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/ios-frameworks/TooLegit/TooLegit.xcodeproj">
+      </FileRef>
+   </Group>
+</Workspace>

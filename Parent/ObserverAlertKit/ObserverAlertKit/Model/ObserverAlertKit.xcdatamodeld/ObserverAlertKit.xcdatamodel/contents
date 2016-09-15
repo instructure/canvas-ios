@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Xcode 7.0">
+    <entity name="Alert" syncable="YES">
+        <attribute name="actionDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="assetPath" attributeType="String" syncable="YES"/>
+        <attribute name="courseID" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="dismissed" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="observerID" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="read" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="studentID" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="thresholdID" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Alert" positionX="-63" positionY="-18" width="128" height="210"/>
+    </elements>
+</model>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
+    <entity name="Course" representedClassName=".Course" syncable="YES">
+        <attribute name="code" attributeType="String" syncable="YES"/>
+        <attribute name="endAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="hideFinalGrades" attributeType="Boolean" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="isFavorite" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="rawDefaultView" attributeType="String" syncable="YES"/>
+        <attribute name="rawRoles" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="startAt" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="Grade" representedClassName=".Grade" syncable="YES">
+        <attribute name="currentGrade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentScore" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="finalGrade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finalScore" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Course" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Grade" positionX="-36" positionY="90" width="128" height="105"/>
+    </elements>
+</model>
