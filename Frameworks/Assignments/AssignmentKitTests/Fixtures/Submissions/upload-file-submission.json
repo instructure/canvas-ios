@@ -1,0 +1,269 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1463616996.082167,
+      "response" : {
+        "body" : {
+          "file_param" : "file",
+          "upload_url" : "https:\/\/instructure-uploads.s3.amazonaws.com\/",
+          "upload_params" : {
+            "Policy" : "eyJleHBpcmF0aW9uIjoiMjAxNi0wNS0xOVQwMDo0NjozNFoiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJpbnN0cnVjdHVyZS11cGxvYWRzIn0seyJrZXkiOiJhY2NvdW50Xzk5Mjk4XC9hdHRhY2htZW50c1wvODYxNzg2NDFcL3Rlc3RmaWxlLnR4dCJ9LHsiYWNsIjoicHJpdmF0ZSJ9LFsic3RhcnRzLXdpdGgiLCIkRmlsZW5hbWUiLCIiXSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwxLDEwNzM3NDE4MjQwXSx7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjoiaHR0cHM6XC9cL21vYmlsZWRldi5pbnN0cnVjdHVyZS5jb21cL2FwaVwvdjFcL2ZpbGVzXC84NjE3ODY0MVwvY3JlYXRlX3N1Y2Nlc3M\/b25fZHVwbGljYXRlPXJlbmFtZVx1MDAyNnF1b3RhX2V4ZW1wdGlvbj1jMTgwNTQzNmY1XHUwMDI2dXVpZD05U2hMUUhPYm94allaUkUzU1BKaFozOEM1ZlpHVFFkck1kUVkyOU5WIn0seyJjb250ZW50LXR5cGUiOiJ0ZXh0XC9wbGFpbiJ9XX0=",
+            "content-type" : "text\/plain",
+            "Filename" : "testfile.txt",
+            "acl" : "private",
+            "AWSAccessKeyId" : "AKIAJFNFXH2V2O7RPCAA",
+            "key" : "account_99298\/attachments\/86178641\/testfile.txt",
+            "Signature" : "lNBjk0QXpNx7FHu35D0njrGa1Cs=",
+            "success_action_redirect" : "https:\/\/mobiledev.instructure.com\/api\/v1\/files\/86178641\/create_success?on_duplicate=rename&quota_exemption=c1805436f5&uuid=9ShLQHOboxjYZRE3SPJhZ38C5fZGTQdrMdQY29NV"
+          }
+        },
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/24219\/assignments\/1252468\/submissions\/self\/files",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=dApGbp5vGPLfMhYTCk3MFZ5h0FXHWvp30StTrHJeEplFMhQA6CEhtadzIGpnBflXyCm2JIwCuSarWwqdIg974w%3D%3D; path=\/; secure, log_session_id=d2e3416106a19f3b0110704481c54a9b; path=\/, canvas_session=2uxSX1KowZuaVxWDPbLjZw.-m-JzAaDFjit_TTDdwXSNbv95dKsgc9QBOvou9TWrbvouriEqEPutqL5RcxdBM8kkz3I553PbjjFUKyOUuVcbRNu4srJc5x8UjyCvAqXUotGo4EcZNzSiWG_aPea5-h3.qy57JW4ackWpLGmNAdy_lB1Dud4.Vz0F4g; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.245530",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "X-Request-Processor" : "a01ccff",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "Status" : "200 OK",
+          "X-Session-Id" : "d2e3416106a19f3b0110704481c54a9b",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "dea558d7-3239-46f9-85a9-3ef47b3a508d",
+          "X-Request-Cost" : "0.19924461899999546",
+          "Content-Length" : "843",
+          "X-Canvas-Meta" : "q=896;at=10000000539225;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1b;o=submissions_api;n=create_file;t=Course;i=24219;b=1258308;m=1258308;u=0.13;y=0.01;d=0.07;",
+          "Date" : "Thu, 19 May 2016 00:16:34 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000006782429",
+          "Etag" : "\"141648755deaf276e4791d269088d453\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "POST",
+        "body" : "bmFtZT10ZXN0ZmlsZS50eHQmb25fZHVwbGljYXRlPXJlbmFtZSZzaXplPTk=",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/24219\/assignments\/1252468\/submissions\/self\/files",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "Content-Type" : "application\/x-www-form-urlencoded; charset=utf-8",
+          "User-Agent" : "Assignments\/com.instructure.Assignments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~VrFstYIqog7pM72sX6tVWVQzlWqpVBPc6izVVQSSwZMCCW6VTWUKrcD4gai7v9Hd"
+        }
+      }
+    },
+    {
+      "recorded_at" : 1463616996.875827,
+      "response" : {
+        "body" : {
+          "id" : 86178641,
+          "content-type" : "text\/plain",
+          "locked_for_user" : false,
+          "lock_at" : null,
+          "folder_id" : 10119415,
+          "filename" : "testfile.txt",
+          "created_at" : "2016-05-19T00:16:34Z",
+          "url" : "https:\/\/mobiledev.instructure.com\/files\/86178641\/download?download_frd=1&verifier=9ShLQHOboxjYZRE3SPJhZ38C5fZGTQdrMdQY29NV",
+          "hidden_for_user" : false,
+          "size" : 9,
+          "thumbnail_url" : null,
+          "preview_url" : "\/users\/6782429\/files\/86178641\/file_preview?annotate=0",
+          "display_name" : "testfile-6.txt",
+          "updated_at" : "2016-05-19T00:16:35Z",
+          "unlock_at" : null,
+          "locked" : false,
+          "hidden" : false,
+          "modified_at" : "2016-05-19T00:16:34Z"
+        },
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/files\/86178641\/create_success?on_duplicate=rename&quota_exemption=c1805436f5&uuid=9ShLQHOboxjYZRE3SPJhZ38C5fZGTQdrMdQY29NV&bucket=instructure-uploads&key=account_99298%2Fattachments%2F86178641%2Ftestfile.txt&etag=%22f20d9f2072bbeb6691c0f9c5099b01f3%22",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=AF9gSqms4mg1s8jSJSa%2Fr%2BEjS0ebdb9pM%2FuuaA9PbAcxZzIk3%2BLbL03y%2FqtIbortt2stNtAt%2FDhJi%2FdZXx4FfQ%3D%3D; path=\/; secure",
+          "Access-Control-Allow-Methods" : "POST, PUT, DELETE, GET, OPTIONS",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "Status" : "200 OK",
+          "X-Request-Processor" : "a01d906",
+          "X-Runtime" : "0.430631",
+          "X-Session-Id" : "d2e3416106a19f3b0110704481c54a9b",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "Access-Control-Allow-Origin" : "*",
+          "X-Request-Context-Id" : "2a4b7d45-6850-4e32-a318-653571334ab7",
+          "Access-Control-Allow-Headers" : "Origin, X-Requested-With, Content-Type, Accept, Authorization, Accept-Encoding",
+          "X-Request-Cost" : "0.30161506399998406",
+          "Content-Length" : "351",
+          "X-Canvas-Meta" : "q=871;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1e;o=files;n=api_create_success;b=1193056;m=1193056;u=0.08;y=0.00;d=0.22;",
+          "Date" : "Thu, 19 May 2016 00:16:35 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "Access-Control-Request-Method" : "*",
+          "Etag" : "\"72f2734406a3305bd12232c4b238109b\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "POST",
+        "body" : "LS08MmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMzMgNmI2YzY2NjUgNmU2MTZjNmIgNzM2YTY2NmMgNmI2YTZmNjkgMzk2MTc1NjYgMzgzOTY1NzMgNjg2MTZhNzMgNmU2YzMzNmIgNmE2ZTc3NjEgNmM+DQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImNvbnRlbnQtdHlwZSINCg0KdGV4dC9wbGFpbg0KLS08MmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMzMgNmI2YzY2NjUgNmU2MTZjNmIgNzM2YTY2NmMgNmI2YTZmNjkgMzk2MTc1NjYgMzgzOTY1NzMgNjg2MTZhNzMgNmU2YzMzNmIgNmE2ZTc3NjEgNmM+DQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9IlNpZ25hdHVyZSINCg0KbE5CamswUVhwTng3Rkh1MzVEMG5qckdhMUNzPQ0KLS08MmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMzMgNmI2YzY2NjUgNmU2MTZjNmIgNzM2YTY2NmMgNmI2YTZmNjkgMzk2MTc1NjYgMzgzOTY1NzMgNjg2MTZhNzMgNmU2YzMzNmIgNmE2ZTc3NjEgNmM+DQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImtleSINCg0KYWNjb3VudF85OTI5OC9hdHRhY2htZW50cy84NjE3ODY0MS90ZXN0ZmlsZS50eHQNCi0tPDJkMmQyZDJkIDJkMmQyZDJkIDJkMmQyZDJkIDJkMmQyZDJkIDJkMmQyZDJkIDJkMmQyZDJkIDJkMmQyZDMzIDZiNmM2NjY1IDZlNjE2YzZiIDczNmE2NjZjIDZiNmE2ZjY5IDM5NjE3NTY2IDM4Mzk2NTczIDY4NjE2YTczIDZlNmMzMzZiIDZhNmU3NzYxIDZjPg0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJQb2xpY3kiDQoNCmV5SmxlSEJwY21GMGFXOXVJam9pTWpBeE5pMHdOUzB4T1ZRd01EbzBOam96TkZvaUxDSmpiMjVrYVhScGIyNXpJanBiZXlKaWRXTnJaWFFpT2lKcGJuTjBjblZqZEhWeVpTMTFjR3h2WVdSekluMHNleUpyWlhraU9pSmhZMk52ZFc1MFh6azVNams0WEM5aGRIUmhZMmh0Wlc1MGMxd3ZPRFl4TnpnMk5ERmNMM1JsYzNSbWFXeGxMblI0ZENKOUxIc2lZV05zSWpvaWNISnBkbUYwWlNKOUxGc2ljM1JoY25SekxYZHBkR2dpTENJa1JtbHNaVzVoYldVaUxDSWlYU3hiSW1OdmJuUmxiblF0YkdWdVozUm9MWEpoYm1kbElpd3hMREV3TnpNM05ERTRNalF3WFN4N0luTjFZMk5sYzNOZllXTjBhVzl1WDNKbFpHbHlaV04wSWpvaWFIUjBjSE02WEM5Y0wyMXZZbWxzWldSbGRpNXBibk4wY25WamRIVnlaUzVqYjIxY0wyRndhVnd2ZGpGY0wyWnBiR1Z6WEM4NE5qRTNPRFkwTVZ3dlkzSmxZWFJsWDNOMVkyTmxjM00vYjI1ZlpIVndiR2xqWVhSbFBYSmxibUZ0WlZ4MU1EQXlObkYxYjNSaFgyVjRaVzF3ZEdsdmJqMWpNVGd3TlRRek5tWTFYSFV3TURJMmRYVnBaRDA1VTJoTVVVaFBZbTk0YWxsYVVrVXpVMUJLYUZvek9FTTFabHBIVkZGa2NrMWtVVmt5T1U1V0luMHNleUpqYjI1MFpXNTBMWFI1Y0dVaU9pSjBaWGgwWEM5d2JHRnBiaUo5WFgwPQ0KLS08MmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMzMgNmI2YzY2NjUgNmU2MTZjNmIgNzM2YTY2NmMgNmI2YTZmNjkgMzk2MTc1NjYgMzgzOTY1NzMgNjg2MTZhNzMgNmU2YzMzNmIgNmE2ZTc3NjEgNmM+DQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImFjbCINCg0KcHJpdmF0ZQ0KLS08MmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMzMgNmI2YzY2NjUgNmU2MTZjNmIgNzM2YTY2NmMgNmI2YTZmNjkgMzk2MTc1NjYgMzgzOTY1NzMgNjg2MTZhNzMgNmU2YzMzNmIgNmE2ZTc3NjEgNmM+DQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0Ig0KDQpodHRwczovL21vYmlsZWRldi5pbnN0cnVjdHVyZS5jb20vYXBpL3YxL2ZpbGVzLzg2MTc4NjQxL2NyZWF0ZV9zdWNjZXNzP29uX2R1cGxpY2F0ZT1yZW5hbWUmcXVvdGFfZXhlbXB0aW9uPWMxODA1NDM2ZjUmdXVpZD05U2hMUUhPYm94allaUkUzU1BKaFozOEM1ZlpHVFFkck1kUVkyOU5WDQotLTwyZDJkMmQyZCAyZDJkMmQyZCAyZDJkMmQyZCAyZDJkMmQyZCAyZDJkMmQyZCAyZDJkMmQyZCAyZDJkMmQzMyA2YjZjNjY2NSA2ZTYxNmM2YiA3MzZhNjY2YyA2YjZhNmY2OSAzOTYxNzU2NiAzODM5NjU3MyA2ODYxNmE3MyA2ZTZjMzM2YiA2YTZlNzc2MSA2Yz4NCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0iRmlsZW5hbWUiDQoNCnRlc3RmaWxlLnR4dA0KLS08MmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMzMgNmI2YzY2NjUgNmU2MTZjNmIgNzM2YTY2NmMgNmI2YTZmNjkgMzk2MTc1NjYgMzgzOTY1NzMgNjg2MTZhNzMgNmU2YzMzNmIgNmE2ZTc3NjEgNmM+DQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9IkFXU0FjY2Vzc0tleUlkIg0KDQpBS0lBSkZORlhIMlYyTzdSUENBQQ0KLS08MmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMzMgNmI2YzY2NjUgNmU2MTZjNmIgNzM2YTY2NmMgNmI2YTZmNjkgMzk2MTc1NjYgMzgzOTY1NzMgNjg2MTZhNzMgNmU2YzMzNmIgNmE2ZTc3NjEgNmM+DQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImZpbGUiDQoNCnRlc3QgZmlsZQ0KLS08MmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMmQgMmQyZDJkMzMgNmI2YzY2NjUgNmU2MTZjNmIgNzM2YTY2NmMgNmI2YTZmNjkgMzk2MTc1NjYgMzgzOTY1NzMgNjg2MTZhNzMgNmU2YzMzNmIgNmE2ZTc3NjEgNmM+LS0NCg==",
+        "url" : "https:\/\/instructure-uploads.s3.amazonaws.com\/",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "Content-Type" : "multipart\/form-data; boundary=<2d2d2d2d 2d2d2d2d 2d2d2d2d 2d2d2d2d 2d2d2d2d 2d2d2d2d 2d2d2d33 6b6c6665 6e616c6b 736a666c 6b6a6f69 39617566 38396573 68616a73 6e6c336b 6a6e7761 6c>",
+          "User-Agent" : "Assignments\/com.instructure.Assignments (1; OS Version 9.3 (Build 13E230))"
+        }
+      }
+    },
+    {
+      "recorded_at" : 1463616997.637701,
+      "response" : {
+        "body" : {
+          "id" : 72978467,
+          "body" : null,
+          "late" : true,
+          "graded_at" : null,
+          "assignment_id" : 1252468,
+          "url" : null,
+          "user_id" : 6782429,
+          "attempt" : 132,
+          "submission_type" : "online_upload",
+          "submission_comments" : [
+            {
+              "author" : {
+                "id" : 6782429,
+                "display_name" : "narmstrong+s@instructure.com",
+                "avatar_image_url" : "https:\/\/secure.gravatar.com\/avatar\/f2bd75ea8a32495fe4e8d192e9a70d72?s=50&d=https%3A%2F%2Fmobiledev.instructure.com%2Fimages%2Fmessages%2Favatar-50.png",
+                "html_url" : "https:\/\/mobiledev.instructure.com\/courses\/24219\/users\/6782429"
+              },
+              "author_id" : 6782429,
+              "id" : 15376622,
+              "created_at" : "2016-03-30T18:32:23Z",
+              "author_name" : "narmstrong+s@instructure.com",
+              "comment" : "Hey look, a comment!",
+              "avatar_path" : "\/images\/users\/6782429-aff70f16d8"
+            },
+            {
+              "author" : {
+                "id" : 6782429,
+                "display_name" : "narmstrong+s@instructure.com",
+                "avatar_image_url" : "https:\/\/secure.gravatar.com\/avatar\/f2bd75ea8a32495fe4e8d192e9a70d72?s=50&d=https%3A%2F%2Fmobiledev.instructure.com%2Fimages%2Fmessages%2Favatar-50.png",
+                "html_url" : "https:\/\/mobiledev.instructure.com\/courses\/24219\/users\/6782429"
+              },
+              "author_id" : 6782429,
+              "id" : 15376633,
+              "created_at" : "2016-03-30T18:33:01Z",
+              "author_name" : "narmstrong+s@instructure.com",
+              "comment" : "Hey look, a comment!",
+              "avatar_path" : "\/images\/users\/6782429-aff70f16d8"
+            },
+            {
+              "author" : {
+                "id" : 6782429,
+                "display_name" : "narmstrong+s@instructure.com",
+                "avatar_image_url" : "https:\/\/secure.gravatar.com\/avatar\/f2bd75ea8a32495fe4e8d192e9a70d72?s=50&d=https%3A%2F%2Fmobiledev.instructure.com%2Fimages%2Fmessages%2Favatar-50.png",
+                "html_url" : "https:\/\/mobiledev.instructure.com\/courses\/24219\/users\/6782429"
+              },
+              "author_id" : 6782429,
+              "id" : 15383648,
+              "created_at" : "2016-03-31T01:42:01Z",
+              "author_name" : "narmstrong+s@instructure.com",
+              "comment" : "Hey look, a comment!",
+              "avatar_path" : "\/images\/users\/6782429-aff70f16d8"
+            }
+          ],
+          "submitted_at" : "2016-05-19T00:16:35Z",
+          "preview_url" : "https:\/\/mobiledev.instructure.com\/courses\/24219\/assignments\/1252468\/submissions\/6782429?preview=1&version=132",
+          "excused" : null,
+          "grade_matches_current_submission" : true,
+          "attachments" : [
+            {
+              "id" : 86178641,
+              "content-type" : "text\/plain",
+              "locked_for_user" : false,
+              "lock_at" : null,
+              "folder_id" : 10119415,
+              "filename" : "testfile.txt",
+              "created_at" : "2016-05-19T00:16:34Z",
+              "url" : "https:\/\/mobiledev.instructure.com\/files\/86178641\/download?download_frd=1&verifier=9ShLQHOboxjYZRE3SPJhZ38C5fZGTQdrMdQY29NV",
+              "hidden_for_user" : false,
+              "size" : 9,
+              "thumbnail_url" : null,
+              "preview_url" : "\/api\/v1\/canvadoc_session?blob=%7B%22user_id%22:10000006782429,%22attachment_id%22:86178641,%22type%22:%22canvadoc%22%7D&hmac=2bc5a17bf2356c1c52193445b7c1de9ea273c4fe",
+              "display_name" : "testfile-6.txt",
+              "updated_at" : "2016-05-19T00:16:35Z",
+              "unlock_at" : null,
+              "locked" : false,
+              "hidden" : false,
+              "modified_at" : "2016-05-19T00:16:34Z"
+            }
+          ],
+          "grader_id" : null,
+          "grade" : null,
+          "score" : null,
+          "workflow_state" : "submitted"
+        },
+        "status" : 201,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/24219\/assignments\/1252468\/submissions",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=97hvfrIFYcXSbNmgKWIY%2FsiDr8k%2FrCXw7ferPBkj9zjGgD0QxEtYgqot79lEKi28nsvJuHT0ZqGXh%2FINSXKeQg%3D%3D; path=\/; secure",
+          "Location" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/24219\/assignments\/1252468\/submissions\/6782429",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "X-Request-Processor" : "a01d880",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "Status" : "201 Created",
+          "X-Runtime" : "0.695235",
+          "X-Session-Id" : "d2e3416106a19f3b0110704481c54a9b",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "2524551c-df78-425f-a757-2d0a5ad931e2",
+          "X-Request-Cost" : "0.6504066610000079",
+          "Content-Length" : "853",
+          "X-Canvas-Meta" : "q=1054;at=10000000539225;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1e;o=submissions;n=create;t=Course;i=24219;x=5.0;p=t;e=235213075;f=2016-05-19T00:16:36.35Z;b=1061500;m=1061500;u=0.46;y=0.01;d=0.19;",
+          "Date" : "Thu, 19 May 2016 00:16:35 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000006782429",
+          "Etag" : "\"5fe52bb987154e34528fa303708d2e76\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "POST",
+        "body" : {
+          "submission" : {
+            "file_ids" : [
+              "86178641"
+            ],
+            "submission_type" : "online_upload"
+          }
+        },
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/24219\/assignments\/1252468\/submissions",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "Content-Type" : "application\/json",
+          "User-Agent" : "Assignments\/com.instructure.Assignments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~VrFstYIqog7pM72sX6tVWVQzlWqpVBPc6izVVQSSwZMCCW6VTWUKrcD4gai7v9Hd"
+        }
+      }
+    }
+  ],
+  "name" : "upload-file-submission"
+}

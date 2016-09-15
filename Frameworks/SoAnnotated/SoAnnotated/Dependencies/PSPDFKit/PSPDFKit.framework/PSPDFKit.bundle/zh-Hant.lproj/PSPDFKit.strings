@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "關閉";
+"Cancel" = "取消";
+"OK" = "好";
+"Open" = "打開";
+"Untitled" = "未命名";
+"File Not Found" = "找不到檔案";
+"File couldn't be opened." = "不能打開檔案。"; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "無名PDF";
+"Page %tu" = "第%tu頁";
+"Page %@" = "第%@頁";
+"Next" = "下一步";
+"Previous" = "上一個";
+"Error" = "錯誤";
+
+// toolbar
+"Outline" = "中空字"; // Table of contents
+"No Outline" = "無輪廓";
+"Search Outline" = "搜尋大綱";
+"Search" = "搜尋";
+"Email" = "電子郵件";
+"Send via Email" = "以電郵傳送";
+"Send" = "傳送";
+"Open In" = "打開用";
+"Commit" = "確認";
+"Sending to %@" = "正在傳送至 %@"; // Open document with an application
+"Pages" = "頁面";
+"Print with annotations" = "連同註釋打印";
+"Print without annotations" = "打印文件（不包括註釋）";
+"No Applications found" = "沒有安裝可以打開 PDF 檔案的應用程序。";
+"Print" = "列印";
+"Annotation" = "註釋";
+"Annotations" = "註解";
+"No Annotations" = "無註釋";
+"Bookmarks" = "書籤";
+"No Bookmarks" = "無書籤";
+"Add Bookmark" = "添加書籤";
+"Remove Bookmark" = "刪除書籤";
+"Brightness" = "亮度";
+"Share" = "分享";
+"Preparing" = "準備中";
+"Loading" = "正在載入";
+"Expand" = "擴展";
+"Collapse" = "收起";
+// SMS / iMessage sharing button
+"Message" = "訊息";
+"Thumbnails" = "縮覽圖";
+"Drag Toolbar" = "拖移工具列";
+
+// thumbnails
+"Bookmarked" = "已加入書籤";
+"Annotated" = "已註釋";
+"All" = "全部";
+
+// password
+"Password" = "密碼"; // text on a label
+"Unlock" = "解鎖";
+"Please enter the password." = "請鍵入密碼。";
+"This document cannot be unlocked. %@ is unsupported." = "不能打開此檔案。不支援%@。";
+
+// page
+"%tu of %tu" = "%tu／%tu頁";
+"%tu-%tu of %tu" = "第%tu至%tu頁（全%tu頁）";
+"%@ (%tu of %tu)" = "%@（%tu／%tu）";
+"%@, Page %tu" = "%@，第%tu頁";
+"Leave %@?" = "離開%@?";
+
+// search
+"Search Document" = "搜尋文件"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "正在搜尋第%tu頁（全%tu頁）";
+"Search Completed" = "搜尋完畢";
+"Search Cancelled" = "取消搜尋";
+"%tu left" = "剩下%tu份"; // Indexing Documents... 5 left
+"Searching" = "搜尋中";
+"Done" = "完成";
+"Indexing Documents" = "正在把文件編入目錄";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "檔案沒有內容";
+
+// inline browser
+"Open in Safari" = "用 Safari 打開";
+"Open in Chrome" = "用 Chrome 打開";
+"Your %@ is not configured to send emails." = "您的 %@ 沒有設定可傳送郵件。";
+"The link is requesting to open %@Would you like to continue?" = "此鏈結請求打開%@。要繼續嗎？";
+"an external application" = "外部應用程序"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "郵件"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "找不到%@的處理器";
+
+// text selection
+"Text copied to clipboard." = "文字已複製到剪貼簿。";
+"Save To Camera Roll" = "儲存至 Camera Roll";
+"Failed to extract image." = "提取圖像失敗。";
+"Type value or pick from list" = "鍵入數值，或從清單中選擇";
+
+// annotations
+"Add %@" = "加入%@";
+"Remove %@" = "刪除%@";
+"Remove" = "刪除";
+"Delete" = "刪除"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "編輯";
+"Undo" = "還原";
+"Nothing to undo" = "沒有可復原的操作";
+"Redo" = "重作";
+"Nothing to redo" = "沒有可重複的操作";
+"Type" = "類型"; // kind of Annotation can be selected
+"Size" = "大小";
+"Font" = "字體";
+"Fonts" = "字體";
+"All Fonts" = "全部字體";
+"Downloadable Fonts" = "可下載的字體";
+"Search Fonts" = "搜尋字體";
+"Choose Color" = "選擇顏色";
+"Choose Fill Color" = "選擇填充顏色";
+"Rainbow" = "彩虹";
+"Monochrome" = "單色";
+"Vintage" = "復古";
+"Color" = "顏色";
+"Border" = "邊界";
+"Fill Color" = "填充顏色";
+"Line End Fill Color" = "線條終端填充顏色";
+"Opacity" = "不透明度";
+"%@ %%" = "%@ %%";
+"Thickness" = "粗細";
+"%@ pt" = "%@ 級字";
+"Yellow" = "黃色";
+"Green" = "綠色";
+"Red" = "紅色";
+"Blue" = "藍色";
+"Pink" = "粉紅色";
+"Black" = "黑色";
+"Orange" = "橙色";
+"Purple" = "紫色";
+"Cyan" = "青藍色";
+"Gray" = "灰色";
+"White" = "白色";
+"Define" = "界定";
+"Wikipedia" = "維基百科";
+"Highlight" = "螢光標示";
+"Underline" = "底線";
+"Squiggle" = "波浪線";
+"StrikeOut" = "刪除線";
+"Rectangle" = "長方形";
+"Ellipse" = "橢圓形";
+"Line" = "線條"; // something that can be drawn
+"Lines" = "線條"; // "5 Lines" were drawn
+"Polyline" = "多點線";
+"Polygon" = "多邊形";
+"Signature" = "簽名";
+"Signatures" = "簽名檔";
+"Signed" = "已簽署";
+"Sign" = "簽名";
+"Sign using %@" = "用%@簽署"; // e.g. Adobe.PPKLite
+"Methods" = "方式"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "選擇身分"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "印章";
+"Stamps" = "印章";
+"Custom" = "自定"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "自訂印章";
+"Preview" = "預覽";
+"Stamp Text" = "印章文字";
+"Add Signature" = "加上簽名";
+"Remove Signature" = "刪除簽名";
+"My Signature" = "我的簽名";
+"No Signatures" = "無簽署"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "客戶簽名";
+"Please sign here" = "請簽署";
+"Note" = "備忘";
+"Text" = "文字";
+"Delete Note" = "刪除備忘錄";
+"Remove Note" = "刪除附註";
+"%@ could not be found." = "找不到 %@。";
+"Photo Library" = "照片庫";
+"Camera" = "相機";
+"Image" = "影像";
+"Low Quality" = "低質素";
+"Medium Quality" = "中等質素";
+"High Quality" = "高質素";
+"Clear All" = "清除全部";
+"Clear" = "清除";
+"Style" = "樣式";
+"Link" = "連結";
+"Ink" = "墨水";
+"FreeText" = "文字";
+"Screen" = "螢幕";
+"RichMedia" = "富媒體";
+"Left" = "靠左對齊";
+"Center" = "正中";
+"Right" = "靠右對齊";
+"Alignment" = "對齊";
+"Preview File" = "預覽檔案";
+"Copy" = "複製";
+"Paste" = "貼上";
+"Inspector" = "檢閱器";
+"Group" = "群組";
+"Ungroup" = "取消編組";
+"Merge" = "合併"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "樣本";
+"Annotation Summary for %@:\n" = "%@的註釋摘要";
+// title
+"Author Name" = "作者名字";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "請為新註釋加入自選的作者名字。";
+// text field placeholder
+"Name" = "名字";
+// meaning: close
+"Dismiss" = "關閉";
+"Fit to Text" = "與文字配合調整";
+"Draw" = "繪畫";
+"Sound" = "音效";
+"Eraser" = "橡皮擦";
+"Toggle Eraser" = "切換橡皮擦"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "選項工具";
+"Saved Annotations" = "已儲存註釋";
+"Add" = "加入"; // to add - infinitive
+"Date" = "日期";
+"Time" = "時間";
+"No Pages" = "無頁面";
+"Drag to resize" = "拖拉來調整大小"; // used as hint that inspector is resizable
+"Convert to" = "轉換為"; // used as label on action that changes free text intent type
+"Color Presets" = "顏色預設項";
+
+"Callout" = "重點"; // freetext annotation with an arrow
+"Generic" = "一般"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "線條樣式";
+"Solid" = "實線";
+"Narrow Dots" = "窄點線";
+"Wide Dots" = "寬點線";
+"Narrow Dashes" = "窄虛線";
+"Wide Dashes" = "寬虛線";
+
+// Stamps
+"Approved" = "已批准";
+"Not Approved" = "未批准";
+"Draft" = "草稿";
+"Final" = "終稿";
+"Completed" = "已完成";
+"Confidential" = "密件";
+"For Public Release" = "可公佈";
+"Not For Public Release" = "不可公佈";
+"For Comment" = "供評註";
+"Void" = "失效";
+"Preliminary Results" = "初步結果";
+"Information only" = "僅供參考";
+"Accepted" = "已收到";
+"Rejected" = "被拒絕";
+"Initial Here" = "這裏草簽";
+"Sign Here" = "在此簽名";
+"Witness" = "證人";
+"Revised" = "已修訂";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "觸控筆";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "關閉";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "搜尋中";
+// text on a label; app connects to a stylus
+"Pairing" = "連接中";
+// text on a label; app and stylus are connected
+"Connected" = "已連接";
+// text on a label; app and stylus are not connected
+"Disconnected" = "連接中斷";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "設定";
+
+
+// PDF annotation name overrides
+"Square" = "長方形";
+"Circle" = "橢圓形";
+"PolyLine" = "多點線";
+
+// named actions
+"NextPage" = "下一頁";
+"PrevPage" = "上一頁";
+"FirstPage" = "第一頁";
+"LastPage" = "最後一頁";
+"GoBack" = "返回";
+"GoForward" = "前往下一頁";
+"GoToPage" = "到此頁";
+"Find" = "尋找";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "放大";
+"ZoomOut" = "縮小";
+"Execute JavaScript" = "執行JavaScript";
+"Rich Media Action" = "富媒體操作";
+"Rendition Action" = "開始播放";
+"Hide Action" = "隱藏操作";
+"Submit Form" = "送出表格";
+"Reset" = "重置";
+
+// line annotations
+"Start" = "啟動";
+"End" = "結束";
+"Line.None" = "無";
+"Line.ClosedArrow" = "封閉箭頭";
+"Line.OpenArrow" = "開放的箭頭";
+"Line.Square" = "正方形";
+"Line.Circle" = "圓圈";
+"Line.Diamond" = "菱形";
+"Line.ROpenArrow" = "反方向開放箭頭";
+"Line.RClosedArrow" = "反方向封閉箭頭";
+"Line.Slash" = "斜線";
+"Line.Butt" = "末端";
+"Line Start" = "線條開始";
+"Line End" = "線條終端";
+"Arrow" = "箭頭"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "創建鏈結";
+"Add Link" = "加入連結";
+"Edit Link" = "編輯連結";
+"Move Link" = "移動連結";
+"Remove Link" = "刪除連結";
+"Open Link" = "打開連結";
+"Go to Page %tu" = "到第%tu頁";
+"Go to Page" = "到此頁"; // title of a Popup
+"Go" = "帶我去"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "儲存";
+"Link Destination" = "連結目的地";
+"Enter page index or a http:// address to link to an URL." = "鍵入頁面目錄或http:// 地址來加入鏈結。";
+"Page %@ Not Found" = "找不到第%@頁";
+
+// voiceover accessibility
+"Page" = "頁面";
+"Grid" = "格框"; // grid with thumbnails
+"Translucent" = "半透明";
+"left" = "左方";
+"center" = "正中";
+"right" = "右方";
+"decrease" = "變小";
+"increase" = "增大";
+"All Open Documents" = "所有打開的文件";
+"Add Documents" = "添加文件"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "第 %tu 至 %tu 頁"; // Range of pages
+"Current Page" = "本頁";
+"Current Page (%tu)" = "當前頁面（%tu）";
+"Ignore Annotations" = "不理會註釋";
+"The PDF will not contain any annotations." = "此 PDF 不會包含任何註釋。";
+"Embed Annotations" = "嵌入註釋";
+"Annotations will remain editable and are embedded into the PDF." = "註釋仍然可以編輯，並嵌進PDF中。";
+"Flatten Annotations" = "展平註釋";
+"Annotations are drawn into the PDF and are readonly." = "註釋在PDF中呈現，只能讀取。";
+"Annotation Summary" = "註釋摘要";
+"Embed Annotations into the PDF and also list them in the email." = "把註釋嵌進PDF中，並把它們列在郵件中。";
+"Files" = "檔案";
+"Send as single files" = "以個別檔案傳送";
+"Merge files" = "合併檔案";
+"Original File" = "原始檔案";
+"Range" = "範圍";
+"Annotated Pages" = "已註釋的頁面";
+
+// sound annotations
+"Speak" = "朗讀"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "播放";
+"Pause" = "暫停";
+"Resume" = "恢復";
+"Stop" = "停止";
+"Play/Stop" = "播放/停止";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "錄音";
+"Pause Recording" = "暫停錄音";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "已停止錄音";
+"Continue Recording" = "繼續錄音";
+"Finish Recording" = "完成錄音";
+"Audio Problem" = "音效問題";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "未能開始播放";
+"Could not resume playback." = "不能重新開始播放。";
+"Microphone permission not granted." = "未授予麥克風權限。";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "現在不能錄音。請允許這個 app 使用您的麥克風。";
+"There was a problem trying to record audio." = "錄音時出現了問題。";
+"Already Recording" = "已在錄音";
+"You are already recording on page %@." = "您已在第%@頁錄音。";
+
+// Forms
+"Form Element" = "表格元素";
+"Text Field" = "文字欄位";
+"Button" = "按鈕";
+"Choice Field" = "選擇欄";
+"Signature Field" = "簽名欄";
+"Clear Field" = "刪除"; // same as delete
+"Type value or pick from list" = "鍵入數值，或從清單中選擇";
+"Default Values" = "預設值";
+"Custom Value" = "自選值";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "無效數值：必需至少為 %s。";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "無效值：必需至少為%s，至大為%s。";
+"Invalid value: must be less than or equal to %s." = "無效值：必需為%s或更小。";
+"Invalid value: must be a number." = "無效值：必需為數字。";
+
+//  Validation of dates
+"Invalid value: must be a date." = "無效值：必需是日期。";
+
+// General validation
+"Invalid value." = "無效值";
+
+// Gallery
+"Connection Error" = "連接錯誤";
+"Unsupported Content" = "不支援的內容";
+"The specified content cannot be displayed." = "不能顯示指定的內容。";
+"Something went wrong" = "出現了問題";
+"This item is currently unavailable." = "此選項現時不能使用。";
+"The information for this gallery could not be loaded." = "未能載入此資料庫中的資料。";
+"Content Error" = "內容錯誤";
+"This content is unsupported." = "不支援此內容。";
+
+// Signatures
+"Digital Signature" = "數碼簽名";
+"Signature is valid." = "簽名有效";
+"Signature is valid, but there are some warnings." = "簽名有效，但有數項警告。";
+"It was signed by %@ on %@ at %@." = "%@ 於 %@ %@ 簽署。"; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "在%@ %@簽署。";
+"It claims to have been signed by %@ on %@ at %@." = "它似乎由%@在%@ %@ 簽署。"; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "它似乎是在%@ %@簽署。";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- 此簽名涵蓋的修改未被更改，但自簽署以來，文件已被修改。"; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- 簽名有效，且此文件的內容自簽署後未被更改。";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "簽名無效：此文件簽署後，曾被更改、篡改或遭破壞。";
+"Unsigned Signature Field" = "未簽署的簽署欄";
+"Do you really want to remove the signature from the document?" = "您確定要從文件中刪除簽名嗎？";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "不能以PKCS#7證書讀取證書數據。正確格式的數據可用 Adobe Acrobat 輸出。"; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "未能破解證書簽名的密碼。";
+"The public key in the certificate could not be read." = "不能讀取證書中的公鑰。";
+"The signature of the certificate is not valid." = "證書的簽名無效。";
+"Signature is not valid." = "簽署無效";
+"There is a format error in the notBefore field of the certificate." = "在證書中的 notBefore 欄中，有格式上的錯誤。"; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "在證書中的 notAfter 欄有一個格式錯誤。"; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "因證書鏈只有一張既不是自簽、其 issuer 又不能信任的證書，所以不能確認任何簽名。";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "一張 CA 證書無效，因它不是 CA，或它的擴展名與它的目的不一致。"; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "超越了 basicConstraints pathlength parameter。"; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "就其預期目的來說，根憑證未被標明為可信任。"; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "根憑證被標明要拒絕指定的目的。"; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "因這張簽發人證書的 subject 名稱與現時的證書 issuer 名稱不一致，所以被拒絕。"; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "因簽發人證書的 subject key identifier 在此，而又不與現時證書的 authority key identifier 一致，所以被拒絕。"; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "因簽發人證書的 issuer 名稱和 serial number 在此，而又不與現時證書的 authority key identifier 一致，所以被拒絕。"; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "證書已被 issuer 吊銷。";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "通過的證書是自簽的，未能在受信任的證書清單上找到此證書。";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "在證書鏈中有一張自簽證書。可以用不受信任的證書建立證書鏈，但根憑證在電腦本身找不到。 "; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "找不到簽署層次其中一個憑證的證書，且這憑證不受電腦應用程序本身信任。"; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "找不到電腦中搜尋的證書的 issuer 證書。這通常表示可信任的證書清單未完整。";
+"The certificate that was provided cannot be used for its intended purpose." = "提供的證書不能用於其預期目的。";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "Issuer 證書的密鑰用法不允許證書簽署。";
+"The certificate has expired." = "證書已到期。";
+"The certificate is not valid until a date in the future." = "此證書在未來某日才生效。";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "不能從資料中讀取 X509 證書";
+// X509 should not be translated
+"No X509 certificate found" = "找不到 X509 證書";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "不能讀取 PKCS12 檔案。檔案格式錯誤，或已損壞。";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "不能為 PKCS12 資料解鎖。您鍵入的密碼正確嗎？";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "不能打開檔案來驗證簽名";
+"Could not get signer info" = "未能讀取簽署人資料";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL 不能創建 PKCS7 物件";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL 不能添加簽名至 PKCS7 物件中";
+"OpenSSL could not init PKCS7 object" = "OpenSSL 不能開始建立 PKCS7 物件";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL 可以產生 PKCS7 簽名";
+"OpenSSL could not sign hash" = "OpenSSL 不能簽署 hash";
+"Could not write PKCS7 signature" = "不能寫 PKCS7 簽名";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "打開用";
+"PSPDFPolicyEventPrint" = "列印";
+"PSPDFPolicyEventEmail" = "電子郵件";
+"PSPDFPolicyEventMessage" = "訊息";
+"PSPDFPolicyEventQuickLook" = "快速查看"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "錄音";
+"PSPDFPolicyEventCamera" = "相機";
+"PSPDFPolicyEventPasteboard" = "剪貼簿"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "送出表格";
+"PSPDFPolicyEventNetwork" = "連接";
+
+// Night Mode
+"Default" = "預設"; // Default view (night mode not enabled)
+"Sepia" = "棕褐色"; // Document uses sepia colors
+"Night" = "暗色"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "未選擇文件";
+"Unable to display document" = "不能顯示文件";
+"Loading..." = "正在載入...";
+"Locked" = "已加鎖";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "你現在嘗試讀取的檔案可能不是 PDF 檔案，或者已經損壞。";
+"A password is required to access this document." = "需有密碼才能讀取這份文件。";
+"The security scheme of this document is currently not supported." = "此時不支援這份文件中的保安措施。";
+"An unknown error has occured while trying to open this file." = "嘗試打開這個檔案時，出現了不明錯誤。";
+
+// Document Editor
+"Document Editor" = "文件編輯器";
+"Add Page" = "添加頁面";
+"Delete Pages" = "刪除頁面";
+"Duplicate Pages" = "複製頁面";
+"Move Pages" = "移動頁面";
+"Rotate Pages" = "旋轉頁面";
+"Page Size" = "頁面尺寸";
+"Background Color" = "背景顏色";
+"Pattern" = "表格元素";
+"Use Document Size" = "使用文件尺寸";
+"Orientation" = "方向";
+"Portrait" = "縱向";
+"Landscape" = "橫向";
+"Name" = "名字";
+"Document Name" = "文件名稱";
+"Documents" = "文件"; // Name of directory
+"Use Document Directory" = "使用文件目錄";
+"Directory" = "目錄";
+"Replace File?" = "替換檔案嗎？";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "你選取的目的地已有名為「%@」的檔案。要替換它嗎？";
+"Replace" = "替換";
+"Saving…" = "正在儲存...";
+"Saved" = "已儲存";
+"Save As…" = "儲存為...";
+"Discard Changes" = "清除更改";
+"Empty" = "空白";
+
+// Document Editor Errors
+"A blank document can not be saved." = "無法儲存空白檔案";
+"The document could not be saved." = "未能儲存此文件。";
+"This document does not support editing." = "此文件不支援編輯功能。";
+
+// Page Patterns
+"None" = "無";
+"Dot5mm" = "點：5毫米";
+"Grid5mm" = "格子：5毫米";
+"Lines5mm" = "線條：5毫米";
+"Lines7mm" = "線條：7毫米";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US Letter";
+"US Legal" = "US Legal";
+
+// Page Export
+"Export Pages" = "輸出頁面";
+"Export…" = "輸出...";
+"Exporting…" = "正在輸出...";
+"Exported" = "已輸出";
+"%@ - Exported" = "%@ - 已輸出"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - 複製"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "你選取的文件是已打開的。請選擇另一個文件名稱。";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "現在不能使用文字轉語音功能。請檢查你的互聯網已連線，或你的裝置中已安裝 Google 的文字轉語音功能，並且它在開啟狀態。";

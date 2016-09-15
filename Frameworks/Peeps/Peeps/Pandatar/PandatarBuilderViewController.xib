@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PandatarBuilderViewController" customModule="Learn" customModuleProvider="target">
+            <connections>
+                <outlet property="bodyViews" destination="bMy-wt-oo7" id="gcG-xQ-CKL"/>
+                <outlet property="headViews" destination="kJV-In-Shs" id="pr6-OS-aOY"/>
+                <outlet property="legViews" destination="536-2b-dGQ" id="Zd1-9k-4Gn"/>
+                <outlet property="pandatarBox" destination="zEN-VW-eRA" id="Lt8-dX-Rs5"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEN-VW-eRA">
+                    <rect key="frame" x="0.0" y="70" width="600" height="510"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kJV-In-Shs" userLabel="Head View" customClass="InfinitePagedImagesView" customModule="Learn" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="282"/>
+                        </scrollView>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMy-wt-oo7" userLabel="Body View" customClass="InfinitePagedImagesView" customModule="Learn" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="282" width="600" height="169"/>
+                        </scrollView>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="536-2b-dGQ" userLabel="Leg View" customClass="InfinitePagedImagesView" customModule="Learn" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="451" width="600" height="59"/>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="kJV-In-Shs" firstAttribute="top" secondItem="zEN-VW-eRA" secondAttribute="top" id="5dk-fb-apL"/>
+                        <constraint firstItem="536-2b-dGQ" firstAttribute="top" secondItem="bMy-wt-oo7" secondAttribute="bottom" id="9vd-sG-JIc"/>
+                        <constraint firstAttribute="bottom" secondItem="536-2b-dGQ" secondAttribute="bottom" id="JDH-sC-I5q"/>
+                        <constraint firstAttribute="trailing" secondItem="kJV-In-Shs" secondAttribute="trailing" id="L66-ZC-zrT"/>
+                        <constraint firstItem="536-2b-dGQ" firstAttribute="leading" secondItem="kJV-In-Shs" secondAttribute="leading" id="L8h-Hr-b9E"/>
+                        <constraint firstItem="536-2b-dGQ" firstAttribute="trailing" secondItem="kJV-In-Shs" secondAttribute="trailing" id="MYJ-xN-S8s"/>
+                        <constraint firstItem="bMy-wt-oo7" firstAttribute="top" secondItem="kJV-In-Shs" secondAttribute="bottom" id="Ssz-fE-fsL"/>
+                        <constraint firstItem="bMy-wt-oo7" firstAttribute="height" secondItem="kJV-In-Shs" secondAttribute="height" multiplier="0.6" priority="999" id="UZw-Ul-aWY"/>
+                        <constraint firstItem="bMy-wt-oo7" firstAttribute="trailing" secondItem="kJV-In-Shs" secondAttribute="trailing" id="VOT-XP-rOG"/>
+                        <constraint firstItem="kJV-In-Shs" firstAttribute="leading" secondItem="zEN-VW-eRA" secondAttribute="leading" id="ZhW-V0-xhL"/>
+                        <constraint firstItem="bMy-wt-oo7" firstAttribute="leading" secondItem="kJV-In-Shs" secondAttribute="leading" id="bxx-2F-Ekf"/>
+                        <constraint firstItem="536-2b-dGQ" firstAttribute="height" secondItem="kJV-In-Shs" secondAttribute="height" multiplier="0.21" priority="999" id="jlt-rG-Mxm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zEN-VW-eRA" secondAttribute="bottom" constant="20" id="1Jf-WN-TiD"/>
+                <constraint firstItem="zEN-VW-eRA" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="25" id="3xW-OT-7Df"/>
+                <constraint firstAttribute="trailing" secondItem="zEN-VW-eRA" secondAttribute="trailing" id="IME-WL-duV"/>
+                <constraint firstAttribute="bottom" secondItem="zEN-VW-eRA" secondAttribute="bottom" priority="999" constant="20" id="TXS-u3-68l"/>
+                <constraint firstItem="zEN-VW-eRA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="UfC-Vx-drc"/>
+                <constraint firstItem="zEN-VW-eRA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Wso-hZ-Mej"/>
+                <constraint firstItem="zEN-VW-eRA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" priority="999" constant="70" id="zdg-Wf-djs"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

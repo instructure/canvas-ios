@@ -1,0 +1,59 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1467059127.676728,
+      "response" : {
+        "body" : {
+          "json" : {
+            "type" : "put"
+          },
+          "origin" : "107.191.1.70",
+          "url" : "https:\/\/httpbin.org\/put",
+          "data" : "{\"type\":\"put\"}",
+          "headers" : {
+            "Accept" : "*\/*",
+            "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+            "Content-Type" : "application\/json",
+            "Host" : "httpbin.org",
+            "Content-Length" : "14",
+            "User-Agent" : "Unknown\/Unknown (Unknown; OS Version 9.3 (Build 13E230))",
+            "Accept-Language" : "en-US;q=1.0"
+          },
+          "args" : {
+
+          },
+          "files" : {
+
+          },
+          "form" : {
+
+          }
+        },
+        "status" : 200,
+        "url" : "https:\/\/httpbin.org\/put",
+        "headers" : {
+          "access-control-allow-credentials" : "true",
+          "Date" : "Mon, 27 Jun 2016 20:25:27 GMT",
+          "Content-Type" : "application\/json",
+          "Content-Length" : "493",
+          "Server" : "nginx",
+          "Access-Control-Allow-Origin" : "*"
+        }
+      },
+      "request" : {
+        "method" : "PUT",
+        "body" : {
+          "type" : "put"
+        },
+        "url" : "https:\/\/httpbin.org\/put",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "Content-Type" : "application\/json",
+          "User-Agent" : "Unknown\/Unknown (Unknown; OS Version 9.3 (Build 13E230))"
+        }
+      }
+    }
+  ],
+  "name" : "put"
+}

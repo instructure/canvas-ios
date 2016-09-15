@@ -1,0 +1,148 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1467944730.954623,
+      "response" : {
+        "body" : [
+          {
+            "id" : 8116740,
+            "subject" : "This is a Subject Line Demo",
+            "last_authored_message" : null,
+            "last_authored_message_at" : null,
+            "message_count" : 3,
+            "subscribed" : true,
+            "private" : false,
+            "last_message" : "This is a reply for today test.",
+            "starred" : false,
+            "audience_contexts" : {
+              "courses" : {
+                "1867097" : [
+                  "StudentEnrollment"
+                ]
+              },
+              "groups" : {
+
+              }
+            },
+            "avatar_url" : "https:\/\/secure.gravatar.com\/avatar\/0fafe295afec9cbc961206c9cc291bb4?s=50&d=https%3A%2F%2Fmobiledev.beta.instructure.com%2Fimages%2Fmessages%2Favatar-50.png",
+            "audience" : [
+              7087269
+            ],
+            "participants" : [
+              {
+                "id" : 7087269,
+                "name" : "User 2",
+                "avatar_url" : "https:\/\/secure.gravatar.com\/avatar\/0fafe295afec9cbc961206c9cc291bb4?s=50&d=https%3A%2F%2Fmobiledev.beta.instructure.com%2Fimages%2Fmessages%2Favatar-50.png"
+              },
+              {
+                "id" : 7086865,
+                "name" : "User 1",
+                "avatar_url" : "https:\/\/secure.gravatar.com\/avatar\/37e15fd9c2be89cfb7e52ddc4b236a77?s=50&d=https%3A%2F%2Fmobiledev.beta.instructure.com%2Fimages%2Fmessages%2Favatar-50.png"
+              }
+            ],
+            "context_code" : "course_1867097",
+            "visible" : true,
+            "properties" : [
+
+            ],
+            "context_name" : "Unit Tests",
+            "workflow_state" : "unread",
+            "last_message_at" : "2016-07-08T02:25:02Z"
+          },
+          {
+            "id" : 8116743,
+            "subject" : "",
+            "last_authored_message" : null,
+            "last_authored_message_at" : null,
+            "message_count" : 1,
+            "subscribed" : true,
+            "private" : false,
+            "last_message" : "This is an example of a group message that doesn't have a subject line. It should be really long ...",
+            "starred" : false,
+            "audience_contexts" : {
+              "courses" : {
+                "1867097" : [
+
+                ]
+              },
+              "groups" : {
+
+              }
+            },
+            "avatar_url" : "https:\/\/mobiledev.beta.instructure.com\/images\/messages\/avatar-group-50.png",
+            "audience" : [
+              7087269,
+              7087360
+            ],
+            "participants" : [
+              {
+                "id" : 7087269,
+                "name" : "User 2",
+                "avatar_url" : "https:\/\/secure.gravatar.com\/avatar\/0fafe295afec9cbc961206c9cc291bb4?s=50&d=https%3A%2F%2Fmobiledev.beta.instructure.com%2Fimages%2Fmessages%2Favatar-50.png"
+              },
+              {
+                "id" : 7086865,
+                "name" : "User 1",
+                "avatar_url" : "https:\/\/secure.gravatar.com\/avatar\/37e15fd9c2be89cfb7e52ddc4b236a77?s=50&d=https%3A%2F%2Fmobiledev.beta.instructure.com%2Fimages%2Fmessages%2Favatar-50.png"
+              },
+              {
+                "id" : 7087360,
+                "name" : "User 3",
+                "avatar_url" : "https:\/\/secure.gravatar.com\/avatar\/bbd4ff75cedceb5e7bef0f094857b880?s=50&d=https%3A%2F%2Fmobiledev.beta.instructure.com%2Fimages%2Fmessages%2Favatar-50.png"
+              }
+            ],
+            "context_code" : "course_1867097",
+            "visible" : true,
+            "properties" : [
+
+            ],
+            "context_name" : "Unit Tests",
+            "workflow_state" : "unread",
+            "last_message_at" : "2016-07-01T20:16:23Z"
+          }
+        ],
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.beta.instructure.com\/api\/v1\/conversations?include%5B%5D=participant_avatars&per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=JTO%2B58y4Idie0gpvgQThFlX%2BiS0QA%2FmhNeKmP1flgN5sZfrMj%2FtbgPuXSQ2qPLtfALLfan1voedztdcQYJOysw%3D%3D; path=\/; secure, log_session_id=3a04b32c362a94f35466889511cd0df0; path=\/, canvas_session=5vuxznunCPDwznoNbhurfw.EYbJ_1zH9lSx9GTL-7I58BkO05mtG-gwH1F64YGDQbmDqTtgnJyMJvNLvisCtN6d9ctwFIZGrNooTJGfeK4g8w3UvuTu8HR0hYJnZl6hk1HNsNLRN2Kdcur7JbYgAYK0.6LVgONpuVabTzeWpLfLQnoJDcvU.V38PGg; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.120802",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "Link" : "<https:\/\/mobiledev.beta.instructure.com\/api\/v1\/conversations?include%5B%5D=participant_avatars&page=1&per_page=99>; rel=\"current\",<https:\/\/mobiledev.beta.instructure.com\/api\/v1\/conversations?include%5B%5D=participant_avatars&page=1&per_page=99>; rel=\"first\",<https:\/\/mobiledev.beta.instructure.com\/api\/v1\/conversations?include%5B%5D=participant_avatars&page=1&per_page=99>; rel=\"last\"",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "X-Request-Processor" : "a023cc7",
+          "Status" : "200 OK",
+          "X-Robots-Tag" : "none",
+          "X-Session-Id" : "3a04b32c362a94f35466889511cd0df0",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "aa14432f-3c38-4df7-bc3e-a3a3a120d9d1",
+          "X-Request-Cost" : "0.10077357099999318",
+          "Content-Length" : "649",
+          "X-Canvas-Meta" : "q=923;at=10000000613067;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1b;o=conversations;n=index;b=1076772;m=1076772;u=0.07;y=0.00;d=0.03;",
+          "Date" : "Fri, 08 Jul 2016 02:25:30 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000007086865",
+          "Etag" : "\"a4045d5bce9fe06b05832754be6043df\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/mobiledev.beta.instructure.com\/api\/v1\/conversations?include%5B%5D=participant_avatars&per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Messages\/com.instructure.Messages (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~O7YyCsxPDKM4GCd3aybOh6jrX4kaRAgT1CXtFa7ClmG79u9mOF2j7Nr56liMdGro"
+        }
+      }
+    }
+  ],
+  "name" : "conversations-2"
+}

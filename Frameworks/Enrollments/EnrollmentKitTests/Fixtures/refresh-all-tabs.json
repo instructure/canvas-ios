@@ -1,0 +1,95 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1467396176.384052,
+      "response" : {
+        "body" : [
+          {
+            "position" : 1,
+            "id" : "home",
+            "html_url" : "\/courses\/1422605",
+            "label" : "Home",
+            "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1422605",
+            "type" : "internal",
+            "visibility" : "public"
+          },
+          {
+            "position" : 2,
+            "id" : "outcomes",
+            "html_url" : "\/courses\/1422605\/outcomes",
+            "label" : "Outcomes",
+            "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1422605\/outcomes",
+            "type" : "internal",
+            "visibility" : "public"
+          },
+          {
+            "position" : 3,
+            "id" : "files",
+            "html_url" : "\/courses\/1422605\/files",
+            "label" : "Files",
+            "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1422605\/files",
+            "type" : "internal",
+            "visibility" : "public"
+          },
+          {
+            "position" : 4,
+            "id" : "assignments",
+            "html_url" : "\/courses\/1422605\/assignments",
+            "label" : "Assignments",
+            "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1422605\/assignments",
+            "type" : "internal",
+            "visibility" : "public"
+          },
+          {
+            "position" : 5,
+            "id" : "pages",
+            "html_url" : "\/courses\/1422605\/wiki",
+            "label" : "Pages",
+            "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1422605\/wiki",
+            "type" : "internal",
+            "visibility" : "public"
+          }
+        ],
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1422605\/tabs?per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=382Sv7SJBNmO7RQ%2BYyLFnKiBCw3q6eprYPbjfzJySvboj8rx5uNN7sW%2BWXItDafT%2BelgX7yF3w0QktQPXUo6gQ%3D%3D; path=\/; secure, log_session_id=82a5bf3a469d49dadf9cbd51439f24d9; path=\/, canvas_session=5OVCTIIGC-W1zMsAOHQiMg.5JEWUOgY9B_bIW98R-NjlJKTBSSrSgvgd3gr7s03kDawmSLC1nGzR-DS3tsNul2j3ZVqco0cuI910C3qJGQEc_FkfYzdHYVtYnt16KvsoWHkRbpIsuvuTBCHoVJzkwnR.2BCY5xn8FtUhM3vaShxethh2oJ8.V3awUA; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.467855",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "X-Request-Processor" : "a01cda5",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "Status" : "200 OK",
+          "X-Session-Id" : "82a5bf3a469d49dadf9cbd51439f24d9",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "7a0ce3c6-76ce-438d-b314-89d712cc4e31",
+          "X-Request-Cost" : "0.4010865699999954",
+          "Content-Length" : "252",
+          "X-Canvas-Meta" : "q=736;at=10000000507025;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1b;o=tabs;n=index;t=Course;i=1422605;b=1135588;m=1135588;u=0.13;y=0.01;d=0.27;",
+          "Date" : "Fri, 01 Jul 2016 18:02:55 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000005370999",
+          "Etag" : "\"6ca93361a0159aabac7fe39037e82153\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1422605\/tabs?per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Enrollments\/com.instructure.Enrollments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~pwtrtRZk3N1VN3GcojSe0AFGgO14kDybKD1KVdFgHSIBbWgcDoqDsYttaDtpsrCd"
+        }
+      }
+    }
+  ],
+  "name" : "refresh-all-tabs"
+}

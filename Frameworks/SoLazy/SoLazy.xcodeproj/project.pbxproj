@@ -1,0 +1,528 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4928EBE21C84DF1400799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBE11C84DF1400799E04 /* Marshal.framework */; };
+		4962EEDB1C7FA07F000DDCAF /* NSObject+PureEvil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4962EEDA1C7FA07F000DDCAF /* NSObject+PureEvil.swift */; };
+		49895F251C4EA8EB002A16EC /* NSData+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49895F241C4EA8EB002A16EC /* NSData+SoLazy.swift */; };
+		49A25A0D1CA1E67C007D8C22 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A25A0C1CA1E67C007D8C22 /* Result.framework */; };
+		49A960841BC315C600592D94 /* SoLazy.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A960831BC315C600592D94 /* SoLazy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49A9608A1BC315C600592D94 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A9607E1BC315C600592D94 /* SoLazy.framework */; };
+		49A960911BC315C600592D94 /* SoLazyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A960901BC315C600592D94 /* SoLazyTests.swift */; };
+		49A960A21BC315E000592D94 /* Array+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9609A1BC315E000592D94 /* Array+SoLazy.swift */; };
+		49A960A31BC315E000592D94 /* GCD+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9609B1BC315E000592D94 /* GCD+SoLazy.swift */; };
+		49A960A61BC315E000592D94 /* String+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9609E1BC315E000592D94 /* String+SoLazy.swift */; };
+		49A960A71BC315E000592D94 /* Temporal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9609F1BC315E000592D94 /* Temporal.swift */; };
+		49A960A81BC315E000592D94 /* UIFont+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A960A01BC315E000592D94 /* UIFont+SoLazy.swift */; };
+		49A960A91BC315E000592D94 /* UIImage+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A960A11BC315E000592D94 /* UIImage+SoLazy.swift */; };
+		49B997151C3FF4D20068337C /* NSError+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B997141C3FF4D20068337C /* NSError+SoLazy.swift */; };
+		5E75B6141C4D5DAE00A44160 /* UIDevice+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E75B6131C4D5DAE00A44160 /* UIDevice+Model.swift */; };
+		617BE7A71CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617BE7A61CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift */; };
+		61D6A8331C8F6A3000370117 /* IDString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A8321C8F6A3000370117 /* IDString.swift */; };
+		B135FEB91CB8632F0093DE0B /* NSURLSession+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B135FEB81CB8632F0093DE0B /* NSURLSession+SoLazy.swift */; };
+		B16A8D841C99CE03009E364E /* RAC+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53D1B3B1C90C74300303604 /* RAC+SoLazy.swift */; };
+		B18799B51CD90906008F712A /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18799B41CD90906008F712A /* Environment.swift */; };
+		B51C17C71C46EE820053AC6E /* LocalNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51C17C61C46EE820053AC6E /* LocalNotificationHandler.swift */; };
+		B5FE278D1C90D2D600D07C43 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FE278C1C90D2D600D07C43 /* ReactiveCocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		49A9608B1BC315C600592D94 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49A960751BC315C600592D94 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49A9607D1BC315C600592D94;
+			remoteInfo = SoLazy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4928EBE11C84DF1400799E04 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4962EEDA1C7FA07F000DDCAF /* NSObject+PureEvil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+PureEvil.swift"; sourceTree = "<group>"; };
+		49895F241C4EA8EB002A16EC /* NSData+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+SoLazy.swift"; sourceTree = "<group>"; };
+		49A25A0C1CA1E67C007D8C22 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49A9607E1BC315C600592D94 /* SoLazy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49A960821BC315C600592D94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49A960831BC315C600592D94 /* SoLazy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoLazy.h; sourceTree = "<group>"; };
+		49A960891BC315C600592D94 /* SoLazyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoLazyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		49A9608F1BC315C600592D94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49A960901BC315C600592D94 /* SoLazyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoLazyTests.swift; sourceTree = "<group>"; };
+		49A9609A1BC315E000592D94 /* Array+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SoLazy.swift"; sourceTree = "<group>"; };
+		49A9609B1BC315E000592D94 /* GCD+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GCD+SoLazy.swift"; sourceTree = "<group>"; };
+		49A9609E1BC315E000592D94 /* String+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SoLazy.swift"; sourceTree = "<group>"; };
+		49A9609F1BC315E000592D94 /* Temporal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temporal.swift; sourceTree = "<group>"; };
+		49A960A01BC315E000592D94 /* UIFont+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+SoLazy.swift"; sourceTree = "<group>"; };
+		49A960A11BC315E000592D94 /* UIImage+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+SoLazy.swift"; sourceTree = "<group>"; };
+		49B997141C3FF4D20068337C /* NSError+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+SoLazy.swift"; sourceTree = "<group>"; };
+		5E75B6131C4D5DAE00A44160 /* UIDevice+Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Model.swift"; sourceTree = "<group>"; };
+		617BE7A61CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "❨╯°□°❩╯⌢.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		61D6A8321C8F6A3000370117 /* IDString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDString.swift; sourceTree = "<group>"; };
+		B135FEB81CB8632F0093DE0B /* NSURLSession+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSession+SoLazy.swift"; sourceTree = "<group>"; };
+		B18799B41CD90906008F712A /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		B51C17C61C46EE820053AC6E /* LocalNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHandler.swift; sourceTree = "<group>"; };
+		B53D1B3B1C90C74300303604 /* RAC+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RAC+SoLazy.swift"; sourceTree = "<group>"; };
+		B5FE278C1C90D2D600D07C43 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		49A9607A1BC315C600592D94 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49A25A0D1CA1E67C007D8C22 /* Result.framework in Frameworks */,
+				4928EBE21C84DF1400799E04 /* Marshal.framework in Frameworks */,
+				B5FE278D1C90D2D600D07C43 /* ReactiveCocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49A960861BC315C600592D94 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49A9608A1BC315C600592D94 /* SoLazy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4962EED91C7FA07F000DDCAF /* Pure Evil */ = {
+			isa = PBXGroup;
+			children = (
+				4962EEDA1C7FA07F000DDCAF /* NSObject+PureEvil.swift */,
+				617BE7A61CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift */,
+			);
+			path = "Pure Evil";
+			sourceTree = "<group>";
+		};
+		49A960741BC315C600592D94 = {
+			isa = PBXGroup;
+			children = (
+				49FEDC351C40605100757F55 /* Dependencies */,
+				49A9607F1BC315C600592D94 /* Products */,
+				49A960801BC315C600592D94 /* SoLazy */,
+				49A9608D1BC315C600592D94 /* SoLazyTests */,
+			);
+			sourceTree = "<group>";
+		};
+		49A9607F1BC315C600592D94 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				49A9607E1BC315C600592D94 /* SoLazy.framework */,
+				49A960891BC315C600592D94 /* SoLazyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		49A960801BC315C600592D94 /* SoLazy */ = {
+			isa = PBXGroup;
+			children = (
+				4962EED91C7FA07F000DDCAF /* Pure Evil */,
+				5E75B6131C4D5DAE00A44160 /* UIDevice+Model.swift */,
+				B51C17C21C46EE650053AC6E /* LocalNotifications */,
+				49A9609A1BC315E000592D94 /* Array+SoLazy.swift */,
+				49A9609B1BC315E000592D94 /* GCD+SoLazy.swift */,
+				49A9609E1BC315E000592D94 /* String+SoLazy.swift */,
+				49A9609F1BC315E000592D94 /* Temporal.swift */,
+				49A960A01BC315E000592D94 /* UIFont+SoLazy.swift */,
+				49A960A11BC315E000592D94 /* UIImage+SoLazy.swift */,
+				61D6A8321C8F6A3000370117 /* IDString.swift */,
+				49A960831BC315C600592D94 /* SoLazy.h */,
+				49A960811BC315C600592D94 /* Supporting Files */,
+				49B997141C3FF4D20068337C /* NSError+SoLazy.swift */,
+				49895F241C4EA8EB002A16EC /* NSData+SoLazy.swift */,
+				B53D1B3B1C90C74300303604 /* RAC+SoLazy.swift */,
+				B135FEB81CB8632F0093DE0B /* NSURLSession+SoLazy.swift */,
+				B18799B41CD90906008F712A /* Environment.swift */,
+			);
+			path = SoLazy;
+			sourceTree = "<group>";
+		};
+		49A960811BC315C600592D94 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				49A960821BC315C600592D94 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		49A9608D1BC315C600592D94 /* SoLazyTests */ = {
+			isa = PBXGroup;
+			children = (
+				49A960901BC315C600592D94 /* SoLazyTests.swift */,
+				49A9608E1BC315C600592D94 /* Supporting Files */,
+			);
+			path = SoLazyTests;
+			sourceTree = "<group>";
+		};
+		49A9608E1BC315C600592D94 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				49A9608F1BC315C600592D94 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		49FEDC351C40605100757F55 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				49A25A0C1CA1E67C007D8C22 /* Result.framework */,
+				B5FE278C1C90D2D600D07C43 /* ReactiveCocoa.framework */,
+				4928EBE11C84DF1400799E04 /* Marshal.framework */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		B51C17C21C46EE650053AC6E /* LocalNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				B51C17C61C46EE820053AC6E /* LocalNotificationHandler.swift */,
+			);
+			name = LocalNotifications;
+			path = ../../Assignments/AssignmentKit/LocalNotifications;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		49A9607B1BC315C600592D94 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49A960841BC315C600592D94 /* SoLazy.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		49A9607D1BC315C600592D94 /* SoLazy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49A960941BC315C600592D94 /* Build configuration list for PBXNativeTarget "SoLazy" */;
+			buildPhases = (
+				49A960791BC315C600592D94 /* Sources */,
+				49A9607A1BC315C600592D94 /* Frameworks */,
+				49A9607B1BC315C600592D94 /* Headers */,
+				49A9607C1BC315C600592D94 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SoLazy;
+			productName = SoLazy;
+			productReference = 49A9607E1BC315C600592D94 /* SoLazy.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		49A960881BC315C600592D94 /* SoLazyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49A960971BC315C600592D94 /* Build configuration list for PBXNativeTarget "SoLazyTests" */;
+			buildPhases = (
+				49A960851BC315C600592D94 /* Sources */,
+				49A960861BC315C600592D94 /* Frameworks */,
+				49A960871BC315C600592D94 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49A9608C1BC315C600592D94 /* PBXTargetDependency */,
+			);
+			name = SoLazyTests;
+			productName = SoLazyTests;
+			productReference = 49A960891BC315C600592D94 /* SoLazyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		49A960751BC315C600592D94 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = Instructure;
+				TargetAttributes = {
+					49A9607D1BC315C600592D94 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					49A960881BC315C600592D94 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = 49A960781BC315C600592D94 /* Build configuration list for PBXProject "SoLazy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 49A960741BC315C600592D94;
+			productRefGroup = 49A9607F1BC315C600592D94 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				49A9607D1BC315C600592D94 /* SoLazy */,
+				49A960881BC315C600592D94 /* SoLazyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		49A9607C1BC315C600592D94 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49A960871BC315C600592D94 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		49A960791BC315C600592D94 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49A960A31BC315E000592D94 /* GCD+SoLazy.swift in Sources */,
+				B18799B51CD90906008F712A /* Environment.swift in Sources */,
+				B135FEB91CB8632F0093DE0B /* NSURLSession+SoLazy.swift in Sources */,
+				5E75B6141C4D5DAE00A44160 /* UIDevice+Model.swift in Sources */,
+				B51C17C71C46EE820053AC6E /* LocalNotificationHandler.swift in Sources */,
+				61D6A8331C8F6A3000370117 /* IDString.swift in Sources */,
+				49A960A71BC315E000592D94 /* Temporal.swift in Sources */,
+				49A960A61BC315E000592D94 /* String+SoLazy.swift in Sources */,
+				4962EEDB1C7FA07F000DDCAF /* NSObject+PureEvil.swift in Sources */,
+				49B997151C3FF4D20068337C /* NSError+SoLazy.swift in Sources */,
+				49A960A21BC315E000592D94 /* Array+SoLazy.swift in Sources */,
+				49A960A91BC315E000592D94 /* UIImage+SoLazy.swift in Sources */,
+				49895F251C4EA8EB002A16EC /* NSData+SoLazy.swift in Sources */,
+				617BE7A71CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift in Sources */,
+				B16A8D841C99CE03009E364E /* RAC+SoLazy.swift in Sources */,
+				49A960A81BC315E000592D94 /* UIFont+SoLazy.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49A960851BC315C600592D94 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49A960911BC315C600592D94 /* SoLazyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		49A9608C1BC315C600592D94 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49A9607D1BC315C600592D94 /* SoLazy */;
+			targetProxy = 49A9608B1BC315C600592D94 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		49A960921BC315C600592D94 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		49A960931BC315C600592D94 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		49A960951BC315C600592D94 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = SoLazy/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		49A960961BC315C600592D94 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = SoLazy/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		49A960981BC315C600592D94 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SoLazyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		49A960991BC315C600592D94 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SoLazyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		49A960781BC315C600592D94 /* Build configuration list for PBXProject "SoLazy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49A960921BC315C600592D94 /* Debug */,
+				49A960931BC315C600592D94 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49A960941BC315C600592D94 /* Build configuration list for PBXNativeTarget "SoLazy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49A960951BC315C600592D94 /* Debug */,
+				49A960961BC315C600592D94 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49A960971BC315C600592D94 /* Build configuration list for PBXNativeTarget "SoLazyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49A960981BC315C600592D94 /* Debug */,
+				49A960991BC315C600592D94 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 49A960751BC315C600592D94 /* Project object */;
+}

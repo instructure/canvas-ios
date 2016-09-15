@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Κλείσιμο";
+"Cancel" = "Ακύρωση";
+"OK" = "OK";
+"Open" = "Άνοιγμα";
+"Untitled" = "Χωρίς τίτλο";
+"File Not Found" = "Το αρχείο δεν βρέθηκε";
+"File couldn't be opened." = "Δεν ήταν δυνατό το άνοιγμα του αρχείου."; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "Ανώνυμο PDF";
+"Page %tu" = "Σελίδα %tu";
+"Page %@" = "Σελίδα %@";
+"Next" = "Επόμενο";
+"Previous" = "Προηγούμενο";
+"Error" = "Σφάλμα";
+
+// toolbar
+"Outline" = "Διάρθρωση"; // Table of contents
+"No Outline" = "Δεν υπάρχει διάρθρωση";
+"Search Outline" = "Αναζήτηση διάρθρωσης";
+"Search" = "Αναζήτηση";
+"Email" = "Email";
+"Send via Email" = "Αποστολή μέσω email";
+"Send" = "Αποστολή";
+"Open In" = "Άνοιγμα σε";
+"Commit" = "Δέσμευση";
+"Sending to %@" = "Γίνεται αποστολή στο %@"; // Open document with an application
+"Pages" = "Σελίδες";
+"Print with annotations" = "Εκτύπωση με σχόλια";
+"Print without annotations" = "Εκτύπωση χωρίς σχόλια";
+"No Applications found" = "Δεν υπάρχει καμία εγκατεστημένη εφαρμογή που μπορεί να ανοίγει έγγραφα PDF.";
+"Print" = "Εκτύπωση";
+"Annotation" = "Σχόλιο";
+"Annotations" = "Σχόλιο";
+"No Annotations" = "Δεν υπάρχουν σχόλια";
+"Bookmarks" = "Σελιδοδείκτες";
+"No Bookmarks" = "Δεν υπάρχουν σελιδοδείκτες";
+"Add Bookmark" = "Προσθήκη σελιδοδείκτη";
+"Remove Bookmark" = "Αφαίρεση σελιδοδείκτη";
+"Brightness" = "Φωτεινότητα";
+"Share" = "Κοινή χρήση";
+"Preparing" = "Γίνεται προετοιμασία";
+"Loading" = "Γίνεται φόρτωση";
+"Expand" = "Επέκταση";
+"Collapse" = "Σύμπτυξη";
+// SMS / iMessage sharing button
+"Message" = "Μήνυμα";
+"Thumbnails" = "Μικρογραφίες";
+"Drag Toolbar" = "Σύρετε τη γραμμή εργαλείων";
+
+// thumbnails
+"Bookmarked" = "Με σελιδοδείκτες";
+"Annotated" = "Με σχόλια";
+"All" = "Όλες";
+
+// password
+"Password" = "Συνθηματικό"; // text on a label
+"Unlock" = "Ξεκλείδωμα";
+"Please enter the password." = "Εισαγάγετε το συνθηματικό.";
+"This document cannot be unlocked. %@ is unsupported." = "Δεν είναι δυνατό το ξεκλείδωμα αυτού του εγγράφου. Το %@ δεν υποστηρίζεται.";
+
+// page
+"%tu of %tu" = "%tu από %tu";
+"%tu-%tu of %tu" = "%tu-%tu από %tu";
+"%@ (%tu of %tu)" = "%@ (%tu από %tu)";
+"%@, Page %tu" = "%@, Σελίδα %tu";
+"Leave %@?" = "Να γίνει αποχώρηση από %@;";
+
+// search
+"Search Document" = "Αναζήτηση εγγράφου"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "Γίνεται αναζήτηση σελίδας %tu από %tu";
+"Search Completed" = "Η αναζήτηση ολοκληρώθηκε";
+"Search Cancelled" = "Η αναζήτηση ακυρώθηκε";
+"%tu left" = "Απομένουν %tu"; // Indexing Documents... 5 left
+"Searching" = "Γίνεται αναζήτηση";
+"Done" = "Τέλος";
+"Indexing Documents" = "Δημιουργείται ευρετήριο εγγράφων";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Το έγγραφο δεν έχει περιεχόμενο";
+
+// inline browser
+"Open in Safari" = "Άνοιγμα στο Safari";
+"Open in Chrome" = "Άνοιγμα στο Chrome";
+"Your %@ is not configured to send emails." = "Το %@ σας δεν έχει διαμορφωθεί για αποστολή email.";
+"The link is requesting to open %@Would you like to continue?" = "Αυτός ο σύνδεσμος ζητάει το άνοιγμα του %@Θέλετε να συνεχίσετε;";
+"an external application" = "μια εξωτερική εφαρμογή"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "το App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "Mail"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "Δεν βρέθηκε χειρισμός για %@";
+
+// text selection
+"Text copied to clipboard." = "Το κείμενο αντιγράφηκε στο πρόχειρο.";
+"Save To Camera Roll" = "Αποθήκευση στο άλμπουμ κάμερας";
+"Failed to extract image." = "Απέτυχε η εξαγωγή εικόνας.";
+"Type value or pick from list" = "Πληκτρολογήστε τιμή ή επιλέξτε από τη λίστα";
+
+// annotations
+"Add %@" = "Προσθήκη %@";
+"Remove %@" = "Αφαίρεση %@";
+"Remove" = "Αφαίρεση";
+"Delete" = "Διαγραφή"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "Επεξεργασία";
+"Undo" = "Αναίρεση";
+"Nothing to undo" = "Δεν υπάρχει τίποτα για αναίρεση";
+"Redo" = "Επανάληψη";
+"Nothing to redo" = "Δεν υπάρχει τίποτα για επανάληψη";
+"Type" = "Τύπος"; // kind of Annotation can be selected
+"Size" = "Μέγεθος";
+"Font" = "Γραμματοσειρά";
+"Fonts" = "Γραμματοσειρές";
+"All Fonts" = "Όλες οι γραμματοσειρές";
+"Downloadable Fonts" = "Γραμματοσειρές για λήψη";
+"Search Fonts" = "Αναζήτηση γραμματοσειρών";
+"Choose Color" = "Επιλογή χρώματος";
+"Choose Fill Color" = "Επιλογή χρώματος γεμίσματος";
+"Rainbow" = "Ουράνιο τόξο";
+"Monochrome" = "Μονοχρωμία";
+"Vintage" = "Βίνταζ";
+"Color" = "Χρώμα";
+"Border" = "Περιθώριο";
+"Fill Color" = "Χρώμα γεμίσματος";
+"Line End Fill Color" = "Χρώμα γεμίσματος τέλους γραμμής";
+"Opacity" = "Αδιαφάνεια";
+"%@ %%" = "%@ %%";
+"Thickness" = "Πάχος";
+"%@ pt" = "%@ στ.";
+"Yellow" = "Κίτρινο";
+"Green" = "Πράσινο";
+"Red" = "Κόκκινο";
+"Blue" = "Μπλε";
+"Pink" = "Ροζ";
+"Black" = "Μαύρο";
+"Orange" = "Πορτοκαλί";
+"Purple" = "Μοβ";
+"Cyan" = "Κυανό";
+"Gray" = "Γκρι";
+"White" = "Λευκό";
+"Define" = "Ορισμός";
+"Wikipedia" = "Wikipedia";
+"Highlight" = "Επισήμανση";
+"Underline" = "Υπογράμμιση";
+"Squiggle" = "Κυματιστό";
+"StrikeOut" = "Διακριτή διαγραφή";
+"Rectangle" = "Ορθογώνιο";
+"Ellipse" = "Έλλειψη";
+"Line" = "Γραμμή"; // something that can be drawn
+"Lines" = "Γραμμές"; // "5 Lines" were drawn
+"Polyline" = "Πολύγραμμο";
+"Polygon" = "Πολύγωνο";
+"Signature" = "Υπογραφή";
+"Signatures" = "Υπογραφές";
+"Signed" = "Υπογεγραμμένο";
+"Sign" = "Υπογραφή";
+"Sign using %@" = "Υπογραφή χρησιμοποιώντας %@"; // e.g. Adobe.PPKLite
+"Methods" = "Μέθοδοι"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Επιλογή ταυτότητας"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "Σφραγίδα";
+"Stamps" = "Σφραγίδες";
+"Custom" = "Προσαρμογή"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "Δημιουργία σφραγίδας";
+"Preview" = "Προεπισκόπηση";
+"Stamp Text" = "Κείμενο σφραγίδας";
+"Add Signature" = "Προσθήκη υπογραφής";
+"Remove Signature" = "Αφαίρεση υπογραφής";
+"My Signature" = "Η υπογραφή μου";
+"No Signatures" = "Δεν υπάρχουν υπογραφές"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "Υπογραφή πελάτη";
+"Please sign here" = "Παρακαλώ υπογράψτε εδώ";
+"Note" = "Σημείωση";
+"Text" = "Κείμενο";
+"Delete Note" = "Διαγραφή σημείωσης";
+"Remove Note" = "Αφαίρεση σημείωσης";
+"%@ could not be found." = "Δεν βρέθηκε το %@.";
+"Photo Library" = "Βιβλιοθήκη φωτογραφιών";
+"Camera" = "Κάμερα";
+"Image" = "Εικόνα";
+"Low Quality" = "Χαμηλή ποιότητα";
+"Medium Quality" = "Μεσαία ποιότητα";
+"High Quality" = "Υψηλή ποιότητα";
+"Clear All" = "Απαλοιφή όλων";
+"Clear" = "Εκκαθάριση";
+"Style" = "Στιλ";
+"Link" = "Σύνδεσμος";
+"Ink" = "Μελάνι";
+"FreeText" = "Κείμενο";
+"Screen" = "Οθόνη";
+"RichMedia" = "Εμπλουτισμένο περιεχόμενο";
+"Left" = "Αριστερά";
+"Center" = "Κέντρο";
+"Right" = "Δεξιά";
+"Alignment" = "Στοίχιση";
+"Preview File" = "Προεπισκόπηση αρχείου";
+"Copy" = "Αντιγραφή";
+"Paste" = "Επικόλληση";
+"Inspector" = "Επιθεωρητής";
+"Group" = "Ομαδοποίηση";
+"Ungroup" = "Κατάργηση ομαδοποίησης";
+"Merge" = "Συγχώνευση"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "Δείγμα";
+"Annotation Summary for %@:\n" = "Σύνοψη σχολίων για %@:";
+// title
+"Author Name" = "Όνομα συντάκτη";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Εισαγάγετε το όνομα συντάκτη που θέλετε να χρησιμοποιείτε για τα νέα σχόλια.";
+// text field placeholder
+"Name" = "Όνομα";
+// meaning: close
+"Dismiss" = "Απόρριψη";
+"Fit to Text" = "Προσαρμογή στο κείμενο";
+"Draw" = "Σχεδίαση";
+"Sound" = "Ήχος";
+"Eraser" = "Γόμα";
+"Toggle Eraser" = "(Απ)ενεργοποίηση γόμας"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "Εργαλείο επιλογής";
+"Saved Annotations" = "Αποθηκευμένα σχόλια";
+"Add" = "Προσθήκη"; // to add - infinitive
+"Date" = "Ημερομηνία";
+"Time" = "Ώρα";
+"No Pages" = "Δεν υπάρχουν σελίδες";
+"Drag to resize" = "Σύρετε για αλλαγή μεγέθους"; // used as hint that inspector is resizable
+"Convert to" = "Μετατροπή σε"; // used as label on action that changes free text intent type
+"Color Presets" = "Προεπιλογές χρώματος";
+
+"Callout" = "Λεζάντα"; // freetext annotation with an arrow
+"Generic" = "Γενικό"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "Στιλ γραμμής";
+"Solid" = "Συμπαγής";
+"Narrow Dots" = "Στενές τελείες";
+"Wide Dots" = "Πλατιές τελείες";
+"Narrow Dashes" = "Στενές παύλες";
+"Wide Dashes" = "Πλατιές παύλες";
+
+// Stamps
+"Approved" = "Εγκρίθηκε";
+"Not Approved" = "Δεν έχει εγκριθεί";
+"Draft" = "Πρόχειρο";
+"Final" = "Τελικό";
+"Completed" = "Ολοκληρώθηκε";
+"Confidential" = "Εμπιστευτικό";
+"For Public Release" = "Για έκδοση στο κοινό";
+"Not For Public Release" = "Δεν προορίζεται για έκδοση στο κοινό";
+"For Comment" = "Για σχολιασμό";
+"Void" = "Άκυρο";
+"Preliminary Results" = "Προκαταρκτικά αποτελέσματα";
+"Information only" = "Πληροφορίες μόνο";
+"Accepted" = "Έγινε αποδοχή";
+"Rejected" = "Έγινε απόρριψη";
+"Initial Here" = "Αρχικά εδώ";
+"Sign Here" = "Υπογραφή εδώ";
+"Witness" = "Μάρτυρας";
+"Revised" = "Έγινε αναθεώρηση";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Γραφίδα";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Απενεργοποίηση";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Γίνεται σάρωση";
+// text on a label; app connects to a stylus
+"Pairing" = "Γίνεται ζεύξη";
+// text on a label; app and stylus are connected
+"Connected" = "Συνδεδεμένο";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Αποσυνδεδεμένο";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Ρυθμίσεις";
+
+
+// PDF annotation name overrides
+"Square" = "Ορθογώνιο";
+"Circle" = "Έλλειψη";
+"PolyLine" = "Πολύγραμμο";
+
+// named actions
+"NextPage" = "Επόμενη σελίδα";
+"PrevPage" = "Προηγούμενη σελίδα";
+"FirstPage" = "Πρώτη σελίδα";
+"LastPage" = "Τελευταία σελίδα";
+"GoBack" = "Επιστροφή";
+"GoForward" = "Προώθηση";
+"GoToPage" = "Μετάβαση στη σελίδα";
+"Find" = "Εύρεση";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Μεγέθυνση";
+"ZoomOut" = "Σμίκρυνση";
+"Execute JavaScript" = "Εκτέλεση JavaScript";
+"Rich Media Action" = "Ενέργεια εμπλουτισμένου περιεχομένου";
+"Rendition Action" = "Ενέργεια απόδοσης";
+"Hide Action" = "Απόκρυψη ενέργειας";
+"Submit Form" = "Υποβολή εντύπου";
+"Reset" = "Επαναφορά";
+
+// line annotations
+"Start" = "Έναρξη";
+"End" = "Τέλος";
+"Line.None" = "Κανένα";
+"Line.ClosedArrow" = "Βέλος με κλειστή αιχμή";
+"Line.OpenArrow" = "Βέλος με ανοιχτή αιχμή";
+"Line.Square" = "Τετράγωνο";
+"Line.Circle" = "Κύκλος";
+"Line.Diamond" = "Διαμάντι";
+"Line.ROpenArrow" = "Αντιστροφή κατεύθυνσης βέλους με ανοικτή αιχμή";
+"Line.RClosedArrow" = "Αντιστροφή κατεύθυνσης βέλους με κλειστή αιχμή";
+"Line.Slash" = "Κάθετος";
+"Line.Butt" = "Άκρο";
+"Line Start" = "Αρχή γραμμής";
+"Line End" = "Τέλος γραμμής";
+"Arrow" = "Βέλος"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "Δημιουργία συνδέσμου";
+"Add Link" = "Προσθήκη συνδέσμου";
+"Edit Link" = "Επεξεργασία συνδέσμου";
+"Move Link" = "Μετακίνηση συνδέσμου";
+"Remove Link" = "Αφαίρεση συνδέσμου";
+"Open Link" = "Άνοιγμα συνδέσμου";
+"Go to Page %tu" = "Μετάβαση στη σελίδα %tu";
+"Go to Page" = "Μετάβαση στη σελίδα"; // title of a Popup
+"Go" = "Μετάβαση"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "Αποθήκευση";
+"Link Destination" = "Προορισμός συνδέσμου";
+"Enter page index or a http:// address to link to an URL." = "Εισαγάγετε δείκτη σελίδας ή διεύθυνση http:// για σύνδεσμο με ένα URL.";
+"Page %@ Not Found" = "Η σελίδα %@ δεν βρέθηκε";
+
+// voiceover accessibility
+"Page" = "Σελίδα";
+"Grid" = "Πλέγμα"; // grid with thumbnails
+"Translucent" = "Ημιδιαφανές";
+"left" = "αριστερά";
+"center" = "κέντρο";
+"right" = "δεξιά";
+"decrease" = "μείωση";
+"increase" = "αύξηση";
+"All Open Documents" = "Όλα τα ανοιχτά έγγραφα";
+"Add Documents" = "Προσθήκη αρχείων"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "Σελίδες %tu-%tu"; // Range of pages
+"Current Page" = "Τρέχουσα σελίδα";
+"Current Page (%tu)" = "Τρέχουσα σελίδα (%tu)";
+"Ignore Annotations" = "Αγνόηση σχολίων";
+"The PDF will not contain any annotations." = "Το PDF δεν θα περιέχει σχόλια.";
+"Embed Annotations" = "Ενσωμάτωση σχολίων";
+"Annotations will remain editable and are embedded into the PDF." = "Τα σχόλια θα μπορούν να υποστούν επεξεργασία και είναι ενσωματωμένα στο PDF.";
+"Flatten Annotations" = "Σχόλια σε επίπεδη δομή";
+"Annotations are drawn into the PDF and are readonly." = "Τα σχόλια αποδίδονται στο PDF και είναι μόνο για ανάγνωση.";
+"Annotation Summary" = "Σύνοψη σχολίων";
+"Embed Annotations into the PDF and also list them in the email." = "Να γίνει ενσωμάτωση των σχολίων στο PDF και παρέθεσή τους στο email.";
+"Files" = "Αρχεία";
+"Send as single files" = "Αποστολή ως μονά αρχεία";
+"Merge files" = "Συγχώνευση αρχείων";
+"Original File" = "Αρχικό αρχείο";
+"Range" = "Εύρος";
+"Annotated Pages" = "Σχολιασμένες σελίδες";
+
+// sound annotations
+"Speak" = "Εκφώνηση"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "Αναπαραγωγή";
+"Pause" = "Παύση";
+"Resume" = "Συνέχιση";
+"Stop" = "Διακοπή";
+"Play/Stop" = "Αναπαραγωγή/Διακοπή";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Εγγραφή";
+"Pause Recording" = "Παύση εγγραφής";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Εγγραφή σε παύση";
+"Continue Recording" = "Συνέχιση εγγραφής";
+"Finish Recording" = "Τέλος εγγραφής";
+"Audio Problem" = "Πρόβλημα ήχου";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "Δεν ήταν δυνατή η έναρξη της αναπαραγωγής.";
+"Could not resume playback." = "Δεν ήταν δυνατή η συνέχιση της αναπαραγωγής.";
+"Microphone permission not granted." = "Δεν χορηγήθηκε άδεια μικροφώνου.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Αυτή τη στιγμή, δεν είναι δυνατή η εγγραφή ήχου. Χορηγήστε σε αυτή την εφαρμογή άδεια να αποκτήσει πρόσβαση στο μικρόφωνό σας.";
+"There was a problem trying to record audio." = "Υπήρξε πρόβλημα κατά την απόπειρα εγγραφής ήχου.";
+"Already Recording" = "Γίνεται ήδη εγγραφή";
+"You are already recording on page %@." = "Ήδη πραγματοποιείτε εγγραφή στη σελίδα %@.";
+
+// Forms
+"Form Element" = "Στοιχείο εντύπου";
+"Text Field" = "Πεδίο κειμένου";
+"Button" = "Κουμπί";
+"Choice Field" = "Πεδίο επιλογής";
+"Signature Field" = "Πεδίο υπογραφής";
+"Clear Field" = "Εκκαθάριση πεδίου"; // same as delete
+"Type value or pick from list" = "Πληκτρολογήστε τιμή ή επιλέξτε από τη λίστα";
+"Default Values" = "Προεπιλεγμένες τιμές";
+"Custom Value" = "Προσαρμοσμένη τιμή";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Μη έγκυρη τιμή: πρέπει να είναι μεγαλύτερη από ή ίση με %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Μη έγκυρη τιμή: πρέπει να είναι μεγαλύτερη από ή ίση με %s και μικρότερη από ή ίση με %s.";
+"Invalid value: must be less than or equal to %s." = "Μη έγκυρη τιμή: πρέπει να είναι μικρότερη από ή ίση με %s.";
+"Invalid value: must be a number." = "Μη έγκυρη τιμή: πρέπει να είναι αριθμός.";
+
+//  Validation of dates
+"Invalid value: must be a date." = "Μη έγκυρη τιμή: πρέπει να είναι ημερομηνία.";
+
+// General validation
+"Invalid value." = "Μη έγκυρη τιμή.";
+
+// Gallery
+"Connection Error" = "Σφάλμα σύνδεσης";
+"Unsupported Content" = "Μη υποστηριζόμενο περιεχόμενο";
+"The specified content cannot be displayed." = "Το καθορισμένο περιεχόμενο δεν είναι δυνατό να εμφανιστεί.";
+"Something went wrong" = "Υπήρξε πρόβλημα";
+"This item is currently unavailable." = "Αυτή τη στιγμή, αυτό το στοιχείο δεν είναι διαθέσιμο.";
+"The information for this gallery could not be loaded." = "Δεν ήταν δυνατή η φόρτωση των πληροφοριών για αυτή την γκαλερί.";
+"Content Error" = "Σφάλμα περιεχομένου";
+"This content is unsupported." = "Αυτό το περιεχόμενο δεν υποστηρίζεται.";
+
+// Signatures
+"Digital Signature" = "Ψηφιακή υπογραφή";
+"Signature is valid." = "Η υπογραφή είναι έγκυρη.";
+"Signature is valid, but there are some warnings." = "Η υπογραφή είναι έγκυρη, αλλά υπάρχουν κάποιες προειδοποιήσεις.";
+"It was signed by %@ on %@ at %@." = "Υπογράφηκε από %@ στις %@, %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Υπογράφηκε %@, %@.";
+"It claims to have been signed by %@ on %@ at %@." = "Γίνεται ισχυρισμός ότι έχει υπογραφεί από %@, στις %@, %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Γίνεται ισχυρισμός ότι έχει υπογραφεί %@, %@.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Η αναθεώρηση που καλύπτεται από αυτή την υπογραφή δεν έχει τροποποιηθεί, ωστόσο έχουν γίνει αλλαγές στο έγγραφο από την υπογραφή του."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- Η υπογραφή είναι έγκυρη και το περιεχόμενο αυτού του εγγράφου δεν έχει τροποποιηθεί από την υπογραφή του.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Μη έγκυρη υπογραφή — από την υπογραφή του περιεχομένου αυτού του εγγράφου, αυτό έχει τροποποιηθεί, παραβιαστεί ή καταστραφεί.";
+"Unsigned Signature Field" = "Ανυπόγραφο πεδίο υπογραφής";
+"Do you really want to remove the signature from the document?" = "Θέλετε οπωσδήποτε να αφαιρέσετε την υπογραφή από το έγγραφο;";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Δεν ήταν δυνατή η ανάγνωση δεδομένων πιστοποιητικού ως πιστοποιητικού PKCS#7. Δεδομένα στη σωστή μορφή μπορούν να εξαχθούν από το Adobe Acrobat."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "Δεν είναι δυνατή η αποκρυπτογράφηση της υπογραφής του πιστοποιητικού.";
+"The public key in the certificate could not be read." = "Δεν ήταν δυνατή η ανάγνωση του δημόσιου κλειδιού στο πιστοποιητικό.";
+"The signature of the certificate is not valid." = "Η υπογραφή του πιστοποιητικού δεν είναι έγκυρη.";
+"Signature is not valid." = "Η υπογραφή δεν είναι έγκυρη.";
+"There is a format error in the notBefore field of the certificate." = "Υπάρχει σφάλμα μορφής στο πεδίο notBefore του πιστοποιητικού."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "Υπάρχει σφάλμα μορφής στο πεδίο notAfter του πιστοποιητικού."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Δεν ήταν δυνατή η επαλήθευση καμίας υπογραφής επειδή η αλυσίδα πιστοποιητικού περιέχει μόνο ένα πιστοποιητικό, δεν είναι αυτο-υπογεγραμμένο και ο εκδότης δεν είναι αξιόπιστος.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Ένα πιστοποιητικό CA δεν είναι έγκυρο επειδή δεν είναι CA ή οι επεκτάσεις της δεν είναι συνεπείς με τον προοριζόμενο σκοπό."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "Έγινε υπέρβαση της παραμέτρου basicConstraints pathlength."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "Η αρχή έκδοσης πιστοποιητικών ρίζας δεν είναι επισημασμένη ως αξιόπιστη για τον προοριζόμενο σκοπό της."; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "Η αρχή έκδοσης πιστοποιητικών ρίζας είναι επισημασμένη για να απορρίψει το σκοπό που καθορίζεται."; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Το πιστοποιητικό εκδότη απορρίφτηκε επειδή το όνομα θέματος δεν ταίριαζε με το όνομα εκδότη του τρέχοντος πιστοποιητικού."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Το πιστοποιητικό εκδότη απορρίφτηκε επειδή το αναγνωριστικό κλειδιού θέματος υπήρχε και δεν ταίριαζε με το αναγνωριστικό κλειδιού αρχής του τρέχοντος πιστοποιητικού."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "Το πιστοποιητικό εκδότη απορρίφτηκε επειδή το όνομα εκδότη και ο σειριακός αριθμός υπήρχαν και δεν ταίριαζαν με το αναγνωριστικό κλειδιού αρχής του τρέχοντος πιστοποιητικού."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "Το πιστοποιητικό ανακλήθηκε από τον εκδότη.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Το επιτυχές πιστοποιητικό είναι αυτο-υπογεγραμμένο και το ίδιο πιστοποιητικό δεν βρέθηκε στη λίστα των αξιόπιστων πιστοποιητικών.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Υπάρχει ένα αυτο-υπογεγραμμένο πιστοποιητικό στην αλυσίδα πιστοποιητικών. Η αλυσίδα πιστοποιητικών μπορεί να δημιουργηθεί χρησιμοποιώντας τα αναξιόπιστα πιστοποιητικά, αλλά η αρχή έκδοσης πιστοποιητικών ρίζας δεν βρέθηκε τοπικά."; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Δεν είναι δυνατή η εύρεση του πιστοποιητικού για μία από τις αρχές έκδοσης πιστοποιητικών (CA) στην ιεραρχία υπογραφών και η συγκεκριμένη CA δεν θεωρείται αξιόπιστη από την τοπική εφαρμογή."; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Δεν βρέθηκε το πιστοποιητικό εκδότη ενός πιστοποιητικού για το οποίο έγινε αναζήτηση τοπικά. Αυτό κανονικά σημαίνει ότι η λίστα των αξιόπιστων πιστοποιητικών δεν είναι πλήρης.";
+"The certificate that was provided cannot be used for its intended purpose." = "Το πιστοποιητικό που δόθηκε δεν μπορεί να χρησιμοποιηθεί για τον προοριζόμενο σκοπό του.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "Η επέκταση keyUsage του πιστοποιητικού εκδότη δεν επιτρέπει την υπογραφή πιστοποιητικού.";
+"The certificate has expired." = "Το πιστοποιητικό έληξε.";
+"The certificate is not valid until a date in the future." = "Το πιστοποιητικό δεν είναι έγκυρο μέχρι κάποια ημερομηνία στο μέλλον.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Δεν ήταν δυνατή η ανάγνωση του πιστοποιητικού X509 από τα δεδομένα";
+// X509 should not be translated
+"No X509 certificate found" = "Δεν βρέθηκε πιστοποιητικό X509";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Δεν είναι δυνατή η ανάγνωση του αρχείου PKCS12. Το αρχείο έχει εσφαλμένη μορφή ή είναι κατεστραμμένο.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Δεν ήταν δυνατό το ξεκλείδωμα των δεδομένων PKCS12. Εισαγάγατε το σωστό συνθηματικό;";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Δεν ήταν δυνατό το άνοιγμα του αρχείου για επικύρωση υπογραφής";
+"Could not get signer info" = "Δεν ήταν δυνατή η λήψη των πληροφοριών του υπογράφοντος";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "Το OpenSSL δεν ήταν δυνατό να δημιουργήσει αντικείμενο PKCS7";
+"OpenSSL could not add signature to PKCS7 object" = "Το OpenSSL δεν ήταν δυνατό να προσθέσει υπογραφή στο αντικείμενο PKCS7";
+"OpenSSL could not init PKCS7 object" = "Το OpenSSL δεν ήταν δυνατό να αρχίσει αντικείμενο PKCS7";
+"OpenSSL could generate PKCS7 signature" = "Το OpenSSL δεν ήταν δυνατό να παράγει υπογραφή PKCS7";
+"OpenSSL could not sign hash" = "Το OpenSSL δεν ήταν δυνατό να κατακερματίσει υπογραφή";
+"Could not write PKCS7 signature" = "Δεν ήταν δυνατή η εγγραφή υπογραφής PKCS7";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "Άνοιγμα σε";
+"PSPDFPolicyEventPrint" = "Εκτύπωση";
+"PSPDFPolicyEventEmail" = "Αποστολή μέσω email";
+"PSPDFPolicyEventMessage" = "Μήνυμα";
+"PSPDFPolicyEventQuickLook" = "Άμεση προβολή"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "Ηχητική εγγραφή";
+"PSPDFPolicyEventCamera" = "Κάμερα";
+"PSPDFPolicyEventPasteboard" = "Πρόχειρο"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "Υποβολή εντύπου";
+"PSPDFPolicyEventNetwork" = "Δίκτυο";
+
+// Night Mode
+"Default" = "Προεπιλογή"; // Default view (night mode not enabled)
+"Sepia" = "Σέπια"; // Document uses sepia colors
+"Night" = "Νύκτα"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "Δεν έχει οριστεί έγγραφο";
+"Unable to display document" = "Δεν είναι δυνατή η εμφάνιση εγγράφου";
+"Loading..." = "Γίνεται φόρτωση...";
+"Locked" = "Κλειδωμένο";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "Το αρχείο στο οποίο προσπαθείτε να αποκτήσετε πρόσβαση είτε δεν είναι αρχείο PDF είτε είναι κατεστραμμένο.";
+"A password is required to access this document." = "Για πρόσβαση σε αυτό το έγγραφο, απαιτείται κωδικός πρόσβασης.";
+"The security scheme of this document is currently not supported." = "Αυτή τη στιγμή, δεν υποστηρίζεται το σχήμα ασφάλειας αυτού του εγγράφου.";
+"An unknown error has occured while trying to open this file." = "Συνέβη άγνωστο σφάλμα κατά την προσπάθεια ανοίγματος αυτού του αρχείου.";
+
+// Document Editor
+"Document Editor" = "Επεξεργαστής εγγράφων";
+"Add Page" = "Προσθήκη σελίδας";
+"Delete Pages" = "Διαγραφή σελίδων";
+"Duplicate Pages" = "Διπλότυπο σελίδων";
+"Move Pages" = "Μετακίνηση σελίδων";
+"Rotate Pages" = "Περιστροφή σελίδων";
+"Page Size" = "Μέγεθος σελίδας";
+"Background Color" = "Χρώμα φόντου";
+"Pattern" = "Μοτίβο";
+"Use Document Size" = "Χρήση μεγέθους εγγράφου";
+"Orientation" = "Προσανατολισμός";
+"Portrait" = "Πορτρέτο";
+"Landscape" = "Τοπίο";
+"Name" = "Όνομα";
+"Document Name" = "Όνομα εγγράφου";
+"Documents" = "Έγγραφα"; // Name of directory
+"Use Document Directory" = "Χρήση καταλόγου εγγράφου";
+"Directory" = "Κατάλογος";
+"Replace File?" = "Να γίνει αντικατάσταση αρχείου;";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Ένα αρχείο με όνομα «%@» ήδη υπάρχει στον επιλεγμένο προορισμό. Θέλετε να το αντικαταστήσετε;";
+"Replace" = "Αντικατάσταση";
+"Saving…" = "Γίνεται αποθήκευση…";
+"Saved" = "Αποθηκεύτηκε";
+"Save As…" = "Αποθήκευση ως…";
+"Discard Changes" = "Απόρριψη αλλαγών";
+"Empty" = "Κενό";
+
+// Document Editor Errors
+"A blank document can not be saved." = "Δεν είναι δυνατή η αποθήκευση κενού εγγράφου.";
+"The document could not be saved." = "Δεν ήταν δυνατή η αποθήκευση του εγγράφου.";
+"This document does not support editing." = "Αυτό το έγγραφο δεν υποστηρίζει την επεξεργασία.";
+
+// Page Patterns
+"None" = "Κανένα";
+"Dot5mm" = "Τελείες 5mm";
+"Grid5mm" = "Πλέγμα 5mm";
+"Lines5mm" = "Γραμμές 5mm";
+"Lines7mm" = "Γραμμές 7mm";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US Letter";
+"US Legal" = "US Legal";
+
+// Page Export
+"Export Pages" = "Εξαγωγή σελίδων";
+"Export…" = "Εξαγωγή…";
+"Exporting…" = "Γίνεται εξαγωγή…";
+"Exported" = "Έγινε εξαγωγή";
+"%@ - Exported" = "%@ - Έγινε εξαγωγή"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - Αντιγραφή"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "Αυτή τη στιγμή, το επιλεγμένο έγγραφο είναι ανοικτό. Επιλέξτε διαφορετικό όνομα αρχείου.";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Δεν είναι διαθέσιμη η υπηρεσία κειμένου σε ομιλία. Βεβαιωθείτε ότι έχετε ενεργή σύνδεση στο internet ή μηχανή Google κειμένου σε ομιλία εγκατεστημένη και ενεργοποιημένη στη συσκευή σας.";

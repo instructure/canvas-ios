@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "閉じる";
+"Cancel" = "キャンセル";
+"OK" = "移動";
+"Open" = "開く";
+"Untitled" = "名称未設定";
+"File Not Found" = "ファイルが見つかりません";
+"File couldn't be opened." = "ファイルを開けませんでした。"; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "名称未設定のPDF";
+"Page %tu" = "ページ%tu";
+"Page %@" = "ページ%@";
+"Next" = "次へ";
+"Previous" = "前へ";
+"Error" = "エラー";
+
+// toolbar
+"Outline" = "アウトライン"; // Table of contents
+"No Outline" = "アウトラインがありません";
+"Search Outline" = "アウトラインを検索";
+"Search" = "検索";
+"Email" = "メール";
+"Send via Email" = "メールで送信";
+"Send" = "送信";
+"Open In" = "開く";
+"Commit" = "コミット";
+"Sending to %@" = "%@に送信中"; // Open document with an application
+"Pages" = "ページ";
+"Print with annotations" = "注釈付きでプリント";
+"Print without annotations" = "注釈なしでプリント";
+"No Applications found" = "PDF書類を開くことができるアプリケーションがインストールされていません。";
+"Print" = "プリント";
+"Annotation" = "注釈";
+"Annotations" = "注釈";
+"No Annotations" = "注釈なし";
+"Bookmarks" = "ブックマーク";
+"No Bookmarks" = "ブックマークがありません";
+"Add Bookmark" = "ブックマークを追加";
+"Remove Bookmark" = "ブックマークを削除";
+"Brightness" = "明るさ";
+"Share" = "共有";
+"Preparing" = "準備中";
+"Loading" = "読み込み中";
+"Expand" = "開く";
+"Collapse" = "折りたたむ";
+// SMS / iMessage sharing button
+"Message" = "メッセージ";
+"Thumbnails" = "サムネール";
+"Drag Toolbar" = "ツールバーをドラッグ";
+
+// thumbnails
+"Bookmarked" = "ブックマーク";
+"Annotated" = "注釈済み";
+"All" = "すべて";
+
+// password
+"Password" = "パスワード"; // text on a label
+"Unlock" = "ロック解除";
+"Please enter the password." = "パスワードを入力してください。";
+"This document cannot be unlocked. %@ is unsupported." = "この書類をロック解除できません。%@はサポートされていません。";
+
+// page
+"%tu of %tu" = "%tu／%tu";
+"%tu-%tu of %tu" = "%tu-%tu／%tu";
+"%@ (%tu of %tu)" = "%@（%tu／%tu）";
+"%@, Page %tu" = "%@、ページ%tu";
+"Leave %@?" = "%@を終了しますか。";
+
+// search
+"Search Document" = "書類を検索"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "ページ%tu／%tuを検索中";
+"Search Completed" = "検索を完了";
+"Search Cancelled" = "検索がキャンセルされました";
+"%tu left" = "残り%tu件"; // Indexing Documents... 5 left
+"Searching" = "検索中";
+"Done" = "完了";
+"Indexing Documents" = "書類の索引を作成中";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "書類に内容がありません";
+
+// inline browser
+"Open in Safari" = "Safariで開く";
+"Open in Chrome" = "Chromeで開く";
+"Your %@ is not configured to send emails." = "%@はメールを送信するよう設定されていません。";
+"The link is requesting to open %@Would you like to continue?" = "リンクが%@を開くよう要求しています。続けてよろしいですか。";
+"an external application" = "外部アプリケーション"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "メール"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "%@のハンドラが見つかりません";
+
+// text selection
+"Text copied to clipboard." = "テキストをクリップボードにコピーしました。";
+"Save To Camera Roll" = "カメラロールに保存";
+"Failed to extract image." = "イメージを抽出できませんでした。";
+"Type value or pick from list" = "値を入力するか、リストから選んでください";
+
+// annotations
+"Add %@" = "%@を追加";
+"Remove %@" = "“%@”を削除";
+"Remove" = "削除";
+"Delete" = "削除"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "編集";
+"Undo" = "取消";
+"Nothing to undo" = "取り消すことがありません";
+"Redo" = "やり直し";
+"Nothing to redo" = "やり直すことがありません";
+"Type" = "入力"; // kind of Annotation can be selected
+"Size" = "サイズ";
+"Font" = "フォント";
+"Fonts" = "フォント";
+"All Fonts" = "すべてのフォント";
+"Downloadable Fonts" = "ダウンロード可能なフォント";
+"Search Fonts" = "フォントを検索";
+"Choose Color" = "カラーを選択";
+"Choose Fill Color" = "塗りつぶしの色を選択";
+"Rainbow" = "虹";
+"Monochrome" = "モノクロ";
+"Vintage" = "ビンテージ";
+"Color" = "カラー";
+"Border" = "境界線";
+"Fill Color" = "塗りつぶしのカラー";
+"Line End Fill Color" = "線の終点の塗りつぶしの色";
+"Opacity" = "不透明度";
+"%@ %%" = "%@ %%";
+"Thickness" = "太さ";
+"%@ pt" = "%@pt";
+"Yellow" = "イエロー";
+"Green" = "グリーン";
+"Red" = "レッド";
+"Blue" = "ブルー";
+"Pink" = "ピンク";
+"Black" = "ブラック";
+"Orange" = "オレンジ";
+"Purple" = "パープル";
+"Cyan" = "シアン";
+"Gray" = "グレイ";
+"White" = "ホワイト";
+"Define" = "辞書";
+"Wikipedia" = "ウィキペディア";
+"Highlight" = "ハイライト";
+"Underline" = "アンダーライン";
+"Squiggle" = "曲線";
+"StrikeOut" = "取り消し線";
+"Rectangle" = "長方形";
+"Ellipse" = "楕円形";
+"Line" = "線"; // something that can be drawn
+"Lines" = "線"; // "5 Lines" were drawn
+"Polyline" = "ポリライン";
+"Polygon" = "ポリゴン";
+"Signature" = "署名";
+"Signatures" = "署名";
+"Signed" = "署名入り";
+"Sign" = "署名";
+"Sign using %@" = "%@を使って署名"; // e.g. Adobe.PPKLite
+"Methods" = "方法"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "IDを選択"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "スタンプ";
+"Stamps" = "スタンプ";
+"Custom" = "カスタム"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "スタンプを作成";
+"Preview" = "プレビュー";
+"Stamp Text" = "スタンプのテキスト";
+"Add Signature" = "署名を追加";
+"Remove Signature" = "署名を削除";
+"My Signature" = "自分の署名";
+"No Signatures" = "署名がありません"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "カスタマーの署名";
+"Please sign here" = "こちらに署名してください";
+"Note" = "メモ";
+"Text" = "テキスト";
+"Delete Note" = "メモを削除";
+"Remove Note" = "メモを削除";
+"%@ could not be found." = "%@を見つけられませんでした。";
+"Photo Library" = "フォトライブラリ";
+"Camera" = "カメラ";
+"Image" = "イメージ";
+"Low Quality" = "低音質";
+"Medium Quality" = "中音質";
+"High Quality" = "高音質";
+"Clear All" = "すべてを消去";
+"Clear" = "消去";
+"Style" = "スタイル";
+"Link" = "リンク";
+"Ink" = "インク";
+"FreeText" = "テキスト";
+"Screen" = "画面";
+"RichMedia" = "リッチメディア";
+"Left" = "左揃え";
+"Center" = "中央揃え";
+"Right" = "右揃え";
+"Alignment" = "行揃え";
+"Preview File" = "ファイルをプレビュー";
+"Copy" = "コピー";
+"Paste" = "ペースト";
+"Inspector" = "インスペクタ";
+"Group" = "グループ";
+"Ungroup" = "グループ解除";
+"Merge" = "結合"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "サンプル";
+"Annotation Summary for %@:\n" = "%@の注釈の概要：";
+// title
+"Author Name" = "著者名";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "新規に挿入された注釈に使用する著者名を入力してください。";
+// text field placeholder
+"Name" = "名前";
+// meaning: close
+"Dismiss" = "終了";
+"Fit to Text" = "テキストの大きさに合わせる";
+"Draw" = "描画";
+"Sound" = "サウンド";
+"Eraser" = "消しゴム";
+"Toggle Eraser" = "消しゴムを切り替え"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "選択ツール";
+"Saved Annotations" = "保存済みの注釈";
+"Add" = "追加"; // to add - infinitive
+"Date" = "日付";
+"Time" = "時刻";
+"No Pages" = "ページがありません";
+"Drag to resize" = "ドラッグしてサイズ変更"; // used as hint that inspector is resizable
+"Convert to" = "変換"; // used as label on action that changes free text intent type
+"Color Presets" = "カラープリセット";
+
+"Callout" = "コールアウト"; // freetext annotation with an arrow
+"Generic" = "一般"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "線のスタイル";
+"Solid" = "ソリッド";
+"Narrow Dots" = "ドット（小）";
+"Wide Dots" = "ドット（大）";
+"Narrow Dashes" = "ハイフン（短）";
+"Wide Dashes" = "ハイフン（長）";
+
+// Stamps
+"Approved" = "承認済み";
+"Not Approved" = "未承認";
+"Draft" = "下書き";
+"Final" = "最終版";
+"Completed" = "完了済み";
+"Confidential" = "部外秘";
+"For Public Release" = "公開リリース用";
+"Not For Public Release" = "非公開";
+"For Comment" = "コメント用";
+"Void" = "無効";
+"Preliminary Results" = "中間結果";
+"Information only" = "情報のみ";
+"Accepted" = "受け入れ済み";
+"Rejected" = "不採用";
+"Initial Here" = "こちらにイニシャルを";
+"Sign Here" = "こちらに署名を";
+"Witness" = "証人";
+"Revised" = "改訂済み";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "スタイラス";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "オフ";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "スキャン中";
+// text on a label; app connects to a stylus
+"Pairing" = "ペアリング";
+// text on a label; app and stylus are connected
+"Connected" = "接続中";
+// text on a label; app and stylus are not connected
+"Disconnected" = "接続が解除されました";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "設定";
+
+
+// PDF annotation name overrides
+"Square" = "長方形";
+"Circle" = "楕円形";
+"PolyLine" = "ポリライン";
+
+// named actions
+"NextPage" = "次のページ";
+"PrevPage" = "前のページ";
+"FirstPage" = "最初のページ";
+"LastPage" = "最後のページ";
+"GoBack" = "戻る";
+"GoForward" = "進む";
+"GoToPage" = "ページに移動";
+"Find" = "検索";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "拡大";
+"ZoomOut" = "縮小";
+"Execute JavaScript" = "JavaScriptを実行";
+"Rich Media Action" = "リッチメディアのアクション";
+"Rendition Action" = "レンディションアクション";
+"Hide Action" = "アクションを隠す";
+"Submit Form" = "フォームを送信";
+"Reset" = "リセット";
+
+// line annotations
+"Start" = "開始";
+"End" = "終了位置";
+"Line.None" = "なし";
+"Line.ClosedArrow" = "三角矢印";
+"Line.OpenArrow" = "線矢印";
+"Line.Square" = "スクエア";
+"Line.Circle" = "円形";
+"Line.Diamond" = "ひし形";
+"Line.ROpenArrow" = "反転線矢印";
+"Line.RClosedArrow" = "反転三角矢印";
+"Line.Slash" = "スラッシュ";
+"Line.Butt" = "端点";
+"Line Start" = "線の始点";
+"Line End" = "線の終点";
+"Arrow" = "矢印"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "リンクを作成";
+"Add Link" = "リンクを追加";
+"Edit Link" = "リンクを編集";
+"Move Link" = "リンクを移動";
+"Remove Link" = "リンクを削除";
+"Open Link" = "リンクを開く";
+"Go to Page %tu" = "%tuページに移動";
+"Go to Page" = "ページに移動"; // title of a Popup
+"Go" = "移動"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "保存";
+"Link Destination" = "リンク先";
+"Enter page index or a http:// address to link to an URL." = "URLにリンクするには、ページインデックスまたはhttp://アドレスを入力してください。";
+"Page %@ Not Found" = "ページ“%@”が見つかりません";
+
+// voiceover accessibility
+"Page" = "ページ";
+"Grid" = "グリッド"; // grid with thumbnails
+"Translucent" = "半透明";
+"left" = "左";
+"center" = "中央";
+"right" = "右";
+"decrease" = "小さく";
+"increase" = "大きく";
+"All Open Documents" = "開いているすべての書類";
+"Add Documents" = "書類を追加"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "ページ%tu-%tu"; // Range of pages
+"Current Page" = "現在のページ";
+"Current Page (%tu)" = "現在のページ（%tu）";
+"Ignore Annotations" = "注釈を無視";
+"The PDF will not contain any annotations." = "PDFには注釈が含まれません。";
+"Embed Annotations" = "注釈を埋め込む";
+"Annotations will remain editable and are embedded into the PDF." = "注釈は編集可能なまま残り、PDFに埋め込まれます。";
+"Flatten Annotations" = "注釈をフラット化";
+"Annotations are drawn into the PDF and are readonly." = "注釈はPDFにレンダリングされ、読み出し専用となります。";
+"Annotation Summary" = "注釈の概要";
+"Embed Annotations into the PDF and also list them in the email." = "PDFに注釈を埋め込み、またメールにリスト表示します。";
+"Files" = "ファイル";
+"Send as single files" = "1つのファイルとして送信";
+"Merge files" = "ファイルを結合";
+"Original File" = "オリジナル書類";
+"Range" = "範囲";
+"Annotated Pages" = "注釈付きのページ";
+
+// sound annotations
+"Speak" = "読み上げ"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "再生";
+"Pause" = "一時停止";
+"Resume" = "再開";
+"Stop" = "停止";
+"Play/Stop" = "再生／停止";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "録音";
+"Pause Recording" = "録音を一時停止";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "録音を一時停止中";
+"Continue Recording" = "録音を続ける";
+"Finish Recording" = "録音を終了";
+"Audio Problem" = "オーディオの問題";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "再生を開始できませんでした。";
+"Could not resume playback." = "再生を再開できませんでした。";
+"Microphone permission not granted." = "マイクへのアクセス権がありません。";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "残念ながらオーディオは現時点で録音できません。このアプリがマイクにアクセスできる許可を与えて下さい。";
+"There was a problem trying to record audio." = "オーディオの録音を試みている間に問題が起きました。";
+"Already Recording" = "既に録音中です";
+"You are already recording on page %@." = "ページ%@に既に録音中です。";
+
+// Forms
+"Form Element" = "フォーム要素";
+"Text Field" = "テキストフィールド";
+"Button" = "ボタン";
+"Choice Field" = "選択フィールド";
+"Signature Field" = "署名フィールド";
+"Clear Field" = "フィールドを消去"; // same as delete
+"Type value or pick from list" = "値を入力するか、リストから選んでください";
+"Default Values" = "デフォルト値";
+"Custom Value" = "カスタム値";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "値が無効です：値は%s以上である必要があります。";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "値が無効です：値は%s以上で、且つ%s以下である必要があります。";
+"Invalid value: must be less than or equal to %s." = "値が無効です：値は%s以下である必要があります。";
+"Invalid value: must be a number." = "値が無効です：数値を使用してください。";
+
+//  Validation of dates
+"Invalid value: must be a date." = "値が無効です：日付を入力してください。";
+
+// General validation
+"Invalid value." = "値が無効です。";
+
+// Gallery
+"Connection Error" = "接続エラー";
+"Unsupported Content" = "サポートされていないコンテンツ";
+"The specified content cannot be displayed." = "指定されたコンテンツを表示できません。";
+"Something went wrong" = "何かしらの問題が起きました";
+"This item is currently unavailable." = "この項目は現在使用できません。";
+"The information for this gallery could not be loaded." = "このギャラリーの情報を読み込めませんでした。";
+"Content Error" = "コンテンツエラー";
+"This content is unsupported." = "このコンテンツはサポートされていません。";
+
+// Signatures
+"Digital Signature" = "デジタル署名";
+"Signature is valid." = "署名は有効です。";
+"Signature is valid, but there are some warnings." = "署名は有効ですが、警告が数件あります。";
+"It was signed by %@ on %@ at %@." = "%2$@、%2$@に%1$@によって署名されました。"; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "%1$@、%2$@に署名されました。";
+"It claims to have been signed by %@ on %@ at %@." = "%2$@、%3$@に%1$@によって署名されたことになっています。"; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "%1$@、%2$@に署名されたことになっています。";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- この署名の対象となるリビジョンは変更されていませんが、署名以降に書類に変更が加えられました。"; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- 署名は有効で、かつ、この書類の内容は署名以降変更されていません。";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- 無効な署名 — この書類の内容に署名された後、変更、改ざん、または破損が起きました。";
+"Unsigned Signature Field" = "未署名の署名フィールド";
+"Do you really want to remove the signature from the document?" = "書類から署名を削除してもよろしいですか。";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "PKCS#7の証明書として証明書データを読み取ることはできません。正しいフォーマットの日付はAdobe Acrobatから書き出すことができます。"; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "証明書の署名を暗号解除できません。";
+"The public key in the certificate could not be read." = "証明書の公開鍵を読み取れませんでした。";
+"The signature of the certificate is not valid." = "証明書の署名が有効ではありません。";
+"Signature is not valid." = "署名が有効ではありません。";
+"There is a format error in the notBefore field of the certificate." = "証明書のnotBeforeフィールドにフォーマットエラーがあります。"; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "証明書のnotAfterフィールドにフォーマットエラーがあります。"; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "証明書チェーンに証明書が1つしか含まれていない、自己署名されていない、そして発行者が信頼されないため、署名が認証されませんでした。";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "CA 証明書は、それがCAではないか、あるいはその拡張子が意図する目的と矛盾するため有効ではありません。"; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "basicConstraintsのパスの長さのパラメータを超えています。"; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "ルートCAは意図した目的に信頼できるものとして指定されていません。"; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "ルートCAは指定された目的を拒否するよう指定されています。"; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "発行者証明書は、そのサブジェクト名が現在の証明書の発行者の名前と一致しないため拒否されました。"; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "発行者証明書は、そのサブジェクト鍵識別子が存在し、現在の証明書の証明書鍵識別子と一致しないため拒否されました。"; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "発行者証明書は、その発行者の名前とシリアル番号が存在し、現在の証明書の証明書鍵識別子と一致しないため拒否されました。"; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "証明書は発行者によって取り消されました。";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "渡された証明書は自己署名されてあり、信頼された証明書リストに同じ証明書を見つけることができません。";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "自己署名された証明書が証明書チェーンに存在します。証明書チェーンは信頼されない証明書を使用して立ち上げることができますが、ルートCAをローカルに見つけることができませんでした。"; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "署名階層にある認証局（CA）の1つに証明書を見つけることができず、またそのCAはローカルアプリケーションに信頼されていません。"; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "ローカルに検索した証明書の発行者証明書を見つけられませんでした。これは通常、信頼される証明書リストが完全でないことを意味します。";
+"The certificate that was provided cannot be used for its intended purpose." = "指定された証明書は意図した目的に使用できませんでした。";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "発行者証明書のkeyUsage拡張子は、証明書の署名を許可しません。";
+"The certificate has expired." = "この証明書は期限切れです。";
+"The certificate is not valid until a date in the future." = "証明書は今より先の日付まで無効です。";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "データからX509証明書を読み込めませんでした";
+// X509 should not be translated
+"No X509 certificate found" = "X509証明書が見つかりません";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "PKCS12ファイルを読み込めません。ファイルが正しくフォーマットされていないか、または壊れています。";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "PKCS12データをロック解除できませんでした。パスワードが正しく入力されたか確認してください。";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "署名の検証のためにファイルを開くことができませんでした";
+"Could not get signer info" = "署名者の情報を取得できませんでした";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSLは、PKCS7オブジェクトを作成できませんでした";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSLは、PKCS7オブジェクトに署名を追加できませんでした";
+"OpenSSL could not init PKCS7 object" = "OpenSSLは、PKCS7オブジェクトを初期化できませんでした";
+"OpenSSL could generate PKCS7 signature" = "OpenSSLは、PKCS7署名を生成できました";
+"OpenSSL could not sign hash" = "OpenSSLは、ハッシュに署名できませんでした";
+"Could not write PKCS7 signature" = "PKCS7署名を書き出せませんでした";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "開く";
+"PSPDFPolicyEventPrint" = "プリント";
+"PSPDFPolicyEventEmail" = "メール";
+"PSPDFPolicyEventMessage" = "メッセージ";
+"PSPDFPolicyEventQuickLook" = "クイックルック"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "オーディオ録音";
+"PSPDFPolicyEventCamera" = "カメラ";
+"PSPDFPolicyEventPasteboard" = "ペーストボード"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "フォームを送信";
+"PSPDFPolicyEventNetwork" = "ネットワーク";
+
+// Night Mode
+"Default" = "デフォルト"; // Default view (night mode not enabled)
+"Sepia" = "セピア"; // Document uses sepia colors
+"Night" = "夜間"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "書類が未設定です";
+"Unable to display document" = "書類を表示できません";
+"Loading..." = "読み込み中…";
+"Locked" = "ロック中";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "アクセスしようとしているファイルは、PDF形式でないか破損しています。";
+"A password is required to access this document." = "この書類にアクセスするにはパスワードが必要です。";
+"The security scheme of this document is currently not supported." = "この書類のセキュリティ方式は現在サポートされていません。";
+"An unknown error has occured while trying to open this file." = "このファイルを開く際に不明のエラーが発生しました。";
+
+// Document Editor
+"Document Editor" = "書類エディタ";
+"Add Page" = "ページを追加";
+"Delete Pages" = "ページを削除";
+"Duplicate Pages" = "ページを複製";
+"Move Pages" = "ページを移動";
+"Rotate Pages" = "ページを回転";
+"Page Size" = "ページサイズ";
+"Background Color" = "背景カラー";
+"Pattern" = "フォーム要素";
+"Use Document Size" = "書類サイズを使用";
+"Orientation" = "方向";
+"Portrait" = "縦向き";
+"Landscape" = "横向き";
+"Name" = "名前";
+"Document Name" = "書類名";
+"Documents" = "書類"; // Name of directory
+"Use Document Directory" = "書類ディレクトリを使用";
+"Directory" = "ディレクトリ";
+"Replace File?" = "ファイルを置き換えますか？";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "選択した保存先には“%@”というファイルがすでに存在します。置き換えますか？";
+"Replace" = "置き換え";
+"Saving…" = "保存中…";
+"Saved" = "保存済み";
+"Save As…" = "別名で保存…";
+"Discard Changes" = "変更を破棄";
+"Empty" = "なし";
+
+// Document Editor Errors
+"A blank document can not be saved." = "空白の書類は保存できません。";
+"The document could not be saved." = "書類を保存できませんでした。";
+"This document does not support editing." = "この書類は編集できません。";
+
+// Page Patterns
+"None" = "なし";
+"Dot5mm" = "ドット（5ミリ）";
+"Grid5mm" = "グリッド（5ミリ）";
+"Lines5mm" = "ライン（5ミリ）";
+"Lines7mm" = "ライン（7ミリ）";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "レター";
+"US Legal" = "リーガル";
+
+// Page Export
+"Export Pages" = "ページを書き出す";
+"Export…" = "書き出す…";
+"Exporting…" = "書き出し中…";
+"Exported" = "書き出し済み";
+"%@ - Exported" = "%@ - エクスポート済み"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - コピー"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "選択された書類はすでに開いています。別のファイル名を選択してください。";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "テキスト読み上げサービスは現在使用できません。インターネットに接続されている、またはGoogleのテキスト読み上げエンジンが使用中のデバイスにインストールされ有効になっていることをご確認ください。";

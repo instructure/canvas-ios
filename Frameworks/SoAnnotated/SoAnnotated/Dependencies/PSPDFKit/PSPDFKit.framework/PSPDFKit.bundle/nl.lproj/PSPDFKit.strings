@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Sluit";
+"Cancel" = "Annuleer";
+"OK" = "Ga";
+"Open" = "Open";
+"Untitled" = "Naamloos";
+"File Not Found" = "Bestand niet gevonden";
+"File couldn't be opened." = "Bestand kan niet worden geopend."; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "Naamloze PDF";
+"Page %tu" = "Pagina %tu";
+"Page %@" = "Pagina %@";
+"Next" = "Volgende";
+"Previous" = "Vorige";
+"Error" = "Fout";
+
+// toolbar
+"Outline" = "Inhoudsopgave"; // Table of contents
+"No Outline" = "Geen inhoudsopgave";
+"Search Outline" = "Inhoudsopgave doorzoeken";
+"Search" = "Zoek";
+"Email" = "E-mail";
+"Send via Email" = "Verstuur via e-mail";
+"Send" = "Verstuur";
+"Open In" = "Open in";
+"Commit" = "Leg vast";
+"Sending to %@" = "Versturen naar %@"; // Open document with an application
+"Pages" = "Pagina's";
+"Print with annotations" = "Druk af met annotaties";
+"Print without annotations" = "Druk af zonder annotaties";
+"No Applications found" = "Er zijn geen apps geïnstalleerd die PDF-documenten kunnen openen.";
+"Print" = "Druk af";
+"Annotation" = "Annotatie";
+"Annotations" = "Annotaties";
+"No Annotations" = "Geen annotaties";
+"Bookmarks" = "Bladwijzers";
+"No Bookmarks" = "Geen bladwijzers";
+"Add Bookmark" = "Voeg bladwijzer toe";
+"Remove Bookmark" = "Verwijder bladwijzer";
+"Brightness" = "Helderheid";
+"Share" = "Deel";
+"Preparing" = "Voorbereiden";
+"Loading" = "Laden";
+"Expand" = "Vouw uit";
+"Collapse" = "Vouw samen";
+// SMS / iMessage sharing button
+"Message" = "Bericht";
+"Thumbnails" = "Miniaturen";
+"Drag Toolbar" = "Sleep knoppenbalk";
+
+// thumbnails
+"Bookmarked" = "Bladwijzer toegevoegd";
+"Annotated" = "Annotaties";
+"All" = "Alles";
+
+// password
+"Password" = "Wachtwoord"; // text on a label
+"Unlock" = "Ontgrendel";
+"Please enter the password." = "Voer het wachtwoord in.";
+"This document cannot be unlocked. %@ is unsupported." = "Dit document kan niet worden ontgrendeld. %@ wordt niet ondersteund.";
+
+// page
+"%tu of %tu" = "%tu van %tu";
+"%tu-%tu of %tu" = "%tu-%tu van %tu";
+"%@ (%tu of %tu)" = "%@ (%tu van %tu)";
+"%@, Page %tu" = "%@, Pagina %tu";
+"Leave %@?" = "%@ verlaten?";
+
+// search
+"Search Document" = "Zoek in document"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "Zoeken in pagina %tu van %tu";
+"Search Completed" = "Zoeken voltooid";
+"Search Cancelled" = "Zoeken geannuleerd";
+"%tu left" = "%tu over"; // Indexing Documents... 5 left
+"Searching" = "Zoeken";
+"Done" = "Gereed";
+"Indexing Documents" = "Documenten indexeren";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Document heeft geen inhoud";
+
+// inline browser
+"Open in Safari" = "Open in Safari";
+"Open in Chrome" = "Open in Chrome";
+"Your %@ is not configured to send emails." = "Je %@ is niet geconfigureerd om e-mails te versturen.";
+"The link is requesting to open %@Would you like to continue?" = "Deze koppeling opent %@. Wil je doorgaan?";
+"an external application" = "een externe app"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "de App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "E-mail"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "Geen handler gevonden voor %@";
+
+// text selection
+"Text copied to clipboard." = "Tekst naar klembord gekopieerd.";
+"Save To Camera Roll" = "Bewaar in Filmrol";
+"Failed to extract image." = "Afbeelding extraheren is mislukt.";
+"Type value or pick from list" = "Typ waarde of kies uit lijst";
+
+// annotations
+"Add %@" = "Voeg %@ toe";
+"Remove %@" = "Verwijder %@";
+"Remove" = "Verwijder";
+"Delete" = "Verwijder"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "Wijzig";
+"Undo" = "Herstel";
+"Nothing to undo" = "Niets te herstellen";
+"Redo" = "Opnieuw";
+"Nothing to redo" = "Niets opnieuw uit te voeren";
+"Type" = "Soort"; // kind of Annotation can be selected
+"Size" = "Grootte";
+"Font" = "Letertype";
+"Fonts" = "Lettertypen";
+"All Fonts" = "Alle lettertypen";
+"Downloadable Fonts" = "Downloadbare lettertypen";
+"Search Fonts" = "Zoek lettertypen";
+"Choose Color" = "Kies kleur";
+"Choose Fill Color" = "Kies vulkleur";
+"Rainbow" = "Regenboog";
+"Monochrome" = "Monochroom";
+"Vintage" = "Vintage";
+"Color" = "Kleur";
+"Border" = "Rand";
+"Fill Color" = "Vulkleur";
+"Line End Fill Color" = "Vulkleur einde van lijn";
+"Opacity" = "Transparantie";
+"%@ %%" = "%@ %%";
+"Thickness" = "Dikte";
+"%@ pt" = "%@ pt";
+"Yellow" = "Geel";
+"Green" = "Groen";
+"Red" = "Rood";
+"Blue" = "Blauw";
+"Pink" = "Roze";
+"Black" = "Zwart";
+"Orange" = "Oranje";
+"Purple" = "Paars";
+"Cyan" = "Cyaan";
+"Gray" = "Grijs";
+"White" = "Wit";
+"Define" = "Definieer";
+"Wikipedia" = "Wikipedia";
+"Highlight" = "Markeer";
+"Underline" = "Onderstreep";
+"Squiggle" = "Krabbel";
+"StrikeOut" = "Doorgehaald";
+"Rectangle" = "Rechthoek";
+"Ellipse" = "Ellips";
+"Line" = "Lijn"; // something that can be drawn
+"Lines" = "Lijnen"; // "5 Lines" were drawn
+"Polyline" = "Polylijn";
+"Polygon" = "Veelhoek";
+"Signature" = "Handtekening";
+"Signatures" = "Handtekeningen";
+"Signed" = "Ondertekend";
+"Sign" = "Teken";
+"Sign using %@" = "Teken met %@"; // e.g. Adobe.PPKLite
+"Methods" = "Methoden"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Kies identiteit"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "Stempel";
+"Stamps" = "Stempels";
+"Custom" = "Aangepast"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "Maak stempel";
+"Preview" = "Voorvertoning";
+"Stamp Text" = "Stempeltekst";
+"Add Signature" = "Voeg handtekening toe";
+"Remove Signature" = "Verwijder handtekening";
+"My Signature" = "Mijn handtekening";
+"No Signatures" = "Geen handtekeningen"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "Handtekening van gebruiker";
+"Please sign here" = "Teken hier";
+"Note" = "Notitie";
+"Text" = "Tekst";
+"Delete Note" = "Verwijder notitie";
+"Remove Note" = "Verwijder notitie";
+"%@ could not be found." = "%@ kan niet worden gevonden.";
+"Photo Library" = "Fotobibliotheek";
+"Camera" = "Camera";
+"Image" = "Afbeelding";
+"Low Quality" = "Lage kwaliteit";
+"Medium Quality" = "Gemiddelde kwaliteit";
+"High Quality" = "Hoge kwaliteit";
+"Clear All" = "Wis alles";
+"Clear" = "Wis";
+"Style" = "Stijl";
+"Link" = "Koppeling";
+"Ink" = "Inkt";
+"FreeText" = "Tekst";
+"Screen" = "Scherm";
+"RichMedia" = "Uitgebreide media";
+"Left" = "Links";
+"Center" = "Midden";
+"Right" = "Rechts";
+"Alignment" = "Uitlijning";
+"Preview File" = "Voorvertoning";
+"Copy" = "Kopieer";
+"Paste" = "Plak";
+"Inspector" = "Infovenster";
+"Group" = "Groepeer";
+"Ungroup" = "Hef groepering op";
+"Merge" = "Voeg samen"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "Voorbeeld";
+"Annotation Summary for %@:\n" = "Overzicht van annotaties voor %@:\n";
+// title
+"Author Name" = "Naam auteur";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Voer de naam van de auteur in die je voor nieuwe annotaties wilt gebruiken.";
+// text field placeholder
+"Name" = "Naam";
+// meaning: close
+"Dismiss" = "Sluit";
+"Fit to Text" = "Pas aan tekst aan";
+"Draw" = "Teken";
+"Sound" = "Geluid";
+"Eraser" = "Gum";
+"Toggle Eraser" = "Toon/verberg gum"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "Selectiegereedschap";
+"Saved Annotations" = "Bewaarde annotaties";
+"Add" = "Voeg toe"; // to add - infinitive
+"Date" = "Datum";
+"Time" = "Tijd";
+"No Pages" = "Geen pagina's";
+"Drag to resize" = "Sleep en wijzig grootte"; // used as hint that inspector is resizable
+"Convert to" = "Converteer naar"; // used as label on action that changes free text intent type
+"Color Presets" = "Kleurvoorinstellingen";
+
+"Callout" = "Bijschrift"; // freetext annotation with an arrow
+"Generic" = "Algemeen"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "Lijnstijl";
+"Solid" = "Effen";
+"Narrow Dots" = "Smalle stippen";
+"Wide Dots" = "Brede stippen";
+"Narrow Dashes" = "Smalle streepjes";
+"Wide Dashes" = "Brede streepjes";
+
+// Stamps
+"Approved" = "Goedgekeurd";
+"Not Approved" = "Afgekeurd";
+"Draft" = "Concept";
+"Final" = "Laatste";
+"Completed" = "Voltooid";
+"Confidential" = "Vertrouwelijk";
+"For Public Release" = "Voor openbare publicatie";
+"Not For Public Release" = "Niet voor openbare publicatie";
+"For Comment" = "Voor commentaar";
+"Void" = "Ongeldig";
+"Preliminary Results" = "Voorlopige resultaten";
+"Information only" = "Alleen informatie";
+"Accepted" = "Geaccepteerd";
+"Rejected" = "Geweigerd";
+"Initial Here" = "Initialen hier";
+"Sign Here" = "Teken hier";
+"Witness" = "Getuige";
+"Revised" = "Gereviseerd";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Stylus";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Uit";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Scannen";
+// text on a label; app connects to a stylus
+"Pairing" = "Koppelen";
+// text on a label; app and stylus are connected
+"Connected" = "Verbonden";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Verbinding verbroken";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Instellingen";
+
+
+// PDF annotation name overrides
+"Square" = "Rechthoek";
+"Circle" = "Ellips";
+"PolyLine" = "Polylijn";
+
+// named actions
+"NextPage" = "Volgende pagina";
+"PrevPage" = "Vorige pagina";
+"FirstPage" = "Eerste pagina";
+"LastPage" = "Laatste pagina";
+"GoBack" = "Terug";
+"GoForward" = "Vooruit";
+"GoToPage" = "Ga naar pagina";
+"Find" = "Zoek";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Zoom in";
+"ZoomOut" = "Zoom uit";
+"Execute JavaScript" = "Voer JavaScript uit";
+"Rich Media Action" = "Uitgebreide media-actie";
+"Rendition Action" = "Versie-actie";
+"Hide Action" = "Verberg actie";
+"Submit Form" = "Verstuur formulier";
+"Reset" = "Stel opnieuw in";
+
+// line annotations
+"Start" = "Einde van lijn";
+"End" = "Einde";
+"Line.None" = "Geen";
+"Line.ClosedArrow" = "Gesloten pijl";
+"Line.OpenArrow" = "Open pijl";
+"Line.Square" = "Vierkant";
+"Line.Circle" = "Cirkel";
+"Line.Diamond" = "Diamant";
+"Line.ROpenArrow" = "Omgekeerde open pijl";
+"Line.RClosedArrow" = "Omgekeerde gesloten pijl";
+"Line.Slash" = "Schuine streep";
+"Line.Butt" = "Knop";
+"Line Start" = "Begin van lijn";
+"Line End" = "Einde van lijn";
+"Arrow" = "Pijl"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "Maak koppeling";
+"Add Link" = "Voeg koppeling toe";
+"Edit Link" = "Wijzig koppeling";
+"Move Link" = "Verplaats koppeling";
+"Remove Link" = "Verwijder koppeling";
+"Open Link" = "Open koppeling";
+"Go to Page %tu" = "Ga naar pagina %tu";
+"Go to Page" = "Ga naar pagina"; // title of a Popup
+"Go" = "Ga"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "Bewaar";
+"Link Destination" = "Doel van koppeling";
+"Enter page index or a http:// address to link to an URL." = "Voer een pagina-index of http://-adres in om naar een URL te verwijzen.";
+"Page %@ Not Found" = "Pagina %@ niet gevonden";
+
+// voiceover accessibility
+"Page" = "Pagina";
+"Grid" = "Raster"; // grid with thumbnails
+"Translucent" = "Doorzichtig";
+"left" = "links";
+"center" = "midden";
+"right" = "rechts";
+"decrease" = "verklein";
+"increase" = "vergroot";
+"All Open Documents" = "Alle open documenten";
+"Add Documents" = "Voeg documenten toe"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "Pagina’s %tu-%tu"; // Range of pages
+"Current Page" = "Huidige pagina";
+"Current Page (%tu)" = "Huidige pagina (%tu)";
+"Ignore Annotations" = "Negeer annotaties";
+"The PDF will not contain any annotations." = "De PDF bevat geen annotaties.";
+"Embed Annotations" = "Voeg annotaties toe";
+"Annotations will remain editable and are embedded into the PDF." = "U kunt annotaties altijd bewerken. Deze zijn ingebed in de PDF.";
+"Flatten Annotations" = "Voeg annotaties samen";
+"Annotations are drawn into the PDF and are readonly." = "De annotaties worden in de PDF weergegeven en kunnen alleen worden gelezen.";
+"Annotation Summary" = "Overzicht van annotaties";
+"Embed Annotations into the PDF and also list them in the email." = "Voeg de annotaties toe aan de PDF en vermeld ze ook in de e-mail.";
+"Files" = "Bestanden";
+"Send as single files" = "Verstuur als losse bestanden";
+"Merge files" = "Voeg bestanden samen";
+"Original File" = "Origineel bestand";
+"Range" = "Bereik";
+"Annotated Pages" = "Geannoteerde pagina’s";
+
+// sound annotations
+"Speak" = "Spreek uit"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "Speel af";
+"Pause" = "Pauzeer";
+"Resume" = "Hervat";
+"Stop" = "Stop";
+"Play/Stop" = "Speel af/Stop";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Neem op";
+"Pause Recording" = "Pauzeer opname";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Opname gepauzeerd";
+"Continue Recording" = "Ga door met opname";
+"Finish Recording" = "Voltooi opname";
+"Audio Problem" = "Probleem met audio";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "Kan afspelen niet starten.";
+"Could not resume playback." = "Kan afspelen niet hervatten.";
+"Microphone permission not granted." = "Geen toestemming voor microfoon verleend.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Audio kan momenteel niet worden opgenomen. Geef deze app toegang tot de microfoon.";
+"There was a problem trying to record audio." = "Er deed zich een probleem voor tijdens het opnemen van audio.";
+"Already Recording" = "Opname al bezig";
+"You are already recording on page %@." = "Je bent al aan het opnemen op pagina %@.";
+
+// Forms
+"Form Element" = "Formulierelement";
+"Text Field" = "Tekstveld";
+"Button" = "Knop";
+"Choice Field" = "Keuzeveld";
+"Signature Field" = "Handtekeningveld";
+"Clear Field" = "Wis veld"; // same as delete
+"Type value or pick from list" = "Typ waarde of kies uit lijst";
+"Default Values" = "Standaardwaarden";
+"Custom Value" = "Aangepaste waarde";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Ongeldige waarde: moet groter dan of gelijk zijn aan %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Ongeldige waarde: moet groter dan of gelijk zijn aan %s en kleiner of gelijk aan %s.";
+"Invalid value: must be less than or equal to %s." = "Ongeldige waarde: moet kleiner dan of gelijk zijn aan %s.";
+"Invalid value: must be a number." = "Ongeldige waarde: moet een getal zijn.";
+
+//  Validation of dates
+"Invalid value: must be a date." = "Ongeldige waarde: moet een datum zijn.";
+
+// General validation
+"Invalid value." = "Ongeldige waarde.";
+
+// Gallery
+"Connection Error" = "Verbindingsfout";
+"Unsupported Content" = "Niet-ondersteunde inhoud";
+"The specified content cannot be displayed." = "De opgegeven inhoud kan niet worden weergegeven.";
+"Something went wrong" = "Er is iets niet goed gegaan";
+"This item is currently unavailable." = "Dit item is momenteel niet beschikbaar.";
+"The information for this gallery could not be loaded." = "De informatie voor deze galerie kan niet worden geladen.";
+"Content Error" = "Inhoudsfout";
+"This content is unsupported." = "Deze inhoud wordt niet ondersteund.";
+
+// Signatures
+"Digital Signature" = "Digitale handtekening";
+"Signature is valid." = "Handtekening is geldig.";
+"Signature is valid, but there are some warnings." = "Handtekening is geldig maar er zijn enkele waarschuwingen.";
+"It was signed by %@ on %@ at %@." = "Het is ondertekend door %@ op %@ om %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Het is ondertekend op %@ om %@.";
+"It claims to have been signed by %@ on %@ at %@." = "Het meldt ondertekend te zijn door %@ op %@ om %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Het meldt ondertekend te zijn op %@ om %@.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- De revisie die is ondertekend met deze handtekening is niet gewijzigd maar er zijn wel wijzigingen in het document aangebracht na de ondertekening."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- De handtekening is geldig en de inhoud van het document is niet gewijzigd na ondertekening.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Ongeldige handtekening — de inhoud van het document is gewijzigd of beschadigd of er is mee geknoeid na de ondertekening.";
+"Unsigned Signature Field" = "Niet-getekend handtekeningveld";
+"Do you really want to remove the signature from the document?" = "Weet je zeker dat je de handtekening wilt verwijderen uit het document?";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Kan de certificaatgegevens niet lezen als een PKCS#7-certificaat. Gegevens in de juiste structuur kunnen worden geëxporteerd naar Adobe Acrobat."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "Kan de handtekening van het certificaat niet decoderen.";
+"The public key in the certificate could not be read." = "De openbare sleutel van het certificaat kan niet worden gelezen.";
+"The signature of the certificate is not valid." = "De handtekening van het certificaat is niet geldig.";
+"Signature is not valid." = "Handtekening is niet geldig.";
+"There is a format error in the notBefore field of the certificate." = "Het certificaat bevat een structuurout in het veld 'notBefore'."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "Er is een structuurfout in het veld 'notAfter' van het certificaat."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Handtekeningen kunnen niet worden geverifieerd omdat de certificaatketen slechts één certificaat bevat, deze niet zelfondertekend is en de verstrekker niet wordt vertrouwd.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Een CA-certificaat is niet geldig omdat het geen CA is of de extensies ervan komen niet overeen met het beoogde doel."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "De parameter 'basicConstraints pathlength' is overschreden."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "De root-CA is niet gemarkeerd als vertrouwd voor het beoogde doel."; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "De root-CA is gemarkeerd om het opgegeven doel te weigeren."; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Het verstrekkercertificaat is geweigerd omdat de naam van het onderwerp niet overeenkomt met de naam van de verstrekker van het huidige certificaat."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Het verstrekkercertificaat is geweigerd omdat de 'subject key identifier' aanwezig is en niet overeenkomt met de 'authority key identifier' van het huidige certificaat."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "Het verstrekkercertificaat is geweigerd omdat de naam van de verstrekker en het serienummer aanwezig waren en niet overeenkwamen met de 'authority key identifier' van het huidige certificaat."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "Het certificaat is ingetrokken door de verstrekker.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Het verstrekte certificaat is zelfondertekend en hetzelfde certificaat kan niet worden gevonden in de lijst met vertrouwde certificaten.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Er bestaat een zelfondertekend certificaat in de certificaatketen. De certificaatketen is mogelijk gemaakt met niet-vertrouwde certificaten maar de root-CA kan niet lokaal worden gevonden."; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Kan het certificaat niet vinden voor één van de certificaatautoriteiten (CA's) in de handtekeninghiërarchie en die CA wordt niet vertrouwd door de lokale app."; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Het verstrekkercertificaat van een lokaal opgezocht certificaat kan niet worden gevonden. Dit betekent normaal dat de lijst met vertrouwde certificaten niet volledig is.";
+"The certificate that was provided cannot be used for its intended purpose." = "Het verstrekte certificaat kan niet worden gebruikt voor het beoogde doel.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "De extensie 'keyUsage' van het verstrekkercertificaat staat geen ondertekening van het certificaat toe.";
+"The certificate has expired." = "Het certificaat is verlopen.";
+"The certificate is not valid until a date in the future." = "Het certificaat is niet geldig tot een latere datum.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Kan X509-certificaat niet lezen uit gegevens";
+// X509 should not be translated
+"No X509 certificate found" = "Geen X509-certificaat gevonden";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Kan PKCS12-bestand niet lezen. Bestand heeft onjuiste structuur of is beschadigd.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Kan PKCS12-gegevens niet ontgrendelen. Heb je het juiste wachtwoord ingevoerd?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Kan bestand niet openen voor validatie van handtekening";
+"Could not get signer info" = "Kan info van ondertekenaar niet ophalen";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL kan PKCS7-object niet aanmaken";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL kan handtekening niet toevoegen aan PKCS7-object";
+"OpenSSL could not init PKCS7 object" = "OpenSSL kan PKCS7-object niet initialiseren";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL kan PKCS7-handtekening genereren";
+"OpenSSL could not sign hash" = "OpenSSL kan hash niet tekenen";
+"Could not write PKCS7 signature" = "Kan PKCS7-handtekening niet schrijven";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "Open in";
+"PSPDFPolicyEventPrint" = "Druk af";
+"PSPDFPolicyEventEmail" = "E-mail";
+"PSPDFPolicyEventMessage" = "Bericht";
+"PSPDFPolicyEventQuickLook" = "Snelle weergave"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "Audio-opname";
+"PSPDFPolicyEventCamera" = "Camera";
+"PSPDFPolicyEventPasteboard" = "Klembord"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "Verstuur formulier";
+"PSPDFPolicyEventNetwork" = "Netwerk";
+
+// Night Mode
+"Default" = "Standaard"; // Default view (night mode not enabled)
+"Sepia" = "Sepia"; // Document uses sepia colors
+"Night" = "Nacht"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "Geen document ingesteld";
+"Unable to display document" = "Document kan niet worden weergegeven";
+"Loading..." = "Laden…";
+"Locked" = "Vergrendeld";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "Het bestand dat je probeert te openen, is geen PDF-bestand of is mogelijk beschadigd.";
+"A password is required to access this document." = "Voor toegang tot dit document is een wachtwoord vereist.";
+"The security scheme of this document is currently not supported." = "Het beveiligingsschema van dit document wordt momenteel niet ondersteund.";
+"An unknown error has occured while trying to open this file." = "Er heeft zich een onbekende fout voorgedaan tijdens het openen van dit bestand.";
+
+// Document Editor
+"Document Editor" = "Documenteditor";
+"Add Page" = "Voeg pagina toe";
+"Delete Pages" = "Verwijder pagina's";
+"Duplicate Pages" = "Dupliceer pagina’s";
+"Move Pages" = "Verplaats pagina's";
+"Rotate Pages" = "Roteer pagina’s";
+"Page Size" = "Paginaformaat";
+"Background Color" = "Achtergrondkleur";
+"Pattern" = "Formulierelement";
+"Use Document Size" = "Gebruik documentformaat";
+"Orientation" = "Richting";
+"Portrait" = "Staand";
+"Landscape" = "Liggend";
+"Name" = "Naam";
+"Document Name" = "Documentnaam";
+"Documents" = "Documenten"; // Name of directory
+"Use Document Directory" = "Gebruik documentdirectory";
+"Directory" = "Directory";
+"Replace File?" = "Vervang bestand?";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Er bestaat al een bestand met de naam \"%@\" op de geselecteerde bestemming. Wilt u het vervangen?";
+"Replace" = "Vervang";
+"Saving…" = "Bewaren…";
+"Saved" = "Bewaard";
+"Save As…" = "Bewaar als…";
+"Discard Changes" = "Verwijder wijzigingen";
+"Empty" = "Leeg";
+
+// Document Editor Errors
+"A blank document can not be saved." = "Een leeg document kan niet worden bewaard.";
+"The document could not be saved." = "Het document kan niet worden bewaard.";
+"This document does not support editing." = "Dit document kan niet worden bewerkt.";
+
+// Page Patterns
+"None" = "Geen";
+"Dot5mm" = "Stip 5mm";
+"Grid5mm" = "Raster 5mm";
+"Lines5mm" = "Lijnen 5mm";
+"Lines7mm" = "Lijnen 7mm";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US Letter";
+"US Legal" = "US Legal";
+
+// Page Export
+"Export Pages" = "Exporteer pagina’s";
+"Export…" = "Exporteer…";
+"Exporting…" = "Exporteren…";
+"Exported" = "Geéxporteerd";
+"%@ - Exported" = "%@ - Geëxporteerd"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - Kopie"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "Het geselecteerde document is momenteel geopend. Kies een andere bestandsnaam.";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Tekst-naar-spraak is niet beschikbaar. Zorg ervoor dat je een actieve internetverbinding hebt of de tekst-naar-spraak-engine van Google hebt geïnstalleerd en ingeschakeld op het apparaat.";

@@ -1,0 +1,1355 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A37B85B1D25877500F18A26 /* Group+CollectionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37B85A1D25877500F18A26 /* Group+CollectionsTest.swift */; };
+		2A37B85F1D25A8A600F18A26 /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37B85E1D25A8A600F18A26 /* GroupTests.swift */; };
+		2A37B8611D25B8BF00F18A26 /* Group+NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37B8601D25B8BF00F18A26 /* Group+NetworkTests.swift */; };
+		2A37B8631D25BE0A00F18A26 /* get-all-groups.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A37B8621D25BE0A00F18A26 /* get-all-groups.json */; };
+		2A37B8651D25BF4A00F18A26 /* refresh-all-groups.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A37B8641D25BF4A00F18A26 /* refresh-all-groups.json */; };
+		2A37B8681D25C23800F18A26 /* TabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37B8671D25C23800F18A26 /* TabTests.swift */; };
+		2A625C141D26DC5300ACDEBA /* Tab+CollectionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A625C131D26DC5300ACDEBA /* Tab+CollectionsTest.swift */; };
+		2A625C161D26E8AA00ACDEBA /* refresh-all-tabs.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A625C151D26E8AA00ACDEBA /* refresh-all-tabs.json */; };
+		2A625C1E1D270D3500ACDEBA /* Enrollment+FavoritesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A625C1C1D27094900ACDEBA /* Enrollment+FavoritesTests.swift */; };
+		490550221CAC897B009D4AD8 /* Group+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490550211CAC897B009D4AD8 /* Group+Collections.swift */; };
+		490550241CAC8990009D4AD8 /* Enrollment+Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490550231CAC8990009D4AD8 /* Enrollment+Favorites.swift */; };
+		4909C6FE1C73E94A00FAC8FB /* EnrollmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4909C6FD1C73E94A00FAC8FB /* EnrollmentCollectionViewCell.swift */; };
+		4909C7001C74D1D600FAC8FB /* EnrollmentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4909C6FF1C74D1D600FAC8FB /* EnrollmentCollectionViewCell.xib */; };
+		4911D0841CA35F8A006D3AED /* Tab+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911D0821CA35F8A006D3AED /* Tab+Collections.swift */; };
+		4911D0851CA35F8A006D3AED /* Tab+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911D0831CA35F8A006D3AED /* Tab+Network.swift */; };
+		4911D0871CA35FAF006D3AED /* TabsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911D0861CA35FAF006D3AED /* TabsTableViewController.swift */; };
+		4911D0961CA3600A006D3AED /* EnrollmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911D08D1CA3600A006D3AED /* EnrollmentViewModel.swift */; };
+		4911D0971CA3600A006D3AED /* EnrollmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911D08E1CA3600A006D3AED /* EnrollmentCollectionViewCell.swift */; };
+		491C45E91C90C5FF00BD6441 /* CustomizeEnrollmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C45E71C90C5FF00BD6441 /* CustomizeEnrollmentViewController.swift */; };
+		491C45EA1C90C5FF00BD6441 /* CustomizeEnrollmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 491C45E81C90C5FF00BD6441 /* CustomizeEnrollmentViewController.xib */; };
+		4928EBCE1C84DE6300799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBCD1C84DE6300799E04 /* Marshal.framework */; };
+		4928EBD11C84DE7100799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBCD1C84DE6300799E04 /* Marshal.framework */; };
+		4928EBD21C84DE7100799E04 /* Marshal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBCD1C84DE6300799E04 /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		493F70D21D08AD650068B262 /* GradingPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F70CD1D08AD650068B262 /* GradingPeriod.swift */; };
+		493F70D31D08AD650068B262 /* GradingPeriod+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F70CE1D08AD650068B262 /* GradingPeriod+Collections.swift */; };
+		493F70D41D08AD650068B262 /* GradingPeriod+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F70CF1D08AD650068B262 /* GradingPeriod+Details.swift */; };
+		493F70D51D08AD650068B262 /* GradingPeriod+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F70D01D08AD650068B262 /* GradingPeriod+Network.swift */; };
+		493F70D61D08AD650068B262 /* GradingPeriodCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F70D11D08AD650068B262 /* GradingPeriodCollection.swift */; };
+		493F70D81D08AE280068B262 /* GradingPeriodAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F70D71D08AE280068B262 /* GradingPeriodAPI.swift */; };
+		495AADA61C6AEE4500C6AB80 /* UIColor+EnrollmentKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495AADA51C6AEE4500C6AB80 /* UIColor+EnrollmentKit.swift */; };
+		498400E21C6408E600BDCE75 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DB1C6408E600BDCE75 /* ReactiveCocoa.framework */; };
+		498400E31C6408E600BDCE75 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DC1C6408E600BDCE75 /* Result.framework */; };
+		498400E41C6408E600BDCE75 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DD1C6408E600BDCE75 /* SoLazy.framework */; };
+		498400E51C6408E600BDCE75 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DE1C6408E600BDCE75 /* SoPersistent.framework */; };
+		498400E61C6408E600BDCE75 /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DF1C6408E600BDCE75 /* SoPretty.framework */; };
+		498400E71C6408E600BDCE75 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400E01C6408E600BDCE75 /* TooLegit.framework */; };
+		498400EA1C6408F400BDCE75 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DB1C6408E600BDCE75 /* ReactiveCocoa.framework */; };
+		498400EB1C6408F400BDCE75 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DB1C6408E600BDCE75 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		498400EC1C6408F500BDCE75 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DC1C6408E600BDCE75 /* Result.framework */; };
+		498400ED1C6408F500BDCE75 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DC1C6408E600BDCE75 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		498400EE1C6408F500BDCE75 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DD1C6408E600BDCE75 /* SoLazy.framework */; };
+		498400EF1C6408F500BDCE75 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DD1C6408E600BDCE75 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		498400F01C6408F600BDCE75 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DE1C6408E600BDCE75 /* SoPersistent.framework */; };
+		498400F11C6408F600BDCE75 /* SoPersistent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DE1C6408E600BDCE75 /* SoPersistent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		498400F21C6408F600BDCE75 /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DF1C6408E600BDCE75 /* SoPretty.framework */; };
+		498400F31C6408F600BDCE75 /* SoPretty.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DF1C6408E600BDCE75 /* SoPretty.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		498400F41C6408F700BDCE75 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400E01C6408E600BDCE75 /* TooLegit.framework */; };
+		498400F51C6408F700BDCE75 /* TooLegit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498400E01C6408E600BDCE75 /* TooLegit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49C3E6921C6D1A54004201F9 /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C3E68F1C6D1A37004201F9 /* DoNotShipThis.framework */; };
+		49C3E6931C6D1A54004201F9 /* DoNotShipThis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49C3E68F1C6D1A37004201F9 /* DoNotShipThis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49C3E6951C6D1A96004201F9 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3E6941C6D1A96004201F9 /* IntroViewController.swift */; };
+		49EB13101C97776200C177C8 /* EnrollmentKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49EB130F1C97776200C177C8 /* EnrollmentKit.xcassets */; };
+		49EB13131C97916D00C177C8 /* Enrollment+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB13121C97916D00C177C8 /* Enrollment+Network.swift */; };
+		49EF27A01C90E43300441B5D /* Enrollment+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF279F1C90E43300441B5D /* Enrollment+Colors.swift */; };
+		5E0D0C021C4954E9008AA96F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D0C011C4954E9008AA96F /* AppDelegate.swift */; };
+		5E0D0C091C4954E9008AA96F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E0D0C081C4954E9008AA96F /* Assets.xcassets */; };
+		5E0D0C171C4954E9008AA96F /* EnrollmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D0C161C4954E9008AA96F /* EnrollmentsTests.swift */; };
+		5E0D0C221C4954E9008AA96F /* EnrollmentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D0C211C4954E9008AA96F /* EnrollmentsUITests.swift */; };
+		5E1B510F1C8F6E0A0019D764 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B51041C8F6E0A0019D764 /* Course.swift */; };
+		5E1B51101C8F6E0A0019D764 /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B51061C8F6E0A0019D764 /* Enrollment.swift */; };
+		5E1B51111C8F6E0A0019D764 /* EnrollmentsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B51071C8F6E0A0019D764 /* EnrollmentsDataSource.swift */; };
+		5E1B51121C8F6E0A0019D764 /* Group+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B51091C8F6E0A0019D764 /* Group+Network.swift */; };
+		5E1B51131C8F6E0A0019D764 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B510A1C8F6E0A0019D764 /* Group.swift */; };
+		5E1B51151C8F6E0A0019D764 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B510D1C8F6E0A0019D764 /* Tab.swift */; };
+		5E1B51191C8F6F870019D764 /* Course+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B51181C8F6F870019D764 /* Course+Network.swift */; };
+		5E1B511B1C8F709B0019D764 /* Course+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B511A1C8F709B0019D764 /* Course+Collections.swift */; };
+		5E1B511F1C8F7AD10019D764 /* Session+Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B511E1C8F7AD10019D764 /* Session+Enrollment.swift */; };
+		5ECEDD931C49570E00E59B53 /* EnrollmentKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ECEDD921C49570E00E59B53 /* EnrollmentKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5ECEDD9A1C49570E00E59B53 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECEDD901C49570E00E59B53 /* EnrollmentKit.framework */; };
+		5ECEDDA51C49570E00E59B53 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECEDD901C49570E00E59B53 /* EnrollmentKit.framework */; };
+		5ECEDDA61C49570E00E59B53 /* EnrollmentKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECEDD901C49570E00E59B53 /* EnrollmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5ECEDDB81C49573C00E59B53 /* EnrollmentKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5ECEDDB61C49573C00E59B53 /* EnrollmentKit.xcdatamodeld */; };
+		B10713A41D7470350061E84A /* GradingPeriodHeaderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10713A31D7470350061E84A /* GradingPeriodHeaderSpec.swift */; };
+		B10A083B1CE3DBB100666CBF /* GradeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A083A1CE3DBB100666CBF /* GradeTests.swift */; };
+		B10BEA901CE53A3F0079C904 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10BEA8E1CE53A380079C904 /* Grade.swift */; };
+		B10BEA9C1CE66AF30079C904 /* Grade+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10BEA9A1CE66AC50079C904 /* Grade+Collections.swift */; };
+		B11544C01D467A710011E5DF /* CourseGetAllCourses.json in Resources */ = {isa = PBXBuildFile; fileRef = B11544BC1D42BEF10011E5DF /* CourseGetAllCourses.json */; };
+		B11544C21D467C6B0011E5DF /* CourseAPISpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11544C11D467C6B0011E5DF /* CourseAPISpec.swift */; };
+		B11544C41D467C790011E5DF /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11544C31D467C790011E5DF /* SpecHelper.swift */; };
+		B13402161D109E3F00BA28BE /* DescribeGradingPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13402111D109E3F00BA28BE /* DescribeGradingPeriod.swift */; };
+		B13402171D109E3F00BA28BE /* GradingPeriod+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13402121D109E3F00BA28BE /* GradingPeriod+Factory.swift */; };
+		B13402181D109E3F00BA28BE /* GradingPeriodCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13402131D109E3F00BA28BE /* GradingPeriodCollectionTests.swift */; };
+		B13402191D109E3F00BA28BE /* GradingPeriodDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13402141D109E3F00BA28BE /* GradingPeriodDetailsTests.swift */; };
+		B134021A1D109E3F00BA28BE /* GradingPeriodNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13402151D109E3F00BA28BE /* GradingPeriodNetworkTests.swift */; };
+		B134021C1D10A6DB00BA28BE /* grading-periods.json in Resources */ = {isa = PBXBuildFile; fileRef = B134021B1D10A6DB00BA28BE /* grading-periods.json */; };
+		B149874E1D3E92AB00DE2F63 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B149874D1D3E92AB00DE2F63 /* Quick.framework */; };
+		B14987501D3E92B400DE2F63 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B149874F1D3E92B400DE2F63 /* Nimble.framework */; };
+		B1700FB01CFD0D35008E7293 /* String+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1700FAF1CFD0D35008E7293 /* String+Fixture.swift */; };
+		B1700FB21CFD1192008E7293 /* refresh-all-courses.json in Resources */ = {isa = PBXBuildFile; fileRef = B1700FB11CFD1192008E7293 /* refresh-all-courses.json */; };
+		B1700FB41CFD11BE008E7293 /* refresh-favorite-colors.json in Resources */ = {isa = PBXBuildFile; fileRef = B1700FB31CFD11BE008E7293 /* refresh-favorite-colors.json */; };
+		B181C3231CA43B7500277440 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3211CA43B7500277440 /* Cartography.framework */; };
+		B181C3241CA43B8400277440 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3211CA43B7500277440 /* Cartography.framework */; };
+		B181C3251CA43B8400277440 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3211CA43B7500277440 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B192BD201CEE3C36009BC521 /* grading-period-courses.json in Resources */ = {isa = PBXBuildFile; fileRef = B192BD1F1CEE3C36009BC521 /* grading-period-courses.json */; };
+		B192BD281CEE6EA6009BC521 /* grading-period-grades-list.json in Resources */ = {isa = PBXBuildFile; fileRef = B192BD271CEE6EA6009BC521 /* grading-period-grades-list.json */; };
+		B192BD2C1CEE73E7009BC521 /* Course+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B192BD2B1CEE73E7009BC521 /* Course+Details.swift */; };
+		B192BD301CEE7FE1009BC521 /* Grade+CollectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B192BD2F1CEE7FE1009BC521 /* Grade+CollectionsTests.swift */; };
+		B192BD321CEE86B6009BC521 /* grades-list.json in Resources */ = {isa = PBXBuildFile; fileRef = B192BD311CEE86B6009BC521 /* grades-list.json */; };
+		B19D4E421D355A03001D329D /* teacher-grades-list.json in Resources */ = {isa = PBXBuildFile; fileRef = B19D4E411D355A03001D329D /* teacher-grades-list.json */; };
+		B1BFE40B1D49046900ED3887 /* GradingPeriodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFE40A1D49046900ED3887 /* GradingPeriodSpec.swift */; };
+		B1C49DB61D46B47C0003F8EB /* GradingPeriodCollectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C49DB51D46B47C0003F8EB /* GradingPeriodCollectionSpec.swift */; };
+		B1EBEC371D4138F80021BC4F /* CourseMarkAsFavoriteAddsFavorite.json in Resources */ = {isa = PBXBuildFile; fileRef = B1EBEC361D4138F80021BC4F /* CourseMarkAsFavoriteAddsFavorite.json */; };
+		B1EBEC3E1D4139A20021BC4F /* CourseMarkAsFavoriteRemovesFavorite.json in Resources */ = {isa = PBXBuildFile; fileRef = B1EBEC381D4139390021BC4F /* CourseMarkAsFavoriteRemovesFavorite.json */; };
+		B1EBEC3F1D4139DA0021BC4F /* CourseMarkAsFavoriteSendsErrors.json in Resources */ = {isa = PBXBuildFile; fileRef = B1EBEC3A1D4139550021BC4F /* CourseMarkAsFavoriteSendsErrors.json */; };
+		B1EBEC401D413B6D0021BC4F /* CourseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149874B1D3E926D00DE2F63 /* CourseSpec.swift */; };
+		B1F9EB701CEF721E00551196 /* UIColorEnrollmentKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F9EB6F1CEF721E00551196 /* UIColorEnrollmentKitTests.swift */; };
+		B1F9EB731CEF734400551196 /* GradeAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F9EB721CEF734400551196 /* GradeAPITests.swift */; };
+		B1F9EB751CEF7AC300551196 /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F9EB741CEF7AC300551196 /* SoAutomated.framework */; };
+		B1FE23AF1CEA6420003ACE87 /* GradeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FE23AE1CEA6420003ACE87 /* GradeAPI.swift */; };
+		B1FE23B11CEA686D003ACE87 /* Grade+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FE23AB1CEA63BA003ACE87 /* Grade+Network.swift */; };
+		B1FE23B31CEA6AFD003ACE87 /* Grade+NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FE23B21CEA6AFD003ACE87 /* Grade+NetworkTests.swift */; };
+		B1FFACB91CFD3F0C00F2004B /* Course+CollectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FFACB81CFD3F0C00F2004B /* Course+CollectionsTests.swift */; };
+		B1FFACBD1CFD3FB500F2004B /* Course+DetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FFACBC1CFD3FB500F2004B /* Course+DetailsTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5E0D0C131C4954E9008AA96F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E0D0BF61C4954E9008AA96F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E0D0BFD1C4954E9008AA96F;
+			remoteInfo = Enrollments;
+		};
+		5E0D0C1E1C4954E9008AA96F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E0D0BF61C4954E9008AA96F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E0D0BFD1C4954E9008AA96F;
+			remoteInfo = Enrollments;
+		};
+		5ECEDD9B1C49570E00E59B53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E0D0BF61C4954E9008AA96F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5ECEDD8F1C49570E00E59B53;
+			remoteInfo = EnrollmentKit;
+		};
+		5ECEDD9D1C49570E00E59B53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E0D0BF61C4954E9008AA96F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E0D0BFD1C4954E9008AA96F;
+			remoteInfo = Enrollments;
+		};
+		5ECEDDA31C49570E00E59B53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E0D0BF61C4954E9008AA96F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5ECEDD8F1C49570E00E59B53;
+			remoteInfo = EnrollmentKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5E0D0C4C1C4956E1008AA96F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				498400F31C6408F600BDCE75 /* SoPretty.framework in Embed Frameworks */,
+				498400EB1C6408F400BDCE75 /* ReactiveCocoa.framework in Embed Frameworks */,
+				49C3E6931C6D1A54004201F9 /* DoNotShipThis.framework in Embed Frameworks */,
+				4928EBD21C84DE7100799E04 /* Marshal.framework in Embed Frameworks */,
+				498400EF1C6408F500BDCE75 /* SoLazy.framework in Embed Frameworks */,
+				498400F11C6408F600BDCE75 /* SoPersistent.framework in Embed Frameworks */,
+				498400F51C6408F700BDCE75 /* TooLegit.framework in Embed Frameworks */,
+				B181C3251CA43B8400277440 /* Cartography.framework in Embed Frameworks */,
+				5ECEDDA61C49570E00E59B53 /* EnrollmentKit.framework in Embed Frameworks */,
+				498400ED1C6408F500BDCE75 /* Result.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2A37B85A1D25877500F18A26 /* Group+CollectionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Group+CollectionsTest.swift"; sourceTree = "<group>"; };
+		2A37B85E1D25A8A600F18A26 /* GroupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTests.swift; sourceTree = "<group>"; };
+		2A37B8601D25B8BF00F18A26 /* Group+NetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Group+NetworkTests.swift"; sourceTree = "<group>"; };
+		2A37B8621D25BE0A00F18A26 /* get-all-groups.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "get-all-groups.json"; sourceTree = "<group>"; };
+		2A37B8641D25BF4A00F18A26 /* refresh-all-groups.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "refresh-all-groups.json"; sourceTree = "<group>"; };
+		2A37B8671D25C23800F18A26 /* TabTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabTests.swift; sourceTree = "<group>"; };
+		2A625C131D26DC5300ACDEBA /* Tab+CollectionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tab+CollectionsTest.swift"; sourceTree = "<group>"; };
+		2A625C151D26E8AA00ACDEBA /* refresh-all-tabs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "refresh-all-tabs.json"; sourceTree = "<group>"; };
+		2A625C1C1D27094900ACDEBA /* Enrollment+FavoritesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Enrollment+FavoritesTests.swift"; path = "../../EnrollmentKit/Enrollment/Enrollment+FavoritesTests.swift"; sourceTree = "<group>"; };
+		490550211CAC897B009D4AD8 /* Group+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Group+Collections.swift"; sourceTree = "<group>"; };
+		490550231CAC8990009D4AD8 /* Enrollment+Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Enrollment+Favorites.swift"; sourceTree = "<group>"; };
+		4909C6FD1C73E94A00FAC8FB /* EnrollmentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentCollectionViewCell.swift; sourceTree = "<group>"; };
+		4909C6FF1C74D1D600FAC8FB /* EnrollmentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnrollmentCollectionViewCell.xib; sourceTree = "<group>"; };
+		4911D0821CA35F8A006D3AED /* Tab+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tab+Collections.swift"; sourceTree = "<group>"; };
+		4911D0831CA35F8A006D3AED /* Tab+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Tab+Network.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		4911D0861CA35FAF006D3AED /* TabsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabsTableViewController.swift; sourceTree = "<group>"; };
+		4911D08D1CA3600A006D3AED /* EnrollmentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentViewModel.swift; sourceTree = "<group>"; };
+		4911D08E1CA3600A006D3AED /* EnrollmentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentCollectionViewCell.swift; sourceTree = "<group>"; };
+		491C45E71C90C5FF00BD6441 /* CustomizeEnrollmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizeEnrollmentViewController.swift; sourceTree = "<group>"; };
+		491C45E81C90C5FF00BD6441 /* CustomizeEnrollmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomizeEnrollmentViewController.xib; sourceTree = "<group>"; };
+		4928EBCD1C84DE6300799E04 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		493F70CD1D08AD650068B262 /* GradingPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriod.swift; sourceTree = "<group>"; };
+		493F70CE1D08AD650068B262 /* GradingPeriod+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GradingPeriod+Collections.swift"; sourceTree = "<group>"; };
+		493F70CF1D08AD650068B262 /* GradingPeriod+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GradingPeriod+Details.swift"; sourceTree = "<group>"; };
+		493F70D01D08AD650068B262 /* GradingPeriod+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GradingPeriod+Network.swift"; sourceTree = "<group>"; };
+		493F70D11D08AD650068B262 /* GradingPeriodCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodCollection.swift; sourceTree = "<group>"; };
+		493F70D71D08AE280068B262 /* GradingPeriodAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodAPI.swift; sourceTree = "<group>"; };
+		495AADA51C6AEE4500C6AB80 /* UIColor+EnrollmentKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+EnrollmentKit.swift"; sourceTree = "<group>"; };
+		498400DB1C6408E600BDCE75 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		498400DC1C6408E600BDCE75 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		498400DD1C6408E600BDCE75 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		498400DE1C6408E600BDCE75 /* SoPersistent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPersistent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		498400DF1C6408E600BDCE75 /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		498400E01C6408E600BDCE75 /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49C3E68F1C6D1A37004201F9 /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DoNotShipThis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49C3E6941C6D1A96004201F9 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IntroViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		49EB130F1C97776200C177C8 /* EnrollmentKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = EnrollmentKit.xcassets; sourceTree = "<group>"; };
+		49EB13121C97916D00C177C8 /* Enrollment+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Enrollment+Network.swift"; sourceTree = "<group>"; };
+		49EF279F1C90E43300441B5D /* Enrollment+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Enrollment+Colors.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		5E0D0BFE1C4954E9008AA96F /* Enrollments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Enrollments.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E0D0C011C4954E9008AA96F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		5E0D0C081C4954E9008AA96F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5E0D0C0D1C4954E9008AA96F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E0D0C121C4954E9008AA96F /* EnrollmentsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnrollmentsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E0D0C161C4954E9008AA96F /* EnrollmentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentsTests.swift; sourceTree = "<group>"; };
+		5E0D0C181C4954E9008AA96F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E0D0C1D1C4954E9008AA96F /* EnrollmentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnrollmentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E0D0C211C4954E9008AA96F /* EnrollmentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentsUITests.swift; sourceTree = "<group>"; };
+		5E0D0C231C4954E9008AA96F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E1B51041C8F6E0A0019D764 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		5E1B51061C8F6E0A0019D764 /* Enrollment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Enrollment.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		5E1B51071C8F6E0A0019D764 /* EnrollmentsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentsDataSource.swift; sourceTree = "<group>"; };
+		5E1B51091C8F6E0A0019D764 /* Group+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Group+Network.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		5E1B510A1C8F6E0A0019D764 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		5E1B510D1C8F6E0A0019D764 /* Tab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		5E1B51181C8F6F870019D764 /* Course+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Course+Network.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		5E1B511A1C8F709B0019D764 /* Course+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+Collections.swift"; sourceTree = "<group>"; };
+		5E1B511E1C8F7AD10019D764 /* Session+Enrollment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Enrollment.swift"; sourceTree = "<group>"; };
+		5ECEDD901C49570E00E59B53 /* EnrollmentKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EnrollmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ECEDD921C49570E00E59B53 /* EnrollmentKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnrollmentKit.h; sourceTree = "<group>"; };
+		5ECEDD941C49570E00E59B53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5ECEDD991C49570E00E59B53 /* EnrollmentKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnrollmentKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ECEDDA21C49570E00E59B53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5ECEDDB71C49573C00E59B53 /* EnrollmentKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnrollmentKit.xcdatamodel; sourceTree = "<group>"; };
+		B10713A31D7470350061E84A /* GradingPeriodHeaderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodHeaderSpec.swift; sourceTree = "<group>"; };
+		B10A083A1CE3DBB100666CBF /* GradeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradeTests.swift; path = ../Grade/GradeTests.swift; sourceTree = "<group>"; };
+		B10BEA8E1CE53A380079C904 /* Grade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
+		B10BEA9A1CE66AC50079C904 /* Grade+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Grade+Collections.swift"; sourceTree = "<group>"; };
+		B11544BC1D42BEF10011E5DF /* CourseGetAllCourses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CourseGetAllCourses.json; sourceTree = "<group>"; };
+		B11544C11D467C6B0011E5DF /* CourseAPISpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseAPISpec.swift; sourceTree = "<group>"; };
+		B11544C31D467C790011E5DF /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
+		B13402111D109E3F00BA28BE /* DescribeGradingPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescribeGradingPeriod.swift; sourceTree = "<group>"; };
+		B13402121D109E3F00BA28BE /* GradingPeriod+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GradingPeriod+Factory.swift"; sourceTree = "<group>"; };
+		B13402131D109E3F00BA28BE /* GradingPeriodCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodCollectionTests.swift; sourceTree = "<group>"; };
+		B13402141D109E3F00BA28BE /* GradingPeriodDetailsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodDetailsTests.swift; sourceTree = "<group>"; };
+		B13402151D109E3F00BA28BE /* GradingPeriodNetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodNetworkTests.swift; sourceTree = "<group>"; };
+		B134021B1D10A6DB00BA28BE /* grading-periods.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "grading-periods.json"; sourceTree = "<group>"; };
+		B149874B1D3E926D00DE2F63 /* CourseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSpec.swift; sourceTree = "<group>"; };
+		B149874D1D3E92AB00DE2F63 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B149874F1D3E92B400DE2F63 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1700FAF1CFD0D35008E7293 /* String+Fixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Fixture.swift"; sourceTree = "<group>"; };
+		B1700FB11CFD1192008E7293 /* refresh-all-courses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "refresh-all-courses.json"; sourceTree = "<group>"; };
+		B1700FB31CFD11BE008E7293 /* refresh-favorite-colors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "refresh-favorite-colors.json"; sourceTree = "<group>"; };
+		B181C3211CA43B7500277440 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B192BD1F1CEE3C36009BC521 /* grading-period-courses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "grading-period-courses.json"; sourceTree = "<group>"; };
+		B192BD271CEE6EA6009BC521 /* grading-period-grades-list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "grading-period-grades-list.json"; sourceTree = "<group>"; };
+		B192BD2B1CEE73E7009BC521 /* Course+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+Details.swift"; sourceTree = "<group>"; };
+		B192BD2F1CEE7FE1009BC521 /* Grade+CollectionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Grade+CollectionsTests.swift"; sourceTree = "<group>"; };
+		B192BD311CEE86B6009BC521 /* grades-list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "grades-list.json"; sourceTree = "<group>"; };
+		B19D4E411D355A03001D329D /* teacher-grades-list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "teacher-grades-list.json"; sourceTree = "<group>"; };
+		B1BFE40A1D49046900ED3887 /* GradingPeriodSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodSpec.swift; sourceTree = "<group>"; };
+		B1C49DB51D46B47C0003F8EB /* GradingPeriodCollectionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodCollectionSpec.swift; sourceTree = "<group>"; };
+		B1EBEC361D4138F80021BC4F /* CourseMarkAsFavoriteAddsFavorite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CourseMarkAsFavoriteAddsFavorite.json; sourceTree = "<group>"; };
+		B1EBEC381D4139390021BC4F /* CourseMarkAsFavoriteRemovesFavorite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CourseMarkAsFavoriteRemovesFavorite.json; sourceTree = "<group>"; };
+		B1EBEC3A1D4139550021BC4F /* CourseMarkAsFavoriteSendsErrors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CourseMarkAsFavoriteSendsErrors.json; sourceTree = "<group>"; };
+		B1F9EB6F1CEF721E00551196 /* UIColorEnrollmentKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorEnrollmentKitTests.swift; sourceTree = "<group>"; };
+		B1F9EB721CEF734400551196 /* GradeAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeAPITests.swift; sourceTree = "<group>"; };
+		B1F9EB741CEF7AC300551196 /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1FE23AB1CEA63BA003ACE87 /* Grade+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Grade+Network.swift"; sourceTree = "<group>"; };
+		B1FE23AE1CEA6420003ACE87 /* GradeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeAPI.swift; sourceTree = "<group>"; };
+		B1FE23B21CEA6AFD003ACE87 /* Grade+NetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Grade+NetworkTests.swift"; path = "EnrollmentKitTests/Grade/Grade+NetworkTests.swift"; sourceTree = SOURCE_ROOT; };
+		B1FFACB81CFD3F0C00F2004B /* Course+CollectionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+CollectionsTests.swift"; sourceTree = "<group>"; };
+		B1FFACBC1CFD3FB500F2004B /* Course+DetailsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+DetailsTests.swift"; sourceTree = "<group>"; };
+		B5B2CB491C7E920300BC435D /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoPretty.framework; path = "../../../Library/Developer/Xcode/DerivedData/Vanilla-gucoxwljdesycfhlezccuxiflhya/Build/Products/Debug-iphoneos/SoPretty.framework"; sourceTree = "<group>"; };
+		B5B2CB4E1C7E970400BC435D /* JaSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = JaSON.framework; path = "/Users/nlambson/Library/Developer/Xcode/DerivedData/Vanilla-gucoxwljdesycfhlezccuxiflhya/Build/Products/Debug-iphoneos/JaSON.framework"; sourceTree = "<absolute>"; };
+		B5B2CB531C7E972D00BC435D /* SoPersistent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SoPersistent.framework; path = "/Users/nlambson/Library/Developer/Xcode/DerivedData/Vanilla-gucoxwljdesycfhlezccuxiflhya/Build/Products/Debug-iphoneos/SoPersistent.framework"; sourceTree = "<absolute>"; };
+		B5B2CB561C7E973100BC435D /* SoLazy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SoLazy.framework; path = "/Users/nlambson/Library/Developer/Xcode/DerivedData/Vanilla-gucoxwljdesycfhlezccuxiflhya/Build/Products/Debug-iphoneos/SoLazy.framework"; sourceTree = "<absolute>"; };
+		B5B2CB591C7E974400BC435D /* TooLegit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = TooLegit.framework; path = "/Users/nlambson/Library/Developer/Xcode/DerivedData/Vanilla-gucoxwljdesycfhlezccuxiflhya/Build/Products/Debug-iphoneos/TooLegit.framework"; sourceTree = "<absolute>"; };
+		B5B2CB5C1C7E975D00BC435D /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = "<group>"; };
+		B5B2CB5F1C7E977D00BC435D /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = "../../../Library/Developer/Xcode/DerivedData/Vanilla-gucoxwljdesycfhlezccuxiflhya/Build/Products/Debug-iphoneos/Result.framework"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5E0D0BFB1C4954E9008AA96F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				498400F21C6408F600BDCE75 /* SoPretty.framework in Frameworks */,
+				498400EA1C6408F400BDCE75 /* ReactiveCocoa.framework in Frameworks */,
+				49C3E6921C6D1A54004201F9 /* DoNotShipThis.framework in Frameworks */,
+				4928EBD11C84DE7100799E04 /* Marshal.framework in Frameworks */,
+				498400EE1C6408F500BDCE75 /* SoLazy.framework in Frameworks */,
+				498400F01C6408F600BDCE75 /* SoPersistent.framework in Frameworks */,
+				498400F41C6408F700BDCE75 /* TooLegit.framework in Frameworks */,
+				B181C3241CA43B8400277440 /* Cartography.framework in Frameworks */,
+				5ECEDDA51C49570E00E59B53 /* EnrollmentKit.framework in Frameworks */,
+				498400EC1C6408F500BDCE75 /* Result.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E0D0C0F1C4954E9008AA96F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E0D0C1A1C4954E9008AA96F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECEDD8C1C49570E00E59B53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				498400E71C6408E600BDCE75 /* TooLegit.framework in Frameworks */,
+				498400E61C6408E600BDCE75 /* SoPretty.framework in Frameworks */,
+				498400E31C6408E600BDCE75 /* Result.framework in Frameworks */,
+				498400E51C6408E600BDCE75 /* SoPersistent.framework in Frameworks */,
+				4928EBCE1C84DE6300799E04 /* Marshal.framework in Frameworks */,
+				B181C3231CA43B7500277440 /* Cartography.framework in Frameworks */,
+				498400E41C6408E600BDCE75 /* SoLazy.framework in Frameworks */,
+				498400E21C6408E600BDCE75 /* ReactiveCocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECEDD961C49570E00E59B53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5ECEDD9A1C49570E00E59B53 /* EnrollmentKit.framework in Frameworks */,
+				B1F9EB751CEF7AC300551196 /* SoAutomated.framework in Frameworks */,
+				B149874E1D3E92AB00DE2F63 /* Quick.framework in Frameworks */,
+				B14987501D3E92B400DE2F63 /* Nimble.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2A37B8591D25871F00F18A26 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				2A37B85A1D25877500F18A26 /* Group+CollectionsTest.swift */,
+				2A37B85E1D25A8A600F18A26 /* GroupTests.swift */,
+				2A37B8601D25B8BF00F18A26 /* Group+NetworkTests.swift */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
+		2A37B8661D25C09300F18A26 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				2A37B8671D25C23800F18A26 /* TabTests.swift */,
+				2A625C131D26DC5300ACDEBA /* Tab+CollectionsTest.swift */,
+			);
+			path = Tab;
+			sourceTree = "<group>";
+		};
+		2A625C171D2703DA00ACDEBA /* Enrollment */ = {
+			isa = PBXGroup;
+			children = (
+				2A625C1C1D27094900ACDEBA /* Enrollment+FavoritesTests.swift */,
+			);
+			path = Enrollment;
+			sourceTree = "<group>";
+		};
+		493F70CC1D08AD2E0068B262 /* Grading Periods */ = {
+			isa = PBXGroup;
+			children = (
+				493F70CD1D08AD650068B262 /* GradingPeriod.swift */,
+				493F70CE1D08AD650068B262 /* GradingPeriod+Collections.swift */,
+				493F70CF1D08AD650068B262 /* GradingPeriod+Details.swift */,
+				493F70D01D08AD650068B262 /* GradingPeriod+Network.swift */,
+				493F70D11D08AD650068B262 /* GradingPeriodCollection.swift */,
+			);
+			path = "Grading Periods";
+			sourceTree = "<group>";
+		};
+		495AADA41C6AEE3500C6AB80 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				49EB130A1C97397300C177C8 /* Enrollment Cells */,
+				491C45E71C90C5FF00BD6441 /* CustomizeEnrollmentViewController.swift */,
+				491C45E81C90C5FF00BD6441 /* CustomizeEnrollmentViewController.xib */,
+				495AADA51C6AEE4500C6AB80 /* UIColor+EnrollmentKit.swift */,
+				49EF279F1C90E43300441B5D /* Enrollment+Colors.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		49EB130A1C97397300C177C8 /* Enrollment Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4911D08D1CA3600A006D3AED /* EnrollmentViewModel.swift */,
+				4911D08E1CA3600A006D3AED /* EnrollmentCollectionViewCell.swift */,
+			);
+			path = "Enrollment Cells";
+			sourceTree = "<group>";
+		};
+		5E0D0BF51C4954E9008AA96F = {
+			isa = PBXGroup;
+			children = (
+				B5B2CB5F1C7E977D00BC435D /* Result.framework */,
+				B5B2CB5C1C7E975D00BC435D /* ReactiveCocoa.framework */,
+				B5B2CB591C7E974400BC435D /* TooLegit.framework */,
+				B5B2CB561C7E973100BC435D /* SoLazy.framework */,
+				B5B2CB531C7E972D00BC435D /* SoPersistent.framework */,
+				B5B2CB4E1C7E970400BC435D /* JaSON.framework */,
+				B5B2CB491C7E920300BC435D /* SoPretty.framework */,
+				5E0D0C2F1C4956A8008AA96F /* Dependencies */,
+				5E0D0C001C4954E9008AA96F /* Enrollments */,
+				5E0D0C151C4954E9008AA96F /* EnrollmentsTests */,
+				5E0D0C201C4954E9008AA96F /* EnrollmentsUITests */,
+				5ECEDD911C49570E00E59B53 /* EnrollmentKit */,
+				5ECEDD9F1C49570E00E59B53 /* EnrollmentKitTests */,
+				5E0D0BFF1C4954E9008AA96F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5E0D0BFF1C4954E9008AA96F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E0D0BFE1C4954E9008AA96F /* Enrollments.app */,
+				5E0D0C121C4954E9008AA96F /* EnrollmentsTests.xctest */,
+				5E0D0C1D1C4954E9008AA96F /* EnrollmentsUITests.xctest */,
+				5ECEDD901C49570E00E59B53 /* EnrollmentKit.framework */,
+				5ECEDD991C49570E00E59B53 /* EnrollmentKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5E0D0C001C4954E9008AA96F /* Enrollments */ = {
+			isa = PBXGroup;
+			children = (
+				5E0D0C011C4954E9008AA96F /* AppDelegate.swift */,
+				49C3E6941C6D1A96004201F9 /* IntroViewController.swift */,
+				5E0D0C081C4954E9008AA96F /* Assets.xcassets */,
+				5E0D0C0D1C4954E9008AA96F /* Info.plist */,
+				4909C6FD1C73E94A00FAC8FB /* EnrollmentCollectionViewCell.swift */,
+				4909C6FF1C74D1D600FAC8FB /* EnrollmentCollectionViewCell.xib */,
+				4911D0861CA35FAF006D3AED /* TabsTableViewController.swift */,
+			);
+			path = Enrollments;
+			sourceTree = "<group>";
+		};
+		5E0D0C151C4954E9008AA96F /* EnrollmentsTests */ = {
+			isa = PBXGroup;
+			children = (
+				5E0D0C161C4954E9008AA96F /* EnrollmentsTests.swift */,
+				5E0D0C181C4954E9008AA96F /* Info.plist */,
+			);
+			path = EnrollmentsTests;
+			sourceTree = "<group>";
+		};
+		5E0D0C201C4954E9008AA96F /* EnrollmentsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5E0D0C211C4954E9008AA96F /* EnrollmentsUITests.swift */,
+				5E0D0C231C4954E9008AA96F /* Info.plist */,
+			);
+			path = EnrollmentsUITests;
+			sourceTree = "<group>";
+		};
+		5E0D0C2F1C4956A8008AA96F /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				B181C3211CA43B7500277440 /* Cartography.framework */,
+				4928EBCD1C84DE6300799E04 /* Marshal.framework */,
+				49C3E68F1C6D1A37004201F9 /* DoNotShipThis.framework */,
+				498400DB1C6408E600BDCE75 /* ReactiveCocoa.framework */,
+				498400DC1C6408E600BDCE75 /* Result.framework */,
+				498400DD1C6408E600BDCE75 /* SoLazy.framework */,
+				498400DE1C6408E600BDCE75 /* SoPersistent.framework */,
+				498400DF1C6408E600BDCE75 /* SoPretty.framework */,
+				498400E01C6408E600BDCE75 /* TooLegit.framework */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		5E1B51021C8F6E0A0019D764 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				5E1B51041C8F6E0A0019D764 /* Course.swift */,
+				5E1B51181C8F6F870019D764 /* Course+Network.swift */,
+				5E1B511A1C8F709B0019D764 /* Course+Collections.swift */,
+				B192BD2B1CEE73E7009BC521 /* Course+Details.swift */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
+		5E1B51051C8F6E0A0019D764 /* Enrollment */ = {
+			isa = PBXGroup;
+			children = (
+				5E1B51061C8F6E0A0019D764 /* Enrollment.swift */,
+				49EB13121C97916D00C177C8 /* Enrollment+Network.swift */,
+				5E1B51071C8F6E0A0019D764 /* EnrollmentsDataSource.swift */,
+				490550231CAC8990009D4AD8 /* Enrollment+Favorites.swift */,
+			);
+			path = Enrollment;
+			sourceTree = "<group>";
+		};
+		5E1B51081C8F6E0A0019D764 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				5E1B510A1C8F6E0A0019D764 /* Group.swift */,
+				5E1B51091C8F6E0A0019D764 /* Group+Network.swift */,
+				490550211CAC897B009D4AD8 /* Group+Collections.swift */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
+		5E1B510C1C8F6E0A0019D764 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				5E1B510D1C8F6E0A0019D764 /* Tab.swift */,
+				4911D0821CA35F8A006D3AED /* Tab+Collections.swift */,
+				4911D0831CA35F8A006D3AED /* Tab+Network.swift */,
+			);
+			path = Tab;
+			sourceTree = "<group>";
+		};
+		5ECEDD911C49570E00E59B53 /* EnrollmentKit */ = {
+			isa = PBXGroup;
+			children = (
+				B10BEA8D1CE53A1D0079C904 /* Grade */,
+				493F70CC1D08AD2E0068B262 /* Grading Periods */,
+				B1FE23AD1CEA63E5003ACE87 /* Network */,
+				49EB130F1C97776200C177C8 /* EnrollmentKit.xcassets */,
+				5E1B511E1C8F7AD10019D764 /* Session+Enrollment.swift */,
+				5ECEDD921C49570E00E59B53 /* EnrollmentKit.h */,
+				5ECEDD941C49570E00E59B53 /* Info.plist */,
+				495AADA41C6AEE3500C6AB80 /* Color */,
+				5E1B51021C8F6E0A0019D764 /* Course */,
+				5E1B51051C8F6E0A0019D764 /* Enrollment */,
+				5E1B51081C8F6E0A0019D764 /* Group */,
+				5ECEDDAD1C49572100E59B53 /* Model */,
+				5E1B510C1C8F6E0A0019D764 /* Tab */,
+			);
+			path = EnrollmentKit;
+			sourceTree = "<group>";
+		};
+		5ECEDD9F1C49570E00E59B53 /* EnrollmentKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				2A625C171D2703DA00ACDEBA /* Enrollment */,
+				B13402061D109D8400BA28BE /* Grading Period */,
+				B1F9EB711CEF730400551196 /* Network */,
+				B1F9EB6A1CEF6F1800551196 /* Color */,
+				B192BD1E1CEE3BEE009BC521 /* Fixtures */,
+				B10BEA951CE62F020079C904 /* Course */,
+				2A37B8591D25871F00F18A26 /* Group */,
+				B10BEA911CE53C840079C904 /* Dependencies */,
+				B10A08391CE3DB2600666CBF /* Grade */,
+				5ECEDDA21C49570E00E59B53 /* Info.plist */,
+				2A37B8661D25C09300F18A26 /* Tab */,
+				B149874B1D3E926D00DE2F63 /* CourseSpec.swift */,
+				B11544C11D467C6B0011E5DF /* CourseAPISpec.swift */,
+				B11544C31D467C790011E5DF /* SpecHelper.swift */,
+				B1C49DB51D46B47C0003F8EB /* GradingPeriodCollectionSpec.swift */,
+				B1BFE40A1D49046900ED3887 /* GradingPeriodSpec.swift */,
+				B10713A31D7470350061E84A /* GradingPeriodHeaderSpec.swift */,
+			);
+			path = EnrollmentKitTests;
+			sourceTree = "<group>";
+		};
+		5ECEDDAD1C49572100E59B53 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5ECEDDB61C49573C00E59B53 /* EnrollmentKit.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B10A08391CE3DB2600666CBF /* Grade */ = {
+			isa = PBXGroup;
+			children = (
+				B10A083A1CE3DBB100666CBF /* GradeTests.swift */,
+				B1FE23B21CEA6AFD003ACE87 /* Grade+NetworkTests.swift */,
+				B192BD2F1CEE7FE1009BC521 /* Grade+CollectionsTests.swift */,
+			);
+			path = Grade;
+			sourceTree = "<group>";
+		};
+		B10BEA8D1CE53A1D0079C904 /* Grade */ = {
+			isa = PBXGroup;
+			children = (
+				B10BEA8E1CE53A380079C904 /* Grade.swift */,
+				B10BEA9A1CE66AC50079C904 /* Grade+Collections.swift */,
+				B1FE23AB1CEA63BA003ACE87 /* Grade+Network.swift */,
+			);
+			path = Grade;
+			sourceTree = "<group>";
+		};
+		B10BEA911CE53C840079C904 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				B149874F1D3E92B400DE2F63 /* Nimble.framework */,
+				B149874D1D3E92AB00DE2F63 /* Quick.framework */,
+				B1F9EB741CEF7AC300551196 /* SoAutomated.framework */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		B10BEA951CE62F020079C904 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				B1FFACB81CFD3F0C00F2004B /* Course+CollectionsTests.swift */,
+				B1FFACBC1CFD3FB500F2004B /* Course+DetailsTests.swift */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
+		B13402061D109D8400BA28BE /* Grading Period */ = {
+			isa = PBXGroup;
+			children = (
+				B13402111D109E3F00BA28BE /* DescribeGradingPeriod.swift */,
+				B13402121D109E3F00BA28BE /* GradingPeriod+Factory.swift */,
+				B13402131D109E3F00BA28BE /* GradingPeriodCollectionTests.swift */,
+				B13402141D109E3F00BA28BE /* GradingPeriodDetailsTests.swift */,
+				B13402151D109E3F00BA28BE /* GradingPeriodNetworkTests.swift */,
+			);
+			path = "Grading Period";
+			sourceTree = "<group>";
+		};
+		B192BD1E1CEE3BEE009BC521 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				2A37B8621D25BE0A00F18A26 /* get-all-groups.json */,
+				B134021B1D10A6DB00BA28BE /* grading-periods.json */,
+				B192BD311CEE86B6009BC521 /* grades-list.json */,
+				B192BD271CEE6EA6009BC521 /* grading-period-grades-list.json */,
+				B192BD1F1CEE3C36009BC521 /* grading-period-courses.json */,
+				B1700FB11CFD1192008E7293 /* refresh-all-courses.json */,
+				2A37B8641D25BF4A00F18A26 /* refresh-all-groups.json */,
+				2A625C151D26E8AA00ACDEBA /* refresh-all-tabs.json */,
+				B1700FB31CFD11BE008E7293 /* refresh-favorite-colors.json */,
+				B19D4E411D355A03001D329D /* teacher-grades-list.json */,
+				B1700FAF1CFD0D35008E7293 /* String+Fixture.swift */,
+				B1EBEC361D4138F80021BC4F /* CourseMarkAsFavoriteAddsFavorite.json */,
+				B1EBEC381D4139390021BC4F /* CourseMarkAsFavoriteRemovesFavorite.json */,
+				B1EBEC3A1D4139550021BC4F /* CourseMarkAsFavoriteSendsErrors.json */,
+				B11544BC1D42BEF10011E5DF /* CourseGetAllCourses.json */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		B1F9EB6A1CEF6F1800551196 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				B1F9EB6F1CEF721E00551196 /* UIColorEnrollmentKitTests.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		B1F9EB711CEF730400551196 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B1F9EB721CEF734400551196 /* GradeAPITests.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		B1FE23AD1CEA63E5003ACE87 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B1FE23AE1CEA6420003ACE87 /* GradeAPI.swift */,
+				493F70D71D08AE280068B262 /* GradingPeriodAPI.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		5ECEDD8D1C49570E00E59B53 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5ECEDD931C49570E00E59B53 /* EnrollmentKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		5E0D0BFD1C4954E9008AA96F /* Enrollments */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E0D0C261C4954E9008AA96F /* Build configuration list for PBXNativeTarget "Enrollments" */;
+			buildPhases = (
+				5E0D0BFA1C4954E9008AA96F /* Sources */,
+				5E0D0BFB1C4954E9008AA96F /* Frameworks */,
+				5E0D0BFC1C4954E9008AA96F /* Resources */,
+				5E0D0C4C1C4956E1008AA96F /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5ECEDDA41C49570E00E59B53 /* PBXTargetDependency */,
+			);
+			name = Enrollments;
+			productName = Enrollments;
+			productReference = 5E0D0BFE1C4954E9008AA96F /* Enrollments.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5E0D0C111C4954E9008AA96F /* EnrollmentsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E0D0C291C4954E9008AA96F /* Build configuration list for PBXNativeTarget "EnrollmentsTests" */;
+			buildPhases = (
+				5E0D0C0E1C4954E9008AA96F /* Sources */,
+				5E0D0C0F1C4954E9008AA96F /* Frameworks */,
+				5E0D0C101C4954E9008AA96F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5E0D0C141C4954E9008AA96F /* PBXTargetDependency */,
+			);
+			name = EnrollmentsTests;
+			productName = EnrollmentsTests;
+			productReference = 5E0D0C121C4954E9008AA96F /* EnrollmentsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5E0D0C1C1C4954E9008AA96F /* EnrollmentsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E0D0C2C1C4954E9008AA96F /* Build configuration list for PBXNativeTarget "EnrollmentsUITests" */;
+			buildPhases = (
+				5E0D0C191C4954E9008AA96F /* Sources */,
+				5E0D0C1A1C4954E9008AA96F /* Frameworks */,
+				5E0D0C1B1C4954E9008AA96F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5E0D0C1F1C4954E9008AA96F /* PBXTargetDependency */,
+			);
+			name = EnrollmentsUITests;
+			productName = EnrollmentsUITests;
+			productReference = 5E0D0C1D1C4954E9008AA96F /* EnrollmentsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		5ECEDD8F1C49570E00E59B53 /* EnrollmentKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5ECEDDAB1C49570E00E59B53 /* Build configuration list for PBXNativeTarget "EnrollmentKit" */;
+			buildPhases = (
+				5ECEDD8B1C49570E00E59B53 /* Sources */,
+				5ECEDD8C1C49570E00E59B53 /* Frameworks */,
+				5ECEDD8D1C49570E00E59B53 /* Headers */,
+				5ECEDD8E1C49570E00E59B53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EnrollmentKit;
+			productName = EnrollmentKit;
+			productReference = 5ECEDD901C49570E00E59B53 /* EnrollmentKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5ECEDD981C49570E00E59B53 /* EnrollmentKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5ECEDDAC1C49570E00E59B53 /* Build configuration list for PBXNativeTarget "EnrollmentKitTests" */;
+			buildPhases = (
+				5ECEDD951C49570E00E59B53 /* Sources */,
+				5ECEDD961C49570E00E59B53 /* Frameworks */,
+				5ECEDD971C49570E00E59B53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5ECEDD9C1C49570E00E59B53 /* PBXTargetDependency */,
+				5ECEDD9E1C49570E00E59B53 /* PBXTargetDependency */,
+			);
+			name = EnrollmentKitTests;
+			productName = EnrollmentKitTests;
+			productReference = 5ECEDD991C49570E00E59B53 /* EnrollmentKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5E0D0BF61C4954E9008AA96F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Instructure Inc";
+				TargetAttributes = {
+					5E0D0BFD1C4954E9008AA96F = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = B6333T4PXQ;
+					};
+					5E0D0C111C4954E9008AA96F = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 5E0D0BFD1C4954E9008AA96F;
+					};
+					5E0D0C1C1C4954E9008AA96F = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 5E0D0BFD1C4954E9008AA96F;
+					};
+					5ECEDD8F1C49570E00E59B53 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					5ECEDD981C49570E00E59B53 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 5E0D0BFD1C4954E9008AA96F;
+					};
+				};
+			};
+			buildConfigurationList = 5E0D0BF91C4954E9008AA96F /* Build configuration list for PBXProject "Enrollments" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5E0D0BF51C4954E9008AA96F;
+			productRefGroup = 5E0D0BFF1C4954E9008AA96F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5E0D0BFD1C4954E9008AA96F /* Enrollments */,
+				5E0D0C111C4954E9008AA96F /* EnrollmentsTests */,
+				5E0D0C1C1C4954E9008AA96F /* EnrollmentsUITests */,
+				5ECEDD8F1C49570E00E59B53 /* EnrollmentKit */,
+				5ECEDD981C49570E00E59B53 /* EnrollmentKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5E0D0BFC1C4954E9008AA96F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E0D0C091C4954E9008AA96F /* Assets.xcassets in Resources */,
+				4909C7001C74D1D600FAC8FB /* EnrollmentCollectionViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E0D0C101C4954E9008AA96F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E0D0C1B1C4954E9008AA96F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECEDD8E1C49570E00E59B53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49EB13101C97776200C177C8 /* EnrollmentKit.xcassets in Resources */,
+				491C45EA1C90C5FF00BD6441 /* CustomizeEnrollmentViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECEDD971C49570E00E59B53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1EBEC371D4138F80021BC4F /* CourseMarkAsFavoriteAddsFavorite.json in Resources */,
+				B1EBEC3E1D4139A20021BC4F /* CourseMarkAsFavoriteRemovesFavorite.json in Resources */,
+				B134021C1D10A6DB00BA28BE /* grading-periods.json in Resources */,
+				B1EBEC3F1D4139DA0021BC4F /* CourseMarkAsFavoriteSendsErrors.json in Resources */,
+				B192BD201CEE3C36009BC521 /* grading-period-courses.json in Resources */,
+				B19D4E421D355A03001D329D /* teacher-grades-list.json in Resources */,
+				B192BD281CEE6EA6009BC521 /* grading-period-grades-list.json in Resources */,
+				2A37B8631D25BE0A00F18A26 /* get-all-groups.json in Resources */,
+				B1700FB21CFD1192008E7293 /* refresh-all-courses.json in Resources */,
+				B192BD321CEE86B6009BC521 /* grades-list.json in Resources */,
+				2A625C161D26E8AA00ACDEBA /* refresh-all-tabs.json in Resources */,
+				2A37B8651D25BF4A00F18A26 /* refresh-all-groups.json in Resources */,
+				B11544C01D467A710011E5DF /* CourseGetAllCourses.json in Resources */,
+				B1700FB41CFD11BE008E7293 /* refresh-favorite-colors.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5E0D0BFA1C4954E9008AA96F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4909C6FE1C73E94A00FAC8FB /* EnrollmentCollectionViewCell.swift in Sources */,
+				4911D0871CA35FAF006D3AED /* TabsTableViewController.swift in Sources */,
+				49C3E6951C6D1A96004201F9 /* IntroViewController.swift in Sources */,
+				5E0D0C021C4954E9008AA96F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E0D0C0E1C4954E9008AA96F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E0D0C171C4954E9008AA96F /* EnrollmentsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E0D0C191C4954E9008AA96F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E0D0C221C4954E9008AA96F /* EnrollmentsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECEDD8B1C49570E00E59B53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10BEA901CE53A3F0079C904 /* Grade.swift in Sources */,
+				5E1B51191C8F6F870019D764 /* Course+Network.swift in Sources */,
+				493F70D41D08AD650068B262 /* GradingPeriod+Details.swift in Sources */,
+				5E1B511B1C8F709B0019D764 /* Course+Collections.swift in Sources */,
+				B192BD2C1CEE73E7009BC521 /* Course+Details.swift in Sources */,
+				493F70D81D08AE280068B262 /* GradingPeriodAPI.swift in Sources */,
+				490550221CAC897B009D4AD8 /* Group+Collections.swift in Sources */,
+				4911D0971CA3600A006D3AED /* EnrollmentCollectionViewCell.swift in Sources */,
+				5E1B510F1C8F6E0A0019D764 /* Course.swift in Sources */,
+				4911D0851CA35F8A006D3AED /* Tab+Network.swift in Sources */,
+				5E1B51121C8F6E0A0019D764 /* Group+Network.swift in Sources */,
+				5E1B51151C8F6E0A0019D764 /* Tab.swift in Sources */,
+				493F70D61D08AD650068B262 /* GradingPeriodCollection.swift in Sources */,
+				493F70D31D08AD650068B262 /* GradingPeriod+Collections.swift in Sources */,
+				5E1B51131C8F6E0A0019D764 /* Group.swift in Sources */,
+				B10BEA9C1CE66AF30079C904 /* Grade+Collections.swift in Sources */,
+				490550241CAC8990009D4AD8 /* Enrollment+Favorites.swift in Sources */,
+				4911D0841CA35F8A006D3AED /* Tab+Collections.swift in Sources */,
+				B1FE23B11CEA686D003ACE87 /* Grade+Network.swift in Sources */,
+				4911D0961CA3600A006D3AED /* EnrollmentViewModel.swift in Sources */,
+				493F70D51D08AD650068B262 /* GradingPeriod+Network.swift in Sources */,
+				49EF27A01C90E43300441B5D /* Enrollment+Colors.swift in Sources */,
+				495AADA61C6AEE4500C6AB80 /* UIColor+EnrollmentKit.swift in Sources */,
+				5E1B51101C8F6E0A0019D764 /* Enrollment.swift in Sources */,
+				49EB13131C97916D00C177C8 /* Enrollment+Network.swift in Sources */,
+				5E1B51111C8F6E0A0019D764 /* EnrollmentsDataSource.swift in Sources */,
+				5ECEDDB81C49573C00E59B53 /* EnrollmentKit.xcdatamodeld in Sources */,
+				491C45E91C90C5FF00BD6441 /* CustomizeEnrollmentViewController.swift in Sources */,
+				5E1B511F1C8F7AD10019D764 /* Session+Enrollment.swift in Sources */,
+				B1FE23AF1CEA6420003ACE87 /* GradeAPI.swift in Sources */,
+				493F70D21D08AD650068B262 /* GradingPeriod.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECEDD951C49570E00E59B53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A625C141D26DC5300ACDEBA /* Tab+CollectionsTest.swift in Sources */,
+				B13402171D109E3F00BA28BE /* GradingPeriod+Factory.swift in Sources */,
+				2A37B85F1D25A8A600F18A26 /* GroupTests.swift in Sources */,
+				B1EBEC401D413B6D0021BC4F /* CourseSpec.swift in Sources */,
+				B192BD301CEE7FE1009BC521 /* Grade+CollectionsTests.swift in Sources */,
+				2A37B85B1D25877500F18A26 /* Group+CollectionsTest.swift in Sources */,
+				B1700FB01CFD0D35008E7293 /* String+Fixture.swift in Sources */,
+				2A625C1E1D270D3500ACDEBA /* Enrollment+FavoritesTests.swift in Sources */,
+				B1F9EB701CEF721E00551196 /* UIColorEnrollmentKitTests.swift in Sources */,
+				B1FE23B31CEA6AFD003ACE87 /* Grade+NetworkTests.swift in Sources */,
+				2A37B8611D25B8BF00F18A26 /* Group+NetworkTests.swift in Sources */,
+				B134021A1D109E3F00BA28BE /* GradingPeriodNetworkTests.swift in Sources */,
+				B10713A41D7470350061E84A /* GradingPeriodHeaderSpec.swift in Sources */,
+				B1BFE40B1D49046900ED3887 /* GradingPeriodSpec.swift in Sources */,
+				B1FFACB91CFD3F0C00F2004B /* Course+CollectionsTests.swift in Sources */,
+				B1C49DB61D46B47C0003F8EB /* GradingPeriodCollectionSpec.swift in Sources */,
+				B1F9EB731CEF734400551196 /* GradeAPITests.swift in Sources */,
+				B10A083B1CE3DBB100666CBF /* GradeTests.swift in Sources */,
+				B11544C21D467C6B0011E5DF /* CourseAPISpec.swift in Sources */,
+				B13402181D109E3F00BA28BE /* GradingPeriodCollectionTests.swift in Sources */,
+				B13402161D109E3F00BA28BE /* DescribeGradingPeriod.swift in Sources */,
+				B13402191D109E3F00BA28BE /* GradingPeriodDetailsTests.swift in Sources */,
+				B1FFACBD1CFD3FB500F2004B /* Course+DetailsTests.swift in Sources */,
+				B11544C41D467C790011E5DF /* SpecHelper.swift in Sources */,
+				2A37B8681D25C23800F18A26 /* TabTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5E0D0C141C4954E9008AA96F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5E0D0BFD1C4954E9008AA96F /* Enrollments */;
+			targetProxy = 5E0D0C131C4954E9008AA96F /* PBXContainerItemProxy */;
+		};
+		5E0D0C1F1C4954E9008AA96F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5E0D0BFD1C4954E9008AA96F /* Enrollments */;
+			targetProxy = 5E0D0C1E1C4954E9008AA96F /* PBXContainerItemProxy */;
+		};
+		5ECEDD9C1C49570E00E59B53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5ECEDD8F1C49570E00E59B53 /* EnrollmentKit */;
+			targetProxy = 5ECEDD9B1C49570E00E59B53 /* PBXContainerItemProxy */;
+		};
+		5ECEDD9E1C49570E00E59B53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5E0D0BFD1C4954E9008AA96F /* Enrollments */;
+			targetProxy = 5ECEDD9D1C49570E00E59B53 /* PBXContainerItemProxy */;
+		};
+		5ECEDDA41C49570E00E59B53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5ECEDD8F1C49570E00E59B53 /* EnrollmentKit */;
+			targetProxy = 5ECEDDA31C49570E00E59B53 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5E0D0C241C4954E9008AA96F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5E0D0C251C4954E9008AA96F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5E0D0C271C4954E9008AA96F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Enrollments/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Enrollments;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		5E0D0C281C4954E9008AA96F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Enrollments/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Enrollments;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		5E0D0C2A1C4954E9008AA96F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = EnrollmentsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.EnrollmentsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Enrollments.app/Enrollments";
+			};
+			name = Debug;
+		};
+		5E0D0C2B1C4954E9008AA96F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = EnrollmentsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.EnrollmentsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Enrollments.app/Enrollments";
+			};
+			name = Release;
+		};
+		5E0D0C2D1C4954E9008AA96F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = EnrollmentsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.EnrollmentsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Enrollments;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		5E0D0C2E1C4954E9008AA96F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = EnrollmentsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.EnrollmentsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Enrollments;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+		5ECEDDA71C49570E00E59B53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EnrollmentKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.EnrollmentKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5ECEDDA81C49570E00E59B53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EnrollmentKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.EnrollmentKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5ECEDDA91C49570E00E59B53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EnrollmentKitTests",
+				);
+				INFOPLIST_FILE = EnrollmentKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.EnrollmentKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Enrollments.app/Enrollments";
+			};
+			name = Debug;
+		};
+		5ECEDDAA1C49570E00E59B53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EnrollmentKitTests",
+				);
+				INFOPLIST_FILE = EnrollmentKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.EnrollmentKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Enrollments.app/Enrollments";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5E0D0BF91C4954E9008AA96F /* Build configuration list for PBXProject "Enrollments" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E0D0C241C4954E9008AA96F /* Debug */,
+				5E0D0C251C4954E9008AA96F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E0D0C261C4954E9008AA96F /* Build configuration list for PBXNativeTarget "Enrollments" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E0D0C271C4954E9008AA96F /* Debug */,
+				5E0D0C281C4954E9008AA96F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E0D0C291C4954E9008AA96F /* Build configuration list for PBXNativeTarget "EnrollmentsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E0D0C2A1C4954E9008AA96F /* Debug */,
+				5E0D0C2B1C4954E9008AA96F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E0D0C2C1C4954E9008AA96F /* Build configuration list for PBXNativeTarget "EnrollmentsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E0D0C2D1C4954E9008AA96F /* Debug */,
+				5E0D0C2E1C4954E9008AA96F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5ECEDDAB1C49570E00E59B53 /* Build configuration list for PBXNativeTarget "EnrollmentKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5ECEDDA71C49570E00E59B53 /* Debug */,
+				5ECEDDA81C49570E00E59B53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5ECEDDAC1C49570E00E59B53 /* Build configuration list for PBXNativeTarget "EnrollmentKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5ECEDDA91C49570E00E59B53 /* Debug */,
+				5ECEDDAA1C49570E00E59B53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5ECEDDB61C49573C00E59B53 /* EnrollmentKit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5ECEDDB71C49573C00E59B53 /* EnrollmentKit.xcdatamodel */,
+			);
+			currentVersion = 5ECEDDB71C49573C00E59B53 /* EnrollmentKit.xcdatamodel */;
+			path = EnrollmentKit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 5E0D0BF61C4954E9008AA96F /* Project object */;
+}

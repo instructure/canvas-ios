@@ -1,0 +1,39 @@
+{
+"context_type": "Course",
+"course_id": 1863668,
+"type": "submitting",
+"assignment": {
+    "id": 9536420,
+    "position": 1,
+    "points_possible": 0,
+    "grading_type": "points",
+    "due_at": "2016-04-26T05:59:00Z",
+    "description": "",
+    "lock_at": null,
+    "unlock_at": null,
+    "assignment_group_id": 2671058,
+    "peer_reviews": false,
+    "automatic_peer_reviews": false,
+    "group_category_id": null,
+    "grade_group_students_individually": false,
+    "created_at": "2016-04-19T19:24:51Z",
+    "updated_at": "2016-04-19T19:24:51Z",
+    "post_to_sis": null,
+    "moderated_grading": false,
+    "course_id": 1863668,
+    "name": "Check WWDC Status : April 25, 2016",
+    "submission_types": [
+                       "online_text_entry"
+                       ],
+    "has_submitted_submissions": false,
+    "muted": false,
+    "html_url": "https://mobiledev.instructure.com/courses/1863668/assignments/9536420",
+    "published": true,
+    "only_visible_to_overrides": false,
+    "locked_for_user": false,
+    "submissions_download_url": "https://mobiledev.instructure.com/courses/1863668/assignments/9536420/submissions?zip=1"
+},
+"ignore": "https://mobiledev.instructure.com/api/v1/users/self/todo/assignment_9536420/submitting?permanent=0",
+"ignore_permanently": "https://mobiledev.instructure.com/api/v1/users/self/todo/assignment_9536420/submitting?permanent=1",
+"html_url": "https://mobiledev.instructure.com/courses/1863668/assignments/9536420#submit"
+}

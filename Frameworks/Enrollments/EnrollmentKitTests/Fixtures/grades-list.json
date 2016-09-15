@@ -1,0 +1,84 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1463701272.816912,
+      "response" : {
+        "body" : [
+          {
+            "html_url" : "https:\/\/narmstrong.instructure.com\/courses\/1\/users\/2",
+            "grades" : {
+              "current_score" : 75,
+              "current_grade" : "C",
+              "final_score" : 75,
+              "final_grade" : "C",
+              "html_url" : "https:\/\/narmstrong.instructure.com\/courses\/1\/grades\/2"
+            },
+            "user_id" : 2,
+            "course_id" : 1,
+            "updated_at" : "2016-02-01T20:04:28Z",
+            "end_at" : null,
+            "root_account_id" : 1,
+            "enrollment_state" : "active",
+            "type" : "StudentEnrollment",
+            "id" : 2,
+            "user" : {
+              "short_name" : "narmstrong+s@instructure.com",
+              "id" : 2,
+              "sortable_name" : "narmstrong+s@instructure.com",
+              "name" : "narmstrong+s@instructure.com"
+            },
+            "associated_user_id" : null,
+            "role" : "StudentEnrollment",
+            "last_activity_at" : "2016-05-19T22:01:43Z",
+            "created_at" : "2016-02-01T18:49:37Z",
+            "role_id" : 3,
+            "course_section_id" : 1,
+            "limit_privileges_to_course_section" : false,
+            "start_at" : null,
+            "total_activity_time" : 91235
+          }
+        ],
+        "status" : 200,
+        "url" : "https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/enrollments?enrollment_type=student&per_page=99&user_id=self",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=%2BNUiDFKA187pyPjufpO52jiLUslLnf88RTpdUTcRaY6sjXBjK%2B2HpYOxtKMvwezvSv5rnD62qlRuexMScngxyw%3D%3D; path=\/; secure, log_session_id=d4b227a77b77fe68be24afa517e348ed; path=\/, canvas_session=jQVb0xa6kK8PfUKwF6n3gg.hzcY95bDuxFMQRC8fEN-whqYixxI1mYOMHr_L-zdJR7QQb4Q9bL6rPv7Nju15fc9h8I29miplwVRVsDRi0HPdrHJV3C0kgM5aSTKwso2yJdIL27prSYwJw6-jmsPVYqM.KwyS7mA8rQqT8kWVSAMNMjlnRwM.Vz5PFw; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.160697",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "Link" : "<https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/enrollments?enrollment_type=student&user_id=self&page=1&per_page=99>; rel=\"current\",<https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/enrollments?enrollment_type=student&user_id=self&page=1&per_page=99>; rel=\"first\",<https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/enrollments?enrollment_type=student&user_id=self&page=1&per_page=99>; rel=\"last\"",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "X-Request-Processor" : "a01de70",
+          "Status" : "200 OK",
+          "X-Session-Id" : "d4b227a77b77fe68be24afa517e348ed",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "dba48627-97d0-4f74-b70a-6fb68fc53755",
+          "X-Request-Cost" : "0.12231554699999317",
+          "Content-Length" : "367",
+          "X-Canvas-Meta" : "q=649;at=78950000000000004;dk=170000000000016;a=1;g=NPlw5mttYp3XYZwh9rhbbCTzuKX22gHlmlvRaFyn;s=7895;c=cluster44;z=us-east-1e;o=enrollments_api;n=index;t=Course;i=1;b=1191000;m=1191000;u=0.07;y=0.00;d=0.05;",
+          "Date" : "Thu, 19 May 2016 23:41:11 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "78950000000000002",
+          "Etag" : "\"7de3b3f8f5be5e06e41c637d03691ae2\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/enrollments?enrollment_type=student&per_page=99&user_id=self",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Enrollments\/com.instructure.Enrollments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 7895~fd6cCPK3vsIO0d2ivNTnVYfwUJRkENjIzIH18hL9qXRhqkB16MaGLakuaiYNxwfA"
+        }
+      }
+    }
+  ],
+  "name" : "grades-list"
+}

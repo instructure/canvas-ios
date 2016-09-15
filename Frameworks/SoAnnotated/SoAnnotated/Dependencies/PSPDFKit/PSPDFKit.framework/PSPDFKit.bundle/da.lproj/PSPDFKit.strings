@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Luk";
+"Cancel" = "Annuller";
+"OK" = "Gå";
+"Open" = "Åbn";
+"Untitled" = "Uden navn";
+"File Not Found" = "Arkiv ikke fundet";
+"File couldn't be opened." = "Arkiv kunne ikke åbnes."; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "PDF uden navn";
+"Page %tu" = "Side %tu";
+"Page %@" = "Side %@";
+"Next" = "Næste";
+"Previous" = "Forrige";
+"Error" = "Fejl";
+
+// toolbar
+"Outline" = "Kontur"; // Table of contents
+"No Outline" = "Intet indhold";
+"Search Outline" = "Søg i indeks";
+"Search" = "Søg";
+"Email" = "E-mail";
+"Send via Email" = "Send pr. e-mail";
+"Send" = "Udfør";
+"Open In" = "Åbn i";
+"Commit" = "Udfør";
+"Sending to %@" = "Sender til %@"; // Open document with an application
+"Pages" = "Sider";
+"Print with annotations" = "Udskriv med kommentarer";
+"Print without annotations" = "Udskriv uden kommentarer";
+"No Applications found" = "Ingen programmer, der kan åbne PDF-dokumenter, er installeret.";
+"Print" = "Udskriv";
+"Annotation" = "Kommentar";
+"Annotations" = "Kommentarer";
+"No Annotations" = "Ingen kommentarer";
+"Bookmarks" = "Bogmærker";
+"No Bookmarks" = "Ingen bogmærker";
+"Add Bookmark" = "Tilføj bogmærke";
+"Remove Bookmark" = "Fjern bogmærke";
+"Brightness" = "Lysstyrke";
+"Share" = "Del";
+"Preparing" = "Forbereder";
+"Loading" = "Indlæser";
+"Expand" = "Udvid";
+"Collapse" = "Sammenfold";
+// SMS / iMessage sharing button
+"Message" = "Meddelelse";
+"Thumbnails" = "Oversigter";
+"Drag Toolbar" = "Træk værktøjslinje";
+
+// thumbnails
+"Bookmarked" = "Bogmærket";
+"Annotated" = "Kommenteret";
+"All" = "Alle";
+
+// password
+"Password" = "Adgangskode"; // text on a label
+"Unlock" = "Lås op";
+"Please enter the password." = "Skriv venligst adgangskode.";
+"This document cannot be unlocked. %@ is unsupported." = "Dette dokument kan ikke låses op. %@ er ikke understøttet.";
+
+// page
+"%tu of %tu" = "%tu af %tu";
+"%tu-%tu of %tu" = "%tu-%tu af %tu";
+"%@ (%tu of %tu)" = "%@ (%tu af %tu)";
+"%@, Page %tu" = "%@, side %tu";
+"Leave %@?" = "Forlad %@?";
+
+// search
+"Search Document" = "Søg i dokument"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "Søger i side %tu af %tu";
+"Search Completed" = "Søgning afsluttet";
+"Search Cancelled" = "Søgning annuleret";
+"%tu left" = "%tu tilbage"; // Indexing Documents... 5 left
+"Searching" = "Søger";
+"Done" = "Færdig";
+"Indexing Documents" = "Indekserer dokumenter";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Dokumentet har intet indhold";
+
+// inline browser
+"Open in Safari" = "Åbn i Safari";
+"Open in Chrome" = "Åbn i Chrome";
+"Your %@ is not configured to send emails." = "Din %@ er ikke konfigureret til at sende e-mails.";
+"The link is requesting to open %@Would you like to continue?" = "Henvisningen ønsker at åbne %@ Vil du fortsætte?";
+"an external application" = "et eksternt program"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "E-mail"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "„Handler“ for blev ikke fundet %@";
+
+// text selection
+"Text copied to clipboard." = "Tekst kopieret til Udklipsholder.";
+"Save To Camera Roll" = "Arkiver i Kamerarulle";
+"Failed to extract image." = "Kunne ikke udtrække billede.";
+"Type value or pick from list" = "Skriv værdi eller vælg fra listen";
+
+// annotations
+"Add %@" = "Tilføj %@";
+"Remove %@" = "Fjern %@";
+"Remove" = "Fjern";
+"Delete" = "Slet"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "Rediger";
+"Undo" = "Fortryd";
+"Nothing to undo" = "Intet at fortryde";
+"Redo" = "Gentag";
+"Nothing to redo" = "Intet at bruge";
+"Type" = "Skriv"; // kind of Annotation can be selected
+"Size" = "Str.";
+"Font" = "Skrift";
+"Fonts" = "Skrifter";
+"All Fonts" = "Alle skrifter";
+"Downloadable Fonts" = "Skriftyper til download";
+"Search Fonts" = "Søg i skrifter";
+"Choose Color" = "Vælg farve";
+"Choose Fill Color" = "Vælg fyldfarve";
+"Rainbow" = "Regnbue";
+"Monochrome" = "Sort/hvid";
+"Vintage" = "Gammeldags";
+"Color" = "Farve";
+"Border" = "Ramme";
+"Fill Color" = "Fyldfarve";
+"Line End Fill Color" = "Linjeslutfarve";
+"Opacity" = "Transparens";
+"%@ %%" = "%@ %%";
+"Thickness" = "Tykkelse";
+"%@ pt" = "%@ point";
+"Yellow" = "Gul";
+"Green" = "Grøn";
+"Red" = "Rød";
+"Blue" = "Blå";
+"Pink" = "Lyserød";
+"Black" = "Sort";
+"Orange" = "Orange";
+"Purple" = "Violet";
+"Cyan" = "Cyan";
+"Gray" = "Grå";
+"White" = "Hvid";
+"Define" = "Definer";
+"Wikipedia" = "Wikipedia";
+"Highlight" = "Fremhæv";
+"Underline" = "Understreget";
+"Squiggle" = "Bølgelinje";
+"StrikeOut" = "Gennemstreget";
+"Rectangle" = "Rektangel";
+"Ellipse" = "Ellipse";
+"Line" = "Linje"; // something that can be drawn
+"Lines" = "Linjer"; // "5 Lines" were drawn
+"Polyline" = "Polygonal";
+"Polygon" = "Polygon";
+"Signature" = "Signatur";
+"Signatures" = "Signaturer";
+"Signed" = "Signeret";
+"Sign" = "Signer";
+"Sign using %@" = "Underskriv med %@"; // e.g. Adobe.PPKLite
+"Methods" = "Metoder"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Vælg idenditet"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "Stempel";
+"Stamps" = "Stempler";
+"Custom" = "Speciel"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "Opret stempel";
+"Preview" = "Vis";
+"Stamp Text" = "Stempeltekst";
+"Add Signature" = "Tilføj signatur";
+"Remove Signature" = "Fjern signatur";
+"My Signature" = "Min signatur";
+"No Signatures" = "Ingen signaturer"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "Kundesignatur";
+"Please sign here" = "Underskriv her";
+"Note" = "Bemærk";
+"Text" = "Tekst";
+"Delete Note" = "Slet note";
+"Remove Note" = "Fjern note";
+"%@ could not be found." = "%@ blev ikke fundet.";
+"Photo Library" = "Fotobibliotek";
+"Camera" = "Kamera";
+"Image" = "Billede";
+"Low Quality" = "Lav kvalitet";
+"Medium Quality" = "Middel kvalitet";
+"High Quality" = "Høj kvalitet";
+"Clear All" = "Ryd alt";
+"Clear" = "Ryd";
+"Style" = "Udseende";
+"Link" = "Henvisning";
+"Ink" = "Tegning";
+"FreeText" = "Tekst";
+"Screen" = "Skærmbrædt";
+"RichMedia" = "Multimedie";
+"Left" = "Venstre";
+"Center" = "Centreret";
+"Right" = "Højrejusteret";
+"Alignment" = "Justering";
+"Preview File" = "Vis arkiv";
+"Copy" = "Kopier";
+"Paste" = "Sæt ind";
+"Inspector" = "Inspektør";
+"Group" = "Grupper";
+"Ungroup" = "Ophæv gruppe";
+"Merge" = "Kombiner"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "Eksempel";
+"Annotation Summary for %@:\n" = "Kommentarresumé af %@:\n";
+// title
+"Author Name" = "Forfatternavn";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Angiv venligst det forfatternavn du ønsker at bruge til indsatte noter.";
+// text field placeholder
+"Name" = "Navn";
+// meaning: close
+"Dismiss" = "Luk";
+"Fit to Text" = "Tilpas til tekst";
+"Draw" = "Tegn";
+"Sound" = "Lyd";
+"Eraser" = "Viskelæder";
+"Toggle Eraser" = "Luk viskelæder"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "Valg-værktøj";
+"Saved Annotations" = "Arkiveret";
+"Add" = "Tilføj"; // to add - infinitive
+"Date" = "Dato";
+"Time" = "Tid";
+"No Pages" = "Ingen sider";
+"Drag to resize" = "Træk for at skalere"; // used as hint that inspector is resizable
+"Convert to" = "Konverter til"; // used as label on action that changes free text intent type
+"Color Presets" = "Farvevalg";
+
+"Callout" = "Tekstbox"; // freetext annotation with an arrow
+"Generic" = "Generisk"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "linjeudseende";
+"Solid" = "Solid";
+"Narrow Dots" = "Tætte prikker";
+"Wide Dots" = "Spredte prikker";
+"Narrow Dashes" = "Tætte streger";
+"Wide Dashes" = "Spredte streger";
+
+// Stamps
+"Approved" = "Godkendt";
+"Not Approved" = "Ikke godkendt";
+"Draft" = "Udkast";
+"Final" = "Endelig";
+"Completed" = "Færdige";
+"Confidential" = "Fortroligt";
+"For Public Release" = "Til offentliggørelse";
+"Not For Public Release" = "Ikke til offentliggørelse";
+"For Comment" = "Til kommentering";
+"Void" = "Ugyldig";
+"Preliminary Results" = "Foreløbige resultater";
+"Information only" = "Kun til information";
+"Accepted" = "Accepteret";
+"Rejected" = "Afvist";
+"Initial Here" = "Initial her";
+"Sign Here" = "Underskriv her";
+"Witness" = "Vidne";
+"Revised" = "Revideret";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Penne";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Fra";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Søger";
+// text on a label; app connects to a stylus
+"Pairing" = "Parring";
+// text on a label; app and stylus are connected
+"Connected" = "Tilsluttet";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Forbindelse afbrudt";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Indstillinger";
+
+
+// PDF annotation name overrides
+"Square" = "Rektangel";
+"Circle" = "Ellipse";
+"PolyLine" = "Polygonal";
+
+// named actions
+"NextPage" = "Næste side";
+"PrevPage" = "Forrige side";
+"FirstPage" = "Første side";
+"LastPage" = "Sidste side";
+"GoBack" = "Tilbage";
+"GoForward" = "Fremad";
+"GoToPage" = "Gå til side";
+"Find" = "Søg";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Zoom ind";
+"ZoomOut" = "Zoom ud";
+"Execute JavaScript" = "Udfør JavaScript";
+"Rich Media Action" = "Multimediehandling";
+"Rendition Action" = "Gengivelseshandling";
+"Hide Action" = "Skjul handling";
+"Submit Form" = "Send formular";
+"Reset" = "Nulstil";
+
+// line annotations
+"Start" = "Linjeslut";
+"End" = "Slut";
+"Line.None" = "Ingen";
+"Line.ClosedArrow" = "Lukket pil";
+"Line.OpenArrow" = "Åbn pil";
+"Line.Square" = "Kvadrat";
+"Line.Circle" = "Cirkel";
+"Line.Diamond" = "Diamant";
+"Line.ROpenArrow" = "Omvendt åben pil";
+"Line.RClosedArrow" = "Omvendt lukket pil";
+"Line.Slash" = "Skråstreg";
+"Line.Butt" = "Knop";
+"Line Start" = "Linjestart";
+"Line End" = "Linjeslut";
+"Arrow" = "Pil"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "Opret henvisning";
+"Add Link" = "Tilføj henvisning";
+"Edit Link" = "Rediger henvisning";
+"Move Link" = "Fly henvisning";
+"Remove Link" = "Fjern henvisning";
+"Open Link" = "Åbn henvisning";
+"Go to Page %tu" = "Gå til side %tu";
+"Go to Page" = "Gå til side"; // title of a Popup
+"Go" = "Gå"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "Arkiver";
+"Link Destination" = "Link-destination";
+"Enter page index or a http:// address to link to an URL." = "Angiv side-index eller en http:// adresse for at linke til en URL.";
+"Page %@ Not Found" = "Side %@ ikke fundet";
+
+// voiceover accessibility
+"Page" = "Side";
+"Grid" = "Net"; // grid with thumbnails
+"Translucent" = "transparent";
+"left" = "venstre";
+"center" = "centrer";
+"right" = "højre";
+"decrease" = "formindsk";
+"increase" = "forøg";
+"All Open Documents" = "Alle åbne dokumenter";
+"Add Documents" = "Tilføj dokumenter"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "Sider %tu-%tu"; // Range of pages
+"Current Page" = "Aktuel side";
+"Current Page (%tu)" = "Aktuel side (%tu)";
+"Ignore Annotations" = "Ignorer kommentarer";
+"The PDF will not contain any annotations." = "PDF'en vil ikke indeholde kommentarer.";
+"Embed Annotations" = "Indlejr kommentarer";
+"Annotations will remain editable and are embedded into the PDF." = "Kommentarer kan fortsat redigeres og indlejres i PDF'en.";
+"Flatten Annotations" = "Indlejr kommentarer";
+"Annotations are drawn into the PDF and are readonly." = "Kommentarer gengives i PDF'en og er skrivebeskyttede.";
+"Annotation Summary" = "Kommentarresumé";
+"Embed Annotations into the PDF and also list them in the email." = "Indlejr kommentarer i PDF'en og oplist dem også i e-mail.";
+"Files" = "Arkiver";
+"Send as single files" = "Send som enkelte arkiver";
+"Merge files" = "Flet arkiver";
+"Original File" = "Originalt arkiv";
+"Range" = "Omfang";
+"Annotated Pages" = "Kommenterede sider";
+
+// sound annotations
+"Speak" = "Læs op"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "Afspil";
+"Pause" = "Pause";
+"Resume" = "Genoptag";
+"Stop" = "Stop";
+"Play/Stop" = "Afspil/Stop";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Optag";
+"Pause Recording" = "Optagelse på pause";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Optagelse på pause";
+"Continue Recording" = "Fortsæt optagelse";
+"Finish Recording" = "Slut optagelse";
+"Audio Problem" = "Lydproblem";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "Kunne ikke afspille.";
+"Could not resume playback." = "Kunne ikke genoptage afspilning.";
+"Microphone permission not granted." = "Mikrofontilladelse ikke givet.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Beklager, der kan i øjeblikket ikke optages lyd. Giv denne app tiladelse til at bruge din mikrofon.";
+"There was a problem trying to record audio." = "Beklager, der opstod et problem under optagelse af lyd.";
+"Already Recording" = "Optagelse igang";
+"You are already recording on page %@." = "Du optager allerede på side %@.";
+
+// Forms
+"Form Element" = "Formular-felt";
+"Text Field" = "Tekstfelt";
+"Button" = "Knap";
+"Choice Field" = "Valg-felt";
+"Signature Field" = "Signaturfelt";
+"Clear Field" = "Ryd felt"; // same as delete
+"Type value or pick from list" = "Skriv værdi eller vælg fra listen";
+"Default Values" = "Standardværdier";
+"Custom Value" = "Særlig værdi";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Ugyldig værdi; skal være større end eller lig med %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Ugyldig værdi; skal være større end eller lig med %s og mindre end eller lig med %s.";
+"Invalid value: must be less than or equal to %s." = "Ugyldig værdi; skal være mindre end eller lig med %s.";
+"Invalid value: must be a number." = "Ugyldig værdi: skal være et tal.";
+
+//  Validation of dates
+"Invalid value: must be a date." = "Ugyldig værdi: skal være en dato.";
+
+// General validation
+"Invalid value." = "Ugyldig værdi.";
+
+// Gallery
+"Connection Error" = "Forbindelsesfejl";
+"Unsupported Content" = "Ikke understøttet indhold";
+"The specified content cannot be displayed." = "Det angivne indhold kan ikke vises.";
+"Something went wrong" = "Noget gik galt";
+"This item is currently unavailable." = "Dette emne er aktuelt ikke tilgængeligt.";
+"The information for this gallery could not be loaded." = "Informationen til dette galleri kunne ikke indlæses.";
+"Content Error" = "Indholdsfejl";
+"This content is unsupported." = "Dette indhold understøttes ikke.";
+
+// Signatures
+"Digital Signature" = "Digital signatur";
+"Signature is valid." = "Signatur er gyldig.";
+"Signature is valid, but there are some warnings." = "Signaturen er gyldig, men der er nogle advarsler.";
+"It was signed by %@ on %@ at %@." = "Det blev signeret af %@ d. %@ kl. %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Det blev signeret d. %@ kl. %@.";
+"It claims to have been signed by %@ on %@ at %@." = "Det påstår at være signeret af %@ d. %@ kl. %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Det angiver at være signeret d. %@ kl. %@.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Revisionen, dækket af denne signatur er ikke blevet ændret, der er dog foretaget ændringer i dokumentet efter det blev signeret."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- Signaturen er gyldig, og indholdet af dette dokument er ikke blevet ændret, efter det blev signeret.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Ugyldig signatur — efter indholdet af dette dokument blev signeret, er det blevet ændret, fusket med eller korrumperet.";
+"Unsigned Signature Field" = "Ikke signeret signaturfelt";
+"Do you really want to remove the signature from the document?" = "Vil du virkelig fjerne signaturen fra dokumentet?";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Kan ikke læse certifikatdata som PKCS#7-certifikat. Data i det rette format kan eksporteres fra Adobe Acrobat."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "Kunne ikke afkryptere certifikatets signatur.";
+"The public key in the certificate could not be read." = "Den offentlige nøgle i certifikatet kunne ikke læses.";
+"The signature of the certificate is not valid." = "Certifikatets signatur er ikke gyldig.";
+"Signature is not valid." = "Signatur er ikke gyldig.";
+"There is a format error in the notBefore field of the certificate." = "Der er en formateringsfejl i certifikatets notBefore-felt."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "Der er en formatfejl i notAfter-feltet i certifikatet."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Ingen signaturer kunne verificeres, fordi certifikatkæden kun indeholder et certifikat, den er ikke self-signed, og udstederen er ikke godkendt.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Et CA-certifikat er ikke gyldigt, fordi det ikke er et CA, eller dets endelser ikke svarer til dets forventede anvendelse."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "Stilængde-parameteren basicComstraints blev overskredet."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "Rod-certifikat er ikke betegnet som godkendt til dets forventede formål."; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "Rod-certifikatet er beregnet til at afvise det angivne formål."; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Udstedercertifikatet blev afvist, fordi dets emne-navn ikke matcher udstedernavnet for det aktuelle certifikat."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Udsteder-certifikatet blev afvist, fordi dets \"subject key identifier\" var tilstede og ikke matchede \"authority key identifier\" i det aktuelle certifikat."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "Udstedercertifikatet blev afvist, fordi dets udstedernavn og serienummer var tilstede og ikke matchede „authority key identifier“ for det aktuelle certifikat."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "Certifikatet er tilbagekaldt af udsteder.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Det givne certifikat er selv-signeret og det samme certifikat findes ikke i listen med godkendte certifikater.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Der findes et selv-signeret certifikat i certifikatkæden. Certifikatkæden kan bygges med ikke godkendte certifikater, men et rod-certifikat blev ikke fundet lokalt."; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Kunne ikke finde certifikatet for en af certifikatautoriteterne (CAs) i  signeringshierarkiet og den autoritet er ikke godkendt af det lokale program."; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Udstedercertifikatet fra et lokalt opslået certifikat blev ikke fundet. Det betyder normalt, at listen med godkendte certifikater ikke er fuldstændig.";
+"The certificate that was provided cannot be used for its intended purpose." = "Det leverede certifikat kan ikke bruges til dets forventede anvendelse.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "Udstedercertifikatets „keyUsage extension“ tillader ikke certifikatsignering.";
+"The certificate has expired." = "Certifikatet er udløbet.";
+"The certificate is not valid until a date in the future." = "Certifikatet er ikke gyldigt før end en fremtidig dato.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Kunne ikke læse X509-certifikat fra data";
+// X509 should not be translated
+"No X509 certificate found" = "Intet X509-certifikat blev fundet";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Kan ikke læse PKCS12-arkiv. Arkivet er forkert formateret eller korrupt.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Kunne ikke låse PKCS12-data op. Skrev du den korrekte adgangskode?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Kunne ikke åbne arkiv til signaturvalidering";
+"Could not get signer info" = "Kunne ikke finde info om underskriver";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL kunne ikke oprette PKCS7-objekt";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL kunne ikke føje signatur til PKCS7-objekt";
+"OpenSSL could not init PKCS7 object" = "OpenSSL kunne ikke starte PKCS7-objekt";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL kunne generere PKCS7-signatur";
+"OpenSSL could not sign hash" = "OpenSSL kunne ikke signere hash";
+"Could not write PKCS7 signature" = "Kunne ikke skrive PKCS7-signatur";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "Åbn i";
+"PSPDFPolicyEventPrint" = "Udskriv";
+"PSPDFPolicyEventEmail" = "E-mail";
+"PSPDFPolicyEventMessage" = "Meddelelse";
+"PSPDFPolicyEventQuickLook" = "Quick Look"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "Lydoptagelse";
+"PSPDFPolicyEventCamera" = "Kamera";
+"PSPDFPolicyEventPasteboard" = "Udklipsholder"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "Send formular";
+"PSPDFPolicyEventNetwork" = "Netværk";
+
+// Night Mode
+"Default" = "Standard"; // Default view (night mode not enabled)
+"Sepia" = "Sepia"; // Document uses sepia colors
+"Night" = "Nat"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "Intet dokument valgt";
+"Unable to display document" = "Kunne ikke vise dokumentet";
+"Loading..." = "Indlæser…";
+"Locked" = "Låst";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "Arkivet du prøver at åbne er enten ikke et PDF-arkiv, eller det er måske korrupt.";
+"A password is required to access this document." = "Der kræves adgangskode for at få adgang til dette dokument.";
+"The security scheme of this document is currently not supported." = "Dokumentets sikkerhedsmetode understøttes ikke aktuelt.";
+"An unknown error has occured while trying to open this file." = "Der opstod en ukendt fejl under åbning af dette arkiv.";
+
+// Document Editor
+"Document Editor" = "Dokument-editor";
+"Add Page" = "Tilføj side";
+"Delete Pages" = "Slet sider";
+"Duplicate Pages" = "Dubler sider";
+"Move Pages" = "Flyt sider";
+"Rotate Pages" = "Roter sider";
+"Page Size" = "Papirstr.";
+"Background Color" = "Baggrundsfarve";
+"Pattern" = "Formular-felt";
+"Use Document Size" = "Brug dokumentstr.";
+"Orientation" = "Orientering";
+"Portrait" = "Portræt";
+"Landscape" = "Landskab";
+"Name" = "Navn";
+"Document Name" = "Dokumentnavn";
+"Documents" = "Dokumenter"; // Name of directory
+"Use Document Directory" = "Brug dokumentets mappe";
+"Directory" = "Mappe";
+"Replace File?" = "Erstat arkiv?";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Der findes allerede et arkiv kaldet, „%@“ i den valgte destination. Vil du erstatte det?";
+"Replace" = "Erstat";
+"Saving…" = "Arkiverer…";
+"Saved" = "Arkiveret";
+"Save As…" = "Arkiver som…";
+"Discard Changes" = "Glem ændringer";
+"Empty" = "Ugyldig";
+
+// Document Editor Errors
+"A blank document can not be saved." = "Et tomt dokument kan ikke arkiveres.";
+"The document could not be saved." = "Dokumentet kunne ikke arkiveres.";
+"This document does not support editing." = "Dette dokument understøtter ikke redigering.";
+
+// Page Patterns
+"None" = "Ingen";
+"Dot5mm" = "Prik 5mm";
+"Grid5mm" = "Net 5mm";
+"Lines5mm" = "Linjer 5mm";
+"Lines7mm" = "Linjer 7mm";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US Letter";
+"US Legal" = "US Legal";
+
+// Page Export
+"Export Pages" = "Eksporter sider";
+"Export…" = "Eksporter…";
+"Exporting…" = "Eksporterer…";
+"Exported" = "Eksporteret";
+"%@ - Exported" = "%@ - Eksporteret"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - Kopi"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "Det valgte dokument er aktuelt åbent. Vælg venligst et andet arkivnavn.";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Tekst-til-tale er ikke tilgængelig. Sørg for du har en aktiv internetforbindelse eller Google Text-to-speech engine installeret og slået til på din enhed.";

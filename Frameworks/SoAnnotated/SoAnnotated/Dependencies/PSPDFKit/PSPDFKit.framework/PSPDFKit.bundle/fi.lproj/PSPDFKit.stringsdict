@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>%tu match(es) found</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_matches_found@</string>
+        <key>tu_matches_found</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Ei hakutuloksia</string>
+            <key>one</key>
+            <string>%tu hakutulos</string>
+            <key>other</key>
+            <string>%tu hakutulosta</string>
+        </dict>
+    </dict>
+    <key>%tu document(s) indexed.</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_documents_indexed@</string>
+        <key>tu_documents_indexed</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Ei luetteloituja dokumentteja</string>
+            <key>one</key>
+            <string>%tu luetteloitu dokumentti</string>
+            <key>other</key>
+            <string>%tu luetteloitua dokumenttia</string>
+        </dict>
+    </dict>
+    <key>%tu Annotation(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_annotations@</string>
+        <key>tu_annotations</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Ei merkintöjä</string>
+            <key>one</key>
+            <string>%tu merkintä</string>
+            <key>other</key>
+            <string>%tu merkintää</string>
+        </dict>
+    </dict>
+    <key>%tu Point(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_points@</string>
+        <key>tu_points</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>one</key>
+            <string>%tu piste</string>
+            <key>other</key>
+            <string>%tu pistettä</string>
+        </dict>
+    </dict>
+    <key>All (%tu Page(s))</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>All (%#@pages@)</string>
+        <key>pages</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>one</key>
+            <string>%tu sivu</string>
+            <key>other</key>
+            <string>%tu sivua</string>
+        </dict>
+    </dict>
+</dict>
+</plist>

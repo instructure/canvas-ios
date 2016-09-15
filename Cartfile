@@ -1,0 +1,10 @@
+github "robb/Cartography" ~> 0.6
+github "antitypical/Result" ~> 2.0
+github "ReactiveCocoa/ReactiveCocoa" == 4.1.0
+github "onevcat/Kingfisher" == 2.4.3
+github "cezarywojcik/CWStatusBarNotification" "swift"
+github "utahiosmac/Marshal" "master"
+github "n8armstrong/DVR" "develop"
+github "google/EarlGrey" "master"
+github "xmartlabs/Eureka" ~> 1.6
+github "dennisweissmann/DeviceKit" == 0.3.3

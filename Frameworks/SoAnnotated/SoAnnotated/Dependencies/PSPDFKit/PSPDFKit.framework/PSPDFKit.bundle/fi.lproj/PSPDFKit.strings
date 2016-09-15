@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Sulje";
+"Cancel" = "Kumoa";
+"OK" = "Mene";
+"Open" = "Avaa";
+"Untitled" = "Nimetön";
+"File Not Found" = "Tiedostoa ei löytynyt";
+"File couldn't be opened." = "Tiedostoa ei voitu avata."; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "Nimetön PDF";
+"Page %tu" = "Sivu %tu";
+"Page %@" = "Sivu %@";
+"Next" = "Seuraava";
+"Previous" = "Edellinen";
+"Error" = "Virhe";
+
+// toolbar
+"Outline" = "Runko"; // Table of contents
+"No Outline" = "Ei runkoa";
+"Search Outline" = "Etsi rungosta";
+"Search" = "Etsi";
+"Email" = "Sähköposti";
+"Send via Email" = "Lähetä sähköpostilla";
+"Send" = "Lähetä";
+"Open In" = "Avaa ohjelmassa";
+"Commit" = "Tee";
+"Sending to %@" = "Lähetetään %@"; // Open document with an application
+"Pages" = "Sivut";
+"Print with annotations" = "Tulosta merkintöjen kanssa";
+"Print without annotations" = "Tulosta ilman merkintöjä";
+"No Applications found" = "PDF-tiedostoja avaavia ohjelmia ei ole asennettu.";
+"Print" = "Tulosta";
+"Annotation" = "Merkintä";
+"Annotations" = "Merkinnät";
+"No Annotations" = "Ei merkintöjä";
+"Bookmarks" = "Kirjanmerkit";
+"No Bookmarks" = "Ei kirjanmerkkejä";
+"Add Bookmark" = "Lisää kirjanmerkki";
+"Remove Bookmark" = "Poista kirjanmerkki";
+"Brightness" = "Kirkkaus";
+"Share" = "Jaa";
+"Preparing" = "Valmistellaan";
+"Loading" = "Ladataan";
+"Expand" = "Laajenna";
+"Collapse" = "Taita kokoon";
+// SMS / iMessage sharing button
+"Message" = "Viesti";
+"Thumbnails" = "Esikatselukuvakkeet";
+"Drag Toolbar" = "Raahaa työkalupalkkia";
+
+// thumbnails
+"Bookmarked" = "Kirjanmerkit";
+"Annotated" = "Merkintöjä";
+"All" = "Kaikki";
+
+// password
+"Password" = "Salasana"; // text on a label
+"Unlock" = "Avaa";
+"Please enter the password." = "Anna salasana.";
+"This document cannot be unlocked. %@ is unsupported." = "Tätä dokumenttia ei voitu avata.  %@ ei ole tuettu.";
+
+// page
+"%tu of %tu" = "%tu / %tu";
+"%tu-%tu of %tu" = "%tu-%tu / %tu";
+"%@ (%tu of %tu)" = "%@ (%tu / %tu)";
+"%@, Page %tu" = "%@, Sivu %tu";
+"Leave %@?" = "Jätä %@?";
+
+// search
+"Search Document" = "Etsi dokumentista"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "Etsitään sivulta %tu / %tu";
+"Search Completed" = "Haku suoritettu";
+"Search Cancelled" = "Haku kumottu";
+"%tu left" = "%tu jäljellä"; // Indexing Documents... 5 left
+"Searching" = "Etsitään";
+"Done" = "Valmis";
+"Indexing Documents" = "Luetteloidaan dokumentteja";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Dokumentilla ei ole sisältöä";
+
+// inline browser
+"Open in Safari" = "Avaa Safarissa";
+"Open in Chrome" = "Avaa Chromessa";
+"Your %@ is not configured to send emails." = "%@ ei voi lähettää sähköposteja asetusten vuoksi.";
+"The link is requesting to open %@Would you like to continue?" = "Linkki pyytää avaamaan kohteen%@Haluatko jatkaa?";
+"an external application" = "ulkoinen ohjelma"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "Sähköposti"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "Ei avaavaa ohjelmaa kohteelle %@";
+
+// text selection
+"Text copied to clipboard." = "Teksti kopioitu leikepöydälle.";
+"Save To Camera Roll" = "Tallenna Kameran rullaan";
+"Failed to extract image." = "Kuvan poiminta ei onnistunut.";
+"Type value or pick from list" = "Anna arvo tai valitse listalta";
+
+// annotations
+"Add %@" = "Lisää %@";
+"Remove %@" = "Poista %@";
+"Remove" = "Poista";
+"Delete" = "Poista"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "Muokkaa";
+"Undo" = "Peru";
+"Nothing to undo" = "Ei peruttavaa";
+"Redo" = "Tee sittenkin";
+"Nothing to redo" = "Ei uudelleen tehtävää";
+"Type" = "Tyyppi"; // kind of Annotation can be selected
+"Size" = "Koko";
+"Font" = "Fontti";
+"Fonts" = "Fontit";
+"All Fonts" = "Kaikki fontit";
+"Downloadable Fonts" = "Ladattavat fontit";
+"Search Fonts" = "Etsi fontteja";
+"Choose Color" = "Valitse väri";
+"Choose Fill Color" = "Valitse täyttöväri";
+"Rainbow" = "Sateenkaari";
+"Monochrome" = "Monokromaattinen";
+"Vintage" = "Klassinen";
+"Color" = "Väri";
+"Border" = "Reuna";
+"Fill Color" = "Täyttöväri";
+"Line End Fill Color" = "Viivan pään täyttöväri";
+"Opacity" = "Peittävyys";
+"%@ %%" = "%@ %%";
+"Thickness" = "Paksuus";
+"%@ pt" = "%@ pt";
+"Yellow" = "Keltainen";
+"Green" = "Vihreä";
+"Red" = "Punainen";
+"Blue" = "Sininen";
+"Pink" = "Pinkki";
+"Black" = "Musta";
+"Orange" = "Oranssi";
+"Purple" = "Violetti";
+"Cyan" = "Syaani";
+"Gray" = "Harmaa";
+"White" = "Valkoinen";
+"Define" = "Määrittele";
+"Wikipedia" = "Wikipedia";
+"Highlight" = "Korostus";
+"Underline" = "Alleviivaus";
+"Squiggle" = "Kiemura";
+"StrikeOut" = "Yliviivaus";
+"Rectangle" = "Suorakulmio";
+"Ellipse" = "Ellipsi";
+"Line" = "Viiva"; // something that can be drawn
+"Lines" = "Rivit"; // "5 Lines" were drawn
+"Polyline" = "Murtoviiva";
+"Polygon" = "Monikulmio";
+"Signature" = "Allekirjoitus";
+"Signatures" = "Allekirjoitukset";
+"Signed" = "Allekirjoitettu";
+"Sign" = "Allekirjoita";
+"Sign using %@" = "Allekirjoita %@:lla"; // e.g. Adobe.PPKLite
+"Methods" = "Metodit"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Valitse identiteetti"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "Leima";
+"Stamps" = "Leimat";
+"Custom" = "Muokattu"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "Luo leima";
+"Preview" = "Esikatselu";
+"Stamp Text" = "Leiman teksti";
+"Add Signature" = "Lisää allekirjoitus";
+"Remove Signature" = "Poista allekirjoitus";
+"My Signature" = "Oma allekirjoitukseni";
+"No Signatures" = "Ei allekirjoituksia"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "Asiakkaan allekirjoitus";
+"Please sign here" = "Allekirjoitus tähän";
+"Note" = "Merkintä";
+"Text" = "Teksti";
+"Delete Note" = "Poista merkintä";
+"Remove Note" = "Poista merkintä";
+"%@ could not be found." = "%@ ei ollut löydettävissä.";
+"Photo Library" = "Kuvakirjasto";
+"Camera" = "Kamera";
+"Image" = "Kuva";
+"Low Quality" = "Matala laatu";
+"Medium Quality" = "Keskilaatu";
+"High Quality" = "Korkealaatuinen";
+"Clear All" = "Tyhjennä kaikki";
+"Clear" = "Tyhjennä";
+"Style" = "Tyyli";
+"Link" = "Linkki";
+"Ink" = "Muste";
+"FreeText" = "Teksti";
+"Screen" = "Näyttö";
+"RichMedia" = "Näyttö";
+"Left" = "Vasen";
+"Center" = "Keskitä";
+"Right" = "Oikea";
+"Alignment" = "Tasaus";
+"Preview File" = "Esikatsele tiedosto";
+"Copy" = "Kopioi";
+"Paste" = "Sijoita";
+"Inspector" = "Tarkastaja";
+"Group" = "Ryhmä";
+"Ungroup" = "Pura ryhmä";
+"Merge" = "Yhdistä"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "Näyte";
+"Annotation Summary for %@:\n" = "Merkintöjen yhteenveto kohteelle %@:\n";
+// title
+"Author Name" = "Tekijän nimi";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Nimeä tekijä, jonka nimissä uudet merkinnät tehdään.";
+// text field placeholder
+"Name" = "Nimi";
+// meaning: close
+"Dismiss" = "Hylkää";
+"Fit to Text" = "Sovita tekstiin";
+"Draw" = "Kuva";
+"Sound" = "Ääni";
+"Eraser" = "Pyyhin";
+"Toggle Eraser" = "Valitse pyyhekumi"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "Valintatyökalu";
+"Saved Annotations" = "Tall. merkinnät";
+"Add" = "Lisää"; // to add - infinitive
+"Date" = "Päivämäärä";
+"Time" = "Aika";
+"No Pages" = "Ei sivuja";
+"Drag to resize" = "Muuta kokoa raahaamalla"; // used as hint that inspector is resizable
+"Convert to" = "Konvertoi muotoon"; // used as label on action that changes free text intent type
+"Color Presets" = "Värin esiasetukset";
+
+"Callout" = "Huomautus"; // freetext annotation with an arrow
+"Generic" = "Yleinen"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "Viivan tyyli";
+"Solid" = "Katkeamaton";
+"Narrow Dots" = "Kapeat pisteet";
+"Wide Dots" = "Leveät pisteet";
+"Narrow Dashes" = "Kapeat viivat";
+"Wide Dashes" = "Leveät viivat";
+
+// Stamps
+"Approved" = "Hyväksytty";
+"Not Approved" = "Ei hyväksytty";
+"Draft" = "Luonnos";
+"Final" = "Lopullinen";
+"Completed" = "Valmiit";
+"Confidential" = "Salassa pidettävää";
+"For Public Release" = "Yleiseen jakeluun";
+"Not For Public Release" = "Ei yleiseen jakeluun";
+"For Comment" = "Kommentoitavaksi";
+"Void" = "Tyhjä";
+"Preliminary Results" = "Alustavat tulokset";
+"Information only" = "Vain informaatio";
+"Accepted" = "Hyväksytty";
+"Rejected" = "Hylätty";
+"Initial Here" = "Nimikirjaimet tähän";
+"Sign Here" = "Allekirjoitus tähän";
+"Witness" = "Todistaja";
+"Revised" = "Muokattu";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Piirrin";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Pois päältä";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Etsii";
+// text on a label; app connects to a stylus
+"Pairing" = "Muodostetaan paria";
+// text on a label; app and stylus are connected
+"Connected" = "Yhdistetty";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Yhteys katkaistu";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Asetukset";
+
+
+// PDF annotation name overrides
+"Square" = "Suorakulmio";
+"Circle" = "Ellipsi";
+"PolyLine" = "Murtoviiva";
+
+// named actions
+"NextPage" = "Seuraava sivu";
+"PrevPage" = "Edellinen sivu";
+"FirstPage" = "Ensimmäinen sivu";
+"LastPage" = "Viimeinen sivu";
+"GoBack" = "Siirry taaksepäin";
+"GoForward" = "Siirry eteenpäin";
+"GoToPage" = "Mene sivulle";
+"Find" = "Etsi";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Lähennä";
+"ZoomOut" = "Loitonna";
+"Execute JavaScript" = "Suorita JavaScript";
+"Rich Media Action" = "Rich Media -toiminto";
+"Rendition Action" = "Esillepano-toiminto";
+"Hide Action" = "Piilota-toiminto";
+"Submit Form" = "Lähetä lomake";
+"Reset" = "Palauta";
+
+// line annotations
+"Start" = "Alku";
+"End" = "Loppu";
+"Line.None" = "Ei mitään";
+"Line.ClosedArrow" = "Suljettu nuoli";
+"Line.OpenArrow" = "Avoin nuoli";
+"Line.Square" = "Neliö";
+"Line.Circle" = "Ympyrä";
+"Line.Diamond" = "Vinoneliö";
+"Line.ROpenArrow" = "Käänteinen avoin nuoli";
+"Line.RClosedArrow" = "Käänteinen suljettu nuoli";
+"Line.Slash" = "Kauttaviiva";
+"Line.Butt" = "Perä";
+"Line Start" = "Viivan alku";
+"Line End" = "Viivan pää";
+"Arrow" = "Nuoli"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "Luo linkki";
+"Add Link" = "Lisää linkki";
+"Edit Link" = "Muokkaa linkkiä";
+"Move Link" = "Siirrä linkki";
+"Remove Link" = "Poista linkki";
+"Open Link" = "Avaa linkki";
+"Go to Page %tu" = "Mene sivulle %tu";
+"Go to Page" = "Mene sivulle"; // title of a Popup
+"Go" = "Mene"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "Tallenna";
+"Link Destination" = "Linkin kohde";
+"Enter page index or a http:// address to link to an URL." = "Anna sivunumero tai http:// -osoite linkataksesi URL:iin.";
+"Page %@ Not Found" = "Sivua %@ ei löytynyt";
+
+// voiceover accessibility
+"Page" = "Sivu";
+"Grid" = "Ruudukko"; // grid with thumbnails
+"Translucent" = "Läpinäkyvä";
+"left" = "vasen";
+"center" = "keskitä";
+"right" = "oikea";
+"decrease" = "vähennä";
+"increase" = "lisää";
+"All Open Documents" = "Kaikki avoimet dokumentit";
+"Add Documents" = "Lisää dokumentteja"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "Sivut %tu-%tu"; // Range of pages
+"Current Page" = "Nykyinen sivu";
+"Current Page (%tu)" = "Nykyinen sivu (%tu)";
+"Ignore Annotations" = "Sivuuta merkinnät";
+"The PDF will not contain any annotations." = "PDF ei sisällä merkintöjä.";
+"Embed Annotations" = "Upota merkinnät";
+"Annotations will remain editable and are embedded into the PDF." = "Merkintöjä voidaan yhä muokata ja ne upotetaan PDF:ään.";
+"Flatten Annotations" = "Litistä merkinnät";
+"Annotations are drawn into the PDF and are readonly." = "Merkinnät renderoidaan PDF:ään ja niitä ei voi muokata.";
+"Annotation Summary" = "Yhteenveto merkinnöistä";
+"Embed Annotations into the PDF and also list them in the email." = "Upota merkinnät PDF:ään ja listaa ne myös sähköpostissa.";
+"Files" = "Tiedostot";
+"Send as single files" = "Lähetä erillisinä tiedostoina";
+"Merge files" = "Yhdistä tiedostot";
+"Original File" = "Alkuperäinen tiedosto";
+"Range" = "Alue";
+"Annotated Pages" = "Merkityt sivut";
+
+// sound annotations
+"Speak" = "Puhu"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "Toista";
+"Pause" = "Keskeytä";
+"Resume" = "Jatka";
+"Stop" = "Pysäytä";
+"Play/Stop" = "Toista/Pysäytä";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Äänitys";
+"Pause Recording" = "Keskeytä äänitys";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Äänitys keskeytetty";
+"Continue Recording" = "Jatka äänitystä";
+"Finish Recording" = "Lopeta äänitys";
+"Audio Problem" = "Ääniongelma";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "Toistoa ei voitu aloittaa.";
+"Could not resume playback." = "Toistoa ei voitu jatkaa.";
+"Microphone permission not granted." = "Lupaa mikrofonin käyttöön ei saatu.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Äänitys ei onnistu. Anna ohjelmalle lupa käyttää mikrofonia.";
+"There was a problem trying to record audio." = "Äänitys ei onnistunut ongelman vuoksi.";
+"Already Recording" = "Äänittää jo";
+"You are already recording on page %@." = "Äänität jo sivulla %@.";
+
+// Forms
+"Form Element" = "Lomake-elementti";
+"Text Field" = "Tekstikenttä";
+"Button" = "Painike";
+"Choice Field" = "Valitse kenttä";
+"Signature Field" = "Allekirjoituksen kenttä";
+"Clear Field" = "Tyhjä kenttä"; // same as delete
+"Type value or pick from list" = "Anna arvo tai valitse listalta";
+"Default Values" = "Oletusarvot";
+"Custom Value" = "Mukautettu arvo";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Virheellinen arvo: täytyy olla suurempi tai yhtä suuri kuin %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Virheellinen arvo: täytyy olla suurempi tai yhtä suuri kuin %s ja pienempi tai yhtä suuri kuin %s.";
+"Invalid value: must be less than or equal to %s." = "Virheellinen arvo: täytyy olla pienempi tai yhtä suuri kuin %s.";
+"Invalid value: must be a number." = "Virheellinen arvo: täytyy olla numero.";
+
+//  Validation of dates
+"Invalid value: must be a date." = "Virheellinen arvo: täytyy olla päivämäärä.";
+
+// General validation
+"Invalid value." = "Virheellinen arvo.";
+
+// Gallery
+"Connection Error" = "Yhteysvirhe";
+"Unsupported Content" = "Sisältötyyppiä ei tueta";
+"The specified content cannot be displayed." = "Kyseistä sisältöä ei voitu näyttää.";
+"Something went wrong" = "Jotain meni pieleen";
+"This item is currently unavailable." = "Tämä kohde ei ole juuri nyt saatavilla.";
+"The information for this gallery could not be loaded." = "Tämän gallerian tietoja ei voitu ladata.";
+"Content Error" = "Sisältövirhe";
+"This content is unsupported." = "Tätä sisältötyyppiä ei tueta.";
+
+// Signatures
+"Digital Signature" = "Digitaalinen allekirjoitus";
+"Signature is valid." = "Allekirjoitus on voimassa.";
+"Signature is valid, but there are some warnings." = "Allekirjoitus on voimassa, mutta joitain varoituksia ilmeni.";
+"It was signed by %@ on %@ at %@." = "Sen allekirjoitti %@ %@ %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Sen allekirjoitti %@ %@.";
+"It claims to have been signed by %@ on %@ at %@." = "Se ilmoittaa, että sen allekirjoitti %@ %@ %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Se ilmoittaa, että se on allekirjoitettu %@ %@.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Tällä allekirjoituksella hyväksyttyä versiota ei ole muokattu, mutta dokumenttiin on tehty muutoksia allekirjoituksen jälkeen."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- Allekirjoitus on voimassa, eikä dokumentin sisältöä ole muokattu sen allekirjoittamisen jälkeen.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Virheellinen allekirjoitus – tämän dokumentin sisällön allekirjoittamisen jälkeen sitä on muokattu, sitä on peukaloitu tai se on korruptoitunut.";
+"Unsigned Signature Field" = "Allekirjoittamaton osuus";
+"Do you really want to remove the signature from the document?" = "Haluatko varmasti poistaa allekirjoituksen dokumentista?";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Varmenteen dataa ei voitu lukea PKCS#7-varmenteeksi. Oikean formaatin data voidaan viedä Adobe Acrobatista."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "Varmenteen allekirjoituksen salauksen purkaminen ei onnistu.";
+"The public key in the certificate could not be read." = "Varmenteen julkista avainta ei voitu lukea.";
+"The signature of the certificate is not valid." = "Varmenteen allekirjoitus ei ole voimassa.";
+"Signature is not valid." = "Allekirjoitus ei ole voimassa.";
+"There is a format error in the notBefore field of the certificate." = "Varmenteen kentässä notBefore on muotoiluvirhe."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "Varmenteen kentässä notAfter on muotoiluvirhe."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Yhtään allekirjoitusta ei voitu varmistaa, koska varmenneketju sisältää vain yhden varmenteen, se ei ole itse allekirjoitettu ja sen myöntäjään ei luoteta.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Varmentajan varmenne ei ole voimassa, koska kyseessä ei ole tunnettu varmentaja tai sen tarkenteet eivät ole yhdenmukaisia kyseisen käyttötarkoituksen kanssa."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "Parametrin basicConstraints polun pituus ylittyi."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "Juurivarmennetta ei ole merkitty luotetuksi kyseiseen tarkoitukseen."; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "Juurivarmenne on merkitty torjumaan kyseinen tarkoitus."; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Myöntäjän varmennetta ei hyväksytty, koska sen \"subject name\" ei ollut sama kuin nykyisen varmenteen \"issuer name\"."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Myöntäjän varmennetta ei hyväksytty, koska sen subject key identifier havaittiin eikä vastannut nykyisen varmenteen authority key identifieriä."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "Myöntäjän varmennetta ei hyväksytty, koska sen \"issuer name ja \"serial number\" havaittiin eivätkä ne vastanneet nykyisen varmenteen authority key identifieriä."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "Myöntäjä kumosi varmenteen.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Annettu varmenne on itse allekirjoitettu ja samaa varmennetta ei löydy luotettujen varmenteiden listalta.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Varmenneketjussa on itse allekirjoitettu varmenne. Varmenneketju voidaan rakentaa varmenteista, joita ei voida todentaa, mutta paikallista juurivarmennetta ei löydetty."; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Yhdelle varmentajalle (CA) ei löytynyt varmennetta allekirjoitushierarkiasta eikä paikallinen ohjelma luota kyseiseen varmentajaan."; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Paikallisesti etsityn varmenteen myöntäjän varmennetta ei löytynyt. Yleensä tämä tarkoittaa sitä, ettei luotettujen varmenteiden lista ole täydellinen.";
+"The certificate that was provided cannot be used for its intended purpose." = "Annettua varmennetta ei voitu käyttää kyseiseen tarkoitukseen.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "Myöntäjän (CA) varmenteen keyUsage-tarkenne ei salli varmenteen allekirjoitusta.";
+"The certificate has expired." = "Varmenne on vanhentunut.";
+"The certificate is not valid until a date in the future." = "Varmenne on voimassa vasta tulevaisuudessa olevana päivämääränä.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "X509-varmenteen luku ei onnistunut";
+// X509 should not be translated
+"No X509 certificate found" = "X509-varmennetta ei löytynyt";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "PKCS12-tiedostoa ei voida lukea. Tiedosto on joko muotoiltu väärin tai korruptoitunut.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "PKCS12-dataa ei voitu avata. Annoitko oikean salasanan?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Tiedostoa ei voitu avata allekirjoituksen todentamiseksi";
+"Could not get signer info" = "Allekirjoittajan tietoja ei saatu";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL ei voinut luoda PKCS7-objektia";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL ei voinut lisätä allekirjoitusta PKCS7-objektiin";
+"OpenSSL could not init PKCS7 object" = "OpenSSL ei voinut käynnistää PKCS7-objektia";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL pystyi luomaan PKCS7-allekirjoituksen";
+"OpenSSL could not sign hash" = "OpenSSL ei voinut allekirjoittaa tiivistettä";
+"Could not write PKCS7 signature" = "PKCS7-allekirjoituksen luonti ei onnistunut";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "Avaa ohjelmassa";
+"PSPDFPolicyEventPrint" = "Tulosta";
+"PSPDFPolicyEventEmail" = "Sähköposti";
+"PSPDFPolicyEventMessage" = "Viesti";
+"PSPDFPolicyEventQuickLook" = "Pikakatsele"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "Äänitallenne";
+"PSPDFPolicyEventCamera" = "Kamera";
+"PSPDFPolicyEventPasteboard" = "Luonnos"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "Lähetä lomake";
+"PSPDFPolicyEventNetwork" = "Verkko";
+
+// Night Mode
+"Default" = "Oletus"; // Default view (night mode not enabled)
+"Sepia" = "Seepia"; // Document uses sepia colors
+"Night" = "Yö"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "Ei valittua dokumenttia";
+"Unable to display document" = "Dokumenttia ei voitu näyttää";
+"Loading..." = "Lataa...";
+"Locked" = "Lukittu";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "Tiedosto, jota yrität avata, ei ole PDF-tiedosto tai se voi olla viallinen.";
+"A password is required to access this document." = "Tämän tiedoston avaamiseen vaaditaan salasana.";
+"The security scheme of this document is currently not supported." = "Tämän dokumentin suojaustapaa ei tueta tällä hetkellä.";
+"An unknown error has occured while trying to open this file." = "Tiedostoa avattaessa tapahtui tuntematon virhe.";
+
+// Document Editor
+"Document Editor" = "Dokumenttieditori";
+"Add Page" = "Lisää sivu";
+"Delete Pages" = "Poista sivuja";
+"Duplicate Pages" = "Monista sivuja";
+"Move Pages" = "Siirrä sivuja";
+"Rotate Pages" = "Pyöritä sivuja";
+"Page Size" = "Sivukoko";
+"Background Color" = "Taustaväri";
+"Pattern" = "Lomake-elementti";
+"Use Document Size" = "Käytä dokumentin kokoa";
+"Orientation" = "Suunta";
+"Portrait" = "Pysty";
+"Landscape" = "Vaaka";
+"Name" = "Nimi";
+"Document Name" = "Dokumentin nimi";
+"Documents" = "Dokumentit"; // Name of directory
+"Use Document Directory" = "Käytä dokumentin hakemistoa";
+"Directory" = "Hakemisto";
+"Replace File?" = "Korvataanko tiedosto?";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Tiedosto nimeltä \"%@\" on jo valitussa hakemistossa. Haluatko korvata sen?";
+"Replace" = "Korvaa";
+"Saving…" = "Tallentaa...";
+"Saved" = "Tallennettu";
+"Save As…" = "Tallenna nimellä...";
+"Discard Changes" = "Hylkää muutokset";
+"Empty" = "Tyhjä";
+
+// Document Editor Errors
+"A blank document can not be saved." = "Tyhjää dokumenttia ei voida tallentaa.";
+"The document could not be saved." = "Dokumenttia ei voitu tallentaa.";
+"This document does not support editing." = "Tämä dokumentti ei tue editointia.";
+
+// Page Patterns
+"None" = "Ei mitään";
+"Dot5mm" = "Pisteet 5mm";
+"Grid5mm" = "Ruudukko 5mm";
+"Lines5mm" = "Viivat 5mm";
+"Lines7mm" = "Viivat 7mm";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US Letter";
+"US Legal" = "US Legal";
+
+// Page Export
+"Export Pages" = "Vie sivuja";
+"Export…" = "Vie...";
+"Exporting…" = "Vie...";
+"Exported" = "Viety";
+"%@ - Exported" = "%@ - Viety"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - Kopio"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "Valittu dokumentti on auki. Ole hyvä ja valitse toinen tiedostonimi.";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Tekstistä puheeksi -palvelu ei ole saatavilla. Varmista internetyhteytesi toimivuus tai että Google Text-to-speech -palvelu on asennettu ja toiminnassa laitteellasi.";

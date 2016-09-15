@@ -1,0 +1,125 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1458155893.23187,
+      "response" : {
+        "body" : {
+          "html_url" : "https:\/\/mobiledev.instructure.com\/courses\/24219\/assignments\/1252468",
+          "grading_standard_id" : null,
+          "automatic_peer_reviews" : false,
+          "position" : 27,
+          "submissions_download_url" : "https:\/\/mobiledev.instructure.com\/courses\/24219\/assignments\/1252468\/submissions?zip=1",
+          "course_id" : 24219,
+          "updated_at" : "2016-02-16T22:54:02Z",
+          "unlock_at" : null,
+          "anonymous_peer_reviews" : null,
+          "assignment_group_id" : 5724,
+          "submission_types" : [
+            "online_upload",
+            "online_text_entry",
+            "online_url",
+            "media_recording"
+          ],
+          "has_submitted_submissions" : true,
+          "muted" : false,
+          "moderated_grading" : null,
+          "points_possible" : 5,
+          "name" : "The Submit Anything Assignment!",
+          "grading_type" : "points",
+          "group_category_id" : null,
+          "id" : 1252468,
+          "peer_reviews" : false,
+          "submission" : {
+            "id" : 72978467,
+            "body" : null,
+            "late" : true,
+            "graded_at" : null,
+            "assignment_id" : 1252468,
+            "url" : "http:\/\/instructure.com",
+            "user_id" : 6782429,
+            "attempt" : 103,
+            "submission_type" : "online_url",
+            "submitted_at" : "2016-03-04T05:34:51Z",
+            "preview_url" : "https:\/\/mobiledev.instructure.com\/courses\/24219\/assignments\/1252468\/submissions\/6782429?preview=1&version=103",
+            "excused" : null,
+            "grade_matches_current_submission" : true,
+            "attachments" : [
+              {
+                "id" : 82437419,
+                "content-type" : "image\/png",
+                "locked_for_user" : false,
+                "lock_at" : null,
+                "folder_id" : null,
+                "filename" : "websnappr20160229-3417-1kl5e8d.png",
+                "created_at" : "2016-03-04T05:35:00Z",
+                "url" : "https:\/\/mobiledev.instructure.com\/files\/82437419\/download?download_frd=1&verifier=pm4KRsJ9dx1xPEtr1JRNZh48bn6INQm7wdQEgLcz",
+                "hidden_for_user" : false,
+                "size" : 381872,
+                "thumbnail_url" : "https:\/\/instructure-uploads.s3.amazonaws.com\/account_99298\/thumbnails\/82222380\/websnappr20160229-3417-1kl5e8d_thumb.png?AWSAccessKeyId=AKIAJFNFXH2V2O7RPCAA&Expires=1458674293&Signature=2r0XAB3q4tAJiizvVnxUUYJfMYc%3D",
+                "preview_url" : null,
+                "display_name" : "websnappr20160304-23314-shdyp4.png",
+                "updated_at" : "2016-03-04T05:35:00Z",
+                "unlock_at" : null,
+                "locked" : false,
+                "hidden" : false,
+                "modified_at" : "2016-03-04T05:35:00Z"
+              }
+            ],
+            "grader_id" : null,
+            "grade" : null,
+            "score" : null,
+            "workflow_state" : "submitted"
+          },
+          "lock_at" : null,
+          "grade_group_students_individually" : false,
+          "locked_for_user" : false,
+          "created_at" : "2012-05-15T19:52:55Z",
+          "published" : true,
+          "post_to_sis" : null,
+          "only_visible_to_overrides" : false,
+          "due_at" : "2012-06-01T05:59:00Z",
+          "description" : "<p>You can submit anything! Anything appropriate, that is.<\/p>"
+        },
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/24219\/assignments\/1252468?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=PH8c%2BBKiwPNR%2BvaIm8G0aC3ojnaPZZmCU1T37UQvbnVqTk7AW%2BCtnR6qurDC8v4Lb4znPekv%2BsYiHZiZDWgBDw%3D%3D; path=\/; secure, log_session_id=15830e8a18af26608428a77565e33ec4; path=\/, canvas_session=ZRjEvBXFDat2r5wT6mh-rQ.6f7HeUmwtWo59Q1u9yLBXwdfvNPDa-XaEA2pVGySsfLIbrmxhdaIBVCy7DF1UOP4hObje01MMA6hYhg86nftxu3Df_Fm-uKJSfSukluJMn3PyPwdvQZr3NBEukKpe6-6.dBX7C4D_9941D5T9-jphFkN3-nU.VumxdQ; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.237690",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "X-Request-Processor" : "a01de13",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "Status" : "200 OK",
+          "X-Session-Id" : "15830e8a18af26608428a77565e33ec4",
+          "X-Rate-Limit-Remaining" : "700",
+          "X-Request-Context-Id" : "82f44db0-fcd0-4788-b591-fccc57f6afb0",
+          "X-Request-Cost" : "0.20967459499997726",
+          "Content-Length" : "1041",
+          "X-Canvas-Meta" : "q=1217;at=10000000539225;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1e;o=assignments_api;n=show;t=Course;i=24219;b=1304880;m=1304880;u=0.15;y=0.01;d=0.06;",
+          "Date" : "Wed, 16 Mar 2016 19:18:12 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000006782429",
+          "Etag" : "\"f92a78bffa08ba99abdda335643edccd\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/24219\/assignments\/1252468?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Assignments\/com.instructure.Assignments (1; OS Version 9.2 (Build 13C75))",
+          "Authorization" : "Bearer 1~VrFstYIqog7pM72sX6tVWVQzlWqpVBPc6izVVQSSwZMCCW6VTWUKrcD4gai7v9Hd"
+        }
+      }
+    }
+  ],
+  "name" : "assignment"
+}

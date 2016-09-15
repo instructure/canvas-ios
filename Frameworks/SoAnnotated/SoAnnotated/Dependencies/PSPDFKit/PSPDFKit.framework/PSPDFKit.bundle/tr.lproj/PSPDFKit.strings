@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Kapat";
+"Cancel" = "Vazgeç";
+"OK" = "Tamam";
+"Open" = "Aç";
+"Untitled" = "Adsız";
+"File Not Found" = "Dosya Bulunamadı";
+"File couldn't be opened." = "Dosya açılamadı."; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "Adsız PDF";
+"Page %tu" = "Sayfa %tu";
+"Page %@" = "Sayfa %@";
+"Next" = "Sonraki";
+"Previous" = "Geri";
+"Error" = "Hata";
+
+// toolbar
+"Outline" = "Çerçeve"; // Table of contents
+"No Outline" = "Çerçeve Yok";
+"Search Outline" = "Arama Çerçevesi";
+"Search" = "Arama";
+"Email" = "E-posta";
+"Send via Email" = "E-posta ile Gönder";
+"Send" = "Gönder";
+"Open In" = "Aç";
+"Commit" = "İşle";
+"Sending to %@" = "Gönderiliyor: %@"; // Open document with an application
+"Pages" = "Sayfalar";
+"Print with annotations" = "Notlarla yazdır";
+"Print without annotations" = "Notsuz yazdır";
+"No Applications found" = "PDF belgelerini açabilen yüklenmiş bir uygulama bulunamadı.";
+"Print" = "Yazdır";
+"Annotation" = "Not";
+"Annotations" = "Notlar";
+"No Annotations" = "Not Yok";
+"Bookmarks" = "Yer İmleri";
+"No Bookmarks" = "Yer İmi Yok";
+"Add Bookmark" = "Yer İmi Ekle";
+"Remove Bookmark" = "Yer İmini Sil";
+"Brightness" = "Parlaklık";
+"Share" = "Paylaş";
+"Preparing" = "Hazırlanıyor";
+"Loading" = "Yükleniyor";
+"Expand" = "Genişlet";
+"Collapse" = "İçeriği Gizle";
+// SMS / iMessage sharing button
+"Message" = "Mesaj";
+"Thumbnails" = "Küçük Resimler";
+"Drag Toolbar" = "Araç Çubuğunu Sürükle";
+
+// thumbnails
+"Bookmarked" = "Yer İmleri";
+"Annotated" = "Not eklendi";
+"All" = "Tümü";
+
+// password
+"Password" = "Şifre"; // text on a label
+"Unlock" = "Kilidi Aç";
+"Please enter the password." = "Lütfen şifrenizi girin.";
+"This document cannot be unlocked. %@ is unsupported." = "Belgenin kilidi kaldırılamadı. %@ desteklenmiyor.";
+
+// page
+"%tu of %tu" = "%tu / %tu";
+"%tu-%tu of %tu" = "%tu-%tu / %tu";
+"%@ (%tu of %tu)" = "%@ (%tu / %tu)";
+"%@, Page %tu" = "%@, Sayfa %tu";
+"Leave %@?" = "Çık: %@";
+
+// search
+"Search Document" = "Dökümanda Ara"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "Sayfa %tu / %tu aranıyor";
+"Search Completed" = "Arama Tamamlandı";
+"Search Cancelled" = "Arama İptal Edildi";
+"%tu left" = "%tu kaldı"; // Indexing Documents... 5 left
+"Searching" = "Aranıyor";
+"Done" = "Bitti";
+"Indexing Documents" = "Belgeler Dizinleniyor";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Belgede içerik yok";
+
+// inline browser
+"Open in Safari" = "Safari'de Aç";
+"Open in Chrome" = "Chrome'da Aç";
+"Your %@ is not configured to send emails." = "%@, e-posta göndermek için ayarlanmamış.";
+"The link is requesting to open %@Would you like to continue?" = "Bağlantı %@ tarayıcısını açmak istiyor. Devam etmek ister misiniz?";
+"an external application" = "harici uygulama"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "E-posta"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "%@ için işleyici bulunamadı";
+
+// text selection
+"Text copied to clipboard." = "Metin panoya kopyalandı.";
+"Save To Camera Roll" = "Film Rulosu'na Kaydet";
+"Failed to extract image." = "Görüntü ayıklanması başarısız oldu.";
+"Type value or pick from list" = "Bir değer gir ya da listeden seç";
+
+// annotations
+"Add %@" = "Ekle: %@";
+"Remove %@" = "Sil: %@";
+"Remove" = "Sil";
+"Delete" = "Sil"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "Düzenle";
+"Undo" = "Geri Al";
+"Nothing to undo" = "Geri alınacak bir işlem yok";
+"Redo" = "Yinele";
+"Nothing to redo" = "Yinelenecek bir işlem yok";
+"Type" = "Tür"; // kind of Annotation can be selected
+"Size" = "Büyüklük";
+"Font" = "Fontlar";
+"Fonts" = "Fontlar";
+"All Fonts" = "Tüm Fontlar";
+"Downloadable Fonts" = "İndirilebilir Fontlar";
+"Search Fonts" = "Fontlarda Ara";
+"Choose Color" = "Renk Seç";
+"Choose Fill Color" = "Doldurma Rengi Seç";
+"Rainbow" = "Gökkuşağı";
+"Monochrome" = "Monokrom";
+"Vintage" = "Vintaj";
+"Color" = "Renk";
+"Border" = "Kenarlık";
+"Fill Color" = "Doldurma Rengi";
+"Line End Fill Color" = "Satır Sonu Doldurma Rengi";
+"Opacity" = "Saydamlık";
+"%@ %%" = "%@ %%";
+"Thickness" = "Kalınlık";
+"%@ pt" = "%@ pt";
+"Yellow" = "Sarı";
+"Green" = "Yeşil";
+"Red" = "Kırmızı";
+"Blue" = "Mavi";
+"Pink" = "Pembe";
+"Black" = "Siyah";
+"Orange" = "Turuncu";
+"Purple" = "Mor";
+"Cyan" = "Camgöbeği";
+"Gray" = "Gri";
+"White" = "Beyaz";
+"Define" = "Tanımla";
+"Wikipedia" = "Wikipedia";
+"Highlight" = "Vurgu";
+"Underline" = "Alt Çizgi";
+"Squiggle" = "Eğri";
+"StrikeOut" = "Üst Çizgi";
+"Rectangle" = "Dikdörtgen";
+"Ellipse" = "Elips";
+"Line" = "Çizgi"; // something that can be drawn
+"Lines" = "Çizgi"; // "5 Lines" were drawn
+"Polyline" = "Devamlı Çizgi";
+"Polygon" = "Poligon";
+"Signature" = "İmza";
+"Signatures" = "İmzalar";
+"Signed" = "İmzalandı";
+"Sign" = "İmzala";
+"Sign using %@" = "%@ kullanarak imzala"; // e.g. Adobe.PPKLite
+"Methods" = "Yöntemler"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Kimlik Seç"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "Damga";
+"Stamps" = "Damgalar";
+"Custom" = "Özel"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "Damga Yarat";
+"Preview" = "Ön İzleme";
+"Stamp Text" = "Damga Metni";
+"Add Signature" = "İmza Ekle";
+"Remove Signature" = "İmzayı Sil";
+"My Signature" = "Benim İmzam";
+"No Signatures" = "İmza Yok"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "Müşteri İmzası";
+"Please sign here" = "Lütfen burayı imzalayın";
+"Note" = "Not";
+"Text" = "Metin";
+"Delete Note" = "Notu Sil";
+"Remove Note" = "Notu Kaldır";
+"%@ could not be found." = "%@ bulunamadı.";
+"Photo Library" = "Fotoğraf Kütüphanesi";
+"Camera" = "Kamera";
+"Image" = "Resim";
+"Low Quality" = "Düşük Kalite";
+"Medium Quality" = "Orta Kalite";
+"High Quality" = "Yüksek Kalite";
+"Clear All" = "Tümünü Temizle";
+"Clear" = "Temizle";
+"Style" = "Stil";
+"Link" = "Bağlantı";
+"Ink" = "Mürekkep";
+"FreeText" = "Serbest Metin";
+"Screen" = "Ekran";
+"RichMedia" = "Zengin İçerik";
+"Left" = "Sol";
+"Center" = "Merkez";
+"Right" = "Sağ";
+"Alignment" = "Hizalama";
+"Preview File" = "Dosyayı Önizle";
+"Copy" = "Kopyala";
+"Paste" = "Yapıştır";
+"Inspector" = "Denetçi";
+"Group" = "Grupla";
+"Ungroup" = "Grubu Kaldır";
+"Merge" = "Birleştir"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "Örnek";
+"Annotation Summary for %@:\n" = "%@ için Not Özeti:\n";
+// title
+"Author Name" = "Yazar Adı";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Lütfen yeni eklenen notlar için kullanmak istediğiniz yazar adını girin.";
+// text field placeholder
+"Name" = "Ad";
+// meaning: close
+"Dismiss" = "Kapat";
+"Fit to Text" = "Metne Sabitle";
+"Draw" = "Çiz";
+"Sound" = "Ses";
+"Eraser" = "Silgi";
+"Toggle Eraser" = "Anahtar Kapatma"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "Seçme Aracı";
+"Saved Annotations" = "Kaydedilmiş Notlar";
+"Add" = "Ekle"; // to add - infinitive
+"Date" = "Tarih";
+"Time" = "Saat";
+"No Pages" = "Sayfa Yok";
+"Drag to resize" = "Büyüklüğü değiştirmek için sürükle"; // used as hint that inspector is resizable
+"Convert to" = "Dönüştür:"; // used as label on action that changes free text intent type
+"Color Presets" = "Renk Önayarları";
+
+"Callout" = "Belirtme çizgisi"; // freetext annotation with an arrow
+"Generic" = "Jenerik"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "Çizgi Stili";
+"Solid" = "Düz";
+"Narrow Dots" = "İnce Nokta";
+"Wide Dots" = "Kalın Nokta";
+"Narrow Dashes" = "İnce Tire";
+"Wide Dashes" = "Kalın Tire";
+
+// Stamps
+"Approved" = "Onaylandı";
+"Not Approved" = "Onaylanmadı";
+"Draft" = "Taslak";
+"Final" = "Son";
+"Completed" = "Tamamlandı";
+"Confidential" = "Gizli";
+"For Public Release" = "Genel Sürüm";
+"Not For Public Release" = "Özel Sürüm";
+"For Comment" = "Yorum";
+"Void" = "Geçersiz";
+"Preliminary Results" = "Ön Sonuçlar";
+"Information only" = "Sadece Bilgi";
+"Accepted" = "Kabul Edildi";
+"Rejected" = "Kabul Edilmedi";
+"Initial Here" = "Başharfler Buraya";
+"Sign Here" = "Burayı İmzala";
+"Witness" = "Şahit";
+"Revised" = "Gözden Geçirildi";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Stylus";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Kapalı";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Taranıyor";
+// text on a label; app connects to a stylus
+"Pairing" = "Eşleştiriliyor";
+// text on a label; app and stylus are connected
+"Connected" = "Bağlanıyor";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Bağlı Değil";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Ayarlar";
+
+
+// PDF annotation name overrides
+"Square" = "Dikdörtgen";
+"Circle" = "Elips";
+"PolyLine" = "Devamlı Çizgi";
+
+// named actions
+"NextPage" = "Sonraki Sayfa";
+"PrevPage" = "Önceki Sayfa";
+"FirstPage" = "İlk Sayfa";
+"LastPage" = "Son Sayfa";
+"GoBack" = "Geri Dön";
+"GoForward" = "İleri Git";
+"GoToPage" = "Sayfaya Git";
+"Find" = "Bul";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Büyüt";
+"ZoomOut" = "Küçült";
+"Execute JavaScript" = "JavaScript çalıştır";
+"Rich Media Action" = "Zengin İçerik Eylemi";
+"Rendition Action" = "İşleme Eylemi";
+"Hide Action" = "Eylemi Gizle";
+"Submit Form" = "Formu Gönder";
+"Reset" = "Sıfırla";
+
+// line annotations
+"Start" = "Başlat";
+"End" = "Bitir";
+"Line.None" = "Hiçbiri";
+"Line.ClosedArrow" = "Kapalı Ok";
+"Line.OpenArrow" = "Açık Ok";
+"Line.Square" = "Kare";
+"Line.Circle" = "Daire";
+"Line.Diamond" = "Karo";
+"Line.ROpenArrow" = "Ters Açık Ok";
+"Line.RClosedArrow" = "Ters Kapalı Ok";
+"Line.Slash" = "Bölme İşareti";
+"Line.Butt" = "Uç";
+"Line Start" = "Satır Başlangıcı";
+"Line End" = "Satır Sonu";
+"Arrow" = "Ok"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "Bağlantı Oluştur";
+"Add Link" = "Bağlantı Ekle";
+"Edit Link" = "Bağlatıyı Düzenle";
+"Move Link" = "Bağlantıyı Taşı";
+"Remove Link" = "Bağlantıyı Kaldır";
+"Open Link" = "Bağlantıyı Aç";
+"Go to Page %tu" = "%tu. sayfaya git";
+"Go to Page" = "Sayfaya Git"; // title of a Popup
+"Go" = "Git"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "Kaydet";
+"Link Destination" = "Bağlantı Kayıt Yeri";
+"Enter page index or a http:// address to link to an URL." = "URL'ye bağlamak için sayfa dizini veya http:// adresi girin.";
+"Page %@ Not Found" = "Sayfa %@ Bulunamadı";
+
+// voiceover accessibility
+"Page" = "Sayfa";
+"Grid" = "Izgara"; // grid with thumbnails
+"Translucent" = "Saydam";
+"left" = "sol";
+"center" = "merkez";
+"right" = "sağ";
+"decrease" = "azalt";
+"increase" = "artır";
+"All Open Documents" = "Tüm Açık Belgeler";
+"Add Documents" = "Belge Ekle"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "Sayfa %tu-%tu"; // Range of pages
+"Current Page" = "Şu Anki Sayfa";
+"Current Page (%tu)" = "Şu anki Sayfa (%tu)";
+"Ignore Annotations" = "Notları Yoksay";
+"The PDF will not contain any annotations." = "PDF herhangi bir not içermeyecek.";
+"Embed Annotations" = "Notları Göm";
+"Annotations will remain editable and are embedded into the PDF." = "Notlar düzenlebilir olarak kalacak olup, PDF'de gömülüdür.";
+"Flatten Annotations" = "Notları Hizala";
+"Annotations are drawn into the PDF and are readonly." = "Notlar PDF'de işlenecek olup, yalnızca okunur niteliktedir.";
+"Annotation Summary" = "Not Özeti";
+"Embed Annotations into the PDF and also list them in the email." = "Notları PDF'e göm ve onları e-postada listele.";
+"Files" = "Dosyalar";
+"Send as single files" = "Tek dosya olarak gönder";
+"Merge files" = "Dosyaları birleştir";
+"Original File" = "Özgün Dosya";
+"Range" = "Aralık";
+"Annotated Pages" = "Notlu Sayfalar";
+
+// sound annotations
+"Speak" = "Konuş"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "Çal";
+"Pause" = "Duraklat";
+"Resume" = "Sürdür";
+"Stop" = "Durdur";
+"Play/Stop" = "Oynat/Durdur";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Kaydet";
+"Pause Recording" = "Kaydı Duraklat";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Kayıt Duraklatıldı";
+"Continue Recording" = "Kayda Devam Et";
+"Finish Recording" = "Kaydı Bitir";
+"Audio Problem" = "Ses Problemi";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "Oynatım başlatılamıyor.";
+"Could not resume playback." = "Oynatım sürdürülemiyor.";
+"Microphone permission not granted." = "Mikrofona erişim izni verilmedi.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Şu anda ses kaydedilemiyor. Lütfen uygulamanın mikrofonunuza erişmesine izin verin.";
+"There was a problem trying to record audio." = "Kayıt yapılırken bir sorun ile karşılaşıldı.";
+"Already Recording" = "Kayıt Yapılıyor";
+"You are already recording on page %@." = "%@ sayfada zaten ses kaydı yapıyorsunuz.";
+
+// Forms
+"Form Element" = "Form Öğesi";
+"Text Field" = "Metin Alanı";
+"Button" = "Düğme";
+"Choice Field" = "Seçim Alanı";
+"Signature Field" = "İmza Alanı";
+"Clear Field" = "Alanı Temizle"; // same as delete
+"Type value or pick from list" = "Bir değer gir ya da listeden seç";
+"Default Values" = "Saptanmış Değerler";
+"Custom Value" = "Seçilmiş Değerler";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Geçersiz değer: %s değerinden büyük veya ona eşit olmalı.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Geçersiz değer: ya %s değerinden büyük veya ona eşit olmalı ya da %s değerinden küçük veya ona eşit olmalı.";
+"Invalid value: must be less than or equal to %s." = "Geçersiz değer: %s değerinden küçük veya ona eşit olmalı.";
+"Invalid value: must be a number." = "Geçersiz değer: bir sayı olmalı.";
+
+//  Validation of dates
+"Invalid value: must be a date." = "Geçersiz değer: bir tarih olmalı.";
+
+// General validation
+"Invalid value." = "Geçersiz değer.";
+
+// Gallery
+"Connection Error" = "Bağlantı Hatası";
+"Unsupported Content" = "Desteklenmeyen İçerik";
+"The specified content cannot be displayed." = "Belirlenen içerik görüntülenmiyor.";
+"Something went wrong" = "Bir hata oluştu";
+"This item is currently unavailable." = "Bu öğe şu an kullanılamıyor.";
+"The information for this gallery could not be loaded." = "Bu galeri bilgisi yüklenemedi.";
+"Content Error" = "İçerik Hatası";
+"This content is unsupported." = "İçerik desteklenmiyor.";
+
+// Signatures
+"Digital Signature" = "Dijital İmza";
+"Signature is valid." = "İmza geçerli.";
+"Signature is valid, but there are some warnings." = "İmza geçerli ancak bazı uyarılar var.";
+"It was signed by %@ on %@ at %@." = "%@ tarafından %@ tarihinde %@ saatinde imzalandı."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "%@ tarihinde %@ saatinde imzalandı.";
+"It claims to have been signed by %@ on %@ at %@." = "%@ tarafından %@ tarihinde %@ saatinde imzalandığı belirtiliyor."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "%@ tarihinde %@ saatinde imzalandığı belirtiliyor.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Bu imza tarafından yapılan revizyon değiştirilmemiştir; buna rağmen, imzalandığından beri belgede belirli değişiklikler yapılmıştır."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- Bu imza geçerli olup, belgenin içeriği imzalandığından beri değiştirilmemiştir.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Geçersiz imza — bu belgenin içeriği imzalandığından beri belge değiştirilmiş, içeriğiyle oynanmış veya zarar görmüş.";
+"Unsigned Signature Field" = "İmzalanmamış İmza Alanı";
+"Do you really want to remove the signature from the document?" = "Belgedeki imzayı kaldırmak istediğinizden emin misiniz?";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Sertifika verileri PKCS#7 sertifikası olarak okunamıyor. Doğru biçim verileri Adobe Acrobat’dan dışa aktarılabilir."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "Sertifika imzasının şifresi çözülemiyor.";
+"The public key in the certificate could not be read." = "Sertifikadaki açık anahtar okunamıyor.";
+"The signature of the certificate is not valid." = "Sertifikanın bu imzası geçerli değil.";
+"Signature is not valid." = "İmza geçerli değil.";
+"There is a format error in the notBefore field of the certificate." = "Sertifikanın notBefore alanında bir biçim hatası var."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "Sertifikanın notAfter alanında bir biçim hatası var."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "İmzalar doğrulanamıyor çünkü sertifika zinciri yanlızca bir sertifka içeriyor; kendiliğinden imzalı değil ve sağlayıcıya güvenilemiyor.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "CA sertifikası geçerli değil çünkü o ya bir CA değil yada onun uzantıları amaçlanan hedefe uyuşmuyor."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "basicConstraints pathlength parametresi aşıldı."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "root CA, hedeflenen amacı için güvenli olarak işaretlenmemiş."; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "root CA, belirlenen amacı reddetmek üzere işaretli."; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Sertifika sağlayıcı reddedildi çünkü onun subject name'i, halihazırdaki sertifikanın issuer name'i ile eşleşmiyor."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Sertifika sağlayıcı reddedildi çünkü onun mevcut subject key identifier’ı, halihazırda bulunan authority key identifier’ı ile eşleşmiyor."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "Sertifika sağlayıcı reddedildi çünkü onun mevcut subject name'i ve serial number'ı, halihazırda bulunan sertifikanın otorite şifre belirleyicisi ile eşleşmiyor."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "Sertifika, sağlayıcı tarafından iptal edildi.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Geçen sertifika otomatik olarak imzalı ve aynı sertifika güvenilir sertifikalar listesinde bulunamıyor.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Sertifika zincirinde otomatik olarak imzalanmış bir imza var. Sertifika zincirinin güvenilmeyen sertifikalar kullanılarak oluşturulabilmesi mümkün ancak root CA yerel olarak bulunamıyor."; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "İmzalama hiyerarşisinde sertifika yetkililerinden (CA'lardan) birinin sertifikası bulunamıyor ve bu CA yerel uygulama tarafından güvenilir nitelikte değil."; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Yerel olarak aranan bir sertifikanın sertifika sağlayıcısı bulunamıyor. Genellikle bu, güvenilen sertifka listesinin tamamlanmış olmadığı anlamına gelir.";
+"The certificate that was provided cannot be used for its intended purpose." = "Sağlanan sertifika amaçlanan hedef için kullanılamıyor.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "Sertifika sağlayıcının anahtar kullanım uzantısı sertifikanın imzalanmasına izin vermiyor.";
+"The certificate has expired." = "Sertifikanın süresi doldu.";
+"The certificate is not valid until a date in the future." = "Sertifika ilerideki bir tarihe kadar geçerli değil.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Verilerdeki X509 sertifikası okunamıyor";
+// X509 should not be translated
+"No X509 certificate found" = "X509 sertifikası bulunamadı";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "PKCS12 dosyası okunamıyor. Dosya düzgün şekilde formatlanmamış veya hasar görmüş.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "PKCS12 verilerinin kilidi açılamıyor. Doğru parolayı girdiğinizden emin misiniz?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "İmza doğrulama için dosya açılamıyor";
+"Could not get signer info" = "İmzalayan bilgisi alınamıyor";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL, PKCS7 nesnesi yaratamıyor";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL, PKCS7 nesnesine imza ekleyemiyor";
+"OpenSSL could not init PKCS7 object" = "OpenSSL, PKCS7 nesnesini başlatamıyor";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL, PKCS7 imzası oluşturamıyor";
+"OpenSSL could not sign hash" = "OpenSSL, sağlama imzalayamıyor";
+"Could not write PKCS7 signature" = "PKCS7 imzası yazılamıyor";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "Aç";
+"PSPDFPolicyEventPrint" = "Yazdır";
+"PSPDFPolicyEventEmail" = "E-posta";
+"PSPDFPolicyEventMessage" = "Mesaj";
+"PSPDFPolicyEventQuickLook" = "Göz At"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "Ses Kayıt";
+"PSPDFPolicyEventCamera" = "Kamera";
+"PSPDFPolicyEventPasteboard" = "Yapıştırma Panosu"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "Formu Gönder";
+"PSPDFPolicyEventNetwork" = "Ağ";
+
+// Night Mode
+"Default" = "Saptanmış"; // Default view (night mode not enabled)
+"Sepia" = "Sepya"; // Document uses sepia colors
+"Night" = "Gece"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "Ayarlı belge yok";
+"Unable to display document" = "Belge görüntülenemiyor";
+"Loading..." = "Yükleniyor...";
+"Locked" = "Kilitli";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "Erişmeyi denediğiniz dosya, ya PDF dosyası değil ya da hasar görmüş.";
+"A password is required to access this document." = "Bu belgeye erişmek için bir parola gerekli.";
+"The security scheme of this document is currently not supported." = "Bu belgenin güvenlik şeması şu anda desteklenmiyor.";
+"An unknown error has occured while trying to open this file." = "Dosyayı açmaya çalışırken hata oluştu.";
+
+// Document Editor
+"Document Editor" = "Belge Editörü";
+"Add Page" = "Sayfa Ekle";
+"Delete Pages" = "Sayfaları Sil";
+"Duplicate Pages" = "Sayfaları Çoğalt";
+"Move Pages" = "Sayfaları Taşı";
+"Rotate Pages" = "Sayfaları Döndür";
+"Page Size" = "Sayfa Büyüklüğü";
+"Background Color" = "Arkaplan Rengi";
+"Pattern" = "Form Öğesi";
+"Use Document Size" = "Belge Büyüklüğünü Kullan";
+"Orientation" = "Oryantasyon";
+"Portrait" = "Portre";
+"Landscape" = "Yatay";
+"Name" = "Ad";
+"Document Name" = "Belge Adı";
+"Documents" = "Belgeler"; // Name of directory
+"Use Document Directory" = "Belge Dizinini Kullan";
+"Directory" = "Dizin";
+"Replace File?" = "Dosyayı Değiştir?";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Seçilen konumda \"%@\" adında bir dosya zaten var. Onu değiştirmek mi istiyorsunuz?";
+"Replace" = "Değiştir";
+"Saving…" = "Kaydediliyor…";
+"Saved" = "Kaydedildi";
+"Save As…" = "Kaydet…";
+"Discard Changes" = "Değişiklikleri Gözardı Et";
+"Empty" = "Geçersiz";
+
+// Document Editor Errors
+"A blank document can not be saved." = "Boş bir belge kaydedilemez.";
+"The document could not be saved." = "Belge kaydedilemedi.";
+"This document does not support editing." = "Bu belge düzenlemeyi desteklemiyor.";
+
+// Page Patterns
+"None" = "Hiçbiri";
+"Dot5mm" = "Nokta 5mm";
+"Grid5mm" = "Izgara 5mm";
+"Lines5mm" = "Satır 5mm";
+"Lines7mm" = "Satır 7mm";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US Letter";
+"US Legal" = "US Legal";
+
+// Page Export
+"Export Pages" = "Sayfaları Dışa Aktar";
+"Export…" = "Dışa Aktar…";
+"Exporting…" = "Dışa Aktarılıyor…";
+"Exported" = "Dışa Aktarıldı";
+"%@ - Exported" = "%@ - Dışa Aktarıldı"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - Kopyala"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "Seçilen belge şu anda açık. Lütfen başka bir dosya adı seçin.";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Metin okuma servisi kullanılamıyor. Etkin bir İnternet bağlantınız olduğundan veya Google metin okuma motorunun yüklü ve bunun aygıtınızda etkinleştirilmiş olduğundan emin olun.";

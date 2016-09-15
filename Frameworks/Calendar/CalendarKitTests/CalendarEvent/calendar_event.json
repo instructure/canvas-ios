@@ -1,0 +1,28 @@
+{
+    "html_url" : "https:\/\/mobiledev.instructure.com\/calendar?event_id=2724235&include_contexts=user_6782429",
+    "child_events" : [
+
+    ],
+    "title" : "New Event",
+    "location_name" : "",
+    "context_code" : "user_6782429",
+    "hidden" : false,
+    "end_at" : "2016-01-11T07:00:00Z",
+    "updated_at" : "2016-03-11T06:19:36Z",
+    "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/calendar_events\/2724235",
+    "location_address" : null,
+    "child_events_count" : 0,
+    "duplicates" : [
+
+    ],
+    "all_day_date" : "2016-01-11",
+    "type" : "event",
+    "all_day" : true,
+    "id" : 2724235,
+    "parent_event_id" : null,
+    "workflow_state" : "active",
+    "comments" : null,
+    "created_at" : "2016-03-11T06:19:36Z",
+    "start_at" : "2016-01-11T07:00:00Z",
+    "description" : null
+}

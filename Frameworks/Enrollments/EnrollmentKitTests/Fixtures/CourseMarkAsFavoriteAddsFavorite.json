@@ -1,0 +1,53 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1469120852.310844,
+      "response" : {
+        "body" : {
+          "context_id" : 1867097,
+          "context_type" : "Course"
+        },
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/users\/self\/favorites\/courses\/1867097",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=QpQnSeFXfdqjQxi7XeuNvt6jiUXQBrZw37Sb6igQccAgznY%2Bgh8L7dkNTNUTpe%2FtltbvIpxywQDw1%2FeGYFQCkA%3D%3D; path=\/; secure, log_session_id=059a6887c9dfa98383b12a46c8f38de5; path=\/, canvas_session=vvNSdC68JtVZE1ilJlfXOw.ERSUsAvL3hjpzAQK0jL21mKoPPKtQc5gqeSu0U037CWjPHwmIU3-_Y98LTwP7_MP_pY2oHm3FZZyRdl9WH72ogIAb0AqcbNjbTHbmvIVGY22P02TcVxTYrtvS-Sd9h3o.cCgwH-WjnLEDKfH7DWm-1lVjn_w.V5EBVA; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.100881",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "X-Request-Processor" : "a01da8e",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "Status" : "200 OK",
+          "X-Session-Id" : "059a6887c9dfa98383b12a46c8f38de5",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "f65772f8-08cb-4403-9c39-cb7408e21d98",
+          "X-Request-Cost" : "0.08707213199999318",
+          "Content-Length" : "59",
+          "X-Canvas-Meta" : "q=1177;at=10000000613067;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1e;o=favorites;n=add_favorite_course;b=1206652;m=1206652;u=0.07;y=0.00;d=0.02;",
+          "Date" : "Thu, 21 Jul 2016 17:07:32 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000007086865",
+          "Etag" : "\"7db2e957e45e9f8631d599ae28a0dcc5\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "POST",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/users\/self\/favorites\/courses\/1867097",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "Content-Type" : "application\/json",
+          "User-Agent" : "Enrollments\/com.instructure.Enrollments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~O7YyCsxPDKM4GCd3aybOh6jrX4kaRAgT1CXtFa7ClmG79u9mOF2j7Nr56liMdGro"
+        }
+      }
+    }
+  ],
+  "name" : "CourseMarkAsFavoriteAddsFavorite"
+}

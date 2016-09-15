@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Stäng";
+"Cancel" = "Avbryt";
+"OK" = "Gå";
+"Open" = "Öppna";
+"Untitled" = "Namnlös";
+"File Not Found" = "Hittade inte filen";
+"File couldn't be opened." = "Kunde inte öppna filen."; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "Namnlös PDF";
+"Page %tu" = "Sida %tu";
+"Page %@" = "Sida %@";
+"Next" = "Nästa";
+"Previous" = "Föregående";
+"Error" = "Fel";
+
+// toolbar
+"Outline" = "Innehåll"; // Table of contents
+"No Outline" = "Inget innehåll";
+"Search Outline" = "Sök innehåll";
+"Search" = "Sök";
+"Email" = "E-post";
+"Send via Email" = "Skicka som e-post";
+"Send" = "Skicka";
+"Open In" = "Öppna i";
+"Commit" = "Bekräfta";
+"Sending to %@" = "Skickar till %@"; // Open document with an application
+"Pages" = "Sidor";
+"Print with annotations" = "Skriv ut med anteckningar";
+"Print without annotations" = "Skriv ut utan anteckningar";
+"No Applications found" = "Det finns inga installerade program som kan öppna PDF-dokument.";
+"Print" = "Skriv ut";
+"Annotation" = "Anteckning";
+"Annotations" = "Anteckningar";
+"No Annotations" = "Inga anteckningar";
+"Bookmarks" = "Bokmärken";
+"No Bookmarks" = "Inga bokmärken";
+"Add Bookmark" = "Lägg till bokmärke";
+"Remove Bookmark" = "Ta bort bokmärke";
+"Brightness" = "Ljusstyrka";
+"Share" = "Dela";
+"Preparing" = "Förbereder";
+"Loading" = "Läser in";
+"Expand" = "Expandera";
+"Collapse" = "Förminska";
+// SMS / iMessage sharing button
+"Message" = "Meddelande";
+"Thumbnails" = "Miniatyrer";
+"Drag Toolbar" = "Verktygsraden Dra";
+
+// thumbnails
+"Bookmarked" = "Bokmärkt";
+"Annotated" = "Antecknat";
+"All" = "Alla";
+
+// password
+"Password" = "Lösenord"; // text on a label
+"Unlock" = "Lås upp";
+"Please enter the password." = "Ange lösenordet.";
+"This document cannot be unlocked. %@ is unsupported." = "Dokumentet kan inte låsas upp. %@ stöds ej.";
+
+// page
+"%tu of %tu" = "%tu av %tu";
+"%tu-%tu of %tu" = "%tu-%tu av %tu";
+"%@ (%tu of %tu)" = "%@ (%tu av %tu)";
+"%@, Page %tu" = "%@, sida %tu";
+"Leave %@?" = "Lämna %@?";
+
+// search
+"Search Document" = "Sök dokument"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "Söker sida %tu av %tu";
+"Search Completed" = "Sökningen är klar";
+"Search Cancelled" = "Sökningen avbröts";
+"%tu left" = "%tu kvar"; // Indexing Documents... 5 left
+"Searching" = "Söker";
+"Done" = "Klar";
+"Indexing Documents" = "Indexerar dokument";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Dokumentet saknar innehåll";
+
+// inline browser
+"Open in Safari" = "Öppna i Safari";
+"Open in Chrome" = "Öppna i Chrome";
+"Your %@ is not configured to send emails." = "Din %@ har inte ställts in för att skicka e-brev.";
+"The link is requesting to open %@Would you like to continue?" = "Länken vill öppna %@Fortsätt?";
+"an external application" = "ett externt program"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "E-post"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "Hittade inget program som kan hantera %@";
+
+// text selection
+"Text copied to clipboard." = "Text har kopierats till urklipp.";
+"Save To Camera Roll" = "Spara till kamerarullen";
+"Failed to extract image." = "Kunde inte extrahera bild.";
+"Type value or pick from list" = "Skriv värde eller välj från lista";
+
+// annotations
+"Add %@" = "Lägg till %@";
+"Remove %@" = "Ta bort %@";
+"Remove" = "Ta bort";
+"Delete" = "Radera"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "Redigera";
+"Undo" = "Ångra";
+"Nothing to undo" = "Inget att ångra";
+"Redo" = "Gör om";
+"Nothing to redo" = "Inget att ångra";
+"Type" = "Typ"; // kind of Annotation can be selected
+"Size" = "Storlek";
+"Font" = "Typsnitt";
+"Fonts" = "Typsnitt";
+"All Fonts" = "Alla typsnitt";
+"Downloadable Fonts" = "Typsnitt som kan hämtas";
+"Search Fonts" = "Sök typsnitt";
+"Choose Color" = "Välj färg";
+"Choose Fill Color" = "Välj fyllningsfärg";
+"Rainbow" = "Regnbåge";
+"Monochrome" = "Svartvitt";
+"Vintage" = "Gammaldags";
+"Color" = "Färg";
+"Border" = "Kant";
+"Fill Color" = "Fyllningsfärg";
+"Line End Fill Color" = "Fyllningsfärg linjeslut";
+"Opacity" = "Opacitet";
+"%@ %%" = "%@ %%";
+"Thickness" = "Tjocklek";
+"%@ pt" = "%@ pt";
+"Yellow" = "Gult";
+"Green" = "Grönt";
+"Red" = "Rött";
+"Blue" = "Blått";
+"Pink" = "Rosa";
+"Black" = "Svart";
+"Orange" = "Orange";
+"Purple" = "Lila";
+"Cyan" = "Cyan";
+"Gray" = "Grått";
+"White" = "Vitt";
+"Define" = "Definiera";
+"Wikipedia" = "Wikipedia";
+"Highlight" = "Markera";
+"Underline" = "Understruken";
+"Squiggle" = "Våglinje";
+"StrikeOut" = "Överstruken";
+"Rectangle" = "Rektangel";
+"Ellipse" = "Ellips";
+"Line" = "Linje"; // something that can be drawn
+"Lines" = "Linjer"; // "5 Lines" were drawn
+"Polyline" = "Polylinje";
+"Polygon" = "Polygon";
+"Signature" = "Underskrift";
+"Signatures" = "Underskrifter";
+"Signed" = "Underskrivet";
+"Sign" = "Skriv under";
+"Sign using %@" = "Skriv under med %@"; // e.g. Adobe.PPKLite
+"Methods" = "Metoder"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Välj identitet"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "Stämpel";
+"Stamps" = "Stämplar";
+"Custom" = "Anpassad"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "Skapa stämpel";
+"Preview" = "Förhandsvisa";
+"Stamp Text" = "Stämpeltext";
+"Add Signature" = "Lägg till signatur";
+"Remove Signature" = "Ta bort signatur";
+"My Signature" = "Min signatur";
+"No Signatures" = "Inga signaturer"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "Kundsignatur";
+"Please sign here" = "Signera här";
+"Note" = "Anteckning";
+"Text" = "Meddelande";
+"Delete Note" = "Ta bort anteckning";
+"Remove Note" = "Ta bort anteckning";
+"%@ could not be found." = "Kunde inte hitta %@.";
+"Photo Library" = "Bildbibliotek";
+"Camera" = "Kamera";
+"Image" = "Bild";
+"Low Quality" = "Låg kvalitet";
+"Medium Quality" = "Medelhög kvalitet";
+"High Quality" = "Hög kvalitet";
+"Clear All" = "Rensa allt";
+"Clear" = "Rensa";
+"Style" = "Stil";
+"Link" = "Länk";
+"Ink" = "Teckning";
+"FreeText" = "Meddelande";
+"Screen" = "Skärma";
+"RichMedia" = "Multimedia";
+"Left" = "Vänster";
+"Center" = "Centrerad";
+"Right" = "Höger";
+"Alignment" = "Justering";
+"Preview File" = "Förhandsvisa fil";
+"Copy" = "Kopiera";
+"Paste" = "Klistra in";
+"Inspector" = "Granskare";
+"Group" = "Gruppera";
+"Ungroup" = "Dela upp";
+"Merge" = "Slå samman"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "Exempel";
+"Annotation Summary for %@:\n" = "Sammanfattning av anteckningar i %@:\n";
+// title
+"Author Name" = "Författarnamn";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Ange det författarnamn som ska användas för nya anteckningar.";
+// text field placeholder
+"Name" = "Namn";
+// meaning: close
+"Dismiss" = "Avfärda";
+"Fit to Text" = "Anpassa till texten";
+"Draw" = "Rita";
+"Sound" = "Ljud";
+"Eraser" = "Radergummi";
+"Toggle Eraser" = "Växla radergummi"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "Markeringsverktyg";
+"Saved Annotations" = "Sparade";
+"Add" = "Lägg till"; // to add - infinitive
+"Date" = "Datum";
+"Time" = "Tid";
+"No Pages" = "Inga sidor";
+"Drag to resize" = "Dra och ändra storlek"; // used as hint that inspector is resizable
+"Convert to" = "Konvertera till"; // used as label on action that changes free text intent type
+"Color Presets" = "Förval för färger";
+
+"Callout" = "Pratbubbla"; // freetext annotation with an arrow
+"Generic" = "Enkel"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "Linjestil";
+"Solid" = "Heldragen";
+"Narrow Dots" = "Smala punkter";
+"Wide Dots" = "Breda punkter";
+"Narrow Dashes" = "Smala streck";
+"Wide Dashes" = "Breda streck";
+
+// Stamps
+"Approved" = "Godkänt";
+"Not Approved" = "Ej godkänt";
+"Draft" = "Utkast";
+"Final" = "Färdigt";
+"Completed" = "Genomfört";
+"Confidential" = "Konfidentiellt";
+"For Public Release" = "Offentligt";
+"Not For Public Release" = "Ej offentligt";
+"For Comment" = "För kommentar";
+"Void" = "Ogiltigt";
+"Preliminary Results" = "Preliminära resultat";
+"Information only" = "Endast för information";
+"Accepted" = "Godkänt";
+"Rejected" = "Förkastat";
+"Initial Here" = "Initialsignera här";
+"Sign Here" = "Signera här";
+"Witness" = "Bevittnat";
+"Revised" = "Ändrat";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Penna";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Av";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Söker";
+// text on a label; app connects to a stylus
+"Pairing" = "Parkopplar";
+// text on a label; app and stylus are connected
+"Connected" = "Ansluten";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Nedkopplad";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Inställningar";
+
+
+// PDF annotation name overrides
+"Square" = "Rektangel";
+"Circle" = "Ellips";
+"PolyLine" = "Polylinje";
+
+// named actions
+"NextPage" = "Nästa sida";
+"PrevPage" = "Föregående sida";
+"FirstPage" = "Första sidan";
+"LastPage" = "Sista sidan";
+"GoBack" = "Gå tillbaka";
+"GoForward" = "Gå framåt";
+"GoToPage" = "Gå till sida";
+"Find" = "Sök";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Zooma in";
+"ZoomOut" = "Zooma ut";
+"Execute JavaScript" = "Kör JavaScript";
+"Rich Media Action" = "Multimediaåtgärd";
+"Rendition Action" = "Tolkningsåtgärd";
+"Hide Action" = "Göm åtgärd";
+"Submit Form" = "Skicka formulär";
+"Reset" = "Återställ";
+
+// line annotations
+"Start" = "Linjeslut";
+"End" = "Slut";
+"Line.None" = "Ingen";
+"Line.ClosedArrow" = "Stängd pil";
+"Line.OpenArrow" = "Öppen pil";
+"Line.Square" = "Fyrkantig";
+"Line.Circle" = "Cirkel";
+"Line.Diamond" = "Diamant";
+"Line.ROpenArrow" = "Omvänd öppen pil";
+"Line.RClosedArrow" = "Omvänd sluten pil";
+"Line.Slash" = "Snedstreck";
+"Line.Butt" = "Intill";
+"Line Start" = "Linjestart";
+"Line End" = "Linjeslut";
+"Arrow" = "Pil"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "Skapa länk";
+"Add Link" = "Lägg till länk";
+"Edit Link" = "Redigera länk";
+"Move Link" = "Flytta länk";
+"Remove Link" = "Ta bort länk";
+"Open Link" = "Öppna länk";
+"Go to Page %tu" = "Gå till sida %tu";
+"Go to Page" = "Gå till sida"; // title of a Popup
+"Go" = "Gå"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "Spara";
+"Link Destination" = "Länkmål";
+"Enter page index or a http:// address to link to an URL." = "Ange sidindex eller länka till en URL med med en http://-adress.";
+"Page %@ Not Found" = "Hittade inte sidan %@";
+
+// voiceover accessibility
+"Page" = "Sida";
+"Grid" = "Rutnät"; // grid with thumbnails
+"Translucent" = "genomskinlig";
+"left" = "vänster";
+"center" = "mitten";
+"right" = "höger";
+"decrease" = "minska";
+"increase" = "öka";
+"All Open Documents" = "Alla öppna dokument";
+"Add Documents" = "Lägg till dokument"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "Sidor %tu-%tu"; // Range of pages
+"Current Page" = "Aktuell sida";
+"Current Page (%tu)" = "Aktuell sida (%tu)";
+"Ignore Annotations" = "Ignorera anteckningar";
+"The PDF will not contain any annotations." = "PDF:en kommer inte att innehålla några anteckningar.";
+"Embed Annotations" = "Bädda in anteckningar";
+"Annotations will remain editable and are embedded into the PDF." = "Anteckningarna går att redigera och följer med PDF:en.";
+"Flatten Annotations" = "Infoga anteckningar";
+"Annotations are drawn into the PDF and are readonly." = "Anteckningarna infogas i PDF:en och kan bara läsas.";
+"Annotation Summary" = "Sammanfattning av anteckningar";
+"Embed Annotations into the PDF and also list them in the email." = "Bädda in anteckningarna i PDF:en och ta även med dem i e-brevet.";
+"Files" = "Filer";
+"Send as single files" = "Skicka som enstaka filer";
+"Merge files" = "Slå samman filer";
+"Original File" = "Originalfil";
+"Range" = "Uppsättning";
+"Annotated Pages" = "Sidor med anteckningar";
+
+// sound annotations
+"Speak" = "Tala"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "Spela";
+"Pause" = "Pausa";
+"Resume" = "Fortsätt";
+"Stop" = "Stoppa";
+"Play/Stop" = "Spela/stoppa";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Spela in";
+"Pause Recording" = "Pausa inspelning";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Inspelning pausad";
+"Continue Recording" = "Fortsätt att spela in";
+"Finish Recording" = "Avsluta inspelning";
+"Audio Problem" = "Ljudproblem";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "Kunde inte starta uppspelning.";
+"Could not resume playback." = "Kunde inte återuppta uppspelning.";
+"Microphone permission not granted." = "Fick ej åtkomst till mikrofonen.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Tyvärr går det inte att spela in ljud just nu. Ge appen tillstånd att använda mikrofonen.";
+"There was a problem trying to record audio." = "Det gick inte att spela in ljud.";
+"Already Recording" = "Inspelning pågår";
+"You are already recording on page %@." = "Du spelar redan in på sidan %@.";
+
+// Forms
+"Form Element" = "Formulärelement";
+"Text Field" = "Textfält";
+"Button" = "Knapp";
+"Choice Field" = "Valfält";
+"Signature Field" = "Signaturfält";
+"Clear Field" = "Rensa fält"; // same as delete
+"Type value or pick from list" = "Skriv värde eller välj från lista";
+"Default Values" = "Förvalda värden";
+"Custom Value" = "Anpassat värde";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Ogiltigt värde: måste vara större än eller lika med %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Ogiltigt värde: måste vara större än eller lika med %s och mindre än eller lika med %s.";
+"Invalid value: must be less than or equal to %s." = "Ogiltigt värde: måste vara mindre än eller lika med %s.";
+"Invalid value: must be a number." = "Ogiltigt värde: måste vara ett tal.";
+
+//  Validation of dates
+"Invalid value: must be a date." = "Ogiltigt värde: måste vara ett datum.";
+
+// General validation
+"Invalid value." = "Ogiltigt värde.";
+
+// Gallery
+"Connection Error" = "Anslutningsfel";
+"Unsupported Content" = "Innehållet kan inte hanteras";
+"The specified content cannot be displayed." = "Det går inte att visa det angivna innehållet.";
+"Something went wrong" = "Någonting gick fel";
+"This item is currently unavailable." = "Det går inte att komma åt objektet just nu.";
+"The information for this gallery could not be loaded." = "Det gick inte att läsa in informationen om detta galleri.";
+"Content Error" = "Innehållsfel";
+"This content is unsupported." = "Innehållet stöds ej.";
+
+// Signatures
+"Digital Signature" = "Digital signatur";
+"Signature is valid." = "Giltig signatur.";
+"Signature is valid, but there are some warnings." = "Signaturen är giltig, men det finns varningar.";
+"It was signed by %@ on %@ at %@." = "Den signerades av %@ den %@ klockan %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Den signerades den %@ klockan %@.";
+"It claims to have been signed by %@ on %@ at %@." = "Den hävdar att den signerades av %@ den %@ klockan %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Den hävdar att den signerades %@ den %@.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Ändringen som signaturen avser har inte ändrats, men dokumentet har ändrats sedan det signerades."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- Signaturen är giltig och innehållet i dokumentet har inte ändrats sedan det signerades.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Ogiltig signatur – innehållet i dokumentet har ändrats, förvanskats eller skadats sedan det signerades.";
+"Unsigned Signature Field" = "Ej signerat signaturfält";
+"Do you really want to remove the signature from the document?" = "Vill du ta bort signaturen från dokumentet?";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Kan inte läsa certifikatsdata som ett PKCS#7-certifikat. Data kan exporteras i rätt format från Adobe Acrobat."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "Kan inte avkryptera signaturen i certifikatet.";
+"The public key in the certificate could not be read." = "Kunde inte läsa den publika nyckeln i certifikatet.";
+"The signature of the certificate is not valid." = "Signaturen i certifikatet är ogiltig.";
+"Signature is not valid." = "Ogiltig signatur.";
+"There is a format error in the notBefore field of the certificate." = "Det finns ett formatfel i fältet notBefore i certifikatet."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "Det finns ett formatfel i fältet notAfter i certifikatet."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Inga signaturer kunde kontrolleras eftersom certifikatkedjan endast innehåller ett certifikat, det är inte självsignerat och utfärdaren inte är betrodd.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Ett CA-certifikat är ogiltigt eftersom det inte är en CA eller dess tillägg inte överensstämmer med det avsedda syftet."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "Parametern basicConstraints pathlength var för lång."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "Rot-CA:n är inte märkt som betrodd för det avsedda syftet."; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "Rot-CA:n är märkt att förkasta det avsedda syftet."; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Utfärdarcertifikatet förkastades eftersom dess Subject-namn inte överensstämde med utfärdarnamnet i det aktuella certifikatet."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Utfärdarcertifikatet förkastades eftersom dess Subject Key Identifier fanns men inte överensstämde med Authority Key Identifier i det aktuella certifikatet."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "Utfärdarcertifikatet förkastades eftersom dess Issuer-namn och serienummer fanns men inte överensstämde med Authority Key Identifier i det aktuella certifikatet."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "Certifikatet har återkallats av utfärdaren.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Det aktuella certifikatet är självsignerat och samma certifikat kan inte hittas i listan över betrodda certifikat.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Det finns ett självsignerat certifikat i certifikatkedjan. Certifikatkedjan kan byggas upp med de ej betrodda certifikaten, men rot-CA:n hittades inte lokalt."; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Kunde inte hitta certifikatet för en av certifikatutfärdarna (CA) i signeringshierarkin, och denna CA är inte betrodd av det lokala programmet."; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Hittade inte utfärdarcertifikatet för ett lokalt uppslaget certifikat. Detta innebär normalt att listan över betrodda certifikat inte är komplett.";
+"The certificate that was provided cannot be used for its intended purpose." = "Certifikatet kan inte användas för dess avsedda syfte.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "Utfärdarcertifikatets keyUsage-tillägg tillåter inte signering av certifikat.";
+"The certificate has expired." = "Certifikatet har förfallit.";
+"The certificate is not valid until a date in the future." = "Certifikatet första giltighetsdatum är i framtiden.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Kunde inte läsa X509-certifikat från datat";
+// X509 should not be translated
+"No X509 certificate found" = "Hittade inget X509-certifikat";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Kan inte läsa PKCS12-fil. Filen har ogiltig form eller är skadad.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Kunde inte låsa upp PKCS12-data. Angav du rätt lösenord?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Kunde inte öppna fil för signaturkontroll";
+"Could not get signer info" = "Kunde inte hämta info om den som signerade";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL kunde inte skapa PKCS7-objekt";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL kunde inte lägga till signaturen till PKCS7-objektet";
+"OpenSSL could not init PKCS7 object" = "OpenSSL kunde inte initiera PKCS7-objektet";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL kunde inte skapa PKCS7-signatur";
+"OpenSSL could not sign hash" = "OpenSSL kunde inte signera hashen";
+"Could not write PKCS7 signature" = "Kunde inte skriva PKCS7-signatur";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "Öppna i";
+"PSPDFPolicyEventPrint" = "Skriv ut";
+"PSPDFPolicyEventEmail" = "E-post";
+"PSPDFPolicyEventMessage" = "Meddelande";
+"PSPDFPolicyEventQuickLook" = "Överblick"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "Ljudinspelning";
+"PSPDFPolicyEventCamera" = "Kamera";
+"PSPDFPolicyEventPasteboard" = "Urklipp"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "Skicka formulär";
+"PSPDFPolicyEventNetwork" = "Nätverk";
+
+// Night Mode
+"Default" = "Förval"; // Default view (night mode not enabled)
+"Sepia" = "Sepia"; // Document uses sepia colors
+"Night" = "Natt"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "Inget angivet dokument";
+"Unable to display document" = "Kunde inte visa dokument";
+"Loading..." = "Läser in...";
+"Locked" = "Låst";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "Den önskade filen är antingen skadad eller inte en PDF-fil.";
+"A password is required to access this document." = "Ett lösenord krävs för tillgång till dokumentet.";
+"The security scheme of this document is currently not supported." = "Dokumentets säkerhetsschema stöds för närvarande inte.";
+"An unknown error has occured while trying to open this file." = "Ett okänt fel inträffade när filen skulle öppnas.";
+
+// Document Editor
+"Document Editor" = "Dokumentredigerare";
+"Add Page" = "Lägg till sida";
+"Delete Pages" = "Radera sidor";
+"Duplicate Pages" = "Duplicera sidor";
+"Move Pages" = "Flytta sidor";
+"Rotate Pages" = "Rotera sidor";
+"Page Size" = "Pappersstorlek";
+"Background Color" = "Bakgrundsfärg";
+"Pattern" = "Formulärelement";
+"Use Document Size" = "Använd dokumentets storlek";
+"Orientation" = "Riktning";
+"Portrait" = "Stående";
+"Landscape" = "Liggande";
+"Name" = "Namn";
+"Document Name" = "Dokumentnamn";
+"Documents" = "Dokument"; // Name of directory
+"Use Document Directory" = "Använd dokumentkatalogen";
+"Directory" = "Katalog";
+"Replace File?" = "Ersätt fil?";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Det finns redan en fil med namnet  \"%@\" på destinationen. Ska filen ersättas?";
+"Replace" = "Ersätt";
+"Saving…" = "Sparar…";
+"Saved" = "Sparad";
+"Save As…" = "Spara som…";
+"Discard Changes" = "Kasta ändringar";
+"Empty" = "Ogiltigt";
+
+// Document Editor Errors
+"A blank document can not be saved." = "Ett tomt dokument kan inte sparas.";
+"The document could not be saved." = "Det gick inte att spara dokumentet.";
+"This document does not support editing." = "Detta dokument kan inte redigeras.";
+
+// Page Patterns
+"None" = "Ingen";
+"Dot5mm" = "Punkt 5mm";
+"Grid5mm" = "Rutnät 5mm";
+"Lines5mm" = "Linjer 5mm";
+"Lines7mm" = "Linjer 7mm";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US Letter";
+"US Legal" = "US Legal";
+
+// Page Export
+"Export Pages" = "Exportera sidor";
+"Export…" = "Exporterar…";
+"Exporting…" = "Exporterar…";
+"Exported" = "Exporterade";
+"%@ - Exported" = "%@ - Exporterad"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - Kopia"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "Det valda dokumentet är öppet. Välj ett annat filnamn.";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Text-till-taltjänsten är inte tillgänglig. Kontrollera att internetanslutningen är aktiv eller att Googles text-till-talmotor är installerad och påslagen på din enhet.";

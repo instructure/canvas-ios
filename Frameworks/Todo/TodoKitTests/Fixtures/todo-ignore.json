@@ -1,0 +1,51 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1467065820.882622,
+      "response" : {
+        "body" : {
+          "ignored" : true
+        },
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/users\/self\/todo\/assignment_9536420\/submitting?permanent=0",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=l2pNU2m8nDsr3fXg4kPlUsIQwd18GehAvZJVLRLQpPmnKXw6B%2BX%2FDUi2kYeIC9wXlCG5kEx72yX65zAeYOfpsQ%3D%3D; path=\/; secure, log_session_id=56cb0b2221b8ba7222ccad26aabc8924; path=\/, canvas_session=7VPwKcSf8Sa2hz3Z9_l2xw.XaOVIN0wrTPlqWROurjMcJY0fFN5fWvdHXW-h5yAXLHTTOv8Hv0x7t4MMhPRQs0QgE6RZNvmxpfUTCs2Xvz9p00rWLQVIUGc5C5kAbe5NVGMxNeygI-wmLL9_aIPjRZw.n6-_SNV8AOMeBfFVxTCLwpmg6q8.V3Gl3A; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.115627",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "X-Request-Processor" : "a01da75",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "Status" : "200 OK",
+          "X-Session-Id" : "56cb0b2221b8ba7222ccad26aabc8924",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "5bd8bd3d-1b5e-4690-8181-134dd822af9f",
+          "X-Request-Cost" : "0.09682742099999318",
+          "Content-Length" : "36",
+          "X-Canvas-Meta" : "q=751;at=10000000508065;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1e;o=users;n=ignore_item;b=1266616;m=1266616;u=0.07;y=0.01;d=0.03;",
+          "Date" : "Mon, 27 Jun 2016 22:17:00 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000005356213",
+          "Etag" : "\"9fa820ad5ac541f30e3f8143f78f852e\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "DELETE",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/users\/self\/todo\/assignment_9536420\/submitting?permanent=0",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en;q=1.0",
+          "User-Agent" : "Todo\/com.instructure.Todo (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~0NPrUrYhEoKaMCgqWS1IGrIZjZ7HbV4KisYg7AzSlzRAAjtivuXUrzRF3fHycHTp"
+        }
+      }
+    }
+  ],
+  "name" : "todo-ignore"
+}

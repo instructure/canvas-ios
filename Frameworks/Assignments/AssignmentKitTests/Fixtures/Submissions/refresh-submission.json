@@ -1,0 +1,92 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1472486154.275411,
+      "response" : {
+        "body" : {
+          "submitted_at" : "2016-08-29T15:42:16Z",
+          "assignment_id" : 9599332,
+          "graded_at" : null,
+          "url" : null,
+          "grader_id" : null,
+          "user_id" : 7086865,
+          "attempt" : 1,
+          "submission_comments" : [
+
+          ],
+          "score" : null,
+          "submission_type" : "online_text_entry",
+          "body" : "<p>This is a submission.<\/p>",
+          "id" : 89510681,
+          "preview_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments\/9599332\/submissions\/7086865?preview=1&version=1",
+          "late" : false,
+          "grade" : null,
+          "workflow_state" : "submitted",
+          "submission_history" : [
+            {
+              "id" : 89510681,
+              "body" : "<p>This is a submission.<\/p>",
+              "late" : false,
+              "graded_at" : null,
+              "assignment_id" : 9599332,
+              "url" : null,
+              "user_id" : 7086865,
+              "attempt" : 1,
+              "submission_type" : "online_text_entry",
+              "submitted_at" : "2016-08-29T15:42:16Z",
+              "preview_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments\/9599332\/submissions\/7086865?preview=1&version=1",
+              "excused" : null,
+              "grade_matches_current_submission" : true,
+              "grader_id" : null,
+              "grade" : null,
+              "score" : null,
+              "workflow_state" : "submitted"
+            }
+          ],
+          "grade_matches_current_submission" : true,
+          "assignment_visible" : true,
+          "excused" : null
+        },
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/assignments\/9599332\/submissions\/7086865?include%5B%5D=rubric_assessment&include%5B%5D=visibility&include%5B%5D=submission_comments&include%5B%5D=submission_history&per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=sc%2FtdgHEK8cSfe%2FEPu7Xdo%2Bsj53xS%2BeutSP3ugl09Ij0t6IGWaoTiXkbjP1Xhu81yYf825YZlMvnZ7KKbTLDuw%3D%3D; path=\/; secure, log_session_id=337559aaca67d0acecfb1ca66cca04cf; path=\/, canvas_session=nzqlDXZJ2GZTp5Sqd-vyNg.oOvs4DnE201COjIJ8jl2slq8q8k-8pYMrTLNBHhtA_pCaBOCm_q9rPwOiehpT30vXOwyaGEdwEObhK8_P9j1IZiqO9yU_UFeKi1kPDQHqCiskt-lPEdWDN1w4IJUDNc_.Hhzi5fzNgCj_K-d6_w7fKqjoy6w.V8Ra_A; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.215425",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "X-Request-Processor" : "a01d0d5",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "Status" : "200 OK",
+          "X-Session-Id" : "337559aaca67d0acecfb1ca66cca04cf",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "2556ea7f-027d-4dfa-855b-f7e7c5764019",
+          "X-Request-Cost" : "0.1772072859999994",
+          "Content-Length" : "362",
+          "X-Canvas-Meta" : "q=714;at=10000000613067;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1c;o=submissions_api;n=show;t=Course;i=1867097;b=1015484;m=1015484;u=0.11;y=0.01;d=0.07;",
+          "Date" : "Mon, 29 Aug 2016 15:55:40 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000007086865",
+          "Etag" : "\"a5dae9383efbd604e5c4964bce69dd23\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/assignments\/9599332\/submissions\/7086865?include%5B%5D=rubric_assessment&include%5B%5D=visibility&include%5B%5D=submission_comments&include%5B%5D=submission_history&per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en;q=1.0",
+          "User-Agent" : "Assignments\/com.instructure.Assignments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~O7YyCsxPDKM4GCd3aybOh6jrX4kaRAgT1CXtFa7ClmG79u9mOF2j7Nr56liMdGro"
+        }
+      }
+    }
+  ],
+  "name" : "refresh-submission"
+}

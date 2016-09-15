@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Закрити";
+"Cancel" = "Скасувати";
+"OK" = "ОК";
+"Open" = "Відкрити";
+"Untitled" = "Без назви";
+"File Not Found" = "Файл не знайдено";
+"File couldn't be opened." = "Файл не можна відкрити."; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "Безімений PDF";
+"Page %tu" = "Сторінка %tu";
+"Page %@" = "Сторінка %@";
+"Next" = "Наступна";
+"Previous" = "Попередня";
+"Error" = "Помилка";
+
+// toolbar
+"Outline" = "Зміст"; // Table of contents
+"No Outline" = "Без змісту";
+"Search Outline" = "Пошук в змісті";
+"Search" = "Пошук";
+"Email" = "Ел. пошта";
+"Send via Email" = "Віправити эл. поштою";
+"Send" = "Віправити";
+"Open In" = "Відкрити в";
+"Commit" = "Commit";
+"Sending to %@" = "Відправка на %@"; // Open document with an application
+"Pages" = "Сторінки";
+"Print with annotations" = "Друк з анотаціями";
+"Print without annotations" = "Друкувати без анотацій";
+"No Applications found" = "Додатки не знайдено.";
+"Print" = "Друк";
+"Annotation" = "Анотація";
+"Annotations" = "Анотації";
+"No Annotations" = "Немає анотацій";
+"Bookmarks" = "Закладки";
+"No Bookmarks" = "Немає закладок";
+"Add Bookmark" = "Додати закладку";
+"Remove Bookmark" = "Видалити закладку";
+"Brightness" = "Яскравість";
+"Share" = "Поділитись";
+"Preparing" = "Підготовка";
+"Loading" = "Завантаження";
+"Expand" = "Розгорнути";
+"Collapse" = "Згорнути";
+// SMS / iMessage sharing button
+"Message" = "Повідомлення";
+"Thumbnails" = "Мініатюри";
+"Drag Toolbar" = "Перетягнути панель інструментів";
+
+// thumbnails
+"Bookmarked" = "З закладками";
+"Annotated" = "З анотаціями";
+"All" = "Всі";
+
+// password
+"Password" = "Пароль"; // text on a label
+"Unlock" = "Розблокувати";
+"Please enter the password." = "Будь ласка, введіть пароль.";
+"This document cannot be unlocked. %@ is unsupported." = "Цей документ не може бути розблоковано. %@ не підтримується.";
+
+// page
+"%tu of %tu" = "%tu з %tu";
+"%tu-%tu of %tu" = "%tu-%tu з %tu";
+"%@ (%tu of %tu)" = "%@ (%tu з %tu)";
+"%@, Page %tu" = "%@, Сторінка %tu";
+"Leave %@?" = "Покинути %@?";
+
+// search
+"Search Document" = "Шукати в докменті"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "Пошук на сторінці %tu з %tu";
+"Search Completed" = "Пошук завершено";
+"Search Cancelled" = "Пошук скасовано";
+"%tu left" = "%tu залишилось"; // Indexing Documents... 5 left
+"Searching" = "Пошук";
+"Done" = "Готово";
+"Indexing Documents" = "Індексування документів";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Документ не має змісту";
+
+// inline browser
+"Open in Safari" = "Відкрити в Safari";
+"Open in Chrome" = "Відкрити в Chrome";
+"Your %@ is not configured to send emails." = "Ваш %@ не налаштований для відправки листів.";
+"The link is requesting to open %@Would you like to continue?" = "Посилання запрошує відкрити %@ Бажаєте продовжити?";
+"an external application" = "зовнішню програму"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "Пошту"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "Не знайдено обробника для %@";
+
+// text selection
+"Text copied to clipboard." = "Текст скопійовано в буфер обміну.";
+"Save To Camera Roll" = "Зберегти в Фото";
+"Failed to extract image." = "Не вдалося витягти зображення.";
+"Type value or pick from list" = "Введіть значення або виберіть зі списку";
+
+// annotations
+"Add %@" = "Додати %@";
+"Remove %@" = "Видалити %@";
+"Remove" = "Видалити";
+"Delete" = "Видалити"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "Редагувати";
+"Undo" = "Скасувати";
+"Nothing to undo" = "Нічого скасовувати";
+"Redo" = "Повторити";
+"Nothing to redo" = "Нічого повторювати";
+"Type" = "Тип"; // kind of Annotation can be selected
+"Size" = "Розмір";
+"Font" = "Шрифт";
+"Fonts" = "Шрифти";
+"All Fonts" = "Всі шрифти";
+"Downloadable Fonts" = "Завантажувані шрифти";
+"Search Fonts" = "Шукати шрифти";
+"Choose Color" = "Виберіть колір";
+"Choose Fill Color" = "Виберіть колір заливки";
+"Rainbow" = "Веселка";
+"Monochrome" = "Монохромний";
+"Vintage" = "Винтаж";
+"Color" = "Колір";
+"Border" = "Межа";
+"Fill Color" = "Колір заливки";
+"Line End Fill Color" = "Колір заливки кінця лінії";
+"Opacity" = "Непрозорість";
+"%@ %%" = "%@ %%";
+"Thickness" = "Товщина";
+"%@ pt" = "%@ pt";
+"Yellow" = "Жовтий";
+"Green" = "Зелений";
+"Red" = "Червоний";
+"Blue" = "Синій";
+"Pink" = "Рожевий";
+"Black" = "Чорний";
+"Orange" = "Помаранчевий";
+"Purple" = "Фіолетовий";
+"Cyan" = "Блакитний";
+"Gray" = "Сірий";
+"White" = "Білий";
+"Define" = "Визначити";
+"Wikipedia" = "Вікіпедія";
+"Highlight" = "Виділить";
+"Underline" = "Підкреслити";
+"Squiggle" = "Хвилясте";
+"StrikeOut" = "Викреслити";
+"Rectangle" = "Прямокутник";
+"Ellipse" = "Еліпс";
+"Line" = "Лінія"; // something that can be drawn
+"Lines" = "Лінії"; // "5 Lines" were drawn
+"Polyline" = "Ламана лінія";
+"Polygon" = "Полігон";
+"Signature" = "Підпис";
+"Signatures" = "Підписи";
+"Signed" = "Підписано";
+"Sign" = "Підписати";
+"Sign using %@" = "Підписати з %@"; // e.g. Adobe.PPKLite
+"Methods" = "Метод"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Виберіть особистість"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "Штамп";
+"Stamps" = "Штампи";
+"Custom" = "Користувацькі";
+"Create Stamp" = "Створити штамп";
+"Preview" = "Попередній перегляд";
+"Stamp Text" = "Штамп тексту";
+"Add Signature" = "Додати підпис";
+"Remove Signature" = "Видалити підпис";
+"My Signature" = "Мій підпис";
+"No Signatures" = "Немає підписів"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "Підпис клієнта";
+"Please sign here" = "Будь-ласка підпишіть тут";
+"Note" = "Примітка";
+"Text" = "Текст";
+"Delete Note" = "Видалити примітку";
+"Remove Note" = "Видалити примітку";
+"%@ could not be found." = "%@ не знайдено.";
+"Photo Library" = "Бібліотека фотографій";
+"Camera" = "Камера";
+"Image" = "Зображення";
+"Low Quality" = "Низька якість";
+"Medium Quality" = "Середня якість";
+"High Quality" = "Висока якість";
+"Clear All" = "Очистити все";
+"Clear" = "Очистити";
+"Style" = "Стиль";
+"Link" = "Посилання";
+"Ink" = "Малювання";
+"FreeText" = "Текст";
+"Screen" = "Екран";
+"RichMedia" = "Rich Media";
+"Left" = "Ліво";
+"Center" = "Центр";
+"Right" = "Право";
+"Alignment" = "Вирівнювання";
+"Preview File" = "Попередній перегляд файла";
+"Copy" = "Копіювати";
+"Paste" = "Вставити";
+"Inspector" = "Инспектор";
+"Group" = "Згрупувати";
+"Ungroup" = "Розгрупувати";
+"Merge" = "Об`єднати"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "Зразок";
+"Annotation Summary for %@:\n" = "Анотації для %@:\n";
+// title
+"Author Name" = "Ім'я автора";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Будь ласка, введіть ім'я автора якого ви хочете використовувати для знову доданих анотації.";
+// text field placeholder
+"Name" = "Ім'я";
+// meaning: close
+"Dismiss" = "Закрити";
+"Fit to Text" = "Вмістити в текст";
+"Draw" = "Малюнок";
+"Sound" = "Звук";
+"Eraser" = "Гумка";
+"Toggle Eraser" = "Перемкнути Гумку"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "Інструмент вибору";
+"Saved Annotations" = "Зберегти анотації";
+"Add" = "Додати"; // to add - infinitive
+"Date" = "Дата";
+"Time" = "Час";
+"No Pages" = "Немає сторінок";
+"Drag to resize" = "Перетягніть для зміни розміру"; // used as hint that inspector is resizable
+"Convert to" = "Перетворити в"; // used as label on action that changes free text intent type
+"Color Presets" = "Бібліотека кольорів";
+
+"Callout" = "Виноска"; // freetext annotation with an arrow
+"Generic" = "Звичайний"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "Line Style";
+"Solid" = "Solid";
+"Narrow Dots" = "Narrow Dots";
+"Wide Dots" = "Wide Dots";
+"Narrow Dashes" = "Narrow Dashes";
+"Wide Dashes" = "Wide Dashes";
+
+// Stamps
+"Approved" = "Затверджено";
+"Not Approved" = "Не затверджено";
+"Draft" = "Проект";
+"Final" = "Финал";
+"Completed" = "Завершено";
+"Confidential" = "Конфіденційно";
+"For Public Release" = "Для широкого розповсюдження";
+"Not For Public Release" = "Не для широкого розповсюдження";
+"For Comment" = "Для коментарів";
+"Void" = "Пустота";
+"Preliminary Results" = "Попередні результати";
+"Information only" = "Лише інформація";
+"Accepted" = "Прийнято";
+"Rejected" = "Відхилено";
+"Initial Here" = "Ініціали";
+"Sign Here" = "Підписувати тут";
+"Witness" = "Свідок";
+"Revised" = "Переглянуто";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Стилус";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Викл";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Сканування";
+// text on a label; app connects to a stylus
+"Pairing" = "Підключення";
+// text on a label; app and stylus are connected
+"Connected" = "Підключено";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Відключено";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Налаштування";
+
+
+// PDF annotation name overrides
+"Square" = "Прямокутник";
+"Circle" = "Еліпс";
+"PolyLine" = "Ламана лінія";
+
+// named actions
+"NextPage" = "Наступна сторінка";
+"PrevPage" = "Попередня сторінка";
+"FirstPage" = "Перша сторінка";
+"LastPage" = "Остання сторінка";
+"GoBack" = "Повернутися";
+"GoForward" = "Йти вперед";
+"GoToPage" = "Перейти на сторінку";
+"Find" = "Знайти";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Збільшити";
+"ZoomOut" = "Зменшити";
+"Execute JavaScript" = "Виконати JavaScript";
+"Rich Media Action" = "Rich Media Action";
+"Rendition Action" = "Rendition Action";
+"Hide Action" = "Hide Action";
+"Submit Form" = "Надіслати форму";
+"Reset" = "Скидання";
+
+// line annotations
+"Start" = "Початок";
+"End" = "Закінчення";
+"Line.None" = "Нічого";
+"Line.ClosedArrow" = "Закрита стрілка";
+"Line.OpenArrow" = "Відкрита стрілка";
+"Line.Square" = "Квадрат";
+"Line.Circle" = "Круг";
+"Line.Diamond" = "Діамант";
+"Line.ROpenArrow" = "Зворотня відкрита стрілка";
+"Line.RClosedArrow" = "Зворотня закрита стрілка";
+"Line.Slash" = "Slash";
+"Line.Butt" = "Butt";
+"Line Start" = "Початок лінії";
+"Line End" = "Кінець лінії";
+"Arrow" = "Стрілка"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "Створити посилання";
+"Add Link" = "Додати посилання";
+"Edit Link" = "Редагувати посилання";
+"Move Link" = "Перемістити посилання";
+"Remove Link" = "Видалити посилання";
+"Open Link" = "Відкрити посилання";
+"Go to Page %tu" = "Перейти на сторінку %tu";
+"Go to Page" = "Перейти на сторінку"; // title of a Popup
+"Go" = "Перейти"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "Зберегти";
+"Link Destination" = "Призначення посилання";
+"Enter page index or a http:// address to link to an URL." = "Введіть індекс сторінки або http:// адресу до URL.";
+"Page %@ Not Found" = "Сторінку %@ не знайдено";
+
+// voiceover accessibility
+"Page" = "Сторінка";
+"Grid" = "Сітка"; // grid with thumbnails
+"Translucent" = "Напівпрозорий";
+"left" = "ліворуч";
+"center" = "центр";
+"right" = "праворуч";
+"decrease" = "зменшити";
+"increase" = "збільшити";
+"All Open Documents" = "Всі відкриті документи";
+"Add Documents" = "Додати документи"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "Сторінки %tu-%tu"; // Range of pages
+"Current Page" = "Поточна сторінка";
+"Current Page (%tu)" = "Поточна сторінка (%tu)";
+"Ignore Annotations" = "Ігнорувати анотації";
+"The PDF will not contain any annotations." = "PDF не містить анотацій.";
+"Embed Annotations" = "Вбудовані анотації";
+"Annotations will remain editable and are embedded into the PDF." = "Анотації можна буде редагувати і вони будуть вбудовані в PDF.";
+"Flatten Annotations" = "Звести анотації";
+"Annotations are drawn into the PDF and are readonly." = "Анотації опиняються в PDF і тільки для читання";
+"Annotation Summary" = "Звіт по анотаціям";
+"Embed Annotations into the PDF and also list them in the email." = "Вбудовати анотації в PDF та вставити в ел. пошту.";
+"Files" = "Файли";
+"Send as single files" = "Надіслати як окремі файли";
+"Merge files" = "Об'єднати файли";
+"Original File" = "Оригінальний файл";
+"Range" = "Діапазон";
+"Annotated Pages" = "Сторінки з анотаціями";
+
+// sound annotations
+"Speak" = "Говоріть"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "Грати";
+"Pause" = "Пауза";
+"Resume" = "Продовжити";
+"Stop" = "Зупинити";
+"Play/Stop" = "Грати/Зупинити";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Записати";
+"Pause Recording" = "Призупинити запис";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Запис призупинено";
+"Continue Recording" = "Продовжити запис";
+"Finish Recording" = "Завершити запис";
+"Audio Problem" = "Проблема з Аудіо";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "Не можна розпочати програвання.";
+"Could not resume playback." = "Не можу продовжити програвання.";
+"Microphone permission not granted." = "Доступ до мікрофону не надано.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Звук не може бути записаний на даний момент. Будь ласка, надайте дозвіл для доступу до мікрофону.";
+"There was a problem trying to record audio." = "Проблема при запису аудіо.";
+"Already Recording" = "Вже записується";
+"You are already recording on page %@." = "Запис вже відбувається на сторінці %@.";
+
+// Forms
+"Form Element" = "Елемент форми";
+"Text Field" = "Текстове поле";
+"Button" = "Кнопка";
+"Choice Field" = "Поле вибору";
+"Signature Field" = "Поле підпису";
+"Clear Field" = "Очистити поле"; // same as delete
+"Type value or pick from list" = "Введіть значення або виберіть зі списку";
+"Default Values" = "Значення за замовчанням";
+"Custom Value" = "Користувацьке значення";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Некоректне значення: повинно бути більше або дорівнює %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Некоректне значення: повинно бути більше або дорівнює %s та менше або дорівнює %s.";
+"Invalid value: must be less than or equal to %s." = "Некоректне значення: повинно бути менше або дорівнює %s.";
+"Invalid value: must be a number." = "Некоректне значення: повинно бути числом.";
+
+//  Validation of dates
+"Invalid value: must be a date." = "Некоректне значення: повинно бути датою.";
+
+// General validation
+"Invalid value." = "Некоректне значення.";
+
+// Gallery
+"Connection Error" = "Помилка з'єднання";
+"Unsupported Content" = "Не підтримується зміст";
+"The specified content cannot be displayed." = "Зазначений вміст не може бути відображено.";
+"Something went wrong" = "Щось пішло не так";
+"This item is currently unavailable." = "Цей пункт в даний час недоступний.";
+"The information for this gallery could not be loaded." = "Інформація для цієї галереї не може бути завантажена.";
+"Content Error" = "Помилка контенту";
+"TThis content is unsupported." = "Цей контент не підтримується.";
+
+// Signatures
+"Digital Signature" = "Цифровий підпис";
+"Signature is valid." = "Підпис дійсний.";
+"Signature is valid, but there are some warnings." = "Підпис дійсний, але є деякі застереження.";
+"It was signed by %@ on %@ at %@." = "Підписано %@ дата %@ час %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Підписано %@ %@.";
+"It claims to have been signed by %@ on %@ at %@." = "Це стверджує, що підписано %@ дата %@ час %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Це стверджує, що підписано %@ %@.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Підписана ревізія документа не була змінена, однак існують зміни, які були зроблені пізнише"; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- Підпис дійсний і вміст документа не був змінений з часу підпису.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Неправильний підпис - з моменту підписання зміст цього документа був змінений, підроблений, або пошкоджений";
+"Unsigned Signature Field" = "Непідписане поля для підпису";
+"Do you really want to remove the signature from the document?" = "Ви дійсно хочете видалити підпис з документа?";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Неможливо прочитати дані сертифіката як PKCS#7 сертифікат. Дані у відповідному форматі можуть бути експортовані з Adobe Acrobat."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "Неможливо розшифрувати підпис сертифіката.";
+"The public key in the certificate could not be read." = "Публічний ключ сертифіката не може бути прочитаний.";
+"The signature of the certificate is not valid." = "Підпис сертифікату не є дійсним.";
+"Signature is not valid." = "Підпис не є допустимим.";
+"There is a format error in the notBefore field of the certificate." = "Існує помилка формату в області NotBefore сертифіката."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "Існує Помилка формату в області NotAfter сертифіката."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Підписи неможливо перевірити оскільки ланцюг сертифікату містить тільки один сертифікат, який самопідписаний і емітент не є довіреним";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Сертифікат CA не є дійсним, оскільки це не СА або її розширення не узгоджується з наміченою метою."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "Перевищено basicConstraints pathlength."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "Root CA не зазначено, як довірений за прямим призначенням."; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "Root CA відзначається відхилити призначенням."; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Сертифікат емітента було відхилено, тому що його ім'я subject не відповідає імені видавця поточного сертифіката."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Сертифікат емітента було відхилено, оскільки його subject key identifier присутній і не збігається з authority key identifier поточного сертифіката."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "Сертифікат емітента був відхилений, так як його назва емітента та serial number був присутній і не збігатися з Authority key Identifier поточного сертифіката."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "Сертифікат було анульовано емітентом.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Переданий сертифікат є самопідписаним і той же сертифікат не може бути знайдений у списку довірених сертифікатів.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Самостійно підписаний сертифікат існує в ланцюжку сертифікатів. Ланцюжок сертифікатів може бути побудований з використанням ненадійних сертифікатів, але root CA не може бути знайдений на місцевому рівні."; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Неможливо знайти сертифікат для одного з центрів сертифікації (СА) в ієрархії підписання і що СА не є довіреною для місцевого застосування."; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Сертифікат емітента не може бути знайдений для знайденого сертифіката. Зазвичай це означає, що список довірених сертифікатів не є повним.";
+"The certificate that was provided cannot be used for its intended purpose." = "Сертифікат, який був наданий не може бути використаний за прямим призначенням.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "Розширення KeyUsage сертифікату емітента не дозволяє підписання сертифікату.";
+"The certificate has expired." = "Термін дії сертифіката минув.";
+"The certificate is not valid until a date in the future." = "Сертифікат не дійсний до дати в майбутньому.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Не вдалося прочитати сертифікат X509 на основі даних";
+// X509 should not be translated
+"No X509 certificate found" = "Сертифіката X509 не знайдено";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Неможливо прочитати PKCS12 файл. Файл має неправильний формат або пошкоджений.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Не вдалося розблокувати дані PKCS12. Знаєте ви ввести правильний пароль?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Не вдалося відкрити файл для перевірки підпису";
+"Could not get signer info" = "Не вдалося отримати інформацію підписанта";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL не вдалося створити об'єкт PKCS7";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL не міг додати підпис до об'єкта PKCS7";
+"OpenSSL could not init PKCS7 object" = "OpenSSL не міг ініціалізувати об'єкт PKCS7";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL може генерувати PKCS7 підпис";
+"OpenSSL could not sign hash" = "OpenSSL не міг підписати хеш";
+"Could not write PKCS7 signature" = "Не вдалося записати PKCS7 підпис";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "Відкрити в";
+"PSPDFPolicyEventPrint" = "Друк";
+"PSPDFPolicyEventEmail" = "Ел. пошта";
+"PSPDFPolicyEventMessage" = "Повідомлення";
+"PSPDFPolicyEventQuickLook" = "Перегляд"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "Аудіо запис";
+"PSPDFPolicyEventCamera" = "Камера";
+"PSPDFPolicyEventPasteboard" = "Буфер обміну"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "Надіслати форму";
+"PSPDFPolicyEventNetwork" = "Мережа";
+
+// Night Mode
+"Default" = "За замовчуванням"; // Default view (night mode not enabled)
+"Sepia" = "Сепія"; // Document uses sepia colors
+"Night" = "Ніч"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "Не обрано документів";
+"Unable to display document" = "Не вдалося відобразити документ";
+"Loading..." = "Завантаження...";
+"Locked" = "Заблоковано";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "Файл пошкоджено або він не є PDF-файлом.";
+"A password is required to access this document." = "Для доступу до документа потрібен пароль.";
+"The security scheme of this document is currently not supported." = "Схема безпеки цього документа на даний момент не підтримується.";
+"An unknown error has occured while trying to open this file." = "Виникла невідома помилка при спробі відкрити файл.";
+
+// Document Editor
+"Document Editor" = "Редактор документа";
+"Add Page" = "Додати сторінку";
+"Delete Pages" = "Видалити сторінки";
+"Duplicate Pages" = "Дублювати сторінки";
+"Move Pages" = "Перемістити сторінки";
+"Rotate Pages" = "Повернути сторінки";
+"Page Size" = "Розмір сторінки";
+"Background Color" = "Колір тла";
+"Pattern" = "Візерунок";
+"Use Document Size" = "Розмір документа";
+"Orientation" = "Орієнтація";
+"Portrait" = "Портретна";
+"Landscape" = "Ландшафтна";
+"Name" = "Назва";
+"Document Name" = "Назва документа";
+"Documents" = "Документи"; // Name of directory
+"Use Document Directory" = "Тека документа";
+"Directory" = "Тека";
+"Replace File?" = "Замінити файл?";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Файл з назвою \"%@\" вже існує в обраному місці. Ви хочете його замінити?";
+"Replace" = "Замінити";
+"Saving…" = "Збереження…";
+"Saved" = "Збережено";
+"Save As…" = "Зберегти як…";
+"Discard Changes" = "Скасувати зміни";
+"Empty" = "Пустий";
+
+// Document Editor Errors
+"A blank document can not be saved." = "Неможливо зберегти документ без сторінок.";
+"The document could not be saved." = "Не вдалося зберегти документ.";
+"This document does not support editing." = "Цей документ не має підтримки редагування.";
+
+// Page Patterns
+"None" = "Чистий";
+"Dot5mm" = "Крапки 5mm";
+"Grid5mm" = "Сітка 5mm";
+"Lines5mm" = "Лінії 5mm";
+"Lines7mm" = "Лінії 7mm";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US Letter";
+"US Legal" = "US Legal";
+
+// Page Export
+"Export Pages" = "Експорт сторінок";
+"Export…" = "Експортувати…";
+"Exporting…" = "Експорт…";
+"Exported" = "Експортовано";
+"%@ - Exported" = "%@ - Експорт"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - Копія"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "Обраний документ зараз відкрито. Будь ласка, оберіть іншу назву файлу.";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Служба синтезу мовлення недоступна. Впевніться, що ваш пристрій під'єднано до інтернету та що на ньому встановлено і ввімкнено Синтез мовлення Google.";

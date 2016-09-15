@@ -1,0 +1,154 @@
+<html>
+<head>
+    <title>{$TITLE$}</title>
+    <style type="text/css">
+        body {
+            font-family: "Helvetica Neue";
+            -webkit-overflow-scrolling: touch;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+    
+        #page {
+            margin: 12px;
+            overflow-x: hidden;
+        }
+        
+        * {
+            max-width: 100%;
+        }
+        
+        a {
+            color: #0081bd;
+        }
+        
+        p {
+            color: #444;
+        }
+        
+        #title {
+            font-size: 25px;
+            font-weight: 400;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            font-weight: 300;
+        }
+        
+        h3, h4 {
+            font-weight: 400;
+        }
+        
+        iframe {
+            border: none;
+        }
+        
+        img {
+            display: block;
+            max-width: 100% !important;
+            height: auto !important;
+            margin: 0 auto 0 auto;
+        }
+
+    </style>
+    <script defer type="text/javascript">
+        // This script checks for data-api-endpoint attributes inside <a> tags.
+        // If present, it replaces the href with the endpoint, with a few changes.
+        //
+        // The final href will look something like this:
+        //
+        //   x-canvas-discussion://canvas.instructure.com/api/v1/courses/12345/discussion_topics/54321
+        //   x-canvas-folder-array://canvas.instructure.com/api/v1/folders/12345/folders
+        //
+        // The scheme name is composed as follows:
+        //
+        //   'x-canvas-' + <dataset['apiReturnType'].toLowerCase()> [ + '-array' ]
+        //
+        // The rest of the URL is as in the data-api-endpoint attribute.
+        
+        
+        if (typeof String.prototype.startsWith != 'function') {
+            String.prototype.startsWith = function (str){
+                return this.indexOf(str, 0) == 0;
+            };
+        }
+    
+        if (typeof String.prototype.endsWith != 'function') {
+            String.prototype.endsWith = function (str){
+                var startAt = this.length - str.length
+                return this.lastIndexOf(str, startAt) == startAt;
+            };
+        }
+        
+        function rewriteLinks() {
+            elements = document.getElementsByTagName('a')
+            for (var i=0; i<elements.length; i++) {
+                var link = elements[i]
+                
+                var endpoint = link.dataset['apiEndpoint']
+                var datatype = (link.dataset['apiReturntype'] || "").toLowerCase()
+                
+                if (datatype.startsWith('[') && datatype.endsWith(']')) {
+                    datatype = datatype.slice(1, -1) + '-array'
+                }
+                if (endpoint != undefined && datatype != undefined) {
+                    var schemeSplit = endpoint.split('://')
+                    schemeSplit[0] = 'x-canvas-' + datatype
+                    endpoint = schemeSplit.join('://')
+                    link.href = endpoint
+                }
+            }
+        }
+        rewriteLinks();
+    </script>
+    <script defer type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        
+        function onLoadAllImages(callback) {
+            var images = document.getElementsByTagName('img');
+            
+            if (images.length <= 0) {
+                return;
+            }
+            
+            for (var i = 0; i < images.length; i++) {
+                if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
+                    images[i].parentNode.removeChild(images[i]);
+                }
+            }
+            
+            images = document.getElementsByTagName('img');
+            
+            var loadedImageCount = 0;
+            
+            if (images.length > 0) {
+                for(var i = 0; i < images.length; i++) {
+                    images[i].onload=checkIfImagesLoaded;
+                    images[i].onerror=checkIfImagesLoaded;
+                }
+            } else {
+                callback();
+            }
+            
+            function checkIfImagesLoaded() {
+                loadedImageCount++;
+                if(loadedImageCount == images.length) {
+                    callback();
+                }
+            }
+        }
+    </script>
+    <meta name='viewport' content='initial-scale=1.0,maximum-scale=1.0'/>
+
+</head>
+<body>
+    
+    <div id="page">
+        <h1 id="title">{$TITLE$}</h1>
+        {$PAGE_BODY$}
+    </div>
+    
+</body>
+</html>

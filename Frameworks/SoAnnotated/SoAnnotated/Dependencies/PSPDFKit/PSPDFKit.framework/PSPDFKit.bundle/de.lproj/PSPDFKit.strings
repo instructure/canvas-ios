@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Schließen";
+"Cancel" = "Abbrechen";
+"OK" = "OK";
+"Open" = "Öffnen";
+"Untitled" = "Unbenannt";
+"File Not Found" = "Datei nicht gefunden";
+"File couldn't be opened." = "Datei konnte nicht geöffnet werden."; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "Unbenanntes PDF";
+"Page %tu" = "Seite %tu";
+"Page %@" = "Seite %@";
+"Next" = "Nächstes";
+"Previous" = "Vorheriges";
+"Error" = "Fehler";
+
+// toolbar
+"Outline" = "Inhalt"; // Table of contents
+"No Outline" = "Kein Inhalt";
+"Search Outline" = "Inhaltsverzeichnis durchsuchen";
+"Search" = "Suchen";
+"Email" = "E-Mail";
+"Send via Email" = "Via E-Mail senden";
+"Send" = "Senden";
+"Open In" = "Öffnen in";
+"Commit" = "Senden";
+"Sending to %@" = "Öffne %@"; // Open document with an application
+"Pages" = "Seiten";
+"Print with annotations" = "Mit Annotationen drucken";
+"Print without annotations" = "Ohne Annotationen drucken";
+"No Applications found" = "Es konnten keine kompatiblen Apps zum Öffnen von PDFs gefunden werden.";
+"Print" = "Drucken";
+"Annotation" = "Annotation";
+"Annotations" = "Annotationen";
+"No Annotations" = "Keine Annotationen";
+"Bookmarks" = "Lesezeichen";
+"No Bookmarks" = "Keine Lesezeichen gesetzt";
+"Add Bookmark" = "Lesezeichen hinzufügen";
+"Remove Bookmark" = "Lesezeichen entfernen";
+"Brightness" = "Helligkeit";
+"Share" = "Teilen";
+"Preparing" = "Vorbereiten";
+"Loading" = "Laden";
+"Expand" = "Ausklappen";
+"Collapse" = "Einklappen";
+// SMS / iMessage sharing button
+"Message" = "Nachricht";
+"Thumbnails" = "Miniaturen";
+"Drag Toolbar" = "Symbolleiste ziehen";
+
+// thumbnails
+"Bookmarked" = "Lesezeichen";
+"Annotated" = "Annotationen";
+"All" = "Alle";
+
+// password
+"Password" = "Passwort"; // text on a label
+"Unlock" = "Entsperren";
+"Please enter the password." = "Bitte geben Sie das Passwort ein.";
+"This document cannot be unlocked. %@ is unsupported." = "Dieses Dokument kann nicht geöffnet werden. %@ nicht unterstützt.";
+
+// page
+"%tu of %tu" = "%tu von %tu";
+"%tu-%tu of %tu" = "%tu-%tu von %tu";
+"%@ (%tu of %tu)" = "%@ (%tu von %tu)";
+"%@, Page %tu" = "%@, Seite %tu";
+"Leave %@?" = "%@ verlassen?";
+
+// search
+"Search Document" = "Dokument durchsuchen"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "Suche Seite %tu von %tu";
+"Search Completed" = "Suche abgeschlossen";
+"Search Cancelled" = "Suche abgebrochen";
+"%tu left" = "%tu weitere"; // Indexing Documents... 5 left
+"Searching" = "Suchen";
+"Done" = "Fertig";
+"Indexing Documents" = "Dokumente indizieren";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Dokument ist leer";
+
+// inline browser
+"Open in Safari" = "In Safari öffnen";
+"Open in Chrome" = "In Chrome öffnen";
+"Your %@ is not configured to send emails." = "Ihr %@ ist nicht für das E-Mail-Senden konfiguriert.";
+"The link is requesting to open %@Would you like to continue?" = "Dieser Link öffnet %@Fortfahren?";
+"an external application" = "eine externe Applikation"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "den App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "E-Mail"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "Link konnte nicht geöffnet werden: %@";
+
+// text selection
+"Text copied to clipboard." = "Text in Zwischenablage kopiert.";
+"Save To Camera Roll" = "Bild in Aufnahmen sichern";
+"Failed to extract image." = "Bild konnte nicht extrahiert werden.";
+"Type value or pick from list" = "Text eingeben oder von der Liste wählen";
+
+// annotations
+"Add %@" = "%@ hinzufügen";
+"Remove %@" = "%@ entfernen";
+"Remove" = "Entfernen";
+"Delete" = "Löschen"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "Bearbeiten";
+"Undo" = "Rückgängig machen";
+"Nothing to undo" = "Rückgängig machen nicht möglich";
+"Redo" = "Wiederholen";
+"Nothing to redo" = "Wiederholen nicht möglich";
+"Type" = "Typ"; // kind of Annotation can be selected
+"Size" = "Größe";
+"Font" = "Schriftart";
+"Fonts" = "Schriftarten";
+"All Fonts" = "Alle Schriften";
+"Downloadable Fonts" = "Herunterladbare Schriftarten";
+"Search Fonts" = "Schriftarten suchen";
+"Choose Color" = "Farbe wählen";
+"Choose Fill Color" = "Füllfarbe auswählen";
+"Rainbow" = "Regenbogen";
+"Monochrome" = "Monochrom";
+"Vintage" = "Traditionell";
+"Color" = "Farbe";
+"Border" = "Rand";
+"Fill Color" = "Füllfarbe";
+"Line End Fill Color" = "Füllfarbe Linienende";
+"Opacity" = "Transparenz";
+"%@ %%" = "%@ %%";
+"Thickness" = "Stärke";
+"%@ pt" = "%@ pt";
+"Yellow" = "Gelb";
+"Green" = "Grün";
+"Red" = "Rot";
+"Blue" = "Blau";
+"Pink" = "Rosa";
+"Black" = "Schwarz";
+"Orange" = "Orange";
+"Purple" = "Violett";
+"Cyan" = "Cyan";
+"Gray" = "Grau";
+"White" = "Weiß";
+"Define" = "Definieren";
+"Wikipedia" = "Wikipedia";
+"Highlight" = "Markieren";
+"Underline" = "Unterstreichen";
+"Squiggle" = "Verschnörkeln";
+"StrikeOut" = "Durchstreichen";
+"Rectangle" = "Rechteck";
+"Ellipse" = "Ellipse";
+"Line" = "Linie"; // something that can be drawn
+"Lines" = "Linien"; // "5 Lines" were drawn
+"Polyline" = "Polylinie";
+"Polygon" = "Polygon";
+"Signature" = "Unterschrift";
+"Signatures" = "Unterschriften";
+"Signed" = "Unterschrieben";
+"Sign" = "Unterschrift hier";
+"Sign using %@" = "Unterschreiben mit %@"; // e.g. Adobe.PPKLite
+"Methods" = "Methoden"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Identität auswählen"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "Stempel";
+"Stamps" = "Stempel";
+"Custom" = "Benutzerdefiniert"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "Stempel erstellen";
+"Preview" = "Vorschau";
+"Stamp Text" = "Stempel-Text";
+"Add Signature" = "Unterschrift hinzufügen";
+"Remove Signature" = "Unterschrift entfernen";
+"My Signature" = "Meine Unterschrift";
+"No Signatures" = "Keine Unterschriften"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "Kunden-Unterschrift";
+"Please sign here" = "Bitte hier unterschreiben";
+"Note" = "Notiz";
+"Text" = "Text";
+"Delete Note" = "Notiz löschen";
+"Remove Note" = "Notiz entfernen";
+"%@ could not be found." = "%@ konnte nicht gefunden werden.";
+"Photo Library" = "Fotobibliothek";
+"Camera" = "Kamera";
+"Image" = "Bild";
+"Low Quality" = "Niedrige Qualität";
+"Medium Quality" = "Mittlere Qualität";
+"High Quality" = "Hohe Qualität";
+"Clear All" = "Alles löschen";
+"Clear" = "Reset";
+"Style" = "Styling";
+"Link" = "Hyperlink";
+"Ink" = "Zeichnung";
+"FreeText" = "Text";
+"Screen" = "Multimedia";
+"RichMedia" = "Multimedia";
+"Left" = "Linksbündig";
+"Center" = "Zentriert";
+"Right" = "Rechtsbündig";
+"Alignment" = "Ausrichtung";
+"Preview File" = "Dateivorschau";
+"Copy" = "Kopieren";
+"Paste" = "Einsetzen";
+"Inspector" = "Inspektor";
+"Group" = "Gruppieren";
+"Ungroup" = "Gruppierung auflösen";
+"Merge" = "Zusammenführen"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "Beispiel";
+"Annotation Summary for %@:\n" = "Zusammenfassung der Annotationen von %@:\n";
+// title
+"Author Name" = "Name des Autors";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Bitte den Namen des Autors eingeben, der für neu hinzugefügte Annotationen verwendet werden soll.";
+// text field placeholder
+"Name" = "Name";
+// meaning: close
+"Dismiss" = "Schließen";
+"Fit to Text" = "Passend für Text";
+"Draw" = "Zeichnen";
+"Sound" = "Ton";
+"Eraser" = "Radierer";
+"Toggle Eraser" = "Radierer an/aus"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "Auswahlwerkzeug";
+"Saved Annotations" = "Gesicherte Annotationen";
+"Add" = "Hinzufügen"; // to add - infinitive
+"Date" = "Datum";
+"Time" = "Zeit";
+"No Pages" = "Keine Seiten";
+"Drag to resize" = "Ziehen um Größe zu verändern"; // used as hint that inspector is resizable
+"Convert to" = "Konvertieren in"; // used as label on action that changes free text intent type
+"Color Presets" = "Farbvorlagen";
+
+"Callout" = "Legende"; // freetext annotation with an arrow
+"Generic" = "Generisch"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "Linienstil";
+"Solid" = "Durchgehend";
+"Narrow Dots" = "Schmale Punkte";
+"Wide Dots" = "Breite Punkte";
+"Narrow Dashes" = "Schmale Bindestriche";
+"Wide Dashes" = "Breite Bindestriche";
+
+// Stamps
+"Approved" = "Freigegeben";
+"Not Approved" = "Nicht freigegeben";
+"Draft" = "Entwurf";
+"Final" = "Final";
+"Completed" = "Abgeschlossen";
+"Confidential" = "Vertraulich";
+"For Public Release" = "Zur öffentlichen Freigabe";
+"Not For Public Release" = "Nicht zur öffentlichen Freigabe";
+"For Comment" = "Zur Stellungnahme";
+"Void" = "Ungültig";
+"Preliminary Results" = "Vorläufige Ergebnisse";
+"Information only" = "Zur Information";
+"Accepted" = "Akzeptiert";
+"Rejected" = "Abgelehnt";
+"Initial Here" = "Initialen hier setzen";
+"Sign Here" = "Hier unterschreiben";
+"Witness" = "Beglaubigt";
+"Revised" = "Überarbeitet";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Eingabestift";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Ausgeschaltet";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Suchen …";
+// text on a label; app connects to a stylus
+"Pairing" = "Koppeln …";
+// text on a label; app and stylus are connected
+"Connected" = "Verbunden";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Nicht verbunden";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Einstellungen";
+
+
+// PDF annotation name overrides
+"Square" = "Rechteck";
+"Circle" = "Ellipse";
+"PolyLine" = "Polylinie";
+
+// named actions
+"NextPage" = "Nächste Seite";
+"PrevPage" = "Vorherige Seite";
+"FirstPage" = "Erste Seite";
+"LastPage" = "Letzte Seite";
+"GoBack" = "Zurück";
+"GoForward" = "Vorwärts";
+"GoToPage" = "Gehe zu Seite";
+"Find" = "Finden";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Hereinzoomen";
+"ZoomOut" = "Herauszoomen";
+"Execute JavaScript" = "JavaScript ausführen";
+"Rich Media Action" = "Multimedia-Aktion";
+"Rendition Action" = "Rendition Aktion";
+"Hide Action" = "Ausblenden";
+"Submit Form" = "Formular absenden";
+"Reset" = "Zurücksetzen";
+
+// line annotations
+"Start" = "Beginn";
+"End" = "Ende";
+"Line.None" = "Keine";
+"Line.ClosedArrow" = "Geschlossener Pfeil";
+"Line.OpenArrow" = "Offener Pfeil";
+"Line.Square" = "Viereck";
+"Line.Circle" = "Kreis";
+"Line.Diamond" = "Diamant";
+"Line.ROpenArrow" = "Rotierter geschlossener Pfeil";
+"Line.RClosedArrow" = "Rotierter offener Pfeil";
+"Line.Slash" = "Schlitz";
+"Line.Butt" = "Knauf";
+"Line Start" = "Linienstart";
+"Line End" = "Linienende";
+"Arrow" = "Pfeil"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "Link erstellen";
+"Add Link" = "Link erstellen";
+"Edit Link" = "Link bearbeiten";
+"Move Link" = "Link verschieben";
+"Remove Link" = "Link entfernen";
+"Open Link" = "Link öffnen";
+"Go to Page %tu" = "Zu Seite %tu wechseln";
+"Go to Page" = "Zu Seite wechseln"; // title of a Popup
+"Go" = "OK"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "Sichern";
+"Link Destination" = "Ziel des Links";
+"Enter page index or a http:// address to link to an URL." = "Zum Verlinken auf eine URL Seitenindex oder http:// Adresse eingeben.";
+"Page %@ Not Found" = "Seite %@ nicht gefunden";
+
+// voiceover accessibility
+"Page" = "Seite";
+"Grid" = "Gitter"; // grid with thumbnails
+"Translucent" = "Durchscheinend";
+"left" = "links";
+"center" = "zentriert";
+"right" = "rechts";
+"decrease" = "verringern";
+"increase" = "erhöhen";
+"All Open Documents" = "Alle geöffneten Dokumente";
+"Add Documents" = "Dokumente hinzufügen"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "Seiten %tu-%tu"; // Range of pages
+"Current Page" = "Aktuelle Seite";
+"Current Page (%tu)" = "Aktuelle Seite (%tu)";
+"Ignore Annotations" = "Annotationen ignorieren";
+"The PDF will not contain any annotations." = "Das PDF wird keine Annotationen enthalten.";
+"Embed Annotations" = "Annotationen sichern";
+"Annotations will remain editable and are embedded into the PDF." = "Annotationen bleiben editierbar und werden im PDF gesichert.";
+"Flatten Annotations" = "Annotationen zeichnen";
+"Annotations are drawn into the PDF and are readonly." = "Annotationen werden in das PDF gezeichnet und sind nicht änderbar.";
+"Annotation Summary" = "Annotationsübersicht";
+"Embed Annotations into the PDF and also list them in the email." = "Annotationen werden im PDF gesichert und in der E-Mail gelistet.";
+"Files" = "Dateien";
+"Send as single files" = "Als einzelne Dateien senden";
+"Merge files" = "Dateien zusammenführen";
+"Original File" = "Originaldatei";
+"Range" = "Bereich";
+"Annotated Pages" = "Seiten m. Anmerkungen";
+
+// sound annotations
+"Speak" = "Sprechen"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "Abspielen";
+"Pause" = "Pause";
+"Resume" = "Fortsetzen";
+"Stop" = "Stopp";
+"Play/Stop" = "Abspielen/Stopp";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Aufnehmen";
+"Pause Recording" = "Aufnahme pausieren";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Aufnahme pausiert";
+"Continue Recording" = "Aufnahme fortsetzen";
+"Finish Recording" = "Aufnahme abschließen";
+"Audio Problem" = "Audio-Problem";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "Wiedergabe konnte nicht gestartet werden.";
+"Could not resume playback." = "Wiedergabe konnte nicht fortgesetzt werden.";
+"Microphone permission not granted." = "Es wurde nicht erlaubt, auf das Mikrofon zugreifen zu können.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Audio kann derzeit nicht aufgezeichnet werden - Zugriff auf das Mikrofon wurde verweigert.";
+"There was a problem trying to record audio." = "Beim Aufnehmen ist ein Problem aufgetreten.";
+"Already Recording" = "Aufnahme bereits aktiv";
+"You are already recording on page %@." = "Eine Aufnahme auf Seite %@ ist bereits aktiv.";
+
+// Forms
+"Form Element" = "Formularelement";
+"Text Field" = "Textfeld";
+"Button" = "Button";
+"Choice Field" = "Wahlelement";
+"Signature Field" = "Signaturfeld";
+"Clear Field" = "Löschen"; // same as delete
+"Type value or pick from list" = "Text eingeben oder von der Liste wählen";
+"Default Values" = "Standardwerte";
+"Custom Value" = "Benutzerdefinierter Eintrag";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Ungültiger Wert: muss größer oder gleich %s sein.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Ungültiger Wert: muss größer oder gleich %s und kleiner oder gleich %s sein.";
+"Invalid value: must be less than or equal to %s." = "Ungültiger Wert: muss kleiner oder gleich %s sein.";
+"Invalid value: must be a number." = "Ungültiger Wert: Nur Zahlen sind erlaubt.";
+
+//  Validation of dates
+"Invalid value: must be a date." = "Ungültiger Wert: Nur ein Datum ist erlaubt.";
+
+// General validation
+"Invalid value." = "Ungültiger Wert.";
+
+// Gallery
+"Connection Error" = "Verbindungsfehler";
+"Unsupported Content" = "Nicht unterstützter Inhalt";
+"The specified content cannot be displayed." = "Der angegebene Inhalt kann nicht angezeigt werden.";
+"Something went wrong" = "Es ist etwas schief gelaufen.";
+"This item is currently unavailable." = "Dieses Element ist im Moment nicht verfügbar.";
+"The information for this gallery could not be loaded." = "Die Information für diese Galerie konnte nicht geladen werden.";
+"Content Error" = "Fehlerhafter Inhalt";
+"This content is unsupported." = "Dieser Inhalt wird nicht unterstützt.";
+
+// Signatures
+"Digital Signature" = "Digitale Unterschrift";
+"Signature is valid." = "Die Unterschrift ist GÜLTIG.";
+"Signature is valid, but there are some warnings." = "Die Unterschrift ist gültig, aber es gab einige Warnungen.";
+"It was signed by %@ on %@ at %@." = "Es wurde signiert von %@ am %@ um %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Es wurde signiert am %@ um %@.";
+"It claims to have been signed by %@ on %@ at %@." = "Laut Zertifikat signiert von %@ am %@ um %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Laut Zertifikat signiert am %@ um %@.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Die signierte Version des Dokuments wurde nicht verändert, allerdings wurden seit der Signierung Änderungen zum Dokument hinzugefügt."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- Die Signatur ist gültig und das Dokument wurde nicht verändert, seitdem es signiert wurde.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Die Signatur ist ungültig — seitdem das Dokument signiert wurde, hat sich der Inhalt des Dokuments verändert.";
+"Unsigned Signature Field" = "Nicht unterschriebenes Signaturfeld";
+"Do you really want to remove the signature from the document?" = "Soll die Signatur des Dokuments wirklich entfernt werden?";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Das Zertifikat konnte nicht als PKCS#7 Zertifikat erkannt werden. Das richtige Datenformat kann mit Hilfe von Adobe Acrobat exportiert werden."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "Die Signatur des Zertifikates konnte nicht entschlüsselt werden.";
+"The public key in the certificate could not be read." = "Der öffentliche Schlüssel des Zertifikates konnte nicht gelesen werden.";
+"The signature of the certificate is not valid." = "Die Signatur des Zertifikates ist nicht gültig.";
+"Signature is not valid." = "Die Signatur ist ungültig.";
+"There is a format error in the notBefore field of the certificate." = "Formatfehler im notBefore Feld des Zertifikats."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "Formatfehler im notAfter Feld des Zertifikats."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Die Signatur konnte nicht überprüft werden, weil die Zertifizierungskette nur ein Zertifikat enthält, es nicht selbst-signiert ist und dem Herausgeber nicht vertraut wird.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Ein als CA Zertifikat angegebenes Zertifikat ist nicht gültig, weil es kein CA ist oder weil eine der Erweiterungen nicht mit dem Verwendungszweck übereinstimmen."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "Der basicConstraints pathlength Parameter wurde überschritten."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "Die Root-CA ist für diesen Zweck nicht als vertrauenswürdig eingestuft."; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "Die Root-CA lehnt den angegebenen Zweck ab."; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Das Herausgeberzertifikat wurde abgewiesen, weil der Subject-Name nicht mit dem Issuer-Namen des aktuellen Zertifikates übereinstimmt."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Das Herausgeberzertifikat wurde abgewiesen, weil der Subject Key Identifier nicht mit dem Authority Key Identifier des aktuellen Zertifikates übereinstimmt."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "Das Herausgeberzertifikat wurde abgewiesen, weil der Issuer-Name und die Serial-Number nicht mit dem Authority Key Identifier des aktuellen Zertifikates übereinstimmt."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "Das Zertifikat wurde vom Herausgeber zurückgezogen.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Das übergebene Zertifikat ist selbst signiert und dasselbe Zertifikat kann nicht in der Liste der vertrauenswürdigen Zertifikate gefunden werden.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Ein selbst signiertes Zertifikat existiert in der Zertifikatskette. Die Zertifikatskette konnte unter Verwendung der nicht vertrauenswürdigen Zertifikate aufgebaut werden, allerdings konnte die Root-CA lokal nicht gefunden werden."; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Es konnte kein Zertifikat für eine der Zertifizierungsstellen (CAs) in der Signierungshierarchie gefunden werden und daher wird der CA nicht vertraut."; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Das Herausgeberzertifikat eines lokal gesuchten Zertifikates konnte nicht gefunden werden. Dies deutet normalerweise darauf hin, dass die Liste der vertrauenswürdigen Zertifikate unvollständig ist.";
+"The certificate that was provided cannot be used for its intended purpose." = "Das zur Verfügung gestellte Zertifikat kann nicht für den beabsichtigten Zweck verwendet werden.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "Die keyUsage Erweiterung erlaubt keine Signierung von Zertifikaten.";
+"The certificate has expired." = "Das Zertifikat ist abgelaufen.";
+"The certificate is not valid until a date in the future." = "Das Zertifikat ist erst ab einem in der Zukunft liegenden Zeitpunkt gültig.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Das X509 Zertifikat konnte nicht gelesen werden";
+// X509 should not be translated
+"No X509 certificate found" = "Es wurde kein X509 Zertifikat gefunden";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Die PKCS12 Datei konnte nicht gelesen werden. Die Datei ist nicht richtig formatiert oder beschädigt.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Die PKCS12 Datei konnte nicht geöffnet werden. Wurde das richtige Passwort eingegeben?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Die Datei konnte nicht geöffnet werden, um die Signatur zu validieren";
+"Could not get signer info" = "Die Unterzeichner-Information konnte nicht gelesen werden";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL konnte kein PKCS7 Objekt erstellen";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL konnte keine Signatur zu dem PKCS7 Objekt hinzufügen";
+"OpenSSL could not init PKCS7 object" = "OpenSSL konnte das PKCS7 Objekt nicht initialisieren";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL konnte die PKCS7 Signatur erstellen";
+"OpenSSL could not sign hash" = "OpenSSL konnte den Hashwert nicht signieren";
+"Could not write PKCS7 signature" = "Die PKCS7 Signatur konnte nicht geschrieben werden";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "Öffnen in";
+"PSPDFPolicyEventPrint" = "Drucken";
+"PSPDFPolicyEventEmail" = "E-Mail";
+"PSPDFPolicyEventMessage" = "Nachricht";
+"PSPDFPolicyEventQuickLook" = "Quick Look"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "Tonaufnahme";
+"PSPDFPolicyEventCamera" = "Kamera";
+"PSPDFPolicyEventPasteboard" = "Zwischenablage"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "Formular absenden";
+"PSPDFPolicyEventNetwork" = "Netzwerk";
+
+// Night Mode
+"Default" = "Standard"; // Default view (night mode not enabled)
+"Sepia" = "Sepia"; // Document uses sepia colors
+"Night" = "Nacht"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "Kein Dokument festgelegt";
+"Unable to display document" = "Anzeigen des Dokuments nicht möglich";
+"Loading..." = "Laden …";
+"Locked" = "Gesperrt";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "Die Datei, die Sie zu öffnen versuchen, ist entweder kein PDF oder könnte beschädigt sein.";
+"A password is required to access this document." = "Für den Zugriff auf dieses Dokument ist ein Passwort erforderlich.";
+"The security scheme of this document is currently not supported." = "Das Sicherheitsschema dieses Dokuments wird aktuell nicht unterstützt.";
+"An unknown error has occured while trying to open this file." = "Beim Öffnen dieser Datei ist ein unbekannter Fehler aufgetreten.";
+
+// Document Editor
+"Document Editor" = "Dokument-Editor";
+"Add Page" = "Seite hinzufügen";
+"Delete Pages" = "Seiten löschen";
+"Duplicate Pages" = "Seiten duplizieren";
+"Move Pages" = "Seite verschieben";
+"Rotate Pages" = "Seite rotieren";
+"Page Size" = "Seitengröße";
+"Background Color" = "Hintergrundfarbe";
+"Pattern" = "Muster";
+"Use Document Size" = "Verwende Dokumentengröße";
+"Orientation" = "Orientierung";
+"Portrait" = "Hochformat";
+"Landscape" = "Querformat";
+"Name" = "Name";
+"Document Name" = "Dokumentname";
+"Documents" = "Dokumente"; // Name of directory
+"Use Document Directory" = "Verwende Dokumentenordner";
+"Directory" = "Ordner";
+"Replace File?" = "Datei ersetzen?";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Eine Datei mit dem Namen „%@“ existiert bereits am ausgewählten Speicherort. Möchten Sie diese ersetzen?";
+"Replace" = "Ersetzen";
+"Saving…" = "Sichern …";
+"Saved" = "Gesichert";
+"Save As…" = "Sichern unter…";
+"Discard Changes" = "Änderungen verwerfen";
+"Empty" = "Leer";
+
+// Document Editor Errors
+"A blank document can not be saved." = "Ein leeres Dokument kann nicht gesichert werden.";
+"The document could not be saved." = "Das Dokument konnte nicht gesichert werden.";
+"This document does not support editing." = "Dieses Dokument unterstützt kein Editieren.";
+
+// Page Patterns
+"None" = "Kein";
+"Dot5mm" = "Punkt 5mm";
+"Grid5mm" = "Raster 5mm";
+"Lines5mm" = "Linien 5mm";
+"Lines7mm" = "Linien 7mm";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US Letter";
+"US Legal" = "US Legal";
+
+// Page Export
+"Export Pages" = "Seiten exportieren";
+"Export…" = "Exportieren …";
+"Exporting…" = "Exportieren …";
+"Exported" = "Exportiert";
+"%@ - Exported" = "%@ - Exportiert"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - Kopiert"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "Das ausgewählte Dokument ist derzeit geöffnet. Bitte wählen Sie einen anderen Dateinamen.";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Textsynthese-Dienst nicht verfügbar. Stellen Sie sicher, dass Ihre Internetverbindung funktioniert oder Sie die Google Textsynthese-Engine auf Ihrem Gerät installiert und aktiviert haben.";

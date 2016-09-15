@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Закрыть";
+"Cancel" = "Отменить";
+"OK" = "ОК";
+"Open" = "Открыть";
+"Untitled" = "Без названия";
+"File Not Found" = "Файл не найден";
+"File couldn't be opened." = "Не удалось открыть файл."; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "Безымянный PDF";
+"Page %tu" = "Страница %tu";
+"Page %@" = "Страница %@";
+"Next" = "Далее";
+"Previous" = "Назад";
+"Error" = "Ошибка";
+
+// toolbar
+"Outline" = "Содержание"; // Table of contents
+"No Outline" = "Без содержания";
+"Search Outline" = "Поиск в содержании";
+"Search" = "Поиск";
+"Email" = "Эл. почта";
+"Send via Email" = "Отправить по эл. почте";
+"Send" = "Отправить";
+"Open In" = "Открыть в";
+"Commit" = "Подтвердить";
+"Sending to %@" = "Отправка в %@"; // Open document with an application
+"Pages" = "Страницы";
+"Print with annotations" = "Печать с аннотациями";
+"Print without annotations" = "Печать без аннотаций";
+"No Applications found" = "Отсутствуют приложения для открытия PDF-документов.";
+"Print" = "Печать";
+"Annotation" = "Аннотация";
+"Annotations" = "Аннотации";
+"No Annotations" = "Нет аннотаций";
+"Bookmarks" = "Закладки";
+"No Bookmarks" = "Нет закладок";
+"Add Bookmark" = "Добавить закладку";
+"Remove Bookmark" = "Удалить закладку";
+"Brightness" = "Яркость";
+"Share" = "Поделиться";
+"Preparing" = "Подготовка";
+"Loading" = "Загрузка";
+"Expand" = "Раскрыть";
+"Collapse" = "Свернуть";
+// SMS / iMessage sharing button
+"Message" = "Сообщение";
+"Thumbnails" = "Эскизы";
+"Drag Toolbar" = "Перетащить панель инструментов";
+
+// thumbnails
+"Bookmarked" = "В закладкax";
+"Annotated" = "С аннотациями";
+"All" = "Все";
+
+// password
+"Password" = "Пароль"; // text on a label
+"Unlock" = "Разблокировать";
+"Please enter the password." = "Введите пароль.";
+"This document cannot be unlocked. %@ is unsupported." = "Документ не может быть разблокирован. %@ не поддерживается.";
+
+// page
+"%tu of %tu" = "%tu из %tu";
+"%tu-%tu of %tu" = "%tu–%tu из %tu";
+"%@ (%tu of %tu)" = "%@ (%tu из %tu)";
+"%@, Page %tu" = "%@, страница %tu";
+"Leave %@?" = "Оставить %@?";
+
+// search
+"Search Document" = "Поиск в документе"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "Поиск – страница %tu из %tu";
+"Search Completed" = "Поиск завершен";
+"Search Cancelled" = "Поиск отменен";
+"%tu left" = "осталось %tu"; // Indexing Documents... 5 left
+"Searching" = "Поиск";
+"Done" = "Готово";
+"Indexing Documents" = "Индексация документов";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Документ пуст";
+
+// inline browser
+"Open in Safari" = "Открыть в Safari";
+"Open in Chrome" = "Открыть в Chrome";
+"Your %@ is not configured to send emails." = "Ваш %@ не настроен на отправку электронной почты.";
+"The link is requesting to open %@Would you like to continue?" = "Требуется открыть %@. Продолжить?";
+"an external application" = "внешнее приложение"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "приложение «Почта»"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "Невозможно открыть ссылку %@";
+
+// text selection
+"Text copied to clipboard." = "Текст скопирован в буфер обмена.";
+"Save To Camera Roll" = "Сохранить в Фотогалерею";
+"Failed to extract image." = "Не удалось извлечь изображение.";
+"Type value or pick from list" = "Введите значение или выберите из списка";
+
+// annotations
+"Add %@" = "Добавить %@";
+"Remove %@" = "Удалить %@";
+"Remove" = "Удалить";
+"Delete" = "Удалить"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "Править";
+"Undo" = "Отменить";
+"Nothing to undo" = "Нечего отменять";
+"Redo" = "Повторить";
+"Nothing to redo" = "Нечего повторять";
+"Type" = "Тип"; // kind of Annotation can be selected
+"Size" = "Размер";
+"Font" = "Шрифт";
+"Fonts" = "Шрифты";
+"All Fonts" = "Все шрифты";
+"Downloadable Fonts" = "Загружаемые шрифты";
+"Search Fonts" = "Поиск шрифтов";
+"Choose Color" = "Выберите цвет";
+"Choose Fill Color" = "Выберите заливку";
+"Rainbow" = "Радуга";
+"Monochrome" = "Монохромный";
+"Vintage" = "Винтаж";
+"Color" = "Цвет";
+"Border" = "Рамка";
+"Fill Color" = "Цвет заливки";
+"Line End Fill Color" = "Цвет заливки концов линии";
+"Opacity" = "Непрозрачность";
+"%@ %%" = "%@ %%";
+"Thickness" = "Толщина";
+"%@ pt" = "%@ пт";
+"Yellow" = "Желтый";
+"Green" = "Зеленый";
+"Red" = "Красный";
+"Blue" = "Синий";
+"Pink" = "Розовый";
+"Black" = "Черный";
+"Orange" = "Оранжевый";
+"Purple" = "Лиловый";
+"Cyan" = "Голубой";
+"Gray" = "Серый";
+"White" = "Белый";
+"Define" = "Определить";
+"Wikipedia" = "Википедия";
+"Highlight" = "Выделение";
+"Underline" = "Подчеркивание";
+"Squiggle" = "Волнистое подчеркивание";
+"StrikeOut" = "Зачеркивание";
+"Rectangle" = "Прямоугольник";
+"Ellipse" = "Эллипс";
+"Line" = "Линия"; // something that can be drawn
+"Lines" = "Линии"; // "5 Lines" were drawn
+"Polyline" = "Ломаная линия";
+"Polygon" = "Многоугольник";
+"Signature" = "Подпись";
+"Signatures" = "Подписи";
+"Signed" = "Подписано";
+"Sign" = "Подписать";
+"Sign using %@" = "Подписать с помощью %@"; // e.g. Adobe.PPKLite
+"Methods" = "Способы"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Выбрать личность"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "Печать";
+"Stamps" = "Печати";
+"Custom" = "Свой текст"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "Создать печать";
+"Preview" = "Просмотр";
+"Stamp Text" = "Текст печати";
+"Add Signature" = "Добавить подпись";
+"Remove Signature" = "Удалить подпись";
+"My Signature" = "Моя подпись";
+"No Signatures" = "Нет подписей"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "Подпись пользователя";
+"Please sign here" = "Подпишите здесь";
+"Note" = "Заметка";
+"Text" = "Текст";
+"Delete Note" = "Удалить заметку";
+"Remove Note" = "Стереть заметку";
+"%@ could not be found." = "%@ не найдена.";
+"Photo Library" = "Медиатека";
+"Camera" = "Камера";
+"Image" = "Изображение";
+"Low Quality" = "Низкое качество";
+"Medium Quality" = "Среднее качество";
+"High Quality" = "Высокое качество";
+"Clear All" = "Удалить все";
+"Clear" = "Очистить";
+"Style" = "Стиль";
+"Link" = "Ссылка";
+"Ink" = "Чернила";
+"FreeText" = "Текст";
+"Screen" = "Экран";
+"RichMedia" = "Рич-медиа";
+"Left" = "Слева";
+"Center" = "По центру";
+"Right" = "Справа";
+"Alignment" = "Выравнивание";
+"Preview File" = "Просмотреть файл";
+"Copy" = "Скопировать";
+"Paste" = "Вставить";
+"Inspector" = "Инспектор";
+"Group" = "Группировать";
+"Ungroup" = "Разгруппировать";
+"Merge" = "Объединить"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "Образец";
+"Annotation Summary for %@:\n" = "Сводка аннотаций для %@:\n";
+// title
+"Author Name" = "Имя автора";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Введите имя автора, которое вы хотите использовать для новых аннотаций.";
+// text field placeholder
+"Name" = "Имя";
+// meaning: close
+"Dismiss" = "Закрыть";
+"Fit to Text" = "Поместить в текст";
+"Draw" = "Рисовать";
+"Sound" = "Звук";
+"Eraser" = "Ластик";
+"Toggle Eraser" = "Переключить ластик"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "Инструмент выделения";
+"Saved Annotations" = "Архив аннотаций";
+"Add" = "Добавить"; // to add - infinitive
+"Date" = "Дата";
+"Time" = "Время";
+"No Pages" = "Нет страниц";
+"Drag to resize" = "Перетащите для изм. размера"; // used as hint that inspector is resizable
+"Convert to" = "Конвертировать в"; // used as label on action that changes free text intent type
+"Color Presets" = "Библиотека цветов";
+
+"Callout" = "Выноска"; // freetext annotation with an arrow
+"Generic" = "Обычный"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "Стиль линий";
+"Solid" = "Сплошные";
+"Narrow Dots" = "Узкие точки";
+"Wide Dots" = "Широкие точки";
+"Narrow Dashes" = "Узкие штрихи";
+"Wide Dashes" = "Широкие штрихи";
+
+// Stamps
+"Approved" = "Одобрено";
+"Not Approved" = "Не одобрено";
+"Draft" = "Черновик";
+"Final" = "Окончательный";
+"Completed" = "Завершено";
+"Confidential" = "Конфиденциально";
+"For Public Release" = "Публичный выпуск";
+"Not For Public Release" = "Не для публичного выпуска";
+"For Comment" = "Для комментариев";
+"Void" = "Аннулировать";
+"Preliminary Results" = "Предварительно";
+"Information only" = "Только информация";
+"Accepted" = "Принято";
+"Rejected" = "Отклонено";
+"Initial Here" = "ФИО";
+"Sign Here" = "Место подписи";
+"Witness" = "Удостоверить";
+"Revised" = "Изменено";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Стилус";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Выкл.";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Сканирование";
+// text on a label; app connects to a stylus
+"Pairing" = "Создание пары";
+// text on a label; app and stylus are connected
+"Connected" = "Подключено";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Отключено";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Настройки";
+
+
+// PDF annotation name overrides
+"Square" = "Прямоугольник";
+"Circle" = "Эллипс";
+"PolyLine" = "Ломаная линия";
+
+// named actions
+"NextPage" = "Следующая страница";
+"PrevPage" = "Предыдущая страница";
+"FirstPage" = "Первая страница";
+"LastPage" = "Последняя страница";
+"GoBack" = "Назад";
+"GoForward" = "Вперед";
+"GoToPage" = "Перейти к странице";
+"Find" = "Поиск";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Увеличить масштаб";
+"ZoomOut" = "Уменьшить масштаб";
+"Execute JavaScript" = "Исполнять JavaScript";
+"Rich Media Action" = "Действие рич-медиа";
+"Rendition Action" = "Действие воспроизведения";
+"Hide Action" = "Скрыть действие";
+"Submit Form" = "Отправить форму";
+"Reset" = "Сброс";
+
+// line annotations
+"Start" = "Начало";
+"End" = "Конец";
+"Line.None" = "Нет";
+"Line.ClosedArrow" = "Закрытая стрелка";
+"Line.OpenArrow" = "Открытая стрелка";
+"Line.Square" = "Квадрат";
+"Line.Circle" = "Круг";
+"Line.Diamond" = "Ромб";
+"Line.ROpenArrow" = "Развернутая открытая стрелка";
+"Line.RClosedArrow" = "Развернутая закрытая стрелка";
+"Line.Slash" = "Косая черта";
+"Line.Butt" = "Конец";
+"Line Start" = "Начало линии";
+"Line End" = "Конец линии";
+"Arrow" = "Стрелка"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "Создать ссылку";
+"Add Link" = "Добавить ссылку";
+"Edit Link" = "Редактировать ссылку";
+"Move Link" = "Переместить ссылку";
+"Remove Link" = "Удалить ссылку";
+"Open Link" = "Открыть ссылку";
+"Go to Page %tu" = "Перейти к странице %tu";
+"Go to Page" = "Перейти к странице"; // title of a Popup
+"Go" = "Перейти"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "Сохранить";
+"Link Destination" = "Конечный объект";
+"Enter page index or a http:// address to link to an URL." = "Введите индекс страницы или адрес (http://) ссылки.";
+"Page %@ Not Found" = "Страница %@ не найдена";
+
+// voiceover accessibility
+"Page" = "Страница";
+"Grid" = "Сетка"; // grid with thumbnails
+"Translucent" = "Полупрозрачный";
+"left" = "влево";
+"center" = "центр";
+"right" = "вправо";
+"decrease" = "уменьшить";
+"increase" = "увеличить";
+"All Open Documents" = "Все открытые документы";
+"Add Documents" = "Добавить документы"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "Страницы %tu–%tu"; // Range of pages
+"Current Page" = "Текущая страница";
+"Current Page (%tu)" = "Текущая страница (%tu)";
+"Ignore Annotations" = "Игнорировать аннотации";
+"The PDF will not contain any annotations." = "PDF не будет содержать аннотаций.";
+"Embed Annotations" = "Встроить аннотации";
+"Annotations will remain editable and are embedded into the PDF." = "Аннотации останутся изменяемыми и встроенными в PDF.";
+"Flatten Annotations" = "Вклеить аннотации";
+"Annotations are drawn into the PDF and are readonly." = "Аннотации будут объединены с содержимым PDF и доступны только для чтения.";
+"Annotation Summary" = "Сводка аннотаций";
+"Embed Annotations into the PDF and also list them in the email." = "Встроить аннотации в PDF и добавить их список в сообщение эл. почты.";
+"Files" = "Файлы";
+"Send as single files" = "Отправить по одному";
+"Merge files" = "Объединить файлы";
+"Original File" = "Исходный файл";
+"Range" = "Диапазон";
+"Annotated Pages" = "Страницы с аннотациями";
+
+// sound annotations
+"Speak" = "Произнести"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "Воспр.";
+"Pause" = "Пауза";
+"Resume" = "Возобновить";
+"Stop" = "Стоп";
+"Play/Stop" = "Воспр./Стоп";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Запись";
+"Pause Recording" = "Приостановить запись";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Запись приостановлена";
+"Continue Recording" = "Продолжить запись";
+"Finish Recording" = "Завершить запись";
+"Audio Problem" = "Проблема со звуком";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "Не удалось воспроизвести.";
+"Could not resume playback." = "Не удалось возобновить воспроизведение.";
+"Microphone permission not granted." = "Не дано разрешение на использование микрофона.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "В данный момент запись звука невозможна. Предоставьте приложению доступ к микрофону.";
+"There was a problem trying to record audio." = "При записи звука произошел сбой.";
+"Already Recording" = "Идет запись";
+"You are already recording on page %@." = "Вы уже записываете на странице %@.";
+
+// Forms
+"Form Element" = "Элемент формы";
+"Text Field" = "Текстовое поле";
+"Button" = "Кнопка";
+"Choice Field" = "Поле выбора";
+"Signature Field" = "Поле для подписи";
+"Clear Field" = "Очистить поле"; // same as delete
+"Type value or pick from list" = "Введите значение или выберите из списка";
+"Default Values" = "Значения по умолчанию";
+"Custom Value" = "Пользовательское значение";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Неверное значение: должно быть больше или равно %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Неверное значение: должно быть больше или равно %s и при этом меньше или равно %s.";
+"Invalid value: must be less than or equal to %s." = "Неверное значение: должно быть меньше или равно %s.";
+"Invalid value: must be a number." = "Неверное значение: требуется число.";
+
+//  Validation of dates
+"Invalid value: must be a date." = "Неверное значение: требуется дата.";
+
+// General validation
+"Invalid value." = "Неверное значение.";
+
+// Gallery
+"Connection Error" = "Ошибка подключения";
+"Unsupported Content" = "Неподдерживаемое содержимое";
+"The specified content cannot be displayed." = "Указанное содержимое не может быть отображено.";
+"Something went wrong" = "Произошла ошибка";
+"This item is currently unavailable." = "Данная позиция сейчас недоступна.";
+"The information for this gallery could not be loaded." = "Информация по галерее не может быть загружена.";
+"Content Error" = "Ошибка содержимого";
+"This content is unsupported." = "Содержимое не поддерживается.";
+
+// Signatures
+"Digital Signature" = "Цифровая подпись";
+"Signature is valid." = "Подпись верна.";
+"Signature is valid, but there are some warnings." = "Подпись верна, но есть предупреждения.";
+"It was signed by %@ on %@ at %@." = "Документ подписан %@ %@ в %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Подписан %@ в %@.";
+"It claims to have been signed by %@ on %@ at %@." = "Заявлено подписание %@ %@ в %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Заявлено подписание %@ в %@.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Подписанная версия не была изменена, однако после подписания документа в него были внесены изменения."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- Подпись действительна, содержимое документа не было изменено после его подписания.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Неверная подпись – после подписания документ был изменен или данные повреждены.";
+"Unsigned Signature Field" = "Неподписанное поле подписи";
+"Do you really want to remove the signature from the document?" = "Вы действительно хотите удалить подпись из документа?";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Не удается прочитать данные сертификата PKCS#7. Данные в правильном формате могут быть экспортированы из Adobe Acrobat."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "Не удалось расшифровать подпись сертификата.";
+"The public key in the certificate could not be read." = "Не удалось прочитать открытый ключ сертификата.";
+"The signature of the certificate is not valid." = "Подпись сертификата недействительна.";
+"Signature is not valid." = "Подпись недействительна.";
+"There is a format error in the notBefore field of the certificate." = "Ошибка формата в поле notBefore сертификата."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "Ошибка формата в поле notAfter сертификата."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Подписи не могут быть подтверждены, поскольку цепь сертификатов содержит лишь один сертификат, он не является самоподписанным, и эмитент не является доверенным.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Сертификат БС недействителен, поскольку был выпущен не БС или его расширения не соответствуют назначению."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "Превышен параметр basicConstraints pathlength."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "Корневое БС не помечено как доверенное для его цели."; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "Корневое БС помечено к отклонению указанной цели."; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Сертификат эмитента был отклонен, поскольку значение имени Subject не совпадало со значением Issuer текущего сертификата."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Сертификат эмитента был отклонен, поскольку Subject Key Identifier не совпадал с Authority Key Identifier текущего сертификата."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "Сертификат эмитента был отклонен, поскольку значение имени Issuer и Serial Number не совпадали с Authority Key Identifier текущего сертификата."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "Сертификат был отозван эмитентом.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Переданный сертификат является самоподписанным и не может быть найден в списке доверенных сертификатов.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "В цепи сертификатов существует самоподписанный сертификат. Цепь может состоять из недостоверных сертификатов, но корневое БС в локальной системе не найдено."; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Не удалось найти сертификат для одного из бюро сертификации (БС) в иерархии подписей; данное БС не является доверенным для локального приложения."; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Локальный поиск сертификата не обнаружил сертификата эмитента. Обычно это означает, что список доверенных сертификатов не полон.";
+"The certificate that was provided cannot be used for its intended purpose." = "Предоставленный сертификат не может быть использован с этой целью.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "Расширение keyUsage сертификата эмитента не разрешает подписание сертификата.";
+"The certificate has expired." = "Сертификат истек.";
+"The certificate is not valid until a date in the future." = "Сертификат недействителен до даты в будущем.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Не удалось прочитать сертификат X509 из данных";
+// X509 should not be translated
+"No X509 certificate found" = "Сертификат X509 не найден";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Не удается прочитать файл PKCS12. Файл неверно отформатирован или поврежден.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Не удалось разблокировать данные PKCS12. Верен ли введенный пароль?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Не удалось открыть файл для подтверждения подписи";
+"Could not get signer info" = "Не удалось получить данные о подписанте";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL не удалось создать объект PKCS7";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL не удалось добавить подпись в объект PKCS7";
+"OpenSSL could not init PKCS7 object" = "OpenSSL не удалось вызвать объект PKCS7";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL удалось сгенерировать подпись PKCS7";
+"OpenSSL could not sign hash" = "OpenSSL не удалось подписать хэш";
+"Could not write PKCS7 signature" = "Не удалось записать подпись PKCS7";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "Открыть в";
+"PSPDFPolicyEventPrint" = "Печать";
+"PSPDFPolicyEventEmail" = "Эл. почта";
+"PSPDFPolicyEventMessage" = "Сообщение";
+"PSPDFPolicyEventQuickLook" = "Быстрый просмотр"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "Аудиозапись";
+"PSPDFPolicyEventCamera" = "Камера";
+"PSPDFPolicyEventPasteboard" = "Буфер обмена"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "Отправить форму";
+"PSPDFPolicyEventNetwork" = "Сеть";
+
+// Night Mode
+"Default" = "По умолчанию"; // Default view (night mode not enabled)
+"Sepia" = "Сепия"; // Document uses sepia colors
+"Night" = "Ночь"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "Не выбран документ";
+"Unable to display document" = "Не удалось отобразить документ";
+"Loading..." = "Загрузка...";
+"Locked" = "Заблокировано";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "Формат файла – не PDF, или файл поврежден.";
+"A password is required to access this document." = "Для доступа к документу требуется пароль.";
+"The security scheme of this document is currently not supported." = "Схема безопасности данного документа в настоящий момент не поддерживается.";
+"An unknown error has occured while trying to open this file." = "При попытке открыть файл произошла неизвестная ошибка.";
+
+// Document Editor
+"Document Editor" = "Редактор документов";
+"Add Page" = "Добавить страницу";
+"Delete Pages" = "Удалить страницы";
+"Duplicate Pages" = "Дублировать страницы";
+"Move Pages" = "Переместить страницы";
+"Rotate Pages" = "Повернуть страницы";
+"Page Size" = "Формат страницы";
+"Background Color" = "Цвет фона";
+"Pattern" = "Рисунок";
+"Use Document Size" = "Использовать размер документа";
+"Orientation" = "Ориентация";
+"Portrait" = "Книжная";
+"Landscape" = "Альбомная";
+"Name" = "Имя";
+"Document Name" = "Имя документа";
+"Documents" = "Документы"; // Name of directory
+"Use Document Directory" = "Использовать каталог документа";
+"Directory" = "Каталог";
+"Replace File?" = "Заменить файл?";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Выбранная папка уже содержит файл с именем «%@». Заменить существующий файл?";
+"Replace" = "Заменить";
+"Saving…" = "Сохранение…";
+"Saved" = "Сохранено";
+"Save As…" = "Сохранить как…";
+"Discard Changes" = "Отменить изменения";
+"Empty" = "Аннулировать";
+
+// Document Editor Errors
+"A blank document can not be saved." = "Пустой документ сохранить нельзя.";
+"The document could not be saved." = "Не удалось сохранить документ.";
+"This document does not support editing." = "Этот документ не поддерживает редактирование.";
+
+// Page Patterns
+"None" = "Нет";
+"Dot5mm" = "Точка 5 мм";
+"Grid5mm" = "Сетка 5 мм";
+"Lines5mm" = "Линии 5 мм";
+"Lines7mm" = "Линии 7 мм";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US Letter";
+"US Legal" = "US Legal";
+
+// Page Export
+"Export Pages" = "Экспортировать страницы";
+"Export…" = "Экспорт…";
+"Exporting…" = "Идет экспорт…";
+"Exported" = "Экспортировано";
+"%@ - Exported" = "%@ – экспорт"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ – копия"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "Выбранный документ в настоящий момент открыт. Выберите другое имя файла.";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Служба преобразования текста в речь недоступна. Убедитесь, что ваше устройство подключено к интернету, или что на нем установлен и включен Синтезатор речи Google.";

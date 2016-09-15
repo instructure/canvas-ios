@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "ปิด";
+"Cancel" = "ยกเลิก";
+"OK" = "ตกลง";
+"Open" = "เปิด";
+"Untitled" = "ไม่มีชื่อ";
+"File Not Found" = "ไม่พบไฟล์";
+"File couldn't be opened." = "เปิดไฟล์ไม่ได้"; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "PDF ที่ไม่ได้ตั้งชื่อ";
+"Page %tu" = "หน้า %tu";
+"Page %@" = "หน้า %@";
+"Next" = "ถัดไป";
+"Previous" = "ก่อนหน้า";
+"Error" = "ข้อผิดพลาด";
+
+// toolbar
+"Outline" = "ตัวเส้นขอบ"; // Table of contents
+"No Outline" = "ไม่มีโครงร่าง";
+"Search Outline" = "ค้นหาตัวเส้นขอบ";
+"Search" = "ค้นหา";
+"Email" = "อีเมล";
+"Send via Email" = "ส่งทางอีเมล";
+"Send" = "ส่ง";
+"Open In" = "เปิดใน";
+"Commit" = "ดำเนินการ";
+"Sending to %@" = "ส่งไปที่ %@"; // Open document with an application
+"Pages" = "หน้า";
+"Print with annotations" = "พิมพ์และแสดงหมายเหตุ";
+"Print without annotations" = "พิมพ์โดยไม่แสดงหมายเหตุ";
+"No Applications found" = "ไม่ได้ติดตั้งแอปที่สามารถเปิดเอกสาร PDF ได้";
+"Print" = "พิมพ์";
+"Annotation" = "การทำหมายเหตุ";
+"Annotations" = "หมายเหตุ";
+"No Annotations" = "ไม่มีการทำหมายเหตุ";
+"Bookmarks" = "ที่คั่นหน้าเว็บ";
+"No Bookmarks" = "ไม่มีที่คั่นหน้าเว็บ";
+"Add Bookmark" = "เพิ่มที่คั่นหน้าเว็บ";
+"Remove Bookmark" = "ลบที่คั่นหน้าเว็บ";
+"Brightness" = "ความสว่าง";
+"Share" = "แบ่งปัน";
+"Preparing" = "กำลังเตรียม";
+"Loading" = "กำลังโหลด";
+"Expand" = "ขยายตัว";
+"Collapse" = "ยุบ";
+// SMS / iMessage sharing button
+"Message" = "ข้อความ";
+"Thumbnails" = "ภาพขนาดย่อ";
+"Drag Toolbar" = "ลากแถบเครื่องมือ";
+
+// thumbnails
+"Bookmarked" = "คั่นหน้าเว็บไว้";
+"Annotated" = "ลงหมายเหตุไว้";
+"All" = "ทั้งหมด";
+
+// password
+"Password" = "รหัสผ่าน"; // text on a label
+"Unlock" = "ปลดล็อก";
+"Please enter the password." = "กรุณากรอกรหัสผ่าน";
+"This document cannot be unlocked. %@ is unsupported." = "ปลดล็อกเอกสารนี้ไม่ได้ ไม่ได้รองรับ%@";
+
+// page
+"%tu of %tu" = "%tu จาก %tu";
+"%tu-%tu of %tu" = "%tu-%tu จาก %tu";
+"%@ (%tu of %tu)" = "%@ (%tu จาก %tu)";
+"%@, Page %tu" = "%@, หน้า %tu";
+"Leave %@?" = "ออกจาก %@?";
+
+// search
+"Search Document" = "ค้นหาเอกสาร"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "กำลังหาหน้าที่ %tu จาก %tu";
+"Search Completed" = "การค้นหาเสร็จสิ้น";
+"Search Cancelled" = "การค้นหาถูกยกเลิก";
+"%tu left" = "เหลือ %tu ฉบับ"; // Indexing Documents... 5 left
+"Searching" = "กำลังค้นหา";
+"Done" = "เสร็จ";
+"Indexing Documents" = "จัดดัชนีเอกสาร";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "ไม่มีเนื้อหาในเอกสาร";
+
+// inline browser
+"Open in Safari" = "เปิดใน Safari";
+"Open in Chrome" = "เปิดใน Chrome";
+"Your %@ is not configured to send emails." = "%@ ของคุณไม่ได้รับการตั้งค่าให้ส่งอีเมล";
+"The link is requesting to open %@Would you like to continue?" = "ลิงก์นี้ขออนุญาตให้เปิด%@คุณต้องการดำเนินการต่อหรือไม่";
+"an external application" = "แอปพลิเคชั่นนอกระบบ"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "เมล์"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "ไม่พบโปรแกรมที่ใช้เปิด%@";
+
+// text selection
+"Text copied to clipboard." = "คัดลอกข้อความไปยังคลิปบอร์ด";
+"Save To Camera Roll" = "บันทึกลงม้วนฟิล์ม";
+"Failed to extract image." = "ดึงรูปภาพไม่สำเร็จ";
+"Type value or pick from list" = "พิมพ์ค่าหรือเลือกจากรายการ";
+
+// annotations
+"Add %@" = "เพิ่ม%@";
+"Remove %@" = "ลบ %@";
+"Remove" = "ลบออก";
+"Delete" = "ลบ"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "แก้ไข";
+"Undo" = "ถอนคำสั่งกลับ";
+"Nothing to undo" = "ไม่มีคำสั่งให้ถอนกลับ";
+"Redo" = "ทำซ้ำ";
+"Nothing to redo" = "ไม่มีคำสั่งให้ทำซ้ำ";
+"Type" = "ประเภท"; // kind of Annotation can be selected
+"Size" = "ขนาด";
+"Font" = "แบบอักษร";
+"Fonts" = "แบบอักษร";
+"All Fonts" = "แบบอักษรทั้งหมด";
+"Downloadable Fonts" = "แบบอักษรที่ดาวน์โหลดได้";
+"Search Fonts" = "ค้นหาแบบอักษร";
+"Choose Color" = "เลือกสี";
+"Choose Fill Color" = "เลือกสีระบาย";
+"Rainbow" = "สีรุ้ง";
+"Monochrome" = "สีเดียว";
+"Vintage" = "โบราณ";
+"Color" = "สี";
+"Border" = "ขอบ";
+"Fill Color" = "สีระบาย";
+"Line End Fill Color" = "ลงสีที่จุดสิ้นสุดของเส้น";
+"Opacity" = "ความทึบแสง";
+"%@ %%" = "%@ %%";
+"Thickness" = "ความหนา";
+"%@ pt" = "%@ pt";
+"Yellow" = "สีเหลือง";
+"Green" = "สีเขียว";
+"Red" = "สีแดง";
+"Blue" = "สีน้ำเงิน";
+"Pink" = "สีชมพู";
+"Black" = "สีดำ";
+"Orange" = "สีส้ม";
+"Purple" = "สีม่วง";
+"Cyan" = "สีฟ้าอมเขียว";
+"Gray" = "สีเทา";
+"White" = "สีขาว";
+"Define" = "นิยาม";
+"Wikipedia" = "วิกิพีเดีย";
+"Highlight" = "เน้น";
+"Underline" = "ขีดเส้นใต้";
+"Squiggle" = "ขยุกขยิก";
+"StrikeOut" = "ขีดฆ่า";
+"Rectangle" = "สี่เหลี่ยม";
+"Ellipse" = "วงรี";
+"Line" = "เส้น"; // something that can be drawn
+"Lines" = "เส้น"; // "5 Lines" were drawn
+"Polyline" = "Polyline";
+"Polygon" = "Polygon";
+"Signature" = "ลายเซ็น";
+"Signatures" = "ลายเซ็น";
+"Signed" = "เซ็นแล้ว";
+"Sign" = "ลงชื่อ";
+"Sign using %@" = "ลงชื่อด้วย %@"; // e.g. Adobe.PPKLite
+"Methods" = "วิธี"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "เลือกรูปพรรณ"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "ตราประทับ";
+"Stamps" = "ตราประทับ";
+"Custom" = "กำหนดเอง"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "สร้างตราประทับ";
+"Preview" = "ดูตัวอย่าง";
+"Stamp Text" = "ข้อความของตราประทับ";
+"Add Signature" = "ลงลายเซ็น";
+"Remove Signature" = "ลบลายเซ็น";
+"My Signature" = "ลายเซ็นของฉัน";
+"No Signatures" = "ไม่มีลายเซ็น"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "ลายเซ็นลูกค้า";
+"Please sign here" = "กรุณาลงชื่อที่นี่";
+"Note" = "บันทึก";
+"Text" = "ข้อความ";
+"Delete Note" = "ลบบันทึก";
+"Remove Note" = "ลบบันทึก";
+"%@ could not be found." = "หา %@ ไม่พบ";
+"Photo Library" = "คลังรูปภาพ";
+"Camera" = "กล้อง";
+"Image" = "รูปภาพ";
+"Low Quality" = "คุณภาพต่ำ";
+"Medium Quality" = "คุณภาพปานกลาง";
+"High Quality" = "คุณภาพสูง";
+"Clear All" = "ล้างทั้งหมด";
+"Clear" = "ล้าง";
+"Style" = "รูปแบบ";
+"Link" = "ลิงก์";
+"Ink" = "หมึก";
+"FreeText" = "ข้อความ";
+"Screen" = "หน้าจอ";
+"RichMedia" = "มัลติมีเดีย";
+"Left" = "ซ้าย";
+"Center" = "กลาง";
+"Right" = "ขวา";
+"Alignment" = "การจัดแนว";
+"Preview File" = "ดูตัวอย่างไฟล์";
+"Copy" = "คัดลอก";
+"Paste" = "วาง";
+"Inspector" = "ตัวรายงานข้อมูล";
+"Group" = "จัดกลุ่ม";
+"Ungroup" = "แยกการจัดกลุ่ม";
+"Merge" = "ผสาน"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "ตัวอย่าง";
+"Annotation Summary for %@:\n" = "บทสรุปหมายเหตุสำหรับ %@:\n";
+// title
+"Author Name" = "ชื่อผู้เขียน";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "กรุณากรอกชื่อผู้เขียนที่คุณต้องการใช้สำหรับหมายเหตุใหม่ที่เพิ่งเขียนลงไป";
+// text field placeholder
+"Name" = "ชื่อ";
+// meaning: close
+"Dismiss" = "ปิด";
+"Fit to Text" = "ปรับให้พอดีกับข้อความ";
+"Draw" = "วาด";
+"Sound" = "เสียง";
+"Eraser" = "ยางลบ";
+"Toggle Eraser" = "ปิดยางลบ"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "เครื่องมือสำหรับการเลือก";
+"Saved Annotations" = "หมายเหตุที่บันทึกไว้";
+"Add" = "เพิ่ม"; // to add - infinitive
+"Date" = "วันที่";
+"Time" = "เวลา";
+"No Pages" = "ไม่มีหน้า";
+"Drag to resize" = "ลากเพื่อปรับขนาด"; // used as hint that inspector is resizable
+"Convert to" = "แปลงเป็น"; // used as label on action that changes free text intent type
+"Color Presets" = "ค่าสีที่ตั้งไว้ล่วงหน้า";
+
+"Callout" = "กรอบคำพูด"; // freetext annotation with an arrow
+"Generic" = "ทั่วไป"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "แบบเส้น";
+"Solid" = "ต่อเนื่อง";
+"Narrow Dots" = "จุดถี่ๆ";
+"Wide Dots" = "จุดห่างๆ";
+"Narrow Dashes" = "เส้นประถี่ๆ";
+"Wide Dashes" = "เส้นประห่างๆ";
+
+// Stamps
+"Approved" = "ผ่านการรับรอง";
+"Not Approved" = "ไม่ผ่านการรับรอง";
+"Draft" = "ฉบับร่าง";
+"Final" = "สุดท้าย";
+"Completed" = "เสร็จสิ้น";
+"Confidential" = "เป็นความลับ";
+"For Public Release" = "สำหรับข่าวประชาสัมพันธ์";
+"Not For Public Release" = "ไม่ใช่สำหรับข่าวประชาสัมพันธ์";
+"For Comment" = "สำหรับแสดงความเห็น";
+"Void" = "เป็นโมฆะ";
+"Preliminary Results" = "ผลลัพธ์ขั้นต้น";
+"Information only" = "ข้อมูลเท่านั้น";
+"Accepted" = "ยอมรับ";
+"Rejected" = "ถูกปฏิเสธ";
+"Initial Here" = "ลงตัวย่อที่นี่";
+"Sign Here" = "ลงชื่อที่นี่";
+"Witness" = "พยาน";
+"Revised" = "ฉบับแก้ไขปรับปรุง";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "สไตล์";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "ปิด";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "กำลังสแกน";
+// text on a label; app connects to a stylus
+"Pairing" = "การเชื่อมต่อ";
+// text on a label; app and stylus are connected
+"Connected" = "เชื่อมต่ออยู่";
+// text on a label; app and stylus are not connected
+"Disconnected" = "ไม่ได้เชื่อมต่อ";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "การตั้งค่า";
+
+
+// PDF annotation name overrides
+"Square" = "สี่เหลี่ยม";
+"Circle" = "วงรี";
+"PolyLine" = "Polyline";
+
+// named actions
+"NextPage" = "หน้าถัดไป";
+"PrevPage" = "หน้าก่อนหน้า";
+"FirstPage" = "หน้าแรก";
+"LastPage" = "หน้าสุดท้าย";
+"GoBack" = "กลับไป";
+"GoForward" = "ไปข้างหน้า";
+"GoToPage" = "ไปที่หน้า";
+"Find" = "หา";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "ซูมเข้า";
+"ZoomOut" = "ซูมออก";
+"Execute JavaScript" = "ใช้ JavaScript";
+"Rich Media Action" = "การดำเนินการด้านมัลติมีเดีย";
+"Rendition Action" = "การดำเนินการบันทึก";
+"Hide Action" = "ซ่อนการดำเนินการ";
+"Submit Form" = "ส่งฟอร์ม";
+"Reset" = "รีเซ็ต";
+
+// line annotations
+"Start" = "จุดเริ่ม";
+"End" = "สิ้นสุด";
+"Line.None" = "ไม่มีเลย";
+"Line.ClosedArrow" = "ลูกศรปิด";
+"Line.OpenArrow" = "ลูกศรเปิด";
+"Line.Square" = "จัตุรัส";
+"Line.Circle" = "วงกลม";
+"Line.Diamond" = "เพชร";
+"Line.ROpenArrow" = "ลูกศรเปิดที่พลิกกลับ";
+"Line.RClosedArrow" = "ลูกศรปิดที่พลิกกลับ";
+"Line.Slash" = "เครื่องหมายทับ";
+"Line.Butt" = "ก้อน";
+"Line Start" = "จุดเริ่มต้นของเส้น";
+"Line End" = "จุดจบของเส้น";
+"Arrow" = "ลูกศร"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "สร้างลิงก์";
+"Add Link" = "เพิ่มลิงก์";
+"Edit Link" = "แก้ไขลิงก์";
+"Move Link" = "เลื่อนลิงก์";
+"Remove Link" = "ลบลิงก์";
+"Open Link" = "เปิดลิงก์";
+"Go to Page %tu" = "ไปที่หน้า %tu";
+"Go to Page" = "ไปที่หน้า"; // title of a Popup
+"Go" = "ไป"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "บันทึก";
+"Link Destination" = "จุดหมายปลายทางของลิงก์";
+"Enter page index or a http:// address to link to an URL." = "กรอกดัชนีหน้าหรือที่อยู่ http:// เพื่อเชื่อมต่อไปที่ URL";
+"Page %@ Not Found" = "ไม่พบหน้า %@";
+
+// voiceover accessibility
+"Page" = "หน้า";
+"Grid" = "ตาราง"; // grid with thumbnails
+"Translucent" = "โปร่งใส";
+"left" = "ซ้าย";
+"center" = "ตรงกลาง";
+"right" = "ขวา";
+"decrease" = "ลดขนาด";
+"increase" = "ขยาย";
+"All Open Documents" = "เอกสารที่เปิดอยู่ทั้งหมด";
+"Add Documents" = "เพิ่มเอกสาร"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "หน้า %tu-%tu"; // Range of pages
+"Current Page" = "หน้าปัจจุบัน";
+"Current Page (%tu)" = "หน้าปัจจุบัน (%tu)";
+"Ignore Annotations" = "เพิกเฉยหมายเหตุ";
+"The PDF will not contain any annotations." = "PDF นี้จะไม่มีหมายเหตุใดๆ";
+"Embed Annotations" = "ฝังหมายเหตุ";
+"Annotations will remain editable and are embedded into the PDF." = "สามารถแก้ไขปรับแต่งหมายเหตุต่อไปได้และฝังลงใน PDF";
+"Flatten Annotations" = "ลงหมายเหตุ";
+"Annotations are drawn into the PDF and are readonly." = "หมายเหตุได้รับการบันทึกลงใน PDF และแก้ไขไม่ได้";
+"Annotation Summary" = "บทสรุปหมายเหตุ";
+"Embed Annotations into the PDF and also list them in the email." = "ฝังหมายเหตุลงใน PDF และแจงรายการลงในอีเมลด้วย";
+"Files" = "ไฟล์";
+"Send as single files" = "ส่งเป็นไฟล์เดี่ยว";
+"Merge files" = "ผสานไฟล์";
+"Original File" = "ไฟล์ดั้งเดิม";
+"Range" = "ขอบเขต";
+"Annotated Pages" = "หน้าที่ลงหมายเหตุไว้";
+
+// sound annotations
+"Speak" = "ออกเสียง"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "เล่น";
+"Pause" = "หยุดชั่วคราว";
+"Resume" = "กลับไปเล่นต่อ";
+"Stop" = "หยุด";
+"Play/Stop" = "เล่น/หยุด";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "อัดเสียง";
+"Pause Recording" = "หยุดการอัดเสียงชั่วคราว";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "การอัดเสียงหยุดค้างอยู่";
+"Continue Recording" = "อัดเสียงต่อ";
+"Finish Recording" = "เสร็จการอัดเสียง";
+"Audio Problem" = "ปัญหาด้านเสียง";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "เริ่มเล่นจากช่วงสุดท้ายไม่ได้";
+"Could not resume playback." = "เล่นต่อจากช่วงสุดท้ายไม่ได้";
+"Microphone permission not granted." = "ไม่ได้รับอนุญาตให้ใช้ไมโครโฟน";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "อัดเสียงไม่ได้ในขณะนี้ กรุณาอนุญาตให้แอปนี้เข้าใช้ไมโครโฟนของคุณ";
+"There was a problem trying to record audio." = "เกิดปัญหาขึ้นขณะที่พยายามจะอัดเสียง";
+"Already Recording" = "กำลังอัดเสียงอยู่แล้ว";
+"You are already recording on page %@." = "คุณกำลังอัดเสียงที่หน้า %@ อยู่แล้วในขณะนี้";
+
+// Forms
+"Form Element" = "องค์ประกอบของฟอร์ม";
+"Text Field" = "ช่องใส่ข้อความ";
+"Button" = "ปุ่ม";
+"Choice Field" = "ช่องตัวเลือก";
+"Signature Field" = "ช่องลงลายเซ็น";
+"Clear Field" = "ลบข้อมูลในช่อง"; // same as delete
+"Type value or pick from list" = "พิมพ์ค่าหรือเลือกจากรายการ";
+"Default Values" = "ค่าเริ่มต้น";
+"Custom Value" = "ค่าที่กำหนดเอง";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "ค่าเป็นโมฆะ: ต้องมากกว่าหรือเท่ากับ %s";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "ค่าเป็นโมฆะ: ต้องมากกว่าหรือเท่ากับ %s และน้อยกว่าหรือเท่ากับ %s";
+"Invalid value: must be less than or equal to %s." = "ค่าเป็นโมฆะ: ต้องน้อยกว่าหรือเท่ากับ %s";
+"Invalid value: must be a number." = "ค่าเป็นโมฆะ: ต้องเป็นตัวเลข";
+
+//  Validation of dates
+"Invalid value: must be a date." = "ค่าเป็นโมฆะ: ต้องเป็นวันที่";
+
+// General validation
+"Invalid value." = "ค่าเป็นโมฆะ";
+
+// Gallery
+"Connection Error" = "ข้อผิดพลาดในการเชื่อมต่อ";
+"Unsupported Content" = "เนื้อหาที่ไม่รองรับ";
+"The specified content cannot be displayed." = "ไม่สามารถแสดงเนื้อหาที่ระบุไว้";
+"Something went wrong" = "เกิดปัญหาขึ้น";
+"This item is currently unavailable." = "ไอเท็มนี้ไม่มีให้เลือกในขณะนี้";
+"The information for this gallery could not be loaded." = "โหลดข้อมูลสำหรับอัลบั้มภาพนี้ไม่ได้";
+"Content Error" = "ข้อผิดพลาดทางเนื้อหา";
+"This content is unsupported." = "ไม่รองรับเนื้อหานี้";
+
+// Signatures
+"Digital Signature" = "ลายเซ็นดิจิตอล";
+"Signature is valid." = "ลายเซ็นมีผลบังคับใช้";
+"Signature is valid, but there are some warnings." = "ลายเซ็นมีผลบังคับ แต่มีคำเตือน";
+"It was signed by %@ on %@ at %@." = "ลงชื่อโดย %@ เมื่อวันที่ %@ เวลา %@ น."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "เซ็นเมื่อวันที่ %@ เวลา %@ น.";
+"It claims to have been signed by %@ on %@ at %@." = "อ้างว่าเซ็นชื่อโดย %@ เมื่อวันที่ %@ เวลา %@ น."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "อ้างว่าเซ็นชื่อเมื่อวันที่ %@ เวลา %@ น.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- เวอร์ชั่นที่ได้รับลายเซ็นนี้ไม่ได้ถูกแก้ไข อย่างไรก็ตามมีการเปลี่ยนแปลงเกิดขึ้นกับเอกสารนี้หลังจากที่ลงลายเซ็น"; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- ลายเซ็นนี้มีผลบังคับ และเนื้อหาของเอกสารนี้ไม่ได้ถูกแก้ไขหลังจากที่ลงลายเซ็น";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- ลายเซ็นเป็นโมฆะ — ตั้งแต่ที่เซ็นชื่อรับรองเนื้อหา เอกสารนี้ถูกเปลี่ยนแปลง สอดแทรก หรือทำลายเสียหาย";
+"Unsigned Signature Field" = "ช่องลายเซ็นที่ยังไม่ได้เซ็นชื่อ";
+"Do you really want to remove the signature from the document?" = "คุณต้องการลบลายเซ็นออกจากเอกสารจริง ๆ หรือ?";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "ไม่สามารถอ่านข้อมูลใบรับรองในฐานะใบรับรอง PKCS#7 ได้ อย่างไรก็ตามสามารถส่งออกข้อมูลของรูปแบบที่ถูกต้องด้วย Adobe Acrobat"; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "ไม่สามารถถอดรหัสลายเซ็นของใบรับรอง";
+"The public key in the certificate could not be read." = "อ่านกุญแจสาธารณะในใบรับรองไม่ได้";
+"The signature of the certificate is not valid." = "ลายเซ็นของใบรับรองเป็นโมฆะ";
+"Signature is not valid." = "ลายเซ็นเป็นโมฆะ";
+"There is a format error in the notBefore field of the certificate." = "มีข้อผิดพลาดทางรูปแบบในช่อง notBefore ของใบรับรอง"; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "มีข้อผิดพลาดทางรูปแบบในช่อง notAfter ของใบรับรอง"; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "ไม่สามารถพิสูจน์ลายเซ็นใดได้ เพราะสายใบรับรองประกอบด้วยใบรับรองเพียงฉบับเดียว ซึ่งไม่ได้เซ็นรับรองเอง และ issuer ไม่น่าเชื่อถือ";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "ใบรับรองจาก CA เป็นโมฆะเพราะไม่ใช่ CA หรือมีนามสกุลที่ไม่สอดคล้องกับจุดประสงค์ที่ตั้งไว้"; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "ค่าของตัวแปร basicConstraints pathlength มากเกิน"; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "root CA ไม่ได้รับการบันทึกว่าเชื่อถือได้สำหรับจุดประสงค์ที่ตั้งไว้"; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "root CA ถูกกำหนดให้ปฏิเสธจุดประสงค์ที่ระบุ"; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "issuer certificate ถูกปฏิเสธเพราะ subject name ไม่ตรงกับ issuer name ของใบรับรองปัจจุบัน"; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "issuer certificate ถูกปฏิเสธเพราะ subject key identifier ไม่ตรงกับ authority key identifier ของใบรับรองปัจจุบัน"; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "issuer certificate ถูกปฏิเสธเพราะ issuer name และ serial number ไม่ตรงกับ authority key identifier ของใบรับรองปัจจุบัน"; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "issuer ปฏิเสธใบรับรอง";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "ใบรับรองที่ได้รับเป็นแบบเซ็นด้วยตนเอง และไม่พบใบรับรองดังกล่าวในรายการของใบรับรองที่เชื่อถือได้";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "ใบรับรองที่เซ็นด้วยตนเองมีอยู่ในสายใบรับรอง สามารถสร้างสายใบรับรองนี้ได้สำเร็จโดยใช้ใบรับรองที่เชื่อถือไม่ได้ แต่หา root CA ในเครื่องในเครือข่ายท้องถิ่นไม่พบ"; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "หาใบรับรองสำหรับผู้ออกใบรับรอง (CA) รายหนึ่งในลำดับขั้นการลงลายเซ็นไม่พบ และโปรแกรมในเครื่องไม่เชื่อถือ CA รายนั้น"; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "ไม่พบ issuer certificate ของใบรับรองที่ค้นหาไปในเครื่องที่อยู่ในเครือข่ายท้องถิ่น ปกติแล้วจะหมายความว่ารายชื่อของใบรับรองที่เชื่อถือได้นั้นยังไม่สมบูรณ์";
+"The certificate that was provided cannot be used for its intended purpose." = "ไม่สามารถใช้ใบรับรองที่มีให้สำหรับจุดประสงค์ที่ตั้งไว้";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "นามสกุลของ keyUsage ของ issuer certificate ไม่อนุญาตให้มีการลงชื่อใบรับรอง";
+"The certificate has expired." = "ใบรับรองหมดอายุ";
+"The certificate is not valid until a date in the future." = "ใบรับรองไม่มีผลบังคับใช้จนกว่าวันที่นั้นจะมาถึง";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "ไม่สามารถอ่านใบรับรอง X509 จากข้อมูล";
+// X509 should not be translated
+"No X509 certificate found" = "ไม่พบใบรับรอง X509";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "อ่านไฟล์ PKCS12 ไม่ได้ รูปแบบของไฟล์ไม่ถูกต้องหรือเสียหาย";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "ไม่สามารถปลดล็อกข้อมูล PKCS12 คุณกรอกรหัสผ่านถูกต้องหรือไม่?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "ไม่สามารถเปิดไฟล์เพื่อทำการตรวจสอบลายเซ็นได้";
+"Could not get signer info" = "ไม่สามารถหาข้อมูลผู้ลงลายเซ็นได้";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL ไม่สามารถสร้าง PKCS7";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL ไม่สามารถเพิ่มลายเซ็นลงใน PKCS7";
+"OpenSSL could not init PKCS7 object" = "OpenSSL ไม่สามารถตั้งค่าเริ่มต้นของ PKCS7";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL ไม่สามารถออกลายเซ็นของ PKCS7 ได้";
+"OpenSSL could not sign hash" = "OpenSSL ไม่สามารถเซ็น hash";
+"Could not write PKCS7 signature" = "ไม่สามารถเขียนลายเซ็น PKCS7";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "เปิดใน";
+"PSPDFPolicyEventPrint" = "พิมพ์";
+"PSPDFPolicyEventEmail" = "อีเมล";
+"PSPDFPolicyEventMessage" = "ข้อความ";
+"PSPDFPolicyEventQuickLook" = "ดูอย่างรวดเร็ว"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "การบันทึกเสียง";
+"PSPDFPolicyEventCamera" = "กล้อง";
+"PSPDFPolicyEventPasteboard" = "กระดานพักข้อมูล"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "ส่งฟอร์ม";
+"PSPDFPolicyEventNetwork" = "เครือข่าย";
+
+// Night Mode
+"Default" = "เริ่มต้น"; // Default view (night mode not enabled)
+"Sepia" = "ซีเปีย"; // Document uses sepia colors
+"Night" = "กลางคืน"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "ยังไม่ได้เลือกเอกสาร";
+"Unable to display document" = "ไม่สามารถแสดงเอกสาร";
+"Loading..." = "กำลังโหลด...";
+"Locked" = "ถูกล็อค";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "ไฟล์ที่คุณพยายามจะเข้าใช้ไม่ใช่ไฟล์ PDF หรืออาจเสียหาย";
+"A password is required to access this document." = "ต้องกรอกรหัสผ่านเพื่อเข้าสู่เอกสารนี้";
+"The security scheme of this document is currently not supported." = "ขณะนี้โปรแกรมไม่รองรับแผนรักษาความปลอดภัยของเอกสารนี้";
+"An unknown error has occured while trying to open this file." = "มีข้อผิดพลาดเกิดขึ้นในขณะที่พยายามจะเปิดไฟล์นี้";
+
+// Document Editor
+"Document Editor" = "โปรแกรมแก้ไขเอกสาร";
+"Add Page" = "เพิ่มหน้า";
+"Delete Pages" = "ลบหน้า";
+"Duplicate Pages" = "ทำหน้าซ้ำ";
+"Move Pages" = "เลื่อนหน้า";
+"Rotate Pages" = "หมุนหน้า";
+"Page Size" = "ขนาดของหน้า";
+"Background Color" = "สีพื้นหลัง";
+"Pattern" = "องค์ประกอบของฟอร์ม";
+"Use Document Size" = "ใช้ขนาดของเอกสาร";
+"Orientation" = "ทิศทางกระดาษ";
+"Portrait" = "แนวตั้ง";
+"Landscape" = "แนวนอน";
+"Name" = "ชื่อ";
+"Document Name" = "ชื่อเอกสาร";
+"Documents" = "เอกสาร"; // Name of directory
+"Use Document Directory" = "ใช้สารบบของเอกสาร";
+"Directory" = "สารบบ";
+"Replace File?" = "แทนที่ไฟล์?";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "มีไฟล์ชื่อ \"%@\" ในปลายทางที่เลือกแล้ว คุณต้องการบันทึกแทนที่ไฟล์นั้นหรือไม่?";
+"Replace" = "แทนที่";
+"Saving…" = "กำลังบันทึก…";
+"Saved" = "บันทึกแล้ว";
+"Save As…" = "บันทึกเป็น…";
+"Discard Changes" = "ยกเลิกการเปลี่ยนแปลง";
+"Empty" = "เป็นโมฆะ";
+
+// Document Editor Errors
+"A blank document can not be saved." = "ไม่สามารถบันทึกเอกสารที่ว่างเปล่าได้”";
+"The document could not be saved." = "บันทึกเอกสารนี้ไม่ได้";
+"This document does not support editing." = "เอกสารนี้ไม่รองรับการแก้ไขปรับแต่ง";
+
+// Page Patterns
+"None" = "ไม่มีเลย";
+"Dot5mm" = "จุด 5 มิลลิเมตร";
+"Grid5mm" = "ตาราง 5 มิลลิเมตร";
+"Lines5mm" = "บรรทัด 5 มิลลิเมตร";
+"Lines7mm" = "บรรทัด 7 มิลลิเมตร";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US Letter";
+"US Legal" = "US Legal";
+
+// Page Export
+"Export Pages" = "ส่งหน้าออก";
+"Export…" = "ส่งออก…";
+"Exporting…" = "กำลังส่งออก…";
+"Exported" = "ส่งออกแล้ว";
+"%@ - Exported" = "ส่งออก - %@"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "สำเนาคัดลอก - %@"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "เอกสารที่เลือกไว้กำลังเปิดอยู่ กรุณาเลือกชื่อไฟล์อื่น";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "ยังไม่มีบริการอ่านออกเสียง ตรวจดูว่าคุณเชื่อมต่อเข้ากับอินเตอร์เน็ตอยู่หรือได้ติดตั้งและเปิดใช้งานบริการอ่านออกเสียงของ Google ในอุปกรณ์ของคุณ";

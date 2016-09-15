@@ -1,0 +1,300 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1463616515.460434,
+      "response" : {
+        "body" : [
+          {
+            "created_at" : "2016-02-01T18:51:14Z",
+            "id" : 1,
+            "peer_reviews" : false,
+            "submissions_download_url" : "https:\/\/narmstrong.instructure.com\/courses\/1\/assignments\/1\/submissions?zip=1",
+            "lock_info" : {
+              "lock_at" : "2016-02-01T06:59:00Z",
+              "asset_string" : "assignment_1",
+              "can_view" : true
+            },
+            "course_id" : 1,
+            "due_at" : "2016-01-27T06:59:00Z",
+            "lock_at" : "2016-02-01T06:59:00Z",
+            "submission_types" : [
+              "online_text_entry"
+            ],
+            "automatic_peer_reviews" : false,
+            "html_url" : "https:\/\/narmstrong.instructure.com\/courses\/1\/assignments\/1",
+            "description" : null,
+            "anonymous_peer_reviews" : false,
+            "locked_for_user" : true,
+            "has_submitted_submissions" : true,
+            "moderated_grading" : false,
+            "group_category_id" : null,
+            "unlock_at" : null,
+            "position" : 1,
+            "lock_explanation" : "This assignment was locked Jan 31 at 11:59pm.",
+            "assignment_group_id" : 1,
+            "grading_standard_id" : null,
+            "name" : "MGP Assignment",
+            "muted" : false,
+            "only_visible_to_overrides" : false,
+            "published" : true,
+            "points_possible" : 10,
+            "grading_type" : "points",
+            "grade_group_students_individually" : false,
+            "all_dates" : [
+              {
+                "due_at" : "2016-01-27T06:59:00Z",
+                "lock_at" : "2016-02-01T06:59:00Z",
+                "unlock_at" : null,
+                "base" : true
+              }
+            ],
+            "updated_at" : "2016-02-01T20:08:46Z",
+            "post_to_sis" : null,
+            "submission" : {
+              "id" : 1,
+              "body" : "<p>First submission!<\/p>",
+              "late" : true,
+              "graded_at" : "2016-02-01T18:57:39Z",
+              "assignment_id" : 1,
+              "url" : null,
+              "user_id" : 2,
+              "attempt" : 1,
+              "submission_type" : "online_text_entry",
+              "submitted_at" : "2016-02-01T18:56:39Z",
+              "preview_url" : "https:\/\/narmstrong.instructure.com\/courses\/1\/assignments\/1\/submissions\/2?preview=1&version=1",
+              "excused" : false,
+              "grade_matches_current_submission" : true,
+              "grader_id" : 170000004597575,
+              "grade" : "5",
+              "score" : 5,
+              "workflow_state" : "graded"
+            }
+          },
+          {
+            "html_url" : "https:\/\/narmstrong.instructure.com\/courses\/1\/assignments\/2",
+            "grading_standard_id" : null,
+            "automatic_peer_reviews" : false,
+            "position" : 2,
+            "locked_for_user" : false,
+            "submissions_download_url" : "https:\/\/narmstrong.instructure.com\/courses\/1\/assignments\/2\/submissions?zip=1",
+            "course_id" : 1,
+            "updated_at" : "2016-02-01T20:08:06Z",
+            "unlock_at" : null,
+            "anonymous_peer_reviews" : false,
+            "assignment_group_id" : 1,
+            "submission_types" : [
+              "online_text_entry"
+            ],
+            "has_submitted_submissions" : true,
+            "muted" : false,
+            "moderated_grading" : false,
+            "points_possible" : 10,
+            "name" : "MGP Assignment 2",
+            "grading_type" : "points",
+            "group_category_id" : null,
+            "id" : 2,
+            "peer_reviews" : false,
+            "submission" : {
+              "id" : 2,
+              "body" : "<p>Submission numero dos.<\/p>",
+              "late" : false,
+              "graded_at" : "2016-02-01T20:04:24Z",
+              "assignment_id" : 2,
+              "url" : null,
+              "user_id" : 2,
+              "attempt" : 1,
+              "submission_type" : "online_text_entry",
+              "submitted_at" : "2016-02-01T20:03:49Z",
+              "preview_url" : "https:\/\/narmstrong.instructure.com\/courses\/1\/assignments\/2\/submissions\/2?preview=1&version=1",
+              "excused" : false,
+              "grade_matches_current_submission" : true,
+              "grader_id" : 170000004597575,
+              "grade" : "10",
+              "score" : 10,
+              "workflow_state" : "graded"
+            },
+            "lock_at" : null,
+            "grade_group_students_individually" : false,
+            "all_dates" : [
+              {
+                "due_at" : "2016-02-03T06:59:59Z",
+                "lock_at" : null,
+                "unlock_at" : null,
+                "base" : true
+              }
+            ],
+            "created_at" : "2016-02-01T20:03:22Z",
+            "published" : true,
+            "post_to_sis" : null,
+            "only_visible_to_overrides" : false,
+            "due_at" : "2016-02-03T06:59:59Z",
+            "description" : ""
+          }
+        ],
+        "status" : 200,
+        "url" : "https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/assignments?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=7Bk0A6lOw%2Bo%2BMTw7iB8W0kT6v99%2BXK5uCJnkyIg9qe2NNgB3mQ%2BFnVVGbm28Jj2fLK2OlzIb4lYw6L6H8Hn6rA%3D%3D; path=\/; secure, log_session_id=92270b7d5e35eb4af07ea83c736c222b; path=\/, canvas_session=v91HMPqXHYNJ-J7axwsCWQ.pxTchJ72bfERCOfmpRC0KIWr2lYWbeI_cPc2fjV3NLefYmyyfHpbnj4-lzTpmO8wO20srbLtGSw8Ugv6JOXQbkvWeE0QF4CUszVoJrYyG0aA7WHQZqsLM0EH9suYTUQm.0DvKIsJ0FyrB7JJxGI37lU1BAf0.Vz0EAg; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.217540",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "Link" : "<https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/assignments?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&page=1&per_page=99>; rel=\"current\",<https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/assignments?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&page=1&per_page=99>; rel=\"first\",<https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/assignments?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&page=1&per_page=99>; rel=\"last\"",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "X-Request-Processor" : "a01de70",
+          "Status" : "200 OK",
+          "X-Session-Id" : "92270b7d5e35eb4af07ea83c736c222b",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "c6e29ac6-a729-40aa-8fc7-5c3269985beb",
+          "X-Request-Cost" : "0.1744175410000136",
+          "Content-Length" : "826",
+          "X-Canvas-Meta" : "q=737;at=78950000000000004;dk=170000000000016;a=1;g=NPlw5mttYp3XYZwh9rhbbCTzuKX22gHlmlvRaFyn;s=7895;c=cluster44;z=us-east-1e;o=assignments_api;n=index;t=Course;i=1;b=1260652;m=1260652;u=0.11;y=0.00;d=0.06;",
+          "Date" : "Thu, 19 May 2016 00:08:33 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "78950000000000002",
+          "Etag" : "\"d348490645d3b0dad0ca4ff6a1aac6f0\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/assignments?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Assignments\/com.instructure.Assignments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 7895~fd6cCPK3vsIO0d2ivNTnVYfwUJRkENjIzIH18hL9qXRhqkB16MaGLakuaiYNxwfA"
+        }
+      }
+    },
+    {
+      "recorded_at" : 1463616515.821779,
+      "response" : {
+        "body" : [
+          {
+            "rules" : {
+
+            },
+            "id" : 1,
+            "assignments" : [
+              {
+                "created_at" : "2016-02-01T18:51:14Z",
+                "id" : 1,
+                "peer_reviews" : false,
+                "submissions_download_url" : "https:\/\/narmstrong.instructure.com\/courses\/1\/assignments\/1\/submissions?zip=1",
+                "lock_info" : {
+                  "lock_at" : "2016-02-01T06:59:00Z",
+                  "asset_string" : "assignment_1",
+                  "can_view" : true
+                },
+                "course_id" : 1,
+                "due_at" : "2016-01-27T06:59:00Z",
+                "lock_at" : "2016-02-01T06:59:00Z",
+                "submission_types" : [
+                  "online_text_entry"
+                ],
+                "automatic_peer_reviews" : false,
+                "html_url" : "https:\/\/narmstrong.instructure.com\/courses\/1\/assignments\/1",
+                "description" : null,
+                "anonymous_peer_reviews" : false,
+                "locked_for_user" : true,
+                "has_submitted_submissions" : true,
+                "moderated_grading" : false,
+                "group_category_id" : null,
+                "unlock_at" : null,
+                "position" : 1,
+                "lock_explanation" : "This assignment was locked Jan 31 at 11:59pm.",
+                "assignment_group_id" : 1,
+                "grading_standard_id" : null,
+                "name" : "MGP Assignment",
+                "muted" : false,
+                "only_visible_to_overrides" : false,
+                "published" : true,
+                "points_possible" : 10,
+                "grading_type" : "points",
+                "grade_group_students_individually" : false,
+                "all_dates" : [
+                  {
+                    "due_at" : "2016-01-27T06:59:00Z",
+                    "lock_at" : "2016-02-01T06:59:00Z",
+                    "unlock_at" : null,
+                    "base" : true
+                  }
+                ],
+                "updated_at" : "2016-02-01T20:08:46Z",
+                "post_to_sis" : null,
+                "submission" : {
+                  "id" : 1,
+                  "body" : "<p>First submission!<\/p>",
+                  "late" : true,
+                  "graded_at" : "2016-02-01T18:57:39Z",
+                  "assignment_id" : 1,
+                  "url" : null,
+                  "user_id" : 2,
+                  "attempt" : 1,
+                  "submission_type" : "online_text_entry",
+                  "submitted_at" : "2016-02-01T18:56:39Z",
+                  "preview_url" : "https:\/\/narmstrong.instructure.com\/courses\/1\/assignments\/1\/submissions\/2?preview=1&version=1",
+                  "excused" : false,
+                  "grade_matches_current_submission" : true,
+                  "grader_id" : 170000004597575,
+                  "grade" : "5",
+                  "score" : 5,
+                  "workflow_state" : "graded"
+                }
+              }
+            ],
+            "name" : "Assignments",
+            "position" : 1,
+            "group_weight" : 0
+          }
+        ],
+        "status" : 200,
+        "url" : "https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/assignment_groups?grading_period_id=1&include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&include%5B%5D=assignments&per_page=99&scope_assignments_to_student=1",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=xj2D6BLS85rrirmH5c4ut65iHVpAAYjSeqVHRu4WAKSnErecIpO17YD969HR9wX6xjUsEgxGxOpC1B0JllJT5Q%3D%3D; path=\/; secure",
+          "X-Runtime" : "0.291002",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "Link" : "<https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/assignment_groups?grading_period_id=1&include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&include%5B%5D=assignments&scope_assignments_to_student=1&page=1&per_page=99>; rel=\"current\",<https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/assignment_groups?grading_period_id=1&include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&include%5B%5D=assignments&scope_assignments_to_student=1&page=1&per_page=99>; rel=\"first\",<https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/assignment_groups?grading_period_id=1&include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&include%5B%5D=assignments&scope_assignments_to_student=1&page=1&per_page=99>; rel=\"last\"",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "X-Request-Processor" : "a01cc07",
+          "Status" : "200 OK",
+          "X-Session-Id" : "92270b7d5e35eb4af07ea83c736c222b",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "61e6ceff-5429-4776-990e-fea891e60cda",
+          "X-Request-Cost" : "0.22188227300001365",
+          "Content-Length" : "725",
+          "X-Canvas-Meta" : "q=582;at=78950000000000004;dk=170000000000016;a=1;g=NPlw5mttYp3XYZwh9rhbbCTzuKX22gHlmlvRaFyn;s=7895;c=cluster44;z=us-east-1b;o=assignment_groups;n=index;t=Course;i=1;b=1258592;m=1258592;u=0.11;y=0.01;d=0.11;",
+          "Date" : "Thu, 19 May 2016 00:08:34 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "78950000000000002",
+          "Etag" : "\"2b3906fd909e28d6a8f7a2f95ffb14a1\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/assignment_groups?grading_period_id=1&include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&include%5B%5D=assignments&per_page=99&scope_assignments_to_student=1",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Assignments\/com.instructure.Assignments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 7895~fd6cCPK3vsIO0d2ivNTnVYfwUJRkENjIzIH18hL9qXRhqkB16MaGLakuaiYNxwfA"
+        }
+      }
+    }
+  ],
+  "name" : "assignment-grades-mgp"
+}

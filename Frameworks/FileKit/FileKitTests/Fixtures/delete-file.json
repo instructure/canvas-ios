@@ -1,0 +1,67 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1464029156.984239,
+      "response" : {
+        "body" : {
+          "id" : 85285506,
+          "content-type" : "image\/jpeg",
+          "locked_for_user" : false,
+          "lock_at" : null,
+          "folder_id" : 10119415,
+          "filename" : "image.jpeg",
+          "created_at" : "2016-04-29T15:55:13Z",
+          "url" : "https:\/\/mobiledev.instructure.com\/files\/85285506\/download?download_frd=1&verifier=gcGy23XxuNDKQAM8wnn0dCuthJ7kan1c3Uc1HRFv",
+          "hidden_for_user" : false,
+          "size" : 1896240,
+          "thumbnail_url" : "https:\/\/instructure-uploads.s3.amazonaws.com\/account_99298\/thumbnails\/85285506\/image_thumb.jpeg?AWSAccessKeyId=AKIAJFNFXH2V2O7RPCAA&Expires=1464547483&Signature=zbamMe7J%2B2vtWHX7c%2BHGzDLdsC8%3D",
+          "display_name" : "Photo Sep 2, 2015-6",
+          "updated_at" : "2016-05-23T18:44:43Z",
+          "unlock_at" : null,
+          "locked" : false,
+          "hidden" : false,
+          "modified_at" : "2016-04-29T15:55:13Z"
+        },
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/files\/85285506",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=xlJPBcbgpRVpaUUt%2BB8PRWd0wkZaOe6yDkVAL2C2zIa%2FJjhq7bTKXBFeMGutVWYWJDCNICN0pvR0IDdWKcKF9Q%3D%3D; path=\/; secure, log_session_id=836dc6c84ee13b95147cca91559e77b9; path=\/, canvas_session=L6ro0FZhtmLdopWctLiNtw._lAzJVbaFZqGZhoLUaWWLylop1lptjK2rMj8UneFSd3cDxv26Hgy111ZdCDODXB9VFbIqWSIP9ua44EL3hNPHRuypYXfs-0XObS3oTQtY55x_HCkqPxb6Ofk6e-RnANa.T-0___DECdmjmExPbP4HgLk_5zc.V0NPmw; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.151990",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "X-Request-Processor" : "a01cf5d",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "Status" : "200 OK",
+          "X-Session-Id" : "836dc6c84ee13b95147cca91559e77b9",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "c5267a64-5b82-4ccd-8746-ebde2e7c6384",
+          "X-Request-Cost" : "0.11718073899999316",
+          "Content-Length" : "470",
+          "X-Canvas-Meta" : "q=693;at=10000000539225;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1b;o=files;n=destroy;b=1258500;m=1258500;u=0.07;y=0.00;d=0.05;",
+          "Date" : "Mon, 23 May 2016 18:44:43 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000006782429",
+          "Etag" : "\"b0ba1355255b924e8f9e7de1118f1e0b\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "DELETE",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/files\/85285506",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Files\/com.instructure.Files (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~VrFstYIqog7pM72sX6tVWVQzlWqpVBPc6izVVQSSwZMCCW6VTWUKrcD4gai7v9Hd"
+        }
+      }
+    }
+  ],
+  "name" : "delete-file"
+}

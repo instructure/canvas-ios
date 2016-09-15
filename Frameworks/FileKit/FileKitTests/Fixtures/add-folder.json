@@ -1,0 +1,74 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1464726406.506183,
+      "response" : {
+        "body" : {
+          "id" : 10423645,
+          "full_name" : "my files\/unfiled\/Folder 7",
+          "files_count" : 0,
+          "lock_at" : null,
+          "position" : 7,
+          "locked_for_user" : false,
+          "created_at" : "2016-05-31T20:25:06Z",
+          "folders_url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/folders\/10423645\/folders",
+          "context_id" : 6782429,
+          "parent_folder_id" : 10119415,
+          "files_url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/folders\/10423645\/files",
+          "context_type" : "User",
+          "hidden_for_user" : false,
+          "unlock_at" : null,
+          "updated_at" : "2016-05-31T20:25:06Z",
+          "locked" : false,
+          "folders_count" : 0,
+          "hidden" : null,
+          "name" : "Folder 7"
+        },
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/users\/6782429\/folders",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=RGT5kp78OahrTLFE9eO%2BwDsOpSfVXp3hNQVgvjmZwCUCMrvL%2BrJTxjIf%2BhWntdexVTvfSOA23LRGRiyIac6uag%3D%3D; path=\/; secure, log_session_id=0d653c7d10fc42a3f9d7646a65ade062; path=\/, canvas_session=OypdmLCoFF94txQdcOww0w+UTOwRARJoZLP5XqQS00sZ8r9d6hdyWkj7fVsY-E7QMl9kofAzG0sbXeceEkphpCSvu_HGWtGlQNPw9eOJuTc0QyHtxRamkcF7xhck-g39z27FE0VxtPR_W_rf_HimHBZr29iOvvTW7H2VQ4ia04klYDpfcJFqOD81nxXpBVvoLkNU1WwskVIuzn8gNRKSxCOe9I6HTL_suVGtc9jMq3pkHzPDBlElNbCXuDn1nmosb8.eLp0saiCtMm4CHWRNhhuvl8eou0.V03zIg; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.182007",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "X-Request-Processor" : "a01d9aa",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "Status" : "200 OK",
+          "X-Session-Id" : "0d653c7d10fc42a3f9d7646a65ade062",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "665197a4-38d9-437e-adc0-7a578572760a",
+          "X-Request-Cost" : "0.15981949600000456",
+          "Content-Length" : "275",
+          "X-Canvas-Meta" : "q=1067;at=10000000539225;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1e;o=folders;n=create;t=User;i=6782429;b=1255620;m=1255620;u=0.12;y=0.01;d=0.04;",
+          "Date" : "Tue, 31 May 2016 20:25:05 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000006782429",
+          "Etag" : "\"cbc2f0f65b8b21edeb4a25a21edfe10a\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "POST",
+        "body" : {
+          "parent_folder_id" : "10119415",
+          "name" : "Folder"
+        },
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/users\/6782429\/folders",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "Content-Type" : "application\/json",
+          "User-Agent" : "Files\/com.instructure.Files (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~VrFstYIqog7pM72sX6tVWVQzlWqpVBPc6izVVQSSwZMCCW6VTWUKrcD4gai7v9Hd"
+        }
+      }
+    }
+  ],
+  "name" : "add-folder"
+}

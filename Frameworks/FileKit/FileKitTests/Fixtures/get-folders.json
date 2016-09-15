@@ -1,0 +1,114 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1464026362.5984,
+      "response" : {
+        "body" : [
+          {
+            "id" : 10017868,
+            "full_name" : "my files\/conversation attachments",
+            "files_count" : 0,
+            "lock_at" : null,
+            "position" : 2,
+            "locked_for_user" : false,
+            "created_at" : "2016-01-21T23:00:58Z",
+            "folders_url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/folders\/10017868\/folders",
+            "context_id" : 6782429,
+            "parent_folder_id" : 9942379,
+            "files_url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/folders\/10017868\/files",
+            "context_type" : "User",
+            "hidden_for_user" : false,
+            "unlock_at" : null,
+            "updated_at" : "2016-01-21T23:00:58Z",
+            "locked" : false,
+            "folders_count" : 0,
+            "hidden" : null,
+            "name" : "conversation attachments"
+          },
+          {
+            "id" : 9942380,
+            "full_name" : "my files\/profile pictures",
+            "files_count" : 0,
+            "lock_at" : null,
+            "position" : 1,
+            "locked_for_user" : false,
+            "created_at" : "2016-01-12T00:27:28Z",
+            "folders_url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/folders\/9942380\/folders",
+            "context_id" : 6782429,
+            "parent_folder_id" : 9942379,
+            "files_url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/folders\/9942380\/files",
+            "context_type" : "User",
+            "hidden_for_user" : false,
+            "unlock_at" : null,
+            "updated_at" : "2016-01-12T00:27:28Z",
+            "locked" : false,
+            "folders_count" : 0,
+            "hidden" : null,
+            "name" : "profile pictures"
+          },
+          {
+            "id" : 10119415,
+            "full_name" : "my files\/unfiled",
+            "files_count" : 136,
+            "lock_at" : null,
+            "position" : 3,
+            "locked_for_user" : false,
+            "created_at" : "2016-02-17T21:13:04Z",
+            "folders_url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/folders\/10119415\/folders",
+            "context_id" : 6782429,
+            "parent_folder_id" : 9942379,
+            "files_url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/folders\/10119415\/files",
+            "context_type" : "User",
+            "hidden_for_user" : false,
+            "unlock_at" : null,
+            "updated_at" : "2016-02-17T21:13:04Z",
+            "locked" : false,
+            "folders_count" : 1,
+            "hidden" : null,
+            "name" : "unfiled"
+          }
+        ],
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/folders\/9942379\/folders?per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=RMtqDgMFyXhkFXym9kblLOTRbLBf92WVMhiMEyCelzkIpC47YGStSgpCFeOZE4lZoIkm3QbCNsVWQqNlFe7yAA%3D%3D; path=\/; secure, log_session_id=8069937ff99cf899dc5a8979d6bf5d56; path=\/, canvas_session=B4MJrNkbM05VKv4fMi3Uzw.dk0AZ7n2coGCXA1LvJjWj9lPkwk2sGSya4MFmxd2E_VqE1-a4Ou6cuHxdb-_uljqRxr9NNp3jxxP9qlsd41tMdxHI7jM4oWz0LWDBMoDWLLrTOGxmisx1uLdMStHdUCs.uHeevz--m9ZkCA3hbOforuxsPEM.V0NEsQ; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.298841",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "Link" : "<https:\/\/mobiledev.instructure.com\/api\/v1\/folders\/9942379\/folders?page=1&per_page=99>; rel=\"current\",<https:\/\/mobiledev.instructure.com\/api\/v1\/folders\/9942379\/folders?page=1&per_page=99>; rel=\"first\",<https:\/\/mobiledev.instructure.com\/api\/v1\/folders\/9942379\/folders?page=1&per_page=99>; rel=\"last\"",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "X-Request-Processor" : "a01cf5d",
+          "Status" : "200 OK",
+          "X-Session-Id" : "8069937ff99cf899dc5a8979d6bf5d56",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "05c7159c-f184-427c-9504-2cda52d79c3a",
+          "X-Request-Cost" : "0.2831367450000023",
+          "Content-Length" : "395",
+          "X-Canvas-Meta" : "q=843;at=10000000539225;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1b;o=folders;n=api_index;b=1190900;m=1190900;u=0.06;y=0.01;d=0.22;",
+          "Date" : "Mon, 23 May 2016 17:58:09 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000006782429",
+          "Etag" : "\"9ff26fb5922d486a8f04a49856804e3d\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/folders\/9942379\/folders?per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Files\/com.instructure.Files (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~VrFstYIqog7pM72sX6tVWVQzlWqpVBPc6izVVQSSwZMCCW6VTWUKrcD4gai7v9Hd"
+        }
+      }
+    }
+  ],
+  "name" : "get-folders"
+}

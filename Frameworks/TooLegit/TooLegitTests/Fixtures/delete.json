@@ -1,0 +1,52 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1467059225.605076,
+      "response" : {
+        "body" : {
+          "json" : null,
+          "origin" : "107.191.1.70",
+          "url" : "https:\/\/httpbin.org\/delete?type=delete",
+          "data" : "",
+          "headers" : {
+            "User-Agent" : "Unknown\/Unknown (Unknown; OS Version 9.3 (Build 13E230))",
+            "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+            "Host" : "httpbin.org",
+            "Accept-Language" : "en-US;q=1.0",
+            "Content-Length" : "0",
+            "Accept" : "*\/*"
+          },
+          "args" : {
+            "type" : "delete"
+          },
+          "files" : {
+
+          },
+          "form" : {
+
+          }
+        },
+        "status" : 200,
+        "url" : "https:\/\/httpbin.org\/delete?type=delete",
+        "headers" : {
+          "access-control-allow-credentials" : "true",
+          "Date" : "Mon, 27 Jun 2016 20:27:05 GMT",
+          "Content-Type" : "application\/json",
+          "Content-Length" : "453",
+          "Server" : "nginx",
+          "Access-Control-Allow-Origin" : "*"
+        }
+      },
+      "request" : {
+        "method" : "DELETE",
+        "url" : "https:\/\/httpbin.org\/delete?type=delete",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "User-Agent" : "Unknown\/Unknown (Unknown; OS Version 9.3 (Build 13E230))",
+          "Accept-Language" : "en-US;q=1.0"
+        }
+      }
+    }
+  ],
+  "name" : "delete"
+}

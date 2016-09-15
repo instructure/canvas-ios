@@ -1,0 +1,68 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1466628437.707076,
+      "response" : {
+        "body" : {
+          "locked_for_user" : false,
+          "page_id" : 1716855,
+          "front_page" : true,
+          "body" : "<p><a id=\"\" title=\"Another important item for everyone\" href=\"https:\/\/mobiledev.instructure.com\/courses\/24219\/announcements\/267739\">Another important item for everyone<\/a><\/p>\r\n<p><a id=\"\" title=\"Elvis has left the building\" href=\"https:\/\/mobiledev.instructure.com\/courses\/24219\/announcements\/1643193\">Elvis has left the building<\/a><\/p>\r\n<p><a id=\"\" title=\"Whitespace Test\" href=\"https:\/\/mobiledev.instructure.com\/courses\/24219\/announcements\/965590\">Whitespace Test<\/a><\/p>\r\n<p> <a id=\"\" class=\" instructure_image_thumbnail instructure_file_link\" title=\"Screen shot 2011-01-26 at 4.03.28 PM.png\" href=\"https:\/\/mobiledev.instructure.com\/courses\/24219\/files\/215488\/download?verifier=7465fee0-0c8f-012e-ab3a-123138100de9&amp;wrap=1\" data-api-endpoint=\"https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/24219\/files\/215488\" data-api-returntype=\"File\">Screen shot 2011-01-26 at 4.03.28 PM.png<\/a><\/p>\r\n<p><a id=\"\" class=\" instructure_scribd_file instructure_file_link\" title=\"resort map.pdf\" href=\"https:\/\/mobiledev.instructure.com\/courses\/24219\/files\/33610652\/download?verifier=bwyhXK1HBc6yYPaXC1yn9SsCG53HJkdwYmWKsM59&amp;wrap=1\" data-api-endpoint=\"https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/24219\/files\/33610652\" data-api-returntype=\"File\">resort map.pdf<\/a><\/p>\r\n<p><a id=\"\" class=\" instructure_scribd_file instructure_file_link\" title=\"Agenda for UCF Visit.pdf\" href=\"https:\/\/mobiledev.instructure.com\/courses\/24219\/files\/51032087\/download?verifier=s4N819AwSws5XMeh8G85zH1mmH0YKzheNywNi68I&amp;wrap=1\" data-api-endpoint=\"https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/24219\/files\/51032087\" data-api-returntype=\"File\">Agenda for UCF Visit.pdf<\/a><\/p>",
+          "created_at" : "2012-12-20T04:27:35Z",
+          "last_edited_by" : {
+            "id" : 5356213,
+            "display_name" : "Ivy Iversen",
+            "avatar_image_url" : "https:\/\/mobiledev.instructure.com\/images\/thumbnails\/56640046\/jdWmlUJ45fnORk7lKkc7Z44t4dgLmIIooFSHXneW",
+            "html_url" : "https:\/\/mobiledev.instructure.com\/courses\/24219\/users\/5356213"
+          },
+          "url" : "announcement-haven",
+          "published" : true,
+          "title" : "Announcement Haven",
+          "hide_from_students" : false,
+          "html_url" : "https:\/\/mobiledev.instructure.com\/courses\/24219\/pages\/announcement-haven",
+          "editing_roles" : "teachers",
+          "updated_at" : "2016-04-18T18:11:10Z"
+        },
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/24219\/front_page?per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "X-Runtime" : "0.154019",
+          "Set-Cookie" : "_csrf_token=xT6VbTVi03mjfp37THmOjXAP4MuRCEKjMS2Y4Bfju4iNCqE4RCTkNM8YqIoDPunjAW6YitBkdeRAbK%2BkZrXqvA%3D%3D; path=\/; secure",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "X-Request-Processor" : "a01db33",
+          "X-Session-Id" : "edb88363903ebf75ef65cdd8c41bbaaf",
+          "Server" : "Apache",
+          "Status" : "200 OK",
+          "X-Request-Context-Id" : "78a52d4a-da7b-409c-9deb-38dc3db6dd51",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Cost" : "0.13542552700002275",
+          "Content-Length" : "839",
+          "X-XSS-Protection" : "1; mode=block",
+          "X-Canvas-Meta" : "q=814;at=10000000508065;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1e;o=wiki_pages_api;n=show_front_page;t=Course;i=24219;x=5.0;p=f;e=118967508;f=2016-06-22T20:11:39.61Z;b=1194828;m=1194828;u=0.10;y=0.00;d=0.04;",
+          "Date" : "Wed, 22 Jun 2016 20:47:17 GMT",
+          "Connection" : "keep-alive",
+          "Vary" : "Accept-Encoding",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "Etag" : "\"7977874d456830173edddc4bd6fbd027\"",
+          "X-Canvas-User-Id" : "10000005356213",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/24219\/front_page?per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en;q=1.0",
+          "User-Agent" : "Pages\/com.instructure.Pages (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~0NPrUrYhEoKaMCgqWS1IGrIZjZ7HbV4KisYg7AzSlzRAAjtivuXUrzRF3fHycHTp"
+        }
+      }
+    }
+  ],
+  "name" : "front-page"
+}

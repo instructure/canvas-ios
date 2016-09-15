@@ -1,0 +1,256 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1464654372.442807,
+      "response" : {
+        "body" : [
+          {
+            "storage_quota_mb" : 500,
+            "grading_standard_id" : null,
+            "is_public" : false,
+            "is_public_to_auth_users" : false,
+            "apply_assignment_group_weights" : true,
+            "calendar" : {
+              "ics" : "https:\/\/mobiledev.instructure.com\/feeds\/calendars\/course_56093f00-e060-012d-6ee9-4040654c8f83.ics"
+            },
+            "enrollments" : [
+              {
+                "computed_final_score" : 0.21,
+                "computed_current_grade" : null,
+                "totals_for_all_grading_periods_option" : false,
+                "current_grading_period_title" : null,
+                "current_period_computed_current_score" : null,
+                "current_period_computed_current_grade" : null,
+                "user_id" : 6782429,
+                "type" : "student",
+                "multiple_grading_periods_enabled" : false,
+                "current_period_computed_final_score" : null,
+                "current_period_computed_final_grade" : null,
+                "role" : "StudentEnrollment",
+                "computed_final_grade" : null,
+                "current_grading_period_id" : null,
+                "role_id" : 2441,
+                "computed_current_score" : 44.44,
+                "enrollment_state" : "active"
+              }
+            ],
+            "end_at" : null,
+            "public_syllabus" : false,
+            "enrollment_term_id" : 3142,
+            "is_favorite" : true,
+            "name" : "Beginning iOS Development",
+            "course_code" : "iOS 200",
+            "term" : {
+              "id" : 3142,
+              "workflow_state" : "active",
+              "end_at" : null,
+              "name" : "Default Term",
+              "start_at" : null
+            },
+            "id" : 24219,
+            "hide_final_grades" : false,
+            "workflow_state" : "available",
+            "account_id" : 99298,
+            "restrict_enrollments_to_course_dates" : false,
+            "syllabus_body" : "<p>\"It's in Apple's DNA that technology alone is not enough. It's technology married with liberal arts, married with the humanities, that yields us with the result that makes our heart sink.\" - Steve Jobs<\/p>\n<p><img src=\"http:\/\/landofblogging.files.wordpress.com\/2011\/10\/steve-jobs.jpg\" alt=\"\"><\/p>",
+            "start_at" : "2010-12-02T07:00:00Z",
+            "default_view" : "syllabus"
+          },
+          {
+            "storage_quota_mb" : 500,
+            "grading_standard_id" : null,
+            "is_public" : false,
+            "is_public_to_auth_users" : false,
+            "apply_assignment_group_weights" : false,
+            "calendar" : {
+              "ics" : "https:\/\/mobiledev.instructure.com\/feeds\/calendars\/course_tfiB6ixdWXL9FDIEOXaMwckRnNHhVA136XEDgx2y.ics"
+            },
+            "enrollments" : [
+              {
+                "computed_final_score" : 0,
+                "computed_current_grade" : null,
+                "totals_for_all_grading_periods_option" : false,
+                "current_grading_period_title" : null,
+                "current_period_computed_current_score" : null,
+                "current_period_computed_current_grade" : null,
+                "user_id" : 6782429,
+                "type" : "student",
+                "multiple_grading_periods_enabled" : false,
+                "current_period_computed_final_score" : null,
+                "current_period_computed_final_grade" : null,
+                "role" : "StudentEnrollment",
+                "computed_final_grade" : null,
+                "current_grading_period_id" : null,
+                "role_id" : 2441,
+                "computed_current_score" : null,
+                "enrollment_state" : "active"
+              }
+            ],
+            "end_at" : null,
+            "public_syllabus" : false,
+            "enrollment_term_id" : 3142,
+            "is_favorite" : false,
+            "name" : "Unit Tests",
+            "course_code" : "Unit",
+            "term" : {
+              "id" : 3142,
+              "workflow_state" : "active",
+              "end_at" : null,
+              "name" : "Default Term",
+              "start_at" : null
+            },
+            "id" : 1867097,
+            "hide_final_grades" : false,
+            "workflow_state" : "available",
+            "account_id" : 99299,
+            "restrict_enrollments_to_course_dates" : false,
+            "syllabus_body" : null,
+            "start_at" : "2016-04-26T20:20:24Z",
+            "default_view" : "feed"
+          },
+          {
+            "storage_quota_mb" : 500,
+            "grading_standard_id" : null,
+            "is_public" : false,
+            "is_public_to_auth_users" : false,
+            "apply_assignment_group_weights" : false,
+            "calendar" : {
+              "ics" : "https:\/\/mobiledev.instructure.com\/feeds\/calendars\/course_R3d1rNfWeoUp1blh7fNkuYzybXQhtkfLgSHyYZXK.ics"
+            },
+            "enrollments" : [
+              {
+                "computed_final_score" : 80,
+                "computed_current_grade" : null,
+                "totals_for_all_grading_periods_option" : false,
+                "current_grading_period_title" : null,
+                "current_period_computed_current_score" : null,
+                "current_period_computed_current_grade" : null,
+                "user_id" : 6782429,
+                "type" : "student",
+                "multiple_grading_periods_enabled" : false,
+                "current_period_computed_final_score" : null,
+                "current_period_computed_final_grade" : null,
+                "role" : "StudentEnrollment",
+                "computed_final_grade" : null,
+                "current_grading_period_id" : null,
+                "role_id" : 2441,
+                "computed_current_score" : 80,
+                "enrollment_state" : "active"
+              }
+            ],
+            "end_at" : null,
+            "public_syllabus" : false,
+            "enrollment_term_id" : 4140,
+            "is_favorite" : true,
+            "name" : "French II",
+            "course_code" : "French",
+            "term" : {
+              "id" : 4140,
+              "workflow_state" : "active",
+              "end_at" : null,
+              "name" : "Default Term",
+              "start_at" : null
+            },
+            "id" : 1801897,
+            "hide_final_grades" : false,
+            "workflow_state" : "available",
+            "account_id" : 106248,
+            "restrict_enrollments_to_course_dates" : false,
+            "syllabus_body" : null,
+            "start_at" : "2016-01-11T22:57:50Z",
+            "default_view" : "feed"
+          }
+        ],
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "X-Runtime" : "0.216515",
+          "Set-Cookie" : "_csrf_token=TGdkPkJ7qG5a%2FmEMIytSbHwCwjlqW66Ee1K8z7pK8eQ1SA9Ee0rBJnWaN0lFQQYtBEeudUUs3c8vK4yX%2FgGhiQ%3D%3D; path=\/; secure, log_session_id=63c6aa435b44c5e5e1933fe57666b088; path=\/, canvas_session=oOa4oTGGRgMoCy2xUW28qw.Dbkyt7xwyXlX6tQA7ajGVOua2PnlBNmKa6_RCaP2M9uQ3coFWC6V_euR-dPGVKUApQE10djdyyPG5M0PJEAGaDwHl96wUrJ9lW1qN11xWQgcCBSVCFlPSB35kKWQiUIs.wQptBvsuzxkqEQoTfUGmub57BJM.V0zaJA; path=\/; secure; HttpOnly",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Link" : "<https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&page=1&per_page=99>; rel=\"current\",<https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&page=1&per_page=99>; rel=\"first\",<https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&page=1&per_page=99>; rel=\"last\"",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "X-Session-Id" : "350fbcc0197100a25fb9ef4ddd8afd38",
+          "X-Request-Processor" : "a01c90c",
+          "Server" : "Apache",
+          "Status" : "200 OK",
+          "X-Request-Context-Id" : "c6dfdbaa-762b-430b-a27d-43932c6ba76a",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Cost" : "0.17670644199998636",
+          "Content-Length" : "1033",
+          "X-XSS-Protection" : "1; mode=block",
+          "X-Canvas-Meta" : "q=1011;at=10000000539225;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1b;o=courses;n=index;b=1059968;m=1059968;u=0.14;y=0.01;d=0.04;",
+          "Date" : "Tue, 31 May 2016 00:26:12 GMT",
+          "Connection" : "keep-alive",
+          "Vary" : "Accept-Encoding",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "Etag" : "\"a941ae0ba0ecb139100e8b8df98c072d\"",
+          "X-Canvas-User-Id" : "10000006782429",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Enrollments\/com.instructure.Enrollments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~VrFstYIqog7pM72sX6tVWVQzlWqpVBPc6izVVQSSwZMCCW6VTWUKrcD4gai7v9Hd"
+        }
+      }
+    },
+    {
+      "recorded_at" : 1464654372.618518,
+      "response" : {
+        "body" : {
+          "custom_colors" : {
+            "course_24219" : "#009688",
+            "course_1801897" : "#4554A4"
+          }
+        },
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/users\/self\/colors?per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "X-Runtime" : "0.077681",
+          "Set-Cookie" : "_csrf_token=DwFr0Tt6tFR09ZTVZyHDpYG%2F3n%2Fqjx6I6p6yLh01lFF2LgCrAkvdHFuRwpABS5fk%2BfqyM8X4bcO%2B54J2WX7EPA%3D%3D; path=\/; secure",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "X-Request-Processor" : "a01cca5",
+          "X-Session-Id" : "350fbcc0197100a25fb9ef4ddd8afd38",
+          "Server" : "Apache",
+          "Status" : "200 OK",
+          "X-Request-Context-Id" : "57eb1f93-8eb8-425e-972e-e08c62cc4366",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Cost" : "0.060015754000068214",
+          "Content-Length" : "82",
+          "X-XSS-Protection" : "1; mode=block",
+          "X-Canvas-Meta" : "q=1610;at=10000000539225;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1b;o=users;n=get_custom_colors;b=1322752;m=1322752;u=0.05;y=0.00;d=0.01;",
+          "Date" : "Tue, 31 May 2016 00:26:12 GMT",
+          "Connection" : "keep-alive",
+          "Vary" : "Accept-Encoding",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "Etag" : "\"25db32a5968e53dcc6411c4c7c24882e\"",
+          "X-Canvas-User-Id" : "10000006782429",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/users\/self\/colors?per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Enrollments\/com.instructure.Enrollments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~VrFstYIqog7pM72sX6tVWVQzlWqpVBPc6izVVQSSwZMCCW6VTWUKrcD4gai7v9Hd"
+        }
+      }
+    }
+  ],
+  "name" : "refresh-favorite-colors"
+}

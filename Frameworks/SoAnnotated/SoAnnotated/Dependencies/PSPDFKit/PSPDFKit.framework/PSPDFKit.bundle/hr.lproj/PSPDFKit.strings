@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Zatvori";
+"Cancel" = "Otkaži";
+"OK" = "OK";
+"Open" = "Otvori";
+"Untitled" = "Bez naziva";
+"File Not Found" = "Datoteka nije pronađena";
+"File couldn't be opened." = "Datoteku nije moguće otvoriti."; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "Neimenovan PDF";
+"Page %tu" = "Stranica %tu";
+"Page %@" = "Stranica %@";
+"Next" = "Slijedeća";
+"Previous" = "Prethodna";
+"Error" = "Greška";
+
+// toolbar
+"Outline" = "Sadržaj"; // Table of contents
+"No Outline" = "Nema sadržaja";
+"Search Outline" = "Pretraži sadržaj";
+"Search" = "Pretraga";
+"Email" = "E-pošta";
+"Send via Email" = "Pošalji e-poštom";
+"Send" = "Pošalji";
+"Open In" = "Otvori sa";
+"Commit" = "Izvrši";
+"Sending to %@" = "Pošalji k %@"; // Open document with an application
+"Pages" = "Stranice";
+"Print with annotations" = "Ispis sa bilješkama";
+"Print without annotations" = "Ispis bez bilješki";
+"No Applications found" = "Nema instaliranih aplikacija koje mogu otvoriti PDF dokument.";
+"Print" = "Ispis";
+"Annotation" = "Oznaka";
+"Annotations" = "Oznake";
+"No Annotations" = "Nema oznaka";
+"Bookmarks" = "Favorit";
+"No Bookmarks" = "Nema favorita";
+"Add Bookmark" = "Dodaj favorita";
+"Remove Bookmark" = "Ukloni favorita";
+"Brightness" = "Osvjetljenost";
+"Share" = "Podijeli";
+"Preparing" = "Pripremanje";
+"Loading" = "Učitavanje";
+"Expand" = "Proširi";
+"Collapse" = "Sažmi";
+// SMS / iMessage sharing button
+"Message" = "Poruka";
+"Thumbnails" = "Sličice";
+"Drag Toolbar" = "Pomična alatna traka";
+
+// thumbnails
+"Bookmarked" = "Spremljeno u favorite";
+"Annotated" = "Označeno";
+"All" = "Sve";
+
+// password
+"Password" = "Lozinka"; // text on a label
+"Unlock" = "Otključaj";
+"Please enter the password." = "Molimo unesite zaporku.";
+"This document cannot be unlocked. %@ is unsupported." = "Dokument nije moguće otključati. %@ nije podržan.";
+
+// page
+"%tu of %tu" = "%tu od %tu";
+"%tu-%tu of %tu" = "%tu-%tu od %tu";
+"%@ (%tu of %tu)" = "%@ (%tu od %tu)";
+"%@, Page %tu" = "%@, stranica %tu";
+"Leave %@?" = "Napusti %@?";
+
+// search
+"Search Document" = "Pretraži dokument"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "Pretraživanje stranice %tu od %tu";
+"Search Completed" = "Pretraga izvršena";
+"Search Cancelled" = "Pretraga prekinuta";
+"%tu left" = "%tu preostalo"; // Indexing Documents... 5 left
+"Searching" = "Pretražujem";
+"Done" = "Izvršeno";
+"Indexing Documents" = "Indeksiranje dokumenta";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Dokument nema sadržaja";
+
+// inline browser
+"Open in Safari" = "Otvori koristeći Safari";
+"Open in Chrome" = "Otvori koristeći Chrome";
+"Your %@ is not configured to send emails." = "Vaš %@ nije podešen za slanje e-pošte";
+"The link is requesting to open %@Would you like to continue?" = "Poveznica zahtjeva otvaranje %@Želite li nastaviti?";
+"an external application" = "vanjsku aplikaciju"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "Pošta"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "Poveznicu nije bilo moguće otvoriti: %@";
+
+// text selection
+"Text copied to clipboard." = "Tekst kopiran u međuspremnik.";
+"Save To Camera Roll" = "Spremi u galeriju";
+"Failed to extract image." = "Neuspješno raspakiranje slike.";
+"Type value or pick from list" = "Upišite vrijednost ili odaberite s liste.";
+
+// annotations
+"Add %@" = "Dodaj %@";
+"Remove %@" = "Ukloni %@";
+"Remove" = "Ukloni";
+"Delete" = "Obriši"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "Uredi";
+"Undo" = "Vrati";
+"Nothing to undo" = "Nemoguće vratiti";
+"Redo" = "Ponovi";
+"Nothing to redo" = "Nemoguće ponoviti";
+"Type" = "Vrsta"; // kind of Annotation can be selected
+"Size" = "Veličina";
+"Font" = "Font";
+"Fonts" = "Fontovi";
+"All Fonts" = "All Fonts";
+"Downloadable Fonts" = "Fontovi dostupni za preuzimanje";
+"Search Fonts" = "Pretraži fontove";
+"Choose Color" = "Odaberi boju";
+"Choose Fill Color" = "Odaberi boju ispunjenja";
+"Rainbow" = "Duga";
+"Monochrome" = "Jednobojno";
+"Vintage" = "Tradicionalno";
+"Color" = "Boja";
+"Border" = "Okvir";
+"Fill Color" = "Boja ispunjenja";
+"Line End Fill Color" = "Boja ispunjenja kraja linije";
+"Opacity" = "Prozirnost";
+"%@ %%" = "%@ %%";
+"Thickness" = "Debljina";
+"%@ pt" = "%@ pt";
+"Yellow" = "Žuta";
+"Green" = "Zelena";
+"Red" = "Crvena";
+"Blue" = "Plava";
+"Pink" = "Roza";
+"Black" = "Crna";
+"Orange" = "Narančasta";
+"Purple" = "Ljubičasta";
+"Cyan" = "Modra";
+"Gray" = "Siva";
+"White" = "Bijela";
+"Define" = "Definirajte";
+"Wikipedia" = "Wikipedija";
+"Highlight" = "Osvjetli";
+"Underline" = "Podcrtaj";
+"Squiggle" = "Podcrtaj valovito";
+"StrikeOut" = "Prekriżi";
+"Rectangle" = "Rectangle";
+"Ellipse" = "Elipsa";
+"Line" = "Linija"; // something that can be drawn
+"Lines" = "Linije"; // "5 Lines" were drawn
+"Polyline" = "Izlomljena linija";
+"Polygon" = "Poligon";
+"Signature" = "Potpis";
+"Signatures" = "Potpisi";
+"Signed" = "Potpisano";
+"Sign" = "Potpiši";
+"Sign using %@" = "Potpiši koristeći %@"; // e.g. Adobe.PPKLite
+"Methods" = "Načini"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Odaberite identitet"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "Pečat";
+"Stamps" = "Pečati";
+"Custom" = "Po mjeri"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "Napravi pečat";
+"Preview" = "Pregled";
+"Stamp Text" = "Tekst pečata";
+"Add Signature" = "Dodaj potpis";
+"Remove Signature" = "Ukloni potpis";
+"My Signature" = "Moj potpis";
+"No Signatures" = "Nema potpisa"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "Potpis korisnika";
+"Please sign here" = "Molimo potpišite ovdje";
+"Note" = "Bilješka";
+"Text" = "Tekst";
+"Delete Note" = "Obriši bilješku";
+"Remove Note" = "Ukloni bilješku";
+"%@ could not be found." = "%@ nije pronađen.";
+"Photo Library" = "Datoteka sa slikama";
+"Camera" = "Kamera";
+"Image" = "Slika";
+"Low Quality" = "Loša kvaliteta";
+"Medium Quality" = "Srednja kvaliteta";
+"High Quality" = "Visoka kvaliteta";
+"Clear All" = "Očisti sve";
+"Clear" = "Očisti";
+"Style" = "Stil";
+"Link" = "Poveznica";
+"Ink" = "Tinta";
+"FreeText" = "Slobodni tekst";
+"Screen" = "Ekran";
+"RichMedia" = "Interaktivni medij";
+"Left" = "Lijevo";
+"Center" = "Sredina";
+"Right" = "Desno";
+"Alignment" = "Poravnanje";
+"Preview File" = "Pregled datoteke";
+"Copy" = "Kopiraj";
+"Paste" = "Zalijepi";
+"Inspector" = "Inspektor";
+"Group" = "Grupiraj";
+"Ungroup" = "Odgrupiraj";
+"Merge" = "Spoji"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "Primjer";
+"Annotation Summary for %@:\n" = "Izvještaj o oznaci za %@:\n";
+// title
+"Author Name" = "Ime autora";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Molimo vas unesite ime autora koje želite koristiti za nove oznake.";
+// text field placeholder
+"Name" = "Ime";
+// meaning: close
+"Dismiss" = "Otkaži";
+"Fit to Text" = "Prilagodi tekstu";
+"Draw" = "Crtanje";
+"Sound" = "Zvuk";
+"Eraser" = "Brisalo";
+"Toggle Eraser" = "Izmjeni brisalo"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "Alat za odabir";
+"Saved Annotations" = "Spremljene oznake";
+"Add" = "Dodati"; // to add - infinitive
+"Date" = "Datum";
+"Time" = "Vrijeme";
+"No Pages" = "Nema stranica";
+"Drag to resize" = "Povuci"; // used as hint that inspector is resizable
+"Convert to" = "Promijeni u"; // used as label on action that changes free text intent type
+"Color Presets" = "Prijedlozi boja";
+
+"Callout" = "Oblačić"; // freetext annotation with an arrow
+"Generic" = "Generički"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "Vrsta linije";
+"Solid" = "Puna";
+"Narrow Dots" = "Točkice";
+"Wide Dots" = "Široke točkice";
+"Narrow Dashes" = "Crtice";
+"Wide Dashes" = "Široke crtice";
+
+// Stamps
+"Approved" = "Odobreno";
+"Not Approved" = "Nije odobreno";
+"Draft" = "Nacrt";
+"Final" = "Konačno";
+"Completed" = "Završeno";
+"Confidential" = "Povjerljivo";
+"For Public Release" = "Za javnu objavu";
+"Not For Public Release" = "Nije za javnu objavu";
+"For Comment" = "Za komentiranje";
+"Void" = "Prazno";
+"Preliminary Results" = "Prijevremeni rezultati";
+"Information only" = "Samo informativno";
+"Accepted" = "Prihvaćeno";
+"Rejected" = "Odbijeno";
+"Initial Here" = "Inicijalno ovdje";
+"Sign Here" = "Potpisati ovdje";
+"Witness" = "Svjedočiti";
+"Revised" = "Revidirano";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Pisalo";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Iskljuceno";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Skeniranje";
+// text on a label; app connects to a stylus
+"Pairing" = "Uparivanje";
+// text on a label; app and stylus are connected
+"Connected" = "Povezano";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Prekinuto";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Postavke";
+
+
+// PDF annotation name overrides
+"Square" = "Pravokutnik"; // Rectangle
+"Circle" = "Elipsa"; // Elipsis
+"PolyLine" = "Izlomljena linija"; // Polyline
+
+// named actions
+"NextPage" = "Slijedeća stranica";
+"PrevPage" = "Prethodna stranica";
+"FirstPage" = "Prva stranica";
+"LastPage" = "Zadnja stranica";
+"GoBack" = "Idi nazad";
+"GoForward" = "Idi naprijed";
+"GoToPage" = "Idi na stranicu";
+"Find" = "Pronađi";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Približi";
+"ZoomOut" = "Udalji";
+"Execute JavaScript" = "Izvrši JavaScript";
+"Rich Media Action" = "Interaktivna aktivnost";
+"Rendition Action" = "Aktivnost prikazivanja";
+"Hide Action" = "Sakrij aktivnost";
+"Submit Form" = "Prijavi obrazac";
+"Reset" = "Ponovno postavi";
+
+// line annotations
+"Start" = "Početak";
+"End" = "Kraj";
+"Line.None" = "Bez";
+"Line.ClosedArrow" = "Zatvorena strelica";
+"Line.OpenArrow" = "Otvorena strelica";
+"Line.Square" = "Kvadrat";
+"Line.Circle" = "Kružić";
+"Line.Diamond" = "Dijamant";
+"Line.ROpenArrow" = "Izvrnuta otvorena strelica";
+"Line.RClosedArrow" = "Izvrnuta zatvorena strelica";
+"Line.Slash" = "Kosa";
+"Line.Butt" = "Linija";
+"Line Start" = "Početak linije";
+"Line End" = "Kraj linije";
+"Arrow" = "Arrow"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "Stvori poveznicu";
+"Add Link" = "Dodaj poveznicu";
+"Edit Link" = "Uredi poveznicu";
+"Move Link" = "Premjesti poveznicu";
+"Remove Link" = "Ukloni poveznicu";
+"Open Link" = "Otvori poveznicu";
+"Go to Page %tu" = "Idi na stranicu %tu";
+"Go to Page" = "Idi na stranicu"; // title of a Popup
+"Go" = "Idi"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "Spremi";
+"Link Destination" = "Cilj poveznice";
+"Enter page index or a http:// address to link to an URL." = "Unesite indeks stranice ili http:// adresu na poveznicu na URL.";
+"Page %@ Not Found" = "Stranica %@ nije pronađena";
+
+// voiceover accessibility
+"Page" = "Stranica";
+"Grid" = "Mreža"; // grid with thumbnails
+"Translucent" = "Proziran";
+"left" = "lijevo";
+"center" = "u sredini";
+"right" = "desno";
+"decrease" = "smanji";
+"increase" = "povećaj";
+"All Open Documents" = "Svi otvoreni dokumenti";
+"Add Documents" = "Dodaj dokument"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "Pages %tu-%tu"; // Range of pages
+"Current Page" = "Trenutna stranica";
+"Current Page (%tu)" = "Current Page (%tu)";
+"Ignore Annotations" = "Zanemari oznake";
+"The PDF will not contain any annotations." = "PDF neće sadržavati oznake";
+"Embed Annotations" = "Ugradi oznake";
+"Annotations will remain editable and are embedded into the PDF." = "Oznake su ugrađene u PDF i moći će se uređivati.";
+"Flatten Annotations" = "Isprešaj oznake";
+"Annotations are drawn into the PDF and are readonly." = "Oznake su prikazane u PDF-u i moći će se samo isčitavati.";
+"Annotation Summary" = "Izvještaj o oznakama";
+"Embed Annotations into the PDF and also list them in the email." = "Ugradi oznake u PDF i ispiši ih u e-pošti.";
+"Files" = "Datoteke";
+"Send as single files" = "Pošalji kao zasebne datoteke";
+"Merge files" = "Spoji datoteke";
+"Original File" = "Original File";
+"Range" = "Range";
+"Annotated Pages" = "Annotated Pages";
+
+// sound annotations
+"Speak" = "Govori"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "Pusti";
+"Pause" = "Pauziraj";
+"Resume" = "Nastavi";
+"Stop" = "Zaustavi";
+"Play/Stop" = "Pusti/zaustavi";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Snimaj";
+"Pause Recording" = "Pauziraj snimanje";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Snimka pauzirana";
+"Continue Recording" = "Nastavi snimanje";
+"Finish Recording" = "Završi snimanje";
+"Audio Problem" = "Problem sa zvukom";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "Nemoguće započeti snimku.";
+"Could not resume playback." = "Nemoguće nastaviti snimku.";
+"Microphone permission not granted." = "Dozvole za mikrofon nisu omogućene";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Zvuk trenutno nemože biti snimljen. Molimo vas omogućite aplikaciji pristup mikrofonu.";
+"There was a problem trying to record audio." = "Greška pri pokušaju snimanja zvuka.";
+"Already Recording" = "Snimanje u tijeku.";
+"You are already recording on page %@." = "Snimanje u tijeku na stanici %@.";
+
+// Forms
+"Form Element" = "Obrazac";
+"Text Field" = "Tekstualno polje";
+"Button" = "Tipka";
+"Choice Field" = "Polje s odabirom";
+"Signature Field" = "Polje za potpis";
+"Clear Field" = "Očisti polje"; // same as delete
+"Type value or pick from list" = "Unesite vrijednost ili odaberite sa liste";
+"Default Values" = "Početne vrijednosti";
+"Custom Value" = "Podešena vrijednost";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Neodgovarajuća vrijednost: mora biti veće ili jednako %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Neodgovarajuća vrijednost: mora biti veće ili jednako %s i manje od ili jednako %s.";
+"Invalid value: must be less than or equal to %s." = "Neodgovarajuća vrijednost: mora biti manje ili jednako %s.";
+"Invalid value: must be a number." = "Neodgovarajuća vrijednost: mora biti broj.";
+
+//  Validation of dates
+"Invalid value: must be a date." = "Neodgovarajuća vrijednost: mora biti datum.";
+
+// General validation
+"Invalid value." = "Neodgovarajuća vrijednost.";
+
+// Gallery
+"Connection Error" = "Greška prilikom spajanja.";
+"Unsupported Content" = "Sadržaj nije podržan";
+"The specified content cannot be displayed." = "Odabrani sadržaj ne može biti prikazan";
+"Something went wrong" = "Negdje se dogodila greška.";
+"This item is currently unavailable." = "Ovaj odabir trenutno nije dostupan.";
+"The information for this gallery could not be loaded." = "Nije moguće učitati informacije o odabranoj galeriji.";
+"Content Error" = "Greška u sadržaju";
+"This content is unsupported." = "Ovaj sadržaj nije podržan.";
+
+// Signatures
+"Digital Signature" = "Digitalni potpis";
+"Signature is valid." = "Potpis je valjan.";
+"Signature is valid, but there are some warnings." = "Potpis je valjan, ali dolazi uz upozorenja.";
+"It was signed by %@ on %@ at %@." = "Potpisano od %@ na dan %@ u %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Potpisano na dan %@ u %@.";
+"It claims to have been signed by %@ on %@ at %@." = "Tvrdi se je da je potpisano od %@ na dan %@ u %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Tvrdi se daje potpisano na dan %@ u %@.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Revizija pokrivena ovim potpisom nije mjenjana, međutim mjenjan je sam dokument."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- Potpis je valjan i dokument nije mjenjan od kada je potpisan.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Potpis nije valjan — sadržaj dokumenta nakon potpisivanja je mjenjan, uređivan ili koruptiran.";
+"Unsigned Signature Field" = "Nepotpisano polje za potpis";
+"Do you really want to remove the signature from the document?" = "Jeste li sigurni da želite ukloniti potpis iz dokumenta?";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Nije moguće isčitati podatke iz PKCS#7 certifikata. Podaci u pravom formatu mogu biti izvezeni koristeći Adobe Acrobat."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "Nije moguće dektriptirati potpis certifikata.";
+"The public key in the certificate could not be read." = "Nije moguće javni ključ u certifikatu.";
+"The signature of the certificate is not valid." = "Potpis certifikata nije valjan.";
+"Signature is not valid." = "Potpis nije valjan.";
+"There is a format error in the notBefore field of the certificate." = "Greška u formatu polja notBefore unutar certifikata."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "Greška u formatu polja notAfter unutar certifikata."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Nije moguće provjeriti niti jedan potpis jer lanac certifikata sadrži samo jedan certifikat, on sam nije potpisan i izdavatelj nije pouzdan.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "CA certifikat nije valjan jer nije CA ili njegove ekstenzije nisu konzistentne sa namjenom."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "Parametar basicConstraints pathlength je prekoračen."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "root CA nije označen kao pouzdan za svoju namjenu."; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "root CA je podešen da odbije specificiranu namjenu."; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Certifikat izdavača je odbijen jer ime nije odgovaralo imenu izdavača trenutnog certifikata."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Certifikat izdavača je odbijen jer postoji ključ predmeta i on ne odgovara autorizacijskom ključu trenutnog certifikata."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "Certifikat izdavatelja je odbijen jer ime izdavača i serijski broj postoje i ne odgovaraju autorizacijskom ključu trenutnog certifikata."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "Certifikat je povučen od strane izdavatelja.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Predani certifikat je samo-potpisan i isti certifikat nije među provjerenim certifikatima.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Samo-potpisani certifikat postoji u lancu certifikata. Lanac certifikata je moguće izgraditi koristeći nepouzdane certifikate, ali root CA nije moguće pronaći lokalno."; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Nije moguće pronaći certifikat za jedan of certifikatskih autoriteta (CAs) u hijerarhiji potpisa i taj CA nije pouzdan unutar lokalne aplikacije."; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Certifikat izdavača lokalno pretraživanog certifikata nije moguće pronaći. Obično ovo znači da lista pouzdanih certifikata nije potpuna.";
+"The certificate that was provided cannot be used for its intended purpose." = "Dani certifikat nemože biti korišten u danu svrhu.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "keyUsage ekstenzija izdavačevog certifikata ne dozvoljava potpisivanje certifikata.";
+"The certificate has expired." = "Certifikat je istekao.";
+"The certificate is not valid until a date in the future." = "Certifikat nije važeći do nekog datuma u budućnosti.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Nije moguće isčitati X509 certifikat iz podataka";
+// X509 should not be translated
+"No X509 certificate found" = "Certifikat X509 nije pronađen";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Nije moguće isčitati PKCS12 datoteku. Datoteka je nepravilno formatirana ili oštećena.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Nije moguće otključati PKCS12 podatke. Jeste li unijeli ispravnu lozinku?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Nije moguće otvoriti datoteku za potvrdu potpisa";
+"Could not get signer info" = "Nije moguće dohvatiti informaciju o autoru potpisa";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL ne može kreirati PKCS7 objekt";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL ne može dodati potpis PKCS7 objektu";
+"OpenSSL could not init PKCS7 object" = "OpenSSL ne može inicijalizirati PKCS7 objekt";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL ne može generirati PKCS7 potpis";
+"OpenSSL could not sign hash" = "OpenSSL ne može potpisati hash";
+"Could not write PKCS7 signature" = "Zapis PKCS7 potpisa nije moguć";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "Otvori u";
+"PSPDFPolicyEventPrint" = "Ispis";
+"PSPDFPolicyEventEmail" = "E-pošta";
+"PSPDFPolicyEventMessage" = "Poruka";
+"PSPDFPolicyEventQuickLook" = "Quick Look"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "Snimanje zvuka";
+"PSPDFPolicyEventCamera" = "Kamera";
+"PSPDFPolicyEventPasteboard" = "Odlagalište"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "Predaj obrazac";
+"PSPDFPolicyEventNetwork" = "Mreža";
+
+// Night Mode
+"Default" = "Zadano"; // Default view (night mode not enabled)
+"Sepia" = "Sepia"; // Document uses sepia colors
+"Night" = "Noć"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "Nije odabran niti jedan dokument";
+"Unable to display document" = "Dokument nije moguće prikazati";
+"Loading..." = "Učitavanje...";
+"Locked" = "Zaključano";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "Datoteka kojoj pokušavate pristupiti je koruptirana ili nije PDF format.";
+"A password is required to access this document." = "Lozinka je potrebna za pristup dokumentu.";
+"The security scheme of this document is currently not supported." = "Sigurnosna shema ovog dokuemnta nije podržana.";
+"An unknown error has occured while trying to open this file." = "Nepoznata greška prilikom pokušaja otvaranja.";
+
+// Document Editor
+"Document Editor" = "Uređivač dokumenta";
+"Add Page" = "Dodaj stranicu";
+"Delete Pages" = "Ukloni stranicu";
+"Duplicate Pages" = "Napravi duplikat";
+"Move Pages" = "Pomakni stranice";
+"Rotate Pages" = "Rotiraj stranice";
+"Page Size" = "Veličina stranice";
+"Background Color" = "Boja pozadine";
+"Pattern" = "Obrazac";
+"Use Document Size" = "Koristi veličinu dokumenta";
+"Orientation" = "Orijentacija";
+"Portrait" = "Portret";
+"Landscape" = "Pejzaž";
+"Name" = "Naziv";
+"Document Name" = "Naziv dokumenta";
+"Documents" = "Dokumenti"; // Name of directory
+"Use Document Directory" = "Koristi direktorij dokumenta";
+"Directory" = "Direktorij";
+"Replace File?" = "Zamjeniti datoteku?";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Datoteka naziva \"%@\" već postoji na odabranoj lokaciji. Želite li ju zamijeniti?";
+"Replace" = "Zamijeni";
+"Saving…" = "Spremanje…";
+"Saved" = "Spremljeno";
+"Save As…" = "Spremi kao…";
+"Discard Changes" = "Odbaci izmjene";
+"Empty" = "Prazno";
+
+// Document Editor Errors
+"A blank document can not be saved." = "Nije moguće spremiti prazan dokument.";
+"The document could not be saved." = "Dokument nije bilo moguće spremiti.";
+"This document does not support editing." = "Dokument ne podržava uređivanje.";
+
+// Page Patterns
+"None" = "Prazno";
+"Dot5mm" = "Istočkano 5mm";
+"Grid5mm" = "Ćelije 5mm";
+"Lines5mm" = "Linije 5mm";
+"Lines7mm" = "Linije 7mm";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US Letter";
+"US Legal" = "US Legal";
+
+// Page Export
+"Export Pages" = "Export Pages";
+"Export…" = "Export…";
+"Exporting…" = "Exporting…";
+"Exported" = "Exported";
+"%@ - Exported" = "%@ - Exported"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - Copy"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "The selected document is currently open. Please choose a different filename.";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Text-u-govor usluga nije dostupna. Provjerite imate li aktivnu internet konekciju ili Google Text-to-speech engine instaliran na vašem uređaju.";

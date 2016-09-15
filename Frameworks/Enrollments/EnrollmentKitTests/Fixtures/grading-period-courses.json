@@ -1,0 +1,103 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1463682078.94966,
+      "response" : {
+        "body" : [
+          {
+            "storage_quota_mb" : 500,
+            "grading_standard_id" : 0,
+            "is_public" : false,
+            "is_public_to_auth_users" : false,
+            "apply_assignment_group_weights" : false,
+            "calendar" : {
+              "ics" : "https:\/\/narmstrong.instructure.com\/feeds\/calendars\/course_eYA5OJ2IziXQhNi3RRSiDmSvdLwksmtffKYLK6rD.ics"
+            },
+            "enrollments" : [
+              {
+                "computed_final_score" : 75,
+                "computed_current_grade" : "C",
+                "totals_for_all_grading_periods_option" : false,
+                "current_grading_period_title" : null,
+                "current_period_computed_current_score" : null,
+                "current_period_computed_current_grade" : null,
+                "user_id" : 2,
+                "type" : "student",
+                "multiple_grading_periods_enabled" : true,
+                "current_period_computed_final_score" : null,
+                "current_period_computed_final_grade" : null,
+                "role" : "StudentEnrollment",
+                "computed_final_grade" : "C",
+                "current_grading_period_id" : null,
+                "role_id" : 3,
+                "computed_current_score" : 75,
+                "enrollment_state" : "active"
+              }
+            ],
+            "end_at" : null,
+            "public_syllabus" : false,
+            "enrollment_term_id" : 2,
+            "is_favorite" : true,
+            "name" : "CS 1400",
+            "course_code" : "cs1400",
+            "term" : {
+              "id" : 2,
+              "workflow_state" : "active",
+              "end_at" : "2016-03-03T07:00:00Z",
+              "name" : "Term 1",
+              "start_at" : "2016-01-03T07:00:00Z"
+            },
+            "id" : 1,
+            "hide_final_grades" : false,
+            "workflow_state" : "available",
+            "account_id" : 1,
+            "restrict_enrollments_to_course_dates" : false,
+            "syllabus_body" : null,
+            "start_at" : "2016-02-01T17:52:00Z",
+            "default_view" : "feed"
+          }
+        ],
+        "status" : 200,
+        "url" : "https:\/\/narmstrong.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=ojytf3N%2BcTkSEHr7HfI7UQs4hkAqSei3M1ZMoXCAJAzjVutGADcfTUh3LNBwim05fn%2FzOHgToPtyH3vHOLFHSA%3D%3D; path=\/; secure, log_session_id=a2034d915a8010ec53bbbbef01f3c65c; path=\/, canvas_session=dhofMglSJlYp39fb4mJ79g.STSEuWOsbrRTlR6DiXu8HXYGNa_dtUJPcJqAkVDbXe4JHdLWjpqFLLIc0ASp6VEjl3vyiQuCT0nYTjqkVVMemXs0O1eyyaXmlEbDeMD96Az1l8vMUbS-EtwUAAP_qKNz.HMTQ6pbTl_7WBK0uqwMiIT0xQWg.Vz4EHw; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.343385",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "Link" : "<https:\/\/narmstrong.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&page=1&per_page=99>; rel=\"current\",<https:\/\/narmstrong.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&page=1&per_page=99>; rel=\"first\",<https:\/\/narmstrong.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&page=1&per_page=99>; rel=\"last\"",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "X-Request-Processor" : "a01cc07",
+          "Status" : "200 OK",
+          "X-Session-Id" : "a2034d915a8010ec53bbbbef01f3c65c",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "36c39382-b217-4271-8229-6ec7c5a6709b",
+          "X-Request-Cost" : "0.22747148700001363",
+          "Content-Length" : "578",
+          "X-Canvas-Meta" : "q=516;at=78950000000000004;dk=170000000000016;a=1;g=NPlw5mttYp3XYZwh9rhbbCTzuKX22gHlmlvRaFyn;s=7895;c=cluster44;z=us-east-1b;o=courses;n=index;b=1193044;m=1193044;u=0.11;y=0.01;d=0.12;",
+          "Date" : "Thu, 19 May 2016 18:21:19 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "78950000000000002",
+          "Etag" : "\"2979326457dce58f6e9fae99505288e9\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/narmstrong.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Enrollments\/com.instructure.Enrollments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 7895~fd6cCPK3vsIO0d2ivNTnVYfwUJRkENjIzIH18hL9qXRhqkB16MaGLakuaiYNxwfA"
+        }
+      }
+    }
+  ],
+  "name" : "grading-period-courses"
+}

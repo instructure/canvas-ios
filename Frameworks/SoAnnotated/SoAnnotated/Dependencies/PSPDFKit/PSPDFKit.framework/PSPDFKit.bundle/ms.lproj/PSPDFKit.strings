@@ -1,0 +1,575 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Tutup";
+"Cancel" = "Batal";
+"OK" = "Pergi";
+"Open" = "Buka";
+"Untitled" = "Tanpa Tajuk";
+"File Not Found" = "Fail Tidak Ditemui";
+"File couldn't be opened." = "Fail tidak boleh dibuka."; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "PDF Tidak Dinamakan";
+"Page %tu" = "Halaman %tu";
+"Page %@" = "Halaman %@";
+"Next" = "Seterusnya";
+"Previous" = "Sebelumnya";
+"Error" = "Ralat";
+
+// toolbar
+"Outline" = "Ringkasan"; // Table of contents
+"No Outline" = "Tiada Ringkasan";
+"Search Outline" = "Cari Ringkasan";
+"Search" = "Cari";
+"Email" = "E-mel";
+"Send via Email" = "Hantar melalui E-mel";
+"Send" = "Hantar";
+"Open In" = "Buka Dalam";
+"Commit" = "Lakukan";
+"Sending to %@" = "Menghantar ke %@"; // Open document with an application
+"Pages" = "Halaman";
+"Print with annotations" = "Cetak dengan anotasi";
+"Print without annotations" = "Cetak tanpa anotasi";
+"No Applications found" = "Tiada aplikasi yang telah dipasang yang boleh membuka dokumen PDF.";
+"Print" = "Cetak";
+"Annotation" = "Anotasi";
+"Annotations" = "Anotasi";
+"No Annotations" = "Tiada Anotasi";
+"Bookmarks" = "Penanda";
+"No Bookmarks" = "Tiada Penanda";
+"Add Bookmark" = "Tambah Penanda";
+"Remove Bookmark" = "Alih Keluar Penanda";
+"Brightness" = "Kecerahan";
+"Share" = "Kongsi";
+"Preparing" = "Menyediakan";
+"Loading" = "Memuatkan";
+"Expand" = "Kembangkan";
+"Collapse" = "Runtuhkan";
+// SMS / iMessage sharing button
+"Message" = "Mesej";
+"Thumbnails" = "Imej kecil";
+"Drag Toolbar" = "Seret Bar Alat";
+
+// thumbnails
+"Bookmarked" = "Ditandakan";
+"Annotated" = "Beranotasi";
+"All" = "Semua";
+
+// password
+"Password" = "Kata Laluan"; // text on a label
+"Unlock" = "Buka Kunci";
+"Please enter the password." = "Sila masukkan kata laluan.";
+"This document cannot be unlocked. %@ is unsupported." = "Dokumen ini tidak boleh dibuka kunci. %@ tidak disokong.";
+
+// page
+"%tu of %tu" = "%tu daripada %tu";
+"%tu-%tu of %tu" = "%tu-%tu daripada %tu";
+"%@ (%tu of %tu)" = "%@ (%tu daripada %tu)";
+"%@, Page %tu" = "%@, Halaman %tu";
+"Leave %@?" = "Tinggalkan %@?";
+
+// search
+"Search Document" = "Cari Dokumen"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "Mencari di Halaman %tu daripada %tu";
+"Search Completed" = "Carian Selesai";
+"Search Cancelled" = "Carian Dibatalkan";
+"%tu left" = "tinggal %tu"; // Indexing Documents... 5 left
+"Searching" = "Mencari";
+"Done" = "Selesai";
+"Indexing Documents" = "Mengindeks Dokumen";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Dokumen tiada isi kandungan";
+
+// inline browser
+"Open in Safari" = "Buka dalam Safari";
+"Open in Chrome" = "Buka dalam Chrome";
+"Your %@ is not configured to send emails." = "%@ anda tidak dikonfigurasi untuk menghantar e-mel.";
+"The link is requesting to open %@Would you like to continue?" = "Pautan ini meminta untuk membuka %@. Adakah anda mahu teruskan?";
+"an external application" = "sebuah aplikasi luaran"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "E-mel"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "Tiada pengendali ditemui untuk %@";
+
+// text selection
+"Text copied to clipboard." = "Teks disalin ke papan keratan.";
+"Save To Camera Roll" = "Simpan ke Jalur Filem";
+"Failed to extract image." = "Gagal untuk mengekstrak imej.";
+"Type value or pick from list" = "Taipkan nilai atau pilih daripada senarai";
+
+// annotations
+"Add %@" = "Tambah %@";
+"Remove %@" = "Alih Keluar %@";
+"Remove" = "Alih Keluar";
+"Delete" = "Padam"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "Edit";
+"Undo" = "Buat Asal";
+"Nothing to undo" = "Tiada apa untuk buat asal";
+"Redo" = "Buat Semula";
+"Nothing to redo" = "Tiada apa untuk buat semula";
+"Type" = "Jenis"; // kind of Annotation can be selected
+"Size" = "Saiz";
+"Font" = "Fon";
+"Fonts" = "Fon";
+"All Fonts" = "Semua Fon";
+"Downloadable Fonts" = "Fon Boleh Dimuat Turun";
+"Search Fonts" = "Cari Fon";
+"Choose Color" = "Pilih Warna";
+"Choose Fill Color" = "Pilih Warna Isian";
+"Rainbow" = "Pelangi";
+"Monochrome" = "Monokrom";
+"Vintage" = "Vintaj";
+"Color" = "Warna";
+"Border" = "Sempadan";
+"Fill Color" = "Warna Isian";
+"Line End Fill Color" = "Warna Isian Akhir Garis";
+"Opacity" = "Kelegapan";
+"%@ %%" = "%@ %%";
+"Thickness" = "Ketebalan";
+"%@ pt" = "%@ mata";
+"Yellow" = "Kuning";
+"Green" = "Hijau";
+"Red" = "Merah";
+"Blue" = "Biru";
+"Pink" = "Merah Jambu";
+"Black" = "Hitam";
+"Orange" = "Oren";
+"Purple" = "Ungu";
+"Cyan" = "Sian";
+"Gray" = "Kelabu";
+"White" = "Putih";
+"Define" = "Takrifkan";
+"Wikipedia" = "Wikipedia";
+"Highlight" = "Serlahkan";
+"Underline" = "Garis Bawah";
+"Squiggle" = "Berpintal";
+"StrikeOut" = "Lorek";
+"Rectangle" = "Segi Empat Tepat";
+"Ellipse" = "Elips";
+"Line" = "Garis"; // something that can be drawn
+"Lines" = "Garisan"; // "5 Lines" were drawn
+"Polyline" = "Poligaris";
+"Polygon" = "Poligon";
+"Signature" = "Tandatangan";
+"Signatures" = "Tandatangan";
+"Signed" = "Bertandatangan";
+"Sign" = "Tandatangan";
+"Sign using %@" = "Tandatangan menggunakan %@"; // e.g. Adobe.PPKLite
+"Methods" = "Kaedah"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Pilih Identiti"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "Cap";
+"Stamps" = "Cap";
+"Custom" = "Tersuai"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "Cipta Cap";
+"Preview" = "Pratonton";
+"Stamp Text" = "Teks Cap";
+"Add Signature" = "Tambah Tandatangan";
+"Remove Signature" = "Alih Keluar Tandatangan";
+"My Signature" = "Tandatangan Saya";
+"No Signatures" = "Tiada Tandatangan"; // text on label - is shown when there is no signature to display
+"Customer Signature" = "Tandatangan Pelanggan";
+"Please sign here" = "Sila tandatangan di sini";
+"Note" = "Nota";
+"Text" = "Teks";
+"Delete Note" = "Padam Nota";
+"Remove Note" = "Alih Keluar Nota";
+"%@ could not be found." = "%@ tidak dapat ditemui.";
+"Photo Library" = "Pustaka Foto";
+"Camera" = "Kamera";
+"Image" = "Imej";
+"Low Quality" = "Kualiti Rendah";
+"Medium Quality" = "Kualiti Pertengahan";
+"High Quality" = "Kualiti Tinggi";
+"Clear All" = "Kosongkan Semua";
+"Clear" = "Kosongkan";
+"Style" = "Gaya";
+"Link" = "Pautan";
+"Ink" = "Dakwat";
+"FreeText" = "Teks";
+"Screen" = "Skrin";
+"RichMedia" = "Media Kaya";
+"Left" = "Kiri";
+"Center" = "Tengah";
+"Right" = "Kanan";
+"Alignment" = "Penjajaran";
+"Preview File" = "Pratonton Fail";
+"Copy" = "Salin";
+"Paste" = "Tampal";
+"Inspector" = "Pemeriksa";
+"Group" = "Kumpulan";
+"Ungroup" = "Leraikan";
+"Merge" = "Gabungkan"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "Sampel";
+"Annotation Summary for %@:\n" = "Ringkasan Anotasi untuk %@:\n";
+// title
+"Author Name" = "Nama Pengarang";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Sila masukkan nama pengarang yang anda mahu gunakan bagi anotasi yang baharu dimasukkan.";
+// text field placeholder
+"Name" = "Nama";
+// meaning: close
+"Dismiss" = "Tutup";
+"Fit to Text" = "Muatkan dengan Teks";
+"Draw" = "Lukis";
+"Sound" = "Bunyi";
+"Eraser" = "Pemadam";
+"Toggle Eraser" = "Togol Pemadam"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "Alat Pemilihan";
+"Saved Annotations" = "Anotasi Disimpan";
+"Add" = "Tambah"; // to add - infinitive
+"Date" = "Tarikh";
+"Time" = "Masa";
+"No Pages" = "Tiada Halaman";
+"Drag to resize" = "Seret untuk mensaiz semula"; // used as hint that inspector is resizable
+"Convert to" = "Tukarkan ke"; // used as label on action that changes free text intent type
+"Color Presets" = "Praset Warna";
+
+"Callout" = "Serlahan"; // freetext annotation with an arrow
+"Generic" = "Generik"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "Gaya Garis";
+"Solid" = "Padu";
+"Narrow Dots" = "Titik Sempit";
+"Wide Dots" = "Titik Lebar";
+"Narrow Dashes" = "Sempang Sempit";
+"Wide Dashes" = "Sempang Lebar";
+
+// Stamps
+"Approved" = "Diluluskan";
+"Not Approved" = "Tidak Diluluskan";
+"Draft" = "Draf";
+"Final" = "Muktamad";
+"Completed" = "Selesai";
+"Confidential" = "Sulit";
+"For Public Release" = "Untuk Edaran Umum";
+"Not For Public Release" = "Bukan Untuk Edaran Umum";
+"For Comment" = "Untuk Komen";
+"Void" = "Tidak Sah";
+"Preliminary Results" = "Keputusan Awal";
+"Information only" = "Maklumat sahaja";
+"Accepted" = "Diterima";
+"Rejected" = "Ditolak";
+"Initial Here" = "Parap Di Sini";
+"Sign Here" = "Tandatangan Di Sini";
+"Witness" = "Saksi";
+"Revised" = "Disemak";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Stylus";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Tidak Aktif";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Mengimbas";
+// text on a label; app connects to a stylus
+"Pairing" = "Perpasangan";
+// text on a label; app and stylus are connected
+"Connected" = "Disambung";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Terputus Sambungan";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Seting";
+
+
+// PDF annotation name overrides
+"Square" = "Segi Empat Tepat";
+"Circle" = "Elips";
+"PolyLine" = "Poligaris";
+
+// named actions
+"NextPage" = "Halaman Seterusnya";
+"PrevPage" = "Halaman Sebelumnya";
+"FirstPage" = "Halaman Pertama";
+"LastPage" = "Halaman Terakhir";
+"GoBack" = "Pergi Balik";
+"GoForward" = "Pergi Hadapan";
+"GoToPage" = "Pergi ke Halaman";
+"Find" = "Cari";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Zum Ke Dalam";
+"ZoomOut" = "Zum Ke Luar";
+"Execute JavaScript" = "Laksanakan JavaScript";
+"Rich Media Action" = "Tindakan Media Kaya";
+"Rendition Action" = "Tindakan Persembahan";
+"Hide Action" = "Sembunyi Tindakan";
+"Submit Form" = "Serah Borang";
+"Reset" = "Set Semula";
+
+// line annotations
+"Start" = "Mula";
+"End" = "Tamat";
+"Line.None" = "Tiada";
+"Line.ClosedArrow" = "Anak Panah Ditutup";
+"Line.OpenArrow" = "Anak Panah Buka";
+"Line.Square" = "Segi Empat Sama";
+"Line.Circle" = "Bulatan";
+"Line.Diamond" = "Berlian";
+"Line.ROpenArrow" = "Terbalikkan Anak Panah Buka";
+"Line.RClosedArrow" = "Terbalikkan Anak Panah Ditutup";
+"Line.Slash" = "Garis Condong";
+"Line.Butt" = "Pangkal";
+"Line Start" = "Mula Garis";
+"Line End" = "Akhir Garis";
+"Arrow" = "Anak Panah"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "Cipta Pautan";
+"Add Link" = "Tambah Pautan";
+"Edit Link" = "Edit Pautan";
+"Move Link" = "Alih Pautan";
+"Remove Link" = "Alih Keluar Pautan";
+"Open Link" = "Buka Pautan";
+"Go to Page %tu" = "Pergi ke Halaman %tu";
+"Go to Page" = "Pergi ke Halaman"; // title of a Popup
+"Go" = "Pergi"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "Simpan";
+"Link Destination" = "Destinasi Pautan";
+"Enter page index or a http:// address to link to an URL." = "Masukkan indeks halaman atau alamat http:// untuk memaut kepada URL.";
+"Page %@ Not Found" = "Halaman %@ Tidak Ditemui";
+
+// voiceover accessibility
+"Page" = "Halaman";
+"Grid" = "Rangkaian"; // grid with thumbnails
+"Translucent" = "lut cahaya";
+"left" = "kiri";
+"center" = "tengah";
+"right" = "kanan";
+"decrease" = "kurangkan";
+"increase" = "tingkatkan";
+"All Open Documents" = "Semua Dokumen Terbuka";
+"Add Documents" = "Tambah Dokumen"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "Halaman %tu-%tu"; // Range of pages
+"Current Page" = "Halaman Semasa";
+"Current Page (%tu)" = "Halaman Semasa (%tu)";
+"Ignore Annotations" = "Abaikan Anotasi";
+"The PDF will not contain any annotations." = "PDF tidak akan mengandungi sebarang anotasi.";
+"Embed Annotations" = "Benam Anotasi";
+"Annotations will remain editable and are embedded into the PDF." = "Anotasi akan terus boleh diedit dan dibenamkan ke dalam PDF.";
+"Flatten Annotations" = "Anotasi Didatarkan";
+"Annotations are drawn into the PDF and are readonly." = "Anotasi dipersembahkan dalam PDF dan adalah baca sahaja.";
+"Annotation Summary" = "Ringkasan Anotasi";
+"Embed Annotations into the PDF and also list them in the email." = "Benam Anotasi ke dalam PDF dan juga senaraikannya dalam e-mel.";
+"Files" = "Fail";
+"Send as single files" = "Hantar sebagai fail tunggal";
+"Merge files" = "Gabungkan fail";
+"Original File" = "Fail Asal";
+"Range" = "Julat";
+"Annotated Pages" = "Halaman Beranotasi";
+
+// sound annotations
+"Speak" = "Sebut"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "Main";
+"Pause" = "Jeda";
+"Resume" = "Teruskan";
+"Stop" = "Hentikan";
+"Play/Stop" = "Mainkan/Hentikan";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Rakam";
+"Pause Recording" = "Jeda Rakaman";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Rakaman dijeda";
+"Continue Recording" = "Teruskan Rakaman";
+"Finish Recording" = "Selesaikan Rakaman";
+"Audio Problem" = "Masalah Audio";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "Tidak dapat memulakan main balik.";
+"Could not resume playback." = "Tidak dapat meneruskan main balik.";
+"Microphone permission not granted." = "Kebenaran mikrofon tidak diberikan.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Audio tidak boleh dirakamkan pada masa ini. Sila beri kebenaran kepada aplikasi ini untuk mengakses mikrofon anda.";
+"There was a problem trying to record audio." = "Terdapat masalah semasa cuba merakamkan audio.";
+"Already Recording" = "Telah Pun Merakamkan";
+"You are already recording on page %@." = "Anda telah pun merakamkan pada halaman %@.";
+
+// Forms
+"Form Element" = "Elemen Borang";
+"Text Field" = "Medan Teks";
+"Button" = "Butang";
+"Choice Field" = "Medan Pilihan";
+"Signature Field" = "Medan Tandatangan";
+"Clear Field" = "Kosongkan Medan"; // same as delete
+"Type value or pick from list" = "Taipkan nilai atau pilih daripada senarai";
+"Default Values" = "Nilai Lalai";
+"Custom Value" = "Nilai Tersuai";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Nilai tidak sah: mesti besar daripada atau sama dengan %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Nilai tidak sah: mesti besar daripada atau sama dengan %s dan kurang daripada atau sama dengan %s.";
+"Invalid value: must be less than or equal to %s." = "Nilai tidak sah: mesti kurang daripada atau sama dengan %s.";
+"Invalid value: must be a number." = "Nilai tidak sah: mesti satu nombor.";
+
+//  Validation of dates
+"Invalid value: must be a date." = "Nilai tidak sah: mesti satu tarikh.";
+
+// General validation
+"Invalid value." = "Nilai tidak sah.";
+
+// Gallery
+"Connection Error" = "Ralat Sambungan";
+"Unsupported Content" = "Kandungan Tidak Disokong";
+"The specified content cannot be displayed." = "Kandungan yang dinyatakan tidak dapat dipaparkan.";
+"Something went wrong" = "Ada sesuatu tidak kena";
+"This item is currently unavailable." = "Item ini tidak tersedia pada masa ini.";
+"The information for this gallery could not be loaded." = "Maklumat bagi galeri ini tidak dapat dimuatkan.";
+"Content Error" = "Ralat Kandungan";
+"This content is unsupported." = "Kandungan ini tidak disokong.";
+
+// Signatures
+"Digital Signature" = "Tandatangan Digital";
+"Signature is valid." = "Tandatangan adalah sah.";
+"Signature is valid, but there are some warnings." = "Tandatangan adalah sah tetapi terdapat beberapa amaran.";
+"It was signed by %@ on %@ at %@." = "Ia telah ditandatangani oleh %@ pada %@ pada jam %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Ia ditandatangani pada %@ pada jam %@.";
+"It claims to have been signed by %@ on %@ at %@." = "Ia mendakwa telah ditandatangani oleh %@ pada %@ pada jam %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Ia mendakwa telah ditandatangani pada %@ pada jam %@.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Semakan yang diliputi oleh tandatangan ini tidak diubah suai, walau bagaimanapun perubahan telah dibuat ke atas dokumen sejak ia ditandatangani."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- Tandatangan adalah sah dan kandungan dokumen ini tidak diubah suai sejak ia ditandatangani.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Tandatangan tidak sah — sejak menandatangani kandungan dokumen ini, ia telah diubah suai, diusik atau rosak.";
+"Unsigned Signature Field" = "Medan Tandatangan Tidak Ditandatangani";
+"Do you really want to remove the signature from the document?" = "Adakah anda benar-benar ingin mengalih keluar tandatangan daripada dokumen?";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Tidak boleh membaca data sijil sebagai sijil PKCS#7. Data dalam format yang betul boleh dieksport daripada Adobe Acrobat."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "Tidak dapat nyahsulit tandatangan pada sijil.";
+"The public key in the certificate could not be read." = "Kunci awam dalam sijil tidak boleh dibaca.";
+"The signature of the certificate is not valid." = "Tandatangan pada sijil adalah tidak sah.";
+"Signature is not valid." = "Tandatangan tidak sah.";
+"There is a format error in the notBefore field of the certificate." = "Terdapat ralat format dalam medan notBefore pada sijil."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "Terdapat ralat format dalam medan notAfter pada sijil."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Tiada tandatangan dapat disahkan kerana rantai sijil mengandungi hanya satu sijil, ia tidak bertandatangan sendiri dan pengeluarnya tidak dipercayai.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Sijil CA tidak sah kerana ia bukan CA atau sambungannya tidak konsisten dengan tujuan yang sepatutnya."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "Parameter basicConstraints pathlength telah dilampaui."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "Root CA tidak ditandakan sebagai dipercayai bagi tujuan yang sepatutnya."; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "Root CA telah ditandakan untuk menolak tujuan yang dinyatakan."; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Sijil pengeluar telah ditolak kerana nama subject tidak sepadan dengan nama issuer bagi sijil semasa."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Sijil pengeluar telah ditolak kerana subject key identifier telah wujud dan tidak sepadan dengan authority key identifier bagi sijil semasa."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "Sijil pengeluar telah ditolak kerana nama issuer dan serial number telah wujud dan tidak sepadan dengan authority key identifier bagi sijil semasa."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "Sijil telah dibatalkan oleh pengeluar.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Sijil yang diluluskan bertandatangan sendiri dan sijil yang sama tidak dapat ditemui dalam senarai sijil dipercayai.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Sebuah sijil bertandatangan sendiri wujud dalam rantai sijil. Rantai sijil boleh dibina menggunakan sijil tidak dipercayai tetapi root CA tidak dapat ditemui secara setempat."; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Tidak dapat mencari sijil bagi satu daripada pihak berkuasa perakuan (CA) dalam hierarki tandatangan dan CA tersebut tidak dipercayai oleh aplikasi setempat."; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Sijil pengeluar bagi sijil yang dicari secara setempat tidak ditemui. Ini biasanya bermaksud senarai sijil dipercayai adalah tidak lengkap.";
+"The certificate that was provided cannot be used for its intended purpose." = "Sijil yang telah disediakan tidak boleh digunakan bagi tujuan yang sepatutnya.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "Sambungan keyUsage sijil pengeluar tidak membenarkan tandatangan sijil.";
+"The certificate has expired." = "Sijil telah tamat tempoh.";
+"The certificate is not valid until a date in the future." = "Sijil tidak sah sehingga suatu tarikh pada masa hadapan.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Tidak dapat membaca sijil X509 daripada data";
+// X509 should not be translated
+"No X509 certificate found" = "Tiada sijil X509 ditemui";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Tidak dapat membaca fail PKCS12. Fail diformatkan dengan tidak betul atau telah rosak.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Tidak dapat membuka kunci data PKCS12. Adakah anda telah memasukkan kata laluan yang betul?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Tidak dapat membuka fail untuk pengesahan tandatangan";
+"Could not get signer info" = "Tidak mendapat maklumat penandatangan";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL tidak dapat mencipta objek PKCS7";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL tidak dapat menambah tandatangan pada objek PKCS7";
+"OpenSSL could not init PKCS7 object" = "OpenSSL tidak dapat memulakan objek PKCS7";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL tidak dapat menghasilkan tandatangan PKCS7";
+"OpenSSL could not sign hash" = "OpenSSL tidak dapat menandatangani hash";
+"Could not write PKCS7 signature" = "Tidak dapat menulis tandatangan PKCS7";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "Buka Dalam";
+"PSPDFPolicyEventPrint" = "Cetak";
+"PSPDFPolicyEventEmail" = "E-mel";
+"PSPDFPolicyEventMessage" = "Mesej";
+"PSPDFPolicyEventQuickLook" = "Melihat Cepat"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "Rakaman Audio";
+"PSPDFPolicyEventCamera" = "Kamera";
+"PSPDFPolicyEventPasteboard" = "Papan Tampal"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "Serah Borang";
+"PSPDFPolicyEventNetwork" = "Rangkaian";
+
+// Night Mode
+"Default" = "Lalai"; // Default view (night mode not enabled)
+"Sepia" = "Sepia"; // Document uses sepia colors
+"Night" = "Malam"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "Tiada dokumen ditetapkan";
+"Unable to display document" = "Tidak dapat memaparkan dokumen";
+"Loading..." = "Memuatkan...";
+"Locked" = "Dikunci";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "Fail yang anda cuba untuk mengakses sama ada bukan fail PDF atau mungkin telah rosak.";
+"A password is required to access this document." = "Kata laluan diperlukan untuk mengakses dokumen ini.";
+"The security scheme of this document is currently not supported." = "Skema keselamatan dokumen ini tidak disokong pada masa ini.";
+"An unknown error has occured while trying to open this file." = "Ralat yang tidak diketahui telah berlaku semasa cuba membuka fail ini.";
+
+// Document Editor
+"Document Editor" = "Editor Dokumen";
+"Add Page" = "Tambah Halaman";
+"Delete Pages" = "Padamkan Halaman";
+"Duplicate Pages" = "Menduplikasi Halaman";
+"Move Pages" = "Alihkan Halaman";
+"Rotate Pages" = "Putarkan Halaman";
+"Page Size" = "Saiz Halaman";
+"Background Color" = "Warna Latar Belakang";
+"Pattern" = "Corak";
+"Use Document Size" = "Gunakan Saiz Dokumen";
+"Orientation" = "Orientasi";
+"Portrait" = "Potret";
+"Landscape" = "Landskap";
+"Name" = "Nama";
+"Document Name" = "Nama Dokumen";
+"Documents" = "Dokumen"; // Name of directory
+"Use Document Directory" = "Gunakan Direktori Dokumen";
+"Directory" = "Direktori";
+"Replace File?" = "Gantikan Fail?";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Fail bernama \"%@\" telah wujud di destinasi yang dipilih. Adakah anda mahu menggantikannya?";
+"Replace" = "Gantikan";
+"Saving…" = "Menyimpan…";
+"Saved" = "Disimpan";
+"Save As…" = "Simpan Sebagai…";
+"Discard Changes" = "Buang Perubahan";
+"Empty" = "Tidak Sah";
+
+// Document Editor Errors
+"A blank document can not be saved." = "Dokumen kosong tidak dapat disimpan.";
+"The document could not be saved." = "Dokumen ini tidak dapat disimpan.";
+"This document does not support editing." = "Dokumen ini tidak menyokong pengeditan.";
+
+// Page Patterns
+"None" = "Tiada";
+"Dot5mm" = "Titik 5mm";
+"Grid5mm" = "Grid 5mm";
+"Lines5mm" = "Garisan 5mm";
+"Lines7mm" = "Garisan 7mm";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "Surat AS";
+"US Legal" = "Undang-undang AS";
+
+// Page Export
+"Export Pages" = "Eksport Halaman";
+"Export…" = "Eksport…";
+"Exporting…" = "Mengeksport…";
+"Exported" = "Dieksport";
+"%@ - Exported" = "%@ - Dieksport"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - Salinan"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "Dokumen yang dipilih sedang dibuka. Sila pilih nama fail yang berlainan.";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Perkhidmatan teks ke pertuturan tidak tersedia. Pastikan anda mempunyai sambungan Internet yang aktif atau telah memasang enjin Teks ke pertuturan Google dan didayakan pada peranti anda.";

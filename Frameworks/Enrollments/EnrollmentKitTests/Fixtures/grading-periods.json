@@ -1,0 +1,101 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1463616615.434647,
+      "response" : {
+        "body" : {
+          "meta" : {
+            "primaryCollection" : "grading_periods",
+            "pagination" : {
+              "per_page" : 99,
+              "page_count" : 1,
+              "current" : "\/api\/v1\/courses\/1\/grading_periods?page=1&per_page=99",
+              "count" : 3,
+              "last" : "\/api\/v1\/courses\/1\/grading_periods?page=1&per_page=99",
+              "page" : 1,
+              "first" : "\/api\/v1\/courses\/1\/grading_periods?page=1&per_page=99",
+              "template" : "\/api\/v1\/courses\/1\/grading_periods?page={page}&per_page=99"
+            }
+          },
+          "grading_periods" : [
+            {
+              "weight" : null,
+              "id" : "1",
+              "start_date" : "2016-01-03T07:00:00Z",
+              "title" : "First Period",
+              "grading_period_group_id" : "1",
+              "end_date" : "2016-02-01T07:59:00Z",
+              "permissions" : {
+                "manage" : false,
+                "read" : true
+              }
+            },
+            {
+              "weight" : null,
+              "id" : "2",
+              "start_date" : "2016-02-01T20:00:00Z",
+              "title" : "Second Period",
+              "grading_period_group_id" : "1",
+              "end_date" : "2016-03-05T06:59:59Z",
+              "permissions" : {
+                "manage" : false,
+                "read" : true
+              }
+            },
+            {
+              "weight" : null,
+              "id" : "3",
+              "start_date" : "2016-03-05T07:00:00Z",
+              "title" : "Third Period",
+              "grading_period_group_id" : "1",
+              "end_date" : "2016-04-06T05:59:59Z",
+              "permissions" : {
+                "manage" : false,
+                "read" : true
+              }
+            }
+          ]
+        },
+        "status" : 200,
+        "url" : "https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/grading_periods?per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "X-Runtime" : "0.188019",
+          "Set-Cookie" : "_csrf_token=T6uIgfgIh%2Fn9IjVAL8kFXg5y2TJu22Z3ggOyCIejfYUh8u3Rq2Sov5FPUnFDolVpJSaWdQuqMELJWfpmwJcewQ%3D%3D; path=\/; secure, log_session_id=33a39ab41132dafc3cc89f76f290ff25; path=\/, canvas_session=YcDmBOCjWtLy6MptDYZhRg.rL23Zr0nx1l4Yt86dTOTYUtcO5G1LlaUedfrrTPGd-CbSxeuW7UNk_CJWfic-xGJDG3Y0NMa6t_s4xllrO61QM5pyW9Sfhj4s7LHVAnEz6eQfP3UZPsx14gnv260j4Hr.AU_e2CbTVPMpE_lpEHET4j5SGZs.Vz0EZg; path=\/; secure; HttpOnly",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "X-Request-Processor" : "a01daea",
+          "X-Session-Id" : "8f66770e949bc6b5bb847d3e2e3785d8",
+          "Server" : "Apache",
+          "Status" : "200 OK",
+          "X-Request-Context-Id" : "dc5c523d-0c91-4e9d-b2cd-cacf10a5bad2",
+          "X-Rate-Limit-Remaining" : "700",
+          "X-Request-Cost" : "0.14120448300002272",
+          "Content-Length" : "337",
+          "X-XSS-Protection" : "1; mode=block",
+          "X-Canvas-Meta" : "q=923;at=78950000000000004;dk=170000000000016;a=1;g=NPlw5mttYp3XYZwh9rhbbCTzuKX22gHlmlvRaFyn;s=7895;c=cluster44;z=us-east-1e;o=grading_periods;n=index;t=Course;i=1;b=1214104;m=1214104;u=0.10;y=0.01;d=0.04;",
+          "Date" : "Thu, 19 May 2016 00:10:13 GMT",
+          "Connection" : "keep-alive",
+          "Vary" : "Accept-Encoding",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "Etag" : "\"48979f34ddfc6194213c77a4c92ea0b7\"",
+          "X-Canvas-User-Id" : "78950000000000002",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/narmstrong.instructure.com\/api\/v1\/courses\/1\/grading_periods?per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Assignments\/com.instructure.Assignments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 7895~fd6cCPK3vsIO0d2ivNTnVYfwUJRkENjIzIH18hL9qXRhqkB16MaGLakuaiYNxwfA"
+        }
+      }
+    }
+  ],
+  "name" : "grading-periods"
+}

@@ -1,0 +1,329 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1463616392.845248,
+      "response" : {
+        "body" : [
+          {
+            "html_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments\/9599363",
+            "grading_standard_id" : null,
+            "automatic_peer_reviews" : false,
+            "position" : 1,
+            "locked_for_user" : false,
+            "submissions_download_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments\/9599363\/submissions?zip=1",
+            "course_id" : 1867097,
+            "updated_at" : "2016-04-26T20:16:19Z",
+            "unlock_at" : null,
+            "anonymous_peer_reviews" : false,
+            "assignment_group_id" : 2676799,
+            "submission_types" : [
+              "online_text_entry"
+            ],
+            "has_submitted_submissions" : false,
+            "muted" : false,
+            "moderated_grading" : false,
+            "points_possible" : 10,
+            "name" : "A2",
+            "grading_type" : "points",
+            "group_category_id" : null,
+            "id" : 9599363,
+            "peer_reviews" : false,
+            "lock_at" : null,
+            "grade_group_students_individually" : false,
+            "all_dates" : [
+              {
+                "due_at" : null,
+                "lock_at" : null,
+                "unlock_at" : null,
+                "base" : true
+              }
+            ],
+            "created_at" : "2016-04-26T20:16:19Z",
+            "published" : true,
+            "post_to_sis" : null,
+            "only_visible_to_overrides" : false,
+            "due_at" : null,
+            "description" : "<p>Second assignment.<\/p>"
+          },
+          {
+            "html_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments\/9599462",
+            "grading_standard_id" : null,
+            "automatic_peer_reviews" : false,
+            "position" : 2,
+            "locked_for_user" : false,
+            "submissions_download_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments\/9599462\/submissions?zip=1",
+            "course_id" : 1867097,
+            "updated_at" : "2016-04-26T20:16:51Z",
+            "unlock_at" : null,
+            "anonymous_peer_reviews" : false,
+            "assignment_group_id" : 2676799,
+            "submission_types" : [
+              "online_text_entry"
+            ],
+            "has_submitted_submissions" : false,
+            "muted" : false,
+            "moderated_grading" : false,
+            "points_possible" : 10,
+            "name" : "A3",
+            "grading_type" : "points",
+            "group_category_id" : null,
+            "id" : 9599462,
+            "peer_reviews" : false,
+            "lock_at" : null,
+            "grade_group_students_individually" : false,
+            "all_dates" : [
+              {
+                "due_at" : null,
+                "lock_at" : null,
+                "unlock_at" : null,
+                "base" : true
+              }
+            ],
+            "created_at" : "2016-04-26T20:16:51Z",
+            "published" : true,
+            "post_to_sis" : null,
+            "only_visible_to_overrides" : false,
+            "due_at" : null,
+            "description" : "<p>Third assignment.<\/p>"
+          },
+          {
+            "html_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments\/9599332",
+            "grading_standard_id" : null,
+            "automatic_peer_reviews" : false,
+            "position" : 1,
+            "locked_for_user" : false,
+            "submissions_download_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments\/9599332\/submissions?zip=1",
+            "course_id" : 1867097,
+            "updated_at" : "2016-04-26T20:15:39Z",
+            "unlock_at" : null,
+            "anonymous_peer_reviews" : false,
+            "assignment_group_id" : 2676791,
+            "submission_types" : [
+              "online_text_entry"
+            ],
+            "has_submitted_submissions" : false,
+            "muted" : false,
+            "moderated_grading" : false,
+            "points_possible" : 10,
+            "name" : "A1",
+            "grading_type" : "points",
+            "group_category_id" : null,
+            "id" : 9599332,
+            "peer_reviews" : false,
+            "lock_at" : null,
+            "grade_group_students_individually" : false,
+            "all_dates" : [
+              {
+                "due_at" : null,
+                "lock_at" : null,
+                "unlock_at" : null,
+                "base" : true
+              }
+            ],
+            "created_at" : "2016-04-26T20:15:39Z",
+            "published" : true,
+            "post_to_sis" : null,
+            "only_visible_to_overrides" : false,
+            "due_at" : null,
+            "description" : "<p>First assignment.<\/p>"
+          },
+          {
+            "html_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments\/9599507",
+            "grading_standard_id" : null,
+            "automatic_peer_reviews" : false,
+            "position" : 1,
+            "locked_for_user" : false,
+            "submissions_download_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments\/9599507\/submissions?zip=1",
+            "course_id" : 1867097,
+            "updated_at" : "2016-04-26T20:17:35Z",
+            "unlock_at" : null,
+            "anonymous_peer_reviews" : null,
+            "assignment_group_id" : 2676807,
+            "submission_types" : [
+              "none"
+            ],
+            "has_submitted_submissions" : false,
+            "muted" : false,
+            "moderated_grading" : null,
+            "points_possible" : 10,
+            "name" : "A4",
+            "grading_type" : "points",
+            "group_category_id" : null,
+            "id" : 9599507,
+            "peer_reviews" : false,
+            "lock_at" : null,
+            "grade_group_students_individually" : null,
+            "all_dates" : [
+              {
+                "due_at" : null,
+                "lock_at" : null,
+                "unlock_at" : null,
+                "base" : true
+              }
+            ],
+            "created_at" : "2016-04-26T20:17:35Z",
+            "published" : true,
+            "post_to_sis" : null,
+            "only_visible_to_overrides" : false,
+            "due_at" : null,
+            "description" : null
+          },
+          {
+            "html_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments\/9599517",
+            "grading_standard_id" : null,
+            "automatic_peer_reviews" : false,
+            "position" : 2,
+            "locked_for_user" : false,
+            "submissions_download_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments\/9599517\/submissions?zip=1",
+            "course_id" : 1867097,
+            "updated_at" : "2016-04-26T20:17:48Z",
+            "unlock_at" : null,
+            "anonymous_peer_reviews" : null,
+            "assignment_group_id" : 2676807,
+            "submission_types" : [
+              "none"
+            ],
+            "has_submitted_submissions" : false,
+            "muted" : false,
+            "moderated_grading" : null,
+            "points_possible" : 10,
+            "name" : "A5",
+            "grading_type" : "points",
+            "group_category_id" : null,
+            "id" : 9599517,
+            "peer_reviews" : false,
+            "lock_at" : null,
+            "grade_group_students_individually" : null,
+            "all_dates" : [
+              {
+                "due_at" : null,
+                "lock_at" : null,
+                "unlock_at" : null,
+                "base" : true
+              }
+            ],
+            "created_at" : "2016-04-26T20:17:48Z",
+            "published" : true,
+            "post_to_sis" : null,
+            "only_visible_to_overrides" : false,
+            "due_at" : null,
+            "description" : null
+          }
+        ],
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/assignments?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=ZfNdouRUqjoRpPnVn2yZn8DcuRsWEFFVUInWuA4G69Eqnyj6ywyBcFnhyaamHu39pb7fT2JCBzo42oCBYGW%2BvA%3D%3D; path=\/; secure, log_session_id=d06d32b4016b51e5f6efb09cc81d47e0; path=\/, canvas_session=jef5jtjoG9ChXvqlsK8vdQ.NM48cmAX-D7PX_D05joubThtqBnrEypZLQtJMh7fGXV5OpcxHcW9bBxO3GPKF4H0nsSxUq-_EV_dgcgzKHGqfV6MzxM0cJw-7wdgjDl_HcaSWVP-YHvBnfsASnX-TBbY.1UIezt5djjyX633qb1dHXmlVO2w.Vz0Dhw; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.431206",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "Link" : "<https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/assignments?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&page=1&per_page=99>; rel=\"current\",<https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/assignments?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&page=1&per_page=99>; rel=\"first\",<https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/assignments?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&page=1&per_page=99>; rel=\"last\"",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "X-Request-Processor" : "a01d9ef",
+          "Status" : "200 OK",
+          "X-Session-Id" : "d06d32b4016b51e5f6efb09cc81d47e0",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "dc4b485b-4863-426a-8380-e5ad12d07ffb",
+          "X-Request-Cost" : "0.36483334100000914",
+          "Content-Length" : "648",
+          "X-Canvas-Meta" : "q=789;at=10000000539225;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1e;o=assignments_api;n=index;t=Course;i=1867097;b=1258136;m=1258136;u=0.24;y=0.01;d=0.12;",
+          "Date" : "Thu, 19 May 2016 00:06:31 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000006782429",
+          "Etag" : "\"8af5c9cd1c9939eb9e78ee6d73092717\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/assignments?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Assignments\/com.instructure.Assignments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~VrFstYIqog7pM72sX6tVWVQzlWqpVBPc6izVVQSSwZMCCW6VTWUKrcD4gai7v9Hd"
+        }
+      }
+    },
+    {
+      "recorded_at" : 1463616393.071882,
+      "response" : {
+        "body" : [
+          {
+            "rules" : {
+
+            },
+            "id" : 2676799,
+            "name" : "Group 2",
+            "position" : 1,
+            "group_weight" : 0
+          },
+          {
+            "rules" : {
+
+            },
+            "id" : 2676791,
+            "name" : "Group 1",
+            "position" : 2,
+            "group_weight" : 0
+          },
+          {
+            "rules" : {
+
+            },
+            "id" : 2676807,
+            "name" : "Group 3",
+            "position" : 3,
+            "group_weight" : 0
+          }
+        ],
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/assignment_groups?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=OB8D20QqlQEtyAgKs2OAjKQL6UqKSYHBJnq09hH7HC13c3aDa3K%2BS2WNOHmKEfTuwWmPHv4b165OKeLPf5hJQA%3D%3D; path=\/; secure",
+          "X-Runtime" : "0.155172",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "Link" : "<https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/assignment_groups?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&page=1&per_page=99>; rel=\"current\",<https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/assignment_groups?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&page=1&per_page=99>; rel=\"first\",<https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/assignment_groups?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&page=1&per_page=99>; rel=\"last\"",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "X-Request-Processor" : "a01d68c",
+          "Status" : "200 OK",
+          "X-Session-Id" : "d06d32b4016b51e5f6efb09cc81d47e0",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "54f9d4ee-4d30-40ae-96d7-f05a2c132ad9",
+          "X-Request-Cost" : "0.11872467999999319",
+          "Content-Length" : "119",
+          "X-Canvas-Meta" : "q=1115;at=10000000539225;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1c;o=assignment_groups;n=index;t=Course;i=1867097;b=1258116;m=1258116;u=0.07;y=0.00;d=0.05;",
+          "Date" : "Thu, 19 May 2016 00:06:31 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000006782429",
+          "Etag" : "\"fda485bce138745b49c5e375876a905d\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/assignment_groups?include%5B%5D=assignment_visibility&include%5B%5D=all_dates&include%5B%5D=submission&per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Assignments\/com.instructure.Assignments (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~VrFstYIqog7pM72sX6tVWVQzlWqpVBPc6izVVQSSwZMCCW6VTWUKrcD4gai7v9Hd"
+        }
+      }
+    }
+  ],
+  "name" : "assignment-grades"
+}

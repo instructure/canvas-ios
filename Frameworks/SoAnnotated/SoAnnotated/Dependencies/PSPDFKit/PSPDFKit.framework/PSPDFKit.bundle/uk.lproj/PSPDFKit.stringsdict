@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>%tu match(es) found</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_matches_found@</string>
+        <key>tu_matches_found</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Співпадінь не знайдено</string>
+            <key>one</key>
+            <string>Знайдено %tu співпадіння</string>
+            <key>many</key>
+            <string>Знайдено %tu співпадінь</string>
+            <key>other</key>
+            <string>Знайдено %tu співпадіння</string>
+        </dict>
+    </dict>
+    <key>%tu document(s) indexed.</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_documents_indexed@</string>
+        <key>tu_documents_indexed</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Жодного документа не проіндексовано</string>
+            <key>one</key>
+            <string>Проіндексовано %tu документ</string>
+            <key>many</key>
+            <string>Проіндексовано %tu документів</string>
+            <key>other</key>
+            <string>Проіндексовано %tu документи</string>
+        </dict>
+    </dict>
+    <key>%tu Annotation(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_annotations@</string>
+        <key>tu_annotations</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Немає анотацій</string>
+            <key>one</key>
+            <string>%tu анотація</string>
+            <key>many</key>
+            <string>%tu анотацій</string>
+            <key>other</key>
+            <string>%tu анотації</string>
+        </dict>
+    </dict>
+    <key>%tu Point(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_points@</string>
+        <key>tu_points</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>one</key>
+            <string>%tu точка</string>
+            <key>many</key>
+            <string>%tu точок</string>
+            <key>other</key>
+            <string>%tu точки</string>
+        </dict>
+    </dict>
+    <key>All (%tu Page(s))</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>Все (%#@pages@)</string>
+        <key>pages</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>one</key>
+            <string>%tu сторінка</string>
+            <key>many</key>
+            <string>%tu сторінок</string>
+            <key>other</key>
+            <string>%tu сторінки</string>
+        </dict>
+    </dict>
+</dict>
+</plist>

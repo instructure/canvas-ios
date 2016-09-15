@@ -1,0 +1,76 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1463597749.892954,
+      "response" : {
+        "body" : {
+          "html_url" : "https:\/\/mobiledev.instructure.com\/calendar?event_id=2724235&include_contexts=user_6782429",
+          "child_events" : [
+
+          ],
+          "title" : "New Event",
+          "location_name" : "",
+          "context_code" : "user_6782429",
+          "hidden" : false,
+          "end_at" : "2016-01-11T07:00:00Z",
+          "updated_at" : "2016-03-11T06:19:36Z",
+          "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/calendar_events\/2724235",
+          "location_address" : null,
+          "child_events_count" : 0,
+          "duplicates" : [
+
+          ],
+          "all_day_date" : "2016-01-11",
+          "type" : "event",
+          "all_day" : true,
+          "id" : 2724235,
+          "parent_event_id" : null,
+          "workflow_state" : "active",
+          "comments" : null,
+          "created_at" : "2016-03-11T06:19:36Z",
+          "start_at" : "2016-01-11T07:00:00Z",
+          "description" : null
+        },
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/\/api\/v1\/calendar_events\/2724235?per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=jutXLhkTH2DcFbY0uIn4GD1CTY%2FvPnU%2FNdEoArPdvojMvQZnWEEpT%2BllxA3JvYt%2BDzgJ6ZZSGl58km41yZbVzA%3D%3D; path=\/; secure, log_session_id=7882dfe118ae9ffa62d37c54735de061; path=\/, canvas_session=49u6LQ3T7p7tpfGeihzzTg.62H8s5F4Y18kCdCy_RQC67Es5HBDoBYJcj8LGRu6rHfHak4_OyhHQxBvDcQf1TbVWAo8mZ1EbH7dm4z-plqI2HMagTbnk3oeZJTQiOeLtws1U2ZgBJwdhDq6Io-UUBMq.1cqfFKUJSXF7ZPvmsp5L1dtniJA.Vzy6tA; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.068406",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "X-Request-Processor" : "a01defd",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "Status" : "200 OK",
+          "X-Session-Id" : "7882dfe118ae9ffa62d37c54735de061",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "ff931cf8-ccf3-4741-a91a-712081492798",
+          "X-Request-Cost" : "0.05298233900002046",
+          "Content-Length" : "344",
+          "X-Canvas-Meta" : "q=818;at=10000000539225;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1e;o=calendar_events_api;n=show;b=1192772;m=1192772;u=0.04;y=0.00;d=0.01;",
+          "Date" : "Wed, 18 May 2016 18:55:48 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000006782429",
+          "Etag" : "\"2a88cbb5e81c6dee2436563448b46577\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/mobiledev.instructure.com\/\/api\/v1\/calendar_events\/2724235?per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Calendar\/com.instructure.Calendar (1; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~VrFstYIqog7pM72sX6tVWVQzlWqpVBPc6izVVQSSwZMCCW6VTWUKrcD4gai7v9Hd"
+        }
+      }
+    }
+  ],
+  "name" : "calendar_event_details"
+}

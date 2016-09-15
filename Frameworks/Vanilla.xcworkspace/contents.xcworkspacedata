@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:SoEdventurous/SoEdventurous.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SoAnnotated/SoAnnotated.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SoGrey/SoGrey.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Icons/Icons.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pages/Pages.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SoProgressive/SoProgressive.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Discussions/Discussions.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:DoNotShipThis/DoNotShipThis.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Assignments/Assignments.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Calendar/Calendar.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Enrollments/Enrollments.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:FileKit/FileKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Keytester/Keytester.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:MediaKit/MediaKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Messages/Messages.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:NotificationKit/NotificationKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Peeps/Peeps.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Quizzes/Quizzes.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SoAutomated/SoAutomated.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SoLazy/SoLazy.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SoPersistent/SoPersistent.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SoPretty/SoPretty.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SoSupportive/SoSupportive.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Todo/Todo.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:TooLegit/TooLegit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Vanilla/Vanilla.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:WhizzyWig/WhizzyWig.xcodeproj">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "Carthage">
+      <FileRef
+         location = "group:Carthage/Checkouts/Nimble/Nimble.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/Quick/Quick.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/DeviceKit/DeviceKit.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/EarlGrey/EarlGrey.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/Eureka/Eureka.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/Kingfisher/Kingfisher.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/CWStatusBarNotification/CWStatusBarNotification/CWStatusBarNotification.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/DVR/DVR.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/Marshal/Marshal.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/Result/Result.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/Cartography/Cartography.xcodeproj">
+      </FileRef>
+   </Group>
+</Workspace>
