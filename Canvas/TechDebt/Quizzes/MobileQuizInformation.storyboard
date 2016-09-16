@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hdh-nc-Xgw">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Mobile Quiz Information View Controller-->
+        <scene sceneID="Pq7-V9-bzP">
+            <objects>
+                <viewController id="JIA-Lk-63w" customClass="MobileQuizInformationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ofV-z5-ufZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="1I0-UA-IgT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EIq-Mm-uZn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OpW-pq-zwh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
+
+Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
+
+If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device.</mutableString>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OpW-pq-zwh" firstAttribute="leading" secondItem="EIq-Mm-uZn" secondAttribute="leading" id="4xy-VO-t9J"/>
+                            <constraint firstItem="OpW-pq-zwh" firstAttribute="top" secondItem="EIq-Mm-uZn" secondAttribute="top" id="88V-aB-lDz"/>
+                            <constraint firstItem="1I0-UA-IgT" firstAttribute="top" secondItem="OpW-pq-zwh" secondAttribute="bottom" id="IFW-ru-uiZ"/>
+                            <constraint firstAttribute="trailing" secondItem="OpW-pq-zwh" secondAttribute="trailing" id="WUd-g7-UZd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="iwo-b8-UPX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="KLZ-Yr-gPW">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="JIA-Lk-63w" id="cZp-jM-QyW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="OpW-pq-zwh" id="Ru9-sd-XsQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lQa-l4-LT3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="640" y="138"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CWS-oy-s3U">
+            <objects>
+                <navigationController storyboardIdentifier="MobileQuizQuestions" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="formSheet" id="Hdh-nc-Xgw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="viz-Dz-Lqc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JIA-Lk-63w" kind="relationship" relationship="rootViewController" id="L38-rv-gc4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NCC-TI-CC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="268" y="138"/>
+        </scene>
+    </scenes>
+</document>

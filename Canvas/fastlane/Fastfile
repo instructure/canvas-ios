@@ -1,0 +1,215 @@
+fastlane_version "1.16.0"
+
+default_platform :ios
+
+platform :ios do
+  
+  #####################################################
+  # project variables
+  #####################################################
+  project_name = "Canvas"
+  scheme_name = project_name
+  ipa_commit_name = project_name
+  bundle_identifier = "com.instructure.icanvas"
+
+  #####################################################
+  # before_all - runs before each build
+  #####################################################
+  before_all do
+  end
+  
+  def run_carthage_and_pods
+    kill_all_simulators
+    carthage(no_build: true, use_binaries: false, use_ssh: true)
+    cocoapods
+  end
+
+  def kill_all_simulators
+    `osascript -e 'quit app "Simulator"' 2>&1`
+    raise 'Unable to kill simulator' unless $?.success?
+    reset_simulators
+  end
+
+  #####################################################
+  # commit - Builds every commit to Develop branch
+  #####################################################
+  desc "Builds after each commit to make sure the app can be built and run correctly"
+  lane :commit do
+    run_carthage_and_pods
+
+    match(type: "development")
+    gym
+  end
+  
+  #####################################################
+  # feature - Builds every commit to Feature branches.  No build errors are reported via slack on feature branches.  Continue developing without fear of ridicule :)
+  #####################################################
+  desc "Builds after each commit to make sure the app can be built and run correctly"
+  lane :feature do
+    run_carthage_and_pods
+    gym
+  end
+
+  #####################################################
+  # nightly - build and run all UIAutomation Tests
+  #####################################################
+  desc "Runs all UIAutomation Tests"
+  lane :nightly do
+    
+  end
+  
+  #####################################################
+  # release - Automatically runs on ALL commits on release branch
+  #####################################################
+  desc "Submit a new Beta Build to Apple TestFlight"
+  lane :release do
+    run_carthage_and_pods
+    increment_build_number(
+        build_number: ENV['BUILD_NUMBER'] || "1981" # a good year
+    )
+
+    gym
+  end
+
+  #####################################################
+  # lint - Checks for deployment target changes
+  #####################################################
+  desc 'Checks for deployment target changes'
+  lane :lint do
+    if ENV['GERRIT_PROJECT']
+      changes_diff = 'changes.diff'
+      sh "git diff HEAD~1 HEAD > #{changes_diff}"
+      begin
+        sh "xlint #{changes_diff}"
+      ensure
+        File.delete(changes_diff) if File.exists?(changes_diff)
+      end
+    end
+  end
+
+  #####################################################
+  # beta_patch - build and run all UIAutomation Tests
+  #####################################################
+  desc "Submit a new Beta Build to Apple TestFlight"
+  lane :beta_patch do
+    beta_build("patch")
+  end
+  
+  #####################################################
+  # beta_patch - build and run all UIAutomation Tests
+  #####################################################
+  desc "Submit a new Beta Build to Apple TestFlight"
+  lane :beta_minor do
+    beta_build("minor")
+  end
+  
+  #####################################################
+  # beta_patch - build and run all UIAutomation Tests
+  #####################################################
+  desc "Submit a new Beta Build to Apple TestFlight"
+  lane :beta_major do
+    beta_build("major")
+  end
+
+  #####################################################
+  # This block is called, only if the executed lane was successful
+  #####################################################
+  after_all do |lane|
+    
+  end
+
+  #####################################################
+  # This block is called, only if the executed lane failed
+  #####################################################
+  error do |lane, exception|
+      if lane.to_s != "feature" 
+
+        path = ENV['HOME'] + '/vitruvius-worst.m4a'
+        if File.file?(path)
+          sh "afplay " + path
+        end
+        
+        ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+        slack(
+          channel: "@brandon",
+          message: "THAT IDEA IS JUST THE WORST\n\n" + exception.message,
+          success: false,
+          payload: {
+              'GERRIT_CHANGE_URL' => ENV['GERRIT_CHANGE_URL'].to_s,
+              'BUILD_URL' => ENV['BUILD_URL'].to_s,
+            },
+          attachment_properties: {
+              thumb_url: vitruvius_image
+            }
+        )
+      end
+  end
+end
+
+
+#####################################################
+# Some extra methods for code clarity and my own sanity
+#####################################################
+def vitruvius_image 
+  vitruvius_imgs = ["http://i.ytimg.com/vi/_WzjkMIJ_nw/maxresdefault.jpg", 
+    "http://cache.lego.com/r/www/r/movie/-/media/franchises/the%20lego%20movie/explore/downloads/touts/vit-879x360.png?l.r2=-816021521", 
+    "http://static.tvtropes.org/pmwiki/pub/images/vitruvius_2234.png"]
+  return vitruvius_imgs.shuffle.sample
+end
+
+def slack_version_updated 
+  ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+  
+  slack(
+    channel: "@brandon",
+    message: "Successfully submitted " + full_product_name + "  to app store for beta testing.",
+    attachment_properties: {
+        thumb_url: vitruvius_image
+      }
+  )
+end
+
+def beta_build (type)
+  run_carthage_and_pods
+
+  increment_build_number
+  increment_version_number(
+    bump_type: type
+  )
+  
+  # Git Tagging can be added later
+  # commit_version_bump(
+  #   message: 'Version Bump - Type: ' + type + ' version: ' + full_version_name 
+  # )
+  # add_git_tag(
+  #   tag: version_number
+  # )
+  
+  # # Build, run through snapshot, and deliver it up to the mothership
+  # gym
+  # snapshot
+  # deliver(beta: true)
+  #
+  # # Notify team that new build is in Apple Testflight
+  # slack_version_updated
+end
+
+def build_number 
+  return get_build_number(xcodeproj: project_name + ".xcodeproj")
+end
+
+def version_number(project_name)
+  return get_version_number(xcodeproj: project_name + ".xcodeproj")
+end
+
+def full_version_name
+  return version_number + " (" + build_number + ")"
+end
+
+def full_product_name
+  return project_name + " " + full_version_name
+end
+
+
+# More information about multiple platforms in fastlane: 
+# https://github.com/KrauseFx/fastlane/blob/master/docs/Platforms.md

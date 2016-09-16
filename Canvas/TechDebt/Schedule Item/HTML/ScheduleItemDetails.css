@@ -1,0 +1,137 @@
+body {
+    font-family: "Helvetica Neue";
+    font-weight: normal;
+    margin:0px;
+}
+
+a {
+    color: rgba(77,167,255,1);
+}
+
+h1 {
+    text-align: center;
+    font-weight: 100;
+    color: rgba(100,100,100,1);
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+#info {
+    text-align: center;
+	background: rgb(227,227,227);
+    padding: 10px 0px;
+    border-bottom: solid #CCC 1px;
+}
+
+#due, #multiple-due-dates {
+    color: gray;
+}
+
+#grade {
+    margin-left: 3ex;
+    color: rgba(77,167,255,1);
+}
+
+#container {
+    padding: 10px;
+}
+
+#content {
+    
+}
+
+/* Don't let stuff go beyond the bounds of the browser */
+* {
+    max-width: 100%;
+}
+
+#submission-info {
+    margin-top: 10px;
+}
+
+#submission-info button {
+    margin: 0px 5px 0px 5px;
+}
+
+button.download-itunes-icanvas {
+  background-color: #52a8e8;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #52a8e8), color-stop(100%, #377ad0));
+  background-image: -webkit-linear-gradient(top, #52a8e8, #377ad0);
+  border-top: 1px solid #4081af;
+  border-right: 1px solid #2e69a3;
+  border-bottom: 1px solid #20559a;
+  border-left: 1px solid #2e69a3;
+  -webkit-border-radius: 7px;
+  -webkit-box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
+  color: #fff;
+  font: normal 11px "lucida grande", sans-serif;
+  line-height: 1.7;
+  font-size: 12px;
+  padding: 3px 5px;
+  text-align: center;
+  text-shadow: 0 -1px 1px #3275bc;
+  width: 112px;
+  -webkit-background-clip: padding-box;
+  -webkit-tap-highlight-color:rgba(255,255,255,0);
+}
+
+button.download-itunes-icanvas:active {
+    background-color: #3e9ee5;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3e9ee5), color-stop(100%, #206bcb));
+    background-image: -webkit-linear-gradient(top, #3e9ee5 0%, #206bcb 100%);
+    border-top: 1px solid #2a73a6;
+    border-right: 1px solid #165899;
+    border-bottom: 1px solid #07428f;
+    border-left: 1px solid #165899;
+    -webkit-box-shadow: inset 0 1px 0 0 #62b1e9;
+    cursor: pointer;
+    text-shadow: 0 -1px 1px #1d62ab;
+    -webkit-background-clip: padding-box;
+}
+
+button.download-itunes-icanvas.speedgrader {
+  width: 150px;
+}
+
+button[disabled].download-itunes-icanvas,
+button[disabled].download-itunes-icanvas:hover,
+button[disabled].download-itunes-icanvas:active {
+  background-color: #dadada;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dadada), color-stop(100%, #f3f3f3));
+  background-image: -webkit-linear-gradient(bottom, #dadada, #f3f3f3);
+  border-top: 1px solid #c5c5c5;
+  border-right: 1px solid #cecece;
+  border-bottom: 1px solid #d9d9d9;
+  border-left: 1px solid #cecece;
+  -webkit-box-shadow: none;
+  color: #8f8f8f;
+  cursor: not-allowed;
+  text-shadow: 0 -1px 1px #ebebeb;
+}
+    
+div.red-badge:not(:empty) {
+    background: -webkit-radial-gradient( center -9px, circle farthest-corner, white -20%, red 100%);
+    background-color: red;
+    border: 2px solid white;
+    border-radius: 13px; /* must be 1/2 of ( border-width*2 + width ) */
+    box-shadow: 0 1px 1px black;
+    color: white;
+    font: bold 11px Helvetica, Verdana, Tahoma;
+    min-width: 15px; /* font-size + padding */
+    text-align: center;
+    
+    position: absolute;
+    right: -4px;
+    top: -8px;
+    padding: 1px;
+    z-index: 1;
+}
+
+  
+  
+  

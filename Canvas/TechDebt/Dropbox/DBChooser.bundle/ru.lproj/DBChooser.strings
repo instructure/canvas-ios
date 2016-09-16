@@ -1,0 +1,20 @@
+/* Call to action telling the user to install the Dropbox app */
+"Please Install the Dropbox App" = "Пожалуйста, установите приложение Dropbox";
+
+/* Explanation of why the user should install the Dropbox app */
+"With Dropbox installed, you can access all your stuff in your favorite apps, like this one!" = "Приложение Dropbox позволит вам использовать ваши документы во всех ваших любимых приложения! Например, в этом!";
+
+/* Install the Dropbox app */
+"Install Dropbox" = "Установить Dropbox";
+
+/* Window title (short) */
+"Please Update the Dropbox App" = "Пожалуйста, обновите приложение Dropbox";
+
+/* Paragraph (no character restrictions) */
+"With the new Dropbox app, you can access all your stuff in your favorite apps, like this one!" = "Новое приложение Dropbox позволит вам использовать ваши файлы в ваших любимых приложениях, как, например, это!";
+
+/* Window title (short) */
+"Update Dropbox" = "Обновить Dropbox";
+
+/* Button text (short) */
+"Update" = "Обновить";

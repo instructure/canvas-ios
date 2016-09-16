@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="106" id="FSA-5H-jbl" customClass="CBISubmissionCommentCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FSA-5H-jbl" id="6bR-9n-blT">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="251" image="submission_talk_bubble_theirs" translatesAutoresizingMaskIntoConstraints="NO" id="Pv8-vD-Hdj">
+                        <rect key="frame" x="12" y="12" width="232" height="42"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="1000" text="What should I bring to class?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="212" translatesAutoresizingMaskIntoConstraints="NO" id="iPX-Ye-2Qi">
+                        <rect key="frame" x="22" y="20" width="212" height="21"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Derrick Hansen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="99" translatesAutoresizingMaskIntoConstraints="NO" id="aYd-zp-0gx">
+                        <rect key="frame" x="55" y="56" width="99" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="bAM-KW-en9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Jan 6, 2015 2:07 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="107" translatesAutoresizingMaskIntoConstraints="NO" id="Pph-2e-ZJu">
+                        <rect key="frame" x="55" y="76" width="107" height="14"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIY-ei-21k">
+                        <rect key="frame" x="21" y="59" width="30" height="30"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" fixedFrame="YES" image="icon_user" translatesAutoresizingMaskIntoConstraints="NO" id="YHX-3N-VBg" customClass="CKRemoteImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="CGf-Gj-aMA"/>
+                            <constraint firstAttribute="width" constant="30" id="MJK-Ii-zNh"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="aYd-zp-0gx" firstAttribute="top" secondItem="Pv8-vD-Hdj" secondAttribute="bottom" constant="2" id="AQS-qK-LT5"/>
+                    <constraint firstItem="Pv8-vD-Hdj" firstAttribute="trailing" secondItem="iPX-Ye-2Qi" secondAttribute="trailing" constant="10" id="Cj8-i6-zOP"/>
+                    <constraint firstItem="Pph-2e-ZJu" firstAttribute="top" secondItem="aYd-zp-0gx" secondAttribute="bottom" id="K47-F6-3ex"/>
+                    <constraint firstItem="iPX-Ye-2Qi" firstAttribute="leading" secondItem="6bR-9n-blT" secondAttribute="leadingMargin" constant="14" id="LDJ-91-aNV"/>
+                    <constraint firstItem="aYd-zp-0gx" firstAttribute="leading" secondItem="6bR-9n-blT" secondAttribute="leading" constant="55" id="Pve-tb-ubR"/>
+                    <constraint firstItem="aYd-zp-0gx" firstAttribute="bottom" secondItem="iPX-Ye-2Qi" secondAttribute="bottom" constant="35" id="R1h-aB-JuK"/>
+                    <constraint firstItem="aYd-zp-0gx" firstAttribute="leading" secondItem="cIY-ei-21k" secondAttribute="trailing" constant="4" id="Si7-aU-nAy"/>
+                    <constraint firstItem="Pv8-vD-Hdj" firstAttribute="top" secondItem="6bR-9n-blT" secondAttribute="topMargin" constant="4" id="UDH-QU-bk2"/>
+                    <constraint firstItem="Pv8-vD-Hdj" firstAttribute="leading" secondItem="6bR-9n-blT" secondAttribute="leadingMargin" constant="4" id="UYI-4d-5Eu"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Pph-2e-ZJu" secondAttribute="bottom" constant="-4" id="Yyb-Ar-JNp"/>
+                    <constraint firstItem="iPX-Ye-2Qi" firstAttribute="top" secondItem="6bR-9n-blT" secondAttribute="topMargin" constant="12" id="c8w-p4-o4t"/>
+                    <constraint firstItem="cIY-ei-21k" firstAttribute="leading" secondItem="6bR-9n-blT" secondAttribute="leadingMargin" constant="13" id="cge-pE-qPw"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Pv8-vD-Hdj" secondAttribute="trailing" constant="12" id="hte-NS-9ay"/>
+                    <constraint firstItem="Pph-2e-ZJu" firstAttribute="leading" secondItem="aYd-zp-0gx" secondAttribute="leading" id="lSo-wg-mt2"/>
+                    <constraint firstItem="aYd-zp-0gx" firstAttribute="bottom" secondItem="cIY-ei-21k" secondAttribute="centerY" constant="2" id="puC-gy-KSQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="avatarContainerView" destination="cIY-ei-21k" id="NtV-HR-fEm"/>
+                <outlet property="avatarImageView" destination="YHX-3N-VBg" id="znR-s5-hLN"/>
+                <outlet property="commentLabel" destination="iPX-Ye-2Qi" id="YPe-J2-Hd7"/>
+                <outlet property="dateLabel" destination="Pph-2e-ZJu" id="6PX-wh-Hjo"/>
+                <outlet property="userNameLabel" destination="aYd-zp-0gx" id="jyb-NA-nem"/>
+            </connections>
+            <point key="canvasLocation" x="573" y="172"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_user" width="34" height="34"/>
+        <image name="submission_talk_bubble_theirs" width="40" height="25"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

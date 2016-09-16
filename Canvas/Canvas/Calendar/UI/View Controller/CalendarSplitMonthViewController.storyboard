@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fjK-2g-WSG">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Calendar Split Month View Controller-->
+        <scene sceneID="rzg-0u-cBL">
+            <objects>
+                <viewController id="fjK-2g-WSG" customClass="CalendarSplitMonthViewController" customModule="Canvas" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vfq-F8-Cqp"/>
+                        <viewControllerLayoutGuide type="bottom" id="pyv-L7-dAg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9s4-ta-nn6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HCj-SU-XKL" userLabel="DateView">
+                                <rect key="frame" x="300" y="64" width="300" height="101"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Wednesday" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMZ-7p-ROZ">
+                                        <rect key="frame" x="22" y="15" width="154" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="15" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHd-zW-SP5">
+                                        <rect key="frame" x="221" y="15" width="66" height="72"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="September" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itY-8g-FtZ">
+                                        <rect key="frame" x="22" y="51" width="146" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="itY-8g-FtZ" secondAttribute="bottom" constant="14" id="51r-WK-g46"/>
+                                    <constraint firstItem="oHd-zW-SP5" firstAttribute="top" secondItem="HCj-SU-XKL" secondAttribute="top" constant="15" id="Au1-H3-d1p"/>
+                                    <constraint firstAttribute="trailing" secondItem="oHd-zW-SP5" secondAttribute="trailing" constant="13" id="Ut7-mQ-1S2"/>
+                                    <constraint firstItem="itY-8g-FtZ" firstAttribute="top" secondItem="TMZ-7p-ROZ" secondAttribute="bottom" id="Zhz-5p-ECR"/>
+                                    <constraint firstItem="itY-8g-FtZ" firstAttribute="leading" secondItem="HCj-SU-XKL" secondAttribute="leading" constant="22" id="dMa-ps-uWI"/>
+                                    <constraint firstAttribute="height" constant="101" id="h0A-18-8HB"/>
+                                    <constraint firstItem="TMZ-7p-ROZ" firstAttribute="leading" secondItem="HCj-SU-XKL" secondAttribute="leading" constant="22" id="mNg-yF-hHG"/>
+                                    <constraint firstItem="TMZ-7p-ROZ" firstAttribute="top" secondItem="HCj-SU-XKL" secondAttribute="top" constant="15" id="reV-j1-73j"/>
+                                    <constraint firstAttribute="width" priority="1" constant="300" id="xi0-0z-NwF"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="HCj-SU-XKL" secondAttribute="trailing" priority="1" constant="-16" id="6lN-43-lUr"/>
+                            <constraint firstItem="HCj-SU-XKL" firstAttribute="top" secondItem="vfq-F8-Cqp" secondAttribute="bottom" priority="1" id="8qt-qL-Kxc"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="dateView" destination="HCj-SU-XKL" id="6Zy-cA-MLc"/>
+                        <outlet property="lblDayOfMonth" destination="oHd-zW-SP5" id="XdH-a9-cz1"/>
+                        <outlet property="lblDayOfWeek" destination="TMZ-7p-ROZ" id="hWF-gh-gC8"/>
+                        <outlet property="lblMonthName" destination="itY-8g-FtZ" id="IdL-tS-e98"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HoG-gG-Ny9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="903" y="252"/>
+        </scene>
+    </scenes>
+</document>
