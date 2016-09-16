@@ -8,3 +8,11 @@ github "n8armstrong/DVR" "develop"
 github "google/EarlGrey" "master"
 github "xmartlabs/Eureka" ~> 1.6
 github "dennisweissmann/DeviceKit" == 0.3.3
+
+
+
+# Canvas
+github "instructure/canvaskeymaster-ios" "master"
+github "instructure/CanvasKit" "master"
+github "CocoaLumberjack/CocoaLumberjack" == 2.2.0
+

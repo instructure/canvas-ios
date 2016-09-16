@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E36b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T2c-el-ICD">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Submission Preview View Controller-->
+        <scene sceneID="dOq-Uh-ckR">
+            <objects>
+                <viewController id="h45-Ac-A4p" customClass="URLSubmissionPreviewViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RGy-mG-0Wx"/>
+                        <viewControllerLayoutGuide type="bottom" id="NcI-VG-KEN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1Cl-ts-YVX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a URL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CCK-2l-nPY">
+                                <rect key="frame" x="7" y="6" width="306" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="URL" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="typedURL:" destination="h45-Ac-A4p" eventType="editingChanged" id="x1X-fn-EXz"/>
+                                    <outlet property="delegate" destination="h45-Ac-A4p" id="D7k-Tl-wQk"/>
+                                </connections>
+                            </textField>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIG-BE-d3z">
+                                <rect key="frame" x="0.0" y="42" width="320" height="374"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="h45-Ac-A4p" id="KZj-iZ-hGg"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="gIG-BE-d3z" firstAttribute="leading" secondItem="1Cl-ts-YVX" secondAttribute="leading" id="DCt-7S-gUy"/>
+                            <constraint firstItem="CCK-2l-nPY" firstAttribute="leading" secondItem="1Cl-ts-YVX" secondAttribute="leading" constant="7" id="OdS-Bw-Icw"/>
+                            <constraint firstItem="gIG-BE-d3z" firstAttribute="top" secondItem="CCK-2l-nPY" secondAttribute="bottom" constant="6" id="UZe-nD-Fi5"/>
+                            <constraint firstAttribute="trailing" secondItem="CCK-2l-nPY" secondAttribute="trailing" constant="7" id="aw0-hA-UEf"/>
+                            <constraint firstAttribute="trailing" secondItem="gIG-BE-d3z" secondAttribute="trailing" id="qL4-cX-JuO"/>
+                            <constraint firstItem="CCK-2l-nPY" firstAttribute="top" secondItem="RGy-mG-0Wx" secondAttribute="bottom" constant="6" id="tQx-hL-noQ"/>
+                            <constraint firstItem="NcI-VG-KEN" firstAttribute="top" secondItem="gIG-BE-d3z" secondAttribute="bottom" id="yOQ-KZ-hRY"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="SkW-mh-zUE">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="aNH-SA-yZd">
+                            <connections>
+                                <action selector="dismiss:" destination="h45-Ac-A4p" id="gmF-PL-rby"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Submit" style="done" id="U0n-7q-IF3">
+                            <connections>
+                                <action selector="submit:" destination="h45-Ac-A4p" id="Hmx-rA-t3x"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="navItem" destination="SkW-mh-zUE" id="xLP-0w-Qd0"/>
+                        <outlet property="submitButton" destination="U0n-7q-IF3" id="DcB-QE-eg7"/>
+                        <outlet property="textField" destination="CCK-2l-nPY" id="9aP-1F-ip0"/>
+                        <outlet property="webView" destination="gIG-BE-d3z" id="Wji-Vd-akm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QON-cV-dG4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1207" y="270"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cwk-h8-8IP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T2c-el-ICD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CMH-JI-AwD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="h45-Ac-A4p" kind="relationship" relationship="rootViewController" id="rfY-YE-Krg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dcr-Fe-cwu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="675" y="270"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

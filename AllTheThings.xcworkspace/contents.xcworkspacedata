@@ -2,6 +2,44 @@
 <Workspace
    version = "1.0">
    <Group
+      location = "container:Carthage"
+      name = "Carthage">
+      <FileRef
+         location = "group:Checkouts/Reachability/Framework/Framework.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/AFNetworking/AFNetworking.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/canvaskeymaster-ios/CanvasKeymaster.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/CanvasKit/CanvasKit.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/FXKeychain/FXKeychain.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/CocoaLumberjack/Lumberjack.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/Mantle/Mantle.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:Canvas"
+      name = "Canvas">
+      <FileRef
+         location = "group:MLVC/MyLittleViewController.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Pods/Pods.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Canvas.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
       location = "container:Frameworks"
       name = "Frameworks">
       <Group

@@ -1,0 +1,3 @@
+app_identifier "com.instructure.icanvas" # The bundle identifier of your app
+apple_id "iosbuilds@instructure.com" # Your Apple email address
+

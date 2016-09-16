@@ -1,0 +1,20 @@
+/* Call to action telling the user to install the Dropbox app */
+"Please Install the Dropbox App" = "Sila pasang apl Dropbox";
+
+/* Explanation of why the user should install the Dropbox app */
+"With Dropbox installed, you can access all your stuff in your favorite apps, like this one!" = "Dengan Dropbox dipasang, anda boleh mengakses semua barang anda dalam apl kegemaran anda, seperti yang ini!";
+
+/* Install the Dropbox app */
+"Install Dropbox" = "Pasang Dropbox";
+
+/* Window title (short) */
+"Please Update the Dropbox App" = "Sila Kemas kini Apl Dropbox";
+
+/* Paragraph (no character restrictions) */
+"With the new Dropbox app, you can access all your stuff in your favorite apps, like this one!" = "Dengan apl Dropbox baru, anda boleh mengakses semua barang anda di dalam apl kegemaran anda, seperti yang ini!";
+
+/* Window title (short) */
+"Update Dropbox" = "Kemaskini Dropbox";
+
+/* Button text (short) */
+"Update" = "Kemaskini";

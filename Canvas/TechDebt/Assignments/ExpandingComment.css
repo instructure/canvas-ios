@@ -1,0 +1,12 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+}
+
+#comment {
+    font-family: Helvetica;
+    min-height: 100%;
+}

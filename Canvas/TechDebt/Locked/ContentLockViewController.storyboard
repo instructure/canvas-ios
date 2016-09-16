@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ppO-QP-KlF">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <scenes>
+        <!--Content Lock View Controller-->
+        <scene sceneID="uWX-8G-EDn">
+            <objects>
+                <viewController id="ppO-QP-KlF" customClass="ContentLockViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZHP-tK-nVf"/>
+                        <viewControllerLayoutGuide type="bottom" id="sVY-Os-M6U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G49-4Q-90v">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDi-Jx-HXq">
+                                <rect key="frame" x="98" y="327" width="124" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="124" id="9Hz-kh-Xp4"/>
+                                    <constraint firstAttribute="height" constant="37" id="yiG-OR-uQd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="View Modules"/>
+                                <connections>
+                                    <action selector="viewModulesPressed:" destination="ppO-QP-KlF" eventType="touchUpInside" id="sQm-PB-PzR"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon_locked_fill" translatesAutoresizingMaskIntoConstraints="NO" id="hew-hj-N46">
+                                <rect key="frame" x="130" y="185" width="61" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="61" id="R7c-OA-CFc"/>
+                                    <constraint firstAttribute="height" constant="72" id="zY3-D8-XPt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="This content is locked." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="178" translatesAutoresizingMaskIntoConstraints="NO" id="dIn-aY-hTu">
+                                <rect key="frame" x="71" y="274" width="178" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.9529411793" green="0.9529411793" blue="0.9529411793" alpha="1" colorSpace="custom" customColorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="dIn-aY-hTu" secondAttribute="centerY" id="2VI-qd-SB6"/>
+                            <constraint firstItem="dIn-aY-hTu" firstAttribute="top" secondItem="hew-hj-N46" secondAttribute="bottom" constant="17" id="5UF-ht-xsx"/>
+                            <constraint firstItem="dDi-Jx-HXq" firstAttribute="top" secondItem="dIn-aY-hTu" secondAttribute="bottom" constant="32" id="7ME-CX-RwZ"/>
+                            <constraint firstAttribute="centerX" secondItem="hew-hj-N46" secondAttribute="centerX" id="We9-WY-pKK"/>
+                            <constraint firstAttribute="centerX" secondItem="dDi-Jx-HXq" secondAttribute="centerX" id="a9W-aM-8R9"/>
+                            <constraint firstAttribute="centerX" secondItem="dIn-aY-hTu" secondAttribute="centerX" id="cve-lB-Vkq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="explanationLabel" destination="dIn-aY-hTu" id="an5-tj-5iL"/>
+                        <outlet property="modulesButton" destination="dDi-Jx-HXq" id="mpo-SF-F9j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qqE-i2-oOu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="511" y="201"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_locked_fill" width="34" height="34"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

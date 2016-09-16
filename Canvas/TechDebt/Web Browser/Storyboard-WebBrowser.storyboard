@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Exu-cP-UKu">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="N1h-gx-cOi">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Exu-cP-UKu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ICE-dt-772">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="CE1-Tb-2Z7" kind="relationship" relationship="rootViewController" id="4kV-zi-Pzd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OLw-Jk-s92" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="212" y="149"/>
+        </scene>
+        <!--Web Browser View Controller-->
+        <scene sceneID="F7T-Qu-zVS">
+            <objects>
+                <viewController id="CE1-Tb-2Z7" customClass="WebBrowserViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WYs-JX-uub"/>
+                        <viewControllerLayoutGuide type="bottom" id="mcH-A7-rvB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jZk-GN-D3F">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qe1-RH-Fz5">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="seX-Ww-8Hb"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem image="icon_arrow_left" id="SUZ-rT-ypR">
+                                        <connections>
+                                            <action selector="backButtonTapped:" destination="CE1-Tb-2Z7" id="oaj-vt-Mbt"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem image="icon_arrow_right" id="NmV-9l-dj9">
+                                        <connections>
+                                            <action selector="forwardButtonTapped:" destination="CE1-Tb-2Z7" id="MAR-gg-qXU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="UJr-SX-vZs"/>
+                                    <barButtonItem style="plain" id="jaw-Sh-nv2">
+                                        <view key="customView" contentMode="scaleToFill" id="1BS-l2-twg">
+                                            <rect key="frame" x="227" y="6" width="33" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RT6-8j-9mZ">
+                                                    <rect key="frame" x="6" y="7" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </barButtonItem>
+                                    <barButtonItem image="icon_reload" id="zhg-Kz-m4W">
+                                        <connections>
+                                            <action selector="refreshButtonTapped:" destination="CE1-Tb-2Z7" id="Vnn-Nz-lSP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wh3-px-BfT">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="CE1-Tb-2Z7" id="8l9-SJ-l3o"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qe1-RH-Fz5" secondAttribute="trailing" id="9Fb-2U-sRd"/>
+                            <constraint firstItem="Wh3-px-BfT" firstAttribute="top" secondItem="WYs-JX-uub" secondAttribute="bottom" id="KkA-Fh-Qo7"/>
+                            <constraint firstItem="qe1-RH-Fz5" firstAttribute="top" secondItem="Wh3-px-BfT" secondAttribute="bottom" id="X5Q-6l-ovv"/>
+                            <constraint firstAttribute="trailing" secondItem="Wh3-px-BfT" secondAttribute="trailing" id="XXj-mh-7gz"/>
+                            <constraint firstItem="mcH-A7-rvB" firstAttribute="top" secondItem="qe1-RH-Fz5" secondAttribute="bottom" id="b1p-Gh-WMo"/>
+                            <constraint firstItem="qe1-RH-Fz5" firstAttribute="leading" secondItem="jZk-GN-D3F" secondAttribute="leading" id="hPq-k9-tav"/>
+                            <constraint firstItem="Wh3-px-BfT" firstAttribute="leading" secondItem="jZk-GN-D3F" secondAttribute="leading" id="lCz-Gz-1B4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="bgn-NZ-elV">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="Ftu-N3-XvY">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="CE1-Tb-2Z7" id="Vk6-mm-toz"/>
+                            </connections>
+                        </barButtonItem>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" id="jHb-wL-DNF">
+                            <rect key="frame" x="96" y="7" width="128" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                            <connections>
+                                <outlet property="delegate" destination="CE1-Tb-2Z7" id="QHl-sG-TSx"/>
+                            </connections>
+                        </textField>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="PRN-wH-AVL">
+                            <connections>
+                                <action selector="actionButtonTapped:" destination="CE1-Tb-2Z7" id="9w4-NR-9Xo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="actionButton" destination="PRN-wH-AVL" id="nSZ-15-RGT"/>
+                        <outlet property="activityIndicator" destination="RT6-8j-9mZ" id="VN5-jD-VdB"/>
+                        <outlet property="backButton" destination="SUZ-rT-ypR" id="2Ib-9g-qNs"/>
+                        <outlet property="bottomToolbar" destination="qe1-RH-Fz5" id="sGu-II-6vS"/>
+                        <outlet property="doneButton" destination="Ftu-N3-XvY" id="dTS-2k-Jhk"/>
+                        <outlet property="forwardButton" destination="NmV-9l-dj9" id="TNW-JP-uu3"/>
+                        <outlet property="refreshButton" destination="zhg-Kz-m4W" id="teB-c5-Heq"/>
+                        <outlet property="titleField" destination="jHb-wL-DNF" id="mnt-sA-jwP"/>
+                        <outlet property="webView" destination="Wh3-px-BfT" id="Tud-aS-cfi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ff-0a-TVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="653" y="149"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_arrow_left" width="34" height="34"/>
+        <image name="icon_arrow_right" width="34" height="34"/>
+        <image name="icon_reload" width="34" height="34"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

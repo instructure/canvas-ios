@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4969BD9B1C879CC10058EED2 /* NSObject+RACCollectionChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A53A9B18105B7E0070AA01 /* NSObject+RACCollectionChanges.m */; };
+		4969BD9C1C879CC10058EED2 /* MLVCCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4991C07B17FC5C420059DDA3 /* MLVCCollectionController.m */; };
+		4969BD9D1C879CC10058EED2 /* MLVCCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490BF5941811BE95000AC62D /* MLVCCollectionViewController.m */; };
+		4969BD9E1C879CC10058EED2 /* UICollectionView+MyLittleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926D7E01866B24F003A394F /* UICollectionView+MyLittleViewController.m */; };
+		4969BD9F1C879CC10058EED2 /* MLVCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926A48817FF69F7000CDBCD /* MLVCTableViewController.m */; };
+		4969BDA01C879CC10058EED2 /* MLVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E25D11836ABC90008A0B4 /* MLVCViewController.m */; };
+		4969BDA31C879D8D0058EED2 /* EXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 4969BDA21C879D8D0058EED2 /* EXTScope.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		4969BDA51C879DA40058EED2 /* metamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 4969BDA41C879DA40058EED2 /* metamacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		4969BDA81C879F020058EED2 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4969BDA71C879F020058EED2 /* CocoaLumberjack.framework */; };
+		4969BDAD1C879FA60058EED2 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4969BDAC1C879FA60058EED2 /* ReactiveCocoa.framework */; };
+		4969BDAF1C879FB00058EED2 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4969BDAE1C879FB00058EED2 /* Result.framework */; };
+		4969BDB01C87A16A0058EED2 /* MLVCViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 496E25CD1836AAD90008A0B4 /* MLVCViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4969BDB11C87A16A0058EED2 /* MLVCViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 496E25D01836ABC90008A0B4 /* MLVCViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4969BDB21C87A1B00058EED2 /* MLVCCollectionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4991C07917FC5B590059DDA3 /* MLVCCollectionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4969BDB31C87A1B00058EED2 /* MLVCCollectionViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 496E25BE18343DB10008A0B4 /* MLVCCollectionViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4969BDB41C87A1B00058EED2 /* MLVCCollectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 490BF5931811BE95000AC62D /* MLVCCollectionViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4969BDB51C87A1B00058EED2 /* MLVCCollectionViewCellViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 490BF5961811C012000AC62D /* MLVCCollectionViewCellViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4969BDB61C87A1B00058EED2 /* MLVCTableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 496E25BF18343DF30008A0B4 /* MLVCTableViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4969BDB71C87A1B00058EED2 /* MLVCTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4926A48717FF69F7000CDBCD /* MLVCTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4969BDB81C87A1B00058EED2 /* MLVCTableViewCellViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4926A48F17FF7344000CDBCD /* MLVCTableViewCellViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		499F7FB11C9B42DE005CCD00 /* MyLittleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49C5621117FB75AD00B6873C /* MyLittleViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		490BF5931811BE95000AC62D /* MLVCCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLVCCollectionViewController.h; sourceTree = "<group>"; };
+		490BF5941811BE95000AC62D /* MLVCCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLVCCollectionViewController.m; sourceTree = "<group>"; };
+		490BF5961811C012000AC62D /* MLVCCollectionViewCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLVCCollectionViewCellViewModel.h; sourceTree = "<group>"; };
+		4926A48717FF69F7000CDBCD /* MLVCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLVCTableViewController.h; sourceTree = "<group>"; };
+		4926A48817FF69F7000CDBCD /* MLVCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLVCTableViewController.m; sourceTree = "<group>"; };
+		4926A48F17FF7344000CDBCD /* MLVCTableViewCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLVCTableViewCellViewModel.h; sourceTree = "<group>"; };
+		4926D7DF1866B24F003A394F /* UICollectionView+MyLittleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+MyLittleViewController.h"; sourceTree = "<group>"; };
+		4926D7E01866B24F003A394F /* UICollectionView+MyLittleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+MyLittleViewController.m"; sourceTree = "<group>"; };
+		4969BD931C879BF10058EED2 /* MyLittleViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MyLittleViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4969BD971C879BF10058EED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4969BDA21C879D8D0058EED2 /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
+		4969BDA41C879DA40058EED2 /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
+		4969BDA71C879F020058EED2 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4969BDAC1C879FA60058EED2 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4969BDAE1C879FB00058EED2 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		496E25BE18343DB10008A0B4 /* MLVCCollectionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLVCCollectionViewModel.h; sourceTree = "<group>"; };
+		496E25BF18343DF30008A0B4 /* MLVCTableViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLVCTableViewModel.h; sourceTree = "<group>"; };
+		496E25CD1836AAD90008A0B4 /* MLVCViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLVCViewModel.h; sourceTree = "<group>"; };
+		496E25D01836ABC90008A0B4 /* MLVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLVCViewController.h; sourceTree = "<group>"; };
+		496E25D11836ABC90008A0B4 /* MLVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLVCViewController.m; sourceTree = "<group>"; };
+		4991C07917FC5B590059DDA3 /* MLVCCollectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLVCCollectionController.h; sourceTree = "<group>"; };
+		4991C07B17FC5C420059DDA3 /* MLVCCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLVCCollectionController.m; sourceTree = "<group>"; };
+		49A53A9A18105B7E0070AA01 /* NSObject+RACCollectionChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RACCollectionChanges.h"; sourceTree = "<group>"; };
+		49A53A9B18105B7E0070AA01 /* NSObject+RACCollectionChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RACCollectionChanges.m"; sourceTree = "<group>"; };
+		49C5621117FB75AD00B6873C /* MyLittleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyLittleViewController.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4969BD8F1C879BF10058EED2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4969BDAF1C879FB00058EED2 /* Result.framework in Frameworks */,
+				4969BDA81C879F020058EED2 /* CocoaLumberjack.framework in Frameworks */,
+				4969BDAD1C879FA60058EED2 /* ReactiveCocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		490BF5921811BE3B000AC62D /* Collection View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				496E25BE18343DB10008A0B4 /* MLVCCollectionViewModel.h */,
+				490BF5931811BE95000AC62D /* MLVCCollectionViewController.h */,
+				490BF5941811BE95000AC62D /* MLVCCollectionViewController.m */,
+				490BF5961811C012000AC62D /* MLVCCollectionViewCellViewModel.h */,
+				4926D7DF1866B24F003A394F /* UICollectionView+MyLittleViewController.h */,
+				4926D7E01866B24F003A394F /* UICollectionView+MyLittleViewController.m */,
+			);
+			name = "Collection View Controller";
+			sourceTree = "<group>";
+		};
+		4926A48617FF69CE000CDBCD /* Table View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				496E25BF18343DF30008A0B4 /* MLVCTableViewModel.h */,
+				4926A48717FF69F7000CDBCD /* MLVCTableViewController.h */,
+				4926A48817FF69F7000CDBCD /* MLVCTableViewController.m */,
+				4926A48F17FF7344000CDBCD /* MLVCTableViewCellViewModel.h */,
+			);
+			name = "Table View Controller";
+			sourceTree = "<group>";
+		};
+		4926A48A17FF6A8B000CDBCD /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				4991C07917FC5B590059DDA3 /* MLVCCollectionController.h */,
+				4991C07B17FC5C420059DDA3 /* MLVCCollectionController.m */,
+				490BF5921811BE3B000AC62D /* Collection View Controller */,
+				4926A48617FF69CE000CDBCD /* Table View Controller */,
+			);
+			name = Collections;
+			sourceTree = "<group>";
+		};
+		4969BDA11C879D400058EED2 /* extobjc */ = {
+			isa = PBXGroup;
+			children = (
+				4969BDA41C879DA40058EED2 /* metamacros.h */,
+				4969BDA21C879D8D0058EED2 /* EXTScope.h */,
+			);
+			path = extobjc;
+			sourceTree = "<group>";
+		};
+		4969BDA61C879EF60058EED2 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				4969BDAE1C879FB00058EED2 /* Result.framework */,
+				4969BDAC1C879FA60058EED2 /* ReactiveCocoa.framework */,
+				4969BDA71C879F020058EED2 /* CocoaLumberjack.framework */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		49A53A59180E3DA30070AA01 /* ReactiveCocoa+MyLittleViewController */ = {
+			isa = PBXGroup;
+			children = (
+				49A53A9A18105B7E0070AA01 /* NSObject+RACCollectionChanges.h */,
+				49A53A9B18105B7E0070AA01 /* NSObject+RACCollectionChanges.m */,
+			);
+			name = "ReactiveCocoa+MyLittleViewController";
+			sourceTree = "<group>";
+		};
+		49C5620017FB75AD00B6873C = {
+			isa = PBXGroup;
+			children = (
+				4969BDA61C879EF60058EED2 /* Dependencies */,
+				49C5620E17FB75AD00B6873C /* MyLittleViewController */,
+				49C5620A17FB75AD00B6873C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		49C5620A17FB75AD00B6873C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4969BD931C879BF10058EED2 /* MyLittleViewController.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		49C5620E17FB75AD00B6873C /* MyLittleViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4969BDA11C879D400058EED2 /* extobjc */,
+				49A53A59180E3DA30070AA01 /* ReactiveCocoa+MyLittleViewController */,
+				4926A48A17FF6A8B000CDBCD /* Collections */,
+				496E25CD1836AAD90008A0B4 /* MLVCViewModel.h */,
+				496E25D01836ABC90008A0B4 /* MLVCViewController.h */,
+				496E25D11836ABC90008A0B4 /* MLVCViewController.m */,
+				49C5621117FB75AD00B6873C /* MyLittleViewController.h */,
+				4969BD971C879BF10058EED2 /* Info.plist */,
+			);
+			path = MyLittleViewController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4969BD901C879BF10058EED2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4969BDB01C87A16A0058EED2 /* MLVCViewModel.h in Headers */,
+				4969BDB41C87A1B00058EED2 /* MLVCCollectionViewController.h in Headers */,
+				4969BDA51C879DA40058EED2 /* metamacros.h in Headers */,
+				4969BDB21C87A1B00058EED2 /* MLVCCollectionController.h in Headers */,
+				4969BDB81C87A1B00058EED2 /* MLVCTableViewCellViewModel.h in Headers */,
+				499F7FB11C9B42DE005CCD00 /* MyLittleViewController.h in Headers */,
+				4969BDB71C87A1B00058EED2 /* MLVCTableViewController.h in Headers */,
+				4969BDB51C87A1B00058EED2 /* MLVCCollectionViewCellViewModel.h in Headers */,
+				4969BDA31C879D8D0058EED2 /* EXTScope.h in Headers */,
+				4969BDB11C87A16A0058EED2 /* MLVCViewController.h in Headers */,
+				4969BDB61C87A1B00058EED2 /* MLVCTableViewModel.h in Headers */,
+				4969BDB31C87A1B00058EED2 /* MLVCCollectionViewModel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		4969BD921C879BF10058EED2 /* MyLittleViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4969BD981C879BF10058EED2 /* Build configuration list for PBXNativeTarget "MyLittleViewController" */;
+			buildPhases = (
+				4969BD8E1C879BF10058EED2 /* Sources */,
+				4969BD8F1C879BF10058EED2 /* Frameworks */,
+				4969BD901C879BF10058EED2 /* Headers */,
+				4969BD911C879BF10058EED2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyLittleViewController;
+			productName = MyLittleViewController;
+			productReference = 4969BD931C879BF10058EED2 /* MyLittleViewController.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		49C5620117FB75AD00B6873C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MLVC;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Instructure;
+				TargetAttributes = {
+					4969BD921C879BF10058EED2 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 49C5620417FB75AD00B6873C /* Build configuration list for PBXProject "MyLittleViewController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 49C5620017FB75AD00B6873C;
+			productRefGroup = 49C5620A17FB75AD00B6873C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4969BD921C879BF10058EED2 /* MyLittleViewController */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4969BD911C879BF10058EED2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4969BD8E1C879BF10058EED2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4969BD9B1C879CC10058EED2 /* NSObject+RACCollectionChanges.m in Sources */,
+				4969BD9C1C879CC10058EED2 /* MLVCCollectionController.m in Sources */,
+				4969BDA01C879CC10058EED2 /* MLVCViewController.m in Sources */,
+				4969BD9D1C879CC10058EED2 /* MLVCCollectionViewController.m in Sources */,
+				4969BD9E1C879CC10058EED2 /* UICollectionView+MyLittleViewController.m in Sources */,
+				4969BD9F1C879CC10058EED2 /* MLVCTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4969BD991C879BF10058EED2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = MyLittleViewController/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.MyLittleViewController;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4969BD9A1C879BF10058EED2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = MyLittleViewController/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.MyLittleViewController;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		49C5622A17FB75AD00B6873C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		49C5622B17FB75AD00B6873C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4969BD981C879BF10058EED2 /* Build configuration list for PBXNativeTarget "MyLittleViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4969BD991C879BF10058EED2 /* Debug */,
+				4969BD9A1C879BF10058EED2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49C5620417FB75AD00B6873C /* Build configuration list for PBXProject "MyLittleViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49C5622A17FB75AD00B6873C /* Debug */,
+				49C5622B17FB75AD00B6873C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 49C5620117FB75AD00B6873C /* Project object */;
+}
