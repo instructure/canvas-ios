@@ -564,7 +564,7 @@
     
     [canvasAPI addRecipients:newRecipients toConversation:self.conversation block:^(NSError *error, BOOL isFinalValue, CKConversation *updatedConversation) {
         if (error) {
-            NSString *title = NSLocalizedString(@"Error adding recipeints", @"Title of an alert popup");
+            NSString *title = NSLocalizedString(@"Error adding recipients", @"Title of an alert popup");
             NSString *message = NSLocalizedString(@"The recipients could not be added. Please try again. (%@)", @"Text explaining the error");
             message = [NSString stringWithFormat:message, [error localizedDescription]];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title

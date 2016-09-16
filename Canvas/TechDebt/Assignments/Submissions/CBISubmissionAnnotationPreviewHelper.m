@@ -13,7 +13,7 @@
 @import CanvasKeymaster;
 
 @import PSPDFKit;
-@import AnnotationKit;
+@import SoAnnotated;
 
 @implementation CBISubmissionAnnotationPreviewHelper
 
@@ -59,7 +59,7 @@
                 NSURL *goodURL = components.URL;
                 if (goodURL != nil) {
                     // NEW ANNOTATIONS FTW!
-                    [DocumentPresenter loadPDFViewController:goodURL completed:^(UIViewController *pdfViewController, NSError *error) {
+                    [CanvadocsPDFDocumentPresenter loadPDFViewController:goodURL completed:^(UIViewController *pdfViewController, NSArray *errors) {
                         [SVProgressHUD dismiss];
                         if (pdfViewController != nil) {
                             [presentingViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:pdfViewController] animated:YES completion:nil];

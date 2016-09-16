@@ -34,12 +34,9 @@
                 CKICourse *course = (CKICourse *)context;
                 
                 if (course.enrollments == nil || course.enrollments.count == 0 || course.name.length == 0) {
-                    static dispatch_once_t once;
-                    dispatch_once(&once, ^ {
-                        [[TheKeymaster.currentClient refreshModel:course parameters:nil] subscribeCompleted:^{
-                            self.model.context = course;
-                        }];
-                    });
+                    [[TheKeymaster.currentClient refreshModel:course parameters:nil] subscribeCompleted:^{
+                        self.model.context = course;
+                    }];
                 }
                 
                 NSArray *enrollmentTypes = [course.enrollments.rac_sequence map:^id(id value) {

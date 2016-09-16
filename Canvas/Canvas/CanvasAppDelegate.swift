@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        if unitTesting {
+            return true
+        }
         
         makeAWindow()
         postLaunchSetup()
@@ -201,6 +204,11 @@ extension AppDelegate {
             }
         }
         
-        return handleDropboxOpenURL(url)
+        if handleDropboxOpenURL(url) {
+            return true
+        }
+        
+        Router.sharedRouter().openCanvasURL(url)
+        return true
     }
 }

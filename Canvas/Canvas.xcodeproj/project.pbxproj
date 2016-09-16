@@ -24,7 +24,6 @@
 		492704C21CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492704BC1CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.m */; };
 		492704C31CF4B6F100C631C6 /* CBIAnnouncementViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492704BD1CF4B6F100C631C6 /* CBIAnnouncementViewModel.h */; };
 		492704C41CF4B6F100C631C6 /* CBIAnnouncementViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492704BE1CF4B6F100C631C6 /* CBIAnnouncementViewModel.m */; };
-		4927050E1CF4B70600C631C6 /* AssignmentDetails.html in Resources */ = {isa = PBXBuildFile; fileRef = 492704C61CF4B70600C631C6 /* AssignmentDetails.html */; };
 		4927050F1CF4B70600C631C6 /* AssignmentDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492704C71CF4B70600C631C6 /* AssignmentDetails.storyboard */; };
 		492705101CF4B70600C631C6 /* AssignmentDetailsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492704C81CF4B70600C631C6 /* AssignmentDetailsViewController.h */; };
 		492705111CF4B70600C631C6 /* AssignmentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492704C91CF4B70600C631C6 /* AssignmentDetailsViewController.m */; };
@@ -587,9 +586,6 @@
 		49A04E241CF5052A0051E1E7 /* CBIQuizzesTabViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E201CF5052A0051E1E7 /* CBIQuizzesTabViewModel.m */; };
 		49A04E271CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A04E251CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49A04E281CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E261CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.m */; };
-		49A04E391CF511890051E1E7 /* AnnotationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A04E381CF511730051E1E7 /* AnnotationKit.framework */; };
-		49A04E3A1CF511890051E1E7 /* AnnotationKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49A04E381CF511730051E1E7 /* AnnotationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49A04E3B1CF5118D0051E1E7 /* AnnotationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A04E381CF511730051E1E7 /* AnnotationKit.framework */; };
 		49A04E4E1CF6420C0051E1E7 /* CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; };
 		49A04E541CF64C510051E1E7 /* NotificationsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E531CF64C510051E1E7 /* NotificationsTab.swift */; };
 		49A04E571CF64C7F0051E1E7 /* CanvasTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */; };
@@ -920,8 +916,6 @@
 		49AA2D341CF4DC540055862D /* RoundedButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D221CF4DC540055862D /* RoundedButton.h */; };
 		49AA2D351CF4DC540055862D /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D231CF4DC540055862D /* RoundedButton.m */; };
 		49BC9BC71CF768FF00DCB3DD /* PSPDFKit+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */; };
-		49BC9BCB1CF78D5A00DCB3DD /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61CD7A021BD8269300EB8E17 /* PSPDFKit.framework */; };
-		49BC9BD01CF78DB200DCB3DD /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49BC9BCE1CF78DB200DCB3DD /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49DC23041CFE42E7009F27BA /* HandleDropboxOpen.h in Headers */ = {isa = PBXBuildFile; fileRef = 49DC23031CFE4260009F27BA /* HandleDropboxOpen.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49E80A281CFF8E42002AF45E /* PageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E80A271CFF8E37002AF45E /* PageKit.framework */; };
 		49E80A291CFF8E42002AF45E /* PageKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49E80A271CFF8E37002AF45E /* PageKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -934,7 +928,6 @@
 		49E80A391CFF95B8002AF45E /* FXKeychain.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4985D3C21CFE35D600BA3685 /* FXKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E80A3A1CFF95B8002AF45E /* Mantle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4985D3BF1CFE35A500BA3685 /* Mantle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E80A3B1CFF95B8002AF45E /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4985D3BC1CFE354D00BA3685 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A3C1CFF95B8002AF45E /* AnnotationKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49A04E381CF511730051E1E7 /* AnnotationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E80A3D1CFF95B8002AF45E /* AssignmentKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4927085E1CF4C37100C631C6 /* AssignmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E80A3E1CFF95B8002AF45E /* CalendarKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4927085F1CF4C37100C631C6 /* CalendarKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E80A3F1CFF95B8002AF45E /* CanvasKeymaster.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -950,7 +943,6 @@
 		49E80A491CFF95B8002AF45E /* MyLittleViewController.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708681CF4C37100C631C6 /* MyLittleViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E80A4A1CFF95B8002AF45E /* NotificationKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49A04E581CF64CBE0051E1E7 /* NotificationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E80A4B1CFF95B8002AF45E /* Peeps.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708691CF4C37100C631C6 /* Peeps.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A4C1CFF95B8002AF45E /* PSPDFKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49BC9BCE1CF78DB200DCB3DD /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E80A4D1CFF95B9002AF45E /* QuizKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4927086A1CF4C37100C631C6 /* QuizKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E80A4E1CFF95B9002AF45E /* Reachability.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4985D3B91CFE34EB00BA3685 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E80A4F1CFF95B9002AF45E /* ReactiveCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4927086B1CF4C37100C631C6 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1015,11 +1007,19 @@
 		5EB46E061D21A75C00C859A4 /* CalendarSplitMonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DE21D21A75C00C859A4 /* CalendarSplitMonthViewController.swift */; };
 		5EB46E071D21A75C00C859A4 /* CalendarWeekDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DE31D21A75C00C859A4 /* CalendarWeekDayViewController.swift */; };
 		5EB46E081D21A75C00C859A4 /* CalendarWeekPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DE41D21A75C00C859A4 /* CalendarWeekPageViewController.swift */; };
+		6122B9B61D58E6B6001282BF /* SoAnnotated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61681E9A1D58E5000011E75D /* SoAnnotated.framework */; };
+		6122B9B71D58E6DA001282BF /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61681E9D1D58E5380011E75D /* PSPDFKit.framework */; };
 		613729511D54E91800C020A0 /* UIImage+CanvasKit1.h in Headers */ = {isa = PBXBuildFile; fileRef = 6137294F1D54E91800C020A0 /* UIImage+CanvasKit1.h */; };
 		613729521D54E91800C020A0 /* UIImage+CanvasKit1.m in Sources */ = {isa = PBXBuildFile; fileRef = 613729501D54E91800C020A0 /* UIImage+CanvasKit1.m */; };
+		61681E9B1D58E5130011E75D /* SoAnnotated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61681E9A1D58E5000011E75D /* SoAnnotated.framework */; };
+		61681E9C1D58E5130011E75D /* SoAnnotated.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61681E9A1D58E5000011E75D /* SoAnnotated.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		61681E9E1D58E5410011E75D /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61681E9D1D58E5380011E75D /* PSPDFKit.framework */; };
+		61681E9F1D58E5410011E75D /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61681E9D1D58E5380011E75D /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		966B2C2C3195E7382007DC24 /* Pods_TechDebt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4637CA42B672BD19E818E79A /* Pods_TechDebt.framework */; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
 		ACC968891D25CD7B006AEAB1 /* CBIPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC968881D25CD7B006AEAB1 /* CBIPageViewModel.m */; };
+		B10713A61D748A1A0061E84A /* CourseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10713A51D748A1A0061E84A /* CourseSpec.swift */; };
+		B1AA934F1D6CEDD5004B3226 /* CoursesCollectionViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AA934E1D6CEDD5004B3226 /* CoursesCollectionViewControllerSpec.swift */; };
 		B1BFE4441D492AF100ED3887 /* AssignmentsTableViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFE4431D492AF100ED3887 /* AssignmentsTableViewControllerSpec.swift */; };
 		B1BFE4451D492B1200ED3887 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BFE4311D492A2B00ED3887 /* Nimble.framework */; };
 		B1BFE4461D492B1700ED3887 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BFE42F1D492A1600ED3887 /* Quick.framework */; };
@@ -1074,6 +1074,7 @@
 				492708771CF4C38100C631C6 /* CalendarKit.framework in Embed Frameworks */,
 				4927089D1CF4C38100C631C6 /* TooLegit.framework in Embed Frameworks */,
 				4927087D1CF4C38100C631C6 /* CWStatusBarNotification.framework in Embed Frameworks */,
+				61681E9F1D58E5410011E75D /* PSPDFKit.framework in Embed Frameworks */,
 				4927088B1CF4C38100C631C6 /* Peeps.framework in Embed Frameworks */,
 				49642BC51CF4C4DC00238B3F /* CanvasKeymaster.framework in Embed Frameworks */,
 				4985D3BB1CFE34F500BA3685 /* Reachability.framework in Embed Frameworks */,
@@ -1084,11 +1085,10 @@
 				492708851CF4C38100C631C6 /* Marshal.framework in Embed Frameworks */,
 				4985D3C11CFE35BE00BA3685 /* Mantle.framework in Embed Frameworks */,
 				4927087B1CF4C38100C631C6 /* CocoaLumberjack.framework in Embed Frameworks */,
-				49BC9BD01CF78DB200DCB3DD /* PSPDFKit.framework in Embed Frameworks */,
+				61681E9C1D58E5130011E75D /* SoAnnotated.framework in Embed Frameworks */,
 				492708831CF4C38100C631C6 /* Kingfisher.framework in Embed Frameworks */,
 				492708871CF4C38100C631C6 /* MediaKit.framework in Embed Frameworks */,
 				49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */,
-				49A04E3A1CF511890051E1E7 /* AnnotationKit.framework in Embed Frameworks */,
 				49E80A291CFF8E42002AF45E /* PageKit.framework in Embed Frameworks */,
 				492708751CF4C38100C631C6 /* AssignmentKit.framework in Embed Frameworks */,
 				492708971CF4C38100C631C6 /* SoPretty.framework in Embed Frameworks */,
@@ -1119,7 +1119,6 @@
 				49E80A391CFF95B8002AF45E /* FXKeychain.framework in CopyFiles */,
 				49E80A3A1CFF95B8002AF45E /* Mantle.framework in CopyFiles */,
 				49E80A3B1CFF95B8002AF45E /* AFNetworking.framework in CopyFiles */,
-				49E80A3C1CFF95B8002AF45E /* AnnotationKit.framework in CopyFiles */,
 				49E80A3D1CFF95B8002AF45E /* AssignmentKit.framework in CopyFiles */,
 				49E80A3E1CFF95B8002AF45E /* CalendarKit.framework in CopyFiles */,
 				49E80A3F1CFF95B8002AF45E /* CanvasKeymaster.framework in CopyFiles */,
@@ -1135,7 +1134,6 @@
 				49E80A491CFF95B8002AF45E /* MyLittleViewController.framework in CopyFiles */,
 				49E80A4A1CFF95B8002AF45E /* NotificationKit.framework in CopyFiles */,
 				49E80A4B1CFF95B8002AF45E /* Peeps.framework in CopyFiles */,
-				49E80A4C1CFF95B8002AF45E /* PSPDFKit.framework in CopyFiles */,
 				49E80A4D1CFF95B9002AF45E /* QuizKit.framework in CopyFiles */,
 				49E80A4E1CFF95B9002AF45E /* Reachability.framework in CopyFiles */,
 				49E80A4F1CFF95B9002AF45E /* ReactiveCocoa.framework in CopyFiles */,
@@ -1178,7 +1176,6 @@
 		492704BC1CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIAnnouncementsTabViewModel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		492704BD1CF4B6F100C631C6 /* CBIAnnouncementViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIAnnouncementViewModel.h; sourceTree = "<group>"; };
 		492704BE1CF4B6F100C631C6 /* CBIAnnouncementViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIAnnouncementViewModel.m; sourceTree = "<group>"; };
-		492704C61CF4B70600C631C6 /* AssignmentDetails.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AssignmentDetails.html; sourceTree = "<group>"; };
 		492704C71CF4B70600C631C6 /* AssignmentDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AssignmentDetails.storyboard; sourceTree = "<group>"; };
 		492704C81CF4B70600C631C6 /* AssignmentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignmentDetailsViewController.h; sourceTree = "<group>"; };
 		492704C91CF4B70600C631C6 /* AssignmentDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AssignmentDetailsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1691,7 +1688,6 @@
 		49A04E201CF5052A0051E1E7 /* CBIQuizzesTabViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIQuizzesTabViewModel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49A04E251CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKCanvasAPI+CurrentAPI.h"; sourceTree = "<group>"; };
 		49A04E261CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKCanvasAPI+CurrentAPI.m"; sourceTree = "<group>"; };
-		49A04E381CF511730051E1E7 /* AnnotationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AnnotationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A04E531CF64C510051E1E7 /* NotificationsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTab.swift; sourceTree = "<group>"; };
 		49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasTabBar.swift; sourceTree = "<group>"; };
 		49A04E581CF64CBE0051E1E7 /* NotificationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NotificationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2018,7 +2014,6 @@
 		49AA2D221CF4DC540055862D /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
 		49AA2D231CF4DC540055862D /* RoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedButton.m; sourceTree = "<group>"; };
 		49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PSPDFKit+Canvas.swift"; sourceTree = "<group>"; };
-		49BC9BCE1CF78DB200DCB3DD /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "Carthage/Checkouts/ios-annotations/PSPDFKit.framework"; sourceTree = "<group>"; };
 		49DC23031CFE4260009F27BA /* HandleDropboxOpen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HandleDropboxOpen.h; sourceTree = "<group>"; };
 		49E80A271CFF8E37002AF45E /* PageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PageKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49E80A311CFF93E6002AF45E /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2077,7 +2072,8 @@
 		5EB46DE41D21A75C00C859A4 /* CalendarWeekPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarWeekPageViewController.swift; sourceTree = "<group>"; };
 		6137294F1D54E91800C020A0 /* UIImage+CanvasKit1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CanvasKit1.h"; sourceTree = "<group>"; };
 		613729501D54E91800C020A0 /* UIImage+CanvasKit1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CanvasKit1.m"; sourceTree = "<group>"; };
-		61CD7A021BD8269300EB8E17 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PSPDFKit.framework; sourceTree = "<group>"; };
+		61681E9A1D58E5000011E75D /* SoAnnotated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAnnotated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61681E9D1D58E5380011E75D /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../Frameworks/SoAnnotated/SoAnnotated/Dependencies/PSPDFKit/PSPDFKit.framework; sourceTree = "<group>"; };
 		8951F56E39567D4A9D4EF764 /* Pods-TechDebt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechDebt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TechDebt/Pods-TechDebt.debug.xcconfig"; sourceTree = "<group>"; };
 		89F24B9496AC64BD6281B6C4 /* Pods-Canvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.release.xcconfig"; path = "Pods/Target Support Files/Pods-Canvas/Pods-Canvas.release.xcconfig"; sourceTree = "<group>"; };
 		9383EE51E3EA64B6F990F0BB /* Pods_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2085,6 +2081,8 @@
 		ACC968871D25CD52006AEAB1 /* CBIPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBIPageViewModel.h; sourceTree = "<group>"; };
 		ACC968881D25CD7B006AEAB1 /* CBIPageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIPageViewModel.m; sourceTree = "<group>"; };
 		AED0FEBEED8778AE5B80DB13 /* Pods_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B10713A51D748A1A0061E84A /* CourseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSpec.swift; sourceTree = "<group>"; };
+		B1AA934E1D6CEDD5004B3226 /* CoursesCollectionViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesCollectionViewControllerSpec.swift; sourceTree = "<group>"; };
 		B1BFE42F1D492A1600ED3887 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BFE4311D492A2B00ED3887 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BFE4391D492ABD00ED3887 /* CanvasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2110,7 +2108,6 @@
 				4985D3C01CFE35BE00BA3685 /* Mantle.framework in Frameworks */,
 				49A04E591CF64CCF0051E1E7 /* NotificationKit.framework in Frameworks */,
 				4927088A1CF4C38100C631C6 /* Peeps.framework in Frameworks */,
-				49BC9BCB1CF78D5A00DCB3DD /* PSPDFKit.framework in Frameworks */,
 				492708981CF4C38100C631C6 /* SoProgressive.framework in Frameworks */,
 				D6C53E46A847BB5E36A4B279 /* Pods_Canvas.framework in Frameworks */,
 				4985D3C31CFE35E100BA3685 /* FXKeychain.framework in Frameworks */,
@@ -2124,14 +2121,15 @@
 				492708941CF4C38100C631C6 /* SoPersistent.framework in Frameworks */,
 				492708781CF4C38100C631C6 /* Cartography.framework in Frameworks */,
 				492708901CF4C38100C631C6 /* Result.framework in Frameworks */,
-				49A04E391CF511890051E1E7 /* AnnotationKit.framework in Frameworks */,
 				492708801CF4C38100C631C6 /* FileKit.framework in Frameworks */,
 				492704B21CF4B6D700C631C6 /* TechDebt.framework in Frameworks */,
 				492708841CF4C38100C631C6 /* Marshal.framework in Frameworks */,
 				4927087A1CF4C38100C631C6 /* CocoaLumberjack.framework in Frameworks */,
+				61681E9E1D58E5410011E75D /* PSPDFKit.framework in Frameworks */,
 				4927088E1CF4C38100C631C6 /* ReactiveCocoa.framework in Frameworks */,
 				49E80A281CFF8E42002AF45E /* PageKit.framework in Frameworks */,
 				49AA290E1CF4CD320055862D /* Crashlytics.framework in Frameworks */,
+				61681E9B1D58E5130011E75D /* SoAnnotated.framework in Frameworks */,
 				4927088C1CF4C38100C631C6 /* QuizKit.framework in Frameworks */,
 				49642BC41CF4C4DC00238B3F /* CanvasKeymaster.framework in Frameworks */,
 				4927089E1CF4C38100C631C6 /* WhizzyWig.framework in Frameworks */,
@@ -2156,6 +2154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6122B9B61D58E6B6001282BF /* SoAnnotated.framework in Frameworks */,
 				492708AF1CF4C38500C631C6 /* SoLazy.framework in Frameworks */,
 				492708AC1CF4C38500C631C6 /* QuizKit.framework in Frameworks */,
 				49AA29101CF4CD360055862D /* Crashlytics.framework in Frameworks */,
@@ -2173,7 +2172,6 @@
 				492708A71CF4C38500C631C6 /* Kingfisher.framework in Frameworks */,
 				492708A91CF4C38500C631C6 /* MediaKit.framework in Frameworks */,
 				49AA2D111CF4DBC90055862D /* DBChooser.framework in Frameworks */,
-				49A04E3B1CF5118D0051E1E7 /* AnnotationKit.framework in Frameworks */,
 				49642BC91CF4C4DF00238B3F /* CanvasKit.framework in Frameworks */,
 				49E80A2A1CFF8E67002AF45E /* PageKit.framework in Frameworks */,
 				492708B11CF4C38500C631C6 /* SoPretty.framework in Frameworks */,
@@ -2186,6 +2184,7 @@
 				492708B21CF4C38500C631C6 /* SoProgressive.framework in Frameworks */,
 				492708A51CF4C38500C631C6 /* EnrollmentKit.framework in Frameworks */,
 				49A04E4E1CF6420C0051E1E7 /* CanvasKit1.framework in Frameworks */,
+				6122B9B71D58E6DA001282BF /* PSPDFKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2260,6 +2259,7 @@
 				49F9FA4A1CF7B73100654758 /* Canvas.xcassets */,
 				496D31221CF7528500A3B11E /* ¯\_(ツ)_/¯ */,
 				49F9FA4E1CF8CA8300654758 /* Assignments */,
+				6168A1801D417BD60011CD7F /* Files */,
 				49A04E721CF64ED90051E1E7 /* Calendar */,
 				49A04E5B1CF64D130051E1E7 /* Enrollments */,
 				49F9FA521CF8CB3B00654758 /* Grades */,
@@ -2280,8 +2280,10 @@
 			isa = PBXGroup;
 			children = (
 				B1BFE40F1D49282200ED3887 /* Dependencies */,
+				B1AA934C1D6CEDBB004B3226 /* Enrollments */,
 				B1BFE40E1D49281A00ED3887 /* Assignments */,
 				4927048D1CF4AF7100C631C6 /* Info.plist */,
+				B10713A51D748A1A0061E84A /* CourseSpec.swift */,
 			);
 			path = CanvasTests;
 			sourceTree = "<group>";
@@ -2370,7 +2372,6 @@
 		492704C51CF4B70600C631C6 /* Assignments */ = {
 			isa = PBXGroup;
 			children = (
-				492704C61CF4B70600C631C6 /* AssignmentDetails.html */,
 				492704C71CF4B70600C631C6 /* AssignmentDetails.storyboard */,
 				492704C81CF4B70600C631C6 /* AssignmentDetailsViewController.h */,
 				492704C91CF4B70600C631C6 /* AssignmentDetailsViewController.m */,
@@ -3077,11 +3078,12 @@
 			isa = PBXGroup;
 			children = (
 				49E80A301CFF93DC002AF45E /* Tests */,
+				61681E9D1D58E5380011E75D /* PSPDFKit.framework */,
+				61681E9A1D58E5000011E75D /* SoAnnotated.framework */,
 				49E80A271CFF8E37002AF45E /* PageKit.framework */,
 				4985D3C21CFE35D600BA3685 /* FXKeychain.framework */,
 				4985D3BF1CFE35A500BA3685 /* Mantle.framework */,
 				4985D3BC1CFE354D00BA3685 /* AFNetworking.framework */,
-				49A04E381CF511730051E1E7 /* AnnotationKit.framework */,
 				4927085E1CF4C37100C631C6 /* AssignmentKit.framework */,
 				4927085F1CF4C37100C631C6 /* CalendarKit.framework */,
 				49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */,
@@ -3097,7 +3099,6 @@
 				492708681CF4C37100C631C6 /* MyLittleViewController.framework */,
 				49A04E581CF64CBE0051E1E7 /* NotificationKit.framework */,
 				492708691CF4C37100C631C6 /* Peeps.framework */,
-				49BC9BCE1CF78DB200DCB3DD /* PSPDFKit.framework */,
 				4927086A1CF4C37100C631C6 /* QuizKit.framework */,
 				4985D3B91CFE34EB00BA3685 /* Reachability.framework */,
 				4927086B1CF4C37100C631C6 /* ReactiveCocoa.framework */,
@@ -3929,6 +3930,29 @@
 			path = "View Controller";
 			sourceTree = "<group>";
 		};
+		6168A1801D417BD60011CD7F /* Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		B1AA934C1D6CEDBB004B3226 /* Enrollments */ = {
+			isa = PBXGroup;
+			children = (
+				B1AA934D1D6CEDC3004B3226 /* Courses */,
+			);
+			name = Enrollments;
+			sourceTree = "<group>";
+		};
+		B1AA934D1D6CEDC3004B3226 /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				B1AA934E1D6CEDD5004B3226 /* CoursesCollectionViewControllerSpec.swift */,
+			);
+			name = Courses;
+			sourceTree = "<group>";
+		};
 		B1BFE40E1D49281A00ED3887 /* Assignments */ = {
 			isa = PBXGroup;
 			children = (
@@ -4585,7 +4609,6 @@
 				4950686C1D414DC00030A9D5 /* avatar-default-50.png in Resources */,
 				5E2159051D4BEA540005D2DF /* (null) in Resources */,
 				492707511CF4BACB00C631C6 /* Conversation.css in Resources */,
-				4927050E1CF4B70600C631C6 /* AssignmentDetails.html in Resources */,
 				492705341CF4B70600C631C6 /* CBISubmissionCommentCell-TheirVideo.xib in Resources */,
 				4927052F1CF4B70600C631C6 /* CBISubmissionCommentCell-Mine.xib in Resources */,
 				492708371CF4BC3200C631C6 /* filled.png in Resources */,
@@ -5345,7 +5368,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1AA934F1D6CEDD5004B3226 /* CoursesCollectionViewControllerSpec.swift in Sources */,
 				B1BFE4441D492AF100ED3887 /* AssignmentsTableViewControllerSpec.swift in Sources */,
+				B10713A61D748A1A0061E84A /* CourseSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

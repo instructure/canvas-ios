@@ -31,12 +31,9 @@
 {
     [super viewWillAppear:animated];
     
-    CGFloat ipadBottomInset = 0;
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        ipadBottomInset = self.tabBarController.tabBar.bounds.size.height;
-    }
-    self.toolbarBottomInsetConstraint.constant = -ipadBottomInset;
-    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, ipadBottomInset, 0);
+    CGFloat bottomInset = self.tabBarController.tabBar.bounds.size.height;
+    self.toolbarBottomInsetConstraint.constant = -bottomInset;
+    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, bottomInset, 0);
 }
 
 @end

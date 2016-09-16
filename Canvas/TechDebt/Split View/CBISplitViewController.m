@@ -170,7 +170,17 @@ static const NSTimeInterval CBISplitPushPopTheRestOfTheRelativeDuration = 1.0 - 
     // force the detail view to load in case it's not available instantly
     self.detailContainerView.backgroundColor = [UIColor whiteColor];
     
-    RAC(self, navigationItem.rightBarButtonItem) = RACObserve(self, detail.navigationItem.rightBarButtonItem);
+    RAC(self, navigationItem.rightBarButtonItems) = [RACSignal combineLatest:@[RACObserve(self, master.navigationItem.rightBarButtonItem), RACObserve(self, detail.navigationItem.rightBarButtonItem)] reduce:^id(UIBarButtonItem *master, UIBarButtonItem *detail) {
+        NSMutableArray *barButtonItems = [[NSMutableArray alloc] initWithCapacity: 2];
+        if (master) {
+            [barButtonItems addObject: master];
+        }
+        if (detail) {
+            [barButtonItems addObject: detail];
+        }
+        return barButtonItems;
+    }];
+
     RAC(self, title) = RACObserve(self, master.title);
 }
 

@@ -109,8 +109,7 @@ class CoursesCollectionViewController: Course.CollectionViewController {
         let GradesHiddenA11yLabel = NSLocalizedString("Show Grades", comment: "Accessibility label for toggling grades to visible")
         let GradesVisibleA11yLabel = NSLocalizedString("Hide Grades", comment: "Accessibility label for toggling grades to hidden")
         toggle.rac_a11yLabel <~ self.showingGrades.producer.map { $0 ? GradesVisibleA11yLabel : GradesHiddenA11yLabel }
-        
-        
+
         let GradesHiddenIcon = UIImage(named: "icon_grades_small", inBundle: NSBundle(forClass: CoursesCollectionViewController.self), compatibleWithTraitCollection: nil)
         let GradesVisibleIcon = UIImage(named: "icon_grades_fill_small", inBundle: NSBundle(forClass: CoursesCollectionViewController.self), compatibleWithTraitCollection: nil)
         toggle.rac_image <~ self.showingGrades.producer.map { $0 ? GradesVisibleIcon : GradesHiddenIcon }
@@ -151,5 +150,9 @@ class CoursesCollectionViewController: Course.CollectionViewController {
             return size
         }
         return CGSizeZero
+    }
+
+    override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        (cell as? EnrollmentCardCell)?.updateA11y()
     }
 }

@@ -27,7 +27,7 @@
             </FileRef>
          </Group>
          <FileRef
-            location = "group:Carthage/Checkouts/ios-annotations/Annotations.xcodeproj">
+            location = "group:Carthage/Checkouts/ios-frameworks/SoAnnotated/SoAnnotated.xcodeproj">
          </FileRef>
          <FileRef
             location = "group:Carthage/Checkouts/ios-frameworks/Assignments/Assignments.xcodeproj">

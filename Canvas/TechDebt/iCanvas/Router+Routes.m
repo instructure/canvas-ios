@@ -581,6 +581,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         @"/groups/:groupIdent/files/:fileIdent" : [FileViewController class],
         // Files
         @"/files/:fileIdent" : [FileViewController class],
+        @"/courses/:courseIdent/files/:fileIdent/download" : [FileViewController class],
     }];
     
     [WhizzyWigView setOpenURLHandler:^(NSURL *url) {

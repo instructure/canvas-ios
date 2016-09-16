@@ -27,7 +27,7 @@ extension Enrollment {
     }
 }
 
-class EnrollmentCardCell: Enrollment.CollectionViewCell {
+class EnrollmentCardCell: EnrollmentCollectionViewCell {
     
     var customize: ()->() = {}
     var showGrades: ()->() = {}
@@ -63,14 +63,13 @@ class EnrollmentCardCell: Enrollment.CollectionViewCell {
         toolbarButtons = shortcutsCollection?.map { tab in
             
             let button = UIBarButtonItem(image: tab.shortcutIcon, landscapeImagePhone: nil, style: .Plain, target: nil, action: nil)
-            
             button.accessibilityLabel = tab.label
-            button.accessibilityIdentifier = tab.id + "Shortcut"
             
             button.rac_command = RACCommand() { [weak self] _ in
                 self?.takeShortcut(tab.url)
                 return RACSignal.empty()
             }
+
             return button
         }
         toolbar?.items = toolbarButtons?.reduce([leadingSpace]) { items, button in
@@ -79,7 +78,7 @@ class EnrollmentCardCell: Enrollment.CollectionViewCell {
                 UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
             ]
         }
-        
+
         updateA11y()
     }
     
@@ -101,11 +100,11 @@ class EnrollmentCardCell: Enrollment.CollectionViewCell {
                     let producer = vm.enrollment.producer
                     let gradebuttonTitle = producer.map { $0?.gradeButtonTitle }
                     let a11yGradeButtonTitle = gradebuttonTitle.map { $0?.stringByReplacingOccurrencesOfString("-", withString: " minus") }
-                    
                     d += enrollment <~ vm.enrollment
                     d += titleLabel.rac_text <~ producer.map { $0?.name ?? "" }
                     d += (shortNameLabel?.rac_text).map { $0 <~ producer.map { $0?.shortName ?? "" } }
                     d += (gradeButton?.rac_title).map { $0 <~ gradebuttonTitle }
+                    d += self.rac_a11yHint <~ gradebuttonTitle
                     d += (gradeButton?.rac_a11yLabel).map { $0 <~ a11yGradeButtonTitle }
                     d += (gradeButton?.rac_hidden).map { $0 <~ vm.showingGrades.producer.map(!) }
                 }
@@ -119,18 +118,23 @@ class EnrollmentCardCell: Enrollment.CollectionViewCell {
                     handleError(e)
                 }
             }
-            
 
             updateA11y()
         }
     }
-    
+
     func updateA11y() {
-        var items: [NSObject?] = [gradeButton, titleLabel, shortNameLabel, customizeButton]
+        self.accessibilityLabel = "\(titleLabel?.text ?? ""): \(shortNameLabel?.text ?? "")"
+
+        self.accessibilityCustomActions = [UIAccessibilityCustomAction(name: "Grades", target: self, selector: #selector(showGrades(_:)))]
         if let shortcuts = toolbarButtons {
-            items += shortcuts.map { NSObject?($0) }
+            for shortcut in shortcuts {
+                if let shortcutLabel = shortcut.accessibilityLabel {
+                    accessibilityCustomActions?.append(UIAccessibilityCustomAction(name: shortcutLabel, target: shortcut, selector: shortcut.action))
+                }
+            }
         }
-        accessibilityElements = items.flatMap { $0 }
+        accessibilityCustomActions?.append(UIAccessibilityCustomAction(name: "Customize", target: self, selector: #selector(customizedTapped(_:))))
     }
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -140,21 +144,16 @@ class EnrollmentCardCell: Enrollment.CollectionViewCell {
     @IBOutlet weak var toolbar: UIToolbar?
     
     override func awakeFromNib() {
-        
         super.awakeFromNib()
-        
+
         makeEvenMoreBeautiful()
         
         enrollment.producer
             .startWithNext { [weak self] enrollment in
                 self?.refresh(enrollment)
         }
-        
-        titleLabel.accessibilityIdentifier = "courseTitleLabel"
-        shortNameLabel?.accessibilityIdentifier = "shortNameLabel"
-        gradeButton?.accessibilityIdentifier = "showGradeButton"
-        customizeButton?.accessibilityIdentifier = "customizeButton"
-        customizeButton?.accessibilityLabel = NSLocalizedString("Customize", comment: "label for customizing a course")
+
+        self.isAccessibilityElement = true
     }
     
     func makeEvenMoreBeautiful() {

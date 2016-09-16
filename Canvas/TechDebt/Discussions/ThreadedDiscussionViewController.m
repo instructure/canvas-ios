@@ -775,6 +775,7 @@ NSIndexPath *rootEntryIndexPath() {
         inputView.attachmentSheetTitle = NSLocalizedString(@"Add inline media", @"Title on the add-inline-media sheet");
         inputView.attachmentButtonImage = [UIImage techDebtImageNamed:@"icon_camera_fill"];
         inputView.delegate = self;
+        [inputView becomeFirstResponder];
         
         [inputView setShowsAttachmentButton:NO];
         [overlayView addSubview:inputView];

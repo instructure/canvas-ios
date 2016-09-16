@@ -17,7 +17,7 @@ public extension NSDate {
     func endOfDay(calendar: NSCalendar) -> NSDate {
         let components = NSDateComponents()
         components.day = 1
-        components.second = -1
+        components.nanosecond = -1
         return calendar.dateByAddingComponents(components, toDate: startOfDay(calendar), options: NSCalendarOptions())!
     }
 }

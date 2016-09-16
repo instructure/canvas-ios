@@ -22,6 +22,15 @@
 #import "RatingsController.h"
 #import "Analytics.h"
 #import "CBILog.h"
+#import "CKIClient+CBIClient.h"
+#import "CBIAssignmentDetailViewController.h"
+#import "CBISplitViewController.h"
+
+@import SoAnnotated;
+@import PSPDFKit;
+@import CanvasKeymaster;
+@import AssignmentKit;
+@import SoPersistent;
 
 // TODO: REMOVE
 
@@ -112,6 +121,7 @@
     UIDocumentInteractionController *interactionController;
     UILabel *messageLabel;
     UIPrintInteractionController *printController;
+    PreSubmissionPDFDocumentPresenter *pdfDocPresenter;
 }
 
 - (id)init {
@@ -221,24 +231,44 @@
         }
         
         self.file = file;
+
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *path = [self pathForPersistedFile:file];
         
-        [self.canvasAPI downloadAttachment:file progressBlock:^(float progress) {
-            self.downloadProgress = progress;
-        } completionBlock:^(NSError *error, BOOL isFinalValue, NSURL *url) {
-            if (error) {
-                [self showDownloadError:error];
-            }
-            else if (isFinalValue) {
-                self.downloadProgress = 1.0;
-                self.showsInteractionButton = YES;
-                self.url = url;
-            }
-            
+        if ([fileManager fileExistsAtPath:path]) {
             [self.activityView stopAnimating];
+            self.downloadProgress = 1.0;
+            self.showsInteractionButton = YES;
             DDLogVerbose(@"CBIFileViewController posting module item progress update after fetching file");
             CBIPostModuleItemProgressUpdate([@(self.fileIdent) description], CKIModuleItemCompletionRequirementMustView);
-        }];
+
+            NSURL *url = [[NSURL alloc] initFileURLWithPath:path];
+            self.url = url;
+        } else {
+            [self.canvasAPI downloadAttachment:file progressBlock:^(float progress) {
+                self.downloadProgress = progress;
+            } completionBlock:^(NSError *error, BOOL isFinalValue, NSURL *url) {
+                if (error) {
+                    [self showDownloadError:error];
+                }
+                else if (isFinalValue) {
+                    self.downloadProgress = 1.0;
+                    self.showsInteractionButton = YES;
+                    self.url = url;
+                }
+
+                [self.activityView stopAnimating];
+                DDLogVerbose(@"CBIFileViewController posting module item progress update after fetching file");
+                CBIPostModuleItemProgressUpdate([@(self.fileIdent) description], CKIModuleItemCompletionRequirementMustView);
+            }];
+        }
     }];
+}
+
+- (NSString *)pathForPersistedFile:(CKAttachment *)file {
+    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *path = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%llu_%@", file.ident, file.filename]];
+    return path;
 }
 
 - (void)setFile:(CKAttachment *)file {
@@ -266,8 +296,50 @@
         HTMLPreviewController *webController = [[HTMLPreviewController alloc] init];
         webController.url = url;
         controller = webController;
-    }
-    else if ([QLPreviewController canPreviewItem:_url]) {
+    } else if ([_file.contentType isEqualToString:@"application/pdf"]) {
+        pdfDocPresenter = [[PreSubmissionPDFDocumentPresenter alloc] initWithDocumentURL:url session:TheKeymaster.currentClient.authSession defaultCourseID:[self hackishlyGetDefaultCourseIfPossible] defaultAssignmentID:[self hackishlyGetDefaultAssignmentIfPossible]];
+        @weakify(self);
+        pdfDocPresenter.didSubmitAssignment = ^{
+            @strongify(self);
+
+            if ([self->contentChildController isKindOfClass:[PSPDFViewController class]]) {
+                PSPDFViewController *vc = (PSPDFViewController *)self->contentChildController;
+                [vc.annotationToolbarController.annotationToolbar hideToolbarAnimated:NO completion:nil];
+            }
+
+            [self.navigationController popViewControllerAnimated:YES];
+
+            if ([[NSFileManager defaultManager] fileExistsAtPath:[self pathForPersistedFile:self.file]]) {
+                [[NSFileManager defaultManager] removeItemAtPath:[self pathForPersistedFile:self.file] error:nil];
+            }
+
+            if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+                [[NSFileManager defaultManager] removeItemAtPath:[url path] error:nil];
+            }
+        };
+        // If the current document is *not* in the documents directory, we should move it there as they save
+        // so when they come back they never have to do that again
+        if (![[[NSURL alloc] initFileURLWithPath:[self pathForPersistedFile:self.file]] isEqual:self.url]) {
+            @weakify(self);
+            pdfDocPresenter.didSaveAnnotations = ^{
+                @strongify(self);
+
+                NSString *path = [self pathForPersistedFile:self.file];
+
+                // NSFileManager *is* threadsafe
+                dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+                dispatch_async(q, ^{
+                    NSFileManager *fileManager = [NSFileManager defaultManager];
+                    if ([fileManager fileExistsAtPath:path]) {
+                        [fileManager removeItemAtPath:path error:nil];
+                    }
+                    NSURL *persistentURL = [[NSURL alloc] initFileURLWithPath:path];
+                    [fileManager copyItemAtURL:url toURL:persistentURL error:nil];
+                });
+            };
+        }
+        controller = [pdfDocPresenter getPDFViewController];
+    } else if ([QLPreviewController canPreviewItem:_url]) {
         CKURLPreviewViewController *previewController = [[CKURLPreviewViewController alloc] init];
         previewController.delegate = self;
         previewController.url = url;
@@ -278,9 +350,47 @@
         NoPreviewAvailableController *noPreviewController = [NoPreviewAvailableController new];
         noPreviewController.url = url;
         controller = noPreviewController;
-        
     }
     return controller;
+}
+
+- (NSString *)hackishlyGetDefaultAssignmentIfPossible {
+    if (self.navigationController.viewControllers.count < 2) { return nil; }
+
+    UIViewController *previousViewController = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
+    UIViewController *realFRD = previousViewController;
+    if ([previousViewController isKindOfClass:[CBISplitViewController class]]) {
+        CBISplitViewController *splitView = (CBISplitViewController *)realFRD;
+        if ([splitView.detail isKindOfClass:[CBIAssignmentDetailViewController class]]) {
+            realFRD = splitView.detail;
+        }
+    }
+
+    if ([realFRD isKindOfClass:[CBIAssignmentDetailViewController class]]) {
+        CBIAssignmentDetailViewController *assignmentDeets = (CBIAssignmentDetailViewController *)realFRD;
+        return assignmentDeets.viewModel.model.id;
+    }
+    return nil;
+}
+
+- (NSString *)hackishlyGetDefaultCourseIfPossible {
+    if (self.navigationController.viewControllers.count < 2) { return nil; }
+
+    UIViewController *previousViewController = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
+    UIViewController *realFRD = previousViewController;
+    if ([previousViewController isKindOfClass:[CBISplitViewController class]]) {
+        CBISplitViewController *splitView = (CBISplitViewController *)previousViewController;
+        if ([splitView.detail isKindOfClass:[CBIAssignmentDetailViewController class]]) {
+            realFRD = splitView.detail;
+        }
+    }
+
+    if ([realFRD isKindOfClass:[CBIAssignmentDetailViewController class]]) {
+        CBIAssignmentDetailViewController *assignmentDeets = (CBIAssignmentDetailViewController *)realFRD;
+        return assignmentDeets.viewModel.model.courseID;
+    }
+    
+    return nil;
 }
 
 - (void)setUrl:(NSURL *)url {
@@ -292,22 +402,26 @@
 }
 
 - (void)updateForURLState {
-    
+
     if ([_url isFileURL]) {
         contentChildController = [self childControllerForContentAtURL:_url];
-        
+
         [self addChildViewController:contentChildController];
+        [contentChildController viewWillAppear:YES]; // for some reason viewWillAppear wasn't getting called during addChildViewController's invocation
         UIView *childView = contentChildController.view;
         childView.translatesAutoresizingMaskIntoConstraints = NO;
         childView.frame = container.bounds;
         [childView setClipsToBounds:NO];
-        [container setClipsToBounds:NO];
-        [container addSubview:childView];
-        [container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[childView]|" options:0 metrics:nil views:@{@"childView":childView}]];
-        [container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[childView]|" options:0 metrics:nil views:@{@"childView":childView}]];
+        [self.view addSubview:childView];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[childView]|" options:0 metrics:nil views:@{@"childView":childView}]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[childView]|" options:0 metrics:nil views:@{@"childView":childView}]];
         [contentChildController didMoveToParentViewController:self];
-        
+
         actionButton.enabled = YES;
+
+        if ([contentChildController isKindOfClass:[PSPDFViewController class]]) {
+            self.navigationItem.rightBarButtonItems = contentChildController.navigationItem.rightBarButtonItems;
+        }
     } else {
         actionButton.enabled = NO;
         

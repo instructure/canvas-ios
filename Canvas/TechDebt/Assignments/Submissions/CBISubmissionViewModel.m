@@ -1,4 +1,4 @@
-    //
+//
 //  CBISubmissionViewModel.m
 //  iCanvas
 //
@@ -18,9 +18,11 @@
 #import "CBIQuizViewModel.h"
 #import "CBISubmissionAnnotationPreviewHelper.h"
 #import "UIImage+TechDebt.h"
+@import PageKit;
+@import CanvasKeymaster;
 
 @import PSPDFKit;
-@import AnnotationKit;
+@import SoAnnotated;
 @import CanvasKit;
 
 static NSString *const CBISubmissionCellReuseIDAndNibName = @"CBISubmissionCell";
@@ -137,8 +139,11 @@ static UIImage *(^iconForSubmissionType)(NSString *) = ^(NSString *submissionTyp
 
 - (void)tableViewController:(MLVCTableViewController *)controller didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.model.submissionType isEqualToString:CKISubmissionTypeOnlineTextEntry]) {
-        NSURL *url = self.model.urlForLocalTextEntryHTMLFile;
-        [self presentSubmissionURL:url fromViewController:controller];
+        NSString *html = [PageTemplateRenderer htmlStringWithTitle:@"" body:self.model.body ?: @""];
+        UINavigationController *nav = (UINavigationController *)[[UIStoryboard storyboardWithName:@"Storyboard-WebBrowser" bundle:[NSBundle bundleForClass:[self class]]] instantiateInitialViewController];
+        WebBrowserViewController *browser = nav.viewControllers[0];
+        [browser setContentHTML:html baseURL:TheKeymaster.currentClient.baseURL];
+        [controller presentViewController:nav animated:YES completion:nil];
     } else if ([self.model.submissionType isEqualToString:CKISubmissionTypeDiscussion]) {
         NSURL *url = self.model.urlForLocalDiscussionEntriesHTMLFile;
         [self presentSubmissionURL:url fromViewController:controller];

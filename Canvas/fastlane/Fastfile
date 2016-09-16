@@ -1,4 +1,4 @@
-fastlane_version "1.16.0"
+fastlane_version '1.89.0'
 
 default_platform :ios
 
@@ -11,12 +11,6 @@ platform :ios do
   scheme_name = project_name
   ipa_commit_name = project_name
   bundle_identifier = "com.instructure.icanvas"
-
-  #####################################################
-  # before_all - runs before each build
-  #####################################################
-  before_all do
-  end
   
   def run_carthage_and_pods
     kill_all_simulators
@@ -30,15 +24,47 @@ platform :ios do
     reset_simulators
   end
 
+  def bump_build_number
+    increment_build_number(
+        build_number: ENV['BUILD_NUMBER'] || ENV['BITRISE_BUILD_NUMBER'] || "1993" # a good year
+    )
+  end
+
+  #####################################################
+  # run_match_development - Runs match to install dev certs
+  #####################################################
+  desc 'Runs match to install dev certs'
+  lane :run_match_development do
+    match(type: 'development')
+  end
+
+  #####################################################
+  # setup_dev - Sets up the dev environment
+  #####################################################
+  desc 'Install development certs and checkout carthage deps'
+  lane :setup_dev do
+    run_match_development
+    run_carthage_and_pods
+  end
+
+  DD_PATH = File.expand_path(File.join(__dir__, '..', 'dd'))
+
   #####################################################
   # commit - Builds every commit to Develop branch
   #####################################################
   desc "Builds after each commit to make sure the app can be built and run correctly"
   lane :commit do
-    run_carthage_and_pods
+    setup_dev
+    bump_build_number
+    gym(derived_data_path: DD_PATH)
 
-    match(type: "development")
-    gym
+    if ENV['HOCKEY_API_TOKEN']
+      hockey(
+        api_token: ENV['HOCKEY_API_TOKEN'],
+        ipa: "Canvas.ipa",
+        notes: last_git_commit[:message]
+      )
+    end
   end
   
   #####################################################
@@ -49,14 +75,6 @@ platform :ios do
     run_carthage_and_pods
     gym
   end
-
-  #####################################################
-  # nightly - build and run all UIAutomation Tests
-  #####################################################
-  desc "Runs all UIAutomation Tests"
-  lane :nightly do
-    
-  end
   
   #####################################################
   # release - Automatically runs on ALL commits on release branch
@@ -64,27 +82,8 @@ platform :ios do
   desc "Submit a new Beta Build to Apple TestFlight"
   lane :release do
     run_carthage_and_pods
-    increment_build_number(
-        build_number: ENV['BUILD_NUMBER'] || "1981" # a good year
-    )
-
+    bump_build_number
     gym
-  end
-
-  #####################################################
-  # lint - Checks for deployment target changes
-  #####################################################
-  desc 'Checks for deployment target changes'
-  lane :lint do
-    if ENV['GERRIT_PROJECT']
-      changes_diff = 'changes.diff'
-      sh "git diff HEAD~1 HEAD > #{changes_diff}"
-      begin
-        sh "xlint #{changes_diff}"
-      ensure
-        File.delete(changes_diff) if File.exists?(changes_diff)
-      end
-    end
   end
 
   #####################################################
@@ -109,13 +108,6 @@ platform :ios do
   desc "Submit a new Beta Build to Apple TestFlight"
   lane :beta_major do
     beta_build("major")
-  end
-
-  #####################################################
-  # This block is called, only if the executed lane was successful
-  #####################################################
-  after_all do |lane|
-    
   end
 
   #####################################################

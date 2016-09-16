@@ -13,6 +13,7 @@
 extern NSString * const CKAPIHTTPMethodKey;
 extern NSString * const CKAPINoAccessTokenRequired;
 extern NSString *const CKAPIIncludePermissionsKey;
+extern NSString *const CKAPINoMasqueradeIDRequired;
 
 typedef id (^CKInfoToObjectMappingBlock)(NSDictionary *info);
 

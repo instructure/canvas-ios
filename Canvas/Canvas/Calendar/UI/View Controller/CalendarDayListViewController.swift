@@ -217,7 +217,7 @@ public class CalendarDayListViewController: UITableViewController {
 
     func updateCalendarEvents() {
         let startDate = day!.startOfDay(calendar)
-        let endDate = day!.endOfDay(calendar)
+        let endDate = day! + 1.daysComponents
         eventsCollection = try! CalendarEvent.collectionByDueDate(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
         refresher = try! CalendarEvent.refresher(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
         refresher?.refresh(false)

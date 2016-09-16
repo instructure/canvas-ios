@@ -17,6 +17,37 @@ import SoPersistent
 import Result
 import TechDebt
 
+extension Course {
+    func totalGrade(gradingPeriodItem: GradingPeriodItem?) -> String {
+        let grades: [String?]
+        let empty = "-"
+
+        if let gradingPeriodItem = gradingPeriodItem {
+            switch gradingPeriodItem {
+            case .Some(let gradingPeriod):
+                grades = [visibleGradingPeriodGrade(gradingPeriod.id), visibleGradingPeriodScore(gradingPeriod.id)]
+            case .All:
+                guard totalForAllGradingPeriodsEnabled else {
+                    return empty
+                }
+                grades = [visibleGradingPeriodGrade(nil), visibleGradingPeriodScore(nil)]
+            }
+        } else {
+            grades = [visibleGrade, visibleScore]
+        }
+
+        let totalGrade = grades
+            .flatMap { $0 }
+            .joinWithSeparator("  ")
+
+        if totalGrade.isEmpty {
+            return empty
+        }
+
+        return totalGrade
+    }
+}
+
 extension Assignment {
     func colorfulViewModel(dataSource: ContextDataSource) -> ColorfulViewModel {
         let model = ColorfulViewModel(style: .Basic)
@@ -94,11 +125,13 @@ class AssignmentsTableViewController: Assignment.TableViewController {
 
         let key = cacheKey(courseID, gradingPeriodID: gradingPeriodID)
         let refresher = SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
-
-        prepare(collection, refresher: refresher) { [unowned self] in
-            return self.viewModelFactory($0)
+        let theSession = self.session
+        
+        prepare(collection, refresher: refresher) { (assignment: Assignment) -> ColorfulViewModel in
+            let dataSource = theSession.enrollmentsDataSource
+            return assignment.colorfulViewModel(dataSource)
         }
-
+        
         // manually show the refresh control because of some bug somewhere
         if refresher.shouldRefresh  {
             tableView.contentOffset = CGPoint(x: 0, y: tableView.contentOffset.y - refresher.refreshControl.frame.size.height)
@@ -130,7 +163,10 @@ class GradesTableViewController: AssignmentsTableViewController {
 
         try super.init(session: session, courseID: courseID, route: route)
 
-        let course = session.enrollmentsDataSource.producer(ContextID(id: courseID, context: .Course)).map { $0 as? Course }
+        guard let course = session.enrollmentsDataSource[ContextID(id: courseID, context: .Course)] as? Course else {
+            ❨╯°□°❩╯⌢"We should have a course."
+        }
+
         let gradingPeriod = header.selectedGradingPeriod.producer
         let grades = SignalProducer<Void, NoError> { [weak self] observer, _ in
             observer.sendNext(())
@@ -139,18 +175,10 @@ class GradesTableViewController: AssignmentsTableViewController {
             }
         }
 
-        header.grade <~ combineLatest(course, gradingPeriod, grades)
+        header.grade <~ combineLatest(gradingPeriod, grades)
             .observeOn(UIScheduler())
-            .map { course, gradingPeriodItem, _ in
-                if let item = gradingPeriodItem {
-                    switch item {
-                    case .All:
-                        return "-"
-                    case .Some(let gradingPeriod):
-                        return course?.gradingPeriodGradeButtonTitle(gradingPeriod.id) ?? "carpenter"
-                    }
-                }
-                return course?.gradeButtonTitle ?? "yooho"
+            .map { gradingPeriodItem, _ in
+                return course.totalGrade(gradingPeriodItem)
             }
 
         title = NSLocalizedString("Grades", comment: "Title for Grades view controller")
@@ -176,19 +204,5 @@ class GradesTableViewController: AssignmentsTableViewController {
 
     override func collection(session: Session, courseID: String, gradingPeriodID: String?) throws -> FetchedCollection<Assignment> {
         return try Assignment.collectionByAssignmentGroup(session, courseID: courseID, gradingPeriodID: gradingPeriodID)
-    }
- }
-
-extension Course {
-    func gradingPeriodGradeButtonTitle(gradingPeriodID: String) -> String {
-        let grades: String = [visibleGradingPeriodGrade(gradingPeriodID), visibleGradingPeriodScore(gradingPeriodID)]
-            .flatMap( { $0 } )
-            .joinWithSeparator("   ")
-
-        if grades != "" {
-            return grades
-        }
-
-        return NSLocalizedString("Ungraded", comment: "Title for grade button when no grade is present")
     }
 }

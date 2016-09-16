@@ -18,6 +18,8 @@
 @import SoPretty;
 @import CanvasKit;
 #import "CBILog.h"
+@import CanvasKeymaster;
+@import PageKit;
 
 @interface AssignmentDetailsViewController () <UIWebViewDelegate>
 @end
@@ -72,14 +74,6 @@
         return;
     }
     
-    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"AssignmentDetails" ofType:@"html"];
-    NSError *err;
-    NSString *htmlContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&err];
-    if (htmlContents == nil) {
-        [[iCanvasErrorHandler sharedErrorHandler] logError:err];
-        return;
-    }
-    
     NSString *detailPlaceholder = [NSString stringWithFormat:@"<span style=\"color: #999999;\">%@</span>", NSLocalizedString(@"This assignment has no details.", @"message displayed in the details section if there is no comment.")];
     NSString *details = self.assignment.assignmentDescription ?: detailPlaceholder;
     
@@ -100,9 +94,8 @@
         }
     }
     
-    htmlContents = [htmlContents stringByReplacingOccurrencesOfString:@"{$CONTENT$}" withString:details];
-    
-    NSURL *baseURL = [NSURL fileURLWithPath:[filePath stringByDeletingLastPathComponent] isDirectory:YES];
+    NSString *htmlContents = [PageTemplateRenderer htmlStringWithTitle:self.assignment.name ?: @"" body:details ?: @""];
+    NSURL *baseURL = TheKeymaster.currentClient.baseURL;
     [self.webView loadHTMLString:htmlContents baseURL:baseURL];
 }
 
@@ -121,7 +114,9 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    if (navigationType == UIWebViewNavigationTypeOther) {
+    if (navigationType == UIWebViewNavigationTypeOther
+        || navigationType == UIWebViewNavigationTypeFormSubmitted
+        || navigationType == UIWebViewNavigationTypeFormResubmitted) {
         return YES;
     }
     

@@ -22,6 +22,7 @@
 #import "CBISplitViewController.h"
 #import "CBIModuleProgressNotifications.h"
 @import CanvasKeymaster;
+@import CanvasKit;
 #import "CBILog.h"
 #import "UIImage+TechDebt.h"
 
@@ -173,30 +174,47 @@ static NSString *(^accessibilityLabelBlock)(NSString *, NSString *, NSString *, 
 
 - (void)refreshItemProgress:(NSNotification *)note
 {
-    NSString *itemID;
-    if ([self.model.type isEqualToString:CKIModuleItemTypeExternalTool]) {
-        itemID = [self.model.htmlURL absoluteString];
-    } else {
-        itemID = self.model.itemID ?: self.model.id;
-    }
-    
     NSString *noteItemID = note.userInfo[CBIUpdatedModuleItemIDStringKey];
     NSString *noteRequirementType = note.userInfo[CBIUpdatedModuleItemTypeKey];
 
-    if (!self.model.completed && [noteItemID isEqualToString:itemID] && [noteRequirementType isEqualToString:self.model.completionRequirement]) {
+    NSString *itemID;
+    if ([self.model.type isEqualToString:CKIModuleItemTypeExternalTool]) {
+        itemID = [self.model.htmlURL absoluteString];
+
+    } else {
+        itemID = self.model.itemID ?: self.model.id;
+    }
+
+    BOOL noteMatchesModel = [noteItemID isEqualToString:itemID] && [noteRequirementType isEqualToString:self.model.completionRequirement];
+
+    // if this is a quiz then manually mark the module item as read since the api doesn't seem to want to do it for us.
+    if ([self.model.type isEqualToString: CKIModuleItemTypeQuiz] && !self.model.completed && noteMatchesModel) {
         @weakify(self);
-        [[[CKIClient currentClient] refreshModel:self.model parameters:nil] subscribeCompleted:^{
+        [[[CKIClient currentClient] markModuleItemAsRead: self.model] subscribeCompleted:^{
             @strongify(self);
-            if (self.model.completed) {
-                CBIPostModuleProgressUpdate(self.model.context.id);
-            }
+            [self refreshProgressUpdate];
         }];
+        return;
+    }
+
+    if (!self.model.completed && noteMatchesModel) {
+        [self refreshProgressUpdate];
     }
 
     NSString *noteSelectedItemID = note.userInfo[CBISelectedModuleItemIDStringKey];
     if (noteSelectedItemID) {
         self.selected = [itemID isEqualToString:noteSelectedItemID];
     }
+}
+
+- (void)refreshProgressUpdate {
+    @weakify(self);
+    [[[CKIClient currentClient] refreshModel:self.model parameters:nil] subscribeCompleted:^{
+        @strongify(self);
+        if (self.model.completed) {
+            CBIPostModuleProgressUpdate(self.model.context.id);
+        }
+    }];
 }
 
 - (void)dealloc

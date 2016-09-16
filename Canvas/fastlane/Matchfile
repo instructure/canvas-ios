@@ -1,2 +1,2 @@
-git_url "ssh://gerrit.instructure.com:29418/ios-codesigning"
+git_url "git@github.com:instructure/ios-codesigning.git"
 

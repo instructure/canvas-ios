@@ -81,6 +81,7 @@ StringConstant(CKAPIIncludeTotalScoresKey);  // NSNumber (bool)
 StringConstant(CKAPIIncludeSyllabusBodyKey);  // NSNumber (bool)
 StringConstant(CKAPIIncludePermissionsKey); // NSNumber (bool)
 StringConstant(CKAPINoAccessTokenRequired); // NSNumber (bool)
+StringConstant(CKAPINoMasqueradeIDRequired); // NSNumber (bool)
 StringConstant(CKAPIBlockRedirectsKey); // NSNumber (bool)
 StringConstant(CKAPICurrentCoursesOnlyKey);  // NSNumber (bool))
 StringConstant(CKAPILimitEnrollmentTypesKey); // NSString *
@@ -2105,6 +2106,7 @@ NSString *CKDownloadsInProgressDirectory(void);
                                     headers, CKAPIHTTPHeadersKey,
                                     @YES, CKAPINoAccessTokenRequired,
                                     @YES, CKAPIBlockRedirectsKey,
+                                    @YES, CKAPINoMasqueradeIDRequired,
                                     nil];
     if (progressObject) {
         options[CKAPIProgressNotificationObjectKey] = progressObject;
@@ -4095,7 +4097,7 @@ NSString * const CKAPIConversationScopeArchived = @"archived";
     
     NSDictionary *headers = options[CKAPIHTTPHeadersKey];
     
-    if (self.actAsId.length > 0) {
+    if (self.actAsId.length > 0 && ![options[CKAPINoMasqueradeIDRequired] boolValue]) {
         NSString *separator = @"?";
         if ([url query]) {
             separator = @"&";

@@ -103,7 +103,9 @@
     openInErrorSheet = [[CKActionSheetWithBlocks alloc] initWithTitle:NSLocalizedString(@"No installed apps support opening this file", @"Error message")];
     [openInErrorSheet addButtonWithTitle:NSLocalizedString(@"OK", nil)];
     
-    [_webView loadRequest:self.request];
+    if (self.request) {
+        [self.request loadRequestInWebView:self.webView];
+    }
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [self.view setBackgroundColor:[UIColor prettyBlack]];
@@ -125,7 +127,7 @@
     [super viewWillAppear:animated];
     
     [self.webView loadHTMLString:@"<body></body>" baseURL:nil];
-    [self.webView loadRequest:self.request];
+    [self.request loadRequestInWebView:self.webView];
 }
 
 - (void)onKeyboardHide:(NSNotification *)notification
@@ -163,7 +165,12 @@
 - (void)setUrl:(NSURL *)url {
     _url = url;
     self.request = [NSURLRequest requestWithURL:url];
-    [_webView loadRequest:self.request];
+    
+    [self.request loadRequestInWebView:self.webView];
+}
+
+- (void)setContentHTML:(NSString *)html baseURL:(NSURL *)baseURL {
+    self.request = [StaticHTMLRequest requestWithHTML:html baseURL:baseURL];
 }
 
 #pragma mark -
@@ -217,7 +224,7 @@
     if (_webView.request && _webView.request.URL.absoluteString.length && ![_webView.request.URL.absoluteString isEqualToString:@"about:blank"]) {
         [_webView reload];
     } else {
-        [_webView loadRequest:self.request];
+        [self.request loadRequestInWebView:self.webView];
     }
 }
 
@@ -244,7 +251,7 @@
     // Present an action sheet.
     // 1. Open in Safari
     NSURL *theURL = [NSURL URLWithString:self.fullURL]; // Copy to a local variable to avoid a retain cycle
-    if ([self.request.URL isFileURL] == NO) {
+    if (self.request.canOpenInSafari) {
         [optionsActionSheet addButtonWithTitle:NSLocalizedString(@"Open in Safari", @"Open a document in the application Safari") handler:^{
             [[UIApplication sharedApplication] openURL:theURL];
         }];
@@ -445,5 +452,42 @@
     [self setIsTitleAbreviated:! self.isTitleAbreviated];
 }
 
+
+@end
+
+
+@implementation NSURLRequest (WebBrowser)
+
+- (void)loadRequestInWebView:(UIWebView *)webView {
+    [webView loadRequest:self];
+}
+
+- (BOOL)canOpenInSafari {
+    return !self.URL.isFileURL;
+}
+
+@end
+
+@interface StaticHTMLRequest ()
+@property (nonatomic, nonnull) NSString *html;
+@property (nonatomic, nonnull) NSURL *baseURL;
+@end
+
+@implementation StaticHTMLRequest
+
++ (instancetype)requestWithHTML:( NSString * _Nonnull )html baseURL:(NSURL * _Nonnull)baseURL {
+    StaticHTMLRequest *req = [self new];
+    req.html = html;
+    req.baseURL = baseURL;
+    return req;
+}
+
+- (void)loadRequestInWebView:(UIWebView *)webView {
+    [webView loadHTMLString:self.html baseURL:self.baseURL];
+}
+
+- (BOOL)canOpenInSafari {
+    return NO;
+}
 
 @end
