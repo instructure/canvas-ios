@@ -520,7 +520,6 @@
 		49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49642BC81CF4C4DF00238B3F /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */; };
 		49642BC91CF4C4DF00238B3F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; };
-		49644EFA1D8C6D7F001CEE25 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BC9BCE1CF78DB200DCB3DD /* PSPDFKit.framework */; };
 		496D31241CF7529A00A3B11E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 496D31231CF7529A00A3B11E /* GoogleService-Info.plist */; };
 		496D31261CF752C600A3B11E /* LegacyModuleProgressShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */; };
 		496D312A1CF7550A00A3B11E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31291CF7550A00A3B11E /* NetworkMonitor.swift */; };
@@ -2019,7 +2018,7 @@
 		49AA2D221CF4DC540055862D /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
 		49AA2D231CF4DC540055862D /* RoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedButton.m; sourceTree = "<group>"; };
 		49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PSPDFKit+Canvas.swift"; sourceTree = "<group>"; };
-		49BC9BCE1CF78DB200DCB3DD /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../Frameworks/SoAnnotated/SoAnnotated/Dependencies/PSPDFKit/PSPDFKit.framework; sourceTree = "<group>"; };
+		49BC9BCE1CF78DB200DCB3DD /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = "Carthage/Checkouts/ios-annotations/PSPDFKit.framework"; sourceTree = "<group>"; };
 		49DC23031CFE4260009F27BA /* HandleDropboxOpen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HandleDropboxOpen.h; sourceTree = "<group>"; };
 		49E80A271CFF8E37002AF45E /* PageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PageKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49E80A311CFF93E6002AF45E /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2181,7 +2180,6 @@
 				492708AE1CF4C38500C631C6 /* Result.framework in Frameworks */,
 				492708A61CF4C38500C631C6 /* FileKit.framework in Frameworks */,
 				966B2C2C3195E7382007DC24 /* Pods_TechDebt.framework in Frameworks */,
-				49644EFA1D8C6D7F001CEE25 /* PSPDFKit.framework in Frameworks */,
 				492708B01CF4C38500C631C6 /* SoPersistent.framework in Frameworks */,
 				492708B31CF4C38500C631C6 /* TodoKit.framework in Frameworks */,
 				492708AA1CF4C38500C631C6 /* MyLittleViewController.framework in Frameworks */,
@@ -5411,7 +5409,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Frameworks/SoAnnotated/SoAnnotated/Dependencies/PSPDFKit";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Frameworks/SoAnnotated/SoAnnotated/Dependencies/PSPDFKit/";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -5458,7 +5456,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Frameworks/SoAnnotated/SoAnnotated/Dependencies/PSPDFKit";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Frameworks/SoAnnotated/SoAnnotated/Dependencies/PSPDFKit/";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
