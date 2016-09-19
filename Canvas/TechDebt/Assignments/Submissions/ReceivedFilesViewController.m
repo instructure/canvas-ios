@@ -124,16 +124,7 @@ static NSURL *receivedFilesFolder() {
     libraryView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     libraryView.delegate = self;
     [self populateLibraryViewItems];
-    libraryView.noItemsHelpString = NSLocalizedString(@"You have no files available for "
-                                                      @"upload. To add files from other "
-                                                      @"apps, find a file in another app, "
-                                                      @"then find the \"Open In\" button "
-                                                      @"to open it in Canvas. "
-                                                      @"You can also tap and hold on "
-                                                      @"attachments in the Mail app to open "
-                                                      @"them in Canvas.",
-                                                      @"An explanation of how to transfer files "
-                                                      @"to the Canvas app.");
+    libraryView.noItemsHelpString = NSLocalizedString(@"You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas.", @"An explanation of how to transfer files to the Canvas app.");
     [libraryContainer addSubview:libraryView];
     
     self.navigationItem.title = NSLocalizedString(@"Select file(s)", @"Title for a file picker window");

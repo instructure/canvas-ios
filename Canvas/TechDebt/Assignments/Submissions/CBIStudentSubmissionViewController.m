@@ -231,7 +231,7 @@ typedef enum CBISubmissionState : NSUInteger {
         } else if ([types containsObject:CKISubmissionTypePaper]) {
             @strongify(self)
             self.turnInButton.enabled = NO;
-            return NSLocalizedString(@"", @"title for paper assignment submission button");
+            return @"";
         } else if ([history.rac_sequence filter:^BOOL(CKISubmission *submission) {
             return submission.id != nil && submission.attempt > 0;
         }].array.count > 0) {
