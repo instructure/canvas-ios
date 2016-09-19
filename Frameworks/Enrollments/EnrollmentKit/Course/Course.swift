@@ -71,15 +71,25 @@ public final class Course: Enrollment {
 
     public override var hasGrades: Bool { return true }
 
+    private var inMGPLimbo: Bool {
+        return multipleGradingPeriodsEnabled && currentGradingPeriodID == nil
+    }
+
+    private var gradesAreVisible: Bool {
+        return !inMGPLimbo || totalForAllGradingPeriodsEnabled
+    }
+
     public var currentGrade: Grade? {
         return grades.filter { $0.gradingPeriodID == currentGradingPeriodID }.first
     }
 
     public override var visibleGrade: String? {
+        guard gradesAreVisible else { return nil }
         return visibleGradingPeriodGrade(currentGradingPeriodID)
     }
 
     public override var visibleScore: String? {
+        guard gradesAreVisible else { return nil }
         return visibleGradingPeriodScore(currentGradingPeriodID)
     }
 

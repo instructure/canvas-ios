@@ -98,6 +98,25 @@ class CourseSpec: QuickSpec {
                     expect(course.visibleGrade) == "B"
                     expect(course.visibleScore) == "80%"
                 }
+
+                it("is nil when effected by totalForAllGradingPeriodsEnabled") {
+                    course.multipleGradingPeriodsEnabled = true
+                    course.currentGradingPeriodID = nil
+                    course.totalForAllGradingPeriodsEnabled = false
+                    Grade.build(managedObjectContext, gradingPeriodID: nil, currentGrade: "A", currentScore: 100, course: { _ in course })
+                    Grade.build(managedObjectContext, gradingPeriodID: "1", currentGrade: "B", currentScore: 80, course: { _ in course })
+                    expect(course.visibleGrade).to(beNil())
+                    expect(course.visibleScore).to(beNil())
+
+                    course.totalForAllGradingPeriodsEnabled = true
+                    expect(course.visibleGrade) == "A"
+                    expect(course.visibleScore) == "100%"
+
+                    course.totalForAllGradingPeriodsEnabled = false
+                    course.currentGradingPeriodID = "1"
+                    expect(course.visibleGrade) == "B"
+                    expect(course.visibleScore) == "80%"
+                }
             }
 
             describe("update values") {
