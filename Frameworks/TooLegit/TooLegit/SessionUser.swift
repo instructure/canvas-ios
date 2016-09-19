@@ -29,7 +29,7 @@ public class SessionUser: NSObject {
     }
 
     public func getAvatarImage(completion: (image: UIImage?, error: NSError?)->Void) {
-        guard let url = avatarURL else { completion(image: nil, error: NSError(subdomain: "TooLegit", description: NSLocalizedString("User has no valid avatar image url", comment: "Error message if we can't pull the avatar image"))); return }
+        guard let url = avatarURL else { completion(image: nil, error: NSError(subdomain: "TooLegit", description: NSLocalizedString("User has no valid avatar image url", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Error message if we can't pull the avatar image"))); return }
         KingfisherManager.sharedManager.retrieveImageWithURL(url, optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
             completion(image: image, error: error)
         }

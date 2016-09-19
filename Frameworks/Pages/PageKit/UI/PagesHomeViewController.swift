@@ -27,8 +27,8 @@ public class PagesHomeViewController: UIViewController {
         }
     }
 
-    let frontPageTitle = NSLocalizedString("Front Page", comment: "front page segmented control title")
-    let allPagesTitle = NSLocalizedString("All Pages", comment: "all pages segmented control title")
+    let frontPageTitle = NSLocalizedString("Front Page", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "front page segmented control title")
+    let allPagesTitle = NSLocalizedString("All Pages", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "all pages segmented control title")
 
     enum InnerController {
         case List

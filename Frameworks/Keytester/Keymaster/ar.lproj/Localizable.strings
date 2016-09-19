@@ -1,0 +1,15 @@
+/* Back Button Title */
+"Back" = "عودة";
+
+/* Error Alert Title */
+"Error" = "خطأ";
+
+/* Domain Picker Search Placeholder */
+"Find your school or district" = "ابحث عن مدرستك أو مقاطعتك";
+
+/* OK */
+"OK" = "موافق";
+
+/* AccountDomain Database Load Failure Message */
+"There was a problem loading the AccountDomain database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة بيانات AccountDomain.";
+

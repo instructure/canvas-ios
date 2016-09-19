@@ -1,0 +1,66 @@
+/* nevermind */
+"Cancel" = "Whakakore";
+
+/* Pick a photo from library */
+"Choose a Photo" = "Kōwhiria he Whakaahua";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "Kōwhiria he Whakaahua Ataata ranei";
+
+/* Pick a video from library */
+"Choose a Video" = "Kōwhiria he Ataata";
+
+/* URL submission option */
+"Choose a Webpage" = "Kōwhiria he Whārangi Tukutuku";
+
+/* name for upload data */
+"Data" = "Raraunga";
+
+/* Delete button for file upload */
+"Delete" = "Mukua";
+
+/* Prompt for text upload */
+"Enter your upload..." = "E tomo koutou tukunga ake ...";
+
+/* title for file upload errors */
+"File Upload Error" = "Hapa Tukuake Kōnae";
+
+/* Title of files list */
+"Files" = "Kōnae";
+
+/* name for a photo just taken */
+"Photo" = "Whakaahua";
+
+/* Choose record audio submission */
+"Record Audio" = "Record Ororongo";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "Tangohia Photo Ataata ranei";
+
+/* Take a photo submission choice */
+"Take a Photo" = "E mau ki te Whakaahua";
+
+/* Take a video submission choice */
+"Take a Video" = "E mau ki te Video";
+
+/* Text submission option */
+"Text" = "Kuputuhi";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "He ko he raru uta i te kōnae pātengi raraunga FileKit.";
+
+/* FileKit Tests database fails */
+"There was a problem loading the FileKitTests database file." = "He ko he raru uta i te kōnae pātengi raraunga KitTests Kōnae.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "He ko he raru faaineine i te kōnae mō te tukuake";
+
+/* Turn in button title */
+"Turn In" = "Tahuri I roto i";
+
+/* name for a video just taken for upload */
+"Video" = "Ataata";
+
+/* prompt for submission upload */
+"What would you like to turn in?" = "He aha e hiahia ana koe ki te tahuri i roto i?";
+

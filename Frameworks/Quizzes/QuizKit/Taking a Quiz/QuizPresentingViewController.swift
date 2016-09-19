@@ -87,9 +87,9 @@ class QuizPresentingViewController: UIViewController {
             }
         }
         submissionController.almostDue = {
-            let alert = UIAlertController(title: NSLocalizedString("Quiz Due", comment: "Title for alert that shows when a quiz hits the due date"), message: NSLocalizedString("The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possbily be late?", comment: "Description for alert that shows when the quiz hits the due date"), preferredStyle: .Alert)
-            let beASlackerAction = UIAlertAction(title: NSLocalizedString("Continue Quiz", comment: "Button for electing to be late on a quiz"), style: .Destructive, handler: { _ in })
-            let notASlackerAction = UIAlertAction(title: NSLocalizedString("Submit", comment: "Button for electing to not be late on a quiz"), style: .Default, handler: { [weak self] _ in
+            let alert = UIAlertController(title: NSLocalizedString("Quiz Due", comment: "Title for alert that shows when a quiz hits the due date"), message: NSLocalizedString("The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possbily be late?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Description for alert that shows when the quiz hits the due date"), preferredStyle: .Alert)
+            let beASlackerAction = UIAlertAction(title: NSLocalizedString("Continue Quiz", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Button for electing to be late on a quiz"), style: .Destructive, handler: { _ in })
+            let notASlackerAction = UIAlertAction(title: NSLocalizedString("Submit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Button for electing to not be late on a quiz"), style: .Default, handler: { [weak self] _ in
                 self?.goAheadAndSubmit()
             })
             alert.addAction(beASlackerAction)
@@ -97,7 +97,7 @@ class QuizPresentingViewController: UIViewController {
             self.presentViewController(alert, animated: true, completion: nil)
         }
         submissionController.lockQuiz = { [weak self] in
-            self?.goAheadAndSubmit(NSLocalizedString("Lock Date Reached\nSubmitting", comment: "Label indicating that the quiz lock date was reached and the quiz is auto submitting"))
+            self?.goAheadAndSubmit(NSLocalizedString("Lock Date Reached\nSubmitting", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Label indicating that the quiz lock date was reached and the quiz is auto submitting"))
         }
     }
 
@@ -130,7 +130,7 @@ class QuizPresentingViewController: UIViewController {
                 flaggedButton.setImage(flagImage?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
                 flaggedButton.tintColor = UIColor.whiteColor()
                 flaggedButton.addTarget(self, action: Selector("openDrawer:"), forControlEvents: .TouchUpInside)
-                flaggedButton.accessibilityHint = NSLocalizedString("0 Questions Answered", comment: "Accessiblity hint for question drawer button")
+                flaggedButton.accessibilityHint = NSLocalizedString("0 Questions Answered", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Accessiblity hint for question drawer button")
                 flagView.addSubview(flaggedButton)
                 
                 self.flaggedCountLabel.frame = CGRect(x: 0.0, y: 0.0, width: flagView.frame.size.width - 8.0 /* arrow tip */, height: flagView.frame.size.height)
@@ -145,7 +145,7 @@ class QuizPresentingViewController: UIViewController {
             }()
         }
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Exit", comment: "Exit button to leave the quiz"), style: .Plain, target: self, action: Selector("exitQuiz:"))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Exit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Exit button to leave the quiz"), style: .Plain, target: self, action: Selector("exitQuiz:"))
     }
     
     private func prepareSubmissionView() {
@@ -244,15 +244,15 @@ class QuizPresentingViewController: UIViewController {
     }
     
     private func reportError(err: NSError) {
-        let title = NSLocalizedString("Quiz Error", comment: "Title for quiz error")
-        let dismiss = NSLocalizedString("Dismiss", comment: "Dismiss button for error alert")
+        let title = NSLocalizedString("Quiz Error", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Title for quiz error")
+        let dismiss = NSLocalizedString("Dismiss", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Dismiss button for error alert")
         
-        var message = err.localizedDescription ?? NSLocalizedString("An unknown error has occurred.", comment: "an unknown error's message")
+        var message = err.localizedDescription ?? NSLocalizedString("An unknown error has occurred.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "an unknown error's message")
         if let reason = err.localizedFailureReason {
-            message += NSLocalizedString(" Failure reason: \(reason).", comment: "Failure reason from the JSON payload from canvas")
+            message += NSLocalizedString(" Failure reason: \(reason).", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Failure reason from the JSON payload from canvas")
         }
         if let reportID = err.userInfo[RequestErrorReportIDKey] as? Int {
-            message += NSLocalizedString(" Error report ID: \(reportID)", comment: "Error message component with the report id")
+            message += NSLocalizedString(" Error report ID: \(reportID)", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Error message component with the report id")
         }
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -282,12 +282,12 @@ class QuizPresentingViewController: UIViewController {
         }
         
         if currentTime == 300 /* 5 minutes */ && quizController.quiz!.timed {
-            let text = NSLocalizedString("5 minutes remaining", comment: "Notification to alert the user that there is only 5 minutes left in the timed quiz")
+            let text = NSLocalizedString("5 minutes remaining", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Notification to alert the user that there is only 5 minutes left in the timed quiz")
             showTimerToastWithText(text)
         }
         
         if currentTime == 30 && quizController.quiz!.timed {
-            let text = NSLocalizedString("30 seconds remaining", comment: "Notification to alert the user that there is only 30 seconds left in the time quiz")
+            let text = NSLocalizedString("30 seconds remaining", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Notification to alert the user that there is only 30 seconds left in the time quiz")
             showTimerToastWithText(text)
         }
     }
@@ -322,13 +322,13 @@ class QuizPresentingViewController: UIViewController {
             contentOverlay.alpha = 0.0
             contentOverlay.hidden = false
             questionDrawerViewController.view.accessibilityViewIsModal = true
-            flaggedButton.accessibilityLabel = NSLocalizedString("Hide Question List", comment: "Hides the question list")
+            flaggedButton.accessibilityLabel = NSLocalizedString("Hide Question List", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Hides the question list")
         } else {
             constrain(questionDrawerViewController.view, replace: questionDrawerConstraintGroup) { drawerView in
                 drawerView.trailing == drawerView.superview!.leading; return
             }
             questionDrawerViewController.view.accessibilityViewIsModal = false
-            flaggedButton.accessibilityLabel = NSLocalizedString("Show Question List", comment: "Hides the question list")
+            flaggedButton.accessibilityLabel = NSLocalizedString("Show Question List", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Hides the question list")
         }
         
         let setOverlayAlpa: ()->() = {
@@ -363,7 +363,7 @@ class QuizPresentingViewController: UIViewController {
         if timerVisible {
             updateTimer(quizSubmissionTimerController!.timerTime)
         } else {
-            timerLabel.text = NSLocalizedString("Show Timer", comment: "Text for a button that toggles to show a timer for a timed quiz")
+            timerLabel.text = NSLocalizedString("Show Timer", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Text for a button that toggles to show a timer for a timed quiz")
         }
     }
     
@@ -417,21 +417,21 @@ extension QuizPresentingViewController {
         }
         
         var title: String? = nil
-        let message = NSLocalizedString("Are you sure you want to submit your answers?", comment: "Confirmation before submitting a quiz")
+        let message = NSLocalizedString("Are you sure you want to submit your answers?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Confirmation before submitting a quiz")
         if unansweredCount > 0 {
-            title = String(format: NSLocalizedString("%d questions not answered", comment: "Confirmations alerting user of unanswered questions"), unansweredCount)
+            title = String(format: NSLocalizedString("%d questions not answered", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Confirmations alerting user of unanswered questions"), unansweredCount)
         }
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
         // yes, I'm ready
-        let forTheGlory = NSLocalizedString("Submit", comment: "confirm submitting quiz")
+        let forTheGlory = NSLocalizedString("Submit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "confirm submitting quiz")
         alert.addAction(UIAlertAction(title: forTheGlory, style: .Default, handler:{ _ in
             onConfirm(); return
         }))
         
         // false, I'm having doubts
-        let noMaybeNot = NSLocalizedString("Cancel", comment: "cancel button for submitting a quiz")
+        let noMaybeNot = NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "cancel button for submitting a quiz")
         alert.addAction(UIAlertAction(title: noMaybeNot, style: .Cancel, handler: { _ in
             print("cancelled submission"); return
         }))
@@ -480,7 +480,7 @@ extension QuizPresentingViewController {
                 }
             }
             
-            flaggedButton.accessibilityHint = NSLocalizedString("\(questionsController!.flaggedCount) Questions Answered", comment: "Accessiblity hint for question drawer button")
+            flaggedButton.accessibilityHint = NSLocalizedString("\(questionsController!.flaggedCount) Questions Answered", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Accessiblity hint for question drawer button")
         }
     }
 }

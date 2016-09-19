@@ -43,7 +43,7 @@ enum RubricCellViewModel: TableViewCellViewModel {
 
             cell.pointsLabel.text = points == true ? "\(points) / \(pointsPossible)" : "\(pointsPossible)"
             
-            cell.pointsTitleLabel.text = NSLocalizedString("Points Possible", comment: "Rubric Points Possible Title")
+            cell.pointsTitleLabel.text = NSLocalizedString("Points Possible", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Rubric Points Possible Title")
             
             return cell
         case .Criterion(let criterionDescription, let longDescription):
@@ -149,8 +149,8 @@ enum RubricCellViewModel: TableViewCellViewModel {
         let hasCustomGrade = assessment.points != nil
         
         if (hasCustomGrade || hasComment) {
-            let comment = NSLocalizedString("Comment", comment: "Title for a rating that hasn't been graded but has a comment")
-            let noComment = NSLocalizedString("No Comment", comment: "Title for a rating that has custom graded but has no comment")
+            let comment = NSLocalizedString("Comment", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for a rating that hasn't been graded but has a comment")
+            let noComment = NSLocalizedString("No Comment", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for a rating that has custom graded but has no comment")
             return RubricCellViewModel.CriterionRating(assessment.id, assessment.comments, assessment.points, hasComment ? comment : noComment , true)
         }
         

@@ -1,0 +1,15 @@
+/* dismiss error dialog */
+"Dismiss" = "解雇";
+
+/* Placeholder for URL */
+"Enter URL..." = "输入URL...";
+
+/* navigate */
+"Go" = "前往";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "您输入的文字不是有效的URL";
+
+/* Turn in this url button */
+"Turn In" = "提交";
+

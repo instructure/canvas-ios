@@ -1,0 +1,15 @@
+/* Back Button Title */
+"Back" = "Tilbake";
+
+/* Error Alert Title */
+"Error" = "Feil";
+
+/* Domain Picker Search Placeholder */
+"Find your school or district" = "Finn skolen eller distriktet ditt";
+
+/* OK */
+"OK" = "OK";
+
+/* AccountDomain Database Load Failure Message */
+"There was a problem loading the AccountDomain database file." = "Det oppsto et problem under opplasting av databasefilen til kontodomenet.";
+

@@ -1,0 +1,61 @@
+/* record button a11y hint
+   stop record button a11y hint */
+"Begin recording" = "Siendo grabado";
+
+/* Cancel button */
+"Cancel" = "Cancelar";
+
+/* Delete button */
+"Delete" = "Borrar";
+
+/* message for delete dialog of audio recorder */
+"Delete recording?" = "¿Desea borrar la grabación?";
+
+/* Dismiss an error dialog */
+"Dismiss" = "Descartar";
+
+/* can't record because request for mic access was denied title */
+"Not Permitted" = "No permitido";
+
+/* Pause recording/playback */
+"Pause" = "Pausa";
+
+/* record button a11y hint */
+"Pause playback" = "Pausar la reproducción";
+
+/* Playback button */
+"Play" = "Reproducir";
+
+/* play button a11y hint */
+"Play back recording" = "Reproducir la grabación de nuevo";
+
+/* Title for playback error messages */
+"Playback Error" = "Error de reproducción";
+
+/* Record button a11y label */
+"Record" = "Grabar";
+
+/* permission denied button a11y label */
+"Record Permission Help" = "Ayuda para el permiso de grabación";
+
+/* title for a recording error */
+"Recording Error" = "Error de grabación";
+
+/* Record button a11y label */
+"Request Audio Recording Permission" = "Solicitar permiso para grabación de audio";
+
+/* record button a11y hint */
+"Request Permission to record audio" = "Solicitar permiso para grabar audio";
+
+/* stop recording button a11y label */
+"Stop" = "Parar";
+
+/* Error message for a file missing */
+"The file does not exist." = "El archivo no existe.";
+
+/* permission denied button a11y hint */
+"User has denied record permission" = "El usuario ha negado el permiso para grabar";
+
+/* permission was rejected */
+"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Usted debe conceder (appName) acceso al micrófono en la aplicación de configuración con el fin de grabar el audio.";
+

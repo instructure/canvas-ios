@@ -31,17 +31,17 @@ public enum MobileVerifyResult: Int {
         case .Success:
             return ""
         case Other:
-            return NSLocalizedString("", value: "Not authorized.", comment: "")
+            return NSLocalizedString("Not authorized.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "Not authorized")
         case BadSite:
-            return NSLocalizedString("", value: "Invalid Canvas URL.", comment: "")
+            return NSLocalizedString("Invalid Canvas URL.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "Invalid Canvas URL")
         case BadUserAgent:
-            return NSLocalizedString("", value: "Invalid User Agent.", comment: "")
+            return NSLocalizedString("Invalid User Agent.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "Invalid User Agent")
         case EmptyResponse:
-            return NSLocalizedString("", value: "Empty Response.", comment: "")
+            return NSLocalizedString("Empty Response.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "Empty Response")
         case NoResult:
-            return NSLocalizedString("", value: "No Result.", comment: "")
+            return NSLocalizedString("No Result.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "No Result")
         case JSONParseError:
-            return NSLocalizedString("", value: "JSON Parsing Error.", comment: "")
+            return NSLocalizedString("JSON Parsing Error.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "JSON Parsing Error")
         }
     }
 }

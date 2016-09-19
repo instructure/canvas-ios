@@ -1,0 +1,18 @@
+/* all pages segmented control title */
+"All Pages" = "全部页面";
+
+/* badge indicating front page */
+"Front Page" = "首页";
+
+/* Generic button to dismiss the popup message */
+"Okay" = "Okay";
+
+/* The page is locked by the teacher */
+"Page Locked" = "页面锁定";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "加载页面数据文件时出现问题。";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "此页面目前被锁定且不能查看。";
+

@@ -66,6 +66,7 @@
 		B17891C71C9736CE00B00D8B /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17891C61C9736CE00B00D8B /* SessionTests.swift */; };
 		B1F820E81CEBE040006EC0BC /* CalendarEvent+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820E71CEBE040006EC0BC /* CalendarEvent+Factory.swift */; };
 		B1F820EE1CEC1DFB006EC0BC /* calendar_event.json in Resources */ = {isa = PBXBuildFile; fileRef = B1F820ED1CEC1DFB006EC0BC /* calendar_event.json */; };
+		B5BFC52D1D8CB9C60046D71D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5BFC5281D8CB9C60046D71D /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +170,26 @@
 		B17891C61C9736CE00B00D8B /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		B1F820E71CEBE040006EC0BC /* CalendarEvent+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CalendarEvent+Factory.swift"; sourceTree = "<group>"; };
 		B1F820ED1CEC1DFB006EC0BC /* calendar_event.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendar_event.json; sourceTree = "<group>"; };
+		B5BFC5291D8CB9C60046D71D /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = CalendarKit/da.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC52A1D8CB9C60046D71D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = CalendarKit/de.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC52B1D8CB9C60046D71D /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "CalendarKit/en-AU.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		B5BFC52C1D8CB9C60046D71D /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "CalendarKit/en-GB.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		B5BFC5311D8CB9CC0046D71D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = CalendarKit/es.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC5321D8CB9CC0046D71D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = CalendarKit/fr.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC5331D8CB9CC0046D71D /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = CalendarKit/ht.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC5351D8CB9D30046D71D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = CalendarKit/ja.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC5361D8CB9D30046D71D /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = CalendarKit/mi.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC5371D8CB9D30046D71D /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = CalendarKit/nb.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC5381D8CB9D30046D71D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = CalendarKit/nl.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC5391D8CB9E00046D71D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CalendarKit/en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC53A1D8CB9ED0046D71D /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = CalendarKit/pl.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC53B1D8CB9ED0046D71D /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "CalendarKit/pt-BR.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		B5BFC53C1D8CB9ED0046D71D /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = CalendarKit/pt.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC53D1D8CB9F40046D71D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = CalendarKit/ru.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC53E1D8CB9F40046D71D /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = CalendarKit/sv.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC53F1D8CB9F40046D71D /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "CalendarKit/zh-HK.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		B5BFC5401D8CB9F40046D71D /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = CalendarKit/zh.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5BFC5411D8CB9F80046D71D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = CalendarKit/ar.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +318,7 @@
 				5E5560021C8EB38C00933E08 /* Network */,
 				5ECEDE101C499FE200E59B53 /* CalendarKit.h */,
 				5ECEDE121C499FE200E59B53 /* Info.plist */,
+				B5BFC5281D8CB9C60046D71D /* Localizable.strings */,
 				5E555FFE1C8EA63C00933E08 /* Session+CalendarEvent.swift */,
 			);
 			path = CalendarKit;
@@ -495,6 +517,25 @@
 			knownRegions = (
 				en,
 				Base,
+				da,
+				de,
+				"en-AU",
+				"en-GB",
+				es,
+				fr,
+				ht,
+				ja,
+				mi,
+				nb,
+				nl,
+				pl,
+				"pt-BR",
+				pt,
+				ru,
+				sv,
+				"zh-HK",
+				zh,
+				ar,
 			);
 			mainGroup = 5ECEDDC31C499FB400E59B53;
 			productRefGroup = 5ECEDDCD1C499FB400E59B53 /* Products */;
@@ -530,6 +571,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5BFC52D1D8CB9C60046D71D /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,6 +661,37 @@
 			targetProxy = 5ECEDE211C499FE200E59B53 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B5BFC5281D8CB9C60046D71D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5BFC5291D8CB9C60046D71D /* da */,
+				B5BFC52A1D8CB9C60046D71D /* de */,
+				B5BFC52B1D8CB9C60046D71D /* en-AU */,
+				B5BFC52C1D8CB9C60046D71D /* en-GB */,
+				B5BFC5311D8CB9CC0046D71D /* es */,
+				B5BFC5321D8CB9CC0046D71D /* fr */,
+				B5BFC5331D8CB9CC0046D71D /* ht */,
+				B5BFC5351D8CB9D30046D71D /* ja */,
+				B5BFC5361D8CB9D30046D71D /* mi */,
+				B5BFC5371D8CB9D30046D71D /* nb */,
+				B5BFC5381D8CB9D30046D71D /* nl */,
+				B5BFC5391D8CB9E00046D71D /* en */,
+				B5BFC53A1D8CB9ED0046D71D /* pl */,
+				B5BFC53B1D8CB9ED0046D71D /* pt-BR */,
+				B5BFC53C1D8CB9ED0046D71D /* pt */,
+				B5BFC53D1D8CB9F40046D71D /* ru */,
+				B5BFC53E1D8CB9F40046D71D /* sv */,
+				B5BFC53F1D8CB9F40046D71D /* zh-HK */,
+				B5BFC5401D8CB9F40046D71D /* zh */,
+				B5BFC5411D8CB9F80046D71D /* ar */,
+			);
+			name = Localizable.strings;
+			path = CalendarEvent;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5ECEDDF21C499FB400E59B53 /* Debug */ = {

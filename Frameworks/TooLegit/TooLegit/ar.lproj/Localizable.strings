@@ -1,0 +1,12 @@
+/* Title for network errors */
+"Network Error" = "خطأ في الشبكة";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "حدث خطأ أثناء الاتصال بالخادم.";
+
+/* Unexpected response type */
+"Unexpected response type" = "نوع استجابة غير متوقع";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "عنوان URL لصورة أفاتار المستخدم غير صالح";
+

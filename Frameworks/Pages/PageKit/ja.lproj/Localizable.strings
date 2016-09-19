@@ -1,0 +1,18 @@
+/* all pages segmented control title */
+"All Pages" = "すべてのページ";
+
+/* badge indicating front page */
+"Front Page" = "フロントページ";
+
+/* Generic button to dismiss the popup message */
+"Okay" = "Ok";
+
+/* The page is locked by the teacher */
+"Page Locked" = "ページはロックされています";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "Pages データベースファイルの読み込み中にエラーが発生しました。";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "現在、ページはロックされているので閲覧できません。";
+

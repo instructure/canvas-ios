@@ -1,0 +1,15 @@
+/* Back Button Title */
+"Back" = "Terug";
+
+/* Error Alert Title */
+"Error" = "Fout";
+
+/* Domain Picker Search Placeholder */
+"Find your school or district" = "Vind je school of district";
+
+/* OK */
+"OK" = "OK";
+
+/* AccountDomain Database Load Failure Message */
+"There was a problem loading the AccountDomain database file." = "Er was een probleem bij het laden van het AccountDomain gegevensbestand.";
+

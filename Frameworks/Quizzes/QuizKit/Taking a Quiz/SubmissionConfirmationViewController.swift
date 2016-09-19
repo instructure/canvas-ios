@@ -61,7 +61,7 @@ class SubmissionConfirmationViewController: UIViewController {
             if customLoadingText != nil {
                 infoLabel.text = customLoadingText!
             } else {
-                infoLabel.text = NSLocalizedString("Submitting Quiz", comment: "Label for indication of submitting quiz")
+                infoLabel.text = NSLocalizedString("Submitting Quiz", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Label for indication of submitting quiz")
             }
             resultsButton.hidden = true
         case .Successful:
@@ -70,7 +70,7 @@ class SubmissionConfirmationViewController: UIViewController {
             statusImageView.image = successImage
             statusImageView.hidden = false
             animateImagePop()
-            infoLabel.text = NSLocalizedString("Quiz Submitted", comment: "Label for indication that the quiz submission was successful")
+            infoLabel.text = NSLocalizedString("Quiz Submitted", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Label for indication that the quiz submission was successful")
             resultsButton.hidden = (resultsURL == nil)
             break
         case .Failed:
@@ -79,7 +79,7 @@ class SubmissionConfirmationViewController: UIViewController {
             statusImageView.image = failedImage
             statusImageView.hidden = false
             animateImagePop()
-            infoLabel.text = NSLocalizedString("Submission Failure", comment: "Label for indication that the quiz submission failed")
+            infoLabel.text = NSLocalizedString("Submission Failure", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Label for indication that the quiz submission failed")
             resultsButton.hidden = true
             break
         }

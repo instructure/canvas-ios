@@ -1,0 +1,21 @@
+/* Dismiss an error dialog */
+"Dismiss" = "解雇";
+
+/* Data encoding error title */
+"Encoding Error" = "编码错误";
+
+/* Option to report an error */
+"Report" = "报告";
+
+/* Data encoding error message */
+"There was a problem encoding UTF8 Data" = "编码UTF8数据时出现问题";
+
+/* JSON Parsing error description */
+"There was a problem interpreting a response from the server." = "解读服务器的响应时出现问题。";
+
+/* SoLazy's fallback title for an unknown error */
+"Unknown Error" = "未知错误";
+
+/* attached to error explanation in dialog */
+"Explanation:" = "解释：";
+

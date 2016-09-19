@@ -1,0 +1,204 @@
+/* Error message component with the report id */
+"Error report ID: (reportID)" = "Id del informe del error: (reportID)";
+
+/* Failure reason from the JSON payload from canvas */
+"Failure reason: (reason)." = "Rasón de la falla: (razón).";
+
+/* Confirmations alerting user of unanswered questions */
+"%d questions not answered" = "%d preguntas no respondidas";
+
+/* Accessiblity hint for question drawer button */
+"(questionsController!.flaggedCount) Questions Answered" = "(questionsController!.flaggedCount) Preguntas respondidas";
+
+/* Accessiblity hint for question drawer button */
+"0 Questions Answered" = "0 preguntas respondidas";
+
+/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
+"5 minutes remaining" = "Quedan 5 minutos";
+
+/* Notification to alert the user that there is only 30 seconds left in the time quiz */
+"30 seconds remaining" = "Quedan 30 segundos";
+
+/* label for number of attempts that are allowed */
+"Allowed Attempts" = "Intentos permitidos";
+
+/* an unknown error's message */
+"An unknown error has occurred." = "Ha ocurrido un error desconocido.";
+
+/* Question to confirm user wants to navigate away from a quiz. */
+"Are you sure you want to leave this quiz?" = "¿Seguro que quiere abandonar esta evaluación?";
+
+/* Confirmation before submitting a quiz */
+"Are you sure you want to submit your answers?" = "¿Está seguro de que desea enviar sus respuestas?";
+
+/* label for quiz availability date */
+"Available Until" = "Disponible hasta";
+
+/* Cancel button
+   cancel button for submitting a quiz
+   Cancel removing the formatting */
+"Cancel" = "Cancelar";
+
+/* Button for electing to be late on a quiz */
+"Continue Quiz" = "Continuar la evaluación";
+
+/* Dismiss button for error alert */
+"Dismiss" = "Descartar";
+
+/* Done button */
+"Done" = "Hecho";
+
+/* due date label for quiz due date */
+"Due Date" = "Fecha de entrega";
+
+/* Default text for essay cell */
+"Enter answer..." = "Ingresar la respuesta...";
+
+/* Exit button to leave the quiz */
+"Exit" = "Salir";
+
+/* State of the flagged question */
+"Flagged" = "Marcados con una bandera";
+
+/* Hides the question list */
+"Hide Question List" = "Esconder la lista de preguntas";
+
+/* Leave the quiz */
+"Leave" = "Abandonar";
+
+/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
+"Lock Date Reached
+Submitting" = "Fecha de bloqueo alcanzada
+Enviando";
+
+/* Next button for advancing a quiz */
+"Next" = "Siguiente";
+
+/* A quiz that has no due date */
+"No Due Date" = "Sin fecha límite de entrega";
+
+/* when a quiz has no time limit */
+"No time limit" = "Sin tiempo límite";
+
+/* Title for alert showing when a quiz isn't takeable */
+"Not Takeable" = "No disponible";
+
+/* OK */
+"OK" = "OK";
+
+/* label for number of points in a quiz */
+"Points" = "Puntos";
+
+/* accessibility label for a quiz question */
+"Question" = "Pregunta";
+
+/* state for a question that has been flagged */
+"Question (questionNumber) Flagged" = "Pregunta (questionNumber) marcada con una bandera";
+
+/* state for unflagged question */
+"Question (questionNumber) Unflagged" = "Pregunta (questionNumber) desmarcada";
+
+/* label for the number of questions */
+"Questions" = "Preguntas";
+
+/* Title for alert that shows when a quiz hits the due date */
+"Quiz Due" = "La evaluación vence";
+
+/* Title for quiz error */
+"Quiz Error" = "Error de la evaluación";
+
+/* Label for indication that the quiz submission was successful */
+"Quiz Submitted" = "Evaluación enviada";
+
+/* Remove the formatting of the essay question text */
+"Remove Formatting" = "Remover el formato";
+
+/* button for resuming a quiz */
+"Resume Quiz" = "Reanudar evaluación";
+
+/* button for retaking quiz */
+"Retake Quiz" = "Retomar la evaluación";
+
+/* Indicates that a matching quiz question needs to have an answer selected */
+"Select Answer" = "Seleccionar respuesta";
+
+/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
+"Select all that apply" = "Seleccionar todas las que apliquen";
+
+/* Hides the question list */
+"Show Question List" = "Mostrar la lista de preguntas";
+
+/* Text for a button that toggles to show a timer for a timed quiz */
+"Show Timer" = "Mostrar el cronómetro";
+
+/* Stay on the quiz view */
+"Stay" = "Permanecer";
+
+/* Label for indication that the quiz submission failed */
+"Submission Failure" = "Falló el envío";
+
+/* Button for electing to not be late on a quiz
+   confirm submitting quiz
+   Submit button for completing a quiz */
+"Submit" = "Enviar";
+
+/* Label for indication of submitting quiz */
+"Submitting Quiz" = "Enviando la evaluación";
+
+/* Button for taking the quiz */
+"Take Quiz" = "Tomar la evaluación";
+
+/* This shouldn't ever happen. */
+"The Pages are gone!? Why are the pages always gone?" = "¡Las páginas ya no están! ¿Por qué desaparecen siempre las páginas?";
+
+/* Description for alert that shows when the quiz hits the due date */
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possbily be late?" = "La evaluación debe entregarse en 1 minuto. ¿Le gustaría enviarla ahora y estar a tiempo o seguir tomando la evaluación y posiblemente enviarla tarde?";
+
+/* generic error message */
+"There was a problem with the Canvas request." = "Hubo un problema con la solicitud de Canvas.";
+
+/* No comment provided by engineer. */
+"There was no data!" = "¡No habían datos!";
+
+/* Warning to users editing an essay question that was edited on the web. */
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "Esta pregunta del ensayo ha sido editada en la red y puede contener formato, enlaces o imágenes. Con el fin de editar esta respuesta en su dispositivo móvil tendremos que borrar el formato (incluyendo enlaces e imágenes). De lo contrario puede seguir editando la pregunta a través de un navegador web.";
+
+/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
+"This quiz has an IP address filter set." = "Esta evaluación tiene un conjunto de filtros de direcciones IP.";
+
+/* Message when telling the user they can't take the quiz for some weird reason */
+"This quiz is currently unavailable." = "Esta evaluación no está disponible en este momento.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked." = "Esta evaluación está bloqueada.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked. Reason: (description)" = "Esta evaluación está bloqueada. Razón: (descripción)";
+
+/* label for the time limit */
+"Time Limit" = "Tiempo límite";
+
+/* Toggle flag accessiblity action */
+"Toggle Flag" = "Alternar la bandera";
+
+/* Ungraded quiz */
+"Ungraded" = "Sin calificación";
+
+/* When a quiz has no limit on the number of attempts */
+"Unlimited" = "Ilimitada";
+
+/* a warning message */
+"Warning" = "Advertencia";
+
+/* Shows time limit on a quiz */
+"You have (minuteLimit) minutes." = "Le quedan (minuteLimit) minutos.";
+
+/* Message when telling the user they can't take the quiz because they used up all their attempts */
+"You have used all your attempts available on this quiz." = "Ha usado todos sus intentos disponibles en esta evaluación.";
+
+/* Hours label for time limit */
+"hr" = "hora";
+
+/* Minutes label localized */
+"min" = "min";
+

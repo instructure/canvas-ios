@@ -62,7 +62,7 @@ class NonNativeQuizTakingViewController: UIViewController {
     }
     
     private func prepareNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Exit", comment: "Exit button to leave the quiz"), style: .Plain, target: self, action: Selector("exitQuiz:"))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Exit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Exit button to leave the quiz"), style: .Plain, target: self, action: Selector("exitQuiz:"))
     }
     
     func beginTakingQuiz() {
@@ -74,9 +74,9 @@ class NonNativeQuizTakingViewController: UIViewController {
     
     func exitQuiz(button: UIBarButtonItem?) {
         if webView.request?.URL?.path?.rangeOfString("/take") != nil {
-            let areYouSure = NSLocalizedString("Are you sure you want to leave this quiz?", comment: "Question to confirm user wants to navigate away from a quiz.")
-            let stay = NSLocalizedString("Stay", comment: "Stay on the quiz view")
-            let leave = NSLocalizedString("Leave", comment: "Leave the quiz")
+            let areYouSure = NSLocalizedString("Are you sure you want to leave this quiz?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Question to confirm user wants to navigate away from a quiz.")
+            let stay = NSLocalizedString("Stay", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Stay on the quiz view")
+            let leave = NSLocalizedString("Leave", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Leave the quiz")
             
             let alert = UIAlertController(title: nil, message: areYouSure, preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: stay, style: .Cancel, handler: nil))

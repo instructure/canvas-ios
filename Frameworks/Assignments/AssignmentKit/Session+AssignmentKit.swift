@@ -17,7 +17,7 @@ let assignmentKitModelName = "AssignmentKit"
 let assignmentKitSubdomain = "AssignmentKit"
 let assignmentKitFailedToLoadErrorCode = 10001
 let assignmentKitFailedToLoadErrorDescription = "Failed to load \(assignmentKitModelName) NSManagedObjectModel"
-let assignmentKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the AssignmentKit database file.", comment: "AssignmentKit database load failure message")
+let assignmentKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the AssignmentKit database file.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "AssignmentKit database load failure message")
 
 extension Session {
     public func assignmentsManagedObjectContext(scope: String? = nil) throws -> NSManagedObjectContext {

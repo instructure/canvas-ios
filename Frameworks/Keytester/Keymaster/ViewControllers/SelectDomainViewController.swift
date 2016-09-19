@@ -220,7 +220,7 @@ public class SelectDomainViewController: UIViewController {
         if let prompt = prompt {
             searchTextField.placeholder = prompt
         } else {
-            searchTextField.placeholder = NSLocalizedString("Find your school or district", comment: "Domain Picker Search Placeholder")
+            searchTextField.placeholder = NSLocalizedString("Find your school or district", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Domain Picker Search Placeholder")
         }
     }
 
@@ -283,7 +283,7 @@ public class SelectDomainViewController: UIViewController {
         button.setBackgroundImage(backImage, forState: .Normal)
         button.setBackgroundImage(backImage, forState: .Selected)
         button.tintColor = UIColor.whiteColor()
-        button.accessibilityLabel = NSLocalizedString("Back", comment: "Back Button Title")
+        button.accessibilityLabel = NSLocalizedString("Back", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Back Button Title")
         button.accessibilityIdentifier = "back_button"
 
         self.view.addSubview(button)
@@ -446,12 +446,12 @@ public class SelectDomainViewController: UIViewController {
     // MARK: - Error Handling
     // ---------------------------------------------
     func presentError(error: NSError) {
-        let title = NSLocalizedString("Error", comment: "Error Alert Title")
+        let title = NSLocalizedString("Error", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Error Alert Title")
         let message = error.localizedDescription
 
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .Default, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "OK"), style: .Default, handler: { _ in
         }))
 
         presentViewController(alert, animated: true, completion: nil)

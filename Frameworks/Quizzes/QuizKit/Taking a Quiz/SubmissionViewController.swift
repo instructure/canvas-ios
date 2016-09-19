@@ -311,7 +311,7 @@ extension SubmissionViewController {
             let question = questions[qIndex]
             switch question.question.kind {
             case .Essay:
-                let height = EssayAnswerCell.heightWithText(question.answer.answerText ?? NSLocalizedString("Enter answer...", comment: "Default text for essay cell"), boundsWidth: tableView.bounds.size.width)
+                let height = EssayAnswerCell.heightWithText(question.answer.answerText ?? NSLocalizedString("Enter answer...", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Default text for essay cell"), boundsWidth: tableView.bounds.size.width)
                 return height
             case .MultipleChoice, .MultipleAnswers, .TextOnly:
                 let answerIndex = indexPath.row - 1
@@ -324,7 +324,7 @@ extension SubmissionViewController {
             case .Matching:
                 let answerIndex = indexPath.row - 1
                 let answer = question.question.answers[answerIndex]
-                var matchText = NSLocalizedString("Select Answer", comment: "Indicates that a matching quiz question needs to have an answer selected")
+                var matchText = NSLocalizedString("Select Answer", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Indicates that a matching quiz question needs to have an answer selected")
                 if let submissionAnswerMatchID = question.answer.matches?[answer.id], match = question.question.matches?.filter({ $0.id == submissionAnswerMatchID})[0] {
                     matchText = match.text
                 }
@@ -543,16 +543,16 @@ extension SubmissionViewController {
                 if let cell = cell as? EssayAnswerCell {
                     cell.textView.becomeFirstResponder()
                 } else if let _ = cell as? HTMLAnswerCell {
-                    let title = NSLocalizedString("Warning", comment: "a warning message")
-                    let message = NSLocalizedString("This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser.", comment: "Warning to users editing an essay question that was edited on the web.")
+                    let title = NSLocalizedString("Warning", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "a warning message")
+                    let message = NSLocalizedString("This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Warning to users editing an essay question that was edited on the web.")
                     let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 
-                    let cancel = NSLocalizedString("Cancel", comment: "Cancel removing the formatting")
+                    let cancel = NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Cancel removing the formatting")
                     alert.addAction(UIAlertAction(title: cancel, style: .Cancel, handler: { _ in
                         // Nothing to do if they cancel
                     }))
 
-                    let removeFormatting = NSLocalizedString("Remove Formatting", comment: "Remove the formatting of the essay question text")
+                    let removeFormatting = NSLocalizedString("Remove Formatting", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Remove the formatting of the essay question text")
                     alert.addAction(UIAlertAction(title: removeFormatting, style: .Destructive, handler: { action in
 
                         switch question.answer {
@@ -646,7 +646,7 @@ extension SubmissionViewController {
             prepareWhizzyCell(whizzyCell, forRowAtIndexPath: indexPath)
             var html = question.question.text ?? ""
             if question.question.kind == .MultipleAnswers {
-                let selectAllString = NSLocalizedString("Select all that apply", comment: "Label indicating that the question is a multiple answer question and more than 1 answer can be correct")
+                let selectAllString = NSLocalizedString("Select all that apply", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Label indicating that the question is a multiple answer question and more than 1 answer can be correct")
                 let multipleAnswerIndicator = String(format: "<p><b>%@</b></p>", selectAllString)
                 html = html + multipleAnswerIndicator
             }
@@ -670,7 +670,7 @@ extension SubmissionViewController {
                 }
             case .Matching:
                 if let cell = cell as? MatchAnswerCell {
-                    let defaultMatchLabel = NSLocalizedString("Select Answer", comment: "Indicates that a matching quiz question needs to have an answer selected")
+                    let defaultMatchLabel = NSLocalizedString("Select Answer", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Indicates that a matching quiz question needs to have an answer selected")
                     let items = question.question.matches ?? []
                     cell.pickerItems = [defaultMatchLabel] + items.map { $0.text }
                     cell.donePicking = { [weak self] selectionRow in

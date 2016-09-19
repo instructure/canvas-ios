@@ -1,0 +1,21 @@
+/* Dismiss an error dialog */
+"Dismiss" = "Tonoa";
+
+/* Data encoding error title */
+"Encoding Error" = "Hapa Whakawaehere";
+
+/* Option to report an error */
+"Report" = "Pūrongo";
+
+/* Data encoding error message */
+"There was a problem encoding UTF8 Data" = "He ko he whakawaehere raruraru UTF 8 Raraunga";
+
+/* JSON Parsing error description */
+"There was a problem interpreting a response from the server." = "He ko he raruraru whakamāori i te whakautu i te tūmau.";
+
+/* SoLazy's fallback title for an unknown error */
+"Unknown Error" = "Hapa Unknown";
+
+/* attached to error explanation in dialog */
+"Explanation:" = "whakamārama:";
+

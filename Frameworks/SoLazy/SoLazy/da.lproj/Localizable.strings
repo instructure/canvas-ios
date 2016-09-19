@@ -1,0 +1,21 @@
+/* Dismiss an error dialog */
+"Dismiss" = "Afvis";
+
+/* Data encoding error title */
+"Encoding Error" = "Krypteringsfejl";
+
+/* Option to report an error */
+"Report" = "Rapport";
+
+/* Data encoding error message */
+"There was a problem encoding UTF8 Data" = "Der var et problem med kryptering af UTF8 Data";
+
+/* JSON Parsing error description */
+"There was a problem interpreting a response from the server." = "Der var et problemmed fortolkningen af et svar fra serveren.";
+
+/* SoLazy's fallback title for an unknown error */
+"Unknown Error" = "Ukendt fejl";
+
+/* attached to error explanation in dialog */
+"Explanation:" = "Forklaring:";
+

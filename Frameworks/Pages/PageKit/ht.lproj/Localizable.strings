@@ -1,0 +1,18 @@
+/* all pages segmented control title */
+"All Pages" = "Tout Paj";
+
+/* badge indicating front page */
+"Front Page" = "Kouvèti";
+
+/* Generic button to dismiss the popup message */
+"Okay" = "OK";
+
+/* The page is locked by the teacher */
+"Page Locked" = "Paj Bloke";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "Te gen yon pwoblèm nan chajman Paj baz de done a.";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "Paj sa a bloke pou kounye a ni li pa vizib";
+

@@ -1,0 +1,12 @@
+/* Title for network errors */
+"Network Error" = "Erreur de réseau";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "Une erreur est survenue pendant la communication avec le serveur.";
+
+/* Unexpected response type */
+"Unexpected response type" = "Type de réponse inattendu";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "L'utilisateur n'a aucune url d'image d'avatar valide";
+

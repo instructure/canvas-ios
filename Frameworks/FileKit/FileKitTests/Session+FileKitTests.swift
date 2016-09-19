@@ -17,7 +17,7 @@ extension Session {
         let withFiles = model.loadingFileEntity()
 
         let storeID = StoreID(storeName: "FileKitTests", model: withFiles,
-            localizedErrorDescription: NSLocalizedString("There was a problem loading the FileKitTests database file.", comment: "FileKit Tests database fails"))
+            localizedErrorDescription: NSLocalizedString("There was a problem loading the FileKitTests database file.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "FileKit Tests database fails"))
         
         return try managedObjectContext(storeID)
     }

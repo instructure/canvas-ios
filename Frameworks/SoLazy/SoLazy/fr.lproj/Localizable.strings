@@ -1,0 +1,21 @@
+/* Dismiss an error dialog */
+"Dismiss" = "Rejeter";
+
+/* Data encoding error title */
+"Encoding Error" = "Erreur d'encodage";
+
+/* Option to report an error */
+"Report" = "Rapport";
+
+/* Data encoding error message */
+"There was a problem encoding UTF8 Data" = "Un problème est survenu lors de l'encodage des données UTF8";
+
+/* JSON Parsing error description */
+"There was a problem interpreting a response from the server." = "Un problème est survenu lors de l'interprétation d'une réponse du serveur.";
+
+/* SoLazy's fallback title for an unknown error */
+"Unknown Error" = "Erreur inconnue";
+
+/* attached to error explanation in dialog */
+"Explanation:" = "Explication :";
+

@@ -21,7 +21,7 @@ public class Enrollment: NSManagedObject {
     @NSManaged internal var rawColor: String
     
     var faves: String {
-        return isFavorite ? NSLocalizedString("Favorites", comment: "favorite courses or groups"): NSLocalizedString("Hidden", comment: "Non favorite hidden courses or groups")
+        return isFavorite ? NSLocalizedString("Favorites", comment: "favorite courses or groups"): NSLocalizedString("Hidden", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Non favorite hidden courses or groups")
     }
     
     internal (set) public var color: UIColor? {

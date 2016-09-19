@@ -1,0 +1,18 @@
+/* all pages segmented control title */
+"All Pages" = "Whārangi Katoa";
+
+/* badge indicating front page */
+"Front Page" = "Whārangi Mua";
+
+/* Generic button to dismiss the popup message */
+"Okay" = "Te pai";
+
+/* The page is locked by the teacher */
+"Page Locked" = "Maukatia Whārangi";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "He ko he raru uta i te kōnae pātengi raraunga Whārangi.";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "Tēnei whārangi ko te kiia tēnei wā, me te kore e viewable.";
+

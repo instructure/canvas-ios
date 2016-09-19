@@ -1,0 +1,72 @@
+/* option to view results for all grading periods */
+"All Grading Periods" = "Все периоды оценивания";
+
+/* Blue course color button */
+"Blue" = "Синий";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "Настроить";
+
+/* Cyan course color button */
+"Cyan" = "Бирюзовый";
+
+/* DeepOrange course color button */
+"DeepOrange" = "Темно оранжевый";
+
+/* DeepPurple course color button */
+"DeepPurple" = "Темно фиолетовый";
+
+/* favorite courses or groups */
+"Favorites" = "Избранное";
+
+/* Title for grading periods picker */
+"Grading Periods" = "Периоды оценивания";
+
+/* Green course color button */
+"Green" = "Зеленый";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "Скрыто";
+
+/* Indigo course color button */
+"Indigo" = "Индиго";
+
+/* LightBlue course color button */
+"LightBlue" = "Голубой";
+
+/* LightGreen course color button */
+"LightGreen" = "Светло зеленый";
+
+/* LightPink course color button */
+"LightPink" = "Светло розовый";
+
+/* Orange course color button */
+"Orange" = "Оранжевый";
+
+/* Pink course color button */
+"Pink" = "Розовый";
+
+/* Purple course color button */
+"Purple" = "Фиолетовый";
+
+/* red course color button */
+"Red" = "Красный";
+
+/* when a button is selected */
+"Selected" = "Выбрано";
+
+/* Teal course color button */
+"Teal" = "Плитка";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "Возникла проблема при загрузке файла базы данных EnrollmentKit.";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "Возникла ошибка при связывании вкладки с курсом или группой.";
+
+/* Total grade label */
+"Total Grade" = "Общая оценка";
+
+/* Yellow course color button */
+"Yellow" = "Желтый";
+

@@ -16,7 +16,7 @@ let calendarKitModelName = "CalendarKit"
 let calendarKitSubdomain = "CalendarKit"
 let calendarKitFailedToLoadErrorCode = 10001
 let calendarKitFailedToLoadErrorDescription = "Failed to load \(calendarKitModelName) NSManagedObjectModel"
-let calendarKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the CalendarKit database file.", comment: "CalendarKit Database Load Failure Message")
+let calendarKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the CalendarKit database file.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.CalendarKit")!, value: "", comment: "CalendarKit Database Load Failure Message")
 
 extension Session {
     public func calendarEventsManagedObjectContext(scope: String? = nil) throws -> NSManagedObjectContext {

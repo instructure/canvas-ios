@@ -1,0 +1,18 @@
+/* all pages segmented control title */
+"All Pages" = "Todas as Páginas";
+
+/* badge indicating front page */
+"Front Page" = "Primeira Página";
+
+/* Generic button to dismiss the popup message */
+"Okay" = "Ok";
+
+/* The page is locked by the teacher */
+"Page Locked" = "Página Bloqueada";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "Houve um problema ao carregar o arquivo de banco de dados  Páginas.";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "Está página está atualmente bloqueada e não visualizável.";
+

@@ -1,0 +1,15 @@
+/* Error title for a persistence related data failure */
+"Data Error" = "Datafeil";
+
+/* error message for when the cache management database fails to load */
+"Error loading cache management database." = "Feil med lasting av hurtiglager administrasjonsdatabase.";
+
+/* tile for error reading cache */
+"Read Error" = "Les feil";
+
+/* SoPersistent Tests database fails */
+"There was a problem loading the SoPersistentTests database file." = "Det var problem med lasting av databasefilen SoPersistentTests.";
+
+/* Persistence error message */
+"There was a problem reading cached data" = "Det oppsto et problem med å lese hurtiglagret data";
+

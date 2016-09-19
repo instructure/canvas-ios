@@ -167,8 +167,8 @@ class AssignmentDetailViewController: Assignment.DetailViewController {
             return
         }
 
-        let resubmit = NSLocalizedString("Re-submit Assignment", comment: "title for submission button if student has submitted previously")
-        let submit = NSLocalizedString("Submit Assignment", comment: "title for submission button if student has never submitted")
+        let resubmit = NSLocalizedString("Re-submit Assignment", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "title for submission button if student has submitted previously")
+        let submit = NSLocalizedString("Submit Assignment", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "title for submission button if student has never submitted")
         
         title = assignment.hasSubmitted ? resubmit : submit
     }
@@ -181,7 +181,7 @@ class AssignmentDetailViewController: Assignment.DetailViewController {
         }
 
         guard let assignment = observer.object, session = session else {
-            turnInError = NSError(subdomain: "Assignments.submit", description: NSLocalizedString("Could not submit assignment. Invalid assignment or session.", comment: "error displayed when submitting an assignment is unavailable"))
+            turnInError = NSError(subdomain: "Assignments.submit", description: NSLocalizedString("Could not submit assignment. Invalid assignment or session.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "error displayed when submitting an assignment is unavailable"))
             return
         }
         let uploadTypes: UploadTypes = assignment.getUploadTypesFromSubmissionTypes()
@@ -191,7 +191,7 @@ class AssignmentDetailViewController: Assignment.DetailViewController {
             do {
                 try assignment.uploadSubmission(newUpload, inSession: session)
             } catch {
-                turnInError = NSError(subdomain: "Assignments.submit", description: NSLocalizedString("Could not submit assignment. Invalid submission.", comment: "error displayed when submitting a submission is invalid."))
+                turnInError = NSError(subdomain: "Assignments.submit", description: NSLocalizedString("Could not submit assignment. Invalid submission.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "error displayed when submitting a submission is invalid."))
             }
         }
         
@@ -247,13 +247,13 @@ class AssignmentDetailViewController: Assignment.DetailViewController {
         if let dueDate = assignment.due {
             let notifiableAssignment = NotifiableObject(due: dueDate, name: assignment.name, url: assignment.url, id: assignment.id)
             
-            let title = NSLocalizedString("Assignment Reminder", comment: "Title for alert view for assignment reminders")
-            let message = NSLocalizedString("Choose how long before the assignment due date to get a reminder:", comment: "Title for reminder options for an assignment")
-            let cancel = NSLocalizedString("Cancel", comment: "cancel button")
-            let fiveMinutes = NSLocalizedString("5 minutes", comment: "Title for 5 minutes assignment reminder")
-            let oneHour = NSLocalizedString("1 hour", comment: "Title for 1 hour assignment reminder")
-            let oneDay = NSLocalizedString("1 day", comment: "Title for 1 day assignment reminder")
-            let threeDays = NSLocalizedString("3 days", comment: "Title for 3 days assignment reminder")
+            let title = NSLocalizedString("Assignment Reminder", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for alert view for assignment reminders")
+            let message = NSLocalizedString("Choose how long before the assignment due date to get a reminder:", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for reminder options for an assignment")
+            let cancel = NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "cancel button")
+            let fiveMinutes = NSLocalizedString("5 minutes", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for 5 minutes assignment reminder")
+            let oneHour = NSLocalizedString("1 hour", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for 1 hour assignment reminder")
+            let oneDay = NSLocalizedString("1 day", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for 1 day assignment reminder")
+            let threeDays = NSLocalizedString("3 days", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for 3 days assignment reminder")
             
             let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
             

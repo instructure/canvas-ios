@@ -56,7 +56,7 @@ public final class Tab: NSManagedObject {
 import SoPersistent
 import Marshal
 
-private let contextIDErrorMessage = NSLocalizedString("There was an error associating a tab with a course or group.", comment: "Error message when parsing contextID for a course or group tab")
+private let contextIDErrorMessage = NSLocalizedString("There was an error associating a tab with a course or group.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Error message when parsing contextID for a course or group tab")
 private let contextIDFailureReason = "Could not parse context id from URL"
 
 extension Tab: SynchronizedModel {

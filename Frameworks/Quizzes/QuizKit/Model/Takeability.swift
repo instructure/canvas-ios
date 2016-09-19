@@ -32,11 +32,11 @@ enum Takeability {
         case .NotTakeable:
             return ""
         case .Take:
-            return NSLocalizedString("Take Quiz", comment: "Button for taking the quiz")
+            return NSLocalizedString("Take Quiz", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Button for taking the quiz")
         case .Resume:
-            return NSLocalizedString("Resume Quiz", comment: "button for resuming a quiz")
+            return NSLocalizedString("Resume Quiz", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "button for resuming a quiz")
         case .Retake:
-            return NSLocalizedString("Retake Quiz", comment: "button for retaking quiz")
+            return NSLocalizedString("Retake Quiz", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "button for retaking quiz")
         }
     }
 }

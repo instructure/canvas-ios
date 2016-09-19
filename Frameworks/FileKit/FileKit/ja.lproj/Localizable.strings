@@ -1,0 +1,66 @@
+/* nevermind */
+"Cancel" = "キャンセル";
+
+/* Pick a photo from library */
+"Choose a Photo" = "写真を選択する";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "写真または動画を選択する";
+
+/* Pick a video from library */
+"Choose a Video" = "動画を選択する";
+
+/* URL submission option */
+"Choose a Webpage" = "ウェブページを選択する";
+
+/* name for upload data */
+"Data" = "データ";
+
+/* Delete button for file upload */
+"Delete" = "消去する";
+
+/* Prompt for text upload */
+"Enter your upload..." = "アップロードを入力...";
+
+/* title for file upload errors */
+"File Upload Error" = "ファイルアップロードエラー";
+
+/* Title of files list */
+"Files" = "ファイル";
+
+/* name for a photo just taken */
+"Photo" = "写真";
+
+/* Choose record audio submission */
+"Record Audio" = "オーディオを録音する";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "写真または動画を撮影する";
+
+/* Take a photo submission choice */
+"Take a Photo" = "写真を撮る";
+
+/* Take a video submission choice */
+"Take a Video" = "動画を撮影する";
+
+/* Text submission option */
+"Text" = "テキスト";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "FIleKit データベースファイルの読み込み中にエラーが発生しました。";
+
+/* FileKit Tests database fails */
+"There was a problem loading the FileKitTests database file." = "FIleKitTests データベースファイルの読み込み中にエラーが発生しました。";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "アップロードのためのファイルの準備中にエラーが発生しました";
+
+/* Turn in button title */
+"Turn In" = "提出";
+
+/* name for a video just taken for upload */
+"Video" = "動画";
+
+/* prompt for submission upload */
+"What would you like to turn in?" = "何を提出しますか？";
+

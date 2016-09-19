@@ -63,9 +63,9 @@ class MatchAnswerCell: UITableViewCell {
         toolbar.tintColor = UIColor.whiteColor()
         toolbar.sizeToFit()
 
-        let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: "Done button"), style: .Plain, target: self, action: Selector("doneButtonSelected"))
+        let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Done button"), style: .Plain, target: self, action: Selector("doneButtonSelected"))
         let spaceItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: "Cancel button"), style: .Plain, target: self, action: Selector("cancelButtonSelected"))
+        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Cancel button"), style: .Plain, target: self, action: Selector("cancelButtonSelected"))
         toolbar.setItems([cancelButton, spaceItem, doneButton], animated: false)
 
         hiddenTextField.inputView = pickerView

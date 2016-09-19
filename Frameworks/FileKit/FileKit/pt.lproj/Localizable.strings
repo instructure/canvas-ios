@@ -1,0 +1,66 @@
+/* nevermind */
+"Cancel" = "Cancelar";
+
+/* Pick a photo from library */
+"Choose a Photo" = "Escolher uma Fotografia";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "Escolher uma Fotografia ou Vídeo";
+
+/* Pick a video from library */
+"Choose a Video" = "Escolher um Vídeo";
+
+/* URL submission option */
+"Choose a Webpage" = "Escolher uma Página";
+
+/* name for upload data */
+"Data" = "Dados";
+
+/* Delete button for file upload */
+"Delete" = "Apagar";
+
+/* Prompt for text upload */
+"Enter your upload..." = "Insira o seu carregamento...";
+
+/* title for file upload errors */
+"File Upload Error" = "Erro de Carregamento do Ficheiro";
+
+/* Title of files list */
+"Files" = "Ficheiros";
+
+/* name for a photo just taken */
+"Photo" = "Fotografia";
+
+/* Choose record audio submission */
+"Record Audio" = "Gravar Audio";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "Tirar Fotografia ou Vídeo";
+
+/* Take a photo submission choice */
+"Take a Photo" = "Tirar uma Fotografia";
+
+/* Take a video submission choice */
+"Take a Video" = "Gravar um Vídeo";
+
+/* Text submission option */
+"Text" = "Texto";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "Ocorreu um erro ao carregar o ficheiro na base de dados do Ficheiro.";
+
+/* FileKit Tests database fails */
+"There was a problem loading the FileKitTests database file." = "Ocorreu um erro ao carregar o ficheiro na base de dados do Ficheiro de Testes.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "Ocorreu um erro ao atualizar o ficheiro para carregamento.";
+
+/* Turn in button title */
+"Turn In" = "Entregar";
+
+/* name for a video just taken for upload */
+"Video" = "Video";
+
+/* prompt for submission upload */
+"What would you like to turn in?" = "O que gostaria de entregar?";
+

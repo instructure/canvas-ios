@@ -120,7 +120,7 @@ struct Quiz {
                 dateFormatter.timeStyle = .MediumStyle
                 return dateFormatter.stringFromDate(d)
             case .NoDueDate:
-                return NSLocalizedString("No Due Date", comment: "A quiz that has no due date")
+                return NSLocalizedString("No Due Date", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "A quiz that has no due date")
             }
         }
     }
@@ -145,12 +145,12 @@ struct Quiz {
         
         
         var description: String {
-            let NoTimeLimit = NSLocalizedString("No time limit", comment: "when a quiz has no time limit")
+            let NoTimeLimit = NSLocalizedString("No time limit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "when a quiz has no time limit")
             
             switch self {
             case .Minutes(let minutes):
-                let i18nHours = NSLocalizedString("hr", comment: "Hours label for time limit")
-                let i18nMin = NSLocalizedString("min", comment: "Minutes label localized")
+                let i18nHours = NSLocalizedString("hr", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Hours label for time limit")
+                let i18nMin = NSLocalizedString("min", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Minutes label localized")
                 
                 switch (minutes / 60, minutes % 60) {
                 case let (hours, minutes) where hours == 0:
@@ -191,7 +191,7 @@ struct Quiz {
             case .Count(let limit):
                 return String(limit)
             case .Unlimited:
-                return NSLocalizedString("Unlimited", comment: "When a quiz has no limit on the number of attempts")
+                return NSLocalizedString("Unlimited", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "When a quiz has no limit on the number of attempts")
             }
         }
         
@@ -221,7 +221,7 @@ struct Quiz {
         var description: String {
             switch self {
             case .PointsPossible(let points): return String(points)
-            default: return NSLocalizedString("Ungraded", comment: "Ungraded quiz")
+            default: return NSLocalizedString("Ungraded", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Ungraded quiz")
             }
         }
     }

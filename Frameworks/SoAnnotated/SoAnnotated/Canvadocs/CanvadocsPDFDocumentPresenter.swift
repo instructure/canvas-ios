@@ -194,7 +194,7 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
     // Adds a "Create Note" menu item from selected text
     public func pdfViewController(pdfController: PSPDFViewController, shouldShowMenuItems menuItems: [PSPDFMenuItem], atSuggestedTargetRect rect: CGRect, forSelectedText selectedText: String, inRect textRect: CGRect, onPageView pageView: PSPDFPageView) -> [PSPDFMenuItem] {
         if selectedText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
-            let createNoteMenuItem = PSPDFMenuItem(title: NSLocalizedString("Create Note", comment: "Button for creating a note from text selection"), block: {
+            let createNoteMenuItem = PSPDFMenuItem(title: NSLocalizedString("Create Note", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Button for creating a note from text selection"), block: {
                 let templateAnnotation = PSPDFNoteAnnotation(contents: "")
                 templateAnnotation.boundingBox = CGRect(x: CGRectGetMaxX(textRect), y: textRect.origin.y, width: 32.0, height: 32.0)
                 templateAnnotation.page = pageView.page
@@ -217,7 +217,7 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
         if let firstAnnotation = annotations?.first {
             if firstAnnotation.type == PSPDFAnnotationType.Note && annotations?.count == 1 {
                 var realMenuItems = [PSPDFMenuItem]()
-                realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Note...", comment: ""), block: {
+                realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Note...", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: ""), block: {
                     if let pdfDocument = pdfController.document {
                         let commentsVC = CanvadocsCommentsViewController.new(firstAnnotation, pdfDocument: pdfDocument)
                         commentsVC.comments = [firstAnnotation] + ((self.annotationProvider?.childrenMapping[firstAnnotation.name!] ?? []) as [PSPDFAnnotation])

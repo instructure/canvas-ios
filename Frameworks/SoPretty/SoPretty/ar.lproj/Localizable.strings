@@ -1,0 +1,15 @@
+/* dismiss error dialog */
+"Dismiss" = "رفض";
+
+/* Placeholder for URL */
+"Enter URL..." = "إدخال عنوان URL...";
+
+/* navigate */
+"Go" = "المتابعة";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "النص الذي أصخلته ليس عنوان URL صالح";
+
+/* Turn in this url button */
+"Turn In" = "التسليم";
+

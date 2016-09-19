@@ -55,14 +55,14 @@ public class BrowserViewController: UIViewController {
         tapoutView?.removeFromSuperview()
         webView.scrollView.scrollEnabled = true
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Turn In", comment: "Turn in this url button"), style: .Done, target: self, action: "submit:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Turn In", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Turn in this url button"), style: .Done, target: self, action: "submit:")
         navigationItem.rightBarButtonItem?.enabled = parseURLForInput(titleView.text) != nil
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelTurnIn:")
     }
     
     private func beginEditing() {
         installTapoutView()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Go", comment: "navigate"), style: .Done, target: self, action: "go:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Go", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "navigate"), style: .Done, target: self, action: "go:")
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelEditingURL:")
     }
     
@@ -71,8 +71,8 @@ public class BrowserViewController: UIViewController {
             self.url = url
             titleView.resignFirstResponder()
         } else {
-            let alert = UIAlertController(title: nil, message: NSLocalizedString("The text you entered is not a valid URL", comment: "bad url message"), preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: "dismiss error dialog"), style: .Cancel, handler: nil))
+            let alert = UIAlertController(title: nil, message: NSLocalizedString("The text you entered is not a valid URL", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "bad url message"), preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "dismiss error dialog"), style: .Cancel, handler: nil))
             presentViewController(alert, animated: true, completion: nil)
         }
     }
@@ -135,7 +135,7 @@ public class BrowserViewController: UIViewController {
         titleView.keyboardType = .URL
         titleView.autocapitalizationType = .None
         titleView.autocorrectionType = .No
-        titleView.placeholder = NSLocalizedString("Enter URL...", comment: "Placeholder for URL")
+        titleView.placeholder = NSLocalizedString("Enter URL...", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Placeholder for URL")
         
         return titleView
     }()

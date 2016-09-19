@@ -1,0 +1,126 @@
+/* grade details for points based grade i.e. \"10 of 12\" */
+"of (formatter(possible))" = "(formatter(possible)) のうち";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
+"(formatter(points)) of (formatter(possible))" = "(formatter(possible)) のうち (formatter(points))";
+
+/* Title for 1 day assignment reminder */
+"1 day" = "1 日";
+
+/* Title for 1 hour assignment reminder */
+"1 hour" = "1 時間";
+
+/* Title for 3 days assignment reminder */
+"3 days" = "3 日";
+
+/* Title for 5 minutes assignment reminder */
+"5 minutes" = "5 分";
+
+/* Assignment label */
+"Assignment" = "課題";
+
+/* Title for alert view for assignment reminders */
+"Assignment Reminder" = "課題のリマインダー";
+
+/* Message indicating that an assignment is currently be submitted */
+"Assignment is currently being submitted" = "課題は提出されている状態です";
+
+/* This assignment hasn't been graded yet but can be graded */
+"Awaiting Grade" = "採点待ち";
+
+/* cancel button */
+"Cancel" = "キャンセル";
+
+/* Title for reminder options for an assignment */
+"Choose how long before the assignment due date to get a reminder:" = "課題期限日の何日前にリマインダーを受け取るか選択：";
+
+/* Title for a rating that hasn't been graded but has a comment */
+"Comment" = "コメント";
+
+/* Assignment submission comment placeholder text */
+"Comment.." = "コメント..";
+
+/* error displayed when submitting an assignment is unavailable */
+"Could not submit assignment. Invalid assignment or session." = "課題を提出できませんでした。無効な提出またはセッションです。";
+
+/* error displayed when submitting a submission is invalid. */
+"Could not submit assignment. Invalid submission." = "課題を提出できませんでした。無効な提出です。";
+
+/* String telling the user that the date is the due date */
+"Due:" = "期限：";
+
+/* Error title for parsing assignment data from server */
+"Error Updating Assignment" = "課題のアップロードエラー";
+
+/* This assignment is excused */
+"Excused" = "免除";
+
+/* Error when an upload failed to resume. */
+"Failed to resume upload." = "アップロード再開に失敗しました。";
+
+/* This assignment is late */
+"Late" = "遅滞";
+
+/* Title for a rating that has custom graded but has no comment */
+"No Comment" = "コメントなし";
+
+/* Default string for due date title */
+"No Due Date" = "期限なし";
+
+/* Section header for assignments without an assignment group */
+"None" = "なし";
+
+/* submission title for assignment waiting user submission */
+"Not Submitted" = "未提出";
+
+/* Overdue assignmnets (not turned in) */
+"Overdue" = "期限超過";
+
+/* Assignments that have been turned in and are past */
+"Past" = "過去の";
+
+/* Rubric Points Possible Title */
+"Points Possible" = "可能なポイント";
+
+/* title for submission button if student has submitted previously */
+"Re-submit Assignment" = "課題の再提出";
+
+/* Message indicating that a submission type is not supported for this assignment. */
+"Submission type not allowed" = "提出の形式が許可されていません";
+
+/* submission title for assignment that doesn't support submissions */
+"Submissions N/A" = "提出 N/A";
+
+/* title for submission button if student has never submitted */
+"Submit Assignment" = "課題の提出";
+
+/* AssignmentKit database load failure message */
+"There was a problem loading the AssignmentKit database file." = "AssignmentKit データベースファイルの読み込み中にエラーが発生しました。";
+
+/* Error description for failing to compute the URL to a quiz */
+"There was a problem updating the Quiz URL" = "クイズURLのアップデート中に問題が発生しました";
+
+/* submission title for assignemnt that is submitted */
+"Turned in!" = "提出されました！";
+
+/* Error message when a course could not be selected */
+"Unable to select a course." = "コースの選択ができません。";
+
+/* Error message when an assignment could not be selected */
+"Unable to select an assignment." = "課題の選択ができません。";
+
+/* Error message when unable to submit assignment. */
+"Unable to submit assignment." = "課題の提出ができません。";
+
+/* Assignments with no dates */
+"Undated" = "アップデート済み";
+
+/* This assignment is not graded */
+"Ungraded" = "アップグレード済み";
+
+/* Upcoming assignments */
+"Upcoming" = "今後";
+
+/* Title for button to see rubric from assignment detail */
+"View Rubric" = "項目を見る";
+

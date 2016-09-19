@@ -88,7 +88,7 @@ extension Session {
                 contextsByStoreID[id.storeName] = context
                 return context
             } catch let e as NSError {
-                let title = NSLocalizedString("Data Error", comment: "Error title for a persistence related data failure")
+                let title = NSLocalizedString("Data Error", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Error title for a persistence related data failure")
                 throw NSError(subdomain: id.storeName, code: e.code, sessionID: sessionID, apiURL: storeURL, title: title, description: id.localizedErrorDescription, failureReason: e.localizedDescription)
             }
         }

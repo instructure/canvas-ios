@@ -1,0 +1,15 @@
+/* Error title for a persistence related data failure */
+"Data Error" = "Hapa Raraunga";
+
+/* error message for when the cache management database fails to load */
+"Error loading cache management database." = "Hapa uta whakahaere keteroki pātengi raraunga.";
+
+/* tile for error reading cache */
+"Read Error" = "Hapa A tai'oi";
+
+/* SoPersistent Tests database fails */
+"There was a problem loading the SoPersistentTests database file." = "He ko he raru uta i te kōnae pātengi raraunga Whakamātautau Persistent.";
+
+/* Persistence error message */
+"There was a problem reading cached data" = "He ko he raruraru te tai'oraa i raraunga keteroki";
+

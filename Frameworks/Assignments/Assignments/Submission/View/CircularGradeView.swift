@@ -120,7 +120,7 @@ public class CircularGradeView: UIView {
         let viewRubricButton = UIButton(type: UIButtonType.System) as UIButton
         viewRubricButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let localizedTitle = NSLocalizedString("View Rubric", comment: "Title for button to see rubric from assignment detail")
+        let localizedTitle = NSLocalizedString("View Rubric", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for button to see rubric from assignment detail")
         
         viewRubricButton.setTitle(localizedTitle, forState: .Normal)
         viewRubricButton.addTarget(self, action: #selector(CircularGradeView.viewRubricButtonPressed(_:)), forControlEvents: .TouchUpInside)

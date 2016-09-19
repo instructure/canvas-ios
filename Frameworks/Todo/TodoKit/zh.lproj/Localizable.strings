@@ -1,0 +1,12 @@
+/* Failure reason for why it couldn't associate a tab with a context */
+"Could not parse context id from URL" = "无法解析来自URL的上下文ID";
+
+/* Error message for interrupted requests marking a to do as done */
+"The request to mark a to do as done was interrupted" = "将待办事项标识为完成的请求被打断";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the (kitModelName) database file." = "加载 (kitModelName)数据文件出现问题。";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "选项卡与课程或小组相联时出现错误。";
+

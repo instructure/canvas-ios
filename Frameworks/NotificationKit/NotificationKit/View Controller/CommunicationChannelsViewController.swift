@@ -34,7 +34,7 @@ public class CommunicationChannelsViewController: UITableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Notification Preferences", comment: "Title for the notification preferences page")
+        self.title = NSLocalizedString("Notification Preferences", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Title for the notification preferences page")
         
         tableView.tableFooterView = UIView(frame: CGRectZero)
 
@@ -56,9 +56,9 @@ public class CommunicationChannelsViewController: UITableViewController {
             if result.error != nil {
                 self.datasource = []
 
-                let title = NSLocalizedString("No Communication Channels Found", comment: "Alert title when unable to load communication channels")
-                let message = NSLocalizedString("Unable to load any Communication Channels at this time.  Error: \(result.error?.localizedDescription)", comment: "Alert message when unable to load communication channels")
-                let actionText = NSLocalizedString("Ok", comment: "Alert action button text when unable to load communication channels")
+                let title = NSLocalizedString("No Communication Channels Found", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to load communication channels")
+                let message = NSLocalizedString("Unable to load any Communication Channels at this time.  Error: \(result.error?.localizedDescription)", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to load communication channels")
+                let actionText = NSLocalizedString("Ok", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert action button text when unable to load communication channels")
                 
                 self.showSimpleAlert(title, message: message, actionText: actionText)
                 
@@ -68,9 +68,9 @@ public class CommunicationChannelsViewController: UITableViewController {
                     self.tableView.reloadData()
                 } else {
                     
-                    let title = NSLocalizedString("Can't Display Communication Channels", comment: "Alert title when unable to parse JSON for communication channels")
-                    let message = NSLocalizedString("Unable to display any Communication Channels returned from the server at this time.", comment: "Alert message when unable to parse JSON for communication channels")
-                    let actionText = NSLocalizedString("Ok", comment: "Alert action button text when unable to parse JSON for communication channels")
+                    let title = NSLocalizedString("Can't Display Communication Channels", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to parse JSON for communication channels")
+                    let message = NSLocalizedString("Unable to display any Communication Channels returned from the server at this time.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to parse JSON for communication channels")
+                    let actionText = NSLocalizedString("Ok", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert action button text when unable to parse JSON for communication channels")
                     
                     self.showSimpleAlert(title, message: message, actionText: actionText)
                 }

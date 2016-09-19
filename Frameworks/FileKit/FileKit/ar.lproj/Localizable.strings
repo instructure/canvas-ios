@@ -1,0 +1,66 @@
+/* nevermind */
+"Cancel" = "إلغاء";
+
+/* Pick a photo from library */
+"Choose a Photo" = "اختيار صورة";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "اختيار صورة أو فيديو";
+
+/* Pick a video from library */
+"Choose a Video" = "اختيار فيديو";
+
+/* URL submission option */
+"Choose a Webpage" = "اختيار صفحة ويب";
+
+/* name for upload data */
+"Data" = "بيانات";
+
+/* Delete button for file upload */
+"Delete" = "حذف";
+
+/* Prompt for text upload */
+"Enter your upload..." = "أدخل تحميلك...";
+
+/* title for file upload errors */
+"File Upload Error" = "خطأ في تحميل الملف";
+
+/* Title of files list */
+"Files" = "ملفات";
+
+/* name for a photo just taken */
+"Photo" = "صورة";
+
+/* Choose record audio submission */
+"Record Audio" = "تسجيل الصوت";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "التقاط صورة أو فيديو";
+
+/* Take a photo submission choice */
+"Take a Photo" = "التقاط صورة";
+
+/* Take a video submission choice */
+"Take a Video" = "التقاط فيديو";
+
+/* Text submission option */
+"Text" = "نص";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة بيانات FileKit.";
+
+/* FileKit Tests database fails */
+"There was a problem loading the FileKitTests database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة بيانات FileKitTests.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "حدثت مشكلة أثناء إعداد الملف لتحميله";
+
+/* Turn in button title */
+"Turn In" = "التسليم";
+
+/* name for a video just taken for upload */
+"Video" = "فيديو";
+
+/* prompt for submission upload */
+"What would you like to turn in?" = "ماذا تريد أن تسلّم؟";
+

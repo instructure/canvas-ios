@@ -1,0 +1,66 @@
+/* nevermind */
+"Cancel" = "取消";
+
+/* Pick a photo from library */
+"Choose a Photo" = "選擇照片";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "選擇照片或視頻";
+
+/* Pick a video from library */
+"Choose a Video" = "選擇一個視頻";
+
+/* URL submission option */
+"Choose a Webpage" = "選擇一個頁面";
+
+/* name for upload data */
+"Data" = "資料";
+
+/* Delete button for file upload */
+"Delete" = "刪除";
+
+/* Prompt for text upload */
+"Enter your upload..." = "輸入您的上載...";
+
+/* title for file upload errors */
+"File Upload Error" = "資料夾上載錯誤";
+
+/* Title of files list */
+"Files" = "資料夾";
+
+/* name for a photo just taken */
+"Photo" = "照片";
+
+/* Choose record audio submission */
+"Record Audio" = "錄製音頻";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "拍攝照片或視頻";
+
+/* Take a photo submission choice */
+"Take a Photo" = "拍攝照片";
+
+/* Take a video submission choice */
+"Take a Video" = "拍攝視頻";
+
+/* Text submission option */
+"Text" = "文本";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "載入資料包資料庫資料夾時出現錯誤。";
+
+/* FileKit Tests database fails */
+"There was a problem loading the FileKitTests database file." = "載入資料測試包資料庫資料夾時出現錯誤。";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "準備用於上載的資料夾時出現問題";
+
+/* Turn in button title */
+"Turn In" = "提交";
+
+/* name for a video just taken for upload */
+"Video" = "視頻";
+
+/* prompt for submission upload */
+"What would you like to turn in?" = "您是否要提交？";
+

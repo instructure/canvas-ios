@@ -1,0 +1,3 @@
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the CalendarKit database file." = "加载 CalendarKit 数据文件时出现错误。";
+

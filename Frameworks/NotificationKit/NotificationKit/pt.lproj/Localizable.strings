@@ -1,0 +1,85 @@
+/* Title for push notification pre-authorization alert */
+"Allow Push Notifications?" = "Permitir Notificações Push?";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "Não é possível Apresentar Canais de Comunicação";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "Não é possível Apresentar Preferências de Notificação";
+
+/* Description for Chat communication channel */
+"Chat" = "Chat";
+
+/* Notification display name for conversations group */
+"Conversations" = "Conversas";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "Não foi possível carregar as preferências de notificação";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "Não foi possível atualizar";
+
+/* Notification display name for course activities group */
+"Course Activities" = "Atividades da Disciplina";
+
+/* Notification display name for discussions group */
+"Discussions" = "Debates";
+
+/* Description for email communication channel */
+"Email" = "Email";
+
+/* Notification display name for groups group */
+"Groups" = "Grupos";
+
+/* Title for no button for push notification pre-authorization alert */
+"No" = "Não";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "Não foram encontrados Canais de Comunicação";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "Preferências de Notificação";
+
+/* Action title for being unable to update a push notification preference
+   Alert action button text when unable to load communication channels
+   Alert action button text when unable to load notification preferences
+   Alert action button text when unable to parse JSON for communication channels
+   Alert action button text when unable to parse JSON for notification preferences */
+"Ok" = "OK";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Notificações Push";
+
+/* Description for SMS communication channel */
+"SMS" = "SMS";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "Programando";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "Impossível apresentar quaisquer Canais de Comunicação retribuídos pelo servidor neste momento.";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "Impossível apresentar quaisquer preferências de notificação retribuídas pelo servidor neste momento.";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time.  Error: (result.error?.localizedDescription)" = "Impossível carregar quaisquer Canais de Comunicação neste momento. Erro (result.error?.localizedDescription)";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Impossível carregar quaisquer preferências de notificação neste momento. Erro: (result.error?.localizedDescription)";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "Não conseguimos atualizar este valor com o servidor";
+
+/* Message for push notification pre-authorization alert */
+"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "Gostaria de permitir o Canvas de enviar notificações importantes acerca de anúncios, disciplinas e tarefas, etc?";
+
+/* Title for yes button for push notification pre-authorization alert */
+"Yes" = "Sim";
+
+/* Description for Yo communication channel */
+"Yo" = "Yo";
+

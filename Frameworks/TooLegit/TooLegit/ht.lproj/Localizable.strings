@@ -1,0 +1,12 @@
+/* Title for network errors */
+"Network Error" = "Erè Rezo";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "Te gen yon erè pandan kominikasyon ak sèvè a.";
+
+/* Unexpected response type */
+"Unexpected response type" = "Tip repons enprevi";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "Itilizatè a pa gen yon url imaj avata valid";
+

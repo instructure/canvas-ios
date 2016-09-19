@@ -1,0 +1,61 @@
+/* record button a11y hint
+   stop record button a11y hint */
+"Begin recording" = "Begynn opptak";
+
+/* Cancel button */
+"Cancel" = "Avbryt";
+
+/* Delete button */
+"Delete" = "Slett";
+
+/* message for delete dialog of audio recorder */
+"Delete recording?" = "Slett opptak?";
+
+/* Dismiss an error dialog */
+"Dismiss" = "Avvis";
+
+/* can't record because request for mic access was denied title */
+"Not Permitted" = "Ikke tillatt";
+
+/* Pause recording/playback */
+"Pause" = "Pause";
+
+/* record button a11y hint */
+"Pause playback" = "Pause avspilling";
+
+/* Playback button */
+"Play" = "Avspil";
+
+/* play button a11y hint */
+"Play back recording" = "Avspill opptak";
+
+/* Title for playback error messages */
+"Playback Error" = "Avspillingsfeil";
+
+/* Record button a11y label */
+"Record" = "Opptak";
+
+/* permission denied button a11y label */
+"Record Permission Help" = "Hjelp til opptakstillatelse";
+
+/* title for a recording error */
+"Recording Error" = "Opptaksfeil";
+
+/* Record button a11y label */
+"Request Audio Recording Permission" = "Forespørsel om tillatelse til lydopptak";
+
+/* record button a11y hint */
+"Request Permission to record audio" = "Be om tillatelse til å foreta lydopptak";
+
+/* stop recording button a11y label */
+"Stop" = "Stopp";
+
+/* Error message for a file missing */
+"The file does not exist." = "Filen eksisterer ikke";
+
+/* permission denied button a11y hint */
+"User has denied record permission" = "Bruker har nektet opptakstillatelse";
+
+/* permission was rejected */
+"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Du må gi (appName) tilgang til mikrofonen i innstillingene til appen for å kunne foreta lydopptak.";
+

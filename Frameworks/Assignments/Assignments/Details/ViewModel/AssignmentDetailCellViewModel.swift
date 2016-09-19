@@ -62,13 +62,13 @@ enum AssignmentDetailCellViewModel: TableViewCellViewModel {
             guard let cell = tableView.dequeueReusableCellWithIdentifier("assignmentInfoCell") else { ❨╯°□°❩╯⌢"expected assignmentInfoCell" }
             allowMultipleLines(cell)
             
-            let due = NSLocalizedString("Due: ", comment: "String telling the user that the date is the due date")
+            let due = NSLocalizedString("Due: ", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "String telling the user that the date is the due date")
             
             let dueDateFormatter = NSDateFormatter()
             dueDateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
             dueDateFormatter.timeStyle = .ShortStyle
             
-            let dueDate = (assignment.due != nil) ? due + dueDateFormatter.stringFromDate(assignment.due!) : NSLocalizedString("No Due Date", comment: "Default string for due date title")
+            let dueDate = (assignment.due != nil) ? due + dueDateFormatter.stringFromDate(assignment.due!) : NSLocalizedString("No Due Date", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Default string for due date title")
             
             cell.textLabel?.text = assignment.name
             cell.detailTextLabel?.text = assignment.lockedForUser == true ? assignment.lockExplanation : dueDate

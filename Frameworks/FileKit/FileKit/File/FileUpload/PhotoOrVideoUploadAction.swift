@@ -92,18 +92,18 @@ extension PhotoOrVideoUploadAction {
         switch (allowsPhotos, allowsVideo) {
         case (true, false):
             titles = (
-                taking: NSLocalizedString("Take a Photo", comment: "Take a photo submission choice"),
-                choosing: NSLocalizedString("Choose a Photo", comment: "Pick a photo from library")
+                taking: NSLocalizedString("Take a Photo", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Take a photo submission choice"),
+                choosing: NSLocalizedString("Choose a Photo", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Pick a photo from library")
             )
         case (false, true):
             titles = (
-                taking: NSLocalizedString("Take a Video", comment: "Take a video submission choice"),
-                choosing: NSLocalizedString("Choose a Video", comment: "Pick a video from library")
+                taking: NSLocalizedString("Take a Video", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Take a video submission choice"),
+                choosing: NSLocalizedString("Choose a Video", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Pick a video from library")
             )
         default:
             titles = (
-                taking: NSLocalizedString("Take Photo or Video", comment: "Take a photo or video submission choice"),
-                choosing: NSLocalizedString("Choose a Photo or Video", comment: "Pick a photo or video")
+                taking: NSLocalizedString("Take Photo or Video", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Take a photo or video submission choice"),
+                choosing: NSLocalizedString("Choose a Photo or Video", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Pick a photo or video")
             )
         }
         

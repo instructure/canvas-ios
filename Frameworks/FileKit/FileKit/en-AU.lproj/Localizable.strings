@@ -1,0 +1,66 @@
+/* nevermind */
+"Cancel" = "Cancel";
+
+/* Pick a photo from library */
+"Choose a Photo" = "Choose a Photo";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "Choose a Photo or Video";
+
+/* Pick a video from library */
+"Choose a Video" = "Choose a Video";
+
+/* URL submission option */
+"Choose a Webpage" = "Choose a Webpage";
+
+/* name for upload data */
+"Data" = "Data";
+
+/* Delete button for file upload */
+"Delete" = "Delete";
+
+/* Prompt for text upload */
+"Enter your upload..." = "Enter your upload...";
+
+/* title for file upload errors */
+"File Upload Error" = "File Upload Error";
+
+/* Title of files list */
+"Files" = "Files";
+
+/* name for a photo just taken */
+"Photo" = "Photo";
+
+/* Choose record audio submission */
+"Record Audio" = "Record Audio";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "Take Photo or Video";
+
+/* Take a photo submission choice */
+"Take a Photo" = "Take a Photo";
+
+/* Take a video submission choice */
+"Take a Video" = "Take a Video";
+
+/* Text submission option */
+"Text" = "Text";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "There was a problem loading the FileKit database file.";
+
+/* FileKit Tests database fails */
+"There was a problem loading the FileKitTests database file." = "There was a problem loading the FileKitTests database file.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "There was a problem preparing the file for upload.";
+
+/* Turn in button title */
+"Turn In" = "Turn In";
+
+/* name for a video just taken for upload */
+"Video" = "Video";
+
+/* prompt for submission upload */
+"What would you like to turn in?" = "What would you like to turn in?";
+

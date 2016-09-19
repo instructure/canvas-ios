@@ -12,17 +12,17 @@ import ReactiveCocoa
 import Marshal
 import SoLazy
 
-private let networkErrorTitle = NSLocalizedString("Network Error", comment: "Title for network errors")
+private let networkErrorTitle = NSLocalizedString("Network Error", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Title for network errors")
 
 
 extension NSError {
     public static func invalidResponseError(url: NSURL?, _ file: String = #file, _ line: UInt = #line) -> NSError {
-        let desc = NSLocalizedString("Unexpected response type", comment: "Unexpected response type")
+        let desc = NSLocalizedString("Unexpected response type", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Unexpected response type")
         return NSError(subdomain: "TooLegit", apiURL: url, title: networkErrorTitle, description: desc, file: file, line: line)
     }
 
     private static func invalidResponse(response: NSHTTPURLResponse, data: NSData, _ file: String = #file, _ line: UInt = #line) -> NSError {
-        let desc = NSLocalizedString("There was an error while communicating with the server.", comment: "Error message for a network fail")
+        let desc = NSLocalizedString("There was an error while communicating with the server.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Error message for a network fail")
         let reason = "Expected a response in the 200-299 range. Got \(response.statusCode) \(String(data: data, encoding: NSUTF8StringEncoding))"
         return NSError(subdomain: "TooLegit", code: response.statusCode, apiURL: response.URL, title: networkErrorTitle, description: desc, failureReason: reason, data: data, file: file, line: line)
     }

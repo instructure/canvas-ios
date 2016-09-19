@@ -1,0 +1,12 @@
+/* Title for network errors */
+"Network Error" = "Ошибка сети";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "Возникла ошибка при обмене данными с сервером.";
+
+/* Unexpected response type */
+"Unexpected response type" = "Неожиданный тип ответа";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "Пользователь не имеет действительного URL аватара изображения";
+

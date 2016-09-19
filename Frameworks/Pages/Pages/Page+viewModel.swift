@@ -19,7 +19,7 @@ extension Page {
         let vm = ColorfulViewModel(style: .Token)
         vm.title.value = page.title
         if page.frontPage {
-            vm.tokenViewText.value = NSLocalizedString("Front Page", comment: "badge indicating front page")
+            vm.tokenViewText.value = NSLocalizedString("Front Page", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "badge indicating front page")
         }
         vm.color <~ session.enrollmentsDataSource.producer(page.contextID)
             .map { $0?.color ?? .prettyGray() }

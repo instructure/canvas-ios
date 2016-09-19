@@ -1,0 +1,204 @@
+/* Error message component with the report id */
+"Error report ID: (reportID)" = "ID Сообщения об ошибке: (reportID)";
+
+/* Failure reason from the JSON payload from canvas */
+"Failure reason: (reason)." = "Причина сбоя: (reason).";
+
+/* Confirmations alerting user of unanswered questions */
+"%d questions not answered" = "%d вопросов не отвечено";
+
+/* Accessiblity hint for question drawer button */
+"(questionsController!.flaggedCount) Questions Answered" = "(questionsController!.flaggedCount) вопросов отвечено";
+
+/* Accessiblity hint for question drawer button */
+"0 Questions Answered" = "0 вопросов отвечено";
+
+/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
+"5 minutes remaining" = "Осталось 5 минут";
+
+/* Notification to alert the user that there is only 30 seconds left in the time quiz */
+"30 seconds remaining" = "Осталось 30 секунд";
+
+/* label for number of attempts that are allowed */
+"Allowed Attempts" = "Разрешенные Попытки";
+
+/* an unknown error's message */
+"An unknown error has occurred." = "Произошла неизвестная ошибка";
+
+/* Question to confirm user wants to navigate away from a quiz. */
+"Are you sure you want to leave this quiz?" = "Вы уверены, что хотите выйти из этого теста?";
+
+/* Confirmation before submitting a quiz */
+"Are you sure you want to submit your answers?" = "Вы уверены, что хотите отправить свои ответы?";
+
+/* label for quiz availability date */
+"Available Until" = "Доступно до";
+
+/* Cancel button
+   cancel button for submitting a quiz
+   Cancel removing the formatting */
+"Cancel" = "Отменить";
+
+/* Button for electing to be late on a quiz */
+"Continue Quiz" = "Продолжить тест";
+
+/* Dismiss button for error alert */
+"Dismiss" = "Отклонить";
+
+/* Done button */
+"Done" = "Готово";
+
+/* due date label for quiz due date */
+"Due Date" = "Срок выполнения";
+
+/* Default text for essay cell */
+"Enter answer..." = "Введите ответ...";
+
+/* Exit button to leave the quiz */
+"Exit" = "Выйти";
+
+/* State of the flagged question */
+"Flagged" = "Отмечено";
+
+/* Hides the question list */
+"Hide Question List" = "Скрыть список вопросов";
+
+/* Leave the quiz */
+"Leave" = "Оставить";
+
+/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
+"Lock Date Reached
+Submitting" = "Достигнута дата блокирования
+Отправка";
+
+/* Next button for advancing a quiz */
+"Next" = "Далее";
+
+/* A quiz that has no due date */
+"No Due Date" = "Без срока выполнения";
+
+/* when a quiz has no time limit */
+"No time limit" = "Нет ограничения по времени";
+
+/* Title for alert showing when a quiz isn't takeable */
+"Not Takeable" = "Невозможно пройти";
+
+/* OK */
+"OK" = "OK";
+
+/* label for number of points in a quiz */
+"Points" = "Баллы";
+
+/* accessibility label for a quiz question */
+"Question" = "Вопрос";
+
+/* state for a question that has been flagged */
+"Question (questionNumber) Flagged" = "Вопрос (questionNumber) отмечен";
+
+/* state for unflagged question */
+"Question (questionNumber) Unflagged" = "Вопрос (questionNumber) не отмечен";
+
+/* label for the number of questions */
+"Questions" = "Вопросы";
+
+/* Title for alert that shows when a quiz hits the due date */
+"Quiz Due" = "Срок выполнения теста";
+
+/* Title for quiz error */
+"Quiz Error" = "Ошибка теста";
+
+/* Label for indication that the quiz submission was successful */
+"Quiz Submitted" = "Тест отправлен";
+
+/* Remove the formatting of the essay question text */
+"Remove Formatting" = "Удалить форматирование";
+
+/* button for resuming a quiz */
+"Resume Quiz" = "Возобновить тест";
+
+/* button for retaking quiz */
+"Retake Quiz" = "Пересдать тест";
+
+/* Indicates that a matching quiz question needs to have an answer selected */
+"Select Answer" = "Выбрать ответ";
+
+/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
+"Select all that apply" = "Выберите все подходящие варианты";
+
+/* Hides the question list */
+"Show Question List" = "Показать список вопросов";
+
+/* Text for a button that toggles to show a timer for a timed quiz */
+"Show Timer" = "Показать таймер";
+
+/* Stay on the quiz view */
+"Stay" = "Остаться";
+
+/* Label for indication that the quiz submission failed */
+"Submission Failure" = "Ошибка при отправке";
+
+/* Button for electing to not be late on a quiz
+   confirm submitting quiz
+   Submit button for completing a quiz */
+"Submit" = "Отправить";
+
+/* Label for indication of submitting quiz */
+"Submitting Quiz" = "Отправка теста";
+
+/* Button for taking the quiz */
+"Take Quiz" = "Сдать тест";
+
+/* This shouldn't ever happen. */
+"The Pages are gone!? Why are the pages always gone?" = "Страницы пропали!? Почему страницы всегда пропадают?";
+
+/* Description for alert that shows when the quiz hits the due date */
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possbily be late?" = "Тест должен быть отправлен через 1 минуту. Вы хотите отправить его сейчас и отправить вовремя или продолжить проходить тест и, возможно, отправить с опозданием?";
+
+/* generic error message */
+"There was a problem with the Canvas request." = "Возникла проблема с запросом Canvas.";
+
+/* No comment provided by engineer. */
+"There was no data!" = "Дата отсутствует!";
+
+/* Warning to users editing an essay question that was edited on the web. */
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "Это эссе-вопрос был отредактирован в Интернете, и может содержать форматирование, ссылки или изображения. Чтобы изменить этот ответ на мобильном устройстве нам нужно будет очистить форматирование (включая ссылки и изображения). В противном случае вы можете продолжить редактирование вопроса через веб-браузер.";
+
+/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
+"This quiz has an IP address filter set." = "Этот тест содержит набор фильтров IP-адреса.";
+
+/* Message when telling the user they can't take the quiz for some weird reason */
+"This quiz is currently unavailable." = "Этот тест в настоящее время недоступен.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked." = "Этот тест заблокирован.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked. Reason: (description)" = "Этот тест заблокирован. Причина: (description)";
+
+/* label for the time limit */
+"Time Limit" = "Лимит времени";
+
+/* Toggle flag accessiblity action */
+"Toggle Flag" = "Переключить флажок";
+
+/* Ungraded quiz */
+"Ungraded" = "Без оценки";
+
+/* When a quiz has no limit on the number of attempts */
+"Unlimited" = "Неограничено";
+
+/* a warning message */
+"Warning" = "Warning";
+
+/* Shows time limit on a quiz */
+"You have (minuteLimit) minutes." = "У вас осталось (minuteLimit) минут.";
+
+/* Message when telling the user they can't take the quiz because they used up all their attempts */
+"You have used all your attempts available on this quiz." = "Вы использовали все свои попытки, доступные в этом тесте.";
+
+/* Hours label for time limit */
+"hr" = "ч";
+
+/* Minutes label localized */
+"min" = "мин";
+

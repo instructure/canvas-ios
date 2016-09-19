@@ -141,7 +141,7 @@ extension Page {
         func alertIfLocked(page: Page) {
             if page.lockedForUser {
                 // Strip HTML tags from lock explanation
-                var explanation = NSLocalizedString("This page is currently locked and not viewable.", comment: "The HTML page is currently not viewable by the user because it has been locked by the teacher.")
+                var explanation = NSLocalizedString("This page is currently locked and not viewable.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "The HTML page is currently not viewable by the user because it has been locked by the teacher.")
                 if let encodedData = page.lockExplanation?.dataUsingEncoding(NSUTF8StringEncoding) {
                     do {
                         explanation = try NSAttributedString(data: encodedData, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil).string
@@ -149,7 +149,7 @@ extension Page {
                     } catch { print("Error stripping HTML from lockedExplanation") }
                 }
 
-                UIAlertView(title: NSLocalizedString("Page Locked", comment: "The page is locked by the teacher"), message: explanation, delegate: nil, cancelButtonTitle: NSLocalizedString("Okay", comment: "Generic button to dismiss the popup message")).show()
+                UIAlertView(title: NSLocalizedString("Page Locked", comment: "The page is locked by the teacher"), message: explanation, delegate: nil, cancelButtonTitle: NSLocalizedString("Okay", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "Generic button to dismiss the popup message")).show()
             }
         }
 

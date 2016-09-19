@@ -72,7 +72,7 @@ extension GradingPeriod {
         public init(session: Session, courseID: String, collection: GradingPeriodCollection, refresher: Refresher) throws {
             super.init()
             
-            title = NSLocalizedString("Grading Periods", comment: "Title for grading periods picker")
+            title = NSLocalizedString("Grading Periods", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Title for grading periods picker")
             collection.selectedGradingPeriod.producer
                 .observeOn(UIScheduler())
                 .startWithNext { _ in collection.collectionUpdated([.Reload]) }
@@ -188,7 +188,7 @@ extension GradingPeriod {
                 return cell
             case 1:
                 let cell = UITableViewCell(style: .Value1, reuseIdentifier: nil)
-                cell.textLabel?.text = NSLocalizedString("Total Grade", comment: "Total grade label")
+                cell.textLabel?.text = NSLocalizedString("Total Grade", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Total grade label")
                 cell.detailTextLabel?.text = grade.value
                 cell.selectionStyle = .None
                 return cell

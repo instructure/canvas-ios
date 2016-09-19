@@ -50,7 +50,7 @@ public class WhizzyWigTableViewCell: UITableViewCell {
             }
         }
 
-        let readMore = NSLocalizedString("Read More", comment: "button to read more of the description")
+        let readMore = NSLocalizedString("Read More", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "button to read more of the description")
         readMoreButton.setTitle(readMore, forState: .Normal)
         readMoreButton.translatesAutoresizingMaskIntoConstraints = false
         readMoreButton.addTarget(self, action: "readMoreButtonWasTapped:", forControlEvents: .TouchUpInside)

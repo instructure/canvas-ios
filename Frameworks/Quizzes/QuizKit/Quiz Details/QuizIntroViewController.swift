@@ -42,10 +42,10 @@ public class QuizIntroViewController: UIViewController {
         
         self.quizController.quizUpdated = { [weak self] result in
             if let error = result.error {
-                let title = NSLocalizedString("Error Loading Quiz", comment: "Title for quiz loading error")
-                let message = NSLocalizedString("Please check your network connection and try again. Explanation: \(error.localizedDescription)", comment: "")
+                let title = ""
+                let message = ""
                 let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: "Dismiss error dialog"), style: .Cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "", style: .Cancel, handler: nil))
                 self?.presentViewController(alert, animated: true, completion: nil)
             }
             
@@ -213,22 +213,22 @@ public class QuizIntroViewController: UIViewController {
                 case .NotTakeable(let reason):
                     switch reason {
                     case .AttemptLimitReached:
-                        message = NSLocalizedString("You have used all your attempts available on this quiz.", comment: "Message when telling the user they can't take the quiz because they used up all their attempts")
+                        message = NSLocalizedString("You have used all your attempts available on this quiz.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz because they used up all their attempts")
                     case .IPFiltered:
-                        message = NSLocalizedString("This quiz has an IP address filter set.", comment: "Message when telling the user they can't take the quiz because the quiz has an IP address filter set")
+                        message = NSLocalizedString("This quiz has an IP address filter set.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz because the quiz has an IP address filter set")
                     case .Locked:
-                        message = NSLocalizedString("This quiz is locked.", comment: "Message when telling the user they can't take the quiz because the quiz is locked")
+                        message = NSLocalizedString("This quiz is locked.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz because the quiz is locked")
                     case .Undecided:
-                        message = NSLocalizedString("This quiz is currently unavailable.", comment: "Message when telling the user they can't take the quiz for some weird reason")
+                        message = NSLocalizedString("This quiz is currently unavailable.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz for some weird reason")
                     case .Other:
-                        message = NSLocalizedString("This quiz is locked"/*. Reason: \(description)"*/, comment: "Message when telling the user they can't take the quiz because the quiz is locked") // not using the description for now - it's HTML :(
+                        message = NSLocalizedString("This quiz is locked.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz because the quiz is locked") // not using the description for now - its HTML :(
                     }
                 default:
                     break
                 }
                 
-                let alert = UIAlertController(title: NSLocalizedString("Not Takeable", comment: "Title for alert showing when a quiz isn't takeable"), message: message, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .Default, handler: { _ in }))
+                let alert = UIAlertController(title: NSLocalizedString("Not Takeable", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Title for alert showing when a quiz isn't takeable"), message: message, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "OK"), style: .Default, handler: { _ in }))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         }

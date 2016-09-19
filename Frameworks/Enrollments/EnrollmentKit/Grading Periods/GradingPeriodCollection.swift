@@ -15,7 +15,7 @@ public enum GradingPeriodItem: Equatable {
     public var title: String {
         switch self {
         case .All:
-            return NSLocalizedString("All Grading Periods", comment: "option to view results for all grading periods")
+            return NSLocalizedString("All Grading Periods", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "option to view results for all grading periods")
         case .Some(let gp):
             return gp.title
         }

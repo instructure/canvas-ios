@@ -19,17 +19,17 @@ enum CommunicationChannelType: String, CustomStringConvertible {
     var description: String {
         switch self {
         case .Email:
-            return NSLocalizedString("Email", comment: "Description for email communication channel")
+            return NSLocalizedString("Email", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for email communication channel")
         case .SMS:
-            return NSLocalizedString("SMS", comment: "Description for SMS communication channel")
+            return NSLocalizedString("SMS", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for SMS communication channel")
         case .Chat:
-            return NSLocalizedString("Chat", comment: "Description for Chat communication channel")
+            return NSLocalizedString("Chat", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for Chat communication channel")
         case .Twitter:
-            return NSLocalizedString("Twitter", comment: "Description for Twitter communication channel")
+            return NSLocalizedString("Twitter", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for Twitter communication channel")
         case .Yo:
-            return NSLocalizedString("Yo", comment: "Description for Yo communication channel")
+            return NSLocalizedString("Yo", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for Yo communication channel")
         case .Push:
-            return NSLocalizedString("Push Notifications", comment: "Description for Push Notification channel")
+            return NSLocalizedString("Push Notifications", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for Push Notification channel")
         }
     }
 }
@@ -50,15 +50,15 @@ public enum DisplayGroup: String, CustomStringConvertible {
     public var description: String {
         switch self {
         case CourseActivities:
-            return NSLocalizedString("Course Activities", comment: "Notification display name for course activities group")
+            return NSLocalizedString("Course Activities", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for course activities group")
         case Discussions:
-            return NSLocalizedString("Discussions", comment: "Notification display name for discussions group")
+            return NSLocalizedString("Discussions", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for discussions group")
         case Conversations:
-            return NSLocalizedString("Conversations", comment: "Notification display name for conversations group")
+            return NSLocalizedString("Conversations", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for conversations group")
         case Scheduling:
-            return NSLocalizedString("Scheduling", comment: "Notification display name for scheduling group")
+            return NSLocalizedString("Scheduling", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for scheduling group")
         case Groups:
-            return NSLocalizedString("Groups", comment: "Notification display name for groups group")
+            return NSLocalizedString("Groups", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for groups group")
         }
     }
 }

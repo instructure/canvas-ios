@@ -74,12 +74,12 @@ class RecordButton: UIButton {
         case .Record:
             path = UIBezierPath(roundedRect: CGRectMake(-25, -25, 50, 50), cornerRadius: 25)
             color = UIColor.redColor()
-            a11y = NSLocalizedString("Record", comment: "Record button a11y label")
-            a11yHint = NSLocalizedString("Begin recording", comment: "record button a11y hint")
+            a11y = NSLocalizedString("Record", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Record button a11y label")
+            a11yHint = NSLocalizedString("Begin recording", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "record button a11y hint")
         case .Stop:
             path = UIBezierPath(rect: CGRectMake(-12, -12, 24, 24))
-            a11y = NSLocalizedString("Stop", comment: "stop recording button a11y label")
-            a11yHint = NSLocalizedString("Begin recording", comment: "stop record button a11y hint")
+            a11y = NSLocalizedString("Stop", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "stop recording button a11y label")
+            a11yHint = NSLocalizedString("Begin recording", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "stop record button a11y hint")
 
         case .Play:
             path = UIBezierPath()
@@ -87,8 +87,8 @@ class RecordButton: UIButton {
             path.addLineToPoint(CGPoint(x: 18, y: 0))
             path.addLineToPoint(CGPoint(x: -12, y: 15))
             path.addLineToPoint(CGPoint(x: -12, y: -15))
-            a11y = NSLocalizedString("Play", comment: "Playback button")
-            a11yHint = NSLocalizedString("Play back recording", comment: "play button a11y hint")
+            a11y = NSLocalizedString("Play", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Playback button")
+            a11yHint = NSLocalizedString("Play back recording", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "play button a11y hint")
             
         case .Denied(let permission):
             path = UIBezierPath()
@@ -104,20 +104,20 @@ class RecordButton: UIButton {
             
             if permission == .Denied {
                 title = "!"
-                a11y = NSLocalizedString("Record Permission Help", comment: "permission denied button a11y label")
-                a11yHint = NSLocalizedString("User has denied record permission", comment: "permission denied button a11y hint")
+                a11y = NSLocalizedString("Record Permission Help", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "permission denied button a11y label")
+                a11yHint = NSLocalizedString("User has denied record permission", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "permission denied button a11y hint")
             } else {
                 title = "?"
-                a11y = NSLocalizedString("Request Audio Recording Permission", comment: "Record button a11y label")
-                a11yHint = NSLocalizedString("Request Permission to record audio", comment: "record button a11y hint")
+                a11y = NSLocalizedString("Request Audio Recording Permission", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Record button a11y label")
+                a11yHint = NSLocalizedString("Request Permission to record audio", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "record button a11y hint")
             }
             
         case .Pause:
             path = UIBezierPath()
             path.appendPath(UIBezierPath(rect: CGRect(x: -12, y: -12, width: 8, height: 24)))
             path.appendPath(UIBezierPath(rect: CGRect(x: 4, y: -12, width: 8, height: 24)))
-            a11y = NSLocalizedString("Pause", comment: "Pause recording/playback")
-            a11yHint = NSLocalizedString("Pause playback", comment: "record button a11y hint")
+            a11y = NSLocalizedString("Pause", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Pause recording/playback")
+            a11yHint = NSLocalizedString("Pause playback", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "record button a11y hint")
         }
         
         recordShape.path = path.CGPath

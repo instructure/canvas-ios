@@ -117,10 +117,10 @@ public class AudioRecorderView: UIView {
         private func recordButtonTapped(view: AudioRecorderView) {
             switch self {
             case .PreRecording(AVAudioSessionRecordPermission.Denied):
-                let title = NSLocalizedString("Not Permitted", comment: "can't record because request for mic access was denied title")
+                let title = NSLocalizedString("Not Permitted", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "can't record because request for mic access was denied title")
                 
                 let appName = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleDisplayName") as? String ?? "Canvas"
-                let message = NSLocalizedString("You must grant \(appName) Microphone access in the Settings app in order to record audio.", comment: "permission was rejected")
+                let message = NSLocalizedString("You must grant \(appName) Microphone access in the Settings app in order to record audio.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "permission was rejected")
                 
                 let error = NSError(domain: "com.instructure", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
                 view.notifyUserOfError(error, title: title, dismissToState: .PreRecording(.Denied))
@@ -269,7 +269,7 @@ extension AudioRecorderView {
 
     private func notifyUserOfError(error: NSError, title: String, dismissToState: AudioRecorderView.State = .PreRecording(.Granted)) {
         let errorController = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .Alert)
-        let dismiss = NSLocalizedString("Dismiss", comment: "Dismiss an error dialog")
+        let dismiss = NSLocalizedString("Dismiss", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Dismiss an error dialog")
         errorController.addAction(UIAlertAction(title: dismiss, style: .Default) { _ in
             self.setState(dismissToState, animated: true)
         })
@@ -281,7 +281,7 @@ extension AudioRecorderView {
 
 // MARK: Audio Recording
 
-private let recordingErrorTitle = NSLocalizedString("Recording Error", comment: "title for a recording error")
+private let recordingErrorTitle = NSLocalizedString("Recording Error", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "title for a recording error")
 
 extension AudioRecorderView: AudioRecorderDelegate {
     func startRecording() {
@@ -306,7 +306,7 @@ extension AudioRecorderView: AudioRecorderDelegate {
                 player.delegate = self
                 setState(.Paused(player), animated: true)
             } else {
-                let error = NSError(domain: "com.instructure", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("The file does not exist.", comment: "Error message for a file missing")])
+                let error = NSError(domain: "com.instructure", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("The file does not exist.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Error message for a file missing")])
                 notifyUserOfError(error, title: recordingErrorTitle)
             }
         } catch let error as NSError {
@@ -334,7 +334,7 @@ extension AudioRecorderView: AudioRecorderDelegate {
 extension AudioRecorderView: AudioPlayerDelegate {
     func player(player: AudioPlayer, finishedWithError error: NSError?) {
         if let error = error {
-            notifyUserOfError(error, title: NSLocalizedString("Playback Error", comment: "Title for playback error messages"), dismissToState: .Paused(player))
+            notifyUserOfError(error, title: NSLocalizedString("Playback Error", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Title for playback error messages"), dismissToState: .Paused(player))
         } else {
             setState(.Paused(player), animated: true)
         }
@@ -358,16 +358,16 @@ extension AudioRecorderView: AudioPlayerDelegate {
 
 extension AudioRecorderView {
     func confirmDeletionOfFileAtURL(url: NSURL, onConfirmation: ()->()) {
-        let message = NSLocalizedString("Delete recording?", comment: "message for delete dialog of audio recorder")
+        let message = NSLocalizedString("Delete recording?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "message for delete dialog of audio recorder")
         let controller = UIAlertController(title: message, message: nil, preferredStyle: .ActionSheet)
         
-        let delete = NSLocalizedString("Delete", comment: "Delete button")
+        let delete = NSLocalizedString("Delete", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Delete button")
         controller.addAction(UIAlertAction(title: delete, style: .Destructive) { _ in
             do { try NSFileManager.defaultManager().removeItemAtURL(url) } catch { }
             onConfirmation()
         })
         
-        let cancel = NSLocalizedString("Cancel", comment: "Cancel button")
+        let cancel = NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Cancel button")
         controller.addAction(UIAlertAction(title: cancel, style: .Cancel) { _ in
             // do nothing!
         })

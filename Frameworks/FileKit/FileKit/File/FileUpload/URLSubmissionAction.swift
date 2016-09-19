@@ -10,7 +10,7 @@ import SoPretty
 
 
 class URLSubmissionAction: UploadAction {
-    let title = NSLocalizedString("Choose a Webpage", comment: "URL submission option")
+    let title = NSLocalizedString("Choose a Webpage", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "URL submission option")
     let icon = UIImage.FileKitImageNamed("icon_link")
     
     weak var viewController: UIViewController?

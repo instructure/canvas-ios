@@ -34,31 +34,31 @@ public enum GradeViewModel {
             
         case .AwaitingGrade:
             details.grade = formatter(0.0)
-            details.gradeDetails = NSLocalizedString("Awaiting Grade", comment: "This assignment hasn't been graded yet but can be graded")
+            details.gradeDetails = NSLocalizedString("Awaiting Grade", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "This assignment hasn't been graded yet but can be graded")
             details.circlePercent = CGFloat(0.0/1.0)
             
         case .Ungraded:
-            details.grade = NSLocalizedString("Ungraded", comment: "This assignment is not graded")
+            details.grade = NSLocalizedString("Ungraded", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "This assignment is not graded")
             details.gradeLabelOffset = 0.0
             
         case let .LetterGradeOrGPA(grade, points, possible):
             details.grade = grade
-            details.gradeDetails = NSLocalizedString("\(formatter(points)) of \(formatter(possible))", comment: "grade details for points based grade i.e. \"10 of 12\"")
+            details.gradeDetails = NSLocalizedString("\(formatter(points)) of \(formatter(possible))", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "grade details for points based grade i.e. \"10 of 12\"")
             details.circlePercent = possible <= 0 ? 0.0 : CGFloat(points/possible)
             
         case let .Points(points, possible):
             details.grade = formatter(points) ?? ""
-            details.gradeDetails = NSLocalizedString(" of \(formatter(possible))", comment: "grade details for points based grade i.e. \"10 of 12\"")
+            details.gradeDetails = NSLocalizedString(" of \(formatter(possible))", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "grade details for points based grade i.e. \"10 of 12\"")
             details.circlePercent = possible <= 0 ? 0.0 : CGFloat(points/possible)
             
         case let .Percent(percentText, points, possible):
             details.grade = percentText
-            details.gradeDetails = NSLocalizedString("\(formatter(points)) of \(formatter(possible))", comment: "grade details for points based grade i.e. \"10 of 12\"")
+            details.gradeDetails = NSLocalizedString("\(formatter(points)) of \(formatter(possible))", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "grade details for points based grade i.e. \"10 of 12\"")
             details.circlePercent = possible <= 0 ? 0.0 : CGFloat(points/possible)
             
         case let .CompleteOrIncomplete(label, points, possible):
             details.grade = label.capitalizedString
-            details.gradeDetails = NSLocalizedString("\(formatter(points)) of \(formatter(possible))", comment: "grade details for points based grade i.e. \"10 of 12\"")
+            details.gradeDetails = NSLocalizedString("\(formatter(points)) of \(formatter(possible))", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "grade details for points based grade i.e. \"10 of 12\"")
             details.circlePercent = possible <= 0 ? 0.0 : CGFloat(points/possible)
         }
         return details

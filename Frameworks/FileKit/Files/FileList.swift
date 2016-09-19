@@ -73,7 +73,7 @@ class FileList: FileNode.TableViewController {
         let refresher = try FileNode.refresher(session, contextID: contextID, hiddenForUser: hiddenForUser, folderID: folderID)
         prepare(collection, refresher: refresher, viewModelFactory: FileViewModel.init, didDeleteItemAtIndexPath: deleteFileNode)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(addTapped))
-        self.navigationItem.title = NSLocalizedString("Files", comment: "Title of files list")
+        self.navigationItem.title = NSLocalizedString("Files", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Title of files list")
     }
     
     func processCollectionUpdates(updates: [CollectionUpdate<FileUpload>]) {

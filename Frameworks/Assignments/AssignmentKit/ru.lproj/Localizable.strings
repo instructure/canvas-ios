@@ -1,0 +1,126 @@
+/* grade details for points based grade i.e. \"10 of 12\" */
+"of (formatter(possible))" = "из (formatter(possible))";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
+"(formatter(points)) of (formatter(possible))" = "(formatter(points)) из (formatter(possible))";
+
+/* Title for 1 day assignment reminder */
+"1 day" = "1 день";
+
+/* Title for 1 hour assignment reminder */
+"1 hour" = "1 час";
+
+/* Title for 3 days assignment reminder */
+"3 days" = "3 дня";
+
+/* Title for 5 minutes assignment reminder */
+"5 minutes" = "5 минут";
+
+/* Assignment label */
+"Assignment" = "Задание";
+
+/* Title for alert view for assignment reminders */
+"Assignment Reminder" = "Напоминание о задании";
+
+/* Message indicating that an assignment is currently be submitted */
+"Assignment is currently being submitted" = "Задание в данный момент отправляется";
+
+/* This assignment hasn't been graded yet but can be graded */
+"Awaiting Grade" = "Ожидает оценки";
+
+/* cancel button */
+"Cancel" = "Отменить";
+
+/* Title for reminder options for an assignment */
+"Choose how long before the assignment due date to get a reminder:" = "Выберите, как задолго до даты отправки задания вы желаете получить напоминание:";
+
+/* Title for a rating that hasn't been graded but has a comment */
+"Comment" = "Комментарий";
+
+/* Assignment submission comment placeholder text */
+"Comment.." = "Комментарий..";
+
+/* error displayed when submitting an assignment is unavailable */
+"Could not submit assignment. Invalid assignment or session." = "Не удалось отправить задание. Неверное задание или сеанс.";
+
+/* error displayed when submitting a submission is invalid. */
+"Could not submit assignment. Invalid submission." = "Не удалось отправить задание. Неверная отправка.";
+
+/* String telling the user that the date is the due date */
+"Due:" = "Срок:";
+
+/* Error title for parsing assignment data from server */
+"Error Updating Assignment" = "Ошибка при обновлении задания";
+
+/* This assignment is excused */
+"Excused" = "По уважительной причине";
+
+/* Error when an upload failed to resume. */
+"Failed to resume upload." = "Не удалось возобновить загрузку.";
+
+/* This assignment is late */
+"Late" = "Поздно";
+
+/* Title for a rating that has custom graded but has no comment */
+"No Comment" = "Нет коментариев";
+
+/* Default string for due date title */
+"No Due Date" = "Без срока выполнения";
+
+/* Section header for assignments without an assignment group */
+"None" = "Ничего";
+
+/* submission title for assignment waiting user submission */
+"Not Submitted" = "Не отправлено";
+
+/* Overdue assignmnets (not turned in) */
+"Overdue" = "Просрочено";
+
+/* Assignments that have been turned in and are past */
+"Past" = "Прошлое";
+
+/* Rubric Points Possible Title */
+"Points Possible" = "Возможные баллы";
+
+/* title for submission button if student has submitted previously */
+"Re-submit Assignment" = "Повторно отправить задание";
+
+/* Message indicating that a submission type is not supported for this assignment. */
+"Submission type not allowed" = "Не разрешенный тип отправки";
+
+/* submission title for assignment that doesn't support submissions */
+"Submissions N/A" = "Отправки недоступны";
+
+/* title for submission button if student has never submitted */
+"Submit Assignment" = "Отправить задание";
+
+/* AssignmentKit database load failure message */
+"There was a problem loading the AssignmentKit database file." = "Возникла проблема при загрузке файла базы данных AssignmentKit.";
+
+/* Error description for failing to compute the URL to a quiz */
+"There was a problem updating the Quiz URL" = "Возникла проблема при обновлении URL Теста";
+
+/* submission title for assignemnt that is submitted */
+"Turned in!" = "Сдано!";
+
+/* Error message when a course could not be selected */
+"Unable to select a course." = "Невозможно выбрать курс.";
+
+/* Error message when an assignment could not be selected */
+"Unable to select an assignment." = "Невозможно выбрать задание.";
+
+/* Error message when unable to submit assignment. */
+"Unable to submit assignment." = "Невозможно отправить задание.";
+
+/* Assignments with no dates */
+"Undated" = "Без даты";
+
+/* This assignment is not graded */
+"Ungraded" = "Без оценки";
+
+/* Upcoming assignments */
+"Upcoming" = "Предстоящий";
+
+/* Title for button to see rubric from assignment detail */
+"View Rubric" = "Просмотр Рубрики";
+
