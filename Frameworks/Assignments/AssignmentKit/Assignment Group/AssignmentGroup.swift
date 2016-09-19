@@ -36,7 +36,7 @@ extension AssignmentGroup: SynchronizedModel {
         try weight      = json <| "group_weight"
 
         try updateAssignments(json, inContext: context)
-        let assignments = try Assignment.findAll(withValue: id, forKey: "assignmentGroupID", inContext: context)
+        let assignments: [Assignment] = try context.findAll(withValue: id, forKey: "assignmentGroupID")
         assignments.forEach { $0.assignmentGroup = self }
     }
 
@@ -45,7 +45,7 @@ extension AssignmentGroup: SynchronizedModel {
         let assignmentsJSON: [JSONObject] = try json <| "assignments" ?? []
         let assignmentIDs: [String] = try assignmentsJSON.map { try $0.stringID("id") }
 
-        let assignments = try Assignment.findAll(withValues: assignmentIDs, forKey: "id", inContext: context)
+        let assignments: [Assignment] = try context.findAll(withValues: assignmentIDs, forKey: "id")
 
         assignments.forEach { assignment in
             assignment.gradingPeriodID = gradingPeriodID

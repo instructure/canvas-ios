@@ -106,7 +106,7 @@ extension DiscussionTopic: SynchronizedModel {
 
         let attachmentsJSON: [JSONObject] = try json <| "attachments" ?? []
         let attachments: [File] = try attachmentsJSON.map { json in
-            let file: File = (try File.findOne(File.uniquePredicateForObject(json), inContext: context)) ?? File.create(inContext: context)
+            let file: File = (try context.findOne(withPredicate: File.uniquePredicateForObject(json)) as? File) ?? File(inContext: context)
             try file.updateValues(json, inContext: context)
             return file
         }

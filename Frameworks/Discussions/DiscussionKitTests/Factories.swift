@@ -39,7 +39,7 @@ extension DiscussionTopic {
                       lockedForUser: Bool = false,
                       lockExplanation: String? = nil
     ) -> DiscussionTopic {
-        let discussion = DiscussionTopic.create(inContext: context)
+        let discussion = DiscussionTopic(inContext: context)
         discussion.id = id
         discussion.title = title
         discussion.message = message

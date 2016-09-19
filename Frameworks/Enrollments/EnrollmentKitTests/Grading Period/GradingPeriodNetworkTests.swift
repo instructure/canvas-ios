@@ -34,7 +34,7 @@ class GradingPeriodNetworkTests: XCTestCase {
                 }
         }
 
-        let gradingPeriods = try! GradingPeriod.findAll(context)
+        let gradingPeriods: [GradingPeriod] = try! context.findAll()
 
         func gradingPeriodExists(id: String, title: String) -> Bool {
             return gradingPeriods.filter { $0.id == id && $0.title == title }.count == 1

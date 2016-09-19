@@ -172,7 +172,7 @@ extension Course: SynchronizedModel {
                 roles.insert(.Student)
                 currentGradingPeriodID = try eJSON.stringID("current_grading_period_id")
                 multipleGradingPeriodsEnabled = try eJSON <| "multiple_grading_periods_enabled" ?? false
-                let grade = currentGrade ?? Grade.create(inContext: context)
+                let grade = currentGrade ?? Grade(inContext: context)
                 grade.course = self
                 grade.gradingPeriodID = currentGradingPeriodID
 

@@ -40,7 +40,7 @@ extension GradingPeriod {
     
     public static func gradingPeriodIDs(session: Session, courseID: String, excludingGradingPeriodID: String?) throws -> [String] {
         let context = try session.enrollmentManagedObjectContext()
-        let invalidatedGradingPeriods = try GradingPeriod.findAll(GradingPeriod.fetch(GradingPeriod.predicate(courseID, notMatchingID: excludingGradingPeriodID), sortDescriptors: nil, inContext: context), inContext: context)
+        let invalidatedGradingPeriods: [GradingPeriod] = try context.findAll(fromFetchRequest: GradingPeriod.fetch(GradingPeriod.predicate(courseID, notMatchingID: excludingGradingPeriodID), sortDescriptors: nil, inContext: context))
         return invalidatedGradingPeriods.map { $0.id }
     }
 

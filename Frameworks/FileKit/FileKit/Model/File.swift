@@ -13,7 +13,7 @@ import CoreData
 import ReactiveCocoa
 import AVFoundation
 
-public final class File: FileNode, Model {
+public final class File: FileNode {
     @NSManaged public var contentType: String?
     @NSManaged public var size: Int64 //in bytes
     @NSManaged public var url: NSURL

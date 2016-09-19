@@ -42,17 +42,17 @@ extension Assignment {
             invalidateDetail(progress.contextID, assignmentID: progress.itemID)
             
         case (.Contributed, .Discussion):
-            if let assignment = (try? Assignment.findOne(withValue: progress.itemID, forKey: "discussionTopicID", inContext: context)).flatMap({ $0 }) {
+            if let assignment: Assignment = (try? context.findOne(withValue: progress.itemID, forKey: "discussionTopicID") as? Assignment).flatMap({ $0 }) {
                 invalidateDetail(progress.contextID, assignmentID: assignment.id)
             }
             
         case (.Submitted, .Quiz):
-            if let assignment = (try? Assignment.findOne(withValue: progress.itemID, forKey: "quizID", inContext: context)).flatMap({ $0 }) {
+            if let assignment: Assignment = (try? context.findOne(withValue: progress.itemID, forKey: "quizID") as? Assignment).flatMap({ $0 }) {
                 invalidateDetail(progress.contextID, assignmentID: assignment.id)
             }
             
         case (.Submitted, .ExternalTool):
-            if let assignment = (try? Assignment.findOne(withValue: progress.itemID, forKey: "url", inContext: context)).flatMap({$0}) {
+            if let assignment: Assignment = (try? context.findOne(withValue: progress.itemID, forKey: "url") as? Assignment).flatMap({$0}) {
                 invalidateDetail(progress.contextID, assignmentID: assignment.id)
             }
             

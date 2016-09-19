@@ -25,7 +25,7 @@ class CourseSpec: QuickSpec {
             beforeEach {
                 user = User(credentials: .user1)
                 managedObjectContext = try! user.session.enrollmentManagedObjectContext()
-                course = Course.create(inContext: managedObjectContext)
+                course = Course(inContext: managedObjectContext)
             }
 
             it("has grades") {

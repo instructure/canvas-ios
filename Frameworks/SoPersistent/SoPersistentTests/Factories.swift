@@ -18,7 +18,7 @@ extension Panda {
                       id: String = "1",
                       name: String = "Bai Yun"
     ) -> Panda {
-        let panda = Panda.create(inContext: context)
+        let panda = Panda(inContext: context)
         panda.id = id
         panda.name = name
         return panda
@@ -31,7 +31,7 @@ extension SWPerson {
                       name: String = "Luke Skywalker",
                       height: String = "172"
     ) -> SWPerson {
-        let person = SWPerson.create(inContext: context)
+        let person = SWPerson(inContext: context)
         person.name = name
         person.height = height
         return person

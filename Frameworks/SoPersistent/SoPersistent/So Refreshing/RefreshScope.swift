@@ -11,7 +11,7 @@ import TooLegit
 import SoLazy
 
 
-final class Refresh: NSManagedObject, Model {
+final class Refresh: NSManagedObject {
     @NSManaged private var key: String
     @NSManaged private var date: NSDate
 }
@@ -67,7 +67,7 @@ public class RefreshScope: NSObject {
         
         return synchronized { context in
             let lasts = NSMutableDictionary()
-            let refreshes = try Refresh.findAll(context)
+            let refreshes: [Refresh] = try context.findAll()
             for refresh in refreshes {
                 lasts[refresh.key] = refresh
             }
@@ -90,7 +90,7 @@ public class RefreshScope: NSObject {
     internal func setCacheRefreshed(key: String, date: NSDate = NSDate()) {
         synchronized { context in
             let refresh = (self.refreshesByKey[key] as? Refresh)
-                ?? Refresh.create(inContext: context)
+                ?? Refresh(inContext: context)
             self.refreshesByKey[key] = refresh
             refresh.key = key
             refresh.date = date

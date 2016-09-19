@@ -73,9 +73,11 @@ extension Enrollment {
     public static func findOne(contextID: ContextID, inContext context: NSManagedObjectContext) throws -> Enrollment? {
         switch contextID.context {
         case .Course:
-            return try Course.findOne(withValue: contextID.id, forKey: "id", inContext: context)
+            let course: Course? = try context.findOne(withValue: contextID.id, forKey: "id")
+            return course
         case .Group:
-            return try Group.findOne(withValue: contextID.id, forKey: "id", inContext: context)
+            let group: Group? = try context.findOne(withValue: contextID.id, forKey: "id")
+            return group
         default:
             return nil
         }

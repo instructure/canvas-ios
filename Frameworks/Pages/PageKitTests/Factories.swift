@@ -43,7 +43,7 @@ extension Page {
                       frontPage: Bool = false,
                       contextID: ContextID = ContextID(id: "24601", context: .Course),
                       lockedForUser: Bool = false ) -> Page {
-        let page = Page.create(inContext: context)
+        let page = Page(inContext: context)
         page.url = url
         page.title = title
         page.createdAt = createdAt

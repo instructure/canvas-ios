@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-extension Model where Self: NSManagedObject {
+extension NSManagedObject {
     public static func cacheKey(context: NSManagedObjectContext, _ values: [AnyObject] = []) -> String {
         return entityName(context)
             + "://"

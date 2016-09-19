@@ -30,8 +30,6 @@ final class Panda: NSManagedObject, PandaProtocol {
 
 }
 
-extension Panda: Model {}
-
 // MARK: - SynchronizedModel
 
 import SoPersistent

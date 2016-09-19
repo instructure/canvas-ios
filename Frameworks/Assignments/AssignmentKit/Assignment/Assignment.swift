@@ -270,10 +270,10 @@ extension Assignment: SynchronizedModel {
 
     private func updateRubric(json: JSONObject, inContext context: NSManagedObjectContext) throws {
         if let rubricCriterions: [JSONObject] = try json <| "rubric" ?? [], rubricSettings: JSONObject = try json <| "rubric_settings" {
-            if let rubric = try Rubric.findOne(try Rubric.uniquePredicateForObject(self.id), inContext: context) {
+            if let rubric: Rubric = try context.findOne(withPredicate: try Rubric.uniquePredicateForObject(self.id)) {
                 try rubric.updateValues(rubricCriterions, rubricSettingsJSON: rubricSettings, assignmentID: self.id, inContext: context)
             } else {
-                self.rubric = Rubric.create(inContext: context)
+                self.rubric = Rubric(inContext: context)
                 try self.rubric?.updateValues(rubricCriterions, rubricSettingsJSON: rubricSettings, assignmentID: self.id, inContext: context)
             }
             
@@ -341,7 +341,7 @@ extension Assignment: SynchronizedModel {
         htmlURL             = try json <| "html_url"
         muted               = try json <| "muted" ?? false
         assignmentGroupID   = try json.stringID("assignment_group_id")
-        assignmentGroup     = try assignmentGroupID.flatMap { try AssignmentGroup.findOne(withValue: $0, forKey: "id", inContext: context) }
+        assignmentGroup     = try assignmentGroupID.flatMap { try context.findOne(withValue: $0, forKey: "id") }
 
         try updateSubmission(json, inContext: context)
         try updateURL(json)

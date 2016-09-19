@@ -16,7 +16,7 @@ extension Module {
         while nextItemNumber <= itemCount {
             let nextItemPredicate = NSPredicate(format: "%K == %d", "position", nextItemNumber)
             do {
-                if let next = try ModuleItem.findOne(nextItemPredicate, inContext: context), content = next.content {
+                if let next: ModuleItem = try context.findOne(withPredicate: nextItemPredicate), content = next.content {
                     switch content {
                     case .SubHeader:
                         break // ignore!
@@ -39,7 +39,7 @@ extension Module {
         while previousItemNumber > 0 {
             let previousItemPredicate = NSPredicate(format: "%K == %d", "position", previousItemNumber)
             do {
-                if let previous = try ModuleItem.findOne(previousItemPredicate, inContext: context), content = previous.content {
+                if let previous: ModuleItem = try context.findOne(withPredicate: previousItemPredicate), content = previous.content {
                     switch content {
                     case .SubHeader:
                         break // ignore!

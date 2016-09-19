@@ -10,7 +10,7 @@
 		491FC7491C406CCB00550505 /* SoPersistent.h in Headers */ = {isa = PBXBuildFile; fileRef = 491FC7481C406CCB00550505 /* SoPersistent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		491FC7501C406CCB00550505 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491FC7451C406CCB00550505 /* SoPersistent.framework */; };
 		491FC7631C406D3800550505 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491FC7611C406D3800550505 /* ReactiveCocoa.framework */; };
-		491FC7651C406D4F00550505 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491FC7641C406D4F00550505 /* Model.swift */; };
+		491FC7651C406D4F00550505 /* SynchronizedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491FC7641C406D4F00550505 /* SynchronizedModel.swift */; };
 		491FC7681C406D8500550505 /* NSManagedObjectContext+SoPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491FC7671C406D8500550505 /* NSManagedObjectContext+SoPersistent.swift */; };
 		491FC76A1C406DF700550505 /* NSManagedObject+SoPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491FC7691C406DF700550505 /* NSManagedObject+SoPersistent.swift */; };
 		491FC76C1C406E5A00550505 /* NSSortDescriptor+SoPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491FC76B1C406E5A00550505 /* NSSortDescriptor+SoPersistent.swift */; };
@@ -100,7 +100,7 @@
 		491FC74F1C406CCB00550505 /* SoPersistentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoPersistentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		491FC7561C406CCB00550505 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		491FC7611C406D3800550505 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		491FC7641C406D4F00550505 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		491FC7641C406D4F00550505 /* SynchronizedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedModel.swift; sourceTree = "<group>"; };
 		491FC7671C406D8500550505 /* NSManagedObjectContext+SoPersistent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "NSManagedObjectContext+SoPersistent.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		491FC7691C406DF700550505 /* NSManagedObject+SoPersistent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "NSManagedObject+SoPersistent.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		491FC76B1C406E5A00550505 /* NSSortDescriptor+SoPersistent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSSortDescriptor+SoPersistent.swift"; sourceTree = "<group>"; };
@@ -228,7 +228,7 @@
 				49895F041C46F58E002A16EC /* Locking */,
 				491FC7711C406F0700550505 /* Sync */,
 				491FC7661C406D7100550505 /* Core Data */,
-				491FC7641C406D4F00550505 /* Model.swift */,
+				491FC7641C406D4F00550505 /* SynchronizedModel.swift */,
 				49893A071C8E27E200A8CFBA /* Collections */,
 				49893A131C8E28BB00A8CFBA /* Collection Views */,
 				49893A0E1C8E288000A8CFBA /* Table View */,
@@ -583,7 +583,7 @@
 				49893A091C8E280F00A8CFBA /* FetchedCollection.swift in Sources */,
 				49893A0D1C8E282400A8CFBA /* Collection.swift in Sources */,
 				61AC4EBE1CD01D2C005CD8B3 /* ColorfulTableViewCell.swift in Sources */,
-				491FC7651C406D4F00550505 /* Model.swift in Sources */,
+				491FC7651C406D4F00550505 /* SynchronizedModel.swift in Sources */,
 				491FC76A1C406DF700550505 /* NSManagedObject+SoPersistent.swift in Sources */,
 				49895F121C48355A002A16EC /* Marshal+SoPersistent.swift in Sources */,
 				49893A171C8E291C00A8CFBA /* CollectionViewDataSource.swift in Sources */,

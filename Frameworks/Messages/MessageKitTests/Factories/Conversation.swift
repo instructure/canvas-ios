@@ -14,7 +14,7 @@ import SoAutomated
 
 extension Conversation {
     static func build(context: NSManagedObjectContext) -> Conversation {
-        let conversation = Conversation.create(inContext: context)
+        let conversation = Conversation(inContext: context)
         return conversation
     }
 }

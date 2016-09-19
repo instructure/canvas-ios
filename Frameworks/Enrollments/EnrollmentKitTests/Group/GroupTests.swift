@@ -34,7 +34,7 @@ class GroupTests: UnitTestCase {
     // MARK: updateValues
     
     func testGroup_updateValues() {
-        let newGroup = Group.create(inContext: context)
+        let newGroup = Group(inContext: context)
         
         attempt {
             try newGroup.updateValues(groupJSON, inContext: context)
@@ -45,7 +45,7 @@ class GroupTests: UnitTestCase {
     }
     
     func testGetContextID() {
-        let newGroup = Group.create(inContext: context)
+        let newGroup = Group(inContext: context)
         
         attempt {
             try newGroup.updateValues(groupJSON, inContext: context)

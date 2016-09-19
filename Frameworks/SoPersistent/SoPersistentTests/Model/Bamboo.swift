@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import SoPersistent
 
-final class Bamboo: NSManagedObject, Model {
+final class Bamboo: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var length: Double

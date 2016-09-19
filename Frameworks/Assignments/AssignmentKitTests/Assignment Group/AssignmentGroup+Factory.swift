@@ -17,7 +17,7 @@ extension AssignmentGroup {
                       weight: Double = 0.0,
                       assignments: Set<Assignment> = []
     ) -> AssignmentGroup {
-        let assignmentGroup = AssignmentGroup.create(inContext: context)
+        let assignmentGroup = AssignmentGroup(inContext: context)
         assignmentGroup.id = id
         assignmentGroup.name = name
         assignmentGroup.position = position

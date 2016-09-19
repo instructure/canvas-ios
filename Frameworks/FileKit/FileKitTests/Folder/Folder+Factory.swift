@@ -12,7 +12,7 @@ import TooLegit
 
 extension Folder {
     static func build(context: NSManagedObjectContext, contextID: ContextID = ContextID(id: "1", context: .User), id: String = "1", name: String = "New Folder") -> Folder {
-        let folder = Folder.create(inContext: context)
+        let folder = Folder(inContext: context)
         folder.contextID = contextID
         folder.id = id
         folder.name = name

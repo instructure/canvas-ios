@@ -101,7 +101,7 @@ class DescribeFileSubmission: DescribeSubmissionUploads {
         let data = NSData(contentsOfURL: factoryURL)!
         let path = "/api/v1/courses/24219/assignments/1252468/submissions/self/files"
         
-        let fileUpload = SubmissionFileUpload.create(inContext: context) as SubmissionFileUpload
+        let fileUpload = SubmissionFileUpload(inContext: context)
         fileUpload.prepare("unit test", path: path, data: data, name: "testfile.txt", contentType: nil, parentFolderID: nil, contextID: ContextID(id: "24219", context: .Course))
         upload = FileSubmissionUpload.create(backgroundSessionID: "unit test", assignment: assignment, fileUploads: [fileUpload], comment: nil, inContext: context)
         XCTAssert(fileUpload.isValid)

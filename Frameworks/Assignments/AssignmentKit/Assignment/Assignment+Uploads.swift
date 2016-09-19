@@ -24,7 +24,7 @@ extension Assignment {
                     fileUploadHandler(nil)
                     return
                 }
-                let fileUpload = SubmissionFileUpload.create(inContext: context)
+                let fileUpload = SubmissionFileUpload(inContext: context)
                 fileUpload.prepare(identifier, path: filesPath, data: data, name: file.name, contentType: file.contentType, parentFolderID: nil, contextID: ContextID(id: self.id, context: .Course))
                 fileUploadHandler(fileUpload)
             }

@@ -23,7 +23,7 @@ extension NSManagedObject {
 
 }
 
-extension Model where Self: NSManagedObject {
+extension NSManagedObject {
     public static func count(inContext context: NSManagedObjectContext) -> Int {
         let all = fetch(nil, sortDescriptors: nil, inContext: context)
         return context.countForFetchRequest(all, error: nil)

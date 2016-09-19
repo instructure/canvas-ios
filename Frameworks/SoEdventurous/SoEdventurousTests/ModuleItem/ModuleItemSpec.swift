@@ -20,7 +20,7 @@ class ModuleItemSpec: QuickSpec {
             var moduleItem: ModuleItem!
             beforeEach {
                 moc = try! User(credentials: .user1).session.soEdventurousManagedObjectContext()
-                moduleItem = ModuleItem.create(inContext: moc)
+                moduleItem = ModuleItem(inContext: moc)
             }
 
             it("gets inserted") {

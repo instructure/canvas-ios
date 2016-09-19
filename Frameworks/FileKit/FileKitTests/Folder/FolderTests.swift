@@ -37,7 +37,7 @@ class FolderTests: XCTestCase {
                 }
             }
             
-            let results = try Folder.findAll(withValue: "10396915", forKey: "id", inContext: context)
+            let results: [Folder] = try context.findAll(withValue: "10396915", forKey: "id")
             XCTAssert(results.isEmpty)
         }
     }
@@ -56,7 +56,7 @@ class FolderTests: XCTestCase {
                 }
             }
             
-            guard let folder = try Folder.findOne(withValue: "10119415", forKey: "parentFolderID", inContext: context) else {
+            guard let folder: Folder = try context.findOne(withValue: "10119415", forKey: "parentFolderID") else {
                 XCTFail("Expected a folder")
                 return
             }

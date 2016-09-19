@@ -115,10 +115,10 @@ extension Submission: SynchronizedModel {
                     assessmentJSON["id"] = assessmentID
                     assessmentJSON["submissionID"] = self.id
                     
-                    if let rubricAssessment = try RubricAssessment.findOne(try RubricAssessment.uniquePredicateForObject(assessmentJSON), inContext: context) {
+                    if let rubricAssessment: RubricAssessment = try context.findOne(withPredicate: try RubricAssessment.uniquePredicateForObject(assessmentJSON)) {
                         try rubricAssessment.updateValues(assessmentID, submission: self, json: assessmentJSON, inContext: context)
                     } else {
-                        let rubricAssessment = RubricAssessment.create(inContext: context)
+                        let rubricAssessment = RubricAssessment(inContext: context)
                         try rubricAssessment.updateValues(assessmentID, submission: self, json: assessmentJSON, inContext: context)
                         
                         assessments.insert(rubricAssessment)
@@ -127,7 +127,7 @@ extension Submission: SynchronizedModel {
             }
         }
         
-        let foundAssignment = try Assignment.findOne(withValue: assignmentID, forKey: "id", inContext: context)
+        let foundAssignment: Assignment? = try context.findOne(withValue: assignmentID, forKey: "id")
         assignment = foundAssignment
         assignment?.rubric?.currentSubmission = self
     }
