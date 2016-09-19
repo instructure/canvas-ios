@@ -20,4 +20,6 @@ github "instructure/canvaskeymaster-ios" "master"
 github "instructure/CanvasKit" "master"
 github "CocoaLumberjack/CocoaLumberjack" == 2.2.0
 
+# Teacher
+github "kylef/URITemplate.swift" ~> 1.3
 

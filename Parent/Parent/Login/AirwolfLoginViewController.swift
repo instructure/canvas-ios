@@ -85,23 +85,19 @@ class AirwolfLoginViewController: UIViewController {
         triangleBackgroundGradientView.diagonal = false
         triangleBackgroundGradientView.transitionToColors(colors.tintBottomColor, tintBottomColor: colors.tintTopColor) // Flip the colors the other way
 
-        do {
-            reachability = try Reachability.reachabilityForInternetConnection()
-            reachability?.whenReachable = { [weak self] availability in
-                dispatch_async(dispatch_get_main_queue()) {
-                    self?.checkRegion()
-                }
+        reachability = Reachability.reachabilityForInternetConnection()
+        reachability?.reachableBlock = { [weak self] _ in
+            dispatch_async(dispatch_get_main_queue()) {
+                self?.checkRegion()
             }
-
-            reachability?.whenUnreachable = { [weak self] reachability in
-                dispatch_async(dispatch_get_main_queue()) {
-                    self?.state.value = .Disabled
-                }
-            }
-            try reachability?.startNotifier()
-        } catch {
-            print("Unable to create or start reachability notifier")
         }
+
+        reachability?.unreachableBlock = { [weak self] _ in
+            dispatch_async(dispatch_get_main_queue()) {
+                self?.state.value = .Disabled
+            }
+        }
+        reachability?.startNotifier()
 
         primaryButton.rac_enabled <~ combineLatest(firstNameField.rac_text.producer, lastNameField.rac_text.producer, emailField.rac_text.producer, passwordField.rac_text.producer, confirmPasswordField.rac_text.producer, state.producer).map { (firstName, lastName, email, password, confirmedPassword, state) in
             let emailValid = self.isValidEmail(email)

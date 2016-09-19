@@ -2,8 +2,24 @@
 <Workspace
    version = "1.0">
    <Group
+      location = "container:Teacher"
+      name = "Teacher">
+      <FileRef
+         location = "group:Teach.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
       location = "container:Carthage"
       name = "Carthage">
+      <FileRef
+         location = "group:Checkouts/AFNetworking/AFNetworking.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/canvaskeymaster-ios/CanvasKeymaster.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/CanvasKit/CanvasKit.xcodeproj">
+      </FileRef>
       <FileRef
          location = "group:Checkouts/Cartography/Cartography.xcodeproj">
       </FileRef>
@@ -23,7 +39,19 @@
          location = "group:Checkouts/Eureka/Eureka.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:Checkouts/Reachability/Framework/Framework.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/FXKeychain/FXKeychain.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Checkouts/Kingfisher/Kingfisher.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/CocoaLumberjack/Lumberjack.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/Mantle/Mantle.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:Checkouts/Marshal/Marshal.xcodeproj">
@@ -35,9 +63,6 @@
          location = "group:Checkouts/Quick/Quick.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Checkouts/Reachability.swift/Reachability.xcodeproj">
-      </FileRef>
-      <FileRef
          location = "group:Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj">
       </FileRef>
       <FileRef
@@ -47,26 +72,8 @@
          location = "group:Checkouts/TPKeyboardAvoiding/TPKeyboardAvoidingSample.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Checkouts/Reachability/Framework/Framework.xcodeproj">
+         location = "group:Checkouts/URITemplate.swift/URITemplate.xcodeproj">
       </FileRef>
-      <FileRef
-         location = "group:Checkouts/AFNetworking/AFNetworking.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Checkouts/canvaskeymaster-ios/CanvasKeymaster.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Checkouts/CanvasKit/CanvasKit.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Checkouts/FXKeychain/FXKeychain.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Checkouts/CocoaLumberjack/Lumberjack.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Checkouts/Mantle/Mantle.xcodeproj">
-     </FileRef>
    </Group>
    <Group
       location = "container:Parent"
