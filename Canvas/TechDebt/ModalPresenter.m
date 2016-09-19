@@ -7,7 +7,7 @@
 //
 
 #import "ModalPresenter.h"
-#import "View+MASAdditions.h"
+@import Masonry;
 
 static ModalPresenter *_sharedPresenter;
 

@@ -19,6 +19,9 @@ github "ashleymills/Reachability.swift" == 2.3.3
 github "instructure/canvaskeymaster-ios" "master"
 github "instructure/CanvasKit" "master"
 github "CocoaLumberjack/CocoaLumberjack" == 2.2.0
+github "SnapKit/Masonry" ~> 1.0
+github "SVProgressHUD/SVProgressHUD" ~> 2.0
+github "thebestbits/TBBModal" "master"
 
 # Teacher
 github "kylef/URITemplate.swift" ~> 1.3

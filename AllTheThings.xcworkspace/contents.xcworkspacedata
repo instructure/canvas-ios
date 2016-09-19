@@ -12,6 +12,15 @@
       location = "container:Carthage"
       name = "Carthage">
       <FileRef
+         location = "group:Checkouts/Masonry/Masonry.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/SVProgressHUD/SVProgressHUD.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Checkouts/TBBModal/Modal.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Checkouts/AFNetworking/AFNetworking.xcodeproj">
       </FileRef>
       <FileRef
@@ -93,9 +102,6 @@
       name = "Canvas">
       <FileRef
          location = "group:MLVC/MyLittleViewController.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Pods/Pods.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:Canvas.xcodeproj">
@@ -183,4 +189,10 @@
          location = "group:WhizzyWig/WhizzyWig.xcodeproj">
       </FileRef>
    </Group>
+   <FileRef
+      location = "group:Canvas/Canvas.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>
