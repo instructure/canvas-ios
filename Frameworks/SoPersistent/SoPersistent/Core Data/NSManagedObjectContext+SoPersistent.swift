@@ -130,3 +130,72 @@ extension NSManagedObjectContext {
         }
     }
 }
+
+
+private let errorDesc = NSLocalizedString("There was a problem reading cached data", comment: "Persistence error message")
+private let errorTitle = NSLocalizedString("Read Error", comment: "tile for error reading cache")
+
+extension NSManagedObjectContext {
+    // MARK: - Fetching single items from context
+    public func findOne<T: NSManagedObject>(withPredicate predicate: NSPredicate) throws -> T? {
+        let fetchRequest = T.fetch(predicate, inContext: self)
+
+        // Check if the object has been registered in the context first
+        for obj in registeredObjects where !obj.fault {
+            guard let result = obj as? T where predicate.evaluateWithObject(result) else { continue }
+            return result
+        }
+
+        return try findAll(fromFetchRequest: fetchRequest).first
+    }
+
+    public func findOne<T: NSManagedObject>(objectID: NSManagedObjectID) throws -> T {
+        var object: T?
+        performBlockAndWait {
+            object = self.objectWithID(objectID) as? T
+        }
+
+        guard let foundObject = object else {
+            let reason = "Expected an object of type \(T.self)"
+            throw NSError(subdomain: "SoPersistent", title: errorTitle, description: errorDesc, failureReason: reason)
+        }
+
+        return foundObject
+    }
+
+    public func findOne<T: NSManagedObject>(withValue value: AnyObject, forKey key: String) throws -> T? {
+        let predicate = NSPredicate(format: "%K == %@", argumentArray: [key, value])
+        let object: T? = try findOne(withPredicate: predicate)
+        return object
+    }
+
+    // MARK: - Fetching multiple items from context
+    public func findAll<T: NSManagedObject>() throws -> [T] {
+        let request = T.fetch(nil, inContext: self)
+        guard let all = try executeFetchRequest(request) as? [T] else {
+            let reason = "Expected an array of type [\(T.self)]"
+            throw NSError(subdomain: "SoPersistent", title: errorTitle, description: errorDesc, failureReason: reason)
+        }
+        return all
+    }
+
+    public func findAll<T: NSManagedObject>(fromFetchRequest request: NSFetchRequest) throws -> [T] {
+        guard let models = try executeFetchRequest(request) as? [T] else {
+            let reason = "Expected an array of type [\(T.self)]"
+            throw NSError(subdomain: "SoPersistent", title: errorTitle, description: errorDesc, failureReason: reason)
+        }
+        return models
+    }
+
+    public func findAll<T: NSManagedObject>(withValue value: AnyObject, forKey key: String) throws -> [T] {
+        let predicate = NSPredicate(format: "%K == %@", argumentArray: [key, value])
+        let request = T.fetch(predicate, inContext: self)
+        return try findAll(fromFetchRequest: request)
+    }
+
+    public func findAll<T: NSManagedObject>(withValues values: [AnyObject], forKey key: String) throws -> [T] {
+        let predicate = NSPredicate(format: "%K in %@", key, values)
+        let request = T.fetch(predicate, inContext: self)
+        return try findAll(fromFetchRequest: request)
+    }
+}

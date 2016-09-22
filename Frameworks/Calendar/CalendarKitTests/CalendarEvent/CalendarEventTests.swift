@@ -23,7 +23,7 @@ class CalendarEventTests: CalendarKitTests {
 
     func test_itCanBeUpdatedFromJSON() {
         let json = CalendarEvent.validJSON
-        let event = CalendarEvent.create(inContext: managedObjectContext)
+        let event = CalendarEvent(inContext: managedObjectContext)
         try! event.updateValues(json, inContext: managedObjectContext)
         XCTAssert(event.isValid)
         XCTAssertEqual("New Event", event.title)
@@ -37,7 +37,7 @@ class CalendarEventTests: CalendarKitTests {
 
     func test_itCanBeUpdatedFromAssignmentJSON() {
         let json = CalendarEvent.validAssignmentJSON
-        let event = CalendarEvent.create(inContext: managedObjectContext)
+        let event = CalendarEvent(inContext: managedObjectContext)
         try! event.updateValues(json, inContext: managedObjectContext)
         XCTAssert(event.isValid)
         XCTAssertEqual("Upcoming Assignment", event.title)

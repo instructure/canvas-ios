@@ -20,7 +20,7 @@ class RubricTests: UnitTestCase {
         attempt{
             let session = Session.ns
             let context = try session.assignmentsManagedObjectContext()
-            let rubric: Rubric = Rubric.create(inContext: context)
+            let rubric = Rubric(inContext: context)
             
             try rubric.updateValues([], rubricSettingsJSON: rubricSettings, assignmentID: "259883", inContext:context)
             

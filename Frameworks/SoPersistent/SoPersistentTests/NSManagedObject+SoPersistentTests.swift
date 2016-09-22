@@ -67,7 +67,7 @@ class ModelTests: XCTestCase {
             let context = try session.soPersistentTestsManagedObjectContext()
             let (alpha, beta, charlie) = seedData(context)
 
-            let results = try Panda.findAll(context)
+            let results: [Panda] = try context.findAll()
             XCTAssert(results.contains(alpha))
             XCTAssert(results.contains(beta))
             XCTAssert(results.contains(charlie))
@@ -80,7 +80,7 @@ class ModelTests: XCTestCase {
             let (alpha, _, _) = seedData(context)
             let predicate = NSPredicate(format: "%K == %@", "name", "alpha")
             let request = Panda.fetch(predicate, sortDescriptors: nil, inContext: context)
-            let withRequest = try Panda.findAll(request, inContext: context)
+            let withRequest: [Panda] = try context.findAll(fromFetchRequest: request)
             XCTAssertEqual(1, withRequest.count)
             XCTAssert(withRequest.contains(alpha))
         }
@@ -91,7 +91,7 @@ class ModelTests: XCTestCase {
         attempt {
             let context = try session.soPersistentTestsManagedObjectContext()
             let (_, beta, _) = seedData(context)
-            let withValue = try Panda.findAll(withValue: "beta", forKey: "name", inContext: context)
+            let withValue: [Panda] = try context.findAll(withValue: "beta", forKey: "name")
             XCTAssertEqual(1, withValue.count)
             XCTAssert(withValue.contains(beta))
         }
@@ -101,7 +101,7 @@ class ModelTests: XCTestCase {
         attempt {
             let context = try session.soPersistentTestsManagedObjectContext()
             let (alpha, _, charlie) = seedData(context)
-            let withValues = try Panda.findAll(withValues: ["alpha", "charlie"], forKey: "name", inContext: context)
+            let withValues: [Panda] = try context.findAll(withValues: ["alpha", "charlie"], forKey: "name")
             XCTAssertEqual(2, withValues.count)
             XCTAssert(withValues.contains(alpha))
             XCTAssert(withValues.contains(charlie))
@@ -112,7 +112,7 @@ class ModelTests: XCTestCase {
         attempt {
             let context = try session.soPersistentTestsManagedObjectContext()
             let (alpha, _, _) = seedData(context)
-            let result = try Panda.findOne(withValue: "alpha", forKey: "name", inContext: context)
+            let result: Panda? = try context.findOne(withValue: "alpha", forKey: "name")
             XCTAssertEqual(alpha, result)
         }
     }
@@ -122,7 +122,7 @@ class ModelTests: XCTestCase {
             let context = try session.soPersistentTestsManagedObjectContext()
             let (_, beta, _) = seedData(context)
             let predicate = NSPredicate(format: "%K == %@", "name", "beta")
-            let result = try Panda.findOne(predicate, inContext: context)
+            let result: Panda? = try context.findOne(withPredicate: predicate)
             XCTAssertEqual(beta, result)
         }
     }
@@ -131,7 +131,7 @@ class ModelTests: XCTestCase {
         attempt {
             let context = try session.soPersistentTestsManagedObjectContext()
             let (alpha, _, _) = seedData(context)
-            let result = try Panda.findOne(inContext: context, objectID: alpha.objectID)
+            let result: Panda = try context.findOne(alpha.objectID)
             XCTAssertEqual(alpha, result)
         }
     }
@@ -140,7 +140,7 @@ class ModelTests: XCTestCase {
         attempt {
             let session = Session.inMemory
             let context = try session.soPersistentTestsManagedObjectContext()
-            let created = Panda.create(inContext: context)
+            let created = Panda(inContext: context)
             XCTAssert(created.inserted)
         }
     }

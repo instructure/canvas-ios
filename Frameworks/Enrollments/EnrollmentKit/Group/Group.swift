@@ -12,7 +12,7 @@ import SoPersistent
 import TooLegit
 
 
-public final class Group: Enrollment, Model {
+public final class Group: Enrollment {
     public override var contextID: ContextID {
         return ContextID(id: id, context: .Group)
     }

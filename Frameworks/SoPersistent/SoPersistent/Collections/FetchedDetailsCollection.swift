@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import ReactiveCocoa
 
-public class FetchedDetailsCollection<M, DVM where M: NSManagedObject, M: Model, DVM: Equatable>: Collection {
+public class FetchedDetailsCollection<M, DVM where M: NSManagedObject, DVM: Equatable>: Collection {
     public typealias Object = DVM
 
     var disposable: Disposable?

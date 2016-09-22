@@ -24,7 +24,7 @@ import SoPersistent
 import Marshal
 import SoLazy
 
-extension RubricCriterion: Model {
+extension RubricCriterion {
     
     public static func uniquePredicateForObject(assignmentID: String, json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id") ?? ""
@@ -42,12 +42,12 @@ extension RubricCriterion: Model {
         
         if let criterionRatings: [JSONObject] = try json <| "ratings" ?? [] {
             for rating in criterionRatings {
-                if let rubricCriterionRating = try RubricCriterionRating.findOne(try RubricCriterionRating.uniquePredicateForObject(id, assignmentID: self.assignmentID, json: rating), inContext: context) {
+                if let rubricCriterionRating: RubricCriterionRating = try context.findOne(withPredicate: try RubricCriterionRating.uniquePredicateForObject(id, assignmentID: self.assignmentID, json: rating)) {
                     try rubricCriterionRating.updateValues(rating, assignmentID: self.assignmentID, inContext: context)
                 
                     ratings.insert(rubricCriterionRating)
                 } else {
-                    let rubricCriterionRating = RubricCriterionRating.create(inContext: context)
+                    let rubricCriterionRating = RubricCriterionRating(inContext: context)
                     try rubricCriterionRating.updateValues(rating, assignmentID: self.assignmentID, inContext: context)
                     
                     ratings.insert(rubricCriterionRating)

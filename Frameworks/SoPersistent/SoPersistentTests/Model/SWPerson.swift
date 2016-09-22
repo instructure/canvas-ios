@@ -31,8 +31,6 @@ final class SWPerson: NSManagedObject, SWPersonProtocol {
 import SoPersistent
 import Marshal
 
-extension SWPerson: Model {}
-
 extension SWPerson: SynchronizedModel {
 
     static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {

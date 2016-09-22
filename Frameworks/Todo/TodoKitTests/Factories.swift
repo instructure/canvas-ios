@@ -30,7 +30,7 @@ extension Todo {
                       submissionTypes: SubmissionTypes = [],
                       contextID: ContextID = ContextID(id: "1", context: .Course)
     ) -> Todo {
-        let todo = Todo.create(inContext: context)
+        let todo = Todo(inContext: context)
         todo.id = id
         todo.done = done
         todo.type = type

@@ -73,7 +73,7 @@ class GradeCollectionsTests: XCTestCase {
         }
 
         let fetch = Grade.fetch(Grade.predicate(course.id, gradingPeriodID: gradingPeriodID), sortDescriptors: nil, inContext: context)
-        response = try? Grade.findAll(fetch, inContext: context)
+        response = try? context.findAll(fromFetchRequest: fetch)
 
         return response
     }

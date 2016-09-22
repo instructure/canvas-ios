@@ -36,7 +36,7 @@ class FileTests: XCTestCase {
                         .start()
                 }
             }
-            let results = try File.findAll(withValue: "85285506", forKey: "id", inContext: context)
+            let results: [File] = try context.findAll(withValue: "85285506", forKey: "id")
             XCTAssert(results.isEmpty)
         }
    }

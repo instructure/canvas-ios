@@ -34,7 +34,7 @@ extension DueDateOverride: SynchronizedModel {
         due     = try json <| "due_at"
         
         let assignmentID: String = try json.stringID("assignment_id")
-        let assignment = try Assignment.findOne(withValue: assignmentID, forKey: "id", inContext: context)
+        let assignment: Assignment? = try context.findOne(withValue: assignmentID, forKey: "id")
         self.assignment = assignment
     }
 }

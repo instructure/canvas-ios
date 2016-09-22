@@ -65,7 +65,7 @@ public class SubmissionUpload: Upload {
     }
 }
 
-public final class TextSubmissionUpload: SubmissionUpload, Model {
+public final class TextSubmissionUpload: SubmissionUpload {
     @NSManaged private(set) var text: String
 
     override var parameters: [String : AnyObject] {
@@ -76,7 +76,7 @@ public final class TextSubmissionUpload: SubmissionUpload, Model {
     }
 
     static func create(backgroundSessionID backgroundSessionID: String, assignment: Assignment, text: String, comment: String? = nil, inContext context: NSManagedObjectContext) -> TextSubmissionUpload {
-        let upload = create(inContext: context)
+        let upload = TextSubmissionUpload(inContext: context)
         upload.backgroundSessionID = backgroundSessionID
         upload.assignment = assignment
         upload.text = text
@@ -85,7 +85,7 @@ public final class TextSubmissionUpload: SubmissionUpload, Model {
     }
 }
 
-public final class URLSubmissionUpload: SubmissionUpload, Model {
+public final class URLSubmissionUpload: SubmissionUpload {
     @NSManaged private(set) var url: String
 
     override var parameters: [String : AnyObject] {
@@ -96,7 +96,7 @@ public final class URLSubmissionUpload: SubmissionUpload, Model {
     }
 
     static func create(backgroundSessionID backgroundSessionID: String, assignment: Assignment, url: String, comment: String? = nil, inContext context: NSManagedObjectContext) -> URLSubmissionUpload {
-        let upload = create(inContext: context)
+        let upload = URLSubmissionUpload(inContext: context)
         upload.backgroundSessionID = backgroundSessionID
         upload.assignment = assignment
         upload.url = url
@@ -105,7 +105,7 @@ public final class URLSubmissionUpload: SubmissionUpload, Model {
     }
 }
 
-public final class FileSubmissionUpload: SubmissionUpload, Model {
+public final class FileSubmissionUpload: SubmissionUpload {
     @NSManaged private(set) var fileUploads: Set<SubmissionFileUpload>
 
     override var parameters: [String : AnyObject] {
@@ -116,7 +116,7 @@ public final class FileSubmissionUpload: SubmissionUpload, Model {
     }
 
     static func create(backgroundSessionID backgroundSessionID: String, assignment: Assignment, fileUploads: [SubmissionFileUpload], comment: String? = nil, inContext context: NSManagedObjectContext) -> FileSubmissionUpload {
-        let upload = create(inContext: context)
+        let upload: FileSubmissionUpload = create(inContext: context)
         upload.backgroundSessionID = backgroundSessionID
         upload.assignment = assignment
         upload.comment = comment
@@ -144,7 +144,7 @@ public final class FileSubmissionUpload: SubmissionUpload, Model {
     }
 }
 
-public final class SubmissionFileUpload: FileUpload, Model {
+public final class SubmissionFileUpload: FileUpload {
     @NSManaged private(set) var fileSubmissionUpload: FileSubmissionUpload
     
     public override func complete(inSession session: Session, inContext context: NSManagedObjectContext) {

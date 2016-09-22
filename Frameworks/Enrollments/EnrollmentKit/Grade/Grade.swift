@@ -39,7 +39,7 @@ extension Grade: SynchronizedModel {
         }
 
         let courseID: String = try json.stringID("course_id")
-        if let course = try Course.findOne(withValue: courseID, forKey: "id", inContext: context) {
+        if let course: Course = try context.findOne(withValue: courseID, forKey: "id") {
             self.course = course
         }
     }

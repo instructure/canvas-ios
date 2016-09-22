@@ -38,7 +38,7 @@ class GradingPeriodTests: XCTestCase {
             ]
             let session = Session.inMemory
             let context = try session.enrollmentManagedObjectContext()
-            let gradingPeriod = GradingPeriod.create(inContext: context)
+            let gradingPeriod = GradingPeriod(inContext: context)
 
             // When
             try gradingPeriod.updateValues(json, inContext: context)

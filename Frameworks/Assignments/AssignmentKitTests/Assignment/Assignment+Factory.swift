@@ -46,7 +46,7 @@ extension Assignment {
                       submissionUploads: Set<SubmissionUpload> = [],
                       assignmentGroup: AssignmentGroup? = nil
     ) -> Assignment {
-        let assignment = Assignment.create(inContext: context)
+        let assignment = Assignment(inContext: context)
         assignment.id = id
         assignment.courseID = courseID
         assignment.name = name

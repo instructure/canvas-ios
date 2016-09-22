@@ -61,7 +61,7 @@ extension CalendarEvent {
         gradedAt: NSDate? = nil,
         rawStatus: Int64 = 0
     ) -> CalendarEvent {
-        let calendarEvent = CalendarEvent.create(inContext: context)
+        let calendarEvent = CalendarEvent(inContext: context)
         calendarEvent.id = id
         calendarEvent.title = title
         calendarEvent.startAt = startAt

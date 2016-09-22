@@ -11,7 +11,7 @@ import CoreData
 
 extension Rubric {
     static func build(inContext context: NSManagedObjectContext, courseID: String = "1140383", assignmentID: String = "9091235", title: String = "", freeFormCriterionComments: Bool = false, pointsPossible: NSNumber = NSNumber(float: 10.0)) -> Rubric {
-        let rubric = Rubric.create(inContext: context)
+        let rubric = Rubric(inContext: context)
         rubric.courseID = courseID
         rubric.assignmentID = assignmentID
         rubric.title = title

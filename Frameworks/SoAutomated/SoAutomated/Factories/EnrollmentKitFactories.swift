@@ -17,7 +17,7 @@ extension Course {
                       isFavorite: Bool = false,
                       color: UIColor? = nil,
                       currentGradingPeriodID: String? = nil) -> Course {
-        let course = Course.create(inContext: context)
+        let course = Course(inContext: context)
         course.id = id
         course.name = name
         course.code = code
@@ -36,7 +36,7 @@ extension Group {
                       isFavorite: Bool = false,
                       color: UIColor? = nil
         ) -> Group {
-        let group = Group.create(inContext: context)
+        let group = Group(inContext: context)
         group.id = id
         group.name = name
         group.isFavorite = isFavorite
@@ -47,7 +47,7 @@ extension Group {
 
 extension Tab {
     public static func build(context: NSManagedObjectContext) -> Tab {
-        let tab = Tab.create(inContext: context)
+        let tab = Tab(inContext: context)
         return tab
     }
 }
@@ -60,7 +60,7 @@ extension Grade {
                       finalGrade: String? = nil,
                       finalScore: NSNumber? = nil,
                       @noescape course: (NSManagedObjectContext -> Course) = { Course.build($0) }) -> Grade {
-        let grade = Grade.create(inContext: context)
+        let grade = Grade(inContext: context)
         grade.gradingPeriodID = gradingPeriodID
         grade.currentGrade = currentGrade
         grade.currentScore = currentScore
@@ -78,7 +78,7 @@ extension GradingPeriod {
                       courseID: String = "1",
                       startDate: NSDate = NSDate()
     ) -> GradingPeriod {
-        let gradingPeriod = GradingPeriod.create(inContext: context)
+        let gradingPeriod = GradingPeriod(inContext: context)
         gradingPeriod.id = id
         gradingPeriod.title = title
         gradingPeriod.courseID = courseID

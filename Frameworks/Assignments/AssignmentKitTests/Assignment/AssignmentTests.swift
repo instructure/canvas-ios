@@ -21,7 +21,7 @@ class AssignmentTests: UnitTestCase {
         attempt{
             let session = Session.ns
             let context = try session.assignmentsManagedObjectContext()
-            let assignment: Assignment = Assignment.create(inContext: context)
+            let assignment = Assignment(inContext: context)
             
             try assignment.updateValues(validJSON, inContext:context)
             let dueStatus: DueStatus = DueStatus(assignment: assignment)
@@ -60,7 +60,7 @@ class AssignmentTests: UnitTestCase {
         attempt{
             let session = Session.ns
             let context = try session.assignmentsManagedObjectContext()
-            let assignment: Assignment = Assignment.create(inContext: context)
+            let assignment = Assignment(inContext: context)
             
             var json = validJSON
             
@@ -83,7 +83,7 @@ class AssignmentTests: UnitTestCase {
         attempt{
             let session = Session.ns
             let context = try session.assignmentsManagedObjectContext()
-            let assignment: Assignment = Assignment.create(inContext: context)
+            let assignment = Assignment(inContext: context)
             
             var json = validJSON
             
@@ -102,7 +102,7 @@ class AssignmentTests: UnitTestCase {
         attempt{
             let session = Session.ns
             let context = try session.assignmentsManagedObjectContext()
-            let assignment: Assignment = Assignment.create(inContext: context)
+            let assignment = Assignment(inContext: context)
             
             var json = validJSON
             
@@ -121,7 +121,7 @@ class AssignmentTests: UnitTestCase {
         attempt{
             let session = Session.ns
             let context = try session.assignmentsManagedObjectContext()
-            let assignment: Assignment = Assignment.create(inContext: context)
+            let assignment = Assignment(inContext: context)
             
             var json = validJSON
             
@@ -138,7 +138,7 @@ class AssignmentTests: UnitTestCase {
         attempt{
             let session = Session.ns
             let context = try session.assignmentsManagedObjectContext()
-            let assignment: Assignment = Assignment.create(inContext: context)
+            let assignment = Assignment(inContext: context)
             
             var json = validJSON
             
@@ -155,7 +155,7 @@ class AssignmentTests: UnitTestCase {
         attempt{
             let session = Session.ns
             let context = try session.assignmentsManagedObjectContext()
-            let assignment: Assignment = Assignment.create(inContext: context)
+            let assignment = Assignment(inContext: context)
             
             var json = validJSON
             
@@ -172,7 +172,7 @@ class AssignmentTests: UnitTestCase {
         attempt{
             let session = Session.ns
             let context = try session.assignmentsManagedObjectContext()
-            let assignment: Assignment = Assignment.create(inContext: context)
+            let assignment = Assignment(inContext: context)
             
             var json = validJSON
             
@@ -189,7 +189,7 @@ class AssignmentTests: UnitTestCase {
         attempt{
             let session = Session.ns
             let context = try session.assignmentsManagedObjectContext()
-            let assignment: Assignment = Assignment.create(inContext: context)
+            let assignment = Assignment(inContext: context)
             
             var json = validJSON
             
@@ -207,7 +207,7 @@ class AssignmentTests: UnitTestCase {
         attempt {
             let session = Session.ns
             let context = try session.assignmentsManagedObjectContext()
-            let dueDateOverride: DueDateOverride = DueDateOverride.create(inContext: context)
+            let dueDateOverride = DueDateOverride(inContext: context)
 
             try dueDateOverride.updateValues(overridesJSON, inContext: context)
 

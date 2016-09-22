@@ -26,7 +26,7 @@ extension SynchronizedModel where Self: NSManagedObject {
                     let fetchLocal = fetch(localPredicate, sortDescriptors: nil, inContext: syncContext)
                     fetchLocal.includesPropertyValues = false
                     fetchLocal.returnsObjectsAsFaults = true
-                    var existing = try Set(Self.findAll(fetchLocal, inContext: syncContext))
+                    var existing = try Set(syncContext.findAll(fromFetchRequest: fetchLocal))
                     
                     let upsertSignal: ModelPageSignalProducer = fetchRemote.flatMap(.Concat, transform: Self.upsert(inContext: syncContext, postProcess: postProcess))
 

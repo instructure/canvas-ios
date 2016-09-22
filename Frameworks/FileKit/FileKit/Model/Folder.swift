@@ -12,7 +12,7 @@ import SoLazy
 import CoreData
 import ReactiveCocoa
 
-public final class Folder: FileNode, Model {
+public final class Folder: FileNode {
     @NSManaged public var foldersUrl: NSURL
     @NSManaged public var filesUrl: NSURL
     @NSManaged public var filesCount: Int32
@@ -43,7 +43,7 @@ public final class Folder: FileNode, Model {
     }
     
     public class func create(inContext context: NSManagedObjectContext, contextID: ContextID) -> Folder {
-        let folder: Folder = Folder.create(inContext: context)
+        let folder = Folder(inContext: context)
         folder.contextID = contextID
         return folder
     }
@@ -52,7 +52,7 @@ public final class Folder: FileNode, Model {
         let local: JSONObject -> SignalProducer<Void, NSError> = { json in
             attemptProducer {
                 let context = try session.filesManagedObjectContext()
-                let folder: Folder = Folder.create(inContext: context, contextID: contextID)
+                let folder = Folder.create(inContext: context, contextID: contextID)
                 try folder.updateValues(json, inContext: context)
                 folder.contextID = contextID
                 folder.isInRootFolder = folderID == nil

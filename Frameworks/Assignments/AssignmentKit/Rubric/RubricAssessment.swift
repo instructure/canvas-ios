@@ -22,7 +22,7 @@ import SoPersistent
 import Marshal
 import SoLazy
 
-extension RubricAssessment: Model {
+extension RubricAssessment {
     public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
         let assessmentID: String = try json.stringID("id")
         let submissionID: String = try json.stringID("submissionID")

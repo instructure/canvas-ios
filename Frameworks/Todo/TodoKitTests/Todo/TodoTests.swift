@@ -31,7 +31,7 @@ class TodoTests: UnitTestCase {
             let session = Session.inMemory
             let context = try session.todosManagedObjectContext()
             
-            let todo = Todo.create(inContext: context)
+            let todo = Todo(inContext: context)
             try todo.updateValues(json, inContext: context)
             
             XCTAssertEqual("9536420", todo.id)
@@ -66,7 +66,7 @@ class TodoTests: UnitTestCase {
             assignment["submission_types"] = ["online_text_entry", "online_quiz"]
             json["assignment"] = assignment
             
-            let todo = Todo.create(inContext: context)
+            let todo = Todo(inContext: context)
             try todo.updateValues(json, inContext: context)
             
             XCTAssertEqual("https://mobiledev.instructure.com/courses/1863668/assignments/9536420", todo.assignmentHtmlURL)

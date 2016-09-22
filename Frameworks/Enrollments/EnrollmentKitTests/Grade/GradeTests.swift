@@ -35,7 +35,7 @@ class GradeTests: XCTestCase {
 
     func testGrade_updateValues_createsAValidGrade() {
         attempt {
-            let newGrade = Grade.create(inContext: context)
+            let newGrade = Grade(inContext: context)
             try newGrade.updateValues(validJSON, inContext: context)
             XCTAssert(newGrade.isValid)
         }
@@ -43,7 +43,7 @@ class GradeTests: XCTestCase {
 
     func testGrade_updateValues_createsCourseRelationship() {
         attempt {
-            let newGrade = Grade.create(inContext: context)
+            let newGrade = Grade(inContext: context)
             let course = Course.build(context, id: "1")
 
             try newGrade.updateValues(validJSON, inContext: context)
@@ -54,7 +54,7 @@ class GradeTests: XCTestCase {
 
     func testGrade_updateValues_setsGrades() {
         attempt {
-            let newGrade = Grade.create(inContext: context)
+            let newGrade = Grade(inContext: context)
             try newGrade.updateValues(validJSON, inContext: context)
             assertGradesAreSet(newGrade)
         }
@@ -62,7 +62,7 @@ class GradeTests: XCTestCase {
 
     func testGrade_updateValues_whenThereAreNoGrades_setsGradesToNil() {
         attempt {
-            let newGrade = Grade.create(inContext: context)
+            let newGrade = Grade(inContext: context)
             try newGrade.updateValues(teacherJSON, inContext: context)
             assertTeacherGradesAreNil(newGrade)
         }

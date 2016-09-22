@@ -16,7 +16,7 @@ extension GradingPeriod {
                       courseID: String = "1",
                       startDate: NSDate = NSDate()
     ) -> GradingPeriod {
-        let gradingPeriod = GradingPeriod.create(inContext: context)
+        let gradingPeriod = GradingPeriod(inContext: context)
         gradingPeriod.id = id
         gradingPeriod.title = title
         gradingPeriod.courseID = courseID

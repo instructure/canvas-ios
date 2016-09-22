@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import SoPersistent
 
-public final class ModuleItem: NSManagedObject {
+public class ModuleItem: NSManagedObject {
     @NSManaged internal (set) public var id: String
     @NSManaged internal (set) public var moduleID: String
     @NSManaged internal (set) public var position: Int

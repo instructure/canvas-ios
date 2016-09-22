@@ -20,7 +20,7 @@ public final class RubricCriterionRating: NSManagedObject {
     @NSManaged internal (set) public var ratingDescription: String
 }
 
-extension RubricCriterionRating: Model {
+extension RubricCriterionRating {
     public static func uniquePredicateForObject(criterionID: String, assignmentID: String, json: JSONObject) throws -> NSPredicate {
         let id : String = try json <| "id" ?? ""
         return NSPredicate(format: "%K == %@ && %K == %@ && %K.%K == %@", "id", id, "assignmentID", assignmentID, "criterion", "id", criterionID)

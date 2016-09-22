@@ -27,7 +27,7 @@ class DiscussionTopicTests: XCTestCase {
         let json = DiscussionTopic.validJSON
         let session = Session.inMemory
         let context = try! session.discussionsManagedObjectContext()
-        let topic = DiscussionTopic.create(inContext: context)
+        let topic = DiscussionTopic(inContext: context)
         try! topic.updateValues(json, inContext: context)
         XCTAssertEqual("Simple Discussion - No Due Date", topic.title)
     }

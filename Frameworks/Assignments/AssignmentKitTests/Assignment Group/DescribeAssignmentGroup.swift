@@ -33,7 +33,7 @@ class AssignmentGroupTests: XCTestCase {
             let session = Session.inMemory
             let context = try session.assignmentsManagedObjectContext()
             let assignment = Assignment.build(context, assignmentGroupID: "1", gradingPeriodID: nil)
-            let assignmentGroup = AssignmentGroup.create(inContext: context)
+            let assignmentGroup = AssignmentGroup(inContext: context)
             let json = [
                 "id": 1,
                 "name": "Research",

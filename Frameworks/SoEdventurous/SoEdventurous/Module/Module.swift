@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import SoPersistent
 
-public final class Module: NSManagedObject {
+public class Module: NSManagedObject {
     @NSManaged internal (set) public var id: String
     @NSManaged internal (set) public var courseID: String // This is not in the json, but set in the refresher
     @NSManaged internal (set) public var name: String
