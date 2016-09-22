@@ -36,7 +36,7 @@ extension AlertThreshold {
                     signal.observeOn(ManagedObjectContextScheduler(context: context)).observe { event in
                         switch event {
                         case .Failed(let e):
-                            let alertThreshold = AlertThreshold.create(inContext: context)
+                            let alertThreshold = AlertThreshold(inContext: context)
                             alertThreshold.type = type
                             alertThreshold.threshold = threshold
                             alertThreshold.observerID = observerID
@@ -64,7 +64,7 @@ extension AlertThreshold {
         return SignalProducer { observer, disposable in
             do {
                 let context = try session.alertsManagedObjectContext()
-                let alertThreshold = AlertThreshold.create(inContext: context)
+                let alertThreshold = AlertThreshold(inContext: context)
 
                 context.performBlockAndWait {
                     alertThreshold.type = type

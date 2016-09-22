@@ -69,7 +69,8 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
                 let isStudent = enrollmentDataSource?.roles?.contains(EnrollmentRoles.Student) ?? false
                 if isStudent {
                     if let defaultAssignmentID = defaultAssignmentID {
-                        self.assignment = try Assignment.findOne(NSPredicate(format: "%K == %@ AND %K == %@", "id", defaultAssignmentID, "courseID", defaultCourseID), inContext: try session.assignmentsManagedObjectContext())
+                        let context = try session.assignmentsManagedObjectContext()
+                        self.assignment = try context.findOne(withPredicate: NSPredicate(format: "%K == %@ AND %K == %@", "id", defaultAssignmentID, "courseID", defaultCourseID))
                     }
                 }
             } catch {
