@@ -56,7 +56,7 @@ class CoursesCollectionViewController: Course.CollectionViewController {
         let refresher = try Course.refresher(session)
         refresher.refreshingBegan.observeNext {
             // Let's invalidate all the tabs so that they get refreshed too
-            if let courses = try? Course.findAll(context) {
+            if let courses: [Course] = try? context.findAll() {
                 for course in courses {
                     let cacheKey = Tab.cacheKey(context, [course.contextID.description])
                     session.refreshScope.invalidateCache(cacheKey)
