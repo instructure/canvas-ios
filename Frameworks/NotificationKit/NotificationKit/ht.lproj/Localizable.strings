@@ -1,0 +1,85 @@
+/* Title for push notification pre-authorization alert */
+"Allow Push Notifications?" = "Pèmèt Notifikasyon Push?";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "Pa Kapab Afiche Kanal Kominikasyon yo";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "Pa Kapab Afiche Preferans Kominikasyon yo";
+
+/* Description for Chat communication channel */
+"Chat" = "Chat";
+
+/* Notification display name for conversations group */
+"Conversations" = "Konvèsasyon";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "Pa Kapab Chaje Preferans Kominikasyon yo";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "Pa kapab aktyalize";
+
+/* Notification display name for course activities group */
+"Course Activities" = "Aktivite Kou";
+
+/* Notification display name for discussions group */
+"Discussions" = "Diskisyon";
+
+/* Description for email communication channel */
+"Email" = "Imèl";
+
+/* Notification display name for groups group */
+"Groups" = "Gwoup";
+
+/* Title for no button for push notification pre-authorization alert */
+"No" = "Non";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "Paka Jwenn Okenn Kanal Kominikasyon";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "Preferans Notifikasyon";
+
+/* Action title for being unable to update a push notification preference
+   Alert action button text when unable to load communication channels
+   Alert action button text when unable to load notification preferences
+   Alert action button text when unable to parse JSON for communication channels
+   Alert action button text when unable to parse JSON for notification preferences */
+"Ok" = "Ok";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Notifikasyon Push";
+
+/* Description for SMS communication channel */
+"SMS" = "SMS";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "Orè";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "Enposib pou afiche tout Kanal Kominikasyon ki tounen sot nan sèvè a nan moman sa a.";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "Enposib pou afiche tout preferans kominikasyon ki tounen sot nan sèvè a nan moman sa a.";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time.  Error: (result.error?.localizedDescription)" = "Enposib pou chaje tout Kanal Kominikasyon yo nan moman sa a. Erè: (result.error?.localizedDescription)";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Enposib pou chaje tout Preferans Notifikasyon yo nan moman sa a. Erè: (result.error?.localizedDescription)";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "Nou pa t kapab aktyalize valè sa a ak sèvè a";
+
+/* Message for push notification pre-authorization alert */
+"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "Eske w ta renmen otorize Canvas pou voye avètisman ki enpòtan konsènan anons, kou, sesyon elatriye pou ou?";
+
+/* Title for yes button for push notification pre-authorization alert */
+"Yes" = "Wi";
+
+/* Description for Yo communication channel */
+"Yo" = "Non";
+

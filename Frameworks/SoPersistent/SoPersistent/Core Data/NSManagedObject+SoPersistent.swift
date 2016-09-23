@@ -12,8 +12,8 @@ import Marshal
 import ReactiveCocoa
 import SoLazy
 
-private let errorDesc = NSLocalizedString("There was a problem reading cached data", comment: "Persistence error message")
-private let errorTitle = NSLocalizedString("Read Error", comment: "tile for error reading cache")
+private let errorDesc = NSLocalizedString("There was a problem reading cached data", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoPersistent")!, value: "", comment: "Persistence error message")
+private let errorTitle = NSLocalizedString("Read Error", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoPersistent")!, value: "", comment: "tile for error reading cache")
 
 extension NSManagedObject {
     public convenience init(inContext context: NSManagedObjectContext) {

@@ -103,9 +103,9 @@ class PickAssignmentTableViewCellViewModel: TableViewCellViewModel {
             cell.userInteractionEnabled = submittable
             if !submittable {
                 if self.uploadAlreadyInProgress {
-                    cell.detailTextLabel?.text = NSLocalizedString("Assignment is currently being submitted", comment: "Message indicating that an assignment is currently be submitted")
+                    cell.detailTextLabel?.text = NSLocalizedString("Assignment is currently being submitted", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Message indicating that an assignment is currently be submitted")
                 } else {
-                    cell.detailTextLabel?.text = NSLocalizedString("Submission type not allowed", comment: "Message indicating that a submission type is not supported for this assignment.")
+                    cell.detailTextLabel?.text = NSLocalizedString("Submission type not allowed", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Message indicating that a submission type is not supported for this assignment.")
                 }
             } else {
                 cell.detailTextLabel?.text = ""

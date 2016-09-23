@@ -1,0 +1,12 @@
+/* Title for network errors */
+"Network Error" = "ネットワークエラー";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "サーバーとの通信中にエラーが発生しました。";
+
+/* Unexpected response type */
+"Unexpected response type" = "予期せぬ応答タイプ";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "ユーザーは有効なアバターの画像url を持っていません";
+

@@ -542,6 +542,7 @@
 				49B5D6561D05E8750084BD39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49B5D6651D05E8A90084BD39 /* Build configuration list for PBXNativeTarget "SoIconic" */ = {
 			isa = XCConfigurationList;
@@ -550,6 +551,7 @@
 				49B5D6671D05E8A90084BD39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49B5D6751D05E8C90084BD39 /* Build configuration list for PBXNativeTarget "SoIconicTests" */ = {
 			isa = XCConfigurationList;
@@ -558,6 +560,7 @@
 				49B5D6771D05E8C90084BD39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

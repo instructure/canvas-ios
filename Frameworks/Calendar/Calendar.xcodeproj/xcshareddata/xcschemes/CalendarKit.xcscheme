@@ -39,6 +39,16 @@
                ReferencedContainer = "container:Calendar.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5ECEDDDF1C499FB400E59B53"
+               BuildableName = "CalendarTests.xctest"
+               BlueprintName = "CalendarTests"
+               ReferencedContainer = "container:Calendar.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

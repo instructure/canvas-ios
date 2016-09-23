@@ -1,0 +1,72 @@
+/* option to view results for all grading periods */
+"All Grading Periods" = "All Marking Periods";
+
+/* Blue course color button */
+"Blue" = "Blue";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "Customise";
+
+/* Cyan course color button */
+"Cyan" = "Cyan";
+
+/* DeepOrange course color button */
+"DeepOrange" = "DeepOrange";
+
+/* DeepPurple course color button */
+"DeepPurple" = "DeepPurple";
+
+/* favorite courses or groups */
+"Favorites" = "Favourites";
+
+/* Title for grading periods picker */
+"Grading Periods" = "Grading Periods";
+
+/* Green course color button */
+"Green" = "Green";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "Hidden";
+
+/* Indigo course color button */
+"Indigo" = "Indigo";
+
+/* LightBlue course color button */
+"LightBlue" = "LightBlue";
+
+/* LightGreen course color button */
+"LightGreen" = "LightGreen";
+
+/* LightPink course color button */
+"LightPink" = "LightPink";
+
+/* Orange course color button */
+"Orange" = "Orange";
+
+/* Pink course color button */
+"Pink" = "Pink";
+
+/* Purple course color button */
+"Purple" = "Purple";
+
+/* red course color button */
+"Red" = "Red";
+
+/* when a button is selected */
+"Selected" = "Selected";
+
+/* Teal course color button */
+"Teal" = "Teal";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "There was a problem loading the EnrolmentKit database file.";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "There was an error associating a tab with a course or group.";
+
+/* Total grade label */
+"Total Grade" = "Total Grade";
+
+/* Yellow course color button */
+"Yellow" = "Yellow";
+

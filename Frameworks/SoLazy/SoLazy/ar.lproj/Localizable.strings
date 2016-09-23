@@ -1,0 +1,21 @@
+/* Dismiss an error dialog */
+"Dismiss" = "Dismiss";
+
+/* Data encoding error title */
+"Encoding Error" = "خطأ في الترميز";
+
+/* Option to report an error */
+"Report" = "إنشاء تقرير";
+
+/* Data encoding error message */
+"There was a problem encoding UTF8 Data" = "حدثت مشكلة أثناء ترميز البيانات UTF8";
+
+/* JSON Parsing error description */
+"There was a problem interpreting a response from the server." = "حدثت مشكلة أثناء تفسير إستجابة من الخادم.";
+
+/* SoLazy's fallback title for an unknown error */
+"Unknown Error" = "خطأ غير معروف";
+
+/* attached to error explanation in dialog */
+"Explanation:" = "الشرح:";
+

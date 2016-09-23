@@ -1,0 +1,126 @@
+/* grade details for points based grade i.e. \"10 of 12\" */
+"of (formatter(possible))" = "van (formatter(possible))";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
+"(formatter(points)) of (formatter(possible))" = "(formatter(points)) van (formatter(possible))";
+
+/* Title for 1 day assignment reminder */
+"1 day" = "1 dag";
+
+/* Title for 1 hour assignment reminder */
+"1 hour" = "1 uur";
+
+/* Title for 3 days assignment reminder */
+"3 days" = "3 dagen";
+
+/* Title for 5 minutes assignment reminder */
+"5 minutes" = "5 minuten";
+
+/* Assignment label */
+"Assignment" = "Opdracht";
+
+/* Title for alert view for assignment reminders */
+"Assignment Reminder" = "Opdracht herinnering";
+
+/* Message indicating that an assignment is currently be submitted */
+"Assignment is currently being submitted" = "Opdracht wordt momenteel ingediend";
+
+/* This assignment hasn't been graded yet but can be graded */
+"Awaiting Grade" = "In afwachting van beoordeling";
+
+/* cancel button */
+"Cancel" = "Annuleren";
+
+/* Title for reminder options for an assignment */
+"Choose how long before the assignment due date to get a reminder:" = "Kies hoe lang voor de inleverdatum van de opdracht je een herinnering wilt ontvangen:";
+
+/* Title for a rating that hasn't been graded but has a comment */
+"Comment" = "Opmerking";
+
+/* Assignment submission comment placeholder text */
+"Comment.." = "Opmerking...";
+
+/* error displayed when submitting an assignment is unavailable */
+"Could not submit assignment. Invalid assignment or session." = "Kon geen opdracht indienen. Ongeldige opdracht of sessie.";
+
+/* error displayed when submitting a submission is invalid. */
+"Could not submit assignment. Invalid submission." = "Kon opdracht niet indienen. Ongeldige indiening.";
+
+/* String telling the user that the date is the due date */
+"Due:" = "Inleverdatum:";
+
+/* Error title for parsing assignment data from server */
+"Error Updating Assignment" = "Fout bij het bijwerken van opdracht";
+
+/* This assignment is excused */
+"Excused" = "Verontschuldigd";
+
+/* Error when an upload failed to resume. */
+"Failed to resume upload." = "Kon upload niet samenvatten.";
+
+/* This assignment is late */
+"Late" = "Laat";
+
+/* Title for a rating that has custom graded but has no comment */
+"No Comment" = "Geen opmerking";
+
+/* Default string for due date title */
+"No Due Date" = "Geen inleverdatum";
+
+/* Section header for assignments without an assignment group */
+"None" = "Geen";
+
+/* submission title for assignment waiting user submission */
+"Not Submitted" = "Niet ingediend";
+
+/* Overdue assignmnets (not turned in) */
+"Overdue" = "Te laat";
+
+/* Assignments that have been turned in and are past */
+"Past" = "Verleden";
+
+/* Rubric Points Possible Title */
+"Points Possible" = "Mogelijke punten";
+
+/* title for submission button if student has submitted previously */
+"Re-submit Assignment" = "Opdracht opnieuw indienen";
+
+/* Message indicating that a submission type is not supported for this assignment. */
+"Submission type not allowed" = "Indiening type niet toegestaan";
+
+/* submission title for assignment that doesn't support submissions */
+"Submissions N/A" = "Indieningen n.v.t.";
+
+/* title for submission button if student has never submitted */
+"Submit Assignment" = "Opdracht indienen";
+
+/* AssignmentKit database load failure message */
+"There was a problem loading the AssignmentKit database file." = "Er was een probleem bij het laden van het AssingmentKit gegevensbestand.";
+
+/* Error description for failing to compute the URL to a quiz */
+"There was a problem updating the Quiz URL" = "Er was een probleem bij het bijwerken van de Toets URL";
+
+/* submission title for assignemnt that is submitted */
+"Turned in!" = "Ingeleverd!";
+
+/* Error message when a course could not be selected */
+"Unable to select a course." = "Niet in staat cursus te selecteren.";
+
+/* Error message when an assignment could not be selected */
+"Unable to select an assignment." = "Niet in staat een opdracht te selecteren.";
+
+/* Error message when unable to submit assignment. */
+"Unable to submit assignment." = "Niet in staat opdracht in te dienen.";
+
+/* Assignments with no dates */
+"Undated" = "Ongedateerd";
+
+/* This assignment is not graded */
+"Ungraded" = "Niet beoordeeld";
+
+/* Upcoming assignments */
+"Upcoming" = "Aanstaand";
+
+/* Title for button to see rubric from assignment detail */
+"View Rubric" = "Rubriek bekijken";
+

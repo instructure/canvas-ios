@@ -1,0 +1,12 @@
+/* Title for network errors */
+"Network Error" = "网络错误";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "联系服务器时出现错误。";
+
+/* Unexpected response type */
+"Unexpected response type" = "意外的响应类型";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "用户有无效的avatar图像url";
+

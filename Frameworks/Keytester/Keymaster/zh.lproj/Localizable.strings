@@ -1,0 +1,15 @@
+/* Back Button Title */
+"Back" = "返回";
+
+/* Error Alert Title */
+"Error" = "错误";
+
+/* Domain Picker Search Placeholder */
+"Find your school or district" = "查找您的学校或学区";
+
+/* OK */
+"OK" = "OK";
+
+/* AccountDomain Database Load Failure Message */
+"There was a problem loading the AccountDomain database file." = "加载 AccountDomain 数据文件时出现问题。";
+

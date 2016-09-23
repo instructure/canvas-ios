@@ -1,0 +1,12 @@
+/* Title for network errors */
+"Network Error" = "Nettverksfeil";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "Det oppsto en feil under serverkommunikasjonen.";
+
+/* Unexpected response type */
+"Unexpected response type" = "Ikke forventet responstype";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "Bruker har ingen gyldig avatar bilde-url";
+

@@ -1,0 +1,66 @@
+/* nevermind */
+"Cancel" = "Anile";
+
+/* Pick a photo from library */
+"Choose a Photo" = "Chwazi yon Foto";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "Chwazi yon Foto oswa Videyo";
+
+/* Pick a video from library */
+"Choose a Video" = "Chwazi yon Videyo";
+
+/* URL submission option */
+"Choose a Webpage" = "Chwazi yon Paj Wèb";
+
+/* name for upload data */
+"Data" = "Done";
+
+/* Delete button for file upload */
+"Delete" = "Efase";
+
+/* Prompt for text upload */
+"Enter your upload..." = "Antre chanjman ou an...";
+
+/* title for file upload errors */
+"File Upload Error" = "Erè Chajman Fichye";
+
+/* Title of files list */
+"Files" = "Fichye";
+
+/* name for a photo just taken */
+"Photo" = "Foto";
+
+/* Choose record audio submission */
+"Record Audio" = "Anrejistre son";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "Pran yon Foto oswa Videyo";
+
+/* Take a photo submission choice */
+"Take a Photo" = "Pran yon Foto";
+
+/* Take a video submission choice */
+"Take a Video" = "Fè yon Videyo";
+
+/* Text submission option */
+"Text" = "Tèks";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "Te gen yon pwoblèm nan chajman fichye FileKit baz de done a.";
+
+/* FileKit Tests database fails */
+"There was a problem loading the FileKitTests database file." = "Te gen yon pwoblèm nan chajman fichye FileKitTests baz de done a.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "Gen yon pwoblèm nan preparasyon fichye a pou transfè";
+
+/* Turn in button title */
+"Turn In" = "Soumèt";
+
+/* name for a video just taken for upload */
+"Video" = "Videyo";
+
+/* prompt for submission upload */
+"What would you like to turn in?" = "Kisa w ta renmen soumèt?";
+

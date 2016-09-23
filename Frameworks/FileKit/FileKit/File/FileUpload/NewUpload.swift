@@ -63,11 +63,11 @@ public enum NewUploadFile {
         case .AudioFile(let url):
             return url.lastPathComponent ?? ""
         case .Photo(_):
-            return NSLocalizedString("Photo", comment: "name for a photo just taken")
+            return NSLocalizedString("Photo", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "name for a photo just taken")
         case .VideoURL(_):
-            return NSLocalizedString("Video", comment: "name for a video just taken for upload")
+            return NSLocalizedString("Video", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "name for a video just taken for upload")
         case .Data(_):
-            return NSLocalizedString("Data", comment: "name for upload data")
+            return NSLocalizedString("Data", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "name for upload data")
         }
     }
 

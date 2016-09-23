@@ -40,7 +40,7 @@ class ShareViewController: SLComposeServiceViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        placeholder = NSLocalizedString("Comment..", comment: "Assignment submission comment placeholder text")
+        placeholder = NSLocalizedString("Comment..", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Assignment submission comment placeholder text")
     }
 
     override func isContentValid() -> Bool {
@@ -55,7 +55,7 @@ class ShareViewController: SLComposeServiceViewController {
 
     func performUpload(completionHandler: ()->Void) {
         guard let session = session, assignment = assignment where newSubmissions.count > 0 else {
-            displayErrorMessage(NSLocalizedString("Unable to submit assignment.", comment: "Error message when unable to submit assignment."))
+            displayErrorMessage(NSLocalizedString("Unable to submit assignment.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Error message when unable to submit assignment."))
             return
         }
 
@@ -75,7 +75,7 @@ class ShareViewController: SLComposeServiceViewController {
             do {
                 try assignment.uploadSubmission(submission, inSession: session)
             } catch {
-                displayErrorMessage(NSLocalizedString("Failed to resume upload.", comment: "Error when an upload failed to resume."))
+                displayErrorMessage(NSLocalizedString("Failed to resume upload.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Error when an upload failed to resume."))
             }
         }
 
@@ -84,7 +84,7 @@ class ShareViewController: SLComposeServiceViewController {
 
     override func configurationItems() -> [AnyObject]! {
         let assignmentConfig = SLComposeSheetConfigurationItem()
-        assignmentConfig.title = NSLocalizedString("Assignment", comment: "Assignment label")
+        assignmentConfig.title = NSLocalizedString("Assignment", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Assignment label")
         assignmentConfig.value = assignment?.name ?? ""
         assignmentConfig.tapHandler = showSessionPicker
         return [assignmentConfig]
@@ -123,7 +123,7 @@ class ShareViewController: SLComposeServiceViewController {
             }
             pushConfigurationViewController(coursePicker)
         } catch {
-            displayErrorMessage(NSLocalizedString("Unable to select a course.", comment: "Error message when a course could not be selected"))
+            displayErrorMessage(NSLocalizedString("Unable to select a course.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Error message when a course could not be selected"))
         }
     }
 
@@ -147,7 +147,7 @@ class ShareViewController: SLComposeServiceViewController {
             }
             pushConfigurationViewController(assignmentPicker)
         } catch {
-            displayErrorMessage(NSLocalizedString("Unable to select an assignment.", comment: "Error message when an assignment could not be selected"))
+            displayErrorMessage(NSLocalizedString("Unable to select an assignment.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Error message when an assignment could not be selected"))
         }
     }
 

@@ -1,0 +1,85 @@
+/* Title for push notification pre-authorization alert */
+"Allow Push Notifications?" = "Tillate push-varsler?";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "Kan ikke vise kommunikasjonskanaler";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "Kan ikke vise varslingspreferanser";
+
+/* Description for Chat communication channel */
+"Chat" = "Chat";
+
+/* Notification display name for conversations group */
+"Conversations" = "Konversasjoner";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "Kan ikke laste varslingspreferanser";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "Kunne ikke oppdatere";
+
+/* Notification display name for course activities group */
+"Course Activities" = "Kursaktiviteter";
+
+/* Notification display name for discussions group */
+"Discussions" = "Diskusjoner";
+
+/* Description for email communication channel */
+"Email" = "E-post";
+
+/* Notification display name for groups group */
+"Groups" = "Grupper";
+
+/* Title for no button for push notification pre-authorization alert */
+"No" = "Nei";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "Ingen kommunikasjonskanaler funnet";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "Varslingspreferanser";
+
+/* Action title for being unable to update a push notification preference
+   Alert action button text when unable to load communication channels
+   Alert action button text when unable to load notification preferences
+   Alert action button text when unable to parse JSON for communication channels
+   Alert action button text when unable to parse JSON for notification preferences */
+"Ok" = "Ok";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Push-varslinger";
+
+/* Description for SMS communication channel */
+"SMS" = "SMS";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "Planlegging";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "Kunne ikke vise noen kommunikasjonskanaler returnert fra serveren på dette tidspunktet.";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "Ikke i stand til å vise noen varslingspreferanser returnert fra serveren på dette tidspunktet.";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time.  Error: (result.error?.localizedDescription)" = "Kunne i laste noen kommunikasjonskanaler på dette tidspunktet. Feil: (result.error?.localizedDescription)";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Kunne i laste noen varslingspreferanser på dette tidspunktet. Feil: (result.error?.localizedDescription)";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "Vi var ikke i stand til å oppdatere denne verdien med serveren";
+
+/* Message for push notification pre-authorization alert */
+"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "Ønsker du å tillate at Canvas sender deg viktige varslinger om kunngjøringer, kurs, oppgaver osv?";
+
+/* Title for yes button for push notification pre-authorization alert */
+"Yes" = "Ja";
+
+/* Description for Yo communication channel */
+"Yo" = "Yo";
+

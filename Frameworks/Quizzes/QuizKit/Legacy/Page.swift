@@ -28,7 +28,7 @@ struct Page<T> {
             return makeRequest(nextPage, completed: response)
         } else {
             // YOU SHOULDN'T EVER GET HERE.
-            let error = NSError(domain: "com.instructure.authentication", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("The Pages are gone!? Why are the pages always gone?", comment: "This shouldn't ever happen.")])
+            let error = NSError(domain: "com.instructure.authentication", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("The Pages are gone!? Why are the pages always gone?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "This shouldn't ever happen.")])
             response(Result(error: error))
             return nil
         }

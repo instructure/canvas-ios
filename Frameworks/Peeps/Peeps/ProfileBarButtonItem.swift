@@ -23,8 +23,8 @@ public class ProfileBarButtonItem: UIBarButtonItem {
         button.layer.borderWidth = 2.0
         button.layer.borderColor = UIColor.grayColor().CGColor
         button.tintColor = UIColor.whiteColor()
-        button.accessibilityLabel = NSLocalizedString("Profile", comment: "Accessibility label for the profile button")
-        button.accessibilityHint = NSLocalizedString("Opens profile", comment: "Accessibility hint for the profile button")
+        button.accessibilityLabel = NSLocalizedString("Profile", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Accessibility label for the profile button")
+        button.accessibilityHint = NSLocalizedString("Opens profile", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Accessibility hint for the profile button")
 
         let wrapper = UIView(frame: CGRect(x: 0, y: 0, width: buttonDiameter, height: buttonDiameter))
         wrapper.addSubview(button)

@@ -1,0 +1,66 @@
+/* nevermind */
+"Cancel" = "Avbryt";
+
+/* Pick a photo from library */
+"Choose a Photo" = "Velg et bilde";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "Velg et bilde eller en video";
+
+/* Pick a video from library */
+"Choose a Video" = "Velg en video";
+
+/* URL submission option */
+"Choose a Webpage" = "Veld en nettside";
+
+/* name for upload data */
+"Data" = "Data";
+
+/* Delete button for file upload */
+"Delete" = "Slett";
+
+/* Prompt for text upload */
+"Enter your upload..." = "Skriv inn opplastingen din ...";
+
+/* title for file upload errors */
+"File Upload Error" = "Filopplastingsfeil";
+
+/* Title of files list */
+"Files" = "Filer";
+
+/* name for a photo just taken */
+"Photo" = "Bilde";
+
+/* Choose record audio submission */
+"Record Audio" = "Lydopptak";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "Ta bilde eller video";
+
+/* Take a photo submission choice */
+"Take a Photo" = "Ta et bilde";
+
+/* Take a video submission choice */
+"Take a Video" = "Ta en video";
+
+/* Text submission option */
+"Text" = "Tekst";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "Det oppsto et problem under opplasting av databasefilen til filsettet.";
+
+/* FileKit Tests database fails */
+"There was a problem loading the FileKitTests database file." = "Det oppsto et problem under opplasting av databasefilen til filsett-testene.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "Det oppsto et problem med å forberede filen til opplasting";
+
+/* Turn in button title */
+"Turn In" = "Lever inn";
+
+/* name for a video just taken for upload */
+"Video" = "Video";
+
+/* prompt for submission upload */
+"What would you like to turn in?" = "Hva ønsker du å innlevere?";
+

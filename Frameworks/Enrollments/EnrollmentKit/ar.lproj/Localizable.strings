@@ -1,0 +1,72 @@
+/* option to view results for all grading periods */
+"All Grading Periods" = "جميع فترات تقييم الدرجات";
+
+/* Blue course color button */
+"Blue" = "أزرق";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "تخصيص";
+
+/* Cyan course color button */
+"Cyan" = "سماوي";
+
+/* DeepOrange course color button */
+"DeepOrange" = "برتقالي داكن";
+
+/* DeepPurple course color button */
+"DeepPurple" = "أرجواني داكن";
+
+/* favorite courses or groups */
+"Favorites" = "المفضلة";
+
+/* Title for grading periods picker */
+"Grading Periods" = "فترات تقييم الدرجات";
+
+/* Green course color button */
+"Green" = "أخضر";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "مخفية";
+
+/* Indigo course color button */
+"Indigo" = "نيلي";
+
+/* LightBlue course color button */
+"LightBlue" = "أزرق فاتح";
+
+/* LightGreen course color button */
+"LightGreen" = "أخضر فاتح";
+
+/* LightPink course color button */
+"LightPink" = "وردي فاتح";
+
+/* Orange course color button */
+"Orange" = "برتقالي";
+
+/* Pink course color button */
+"Pink" = "وردي";
+
+/* Purple course color button */
+"Purple" = "أرجواني";
+
+/* red course color button */
+"Red" = "أحمر";
+
+/* when a button is selected */
+"Selected" = "تم تحديده";
+
+/* Teal course color button */
+"Teal" = "أزرق مخضر";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة بيانات EnrollmentKit.";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "حدثت مشكلة أثناء ربط علامة تبويب بمساق أو مجموعة.";
+
+/* Total grade label */
+"Total Grade" = "الدرجة الإجمالية";
+
+/* Yellow course color button */
+"Yellow" = "أصفر";
+

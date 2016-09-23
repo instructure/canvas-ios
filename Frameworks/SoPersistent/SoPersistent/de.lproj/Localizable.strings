@@ -1,0 +1,15 @@
+/* Error title for a persistence related data failure */
+"Data Error" = "Datenfehler";
+
+/* error message for when the cache management database fails to load */
+"Error loading cache management database." = "Beim Laden der Speichermanagement-Datenbank ist ein Fehler aufgetreten.";
+
+/* tile for error reading cache */
+"Read Error" = "Lesefehler";
+
+/* SoPersistent Tests database fails */
+"There was a problem loading the SoPersistentTests database file." = "Beim Laden der Datenbankdatei SoPersistentTests ist ein Problem aufgetreten.";
+
+/* Persistence error message */
+"There was a problem reading cached data" = "Beim Auslesen der Speicherdaten ist ein Problem aufgetreten.";
+

@@ -1,0 +1,18 @@
+/* all pages segmented control title */
+"All Pages" = "All Pages";
+
+/* badge indicating front page */
+"Front Page" = "Front Page";
+
+/* Generic button to dismiss the popup message */
+"Okay" = "Okay";
+
+/* The page is locked by the teacher */
+"Page Locked" = "Page Locked";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "There was a problem loading the Pages database file.";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "This page is currently locked and not viewable.";
+

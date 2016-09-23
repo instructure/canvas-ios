@@ -99,7 +99,7 @@ class CanvadocsCommentsViewController: UIViewController {
         view.addConstraint(replyToolbarBottom!)
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[replyToolbar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["replyToolbar": replyToolbar]))
         
-        navigationItem.title = NSLocalizedString("Comments", comment: "")
+        navigationItem.title = NSLocalizedString("Comments", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "")
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(CanvadocsCommentsViewController.close(_:)))
         if rootComment?.editable ?? true {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: #selector(CanvadocsCommentsViewController.trash(_:)))

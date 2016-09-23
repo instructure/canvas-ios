@@ -1,0 +1,18 @@
+/* Title for screen to build a panda avatar */
+"Build Your Panda!" = "建立您的熊猫！";
+
+/* Accessibility hint for the profile button */
+"Opens profile" = "打开档案";
+
+/* Photos backdrops */
+"Photos" = "照片";
+
+/* Accessibility label for the profile button */
+"Profile" = "档案";
+
+/* Shapes backdrops */
+"Shapes" = "形状";
+
+/* PeepKit Database Load Failure Message */
+"There was a problem loading the PeepKit database file." = "加载 PeepKit 数据文件出现问题。";
+

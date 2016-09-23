@@ -28,9 +28,9 @@ enum ImageType: Int, CustomStringConvertible {
     var description: String {
         switch self {
         case .Shapes:
-            return NSLocalizedString("Shapes", comment: "Shapes backdrops")
+            return NSLocalizedString("Shapes", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Peeps")!, value: "", comment: "Shapes backdrops")
         case .Photos:
-            return NSLocalizedString("Photos", comment: "Photos backdrops")
+            return NSLocalizedString("Photos", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Peeps")!, value: "", comment: "Photos backdrops")
         }
     }
 }

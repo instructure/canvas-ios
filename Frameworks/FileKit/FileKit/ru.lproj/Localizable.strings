@@ -1,0 +1,66 @@
+/* nevermind */
+"Cancel" = "Отменить";
+
+/* Pick a photo from library */
+"Choose a Photo" = "Выбрать фото";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "Выбрать фото или видео";
+
+/* Pick a video from library */
+"Choose a Video" = "Выбрать видео";
+
+/* URL submission option */
+"Choose a Webpage" = "Выбрать веб-страницу";
+
+/* name for upload data */
+"Data" = "Данные";
+
+/* Delete button for file upload */
+"Delete" = "Удалить";
+
+/* Prompt for text upload */
+"Enter your upload..." = "Введите свою загрузку...";
+
+/* title for file upload errors */
+"File Upload Error" = "Ошибка при загрузке файла";
+
+/* Title of files list */
+"Files" = "Файлы";
+
+/* name for a photo just taken */
+"Photo" = "Фото";
+
+/* Choose record audio submission */
+"Record Audio" = "Записать аудио";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "Сделать фото или видео";
+
+/* Take a photo submission choice */
+"Take a Photo" = "Сделать снимок";
+
+/* Take a video submission choice */
+"Take a Video" = "Снять видео";
+
+/* Text submission option */
+"Text" = "Текст";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "Возникла проблема при загрузке файла базы данных FileKit.";
+
+/* FileKit Tests database fails */
+"There was a problem loading the FileKitTests database file." = "Возникла проблема при загрузке файла базы данных FileKitTests.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "Возникла проблема при подготовке файла для загрузки";
+
+/* Turn in button title */
+"Turn In" = "Сдать";
+
+/* name for a video just taken for upload */
+"Video" = "Видео";
+
+/* prompt for submission upload */
+"What would you like to turn in?" = "Какое задание вы хотите сдать?";
+

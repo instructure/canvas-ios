@@ -1,0 +1,15 @@
+/* Back Button Title */
+"Back" = "戻る";
+
+/* Error Alert Title */
+"Error" = "エラー";
+
+/* Domain Picker Search Placeholder */
+"Find your school or district" = "学校または学区を探す";
+
+/* OK */
+"OK" = "OK";
+
+/* AccountDomain Database Load Failure Message */
+"There was a problem loading the AccountDomain database file." = "AccountDomain データベースファイルの読み込み中にエラーが発生しました。";
+

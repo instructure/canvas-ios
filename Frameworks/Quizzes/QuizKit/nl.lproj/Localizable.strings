@@ -1,0 +1,204 @@
+/* Error message component with the report id */
+"Error report ID: (reportID)" = "Foutrapport ID: (reportID)";
+
+/* Failure reason from the JSON payload from canvas */
+"Failure reason: (reason)." = "Reden van fout: (reden).";
+
+/* Confirmations alerting user of unanswered questions */
+"%d questions not answered" = "%d vragen niet beantwoord";
+
+/* Accessiblity hint for question drawer button */
+"(questionsController!.flaggedCount) Questions Answered" = "(questionsController!.flaggedCount) Vragen beantwoord";
+
+/* Accessiblity hint for question drawer button */
+"0 Questions Answered" = "0 vragen beantwoord";
+
+/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
+"5 minutes remaining" = "nog 5 minuten";
+
+/* Notification to alert the user that there is only 30 seconds left in the time quiz */
+"30 seconds remaining" = "Nog 30 seconden";
+
+/* label for number of attempts that are allowed */
+"Allowed Attempts" = "Toegestane pogingen";
+
+/* an unknown error's message */
+"An unknown error has occurred." = "Er heeft zich een onbekende fout voorgedaan.";
+
+/* Question to confirm user wants to navigate away from a quiz. */
+"Are you sure you want to leave this quiz?" = "Weet je zeker dat je deze toets wilt verlaten?";
+
+/* Confirmation before submitting a quiz */
+"Are you sure you want to submit your answers?" = "Weet je zeker dat je je antwoorden wilt indienen?";
+
+/* label for quiz availability date */
+"Available Until" = "Beschikbaar tot";
+
+/* Cancel button
+   cancel button for submitting a quiz
+   Cancel removing the formatting */
+"Cancel" = "Annuleren";
+
+/* Button for electing to be late on a quiz */
+"Continue Quiz" = "Doorgaan met toets";
+
+/* Dismiss button for error alert */
+"Dismiss" = "Verwijderen";
+
+/* Done button */
+"Done" = "Klaar";
+
+/* due date label for quiz due date */
+"Due Date" = "Inleverdatum";
+
+/* Default text for essay cell */
+"Enter answer..." = "Antwoord invoeren...";
+
+/* Exit button to leave the quiz */
+"Exit" = "Afmelden";
+
+/* State of the flagged question */
+"Flagged" = "Gevlagd";
+
+/* Hides the question list */
+"Hide Question List" = "Vragenlijst verbergen";
+
+/* Leave the quiz */
+"Leave" = "Afmelden";
+
+/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
+"Lock Date Reached
+Submitting" = "Vergrendeldatum bereikt
+Aan het indienen";
+
+/* Next button for advancing a quiz */
+"Next" = "Volgende";
+
+/* A quiz that has no due date */
+"No Due Date" = "Geen inleverdatum";
+
+/* when a quiz has no time limit */
+"No time limit" = "Geen tijdslimiet";
+
+/* Title for alert showing when a quiz isn't takeable */
+"Not Takeable" = "Niet beschikbaar";
+
+/* OK */
+"OK" = "OK";
+
+/* label for number of points in a quiz */
+"Points" = "Punten";
+
+/* accessibility label for a quiz question */
+"Question" = "Vraag";
+
+/* state for a question that has been flagged */
+"Question (questionNumber) Flagged" = "Vraag (questionNumber) gevlagd";
+
+/* state for unflagged question */
+"Question (questionNumber) Unflagged" = "Vraag (questionNumber) ontvlagd";
+
+/* label for the number of questions */
+"Questions" = "Vragen";
+
+/* Title for alert that shows when a quiz hits the due date */
+"Quiz Due" = "Inleverdatum toets";
+
+/* Title for quiz error */
+"Quiz Error" = "Fout in toets";
+
+/* Label for indication that the quiz submission was successful */
+"Quiz Submitted" = "Toets ingediend";
+
+/* Remove the formatting of the essay question text */
+"Remove Formatting" = "Formattering verwijderen";
+
+/* button for resuming a quiz */
+"Resume Quiz" = "Toets hervatten";
+
+/* button for retaking quiz */
+"Retake Quiz" = "Toets hervatten";
+
+/* Indicates that a matching quiz question needs to have an answer selected */
+"Select Answer" = "Antwoord selecteren";
+
+/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
+"Select all that apply" = "Alles dat van toepassing is selecteren";
+
+/* Hides the question list */
+"Show Question List" = "Vragenlijst tonen";
+
+/* Text for a button that toggles to show a timer for a timed quiz */
+"Show Timer" = "Timer tonen";
+
+/* Stay on the quiz view */
+"Stay" = "Blijven";
+
+/* Label for indication that the quiz submission failed */
+"Submission Failure" = "Fout bij indiening";
+
+/* Button for electing to not be late on a quiz
+   confirm submitting quiz
+   Submit button for completing a quiz */
+"Submit" = "Indienen";
+
+/* Label for indication of submitting quiz */
+"Submitting Quiz" = "Toets aan het indienen...";
+
+/* Button for taking the quiz */
+"Take Quiz" = "Toets doen";
+
+/* This shouldn't ever happen. */
+"The Pages are gone!? Why are the pages always gone?" = "De pagina's zijn weg!? Waarom zijn de pagina's altijd weg?";
+
+/* Description for alert that shows when the quiz hits the due date */
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possbily be late?" = "De toets moet over 1 minuut ingeleverd zijn. Wil je nu indienen en op tijd zijn, of doorgaan met de toets en mogelijk te laat zijn?";
+
+/* generic error message */
+"There was a problem with the Canvas request." = "Er was een probleem met de Canvas aanvraag.";
+
+/* No comment provided by engineer. */
+"There was no data!" = "Er waren geen gegevens!";
+
+/* Warning to users editing an essay question that was edited on the web. */
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "Deze essay vraag is bijgewerkt op het web en kan formattering, koppelingen of afbeeldingen bevatten. Om dit antwoord bij te werken op je mobiele apparaat, moeten we de formattering (inclusief koppelingen en afbeeldingen) wissen. Je kunt ook doorgaan met het bewerken van de vraag via een web browser.";
+
+/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
+"This quiz has an IP address filter set." = "Deze toets heeft een IP adres ingesteld met filter.";
+
+/* Message when telling the user they can't take the quiz for some weird reason */
+"This quiz is currently unavailable." = "Deze toets is momenteel niet beschikbaar.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked." = "Deze toets is vergrendeld.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked. Reason: (description)" = "Deze toets is vergrendeld. Reden: (beschrijving)";
+
+/* label for the time limit */
+"Time Limit" = "Tijdslimiet";
+
+/* Toggle flag accessiblity action */
+"Toggle Flag" = "Vlag aan- en uitzetten";
+
+/* Ungraded quiz */
+"Ungraded" = "Niet beoordeeld";
+
+/* When a quiz has no limit on the number of attempts */
+"Unlimited" = "Onbeperkt";
+
+/* a warning message */
+"Warning" = "Waarschuwing";
+
+/* Shows time limit on a quiz */
+"You have (minuteLimit) minutes." = "Je hebt (minuteLimit) minuten";
+
+/* Message when telling the user they can't take the quiz because they used up all their attempts */
+"You have used all your attempts available on this quiz." = "Je hebt al je beschikbare pogingen gebruikt voor deze toets.";
+
+/* Hours label for time limit */
+"hr" = "uur";
+
+/* Minutes label localized */
+"min" = "min";
+

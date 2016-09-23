@@ -1,0 +1,12 @@
+/* Failure reason for why it couldn't associate a tab with a context */
+"Could not parse context id from URL" = "Não foi possível analisar o id de contexto da URL";
+
+/* Error message for interrupted requests marking a to do as done */
+"The request to mark a to do as done was interrupted" = "A solicitação para marcar um fazer como feito foi interrompida";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the (kitModelName) database file." = "Houve um problema ao carregar o arquivo de banco de dados  (kitModelName) .";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "Houve um erro ao associar uma guia com um curso ou grupo.";
+

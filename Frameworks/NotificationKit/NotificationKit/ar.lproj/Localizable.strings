@@ -1,0 +1,85 @@
+/* Title for push notification pre-authorization alert */
+"Allow Push Notifications?" = "السماح بإرسال الإخطارات؟";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "لا يمكن عرض قنوات الاتصال";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "لا يمكن عرض تفضيلات الإخطار";
+
+/* Description for Chat communication channel */
+"Chat" = "دردشة";
+
+/* Notification display name for conversations group */
+"Conversations" = "محادثات";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "تعذر تحميل تفضيلات الإخطار";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "تعذر التحديث";
+
+/* Notification display name for course activities group */
+"Course Activities" = "أنشطة المساق";
+
+/* Notification display name for discussions group */
+"Discussions" = "مناقشات";
+
+/* Description for email communication channel */
+"Email" = "البريد الإلكتروني";
+
+/* Notification display name for groups group */
+"Groups" = "المجموعات";
+
+/* Title for no button for push notification pre-authorization alert */
+"No" = "لا";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "لم يتم العثور على أي قنوات اتصال";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "تفضيلات الإخطار";
+
+/* Action title for being unable to update a push notification preference
+   Alert action button text when unable to load communication channels
+   Alert action button text when unable to load notification preferences
+   Alert action button text when unable to parse JSON for communication channels
+   Alert action button text when unable to parse JSON for notification preferences */
+"Ok" = "موافق";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "إرسال الإخطارات";
+
+/* Description for SMS communication channel */
+"SMS" = "رسالة SMS";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "الجدولة";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "يتعذر  عرض جميع قنوات الاتصال التي أرجعها الخادم في هذه الآونة.";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "يتعذر  عرض جميع تفضيلات الإخطار التي أرجعها الخادم في هذه الآونة.";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time.  Error: (result.error?.localizedDescription)" = "يتعذر  تحميل جميع قنوات الاتصال في هذه الآونة. الخطأ: (result.error?.localizedDescription)";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "يتعذر  تحميل جميع تفضيلات الإخطار في هذه الآونة. الخطأ: (result.error?.localizedDescription)";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "لم نتمكن من تحديث هذه القيمة مع الخادم";
+
+/* Message for push notification pre-authorization alert */
+"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "هل تريد السماح لـ Canvas بإرسال إخطارات مهمة حول الإعلانات والمساقات والمهام وغيرها؟";
+
+/* Title for yes button for push notification pre-authorization alert */
+"Yes" = "نعم";
+
+/* Description for Yo communication channel */
+"Yo" = "Yo";
+

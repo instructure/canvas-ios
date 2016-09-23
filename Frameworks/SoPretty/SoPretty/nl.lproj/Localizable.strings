@@ -1,0 +1,15 @@
+/* dismiss error dialog */
+"Dismiss" = "Verwijderen";
+
+/* Placeholder for URL */
+"Enter URL..." = "URL invoeren...";
+
+/* navigate */
+"Go" = "Ga";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "De tekst die je invoerde is geen geldig URL";
+
+/* Turn in this url button */
+"Turn In" = "Inleveren";
+

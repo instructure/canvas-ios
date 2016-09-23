@@ -13,21 +13,21 @@ import TooLegit
 public class CustomizeEnrollmentViewController: UIViewController {
     
     private let colorsByButtonTag: [Int: (UIColor, String)] = [
-        1: (.contextRed(), NSLocalizedString("Red", comment: "red course color button")),
-        2: (.contextPink(), NSLocalizedString("Pink", comment: "Pink course color button")),
-        3: (.contextPurple(), NSLocalizedString("Purple", comment: "Purple course color button")),
-        4: (.contextDeepPurple(), NSLocalizedString("DeepPurple", comment: "DeepPurple course color button")),
-        5: (.contextIndigo(), NSLocalizedString("Indigo", comment: "Indigo course color button")),
-        6: (.contextBlue(), NSLocalizedString("Blue", comment: "Blue course color button")),
-        7: (.contextLightBlue(), NSLocalizedString("LightBlue", comment: "LightBlue course color button")),
-        8: (.contextCyan(), NSLocalizedString("Cyan", comment: "Cyan course color button")),
-        9: (.contextTeal(), NSLocalizedString("Teal", comment: "Teal course color button")),
-        10: (.contextGreen(), NSLocalizedString("Green", comment: "Green course color button")),
-        11: (.contextLightGreen(), NSLocalizedString("LightGreen", comment: "LightGreen course color button")),
-        12: (.contextYellow(), NSLocalizedString("Yellow", comment: "Yellow course color button")),
-        13: (.contextOrange(), NSLocalizedString("Orange", comment: "Orange course color button")),
-        14: (.contextDeepOrange(), NSLocalizedString("DeepOrange", comment: "DeepOrange course color button")),
-        15: (.contextLightPink(), NSLocalizedString("LightPink", comment: "LightPink course color button")),
+        1: (.contextRed(), NSLocalizedString("Red", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "red course color button")),
+        2: (.contextPink(), NSLocalizedString("Pink", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Pink course color button")),
+        3: (.contextPurple(), NSLocalizedString("Purple", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Purple course color button")),
+        4: (.contextDeepPurple(), NSLocalizedString("DeepPurple", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "DeepPurple course color button")),
+        5: (.contextIndigo(), NSLocalizedString("Indigo", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Indigo course color button")),
+        6: (.contextBlue(), NSLocalizedString("Blue", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Blue course color button")),
+        7: (.contextLightBlue(), NSLocalizedString("LightBlue", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "LightBlue course color button")),
+        8: (.contextCyan(), NSLocalizedString("Cyan", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Cyan course color button")),
+        9: (.contextTeal(), NSLocalizedString("Teal", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Teal course color button")),
+        10: (.contextGreen(), NSLocalizedString("Green", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Green course color button")),
+        11: (.contextLightGreen(), NSLocalizedString("LightGreen", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "LightGreen course color button")),
+        12: (.contextYellow(), NSLocalizedString("Yellow", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Yellow course color button")),
+        13: (.contextOrange(), NSLocalizedString("Orange", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Orange course color button")),
+        14: (.contextDeepOrange(), NSLocalizedString("DeepOrange", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "DeepOrange course color button")),
+        15: (.contextLightPink(), NSLocalizedString("LightPink", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "LightPink course color button")),
     ]
 
     let session: Session
@@ -53,7 +53,7 @@ public class CustomizeEnrollmentViewController: UIViewController {
         super.viewDidLoad()
         ensureConsistentColors()
         
-        self.navigationItem.title = NSLocalizedString("Customize", comment: "Header label for a screen that customizes a course")
+        self.navigationItem.title = NSLocalizedString("Customize", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Header label for a screen that customizes a course")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(doneButtonTapped(_:)))
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[topGuide]-0-[header]", options: NSLayoutFormatOptions(), metrics: nil, views: ["topGuide": self.topLayoutGuide, "header": self.header]))
         
@@ -119,7 +119,7 @@ public class CustomizeEnrollmentViewController: UIViewController {
         if let button = currentContextColorButton {
             let a11yLabel = colorsByButtonTag[button.tag]?.1 ?? ""
             if selected {
-                button.accessibilityLabel = a11yLabel + " — " + NSLocalizedString("Selected", comment: "when a button is selected")
+                button.accessibilityLabel = a11yLabel + " — " + NSLocalizedString("Selected", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "when a button is selected")
                 var image = UIImage(named: "icon_check", inBundle: NSBundle(forClass: CustomizeEnrollmentViewController.self), compatibleWithTraitCollection: nil)
                 let imageSize = image?.size ?? CGSizeZero
                 

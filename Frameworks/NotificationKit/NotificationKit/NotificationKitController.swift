@@ -161,7 +161,7 @@ public class NotificationKitController {
     
     public typealias ShowPreauthorizationAlertCompletion = (result: Bool) -> ()
     public static func showPreauthorizationAlert(controller: UIViewController, completion: ShowPreauthorizationAlertCompletion? = nil) {
-        let yesActionTitle = NSLocalizedString("Yes", comment: "Title for yes button for push notification pre-authorization alert")
+        let yesActionTitle = NSLocalizedString("Yes", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Title for yes button for push notification pre-authorization alert")
         let yesAction = UIAlertAction(title: yesActionTitle, style: UIAlertActionStyle.Default) { (alertAction) -> Void in
             PushPreAuthStatus.setCurrentPushPreAuthStatus(PushPreAuthStatus.ShownAndAccepted)
             if completion != nil {
@@ -170,7 +170,7 @@ public class NotificationKitController {
             self.registerForRemoteNotifications()
         }
         
-        let noActionTitle = NSLocalizedString("No", comment: "Title for no button for push notification pre-authorization alert")
+        let noActionTitle = NSLocalizedString("No", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Title for no button for push notification pre-authorization alert")
         let noAction = UIAlertAction(title: noActionTitle, style: .Cancel) { (alertAction) -> Void in
             PushPreAuthStatus.setCurrentPushPreAuthStatus(PushPreAuthStatus.ShownAndDeclined)
             if completion != nil {
@@ -178,8 +178,8 @@ public class NotificationKitController {
             }
         }
         
-        let alertTitle = NSLocalizedString("Allow Push Notifications?", comment: "Title for push notification pre-authorization alert")
-        let alertMessage = NSLocalizedString("Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?", comment: "Message for push notification pre-authorization alert")
+        let alertTitle = NSLocalizedString("Allow Push Notifications?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Title for push notification pre-authorization alert")
+        let alertMessage = NSLocalizedString("Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Message for push notification pre-authorization alert")
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(noAction)
         alert.addAction(yesAction)

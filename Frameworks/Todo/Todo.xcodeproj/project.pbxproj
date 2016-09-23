@@ -55,6 +55,8 @@
 		B19FB4B21C6BD0CD00B4A93B /* TodoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19FB4B11C6BD0CD00B4A93B /* TodoCell.xib */; };
 		B1F820C71CEB9AE7006EC0BC /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820C61CEB9AE7006EC0BC /* Factories.swift */; };
 		B1F820CA1CEBAA62006EC0BC /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820C91CEBAA62006EC0BC /* Fixtures.swift */; };
+		B50E51411D8CA08A00A2E028 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B50E513E1D8CA08A00A2E028 /* Localizable.strings */; };
+		B54EB7591D8CC7200003AD5B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B14E115E1C63C60F00007938 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,12 +137,32 @@
 		B14E114F1C63C56A00007938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B14E115A1C63C60F00007938 /* TodoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TodoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B14E115C1C63C60F00007938 /* TodoKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoKit.h; sourceTree = "<group>"; };
-		B14E115E1C63C60F00007938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B14E115E1C63C60F00007938 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B14E11631C63C60F00007938 /* TodoKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B14E116C1C63C60F00007938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B19FB4B11C6BD0CD00B4A93B /* TodoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodoCell.xib; sourceTree = "<group>"; };
 		B1F820C61CEB9AE7006EC0BC /* Factories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
 		B1F820C91CEBAA62006EC0BC /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
+		B50E513F1D8CA08A00A2E028 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "TodoKit/zh-HK.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		B50E51401D8CA08A00A2E028 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = TodoKit/zh.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B58234BB1D8CC77E00C9E001 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = TodoKit/ar.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A5781D8CA0AA0035C3D7 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "TodoKit/pt-BR.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		B5C2A5791D8CA0AA0035C3D7 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = TodoKit/pt.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A57A1D8CA0AA0035C3D7 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = TodoKit/sv.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A57B1D8CA0B30035C3D7 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = TodoKit/nb.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A57C1D8CA0B30035C3D7 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = TodoKit/nl.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A57D1D8CA0B30035C3D7 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = TodoKit/pl.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A57E1D8CA0B90035C3D7 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = TodoKit/ht.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A57F1D8CA0B90035C3D7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = TodoKit/ja.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A5801D8CA0B90035C3D7 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = TodoKit/mi.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A5811D8CA0BF0035C3D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = TodoKit/en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A5821D8CA0BF0035C3D7 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = TodoKit/es.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A5831D8CA0BF0035C3D7 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = TodoKit/fr.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A5841D8CA0C90035C3D7 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = TodoKit/de.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A5851D8CA0C90035C3D7 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "TodoKit/en-AU.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		B5C2A5861D8CA0C90035C3D7 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "TodoKit/en-GB.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		B5C2A5881D8CA0EC0035C3D7 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = TodoKit/da.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5C2A58A1D8CA11B0035C3D7 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = TodoKit/ru.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +298,7 @@
 				5E40A0D11CC5855F00350F70 /* Network */,
 				5E40A0D21CC5855F00350F70 /* Todo */,
 				B14E115C1C63C60F00007938 /* TodoKit.h */,
+				B50E513E1D8CA08A00A2E028 /* Localizable.strings */,
 				B14E115E1C63C60F00007938 /* Info.plist */,
 				5E40A0DC1CC5877A00350F70 /* Session+Todo.swift */,
 			);
@@ -416,6 +439,25 @@
 			knownRegions = (
 				en,
 				Base,
+				zh,
+				"zh-HK",
+				"pt-BR",
+				pt,
+				sv,
+				nb,
+				nl,
+				pl,
+				ht,
+				ja,
+				mi,
+				es,
+				fr,
+				de,
+				"en-AU",
+				"en-GB",
+				da,
+				ru,
+				ar,
 			);
 			mainGroup = B14E11371C63C56A00007938;
 			productRefGroup = B14E11411C63C56A00007938 /* Products */;
@@ -443,6 +485,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B54EB7591D8CC7200003AD5B /* Info.plist in Resources */,
+				B50E51411D8CA08A00A2E028 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +560,37 @@
 			targetProxy = B14E116D1C63C60F00007938 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B50E513E1D8CA08A00A2E028 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B50E513F1D8CA08A00A2E028 /* zh-HK */,
+				B50E51401D8CA08A00A2E028 /* zh */,
+				B5C2A5781D8CA0AA0035C3D7 /* pt-BR */,
+				B5C2A5791D8CA0AA0035C3D7 /* pt */,
+				B5C2A57A1D8CA0AA0035C3D7 /* sv */,
+				B5C2A57B1D8CA0B30035C3D7 /* nb */,
+				B5C2A57C1D8CA0B30035C3D7 /* nl */,
+				B5C2A57D1D8CA0B30035C3D7 /* pl */,
+				B5C2A57E1D8CA0B90035C3D7 /* ht */,
+				B5C2A57F1D8CA0B90035C3D7 /* ja */,
+				B5C2A5801D8CA0B90035C3D7 /* mi */,
+				B5C2A5811D8CA0BF0035C3D7 /* en */,
+				B5C2A5821D8CA0BF0035C3D7 /* es */,
+				B5C2A5831D8CA0BF0035C3D7 /* fr */,
+				B5C2A5841D8CA0C90035C3D7 /* de */,
+				B5C2A5851D8CA0C90035C3D7 /* en-AU */,
+				B5C2A5861D8CA0C90035C3D7 /* en-GB */,
+				B5C2A5881D8CA0EC0035C3D7 /* da */,
+				B5C2A58A1D8CA11B0035C3D7 /* ru */,
+				B58234BB1D8CC77E00C9E001 /* ar */,
+			);
+			name = Localizable.strings;
+			path = Todo;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B14E11501C63C56A00007938 /* Debug */ = {

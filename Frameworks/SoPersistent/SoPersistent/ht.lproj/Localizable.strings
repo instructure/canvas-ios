@@ -1,0 +1,15 @@
+/* Error title for a persistence related data failure */
+"Data Error" = "Erè Data";
+
+/* error message for when the cache management database fails to load */
+"Error loading cache management database." = "Erè nan chajman baz de done jesyon kache.";
+
+/* tile for error reading cache */
+"Read Error" = "Erè Lekti";
+
+/* SoPersistent Tests database fails */
+"There was a problem loading the SoPersistentTests database file." = "Te gen yon pwoblèm nan chajman fichye SoPersistentTests baz de done a.";
+
+/* Persistence error message */
+"There was a problem reading cached data" = "Te gen yon pwoblèm nan lekti done nan kache a";
+

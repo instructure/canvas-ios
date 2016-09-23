@@ -1,0 +1,18 @@
+/* all pages segmented control title */
+"All Pages" = "Alle sider";
+
+/* badge indicating front page */
+"Front Page" = "Forside";
+
+/* Generic button to dismiss the popup message */
+"Okay" = "Okay";
+
+/* The page is locked by the teacher */
+"Page Locked" = "Side låst";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "Der var et problem med indlæsning af sidens databasefil.";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "Denne side er for øjeblikket låst og ikke synlig.";
+

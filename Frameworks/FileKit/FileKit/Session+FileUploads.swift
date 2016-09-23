@@ -27,7 +27,7 @@ struct UploadTarget {
     }
 }
 
-private let FileUploadErrorTitle = NSLocalizedString("File Upload Error", comment: "title for file upload errors")
+private let FileUploadErrorTitle = NSLocalizedString("File Upload Error", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "title for file upload errors")
 
 private let MultipartBoundary = try! "---------------------------3klfenalksjflkjoi9auf89eshajsnl3kjnwal".UTF8Data()
 
@@ -115,7 +115,7 @@ extension Session {
             
             return self.encodeMultipartBody(data, parameters: target.parameters)
                 .mapError { e in
-                    let description = NSLocalizedString("There was a problem preparing the file for upload", comment: "File upload error message")
+                    let description = NSLocalizedString("There was a problem preparing the file for upload", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "File upload error message")
                     return NSError(subdomain: "FileKit", code: 0, sessionID: sessionID, apiURL: target.url, title: FileUploadErrorTitle, description: description, failureReason: e.localizedDescription)
                 }
                 .flatMap(.Concat, transform: self.writeDataToFile(identifier))

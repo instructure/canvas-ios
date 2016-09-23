@@ -1,0 +1,12 @@
+/* Failure reason for why it couldn't associate a tab with a context */
+"Could not parse context id from URL" = "Kunne ikke fortolke kontekst id fra URL";
+
+/* Error message for interrupted requests marking a to do as done */
+"The request to mark a to do as done was interrupted" = "Anmodningen om at markere en To do som udført blev afrudt";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the (kitModelName) database file." = "Der var et problemmed indlæsningen af (kitModelName) databeasefilen.";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "Der var en fejl med associering af en fane til et kursus eller en gruppe.";
+

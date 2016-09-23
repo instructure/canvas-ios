@@ -138,7 +138,7 @@ public final class Assignment: NSManagedObject, LockableModel {
     }
 
     var assignmentGroupName: String {
-        return assignmentGroup?.name ?? NSLocalizedString("None", comment: "Section header for assignments without an assignment group")
+        return assignmentGroup?.name ?? NSLocalizedString("None", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Section header for assignments without an assignment group")
     }
     
     public func getUploadTypesFromSubmissionTypes() -> UploadTypes {
@@ -186,10 +186,10 @@ public enum DueStatus: String, CustomStringConvertible {
 
     public var description: String {
         switch self {
-        case .Overdue: return NSLocalizedString("Overdue", comment: "Overdue assignmnets (not turned in)")
-        case .Upcoming: return NSLocalizedString("Upcoming", comment: "Upcoming assignments")
-        case .Undated: return NSLocalizedString("Undated", comment: "Assignments with no dates")
-        case .Past: return NSLocalizedString("Past", comment: "Assignments that have been turned in and are past")
+        case .Overdue: return NSLocalizedString("Overdue", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Overdue assignmnets (not turned in)")
+        case .Upcoming: return NSLocalizedString("Upcoming", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Upcoming assignments")
+        case .Undated: return NSLocalizedString("Undated", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Assignments with no dates")
+        case .Past: return NSLocalizedString("Past", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Assignments that have been turned in and are past")
         }
     }
 }
@@ -254,8 +254,8 @@ extension Assignment {
 
 extension NSError {
     private static func quizURLFail(url: NSURL, file: String = #file, line: UInt = #line) -> NSError {
-        let ErrorTitle = NSLocalizedString("Error Updating Assignment", comment: "Error title for parsing assignment data from server")
-        let ErrorDescription = NSLocalizedString("There was a problem updating the Quiz URL", comment: "Error description for failing to compute the URL to a quiz")
+        let ErrorTitle = NSLocalizedString("Error Updating Assignment", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Error title for parsing assignment data from server")
+        let ErrorDescription = NSLocalizedString("There was a problem updating the Quiz URL", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Error description for failing to compute the URL to a quiz")
         
         return NSError(subdomain: "AssignmentKit", code: 0, sessionID: nil, apiURL: url, title: ErrorTitle, description: ErrorDescription, failureReason: nil, file: file, line: line)
     }

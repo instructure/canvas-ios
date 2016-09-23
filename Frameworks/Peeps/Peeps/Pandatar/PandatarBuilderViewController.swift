@@ -50,7 +50,7 @@ public class PandatarBuilderViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = NSLocalizedString("Build Your Panda!", comment: "Title for screen to build a panda avatar")
+        navigationItem.title = NSLocalizedString("Build Your Panda!", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Title for screen to build a panda avatar")
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(PandatarBuilderViewController.cancel(_:)))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(PandatarBuilderViewController.done(_:)))
 

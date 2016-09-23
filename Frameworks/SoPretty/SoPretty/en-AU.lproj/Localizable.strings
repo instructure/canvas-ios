@@ -1,0 +1,15 @@
+/* dismiss error dialog */
+"Dismiss" = "Dismiss";
+
+/* Placeholder for URL */
+"Enter URL..." = "Enter URL...";
+
+/* navigate */
+"Go" = "Go";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "The text you entered is not a valid URL.";
+
+/* Turn in this url button */
+"Turn In" = "Turn In";
+

@@ -1,0 +1,15 @@
+/* Back Button Title */
+"Back" = "Назад";
+
+/* Error Alert Title */
+"Error" = "Ошибка";
+
+/* Domain Picker Search Placeholder */
+"Find your school or district" = "Найди свою школу или район";
+
+/* OK */
+"OK" = "OK";
+
+/* AccountDomain Database Load Failure Message */
+"There was a problem loading the AccountDomain database file." = "Возникла проблема при загрузке файла базы данных AccountDomain.";
+

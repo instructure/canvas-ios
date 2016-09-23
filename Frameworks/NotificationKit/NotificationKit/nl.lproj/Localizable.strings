@@ -1,0 +1,85 @@
+/* Title for push notification pre-authorization alert */
+"Allow Push Notifications?" = "Push berichtgevingen toestaan?";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "Kan communicatiekanalen niet weergeven";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "Kan voorkeuren berichtgeving niet weergeven";
+
+/* Description for Chat communication channel */
+"Chat" = "Chatten";
+
+/* Notification display name for conversations group */
+"Conversations" = "Gesprekken";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "Kon voorkeuren berichtgeving niet laden";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "Kon niet bijwerken";
+
+/* Notification display name for course activities group */
+"Course Activities" = "Cursusactiviteiten";
+
+/* Notification display name for discussions group */
+"Discussions" = "Discussies";
+
+/* Description for email communication channel */
+"Email" = "E-mail";
+
+/* Notification display name for groups group */
+"Groups" = "Groepen";
+
+/* Title for no button for push notification pre-authorization alert */
+"No" = "Nee";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "Geen communicatiekanalen aangetroffen";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "Voorkeuren berichtgeving";
+
+/* Action title for being unable to update a push notification preference
+   Alert action button text when unable to load communication channels
+   Alert action button text when unable to load notification preferences
+   Alert action button text when unable to parse JSON for communication channels
+   Alert action button text when unable to parse JSON for notification preferences */
+"Ok" = "Ok";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Push berichtgevingen";
+
+/* Description for SMS communication channel */
+"SMS" = "SMS";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "Afspreken";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "Momenteel niet in staat om communicatiekanalen te tonen die terugkwamen van de server.";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "Momenteel niet in staat om voorkeuren berichtgevingen te tonen die terugkwamen van de server.";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time.  Error: (result.error?.localizedDescription)" = "Momenteel niet in staat om communicatiekanalen te laden. Fout: (result.error?.localizedDescription)";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Momenteel niet in staat om voorkeuringen berichtgeving te laden. Fout: (result.error?.localizedDescription)";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "We konden deze waarden niet bijwerken met de server";
+
+/* Message for push notification pre-authorization alert */
+"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "Wil je dat Canvas je belangrijke berichtgevingen stuurt over aankondigingen, cursussen, opdrachten, enz.?";
+
+/* Title for yes button for push notification pre-authorization alert */
+"Yes" = "Ja";
+
+/* Description for Yo communication channel */
+"Yo" = "Yo";
+

@@ -1,0 +1,15 @@
+/* dismiss error dialog */
+"Dismiss" = "Rejte";
+
+/* Placeholder for URL */
+"Enter URL..." = "Antre URL";
+
+/* navigate */
+"Go" = "Ale";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "Tèks ou antre a pa yon URL valid";
+
+/* Turn in this url button */
+"Turn In" = "Soumèt";
+

@@ -1,0 +1,15 @@
+/* dismiss error dialog */
+"Dismiss" = "Avfärda";
+
+/* Placeholder for URL */
+"Enter URL..." = "Fyll i URL...";
+
+/* navigate */
+"Go" = "Kör";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "Texten du matat in är inte en giltigt URL";
+
+/* Turn in this url button */
+"Turn In" = "Lämna in";
+

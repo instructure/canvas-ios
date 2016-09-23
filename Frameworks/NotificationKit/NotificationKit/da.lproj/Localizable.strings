@@ -1,0 +1,85 @@
+/* Title for push notification pre-authorization alert */
+"Allow Push Notifications?" = "Tillad push beskeder?";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "Kan ikke vise kommunikationskanaler";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "Kan ikke vise notifikationsindstillinger";
+
+/* Description for Chat communication channel */
+"Chat" = "Chat";
+
+/* Notification display name for conversations group */
+"Conversations" = "Konversationer";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "Kunne ikke indlæse notifikationsindstillinger";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "Kunne ikke opdatere";
+
+/* Notification display name for course activities group */
+"Course Activities" = "Kursusaktiviteter";
+
+/* Notification display name for discussions group */
+"Discussions" = "Diskussioner";
+
+/* Description for email communication channel */
+"Email" = "E-mail";
+
+/* Notification display name for groups group */
+"Groups" = "Grupper";
+
+/* Title for no button for push notification pre-authorization alert */
+"No" = "Nej";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "Ingen kommunikationskanaler fundet";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "Notifikationsindstillinger";
+
+/* Action title for being unable to update a push notification preference
+   Alert action button text when unable to load communication channels
+   Alert action button text when unable to load notification preferences
+   Alert action button text when unable to parse JSON for communication channels
+   Alert action button text when unable to parse JSON for notification preferences */
+"Ok" = "Ok";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Push notifikationer";
+
+/* Description for SMS communication channel */
+"SMS" = "SMS";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "Planlægge";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "Er på nuværende tidspunkt ikke i stand til at vise Kommunikations kanaler returneret fra serveren.";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "Er på nuværende tidspunkt ikke i stand til at vise notifikationsindstillinger returneret fra serveren.";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time.  Error: (result.error?.localizedDescription)" = "Er på nuværende tidspunkt ikke i stand til at indlæse Kommunikations kanaler. Fejl: (result.error?.localizedDescription)";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Er på nuværende tidspunkt ikke i stand til at  indlæse notifikationsindstillinger. Fejl: (result.error?.localizedDescription)";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "Vi var ikke i stand til at opdatere denne værdi på serveren";
+
+/* Message for push notification pre-authorization alert */
+"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "Ønsker du at tillade Canvas at sende dig vigtige notifikationerom bekendtgørelser, kursus, opgaver etc?";
+
+/* Title for yes button for push notification pre-authorization alert */
+"Yes" = "Ja";
+
+/* Description for Yo communication channel */
+"Yo" = "Ja";
+

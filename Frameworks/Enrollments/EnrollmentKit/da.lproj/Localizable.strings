@@ -1,0 +1,72 @@
+/* option to view results for all grading periods */
+"All Grading Periods" = "Alle bedømmelsesperioder";
+
+/* Blue course color button */
+"Blue" = "Blå";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "Brugertilpas";
+
+/* Cyan course color button */
+"Cyan" = "Cyan";
+
+/* DeepOrange course color button */
+"DeepOrange" = "Dyb orange";
+
+/* DeepPurple course color button */
+"DeepPurple" = "Mørk Lilla";
+
+/* favorite courses or groups */
+"Favorites" = "Favoritter";
+
+/* Title for grading periods picker */
+"Grading Periods" = "Bedømmelsesperioder";
+
+/* Green course color button */
+"Green" = "Grøn";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "Skjult";
+
+/* Indigo course color button */
+"Indigo" = "Indigo";
+
+/* LightBlue course color button */
+"LightBlue" = "Lyseblå";
+
+/* LightGreen course color button */
+"LightGreen" = "Lysegrøn";
+
+/* LightPink course color button */
+"LightPink" = "Lyserød";
+
+/* Orange course color button */
+"Orange" = "Orange";
+
+/* Pink course color button */
+"Pink" = "Lyserød";
+
+/* Purple course color button */
+"Purple" = "Lila";
+
+/* red course color button */
+"Red" = "Rød";
+
+/* when a button is selected */
+"Selected" = "Valgte";
+
+/* Teal course color button */
+"Teal" = "Petroleumsfarvet";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "Der var et problem med indlæsningen af EnrollKit databasefilen.";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "Der var en fejl med associering af en fane til et kursus eller en gruppe.";
+
+/* Total grade label */
+"Total Grade" = "Total karakter";
+
+/* Yellow course color button */
+"Yellow" = "Gul";
+

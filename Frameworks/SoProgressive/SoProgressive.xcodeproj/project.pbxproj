@@ -20,6 +20,7 @@
 		4934799B1CB445E1008D14DD /* ProgressSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934799A1CB445E1008D14DD /* ProgressSpec.swift */; };
 		4934799D1CB4488F008D14DD /* ProgressDispatcherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934799C1CB4488F008D14DD /* ProgressDispatcherSpec.swift */; };
 		493479A11CB457AF008D14DD /* Session+ProgressSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493479A01CB457AF008D14DD /* Session+ProgressSpec.swift */; };
+		B5B4DC241D6255DB0051C04C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5B4DC261D6255DB0051C04C /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4934799A1CB445E1008D14DD /* ProgressSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressSpec.swift; sourceTree = "<group>"; };
 		4934799C1CB4488F008D14DD /* ProgressDispatcherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressDispatcherSpec.swift; sourceTree = "<group>"; };
 		493479A01CB457AF008D14DD /* Session+ProgressSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+ProgressSpec.swift"; sourceTree = "<group>"; };
+		B5B4DC251D6255DB0051C04C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				4934797B1CB2DE8A008D14DD /* Session+Progress.swift */,
 				493479941CB44558008D14DD /* ProgressDispatcher.swift */,
 				493479961CB44566008D14DD /* Progress.swift */,
+				B5B4DC261D6255DB0051C04C /* Localizable.strings */,
 			);
 			path = SoProgressive;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B4DC241D6255DB0051C04C /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +266,17 @@
 			targetProxy = 4934798F1CB44510008D14DD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B5B4DC261D6255DB0051C04C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5B4DC251D6255DB0051C04C /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4934796F1CB2DE0A008D14DD /* Debug */ = {

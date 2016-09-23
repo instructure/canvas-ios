@@ -16,7 +16,7 @@ let peepKitStoreName = "ObservedUsers"
 let peepKitSubdomain = "PeepKit"
 let peepKitFailedToLoadErrorCode = 10001
 let peepKitFailedToLoadErrorDescription = "Failed to load \(peepKitModelName) NSManagedObjectModel"
-let peepKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the PeepKit database file.", comment: "PeepKit Database Load Failure Message")
+let peepKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the PeepKit database file.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Peeps")!, value: "", comment: "PeepKit Database Load Failure Message")
 
 // ---------------------------------------------
 // MARK: - Session for current user observees

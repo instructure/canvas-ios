@@ -1,0 +1,15 @@
+/* Back Button Title */
+"Back" = "Retounen";
+
+/* Error Alert Title */
+"Error" = "Erè";
+
+/* Domain Picker Search Placeholder */
+"Find your school or district" = "Jwenn lekòl oswa distri ou a";
+
+/* OK */
+"OK" = "OK";
+
+/* AccountDomain Database Load Failure Message */
+"There was a problem loading the AccountDomain database file." = "Te gen yon pwoblèm nan chajman fichye AccountDomain baz de done a.";
+

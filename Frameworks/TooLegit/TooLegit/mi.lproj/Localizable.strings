@@ -1,0 +1,12 @@
+/* Title for network errors */
+"Network Error" = "Hapa Whatunga";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "He ko he hapa i te kōrero ki te tūmau.";
+
+/* Unexpected response type */
+"Unexpected response type" = "momo whakautu Ta'e'amanekina";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "kahore whaimana avatar image url Kaiwhakamahi";
+

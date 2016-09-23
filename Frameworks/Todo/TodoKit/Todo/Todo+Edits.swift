@@ -42,7 +42,7 @@ extension Todo {
                             self.done = false
                             let _ = try? context.save()
                         }
-                        let error = NSError(subdomain: "Todos", description: NSLocalizedString("The request to mark a to do as done was interrupted", comment: "Error message for interrupted requests marking a to do as done"))
+                        let error = NSError(subdomain: "Todos", description: NSLocalizedString("The request to mark a to do as done was interrupted", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TodoKit")!, value: "", comment: "Error message for interrupted requests marking a to do as done"))
                         completion?(.Failure(error))
                     default:
                         break

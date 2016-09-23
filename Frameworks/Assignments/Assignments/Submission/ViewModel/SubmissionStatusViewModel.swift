@@ -79,11 +79,11 @@ public class SubmissionStatusViewModel {
     struct Strings {
         
         static var submissionExcused: String {
-            return NSLocalizedString("Excused", comment: "This assignment is excused")
+            return NSLocalizedString("Excused", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "This assignment is excused")
         }
         
         static var submissionLate: String {
-            return NSLocalizedString("Late", comment: "This assignment is late")
+            return NSLocalizedString("Late", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "This assignment is late")
         }
         
     }

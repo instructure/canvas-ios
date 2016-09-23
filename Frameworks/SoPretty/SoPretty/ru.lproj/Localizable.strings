@@ -1,0 +1,15 @@
+/* dismiss error dialog */
+"Dismiss" = "Отклонить";
+
+/* Placeholder for URL */
+"Enter URL..." = "Введите URL-адрес...";
+
+/* navigate */
+"Go" = "Перейти";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "Введенный текст не является допустимым URL";
+
+/* Turn in this url button */
+"Turn In" = "Сдать";
+

@@ -1,0 +1,204 @@
+/* Error message component with the report id */
+"Error report ID: (reportID)" = "Error report ID: (reportID)";
+
+/* Failure reason from the JSON payload from canvas */
+"Failure reason: (reason)." = "Failure reason: (reason).";
+
+/* Confirmations alerting user of unanswered questions */
+"%d questions not answered" = "%d questions not answered";
+
+/* Accessiblity hint for question drawer button */
+"(questionsController!.flaggedCount) Questions Answered" = "(questionsController!.flaggedCount) Questions Answered";
+
+/* Accessiblity hint for question drawer button */
+"0 Questions Answered" = "0 Questions Answered";
+
+/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
+"5 minutes remaining" = "5 minutes remaining";
+
+/* Notification to alert the user that there is only 30 seconds left in the time quiz */
+"30 seconds remaining" = "30 seconds remaining";
+
+/* label for number of attempts that are allowed */
+"Allowed Attempts" = "Allowed Attempts";
+
+/* an unknown error's message */
+"An unknown error has occurred." = "An unknown error has occurred.";
+
+/* Question to confirm user wants to navigate away from a quiz. */
+"Are you sure you want to leave this quiz?" = "Are you sure you want to leave this quiz?";
+
+/* Confirmation before submitting a quiz */
+"Are you sure you want to submit your answers?" = "Are you sure you want to submit your answers?";
+
+/* label for quiz availability date */
+"Available Until" = "Available Until";
+
+/* Cancel button
+   cancel button for submitting a quiz
+   Cancel removing the formatting */
+"Cancel" = "Cancel";
+
+/* Button for electing to be late on a quiz */
+"Continue Quiz" = "Continue Quiz";
+
+/* Dismiss button for error alert */
+"Dismiss" = "Dismiss";
+
+/* Done button */
+"Done" = "Done";
+
+/* due date label for quiz due date */
+"Due Date" = "Due Date";
+
+/* Default text for essay cell */
+"Enter answer..." = "Enter answer...";
+
+/* Exit button to leave the quiz */
+"Exit" = "Exit";
+
+/* State of the flagged question */
+"Flagged" = "Flagged";
+
+/* Hides the question list */
+"Hide Question List" = "Hide Question List";
+
+/* Leave the quiz */
+"Leave" = "Leave";
+
+/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
+"Lock Date Reached
+Submitting" = "Lock Date Reached
+Submitting";
+
+/* Next button for advancing a quiz */
+"Next" = "Next";
+
+/* A quiz that has no due date */
+"No Due Date" = "No Due Date";
+
+/* when a quiz has no time limit */
+"No time limit" = "No time limit";
+
+/* Title for alert showing when a quiz isn't takeable */
+"Not Takeable" = "Not Takeable";
+
+/* OK */
+"OK" = "OK";
+
+/* label for number of points in a quiz */
+"Points" = "Points";
+
+/* accessibility label for a quiz question */
+"Question" = "Question";
+
+/* state for a question that has been flagged */
+"Question (questionNumber) Flagged" = "Question (questionNumber) Flagged";
+
+/* state for unflagged question */
+"Question (questionNumber) Unflagged" = "Question (questionNumber) Unflagged";
+
+/* label for the number of questions */
+"Questions" = "Questions";
+
+/* Title for alert that shows when a quiz hits the due date */
+"Quiz Due" = "Quiz Due";
+
+/* Title for quiz error */
+"Quiz Error" = "Quiz Error";
+
+/* Label for indication that the quiz submission was successful */
+"Quiz Submitted" = "Quiz Submitted";
+
+/* Remove the formatting of the essay question text */
+"Remove Formatting" = "Remove Formatting";
+
+/* button for resuming a quiz */
+"Resume Quiz" = "Resume Quiz";
+
+/* button for retaking quiz */
+"Retake Quiz" = "Retake Quiz";
+
+/* Indicates that a matching quiz question needs to have an answer selected */
+"Select Answer" = "Select Answer";
+
+/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
+"Select all that apply" = "Select all that apply.";
+
+/* Hides the question list */
+"Show Question List" = "Show Question List";
+
+/* Text for a button that toggles to show a timer for a timed quiz */
+"Show Timer" = "Show Timer";
+
+/* Stay on the quiz view */
+"Stay" = "Stay";
+
+/* Label for indication that the quiz submission failed */
+"Submission Failure" = "Submission Failure";
+
+/* Button for electing to not be late on a quiz
+   confirm submitting quiz
+   Submit button for completing a quiz */
+"Submit" = "Submit";
+
+/* Label for indication of submitting quiz */
+"Submitting Quiz" = "Submitting Quiz";
+
+/* Button for taking the quiz */
+"Take Quiz" = "Take Quiz";
+
+/* This shouldn't ever happen. */
+"The Pages are gone!? Why are the pages always gone?" = "The pages are gone!? Why are the pages always gone?";
+
+/* Description for alert that shows when the quiz hits the due date */
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possbily be late?" = "The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possbily be late?";
+
+/* generic error message */
+"There was a problem with the Canvas request." = "There was a problem with the Canvas request.";
+
+/* No comment provided by engineer. */
+"There was no data!" = "There was no data!";
+
+/* Warning to users editing an essay question that was edited on the web. */
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device, we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser.";
+
+/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
+"This quiz has an IP address filter set." = "This quiz has an IP address filter set.";
+
+/* Message when telling the user they can't take the quiz for some weird reason */
+"This quiz is currently unavailable." = "This quiz is currently unavailable.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked." = "This quiz is locked.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked. Reason: (description)" = "This quiz is locked. Reason: (description)";
+
+/* label for the time limit */
+"Time Limit" = "Time Limit";
+
+/* Toggle flag accessiblity action */
+"Toggle Flag" = "Toggle Flag";
+
+/* Ungraded quiz */
+"Ungraded" = "Ungraded";
+
+/* When a quiz has no limit on the number of attempts */
+"Unlimited" = "Unlimited";
+
+/* a warning message */
+"Warning" = "Warning";
+
+/* Shows time limit on a quiz */
+"You have (minuteLimit) minutes." = "You have (minuteLimit) minutes.";
+
+/* Message when telling the user they can't take the quiz because they used up all their attempts */
+"You have used all your attempts available on this quiz." = "You have used all your attempts available on this quiz.";
+
+/* Hours label for time limit */
+"hr" = "hr";
+
+/* Minutes label localized */
+"min" = "min";
+

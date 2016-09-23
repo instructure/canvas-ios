@@ -1,0 +1,126 @@
+/* grade details for points based grade i.e. \"10 of 12\" */
+"of (formatter(possible))" = "de (formatar(possível))";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
+"(formatter(points)) of (formatter(possible))" = "(formatar(pontos)) de (formatar(possível))";
+
+/* Title for 1 day assignment reminder */
+"1 day" = "1 dia";
+
+/* Title for 1 hour assignment reminder */
+"1 hour" = "1 hora";
+
+/* Title for 3 days assignment reminder */
+"3 days" = "3 dias";
+
+/* Title for 5 minutes assignment reminder */
+"5 minutes" = "5 minutos";
+
+/* Assignment label */
+"Assignment" = "Tarefa";
+
+/* Title for alert view for assignment reminders */
+"Assignment Reminder" = "Relembrar Tarefa";
+
+/* Message indicating that an assignment is currently be submitted */
+"Assignment is currently being submitted" = "A tarefa está a ser entregue";
+
+/* This assignment hasn't been graded yet but can be graded */
+"Awaiting Grade" = "À espera de nota";
+
+/* cancel button */
+"Cancel" = "Cancelar";
+
+/* Title for reminder options for an assignment */
+"Choose how long before the assignment due date to get a reminder:" = "Escolha com que antecedencia deseja receber um alerta antes da data final da tarefa:";
+
+/* Title for a rating that hasn't been graded but has a comment */
+"Comment" = "Comentário";
+
+/* Assignment submission comment placeholder text */
+"Comment.." = "Comentário..";
+
+/* error displayed when submitting an assignment is unavailable */
+"Could not submit assignment. Invalid assignment or session." = "Não foi possível entregar a tarefa. Tarefa ou sessão inválida.";
+
+/* error displayed when submitting a submission is invalid. */
+"Could not submit assignment. Invalid submission." = "Não foi possível entregar a tarefa. Entrega inválida.";
+
+/* String telling the user that the date is the due date */
+"Due:" = "Data final:";
+
+/* Error title for parsing assignment data from server */
+"Error Updating Assignment" = "Erro ao Atualizar Tarefa";
+
+/* This assignment is excused */
+"Excused" = "Dispensado";
+
+/* Error when an upload failed to resume. */
+"Failed to resume upload." = "Falhou cancelar o carregamento.";
+
+/* This assignment is late */
+"Late" = "Atrasado";
+
+/* Title for a rating that has custom graded but has no comment */
+"No Comment" = "Sem comentário";
+
+/* Default string for due date title */
+"No Due Date" = "Sem Data Final";
+
+/* Section header for assignments without an assignment group */
+"None" = "Nenhum";
+
+/* submission title for assignment waiting user submission */
+"Not Submitted" = "Não Entregue";
+
+/* Overdue assignmnets (not turned in) */
+"Overdue" = "Fora de Prazo";
+
+/* Assignments that have been turned in and are past */
+"Past" = "Passado";
+
+/* Rubric Points Possible Title */
+"Points Possible" = "Pontos Possíveis";
+
+/* title for submission button if student has submitted previously */
+"Re-submit Assignment" = "Voltar a Entregar Tarefa";
+
+/* Message indicating that a submission type is not supported for this assignment. */
+"Submission type not allowed" = "Tipo de entrega não permitida";
+
+/* submission title for assignment that doesn't support submissions */
+"Submissions N/A" = "Entregas N/D";
+
+/* title for submission button if student has never submitted */
+"Submit Assignment" = "Entregar Tarefa";
+
+/* AssignmentKit database load failure message */
+"There was a problem loading the AssignmentKit database file." = "Ocorreu um erro ao carregar o ficheiro na base de dados das Tarefas.";
+
+/* Error description for failing to compute the URL to a quiz */
+"There was a problem updating the Quiz URL" = "Ocorreu um erro ao atualizar URL do Teste.";
+
+/* submission title for assignemnt that is submitted */
+"Turned in!" = "Entregue!";
+
+/* Error message when a course could not be selected */
+"Unable to select a course." = "Impossível selecionar uma disciplina.";
+
+/* Error message when an assignment could not be selected */
+"Unable to select an assignment." = "Impossível selecionar uma tarefa.";
+
+/* Error message when unable to submit assignment. */
+"Unable to submit assignment." = "Impossível entregar tarefa.";
+
+/* Assignments with no dates */
+"Undated" = "Sem data";
+
+/* This assignment is not graded */
+"Ungraded" = "Não classificado";
+
+/* Upcoming assignments */
+"Upcoming" = "Em breve";
+
+/* Title for button to see rubric from assignment detail */
+"View Rubric" = "Ver rubrica";
+

@@ -15,8 +15,8 @@ import TooLegit
 import Marshal
 import SoLazy
 
-private let contextIDErrorMessage = NSLocalizedString("There was an error associating a tab with a course or group.", comment: "Error message when parsing contextID for a course or group tab")
-private let contextIDFailureReason = NSLocalizedString("Could not parse context id from URL", comment: "Failure reason for why it couldn't associate a tab with a context")
+private let contextIDErrorMessage = NSLocalizedString("There was an error associating a tab with a course or group.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TodoKit")!, value: "", comment: "Error message when parsing contextID for a course or group tab")
+private let contextIDFailureReason = NSLocalizedString("Could not parse context id from URL", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TodoKit")!, value: "", comment: "Failure reason for why it couldn't associate a tab with a context")
 
 
 public final class Todo: NSManagedObject {

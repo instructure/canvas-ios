@@ -24,13 +24,13 @@ class AnythingButFilesUploadAction: UploadAction {
     }
     
     func initiate() {
-        let alertController = UIAlertController(title: nil, message: NSLocalizedString("What would you like to turn in?", comment: "prompt for submission upload"), preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: nil, message: NSLocalizedString("What would you like to turn in?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "prompt for submission upload"), preferredStyle: .ActionSheet)
         
         for action in actions {
             alertController.addAction(UIAlertAction(title: action.title, style: .Default, handler: { _ in action.initiate() }))
         }
         
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "nevermind"), style: .Cancel, handler: { _ in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "nevermind"), style: .Cancel, handler: { _ in
             self.delegate?.actionCancelled()
         }))
         

@@ -62,6 +62,7 @@
 		5EB86AFD1C4ECE8400C920A2 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AE81C4ECDFC00C920A2 /* SoPersistent.framework */; };
 		5EB86AFE1C4ECE8400C920A2 /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AE91C4ECDFC00C920A2 /* SoPretty.framework */; };
 		5EB86AFF1C4ECE8400C920A2 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AEA1C4ECDFC00C920A2 /* TooLegit.framework */; };
+		B5737E451D8CB6B200E000CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5737E401D8CB6B200E000CA /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +173,26 @@
 		5EB86AE81C4ECDFC00C920A2 /* SoPersistent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPersistent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EB86AE91C4ECDFC00C920A2 /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EB86AEA1C4ECDFC00C920A2 /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5737E411D8CB6B200E000CA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = Keymaster/ar.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E421D8CB6B200E000CA /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = Keymaster/da.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E431D8CB6B200E000CA /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Keymaster/de.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E441D8CB6B200E000CA /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "Keymaster/en-AU.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		B5737E461D8CB6BB00E000CA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "Keymaster/en-GB.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		B5737E471D8CB6BB00E000CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Keymaster/en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E481D8CB6BB00E000CA /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Keymaster/es.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E491D8CB6BB00E000CA /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Keymaster/fr.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E4A1D8CB6C700E000CA /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = Keymaster/ht.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E4B1D8CB6C700E000CA /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = Keymaster/ja.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E4C1D8CB6C700E000CA /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = Keymaster/mi.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E4D1D8CB6C700E000CA /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Keymaster/nb.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E4E1D8CB6CE00E000CA /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Keymaster/nl.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E4F1D8CB6CE00E000CA /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Keymaster/pl.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E501D8CB6CE00E000CA /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "Keymaster/pt-BR.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		B5737E511D8CB6CE00E000CA /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = Keymaster/pt.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E521D8CB6D500E000CA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Keymaster/ru.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E531D8CB6D500E000CA /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = Keymaster/sv.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		B5737E541D8CB6D500E000CA /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "Keymaster/zh-HK.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		B5737E551D8CB6D500E000CA /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = Keymaster/zh.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +338,7 @@
 				5EB86A941C4ECC6E00C920A2 /* Info.plist */,
 				5E2BD38C1C515C06009511FB /* Keymaster.xcassets */,
 				5E1B51001C8F464C0019D764 /* Session+AccountDomain.swift */,
+				B5737E401D8CB6B200E000CA /* Localizable.strings */,
 			);
 			path = Keymaster;
 			sourceTree = "<group>";
@@ -547,6 +569,25 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
+				da,
+				de,
+				"en-AU",
+				"en-GB",
+				es,
+				fr,
+				ht,
+				ja,
+				mi,
+				nb,
+				nl,
+				pl,
+				"pt-BR",
+				pt,
+				ru,
+				sv,
+				"zh-HK",
+				zh,
 			);
 			mainGroup = 5EB86A511C4ECC5400C920A2;
 			productRefGroup = 5EB86A5B1C4ECC5400C920A2 /* Products */;
@@ -592,6 +633,7 @@
 				5EB86AE11C4ECCAC00C920A2 /* SelectSessionListViewController.storyboard in Resources */,
 				5EB86ADD1C4ECCAC00C920A2 /* LoginViewController.storyboard in Resources */,
 				5EB86AD71C4ECCAC00C920A2 /* AccountDomainTableViewCell.xib in Resources */,
+				B5737E451D8CB6B200E000CA /* Localizable.strings in Resources */,
 				5E994B031C580D69004146FC /* SelectDomainViewController-iPad.storyboard in Resources */,
 				5E2BD38D1C515C06009511FB /* Keymaster.xcassets in Resources */,
 				5EB86ADF1C4ECCAC00C920A2 /* SelectDomainViewController.storyboard in Resources */,
@@ -694,6 +736,37 @@
 			targetProxy = 5EB86AA31C4ECC6E00C920A2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B5737E401D8CB6B200E000CA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5737E411D8CB6B200E000CA /* ar */,
+				B5737E421D8CB6B200E000CA /* da */,
+				B5737E431D8CB6B200E000CA /* de */,
+				B5737E441D8CB6B200E000CA /* en-AU */,
+				B5737E461D8CB6BB00E000CA /* en-GB */,
+				B5737E471D8CB6BB00E000CA /* en */,
+				B5737E481D8CB6BB00E000CA /* es */,
+				B5737E491D8CB6BB00E000CA /* fr */,
+				B5737E4A1D8CB6C700E000CA /* ht */,
+				B5737E4B1D8CB6C700E000CA /* ja */,
+				B5737E4C1D8CB6C700E000CA /* mi */,
+				B5737E4D1D8CB6C700E000CA /* nb */,
+				B5737E4E1D8CB6CE00E000CA /* nl */,
+				B5737E4F1D8CB6CE00E000CA /* pl */,
+				B5737E501D8CB6CE00E000CA /* pt-BR */,
+				B5737E511D8CB6CE00E000CA /* pt */,
+				B5737E521D8CB6D500E000CA /* ru */,
+				B5737E531D8CB6D500E000CA /* sv */,
+				B5737E541D8CB6D500E000CA /* zh-HK */,
+				B5737E551D8CB6D500E000CA /* zh */,
+			);
+			name = Localizable.strings;
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5EB86A801C4ECC5400C920A2 /* Debug */ = {

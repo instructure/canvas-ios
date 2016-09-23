@@ -1,0 +1,61 @@
+/* record button a11y hint
+   stop record button a11y hint */
+"Begin recording" = "بدء التسجيل";
+
+/* Cancel button */
+"Cancel" = "إلغاء";
+
+/* Delete button */
+"Delete" = "حذف";
+
+/* message for delete dialog of audio recorder */
+"Delete recording?" = "حذف التسجيل؟";
+
+/* Dismiss an error dialog */
+"Dismiss" = "رفض";
+
+/* can't record because request for mic access was denied title */
+"Not Permitted" = "غير مسموح به";
+
+/* Pause recording/playback */
+"Pause" = "إيقاف مؤقت";
+
+/* record button a11y hint */
+"Pause playback" = "إيقاف مؤقت للتشغيل";
+
+/* Playback button */
+"Play" = "تشغيل";
+
+/* play button a11y hint */
+"Play back recording" = "تشغيل تسجيل";
+
+/* Title for playback error messages */
+"Playback Error" = "خطأ في التشغيل";
+
+/* Record button a11y label */
+"Record" = "تسجيل";
+
+/* permission denied button a11y label */
+"Record Permission Help" = "تعليمات أذونات التسجيل";
+
+/* title for a recording error */
+"Recording Error" = "خطأ في التسجيل";
+
+/* Record button a11y label */
+"Request Audio Recording Permission" = "طلب إذن لتسجيل الصوت";
+
+/* record button a11y hint */
+"Request Permission to record audio" = "طلب إذن لتسجيل الصوت";
+
+/* stop recording button a11y label */
+"Stop" = "إيقاف";
+
+/* Error message for a file missing */
+"The file does not exist." = "الملف غير موجود.";
+
+/* permission denied button a11y hint */
+"User has denied record permission" = "رفض المستخدم منح الإذن للتسجيل";
+
+/* permission was rejected */
+"You must grant (appName) Microphone access in the Settings app in order to record audio." = "يجب أن تمنح (appName) حق الوصول إلى الميكروفون عبر إعدادات التطبيق من أجل تسجيل الصوت.";
+

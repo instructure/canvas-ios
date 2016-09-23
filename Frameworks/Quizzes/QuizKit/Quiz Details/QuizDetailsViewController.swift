@@ -76,22 +76,22 @@ class QuizDetailsViewController: UITableViewController {
     private func prepareTheDetails() {
         var deets = [(String, String)]()
         
-        let DueDateLabel = NSLocalizedString("Due Date", comment: "due date label for quiz due date")
+        let DueDateLabel = NSLocalizedString("Due Date", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "due date label for quiz due date")
         deets.append((DueDateLabel, self.quiz?.due.description ?? ""))
         
-        let PointsLabel = NSLocalizedString("Points", comment: "label for number of points in a quiz")
+        let PointsLabel = NSLocalizedString("Points", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for number of points in a quiz")
         deets.append((PointsLabel, self.quiz?.scoring.description ?? ""))
         
-        let QuestionCountLabel = NSLocalizedString("Questions", comment: "label for the number of questions")
+        let QuestionCountLabel = NSLocalizedString("Questions", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for the number of questions")
         deets.append((QuestionCountLabel, String(self.quiz?.questionCount ?? 0)))
         
         // TODO: add availability
-        let _ = NSLocalizedString("Available Until", comment: "label for quiz availability date")
+        let _ = NSLocalizedString("Available Until", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for quiz availability date")
         
-        let TimeLimitLabel = NSLocalizedString("Time Limit", comment: "label for the time limit")
+        let TimeLimitLabel = NSLocalizedString("Time Limit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for the time limit")
         deets.append((TimeLimitLabel, self.quiz?.timeLimit.description ?? ""))
         
-        let AttemptsLabel = NSLocalizedString("Allowed Attempts", comment: "label for number of attempts that are allowed")
+        let AttemptsLabel = NSLocalizedString("Allowed Attempts", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for number of attempts that are allowed")
         let allowed = self.quiz?.attemptLimit.description ?? ""
         deets.append((AttemptsLabel, allowed))
         

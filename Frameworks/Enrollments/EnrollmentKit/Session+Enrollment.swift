@@ -16,7 +16,7 @@ let enrollmentKitModelName = "EnrollmentKit"
 let enrollmentKitSubdomain = "EnrollmentKit"
 let enrollmentKitFailedToLoadErrorCode = 10001
 let enrollmentKitFailedToLoadErrorDescription = "Failed to load \(enrollmentKitModelName) NSManagedObjectModel"
-let enrollmentKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the EnrollmentKit database file.", comment: "EnrollmentKit Database Load Failure Message")
+let enrollmentKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the EnrollmentKit database file.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "EnrollmentKit Database Load Failure Message")
 
 extension Session {
     public func enrollmentManagedObjectContext(scope: String? = nil) throws -> NSManagedObjectContext {

@@ -1,0 +1,66 @@
+/* nevermind */
+"Cancel" = "Cancelar";
+
+/* Pick a photo from library */
+"Choose a Photo" = "Escoja una foto";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "Escoja una foto o video";
+
+/* Pick a video from library */
+"Choose a Video" = "Escoja un video";
+
+/* URL submission option */
+"Choose a Webpage" = "Escoja una página web";
+
+/* name for upload data */
+"Data" = "Datos";
+
+/* Delete button for file upload */
+"Delete" = "Borrar";
+
+/* Prompt for text upload */
+"Enter your upload..." = "Ingrese su carga...";
+
+/* title for file upload errors */
+"File Upload Error" = "Error al subir el archivo";
+
+/* Title of files list */
+"Files" = "Archivos";
+
+/* name for a photo just taken */
+"Photo" = "Foto";
+
+/* Choose record audio submission */
+"Record Audio" = "Grabar audio";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "Tomar foto o video";
+
+/* Take a photo submission choice */
+"Take a Photo" = "Tomar una foto";
+
+/* Take a video submission choice */
+"Take a Video" = "Tomar un video";
+
+/* Text submission option */
+"Text" = "Texto";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "Hubo un problema al cargar el archivo de la base de datos de FileKit.";
+
+/* FileKit Tests database fails */
+"There was a problem loading the FileKitTests database file." = "Hubo un problema al cargar el archivo de la base de datos de FileKitTests.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "Hubo un problema al preparar el archivo para subirlo";
+
+/* Turn in button title */
+"Turn In" = "Entregar";
+
+/* name for a video just taken for upload */
+"Video" = "Video";
+
+/* prompt for submission upload */
+"What would you like to turn in?" = "¿Qué le gustaría entregar?";
+

@@ -310,7 +310,7 @@ func makeRequest<T>(request: Request<T>, completed: Result<Page<T>, NSError>->()
                 }
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
-                    let fallbackError = NSError(domain: "com.instructure", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("There was no data!", comment: "")])
+                    let fallbackError = NSError(domain: "com.instructure", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("There was no data!", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "")])
                     completed(Result(error: error ?? fallbackError))
                 }
             }
@@ -351,7 +351,7 @@ private func infoForJSON(json: AnyObject?) -> [String: AnyObject] {
     let json = json as? [String: AnyObject]
     
     var info: [String: AnyObject] = [:]
-    let localizedDescription = NSLocalizedString("There was a problem with the Canvas request.", comment: "generic error message")
+    let localizedDescription = NSLocalizedString("There was a problem with the Canvas request.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "generic error message")
     
     if let message = json?["message"] as? String {
         info[NSLocalizedFailureReasonErrorKey] = message

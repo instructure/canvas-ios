@@ -161,7 +161,7 @@ extension NewUploadViewController {
             return cellForNewFileUploads([newUploadFile])
         case .Text(let text):
             let cell = tableView.dequeueReusableCellWithIdentifier("TextCell") as! NewUploadTextCell
-            cell.placeholder.text = NSLocalizedString("Enter your upload...", comment: "Prompt for text upload")
+            cell.placeholder.text = NSLocalizedString("Enter your upload...", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Prompt for text upload")
             cell.textView.text = text
             cell.heightDidChange = { [weak self] height in
                 self?.textCellHeight = height
@@ -197,7 +197,7 @@ extension NewUploadViewController {
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         if newUpload.isRowEditable(indexPath.row) {
-            return [UITableViewRowAction(style: .Default, title: NSLocalizedString("Delete", comment: "Delete button for file upload")) { [weak self] action, indexPath in
+            return [UITableViewRowAction(style: .Default, title: NSLocalizedString("Delete", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Delete button for file upload")) { [weak self] action, indexPath in
                 
                 if let me = self {
                     me.newUpload = me.newUpload.uploadByDeletingFileAtIndex(indexPath.row)

@@ -39,6 +39,26 @@
                ReferencedContainer = "container:Enrollments.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5E0D0C111C4954E9008AA96F"
+               BuildableName = "EnrollmentsTests.xctest"
+               BlueprintName = "EnrollmentsTests"
+               ReferencedContainer = "container:Enrollments.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5E0D0C1C1C4954E9008AA96F"
+               BuildableName = "EnrollmentsUITests.xctest"
+               BlueprintName = "EnrollmentsUITests"
+               ReferencedContainer = "container:Enrollments.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

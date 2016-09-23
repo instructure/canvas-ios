@@ -1,0 +1,72 @@
+/* option to view results for all grading periods */
+"All Grading Periods" = "所有評分期限";
+
+/* Blue course color button */
+"Blue" = "藍色";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "自定義";
+
+/* Cyan course color button */
+"Cyan" = "藍綠色";
+
+/* DeepOrange course color button */
+"DeepOrange" = "深橙色";
+
+/* DeepPurple course color button */
+"DeepPurple" = "深紫色";
+
+/* favorite courses or groups */
+"Favorites" = "收藏";
+
+/* Title for grading periods picker */
+"Grading Periods" = "評分期限";
+
+/* Green course color button */
+"Green" = "綠色";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "隱藏";
+
+/* Indigo course color button */
+"Indigo" = "靛青色";
+
+/* LightBlue course color button */
+"LightBlue" = "淺藍色";
+
+/* LightGreen course color button */
+"LightGreen" = "淺綠色";
+
+/* LightPink course color button */
+"LightPink" = "淺粉色";
+
+/* Orange course color button */
+"Orange" = "橙色";
+
+/* Pink course color button */
+"Pink" = "粉色";
+
+/* Purple course color button */
+"Purple" = "紫色";
+
+/* red course color button */
+"Red" = "紅色";
+
+/* when a button is selected */
+"Selected" = "已選擇";
+
+/* Teal course color button */
+"Teal" = "深青色";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "載入入學工具包資料庫資料夾時出現錯誤。";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "在將標籤與某個課程或群組進行關聯時出錯。";
+
+/* Total grade label */
+"Total Grade" = "總評級";
+
+/* Yellow course color button */
+"Yellow" = "黃色";
+
