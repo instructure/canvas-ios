@@ -15,14 +15,17 @@ import SoPersistent
 import WhizzyWig
 import EnrollmentKit
 import Airwolf
+import FileKit
 
 typealias Announcement = DiscussionTopic
 
 private let TitleCellReuseIdentifier = "TitleCell"
+private let AttachmentCellReuseIdentifier = "AttachmentCell"
 private let MessageBodyCellReuseIdentifier = "MessageBodyCell"
 
 enum AnnouncementDetailsCellViewModel: TableViewCellViewModel {
     case Title(String)
+    case Attachment(String)
     case Message(NSURL, String)
 
     static func tableViewDidLoad(tableView: UITableView) {
@@ -30,6 +33,7 @@ enum AnnouncementDetailsCellViewModel: TableViewCellViewModel {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
         tableView.registerNib(UINib(nibName: "DetailsInfoCell", bundle: nil), forCellReuseIdentifier: TitleCellReuseIdentifier)
+        tableView.registerNib(UINib(nibName: "DetailsAttachmentCell", bundle: nil), forCellReuseIdentifier: AttachmentCellReuseIdentifier)
         tableView.registerClass(WhizzyWigTableViewCell.self, forCellReuseIdentifier: MessageBodyCellReuseIdentifier)
     }
 
@@ -39,6 +43,10 @@ enum AnnouncementDetailsCellViewModel: TableViewCellViewModel {
             guard let cell = tableView.dequeueReusableCellWithIdentifier(TitleCellReuseIdentifier) as? DetailsInfoCell else { ❨╯°□°❩╯⌢"Dude, you have the wrong type for this cell" }
             cell.titleLabel.text = title
             cell.setShowsSubmissionInfo(false)
+            return cell
+        case .Attachment(let filename):
+            guard let cell = tableView.dequeueReusableCellWithIdentifier(AttachmentCellReuseIdentifier) as? DetailsAttachmentCell else { ❨╯°□°❩╯⌢"Dude, you have the wrong type for this cell" }
+            cell.filenameLabel.text = filename
             return cell
         case .Message(let baseURL, let message):
             let cell = tableView.dequeueReusableCellWithIdentifier(MessageBodyCellReuseIdentifier) as! WhizzyWigTableViewCell
@@ -54,10 +62,21 @@ enum AnnouncementDetailsCellViewModel: TableViewCellViewModel {
 
     static func detailsForDiscussionTopic(baseURL: NSURL) -> (discussionTopic: DiscussionTopic) -> [AnnouncementDetailsCellViewModel] {
         return { discussionTopic in
+            var attachmentInfo: AnnouncementDetailsCellViewModel? = nil
+            if let attachmentID = discussionTopic.attachmentIDs.first {
+                do {
+                    if let file = try File.findOne(NSPredicate(format: "%K == %@", "id", attachmentID), inContext: discussionTopic.managedObjectContext!) {
+                        attachmentInfo = .Attachment(file.name)
+                    }
+                } catch {
+                    print("error fetching file: \(error)")
+                }
+            }
             return [
                 .Title(discussionTopic.title),
+                attachmentInfo,
                 .Message(baseURL, discussionTopic.message)
-            ]
+            ].flatMap { $0 }
         }
     }
 }
