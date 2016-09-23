@@ -1,0 +1,204 @@
+/* Error message component with the report id */
+"Error report ID: (reportID)" = "错误报告ID: (报告ID)";
+
+/* Failure reason from the JSON payload from canvas */
+"Failure reason: (reason)." = "失败原因: (原因)。";
+
+/* Confirmations alerting user of unanswered questions */
+"%d questions not answered" = "%d 问题没有回答";
+
+/* Accessiblity hint for question drawer button */
+"(questionsController!.flaggedCount) Questions Answered" = "(questionsController!.flaggedCount) 问题回答";
+
+/* Accessiblity hint for question drawer button */
+"0 Questions Answered" = "回答了0 个问题";
+
+/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
+"5 minutes remaining" = "剩下 5 分钟";
+
+/* Notification to alert the user that there is only 30 seconds left in the time quiz */
+"30 seconds remaining" = "剩下 30 秒";
+
+/* label for number of attempts that are allowed */
+"Allowed Attempts" = "允许的尝试";
+
+/* an unknown error's message */
+"An unknown error has occurred." = "一个未知错误已发生。";
+
+/* Question to confirm user wants to navigate away from a quiz. */
+"Are you sure you want to leave this quiz?" = "您确认想离开测验吗？";
+
+/* Confirmation before submitting a quiz */
+"Are you sure you want to submit your answers?" = "您确认想提交答案吗？";
+
+/* label for quiz availability date */
+"Available Until" = "有效直到";
+
+/* Cancel button
+   cancel button for submitting a quiz
+   Cancel removing the formatting */
+"Cancel" = "取消";
+
+/* Button for electing to be late on a quiz */
+"Continue Quiz" = "继续测验";
+
+/* Dismiss button for error alert */
+"Dismiss" = "解雇";
+
+/* Done button */
+"Done" = "完成";
+
+/* due date label for quiz due date */
+"Due Date" = "截止日期";
+
+/* Default text for essay cell */
+"Enter answer..." = "输入答案...";
+
+/* Exit button to leave the quiz */
+"Exit" = "退出";
+
+/* State of the flagged question */
+"Flagged" = "标记";
+
+/* Hides the question list */
+"Hide Question List" = "隐藏问题列表";
+
+/* Leave the quiz */
+"Leave" = "离开";
+
+/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
+"Lock Date Reached
+Submitting" = "锁定日期到
+正在提交";
+
+/* Next button for advancing a quiz */
+"Next" = "下一个";
+
+/* A quiz that has no due date */
+"No Due Date" = "没有截止日期";
+
+/* when a quiz has no time limit */
+"No time limit" = "没用时限";
+
+/* Title for alert showing when a quiz isn't takeable */
+"Not Takeable" = "不能参加";
+
+/* OK */
+"OK" = "OK";
+
+/* label for number of points in a quiz */
+"Points" = "点";
+
+/* accessibility label for a quiz question */
+"Question" = "问题";
+
+/* state for a question that has been flagged */
+"Question (questionNumber) Flagged" = "问题 (questionNumber) 已标记";
+
+/* state for unflagged question */
+"Question (questionNumber) Unflagged" = "问题 (questionNumber) 取消标记";
+
+/* label for the number of questions */
+"Questions" = "问题";
+
+/* Title for alert that shows when a quiz hits the due date */
+"Quiz Due" = "测验截止";
+
+/* Title for quiz error */
+"Quiz Error" = "测验错误";
+
+/* Label for indication that the quiz submission was successful */
+"Quiz Submitted" = "测验提交";
+
+/* Remove the formatting of the essay question text */
+"Remove Formatting" = "移除格式化";
+
+/* button for resuming a quiz */
+"Resume Quiz" = "继续测验";
+
+/* button for retaking quiz */
+"Retake Quiz" = "重考测验";
+
+/* Indicates that a matching quiz question needs to have an answer selected */
+"Select Answer" = "选择答案";
+
+/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
+"Select all that apply" = "选择所有适用";
+
+/* Hides the question list */
+"Show Question List" = "显示问题清单";
+
+/* Text for a button that toggles to show a timer for a timed quiz */
+"Show Timer" = "显示计时器";
+
+/* Stay on the quiz view */
+"Stay" = "留下";
+
+/* Label for indication that the quiz submission failed */
+"Submission Failure" = "提交失败";
+
+/* Button for electing to not be late on a quiz
+   confirm submitting quiz
+   Submit button for completing a quiz */
+"Submit" = "提交";
+
+/* Label for indication of submitting quiz */
+"Submitting Quiz" = "提交测验";
+
+/* Button for taking the quiz */
+"Take Quiz" = "参加测验";
+
+/* This shouldn't ever happen. */
+"The Pages are gone!? Why are the pages always gone?" = "该页面不见了!? 为什么页面总会消失?";
+
+/* Description for alert that shows when the quiz hits the due date */
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possbily be late?" = "测验将在 1 分钟内截止。 您想现在准时提交或作为迟交继续参加测验吗？";
+
+/* generic error message */
+"There was a problem with the Canvas request." = "带有Canvas请求出现问题。";
+
+/* No comment provided by engineer. */
+"There was no data!" = "没有数据！";
+
+/* Warning to users editing an essay question that was edited on the web. */
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "此问答题已在网络中编辑并可能包含格式、链接或图像。 为了在您的手机编辑此响应，我们需要清除格式 (包括链接和图像)。否则，您可以继续通过网络浏览器编辑问题。";
+
+/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
+"This quiz has an IP address filter set." = "此测验设置了一个IP地址过滤器。";
+
+/* Message when telling the user they can't take the quiz for some weird reason */
+"This quiz is currently unavailable." = "此测验目前不可用。";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked." = "此测验被锁定。";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked. Reason: (description)" = "此测验被锁定。 原因：(说明)";
+
+/* label for the time limit */
+"Time Limit" = "时限";
+
+/* Toggle flag accessiblity action */
+"Toggle Flag" = "切换标记";
+
+/* Ungraded quiz */
+"Ungraded" = "未评分";
+
+/* When a quiz has no limit on the number of attempts */
+"Unlimited" = "无限";
+
+/* a warning message */
+"Warning" = "警告";
+
+/* Shows time limit on a quiz */
+"You have (minuteLimit) minutes." = "您有 (minuteLimit) 分钟。";
+
+/* Message when telling the user they can't take the quiz because they used up all their attempts */
+"You have used all your attempts available on this quiz." = "您已用尽此测验的全部可用的尝试。";
+
+/* Hours label for time limit */
+"hr" = "小时";
+
+/* Minutes label localized */
+"min" = "分钟";
+
