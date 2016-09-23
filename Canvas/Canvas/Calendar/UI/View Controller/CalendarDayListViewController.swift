@@ -125,6 +125,8 @@ public class CalendarDayListViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 94.0
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 49.0, right: 0.0)
+        tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 49.0, right: 0.0)
     }
 
     public override func viewDidAppear(animated: Bool) {
