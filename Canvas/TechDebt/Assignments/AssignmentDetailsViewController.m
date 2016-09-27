@@ -11,6 +11,7 @@
 
 #import "AssignmentDetailsViewController.h"
 #import "iCanvasErrorHandler.h"
+#import "UIWebView+LinkProcessing.h"
 #import "UIWebView+RemoveShadow.h"
 #import "UIWebView+SafeAPIURL.h"
 #import "Router.h"
@@ -131,7 +132,11 @@
     [webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(self.topContentInset, 0, self.bottomContentInset, 0)];
     [webView.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
     
-    [webView replaceHREFsWithAPISafeURLs];
+    if (webView.loading == NO) {
+        [webView replaceHREFsWithAPISafeURLs];
+        [webView replaceYoutubeLinksWithInlineVideo];
+    }
+    
     DDLogVerbose(@"AssignmentDetailViewController posting module item progress update");
     CBIPostModuleItemProgressUpdate([@(self.assignment.ident) description], CKIModuleItemCompletionRequirementMustView);
 }
