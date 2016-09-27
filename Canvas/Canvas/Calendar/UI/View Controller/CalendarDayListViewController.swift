@@ -125,8 +125,6 @@ public class CalendarDayListViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 94.0
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 49.0, right: 0.0)
-        tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 49.0, right: 0.0)
     }
 
     public override func viewDidAppear(animated: Bool) {
@@ -145,6 +143,16 @@ public class CalendarDayListViewController: UITableViewController {
     // User selected a new default font size in preferences
     func contentSizeCategoryChanged(notification: NSNotification) {
         tableView.reloadData()
+    }
+    
+    override public func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if let tabBar = self.tabBarController?.tabBar {
+            let height = tabBar.frame.height
+            tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: height, right: 0.0)
+            tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: height, right: 0.0)
+        }
     }
 
     // ---------------------------------------------

@@ -126,7 +126,6 @@ public class CalendarDayDetailViewController: UIViewController, CalendarDayPageV
         view.addSubview(dayPageViewController.view)
         dayPageViewController.didMoveToParentViewController(self)
         
-        
         weekPageViewController = CalendarWeekPageViewController(calendar: calendar, day: date, delegate: self)
         weekPageViewController.view.translatesAutoresizingMaskIntoConstraints = false
         
