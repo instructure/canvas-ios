@@ -68,22 +68,24 @@ class CoursesCollectionViewController: Course.CollectionViewController {
         }
         
         let favorites = NSPredicate(format: "%K == YES", "isFavorite")
-        self.favoritesCountObserver = ManagedObjectCountObserver<Course>(predicate: favorites, inContext: context) { [weak self] (count) in
+        self.favoritesCountObserver = ManagedObjectCountObserver<Course>(predicate: favorites, inContext: context) { [weak self] (courseFavoriteCount) in
             
-            defer { self?.currentFavoritesCount = count }
+            defer { self?.currentFavoritesCount = courseFavoriteCount }
             
             guard let me = self else { return }
             
             // Don't reset the collection if it's already of the same type
             if let previous = me.currentFavoritesCount {
-                if previous > 0 && count > 0   { return }
-                if previous == 0 && count == 0 { return }
+                if previous > 0 && courseFavoriteCount > 0   { return }
+                if previous == 0 && courseFavoriteCount == 0 { return }
             }
             
             var collection: FetchedCollection<Course>?
             
-            if count == 0 { collection = try? Course.allCoursesCollection(session) }
-            if count > 0  { collection = try? Course.favoritesCollection(session) }
+            switch courseFavoriteCount {
+                case 0: collection = try? Course.allCoursesCollection(session)
+                default: collection = try? Course.favoritesCollection(session)
+            }
             
             guard let c = collection else { return }
             
