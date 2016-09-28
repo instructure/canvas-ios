@@ -45,7 +45,7 @@ class CoursesCollectionViewController: Course.CollectionViewController {
     let session: Session
     let route: (UIViewController, NSURL)->()
     var favoritesCountObserver: ManagedObjectCountObserver<Course>?
-    var currentFavoritesCount: Int = 0
+    var currentFavoritesCount: Int?
     
     var showingGrades = MutableProperty<Bool>(false)
     
@@ -70,18 +70,20 @@ class CoursesCollectionViewController: Course.CollectionViewController {
         let favorites = NSPredicate(format: "%K == YES", "isFavorite")
         self.favoritesCountObserver = ManagedObjectCountObserver<Course>(predicate: favorites, inContext: context) { [weak self] (count) in
             
+            defer { self?.currentFavoritesCount = count }
+            
             guard let me = self else { return }
             
-            defer { me.currentFavoritesCount = count }
+            // Don't reset the collection if it's already of the same type
+            if let previous = me.currentFavoritesCount {
+                if previous > 0 && count > 0   { return }
+                if previous == 0 && count == 0 { return }
+            }
             
             var collection: FetchedCollection<Course>?
             
-            if count == 0 && me.currentFavoritesCount != 0 {
-                collection = try? Course.allCoursesCollection(session)
-            }
-            else if count > 0 && me.currentFavoritesCount == 0 {
-                collection = try? Course.favoritesCollection(session)
-            }
+            if count == 0 { collection = try? Course.allCoursesCollection(session) }
+            if count > 0  { collection = try? Course.favoritesCollection(session) }
             
             guard let c = collection else { return }
             
