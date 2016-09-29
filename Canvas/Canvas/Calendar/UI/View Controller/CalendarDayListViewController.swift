@@ -144,6 +144,16 @@ public class CalendarDayListViewController: UITableViewController {
     func contentSizeCategoryChanged(notification: NSNotification) {
         tableView.reloadData()
     }
+    
+    override public func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if let tabBar = self.tabBarController?.tabBar {
+            let height = tabBar.frame.height
+            tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: height, right: 0.0)
+            tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: height, right: 0.0)
+        }
+    }
 
     // ---------------------------------------------
     // MARK: - UITableViewDataSource
