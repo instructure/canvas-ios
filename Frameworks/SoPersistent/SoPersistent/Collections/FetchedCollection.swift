@@ -32,6 +32,10 @@ public class FetchedCollection<Model>: NSObject, Collection, SequenceType, NSFet
         try frc.performFetch()
     }
     
+    deinit {
+        self.fetchedResultsController.delegate = nil
+    }
+    
     public var isEmpty: Bool {
         return fetchedResultsController.fetchedObjects?.isEmpty ?? true
     }

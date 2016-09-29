@@ -44,6 +44,8 @@ class CoursesCollectionViewController: Course.CollectionViewController {
     
     let session: Session
     let route: (UIViewController, NSURL)->()
+    var favoritesCountObserver: ManagedObjectCountObserver<Course>?
+    var currentFavoritesCount: Int?
     
     var showingGrades = MutableProperty<Bool>(false)
     
@@ -53,6 +55,7 @@ class CoursesCollectionViewController: Course.CollectionViewController {
         super.init()
 
         let context = try session.enrollmentManagedObjectContext()
+        
         let refresher = try Course.refresher(session)
         refresher.refreshingBegan.observeNext {
             // Let's invalidate all the tabs so that they get refreshed too
@@ -63,15 +66,37 @@ class CoursesCollectionViewController: Course.CollectionViewController {
                 }
             }
         }
-        prepare(try Course.favoritesCollection(session), refresher: refresher) { [weak self] enrollment in
-            courseCardViewModel(enrollment, session: session, viewController: self) { [weak self] gradesURL in
-                if let me = self {
+        
+        let favorites = NSPredicate(format: "%K == YES", "isFavorite")
+        self.favoritesCountObserver = ManagedObjectCountObserver<Course>(predicate: favorites, inContext: context) { [weak self] (courseFavoriteCount) in
+            
+            defer { self?.currentFavoritesCount = courseFavoriteCount }
+            
+            guard let me = self else { return }
+            
+            // Don't reset the collection if it's already of the same type
+            if let previous = me.currentFavoritesCount {
+                if previous > 0 && courseFavoriteCount > 0   { return }
+                if previous == 0 && courseFavoriteCount == 0 { return }
+            }
+            
+            var collection: FetchedCollection<Course>?
+            
+            switch courseFavoriteCount {
+                case 0: collection = try? Course.allCoursesCollection(session)
+                default: collection = try? Course.favoritesCollection(session)
+            }
+            
+            guard let c = collection else { return }
+            
+            self?.prepare(c, refresher: refresher) { enrollment in
+                courseCardViewModel(enrollment, session: session, viewController: self) { gradesURL in
+                    guard let me = self else { return }
                     route(me, gradesURL)
                 }
             }
         }
-    
-
+        
         navigationItem.rightBarButtonItems = [
             editButton,
             toggleGradesButton,
