@@ -88,6 +88,20 @@ NSString *CKDiscussionEntryMediaToken = @"instructure_inline_media_comment_on_ip
         self.ident = [info[@"id"] unsignedLongLongValue];
         self.userIdent = [info[@"user_id"] unsignedLongLongValue];
         self.userName = [info objectForKeyCheckingNull:@"user_name"];
+        
+        NSDictionary *user = info[@"user"];
+        if (user) {
+            NSString *displayName = user[@"display_name"];
+            NSString *avatarURL = user[@"avatar_image_url"];
+            if (displayName) {
+                self.userName = displayName;
+            }
+            
+            if (avatarURL) {
+                self.userAvatarURL = [NSURL URLWithString:avatarURL];
+            }
+        }
+        
         if([info valueForKey:@"rating_sum"] && [info valueForKey:@"rating_sum"] != [NSNull null]) {
             self.likeCount = [info[@"rating_sum"] integerValue];
             if(entryRatings && [entryRatings valueForKey:[NSString stringWithFormat:@"%@", @(self.ident)]]) {
