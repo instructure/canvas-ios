@@ -90,6 +90,7 @@ public class SignalProducerRefresher<SP: SignalProducerType where SP.Error == NS
         } else {
             ❨╯°□°❩╯⌢"Can't do it. Sorry."
         }
+        refreshControl.layoutIfNeeded()
     }
 
     public func refresh(forced: Bool) {

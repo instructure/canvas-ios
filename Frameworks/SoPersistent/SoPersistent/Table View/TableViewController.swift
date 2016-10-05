@@ -36,10 +36,12 @@ public class TableViewController: UITableViewController {
 
     public var refresher: Refresher? {
         didSet {
-            oldValue?.refreshControl.endRefreshing()
-            oldValue?.refreshControl.removeFromSuperview()
-            refresher?.makeRefreshable(self)
-            setupRefreshingObservation()
+            if oldValue !== refresher {
+                oldValue?.refreshControl.endRefreshing()
+                oldValue?.refreshControl.removeFromSuperview()
+                refresher?.makeRefreshable(self)
+                setupRefreshingObservation()
+            }
         }
     }
 
