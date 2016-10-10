@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C3FB9241DA692880039201B /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3FB9231DA692880039201B /* ErrorReporter.swift */; };
+		2C3FB9261DA696240039201B /* NSBundle+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3FB9251DA696240039201B /* NSBundle+SoLazy.swift */; };
 		4928EBE21C84DF1400799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBE11C84DF1400799E04 /* Marshal.framework */; };
 		4962EEDB1C7FA07F000DDCAF /* NSObject+PureEvil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4962EEDA1C7FA07F000DDCAF /* NSObject+PureEvil.swift */; };
 		49895F251C4EA8EB002A16EC /* NSData+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49895F241C4EA8EB002A16EC /* NSData+SoLazy.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C3FB9231DA692880039201B /* ErrorReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorReporter.swift; sourceTree = "<group>"; };
+		2C3FB9251DA696240039201B /* NSBundle+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+SoLazy.swift"; sourceTree = "<group>"; };
 		4928EBE11C84DF1400799E04 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4962EEDA1C7FA07F000DDCAF /* NSObject+PureEvil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+PureEvil.swift"; sourceTree = "<group>"; };
 		49895F241C4EA8EB002A16EC /* NSData+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+SoLazy.swift"; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 				B53D1B3B1C90C74300303604 /* RAC+SoLazy.swift */,
 				B135FEB81CB8632F0093DE0B /* NSURLSession+SoLazy.swift */,
 				B18799B41CD90906008F712A /* Environment.swift */,
+				2C3FB9231DA692880039201B /* ErrorReporter.swift */,
+				2C3FB9251DA696240039201B /* NSBundle+SoLazy.swift */,
 			);
 			path = SoLazy;
 			sourceTree = "<group>";
@@ -352,12 +358,14 @@
 				49A960A61BC315E000592D94 /* String+SoLazy.swift in Sources */,
 				4962EEDB1C7FA07F000DDCAF /* NSObject+PureEvil.swift in Sources */,
 				49B997151C3FF4D20068337C /* NSError+SoLazy.swift in Sources */,
+				2C3FB9261DA696240039201B /* NSBundle+SoLazy.swift in Sources */,
 				49A960A21BC315E000592D94 /* Array+SoLazy.swift in Sources */,
 				49A960A91BC315E000592D94 /* UIImage+SoLazy.swift in Sources */,
 				49895F251C4EA8EB002A16EC /* NSData+SoLazy.swift in Sources */,
 				617BE7A71CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift in Sources */,
 				B16A8D841C99CE03009E364E /* RAC+SoLazy.swift in Sources */,
 				49A960A81BC315E000592D94 /* UIFont+SoLazy.swift in Sources */,
+				2C3FB9241DA692880039201B /* ErrorReporter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

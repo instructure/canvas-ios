@@ -68,7 +68,7 @@ class GroupsCollectionViewController: Group.CollectionViewController {
             nav.popoverPresentationController?.barButtonItem = editButton
             presentViewController(nav, animated: true, completion: nil)
         } catch let e as NSError {
-            e.presentAlertFromViewController(self)
+            e.report(alertUserFrom: self)
         }
     }
     
@@ -76,7 +76,6 @@ class GroupsCollectionViewController: Group.CollectionViewController {
         fatalError()
     }
     
-
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let enrollment = collection[indexPath]
         

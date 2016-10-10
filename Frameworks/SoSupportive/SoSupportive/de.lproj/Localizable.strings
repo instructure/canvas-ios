@@ -1,0 +1,48 @@
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Beiläufige Frage oder Vorschlag";
+
+/* title for status selection field */
+"Choose One" = "Bitte eins auswählen";
+
+/* Title for field */
+"Describe your problem" = "Bitte beschreiben Sie Ihr Problem";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Sehr kritischer Notfall";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Ich kann nicht weiterarbeiten, solange das Problem besteht";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Ich benötige zwar Hilfe, es eilt jedoch nicht";
+
+/* Impact Title */
+"Impact:" = "Auswirkung:";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Unzulässige Eingabe. Bitte überprüfen Sie alle Felder und versuchen Sie es erneut.";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Anfrage fehlgeschlagen. Bitte überprüfen Sie das Netzwerk und versuchen Sie es erneut.";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Auswirkung auswählen";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Es liegt zwar ein Problem vor, aber ich kann es umgehen";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Danke sehr. Wir haben Ihre Anfrage erhalten.";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Unbekannter Benutzer";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Unbekannter Benutzername";
+
+/* Title for field */
+"What can we do better?" = "Was könnten wir verbessern?";
+
+/* Title for the email field */
+"Your Email" = "Ihre E-Mail";
+

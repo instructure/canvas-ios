@@ -1,0 +1,48 @@
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Обычный вопрос или предложение";
+
+/* title for status selection field */
+"Choose One" = "Выберите один";
+
+/* Title for field */
+"Describe your problem" = "Опишите вашу проблему";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Крайне критическая ситуация";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Я не могу добиться цели до решения проблемы";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Мне нужна помощь, но это не срочно";
+
+/* Impact Title */
+"Impact:" = "Влияние:";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Неправильный ввод. Проверьте поля и повторите попытку.";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Ошибка запроса! Проверьте сеть и попробуйте еще раз!";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Выберите влияние";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Что-то сломалось, но я могу работать и без этого";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Спасибо, ваш запрос был получен!";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Неизвестный пользователь";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Неизвестное имя пользователя";
+
+/* Title for field */
+"What can we do better?" = "Что мы можем сделать лучше?";
+
+/* Title for the email field */
+"Your Email" = "Ваш адрес электронной почты";
+

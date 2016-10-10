@@ -83,7 +83,7 @@ class AssignmentsTableViewController: Assignment.TableViewController {
                 do {
                     try me.updateCollections(courseID, gradingPeriodID: item?.gradingPeriodID)
                 } catch let error as NSError {
-                    error.presentAlertFromViewController(me)
+                    error.report(alertUserFrom: self)
                 }
             }
 

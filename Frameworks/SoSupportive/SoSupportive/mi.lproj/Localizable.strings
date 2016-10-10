@@ -1,0 +1,48 @@
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "pātai causal mana'o ranei";
+
+/* title for status selection field */
+"Choose One" = "Kōwhiri Kotahi";
+
+/* Title for field */
+"Describe your problem" = "Whakaahuatia koutou raruraru";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "whawhati tata tino nui";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Ka taea e kore kia mea mahi ahau tae noa ki pūmau";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Me ahau te tauturu engari e kore te mea kōhukihuki";
+
+/* Impact Title */
+"Impact:" = "pānga:";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Tāuru muhu. Tirohia mara, me te ngana anō.";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "I rahua Tono! Tirohia whatunga me ngana ano!";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Tīpako Pānga";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "pakaru te tahi mea te engari ka taea e ahau te mahi a tawhio noa te reira";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Mihi, ka riro koutou tono!";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Kaiwhakamahi unknown";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Ingoa Kaiwhakamahi tē mōhiotia";
+
+/* Title for field */
+"What can we do better?" = "Eaha ta tatou e nehenehe e rave maitai a'e?";
+
+/* Title for the email field */
+"Your Email" = "tou Īmēra";
+

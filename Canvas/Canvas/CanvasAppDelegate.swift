@@ -166,6 +166,10 @@ extension AppDelegate {
     func setupDefaultErrorHandling() {
         TableViewController.defaultErrorHandler = presentErrorAlert
         CollectionViewController.defaultErrorHandler = presentErrorAlert
+        
+        SoLazy.ErrorReporter.setErrorHandler({ error, userInfo in 
+            Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: userInfo)
+        })
     }
     
     var visibleController: UIViewController {

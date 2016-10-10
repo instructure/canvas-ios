@@ -59,24 +59,62 @@ extension NSError {
 }
 
 
+
+// MARK: Reporting
+extension NSError {
+    
+    /// Surfaces an error either to the user, to the error reporter, or both
+    public func report(externally: Bool = true, alertUserFrom: UIViewController? = nil, onDismiss: (() -> ())? = nil) {
+     
+        if externally == true {
+            ErrorReporter.sharedErrorReporter.reportError(self)
+        }
+        
+        guard let viewController = alertUserFrom else { return }
+        
+        let alert: UIAlertController
+        
+        if externally == true {
+            let title = NSLocalizedString("Error", bundle: .soLazy(), comment: "Title for an error alert")
+            let messageTemplate = NSLocalizedString("An unexpected error occured. %@(%@)", bundle: .soLazy(), comment: "Message for an error alert")
+            let message = String.localizedStringWithFormat(messageTemplate, self.domain, String(self.code))
+            alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        }
+        else {
+            let reason = localizedFailureReason.map( { NSLocalizedString("\n\nExplanation: ", tableName: nil, bundle: .soLazy(), value: "", comment: "attached to error explanation in dialog") + $0 } ) ?? ""
+            let description = localizedDescription + reason
+            
+            alert = UIAlertController(title: title, message: description, preferredStyle: .Alert)
+        }
+        
+        let dismissTitle = NSLocalizedString("Dismiss", tableName: nil, bundle: .soLazy(), value: "", comment: "Dismiss an error dialog")
+        let action = UIAlertAction(title: dismissTitle, style: .Default) { _ in
+            onDismiss?()
+        }
+        alert.addAction(action)
+        
+        viewController.presentViewController(alert, animated: true, completion: nil)
+    }
+}
+
 // MARK: Alert
 
 extension NSError {
     public func presentAlertFromViewController(viewController: UIViewController, alertDismissed: (()->())? = nil, reportError: (()->())? = nil) {
         print(self.reportDescription)
         
-        let reason = localizedFailureReason.map( { NSLocalizedString("\n\nExplanation: ", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.icanvas.SoLazy")!, value: "", comment: "attached to error explanation in dialog") + $0 } ) ?? ""
+        let reason = localizedFailureReason.map( { NSLocalizedString("\n\nExplanation: ", tableName: nil, bundle: .soLazy(), value: "", comment: "attached to error explanation in dialog") + $0 } ) ?? ""
         let description = localizedDescription + reason
         
         let alert = UIAlertController(title: title, message: description, preferredStyle: .Alert)
         
         if let report = reportError {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Report", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.icanvas.SoLazy")!, value: "", comment: "Option to report an error"), style: .Default, handler: { _ in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Report", tableName: nil, bundle: .soLazy(), value: "", comment: "Option to report an error"), style: .Default, handler: { _ in
                 report()
             }))
         }
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.icanvas.SoLazy")!, value: "", comment: "Dismiss an error dialog"), style: .Cancel, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", tableName: nil, bundle: .soLazy(), value: "", comment: "Dismiss an error dialog"), style: .Cancel, handler: { _ in
             alertDismissed?()
         }))
         
@@ -119,7 +157,7 @@ extension NSError {
             reason = "Unexpected null value for \(key)"
         }
         
-        let errorDescription = NSLocalizedString("There was a problem interpreting a response from the server.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.icanvas.SoLazy")!, value: "", comment: "JSON Parsing error description")
+        let errorDescription = NSLocalizedString("There was a problem interpreting a response from the server.", tableName: nil, bundle: .soLazy(), value: "", comment: "JSON Parsing error description")
 
         self.init(subdomain: "SoLazy", description: errorDescription, failureReason: reason)
     }

@@ -1,0 +1,48 @@
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "简单问题或建议";
+
+/* title for status selection field */
+"Choose One" = "选择一个";
+
+/* Title for field */
+"Describe your problem" = "描述您的问题";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "十万火急的紧急事件";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "我无法办事直到修复为止";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "我需要帮助，但不是迫切";
+
+/* Impact Title */
+"Impact:" = "影响：";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "输入无效。检查栏目，然后再试一次。";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "请求失败！检查网络，然后再试一次！";
+
+/* Select Impact Placeholder */
+"Select Impact" = "选择影响";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "某东西坏了，但我可以修复它";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "谢谢，您的请求被接受！";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "未知用户";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "未知用户名";
+
+/* Title for field */
+"What can we do better?" = "我们如何能做得更好？";
+
+/* Title for the email field */
+"Your Email" = "您的电邮";
+

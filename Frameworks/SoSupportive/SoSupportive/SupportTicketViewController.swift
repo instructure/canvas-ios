@@ -19,8 +19,8 @@ private enum SupportTicketCellTag: String {
 
 public class SupportTicketViewController : FormViewController {
 
-    private var requesterName: String = "Unknown User"
-    private var requesterUsername: String = "Unknown User Name"
+    private var requesterName: String = NSLocalizedString("Unknown User", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Default name given a user until we find their real name")
+    private var requesterUsername: String = NSLocalizedString("Unknown User Name", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Default user name, the computer-friendly version of their name, until we find their real user name")
     private var requesterEmail: String? = nil {
         didSet {
             if let row = form.rowByTag(SupportTicketCellTag.Email.rawValue) {
@@ -63,8 +63,8 @@ public class SupportTicketViewController : FormViewController {
 
         form +++ Section()
             <<< PushRow<String>() {
-                $0.title = NSLocalizedString("Impact:", comment: "Impact Title")
-                $0.selectorTitle = NSLocalizedString("Select Impact", comment: "Select Impact Placeholder")
+                $0.title = NSLocalizedString("Impact:", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Impact Title")
+                $0.selectorTitle = NSLocalizedString("Select Impact", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Select Impact Placeholder")
                 $0.options = ImpactLevel.impacts().map { $0.description() }
                 $0.value = ImpactLevel.None.description()
                 $0.tag = SupportTicketCellTag.Impact.rawValue
@@ -75,7 +75,7 @@ public class SupportTicketViewController : FormViewController {
                 let rowHidden = (self?.requesterEmail != nil)
                 $0.hidden = Condition(booleanLiteral: rowHidden)
                 }.cellSetup { cell, row in
-                cell.textField.placeholder = "Your Email"
+                cell.textField.placeholder = NSLocalizedString("Your Email", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Title for the email field")
                 }.onChange { [weak self] row in
                     self?.validateForm()
             }
@@ -106,7 +106,7 @@ public class SupportTicketViewController : FormViewController {
             impact = ImpactLevel.impactFromDescription(impactValue),
             subject = subjectRow.value?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()),
             comment = commentRow.value?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) else {
-                notification.statusBarToastSuccess(NSLocalizedString("Invalid Input.  Check fields and try again.", comment: "Support Ticket Invalid Input Message"))
+                notification.statusBarToastSuccess(NSLocalizedString("Invalid Input.  Check fields and try again.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Support Ticket Invalid Input Message"))
                 return
         }
 
@@ -139,7 +139,7 @@ public class SupportTicketViewController : FormViewController {
                 if let _ = error {
                     dispatch_async(dispatch_get_main_queue()) {
                         self?.setLoading(false)
-                        notification.statusBarToastSuccess(NSLocalizedString("Request Failed!  Check network and try again!", comment: "Support Ticket Creation Failed"))
+                        notification.statusBarToastSuccess(NSLocalizedString("Request Failed!  Check network and try again!", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Support Ticket Creation Failed"))
                     }
                 }
                 return
@@ -148,7 +148,7 @@ public class SupportTicketViewController : FormViewController {
             dispatch_async(dispatch_get_main_queue()) {
                 self?.setLoading(false)
                 self?.navigationController?.popViewControllerAnimated(true)
-                notification.statusBarToastSuccess(NSLocalizedString("Thanks, your request was received!", comment: "Support Ticket Created Successfully"))
+                notification.statusBarToastSuccess(NSLocalizedString("Thanks, your request was received!", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Support Ticket Created Successfully"))
             }
         }
 

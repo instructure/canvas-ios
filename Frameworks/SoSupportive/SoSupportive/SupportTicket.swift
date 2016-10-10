@@ -27,17 +27,17 @@ public enum ImpactLevel: String {
     public func description() -> String {
         switch self {
         case .Comment:
-            return "Casual question or suggestion"
+            return NSLocalizedString("Casual question or suggestion", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Cancel the question/suggestion form")
         case .NotUrgent:
-            return "I need help but it's not urgent"
+            return NSLocalizedString("I need help but it's not urgent", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Status level for issue being reported")
         case .WorkaroundPossible:
-            return "Something is broken but I can work around it"
+            return NSLocalizedString("Something is broken but I can work around it", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Status level for issue being reported")
         case .Blocking:
-            return "I can't get things done until fixed"
+            return NSLocalizedString("I can't get things done until fixed", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Status level for issue being reported")
         case .Emergency:
-            return "Extremely critical emergency"
+            return NSLocalizedString("Extremely critical emergency", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Status level for issue being reported")
         case .None:
-            return "Choose One"
+            return NSLocalizedString("Choose One", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "title for status selection field")
         }
     }
 
@@ -65,9 +65,9 @@ public enum SupportTicketType {
     public func description() -> String {
         switch self {
         case .Problem:
-            return "Describe your problem"
+            return NSLocalizedString("Describe your problem", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Title for field")
         case .FeatureRequest:
-            return "What can we do better?"
+            return NSLocalizedString("What can we do better?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Title for field")
         }
     }
 
@@ -86,6 +86,7 @@ public class SupportTicket {
     public let type: SupportTicketType
     public let logFilePath: String?
 
+    //intentionally not localizing this area since this is what support will see and our support staff is only expected to read English
     init(requesterName: String = "Unknown User", requesterUsername: String = "Unknown User", requesterEmail: String = "unknown_user@test.com", requesterDomain: NSURL = NSURL(string: "https://canvas.instructure.com")!, subject: String = "N/A", body: String = "N/A", impact: ImpactLevel = .None, type: SupportTicketType = .FeatureRequest, logFilePath: String? = nil) {
         self.requesterName = requesterName ?? "Unknown User"
         self.requesterUsername = requesterUsername ?? "Unknown User Name"

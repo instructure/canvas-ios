@@ -16,7 +16,7 @@ import FileKit
 let discussionKitModelName = "DiscussionKit"
 let discussionKitSubdomain = "DiscussionKit"
 let discussionKitFailedToLoadErrorCode = 10001
-let discussionKitFailedToLoadErrorDescription = "Failed to load \(discussionKitModelName) NSManagedObjectModel"
+let discussionKitFailedToLoadErrorDescription = NSLocalizedString("Failed to load \(discussionKitModelName) NSManagedObjectModel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.DiscussionKit")!, value: "", comment: "Error Message when the app can't load an object model from the database")
 let discussionKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the DiscussionKit database file.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.DiscussionKit")!, value: "", comment: "DiscussionKit Database Load Failure Message")
 
 extension Session {

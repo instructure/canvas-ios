@@ -1,0 +1,48 @@
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Informell fråga eller förslag";
+
+/* title for status selection field */
+"Choose One" = "Välj en";
+
+/* Title for field */
+"Describe your problem" = "Beskriv ditt problem";
+
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Extremt kritiskt nödläge";
+
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Jag kan inte göra något fören det är fixat";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Jag behöver hjälp men det är inte akut";
+
+/* Impact Title */
+"Impact:" = "Påverkan:";
+
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Ogiltig inmatning. Kontrollera fälten och försök igen.";
+
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Förfrågan misslyckades! kontrollera nätverket och försök igen!";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Välj påverkan";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Något är trasigt och jag kan inte hitta en alternativ lösning";
+
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Tack, din förfrågan har tagits emot!";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Okänd användare";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Okänt användarnamn";
+
+/* Title for field */
+"What can we do better?" = "Vad kan vi förbättra?";
+
+/* Title for the email field */
+"Your Email" = "Din e-post";
+

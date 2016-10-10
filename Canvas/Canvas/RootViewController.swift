@@ -51,7 +51,7 @@ func rootViewController(session: Session) -> UIViewController {
         ]
     } catch let e as NSError {
         delay(0.1) {
-            e.presentAlertFromViewController(tabs)
+            e.report(alertUserFrom: tabs)
         }
     }
     
