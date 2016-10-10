@@ -10,6 +10,12 @@
 		4928EBD61C84DEA200799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBD51C84DEA200799E04 /* Marshal.framework */; };
 		4928EBD71C84DEAA00799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBD51C84DEA200799E04 /* Marshal.framework */; };
 		4928EBD81C84DEAA00799E04 /* Marshal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBD51C84DEA200799E04 /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		493EBDA91D9638B200DCDDA2 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDA61D96383C00DCDDA2 /* Cartography.framework */; };
+		493EBDAA1D9638B200DCDDA2 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDA61D96383C00DCDDA2 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		493EBDAB1D9638B200DCDDA2 /* CWStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDA71D96383C00DCDDA2 /* CWStatusBarNotification.framework */; };
+		493EBDAC1D9638B200DCDDA2 /* CWStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDA71D96383C00DCDDA2 /* CWStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		493EBDAD1D9638B200DCDDA2 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDA81D96383C00DCDDA2 /* Kingfisher.framework */; };
+		493EBDAE1D9638B200DCDDA2 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDA81D96383C00DCDDA2 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E1B50F41C8F44230019D764 /* AccountDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B50F31C8F44230019D764 /* AccountDomain.swift */; };
 		5E1B50F91C8F44290019D764 /* MobileVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B50F61C8F44290019D764 /* MobileVerifier.swift */; };
 		5E1B50FA1C8F44290019D764 /* MobileVerifyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B50F71C8F44290019D764 /* MobileVerifyResponse.swift */; };
@@ -115,8 +121,11 @@
 				5EB86AF21C4ECE8000C920A2 /* SoLazy.framework in Embed Frameworks */,
 				5EB86AF41C4ECE8000C920A2 /* SoPersistent.framework in Embed Frameworks */,
 				5EB86AF81C4ECE8000C920A2 /* TooLegit.framework in Embed Frameworks */,
+				493EBDAC1D9638B200DCDDA2 /* CWStatusBarNotification.framework in Embed Frameworks */,
+				493EBDAA1D9638B200DCDDA2 /* Cartography.framework in Embed Frameworks */,
 				4928EBD81C84DEAA00799E04 /* Marshal.framework in Embed Frameworks */,
 				5EB86AA61C4ECC6E00C920A2 /* Keymaster.framework in Embed Frameworks */,
+				493EBDAE1D9638B200DCDDA2 /* Kingfisher.framework in Embed Frameworks */,
 				5EB86AF01C4ECE8000C920A2 /* Result.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -126,6 +135,9 @@
 
 /* Begin PBXFileReference section */
 		4928EBD51C84DEA200799E04 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		493EBDA61D96383C00DCDDA2 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		493EBDA71D96383C00DCDDA2 /* CWStatusBarNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		493EBDA81D96383C00DCDDA2 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E1B50F31C8F44230019D764 /* AccountDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDomain.swift; sourceTree = "<group>"; };
 		5E1B50F61C8F44290019D764 /* MobileVerifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileVerifier.swift; sourceTree = "<group>"; };
 		5E1B50F71C8F44290019D764 /* MobileVerifyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileVerifyResponse.swift; sourceTree = "<group>"; };
@@ -205,8 +217,11 @@
 				5EB86AF11C4ECE8000C920A2 /* SoLazy.framework in Frameworks */,
 				5EB86AF31C4ECE8000C920A2 /* SoPersistent.framework in Frameworks */,
 				5EB86AF71C4ECE8000C920A2 /* TooLegit.framework in Frameworks */,
+				493EBDAB1D9638B200DCDDA2 /* CWStatusBarNotification.framework in Frameworks */,
+				493EBDA91D9638B200DCDDA2 /* Cartography.framework in Frameworks */,
 				4928EBD71C84DEAA00799E04 /* Marshal.framework in Frameworks */,
 				5EB86AA51C4ECC6E00C920A2 /* Keymaster.framework in Frameworks */,
+				493EBDAD1D9638B200DCDDA2 /* Kingfisher.framework in Frameworks */,
 				5EB86AEF1C4ECE8000C920A2 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +429,9 @@
 		5EB86AE31C4ECD7800C920A2 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				493EBDA61D96383C00DCDDA2 /* Cartography.framework */,
+				493EBDA71D96383C00DCDDA2 /* CWStatusBarNotification.framework */,
+				493EBDA81D96383C00DCDDA2 /* Kingfisher.framework */,
 				4928EBD51C84DEA200799E04 /* Marshal.framework */,
 				5EB86AE51C4ECDFC00C920A2 /* ReactiveCocoa.framework */,
 				5EB86AE61C4ECDFC00C920A2 /* Result.framework */,
@@ -539,7 +557,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Instructure Inc";
 				TargetAttributes = {
 					5EB86A591C4ECC5400C920A2 = {
@@ -555,6 +573,7 @@
 					};
 					5EB86A8F1C4ECC6E00C920A2 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					5EB86A981C4ECC6E00C920A2 = {
 						CreatedOnToolsVersion = 7.2;
@@ -782,8 +801,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -810,6 +831,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -827,8 +849,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -847,6 +871,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -855,8 +881,8 @@
 		5EB86A831C4ECC5400C920A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Keytester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Keytester;
@@ -867,8 +893,8 @@
 		5EB86A841C4ECC5400C920A2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Keytester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Keytester;
@@ -929,6 +955,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -942,6 +969,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -952,6 +980,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -964,6 +993,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Keymaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

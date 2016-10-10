@@ -38,10 +38,9 @@ internal class BackdropFileDownloader: NSObject {
         let images = (1...numPhotoBackdrops).map { n in
             return BackdropFile(type: .Photos, n: n)
         }
-        let allFileProducers = (images + shapes).map { self.imageProducer($0) }
-        let allFiles = SignalProducer(values: allFileProducers)
-            .flatten(.Merge)
-        disposable = ScopedDisposable(allFiles.start())
+        let allFileProducers: [SignalProducer<UIImage, NSError>] = (images + shapes).map { self.imageProducer($0) }
+        let allFiles: SignalProducer<SignalProducer<UIImage, NSError>, NSError> = SignalProducer(values: allFileProducers)
+        disposable = ScopedDisposable(allFiles.flatten(.Merge).start())
     }
     
     func imageProducer(file: BackdropFile) -> SignalProducer<UIImage, NSError> {

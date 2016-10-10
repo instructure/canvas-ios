@@ -37,7 +37,7 @@ extension Remindable {
         notification.alertAction = NSLocalizedString("View", comment: "Name of action when viewing a reminder")
         notification.fireDate = date
         notification.timeZone = NSTimeZone.localTimeZone()
-        notification.userInfo = [RemindableIDKey: id, RemindableActionURLKey: actionURL.absoluteString]
+        notification.userInfo = [RemindableIDKey: id, RemindableActionURLKey: actionURL.absoluteString!]
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
 

@@ -177,7 +177,7 @@ public class CalendarDayListViewController: UITableViewController {
     public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: CalendarDayListCell! = tableView.dequeueReusableCellWithIdentifier(CalendarDayListCell.ReuseID) as? CalendarDayListCell
         if cell == nil {
-            let topLevelObjects: NSArray = bundle.loadNibNamed("CalendarDayListCell", owner: self, options: [NSObject: AnyObject]())
+            let topLevelObjects: NSArray = bundle.loadNibNamed("CalendarDayListCell", owner: self, options: [NSObject: AnyObject]())!
             cell = topLevelObjects[0] as! CalendarDayListCell
         }
 

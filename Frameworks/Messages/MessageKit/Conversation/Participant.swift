@@ -10,7 +10,7 @@ import CoreData
 import SoPersistent
 import Marshal
 
-final public class Participant: NSManagedObject, Model {
+final public class Participant: NSManagedObject {
     @NSManaged public internal (set) var id: String
     @NSManaged public internal (set) var name: String
     @NSManaged public internal (set) var avatarURL: String

@@ -81,7 +81,7 @@ extension Session {
             let storeURL = localStoreDirectoryURL.URLByAppendingPathComponent("\(id.storeName).sqlite")
 
             do {
-                let context = try NSManagedObjectContext(storeURL: storeURL, model: id.model, concurrencyType: .MainQueueConcurrencyType, storeType: storeType) {
+                let context = try NSManagedObjectContext(storeURL: storeURL!, model: id.model, concurrencyType: .MainQueueConcurrencyType, storeType: storeType) {
                     // called if the persistent store was reset due to incompatability
                     self.refreshScope.invalidateAllCaches()
                 }

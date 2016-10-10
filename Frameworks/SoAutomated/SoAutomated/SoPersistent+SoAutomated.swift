@@ -11,7 +11,7 @@ import CoreData
 import ReactiveCocoa
 import Result
 
-extension FetchedCollection where Model: AnyObject {
+extension FetchedCollection where Model: NSFetchRequestResult {
     public var allObjects: [Object] {
         guard let objects = fetchedResultsController.fetchedObjects else {
             return []
@@ -78,7 +78,7 @@ public class CollectionViewCellViewModelFactory<T>: CollectionViewCellViewModel 
 
     public static var empty: T->CollectionViewCellViewModelFactory<T> {
         let view: View = { collectionView, indexPath, _ in
-            collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! UICollectionViewCell
+            collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) 
         }
         return { CollectionViewCellViewModelFactory(model: $0, view: view) }
     }

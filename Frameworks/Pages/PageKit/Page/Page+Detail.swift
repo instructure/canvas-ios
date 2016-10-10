@@ -157,7 +157,7 @@ extension Page {
             observer.signal.observeOn(UIScheduler()).observeNext { [weak self] change, page in
                 switch change {
                 case .Insert, .Update:
-                    if let page = page, me = self {
+                    if let page = page, let me = self {
                         me.renderBodyForPage(page)
                     }
                 case .Delete: break
@@ -170,7 +170,7 @@ extension Page {
             webView.scrollView.addSubview(refresher.refreshControl)
 
             refresher.refreshingCompleted.observeNext { [weak self] error in
-                if let me = self, error = error {
+                if let me = self, let error = error {
                     error.presentAlertFromViewController(me)
                 }
             }
@@ -200,7 +200,7 @@ extension Page {
                 return true
             }
             
-            if requestURL.absoluteString.localizedCaseInsensitiveContainsString("slideshare.net") {
+            if requestURL.absoluteString!.localizedCaseInsensitiveContainsString("slideshare.net") {
                 let requestWithReferer = request.mutableCopy() as! NSMutableURLRequest
                 requestWithReferer.URL = requestURL
                 requestWithReferer.setValue(session.baseURL.description, forHTTPHeaderField: "Referer")
@@ -208,12 +208,12 @@ extension Page {
                 return false
             }
             
-            if requestURL.absoluteString.containsString("external_tools/retrieve?") {
+            if requestURL.absoluteString!.containsString("external_tools/retrieve?") {
                 return true
             }
             
-            if let components = requestURL.pathComponents, component = components.last, fragment = requestURL.fragment where components.count > 0 {
-                let selfReferencingFragment = String(format: "%@#%@", session.baseURL.absoluteString, fragment)
+            if let components = requestURL.pathComponents, let component = components.last, fragment = requestURL.fragment where components.count > 0 {
+                let selfReferencingFragment = String(format: "%@#%@", session.baseURL.absoluteString!, fragment)
                 let jsScrollToAnchor = jsScrollToHashTag(fragment)
                 
                 if requestURL.absoluteString == selfReferencingFragment {
@@ -222,8 +222,8 @@ extension Page {
                 }
                 
                 if let requestBaseURL = requestURL.URLByDeletingPathExtension?.absoluteString,
-                    currentBaseURL = NSURL(string: session.baseURL.absoluteString + self.contextID.htmlPath)?.absoluteString,
-                    currentAPIBaseURL = NSURL(string: session.baseURL.absoluteString + self.contextID.apiPath)?.absoluteString {
+                    let currentBaseURL = NSURL(string: session.baseURL.absoluteString! + self.contextID.htmlPath)?.absoluteString,
+                    let currentAPIBaseURL = NSURL(string: session.baseURL.absoluteString! + self.contextID.apiPath)?.absoluteString {
                     
                     if requestBaseURL.localizedCaseInsensitiveContainsString(currentBaseURL) || requestBaseURL.localizedCaseInsensitiveContainsString(currentAPIBaseURL) {
                         let pageIdentifierWithFragmentSymbol = self.url.stringByAppendingString("#")
@@ -233,7 +233,7 @@ extension Page {
                         }
                     }
                 }
-            } else if let fragment = requestURL.fragment, components = requestURL.pathComponents {
+            } else if let fragment = requestURL.fragment, let components = requestURL.pathComponents {
                 if (components.count == 0 && requestURL.scheme == "applewebdata") {
                     self.webView.stringByEvaluatingJavaScriptFromString(jsScrollToHashTag(fragment))
                     return false

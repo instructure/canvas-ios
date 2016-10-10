@@ -25,7 +25,7 @@
 @property (nonatomic, strong) CKIModuleItem *nextModuleItem;
 @property (nonatomic, strong) CKIModuleItem *prevModuleItem;
 
-@property (nonatomic, strong) UIViewController *childViewController;
+@property (nonatomic, strong, readwrite) UIViewController *childViewController;
 
 @end
 

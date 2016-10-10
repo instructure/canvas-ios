@@ -40,7 +40,7 @@ public class NotificationPreferencesViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
         refreshControl = UIRefreshControl()
-        refreshControl!.addTarget(self, action: Selector("refreshDataSource:"), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl!.addTarget(self, action: #selector(NotificationPreferencesViewController.refreshDataSource(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         refreshControl!.beginRefreshing()
         self.refreshDataSource(refreshControl!)

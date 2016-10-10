@@ -18,20 +18,20 @@ public class AirwolfAPI {
 
     // MARK: Parent calls
     public class func authenticateRequest(email email: String, password: String) throws -> NSURLRequest {
-        return try NSMutableURLRequest(method: .POST, URL: AirwolfAPI.baseURL.URLByAppendingPathComponent("authenticate"), parameters: ["username": email, "password": password], encoding: .JSON)
+        return try NSMutableURLRequest(method: .POST, URL: AirwolfAPI.baseURL.URLByAppendingPathComponent("authenticate")!, parameters: ["username": email, "password": password], encoding: .JSON)
     }
 
     public class func createAccountRequest(email email: String, password: String, firstName: String, lastName: String) throws -> NSURLRequest {
-        return try NSMutableURLRequest(method: .PUT, URL: AirwolfAPI.baseURL.URLByAppendingPathComponent("newparent"), parameters: ["parent": ["username": email, "password": password, "first_name": firstName, "last_name": lastName]], encoding: .JSON)
+        return try NSMutableURLRequest(method: .PUT, URL: AirwolfAPI.baseURL.URLByAppendingPathComponent("newparent")!, parameters: ["parent": ["username": email, "password": password, "first_name": firstName, "last_name": lastName]], encoding: .JSON)
     }
 
     public class func sendPasswordResetEmailRequest(email email: String) throws -> NSURLRequest {
         let path = "/send_password_reset/\(email)"
-        return try NSMutableURLRequest(method: .POST, URL: AirwolfAPI.baseURL.URLByAppendingPathComponent(path), parameters: [:], encoding: .URLEncodedInURL)
+        return try NSMutableURLRequest(method: .POST, URL: AirwolfAPI.baseURL.URLByAppendingPathComponent(path)!, parameters: [:], encoding: .URLEncodedInURL)
     }
 
     public class func resetPasswordRequest(email email: String, password: String, token: String) throws -> NSURLRequest {
-        let request = try NSMutableURLRequest(method: .POST, URL: AirwolfAPI.baseURL.URLByAppendingPathComponent("reset_password"), parameters: ["username": email, "password": password], encoding: .JSON)
+        let request = try NSMutableURLRequest(method: .POST, URL: AirwolfAPI.baseURL.URLByAppendingPathComponent("reset_password")!, parameters: ["username": email, "password": password], encoding: .JSON)
         request.setValue(token, forHTTPHeaderField: "Authorization")
         return request
     }
@@ -42,11 +42,11 @@ public class AirwolfAPI {
     }
 
     public class func addStudentRequest(session: Session, parentID: String, studentDomain: NSURL) throws -> NSURLRequest {
-        return try session.GET("/add_student/\(parentID)", parameters: ["student_domain": studentDomain.absoluteString], encoding: .URLEncodedInURL, authorized: true)
+        return try session.GET("/add_student/\(parentID)", parameters: ["student_domain": studentDomain.absoluteString!], encoding: .URLEncodedInURL, authorized: true)
     }
 
     public class func checkDomainRequest(session: Session, parentID: String, studentDomain: NSURL) throws -> NSURLRequest {
-        return try session.GET("/check_domain/\(parentID)", parameters: ["student_domain": studentDomain.absoluteString], encoding: .URLEncodedInURL, authorized: true)
+        return try session.GET("/check_domain/\(parentID)", parameters: ["student_domain": studentDomain.absoluteString!], encoding: .URLEncodedInURL, authorized: true)
     }
 
     public class func deleteStudentRequest(session: Session, parentID: String, studentID: String) throws -> NSURLRequest {

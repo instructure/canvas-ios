@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "0800"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -36,16 +36,6 @@
                BlueprintIdentifier = "B1BFE4381D492ABD00ED3887"
                BuildableName = "CanvasTests.xctest"
                BlueprintName = "CanvasTests"
-               ReferencedContainer = "container:Canvas.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "492704911CF4AF7100C631C6"
-               BuildableName = "CanvasUITests.xctest"
-               BlueprintName = "CanvasUITests"
                ReferencedContainer = "container:Canvas.xcodeproj">
             </BuildableReference>
          </TestableReference>

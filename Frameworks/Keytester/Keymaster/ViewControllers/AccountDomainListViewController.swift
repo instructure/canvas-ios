@@ -42,11 +42,12 @@ public class AccountDomainListViewController: UITableViewController {
     var pickedDomainAction: ((NSURL)->Void)?
 
     let context: NSManagedObjectContext = {
-        guard let model = NSManagedObjectModel(named: "Keymaster", inBundle: NSBundle(forClass: AccountDomain.self)) else { ❨╯°□°❩╯⌢"problems?" }
+        let bundle = NSBundle(forClass: AccountDomain.self)
+        guard let model = NSManagedObjectModel(named: "Keymaster", inBundle:bundle) else { ❨╯°□°❩╯⌢"problems?" }
 
         let storeURL = AccountDomainListViewController.localStoreDirectoryURL().URLByAppendingPathComponent("account_domains.sqlite")
 
-        let context = try! NSManagedObjectContext(storeURL: storeURL, model: model, cacheReset: {})
+        let context = try! NSManagedObjectContext(storeURL: storeURL!, model: model, cacheReset: {})
         return context
     }()
 
@@ -94,7 +95,7 @@ public class AccountDomainListViewController: UITableViewController {
         refresh(nil)
 
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(AccountDomainListViewController.refresh(_:)), forControlEvents: .ValueChanged)
     }
 
     func refresh(refreshContol: UIRefreshControl?) {

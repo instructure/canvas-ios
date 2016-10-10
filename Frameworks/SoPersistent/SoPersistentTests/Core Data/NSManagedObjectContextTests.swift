@@ -29,7 +29,7 @@ class NSManagedObjectContextTests: XCTestCase {
 
             context("when given valid parameters") {
                 let storeURL = self.session.localStoreDirectoryURL.URLByAppendingPathComponent("test.sqlite")
-                let context = try! NSManagedObjectContext(storeURL: storeURL, model: model, concurrencyType: .MainQueueConcurrencyType, cacheReset: {})
+                let context = try! NSManagedObjectContext(storeURL: storeURL!, model: model, concurrencyType: .MainQueueConcurrencyType, cacheReset: {})
 
                 it("is initialized with a persistent store coordinator") {
                     XCTAssertNotNil(context)
@@ -37,7 +37,7 @@ class NSManagedObjectContextTests: XCTestCase {
                 }
 
                 it("defaults the concurrencyType") {
-                    let context = try! NSManagedObjectContext(storeURL: storeURL, model: model, cacheReset: {})
+                    let context = try! NSManagedObjectContext(storeURL: storeURL!, model: model, cacheReset: {})
                     XCTAssertEqual(NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType, context.concurrencyType)
                 }
             }

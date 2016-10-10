@@ -75,7 +75,7 @@ class SubmissionViewController: UITableViewController {
 
 extension SubmissionViewController {
     private func showSubmitButton() {
-        let submit = NextOrSubmitView.createWithNextOrSubmit(.Submit, target: self, action: "submit:")
+        let submit = NextOrSubmitView.createWithNextOrSubmit(.Submit, target: self, action: #selector(SubmissionViewController.submit(_:)))
         let bounds = tableView.bounds
         submit.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 72)
         tableView?.tableFooterView = submit

@@ -1,28 +1,27 @@
 
 # Frameworks
-github "robb/Cartography" ~> 0.6
-github "antitypical/Result" ~> 2.0
-github "ReactiveCocoa/ReactiveCocoa" == 4.1.0
-github "onevcat/Kingfisher" == 2.4.3
-github "cezarywojcik/CWStatusBarNotification" "swift"
-github "utahiosmac/Marshal" "master"
+github "robb/Cartography" ~> 0.7.0
+github "antitypical/Result" ~> 2.1.0
+github "ReactiveCocoa/ReactiveCocoa" ~> 4.2.2
+github "onevcat/Kingfisher" ~> 2.5.0
+github "derrh/CWStatusBarNotification" "swift23"
+github "utahiosmac/Marshal" "swift2_3"
 github "n8armstrong/DVR" "develop"
 github "google/EarlGrey" "master"
-github "xmartlabs/Eureka" ~> 1.6
-github "dennisweissmann/DeviceKit" == 0.3.3
+github "xmartlabs/Eureka" "swift2.3"
+github "dennisweissmann/DeviceKit" == 0.3.5
 
 # Parent
 github "michaeltyson/TPKeyboardAvoiding" == 1.3
-github "ashleymills/Reachability.swift" == 2.3.3
 
 # Canvas
 github "instructure/canvaskeymaster-ios" "master"
 github "instructure/CanvasKit" "master"
-github "CocoaLumberjack/CocoaLumberjack" == 2.2.0
+github "CocoaLumberjack/CocoaLumberjack" == 2.4.0
 github "SnapKit/Masonry" ~> 1.0
 github "SVProgressHUD/SVProgressHUD" ~> 2.0
 github "thebestbits/TBBModal" "master"
 
 # Teacher
-github "kylef/URITemplate.swift" ~> 1.3
+github "kylef/URITemplate.swift" ~> 1.4
 

@@ -118,17 +118,17 @@ public class PandatarBuilderViewController: UIViewController {
         UIGraphicsBeginImageContextWithOptions(clipFrame.size, true, UIScreen.mainScreen().scale)
         let ctx = UIGraphicsGetCurrentContext()
 
-        CGContextTranslateCTM(ctx, -clipFrame.origin.x, -clipFrame.origin.y)
+        CGContextTranslateCTM(ctx!, -clipFrame.origin.x, -clipFrame.origin.y)
 
-        CGContextSetFillColorWithColor(ctx, UIColor.lightGrayColor().CGColor)
-        CGContextFillRect(ctx, clipFrame)
+        CGContextSetFillColorWithColor(ctx!, UIColor.lightGrayColor().CGColor)
+        CGContextFillRect(ctx!, clipFrame)
 
         pandatarBox.layer.renderInContext(ctx!)
 
         let img = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        return img
+        return img!
     }
 
 }

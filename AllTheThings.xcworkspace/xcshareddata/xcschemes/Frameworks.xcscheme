@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "0800"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "491A661C1D91A6F00092CDE9"
+               BuildableName = "Frameworks.app"
+               BlueprintName = "Frameworks"
+               ReferencedContainer = "container:Frameworks/Frameworks/Frameworks.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "490A86861C407CB200351185"
+               BuildableName = "AssignmentKitTests.xctest"
+               BlueprintName = "AssignmentKitTests"
+               ReferencedContainer = "container:Frameworks/Assignments/Assignments.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5ECEDE161C499FE200E59B53"
+               BuildableName = "CalendarKitTests.xctest"
+               BlueprintName = "CalendarKitTests"
+               ReferencedContainer = "container:Frameworks/Calendar/Calendar.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "617BE7871CA42D4C008A6908"
+               BuildableName = "DiscussionKitTests.xctest"
+               BlueprintName = "DiscussionKitTests"
+               ReferencedContainer = "container:Frameworks/Discussions/Discussions.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5ECEDD981C49570E00E59B53"
+               BuildableName = "EnrollmentKitTests.xctest"
+               BlueprintName = "EnrollmentKitTests"
+               ReferencedContainer = "container:Frameworks/Enrollments/Enrollments.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "49C1A7C71BE97B92008A21B9"
+               BuildableName = "MediaKitTests.xctest"
+               BlueprintName = "MediaKitTests"
+               ReferencedContainer = "container:Frameworks/MediaKit/MediaKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AC9DD5271CE4E888007A474A"
+               BuildableName = "PageKitTests.xctest"
+               BlueprintName = "PageKitTests"
+               ReferencedContainer = "container:Frameworks/Pages/Pages.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "49EB07BF1BC4501C008F938C"
+               BuildableName = "QuizKitTests.xctest"
+               BlueprintName = "QuizKitTests"
+               ReferencedContainer = "container:Frameworks/Quizzes/Quizzes.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "49A960881BC315C600592D94"
+               BuildableName = "SoLazyTests.xctest"
+               BlueprintName = "SoLazyTests"
+               ReferencedContainer = "container:Frameworks/SoLazy/SoLazy.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "491FC74E1C406CCB00550505"
+               BuildableName = "SoPersistentTests.xctest"
+               BlueprintName = "SoPersistentTests"
+               ReferencedContainer = "container:Frameworks/SoPersistent/SoPersistent.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "49A961141BC31C4700592D94"
+               BuildableName = "SoPrettyTests.xctest"
+               BlueprintName = "SoPrettyTests"
+               ReferencedContainer = "container:Frameworks/SoPretty/SoPretty.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B14E11621C63C60F00007938"
+               BuildableName = "TodoKitTests.xctest"
+               BlueprintName = "TodoKitTests"
+               ReferencedContainer = "container:Frameworks/Todo/Todo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B160941E1C4DB7EC0007C42C"
+               BuildableName = "TooLegitTests.xctest"
+               BlueprintName = "TooLegitTests"
+               ReferencedContainer = "container:Frameworks/TooLegit/TooLegit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "491A661C1D91A6F00092CDE9"
+            BuildableName = "Frameworks.app"
+            BlueprintName = "Frameworks"
+            ReferencedContainer = "container:Frameworks/Frameworks/Frameworks.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "491A661C1D91A6F00092CDE9"
+            BuildableName = "Frameworks.app"
+            BlueprintName = "Frameworks"
+            ReferencedContainer = "container:Frameworks/Frameworks/Frameworks.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "491A661C1D91A6F00092CDE9"
+            BuildableName = "Frameworks.app"
+            BlueprintName = "Frameworks"
+            ReferencedContainer = "container:Frameworks/Frameworks/Frameworks.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

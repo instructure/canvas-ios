@@ -212,8 +212,8 @@ class FetchedCollectionTests: XCTestCase {
                     let expectation = self.expectationWithDescription("object was updated")
                     collection.collectionUpdated = { updates in
                         for update in updates {
-                            if case .Moved(let f, let t, let m) = update
-                                where f == updatedIndexPath && t == updatedIndexPath &&  m.name == "Another 'A' name" {
+                            if case .Updated(let ip, let m) = update
+                                where ip == updatedIndexPath &&  m.name == "Another 'A' name" {
                                     expectation.fulfill()
                             }
                         }
@@ -230,18 +230,18 @@ class FetchedCollectionTests: XCTestCase {
                 it("notifies collectionUpdated") {
                     beforeEach()
                     let originalIndexPath = NSIndexPath(forRow: 1, inSection: 2)
-                    let updatedIndexPath = NSIndexPath(forRow: 1, inSection: 1)
+                    let updatedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
                     let expectation = self.expectationWithDescription("object was moved")
                     collection.collectionUpdated = { updates in
                         for update in updates {
                             if case .Moved(let i, let ii, let m) = update
-                                where i == originalIndexPath && ii == updatedIndexPath && m.name == "Baz" {
+                                where i == originalIndexPath && ii == updatedIndexPath && m.name == "Aapple" {
                                     expectation.fulfill()
                             }
                         }
                     }
 
-                    four.name = "Baz"
+                    four.name = "Aapple"
                     childContext.refreshObject(childContext.objectWithID(four.objectID), mergeChanges: false)
 
                     self.waitForExpectationsWithTimeout(1, handler: nil)
@@ -251,7 +251,7 @@ class FetchedCollectionTests: XCTestCase {
             context("when an object is deleted") {
                 it("notifies collectionUpdated") {
                     beforeEach()
-                    let deletedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+                    let deletedIndexPath = NSIndexPath(forRow: 1, inSection: 0)
                     let expectation = self.expectationWithDescription("object was deleted")
                     collection.collectionUpdated = { updates in
                         for update in updates {

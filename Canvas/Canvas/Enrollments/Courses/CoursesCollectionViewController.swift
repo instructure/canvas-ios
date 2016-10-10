@@ -36,9 +36,9 @@ func courseCardViewModel(enrollment: Enrollment, session: Session, viewControlle
     return vm
 }
 
-class CoursesCollectionViewController: Course.CollectionViewController {
+public class CoursesCollectionViewController: Course.CollectionViewController {
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    public override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
     
@@ -49,7 +49,7 @@ class CoursesCollectionViewController: Course.CollectionViewController {
     
     var showingGrades = MutableProperty<Bool>(false)
     
-    init(session: Session, route: (UIViewController, NSURL)->()) throws {
+    public init(session: Session, route: (UIViewController, NSURL)->()) throws {
         self.session = session
         self.route = route
         super.init()
@@ -155,12 +155,12 @@ class CoursesCollectionViewController: Course.CollectionViewController {
         showingGrades.value = !showingGrades.value
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
     
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    public override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let enrollment = collection[indexPath]
         
         guard let tabsURL = NSURL(string: enrollment.contextID.apiPath/"tabs") else { return print("¯\\_(ツ)_/¯") }
@@ -177,7 +177,7 @@ class CoursesCollectionViewController: Course.CollectionViewController {
         return CGSizeZero
     }
 
-    override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+    public override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         (cell as? EnrollmentCardCell)?.updateA11y()
     }
 }

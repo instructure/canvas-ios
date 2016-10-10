@@ -25,6 +25,7 @@
 #import "CKIClient+CBIClient.h"
 #import "CBIAssignmentDetailViewController.h"
 #import "CBISplitViewController.h"
+#import "CBIModuleProgressionViewController.h"
 
 @import SoAnnotated;
 @import PSPDFKit;
@@ -354,7 +355,17 @@
     return controller;
 }
 
-- (NSString *)hackishlyGetDefaultAssignmentIfPossible {
+- (NSString * _Nullable)hackishlyGetDefaultAssignmentIfPossible {
+    CBIAssignmentDetailViewController *assignmentDeets = [self assignmentDeets];
+    return assignmentDeets.viewModel.model.id;
+}
+
+- (NSString * _Nullable)hackishlyGetDefaultCourseIfPossible {
+    CBIAssignmentDetailViewController *assignmentDeets = [self assignmentDeets];
+    return assignmentDeets.viewModel.model.courseID;
+}
+
+- (CBIAssignmentDetailViewController * _Nullable)assignmentDeets {
     if (self.navigationController.viewControllers.count < 2) { return nil; }
 
     UIViewController *previousViewController = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
@@ -363,34 +374,19 @@
         CBISplitViewController *splitView = (CBISplitViewController *)realFRD;
         if ([splitView.detail isKindOfClass:[CBIAssignmentDetailViewController class]]) {
             realFRD = splitView.detail;
+        } else if ([splitView.detail isKindOfClass:[CBIModuleProgressionViewController class]]) {
+            CBIModuleProgressionViewController *progressionVC = (CBIModuleProgressionViewController *)splitView.detail;
+            if ([progressionVC.childViewController isKindOfClass:[CBIAssignmentDetailViewController class]]) {
+                realFRD = progressionVC.childViewController;
+            }
         }
     }
 
     if ([realFRD isKindOfClass:[CBIAssignmentDetailViewController class]]) {
-        CBIAssignmentDetailViewController *assignmentDeets = (CBIAssignmentDetailViewController *)realFRD;
-        return assignmentDeets.viewModel.model.id;
+        return (CBIAssignmentDetailViewController *)realFRD;
+    } else {
+        return nil;
     }
-    return nil;
-}
-
-- (NSString *)hackishlyGetDefaultCourseIfPossible {
-    if (self.navigationController.viewControllers.count < 2) { return nil; }
-
-    UIViewController *previousViewController = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
-    UIViewController *realFRD = previousViewController;
-    if ([previousViewController isKindOfClass:[CBISplitViewController class]]) {
-        CBISplitViewController *splitView = (CBISplitViewController *)previousViewController;
-        if ([splitView.detail isKindOfClass:[CBIAssignmentDetailViewController class]]) {
-            realFRD = splitView.detail;
-        }
-    }
-
-    if ([realFRD isKindOfClass:[CBIAssignmentDetailViewController class]]) {
-        CBIAssignmentDetailViewController *assignmentDeets = (CBIAssignmentDetailViewController *)realFRD;
-        return assignmentDeets.viewModel.model.courseID;
-    }
-    
-    return nil;
 }
 
 - (void)setUrl:(NSURL *)url {

@@ -62,7 +62,7 @@ class NonNativeQuizTakingViewController: UIViewController {
     }
     
     private func prepareNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Exit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Exit button to leave the quiz"), style: .Plain, target: self, action: Selector("exitQuiz:"))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Exit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Exit button to leave the quiz"), style: .Plain, target: self, action: #selector(NonNativeQuizTakingViewController.exitQuiz(_:)))
     }
     
     func beginTakingQuiz() {
@@ -95,7 +95,7 @@ class NonNativeQuizTakingViewController: UIViewController {
     private func beginLoggingIn() {
         loggingIn = true
         let url = baseURL.URLByAppendingPathComponent("/login?headless=1")
-        webView.loadRequest(NSURLRequest(URL: url))
+        webView.loadRequest(NSURLRequest(URL: url!))
     }
     
     private func finishedLoggingIn() {
@@ -105,7 +105,7 @@ class NonNativeQuizTakingViewController: UIViewController {
     
     private func dispatchHeadlessVersionOfRequest(request: NSURLRequest) {
         if let queryString = request.URL?.query {
-            if let urlAsAString = request.URL?.absoluteString.stringByAppendingFormat("%@%@", queryString.characters.count > 0 ? "&" : "?", "persist_headless=1") {
+            if let urlAsAString = request.URL?.absoluteString!.stringByAppendingFormat("%@%@", queryString.characters.count > 0 ? "&" : "?", "persist_headless=1") {
                 let updatedRequest = request.mutableCopy() as! NSMutableURLRequest
                 if let newURL =  NSURL(string: urlAsAString) {
                     updatedRequest.URL = newURL

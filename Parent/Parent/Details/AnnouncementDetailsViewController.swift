@@ -65,7 +65,7 @@ enum AnnouncementDetailsCellViewModel: TableViewCellViewModel {
             var attachmentInfo: AnnouncementDetailsCellViewModel? = nil
             if let attachmentID = discussionTopic.attachmentIDs.first {
                 do {
-                    if let file = try File.findOne(NSPredicate(format: "%K == %@", "id", attachmentID), inContext: discussionTopic.managedObjectContext!) {
+                    if let file: File = try discussionTopic.managedObjectContext?.findOne(withPredicate: NSPredicate(format: "%K == %@", "id", attachmentID)) {
                         attachmentInfo = .Attachment(file.name)
                     }
                 } catch {

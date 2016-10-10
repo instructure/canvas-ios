@@ -96,8 +96,8 @@ extension Session {
 
             let url = documentsURL.URLByAppendingPathComponent(fileName)
 
-            data.writeToURL(url, atomically: true)
-            return SignalProducer(value: url)
+            data.writeToURL(url!, atomically: true)
+            return SignalProducer(value: url!)
         }
     }
 
@@ -114,7 +114,7 @@ extension Session {
             let sessionID = self.sessionID
             
             return self.encodeMultipartBody(data, parameters: target.parameters)
-                .mapError { e in
+                .mapError { (e: NSError)->NSError in
                     let description = NSLocalizedString("There was a problem preparing the file for upload", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "File upload error message")
                     return NSError(subdomain: "FileKit", code: 0, sessionID: sessionID, apiURL: target.url, title: FileUploadErrorTitle, description: description, failureReason: e.localizedDescription)
                 }

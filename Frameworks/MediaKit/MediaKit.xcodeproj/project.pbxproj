@@ -10,6 +10,12 @@
 		4928EBDA1C84DEB700799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBD91C84DEB700799E04 /* Marshal.framework */; };
 		4928EBDB1C84DEC600799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBD91C84DEB700799E04 /* Marshal.framework */; };
 		4928EBDC1C84DEC600799E04 /* Marshal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBD91C84DEB700799E04 /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		493EBDA01D96320500DCDDA2 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBD9D1D9631FB00DCDDA2 /* Cartography.framework */; };
+		493EBDA11D96320500DCDDA2 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBD9D1D9631FB00DCDDA2 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		493EBDA21D96320500DCDDA2 /* CWStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBD9E1D9631FB00DCDDA2 /* CWStatusBarNotification.framework */; };
+		493EBDA31D96320500DCDDA2 /* CWStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBD9E1D9631FB00DCDDA2 /* CWStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		493EBDA41D96320500DCDDA2 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBD9F1D9631FB00DCDDA2 /* Kingfisher.framework */; };
+		493EBDA51D96320500DCDDA2 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBD9F1D9631FB00DCDDA2 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		497F707C1BF50BC40080FDEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497F707B1BF50BC40080FDEC /* AppDelegate.swift */; };
 		497F707E1BF50BC40080FDEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497F707D1BF50BC40080FDEC /* ViewController.swift */; };
 		497F70811BF50BC40080FDEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497F707F1BF50BC40080FDEC /* Main.storyboard */; };
@@ -90,8 +96,11 @@
 				497F70AC1BF538400080FDEC /* Result.framework in Embed Frameworks */,
 				49895F1A1C486D64002A16EC /* ReactiveCocoa.framework in Embed Frameworks */,
 				49895F1E1C486D83002A16EC /* SoPersistent.framework in Embed Frameworks */,
+				493EBDA31D96320500DCDDA2 /* CWStatusBarNotification.framework in Embed Frameworks */,
+				493EBDA11D96320500DCDDA2 /* Cartography.framework in Embed Frameworks */,
 				4928EBDC1C84DEC600799E04 /* Marshal.framework in Embed Frameworks */,
 				497F70A21BF50DAF0080FDEC /* SoLazy.framework in Embed Frameworks */,
+				493EBDA51D96320500DCDDA2 /* Kingfisher.framework in Embed Frameworks */,
 				497F709A1BF50BDA0080FDEC /* MediaKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -101,6 +110,9 @@
 
 /* Begin PBXFileReference section */
 		4928EBD91C84DEB700799E04 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		493EBD9D1D9631FB00DCDDA2 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		493EBD9E1D9631FB00DCDDA2 /* CWStatusBarNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		493EBD9F1D9631FB00DCDDA2 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		497F70791BF50BC40080FDEC /* Media.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Media.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		497F707B1BF50BC40080FDEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		497F707D1BF50BC40080FDEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -168,8 +180,11 @@
 				497F70AB1BF538400080FDEC /* Result.framework in Frameworks */,
 				49895F191C486D64002A16EC /* ReactiveCocoa.framework in Frameworks */,
 				49895F1D1C486D83002A16EC /* SoPersistent.framework in Frameworks */,
+				493EBDA21D96320500DCDDA2 /* CWStatusBarNotification.framework in Frameworks */,
+				493EBDA01D96320500DCDDA2 /* Cartography.framework in Frameworks */,
 				4928EBDB1C84DEC600799E04 /* Marshal.framework in Frameworks */,
 				497F70A11BF50DAF0080FDEC /* SoLazy.framework in Frameworks */,
+				493EBDA41D96320500DCDDA2 /* Kingfisher.framework in Frameworks */,
 				497F70991BF50BDA0080FDEC /* MediaKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +315,9 @@
 				497F70A91BF538350080FDEC /* Result.framework */,
 				497F70A51BF538000080FDEC /* TooLegit.framework */,
 				49C1A7F11BE97C43008A21B9 /* SoLazy.framework */,
+				493EBD9D1D9631FB00DCDDA2 /* Cartography.framework */,
+				493EBD9E1D9631FB00DCDDA2 /* CWStatusBarNotification.framework */,
+				493EBD9F1D9631FB00DCDDA2 /* Kingfisher.framework */,
 				49C1A7F21BE97C43008A21B9 /* SoPretty.framework */,
 			);
 			name = Dependencies;
@@ -399,12 +417,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					497F70781BF50BC40080FDEC = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = B6333T4PXQ;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 1;
@@ -413,10 +432,12 @@
 					};
 					497F708B1BF50BC40080FDEC = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 497F70781BF50BC40080FDEC;
 					};
 					49C1A7BD1BE97B92008A21B9 = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0800;
 					};
 					49C1A7C71BE97B92008A21B9 = {
 						CreatedOnToolsVersion = 7.1;
@@ -614,34 +635,36 @@
 		497F70931BF50BC40080FDEC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Media/Media.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Media/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Media;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
 		497F70941BF50BC40080FDEC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Media/Media.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Media/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Media;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -653,6 +676,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.MediaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = Media;
 				USES_XCTRUNNER = YES;
 			};
@@ -666,6 +690,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.MediaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = Media;
 				USES_XCTRUNNER = YES;
 			};
@@ -684,8 +709,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -732,8 +759,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -753,6 +782,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -765,6 +795,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -776,6 +807,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -784,6 +816,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -794,6 +827,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.MediaKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

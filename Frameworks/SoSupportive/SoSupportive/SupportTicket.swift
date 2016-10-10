@@ -113,18 +113,16 @@ public class SupportTicket {
     }
 
     func dictionaryValue() -> Dictionary<String, AnyObject> {
-        let dictionary = [
+        return [
             "error": [
                 "subject"                   : subject,
-                "url"                       : requesterDomain.absoluteString,
+                "url"                       : requesterDomain.absoluteString!,
                 "email"                     : requesterEmail,
                 "comments"                  : body,
                 "user_percieved_severity"   : self.impact.fieldValue(),
                 "http_env"                  : environmentBody()
             ]
         ]
-
-        return dictionary
     }
 
     private func environmentBody() -> Dictionary<String, AnyObject> {
@@ -132,7 +130,7 @@ public class SupportTicket {
         let domainString = requesterDomain.absoluteString
 
         // don't include user info if it's SFU
-        if !domainString.hasSuffix("sfu.ca") {
+        if !domainString!.hasSuffix("sfu.ca") {
             dictionary["User"] = requesterUsername
             dictionary["Email"] = requesterEmail
         }

@@ -51,7 +51,7 @@ public class SubmissionUpload: Upload {
         .flatMap(.Concat, transform: session.JSONSignalProducer)
             .map { [$0] }
             .flatMap(.Concat, transform: Submission.upsert(inContext: context))
-            .flatMap(.Concat) { SignalProducer(values: $0) }
+            .flatMap(.Concat) { SignalProducer<Submission, NSError>(values: $0) }
             .flatMap(.Concat) { submission in
                 return attemptProducer {
                     self.submission = submission

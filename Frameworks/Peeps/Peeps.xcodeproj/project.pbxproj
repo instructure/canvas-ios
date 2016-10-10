@@ -32,10 +32,7 @@
 		5E5560291C8ED43400933E08 /* DoNotShipThis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5560271C8ED42700933E08 /* DoNotShipThis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EEB549D1C48149800953B20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB549C1C48149800953B20 /* AppDelegate.swift */; };
 		5EEB54A41C48149800953B20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EEB54A31C48149800953B20 /* Assets.xcassets */; };
-		5EEB54B21C48149800953B20 /* PeepsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB54B11C48149800953B20 /* PeepsTests.swift */; };
 		5EEB54D21C48181300953B20 /* PeepKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EEB54D11C48181300953B20 /* PeepKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5EEB54D91C48181300953B20 /* Peeps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEB54CF1C48181300953B20 /* Peeps.framework */; };
-		5EEB54E01C48181400953B20 /* PeepKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB54DF1C48181400953B20 /* PeepKitTests.swift */; };
 		5EEB54E41C48181400953B20 /* Peeps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEB54CF1C48181300953B20 /* Peeps.framework */; };
 		5EEB54E51C48181400953B20 /* Peeps.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEB54CF1C48181300953B20 /* Peeps.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EEB54F61C48182D00953B20 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEB54EF1C48182D00953B20 /* ReactiveCocoa.framework */; };
@@ -63,27 +60,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5EEB54AE1C48149800953B20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5EEB54911C48149800953B20 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5EEB54981C48149800953B20;
-			remoteInfo = Peeps;
-		};
-		5EEB54DA1C48181300953B20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5EEB54911C48149800953B20 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5EEB54CE1C48181300953B20;
-			remoteInfo = PeepKit;
-		};
-		5EEB54DC1C48181300953B20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5EEB54911C48149800953B20 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5EEB54981C48149800953B20;
-			remoteInfo = Peeps;
-		};
 		5EEB54E21C48181400953B20 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5EEB54911C48149800953B20 /* Project object */;
@@ -140,15 +116,9 @@
 		5EEB549C1C48149800953B20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EEB54A31C48149800953B20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EEB54A81C48149800953B20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5EEB54AD1C48149800953B20 /* PeepsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeepsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5EEB54B11C48149800953B20 /* PeepsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeepsTests.swift; sourceTree = "<group>"; };
-		5EEB54B31C48149800953B20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EEB54CF1C48181300953B20 /* Peeps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Peeps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EEB54D11C48181300953B20 /* PeepKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeepKit.h; sourceTree = "<group>"; };
 		5EEB54D31C48181300953B20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5EEB54D81C48181300953B20 /* PeepsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeepsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5EEB54DF1C48181400953B20 /* PeepKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeepKitTests.swift; sourceTree = "<group>"; };
-		5EEB54E11C48181400953B20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EEB54EF1C48182D00953B20 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EEB54F01C48182D00953B20 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EEB54F11C48182D00953B20 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,13 +167,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5EEB54AA1C48149800953B20 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5EEB54CB1C48181300953B20 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -215,14 +178,6 @@
 				5EEB54FA1C48182D00953B20 /* TooLegit.framework in Frameworks */,
 				4928EBDE1C84DEE500799E04 /* Marshal.framework in Frameworks */,
 				5EEB54FB1C48182D00953B20 /* SoPersistent.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5EEB54D51C48181300953B20 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5EEB54D91C48181300953B20 /* Peeps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,9 +231,7 @@
 			children = (
 				5EEB54ED1C48182000953B20 /* Dependencies */,
 				5EEB549B1C48149800953B20 /* Peeps App */,
-				5EEB54B01C48149800953B20 /* Peeps App Tests */,
 				5EEB54D01C48181300953B20 /* Peeps */,
-				5EEB54DE1C48181300953B20 /* Peeps Tests */,
 				5EEB549A1C48149800953B20 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -287,9 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				5EEB54991C48149800953B20 /* PeepsApp.app */,
-				5EEB54AD1C48149800953B20 /* PeepsAppTests.xctest */,
 				5EEB54CF1C48181300953B20 /* Peeps.framework */,
-				5EEB54D81C48181300953B20 /* PeepsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -305,15 +256,6 @@
 				5E5560251C8ED2E400933E08 /* UserDeets.swift */,
 			);
 			path = "Peeps App";
-			sourceTree = "<group>";
-		};
-		5EEB54B01C48149800953B20 /* Peeps App Tests */ = {
-			isa = PBXGroup;
-			children = (
-				5EEB54B11C48149800953B20 /* PeepsTests.swift */,
-				5EEB54B31C48149800953B20 /* Info.plist */,
-			);
-			path = "Peeps App Tests";
 			sourceTree = "<group>";
 		};
 		5EEB54D01C48181300953B20 /* Peeps */ = {
@@ -332,15 +274,6 @@
 				5E55601D1C8ECAE600933E08 /* Session+User.swift */,
 			);
 			path = Peeps;
-			sourceTree = "<group>";
-		};
-		5EEB54DE1C48181300953B20 /* Peeps Tests */ = {
-			isa = PBXGroup;
-			children = (
-				5EEB54DF1C48181400953B20 /* PeepKitTests.swift */,
-				5EEB54E11C48181400953B20 /* Info.plist */,
-			);
-			path = "Peeps Tests";
 			sourceTree = "<group>";
 		};
 		5EEB54ED1C48182000953B20 /* Dependencies */ = {
@@ -399,24 +332,6 @@
 			productReference = 5EEB54991C48149800953B20 /* PeepsApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5EEB54AC1C48149800953B20 /* PeepsAppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5EEB54C41C48149800953B20 /* Build configuration list for PBXNativeTarget "PeepsAppTests" */;
-			buildPhases = (
-				5EEB54A91C48149800953B20 /* Sources */,
-				5EEB54AA1C48149800953B20 /* Frameworks */,
-				5EEB54AB1C48149800953B20 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5EEB54AF1C48149800953B20 /* PBXTargetDependency */,
-			);
-			name = PeepsAppTests;
-			productName = PeepsTests;
-			productReference = 5EEB54AD1C48149800953B20 /* PeepsAppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		5EEB54CE1C48181300953B20 /* Peeps */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5EEB54EA1C48181400953B20 /* Build configuration list for PBXNativeTarget "Peeps" */;
@@ -435,25 +350,6 @@
 			productReference = 5EEB54CF1C48181300953B20 /* Peeps.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		5EEB54D71C48181300953B20 /* PeepsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5EEB54EC1C48181400953B20 /* Build configuration list for PBXNativeTarget "PeepsTests" */;
-			buildPhases = (
-				5EEB54D41C48181300953B20 /* Sources */,
-				5EEB54D51C48181300953B20 /* Frameworks */,
-				5EEB54D61C48181300953B20 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5EEB54DB1C48181300953B20 /* PBXTargetDependency */,
-				5EEB54DD1C48181300953B20 /* PBXTargetDependency */,
-			);
-			name = PeepsTests;
-			productName = PeepKitTests;
-			productReference = 5EEB54D81C48181300953B20 /* PeepsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -466,17 +362,11 @@
 				TargetAttributes = {
 					5EEB54981C48149800953B20 = {
 						CreatedOnToolsVersion = 7.2;
-					};
-					5EEB54AC1C48149800953B20 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = 5EEB54981C48149800953B20;
+						LastSwiftMigration = 0800;
 					};
 					5EEB54CE1C48181300953B20 = {
 						CreatedOnToolsVersion = 7.2;
-					};
-					5EEB54D71C48181300953B20 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = 5EEB54981C48149800953B20;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -513,9 +403,7 @@
 			projectRoot = "";
 			targets = (
 				5EEB54981C48149800953B20 /* PeepsApp */,
-				5EEB54AC1C48149800953B20 /* PeepsAppTests */,
 				5EEB54CE1C48181300953B20 /* Peeps */,
-				5EEB54D71C48181300953B20 /* PeepsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -530,13 +418,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5EEB54AB1C48149800953B20 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5EEB54CD1C48181300953B20 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -544,13 +425,6 @@
 				AC2A4E811D2EC7E000D6EDAB /* PandaImages.xcassets in Resources */,
 				B526E35F1D8CAAB7008DA358 /* Localizable.strings in Resources */,
 				49A04E481CF6149A0051E1E7 /* PandatarBuilderViewController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5EEB54D61C48181300953B20 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,14 +438,6 @@
 				5E5560261C8ED2E400933E08 /* UserDeets.swift in Sources */,
 				5E5560241C8ED2DC00933E08 /* UserList.swift in Sources */,
 				5EEB549D1C48149800953B20 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5EEB54A91C48149800953B20 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5EEB54B21C48149800953B20 /* PeepsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,32 +464,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5EEB54D41C48181300953B20 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5EEB54E01C48181400953B20 /* PeepKitTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5EEB54AF1C48149800953B20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5EEB54981C48149800953B20 /* PeepsApp */;
-			targetProxy = 5EEB54AE1C48149800953B20 /* PBXContainerItemProxy */;
-		};
-		5EEB54DB1C48181300953B20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5EEB54CE1C48181300953B20 /* Peeps */;
-			targetProxy = 5EEB54DA1C48181300953B20 /* PBXContainerItemProxy */;
-		};
-		5EEB54DD1C48181300953B20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5EEB54981C48149800953B20 /* PeepsApp */;
-			targetProxy = 5EEB54DC1C48181300953B20 /* PBXContainerItemProxy */;
-		};
 		5EEB54E31C48181400953B20 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5EEB54CE1C48181300953B20 /* Peeps */;
@@ -754,6 +597,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Peeps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -766,30 +610,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Peeps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		5EEB54C51C48149800953B20 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PeepsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.PeepsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Peeps.app/Peeps";
-			};
-			name = Debug;
-		};
-		5EEB54C61C48149800953B20 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PeepsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.PeepsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Peeps.app/Peeps";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -808,6 +629,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Peeps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -828,30 +650,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Peeps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		5EEB54E81C48181400953B20 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = PeepKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.PeepKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Peeps.app/Peeps";
-			};
-			name = Debug;
-		};
-		5EEB54E91C48181400953B20 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = PeepKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.PeepKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Peeps.app/Peeps";
 			};
 			name = Release;
 		};
@@ -876,29 +677,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5EEB54C41C48149800953B20 /* Build configuration list for PBXNativeTarget "PeepsAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5EEB54C51C48149800953B20 /* Debug */,
-				5EEB54C61C48149800953B20 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		5EEB54EA1C48181400953B20 /* Build configuration list for PBXNativeTarget "Peeps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5EEB54E61C48181400953B20 /* Debug */,
 				5EEB54E71C48181400953B20 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5EEB54EC1C48181400953B20 /* Build configuration list for PBXNativeTarget "PeepsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5EEB54E81C48181400953B20 /* Debug */,
-				5EEB54E91C48181400953B20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

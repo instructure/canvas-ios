@@ -62,7 +62,7 @@ class QuizController {
     
     private func resultURLForAttempt(attempt: Int) -> NSURL? {
         // URLByAppendingPathComponent encoded the version query param wrong so...
-        let url = NSURL(string: service.baseURL.absoluteString + "/" + service.context.htmlPath + "/quizzes/\(service.quizID)/history?attempt=\(attempt)")
+        let url = NSURL(string: service.baseURL.absoluteString! + "/" + service.context.htmlPath + "/quizzes/\(service.quizID)/history?attempt=\(attempt)")
         return url
     }
 }

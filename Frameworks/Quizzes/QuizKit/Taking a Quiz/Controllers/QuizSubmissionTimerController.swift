@@ -45,7 +45,7 @@ class QuizSubmissionTimerController: NSObject {
         self.submission = submission
         
         syncStartingTime()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("applicationBecameActive"), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(QuizSubmissionTimerController.applicationBecameActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
         
         startTimers()
     }
@@ -64,10 +64,10 @@ class QuizSubmissionTimerController: NSObject {
     }
     
     private func startTimers() {
-        timer = NSTimer(timeInterval: 1.0, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true)
+        timer = NSTimer(timeInterval: 1.0, target: self, selector: #selector(QuizSubmissionTimerController.updateTimer), userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
         
-        timeSyncTimer = NSTimer(timeInterval: 30.0, target: self, selector: Selector("syncTimeWithServer"), userInfo: nil, repeats: true)
+        timeSyncTimer = NSTimer(timeInterval: 30.0, target: self, selector: #selector(QuizSubmissionTimerController.syncTimeWithServer), userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timeSyncTimer!, forMode: NSRunLoopCommonModes)
     }
     
@@ -105,9 +105,9 @@ class QuizSubmissionTimerController: NSObject {
     
     func updateTimer() {
         if quiz.timed {
-            timerTime--
+            timerTime -= 1
         } else {
-            timerTime++
+            timerTime += 1
         }
         
         timerTick(currentTime: timerTime)

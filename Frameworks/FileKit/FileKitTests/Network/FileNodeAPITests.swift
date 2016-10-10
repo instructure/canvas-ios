@@ -22,9 +22,9 @@ class FileNodeAPITests: XCTestCase {
     
             XCTAssertEqual("/api/v1/folders/1", request.URL?.relativePath, "url matches")
             XCTAssertEqual("DELETE", request.HTTPMethod, "it is a DELETE request")
-            XCTAssertNotNil(request.URL?.absoluteString.rangeOfString("force"))
+            XCTAssertNotNil(request.URL?.absoluteString?.rangeOfString("force"))
             request = try FileNodeAPI.deleteFolder(session, folderID: "1", shouldForce: false)
-            XCTAssertNil(request.URL?.absoluteString.rangeOfString("force"))
+            XCTAssertNil(request.URL?.absoluteString?.rangeOfString("force"))
         }
     }
     
@@ -36,7 +36,7 @@ class FileNodeAPITests: XCTestCase {
             let request = try FileNodeAPI.addFolder(session, contextID: contextID, folderID: "1", name: "Folder")
             XCTAssertEqual("/api/v1/users/1/folders", request.URL?.relativePath, "url matches")
             XCTAssertEqual("POST", request.HTTPMethod, "it is a POST request")
-            guard let body = request.HTTPBody, d = (try? NSJSONSerialization.JSONObjectWithData(body, options: [])) as? [String: String] else {
+            guard let body = request.HTTPBody, let d = (try? NSJSONSerialization.JSONObjectWithData(body, options: [])) as? [String: String] else {
                 XCTFail("Unexpected request body")
                 return
             }

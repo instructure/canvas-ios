@@ -38,7 +38,7 @@ class PlaybackScrubber: UIControl {
     }
     
     override func awakeFromNib() {
-        let scrub = UILongPressGestureRecognizer(target: self, action: "scrubGesture:")
+        let scrub = UILongPressGestureRecognizer(target: self, action: #selector(PlaybackScrubber.scrubGesture(_:)))
         scrub.minimumPressDuration = 0.0
         addGestureRecognizer(scrub)
         

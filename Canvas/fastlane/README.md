@@ -6,9 +6,9 @@ sudo gem install fastlane
 ```
 # Available Actions
 ## iOS
-### ios run_match_development
+### ios run_match_adhoc
 ```
-fastlane ios run_match_development
+fastlane ios run_match_adhoc
 ```
 Runs match to install dev certs
 ### ios setup_dev
@@ -31,11 +31,6 @@ Builds after each commit to make sure the app can be built and run correctly
 fastlane ios release
 ```
 Submit a new Beta Build to Apple TestFlight
-### ios lint
-```
-fastlane ios lint
-```
-Checks for deployment target changes
 ### ios beta_patch
 ```
 fastlane ios beta_patch

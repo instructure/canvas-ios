@@ -16,7 +16,7 @@ extension Student {
     public static func countOfObservedStudents(session: Session) throws -> Int {
         let context = try session.airwolfManagedObjectContext()
         let studentsFetch = Student.fetch(NSPredicate(format: "%K == %@", "parentID", session.user.id), sortDescriptors: nil, inContext: context)
-        let count = context.countForFetchRequest(studentsFetch, error: nil)
+        let count = try context.countForFetchRequest(studentsFetch)
         return count
     }
 

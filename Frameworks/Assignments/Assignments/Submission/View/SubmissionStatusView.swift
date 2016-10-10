@@ -73,7 +73,7 @@ public class SubmissionStatusView: UIView {
     }
     
     func setupView() {
-        let view = NSBundle(forClass: SubmissionStatusView.self).loadNibNamed("SubmissionStatusView", owner: self, options: nil).first as! UIView
+        let view = NSBundle(forClass: SubmissionStatusView.self).loadNibNamed("SubmissionStatusView", owner: self, options: nil)!.first as! UIView
         view.frame = self.bounds
         self.addSubview(view)
     }

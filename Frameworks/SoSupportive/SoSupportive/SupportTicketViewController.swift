@@ -118,7 +118,7 @@ public class SupportTicketViewController : FormViewController {
 
         let realBaseURL = baseURL ?? NSURL(string: "https://canvas.instructure.com")!
         let url = realBaseURL.URLByAppendingPathComponent("error_reports.json")
-        let request = NSMutableURLRequest(URL: url)
+        let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")

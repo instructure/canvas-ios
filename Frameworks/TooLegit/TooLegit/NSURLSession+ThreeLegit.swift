@@ -81,7 +81,7 @@ private func parseNextPageFromJSONAPI(JSON: AnyObject, keypath: String? = nil) -
     }
 }
 
-internal func paginateRequest(keypath: String? = nil) -> (JSON: AnyObject, response: NSHTTPURLResponse) -> (AnyObject, NSURL?) {
+internal func paginateRequest(keypath: String? = nil) -> (AnyObject, NSHTTPURLResponse) -> (AnyObject, NSURL?) {
     return { JSON, response in
         return (JSON,
                 parseNextPageLinkHeader(response.allHeaderFields) ??
@@ -132,7 +132,7 @@ extension Session {
     public func emptyResponseSignalProducer(request: NSURLRequest) -> SignalProducer<(), NSError> {
         return rac_dataWithRequest(request)
             .attemptMap(Session.validateResponse)
-            .flatMap(.Concat, transform: { _ in SignalProducer.empty })
+            .flatMap(.Concat, transform: { _ in SignalProducer<(), NSError>.empty })
     }
 
     private func JSONAndPaginationSignalProducer(request: NSURLRequest, keypath: String? = nil) -> SignalProducer<(AnyObject, NSURL?), NSError> {

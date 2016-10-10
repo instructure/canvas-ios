@@ -7,11 +7,11 @@
 //
 
 import UIKit
-@testable import Canvas
+import Canvas
 import Quick
 import Nimble
 import SoAutomated
-@testable import EnrollmentKit
+import EnrollmentKit
 
 class CoursesCollectionViewControllerSpec: QuickSpec {
     override func spec() {
@@ -27,11 +27,12 @@ class CoursesCollectionViewControllerSpec: QuickSpec {
                     Course.build(managedObjectContext, id: "2", isFavorite: true)
                     Course.build(managedObjectContext, id: "3", isFavorite: true)
                     Course.build(managedObjectContext, id: "4", isFavorite: true)
+                    try! managedObjectContext.save()
                     vc = try! CoursesCollectionViewController(session: session) { _ in }
 
                     waitUntil { done in
                         if vc.collectionView?.numberOfItemsInSection(0) == 4 {
-                            courseToRemove.isFavorite = false
+                            courseToRemove.setValue(false, forKey: "isFavorite")
                             done()
                         }
                     }

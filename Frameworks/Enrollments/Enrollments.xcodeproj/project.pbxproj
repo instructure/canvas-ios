@@ -55,10 +55,10 @@
 		498400F31C6408F600BDCE75 /* SoPretty.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DF1C6408E600BDCE75 /* SoPretty.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		498400F41C6408F700BDCE75 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400E01C6408E600BDCE75 /* TooLegit.framework */; };
 		498400F51C6408F700BDCE75 /* TooLegit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498400E01C6408E600BDCE75 /* TooLegit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49A587691DA5A6F20032AB0B /* EnrollmentKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49EB130F1C97776200C177C8 /* EnrollmentKit.xcassets */; };
 		49C3E6921C6D1A54004201F9 /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C3E68F1C6D1A37004201F9 /* DoNotShipThis.framework */; };
 		49C3E6931C6D1A54004201F9 /* DoNotShipThis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49C3E68F1C6D1A37004201F9 /* DoNotShipThis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49C3E6951C6D1A96004201F9 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3E6941C6D1A96004201F9 /* IntroViewController.swift */; };
-		49EB13101C97776200C177C8 /* EnrollmentKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49EB130F1C97776200C177C8 /* EnrollmentKit.xcassets */; };
 		49EB13131C97916D00C177C8 /* Enrollment+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB13121C97916D00C177C8 /* Enrollment+Network.swift */; };
 		49EF27A01C90E43300441B5D /* Enrollment+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF279F1C90E43300441B5D /* Enrollment+Colors.swift */; };
 		5E0D0C021C4954E9008AA96F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D0C011C4954E9008AA96F /* AppDelegate.swift */; };
@@ -79,6 +79,7 @@
 		5ECEDDA51C49570E00E59B53 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECEDD901C49570E00E59B53 /* EnrollmentKit.framework */; };
 		5ECEDDA61C49570E00E59B53 /* EnrollmentKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECEDD901C49570E00E59B53 /* EnrollmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5ECEDDB81C49573C00E59B53 /* EnrollmentKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5ECEDDB61C49573C00E59B53 /* EnrollmentKit.xcdatamodeld */; };
+		61913DB81D9F0B27000D4DF2 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61913DB71D9F0B21000D4DF2 /* SoIconic.framework */; };
 		B10713A41D7470350061E84A /* GradingPeriodHeaderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10713A31D7470350061E84A /* GradingPeriodHeaderSpec.swift */; };
 		B10A083B1CE3DBB100666CBF /* GradeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A083A1CE3DBB100666CBF /* GradeTests.swift */; };
 		B10BEA901CE53A3F0079C904 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10BEA8E1CE53A380079C904 /* Grade.swift */; };
@@ -249,6 +250,7 @@
 		5ECEDD991C49570E00E59B53 /* EnrollmentKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnrollmentKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ECEDDA21C49570E00E59B53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5ECEDDB71C49573C00E59B53 /* EnrollmentKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnrollmentKit.xcdatamodel; sourceTree = "<group>"; };
+		61913DB71D9F0B21000D4DF2 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10713A31D7470350061E84A /* GradingPeriodHeaderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodHeaderSpec.swift; sourceTree = "<group>"; };
 		B10A083A1CE3DBB100666CBF /* GradeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradeTests.swift; path = ../Grade/GradeTests.swift; sourceTree = "<group>"; };
 		B10BEA8E1CE53A380079C904 /* Grade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				498400E51C6408E600BDCE75 /* SoPersistent.framework in Frameworks */,
 				4928EBCE1C84DE6300799E04 /* Marshal.framework in Frameworks */,
 				B181C3231CA43B7500277440 /* Cartography.framework in Frameworks */,
+				61913DB81D9F0B27000D4DF2 /* SoIconic.framework in Frameworks */,
 				498400E41C6408E600BDCE75 /* SoLazy.framework in Frameworks */,
 				498400E21C6408E600BDCE75 /* ReactiveCocoa.framework in Frameworks */,
 			);
@@ -505,6 +508,7 @@
 		5E0D0C2F1C4956A8008AA96F /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				61913DB71D9F0B21000D4DF2 /* SoIconic.framework */,
 				B181C3211CA43B7500277440 /* Cartography.framework */,
 				4928EBCD1C84DE6300799E04 /* Marshal.framework */,
 				49C3E68F1C6D1A37004201F9 /* DoNotShipThis.framework */,
@@ -824,7 +828,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Instructure Inc";
 				TargetAttributes = {
 					5E0D0BFD1C4954E9008AA96F = {
@@ -841,6 +845,7 @@
 					};
 					5ECEDD8F1C49570E00E59B53 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					5ECEDD981C49570E00E59B53 = {
 						CreatedOnToolsVersion = 7.2;
@@ -917,8 +922,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49EB13101C97776200C177C8 /* EnrollmentKit.xcassets in Resources */,
 				B564DE081D8CB87600E25BDA /* Localizable.strings in Resources */,
+				49A587691DA5A6F20032AB0B /* EnrollmentKit.xcassets in Resources */,
 				491C45EA1C90C5FF00BD6441 /* CustomizeEnrollmentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1119,8 +1124,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1147,6 +1154,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1164,8 +1172,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1184,6 +1194,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1192,10 +1204,10 @@
 		5E0D0C271C4954E9008AA96F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1212,10 +1224,10 @@
 		5E0D0C281C4954E9008AA96F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1282,6 +1294,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1295,6 +1308,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1305,6 +1319,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1317,6 +1332,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.EnrollmentKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

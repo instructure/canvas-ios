@@ -152,10 +152,10 @@ class AudioRecorderUITests: XCTestCase {
         waitForElement(app.tables.staticTexts["Record Permission Denied"]).tap()
         waitForElement(app.buttons["Request Audio Recording Permission"]).tap()
         waitForElement(app.buttons["Record Permission Help"]).tap()
-        waitForElement(app.alerts["Not Permitted"].collectionViews.buttons["Dismiss"]).tap()
+        waitForElement(app.alerts["Not Permitted"].buttons["Dismiss"]).tap()
         waitForElement(app.buttons["Cancel"]).tap()
         
-        waitForElement(app.alerts["No worries, Mate."].collectionViews.buttons["Crikey!"]).tap()
+        waitForElement(app.alerts["No worries, Mate."].buttons["Crikey!"]).tap()
     }
     
     func testRequestPermissionSucceeds() {
@@ -167,6 +167,6 @@ class AudioRecorderUITests: XCTestCase {
         NSRunLoop.mainRunLoop().runUntilDate(NSDate().dateByAddingTimeInterval(2))
         waitForElement(app.buttons["Stop"]).tap()
         waitForElement(app.buttons["So Done!"]).tap()
-        waitForElement(app.alerts["Good on ya, Mate!"].collectionViews.buttons["Right!"]).tap()
+        waitForElement(app.alerts["Good on ya, Mate!"].buttons["Right!"]).tap()
     }
 }

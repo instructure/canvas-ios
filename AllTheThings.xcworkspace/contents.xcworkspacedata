@@ -9,7 +9,7 @@
       </FileRef>
    </Group>
    <Group
-      location = "container:Carthage"
+      location = "group:Carthage"
       name = "Carthage">
       <FileRef
          location = "group:Checkouts/Masonry/Masonry.xcodeproj">
@@ -188,10 +188,10 @@
       <FileRef
          location = "group:WhizzyWig/WhizzyWig.xcodeproj">
       </FileRef>
+      <FileRef
+         location = "group:EverythingBagel/EverythingBagel.xcodeproj">
+      </FileRef>
    </Group>
-   <FileRef
-      location = "group:Canvas/Canvas.xcodeproj">
-   </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>

@@ -34,7 +34,7 @@ public class RefreshScope: NSObject {
         let storeURL = libURL.URLByAppendingPathComponent("GlobalSoRefreshing.sqlite")
         
         do {
-            context = try NSManagedObjectContext(storeURL: storeURL, model: model, concurrencyType: .MainQueueConcurrencyType, cacheReset: {})
+            context = try NSManagedObjectContext(storeURL: storeURL!, model: model, concurrencyType: .MainQueueConcurrencyType, cacheReset: {})
         } catch let e as NSError {
             ❨╯°□°❩╯⌢"Couldn't create global refresh scope.\n\(e.reportDescription)"
         }

@@ -72,7 +72,7 @@ public class SelectSessionListViewController: UITableViewController {
         cell.session = session
 
         cell.deleteButton.tag = indexPath.row
-        cell.deleteButton.addTarget(self, action: "deleteButtonPressed:", forControlEvents: .TouchUpInside)
+        cell.deleteButton.addTarget(self, action: #selector(SelectSessionListViewController.deleteButtonPressed(_:)), forControlEvents: .TouchUpInside)
         cell.deleteButton.hidden = sessionDeleted == nil
         cell.accessoryType = sessionDeleted == nil ? .DisclosureIndicator : .None
 

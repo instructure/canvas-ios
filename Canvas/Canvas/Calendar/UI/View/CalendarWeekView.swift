@@ -198,14 +198,14 @@ class CalendarWeekView : UIView {
         
         UIGraphicsBeginImageContextWithOptions(itemDim, false, 0.0)
         let context = UIGraphicsGetCurrentContext()
-        CGContextSaveGState(context)
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillEllipseInRect(context, rect)
-        CGContextRestoreGState(context)
+        CGContextSaveGState(context!)
+        CGContextSetFillColorWithColor(context!, color.CGColor)
+        CGContextFillEllipseInRect(context!, rect)
+        CGContextRestoreGState(context!)
         let returnImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext();
         
-        return returnImage
+        return returnImage!
 
     }
 

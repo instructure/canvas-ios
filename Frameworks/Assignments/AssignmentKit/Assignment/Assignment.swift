@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import FileKit
+import SoIconic
 
 public struct SubmissionStatus: OptionSetType {
     public let rawValue: Int64
@@ -96,14 +97,11 @@ public final class Assignment: NSManagedObject, LockableModel {
         let name: String
         
         switch submissionTypes {
-        case [.Quiz]:               name = "icon_quizzes"
-        case [.DiscussionTopic]:    name = "icon_discussions"
-        case [.ExternalTool]:       name = "icon_tools"
-        default:                    name = "icon_assignments"
+        case [.Quiz]:               return .icon(.quiz)
+        case [.DiscussionTopic]:    return .icon(.discussion)
+        case [.ExternalTool]:       return .icon(.lti)
+        default:                    return .icon(.assignment)
         }
-        
-        let bundle = NSBundle(forClass: Assignment.self)
-        return UIImage(named: name, inBundle: bundle, compatibleWithTraitCollection: nil)!
     }
 
     static let gradeNumberFormatter: NSNumberFormatter = {

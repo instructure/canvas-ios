@@ -30,7 +30,7 @@ class CourseCell: EnrollmentCollectionViewCell {
         makeEvenMoreBeautiful()
         beginObservingProperties()
         makeAccessible()
-        announceButton?.setImage(.icon(.announcements), forState: .Normal)
+        announceButton?.setImage(.icon(.announcement), forState: .Normal)
         customizeButton?.setImage(.icon(.edit, filled: true), forState: .Normal)
     }
     

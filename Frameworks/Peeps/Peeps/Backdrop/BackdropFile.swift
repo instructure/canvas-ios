@@ -197,12 +197,12 @@ struct BackdropFile: Hashable, Equatable {
     discussion.
     */
     var url: NSURL {
-        return rootURL.URLByAppendingPathComponent(name)
+        return rootURL.URLByAppendingPathComponent(name)!
     }
     
     //! Inverse of BackdropFile.url()
     static func fromURL(url: String) -> BackdropFile? {
-        if let range = url.rangeOfString(rootURL.absoluteString) {
+        if let range = url.rangeOfString(rootURL.absoluteString!) {
             let name = url.substringWithRange(range.endIndex..<url.endIndex)
             return BackdropFile.fromName(name)
         }
@@ -228,7 +228,7 @@ struct BackdropFile: Hashable, Equatable {
     //! Inverse of BackdropFile.JSONForFile
     static func fromJSON(json: String) -> Result<BackdropFile?, NSError> {
         var result: Result<BackdropFile?, NSError>
-        if let rootRange = json.rangeOfString(rootURL.absoluteString) {
+        if let rootRange = json.rangeOfString(rootURL.absoluteString!) {
             let start = rootRange.startIndex
             let end = json.endIndex.advancedBy(-2)
             if start < end {

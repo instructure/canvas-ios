@@ -28,7 +28,7 @@ extension Alert {
                       assetPath: String = "assetPath",
                       type: AlertThresholdType = .CourseAnnouncement
         ) -> Alert {
-        let alert = Alert.create(inContext: context)
+        let alert: Alert = Alert.create(inContext: context)
         alert.id = id
         alert.observerID = observerID
         alert.studentID = studentID
@@ -52,7 +52,7 @@ extension AlertThreshold {
                       threshold: String = "threshold",
                       type: AlertThresholdType = .CourseAnnouncement
         ) -> AlertThreshold {
-        let alertThreshold = AlertThreshold.create(inContext: context)
+        let alertThreshold: AlertThreshold = AlertThreshold.create(inContext: context)
         alertThreshold.id = id
         alertThreshold.observerID = observerID
         alertThreshold.studentID = studentID

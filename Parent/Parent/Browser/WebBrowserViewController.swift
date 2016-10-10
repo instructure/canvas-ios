@@ -146,7 +146,7 @@ class WebBrowserViewController: UIViewController {
 
     func reloadButtonTapped(refreshButton: UIBarButtonItem) {
         networkOps = 0
-        if let request = webView.request where request.URL?.absoluteString.characters.count > 0 && request.URL?.absoluteString != "about:blank" {
+        if let request = webView.request where request.URL?.absoluteString!.characters.count > 0 && request.URL?.absoluteString != "about:blank" {
             webView.reload()
         } else {
             if let request = self.request {
@@ -158,13 +158,13 @@ class WebBrowserViewController: UIViewController {
     func actionButtonTapped(actionButton: UIBarButtonItem) {
         let title = webView.stringByEvaluatingJavaScriptFromString("document.title")
         let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .ActionSheet)
-        if let fullURLString = fullURLString, url = NSURL(string: fullURLString) where request?.URL?.fileURL == false {
+        if let fullURLString = fullURLString, let url = NSURL(string: fullURLString) where request?.URL?.fileURL == false {
             actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Open in Safari", comment: "Open a url in the application Safari"), style: .Default) { action in
                 UIApplication.sharedApplication().openURL(url)
             })
         }
 
-        if let fileURLString = fileURLString, fileURL = NSURL(string: fileURLString) {
+        if let fileURLString = fileURLString, let fileURL = NSURL(string: fileURLString) {
             let dic = UIDocumentInteractionController(URL: fileURL)
             actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Open in...", comment: "Open file in another application"), style: .Default) { [weak dic, weak self] action in
                 let presentedOpenInMenu = dic?.presentOpenInMenuFromBarButtonItem(actionButton, animated: true)
@@ -251,7 +251,7 @@ extension WebBrowserViewController: UIWebViewDelegate {
         }
 
         UIView.animateWithDuration(0.3) {
-            if let text = self.titleField.text, font = self.titleField.font where text.characters.count > 0 {
+            if let text = self.titleField.text, let font = self.titleField.font where text.characters.count > 0 {
                 let size = (text as NSString).sizeWithAttributes([NSFontAttributeName: font])
                 let x: CGFloat = (self.view.frame.size.width - CGFloat(roundf(Float(size.width))) * 0.5)
                 let width: CGFloat = CGFloat(roundf(Float(size.width)))
@@ -271,7 +271,7 @@ extension WebBrowserViewController: UIWebViewDelegate {
         }
     }
 
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
         if networkOps > 0 { networkOps -= 1 }
         if networkOps == 0 {
             activityIndicator.stopAnimating()
@@ -279,7 +279,7 @@ extension WebBrowserViewController: UIWebViewDelegate {
             actionButton.enabled = true
         }
 
-        if let error = error where error.code != Int(CFNetworkErrors.CFURLErrorCancelled.rawValue) {
+        if error.code != Int(CFNetworkErrors.CFURLErrorCancelled.rawValue) {
             if error.code == 204 && error.userInfo[NSURLErrorFailingURLStringErrorKey] != nil {
                 // Handle Kaltura media
                 // 204 is "Plug-in handled load", meaning it was handled outside the webview. Just let it be.
@@ -296,8 +296,8 @@ extension WebBrowserViewController: UIWebViewDelegate {
         let downloadTask = session.dataTaskWithURL(url) { data, response, error in
             let filename = response?.suggestedFilename ?? "file"
             let url = NSURL.fileURLWithPath(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]).URLByAppendingPathComponent(filename)
-            let _ = try? data?.writeToURL(url, options: NSDataWritingOptions.DataWritingAtomic)
-            self.fileURLString = url.absoluteString
+            let _ = try? data?.writeToURL(url!, options: NSDataWritingOptions.DataWritingAtomic)
+            self.fileURLString = url!.absoluteString
         }
         downloadTask.resume()
     }
@@ -310,7 +310,7 @@ extension WebBrowserViewController: UITextFieldDelegate {
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if let text = titleField.text, url = NSURL(string: text) {
+        if let text = titleField.text, let url = NSURL(string: text) {
             webView.loadRequest(NSURLRequest(URL: url))
         }
         titleField.resignFirstResponder()
@@ -336,7 +336,7 @@ extension WebBrowserViewController: UITextFieldDelegate {
         } else {
             titleField.text = hostURLString
             UIView.animateWithDuration(0.3, animations: {
-                if let hostURLString = self.hostURLString, font = self.titleField.font {
+                if let hostURLString = self.hostURLString, let font = self.titleField.font {
                     let size = (hostURLString as NSString).sizeWithAttributes([NSFontAttributeName: font])
                     let x: CGFloat = (self.view.frame.size.width - CGFloat(roundf(Float(size.width))) * 0.5)
                     let width: CGFloat = CGFloat(roundf(Float(size.width)))

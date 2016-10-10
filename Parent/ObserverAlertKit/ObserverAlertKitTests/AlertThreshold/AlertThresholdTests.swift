@@ -40,7 +40,7 @@ class AlertThresholdTests: XCTestCase {
         json["alert_type"] = "assignment_grade_high"
         json["threshold"] = "threshold_90"
 
-        let alertThreshold = AlertThreshold.create(inContext: context)
+        let alertThreshold: AlertThreshold = AlertThreshold.create(inContext: context)
         try! alertThreshold.updateValues(json, inContext: context)
 
         XCTAssertEqual("id_1234", alertThreshold.id, "id should be set")

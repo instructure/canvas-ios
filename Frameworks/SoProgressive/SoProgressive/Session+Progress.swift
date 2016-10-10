@@ -72,22 +72,22 @@ extension Session {
     // MARK: Pages
     @available(*, deprecated=1.0)
     public func postProgressPageViewed(courseID courseID: String, pageURL: NSURL) {
-        postProgress(.Viewed, type: .Page, context: .Course, contextID: courseID, itemID: pageURL.absoluteString)
+        postProgress(.Viewed, type: .Page, context: .Course, contextID: courseID, itemID: pageURL.absoluteString!)
     }
     
     @available(*, deprecated=1.0)
     public func postProgressPageViewed(groupID groupID: String, pageURL: NSURL) {
-        postProgress(.Viewed, type: .Page, context: .Group, contextID: groupID, itemID: pageURL.absoluteString)
+        postProgress(.Viewed, type: .Page, context: .Group, contextID: groupID, itemID: pageURL.absoluteString!)
     }
     
     @available(*, deprecated=1.0)
     public func postProgressPageMarkedDone(courseID courseID: String, pageURL: NSURL) {
-        postProgress(.MarkedDone, type: .Page, context: .Course, contextID: courseID, itemID: pageURL.absoluteString)
+        postProgress(.MarkedDone, type: .Page, context: .Course, contextID: courseID, itemID: pageURL.absoluteString!)
     }
     
     @available(*, deprecated=1.0)
     public func postProgressPageViewedMarkedDone(groupID groupID: String, pageURL: NSURL) {
-        postProgress(.MarkedDone, type: .Page, context: .Group, contextID: groupID, itemID: pageURL.absoluteString)
+        postProgress(.MarkedDone, type: .Page, context: .Group, contextID: groupID, itemID: pageURL.absoluteString!)
     }
     
     
@@ -95,32 +95,32 @@ extension Session {
     // MARK: LTI
     @available(*, deprecated=1.0)
     public func postProgressLTIViewed(courseID courseID: String, toolURL: NSURL) {
-        postProgress(.Viewed, type: .ExternalTool, context: .Course, contextID: courseID, itemID: toolURL.absoluteString)
+        postProgress(.Viewed, type: .ExternalTool, context: .Course, contextID: courseID, itemID: toolURL.absoluteString!)
     }
     
     @available(*, deprecated=1.0)
     public func postProgressLTIViewed(groupID groupID: String, toolURL: NSURL) {
-        postProgress(.Viewed, type: .ExternalTool, context: .Group, contextID: groupID, itemID: toolURL.absoluteString)
+        postProgress(.Viewed, type: .ExternalTool, context: .Group, contextID: groupID, itemID: toolURL.absoluteString!)
     }
     
     @available(*, deprecated=1.0)
     public func postProgressLTISubmitted(courseID courseID: String, toolURL: NSURL) {
-        postProgress(.Submitted, type: .ExternalTool, context: .Course, contextID: courseID, itemID: toolURL.absoluteString)
+        postProgress(.Submitted, type: .ExternalTool, context: .Course, contextID: courseID, itemID: toolURL.absoluteString!)
     }
     
     @available(*, deprecated=1.0)
     public func postProgressLTISubmitted(groupID groupID: String, toolURL: NSURL) {
-        postProgress(.Submitted, type: .ExternalTool, context: .Group, contextID: groupID, itemID: toolURL.absoluteString)
+        postProgress(.Submitted, type: .ExternalTool, context: .Group, contextID: groupID, itemID: toolURL.absoluteString!)
     }
     
     @available(*, deprecated=1.0)
     public func postProgressLTIMarkedDone(courseID courseID: String, toolURL: NSURL) {
-        postProgress(.MarkedDone, type: .ExternalTool, context: .Course, contextID: courseID, itemID: toolURL.absoluteString)
+        postProgress(.MarkedDone, type: .ExternalTool, context: .Course, contextID: courseID, itemID: toolURL.absoluteString!)
     }
     
     @available(*, deprecated=1.0)
     public func postProgressLTIMarkedDone(groupID groupID: String, toolURL: NSURL) {
-        postProgress(.MarkedDone, type: .ExternalTool, context: .Group, contextID: groupID, itemID: toolURL.absoluteString)
+        postProgress(.MarkedDone, type: .ExternalTool, context: .Group, contextID: groupID, itemID: toolURL.absoluteString!)
     }
     
     
@@ -152,22 +152,22 @@ extension Session {
     // MARK: External URLs
     @available(*, deprecated=1.0)
     public func postProgressURLViewed(courseID courseID: String, url: NSURL) {
-        postProgress(.Viewed, type: .URL, context: .Course, contextID: courseID, itemID: url.absoluteString)
+        postProgress(.Viewed, type: .URL, context: .Course, contextID: courseID, itemID: url.absoluteString!)
     }
     
     @available(*, deprecated=1.0)
     public func postProgressURLViewed(groupID groupID: String, url: NSURL) {
-        postProgress(.Viewed, type: .URL, context: .Group, contextID: groupID, itemID: url.absoluteString)
+        postProgress(.Viewed, type: .URL, context: .Group, contextID: groupID, itemID: url.absoluteString!)
     }
     
     @available(*, deprecated=1.0)
     public func postProgressURLMarkedDone(courseID courseID: String, url: NSURL) {
-        postProgress(.MarkedDone, type: .URL, context: .Course, contextID: courseID, itemID: url.absoluteString)
+        postProgress(.MarkedDone, type: .URL, context: .Course, contextID: courseID, itemID: url.absoluteString!)
     }
     
     @available(*, deprecated=1.0)
     public func postProgressURLViewedMarkedDone(groupID groupID: String, url: NSURL) {
-        postProgress(.MarkedDone, type: .URL, context: .Group, contextID: groupID, itemID: url.absoluteString)
+        postProgress(.MarkedDone, type: .URL, context: .Group, contextID: groupID, itemID: url.absoluteString!)
     }
     
 }

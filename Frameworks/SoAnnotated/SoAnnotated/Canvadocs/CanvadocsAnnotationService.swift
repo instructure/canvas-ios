@@ -139,12 +139,12 @@ class CanvadocsAnnotationService: NSObject {
                     let fileManager = NSFileManager.defaultManager()
                     let directoryURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
                     // TODO: unify the places we do this sorta thing
-                    let filename = "\(self.sessionURL.absoluteString.substringFromIndex(self.sessionURL.absoluteString.endIndex.advancedBy(-12)))_doc.pdf"
+                    let filename = "\(self.sessionURL.absoluteString!.substringFromIndex(self.sessionURL.absoluteString!.endIndex.advancedBy(-12)))_doc.pdf"
                     let copyURL = directoryURL.URLByAppendingPathComponent(filename)
                     
-                    if fileManager.fileExistsAtPath(copyURL.path!) {
+                    if fileManager.fileExistsAtPath(copyURL!.path!) {
                         do {
-                            try fileManager.removeItemAtURL(copyURL)
+                            try fileManager.removeItemAtURL(copyURL!)
                         } catch let error {
                             print("Couldn't remove old doc: \(error)")
                         }
@@ -152,13 +152,13 @@ class CanvadocsAnnotationService: NSObject {
                     
                     do {
                         if let temporaryURL = temporaryURL {
-                            try fileManager.copyItemAtURL(temporaryURL, toURL: copyURL)
+                            try fileManager.copyItemAtURL(temporaryURL, toURL: copyURL!)
                         }
                     } catch let error {
                         print("Couldn't copy new doc file: \(error)")
                     }
                     
-                    completed(Result.Success(copyURL))
+                    completed(Result.Success(copyURL!))
                 }
             }
             downloadTask.resume()
@@ -178,12 +178,12 @@ class CanvadocsAnnotationService: NSObject {
                     let fileManager = NSFileManager.defaultManager()
                     let directoryURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
                     // TODO: unify the places we do this sorta thing
-                    let filename = "\(self.sessionURL.absoluteString.substringFromIndex(self.sessionURL.absoluteString.endIndex.advancedBy(-12)))_annots.xfdf"
+                    let filename = "\(self.sessionURL.absoluteString!.substringFromIndex(self.sessionURL.absoluteString!.endIndex.advancedBy(-12)))_annots.xfdf"
                     let copyURL = directoryURL.URLByAppendingPathComponent(filename)
                     
-                    if fileManager.fileExistsAtPath(copyURL.path!) {
+                    if fileManager.fileExistsAtPath(copyURL!.path!) {
                         do {
-                            try fileManager.removeItemAtURL(copyURL)
+                            try fileManager.removeItemAtURL(copyURL!)
                         } catch let error {
                             print("Couldn't remove old annots file: \(error)")
                         }
@@ -191,16 +191,16 @@ class CanvadocsAnnotationService: NSObject {
                     
                     do {
                         if let temporaryURL = temporaryURL {
-                            try fileManager.copyItemAtURL(temporaryURL, toURL: copyURL)
+                            try fileManager.copyItemAtURL(temporaryURL, toURL: copyURL!)
                         }
                     } catch let error {
                         print("Couldn't copy new annots file: \(error)")
                     }
                     
-                    let data = NSData(contentsOfURL: copyURL)
+                    let data = NSData(contentsOfURL: copyURL!)
                     let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
                     print("This is the xfdf:\n \(str)")
-                    completed(Result.Success(copyURL))
+                    completed(Result.Success(copyURL!))
                 }
             }
             downloadTask.resume()

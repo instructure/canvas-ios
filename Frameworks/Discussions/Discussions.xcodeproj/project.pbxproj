@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		493EBDB21D96469100DCDDA2 /* CWStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDB01D96454F00DCDDA2 /* CWStatusBarNotification.framework */; };
+		493EBDB31D96469100DCDDA2 /* CWStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDB01D96454F00DCDDA2 /* CWStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		493EBDB41D96469100DCDDA2 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDB11D96454F00DCDDA2 /* Kingfisher.framework */; };
+		493EBDB51D96469100DCDDA2 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDB11D96454F00DCDDA2 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E2DE0E11CC0181D00D76D35 /* DiscussionTopicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DE0E01CC0181D00D76D35 /* DiscussionTopicTests.swift */; };
 		5E2DE0E41CC018E400D76D35 /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E2DE0E31CC018D000D76D35 /* SoAutomated.framework */; };
 		5E2DE0E61CC0207800D76D35 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E2DE0E51CC0206D00D76D35 /* Cartography.framework */; };
@@ -21,7 +25,6 @@
 		617BE7541CA42D26008A6908 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 617BE7531CA42D26008A6908 /* Assets.xcassets */; };
 		617BE7571CA42D26008A6908 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 617BE7551CA42D26008A6908 /* LaunchScreen.storyboard */; };
 		617BE7621CA42D26008A6908 /* DiscussionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617BE7611CA42D26008A6908 /* DiscussionsTests.swift */; };
-		617BE76D1CA42D26008A6908 /* DiscussionsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617BE76C1CA42D26008A6908 /* DiscussionsUITests.swift */; };
 		617BE7821CA42D4C008A6908 /* DiscussionKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 617BE7811CA42D4C008A6908 /* DiscussionKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		617BE7891CA42D4C008A6908 /* DiscussionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617BE77F1CA42D4C008A6908 /* DiscussionKit.framework */; };
 		617BE7941CA42D4C008A6908 /* DiscussionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617BE77F1CA42D4C008A6908 /* DiscussionKit.framework */; };
@@ -75,13 +78,6 @@
 			remoteGlobalIDString = 617BE7451CA42D26008A6908;
 			remoteInfo = Discussions;
 		};
-		617BE7691CA42D26008A6908 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 617BE73E1CA42D26008A6908 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 617BE7451CA42D26008A6908;
-			remoteInfo = Discussions;
-		};
 		617BE78A1CA42D4C008A6908 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 617BE73E1CA42D26008A6908 /* Project object */;
@@ -113,8 +109,10 @@
 			dstSubfolderSpec = 10;
 			files = (
 				5E2DE0EA1CC0218F00D76D35 /* Cartography.framework in Embed Frameworks */,
+				493EBDB31D96469100DCDDA2 /* CWStatusBarNotification.framework in Embed Frameworks */,
 				617BE8051CA48ED0008A6908 /* SoPretty.framework in Embed Frameworks */,
 				617BE80D1CA48FBA008A6908 /* DoNotShipThis.framework in Embed Frameworks */,
+				493EBDB51D96469100DCDDA2 /* Kingfisher.framework in Embed Frameworks */,
 				617BE7951CA42D4C008A6908 /* DiscussionKit.framework in Embed Frameworks */,
 				617BE8011CA48ECC008A6908 /* ReactiveCocoa.framework in Embed Frameworks */,
 				617BE7F91CA48EC2008A6908 /* WhizzyWig.framework in Embed Frameworks */,
@@ -130,6 +128,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		493EBDB01D96454F00DCDDA2 /* CWStatusBarNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		493EBDB11D96454F00DCDDA2 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E2DE0E01CC0181D00D76D35 /* DiscussionTopicTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussionTopicTests.swift; sourceTree = "<group>"; };
 		5E2DE0E31CC018D000D76D35 /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E2DE0E51CC0206D00D76D35 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,9 +146,6 @@
 		617BE75D1CA42D26008A6908 /* DiscussionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiscussionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		617BE7611CA42D26008A6908 /* DiscussionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsTests.swift; sourceTree = "<group>"; };
 		617BE7631CA42D26008A6908 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		617BE7681CA42D26008A6908 /* DiscussionsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiscussionsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		617BE76C1CA42D26008A6908 /* DiscussionsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsUITests.swift; sourceTree = "<group>"; };
-		617BE76E1CA42D26008A6908 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		617BE77F1CA42D4C008A6908 /* DiscussionKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DiscussionKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		617BE7811CA42D4C008A6908 /* DiscussionKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscussionKit.h; sourceTree = "<group>"; };
 		617BE7831CA42D4C008A6908 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -203,8 +200,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E2DE0EB1CC0219600D76D35 /* Cartography.framework in Frameworks */,
+				493EBDB21D96469100DCDDA2 /* CWStatusBarNotification.framework in Frameworks */,
 				617BE8041CA48ED0008A6908 /* SoPretty.framework in Frameworks */,
 				617BE7941CA42D4C008A6908 /* DiscussionKit.framework in Frameworks */,
+				493EBDB41D96469100DCDDA2 /* Kingfisher.framework in Frameworks */,
 				617BE8001CA48ECC008A6908 /* ReactiveCocoa.framework in Frameworks */,
 				617BE7F81CA48EC2008A6908 /* WhizzyWig.framework in Frameworks */,
 				617BE8061CA48ED4008A6908 /* SoLazy.framework in Frameworks */,
@@ -217,13 +216,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		617BE75A1CA42D26008A6908 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		617BE7651CA42D26008A6908 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -295,7 +287,6 @@
 				617BE7D31CA47F80008A6908 /* Dependencies */,
 				617BE7481CA42D26008A6908 /* Discussions */,
 				617BE7601CA42D26008A6908 /* DiscussionsTests */,
-				617BE76B1CA42D26008A6908 /* DiscussionsUITests */,
 				617BE7801CA42D4C008A6908 /* DiscussionKit */,
 				617BE78E1CA42D4C008A6908 /* DiscussionKitTests */,
 				617BE7471CA42D26008A6908 /* Products */,
@@ -307,7 +298,6 @@
 			children = (
 				617BE7461CA42D26008A6908 /* Discussions.app */,
 				617BE75D1CA42D26008A6908 /* DiscussionsTests.xctest */,
-				617BE7681CA42D26008A6908 /* DiscussionsUITests.xctest */,
 				617BE77F1CA42D4C008A6908 /* DiscussionKit.framework */,
 				617BE7881CA42D4C008A6908 /* DiscussionKitTests.xctest */,
 			);
@@ -334,15 +324,6 @@
 				617BE7631CA42D26008A6908 /* Info.plist */,
 			);
 			path = DiscussionsTests;
-			sourceTree = "<group>";
-		};
-		617BE76B1CA42D26008A6908 /* DiscussionsUITests */ = {
-			isa = PBXGroup;
-			children = (
-				617BE76C1CA42D26008A6908 /* DiscussionsUITests.swift */,
-				617BE76E1CA42D26008A6908 /* Info.plist */,
-			);
-			path = DiscussionsUITests;
 			sourceTree = "<group>";
 		};
 		617BE7801CA42D4C008A6908 /* DiscussionKit */ = {
@@ -400,6 +381,8 @@
 		617BE7D31CA47F80008A6908 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				493EBDB01D96454F00DCDDA2 /* CWStatusBarNotification.framework */,
+				493EBDB11D96454F00DCDDA2 /* Kingfisher.framework */,
 				6152526E1D87546F00D5A0AC /* FileKit.framework */,
 				5E2DE0E51CC0206D00D76D35 /* Cartography.framework */,
 				617BE80A1CA48FAB008A6908 /* DoNotShipThis.framework */,
@@ -466,24 +449,6 @@
 			productReference = 617BE75D1CA42D26008A6908 /* DiscussionsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		617BE7671CA42D26008A6908 /* DiscussionsUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 617BE7771CA42D26008A6908 /* Build configuration list for PBXNativeTarget "DiscussionsUITests" */;
-			buildPhases = (
-				617BE7641CA42D26008A6908 /* Sources */,
-				617BE7651CA42D26008A6908 /* Frameworks */,
-				617BE7661CA42D26008A6908 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				617BE76A1CA42D26008A6908 /* PBXTargetDependency */,
-			);
-			name = DiscussionsUITests;
-			productName = DiscussionsUITests;
-			productReference = 617BE7681CA42D26008A6908 /* DiscussionsUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		617BE77E1CA42D4C008A6908 /* DiscussionKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 617BE7961CA42D4C008A6908 /* Build configuration list for PBXNativeTarget "DiscussionKit" */;
@@ -528,25 +493,25 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					617BE7451CA42D26008A6908 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					617BE75C1CA42D26008A6908 = {
 						CreatedOnToolsVersion = 7.3;
-						TestTargetID = 617BE7451CA42D26008A6908;
-					};
-					617BE7671CA42D26008A6908 = {
-						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 617BE7451CA42D26008A6908;
 					};
 					617BE77E1CA42D4C008A6908 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					617BE7871CA42D4C008A6908 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 617BE7451CA42D26008A6908;
 					};
 				};
@@ -585,7 +550,6 @@
 			targets = (
 				617BE7451CA42D26008A6908 /* Discussions */,
 				617BE75C1CA42D26008A6908 /* DiscussionsTests */,
-				617BE7671CA42D26008A6908 /* DiscussionsUITests */,
 				617BE77E1CA42D4C008A6908 /* DiscussionKit */,
 				617BE7871CA42D4C008A6908 /* DiscussionKitTests */,
 			);
@@ -604,13 +568,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		617BE75B1CA42D26008A6908 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		617BE7661CA42D26008A6908 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -655,14 +612,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		617BE7641CA42D26008A6908 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				617BE76D1CA42D26008A6908 /* DiscussionsUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		617BE77A1CA42D4C008A6908 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -696,11 +645,6 @@
 			isa = PBXTargetDependency;
 			target = 617BE7451CA42D26008A6908 /* Discussions */;
 			targetProxy = 617BE75E1CA42D26008A6908 /* PBXContainerItemProxy */;
-		};
-		617BE76A1CA42D26008A6908 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 617BE7451CA42D26008A6908 /* Discussions */;
-			targetProxy = 617BE7691CA42D26008A6908 /* PBXContainerItemProxy */;
 		};
 		617BE78B1CA42D4C008A6908 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -781,8 +725,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -827,8 +773,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -847,6 +795,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -855,26 +804,28 @@
 		617BE7721CA42D26008A6908 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Discussions/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Discussions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
 		617BE7731CA42D26008A6908 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Discussions/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Discussions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -886,6 +837,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.DiscussionsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Discussions.app/Discussions";
 			};
 			name = Debug;
@@ -898,29 +850,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.DiscussionsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Discussions.app/Discussions";
-			};
-			name = Release;
-		};
-		617BE7781CA42D26008A6908 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = DiscussionsUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.DiscussionsUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Discussions;
-			};
-			name = Debug;
-		};
-		617BE7791CA42D26008A6908 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = DiscussionsUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.DiscussionsUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Discussions;
 			};
 			name = Release;
 		};
@@ -928,6 +859,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -941,6 +873,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -950,6 +883,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -962,6 +896,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.DiscussionKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -974,6 +909,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.DiscussionKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Discussions.app/Discussions";
 			};
 			name = Debug;
@@ -985,6 +921,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.DiscussionKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Discussions.app/Discussions";
 			};
 			name = Release;
@@ -1015,15 +952,6 @@
 			buildConfigurations = (
 				617BE7751CA42D26008A6908 /* Debug */,
 				617BE7761CA42D26008A6908 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		617BE7771CA42D26008A6908 /* Build configuration list for PBXNativeTarget "DiscussionsUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				617BE7781CA42D26008A6908 /* Debug */,
-				617BE7791CA42D26008A6908 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

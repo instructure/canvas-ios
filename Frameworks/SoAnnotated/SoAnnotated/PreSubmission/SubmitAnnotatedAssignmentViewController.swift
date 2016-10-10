@@ -70,7 +70,13 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
                 if isStudent {
                     if let defaultAssignmentID = defaultAssignmentID {
                         let context = try session.assignmentsManagedObjectContext()
-                        self.assignment = try context.findOne(withPredicate: NSPredicate(format: "%K == %@ AND %K == %@", "id", defaultAssignmentID, "courseID", defaultCourseID))
+                        let predicate = NSPredicate(format: "%K == %@ AND %K == %@", "id", defaultAssignmentID, "courseID", defaultCourseID)
+                        if let assignment: Assignment = try context.findOne(withPredicate: predicate) {
+                            let submittable = assignment.allowsSubmissions && assignment.submissionTypes.contains(SubmissionTypes.Upload) && isStudent
+                            if submittable {
+                                self.assignment = assignment
+                            }
+                        }
                     }
                 }
             } catch {

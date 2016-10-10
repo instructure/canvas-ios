@@ -38,8 +38,8 @@ class CoursesCollectionViewController: Course.CollectionViewController {
     static func tab(session: Session, route: RouteAction) throws -> UIViewController {
         let nav = UINavigationController(rootViewController: try CoursesCollectionViewController(session: session, route: route))
         nav.tabBarItem.title = coursesTitle
-        nav.tabBarItem.image = .icon(.courses)
-        nav.tabBarItem.selectedImage = .icon(.courses, filled: true)
+        nav.tabBarItem.image = .icon(.course)
+        nav.tabBarItem.selectedImage = .icon(.course, filled: true)
         return nav
     }
     

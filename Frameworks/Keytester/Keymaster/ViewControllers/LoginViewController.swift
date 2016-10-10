@@ -150,7 +150,7 @@ public class LoginViewController: UIViewController {
         backButton.addConstraint(NSLayoutConstraint(item: backButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 40.0))
         backButton.addConstraint(NSLayoutConstraint(item: backButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 40.0))
 
-        backButton.addTarget(self, action: "backButtonPressed:", forControlEvents: .TouchUpInside)
+        backButton.addTarget(self, action: #selector(LoginViewController.backButtonPressed(_:)), forControlEvents: .TouchUpInside)
 
         updateBackButton()
     }
@@ -166,7 +166,7 @@ public class LoginViewController: UIViewController {
             let loginTextField = alertController.textFields![0] as UITextField
             let passwordTextField = alertController.textFields![1] as UITextField
 
-            if let username = loginTextField.text, password = passwordTextField.text {
+            if let username = loginTextField.text, let password = passwordTextField.text {
                 self.login(username, password: password)
             }
         }
@@ -271,7 +271,7 @@ public class LoginViewController: UIViewController {
     }
 
     func loginOAuthURL(baseURL: NSURL?, clientID: String?) -> NSURL? {
-        guard let baseURL = baseURL, clientID = clientID else {
+        guard let baseURL = baseURL, let clientID = clientID else {
             return nil
         }
 
@@ -298,7 +298,7 @@ public class LoginViewController: UIViewController {
     }
 
     private func getOAuthTokenFromCode(code: String) {
-        guard let baseURL = baseURL, clientID = clientID, clientSecret = clientSecret else {
+        guard let baseURL = baseURL, let clientID = clientID, let clientSecret = clientSecret else {
             return
         }
 
@@ -309,12 +309,12 @@ public class LoginViewController: UIViewController {
             "client_secret" : clientSecret,
             "code" : code
         ]
-        let request = try! NSMutableURLRequest(method: .POST, URL: url, parameters: parameters, encoding: .JSON)
+        let request = try! NSMutableURLRequest(method: .POST, URL: url!, parameters: parameters, encoding: .JSON)
         request.setValue("close", forHTTPHeaderField: "Connection:")
         Session.unauthenticated.JSONSignalProducer(request).start { event in
             switch event {
             case .Next(let json):
-                guard let authToken = OAuthToken.fromJSON(json), baseURL = self.baseURL else {
+                guard let authToken = OAuthToken.fromJSON(json), let baseURL = self.baseURL else {
                     self.result?(Result(error: AuthenticationErrorCode.IncorrectJSON.error()))
                     break
                 }
@@ -366,7 +366,7 @@ extension LoginViewController : UIWebViewDelegate {
             }
 
             // We have to wait for the code to be the first param cuz it can keep changing as we follow redirects
-            if url.absoluteString.containsString("/login/oauth2/auth?code=") {
+            if url.absoluteString!.containsString("/login/oauth2/auth?code=") {
                 if let code = request.URL?.queryItemForKey("code")?.value {
                     getOAuthTokenFromCode(code)
                     return false

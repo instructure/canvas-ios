@@ -48,7 +48,7 @@ class SubmissionConfirmationViewController: UIViewController {
     }
 
     private func prepareNavigationBar() {
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("doneTapped:"))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(SubmissionConfirmationViewController.doneTapped(_:)))
         navigationItem.rightBarButtonItem = doneButton
     }
     

@@ -60,7 +60,7 @@ class AudioPlayer: NSObject {
     func play() {
         player?.play()
         
-        timer = CADisplayLink(target: self, selector: "timerFired:")
+        timer = CADisplayLink(target: self, selector: #selector(AudioPlayer.timerFired(_:)))
         timer?.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
     }
     

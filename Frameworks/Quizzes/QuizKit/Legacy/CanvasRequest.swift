@@ -218,7 +218,7 @@ struct Request<T>: CustomStringConvertible {
     init(auth: Session, method: HTTPMethod, path: String, parameters: [String: AnyObject]? = nil, parameterEncoding: ParameterEncoding? = nil, parseResponse: AnyObject?->ResultType) {
         self.auth = auth
         self.method = method
-        self.url = self.auth.baseURL.URLByAppendingPathComponent(path)
+        self.url = self.auth.baseURL.URLByAppendingPathComponent(path)!
         self.parameters = parameters
         self.parameterEncoding = parameterEncoding
         self.parseResponse = parseResponse

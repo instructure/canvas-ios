@@ -19,7 +19,7 @@ class CommentReplyView: UIView {
     var sendAction: ()->() = { }
     
     static func instantiate() -> CommentReplyView {
-        return NSBundle(forClass: self.classForCoder()).loadNibNamed("CommentReplyView", owner: self, options: nil).first! as! CommentReplyView
+        return NSBundle(forClass: self.classForCoder()).loadNibNamed("CommentReplyView", owner: self, options: nil)!.first! as! CommentReplyView
     }
     
     override func awakeFromNib() {

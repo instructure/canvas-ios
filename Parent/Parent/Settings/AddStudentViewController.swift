@@ -136,7 +136,7 @@ extension AddStudentViewController: UIWebViewDelegate {
                 return false
             }
 
-            if url.absoluteString.containsString("/oauthSuccess") {
+            if url.absoluteString!.containsString("/oauthSuccess") {
                 // Clear the cookies so you're not automatically logged into a session on the next browser launch
                 clearExistingCookies()
                 refresher.refreshingCompleted.observeNext { [weak self] _ in
@@ -144,12 +144,12 @@ extension AddStudentViewController: UIWebViewDelegate {
                 }
                 refresher.refresh(true)
                 return false
-            } else if url.absoluteString.containsString("/oauthFailure") {
+            } else if url.absoluteString!.containsString("/oauthFailure") {
                 self.presentUnexpectedAuthError()
                 return false
-            } else if url.absoluteString.containsString("/oauth2/deny") {
+            } else if url.absoluteString!.containsString("/oauth2/deny") {
                 self.navigationController?.popViewControllerAnimated(true)
-            } else if url.absoluteString.containsString("404") {
+            } else if url.absoluteString!.containsString("404") {
                 backButton.tintColor = UIColor.blackColor()
             }
         }

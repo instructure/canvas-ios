@@ -61,7 +61,7 @@ public class WhizzyTextInputCell: UITableViewCell, UITextViewDelegate {
         prepareTextView()
         
         selectionStyle = .None
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didRotate:", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(WhizzyTextInputCell.didRotate(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
     
     func didRotate(note: NSNotification) {

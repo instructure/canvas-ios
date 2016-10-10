@@ -47,6 +47,10 @@ class SimpleTransitionCoordinator: NSObject, UIViewControllerTransitionCoordinat
     func initiallyInteractive() -> Bool {
         return false
     }
+    
+    var isInterruptible: Bool {
+        return true
+    }
 
     func isAnimated() -> Bool {
         return false
@@ -78,6 +82,9 @@ class SimpleTransitionCoordinator: NSObject, UIViewControllerTransitionCoordinat
     }
 
     func notifyWhenInteractionEndsUsingBlock(handler: (UIViewControllerTransitionCoordinatorContext) -> Void) {
+        return
+    }
+    func notifyWhenInteractionChangesUsingBlock(handler: (UIViewControllerTransitionCoordinatorContext) -> Void) {
         return
     }
 }

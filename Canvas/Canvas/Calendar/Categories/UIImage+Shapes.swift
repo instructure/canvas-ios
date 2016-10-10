@@ -13,12 +13,12 @@ extension UIImage {
         
         UIGraphicsBeginImageContextWithOptions(frame.size, false, scale)
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, frame)
+        CGContextSetFillColorWithColor(context!, color.CGColor)
+        CGContextFillRect(context!, frame)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return image
+        return image!
     }
     
     class func circleImage(frame frame: CGRect, color: UIColor, scale: CGFloat) -> UIImage {
@@ -29,13 +29,13 @@ extension UIImage {
         var rect = frame
         rect.origin = CGPointZero
         
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillEllipseInRect(context, rect)
+        CGContextSetFillColorWithColor(context!, color.CGColor)
+        CGContextFillEllipseInRect(context!, rect)
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return image
+        return image!
         
     }
 }

@@ -158,9 +158,9 @@ extension SubmissionQuestionsController: SubmissionInteractor {
         let updatedQuestion = oldQuestion.toggleFlag()
         questions[questionIndex] = updatedQuestion
         if flagged {
-            flaggedCount++
+            flaggedCount += 1
         } else {
-            flaggedCount--
+            flaggedCount -= 1
         }
         questionUpdates(Result(value: [.FlagChanged(questionIndex: questionIndex)]))
         

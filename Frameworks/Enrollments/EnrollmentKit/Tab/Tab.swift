@@ -9,6 +9,7 @@
 import CoreData
 import TooLegit
 import SoLazy
+import SoIconic
 
 let ShortcutTabIDs: Set<String> = ["assignments", "discussions", "files", "announcements"]
 
@@ -29,13 +30,37 @@ public final class Tab: NSManagedObject {
     }
 
     public var icon: UIImage {
-        return UIImage(named: "icon_\(id)", inBundle: NSBundle(forClass: Tab.self), compatibleWithTraitCollection: nil)
-            ?? UIImage(named: "icon_application", inBundle: NSBundle(forClass: Tab.self), compatibleWithTraitCollection: nil)!
+        switch id {
+        case "announcements":   return .icon(.announcement)
+        case "application":     return .icon(.lti)
+        case "assignments":     return .icon(.assignment)
+        case "collaborations":  return .icon(.collaboration)
+        case "conferences":     return .icon(.conference)
+        case "discussions":     return .icon(.discussion)
+        case "files":           return .icon(.file)
+        case "grades":          return .icon(.grades)
+        case "home":            return .icon(.home)
+        case "link":            return .icon(.link)
+        case "modules":         return .icon(.module)
+        case "outcomes":        return .icon(.outcome)
+        case "pages":           return .icon(.page)
+        case "quizzes":         return .icon(.quiz)
+        case "settings":        return .icon(.settings)
+        case "syllabus":        return .icon(.syllabus)
+        case "tools":           return .icon(.lti)
+        case "user":            return .icon(.user)
+        default:                return .icon(.lti)
+        }
     }
 
     public var shortcutIcon: UIImage {
         guard ShortcutTabIDs.contains(id) else { ❨╯°□°❩╯⌢"Not a valid shortcut!" }
-        return UIImage(named: "icon_\(id)_fill_small", inBundle: NSBundle(forClass: Tab.self), compatibleWithTraitCollection: nil)!
+        let bundle = NSBundle(forClass: Tab.self)
+        let name = "icon_\(id)_fill_small"
+        guard let icon = UIImage(named: name, inBundle: bundle, compatibleWithTraitCollection: nil) else {
+            fatalError("Expected icon named: \(name)")
+        }
+        return icon
     }
 
     public var isPages: Bool {

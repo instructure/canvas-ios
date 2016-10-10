@@ -129,7 +129,7 @@ class QuizPresentingViewController: UIViewController {
                 flaggedButton.frame = flagView.bounds
                 flaggedButton.setImage(flagImage?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
                 flaggedButton.tintColor = UIColor.whiteColor()
-                flaggedButton.addTarget(self, action: Selector("openDrawer:"), forControlEvents: .TouchUpInside)
+                flaggedButton.addTarget(self, action: #selector(QuizPresentingViewController.openDrawer(_:)), forControlEvents: .TouchUpInside)
                 flaggedButton.accessibilityHint = NSLocalizedString("0 Questions Answered", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Accessiblity hint for question drawer button")
                 flagView.addSubview(flaggedButton)
                 
@@ -145,7 +145,7 @@ class QuizPresentingViewController: UIViewController {
             }()
         }
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Exit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Exit button to leave the quiz"), style: .Plain, target: self, action: Selector("exitQuiz:"))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Exit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Exit button to leave the quiz"), style: .Plain, target: self, action: #selector(QuizPresentingViewController.exitQuiz(_:)))
     }
     
     private func prepareSubmissionView() {
@@ -192,7 +192,7 @@ class QuizPresentingViewController: UIViewController {
         contentOverlay.backgroundColor = UIColor(white: 0.0, alpha: 0.4)
         view.insertSubview(contentOverlay, belowSubview: questionDrawerViewController.view)
         contentOverlay.hidden = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("closeDrawer"))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(QuizPresentingViewController.closeDrawer))
         contentOverlay.addGestureRecognizer(tapGesture)
         
         constrain(contentOverlay) { contentOverlay in
@@ -212,7 +212,7 @@ class QuizPresentingViewController: UIViewController {
         timerLabel.text = ""
         timerLabel.userInteractionEnabled = true
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("toggleTimer"))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(QuizPresentingViewController.toggleTimer))
         timerLabel.addGestureRecognizer(tapGesture)
         
         navigationItem.titleView = timerLabel

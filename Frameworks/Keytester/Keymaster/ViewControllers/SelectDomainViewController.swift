@@ -75,7 +75,7 @@ public class SelectDomainViewController: UIViewController {
                     guard let me = self else { return }
                     me.searchTextField.resignFirstResponder()
                     if (me.useMobileVerify) {
-                        me.validateMobileVerify(domain.absoluteString)
+                        me.validateMobileVerify(domain.absoluteString!)
                     } else {
                         print(domain)
                         me.pickedDomainAction?(domain)
@@ -148,8 +148,8 @@ public class SelectDomainViewController: UIViewController {
 
         self.navigationController?.toolbarHidden = true
         self.navigationController?.navigationBarHidden = true
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SelectDomainViewController.keyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SelectDomainViewController.keyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
 
     public override func viewDidAppear(animated: Bool) {
@@ -204,7 +204,7 @@ public class SelectDomainViewController: UIViewController {
         searchTextField.keyboardType = .Default;
         searchTextField.autocorrectionType = .No;
 
-        searchTextField.addTarget(self, action: "updateSearchTerm:", forControlEvents: .EditingChanged)
+        searchTextField.addTarget(self, action: #selector(SelectDomainViewController.updateSearchTerm(_:)), forControlEvents: .EditingChanged)
         searchTextField.delegate = self
 
         searchTextField.accessibilityIdentifier = "domain_search_field"
@@ -253,7 +253,7 @@ public class SelectDomainViewController: UIViewController {
     }
 
     func setupLoginMethodGestureRecognizer() {
-        let loginMethodGestureRecognizer = UITapGestureRecognizer(target: self, action: "switchLoginMethod")
+        let loginMethodGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SelectDomainViewController.switchLoginMethod))
         loginMethodGestureRecognizer.numberOfTapsRequired = 2
         loginMethodGestureRecognizer.numberOfTouchesRequired = 2
         loginMethodGestureRecognizer.delegate = self
@@ -261,7 +261,7 @@ public class SelectDomainViewController: UIViewController {
     }
 
     func setupDismissKeyboardGestureRecognizer() {
-        let dismissKeyboardGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let dismissKeyboardGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SelectDomainViewController.dismissKeyboard))
         dismissKeyboardGestureRecognizer.delegate = self
         dismissKeyboardGestureRecognizer.cancelsTouchesInView = false
         self.view.addGestureRecognizer(dismissKeyboardGestureRecognizer)
@@ -293,7 +293,7 @@ public class SelectDomainViewController: UIViewController {
         button.addConstraint(NSLayoutConstraint(item: button, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 40.0))
         button.addConstraint(NSLayoutConstraint(item: button, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 40.0))
 
-        button.addTarget(self, action: "backButtonPressed:", forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(SelectDomainViewController.backButtonPressed(_:)), forControlEvents: .TouchUpInside)
     }
 
     // ---------------------------------------------

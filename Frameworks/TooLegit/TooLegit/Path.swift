@@ -19,7 +19,7 @@ public func /<T: PathComponent>(path: Path, @autoclosure component: ()->T) -> Pa
 }
 
 public func /<T: PathComponent>(url: NSURL, @autoclosure component: ()->T) -> NSURL {
-    return url.URLByAppendingPathComponent(component().pathComponent)
+    return url.URLByAppendingPathComponent(component().pathComponent)!
 }
 
 extension String : PathComponent {

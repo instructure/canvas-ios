@@ -47,7 +47,7 @@ class AudioRecorder: NSObject {
         let now = NSDate()
         
         let tmp = NSURL(fileURLWithPath: NSTemporaryDirectory())
-        let recordedFileURL = tmp.URLByAppendingPathComponent(dateFormatter.stringFromDate(now)).URLByAppendingPathExtension("m4a")
+        let recordedFileURL = tmp.URLByAppendingPathComponent(dateFormatter.stringFromDate(now))!.URLByAppendingPathExtension("m4a")
         
         let settings: [String: AnyObject] = [
             AVFormatIDKey: NSNumber(unsignedInt: kAudioFormatMPEG4AAC),
@@ -58,7 +58,7 @@ class AudioRecorder: NSObject {
             AVLinearPCMIsFloatKey: false
         ]
         
-        recorder = try AVAudioRecorder(URL: recordedFileURL, settings: settings)
+        recorder = try AVAudioRecorder(URL: recordedFileURL!, settings: settings)
         recorder?.delegate = self
         recorder?.meteringEnabled = true
 
@@ -68,12 +68,12 @@ class AudioRecorder: NSObject {
         let began = recorder?.record() ?? false
         
         if began {
-            timer = CADisplayLink(target: self, selector: "timerFired:")
+            timer = CADisplayLink(target: self, selector: #selector(AudioRecorder.timerFired(_:)))
             timer?.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
             delegate?.recorder(self, progressWithTime: 0, meter: 0)
             self.recordedFileURL = recordedFileURL
         } else {
-            do { try NSFileManager.defaultManager().removeItemAtURL(recordedFileURL) } catch {}
+            do { try NSFileManager.defaultManager().removeItemAtURL(recordedFileURL!) } catch {}
         }
     }
     

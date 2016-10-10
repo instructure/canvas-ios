@@ -10,6 +10,8 @@ import Foundation
 import TooLegit
 import ReactiveCocoa
 import Marshal
+import AVFoundation
+import WebKit
 
 public struct Airwolf {
     public static func authenticate(email email: String, password: String) throws -> SignalProducer<JSONObject, NSError> {

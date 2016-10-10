@@ -85,7 +85,7 @@ class NSURLRequestTests: UnitTestCase {
             XCTAssertTrue(query.contains(NSURLQueryItem(name: "one", value: "a")))
             XCTAssertTrue(query.contains(NSURLQueryItem(name: "two", value: "b")))
             XCTAssertTrue(query.contains(NSURLQueryItem(name: "three", value: "c")))
-            XCTAssertTrue(request.URL?.absoluteString.componentsSeparatedByString("&").count == 4) // includes `per_page`
+            XCTAssertTrue(request.URL?.absoluteString?.componentsSeparatedByString("&").count == 4) // includes `per_page`
             XCTAssertEqual(request.HTTPMethod, Method.GET.rawValue)
             XCTAssertNil(request.HTTPBody)
             XCTAssertFalse(request.allHTTPHeaderFields?.isEmpty ?? false)
@@ -165,7 +165,7 @@ class NSURLRequestTests: UnitTestCase {
             request = try session.GET("get")
         }
 
-        let containsUserID = request.URL?.absoluteString.rangeOfString("as_user_id=1") != nil
+        let containsUserID = request.URL?.absoluteString?.rangeOfString("as_user_id=1") != nil
         XCTAssert(containsUserID)
     }
 
@@ -177,7 +177,7 @@ class NSURLRequestTests: UnitTestCase {
             request = try session.GET("get")
         }
 
-        let containsUserID = request.URL?.absoluteString.rangeOfString("as_user_id=1") != nil
+        let containsUserID = request.URL?.absoluteString?.rangeOfString("as_user_id=1") != nil
         XCTAssertFalse(containsUserID)
     }
 

@@ -123,7 +123,7 @@ public class QuizIntroViewController: UIViewController {
         view.addConstraint(bottomConstraint)
         
         
-        footerView.takeButton.addTarget(self, action: "takeTheQuiz:", forControlEvents: .TouchUpInside)
+        footerView.takeButton.addTarget(self, action: #selector(QuizIntroViewController.takeTheQuiz(_:)), forControlEvents: .TouchUpInside)
     }
     
     private func buildQuizDetailsPage() -> QuizDetailsViewController {

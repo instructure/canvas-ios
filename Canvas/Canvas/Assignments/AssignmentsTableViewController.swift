@@ -121,10 +121,10 @@ class AssignmentsTableViewController: Assignment.TableViewController {
         let invalidGradingPeriods = try GradingPeriod.gradingPeriodIDs(session, courseID: courseID, excludingGradingPeriodID: gradingPeriodID)
         let assignments = try Assignment.refreshSignalProducer(session, courseID: courseID, gradingPeriodID: gradingPeriodID, invalidatingGradingPeriodIDs: invalidGradingPeriods, cacheKey: cacheKey)
         let grades = try Grade.refreshSignalProducer(session, courseID: courseID, gradingPeriodID: gradingPeriodID).map { _ in () }
-        let sync = SignalProducer(values: [assignments, grades]).flatten(.Merge)
+        let sync: SignalProducer<SignalProducer<Void, NSError>, NSError> = SignalProducer(values: [assignments, grades])
 
         let key = cacheKey(courseID, gradingPeriodID: gradingPeriodID)
-        let refresher = SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
+        let refresher = SignalProducerRefresher(refreshSignalProducer: sync.flatten(.Merge), scope: session.refreshScope, cacheKey: key)
         let theSession = self.session
         
         prepare(collection, refresher: refresher) { (assignment: Assignment) -> ColorfulViewModel in

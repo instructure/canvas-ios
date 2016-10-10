@@ -35,7 +35,7 @@ extension Assignment {
             let upload = TextSubmissionUpload.create(backgroundSessionID: identifier, assignment: self, text: text, inContext: context)
             handler(upload)
         case .URL(let url):
-            let upload = URLSubmissionUpload.create(backgroundSessionID: identifier, assignment: self, url: url.absoluteString, inContext: context)
+            let upload = URLSubmissionUpload.create(backgroundSessionID: identifier, assignment: self, url: url.absoluteString!, inContext: context)
             handler(upload)
         case .MediaComment(let file):
             var fileUploads = [SubmissionFileUpload]()

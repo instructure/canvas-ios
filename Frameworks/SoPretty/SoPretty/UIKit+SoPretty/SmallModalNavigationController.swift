@@ -69,7 +69,7 @@ class FadeInOutTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
     func transitionToModal(modal: SmallModalNavigationController, inContext context: UIViewControllerContextTransitioning) {
         let view = modal.view
-        guard let containerView = context.containerView() else { return print("Where's the transitioning context? That's weird.") }
+        let containerView = context.containerView()
         let containerBounds = containerView.bounds
         
         shadowView.frame = containerView.bounds

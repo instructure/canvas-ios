@@ -55,15 +55,15 @@ public class BrowserViewController: UIViewController {
         tapoutView?.removeFromSuperview()
         webView.scrollView.scrollEnabled = true
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Turn In", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Turn in this url button"), style: .Done, target: self, action: "submit:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Turn In", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Turn in this url button"), style: .Done, target: self, action: #selector(BrowserViewController.submit(_:)))
         navigationItem.rightBarButtonItem?.enabled = parseURLForInput(titleView.text) != nil
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelTurnIn:")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(BrowserViewController.cancelTurnIn(_:)))
     }
     
     private func beginEditing() {
         installTapoutView()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Go", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "navigate"), style: .Done, target: self, action: "go:")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelEditingURL:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Go", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "navigate"), style: .Done, target: self, action: #selector(BrowserViewController.go(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(BrowserViewController.cancelEditingURL(_:)))
     }
     
     func go(sender: AnyObject?) {
@@ -116,7 +116,7 @@ public class BrowserViewController: UIViewController {
         webView.scrollView.scrollEnabled = false
         view.addSubview(tapout)
         
-        let tap = UITapGestureRecognizer(target: self, action: "cancelEditingURL:")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(BrowserViewController.cancelEditingURL(_:)))
         tapout.addGestureRecognizer(tap)
         tapoutView = tapout
     }

@@ -1,5 +1,5 @@
-github "Quick/Quick"
-github "Quick/Nimble"
+github "Quick/Quick" == 0.9.3
+github "Quick/Nimble" == 4.1.0
 
-github "kylef/Mockingjay"
+github "kylef/Mockingjay" == 1.2.1
 

@@ -7,4 +7,8 @@ class ParentEarlGreyTests: LogoutBeforeEach {
     EarlGrey().selectElementWithMatcher(grey_accessibilityID("email_field"))
       .assertWithMatcher(grey_notNil())
   }
+
+    func testSomethingElse() {
+        XCTAssert(true)
+    }
 }

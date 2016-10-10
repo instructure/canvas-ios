@@ -54,7 +54,6 @@
 		49895EDF1C45B883002A16EC /* Assignment+AllowedFileSubmissionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49895ED01C45B883002A16EC /* Assignment+AllowedFileSubmissionTypes.swift */; };
 		49895EE91C45B883002A16EC /* Submission Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49895EDB1C45B883002A16EC /* Submission Icons.xcassets */; };
 		49895EEF1C45B9EC002A16EC /* WhizzyWig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49895EED1C45B9EC002A16EC /* WhizzyWig.framework */; };
-		49AAA3B21CB8417C0032D582 /* AssignmentKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49AAA3B11CB8417C0032D582 /* AssignmentKit.xcassets */; };
 		49D3B89A1C51823100291009 /* WhizzyWig.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49895EED1C45B9EC002A16EC /* WhizzyWig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49D3B89B1C51825300291009 /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494E4B471C503C1200E20CA7 /* DoNotShipThis.framework */; };
 		49D3B89C1C51825300291009 /* DoNotShipThis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 494E4B471C503C1200E20CA7 /* DoNotShipThis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -66,6 +65,7 @@
 		617CB08B1D4BFCA70022F916 /* SimpleRubricDVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617CB08A1D4BFCA70022F916 /* SimpleRubricDVM.swift */; };
 		618D09AA1D4BBDEC00785DA3 /* Assignment+DetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB7FA41D130F25003FEC60 /* Assignment+DetailsTests.swift */; };
 		618D09AB1D4BBDF600785DA3 /* Assignment+NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB7F911D10B17C003FEC60 /* Assignment+NetworkTests.swift */; };
+		61913DB61D9F09CA000D4DF2 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61913DB51D9F09BC000D4DF2 /* SoIconic.framework */; };
 		B10713AA1D7491160061E84A /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10713A71D7491160061E84A /* Nimble.framework */; };
 		B10713AB1D7491160061E84A /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10713A81D7491160061E84A /* Quick.framework */; };
 		B10713AC1D7491160061E84A /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10713A91D7491160061E84A /* SoAutomated.framework */; };
@@ -259,13 +259,13 @@
 		49895ED01C45B883002A16EC /* Assignment+AllowedFileSubmissionTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+AllowedFileSubmissionTypes.swift"; sourceTree = "<group>"; };
 		49895EDB1C45B883002A16EC /* Submission Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Submission Icons.xcassets"; sourceTree = "<group>"; };
 		49895EED1C45B9EC002A16EC /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhizzyWig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49AAA3B11CB8417C0032D582 /* AssignmentKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AssignmentKit.xcassets; sourceTree = "<group>"; };
 		49E696E91CC1327800A17AF1 /* DueDateOverride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDateOverride.swift; sourceTree = "<group>"; };
 		5E5560001C8EB37500933E08 /* Assignment+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+Network.swift"; sourceTree = "<group>"; };
 		5E5560061C8EB93700933E08 /* AssignmentAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentAPI.swift; sourceTree = "<group>"; };
 		617CB0811D4BE30C0022F916 /* RubricDetailsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RubricDetailsSpec.swift; sourceTree = "<group>"; };
 		617CB0881D4BE6490022F916 /* Rubric+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rubric+Factory.swift"; sourceTree = "<group>"; };
 		617CB08A1D4BFCA70022F916 /* SimpleRubricDVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRubricDVM.swift; sourceTree = "<group>"; };
+		61913DB51D9F09BC000D4DF2 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10713A71D7491160061E84A /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10713A81D7491160061E84A /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10713A91D7491160061E84A /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -399,6 +399,7 @@
 				490A86A71C407D4D00351185 /* SoPersistent.framework in Frameworks */,
 				490A86B51C407D7000351185 /* MediaKit.framework in Frameworks */,
 				490A86B91C407D7000351185 /* Result.framework in Frameworks */,
+				61913DB61D9F09CA000D4DF2 /* SoIconic.framework in Frameworks */,
 				493479821CB4244C008D14DD /* SoProgressive.framework in Frameworks */,
 				B181C3181CA43A5000277440 /* EnrollmentKit.framework in Frameworks */,
 				490A86B11C407D7000351185 /* FileKit.framework in Frameworks */,
@@ -492,7 +493,6 @@
 				490A86821C407CB200351185 /* Info.plist */,
 				B5BFC5421D8CBA5C0046D71D /* Localizable.strings */,
 				490A86D41C4080E100351185 /* Session+AssignmentKit.swift */,
-				49AAA3B11CB8417C0032D582 /* AssignmentKit.xcassets */,
 			);
 			path = AssignmentKit;
 			sourceTree = "<group>";
@@ -518,6 +518,7 @@
 		490A869C1C407CDC00351185 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				61913DB51D9F09BC000D4DF2 /* SoIconic.framework */,
 				493479811CB4244C008D14DD /* SoProgressive.framework */,
 				B1BF2CED1CA4412D00196663 /* Cartography.framework */,
 				B181C3161CA43A5000277440 /* EnrollmentKit.framework */,
@@ -983,12 +984,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					490A86551C407C0200351185 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = B6333T4PXQ;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1000,14 +1002,17 @@
 					};
 					490A867D1C407CB200351185 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					490A86861C407CB200351185 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = 490A86551C407C0200351185;
 					};
 					B195909A1C9B307300574968 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = B6333T4PXQ;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1079,7 +1084,6 @@
 				B5BFC5491D8CBA5C0046D71D /* Localizable.strings in Resources */,
 				B5D9E1A91C6E71E300C75DFB /* ScheduleItemDetails.css in Resources */,
 				49895EE91C45B883002A16EC /* Submission Icons.xcassets in Resources */,
-				49AAA3B21CB8417C0032D582 /* AssignmentKit.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1280,8 +1284,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1325,8 +1331,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1345,6 +1353,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1353,11 +1362,11 @@
 		490A86741C407C0200351185 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Assignments/Assignments.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1368,17 +1377,18 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Assignments;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
 		490A86751C407C0200351185 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Assignments/Assignments.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1389,6 +1399,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Assignments;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -1396,6 +1407,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1408,6 +1420,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.AssignmentKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1417,6 +1430,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1429,6 +1443,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.AssignmentKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1441,6 +1456,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.AssignmentKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Assignments.app/Assignments";
 			};
 			name = Debug;
@@ -1452,6 +1468,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.AssignmentKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Assignments.app/Assignments";
 			};
 			name = Release;
@@ -1468,6 +1485,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -1483,6 +1501,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

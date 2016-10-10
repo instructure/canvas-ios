@@ -15,6 +15,7 @@
 @interface CBIModuleProgressionViewController : UIViewController
 
 @property (nonatomic, strong) CBIModuleItemViewModel *moduleItemViewModel;
+@property (nonatomic, strong, readonly) UIViewController *childViewController;
 
 - (void)embedChildViewController:(UIViewController *)childViewController;
 

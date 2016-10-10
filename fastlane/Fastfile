@@ -1,0 +1,151 @@
+fastlane_version '1.89.0'
+update_fastlane
+
+default_platform :ios
+require 'slather'
+
+XC_WORKSPACE='AllTheThings.xcworkspace'
+
+PARENT_APP_ID='com.instructure.parentapp'
+PARENT_SCHEME='Parent'
+PARENT_PROJECT='Parent/Parent.xcodeproj'
+
+TEACHER_APP_ID='com.instructure.teacher'
+TEACHER_SCHEME='Teach'
+TEACHER_PROJECT='Teacher/Teach.xcodeproj'
+
+CANVAS_APP_ID='com.instructure.icanvas'
+CANVAS_SCHEME='Canvas'
+CANVAS_PROJECT='Canvas/Canvas.xcodeproj'
+
+FRAMEWORKS_SCHEME='EverythingBagel'
+FRAMEWORKS_PROJECT='Frameworks/EverythingBagel/EverythingBagel.xcodeproj'
+
+
+platform :ios do
+  before_all do
+    carthage(no_build: true, use_binaries: false, use_ssh: true)
+    cocoapods
+  end
+
+  def update_build_number(xc_project)
+    if ENV['BITRISE_BUILD_NUMBER']
+      increment_build_number(
+        build_number: ENV['BITRISE_BUILD_NUMBER'],
+        xcodeproj: xc_project
+      )
+    end
+  end
+
+  def test(xc_scheme, xc_project)
+    scan(
+      scheme: xc_scheme,
+      device: 'iPhone 6',
+      workspace: XC_WORKSPACE,
+      skip_build: true,
+      output_directory: './artifacts',
+      skip_slack: true,
+    )
+ 
+    slather(
+      proj: xc_project,
+      workspace: XC_WORKSPACE,
+      scheme: xc_scheme,
+      output_directory: './artifacts'
+    )
+  end
+
+  def distribute_adhoc
+    hockey(
+      api_token: ENV['HOCKEY_API_KEY'],
+      notes: 'Sending the canary down the coalmine'
+    )
+  end
+
+  def build_for_device(xc_scheme)
+    gym(
+      scheme: xc_scheme,
+      workspace: XC_WORKSPACE,
+      clean: false,
+      output_directory: './artifacts',
+      export_team_id: 'B6333T4PXQ'
+    )
+  end
+
+  def pull(app_id, xc_project, xc_scheme)
+    update_build_number(xc_project)
+    match(type: 'adhoc', app_identifier: app_id)
+
+    build_for_device(xc_scheme)
+
+    test(xc_scheme, xc_project)
+
+    distribute_adhoc
+  end
+
+  def beta(app_id, xc_project, xc_scheme)
+    match(type: 'adhoc', app_identifier: app_id) # gym uses adhoc profile for initial signing
+    
+    build_for_device(xc_scheme)
+
+    # temporarily disable testing for the sake of time
+    #test(xc_scheme, xc_project)
+
+    match(type: 'appstore', app_identifier: app_id)
+    pilot(
+      app_identifier: app_id,
+      ipa: "./artifacts/#{xc_scheme}.ipa",
+      skip_submission: true,
+      skip_waiting_for_build_processing: true
+    )
+      
+  end
+
+  ############
+  # Frameworks
+
+  desc 'build frameworks for pull request'
+  lane :pull_frameworks do
+    test(FRAMEWORKS_SCHEME, FRAMEWORKS_PROJECT)
+  end
+
+  ############
+  # Canvas
+
+  desc 'build canvas for pull request'
+  lane :pull_canvas do
+    pull(CANVAS_APP_ID, CANVAS_PROJECT, CANVAS_SCHEME)
+  end
+
+  desc 'build Canvas.app and submit to iTunes Connect'
+  lane :beta_canvas do
+    beta(CANVAS_APP_ID, CANVAS_PROJECT, CANVAS_SCHEME)
+  end
+
+  ############
+  # Teacher
+
+  lane :pull_teacher do
+    pull(TEACHER_APP_ID, TEACHER_PROJECT, TEACHER_SCHEME)
+  end
+
+  desc 'build Teacher.app and submit to iTunes Connect'
+  lane :beta_teacher do
+    beta(TEACHER_APP_ID, TEACHER_PROJECT, TEACHER_SCHEME)
+  end
+
+  ############
+  # Parent
+
+  desc 'build parent for pull request'
+  lane :pull_parent do
+    pull(PARENT_APP_ID, PARENT_PROJECT, PARENT_SCHEME)
+  end
+
+  desc 'build Parent.app and submit to iTunes Connect'
+  lane :beta_parent do
+    beta(PARENT_APP_ID, PARENT_PROJECT, PARENT_SCHEME)
+  end
+
+end
+

@@ -15,7 +15,7 @@ import Result
 extension AlertThreshold {
     public func remove(session: Session) -> SignalProducer<Bool, NSError> {
         return SignalProducer { [weak self] observer, disposable in
-            guard let me = self, context = me.managedObjectContext else {
+            guard let me = self, let context = me.managedObjectContext else {
                 fatalError("Every Object should have a context or we're already screwed")
             }
 
@@ -107,7 +107,7 @@ extension AlertThreshold {
 
     public func update(session: Session, newThreshold: String) -> SignalProducer<Bool, NSError> {
         return SignalProducer { [weak self] observer, disposable in
-            guard let me = self, context = me.managedObjectContext else {
+            guard let me = self, let context = me.managedObjectContext else {
                 fatalError("Every Object should have a context or we're already screwed")
             }
 

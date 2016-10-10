@@ -10,15 +10,33 @@ import Foundation
 
 
 public enum Icon: String {
-    case calendar
-    case courses
-    case inbox
-    case announcements
-    case edit
+    case announcement
     case assignment
-    case quiz
-    case lti
+    case calendar
+    case collaboration
+    case conference
+    case course
     case discussion
+    case file
+    case grades
+    case home
+    case link
+    case lti
+    case module
+    case outcome
+    case page
+    case prerequisite
+    case quiz
+    case settings
+    case syllabus
+    case user
+
+    case inbox
+
+    case edit
+    case lock
+    case empty
+    case complete
     
     
     /** name of the icon of the form "icon_lined"

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49BE5A5B1D95C2CE00292757 /* libXCTWebDriverAgentLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BE5A5A1D95C2CE00292757 /* libXCTWebDriverAgentLib.a */; };
 		61C866871D539B2A00100D00 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C866861D539B2A00100D00 /* Result.framework */; };
 		B10189EA1C8F2DAB0026694A /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10189E91C8F2DAB0026694A /* SoPersistent.framework */; };
 		B11273DB1C9239DF00452060 /* NSManagedObject+SoAutomated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11273DA1C9239DF00452060 /* NSManagedObject+SoAutomated.swift */; };
@@ -33,7 +34,6 @@
 		B1E7B2CC1D2D87E70076F377 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B2CB1D2D87E70076F377 /* User.swift */; };
 		B1E7B2CE1D2D884F0076F377 /* Session+SoAutomated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B2CD1D2D884F0076F377 /* Session+SoAutomated.swift */; };
 		B1E7B2D01D2D88E00076F377 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B2CF1D2D88E00076F377 /* Context.swift */; };
-		F9090BDB1C640FDC00DF0361 /* libXCTWebDriverAgentLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9090BDA1C640FDC00DF0361 /* libXCTWebDriverAgentLib.a */; };
 		F97219201C15F8EE0034775D /* SoAutomated.h in Headers */ = {isa = PBXBuildFile; fileRef = F972191F1C15F8EE0034775D /* SoAutomated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F97219301C15FCCF0034775D /* XCUITestCase+SoAutomated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F972192F1C15FCCF0034775D /* XCUITestCase+SoAutomated.swift */; };
 		F9EDD1681C21EC2900DDBF45 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EDD1671C21EC2900DDBF45 /* TestCase.swift */; };
@@ -51,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49BE5A5A1D95C2CE00292757 /* libXCTWebDriverAgentLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXCTWebDriverAgentLib.a; path = libs/libXCTWebDriverAgentLib.a; sourceTree = "<group>"; };
 		61C866861D539B2A00100D00 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10189E91C8F2DAB0026694A /* SoPersistent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPersistent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B11273DA1C9239DF00452060 /* NSManagedObject+SoAutomated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+SoAutomated.swift"; sourceTree = "<group>"; };
@@ -77,7 +78,6 @@
 		B1E7B2CB1D2D87E70076F377 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B1E7B2CD1D2D884F0076F377 /* Session+SoAutomated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+SoAutomated.swift"; sourceTree = "<group>"; };
 		B1E7B2CF1D2D88E00076F377 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
-		F9090BDA1C640FDC00DF0361 /* libXCTWebDriverAgentLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXCTWebDriverAgentLib.a; path = libs/libXCTWebDriverAgentLib.a; sourceTree = "<group>"; };
 		F972191C1C15F8EE0034775D /* SoAutomated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F972191F1C15F8EE0034775D /* SoAutomated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoAutomated.h; sourceTree = "<group>"; };
 		F97219211C15F8EE0034775D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,10 +105,10 @@
 				B11544BB1D428E020011E5DF /* Nimble.framework in Frameworks */,
 				B13C60C01D5284C900367E56 /* ReactiveCocoa.framework in Frameworks */,
 				B16107141C9366130012F5E4 /* DVR.framework in Frameworks */,
-				F9090BDB1C640FDC00DF0361 /* libXCTWebDriverAgentLib.a in Frameworks */,
 				B13C60BB1D52525800367E56 /* EnrollmentKit.framework in Frameworks */,
 				61C866871D539B2A00100D00 /* Result.framework in Frameworks */,
 				B10189EA1C8F2DAB0026694A /* SoPersistent.framework in Frameworks */,
+				49BE5A5B1D95C2CE00292757 /* libXCTWebDriverAgentLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +151,7 @@
 		B1AC256A1C5547FE00636DC3 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				49BE5A5A1D95C2CE00292757 /* libXCTWebDriverAgentLib.a */,
 				B13C60BA1D52525800367E56 /* EnrollmentKit.framework */,
 				61C866861D539B2A00100D00 /* Result.framework */,
 				B1C49DB11D46ACAE0003F8EB /* ReactiveCocoa.framework */,
@@ -177,7 +178,6 @@
 		F97219121C15F8EE0034775D = {
 			isa = PBXGroup;
 			children = (
-				F9090BDA1C640FDC00DF0361 /* libXCTWebDriverAgentLib.a */,
 				B1AC256A1C5547FE00636DC3 /* Dependencies */,
 				F972191E1C15F8EE0034775D /* SoAutomated */,
 				B1D801171C91BA4F006A1143 /* SoAutomatedTests */,
@@ -275,14 +275,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = instructure;
 				TargetAttributes = {
 					B1D801151C91BA4F006A1143 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					F972191B1C15F8EE0034775D = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -374,6 +376,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoAutomatedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -385,6 +388,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoAutomatedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -401,8 +405,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -449,8 +455,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -470,6 +478,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -481,6 +490,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -499,6 +509,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -506,6 +517,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -523,6 +535,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoAutomated;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

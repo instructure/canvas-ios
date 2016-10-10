@@ -25,7 +25,7 @@ public class WhizzyWigViewController: UIViewController {
         whizzyWigView.scrollView.scrollEnabled = true
         view.addSubview(whizzyWigView)
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "done")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(WhizzyWigViewController.done))
 
         makeConstraints()
     }

@@ -23,7 +23,8 @@ extension NSManagedObjectModel {
     
     @warn_unused_result(message="The File entity is added to a copy of the receiver. The receiver is immutable.")
     public func loadingFileEntity() -> NSManagedObjectModel {
-        guard let fileMOM = NSManagedObjectModel(named: "FileKit", inBundle: NSBundle(forClass: File.self)) else {
+        let fileKitBundle = NSBundle(forClass: File.self)
+        guard let fileMOM = NSManagedObjectModel.mergedModelFromBundles([fileKitBundle]) else {
             ❨╯°□°❩╯⌢"The FileKit.xcdatamodel is noticably absent"
         }
 

@@ -89,8 +89,8 @@ public class Session: NSObject {
         }
 
         let url = fileURL.URLByAppendingPathComponent(sessionID)
-        let _ = try? NSFileManager.defaultManager().createDirectoryAtURL(url, withIntermediateDirectories: true, attributes: nil)
-        return url
+        let _ = try? NSFileManager.defaultManager().createDirectoryAtURL(url!, withIntermediateDirectories: true, attributes: nil)
+        return url!
     }
 
     public var logDirectoryURL: NSURL {
@@ -108,8 +108,8 @@ public class Session: NSObject {
         }
 
         let url = fileURL.URLByAppendingPathComponent("\(sessionID)_logs")
-        let _ = try? NSFileManager.defaultManager().createDirectoryAtURL(url, withIntermediateDirectories: true, attributes: nil)
-        return url
+        let _ = try? NSFileManager.defaultManager().createDirectoryAtURL(url!, withIntermediateDirectories: true, attributes: nil)
+        return url!
     }
 }
 

@@ -11,7 +11,7 @@ import SoPersistent
 import SoLazy
 import Marshal
 
-final public class Conversation: NSManagedObject, Model {
+final public class Conversation: NSManagedObject {
     // MARK: Types
 
     public enum WorkflowState: String {

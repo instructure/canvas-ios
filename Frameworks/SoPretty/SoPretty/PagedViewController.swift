@@ -76,7 +76,7 @@ public class PagedViewController: UIViewController {
         let items = pages.map{$0.title}
         let segControl = UISegmentedControl(items: items)
         segControl.selectedSegmentIndex = 0
-        segControl.addTarget(self, action: Selector("segPressed:"), forControlEvents: .ValueChanged)
+        segControl.addTarget(self, action: #selector(PagedViewController.segPressed(_:)), forControlEvents: .ValueChanged)
         navigationItem.titleView = segControl
         self.segControl = segControl
     }

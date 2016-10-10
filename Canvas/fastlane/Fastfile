@@ -31,11 +31,11 @@ platform :ios do
   end
 
   #####################################################
-  # run_match_development - Runs match to install dev certs
+  # run_match_adhoc - Runs match to install dev certs
   #####################################################
   desc 'Runs match to install dev certs'
-  lane :run_match_development do
-    match(type: 'development')
+  lane :run_match_adhoc do
+    match(type: 'adhoc')
   end
 
   #####################################################
@@ -43,7 +43,7 @@ platform :ios do
   #####################################################
   desc 'Install development certs and checkout carthage deps'
   lane :setup_dev do
-    run_match_development
+    run_match_adhoc
     run_carthage_and_pods
   end
 
