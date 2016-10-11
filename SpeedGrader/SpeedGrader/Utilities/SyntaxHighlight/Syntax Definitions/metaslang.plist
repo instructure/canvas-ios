@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(%[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\(\*(.*?)\*\)</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\(\*|\*\))</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(as|axiom|by|case|choose|conjecture|def|else|embed|embed\?|endspec|ex|ex1|fa|false|fn|from|generate|if|import|in|infixl|infixr|is|let|morphism|obligations|of|op|project|prove|qualifying|quotient|sort|spec|the|then|theorem|true|type|where|Bijective|Boolean|Char|Comparison|Cons|Equal|Greater|Injective|Integer|Less|List|Nat|Nil|None|NonZeroInteger|Option|PosNat|Some|String|Surjective|abs|all|bijective\?|chr|compare|concat|concatList|cons|diff|div|exists|explode|filter|find|firstUpTo|flatten|foldl|foldr|hd|id|implode|injective\?|insert|intConvertible|intToString|inverse|isAlpha|isAlphaNum|isAscii|isLowerCase|isNum|isUpperCase|length|leq|locationOf|lt|map|mapOption|mapPartial|max|member|min|natConvertible|natToString|newline|nil|none|none\?|nth|nthTail|null|one|ord|posNat\?|pred|rem|rev|show|some|some|splitList|stringToInt|stringToNat|sub|sublist|substring|succ|surjective\?|tabulate|tl|toLowerCase|toScreen|toString|toUpperCase|translate|two|writeLine|zero)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

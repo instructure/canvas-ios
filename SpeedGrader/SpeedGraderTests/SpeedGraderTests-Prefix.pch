@@ -1,0 +1,17 @@
+//
+//  Prefix header for Unit Tests
+//
+//  The contents of this file are implicitly included at the beginning of every source file in the testing target
+//
+
+#import <Availability.h>
+
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+
+#import <Foundation/Foundation.h>
+#import <CanvasKit/CanvasKit.h>
+#import <CanvasKeymaster/CanvasKeymaster.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#endif

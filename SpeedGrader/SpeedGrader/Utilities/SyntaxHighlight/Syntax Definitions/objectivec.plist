@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(char|const|double|enum|float|int|long|short|signed|struct|typedef|union|unsigned|void|id|Class|SEL|IMP|BOOL|auto|break|case|continue|default|do|else|extern|for|goto|if|register|return|sizeof|static|switch|volatile|while|self|super|@interface|@implementation|@protocol|@end|@private|@protected|@public|@class|@selector|@endcode|@defs|true|false|TRUE|FALSE|YES|NO|NULL|nil|NIl|#define|#endif|#if|#ifdef|#ifndef|unichar|FoundationErrors|Foundation|GSMime|GSXML|NSAffineTransform|NSAriver|NSArray|NSAttributedString|NSAutoreleasePool|NSBundle|NSByteOrder|NSCalendarDate|NSaracterSet|NSClassDescription|NSCoder|NSComparisonPredicate|NSCompoundPredicate|NSConnection|NSData|NSDateFormatter|NSDate|NSDebug|NSDecimal|NSDecimalNumber|NSDictionary|NSDistantObject|NSDistributedLock|NSDistributedNotificationCenter|NSEnumerator|NSError|NSErrorRecoveryAttempting|NSException|NSExpression|NSFileHandle|NSFileManager|NSFormatter|NSGeometry|NSHaTable|NSHost|NSHTTPCookie|NSHTTPCookieStorage|NSIndexPa|NSIndexSet|NSInvocation|NSKeyedAriver|NSKeyValueCoding|NSKeyValueObserving|NSLock|NSMapTable|NSMeodSignature|NSNetServices|NSNotification|NSNotificationQueue|NSNull|NSNumberFormatter|NSObjCRuntime|NSObject|NSPaUtilities|NSPortCoder|NSPort|NSPortMessage|NSPortNameServer|NSPredicate|NSProcessInfo|NSPropertyList|NSProtocolecker|NSProxy|NSRange|NSRunLoop|NSScanner|NSSerialization|NSSet|NSSortDescriptor|NSSpellServer|NSStream|NSString|NSTask|NSread|NSTimer|NSTimeZone|NSUndoManager|NSURLAuenticationallenge|NSURLCae|NSURLConnection|NSURLCredential|NSURLCredentialStorage|NSURLDownload|NSURLError|NSURL|NSURLHandle|NSURLProtectionSpace|NSURLProtocol|NSURLRequest|NSURLResponse|NSUserDefaults|NSUtilities|NSValue|NSValueTransformer|NSXMLParser|NSZone)(?!\w)</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+	<key>project</key>
+	<string>\b((NS|UI|CG)\w+?)</string>
+	<key>attribute</key>
+	<string>(\.[^\d]\w+)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>character</key>
+	<string>(&apos;.&apos;)</string>
+	<key>string</key>
+	<string>(@?&quot;(?:[^&quot;\\]|\\.)*&quot;)</string>
+	<key>comment</key>
+	<string>//[^&quot;\n\r]*(?:&quot;[^&quot;\n\r]*&quot;[^&quot;\n\r]*)*[\r\n]</string>
+	<key>documentation_comment</key>
+	<string>\/\*(.*?)\*\/</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\/\*|\*\/)</string>
+	<key>preprocessor</key>
+	<string>(#.*?)[\r\n]</string>
+</dict>
+</plist>

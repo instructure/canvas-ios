@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(\/\/[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\/\*(.*?)\*\/</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\/\*|\*\/)</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(and|always|assign|attribute|begin|buf|bufif0|bufif1|case|cmos|deassign|default|defparam|disable|else|endattribute|end|endcase|endfunction|endprimitive|endmodule|endtable|endtask|event|for|force|forever|fork|function|highz0|highz1|if|`include|initial|inout|input|integer|join|large|medium|module|nand|negedge|nor|not|notif0|notif1|nmos|or|output|parameter|pmos|posedge|primitive|pulldown|pullup|pull0|pull1|rcmos|reg|release|repeat|rnmos|rpmos|rtran|rtranif0|rtranif1|scalared|small|specify|specparam|strong0|strong1|supply0|supply1|table|task|tran|tranif0|tranif1|time|tri|triand|trior|trireg|tri0|tri1|vectored|wait|wand|weak0|weak1|while|wire|wor)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

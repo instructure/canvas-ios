@@ -1,0 +1,20 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+
+    #import <Foundation/Foundation.h>
+    #import <CanvasKit/CanvasKit.h>
+    #import <CanvasKeymaster/CanvasKeymaster.h>
+    #import <ReactiveCocoa/ReactiveCocoa.h>
+//    #import <Mantle/EXTScope.h>
+    #import "CSGUserPrefsKeys.h"
+    #import "UIColor+CSGColor.h"
+    #import "CSGLog.h"
+#endif

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(#[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\/\*(.*?)\*\/</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\/\*|\*\/)</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(use|package|require|print|close|my|open|new|if|until|while|elsif|else|unless|for|foreach|BEGIN|END|cmp|eq|ne|le|ge|not|and|or|xor|chomp|chop|chr|crypt|hex|index|lc|lcfirst|length|oct|ord|pack|reverse|rindex|sprintf|substr|uc|ucfirst|pos|quotemeta|split|study|abs|atan2|cos|exp|int|log|rand|sin|sqrt|srand|pop|push|shift|splice|unshift|grep|join|map|sort|unpack|delete|each|exists|keys|values|caller|continue|die|do|dump|eval|exit|goto|last|next|redo|return|sub|wantarray|printf|local|scalar)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

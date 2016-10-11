@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>documentation_comment</key>
+	<string>\(\*(.*?)\*\)</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\(\*|\*\))</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(abstype|and|andalso|as|case|do|datatype|else|end|eqtype|exception|false|fn|fun|functor|handle|if|in|include|infix|infixr|let|local|nonfix|of|op|open|orelse|raise|rec|sharing|sig|signature|struct|structure|then|true|type|val|where|with|withtype|while|unit|int|real|char|string|substring|word|ref|array|vector|bool|list|option|order)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

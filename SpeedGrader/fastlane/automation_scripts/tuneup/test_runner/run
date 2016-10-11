@@ -1,0 +1,343 @@
+#!/usr/bin/env ruby -wKU
+
+require "fileutils"
+require "optparse"
+require "ostruct"
+require "pty"
+require "tempfile"
+require File.expand_path(File.join(File.dirname(__FILE__), "preprocessor"))
+require File.expand_path(File.join(File.dirname(__FILE__), "console_output"))
+require File.expand_path(File.join(File.dirname(__FILE__), "colored_console_output"))
+require File.expand_path(File.join(File.dirname(__FILE__), "abbreviated_console_output"))
+require File.expand_path(File.join(File.dirname(__FILE__), "xunit_output"))
+
+options = OpenStruct.new
+options.env_vars = {}
+options.attempts = 1
+options.startup_timeout = 30
+
+opts_parser = OptionParser.new do |opts|
+  opts.banner = "USAGE: run-test-script <app bundle> <test script> <output directory> [optional args]" +
+    "\n  If <app bundle> is the name of the app without extension, the newest bundle is located autmatically"
+
+  opts.on("-d", "--device DEVICE", "Device UDID to run test against,",
+          "or 'dynamic' to find the UDID at runtime") do |dev|
+    options.device = dev
+  end
+
+  opts.on("-w", "--simName SIMULATORNAME", "Simulator name to target") do |dev|
+    options.simulatorName = dev
+  end
+
+  opts.on("-e", "--environment ENV", "Pass variables in the form of name=value") do |env|
+    key, value = env.split '='
+    options.env_vars[key] = value
+  end
+
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit 0
+  end
+
+  opts.on("-t", "--timeout DURATION", OptionParser::DecimalInteger,
+          "Maximum time in seconds with no output") do |t|
+    options.timeout = t
+  end
+
+  opts.on("-r", "--run TEST", "Only run tests named alike. It's possible to use RegExps.") do |test|
+    options.run = test
+  end
+
+  opts.on("-v", "--verbose", "Produce more output") do
+    options.verbose = true
+  end
+
+  opts.on("-q", "--quiet", "Don't print test results to console") do
+    options.quiet = true
+  end
+
+  opts.on("-c", "--color", "Colorize the console output") do
+    options.colorize = true
+  end
+  
+  opts.on("-b", "--brief", "Abbreviated and colorized console output") do
+    options.brief = true
+  end
+
+  opts.on("-p", "--preprocess", "Use own preprocessor to substitude imports") do
+    options.preprocess = true
+  end
+
+  opts.on("-x", "--xunit", "Create Xunit formatted test result file in the output directory") do
+    options.xunit = true;
+  end
+
+  opts.on("-l", "--language=en", "Use language to simulator") do |l|
+    options.language = "-AppleLanguages \(#{l}\)"
+  end
+
+  opts.on("-a", "--attempts ATTEMPTS", OptionParser::DecimalInteger,
+          "Number of times to attempt a successful test run in Instruments (reliability hack)") do |a|
+    options.attempts = a
+  end
+
+  opts.on("-s", "--startuptimeout DURATION", OptionParser::DecimalInteger,
+          "Amount of time to wait for output from Instruments scripts before judging it to be hung") do |t|
+   options.startup_timeout = t
+  end
+end
+
+unless ARGV.length >= 3
+  STDERR.puts opts_parser.help
+  exit 1
+end
+
+app_bundle, test_script, test_output = ARGV.shift 3
+
+begin
+  opts_parser.parse!
+rescue OptionParser::ParseError => e
+  puts e
+  puts opts_parser
+  exit 1
+end
+
+# instrument cli helper does not recognise any relative directory.
+# expand the relative directory and throw an exception if it does not texist.
+test_output = File.expand_path(test_output)
+raise "Output directory #{test_output} does not exist" unless File.directory?(test_output)
+
+
+# Output options
+outputs = []
+unless options.quiet    # HINT this could be moved into the actual options parsing
+  outputs << (options.colorize ? ColoredConsoleOutput.new : (options.brief ? AbbreviatedConsoleOutput.new : ConsoleOutput.new))
+end
+if options.xunit
+  report_filename = File.join(test_output, File.basename(test_script, File.extname(test_script)) + ".xml")
+  outputs << XunitOutput.new(report_filename)
+end
+
+
+
+# Dynamic UDID
+# Discussion: better to have a separate command line option for dynamic?
+if options.device then
+  if options.device.length == 40
+    # UDID provided
+  elsif options.device == "dynamic"
+    ioreg_output = `ioreg -w 0 -rc IOUSBDevice -k SupportsIPhoneOS`
+    if ioreg_output =~ /"USB Serial Number" = "([0-9a-z]+)"/ then
+      options.device = $1
+      puts "Using device with UDID #{options.device}", "\n" if options.verbose
+    else
+      raise "Couldn't get the UDID using ioreg"
+    end
+  else
+    raise "Invalid UDID with length #{options.device.length} provided"
+  end
+end
+
+# Check for already running instrument processes
+instrument_pids = `ps aux | grep -i instrument[s] | awk '{ print $2 }'`
+if instrument_pids != "" then
+  warn "\n### There are other 'instrument' processes running that may interfere - consider terminating them first:\nkill -9 " + instrument_pids
+end
+
+# Find the bundle path at runtime
+# Discussion: better to have a command line option for app_name,
+# than using a "bare" app_bundle to specify app_name?
+app_name = File.basename(app_bundle, ".*")
+if app_bundle == app_name then
+  # List existing bundles, newest first
+  mdargs = 'kMDItemDisplayName == "' + app_name + '.app" || ' +
+    'kMDItemAlternateNames == "' + app_name + '.app"'
+  bundle_paths = `mdfind -0 '#{mdargs}' | xargs -0 ls -dt`.split(/\n/)
+  if options.device
+    bundles = bundle_paths.grep(/\/(Debug|Release)-iphoneos\//)
+  else
+    bundles = bundle_paths.grep(/\/iPhone Simulator\/|\/(Debug|Release)-iphonesimulator\//)
+  end
+  if bundles.size > 0
+    app_bundle = bundles[0]
+    puts "Found relevant bundles (newest first):", bundles, "\n" if options.verbose
+    puts "Using bundle:", app_bundle, "\n"
+  else
+    STDERR.puts "Matching but irrelevant bundles:", bundle_paths if bundle_paths.size > 0
+    raise "No output bundles found for app #{app_name}"
+  end
+end
+
+# Instruments wants the test_script and app_bundle to be a fully-qualified path
+test_script = File.expand_path(test_script)
+raise "Test script '#{test_script}' doesn't exist" unless File.exist?(test_script)
+app_bundle = File.expand_path(app_bundle)
+raise "App bundle '#{app_bundle}' doesn't exist" unless File.directory?(app_bundle)
+
+
+
+if options.preprocess or options.run
+  temp_file = Tempfile.new(File.basename(test_script))
+
+  # inject test filter
+  if options.run
+    puts "Injecting test filter to only run test \"#{options.run}\"", "\n" if options.verbose
+    temp_file.write("var TUNEUP_ONLY_RUN = [\"#{options.run}\"];\n\n")
+  end
+
+  # apply custom preprocessing to test_script
+  if options.preprocess
+    puts "Preprocessing file..." if options.verbose
+    temp_file.write(Preprocessor.process test_script)
+    puts "contents written to temp file #{temp_file.path}", "\n" if options.verbose
+  end
+
+  temp_file.flush
+  test_script = temp_file.path
+end
+
+
+SDKROOT = `/usr/bin/xcodebuild -version -sdk iphoneos | grep PlatformPath`.split(":")[1].chomp.sub(/^\s+/, "")
+XCODE_ROOT = `/usr/bin/xcode-select -print-path`.chomp.sub(/^\s+/, "")
+
+# path is different for Instruments 6.0
+if File.directory? "#{XCODE_ROOT}/../Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.xrplugin/"
+  instruments_folder = "AutomationInstrument.xrplugin";
+else
+  # older instruments path
+  instruments_folder = "AutomationInstrument.bundle";
+end
+
+
+TEMPLATE = `[ -f /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Instruments/PlugIns/#{instruments_folder}/Contents/Resources/Automation.tracetemplate ] && echo "#{SDKROOT}/Developer/Library/Instruments/PlugIns/#{instruments_folder}/Contents/Resources/Automation.tracetemplate" || echo "#{XCODE_ROOT}/../Applications/Instruments.app/Contents/PlugIns/#{instruments_folder}/Contents/Resources/Automation.tracetemplate"`.chomp.sub(/^\s+/, "")
+
+command = ["env", "DEVELOPER_DIR=#{XCODE_ROOT}", "/usr/bin/instruments"]
+if options.device
+  command << "-w" << options.device 
+elsif options.simulatorName
+  command << "-w" << options.simulatorName
+end 
+  
+command << "-t" << "#{TEMPLATE}"
+command << app_bundle
+command << "-e" << "UIASCRIPT" << test_script
+command << "-e" << "UIARESULTSPATH" << test_output
+options.env_vars.to_a.each do |pair|
+  command << "-e"
+  command.concat(pair)
+end
+command << options.language if options.language
+puts "command=" + command.map { |s| s.sub(/\A(.*\s.*)\Z/, '"\1"') }.join(' ') if options.verbose
+
+
+FileUtils.mkdir_p test_output unless File.directory? test_output
+
+
+def parse_status(status)
+  case status
+  when /start/i then :start
+  when /pass/i then :pass
+  when /fail/i then :fail
+  when /error/i then :error
+  when /warning/i then :warning
+  when /issue/i then :issue
+  when /default/i then :default
+  else nil
+  end
+end
+
+def failed?(statistics)
+  statistics[:total].to_i == 0 || statistics[:fail].to_i > 0 || statistics[:error].to_i > 0
+end
+
+def format_statistics(statistics)
+  output = "#{statistics[:total].to_i} tests, #{statistics[:fail].to_i} failures"
+  output << ", #{statistics[:error].to_i} errors" if statistics[:error].to_i > 0
+  output << ", #{statistics[:warning].to_i} warnings" if statistics[:warning].to_i > 0
+  output << ", #{statistics[:issue].to_i} issues" if statistics[:issue].to_i > 0
+  output
+end
+
+statistics = {}
+failed = false
+started = false
+remaining_attempts = options.attempts
+
+while (not started) && remaining_attempts > 0 do
+  statistics = {}
+  failed = false
+  remaining_attempts = remaining_attempts - 1
+  warn "\n### Launching instruments.  Will retry #{remaining_attempts} more times if it doesn't initialize"
+
+  begin
+    Dir.chdir(test_output) do
+
+      PTY.spawn(*command) do |r, w, pid|
+        while not failed do
+          if not started then
+            mytimeout = options.startup_timeout
+          else
+            mytimeout = options.timeout
+          end
+          if IO.select([r], nil, nil, mytimeout) then
+            line = r.readline.rstrip
+            if (line.include? " +0000 ") && (not line.include? " +0000 Fail: The target application appears to have died") then 
+              started = true
+            end
+
+            _, date, time, tz, status, msg = line.match(/^(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}) ([+-]\d{4}) ([^:]+): (.*)$/).to_a
+
+            if status
+              if options.verbose || status != "Debug"
+                status = parse_status(status) if status
+                outputs.each { |output| output.add_status(status, date, time, tz, msg) }
+                statistics[:total] = statistics[:total].to_i + 1 if status == :start
+                statistics[status] = statistics[status].to_i + 1
+              end
+            else
+              outputs.each { |output| output.add(line) } if options.verbose
+            end
+
+            failed = true if line =~ /Instruments Trace Error/i
+          else
+            failed = true
+            warn "\n### Timeout #{options.timeout} reached without any output - " +
+              "killing Instruments (pid #{pid})..."
+            begin
+              Process.kill(9, pid)
+              w.close
+              r.close
+              Process.wait(pid)
+            rescue PTY::ChildExited
+            end
+            puts "Pid #{pid} killed."
+          end
+        end
+      end
+    end
+
+  rescue Errno::EIO
+  rescue Errno::ECHILD
+  rescue EOFError
+  rescue PTY::ChildExited
+    STDERR.puts "Instruments exited unexpectedly"
+    exit 1 if started
+  ensure
+    outputs.map(&:close)
+
+    if temp_file
+      temp_file.close
+      temp_file.unlink
+      puts "Deleted temp file" if options.verbose
+    end
+  end
+end
+
+if failed || failed?(statistics)
+  STDERR.puts format_statistics(statistics)
+  STDERR.puts "#{test_script} failed, see log output for details"
+  exit 1
+else
+  STDOUT.puts format_statistics(statistics)
+  STDOUT.puts "TEST PASSED"
+end

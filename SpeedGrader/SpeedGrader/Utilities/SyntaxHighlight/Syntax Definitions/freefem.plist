@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(\/\/[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\/\*(.*?)\*\/</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\/\*|\*\/)</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(adaptmesh|Cmatrix|R3|bool|border|break|buildmesh|cin|complex|continue|cout|element|else|end|fespace|for|func|if|ifstream|include|int|intalledge|load|macro|matrix|mesh|movemesh|ofstream|namespace|plot|problem|real|return|savemesh|solve|string|vertex|varf|while|int1d|int2d|on|square|dx|dy|convect|jump|mean|wait|ps|solver|CG|LU|UMFPACK|factorize|init|endl|x|y|z|pi|i|sin|cos|tan|atan|asin|acos|cotan|sinh|cosh|tanh|cotanh|exp|log|log10|sqrt|abs|max|min|nbvx|label|region|value|set|fill|true|false|trunc|triangulate|splitmesh|savemesh|region|readmesh|randreal1|randreal2|randreal3|randint31|randint32|randres53|polar|pow|on)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>('[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(AspCompat|AutoEventWireup|Assembly|Buffer|ClassName|ClientTarget|CodePage|CompilerOptions|ContentType|Culture|Debug|Description|EnableSessionState|EnableViewState|EnableViewStateMac|ErrorPage|Explicit|Inherits|Language|LCID|ResponseEncoding|Src|SmartNavigation|Strict|Trace|TraceMode|Transaction|UICulture|WarningLevel|Namespace|Interface|TagPrefix|TagName|Duration|Location|VaryByCustom|VaryByHeader|VaryByParam|VaryByControl|Control|Literal|PlaceHolder|Xml|AdRotator|Button|Calendar|CheckBox|CheckBoxList|DataGrid|DataList|DropDownList|HyperLink|Image|ImageButton|Label|LinkButton|ListBox|Panel|PlaceHolder|RadioButton|RadioButtonList|Repeater|Table|TableCell|TableRow|TextBox|runat|id|OnSelectedIndexChanged|AutoPostBack|EnableViewState|if|then|else|elseif|select|case|for|to|step|next|each|in|do|while|until|loop|wend|exit|end|function|sub|class|property|get|let|set|byval|byref|const|dim|redim|preserve|as|set|with|new|public|default|private|rem|call|execute|eval|on|error|goto|resume|option|explicit|erase|randomize|is|mod|and|or|not|xor|imp|false|true|empty|nothing|null|connect|EOF|movenext|close|Application|ASPError|Request|Response|Server|Session|Contents|StaticObjects|Remove|RemoveAll|Lock|Unlock|Application_OnStart|Application_OnEnd|ASPCode|Number|Source|Category|File|Line|Column|Description|ASPDescription|Cookies|Form|QueryString|ServerVariables|TotalBytes|Buffer|CacheControl|Charset|CodePage|ContentType|Expires|ExpiresAbsolute|IsClientConnected|LCID|PICS|Status|AddHeader|AppendToLog|BinaryWrite|Clear|End|Flush|Redirect|Write|ScriptTimeout|CreateObject|Execute|GetLastError|HTMLEncode|MapPath|Transfer|URLEncode|StaticObjects|SessionID|Timeout)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

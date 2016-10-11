@@ -98,6 +98,13 @@
       </FileRef>
    </Group>
    <Group
+      location = "container:SpeedGrader"
+      name = "SpeedGrader">
+      <FileRef
+         location = "group:SpeedGrader.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
       location = "container:Canvas"
       name = "Canvas">
       <FileRef

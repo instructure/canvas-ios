@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JH6-jY-MKQ">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <scenes>
+        <!--Student Picker Table View Controller-->
+        <scene sceneID="yZU-Rh-G40">
+            <objects>
+                <tableViewController id="JH6-jY-MKQ" customClass="CSGStudentPickerTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5cI-3h-0jW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CSGStudentPickerCell" id="Bn5-NZ-Gvs" customClass="CSGStudentPickerCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bn5-NZ-Gvs" id="zui-vU-2t4">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTG-Tl-dXn">
+                                            <rect key="frame" x="48" y="12" width="492" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emX-RT-43B">
+                                            <rect key="frame" x="548" y="12" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="HD2-wt-LY0">
+                                            <rect key="frame" x="10" y="7" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="B7t-Ih-NHW"/>
+                                                <constraint firstAttribute="width" constant="30" id="clf-Ui-c6v"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Late" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHd-NT-gvT">
+                                            <rect key="frame" x="62" y="31" width="477" height="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="bHd-NT-gvT" secondAttribute="bottom" constant="-1" id="Lys-rA-c4o"/>
+                                        <constraint firstAttribute="bottom" secondItem="HD2-wt-LY0" secondAttribute="bottom" constant="7" id="S6u-kV-0cw"/>
+                                        <constraint firstAttribute="centerY" secondItem="emX-RT-43B" secondAttribute="centerY" id="Wfx-1J-W7q"/>
+                                        <constraint firstItem="HD2-wt-LY0" firstAttribute="top" secondItem="zui-vU-2t4" secondAttribute="top" constant="7" id="YCu-zF-mrb"/>
+                                        <constraint firstItem="gTG-Tl-dXn" firstAttribute="leading" secondItem="HD2-wt-LY0" secondAttribute="trailing" constant="8" id="kld-PI-oby"/>
+                                        <constraint firstItem="bHd-NT-gvT" firstAttribute="leading" secondItem="HD2-wt-LY0" secondAttribute="trailing" constant="22" id="m3P-gN-cjB"/>
+                                        <constraint firstItem="HD2-wt-LY0" firstAttribute="leading" secondItem="zui-vU-2t4" secondAttribute="leading" constant="10" id="oJw-RO-NDz"/>
+                                        <constraint firstItem="emX-RT-43B" firstAttribute="leading" secondItem="gTG-Tl-dXn" secondAttribute="trailing" constant="8" id="pXq-sx-azZ"/>
+                                        <constraint firstAttribute="centerY" secondItem="gTG-Tl-dXn" secondAttribute="centerY" id="sjh-b9-UVA"/>
+                                        <constraint firstAttribute="trailing" secondItem="emX-RT-43B" secondAttribute="trailing" constant="10" id="z9G-tO-hav"/>
+                                        <constraint firstItem="emX-RT-43B" firstAttribute="leading" secondItem="bHd-NT-gvT" secondAttribute="trailing" constant="9" id="zLl-le-Hkg"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkmarkImageView" destination="HD2-wt-LY0" id="w4s-BF-IS1"/>
+                                    <outlet property="lateLabel" destination="bHd-NT-gvT" id="8kh-0Q-4uH"/>
+                                    <outlet property="scoreLabel" destination="emX-RT-43B" id="s9H-oh-U5h"/>
+                                    <outlet property="studentNameLabel" destination="gTG-Tl-dXn" id="mge-CZ-HI0"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="JH6-jY-MKQ" id="c0N-EL-jDD"/>
+                            <outlet property="delegate" destination="JH6-jY-MKQ" id="NtE-bL-7WL"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rWQ-Eg-vY8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1067" y="468"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_checkmark" width="34" height="34"/>
+    </resources>
+</document>

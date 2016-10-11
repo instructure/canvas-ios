@@ -1,0 +1,222 @@
+# Customise this file, documentation can be found here:
+# https://github.com/KrauseFx/fastlane/tree/master/docs
+# All available actions: https://github.com/KrauseFx/fastlane/blob/master/docs/Actions.md
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# By default, fastlane will send which actions are used
+# No personal data is shared, more information on https://github.com/fastlane/enhancer
+# Uncomment the following line to opt out
+# opt_out_usage
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "1.16.0"
+
+default_platform :ios
+
+platform :ios do
+  
+  #####################################################
+  # project variables
+  #####################################################
+  project_name = "SpeedGrader"
+  scheme_name = project_name
+  ipa_commit_name = project_name
+  bundle_identifier = "com.instructure.grader"
+
+  #####################################################
+  # before_all - runs before each build
+  #####################################################
+  before_all do
+    # Install dependencies
+    sh 'cd ..; carthage checkout'
+    cocoapods
+
+    # All builds must pass unit tests
+    # Right now we're not using Unit Tests so no need to build :(
+    # scan(scheme: scheme_name, destination: 'platform=iOS Simulator,name=iPad Air')
+  end
+  
+  #####################################################
+  # commit - Builds every commit to Develop branch
+  #####################################################
+  desc "Builds after each commit to make sure the app can be built and run correctly"
+  lane :commit do
+    match(type: "development")
+    gym(use_legacy_build_api: true)
+    
+    if ENV['BUILD_URL'].to_s.length > 0
+      create_ipa_command = '../CI/hudson_create_ipa_plist.sh'
+      ipa_url = ENV['BUILD_URL'].to_s + 'artifact/fastlane/build/' + ipa_commit_name + '.ipa'
+      plist_path = '../CI/appmanifest.template.plist ./build/install.plist'
+      
+      sh create_ipa_command + ' ' + ipa_url + ' ' + version_number(project_name) + ' ' + plist_path + ' ' + ipa_commit_name + ' ' + bundle_identifier
+    end
+  end
+  
+  #####################################################
+  # feature - Builds every commit to Feature branches.  No build errors are reported via slack on feature branches.  Continue developing without fear of ridicule :)
+  #####################################################
+  desc "Builds after each commit to make sure the app can be built and run correctly"
+  lane :feature do
+  end
+
+  #####################################################
+  # nightly - build and run all UIAutomation Tests
+  #####################################################
+  desc "Runs all UIAutomation Tests"
+  lane :nightly do
+    snapshot(
+      snapshot_file_path: "./fastlane/automation_scripts/",
+      verbose: true
+    )
+  end
+  
+  #####################################################
+  # release - Automatically runs on ALL commits on release branch
+  #####################################################
+  desc "Submit a new Beta Build to Apple TestFlight"
+  lane :release do
+    gym(use_legacy_build_api: true)
+  end
+
+  #####################################################
+  # beta_patch - build and run all UIAutomation Tests
+  #####################################################
+  desc "Submit a new Beta Build to Apple TestFlight"
+  lane :beta_patch do
+    beta_build("patch")
+  end
+  
+  #####################################################
+  # beta_patch - build and run all UIAutomation Tests
+  #####################################################
+  desc "Submit a new Beta Build to Apple TestFlight"
+  lane :beta_minor do
+    beta_build("minor")
+  end
+  
+  #####################################################
+  # beta_patch - build and run all UIAutomation Tests
+  #####################################################
+  desc "Submit a new Beta Build to Apple TestFlight"
+  lane :beta_major do
+    beta_build("major")
+  end
+
+  #####################################################
+  # This block is called, only if the executed lane was successful
+  #####################################################
+  after_all do |lane|
+    
+  end
+
+  #####################################################
+  # This block is called, only if the executed lane failed
+  #####################################################
+  error do |lane, exception|
+      if lane.to_s != "feature" 
+
+        path = ENV['HOME'] + '/vitruvius-worst.m4a'
+        if File.file?(path)
+          sh "afplay " + path
+        end
+        
+        ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+        slack(
+          channel: "@brandon",
+          message: "THAT IDEA IS JUST THE WORST\n\n" + exception.message,
+          success: false,
+          payload: {
+              'GERRIT_CHANGE_URL' => ENV['GERRIT_CHANGE_URL'].to_s,
+              'BUILD_URL' => ENV['BUILD_URL'].to_s,
+            },
+          attachment_properties: {
+              thumb_url: vitruvius_image
+            }
+        )
+      end
+  end
+end
+
+
+#####################################################
+# Some extra methods for code clarity and my own sanity
+#####################################################
+def vitruvius_image 
+  vitruvius_imgs = ["http://i.ytimg.com/vi/_WzjkMIJ_nw/maxresdefault.jpg", 
+    "http://cache.lego.com/r/www/r/movie/-/media/franchises/the%20lego%20movie/explore/downloads/touts/vit-879x360.png?l.r2=-816021521", 
+    "http://static.tvtropes.org/pmwiki/pub/images/vitruvius_2234.png"]
+  return vitruvius_imgs.shuffle.sample
+end
+
+def slack_version_updated 
+  ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+  
+  slack(
+    channel: "@brandon",
+    message: "Successfully submitted " + full_product_name + "  to app store for beta testing.",
+    attachment_properties: {
+        thumb_url: vitruvius_image
+      }
+  )
+end
+
+def create_install_plist(ipa_name)
+  # create_ipa_command = './CI/hudson_create_ipa_plist.sh'
+  # ipa_url = ENV['BUILD_URL'].to_s + '/artifact/assets/' + ipa_name + '.ipa'
+  #
+  # plist_path = './CI/appmanifest.template.plist ./fastlane/build/install.plist'
+  # identifier = get_info_plist_value(path: './Info.plist', key: 'CFBundleIdentifier')
+  #
+  # sh create_ipa_command + ' ' + ipa_url + ' ' + version_number + ' ' + plist_path + ' ' + ipa_commit_name + ' ' + identifier
+end
+
+def beta_build (type)
+  increment_build_number
+  increment_version_number(
+    bump_type: type
+  )
+  
+  # Git Tagging can be added later
+  # commit_version_bump(
+  #   message: 'Version Bump - Type: ' + type + ' version: ' + full_version_name 
+  # )
+  # add_git_tag(
+  #   tag: version_number
+  # )
+  
+  # Build, run through snapshot, and deliver it up to the mothership
+  gym
+  snapshot
+  deliver(beta: true)
+  
+  # Notify team that new build is in Apple Testflight
+  slack_version_updated
+end
+
+def build_number 
+  return get_build_number(xcodeproj: project_name + ".xcodeproj")
+end
+
+def version_number(project_name)
+  return get_version_number(xcodeproj: project_name + ".xcodeproj")
+end
+
+def full_version_name
+  return version_number + " (" + build_number + ")"
+end
+
+def full_product_name
+  return project_name + " " + full_version_name
+end
+
+
+# More information about multiple platforms in fastlane: 
+# https://github.com/KrauseFx/fastlane/blob/master/docs/Platforms.md

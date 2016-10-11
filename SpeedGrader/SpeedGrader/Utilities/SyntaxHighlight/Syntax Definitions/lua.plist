@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(--[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>--\[\[(.*?)]]</string>
+	<key>documentation_comment_keyword</key>
+	<string>(--\[\[|]])</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(and|break|do|else|elseif|end|false|for|function|if|in|local|nil|not|or|repeat|return|then|true|until|while|assert|collectgarbage|dofile|error|_G|getfenv|getmetatable|gcinfo|ipairs|loadfile|loadlib|loadstring|next|pairs|pcall|print|rawequal|rawget|rawset|require|setfenv|setmetatable|tonumber|tostring|type|unpack|_VERSION|xpcall|coroutine\.create|coroutine\.resume|coroutine\.status|coroutine\.wrap|coroutine\.yield|string\.byte|string\.char|string\.dump|string\.find|string\.len|string\.lower|string\.rep|string\.sub|string\.upper|string\.format|string\.gfind|string\.gsub|table\.concat|table\.foreach|table\.foreachi|table\.getn|table\.sort|table\.insert|table\.remove|table\.setn|math\.abs|math\.acos|math\.asin|math\.atan|math\.atan2|math\.ceil|math\.cos|math\.deg|math\.exp|math\.floor|math\.log|math\.log10|math\.max|math\.min|math\.mod|math\.pow|math\.rad|math\.sin|math\.sqrt|math\.tan|math\.frexp|math\.ldexp|math\.random|math\.randomseed|math\.pi|io\.stdin|io\.stdout|io\.stderr|io\.close|io\.flush|io\.input|io\.lines|io\.open|io\.output|io\.read|io\.tmpfile|io\.type|io\.write|:close|:flush|:lines|:read|:seek|:write|os\.clock|os\.date|os\.difftime|os\.execute|os\.exit|os\.getenv|os\.remove|os\.rename|os\.setlocale|os\.time|os\.tmpname|debug\.debug|debug\.gethook|debug\.getinfo|debug\.getlocal|debug\.getupvalue|debug\.setlocal|debug\.setupvalue|debug\.sethook|debug\.traceback|__index|__newindex|__call|__plus|__sub|__mul|__div|__pow|__unm|__concat|__eq|__lt|__le|__mode|__metatable|__fenv|__tostring|self|LUA_PATH|_LOADED|_REQUIREDNAME|_PROMPT|_TRACEBACK)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

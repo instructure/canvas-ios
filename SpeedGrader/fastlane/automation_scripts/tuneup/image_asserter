@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby -w
+
+require File.expand_path(File.join(File.dirname(__FILE__), "image_assertion"))
+
+SUCCESS_EXIT_STATUS = 0
+FAILED_EXIT_STATUS  = 1
+
+test_output     = ARGV[0]
+ref_images_path = ARGV[1]
+image_name      = ARGV[2]
+threshold       = ARGV[3]
+
+unless (test_output && ref_images_path && image_name)
+
+  $stderr.puts('incorrect arguments')
+  exit FAILED_EXIT_STATUS
+end
+
+assertion_result = ImageAssertion.assert_image(File.expand_path(test_output),
+                                               File.expand_path(ref_images_path),
+                                               image_name,
+                                               threshold)
+exit FAILED_EXIT_STATUS unless assertion_result
+
+exit SUCCESS_EXIT_STATUS
+

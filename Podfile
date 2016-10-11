@@ -13,13 +13,24 @@ target 'Canvas' do
 end
 
 target 'TechDebt' do
-
     project 'Canvas/Canvas.xcodeproj'
 
     use_frameworks!
     inhibit_all_warnings!
     pod 'JSTokenField', '~> 1.1'
     pod 'Google/Analytics'
+end
+
+target 'SpeedGrader' do
+    project 'SpeedGrader/SpeedGrader.xcodeproj'
+
+    use_frameworks!
+    inhibit_all_warnings!
+
+    pod 'Masonry'
+    pod 'Google/Analytics'
+
+    pod 'SimulatorStatusMagic', :configurations => ['Debug']
 end
 
 

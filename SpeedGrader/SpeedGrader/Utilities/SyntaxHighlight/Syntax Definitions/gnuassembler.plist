@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(@[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\/\*(.*?)\*\/</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\/\*|\*\/)</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(\.abort|\.align|\.appfile|\.appline|\.ascii|\.asciz|\.balign|\.balignl|\.balignw|\.byte|\.comm|\.common\.s|\.common|\.data|\.dc\.b|\.dc\.d|\.dc\.l|\.dc\.s|\.dc\.w|\.dc\.x|\.dc|\.dcb\.b|\.dcb\.d|\.dcb\.l|\.dcb\.s|\.dcb\.w|\.dcb\.x|\.dcb|\.debug|\.def|\.desc|\.dim|\.double|\.ds\.b|\.ds\.d|\.ds\.l|\.ds\.p|\.ds\.s|\.ds\.w|\.ds\.x|\.ds|\.dsect|\.eject|\.else|\.elsec|\.elseif|\.end|\.endc|\.endef|\.endfunc|\.endif|\.endm|\.endr|\.equ|\.equiv|\.err|\.exitm|\.extend|\.extern|\.fail|\.file|\.fill|\.float|\.format|\.func|\.global|\.globl|\.hidden|\.hword|\.ident|\.if|\.ifc|\.ifdef|\.ifeq|\.ifeqs|\.ifge|\.ifgt|\.ifle|\.iflt|\.ifnc|\.ifndef|\.ifne|\.ifnes|\.ifnotdef|\.include|\.int|\.internal|\.irep|\.irepc|\.irp|\.irpc|\.lcomm|\.lflags|\.line|\.linkonce|\.list|\.llen|\.ln|\.long|\.lsym|\.macro|\.mexit|\.name|\.noformat|\.nolist|\.nopage|\.octa|\.offset|\.org|\.p2align|\.p2alignl|\.p2alignw|\.page|\.plen|\.popsection|\.previous|\.print|\.protected|\.psize|\.purgem|\.pushsection|\.quad|\.rep|\.rept|\.rva|\.sbttl|\.scl|\.sect\.s|\.sect|\.section\.s|\.section|\.set|\.short|\.single|\.size|\.skip|\.sleb128|\.space|\.spc|\.stabd|\.stabn|\.stabs|\.string|\.struct|\.subsection|\.symver|\.tag|\.text|\.title|\.ttl|\.type|\.uleb128|\.use|\.val|\.version|\.vtable_entry|\.vtable_inherit|\.weak|\.word|\.xcom|\.xdef|\.xref|\.xstabs|\.zero|\.arm|\.bss|\.code|\.even|\.force_thumb|\.ldouble|\.loc|\.ltorg|\.packed|\.pool|\.req|\.thumb|\.thumb_func|\.thumb_set)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

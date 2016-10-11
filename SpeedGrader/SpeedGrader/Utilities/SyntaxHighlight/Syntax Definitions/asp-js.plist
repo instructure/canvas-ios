@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(\/\/[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\/\*(.*?)\*\/</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\/\*|\*\/)</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(connect|EOF|movenext|close|Application|ASPError|Request|Response|Server|Session|Contents|StaticObjects|Remove|RemoveAll|Lock|Unlock|Application_OnStart|Application_OnEnd|ASPCode|Number|Source|Category|File|Line|Column|Description|ASPDescription|Cookies|Form|QueryString|ServerVariables|TotalBytes|Buffer|CacheControl|Charset|CodePage|ContentType|Expires|ExpiresAbsolute|IsClientConnected|LCID|PICS|Status|AddHeader|AppendToLog|BinaryWrite|Clear|End|Flush|Redirect|Write|ScriptTimeout|CreateObject|Execute|GetLastError|HTMLEncode|MapPath|Transfer|URLEncode|StaticObjects|SessionID|Timeout|break|continue|delete|else|for|function|if|in|new|return|this|typeof|var|void|while|with|if|then|else|elseif|select|case|for|to|step|next|each|in|do|while|until|loop|wend|exit|end|function|sub|class|property|get|let|set|byval|byref|const|dim|redim|preserve|as|set|with|new|public|default|private|rem|call|execute|eval|on|error|goto|resume|option|explicit|erase|randomize|is|mod|and|or|not|xor|imp|false|true|empty|nothing|null)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

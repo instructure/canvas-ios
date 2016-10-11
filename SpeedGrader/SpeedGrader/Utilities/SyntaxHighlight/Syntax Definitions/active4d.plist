@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(`[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\/\*(.*?)\*\/</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\/\*|\*\/)</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(_form|_query|_request|4d|a|abandon|abs|add|all|an|append|array|ascii|auth|authenticate|auto|automatic|base64|before|between|blob|blowfish|boolean|buffer|build|by|c_blob|c_boolean|c_date|c_longint|c_picture|c_pointer|c_real|c_string|c_text|c_time|cache|call|callback|case|cancel|capitalize|cell|century|chain|char|charset|choices|choose|clear|close|collection|compare|concat|console|content|control|cookie|cookies|copy|count|create|current|cut|date|datetime|day|dec|decode|deep|default|define|defined|delay|delete|delta|descriptor|difference|directory|distinct|document|each|element|else|empty|enclose|encode|encoding|end|error|execute|exists|expires|extension|false|field|fields|file|filename|fill|find|first|folder|for|form|formula|from|full|get|gif|global|globals|goto|has|header|headers|hide|hour|html|id|identical|if|import|in|include|index|indexed|info|infos|insert|int|integer|internal|interpolate|intersection|into|is|iso|item|items|iterator|jpeg|jpg|key|keys|last|length|library|licence|limit|line|list|load|local|lock|locked|log|longint|lowercase|mac|many|match|max|md5|merge|message|method|millisecond|milliseconds|min|minute|mode|month|more|move|multisort|name|named|native|new|next|nil|not|num|number|of|one|only|open|order|output|packet|page|parameter|params|path|pattern|picture|platform|pointer|position|previous|process|property|query|quote|random|range|raw|read|real|realm|receive|record|records|redirect|reduce|regex|relate|relations|remaining|remove|replace|requested|require|resize|resolve|response|return|right|root|round|save|scan|script|second|selected|selection|semaphore|seperator|sequence|session|set|size|slice|sort|split|start|state|string|strings|structure|substring|sum|table|tables|test|text|throw|tickcount|timeout|timestamp|to|transaction|trim|true|trunc|type|undefined|union|unload|unlock|upload|uploads|uppercase|url|use|utc|validate|values|variable|variables|version|while|win|with|write|writebr|writeln|writep|year)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(\/\/[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\/\*(.*?)\*\/</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\/\*|\*\/)</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(add|and|break|continue|delete|do|else|eq|for|function|ge|gt|if|ifFrameLoaded|in|le|lt|ne|new|not|on|onClipEvent|or|return|this|tellTarget|typeof|var|void|while|with|Array|Boolean|Color|Date|Function|Key|MovieClip|Math|Mouse|Number|Object|Selection|Sound|String|XML|XMLNode|XMLSocket|NaN|Infinity|false|null|true|undefined|Boolean|call|Date|escape|eval|fscommand|getProperty|getTimer|getURL|getVersion|gotoAndPlay|gotoAndStop|#include|int|isFinite|isNaN|loadMovie|loadMovieNum|loadVariables|loadVariablesNum|maxscroll|newline|nextFrame|nextScene|Number|parseFloat|parseInt|play|prevFrame|prevScene|print|printAsBitmap|printAsBitmapNum|printNum|random|removeMovieClip|scroll|setProperty|startDrag|stop|stopAllSounds|stopDrag|String|targetPath|tellTarget|toggleHighQuality|trace|unescape|unloadMovie|unloadMovieNum|updateAfterEvent|addChild|addChildAt|removeChild|removeChildAt|import|function|class|package|if|else|do|while|for|with|switch|case|default|continue|break|each|super|this|null|true|false|new|in|is|as|typeof|instanceof|delete|stage|fscommand|clearInterval|setInterval|\.\.\.rest|clearTimeout|setTimeout|Math|trace)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

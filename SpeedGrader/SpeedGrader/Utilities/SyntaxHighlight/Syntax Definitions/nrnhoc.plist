@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(\/\/[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\/\*(.*?)\*\/</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\/\*|\*\/)</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(abs|access|allobjects|allobjectvars|allobjexts|AlphaSynapse|APCount|arc3d|area|atan|attr_praxis|axis|batch_run|batch_save|begintemplate|boolean_dialog|break|celsius|chdir|checkpoint|clamp_resist|connect|continue|continue_dialog|coredump_on_error|cos|create|CVode|debug|Deck|define_shape|DEG|delete|delete_section|depvar|dialogs|diam|diam_changed|diam3d|disconnect|distance|doEvents|doNotify|double|dt|E|else|em|endtemplate|eqinit|eqn|erf|erfc|execute|execute1|exp|external|fadvance|FARADAY|fclamp|fclampi|fclampv|fcurrent|File|finitialize|FInitializeHandler|fit_praxis|float_epsilon|fmatrix|fmenu|for|forall|forsec|fprint|fscan|fstim|fstimi|func|GAMMA|g_pas|getcwd|getSpineArea|getstr|ghk|Glyph|graph|Graph|graphmode|GUIMath|HBox|help|hh|hoc_ac_|hoc_cross_x_|hoc_cross_y_|hoc_obj_|hoc_pointer_|hoc_stdio|hocmech|IClamp|if|ifsec|Impedance|init|initnrn|insert|int|ion_style|ismembrane|issection|iterator|iterator_statement|ivoc_style|KSChan|KSGate|KSState|KSTrans|L|LinearMechanism|List|load_file|load_func|load_proc|load_template|local|localobj|log|log10|lw|machine_name|math|Matrix|MechanismStandard|MechanismType|myproc|n3d|name_declared|nernst|NetCon|neuronhome|new|node_data|nrnglobalmechmenu|nrnmechmenu|nrnpointmenu|nrnsecmenu|nseg|numarg|numprocs|obfunc|object_id|object_pop|object_push|objectvar|objectvar objref \(synonyms\)|objref|obsolete|p3dconst|parallel|ParallelContext|ParallelNetManager|parent_connection|parent_node|parent_section|pas|PHI|PI|plot|PlotShape|plotx|ploty|plt|Pointer|pop_section|print|print_session|printf|prmat|proc|prstim|psection|psync|pt3dadd|pt3dchange|pt3dclear|pt3dconst|pt3dinsert|pt3dremove|public|push_section|pval_praxis|pwman_place|PWManager|quit|R|Ra|Random|RangeVarPlot|read|regraph|retrieveaudit|return|ri|ropen|run|save_session|saveaudit|SaveState|secname|secondorder|section_orientation|SectionBrowser|SectionList|sectionname|SectionRef|setcolor|setpointer|setSpineArea|settext|Shape|show_errmess_always|sin|solve|spine3d|sprint|sqrt|sred|sscanf|startsw|stop|stop_praxis|stopsw|stopwatch|strcmp|strdef|string_dialog|StringFunctions|SVClamp|symbols|SymChooser|system|t|tanh|TextEditor|this_node|this_section|Timer|topology|tstop|uninsert|units|unref|ValueFieldEditor|variable_domain|VBox|VClamp|Vector|while|wopen|wqinit|x3d|xbutton|xcheckbox|xfixedvalue|xlabel|xmenu|xopen|xpanel|xpvalue|xradiobutton|xred|xslider|xstatebutton|xvalue|xvarlabel|y3d|z3d)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

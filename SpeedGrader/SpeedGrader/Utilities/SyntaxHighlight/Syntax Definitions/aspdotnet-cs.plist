@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(\/\/[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\/\*(.*?)\*\/</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\/\*|\*\/)</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(AspCompat|AutoEventWireup|Assembly|Buffer|ClassName|ClientTarget|CodePage|CompilerOptions|ContentType|Culture|Debug|Description|EnableSessionState|EnableViewState|EnableViewStateMac|ErrorPage|Explicit|Inherits|Language|LCID|ResponseEncoding|Src|SmartNavigation|Strict|Trace|TraceMode|Transaction|UICulture|WarningLevel|Namespace|Interface|TagPrefix|TagName|Duration|Location|VaryByCustom|VaryByHeader|VaryByParam|VaryByControl|Control|Literal|PlaceHolder|Xml|AdRotator|Button|Calendar|CheckBox|CheckBoxList|DataGrid|DataList|DropDownList|HyperLink|Image|ImageButton|Label|LinkButton|ListBox|Panel|PlaceHolder|RadioButton|RadioButtonList|Repeater|Table|TableCell|TableRow|TextBox|runat|id|OnSelectedIndexChanged|AutoPostBack|EnableViewState|abstract|as|base|break|case|catch|class|checked|continue|default|delegate|do|else|enum|event|explicit|extern|false|for|foreach|finally|fixed|goto|if|implicit|in|interface|internal|is|lock|namespace|new|null|operator|out|override|params|private|protected|public|readonly|ref|return|sealed|sizeof|stackalloc|static|struct|switch|this|throw|true|try|typeof|unchecked|unsafe|using|virtual|while|#if|#else|#elif|#endif|#define|#undef|#warning|#error|#line|bool|byte|char|const|decimal|double|float|int|long|object|uint|ushort|ulong|sbyte|short|string|void)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

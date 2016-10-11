@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(--[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\{-(.*?)-\}</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\{-|-\})</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(Read|Show|Ord|Num|MonadPlus|Monad|Ix|Integral|Functor|Fractional|Floating|Eq|Enum|Bounded|Maybe|IO|Integer|Either|Bool|Array|Double|Float|Char|String|Int|unfoldr|groupBy|sortBy|group|sort|zipWith3|zipWith|zip3|zip|writeFile|words|userError|unzip3|unzip|unwords|until|unlines|undefined|uncurry|truncate|toRational|toInteger|tanh|toEnum|tan|takeWhile|take|tail|sum|succ|subtract|sqrt|splitAt|snd|sinh|sin|signum|significand|showString|showsPrec|shows|showParen|showList|showChar|show|sequence_|sequence|seq|scanr1|scanr|scanl1|scanl|scaleFloat|round|reverse|return|replicate|repeat|rem|recip|realToFrac|readsPrec|reads|readParen|readLn|readList|readIO|readFile|read|quotRem|quot|putStrLn|putStr|putChar|properFraction|product|print|pred|pi|otherwise|or|odd|null|notElem|not|negate|mod|minimum|minBound|min|maybe|maximum|maxBound|max|mapM_|mapM|map|lookup|logBase|log|lines|lex|length|lcm|last|iterate|isNegativeZero|isNaN|isInfinite|isIEEE|isDenormalized|ioError|interact|init|id|head|getLine|getContents|getChar|gcd|fst|fromRational|fromIntegral|fromInteger|fromEnum|foldr1|foldr|foldl1|foldl|fmap|floor|floatRange|floatRadix|floatDigits|flip|filter|fail|exponent|exp|even|error|enumFromTo|enumFromThenTo|enumFromThen|enumFrom|encodeFloat|elem|either|dropWhile|drop|divMod|div|decodeFloat|cycle|curry|cos|const|concatMap|concat|compare|ceiling|catch|break|atanh|atan2|atan|asTypeOf|asinh|asin|appendFile|any|and|all|acos|abs|case|data|if|where|then|else|class|default|deriving|do|import|in|infix|infixl|infixr|instance|let|module|let|newtype|of|type|\.\.|:|::|=|\\|\||&lt;-|-&gt;|@|~|=&gt;)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

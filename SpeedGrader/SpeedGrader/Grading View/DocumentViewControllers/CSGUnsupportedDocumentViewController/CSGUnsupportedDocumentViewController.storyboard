@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="p1W-fG-gkP">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Unsupported Document View Controller-->
+        <scene sceneID="02P-3B-feP">
+            <objects>
+                <viewController id="p1W-fG-gkP" customClass="CSGUnsupportedDocumentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="509-Mc-QDT"/>
+                        <viewControllerLayoutGuide type="bottom" id="uZQ-Um-ydp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dCt-ej-MCE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Submission for this User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhX-xy-Xeo">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uZQ-Um-ydp" firstAttribute="top" secondItem="WhX-xy-Xeo" secondAttribute="bottom" id="T17-C7-AIM"/>
+                            <constraint firstItem="WhX-xy-Xeo" firstAttribute="leading" secondItem="dCt-ej-MCE" secondAttribute="leading" id="c6i-Zl-e9f"/>
+                            <constraint firstItem="WhX-xy-Xeo" firstAttribute="top" secondItem="dCt-ej-MCE" secondAttribute="top" id="qON-RZ-Urq"/>
+                            <constraint firstAttribute="trailing" secondItem="WhX-xy-Xeo" secondAttribute="trailing" id="zm1-qV-dql"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="unsupportedSubmissionLabel" destination="WhX-xy-Xeo" id="jXQ-tq-6EH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9ej-ma-FSk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="565" y="201"/>
+        </scene>
+    </scenes>
+</document>

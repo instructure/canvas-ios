@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(\/\/[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\/\*(.*?)\*\/</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\/\*|\*\/)</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(#import|#include|char|const|double|enum|float|int|long|short|signed|struct|typedef|union|unsigned|void|id|Class|SEL|IMP|BOOL|auto|continue|default|extern|register|return|sizeof|static|self|super|@interface|@implementation|@protocol|@end|@private|@protected|@public|@class|@selector|@endcode|@defs|NULL|nil|NIl|wchar_t|#define|#endif|#if|#ifdef|#ifndef|unichar|FoundationErrors|Foundation|GSMime|GSXML|NSAffineTransform|NSAriver|NSArray|NSAttributedString|NSAutoreleasePool|NSBundle|NSByteOrder|NSCalendarDate|NSaracterSet|NSClassDescription|NSCoder|NSComparisonPredicate|NSCompoundPredicate|NSConnection|NSData|NSDateFormatter|NSDate|NSDebug|NSDecimal|NSDecimalNumber|NSDictionary|NSDistantObject|NSDistributedLock|NSDistributedNotificationCenter|NSEnumerator|NSError|NSErrorRecoveryAttempting|NSException|NSExpression|NSFileHandle|NSFileManager|NSFormatter|NSGeometry|NSHaTable|NSHost|NSHTTPCookie|NSHTTPCookieStorage|NSIndexPa|NSIndexSet|NSInvocation|NSKeyedAriver|NSKeyValueCoding|NSKeyValueObserving|NSLock|NSMapTable|NSMeodSignature|NSNetServices|NSNotification|NSNotificationQueue|NSNull|NSNumberFormatter|NSObjCRuntime|NSObject|NSPaUtilities|NSPortCoder|NSPort|NSPortMessage|NSPortNameServer|NSPredicate|NSProcessInfo|NSPropertyList|NSProtocolecker|NSProxy|NSRange|NSRunLoop|NSScanner|NSSerialization|NSSet|NSSortDescriptor|NSSpellServer|NSStream|NSString|NSTask|NSread|NSTimer|NSTimeZone|NSUndoManager|NSURLAuenticationallenge|NSURLCae|NSURLConnection|NSURLCredential|NSURLCredentialStorage|NSURLDownload|NSURLError|NSURL|NSURLHandle|NSURLProtectionSpace|NSURLProtocol|NSURLRequest|NSURLResponse|NSUserDefaults|NSUtilities|NSValue|NSValueTransformer|NSXMLParser|NSZone)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

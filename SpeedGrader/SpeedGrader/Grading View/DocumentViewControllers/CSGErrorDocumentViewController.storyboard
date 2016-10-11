@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="R1H-Eq-uAi">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Error Document View Controller-->
+        <scene sceneID="k1Z-8r-SBI">
+            <objects>
+                <viewController id="R1H-Eq-uAi" customClass="CSGErrorDocumentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Ov-ya-MaZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="8RQ-Sl-wMl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Eku-dK-r2c">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cTj-FT-8nH">
+                                <rect key="frame" x="155" y="95" width="291" height="291"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="291" id="KnK-0h-kXf"/>
+                                    <constraint firstAttribute="width" constant="291" id="bH0-Kf-TcX"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVf-Xk-RGe">
+                                <rect key="frame" x="1" y="428" width="598" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="7Ga-tQ-9Um"/>
+                                    <constraint firstAttribute="width" constant="598" id="GWM-3i-ukg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7Ga-tQ-9Um"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wVf-Xk-RGe" firstAttribute="top" secondItem="cTj-FT-8nH" secondAttribute="bottom" constant="42" id="JJc-h2-ihY"/>
+                            <constraint firstAttribute="centerX" secondItem="cTj-FT-8nH" secondAttribute="centerX" id="XdG-XA-nEE"/>
+                            <constraint firstItem="cTj-FT-8nH" firstAttribute="top" secondItem="6Ov-ya-MaZ" secondAttribute="bottom" constant="75" id="Xzj-6a-YXR"/>
+                            <constraint firstAttribute="centerX" secondItem="wVf-Xk-RGe" secondAttribute="centerX" id="beh-w9-gJA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="errorMessage" destination="wVf-Xk-RGe" id="cie-1e-WFW"/>
+                        <outlet property="imageView" destination="cTj-FT-8nH" id="JQO-5n-gfY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NC3-4g-2Vy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="565" y="201"/>
+        </scene>
+    </scenes>
+</document>

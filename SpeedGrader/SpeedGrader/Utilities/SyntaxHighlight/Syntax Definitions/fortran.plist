@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(![^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(common|continue|block|data|date|function|include|parameter|implicit|none|equivalence|if|then|else|elseif|endif|go|to|goto|program|subroutine|end|call|while|cycle|do|enddo|for|break|pause|return|stop|access|backspace|close|inquire|open|print|read|rewind|write|format|abs|acos|aimag|aint|alog|alog10|amax0|amax1|amin0|amin1|amod|anint|aprime|asin|atan|atan2|acos|cabs|cexp|clog|conjg|cos|cosh|ccos|csin|csqrt|dabs|dacos|dasin|datan|datan2|dconjg|dcos|dcosh|dfloat|ddmim|dexp|dim|dint|dlog|dlog10|dmax1|dmin1|dmod|dnint|dsign|dsin|dsinh|dsqrt|dtan|dtanh|exp|iabs|idim|index|isign|len|log|log10|max|max0|max1|min|min0|min1|mod|rand|sign|sin|sinh|sqrt|tan|tanh|character|complex|double|precision|real|real\*8|integer|logical|dimension|external|intrinsic|save|char|cmplx|dble|dcmplx|float|ichar|idint|ifix|int|sngl|use|module|endmodule|interface|endinterface|contains|type|endtype|allocate|deallocate|allocatable|private|intent|in|out|inout|pointer|target|select|endselect|case|endcase|recursive|nullify|endfunction|only|public|exit)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

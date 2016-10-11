@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(\/\/[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\/\*(.*?)\*\/</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\/\*|\*\/)</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(case|if|while|do|for|foreach|switch|delimiter|run-once|default|set-block|let|append-block|cache-block|as|break|continue|skip|section-exclude|section-include|else|elseif|case|if|while|do|for|foreach|switch|delimiter|run-once|default|set-block|section|let|append-block|cache-block| def | undef | set | ldelim | rdelim | include |debug_accumulator|debug_timing_point|debug_trace|cache-block|fetch_alias|include|ldelim|literal|rdelim|run-once|append-block|def|sequence|set|set-block|undef|attribute_edit_gui|attribute_pdf_gui|attribute_result_gui|attribute_view_gui|class_attribute_edit_gui|class_attribute_view_gui|collaboration_icon|collaboration_participation_view|collaboration_simple_message_view|collaboration_view_gui|content_pdf_gui|content_version_view_gui|content_view_gui|event_edit_gui|node_view_gui|related_view_gui|shop_account_view_gui|tool_bar|attribute_list|latest_list|list|override_template_list|group_tree|item_count|item_list|message_list|participant|participant_list|participant_map|tree_count|access|bookmarks|calendar|can_instantiate_classes|can_instantiate_class_list|class|class_attribute|class_attribute_list|collected_info_collection|collected_info_count|collected_info_count_list|contentobject_attributes|draft_count|draft_version_list|keyword|keyword_count|list|list_count|locale_list|navigation_part|navigation_parts|node|non_translation_list|object|object_by_attribute|object_count_by_user_id|pending_count|pending_list|recent|related_objects|related_objects_count|reverse_related_objects|reverse_related_objects_count|same_classattribute_node|search|section_list|tipafriend_top_list|translation_list|trash_count|trash_object_list|tree|tree_count|version|version_count|version_list|view_top_list|sitedesign_list|digest_handlers|digest_items|event_content|handler_list|subscribed_nodes|subscribed_nodes_count|can_create|can_edit|can_export|can_import|can_install|can_list|can_read|can_remove|dependent_list|item|list|maintainer_role_list|repository_list|object|object_list|object_list_count|roles|user_roles|basket|best_sell_list|related_purchase|wish_list|wish_list_count|list|list_count|anonymous_count|current_user|has_access_to|is_logged_in|logged_in_count|logged_in_list|logged_in_users|member_of|user_role|append|array|array_sum|begins_with|compare|contains|ends_with|explode|extract|extract_left|extract_right|hash|implode|insert|merge|prepend|remove|repeat|reverse|unique|currentdate|ezhttp|ezini|ezpreference|ezsys|fetch|module_params|datetime|i18n|l10n|si|image|imagefile|texttoimage|and|choose|cond|eq|false|first_set|ge|gt|le|lt|ne|not|null|or|true|abs|ceil|dec|div|floor|inc|max|min|mod|mul|round|sub|sum|action_icon|attribute|classgroup_icon|class_icon|content_structure_tree|ezpackage|flag_icon|gettime|icon_info|makedate|maketime|mimetype_icon|month_overview|pdf|roman|topmenu|treemenu|append|autolink|begins_with|break|chr|compare|concat|contains|count_chars|count_words|crc32|downcase|ends_with|explode|extract|extract left|extract_right|indent|insert|md5|nl2br|ord|pad|prepend|remove|repeat|reverse|rot13|shorten|simpletags|simplify|trim|upcase|upfirst|upword|wash|wordtoimage|wrap|exturl|ezdesign|ezimage|ezroot|ezurl|count|float|get_class|get_type|int|is_array|is_boolean|is_class|is_float|is_integer|is_null|is_numeric|is_object|is_set|is_string|is_unset)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>

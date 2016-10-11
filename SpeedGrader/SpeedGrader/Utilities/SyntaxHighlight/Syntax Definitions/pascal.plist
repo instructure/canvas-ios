@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>(\/\/[^"\n\r]*(?:"[^"\n\r]*"[^"\n\r]*)*[\r\n])</string>
+	<key>documentation_comment</key>
+	<string>\{(.*?)\}</string>
+	<key>documentation_comment_keyword</key>
+	<string>(\{|\})</string>
+	<key>keyword</key>
+	<string>(?&lt;!\w)(and|array|asm|case|const|div|do|downto|else|file|for|function|goto|if|in|label|mod|nil|not|of|operator|or|packed|procedure|program|record|repeat|set|then|to|type|unit|until|uses|var|while|with|xor|at|automated|break|continue|dispinterface|dispose|exit|false|finalization|initialization|library|new|published|resourcestring|self|true|as|bindable|constructor|destructor|except|export|finally|import|implementation|inherited|inline|interface|is|module|on|only|otherwise|private|property|protected|public|qualified|raise|restricted|shl|shr|threadvar|try|Integer|Cardinal|ShortInt|SmallInt |LongInt|Int64|Byte|Word|LongWord|Char|AnsiChar|WideChar|Boolean|ByteBool|WordBool|LongBool|Single|Double|Extended|Comp|Currency|Real|Real48|String|ShortString|AnsiString|WideString|Pointer|Variant|File|Text|FIXME|TODO|###)(?!\w)</string>
+	<key>number</key>
+	<string>(?&lt;!\w)(((0x[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*|\.[0-9]+)([eE][-+]?[0-9]+)?))[fFlLuU]{0,2})(?!\w)</string>
+	<key>string</key>
+	<string>("(?:[^"\\]|\\.)*")</string>
+	<key>url</key>
+	<string>((https?|mailto|ftp|file)://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)</string>
+</dict>
+</plist>
