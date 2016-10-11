@@ -64,7 +64,7 @@ class CalendarEventList: CalendarEvent.TableViewController {
             let deets = try CalendarEventDeets(session: session, calendarEventID: calendarEvent.id)
             navigationController?.pushViewController(deets, animated: true)
         } catch let e as NSError {
-            e.surface(true, fromViewController: self)
+            error.report(alertUserFrom: self)
         }
     }
 }

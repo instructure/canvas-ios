@@ -63,7 +63,7 @@ extension NSError {
 // MARK: Reporting
 extension NSError {
     
-    /// Surfaces an error either to the user, to the error reporter, or both
+    /// Reports an error either to the user, to the error reporter, or both
     public func report(externally: Bool = true, alertUserFrom: UIViewController? = nil, onDismiss: (() -> ())? = nil) {
      
         if externally == true {
