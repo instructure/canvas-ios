@@ -59,7 +59,7 @@ class AssignmentList: Assignment.TableViewController {
             let deets = try AssignmentDetailViewController.new(session, courseID: assignment.courseID, assignmentID: assignment.id)
             navigationController?.pushViewController(deets, animated: true)
         } catch let e as NSError {
-            error.report(alertUserFrom: self)
+            e.report(alertUserFrom: self)
         }
     }
 
