@@ -38,14 +38,5 @@ extension AlertThreshold {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public class TableViewController: SoPersistent.TableViewController {
-
-        private (set) public var collection: FetchedCollection<AlertThreshold>!
-
-        public func prepare<VM: TableViewCellViewModel>(collection: FetchedCollection<AlertThreshold>, refresher: Refresher? = nil, viewModelFactory: AlertThreshold->VM) {
-            self.collection = collection
-            self.refresher = refresher
-            dataSource = CollectionTableViewDataSource(collection: collection, viewModelFactory: viewModelFactory)
-        }
-    }
+    public typealias TableViewController = FetchedTableViewController<AlertThreshold>
 }

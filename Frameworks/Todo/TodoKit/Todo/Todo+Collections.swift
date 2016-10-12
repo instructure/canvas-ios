@@ -31,14 +31,5 @@ extension Todo {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public class TableViewController: SoPersistent.TableViewController {
-
-        private (set) public var collection: FetchedCollection<Todo>!
-
-        public func prepare<VM: TableViewCellViewModel>(collection: FetchedCollection<Todo>, refresher: Refresher? = nil, viewModelFactory: Todo->VM) {
-            self.collection = collection
-            self.refresher = refresher
-            dataSource = CollectionTableViewDataSource(collection: collection, viewModelFactory: viewModelFactory)
-        }
-    }
+    public typealias TableViewController = FetchedTableViewController<Todo>
 }

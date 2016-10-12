@@ -28,14 +28,5 @@ extension Group {
         return try FetchedCollection(frc: frc)
     }
     
-    public class CollectionViewController: SoPersistent.CollectionViewController {
-        private (set) public var collection: FetchedCollection<Group>!
-        
-        public func prepare<VM: CollectionViewCellViewModel>(collection: FetchedCollection<Group>, refresher: Refresher? = nil, viewModelFactory: Group->VM) {
-            
-            self.collection = collection
-            self.refresher = refresher
-            dataSource = CollectionCollectionViewDataSource(collection: collection, viewModelFactory: viewModelFactory)
-        }
-    }
+    public typealias CollectionViewController = FetchedCollectionViewController<Group>
 }

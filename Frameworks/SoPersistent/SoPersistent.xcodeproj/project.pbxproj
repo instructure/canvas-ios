@@ -19,6 +19,8 @@
 		4925F9861C92128B00C55BD5 /* ManagedObjectContextScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4925F9851C92128B00C55BD5 /* ManagedObjectContextScheduler.swift */; };
 		4928EBE41C84DF2400799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBE31C84DF2400799E04 /* Marshal.framework */; };
 		4934799F1CB45549008D14DD /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4934799E1CB45549008D14DD /* DoNotShipThis.framework */; };
+		496268F31DAC3E0A00B45487 /* FetchedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496268F21DAC3E0A00B45487 /* FetchedTableViewController.swift */; };
+		496268F51DAC3F8E00B45487 /* FetchedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496268F41DAC3F8E00B45487 /* FetchedCollectionViewController.swift */; };
 		498230101C6AB11800D2318A /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4982300F1C6AB11800D2318A /* TooLegit.framework */; };
 		49893A091C8E280F00A8CFBA /* FetchedCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49893A081C8E280F00A8CFBA /* FetchedCollection.swift */; };
 		49893A0B1C8E281800A8CFBA /* FetchedDetailsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49893A0A1C8E281800A8CFBA /* FetchedDetailsCollection.swift */; };
@@ -111,6 +113,8 @@
 		4925F9851C92128B00C55BD5 /* ManagedObjectContextScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContextScheduler.swift; sourceTree = "<group>"; };
 		4928EBE31C84DF2400799E04 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4934799E1CB45549008D14DD /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DoNotShipThis.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Vanilla-hetxifhysflutvhgkjdeujziyhst/Build/Products/Debug-iphoneos/DoNotShipThis.framework"; sourceTree = "<group>"; };
+		496268F21DAC3E0A00B45487 /* FetchedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedTableViewController.swift; sourceTree = "<group>"; };
+		496268F41DAC3F8E00B45487 /* FetchedCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedCollectionViewController.swift; sourceTree = "<group>"; };
 		4982300F1C6AB11800D2318A /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49893A081C8E280F00A8CFBA /* FetchedCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FetchedCollection.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49893A0A1C8E281800A8CFBA /* FetchedDetailsCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedDetailsCollection.swift; sourceTree = "<group>"; };
@@ -333,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				49893A0F1C8E289800A8CFBA /* TableViewController.swift */,
+				496268F21DAC3E0A00B45487 /* FetchedTableViewController.swift */,
 				49893A101C8E289800A8CFBA /* TableViewDataSource.swift */,
 				61AC4EBA1CD01D2C005CD8B3 /* ColorfulTableViewCell.swift */,
 				61AC4EBB1CD01D2C005CD8B3 /* ColorfulTableViewCellBasic.xib */,
@@ -347,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				49893A141C8E28CF00A8CFBA /* CollectionViewController.swift */,
+				496268F41DAC3F8E00B45487 /* FetchedCollectionViewController.swift */,
 				49893A161C8E291C00A8CFBA /* CollectionViewDataSource.swift */,
 			);
 			path = "Collection Views";
@@ -631,10 +637,12 @@
 				491FC76A1C406DF700550505 /* NSManagedObject+SoPersistent.swift in Sources */,
 				49895F121C48355A002A16EC /* Marshal+SoPersistent.swift in Sources */,
 				49893A171C8E291C00A8CFBA /* CollectionViewDataSource.swift in Sources */,
+				496268F31DAC3E0A00B45487 /* FetchedTableViewController.swift in Sources */,
 				491FC7681C406D8500550505 /* NSManagedObjectContext+SoPersistent.swift in Sources */,
 				49893A121C8E289800A8CFBA /* TableViewDataSource.swift in Sources */,
 				61EB8D5E1CF4C76400E794A4 /* ManagedObjectCountObserver.swift in Sources */,
 				49E300691CA5CA2100507CAB /* Refresher.swift in Sources */,
+				496268F51DAC3F8E00B45487 /* FetchedCollectionViewController.swift in Sources */,
 				49CF63FF1C690F4500CA2EEA /* Session+CoreData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -37,14 +37,5 @@ extension AccountDomain {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: RefreshScope.global, cacheKey: cacheKey(context))
     }
 
-    public class TableViewController: SoPersistent.TableViewController {
-
-        private (set) public var collection: FetchedCollection<AccountDomain>!
-
-        public func prepare<VM: TableViewCellViewModel>(collection: FetchedCollection<AccountDomain>, refresher: Refresher? = nil, viewModelFactory: AccountDomain->VM) {
-            self.collection = collection
-            self.refresher = refresher
-            dataSource = CollectionTableViewDataSource(collection: collection, viewModelFactory: viewModelFactory)
-        }
-    }
+    public typealias TableViewController = FetchedTableViewController<AccountDomain>
 }

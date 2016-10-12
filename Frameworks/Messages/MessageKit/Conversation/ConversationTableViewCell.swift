@@ -107,7 +107,7 @@ public class ConversationViewModel: TableViewCellViewModel {
      The avatar image of the most recent sender.
      */
     public lazy var avatarImage: AnyProperty<UIImage?> = {
-        let defaultAvatar = UIImage.icon(.courses, filled: true) // TODO: default avatar frd
+        let defaultAvatar = UIImage.icon(.course, filled: true) // TODO: default avatar frd
         let avatar = MutableProperty<UIImage?>(defaultAvatar)
         if let url = NSURL(string: self.conversation.mostRecentSender.avatarURL) {
             KingfisherManager.sharedManager.retrieveImageWithURL(url, optionsInfo: nil, progressBlock: nil) { image, _, _, _ in

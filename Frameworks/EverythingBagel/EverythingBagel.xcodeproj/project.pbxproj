@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		496268F71DAC44EB00B45487 /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496268F61DAC44E400B45487 /* SoAutomated.framework */; };
 		49C98DE31D922837006AF2FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C98DE21D922837006AF2FB /* AppDelegate.swift */; };
 		49C98DE51D922837006AF2FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C98DE41D922837006AF2FB /* ViewController.swift */; };
 		49C98DE81D922837006AF2FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49C98DE61D922837006AF2FB /* Main.storyboard */; };
@@ -58,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		496268F61DAC44E400B45487 /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C98DDF1D922837006AF2FB /* EverythingBagel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EverythingBagel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C98DE21D922837006AF2FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49C98DE41D922837006AF2FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				49C98E031D922EA0006AF2FB /* FileKit.framework in Frameworks */,
 				49C98E071D922EA0006AF2FB /* PageKit.framework in Frameworks */,
 				49C98DFF1D922EA0006AF2FB /* AssignmentKit.framework in Frameworks */,
+				496268F71DAC44EB00B45487 /* SoAutomated.framework in Frameworks */,
 				49C98DF61D922CCF006AF2FB /* EnrollmentKit.framework in Frameworks */,
 				49C98E051D922EA0006AF2FB /* MediaKit.framework in Frameworks */,
 				49C98E121D9230FC006AF2FB /* SoPersistent.framework in Frameworks */,
@@ -131,6 +134,7 @@
 		49C98DF41D922853006AF2FB /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				496268F61DAC44E400B45487 /* SoAutomated.framework */,
 				49C98E0D1D9230F3006AF2FB /* DiscussionKit.framework */,
 				49C98E0C1D9230AA006AF2FB /* TodoKit.framework */,
 				49C98E0B1D923096006AF2FB /* SoPersistent.framework */,

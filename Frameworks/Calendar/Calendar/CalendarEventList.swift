@@ -9,6 +9,7 @@
 import CalendarKit
 import SoPersistent
 import TooLegit
+import SoLazy
 
 struct CalendarEventViewModel: TableViewCellViewModel {
     static var subtitleDateFormatter: NSDateFormatter = {

@@ -45,14 +45,5 @@ extension Alert {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public class TableViewController: SoPersistent.TableViewController {
-
-        private (set) public var collection: FetchedCollection<Alert>!
-
-        public func prepare<VM: TableViewCellViewModel>(collection: FetchedCollection<Alert>, refresher: Refresher? = nil, viewModelFactory: Alert->VM) {
-            self.collection = collection
-            self.refresher = refresher
-            dataSource = CollectionTableViewDataSource(collection: collection, viewModelFactory: viewModelFactory)
-        }
-    }
+    public typealias TableViewController = FetchedTableViewController<Alert>
 }

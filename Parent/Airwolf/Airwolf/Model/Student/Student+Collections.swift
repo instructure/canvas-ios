@@ -44,13 +44,5 @@ extension Student {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public class TableViewController: SoPersistent.TableViewController {
-        private (set) public var collection: FetchedCollection<Student>!
-
-        public func prepare<VM: TableViewCellViewModel>(collection: FetchedCollection<Student>, refresher: Refresher? = nil, viewModelFactory: Student->VM) {
-            self.collection = collection
-            self.refresher = refresher
-            self.dataSource = CollectionTableViewDataSource(collection: collection, viewModelFactory: viewModelFactory)
-        }
-    }
+    public typealias TableViewController = FetchedTableViewController<Student>
 }

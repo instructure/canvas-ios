@@ -49,25 +49,7 @@ extension Course {
         return SignalProducerRefresher(refreshSignalProducer: sync.concat(colors), scope: session.refreshScope, cacheKey: key)
     }
 
-    public class TableViewController: SoPersistent.TableViewController {
+    public typealias TableViewController = FetchedTableViewController<Course>
 
-        private (set) public var collection: FetchedCollection<Course>!
-
-        public func prepare<VM: TableViewCellViewModel>(collection: FetchedCollection<Course>, refresher: Refresher? = nil, viewModelFactory: Course->VM) {
-            self.collection = collection
-            self.refresher = refresher
-            dataSource = CollectionTableViewDataSource(collection: collection, viewModelFactory: viewModelFactory)
-        }
-    }
-
-    public class CollectionViewController: SoPersistent.CollectionViewController {
-
-        private (set) public var collection: FetchedCollection<Course>!
-
-        public func prepare<VM: CollectionViewCellViewModel>(collection: FetchedCollection<Course>, refresher: Refresher? = nil, viewModelFactory: Course->VM) {
-            self.collection = collection
-            self.refresher = refresher
-            dataSource = CollectionCollectionViewDataSource(collection: collection, viewModelFactory: viewModelFactory)
-        }
-    }
+    public typealias CollectionViewController = FetchedCollectionViewController<Course>
 }

@@ -39,14 +39,5 @@ extension Tab {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public class TableViewController: SoPersistent.TableViewController {
-        
-        private (set) public var collection: FetchedCollection<Tab>!
-        
-        public func prepare<VM: TableViewCellViewModel>(collection: FetchedCollection<Tab>, refresher: Refresher? = nil, viewModelFactory: Tab->VM) {
-            self.collection = collection
-            self.refresher = refresher
-            dataSource = CollectionTableViewDataSource(collection: collection, viewModelFactory: viewModelFactory)
-        }
-    }
+    public typealias TableViewController = FetchedTableViewController<Tab>
 }

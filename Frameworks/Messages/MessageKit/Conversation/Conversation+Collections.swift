@@ -30,16 +30,10 @@ extension Conversation {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: cacheKey(context))
     }
 
-    public class TableViewController: SoPersistent.TableViewController {
-
+    public class TableViewController: FetchedTableViewController<Conversation> {
         public override func viewDidLoad() {
             super.viewDidLoad()
             tableView.estimatedRowHeight = 44
-        }
-
-        public func prepare<VM: TableViewCellViewModel>(collection: FetchedCollection<Conversation>, refresher: Refresher?, viewModelFactory: Conversation->VM) {
-            self.refresher = refresher
-            dataSource = CollectionTableViewDataSource(collection: collection, viewModelFactory: viewModelFactory)
         }
     }
 }
