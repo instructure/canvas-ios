@@ -25,7 +25,7 @@ FRAMEWORKS_SCHEME='EverythingBagel'
 FRAMEWORKS_PROJECT='Frameworks/EverythingBagel/EverythingBagel.xcodeproj'
 
 def retry_cmd cmd_name, &block
-  # limit of 3 means we retry twice.
+  # if execution fails then we retry up to limit - 1 times.
   limit = 3
   tries = limit
   begin
@@ -59,16 +59,18 @@ platform :ios do
   def test(xc_scheme, xc_project, coverage=true)
     device = 'iPhone 6'
 
-    scan(
-      scheme: xc_scheme,
-      device: device,
-      # Specify destination directly to ensure Bitrise uses latest iOS Simulator
-      destination: "platform=iOS Simulator,name=#{device},OS=latest",
-      workspace: XC_WORKSPACE,
-      skip_build: true,
-      output_directory: './artifacts',
-      skip_slack: true,
-    )
+    retry_cmd('scan') do
+      scan(
+        scheme: xc_scheme,
+        device: device,
+        # Specify destination directly to ensure Bitrise uses latest iOS Simulator
+        destination: "platform=iOS Simulator,name=#{device},OS=latest",
+        workspace: XC_WORKSPACE,
+        skip_build: true,
+        output_directory: './artifacts',
+        skip_slack: true,
+      )
+    end
  
     if coverage
       slather(
@@ -88,13 +90,15 @@ platform :ios do
   end
 
   def build_for_device(xc_scheme)
-    gym(
-      scheme: xc_scheme,
-      workspace: XC_WORKSPACE,
-      clean: false,
-      output_directory: './artifacts',
-      export_team_id: 'B6333T4PXQ'
-    )
+    retry_cmd('gym') do
+      gym(
+        scheme: xc_scheme,
+        workspace: XC_WORKSPACE,
+        clean: false,
+        output_directory: './artifacts',
+        export_team_id: 'B6333T4PXQ'
+      )
+    end
   end
 
   def pull(app_id, xc_project, xc_scheme)
