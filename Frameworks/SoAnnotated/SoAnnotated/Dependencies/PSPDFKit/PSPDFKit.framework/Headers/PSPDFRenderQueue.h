@@ -101,7 +101,7 @@ PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFRenderQueue : NSObj
 /// Set to `PSPDFRenderQueuePriorityNormal` to temporarily pause cache requests.
 @property (nonatomic) PSPDFRenderQueuePriority minimumProcessPriority;
 
-/// Amount of render requests that run at the same time. Defaults to 2.
+/// Amount of render requests that run at the same time. Defaults to 1.
 @property (atomic) NSUInteger concurrentRunningRenderRequests;
 
 @end

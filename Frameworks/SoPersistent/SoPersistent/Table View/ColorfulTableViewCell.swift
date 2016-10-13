@@ -132,6 +132,18 @@ public class ColorfulTableViewCell: UITableViewCell {
         viewModel = nil
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if let title = self.textLabel, let detail = self.detailTextLabel where self.reuseIdentifier == Style.RightDetail.rawValue {
+            var minX: CGFloat = CGRectGetMinX(title.frame)
+            let width = (CGRectGetMinX(detail.frame) - minX) - 8.0
+            var frame = title.frame
+            frame.size.width = width
+            title.frame = frame
+        }
+    }
+    
     public func updateColor(color: UIColor) {
         tintColor = color
         let bg = UIView()

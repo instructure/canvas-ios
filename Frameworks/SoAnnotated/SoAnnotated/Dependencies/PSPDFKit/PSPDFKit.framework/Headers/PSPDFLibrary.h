@@ -76,6 +76,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// Will save a reversed copy of the original page text. Defaults to YES.
 /// @note If enabled, the sqlite cache will be about 2x bigger, but ends-with matches will be enabled.
+/// @note This doesn't change indexes that already exist.
 @property (atomic) BOOL saveReversedPageText;
 
 /// @name Library Operations

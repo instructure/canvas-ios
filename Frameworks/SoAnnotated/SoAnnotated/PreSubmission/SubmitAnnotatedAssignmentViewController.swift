@@ -160,7 +160,7 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
         let queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)
         dispatch_async(queue) {
             let cacheDirPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).first!
-            let outputPath = (cacheDirPath as NSString).stringByAppendingPathComponent("\(course.id)_\(assignment.id)_submission.pdf")
+            let outputPath = (cacheDirPath as NSString).stringByAppendingPathComponent("\(self.session.user.id)_\(course.id)_\(assignment.id)_submission.pdf")
             if NSFileManager.defaultManager().fileExistsAtPath(outputPath) {
                 do {
                     try NSFileManager.defaultManager().removeItemAtPath(outputPath)

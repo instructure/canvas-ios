@@ -69,7 +69,12 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFSearchViewControllerDelegate <PSPDFTextSearc
 
 @end
 
-/// Allows to search within the current `document`.
+/**
+ The search view controller allows text and annotation searching within the current document.
+ It uses `PSPDFTextView` under the hood and updates its delegate as results are loaded.
+ 
+ Usually this is presented as a popover, but it also works modally.
+ */
 PSPDF_CLASS_AVAILABLE @interface PSPDFSearchViewController : PSPDFBaseTableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFTextSearchDelegate, PSPDFStyleable>
 
 /// Designated initializer.
@@ -88,7 +93,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFSearchViewController : PSPDFBaseTableViewC
 @property (nonatomic) BOOL showsCancelButton;
 
 /// Search bar for controller.
-/// @warning You can change attributes (e.g. `barStyle`) but don't change the delegate!
+/// @warning You can change attributes (e.g. `barStyle`) but don't change the searchBar delegate.
 @property (nonatomic, readonly) UISearchBar *searchBar;
 
 /// Current search status. KVO observable.

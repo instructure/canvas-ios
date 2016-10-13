@@ -255,7 +255,12 @@
                 else if (isFinalValue) {
                     self.downloadProgress = 1.0;
                     self.showsInteractionButton = YES;
-                    self.url = url;
+
+                    NSFileManager *fileManager = [NSFileManager defaultManager];
+                    NSURL *persistentURL = [[NSURL alloc] initFileURLWithPath:path];
+                    [fileManager copyItemAtURL:url toURL:persistentURL error:nil];
+
+                    self.url = persistentURL;
                 }
 
                 [self.activityView stopAnimating];
@@ -268,7 +273,7 @@
 
 - (NSString *)pathForPersistedFile:(CKAttachment *)file {
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *path = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%llu_%@", file.ident, file.filename]];
+    NSString *path = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%llu_%@", TheKeymaster.currentClient.authSession.user.id, file.ident, file.filename]];
     return path;
 }
 
@@ -309,36 +314,7 @@
             }
 
             [self.navigationController popViewControllerAnimated:YES];
-
-            if ([[NSFileManager defaultManager] fileExistsAtPath:[self pathForPersistedFile:self.file]]) {
-                [[NSFileManager defaultManager] removeItemAtPath:[self pathForPersistedFile:self.file] error:nil];
-            }
-
-            if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
-                [[NSFileManager defaultManager] removeItemAtPath:[url path] error:nil];
-            }
         };
-        // If the current document is *not* in the documents directory, we should move it there as they save
-        // so when they come back they never have to do that again
-        if (![[[NSURL alloc] initFileURLWithPath:[self pathForPersistedFile:self.file]] isEqual:self.url]) {
-            @weakify(self);
-            pdfDocPresenter.didSaveAnnotations = ^{
-                @strongify(self);
-
-                NSString *path = [self pathForPersistedFile:self.file];
-
-                // NSFileManager *is* threadsafe
-                dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-                dispatch_async(q, ^{
-                    NSFileManager *fileManager = [NSFileManager defaultManager];
-                    if ([fileManager fileExistsAtPath:path]) {
-                        [fileManager removeItemAtPath:path error:nil];
-                    }
-                    NSURL *persistentURL = [[NSURL alloc] initFileURLWithPath:path];
-                    [fileManager copyItemAtURL:url toURL:persistentURL error:nil];
-                });
-            };
-        }
         controller = [pdfDocPresenter getPDFViewController];
     } else if ([QLPreviewController canPreviewItem:_url]) {
         CKURLPreviewViewController *previewController = [[CKURLPreviewViewController alloc] init];

@@ -36,6 +36,10 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFPageLabelView : PSPDFLabelView
 /// Manually wire up to a target/selector.
 @property (nonatomic) UIButton *thumbnailGridButton;
 
+/// Equal to `thumbnailButton.tintColor`, but can also be used with `UIAppearance`.
+/// Defaults to black.
+@property (nonatomic) UIColor *thumbnailButtonColor UI_APPEARANCE_SELECTOR;
+
 /// Update the page label. Returns YES if label changed.
 - (BOOL)updateLabelWithDocument:(PSPDFDocument *)document page:(NSUInteger)page visiblePages:(NSOrderedSet<NSNumber *> *)visiblePages;
 

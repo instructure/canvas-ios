@@ -56,6 +56,7 @@
 #import "PSPDFBaseTableViewController.h"
 #import "PSPDFBaseViewController.h"
 #import "PSPDFSettingsViewController.h"
+#import "PSPDFActivityViewController.h"
 
 // @category: Main Views
 #import "PSPDFPageView.h"

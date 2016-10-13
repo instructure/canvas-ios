@@ -54,7 +54,7 @@ public class PreSubmissionPDFDocumentPresenter: NSObject {
                 PSPDFAnnotationStringCircle,
                 PSPDFAnnotationStringLine,
                 PSPDFAnnotationStringPolygon,
-                PSPDFAnnotationStringImage
+                PSPDFAnnotationStringEraser
             ]
 
             if let session = session {
@@ -98,6 +98,12 @@ extension PreSubmissionPDFDocumentPresenter: PSPDFViewControllerDelegate {
             // PSPDFKit was not doing this @ version 5.5
             _ = try? pdfDocument.saveAnnotations()
         }
+
+        // Intercept and customize the document sharing view controller.
+        if let sharingController = controller as? PSPDFDocumentSharingViewController {
+            sharingController.selectedOptions = [.AllPages, .EmbedAnnotations]
+        }
+
         return true
     }
 }

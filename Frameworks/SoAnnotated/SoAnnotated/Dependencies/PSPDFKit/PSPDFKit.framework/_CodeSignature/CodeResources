@@ -36,6 +36,10 @@
 		<data>
 		zWrTKkmdglNkKAzhB5uMLitp8h8=
 		</data>
+		<key>Headers/PSPDFActivityViewController.h</key>
+		<data>
+		CofezocZoQ80ukp6uzHT3u44yJs=
+		</data>
 		<key>Headers/PSPDFAnnotation.h</key>
 		<data>
 		xO5yF/6AtnF7Qiyz3J+vTMgpQ1g=
@@ -654,7 +658,7 @@
 		</data>
 		<key>Headers/PSPDFKit.h</key>
 		<data>
-		+KEI06woSI2fiFZdLiH4eAMxP7E=
+		nlEiVi0O+/b0BNIqyqmdoYimeSM=
 		</data>
 		<key>Headers/PSPDFKitObject.h</key>
 		<data>
@@ -670,7 +674,7 @@
 		</data>
 		<key>Headers/PSPDFLibrary.h</key>
 		<data>
-		9r4wv/blIV5BGgH3oANf4w0HWqk=
+		4aRIQaBoewtz4q4kj/DrUAUvzeM=
 		</data>
 		<key>Headers/PSPDFLineAnnotation.h</key>
 		<data>
@@ -834,7 +838,7 @@
 		</data>
 		<key>Headers/PSPDFPageLabelView.h</key>
 		<data>
-		9SKbaUKKmeUMunoDe52CUc3FVBk=
+		ZMRON7GZ5aV/C9ihNoHhT27+INE=
 		</data>
 		<key>Headers/PSPDFPageScrollViewController.h</key>
 		<data>
@@ -934,7 +938,7 @@
 		</data>
 		<key>Headers/PSPDFRenderQueue.h</key>
 		<data>
-		orD6TRXIs7B6qdrgmyo57AnP0No=
+		y3QJw/qxI8SwJQTn8wu/lpxvx44=
 		</data>
 		<key>Headers/PSPDFRenditionAction.h</key>
 		<data>
@@ -1002,7 +1006,7 @@
 		</data>
 		<key>Headers/PSPDFSearchViewController.h</key>
 		<data>
-		NDauMUGXbFsnn8ySVTgmUe5HbE4=
+		Z4Bpr4YBF9M3IIKPVutcU/ydpWo=
 		</data>
 		<key>Headers/PSPDFSegmentedControl.h</key>
 		<data>
@@ -1230,7 +1234,7 @@
 		</data>
 		<key>Headers/PSPDFVersion.h</key>
 		<data>
-		WqCSBCK3pTyFCw2T4V/q01a1lwg=
+		O7Es1hwyo2cKzQigeAIoSfcozXY=
 		</data>
 		<key>Headers/PSPDFViewController+EmbeddedFileSupport.h</key>
 		<data>
@@ -1290,7 +1294,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		LK6dLC+wyq7VYYC74dR3DUYne0w=
+		nCjj88QFJtSC2XRTwzfZ9OJe5aA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -1374,7 +1378,7 @@
 		</data>
 		<key>PSPDFKit.bundle/PSPDFBundleVersion</key>
 		<data>
-		HJ2o2h+A13zoxadC44qf9Q9bHgI=
+		lg1JuNKNquQF8McWFKG8uwhPxLw=
 		</data>
 		<key>PSPDFKit.bundle/actionbutton-media.png</key>
 		<data>
@@ -4075,6 +4079,17 @@
 			OjZ3jznT/SCT1bJtdR9hdlbEHmQPrWJbsVsKYNoPYaM=
 			</data>
 		</dict>
+		<key>Headers/PSPDFActivityViewController.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			CofezocZoQ80ukp6uzHT3u44yJs=
+			</data>
+			<key>hash2</key>
+			<data>
+			aBZJ5QNSwTf2rGVOxQ91OAVDTGkhaitFDDDxD4Dq93A=
+			</data>
+		</dict>
 		<key>Headers/PSPDFAnnotation.h</key>
 		<dict>
 			<key>hash</key>
@@ -5773,11 +5788,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+KEI06woSI2fiFZdLiH4eAMxP7E=
+			nlEiVi0O+/b0BNIqyqmdoYimeSM=
 			</data>
 			<key>hash2</key>
 			<data>
-			Mbnvkb+OBJLXuUEKf3Q/sfzz9PCT38r0NEYXSh9EHnA=
+			m8bPLSB99o4SOVFd/rolRZMreU7PiPYIJyab2fKEhlw=
 			</data>
 		</dict>
 		<key>Headers/PSPDFKitObject.h</key>
@@ -5817,11 +5832,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			9r4wv/blIV5BGgH3oANf4w0HWqk=
+			4aRIQaBoewtz4q4kj/DrUAUvzeM=
 			</data>
 			<key>hash2</key>
 			<data>
-			vuT/zHrJ9mHPQFylhJ/1aBw4dX3J4ZHMQ6zE6aj+bIk=
+			bRHu5NaZ9l6x2DvXyihCWXb5xf+S3vEkOvk1MK+WfGo=
 			</data>
 		</dict>
 		<key>Headers/PSPDFLineAnnotation.h</key>
@@ -6268,11 +6283,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			9SKbaUKKmeUMunoDe52CUc3FVBk=
+			ZMRON7GZ5aV/C9ihNoHhT27+INE=
 			</data>
 			<key>hash2</key>
 			<data>
-			8c4LMIce0CkXkeDe/Uk2fev4uIBtmpkKKHh7buDEXx0=
+			Si2Hk6HukRxHpLhiaR0wcTpD+UwwqTd8YNwlTwguMsI=
 			</data>
 		</dict>
 		<key>Headers/PSPDFPageScrollViewController.h</key>
@@ -6543,11 +6558,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			orD6TRXIs7B6qdrgmyo57AnP0No=
+			y3QJw/qxI8SwJQTn8wu/lpxvx44=
 			</data>
 			<key>hash2</key>
 			<data>
-			Dz+Irk1tFEeQafWPU5TCBeNLYccFB8LK7Vmqek4MVQI=
+			x4a/xKM0MB+oMKhcIl7b5lNExobpz2RAwwGeDXI/U7A=
 			</data>
 		</dict>
 		<key>Headers/PSPDFRenditionAction.h</key>
@@ -6730,11 +6745,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			NDauMUGXbFsnn8ySVTgmUe5HbE4=
+			Z4Bpr4YBF9M3IIKPVutcU/ydpWo=
 			</data>
 			<key>hash2</key>
 			<data>
-			Ch/3nkPvkNTTgtFIbZ3eOp6kd/sI4FoUEfcixbsO3mM=
+			kiE/HycbIfUXqC6w1xAIS6NCir4/dexMZszH3DrDN2k=
 			</data>
 		</dict>
 		<key>Headers/PSPDFSegmentedControl.h</key>
@@ -7357,11 +7372,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			WqCSBCK3pTyFCw2T4V/q01a1lwg=
+			O7Es1hwyo2cKzQigeAIoSfcozXY=
 			</data>
 			<key>hash2</key>
 			<data>
-			7aHs4XEdYcQVoXMwWgbZLzil2dzDRz/ftAgiLmQJT9c=
+			W2uRrDNiqiB+PJcXUErF8Uy9laCQOnf30QygkfXg6fo=
 			</data>
 		</dict>
 		<key>Headers/PSPDFViewController+EmbeddedFileSupport.h</key>
@@ -7742,11 +7757,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			HJ2o2h+A13zoxadC44qf9Q9bHgI=
+			lg1JuNKNquQF8McWFKG8uwhPxLw=
 			</data>
 			<key>hash2</key>
 			<data>
-			KmEJRqwgD6LIgrnlLkcXazGEkQHsXwy+1PgQygh+6ug=
+			dJpiKsrPyVVVhoRwqV6KiZwQW6RzlvWiO9w7Kv7OlRE=
 			</data>
 		</dict>
 		<key>PSPDFKit.bundle/actionbutton-media.png</key>

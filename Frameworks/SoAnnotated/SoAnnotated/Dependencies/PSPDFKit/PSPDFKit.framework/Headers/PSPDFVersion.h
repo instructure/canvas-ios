@@ -42,5 +42,7 @@
 #define __PSPDFKIT_5_1 50100
 #define __PSPDFKIT_5_2 50200
 #define __PSPDFKIT_5_3 50300
+#define __PSPDFKIT_5_4 50400
+#define __PSPDFKIT_5_5 50500
 
 #pragma clang diagnostic pop
