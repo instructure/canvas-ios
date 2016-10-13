@@ -24,9 +24,8 @@ CANVAS_PROJECT='Canvas/Canvas.xcodeproj'
 FRAMEWORKS_SCHEME='EverythingBagel'
 FRAMEWORKS_PROJECT='Frameworks/EverythingBagel/EverythingBagel.xcodeproj'
 
-def retry_cmd cmd_name, &block
+def retry_cmd cmd_name, limit = 3, &block
   # if execution fails then we retry up to limit - 1 times.
-  limit = 3
   tries = limit
   begin
     block.call
@@ -42,8 +41,8 @@ end
 platform :ios do
   before_all do
       unless fast_execute
-        retry_cmd('carthage')  { carthage(no_build: true, use_binaries: false, use_ssh: true) }
-        retry_cmd('cocoapods') { cocoapods }
+        retry_cmd('carthage', 10)  { carthage(no_build: true, use_binaries: false, use_ssh: true) }
+        retry_cmd('cocoapods', 10) { cocoapods }
       end
   end
 
@@ -91,12 +90,17 @@ platform :ios do
 
   def build_for_device(xc_scheme)
     retry_cmd('gym') do
+      # Always clear derived data before building becaue Xcode is flaky.
+      # Fix 'module 'Masonry' not found'
+      clear_derived_data
       gym(
         scheme: xc_scheme,
         workspace: XC_WORKSPACE,
         clean: false,
         output_directory: './artifacts',
-        export_team_id: 'B6333T4PXQ'
+        export_team_id: 'B6333T4PXQ',
+        use_legacy_build_api: true, # required or Xcode will flake out.
+        toolchain: :swift_2_3
       )
     end
   end

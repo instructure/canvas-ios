@@ -46,6 +46,11 @@ build Parent.app and submit to iTunes Connect
 fastlane ios test_parent
 ```
 Test Parent.app
+### ios deps
+```
+fastlane ios deps
+```
+Update carthage and cocoapods dependencies
 
 ----
 
