@@ -13,6 +13,7 @@ default_platform :ios
 require 'slather'
 require 'scan'
 require_relative 'xcode_8_xctestrun'
+Xcode8.runner = self.runner
 
 XC_WORKSPACE='AllTheThings.xcworkspace'
 
