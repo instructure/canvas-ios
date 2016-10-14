@@ -1,0 +1,128 @@
+[main]
+host = https://www.transifex.com
+
+[canvas-ios.en_annotatedxliff]
+file_filter = translations/canvas-ios.en_annotatedxliff/<lang>.xlf
+source_file = translations/source/annotated/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_assignmentsxliff]
+file_filter = translations/canvas-ios.en_assignmentsxliff/<lang>.xlf
+source_file = translations/source/assignments/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_calendarxliff]
+file_filter = translations/canvas-ios.en_calendarxliff/<lang>.xlf
+source_file = translations/source/calendar/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_canvasxliff]
+file_filter = translations/canvas-ios.en_canvasxliff/<lang>.xlf
+source_file = translations/source/canvas/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_discussionsxliff]
+file_filter = translations/canvas-ios.en_discussionsxliff/<lang>.xlf
+source_file = translations/source/discussions/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_enrollmentsxliff]
+file_filter = translations/canvas-ios.en_enrollmentsxliff/<lang>.xlf
+source_file = translations/source/enrollments/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_filesxliff]
+file_filter = translations/canvas-ios.en_filesxliff/<lang>.xlf
+source_file = translations/source/files/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_keytesterxliff]
+file_filter = translations/canvas-ios.en_keytesterxliff/<lang>.xlf
+source_file = translations/source/keytester/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_lazyxliff]
+file_filter = translations/canvas-ios.en_lazyxliff/<lang>.xlf
+source_file = translations/source/lazy/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_legitxliff]
+file_filter = translations/canvas-ios.en_legitxliff/<lang>.xlf
+source_file = translations/source/legit/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_mediaxliff]
+file_filter = translations/canvas-ios.en_mediaxliff/<lang>.xlf
+source_file = translations/source/media/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_notificationsxliff]
+file_filter = translations/canvas-ios.en_notificationsxliff/<lang>.xlf
+source_file = translations/source/notifications/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_pagesxliff]
+file_filter = translations/canvas-ios.en_pagesxliff/<lang>.xlf
+source_file = translations/source/pages/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_parentxliff]
+file_filter = translations/canvas-ios.en_parentxliff/<lang>.xlf
+source_file = translations/source/parent/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_peepsxliff]
+file_filter = translations/canvas-ios.en_peepsxliff/<lang>.xlf
+source_file = translations/source/peeps/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_persistentxliff]
+file_filter = translations/canvas-ios.en_persistentxliff/<lang>.xlf
+source_file = translations/source/persistent/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_prettyxliff]
+file_filter = translations/canvas-ios.en_prettyxliff/<lang>.xlf
+source_file = translations/source/pretty/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_quizzesxliff]
+file_filter = translations/canvas-ios.en_quizzesxliff/<lang>.xlf
+source_file = translations/source/quizzes/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_supportivexliff]
+file_filter = translations/canvas-ios.en_supportivexliff/<lang>.xlf
+source_file = translations/source/supportive/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_todoxliff]
+file_filter = translations/canvas-ios.en_todoxliff/<lang>.xlf
+source_file = translations/source/todo/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_whizzyxliff]
+file_filter = translations/canvas-ios.en_whizzyxliff/<lang>.xlf
+source_file = translations/source/whizzy/en-complete.xliff
+source_lang = en
+type = XLIFF
