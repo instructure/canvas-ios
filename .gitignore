@@ -21,6 +21,7 @@ fastlane/build
 fastlane/report.xml
 *.xcscmblueprint
 artifacts
+xctestrun/
 
 # AppCode
 .idea

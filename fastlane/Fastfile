@@ -1,11 +1,18 @@
 fastlane_version '1.89.0'
 
-fast_execute = %w[test_parent].include? ARGV.first
+# noinspection RubyLiteralArrayInspection
+fast_execute = [
+  'test_parent',
+  'build_earlgrey_parent',
+  'test_earlgrey_parent'
+].include? ARGV.first
 
 update_fastlane unless fast_execute
 
 default_platform :ios
 require 'slather'
+require 'scan'
+require_relative 'xcode_8_xctestrun'
 
 XC_WORKSPACE='AllTheThings.xcworkspace'
 
@@ -70,7 +77,7 @@ platform :ios do
         skip_slack: true,
       )
     end
- 
+
     if coverage
       slather(
         proj: xc_project,
@@ -118,7 +125,7 @@ platform :ios do
 
   def beta(app_id, xc_project, xc_scheme)
     match(type: 'adhoc', app_identifier: app_id) # gym uses adhoc profile for initial signing
-    
+
     build_for_device(xc_scheme)
 
     # temporarily disable testing for the sake of time
@@ -189,5 +196,15 @@ platform :ios do
 
   desc 'Update carthage and cocoapods dependencies'
   lane :deps do
+  end
+
+  desc 'Parent.app EarlGrey build-for-testing'
+  lane :build_earlgrey_parent do
+    Xcode8.build_for_testing(scheme: 'ParentEarlGreyTests')
+  end
+
+  desc 'Parent.app EarlGrey test-without-building'
+  lane :test_earlgrey_parent do
+    Xcode8.test_without_building(scheme: 'ParentEarlGreyTests')
   end
 end
