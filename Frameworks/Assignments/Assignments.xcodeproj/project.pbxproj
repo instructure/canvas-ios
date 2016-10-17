@@ -117,6 +117,7 @@
 		B1EC04351CB5BE10001E8367 /* SubmissionUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC04341CB5BE10001E8367 /* SubmissionUpload.swift */; };
 		B1EC04381CB5BFED001E8367 /* SubmissionUploadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC04371CB5BFED001E8367 /* SubmissionUploadTests.swift */; };
 		B1FFACB71CFD321100F2004B /* AssignmentGroup+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FFACB61CFD321100F2004B /* AssignmentGroup+Factory.swift */; };
+		B1F123DD1DAEBA29004EBC57 /* Upload+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F123DC1DAEBA29004EBC57 /* Upload+Details.swift */; };
 		B5109D711CA30D4600A9AF5A /* AssignmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5109D6E1CA30D4600A9AF5A /* AssignmentDetailViewController.swift */; };
 		B5109D721CA30D4600A9AF5A /* AssignmentDetailCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5109D701CA30D4600A9AF5A /* AssignmentDetailCellViewModel.swift */; };
 		B5109D7A1CA30D6300A9AF5A /* RubricCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5109D751CA30D6300A9AF5A /* RubricCellViewModel.swift */; };
@@ -309,6 +310,7 @@
 		B1EC04341CB5BE10001E8367 /* SubmissionUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionUpload.swift; sourceTree = "<group>"; };
 		B1EC04371CB5BFED001E8367 /* SubmissionUploadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionUploadTests.swift; sourceTree = "<group>"; };
 		B1FFACB61CFD321100F2004B /* AssignmentGroup+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AssignmentGroup+Factory.swift"; sourceTree = "<group>"; };
+		B1F123DC1DAEBA29004EBC57 /* Upload+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Upload+Details.swift"; sourceTree = "<group>"; };
 		B5109D6E1CA30D4600A9AF5A /* AssignmentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailViewController.swift; sourceTree = "<group>"; };
 		B5109D701CA30D4600A9AF5A /* AssignmentDetailCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailCellViewModel.swift; sourceTree = "<group>"; };
 		B5109D751CA30D6300A9AF5A /* RubricCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RubricCellViewModel.swift; path = ../Controller/RubricCellViewModel.swift; sourceTree = "<group>"; };
@@ -581,6 +583,7 @@
 				49895EDB1C45B883002A16EC /* Submission Icons.xcassets */,
 				B1310A311C9C6DEF005BFC20 /* ShareSubmissionBuilder.swift */,
 				B13A392D1CBF5C5100CBD98B /* Upload+Collections.swift */,
+				B1F123DC1DAEBA29004EBC57 /* Upload+Details.swift */,
 			);
 			path = Submission;
 			sourceTree = "<group>";
@@ -1152,6 +1155,7 @@
 				49893A271C8E5C9D00A8CFBA /* Submission.swift in Sources */,
 				490A86A41C407D1D00351185 /* AssignmentKit.xcdatamodeld in Sources */,
 				5E5560071C8EB93700933E08 /* AssignmentAPI.swift in Sources */,
+				B1F123DD1DAEBA29004EBC57 /* Upload+Details.swift in Sources */,
 				B1409A7C1CA2F4CF00E88AE5 /* AssignmentGroup.swift in Sources */,
 				493479801CB42430008D14DD /* Assignment+Progress.swift in Sources */,
 				B13A392E1CBF5C5100CBD98B /* Upload+Collections.swift in Sources */,

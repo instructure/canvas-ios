@@ -15,6 +15,7 @@ import SoPersistent
 import WebKit
 
 public class Upload: NSManagedObject {
+    @NSManaged public var id: String
     @NSManaged public var backgroundSessionID: String
     @NSManaged public private(set) var taskIdentifier: NSNumber?
     @NSManaged public private(set) var startedAt: NSDate?
@@ -31,6 +32,11 @@ public class Upload: NSManagedObject {
 
     @NSManaged public var sent: Int64
     @NSManaged public var total: Int64
+
+    public override func awakeFromInsert() {
+        super.awakeFromInsert()
+        id = NSUUID().UUIDString
+    }
 
     public func startWithTask(task: NSURLSessionTask) {
         taskIdentifier = task.taskIdentifier

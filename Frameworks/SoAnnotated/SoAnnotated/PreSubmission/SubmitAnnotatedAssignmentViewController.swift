@@ -23,6 +23,7 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
     var defaultCourseID: String?
     var defaultAssignmentID: String?
     var didSubmitAssignment: (Void)->Void = { }
+    var observer: ManagedObjectObserver<Upload>?
 
     @IBOutlet var courseCell: UITableViewCell!
     @IBOutlet var assignmentCell: UITableViewCell!
@@ -112,25 +113,11 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
         flattenDocument() { url in
             let newUpload = NewUpload.FileUpload([NewUploadFile.FileURL(url)])
             do {
-                try assignment.uploadSubmission(newUpload, inSession: self.session) { submissionUpload in
+                try assignment.uploadForNewSubmission(newUpload, inSession: self.session) { submissionUpload in
                     guard let submissionUpload = submissionUpload else { print("Failed to begin the submission upload"); return }
 
-                    self.submissionUploadCompletedDisposable = submissionUpload.onCompleted.startWithNext { [weak self] in
-                        self?.navigationItem.title = NSLocalizedString("Submitted!", comment: "")
-                        self?.navigationItem.rightBarButtonItem = nil
-                        self?.navigationItem.leftBarButtonItem = nil
-
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * Int64(NSEC_PER_SEC)), dispatch_get_main_queue()) {
-                            self?.didSubmitAssignment()
-                            self?.dismissViewControllerAnimated(true, completion: nil)
-                        }
-                    }
-
-                    self.submissionUploadFailedDisposable = submissionUpload.onFailed.startWithNext { [weak self] message in
-                        guard let message = message else { return }
-                        print("Error uploading: \(message)")
-
-                        let alert = UIAlertController(title: NSLocalizedString("Failed to Submit", comment: "Error when submitting an assignment"), message: NSLocalizedString("There was a problem submitting your assignment. Please try again later.", comment: "Message when fails to submit an assignment"), preferredStyle: .Alert)
+                    let handleError: (String) -> Void = { [weak self] message in
+                        let alert = UIAlertController(title: NSLocalizedString("Failed to Submit", comment: "Error when submitting an assignment"), message: message, preferredStyle: .Alert)
                         let action = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil)
                         alert.addAction(action)
                         self?.presentViewController(alert, animated: true, completion: nil)
@@ -143,6 +130,35 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
                         self?.assignmentCell.userInteractionEnabled = true
                         self?.assignmentCell.textLabel?.textColor = UIColor.blackColor()
                     }
+
+                    do {
+                        self.observer = try Upload.observer(self.session, id: submissionUpload.id)
+                        self.submissionUploadCompletedDisposable = self.observer!.signal.observeNext { [weak self] change, upload in
+                            if let upload = upload {
+                                guard upload.failedAt == nil else {
+                                    let message = NSLocalizedString("There was a problem submitting your assignment. Please try again later.", comment: "Message when fails to submit an assignment")
+                                    handleError(upload.errorMessage ?? message)
+                                    return
+                                }
+
+                                if upload.hasCompleted {
+                                    self?.navigationItem.title = NSLocalizedString("Submitted!", comment: "")
+                                    self?.navigationItem.rightBarButtonItem = nil
+                                    self?.navigationItem.leftBarButtonItem = nil
+
+                                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * Int64(NSEC_PER_SEC)), dispatch_get_main_queue()) {
+                                        self?.didSubmitAssignment()
+                                        self?.dismissViewControllerAnimated(true, completion: nil)
+                                    }
+                                }
+                            }
+                        }
+
+                        submissionUpload.begin(inSession: self.session, inContext: try self.session.assignmentsManagedObjectContext())
+                    } catch let e as NSError {
+                        handleError(e.localizedDescription)
+                    }
+
                 }
             } catch {
                 print("Error starting upload for assignment submission: \(error)")
