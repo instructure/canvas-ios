@@ -130,7 +130,7 @@ public final class Assignment: NSManagedObject, LockableModel {
 
             grade = "\(points)/\(possible)"
         case .Error:
-            grade = "- error"
+            grade = "-"
         }
         return grade
     }
@@ -169,7 +169,7 @@ public enum DueStatus: String, CustomStringConvertible {
     init(assignment: Assignment) {
         guard let due = assignment.due else { self = .Undated; return }
 
-        let now = NSDate()
+        let now = Clock.currentTime()
         if due.compare(now) == .OrderedDescending {
             self = .Upcoming
         } else {

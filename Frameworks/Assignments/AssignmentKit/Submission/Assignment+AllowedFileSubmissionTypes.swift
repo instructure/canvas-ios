@@ -67,7 +67,6 @@ extension Assignment {
 
 
 private func toUTI(ext: String) -> String {
-    print(UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as CFString, nil))
     let cfUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as CFString, nil)
         .map { $0.takeRetainedValue() }
         .map { $0 as String }
@@ -86,4 +85,3 @@ private func isUTIPhoto(uti: String) -> Bool {
 private func isUTIAudio(uti: String) -> Bool {
     return UTTypeConformsTo(uti as CFString, kUTTypeAudio)
 }
-

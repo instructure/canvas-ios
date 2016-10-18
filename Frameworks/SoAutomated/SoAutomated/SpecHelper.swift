@@ -1,0 +1,142 @@
+//
+//  SpecHelper.swift
+//  SoAutomated
+//
+//  Created by Nathan Armstrong on 10/10/16.
+//  Copyright © 2016 instructure. All rights reserved.
+//
+
+import Nimble
+import DVR
+import TooLegit
+import SoPersistent
+import ReactiveCocoa
+import CoreData
+
+public let DefaultNetworkTimeout: NSTimeInterval = 5
+
+extension Refresher {
+    public func refreshAndWait() {
+        waitUntil { done in
+            self.refreshingCompleted.observeNext { error in
+                expect(error).to(beNil())
+                done()
+            }
+            self.refresh(true)
+        }
+    }
+
+    public func playback(name: String, in bundle: NSBundle, with session: TooLegit.Session) {
+        session.playback(name, in: bundle) {
+            refreshAndWait()
+        }
+    }
+}
+
+extension TooLegit.Session {
+    public func playback(name: String, in bundle: NSBundle, @noescape block: ()->Void) {
+        let URLSession = self.URLSession
+        let DVRSession = DVR.Session(outputDirectory: "~/Desktop/", cassetteName: name, testBundle: bundle, backingSession: URLSession)
+        self.URLSession = DVRSession
+        DVRSession.beginRecording()
+        block()
+        DVRSession.endRecording()
+        self.URLSession = URLSession
+    }
+}
+
+extension SignalProducerType {
+    public func startWithCompletedAction(doneAction: () -> Void, file: StaticString = #file, line: UInt = #line, next: ((Value) -> Void)? = nil) -> Disposable {
+        return start { event in
+            switch event {
+            case .Next(let v): next?(v)
+            case .Completed: doneAction()
+            case .Interrupted: XCTFail("interrupted", file: file, line: line)
+            case .Failed(let error): XCTFail("failed \(error)")
+            }
+        }
+    }
+
+    public func startWithFailedAction(doneAction: () -> Void, file: StaticString = #file, line: UInt = #line, failed: ((Error) -> Void)? = nil) -> Disposable {
+        return start { event in
+            switch event {
+            case .Next, .Completed: break
+            case .Interrupted: XCTFail("interrupted", file: file, line: line)
+            case .Failed(let error):
+                failed?(error)
+                doneAction()
+            }
+        }
+    }
+
+    public func startAndWaitForCompleted(next: ((Value) -> Void)? = nil) {
+        var disposable: Disposable?
+        waitUntil { done in
+            disposable = self.startWithCompletedAction(done, next: next)
+        }
+        disposable?.dispose()
+    }
+
+    public func startAndWaitForFailed(failed: ((Error) -> Void)? = nil) {
+        var disposable: Disposable?
+        waitUntil { done in
+            disposable = self.startWithFailedAction(done, failed: failed)
+        }
+        disposable?.dispose()
+    }
+}
+
+extension Collection {
+    public subscript(section: Int, row: Int) -> Object {
+        return self[NSIndexPath(forRow: row, inSection: section)]
+    }
+}
+
+extension NSManagedObject {
+    public func reload() -> Self {
+        managedObjectContext!.refreshObject(self, mergeChanges: true)
+        return self
+    }
+}
+
+public func jsonify(date date: NSDate) -> String {
+    return ISO8601SecondFormatter.stringFromDate(date)
+}
+
+public func ==<U: Equatable>(a: CollectionUpdate<U>, b: CollectionUpdate<U>) -> Bool {
+    switch (a, b) {
+    case (.SectionInserted(let a), .SectionInserted(let b)) where a == b: return true
+    case (.SectionDeleted(let a), .SectionDeleted(let b)) where a == b: return true
+    case (.Inserted(let a, let pa), .Inserted(let b, let pb)) where a == b && pa == pb: return true
+    case (.Updated(let a, let pa), .Updated(let b, let pb)) where a == b && pa == pb: return true
+    case (.Moved(let a, let aa, let pa), .Moved(let b, let bb, let pb)) where a == b && aa == bb && pa == pb: return true
+    case (.Deleted(let a, let pa), .Deleted(let b, let pb)) where a == b && pa == pb: return true
+    default: return false
+    }
+}
+
+// MARK: - Deprecated
+public func attempt(@noescape block: () throws -> Void) {
+    try! block()
+}
+
+public class UnitTestCase: XCTestCase {}
+
+extension ManagedObjectObserver {
+    public func observe(object: NSManagedObject, change: ManagedObjectChange, withExpectation expectation: XCTestExpectation) -> Disposable? {
+        return signal.observeNext { _change in
+            if case change = _change.0 where _change.1 == object { expectation.fulfill() }
+        }
+    }
+}
+
+extension XCTestCase {
+    public func assertDifference<T: IntegerArithmeticType>(@noescape selector: ()->T, _ difference: T, _ message: String = "", @noescape block: () throws -> Void) {
+        let before = selector()
+        attempt {
+            try block()
+        }
+        let after = selector()
+        XCTAssertEqual(difference, after - before, message)
+    }
+}

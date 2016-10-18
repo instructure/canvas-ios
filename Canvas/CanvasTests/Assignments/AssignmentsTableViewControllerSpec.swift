@@ -11,7 +11,7 @@ import Quick
 import Nimble
 import SoAutomated
 import SoPersistent
-import EnrollmentKit
+@testable import EnrollmentKit
 
 class AssignmentsTableViewControllerSpec: QuickSpec {
     override func spec() {
@@ -22,8 +22,7 @@ class AssignmentsTableViewControllerSpec: QuickSpec {
                     let courseID = "1811031"
                     let user = User(credentials: .user1)
                     let session = user.session
-                    let managedObjectContext = try! session.enrollmentManagedObjectContext()
-                    let course = Course.build(managedObjectContext, id: courseID)
+                    let course = Course.build(inSession: session) { $0.id = courseID }
                     assignments = try! AssignmentsTableViewController(session: session, courseID: course.id) { _ in }
                 }
 

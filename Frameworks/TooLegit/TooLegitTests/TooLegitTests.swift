@@ -14,7 +14,7 @@ import ReactiveCocoa
 import SoLazy
 import Marshal
 
-class TooLegitTests: UnitTestCase {
+class TooLegitTests: XCTestCase {
 
     func testWrappingAThrowingFunctionInASignalProducer_whenTheFunctionDoesNotThrow_sendsTheValueOfTheFunction() {
         let expectation = expectationWithDescription("value was sent")

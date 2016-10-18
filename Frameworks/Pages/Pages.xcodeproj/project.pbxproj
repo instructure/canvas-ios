@@ -42,8 +42,6 @@
 		ACADC8F21CE67F2500D16200 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD5491CE4EE05007A474A /* Marshal.framework */; };
 		ACADC8F31CE67F2500D16200 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD5461CE4ED99007A474A /* SoLazy.framework */; };
 		ACADC8F41CE67F2500D16200 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD5441CE4ED20007A474A /* SoPersistent.framework */; };
-		ACBB94681CF6600E00D8808E /* PageAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB94671CF6600E00D8808E /* PageAPITests.swift */; };
-		ACBB946A1CF662AE00D8808E /* Page+NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB94691CF662AE00D8808E /* Page+NetworkTests.swift */; };
 		ACBB946C1CF66A8900D8808E /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB946B1CF66A8900D8808E /* Factories.swift */; };
 		ACBF16E21D08B4B400C55AC4 /* PagesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF16E11D08B4B400C55AC4 /* PagesHomeViewController.swift */; };
 		ACC9687A1D24369C006AEAB1 /* Page+viewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC968791D24369C006AEAB1 /* Page+viewModel.swift */; };
@@ -144,8 +142,6 @@
 		ACADC8E71CE6610D00D16200 /* Session+Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Page.swift"; sourceTree = "<group>"; };
 		ACADC8E91CE667D100D16200 /* FileKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FileKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACADC8EC1CE6716500D16200 /* PageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PageKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ACBB94671CF6600E00D8808E /* PageAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageAPITests.swift; sourceTree = "<group>"; };
-		ACBB94691CF662AE00D8808E /* Page+NetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+NetworkTests.swift"; sourceTree = "<group>"; };
 		ACBB946B1CF66A8900D8808E /* Factories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
 		ACBF16E11D08B4B400C55AC4 /* PagesHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagesHomeViewController.swift; sourceTree = "<group>"; };
 		ACC968791D24369C006AEAB1 /* Page+viewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+viewModel.swift"; sourceTree = "<group>"; };
@@ -240,7 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				AC47B0C41CEB70B000A1E54A /* PageTests.swift */,
-				ACBB94691CF662AE00D8808E /* Page+NetworkTests.swift */,
 				ACE5F8C21CF8E19400FEB8F6 /* Page+CollectionsTest.swift */,
 				ACE5F8DD1CFE206700FEB8F6 /* PageTableViewControllerTest.swift */,
 				ACEDF6D81D19BB1D00C2F248 /* PageDetailViewControllerTests.swift */,
@@ -322,7 +317,6 @@
 			children = (
 				AC608DFA1D0F6B7800489EBB /* UI */,
 				ACE5F8BF1CF8DB2D00FEB8F6 /* Fixtures */,
-				ACBB94661CF65FDD00D8808E /* Network */,
 				AC47B0BF1CEA7B1D00A1E54A /* PageTests */,
 				AC9DD5311CE4E888007A474A /* Info.plist */,
 				ACBB946B1CF66A8900D8808E /* Factories.swift */,
@@ -372,14 +366,6 @@
 			isa = PBXGroup;
 			children = (
 				ACADC8E21CE62FB500D16200 /* PageAPI.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		ACBB94661CF65FDD00D8808E /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				ACBB94671CF6600E00D8808E /* PageAPITests.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -617,11 +603,9 @@
 				ACE5F8DE1CFE206700FEB8F6 /* PageTableViewControllerTest.swift in Sources */,
 				AC47B0C51CEB70B000A1E54A /* PageTests.swift in Sources */,
 				AC608DFD1D0F6BAA00489EBB /* PageTemplateRendererTest.swift in Sources */,
-				ACBB94681CF6600E00D8808E /* PageAPITests.swift in Sources */,
 				AC608DFF1D10615400489EBB /* PagesHomeViewControllerTest.swift in Sources */,
 				ACBB946C1CF66A8900D8808E /* Factories.swift in Sources */,
 				ACE5F8C31CF8E19400FEB8F6 /* Page+CollectionsTest.swift in Sources */,
-				ACBB946A1CF662AE00D8808E /* Page+NetworkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

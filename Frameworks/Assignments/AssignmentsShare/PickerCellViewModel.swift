@@ -53,8 +53,7 @@ struct PickerCellViewModel: TableViewCellViewModel {
  */
 class PickAssignmentTableViewCellViewModel: TableViewCellViewModel {
     let assignment: Assignment
-    let context: SubmissionExtensionContext
-    let submissionBuilder: ShareSubmissionBuilder
+    let context: NSExtensionContext
     let selected: Bool
     let uploadAlreadyInProgress: Bool
 
@@ -62,23 +61,19 @@ class PickAssignmentTableViewCellViewModel: TableViewCellViewModel {
     let spinning = MutableProperty(true)
     let submittable = MutableProperty(false)
 
-    init(assignment: Assignment, context: SubmissionExtensionContext, selected: Bool, uploadAlreadyInProgress: Bool) {
+    init(assignment: Assignment, context: NSExtensionContext, selected: Bool, uploadAlreadyInProgress: Bool) {
         self.assignment = assignment
         self.context = context
         self.selected = selected
-        self.submissionBuilder = ShareSubmissionBuilder(assignment: assignment)
         self.uploadAlreadyInProgress = uploadAlreadyInProgress
 
         submittable <~ submissions.producer.map { !self.uploadAlreadyInProgress && !$0.isEmpty }
 
-        submissionBuilder.submissionsForExtensionContext(context)
-            .on(started: { self.spinning.value = true })
-            .start { event in
-                switch event {
-                case let .Next(s): self.submissions.value.append(s)
-                case .Completed, .Failed(_), .Interrupted: self.spinning.value = false
-                }
-            }
+        spinning.value = true
+        assignment.submissions(for: context.attachments) { [weak self] result in
+            self?.spinning.value = false
+            self?.submissions.value = result.value ?? []
+        }
     }
 
     static func tableViewDidLoad(tableView: UITableView) {

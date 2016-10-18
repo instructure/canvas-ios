@@ -13,6 +13,7 @@ import CoreData
 import SoAutomated
 import SoPersistent
 import Marshal
+import Nimble
 
 class TabCollectionsTests: UnitTestCase {
     let session = Session.art
@@ -23,26 +24,28 @@ class TabCollectionsTests: UnitTestCase {
     func testTab_collection_sortsByPosition() {
         attempt {
             context = try session.enrollmentManagedObjectContext()
-            let first = Tab.build(context)
+            let first = Tab.build(inSession: session)
             try first.updateValues(tabJSON(1), inContext: context)
-            let third = Tab.build(context)
+            let third = Tab.build(inSession: session)
             try third.updateValues(tabJSON(3), inContext: context)
-            let second = Tab.build(context)
+            let second = Tab.build(inSession: session)
             try second.updateValues(tabJSON(2), inContext: context)
             let contextID: ContextID = ContextID(url: NSURL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
             let collection = try Tab.collection(session, contextID: contextID)
-            XCTAssertEqual([first, second, third], collection.allObjects, "favoritesCollection sorts by position")
+            XCTAssert(collection[0, 0] === first)
+            XCTAssert(collection[0, 1] === second)
+            XCTAssert(collection[0, 2] === third)
         }
     }
     
     func testTab_shortcuts() {
         attempt {
             context = try session.enrollmentManagedObjectContext()
-            let tab = Tab.build(context)
+            let tab = Tab.build(inSession: session)
             try tab.updateValues(tabJSON(1), inContext: context)
             let contextID: ContextID = ContextID(url: NSURL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
             let shortcuts = try Tab.shortcuts(session, contextID: contextID)
-            XCTAssertEqual([tab], shortcuts.allObjects, "favoritesCollection sorts by position")
+            XCTAssert(shortcuts[0, 0] === tab)
         }
     }
     
@@ -53,12 +56,10 @@ class TabCollectionsTests: UnitTestCase {
             context = try session.enrollmentManagedObjectContext()
             let contextID: ContextID = ContextID(url: NSURL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
             let refresher = try Tab.refresher(session, contextID: contextID)
-            assertDifference({ Tab.count(inContext: context) }, 5, "refresher syncs tabs") {
-                stub(session, "refresh-all-tabs") { expectation in
-                    refresher.refreshingCompleted.observeNext(self.refreshCompletedWithExpectation(expectation))
-                    refresher.refresh(true)
-                }
-            }
+            let count = Tab.observeCount(inSession: session)
+            expect {
+                refresher.playback("refresh-all-tabs", in: currentBundle, with: self.session)
+            }.to(change({ count.currentCount}, from: 0, to: 5))
         }
     }
     

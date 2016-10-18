@@ -23,7 +23,7 @@ class TabTests: UnitTestCase {
         super.setUp()
         attempt {
             context = try session.enrollmentManagedObjectContext()
-            tab = Tab.build(context)
+            tab = Tab.build(inSession: session)
         }
     }
     

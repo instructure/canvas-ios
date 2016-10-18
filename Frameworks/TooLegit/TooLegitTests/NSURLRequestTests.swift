@@ -12,7 +12,7 @@ import TooLegit
 import DoNotShipThis
 import SoAutomated
 
-class NSURLRequestTests: UnitTestCase {
+class NSURLRequestTests: XCTestCase {
     func testBasicGETRequest() {
         attempt {
             let session = Session.ibm

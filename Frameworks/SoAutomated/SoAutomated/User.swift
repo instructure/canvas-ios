@@ -18,6 +18,15 @@ public struct Credentials {
     let token: String
     let name: String
 
+    public init(id: String, domain: String, email: String, password: String, token: String, name: String) {
+        self.id = id
+        self.domain = domain
+        self.email = email
+        self.password = password
+        self.token = token
+        self.name = name
+    }
+
     // MARK: Students
 
     public static let user1 = Credentials(
@@ -45,6 +54,24 @@ public struct Credentials {
         password: "freckle-cozy-water-bastion-behove",
         token: "1~Re7oAox3PlWgeVksgEirLFTQ8QOcRIK6gybqUpZAMjH9M9aDikXXcqnkr0jyp9Rm",
         name: "User 3"
+    )
+
+    public static let user4 = Credentials(
+        id: "6782429",
+        domain: "mobiledev.instructure.com",
+        email: "narmstrong+s@instructure.com",
+        password: "password",
+        token: "1~VrFstYIqog7pM72sX6tVWVQzlWqpVBPc6izVVQSSwZMCCW6VTWUKrcD4gai7v9Hd",
+        name: "nathan student"
+    )
+
+    public static let mgpUser1 = Credentials(
+        id: "2",
+        domain: "narmstrong.instructure.com",
+        email: "narmstrong+s@instructure.com",
+        password: "password",
+        token: "7895~fd6cCPK3vsIO0d2ivNTnVYfwUJRkENjIzIH18hL9qXRhqkB16MaGLakuaiYNxwfA",
+        name: "narmstrong+s@instructure.com"
     )
 
     // MARK: Teachers
@@ -104,5 +131,18 @@ public class User {
 
     public init(credentials: Credentials) {
         self.credentials = credentials
+    }
+}
+
+extension Session {
+    public convenience init(baseURL: NSURL, user: SessionUser, token: String?, unitTesting: Bool) {
+        self.init(baseURL: baseURL, user: user, token: token)
+        if unitTesting {
+            storeType = NSInMemoryStoreType
+        }
+    }
+
+    public static var user1: Session {
+        return User(credentials: .user1).session
     }
 }

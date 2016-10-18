@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "617BE7871CA42D4C008A6908"
+               BuildableName = "DiscussionKitTests.xctest"
+               BlueprintName = "DiscussionKitTests"
+               ReferencedContainer = "container:Discussions.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "617BE77E1CA42D4C008A6908"
+            BuildableName = "DiscussionKit.framework"
+            BlueprintName = "DiscussionKit"
+            ReferencedContainer = "container:Discussions.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

@@ -27,31 +27,52 @@ class EnrollmentFavoritesTests: UnitTestCase {
     // MARK: allCourses, allGroups
     
     func testEnrollment_allCourses_sortsByNameThenByID() {
-        let first = Course.build(context, name: "A", id: "1")
-        let second = Course.build(context, name: "B", id: "2")
-        let third = Course.build(context, name: "B", id: "3")
-        
-        attempt {
-            let collection = try Enrollment.allCourses(session)
-            XCTAssertEqual([first, second, third], collection.allObjects, "allCoursesCollection sorts by name then by id")
+        let first = Course.build(inSession: session) {
+            $0.name = "A"
+            $0.id = "1"
         }
+        let second = Course.build(inSession: session) {
+            $0.name = "B"
+            $0.id = "2"
+        }
+        let third = Course.build(inSession: session) {
+            $0.name = "B"
+            $0.id = "3"
+        }
+        
+        let collection = try! Enrollment.allCourses(session)
+        XCTAssert(collection[0, 0] === first)
+        XCTAssert(collection[0, 1] === second)
+        XCTAssert(collection[0, 2] === third)
     }
     
     func testEnrollment_allGroups_sortsByNameThenByID() {
-        let first = Group.build(context, name: "A", id: "1")
-        let second = Group.build(context, name: "B", id: "2")
-        let third = Group.build(context, name: "B", id: "3")
-        
-        attempt {
-            let collection = try Enrollment.allGroups(session)
-            XCTAssertEqual([first, second, third], collection.allObjects, "allCoursesCollection sorts by name then by id")
+        let first = Group.build(inSession: session) {
+            $0.name = "A"
+            $0.id = "1"
         }
+        let second = Group.build(inSession: session) {
+            $0.name = "B"
+            $0.id = "2"
+        }
+        let third = Group.build(inSession: session) {
+            $0.name = "B"
+            $0.id = "3"
+        }
+        
+        let collection = try! Enrollment.allGroups(session)
+        XCTAssert(collection[0, 0] === first)
+        XCTAssert(collection[0, 1] === second)
+        XCTAssert(collection[0, 2] === third)
     }
     
     // MARK: colorfulFavoriteViewModel
     
     func testColorfulFavoriteViewModel() {
-        let enrollment = Group.build(context, name: "A", id: "1")
+        let enrollment = Group.build(inSession: session) {
+            $0.name = "A"
+            $0.id = "1"
+        }
         let vm = colorfulFavoriteViewModel(enrollment)
         XCTAssertEqual(enrollment.name, vm.title.value)
         XCTAssertEqual(enrollment.shortName, vm.detail.value)

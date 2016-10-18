@@ -8,13 +8,16 @@
 
 import Nimble
 
-public func beShapedLike(expected: JSONShape) -> NonNilMatcherFunc<[String: AnyObject]> {
+public func beShapedLike(expected: JSONShape?) -> NonNilMatcherFunc<[String: AnyObject]> {
     return NonNilMatcherFunc { actualExpression, failureMessage in
-        failureMessage.postfixMessage = "beShapedLike shape"
-        guard let actualValue = try actualExpression.evaluate() else {
+        let actualValue = try actualExpression.evaluate()
+        if expected == nil || actualValue == nil {
+            if expected == nil {
+                failureMessage.postfixActual = " (use beNil() to match nils)"
+            }
             return false
         }
-        let (matches, key) = jsonShape(expected, matchesObject: actualValue)
+        let (matches, key) = jsonShape(expected!, matchesObject: actualValue!)
         if !matches {
             failureMessage.postfixMessage = "find key \(key)"
         }
@@ -22,13 +25,16 @@ public func beShapedLike(expected: JSONShape) -> NonNilMatcherFunc<[String: AnyO
     }
 }
 
-public func beShapedLike(expected: JSONShape) -> NonNilMatcherFunc<[[String: AnyObject]]> {
+public func beShapedLike(expected: JSONShape?) -> NonNilMatcherFunc<[[String: AnyObject]]> {
     return NonNilMatcherFunc { actualExpression, failureMessage in
-        failureMessage.postfixMessage = "beShapedLike shape"
-        guard let actualValue = try actualExpression.evaluate() else {
+        let actualValue = try actualExpression.evaluate()
+        if expected == nil || actualValue == nil {
+            if expected == nil {
+                failureMessage.postfixActual = " (use beNil() to match nils)"
+            }
             return false
         }
-        let (matches, key) = jsonShape(expected, matchesObject: actualValue)
+        let (matches, key) = jsonShape(expected!, matchesObject: actualValue!)
         if !matches {
             failureMessage.postfixMessage = "find key \(key)"
         }

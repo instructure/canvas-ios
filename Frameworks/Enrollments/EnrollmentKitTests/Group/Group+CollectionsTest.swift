@@ -12,17 +12,14 @@ import TooLegit
 import CoreData
 import SoAutomated
 import SoPersistent
+import Nimble
 
-class GroupCollectionsTests: UnitTestCase {
+class GroupCollectionsTests: XCTestCase {
     let session = Session.art
     var context: NSManagedObjectContext!
     
     lazy var studentContext: String->NSManagedObjectContext = { studentID in
-        var context: NSManagedObjectContext!
-        self.attempt {
-            context = try self.session.enrollmentManagedObjectContext(studentID)
-        }
-        return context
+        return try! self.session.enrollmentManagedObjectContext(studentID)
     }
     
     override func setUp() {
@@ -35,55 +32,56 @@ class GroupCollectionsTests: UnitTestCase {
     // MARK: favoritesCollection
     
     func testGroup_favoritesCollection_includesGroupsWithIsFavoriteFlag() {
-        let favorite = Group.build(context, isFavorite: true)
-        attempt {
-            let collection = try Group.favoritesCollection(session)
-            XCTAssert(collection.contains(favorite), "favoritesCollection includes groups with isFavorite flag")
-        }
+        let favorite = Group.build(inSession: session) { $0.isFavorite = true }
+        let collection = try! Group.favoritesCollection(session)
+        XCTAssert(collection.contains(favorite), "favoritesCollection includes groups with isFavorite flag")
     }
     
     func testGroup_favoritesCollection_excludesGroupsWithoutIsFavoriteFlag() {
-        let nonFavorite = Group.build(context, isFavorite: false)
-        attempt {
-            let collection = try Group.favoritesCollection(session)
-            XCTAssertFalse(collection.contains(nonFavorite), "favoritesCollection excludes groups with isFavorite flag")
-        }
+        let nonFavorite = Group.build(inSession: session) { $0.isFavorite = false }
+        let collection = try! Group.favoritesCollection(session)
+        XCTAssertFalse(collection.contains(nonFavorite), "favoritesCollection excludes groups with isFavorite flag")
     }
     
     func testGroup_favoritesCollection_sortsByNameThenByID() {
-        let first = Group.build(context, name: "A", id: "1", isFavorite: true)
-        let second = Group.build(context, name: "B", id: "2", isFavorite: true)
-        let third = Group.build(context, name: "B", id: "3", isFavorite: true)
-        attempt {
-            let collection = try Group.favoritesCollection(session)
-            XCTAssertEqual([first, second, third], collection.allObjects, "favoritesCollection sorts by name then by id")
+        let first = Group.build(inSession: session) {
+            $0.name = "A"
+            $0.id = "1"
+            $0.isFavorite = true
         }
+        let second = Group.build(inSession: session) {
+            $0.name = "B"
+            $0.id = "2"
+            $0.isFavorite = true
+        }
+        let third = Group.build(inSession: session) {
+            $0.name = "B"
+            $0.id = "3"
+            $0.isFavorite = true
+        }
+        let collection = try! Group.favoritesCollection(session)
+        XCTAssertEqual(collection[0, 0], first)
+        XCTAssertEqual(collection[0, 1], second)
+        XCTAssertEqual(collection[0, 2], third)
     }
     
     // MARK: refresher
     
     func testGroup_refresher_syncsGroups() {
-        attempt {
-            let refresher = try Group.refresher(session)
-            assertDifference({ Group.count(inContext: context) }, 2, "refresher syncs groups") {
-                stub(session, "refresh-all-groups") { expectation in
-                    refresher.refreshingCompleted.observeNext(self.refreshCompletedWithExpectation(expectation))
-                    refresher.refresh(true)
-                }
-            }
-        }
+        let refresher = try! Group.refresher(session)
+        let count = Group.observeCount(inSession: session)
+        expect {
+            refresher.playback("refresh-all-groups", in: currentBundle, with: self.session)
+        }.to(change({ count.currentCount }, from: 0, to: 2))
     }
     
     func testGroup_refresher_syncsFavoriteColors() {
-        attempt {
-            let group = Group.build(context, id: "24219", color: nil)
-            try context.save()
-            let refresher = try Group.refresher(session)
-            stub(session, "refresh-all-groups") { expectation in
-                refresher.refreshingCompleted.observeNext(self.refreshCompletedWithExpectation(expectation))
-                refresher.refresh(true)
-            }
-            XCTAssertEqual("#555555", group.rawColor, "refresher syncs favorite colors")
+        let group = Group.build(inSession: session) {
+            $0.id = "24219"
+            $0.color = nil
         }
+        let refresher = try! Group.refresher(session)
+        refresher.playback("refresh-all-groups", in: currentBundle, with: session)
+        XCTAssertEqual("#555555", group.rawColor, "refresher syncs favorite colors")
     }
 }

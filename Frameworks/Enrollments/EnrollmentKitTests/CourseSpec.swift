@@ -15,6 +15,8 @@ import Marshal
 import TooLegit
 import ReactiveCocoa
 
+let currentBundle = NSBundle(forClass: CourseSpec.self)
+
 class CourseSpec: QuickSpec {
     override func spec() {
         describe("Course") {
@@ -25,7 +27,7 @@ class CourseSpec: QuickSpec {
             beforeEach {
                 user = User(credentials: .user1)
                 managedObjectContext = try! user.session.enrollmentManagedObjectContext()
-                course = Course(inContext: managedObjectContext)
+                course = Course.build(inSession: user.session)
             }
 
             it("has grades") {
@@ -38,9 +40,21 @@ class CourseSpec: QuickSpec {
             }
 
             it("finds grades by grading period id") {
-                Grade.build(managedObjectContext, gradingPeriodID: nil, currentGrade: "A", course: { _ in course })
-                Grade.build(managedObjectContext, gradingPeriodID: "1", currentGrade: "B", course: { _ in course })
-                Grade.build(managedObjectContext, gradingPeriodID: "2", currentGrade: "C", course: { _ in course })
+                Grade.build(inSession: user.session) {
+                    $0.gradingPeriodID = nil
+                    $0.currentGrade = "A"
+                    $0.course = course
+                }
+                Grade.build(inSession: user.session) {
+                    $0.gradingPeriodID = "1"
+                    $0.currentGrade = "B"
+                    $0.course = course
+                }
+                Grade.build(inSession: user.session) {
+                    $0.gradingPeriodID = "2"
+                    $0.currentGrade = "C"
+                    $0.course = course
+                }
 
                 let a = course.visibleGradingPeriodGrade(nil)
                 let b = course.visibleGradingPeriodGrade("1")
@@ -54,9 +68,21 @@ class CourseSpec: QuickSpec {
             }
 
             it("finds scores by grading period id") {
-                Grade.build(managedObjectContext, gradingPeriodID: nil, currentScore: 100, course: { _ in course })
-                Grade.build(managedObjectContext, gradingPeriodID: "1", currentScore: 80, course: { _ in course })
-                Grade.build(managedObjectContext, gradingPeriodID: "2", currentScore: 70, course: { _ in course })
+                Grade.build(inSession: user.session) {
+                    $0.gradingPeriodID = nil
+                    $0.currentScore = 100
+                    $0.course = course
+                }
+                Grade.build(inSession: user.session) {
+                    $0.gradingPeriodID = "1"
+                    $0.currentScore = 80
+                    $0.course = course
+                }
+                Grade.build(inSession: user.session) {
+                    $0.gradingPeriodID = "2"
+                    $0.currentScore = 70
+                    $0.course = course
+                }
 
                 let a = course.visibleGradingPeriodScore(nil)
                 let b = course.visibleGradingPeriodScore("1")
@@ -80,15 +106,29 @@ class CourseSpec: QuickSpec {
                 }
 
                 it("is nil if there are no grades for the current grading period") {
-                    Grade.build(managedObjectContext, gradingPeriodID: "1", currentGrade: "A", course: { _ in course })
+                    Grade.build(inSession: user.session) {
+                        $0.gradingPeriodID = "1"
+                        $0.currentGrade = "A"
+                        $0.course = course
+                    }
                     course.currentGradingPeriodID = "2"
                     expect(course.visibleGrade).to(beNil())
                     expect(course.visibleScore).to(beNil())
                 }
 
                 it("is the current grade/score for the current grading period") {
-                    Grade.build(managedObjectContext, gradingPeriodID: nil, currentGrade: "A", currentScore: 100, course: { _ in course })
-                    Grade.build(managedObjectContext, gradingPeriodID: "1", currentGrade: "B", currentScore: 80, course: { _ in course })
+                    Grade.build(inSession: user.session) {
+                        $0.gradingPeriodID = nil
+                        $0.currentGrade = "A"
+                        $0.currentScore = 100
+                        $0.course = course
+                    }
+                    Grade.build(inSession: user.session) {
+                        $0.gradingPeriodID = "1"
+                        $0.currentGrade = "B"
+                        $0.currentScore = 80
+                        $0.course = course
+                    }
 
                     course.currentGradingPeriodID = nil
                     expect(course.visibleGrade) == "A"
@@ -103,8 +143,18 @@ class CourseSpec: QuickSpec {
                     course.multipleGradingPeriodsEnabled = true
                     course.currentGradingPeriodID = nil
                     course.totalForAllGradingPeriodsEnabled = false
-                    Grade.build(managedObjectContext, gradingPeriodID: nil, currentGrade: "A", currentScore: 100, course: { _ in course })
-                    Grade.build(managedObjectContext, gradingPeriodID: "1", currentGrade: "B", currentScore: 80, course: { _ in course })
+                    Grade.build(inSession: user.session) {
+                        $0.gradingPeriodID = nil
+                        $0.currentGrade = "A"
+                        $0.currentScore = 100
+                        $0.course = course
+                    }
+                    Grade.build(inSession: user.session) {
+                        $0.gradingPeriodID = "1"
+                        $0.currentGrade = "B"
+                        $0.currentScore = 80
+                        $0.course = course
+                    }
                     expect(course.visibleGrade).to(beNil())
                     expect(course.visibleScore).to(beNil())
 
@@ -123,15 +173,13 @@ class CourseSpec: QuickSpec {
                 it("handles invalid enrollment types") {
                     var json = self.validCourseJSON
                     json["enrollments"] = [["type": "invalid"]]
-                    self.attempt { try course.updateValues(json, inContext: managedObjectContext) }
+                    try! course.updateValues(json, inContext: managedObjectContext)
                     expect { try course.updateValues(json, inContext: managedObjectContext) }.notTo(throwError())
                 }
 
                 context("when valid") {
                     beforeEach {
-                        self.attempt {
-                            try course.updateValues(self.validCourseJSON, inContext: managedObjectContext)
-                        }
+                        try! course.updateValues(self.validCourseJSON, inContext: managedObjectContext)
                     }
 
                     it("creates a valid course") {
@@ -167,9 +215,7 @@ class CourseSpec: QuickSpec {
 
                 context("when mgp enabled") {
                     beforeEach {
-                        self.attempt {
-                            try course.updateValues(self.mgpCourseJSON, inContext: managedObjectContext)
-                        }
+                        try! course.updateValues(self.mgpCourseJSON, inContext: managedObjectContext)
                     }
 
                     it("sets the current grade") {
@@ -225,7 +271,7 @@ class CourseSpec: QuickSpec {
             describe("mark as favorite") {
                 beforeEach {
                     // marking as favorite does a save so we need a valid course
-                    self.attempt { try course.updateValues(self.validCourseJSON, inContext: managedObjectContext) }
+                    try! course.updateValues(self.validCourseJSON, inContext: managedObjectContext)
                 }
 
                 context("when it works") {
@@ -234,39 +280,39 @@ class CourseSpec: QuickSpec {
                     }
 
                     it("adds favorite") {
-                        let stub = Stub(session: user.session, name: "CourseMarkAsFavoriteAddsFavorite", testCase: self, bundle: NSBundle(forClass: CourseSpec.self))
                         course.isFavorite = false
-                        course.markAsFavorite(true, session: user.session).startWithStub(stub)
+                        user.session.playback("CourseMarkAsFavoriteAddsFavorite", in: currentBundle) {
+                            course.markAsFavorite(true, session: user.session).startAndWaitForCompleted()
+                        }
                         expect(course.isFavorite) == true
                     }
 
                     it("removes favorite") {
-                        let stub = Stub(session: user.session, name: "CourseMarkAsFavoriteRemovesFavorite", testCase: self, bundle: NSBundle(forClass: CourseSpec.self))
                         course.isFavorite = true
-                        course.markAsFavorite(false, session: user.session).startWithStub(stub)
+                        user.session.playback("CourseMarkAsFavoriteRemovesFavorite", in: currentBundle) {
+                            course.markAsFavorite(false, session: user.session).startAndWaitForCompleted()
+                        }
                         expect(course.isFavorite) == false
                     }
                 }
 
                 context("when it doesnt work") {
-                    var stub: Stub!
                     beforeEach {
                         course.id = "not_a_real_course"
-                        stub = Stub(session: user.session, name: "CourseMarkAsFavoriteSendsErrors", testCase: self, bundle: NSBundle(forClass: CourseSpec.self))
                     }
 
                     it("sends errors") {
                         var error: NSError?
-                        self.performNetworkRequests(with: stub) { expectation in
-                            course.markAsFavorite(true, session: user.session).startWithFailedExpectation(expectation) { error = $0 }
+                        user.session.playback("CourseMarkAsFavoriteSendsErrors", in: currentBundle) {
+                            course.markAsFavorite(true, session: user.session).startAndWaitForFailed { error = $0 }
                         }
                         expect(error).toNot(beNil())
                     }
 
                     it("resets isFavorite") {
                         course.isFavorite = false
-                        self.performNetworkRequests(with: stub) { expectation in
-                            course.markAsFavorite(true, session: user.session).startWithFailedExpectation(expectation)
+                        user.session.playback("CourseMarkAsFavoriteSendsErrors", in: currentBundle) {
+                            course.markAsFavorite(true, session: user.session).startAndWaitForFailed()
                         }
                         expect(course.isFavorite) == false
                     }

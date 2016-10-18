@@ -15,6 +15,9 @@ import CoreData
 import SoPersistent
 import ReactiveCocoa
 import Marshal
+import Nimble
+
+let currentBundle = NSBundle(forClass: PageCollectionsTest.self)
 
 class PageCollectionsTest: UnitTestCase {
     
@@ -42,13 +45,10 @@ class PageCollectionsTest: UnitTestCase {
         attempt {
             let context = try session.pagesManagedObjectContext()
             let refresher = try Page.refresher(session, contextID: realContextID)
-            
-            assertDifference({ Page.count(inContext: context) }, 17) {
-                stub(session, "pages-list") { expectation in
-                    refresher.refreshingCompleted.observeNext(self.refreshCompletedWithExpectation(expectation))
-                    refresher.refresh(true)
-                }
-            }
+
+            expect {
+                refresher.playback("pages-list", in: currentBundle, with: self.session)
+            }.to(change({ Page.count(inContext: context) }, from: 0, to: 17))
         }
     }
 

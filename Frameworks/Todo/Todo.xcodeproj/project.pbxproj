@@ -27,7 +27,6 @@
 		49E5DB731C6E347600E3701B /* AssignmentKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49E5DB701C6E347000E3701B /* AssignmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E2EFD121CC7D6BF00208401 /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E2EFD111CC7D6AD00208401 /* SoAutomated.framework */; };
 		5E2EFD161CC7D6F600208401 /* TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2EFD151CC7D6F600208401 /* TodoTests.swift */; };
-		5E2EFD181CC7D70300208401 /* Todo+NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2EFD171CC7D70300208401 /* Todo+NetworkTests.swift */; };
 		5E2EFD1E1CC7EB4900208401 /* DoNotShipThis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5E2EFD1D1CC7EB3900208401 /* DoNotShipThis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E2EFD1F1CC7EB4D00208401 /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E2EFD1D1CC7EB3900208401 /* DoNotShipThis.framework */; };
 		5E2EFD231CC7F48E00208401 /* todos.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E2EFD221CC7F48E00208401 /* todos.json */; };
@@ -40,10 +39,8 @@
 		5E40A0DF1CC5921000350F70 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40A0DE1CC5921000350F70 /* TodoList.swift */; };
 		6102CF971CD16719003BF30A /* Todo+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6102CF961CD16719003BF30A /* Todo+Edits.swift */; };
 		61C8668D1D53B71600100D00 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C8668C1D53B71600100D00 /* Result.framework */; };
-		AC7A9B511D21D02A00496FD0 /* SimpleTodoDVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A9B501D21D02A00496FD0 /* SimpleTodoDVM.swift */; };
 		AC7A9B531D21D1D800496FD0 /* TodoEditsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A9B521D21D1D800496FD0 /* TodoEditsTests.swift */; };
 		AC7A9B571D21DB7000496FD0 /* todo.json in Resources */ = {isa = PBXBuildFile; fileRef = AC7A9B561D21DB7000496FD0 /* todo.json */; };
-		AC7A9B591D21DD9100496FD0 /* todo-ignore.json in Resources */ = {isa = PBXBuildFile; fileRef = AC7A9B581D21DD9100496FD0 /* todo-ignore.json */; };
 		AC8DB79E1D21BAEA0036D00F /* Todo+CollectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8DB79D1D21BAEA0036D00F /* Todo+CollectionTest.swift */; };
 		ACC968821D2582B1006AEAB1 /* mark-todo-as-done-fails.json in Resources */ = {isa = PBXBuildFile; fileRef = ACC968811D2582B1006AEAB1 /* mark-todo-as-done-fails.json */; };
 		B14E11441C63C56A00007938 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E11431C63C56A00007938 /* AppDelegate.swift */; };
@@ -52,9 +49,9 @@
 		B14E11641C63C60F00007938 /* TodoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B14E115A1C63C60F00007938 /* TodoKit.framework */; };
 		B14E116F1C63C60F00007938 /* TodoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B14E115A1C63C60F00007938 /* TodoKit.framework */; };
 		B14E11701C63C60F00007938 /* TodoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B14E115A1C63C60F00007938 /* TodoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1818CDB1DB515650021CB16 /* todo-ignore.json in Resources */ = {isa = PBXBuildFile; fileRef = AC7A9B581D21DD9100496FD0 /* todo-ignore.json */; };
 		B19FB4B21C6BD0CD00B4A93B /* TodoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19FB4B11C6BD0CD00B4A93B /* TodoCell.xib */; };
 		B1F820C71CEB9AE7006EC0BC /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820C61CEB9AE7006EC0BC /* Factories.swift */; };
-		B1F820CA1CEBAA62006EC0BC /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820C91CEBAA62006EC0BC /* Fixtures.swift */; };
 		B50E51411D8CA08A00A2E028 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B50E513E1D8CA08A00A2E028 /* Localizable.strings */; };
 		B54EB7591D8CC7200003AD5B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B14E115E1C63C60F00007938 /* Info.plist */; };
 /* End PBXBuildFile section */
@@ -113,7 +110,6 @@
 		49E5DB701C6E347000E3701B /* AssignmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AssignmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E2EFD111CC7D6AD00208401 /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E2EFD151CC7D6F600208401 /* TodoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoTests.swift; sourceTree = "<group>"; };
-		5E2EFD171CC7D70300208401 /* Todo+NetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+NetworkTests.swift"; sourceTree = "<group>"; };
 		5E2EFD1D1CC7EB3900208401 /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DoNotShipThis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E2EFD221CC7F48E00208401 /* todos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = todos.json; sourceTree = "<group>"; };
 		5E40A0D01CC5855F00350F70 /* TodoKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoKit.xcdatamodel; sourceTree = "<group>"; };
@@ -125,7 +121,6 @@
 		5E40A0DE1CC5921000350F70 /* TodoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		6102CF961CD16719003BF30A /* Todo+Edits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+Edits.swift"; sourceTree = "<group>"; };
 		61C8668C1D53B71600100D00 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC7A9B501D21D02A00496FD0 /* SimpleTodoDVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTodoDVM.swift; sourceTree = "<group>"; };
 		AC7A9B521D21D1D800496FD0 /* TodoEditsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoEditsTests.swift; sourceTree = "<group>"; };
 		AC7A9B561D21DB7000496FD0 /* todo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = todo.json; sourceTree = "<group>"; };
 		AC7A9B581D21DD9100496FD0 /* todo-ignore.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "todo-ignore.json"; sourceTree = "<group>"; };
@@ -142,7 +137,6 @@
 		B14E116C1C63C60F00007938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B19FB4B11C6BD0CD00B4A93B /* TodoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodoCell.xib; sourceTree = "<group>"; };
 		B1F820C61CEB9AE7006EC0BC /* Factories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
-		B1F820C91CEBAA62006EC0BC /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		B50E513F1D8CA08A00A2E028 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "TodoKit/zh-HK.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		B50E51401D8CA08A00A2E028 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = TodoKit/zh.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B58234BB1D8CC77E00C9E001 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = TodoKit/ar.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
@@ -214,7 +208,6 @@
 				AC7A9B581D21DD9100496FD0 /* todo-ignore.json */,
 				AC7A9B561D21DB7000496FD0 /* todo.json */,
 				5E2EFD221CC7F48E00208401 /* todos.json */,
-				B1F820C91CEBAA62006EC0BC /* Fixtures.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -223,9 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				5E2EFD151CC7D6F600208401 /* TodoTests.swift */,
-				5E2EFD171CC7D70300208401 /* Todo+NetworkTests.swift */,
 				AC8DB79D1D21BAEA0036D00F /* Todo+CollectionTest.swift */,
-				AC7A9B501D21D02A00496FD0 /* SimpleTodoDVM.swift */,
 				AC7A9B521D21D1D800496FD0 /* TodoEditsTests.swift */,
 			);
 			path = Todo;
@@ -498,9 +489,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E2EFD231CC7F48E00208401 /* todos.json in Resources */,
-				AC7A9B591D21DD9100496FD0 /* todo-ignore.json in Resources */,
 				ACC968821D2582B1006AEAB1 /* mark-todo-as-done-fails.json in Resources */,
 				AC7A9B571D21DB7000496FD0 /* todo.json in Resources */,
+				B1818CDB1DB515650021CB16 /* todo-ignore.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,9 +529,6 @@
 				5E2EFD161CC7D6F600208401 /* TodoTests.swift in Sources */,
 				AC7A9B531D21D1D800496FD0 /* TodoEditsTests.swift in Sources */,
 				B1F820C71CEB9AE7006EC0BC /* Factories.swift in Sources */,
-				B1F820CA1CEBAA62006EC0BC /* Fixtures.swift in Sources */,
-				5E2EFD181CC7D70300208401 /* Todo+NetworkTests.swift in Sources */,
-				AC7A9B511D21D02A00496FD0 /* SimpleTodoDVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

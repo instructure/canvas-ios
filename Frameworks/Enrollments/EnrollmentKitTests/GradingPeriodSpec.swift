@@ -19,8 +19,7 @@ class GradingPeriodSpec: QuickSpec {
                 beforeEach {
                     let user = User(credentials: .user1)
                     let session = user.session
-                    let managedObjectContext = try! session.enrollmentManagedObjectContext()
-                    let course = Course.build(managedObjectContext, id: "1811031")
+                    let course = Course.build(inSession: session) { $0.id = "1811031" }
                     let gradingPeriods = try! GradingPeriod.collectionByCourseID(session, courseID: course.id)
                     let collection = GradingPeriodCollection(course: course, gradingPeriods: gradingPeriods)
                     let refresher = EmptyRefresher()

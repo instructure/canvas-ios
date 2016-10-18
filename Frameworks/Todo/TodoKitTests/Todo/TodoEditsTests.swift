@@ -13,61 +13,36 @@ import TooLegit
 import SoPersistent
 import DoNotShipThis
 import ReactiveCocoa
+import Nimble
 
 class TodoEditTests: UnitTestCase {
-
     func testMarkAsDone_itMarksTheTodoAsDone() {
-        attempt {
-            let session = Session.ivy
-            let context = try session.todosManagedObjectContext()
-            let todo = Todo.build(context, id: "12345", ignoreURL: "https://mobiledev.instructure.com/api/v1/users/self/todo/assignment_9536420/submitting?permanent=0")
-            try context.save()
-            let predicate = NSPredicate(format: "%K == %@", "id", todo.id)
-            let observer = try ManagedObjectObserver<Todo>(predicate: predicate, inContext: context)
+        let session = Session.ivy
+        let context = try! session.todosManagedObjectContext()
+        let todo = Todo.build(context, id: "12345", ignoreURL: "https://mobiledev.instructure.com/api/v1/users/self/todo/assignment_9536420/submitting?permanent=0", done: false)
+        try! context.save()
 
-            stub(session, "todo-ignore") { expectation in
-                observer.signal.observeNext { _, object in
-                    if let todo = object {
-                        if todo.done {
-                            expectation.fulfill()
-                        }
-                    }
-                }
-
-                todo.markAsDone(session)
+        session.playback("todo-ignore", in: currentBundle) {
+            waitUntil { done in
+                todo.markAsDone(session) { _ in done() }
             }
-
-            XCTAssertTrue(todo.done)
         }
+
+        expect(todo.done).toEventually(beTrue())
     }
     
     func testMarkAsDone_whenTheSignalFails_itMarksTheTodoAsNotDone() {
-        attempt {
-            let session = Session.art
-            let context = try session.todosManagedObjectContext()
-            let todo = Todo.build(context, id: "12345", ignoreURL: "https://mobiledev.instructure.com/api/v1/users/self/todo/assignment_314159/submitting?permanent=0")
-            let predicate = NSPredicate(format: "%K = %@", "id", todo.id)
-            let observer = try ManagedObjectObserver<Todo>(predicate: predicate, inContext: context)
-            var markedDone = false
+        let session = Session.art
+        let context = try! session.todosManagedObjectContext()
+        let todo = Todo.build(context, id: "12345", ignoreURL: "https://mobiledev.instructure.com/api/v1/users/self/todo/assignment_314159/submitting?permanent=0", done: false)
+        try! context.save()
 
-            stub(session, "mark-todo-as-done-fails") { expectation in
-                observer.signal.observeNext { _, object in
-                    if let todo = object {
-                        if markedDone && !todo.done {
-                            expectation.fulfill()
-                        }
-                        if todo.done {
-                            markedDone = true
-                        }
-                    }
-                }
-                
-                todo.markAsDone(session)
+        session.playback("mark-todo-as-done-fails", in: currentBundle) {
+            waitUntil { done in
+                todo.markAsDone(session) { _ in done() }
             }
-            
-            XCTAssertFalse(todo.done)
         }
+
+        XCTAssertFalse(todo.done)
     }
-    
-    
 }

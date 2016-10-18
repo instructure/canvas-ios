@@ -9,8 +9,10 @@
 @testable import TodoKit
 import SoAutomated
 import TooLegit
-import SoPersistent
+@testable import SoPersistent
 import Result
+
+let currentBundle = NSBundle(forClass: TodoCollectionTest.self)
 
 class TodoCollectionTest: UnitTestCase {
 
@@ -38,8 +40,8 @@ class TodoCollectionTest: UnitTestCase {
 
             let collection = try Todo.allTodos(session)
 
-            guard collection.allObjects.count == 3 else {
-                XCTFail("should be three items in collection, found \(collection.allObjects.count)")
+            guard collection.fetchedResultsController.fetchedObjects!.count == 3 else {
+                XCTFail("should be three items in collection, found \(collection.fetchedResultsController.fetchedObjects!.count)")
                 return
             }
 
@@ -59,8 +61,8 @@ class TodoCollectionTest: UnitTestCase {
 
             let collection = try Todo.allTodos(session)
 
-            guard collection.allObjects.count == 3 else {
-                XCTFail("should be three items in collection, found \(collection.allObjects.count)")
+            guard collection.fetchedResultsController.fetchedObjects!.count == 3 else {
+                XCTFail("should be three items in collection, found \(collection.fetchedResultsController.fetchedObjects!.count)")
                 return
             }
 
@@ -80,32 +82,9 @@ class TodoCollectionTest: UnitTestCase {
             let refresher = try Todo.refresher(session)
 
             assertDifference({ Todo.count(inContext: context) }, 3) {
-                stub(session, "todos") { expectation in
-                    refresher.refreshingCompleted.observeNext(self.refreshCompletedWithExpectation(expectation))
-                    refresher.refresh(true)
-                }
+                refresher.playback("todos", in: currentBundle, with: session)
             }
 
-        }
-    }
-
-    class TodoTableViewCellViewModel: TableViewCellViewModel {
-        static func tableViewDidLoad(tableView: UITableView) {}
-        func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell { return UITableViewCell() }
-    }
-
-    func testTableViewControllerPrepare_itInitializesTheProperties() {
-        attempt {
-            let controller = Todo.TableViewController()
-            let collection = try Todo.allTodos(session)
-            let refresher = try Todo.refresher(session)
-            let detailsFactory: Todo->SimpleTodoDVM = { return SimpleTodoDVM(title: $0.id) }
-
-            controller.prepare(collection, refresher: refresher, viewModelFactory: detailsFactory)
-
-            XCTAssertNotNil(controller.collection)
-            XCTAssertNotNil(controller.refresher)
-            XCTAssertNotNil(controller.dataSource)
         }
     }
 }

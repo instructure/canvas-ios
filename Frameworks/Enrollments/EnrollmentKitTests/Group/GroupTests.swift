@@ -23,7 +23,7 @@ class GroupTests: UnitTestCase {
         super.setUp()
         attempt {
             context = try session.enrollmentManagedObjectContext()
-            group = Group.build(context)
+            group = Group.build(inSession: session)
         }
     }
     

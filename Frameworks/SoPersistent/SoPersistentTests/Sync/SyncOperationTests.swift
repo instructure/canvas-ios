@@ -12,6 +12,9 @@ import CoreData
 import TooLegit
 import SoPersistent
 import ReactiveCocoa
+import Nimble
+
+let currentBundle = NSBundle(forClass: SyncSignalProducerTests.self)
 
 class SyncSignalProducerTests: XCTestCase {
     let session = Session.starWarsAPI
@@ -23,13 +26,12 @@ class SyncSignalProducerTests: XCTestCase {
     }
 
     func test_itCreatesObjects() {
-        stub(session, "people") { expectation in
-            let request = try! self.session.GET("/people")
-            let remote = self.session.paginatedJSONSignalProducer(request, keypath: "results")
-
-            SWPerson.syncSignalProducer(inContext: self.managedObjectContext, fetchRemote: remote)
-                .on(failed: { e in XCTFail("error: \(e)") })
-                .startWithCompleted { expectation.fulfill() }
+        session.playback("people", in: currentBundle) {
+            waitUntil { done in
+                let request = try! self.session.GET("/people")
+                let remote = self.session.paginatedJSONSignalProducer(request, keypath: "results")
+                SWPerson.syncSignalProducer(inContext: self.managedObjectContext, fetchRemote: remote).startWithCompletedAction(done)
+            }
         }
 
         XCTAssertEqual(10, SWPerson.count(inContext: managedObjectContext))
@@ -42,11 +44,12 @@ class SyncSignalProducerTests: XCTestCase {
 
         let local = NSPredicate(format: "%K == %@", "name", "Luke Skywalker")
 
-        stub(session, "luke") { expectation in
+        session.playback("luke", in: currentBundle) {
             let request = try! self.session.GET("/people/1")
             let remote = self.session.JSONSignalProducer(request).map { [$0 ] }
-            disposable = SWPerson.syncSignalProducer(local, inContext: self.managedObjectContext, fetchRemote: remote)
-                .startWithCompleted { expectation.fulfill() }
+            waitUntil { done in
+                disposable = SWPerson.syncSignalProducer(local, inContext: self.managedObjectContext, fetchRemote: remote).startWithCompletedAction(done)
+            }
         }
 
         XCTAssertEqual("172", luke.height)
@@ -57,30 +60,15 @@ class SyncSignalProducerTests: XCTestCase {
         let aragorn = SWPerson.build(managedObjectContext, name: "Aragorn")
         try! managedObjectContext.save()
 
-        stub(session, "people") { expectation in
-            let request = try! self.session.GET("/people")
-            let remote = self.session.paginatedJSONSignalProducer(request, keypath: "results")
+        session.playback("people", in: currentBundle) {
+            waitUntil { done in
+                let request = try! self.session.GET("/people")
+                let remote = self.session.paginatedJSONSignalProducer(request, keypath: "results")
 
-            SWPerson.syncSignalProducer(inContext: self.managedObjectContext, fetchRemote: remote)
-                .startWithCompleted { expectation.fulfill() }
+                SWPerson.syncSignalProducer(inContext: self.managedObjectContext, fetchRemote: remote).startWithCompletedAction(done)
+            }
         }
 
         XCTAssert(aragorn.deleted)
-    }
-
-    func test_itPropagatesSaveErrors() {
-        let model = NSManagedObjectModel(named: "DataModel", inBundle: NSBundle(forClass: SWPerson.self))!
-        let context = NSManagedObjectContext.errorProneContext(model)
-        var error: NSError?
-
-        stub(session, "people") { expectation in
-            let request = try! self.session.GET("/people")
-            let remote = self.session.paginatedJSONSignalProducer(request, keypath: "results")
-
-            SWPerson.syncSignalProducer(inContext: context, fetchRemote: remote)
-                .startWithFailed { e in expectation.fulfill(); error = e }
-        }
-
-        XCTAssertNotNil(error)
     }
 }

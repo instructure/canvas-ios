@@ -21,28 +21,28 @@ extension NSDate : ValueType {
     }
 }
 
+public let ISO8601MillisecondFormatter: NSDateFormatter = {
+    let formatter = NSDateFormatter()
+    formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+    let tz = NSTimeZone(abbreviation:"GMT")
+    formatter.timeZone = tz
+    return formatter
+}()
+
+public let ISO8601SecondFormatter: NSDateFormatter = {
+    let formatter = NSDateFormatter()
+    formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ";
+    let tz = NSTimeZone(abbreviation:"GMT")
+    formatter.timeZone = tz
+    return formatter
+}()
+
+private let formatters = [ISO8601MillisecondFormatter, ISO8601SecondFormatter]
+
 public extension NSDate {
-    static private let ISO8601MillisecondFormatter:NSDateFormatter = {
-        let formatter = NSDateFormatter()
-        formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-        let tz = NSTimeZone(abbreviation:"GMT")
-        formatter.timeZone = tz
-        return formatter
-    }()
-    static private let ISO8601SecondFormatter:NSDateFormatter = {
-        let formatter = NSDateFormatter()
-        formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ";
-        let tz = NSTimeZone(abbreviation:"GMT")
-        formatter.timeZone = tz
-        return formatter
-    }()
-    
-    static private let formatters = [ISO8601MillisecondFormatter,
-        ISO8601SecondFormatter]
-    
-    static func fromISO8601String(dateString:String) -> NSDate? {
+    static func fromISO8601String(dateString: String) -> NSDate? {
         for formatter in formatters {
             if let date = formatter.dateFromString(dateString) {
                 return date

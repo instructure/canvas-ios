@@ -11,7 +11,7 @@ import SoAutomated
 import XCTest
 import Marshal
 
-class NSDateTests: UnitTestCase {
+class NSDateTests: XCTestCase {
 
     func testMarshalValueType_whenObjectIsNotAString_itThrowsAnError() {
         let notAString = 1

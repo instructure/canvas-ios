@@ -43,7 +43,6 @@
 		B19D62561CADE73400E16D11 /* get.json in Resources */ = {isa = PBXBuildFile; fileRef = B19D62551CADE73400E16D11 /* get.json */; };
 		B19D62581CADE87900E16D11 /* post.json in Resources */ = {isa = PBXBuildFile; fileRef = B19D62571CADE87900E16D11 /* post.json */; };
 		B1ADC70D1C91335600E85895 /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC70C1C91335600E85895 /* SoAutomated.framework */; };
-		B1F820CC1CEBBAC9006EC0BC /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820CB1CEBBAC9006EC0BC /* Fixtures.swift */; };
 		B5D25EEA1D8CA8C700F79C30 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5D25EE71D8CA8C700F79C30 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -97,7 +96,6 @@
 		B19D62551CADE73400E16D11 /* get.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get.json; sourceTree = "<group>"; };
 		B19D62571CADE87900E16D11 /* post.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = post.json; sourceTree = "<group>"; };
 		B1ADC70C1C91335600E85895 /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1F820CB1CEBBAC9006EC0BC /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		B5D25EE81D8CA8C700F79C30 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5D25EE91D8CA8C700F79C30 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5D25EEB1D8CA8CC00F79C30 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -259,7 +257,6 @@
 				B19163941D21C3660096D708 /* put.json */,
 				B19163961D21C3ED0096D708 /* delete.json */,
 				B156582E1D22E1B200D68C1D /* get-paginated.json */,
-				B1F820CB1CEBBAC9006EC0BC /* Fixtures.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -436,7 +433,6 @@
 				B13402051D106CE600BA28BE /* ContextIDTests.swift in Sources */,
 				B156582D1D22C28100D68C1D /* ParameterEncodingTests.swift in Sources */,
 				B1353E031C4EC78C00E61057 /* UserTests.swift in Sources */,
-				B1F820CC1CEBBAC9006EC0BC /* Fixtures.swift in Sources */,
 				B1353E001C4DBBEA00E61057 /* NSURLRequestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

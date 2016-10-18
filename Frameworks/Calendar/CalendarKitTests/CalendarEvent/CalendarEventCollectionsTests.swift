@@ -15,82 +15,6 @@ import TooLegit
 import DoNotShipThis
 import Result
 
-class DescribeTableViewController: CalendarKitTests {
-
-    /**
-     Acceptance Criteria:
-        * it only shows events within a specified date range
-        * it only shows events with certain context codes
-        * it sections the events by date
-        * it sorts the events by date within their sections
-        * it can be refreshed
-    */
-
-    var refreshCassette: Fixture!
-
-    let tvc = CalendarEvent.TableViewController()
-    let vmFactory: CalendarEvent->SimpleCalendarEventDVM = { return SimpleCalendarEventDVM(title: $0.title!) }
-
-    override func setUp() {
-        super.setUp()
-        session = Session.nas
-        managedObjectContext = try! session.calendarEventsManagedObjectContext()
-        refreshCassette = "calendar_events_list"
-
-        let _ = tvc.view // trigger viewDidLoad
-    }
-
-    func test_itOnlyShowsEventsForDateRange() {
-        var range: DateRange
-        var collection: FetchedCollection<CalendarEvent>
-        let data = loadDummyData(inContext: managedObjectContext)
-        let jan = data["jan"]!
-        let feb = data["feb"]!
-        let jun = data["jun"]!
-        let dec = data["dec"]!
-        let contextCodes = [jan, feb, jun, dec].map { $0.contextCode }
-
-        // jan
-        range = DateRange(start: "2016-01-01", end: "2016-01-02")
-        collection = collectionByDueDate(range, contextCodes: contextCodes)
-        tvc.prepare(collection, refresher: nil, viewModelFactory: vmFactory)
-        assertTableViewLooksLike([[jan.title!]])
-
-        // feb - jun
-        range = DateRange(start: "2016-02-01", end: "2016-06-30")
-        collection = collectionByDueDate(range, contextCodes: contextCodes)
-        tvc.prepare(collection, refresher: nil, viewModelFactory: vmFactory)
-        assertTableViewLooksLike([[feb.title!], [jun.title!]])
-
-        // jan - dec
-        range = DateRange(start: "2016-01-01", end: "2016-12-31")
-        collection = collectionByDueDate(range, contextCodes: contextCodes)
-        tvc.prepare(collection, refresher: nil, viewModelFactory: vmFactory)
-        assertTableViewLooksLike([[jan.title!], [feb.title!], [jun.title!], [dec.title!]])
-    }
-
-    func assertTableViewLooksLike(sections: [[String]]) {
-        XCTAssertEqual(sections.count, tvc.tableView.numberOfSections)
-        for (s, rows) in sections.enumerate() {
-            XCTAssertEqual(rows.count, tvc.tableView.numberOfRowsInSection(s))
-            for (r, title) in rows.enumerate() {
-                let cell = tvc.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: r, inSection: s))
-                XCTAssertEqual(title, cell?.textLabel?.text)
-            }
-        }
-    }
-
-    // MARK: Helpers
-
-    func collectionByDueDate(dateRange: DateRange, contextCodes: [String]) -> FetchedCollection<CalendarEvent> {
-        return try! CalendarEvent.collectionByDueDate(session, startDate: dateRange.startDate, endDate: dateRange.endDate, contextCodes: contextCodes)
-    }
-
-    func refresherByDueDate(dateRange: DateRange, contextCodes: [String]) -> Refresher {
-        return try! CalendarEvent.refresher(session, startDate: dateRange.startDate, endDate: dateRange.endDate, contextCodes: contextCodes)
-    }
-}
-
 class DescribeCollectionsPredicate: CalendarKitTests {
 
     var data: LazyMapCollection<Dictionary<String, CalendarEvent>, CalendarEvent>!
@@ -132,12 +56,7 @@ class DescribeCollectionsPredicate: CalendarKitTests {
             let refresher = try CalendarEvent.refresher(session, startDate: range.startDate, endDate: range.endDate, contextCodes: contextCodes)
 
             assertDifference({ CalendarEvent.count(inContext: context) }, 2) {
-                stub(session, "calendar_events_list") { expectation in
-                    refresher.refreshingCompleted.observeNext { error in
-                        self.refreshCompletedWithExpectation(expectation)(error)
-                    }
-                    refresher.refresh(true)
-                }
+                refresher.playback("calendar_events_list", in: currentBundle, with: session)
             }
         }
     }

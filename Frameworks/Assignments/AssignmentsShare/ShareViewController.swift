@@ -16,6 +16,12 @@ import SoPersistent
 import Keymaster
 import FileKit
 
+extension NSExtensionContext {
+    var attachments: [NSItemProvider] {
+        return (inputItems as? [NSExtensionItem] ?? []).map { $0.attachments as? [NSItemProvider] ?? [] }.reduce([], combine: +)
+    }
+}
+
 class ShareViewController: SLComposeServiceViewController {
     let appGroup = "group.com.instructure.Assignments.SubmissionShare"
 
@@ -26,10 +32,6 @@ class ShareViewController: SLComposeServiceViewController {
             reloadConfigurationItems()
             reloadNewSubmissions()
         }
-    }
-
-    var itemProvider: NSItemProvider? {
-        return (extensionContext?.inputItems.first as? NSExtensionItem)?.attachments?.first as? NSItemProvider
     }
 
     var newSubmissions = [NewUpload]() {
@@ -163,19 +165,13 @@ class ShareViewController: SLComposeServiceViewController {
             return
         }
 
-        let builder = ShareSubmissionBuilder(assignment: assignment)
-        builder.submissionsForExtensionContext(context)
-            .start { [weak self] event in
-                switch event {
-                case .Next(let s):
-                    self?.newSubmissions.append(s)
-                case .Completed:
-                    self?.validateContent()
-                case .Failed(let e):
-                    self?.displayErrorMessage(e.localizedDescription)
-                case .Interrupted: break
-                }
+        assignment.submissions(for: context.attachments) { [weak self] result in
+            if let error = result.error {
+                self?.displayErrorMessage(error.localizedDescription)
+                return
             }
+            self?.newSubmissions = result.value ?? []
+        }
     }
 
     func displayErrorMessage(message: String) {

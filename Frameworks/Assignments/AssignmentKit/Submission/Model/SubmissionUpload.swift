@@ -41,7 +41,7 @@ public class SubmissionUpload: Upload {
             parameters["comment"] = comment
         }
 
-        (attemptProducer {
+        disposable += (attemptProducer {
             let request = try session.POST(submissionsPath, parameters: parameters)
             let task = session.URLSession.dataTaskWithRequest(request)
             self.startWithTask(task)

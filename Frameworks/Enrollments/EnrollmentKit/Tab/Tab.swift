@@ -14,11 +14,11 @@ import SoIconic
 let ShortcutTabIDs: Set<String> = ["assignments", "discussions", "files", "announcements"]
 
 public final class Tab: NSManagedObject {
-    @NSManaged private (set) public var id: String
-    @NSManaged private (set) public var label: String
-    @NSManaged private (set) public var position: Int32
-    @NSManaged private (set) public var url: NSURL
-    @NSManaged private (set) public var hidden: Bool
+    @NSManaged internal (set) public var id: String
+    @NSManaged internal (set) public var label: String
+    @NSManaged internal (set) public var position: Int32
+    @NSManaged internal (set) public var url: NSURL
+    @NSManaged internal (set) public var hidden: Bool
 
     @NSManaged var rawContextID: String
     private (set) public var contextID: ContextID {

@@ -49,10 +49,16 @@ class GradeCollectionsTests: XCTestCase {
     }
 
     func testRefreshSignalProducerUpdatesLocalGrades() {
-        let course = Course.build(context, id: "1")
-        let grade = Grade.build(context, gradingPeriodID: nil, currentGrade: nil, course: { _ in return course })
-        Grade.build(context, gradingPeriodID: "1", course: { _ in return course })
-        try! context.save()
+        let course = Course.build(inSession: session) { $0.id = "1" }
+        let grade = Grade.build(inSession: session) {
+            $0.gradingPeriodID = nil
+            $0.currentGrade = nil
+            $0.course = course
+        }
+        Grade.build(inSession: session) {
+            $0.gradingPeriodID = "1"
+            $0.course = course
+        }
 
         getGrades("grades-list", course: course, gradingPeriodID: nil)
 
@@ -61,15 +67,14 @@ class GradeCollectionsTests: XCTestCase {
         XCTAssertEqual("C", grade.currentGrade)
     }
 
-    private func getGrades(fixture: Fixture, course: Course? = nil, gradingPeriodID: String?) -> [Grade]? {
-        let course = course ?? Course.build(context)
-        try! context.save()
+    private func getGrades(fixture: String, course: Course? = nil, gradingPeriodID: String?) -> [Grade]? {
+        let course = course ?? Course.build(inSession: session)
 
         let refreshSignalProducer = try! Grade.refreshSignalProducer(session, courseID: course.id, gradingPeriodID: gradingPeriodID)
         var response: [Grade]?
 
-        stub(session, fixture, timeout: 4) { expectation in
-            refreshSignalProducer.startWithCompleted { expectation.fulfill() }
+        session.playback(fixture, in: currentBundle) {
+            refreshSignalProducer.startAndWaitForCompleted()
         }
 
         let fetch = Grade.fetch(Grade.predicate(course.id, gradingPeriodID: gradingPeriodID), sortDescriptors: nil, inContext: context)

@@ -17,7 +17,7 @@ class GradingPeriodHeaderSpec: QuickSpec {
             describe("selectedGradingPeriod") {
                 it("should be nil if includeGradingPeriods is false") {
                     let session = User(credentials: .user1).session
-                    let course = Course.build(try! session.enrollmentManagedObjectContext())
+                    let course = Course.build(inSession: session)
                     let header = try! GradingPeriod.Header(session: session, courseID: course.id, viewController: UIViewController(), includeGradingPeriods: false)
                     expect(header.selectedGradingPeriod.value).to(beNil())
                 }

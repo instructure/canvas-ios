@@ -28,7 +28,7 @@ import XCTest
 @testable import TooLegit
 import SoAutomated
 
-class ParameterEncodingTestCase: UnitTestCase {
+class ParameterEncodingTestCase: XCTestCase {
     let URL = NSURL(string: "https://example.com/")!
 }
 

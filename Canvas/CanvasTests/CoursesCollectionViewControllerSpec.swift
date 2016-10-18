@@ -11,7 +11,7 @@ import Canvas
 import Quick
 import Nimble
 import SoAutomated
-import EnrollmentKit
+@testable import EnrollmentKit
 
 class CoursesCollectionViewControllerSpec: QuickSpec {
     override func spec() {
@@ -23,10 +23,10 @@ class CoursesCollectionViewControllerSpec: QuickSpec {
                     let user = User(credentials: .user1)
                     let session = user.session
                     let managedObjectContext = try! session.enrollmentManagedObjectContext()
-                    let courseToRemove = Course.build(managedObjectContext, id: "1", isFavorite: true)
-                    Course.build(managedObjectContext, id: "2", isFavorite: true)
-                    Course.build(managedObjectContext, id: "3", isFavorite: true)
-                    Course.build(managedObjectContext, id: "4", isFavorite: true)
+                    let courseToRemove = Course.build(inSession: session) { $0.id = "1"; $0.isFavorite = true }
+                    Course.build(inSession: session) { $0.id = "2"; $0.isFavorite = true }
+                    Course.build(inSession: session) { $0.id = "3"; $0.isFavorite = true }
+                    Course.build(inSession: session) { $0.id = "4"; $0.isFavorite = true }
                     try! managedObjectContext.save()
                     vc = try! CoursesCollectionViewController(session: session) { _ in }
 

@@ -25,7 +25,7 @@ class GradeTests: XCTestCase {
         super.setUp()
         attempt {
             context = try session.enrollmentManagedObjectContext()
-            grade = Grade.build(context)
+            grade = Grade.build(inSession: session)
         }
     }
 
@@ -44,7 +44,7 @@ class GradeTests: XCTestCase {
     func testGrade_updateValues_createsCourseRelationship() {
         attempt {
             let newGrade = Grade(inContext: context)
-            let course = Course.build(context, id: "1")
+            let course = Course.build(inSession: session) { $0.id = "1" }
 
             try newGrade.updateValues(validJSON, inContext: context)
 

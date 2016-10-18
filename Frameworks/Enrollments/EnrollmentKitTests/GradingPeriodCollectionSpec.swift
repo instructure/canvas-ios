@@ -79,7 +79,7 @@ class GradingPeriodCollectionSpec: QuickSpec {
                 let user = User(credentials: .user1)
                 session = user.session
                 managedObjectContext = try! user.session.enrollmentManagedObjectContext()
-                course = Course.build(managedObjectContext, id: "1", currentGradingPeriodID: "1")
+                course = Course.build(inSession: session) { $0.id = "1"; $0.currentGradingPeriodID = "1" }
             }
 
             describe("selected grading period") {

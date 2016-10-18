@@ -10,7 +10,7 @@ import XCTest
 import TooLegit
 import SoAutomated
 
-class SessionUserTests: UnitTestCase {
+class SessionUserTests: XCTestCase {
     func testCreateUser() {
         let user = SessionUser(id: "2", name: "John", loginID: nil, sortableName: "john", email: nil, avatarURL: nil)
 

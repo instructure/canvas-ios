@@ -61,8 +61,6 @@
 		B161070A1C930A230012F5E4 /* CalendarEventNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16107091C930A230012F5E4 /* CalendarEventNetworkTests.swift */; };
 		B161070C1C930A390012F5E4 /* CalendarEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161070B1C930A390012F5E4 /* CalendarEventTests.swift */; };
 		B161070E1C930A480012F5E4 /* CalendarEventCollectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161070D1C930A480012F5E4 /* CalendarEventCollectionsTests.swift */; };
-		B16107101C9327320012F5E4 /* CalendarEventDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161070F1C9327320012F5E4 /* CalendarEventDetailsTests.swift */; };
-		B16107121C932CDA0012F5E4 /* CalendarEventDVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16107111C932CDA0012F5E4 /* CalendarEventDVM.swift */; };
 		B17891C71C9736CE00B00D8B /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17891C61C9736CE00B00D8B /* SessionTests.swift */; };
 		B1F820E81CEBE040006EC0BC /* CalendarEvent+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820E71CEBE040006EC0BC /* CalendarEvent+Factory.swift */; };
 		B1F820EE1CEC1DFB006EC0BC /* calendar_event.json in Resources */ = {isa = PBXBuildFile; fileRef = B1F820ED1CEC1DFB006EC0BC /* calendar_event.json */; };
@@ -165,8 +163,6 @@
 		B16107091C930A230012F5E4 /* CalendarEventNetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventNetworkTests.swift; sourceTree = "<group>"; };
 		B161070B1C930A390012F5E4 /* CalendarEventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventTests.swift; sourceTree = "<group>"; };
 		B161070D1C930A480012F5E4 /* CalendarEventCollectionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventCollectionsTests.swift; sourceTree = "<group>"; };
-		B161070F1C9327320012F5E4 /* CalendarEventDetailsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsTests.swift; sourceTree = "<group>"; };
-		B16107111C932CDA0012F5E4 /* CalendarEventDVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventDVM.swift; sourceTree = "<group>"; };
 		B17891C61C9736CE00B00D8B /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		B1F820E71CEBE040006EC0BC /* CalendarEvent+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CalendarEvent+Factory.swift"; sourceTree = "<group>"; };
 		B1F820ED1CEC1DFB006EC0BC /* calendar_event.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendar_event.json; sourceTree = "<group>"; };
@@ -390,8 +386,6 @@
 				B161070B1C930A390012F5E4 /* CalendarEventTests.swift */,
 				B16107091C930A230012F5E4 /* CalendarEventNetworkTests.swift */,
 				B161070D1C930A480012F5E4 /* CalendarEventCollectionsTests.swift */,
-				B161070F1C9327320012F5E4 /* CalendarEventDetailsTests.swift */,
-				B16107111C932CDA0012F5E4 /* CalendarEventDVM.swift */,
 			);
 			path = CalendarEvent;
 			sourceTree = "<group>";
@@ -631,12 +625,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1F820E81CEBE040006EC0BC /* CalendarEvent+Factory.swift in Sources */,
-				B16107121C932CDA0012F5E4 /* CalendarEventDVM.swift in Sources */,
 				B161070E1C930A480012F5E4 /* CalendarEventCollectionsTests.swift in Sources */,
 				B161070C1C930A390012F5E4 /* CalendarEventTests.swift in Sources */,
 				B17891C71C9736CE00B00D8B /* SessionTests.swift in Sources */,
 				B161070A1C930A230012F5E4 /* CalendarEventNetworkTests.swift in Sources */,
-				B16107101C9327320012F5E4 /* CalendarEventDetailsTests.swift in Sources */,
 				5ECEDE1F1C499FE200E59B53 /* CalendarKitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

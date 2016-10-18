@@ -52,7 +52,7 @@ extension ContextID {
     }
 }
 
-class ContextIDTests: UnitTestCase {
+class ContextIDTests: XCTestCase {
     func testCreatingAContextIDFromAURL_setsTheCorrectContext() {
         XCTAssert(ContextID(url: ContextID.validURL(.Course))?.context == .Course, "it has a Course context")
         XCTAssert(ContextID(url: ContextID.validURL(.Group))?.context == .Group, "it has a Group context")

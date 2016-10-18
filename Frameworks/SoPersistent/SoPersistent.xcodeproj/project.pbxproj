@@ -82,7 +82,6 @@
 		B1D92AB81C8F366A00EACE5C /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D92AB61C8F365500EACE5C /* SoPretty.framework */; };
 		B1F820E21CEBD2B4006EC0BC /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820E11CEBD2B4006EC0BC /* Factories.swift */; };
 		B1F820E41CEBD421006EC0BC /* Session+SoPersistentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820E31CEBD421006EC0BC /* Session+SoPersistentTests.swift */; };
-		B1F820E61CEBD620006EC0BC /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820E51CEBD620006EC0BC /* Fixtures.swift */; };
 		B526E3491D8CAA32008DA358 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B526E3461D8CAA32008DA358 /* Localizable.strings */; };
 		B526E34A1D8CAA32008DA358 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491FC74A1C406CCB00550505 /* Info.plist */; };
 /* End PBXBuildFile section */
@@ -175,7 +174,6 @@
 		B1D92AB61C8F365500EACE5C /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1F820E11CEBD2B4006EC0BC /* Factories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
 		B1F820E31CEBD421006EC0BC /* Session+SoPersistentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+SoPersistentTests.swift"; sourceTree = "<group>"; };
-		B1F820E51CEBD620006EC0BC /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		B526E3471D8CAA32008DA358 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B526E3481D8CAA32008DA358 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B526E34B1D8CAA3A008DA358 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -405,7 +403,6 @@
 				B19D62601CAF12C200E16D11 /* people.json */,
 				B1451F561C8F65EA00E78FCE /* panda-list.json */,
 				B1451F581C8F66AA00E78FCE /* panda-list-page-2.json */,
-				B1F820E51CEBD620006EC0BC /* Fixtures.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -672,7 +669,6 @@
 				B11273C61C922BAA00452060 /* SimpleCollection.swift in Sources */,
 				B1AA93431D6BA02E004B3226 /* CollectionViewDataSourceSpec.swift in Sources */,
 				B1451F681C8FCA8900E78FCE /* NSManagedObjectContextTests.swift in Sources */,
-				B1F820E61CEBD620006EC0BC /* Fixtures.swift in Sources */,
 				B19810891C8F2A370075869B /* LockableModelTests.swift in Sources */,
 				B11273BC1C92259900452060 /* SimpleRefresher.swift in Sources */,
 				B1D450C51C5BD511004C6E8D /* DataModel.xcdatamodeld in Sources */,

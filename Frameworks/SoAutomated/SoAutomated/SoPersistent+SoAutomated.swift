@@ -10,23 +10,7 @@
 import CoreData
 import ReactiveCocoa
 import Result
-
-extension FetchedCollection where Model: NSFetchRequestResult {
-    public var allObjects: [Object] {
-        guard let objects = fetchedResultsController.fetchedObjects else {
-            return []
-        }
-        return objects as? [Object] ?? []
-    }
-}
-
-extension ManagedObjectObserver {
-    public func observe(object: NSManagedObject, change: ManagedObjectChange, withExpectation expectation: XCTestExpectation) -> Disposable? {
-        return signal.observeNext { _change in
-            if case change = _change.0 where _change.1 == object { expectation.fulfill() }
-        }
-    }
-}
+import Nimble
 
 public class ViewModelFactory<T>: TableViewCellViewModel {
     public typealias View = T->UITableViewCell
@@ -94,18 +78,6 @@ public class CollectionViewCellViewModelFactory<T>: CollectionViewCellViewModel 
 
     public func cellForCollectionView(collectionView: UICollectionView, indexPath: NSIndexPath) -> UICollectionViewCell {
         return view(collectionView, indexPath, model)
-    }
-}
-
-public func ==<U: Equatable>(a: CollectionUpdate<U>, b: CollectionUpdate<U>) -> Bool {
-    switch (a, b) {
-    case (.SectionInserted(let a), .SectionInserted(let b)) where a == b: return true
-    case (.SectionDeleted(let a), .SectionDeleted(let b)) where a == b: return true
-    case (.Inserted(let a, let pa), .Inserted(let b, let pb)) where a == b && pa == pb: return true
-    case (.Updated(let a, let pa), .Updated(let b, let pb)) where a == b && pa == pb: return true
-    case (.Moved(let a, let aa, let pa), .Moved(let b, let bb, let pb)) where a == b && aa == bb && pa == pb: return true
-    case (.Deleted(let a, let pa), .Deleted(let b, let pb)) where a == b && pa == pb: return true
-    default: return false
     }
 }
 

@@ -13,19 +13,20 @@ import ReactiveCocoa
 import Marshal
 import SoAutomated
 import DoNotShipThis
+import Nimble
 
-class SessionTests: UnitTestCase {
+let currentBundle = NSBundle(forClass: SessionTests.self)
+
+class SessionTests: XCTestCase {
     func testGET() {
         let session = httpBinSession()
         var response: JSONObject?
 
-        stub(session, "get") { expectation in
-            let request = try! session.GET("/get")
-            session.JSONSignalProducer(request)
-                .on(completed: { expectation.fulfill() })
-                .startWithNext { json in
-                    response = json
-                }
+        session.playback("get", in: currentBundle) {
+            waitUntil { done in
+                let request = try! session.GET("/get")
+                session.JSONSignalProducer(request).startWithCompletedAction(done) { response = $0 }
+            }
         }
 
         XCTAssertEqual("https://httpbin.org/get?per_page=99", response?["url"] as? String)
@@ -35,13 +36,11 @@ class SessionTests: UnitTestCase {
         let session = httpBinSession()
         var response: JSONObject?
 
-        stub(session, "post") { expectation in
-            let request = try session.POST("/post", parameters: ["foo": "bar"])
-            session.JSONSignalProducer(request)
-                .on(completed: { expectation.fulfill() })
-                .startWithNext { json in
-                    response = json
-                }
+        session.playback("post", in: currentBundle) {
+            waitUntil { done in
+                let request = try! session.POST("/post", parameters: ["foo": "bar"])
+                session.JSONSignalProducer(request).startWithCompletedAction(done) { response = $0 }
+            }
         }
 
         XCTAssertEqual("bar", (response?["json"] as? JSONObject)?["foo"] as? String)
@@ -53,9 +52,9 @@ class SessionTests: UnitTestCase {
 
         attempt {
             let request = try session.PUT("/put", parameters: ["type": "put"])
-            stub(session, "put") { expectation in
-                session.JSONSignalProducer(request).startWithCompletedExpectation(expectation) { json in
-                    response = json
+            session.playback("put", in: currentBundle) {
+                waitUntil { done in
+                    session.JSONSignalProducer(request).startWithCompletedAction(done) { response = $0 }
                 }
             }
         }
@@ -69,9 +68,9 @@ class SessionTests: UnitTestCase {
 
         attempt {
             let request = try session.DELETE("/delete", parameters: ["type": "delete"])
-            stub(session, "delete") { expectation in
-                session.JSONSignalProducer(request).startWithCompletedExpectation(expectation) { json in
-                    response = json
+            session.playback("delete", in: currentBundle) {
+                waitUntil { done in
+                    session.JSONSignalProducer(request).startWithCompletedAction(done) { response = $0 }
                 }
             }
         }
@@ -86,18 +85,17 @@ class SessionTests: UnitTestCase {
             let request = try! session.GET("/get")
             let dataProducer = session.rac_dataWithRequest(request)
 
-            stub(session, "get") { expectation in
-                dataProducer.startWithCompleted {
-                    expectation.fulfill()
+            session.playback("get", in: currentBundle) {
+                waitUntil { done in
+                    dataProducer.startWithCompletedAction(done)
                 }
             }
 
-            stub(session, "get") { expectation in
-                dataProducer.startWithCompleted {
-                    expectation.fulfill()
+            session.playback("get", in: currentBundle) {
+                waitUntil { done in
+                    dataProducer.startWithCompletedAction(done)
                 }
             }
-
         }
     }
 
@@ -180,8 +178,10 @@ class SessionTests: UnitTestCase {
             request = try session.GET("/get")
         }
 
-        stub(session, "get") { expectation in
-            session.emptyResponseSignalProducer(request).startWithCompletedExpectation(expectation) { _ in }
+        session.playback("get", in: currentBundle) {
+            waitUntil { done in
+                session.emptyResponseSignalProducer(request).startWithCompletedAction(done)
+            }
         }
     }
 
@@ -193,9 +193,9 @@ class SessionTests: UnitTestCase {
             request = try session.GET("/api/v1/courses/24219/assignments", parameters: ["per_page": 10])
         }
 
-        stub(session, "get-paginated") { expectation in
-            session.paginatedJSONSignalProducer(request).startWithCompletedExpectation(expectation) { json in
-                response = json
+        session.playback("get-paginated", in: currentBundle) {
+            waitUntil { done in
+                session.paginatedJSONSignalProducer(request).startWithCompletedAction(done) { response = $0 }
             }
         }
 
@@ -242,12 +242,9 @@ class SessionTests: UnitTestCase {
         let data = sampleData(jsonData)
 
         // when
-        let expectation = expectationWithDescription("completed")
-        session.responseJSONSignalProducer(data, response: response).startWithCompletedExpectation(expectation) { value in
-            json = value
+        waitUntil { done in
+            session.responseJSONSignalProducer(data, response: response).startWithCompletedAction(done) { json = $0 }
         }
-
-        waitForExpectationsWithTimeout(1, handler: nil)
 
         guard let result = json else {
             XCTFail("json response should not be nil")

@@ -12,6 +12,7 @@ import TooLegit
 import CoreData
 import SoAutomated
 import SoPersistent
+import Nimble
 
 class CourseCollectionsTests: UnitTestCase {
     let session = Session.nas
@@ -19,7 +20,7 @@ class CourseCollectionsTests: UnitTestCase {
 
     lazy var studentContext: String->NSManagedObjectContext = { studentID in
         var context: NSManagedObjectContext!
-        self.attempt {
+        attempt {
             context = try self.session.enrollmentManagedObjectContext(studentID)
         }
         return context
@@ -35,20 +36,22 @@ class CourseCollectionsTests: UnitTestCase {
     // MARK: allCoursesCollection
 
     func testCourse_allCoursesCollection_sortsByNameThenByID() {
-        let first = Course.build(context, name: "A", id: "1")
-        let second = Course.build(context, name: "B", id: "2")
-        let third = Course.build(context, name: "B", id: "3")
+        let first = Course.build(inSession: session) { $0.name = "A"; $0.id = "1" }
+        let second = Course.build(inSession: session) { $0.name = "B"; $0.id = "2" }
+        let third = Course.build(inSession: session) { $0.name = "C"; $0.id = "3" }
 
         attempt {
             let collection = try Course.allCoursesCollection(session)
-            XCTAssertEqual([first, second, third], collection.allObjects, "allCoursesCollection sorts by name then by id")
+            XCTAssertEqual(collection[0,0], first)
+            XCTAssertEqual(collection[0,1], second)
+            XCTAssertEqual(collection[0,2], third)
         }
     }
 
     // MARK: favoritesCollection
 
     func testCourse_favoritesCollection_includesCoursesWithIsFavoriteFlag() {
-        let favorite = Course.build(context, isFavorite: true)
+        let favorite = Course.build(inSession: session) { $0.isFavorite = true }
         attempt {
             let collection = try Course.favoritesCollection(session)
             XCTAssert(collection.contains(favorite), "favoritesCollection includes courses with isFavorite flag")
@@ -56,7 +59,7 @@ class CourseCollectionsTests: UnitTestCase {
     }
 
     func testCourse_favoritesCollection_excludesCoursesWithoutIsFavoriteFlag() {
-        let nonFavorite = Course.build(context, isFavorite: false)
+        let nonFavorite = Course.build(inSession: session) { $0.isFavorite = false }
         attempt {
             let collection = try Course.favoritesCollection(session)
             XCTAssertFalse(collection.contains(nonFavorite), "favoritesCollection excludes courses with isFavorite flag")
@@ -64,19 +67,21 @@ class CourseCollectionsTests: UnitTestCase {
     }
 
     func testCourse_favoritesCollection_sortsByNameThenByID() {
-        let first = Course.build(context, name: "A", id: "1", isFavorite: true)
-        let second = Course.build(context, name: "B", id: "2", isFavorite: true)
-        let third = Course.build(context, name: "B", id: "3", isFavorite: true)
+        let first = Course.build(inSession: session) { $0.name = "A"; $0.id = "1"; $0.isFavorite = true }
+        let second = Course.build(inSession: session) { $0.name = "B"; $0.id = "2"; $0.isFavorite = true }
+        let third = Course.build(inSession: session) { $0.name = "B"; $0.id = "3"; $0.isFavorite = true }
         attempt {
             let collection = try Course.favoritesCollection(session)
-            XCTAssertEqual([first, second, third], collection.allObjects, "favoritesCollection sorts by name then by id")
+            XCTAssertEqual(collection[0,0], first)
+            XCTAssertEqual(collection[0,1], second)
+            XCTAssertEqual(collection[0,2], third)
         }
     }
 
     // MARK: collectionByStudent
 
     func testCourse_collectionByStudent_includesCoursesInStudentContext() {
-        let course = Course.build(studentContext("1"))
+        let course = Course.build(inSession: session, options: ["scope": "1"])
         attempt {
             let collection = try Course.collectionByStudent(session, studentID: "1")
             XCTAssert(collection.contains(course), "collectionByStudent includes courses in student context")
@@ -84,8 +89,8 @@ class CourseCollectionsTests: UnitTestCase {
     }
 
     func testCourse_collectionByStudent_excludesCoursesNotInStudentContext() {
-        let course = Course.build(context)
-        let other = Course.build(studentContext("2"))
+        let course = Course.build(inSession: session)
+        let other = Course.build(inSession: session, options: ["scope": "2"])
         attempt {
             let collection = try Course.collectionByStudent(session, studentID: "1")
             XCTAssertFalse(collection.contains(course), "collectionByStudent excludes courses in regular context")
@@ -94,12 +99,14 @@ class CourseCollectionsTests: UnitTestCase {
     }
 
     func testCourse_collectionByStudent_sortsByNameThenByID() {
-        let first = Course.build(studentContext("1"), name: "A", id: "1")
-        let second = Course.build(studentContext("1"), name: "B", id: "2")
-        let third = Course.build(studentContext("1"), name: "B", id: "3")
+        let first = Course.build(inSession: session, options: ["scope": "1"]) { $0.name = "A"; $0.id = "1" }
+        let second = Course.build(inSession: session, options: ["scope": "1"]) { $0.name = "B"; $0.id = "2" }
+        let third = Course.build(inSession: session, options: ["scope": "1"]) { $0.name = "B"; $0.id = "3" }
         attempt {
             let collection = try Course.collectionByStudent(session, studentID: "1")
-            XCTAssertEqual([first, second, third], collection.allObjects, "collectionByStudent sorts by name then by id")
+            XCTAssertEqual(collection[0,0], first)
+            XCTAssertEqual(collection[0,1], second)
+            XCTAssertEqual(collection[0,2], third)
         }
     }
 
@@ -108,24 +115,19 @@ class CourseCollectionsTests: UnitTestCase {
     func testCourse_refresher_syncsCourses() {
         attempt {
             let refresher = try Course.refresher(session)
-            assertDifference({ Course.count(inContext: context) }, 3, "refresher syncs courses") {
-                stub(session, "refresh-all-courses") { expectation in
-                    refresher.refreshingCompleted.observeNext(self.refreshCompletedWithExpectation(expectation))
-                    refresher.refresh(true)
-                }
-            }
+            let count = Course.observeCount(inSession: session)
+            expect {
+                refresher.playback("refresh-all-courses", in: currentBundle, with: self.session)
+            }.to(change({ count.currentCount }, from: 0, to: 3))
         }
     }
 
     func testCourse_refresher_syncsFavoriteColors() {
         attempt {
-            let course = Course.build(context, id: "24219", color: nil)
+            let course = Course.build(inSession: session) { $0.id = "24219"; $0.color = nil }
             try context.save()
             let refresher = try Course.refresher(session)
-            stub(session, "refresh-all-courses") { expectation in
-                refresher.refreshingCompleted.observeNext(self.refreshCompletedWithExpectation(expectation))
-                refresher.refresh(true)
-            }
+            refresher.playback("refresh-all-courses", in: currentBundle, with: session)
             XCTAssertEqual("#009688", course.rawColor, "refresher syncs favorite colors")
         }
     }
