@@ -10,7 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "CSGUserPrefsKeys.h"
 #import "CSGAudioUtils.h"
-#import "Masonry.h"
+@import Masonry;
 #import "CSGAudioPlaybackManager.h"
 
 #define FIFTEEN_SECONDS 15

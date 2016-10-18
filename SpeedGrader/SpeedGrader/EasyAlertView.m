@@ -7,7 +7,7 @@
 //
 
 #import "EasyAlertView.h"
-#import "View+MASAdditions.h"
+@import Masonry;
 #import "ModalPresenter.h"
 
 // global constants

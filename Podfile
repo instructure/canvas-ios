@@ -8,7 +8,7 @@ target 'Canvas' do
 
     use_frameworks!
     inhibit_all_warnings!
-    
+
     pod 'JSTokenField', '~> 1.1'
 end
 
@@ -27,7 +27,6 @@ target 'SpeedGrader' do
     use_frameworks!
     inhibit_all_warnings!
 
-    pod 'Masonry'
     pod 'Google/Analytics'
 
     pod 'SimulatorStatusMagic', :configurations => ['Debug']

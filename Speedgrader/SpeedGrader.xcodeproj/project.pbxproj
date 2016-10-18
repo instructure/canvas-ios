@@ -227,6 +227,7 @@
 		61C2E9A01DAD463000073F62 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E99F1DAD462A00073F62 /* Reachability.framework */; };
 		61C2E9A11DAD463000073F62 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E99F1DAD462A00073F62 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		800C77787D3A8CF4FAD668C2 /* Pods_SpeedGrader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB7129EA3276CC744B88C5A /* Pods_SpeedGrader.framework */; };
+		B18B34821DB5A30400355EDD /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18B34811DB5A30400355EDD /* Masonry.framework */; };
 		B50356611A5B4C7600387BB2 /* CSGMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50356601A5B4C7600387BB2 /* CSGMoviePlayerViewController.m */; };
 		B504D8671A118513002F0153 /* CSGNotificationPermissionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B504D8661A118513002F0153 /* CSGNotificationPermissionHandler.m */; };
 		B509A7231A813BB500A7ACFA /* CSGAudioUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B509A7221A813BB500A7ACFA /* CSGAudioUtils.m */; };
@@ -599,6 +600,7 @@
 		61C2E99C1DAD45FB00073F62 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C2E99F1DAD462A00073F62 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FB7129EA3276CC744B88C5A /* Pods_SpeedGrader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpeedGrader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B18B34811DB5A30400355EDD /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B503565F1A5B4C7600387BB2 /* CSGMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSGMoviePlayerViewController.h; sourceTree = "<group>"; };
 		B50356601A5B4C7600387BB2 /* CSGMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGMoviePlayerViewController.m; sourceTree = "<group>"; };
 		B504D8651A118513002F0153 /* CSGNotificationPermissionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSGNotificationPermissionHandler.h; sourceTree = "<group>"; };
@@ -1918,6 +1920,7 @@
 				6145A4BB1DAC3DA400DFE0AA /* PSPDFKit.framework in Frameworks */,
 				61C2E96D1DAD431F00073F62 /* CWStatusBarNotification.framework in Frameworks */,
 				5E1AB6D719DB579300197E1D /* QuickLook.framework in Frameworks */,
+				B18B34821DB5A30400355EDD /* Masonry.framework in Frameworks */,
 				6145A4BF1DAC3DA400DFE0AA /* SoAnnotated.framework in Frameworks */,
 				5E59A1D019D9CF4900CA416B /* AVFoundation.framework in Frameworks */,
 				61C2E98D1DAD454400073F62 /* WhizzyWig.framework in Frameworks */,
@@ -2450,6 +2453,7 @@
 				61C2E9841DAD447300073F62 /* SoPretty.framework */,
 				61C2E97F1DAD444000073F62 /* FileKit.framework */,
 				61C2E97E1DAD443900073F62 /* AssignmentKit.framework */,
+				B18B34811DB5A30400355EDD /* Masonry.framework */,
 				61C2E97B1DAD440200073F62 /* Marshal.framework */,
 				61C2E9781DAD43D900073F62 /* SoLazy.framework */,
 				61C2E9751DAD43AB00073F62 /* Kingfisher.framework */,
