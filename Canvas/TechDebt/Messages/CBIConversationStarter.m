@@ -30,7 +30,7 @@
     NSAssert([tabBar isKindOfClass:[UITabBarController class]], @"I thought we all agreed on UITabBarController!");
     NSInteger index = 0;
     for (UINavigationController *nav in tabBar.viewControllers) {
-        if ([nav.tabBarItem.title isEqualToString:NSLocalizedString(@"Messages", @"The name of the messages tab")]) {
+        if ([nav.tabBarItem.title isEqualToString:NSLocalizedString(@"Messages", @"Title for the messages screen")]) {
             tabBar.selectedIndex = index;
             UIViewController<CBIConversationStarter> *root = [nav.viewControllers firstObject];
             [root startAConversationWithRecipients:conversationRecipients];

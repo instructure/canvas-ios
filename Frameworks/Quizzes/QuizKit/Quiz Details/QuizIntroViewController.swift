@@ -228,7 +228,7 @@ public class QuizIntroViewController: UIViewController {
                 }
                 
                 let alert = UIAlertController(title: NSLocalizedString("Not Takeable", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Title for alert showing when a quiz isn't takeable"), message: message, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "OK"), style: .Default, handler: { _ in }))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "OK Button Title"), style: .Default, handler: { _ in }))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         }

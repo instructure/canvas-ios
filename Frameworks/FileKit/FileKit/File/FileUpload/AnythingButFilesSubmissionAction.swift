@@ -30,7 +30,7 @@ class AnythingButFilesUploadAction: UploadAction {
             alertController.addAction(UIAlertAction(title: action.title, style: .Default, handler: { _ in action.initiate() }))
         }
         
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "nevermind"), style: .Cancel, handler: { _ in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Cancel button title"), style: .Cancel, handler: { _ in
             self.delegate?.actionCancelled()
         }))
         

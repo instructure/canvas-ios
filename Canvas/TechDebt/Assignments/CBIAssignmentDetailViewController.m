@@ -79,7 +79,7 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
         @strongify(self);
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTableInBundle(@"Network Error", nil, [NSBundle bundleForClass:[self class]], @"Network error title") message:NSLocalizedStringFromTableInBundle(@"Please check your network connection and try again.", nil, [NSBundle bundleForClass:[self class]], @"Network error message") preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTableInBundle(@"Dismiss", nil, [NSBundle bundleForClass:[self class]], @"Dismiss error alert button") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTableInBundle(@"Dismiss", nil, [NSBundle bundleForClass:[self class]], @"Dismiss button title") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             // nothing to do.
         }]];
         [self presentViewController:alert animated:true completion:nil];
@@ -371,7 +371,7 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
     NSString *oneDay = NSLocalizedString(@"1 day", @"one day");
     NSString *threeDays = NSLocalizedString(@"3 days", @"three days");
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Schedule Notification", @"Title for Assignment Notifications Sheet") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "cancel reminder notification")  destructiveButtonTitle:nil otherButtonTitles:fiveMinutes, oneHour, oneDay, threeDays, nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Schedule Notification", @"Title for Assignment Notifications Sheet") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "Cancel button title")  destructiveButtonTitle:nil otherButtonTitles:fiveMinutes, oneHour, oneDay, threeDays, nil];
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [actionSheet showFromBarButtonItem:alarmButton animated:YES];

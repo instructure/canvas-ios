@@ -88,7 +88,7 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     if (error.code != NSURLErrorCancelled) {
         NSString *errorMessage = [NSString stringWithFormat:NSLocalizedString(@"There was a problem accessing the requested file.\n\nError: %@", "Error message when fetching a file fails"), error.localizedDescription];
-        [[[UIAlertView alloc] initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"dismiss button") otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Dismiss button title") otherButtonTitles:nil] show];
     }
 }
 
@@ -222,7 +222,7 @@
 
             if (error.code != NSURLErrorCancelled) {
                 NSString *errorMessage = [NSString stringWithFormat:NSLocalizedString(@"There was a problem accessing the requested file.\n\nError: %@", "Error message when fetching a file fails"), error.localizedDescription];
-                [[[UIAlertView alloc] initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"dismiss button") otherButtonTitles:nil] show];
+                [[[UIAlertView alloc] initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Dismiss button title") otherButtonTitles:nil] show];
             }
             return;
         }

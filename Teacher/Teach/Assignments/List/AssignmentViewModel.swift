@@ -35,7 +35,7 @@ extension Assignment {
         case [.DiscussionTopic]:
             return NSLocalizedString("Discussion", comment: "Discussion assignment type")
         case [.Quiz]:
-            return NSLocalizedString("Quiz", comment: "Quiz assignment type")
+            return NSLocalizedString("Quiz", comment: "Title for a quiz submission cell")
         case [.ExternalTool]:
             return NSLocalizedString("LTI", comment: "LTI tool assignment type")
         default:

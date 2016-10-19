@@ -34,7 +34,7 @@
         }
     }
     
-    NSString *title = NSLocalizedString(@"Messages", comment: @"Messages tab title");
+    NSString *title = NSLocalizedString(@"Messages", comment: @"Title for the messages screen");
     
     vc.title = title;
     

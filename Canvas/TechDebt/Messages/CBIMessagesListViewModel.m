@@ -35,7 +35,7 @@
     self = [super init];
     if (self) {
         self.collectionController = [MLVCCollectionController collectionControllerGroupingByBlock:nil groupTitleBlock:nil sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]]];
-        self.viewControllerTitle = NSLocalizedString(@"Messages", @"messages title");
+        self.viewControllerTitle = NSLocalizedString(@"Messages", @"Title for the messages screen");
     }
     return self;
 }

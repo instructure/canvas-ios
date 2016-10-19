@@ -75,7 +75,7 @@
         NSString *message = NSLocalizedString(@"Currently there is limited quiz support on mobile", @"Message telling users that quiz support on mobile is limited");
         NSString *moreInfoButtonText = NSLocalizedString(@"More Info", @"Button title for selecting to view more info about the limitations of mobile quizzes");
         NSString *continueButtonText = NSLocalizedString(@"Continue", @"Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations.");
-        NSString *cancelButtonText = NSLocalizedString(@"Cancel", @"Button title for cancelling the selection of a quiz. This will appear in the alert view notifying the user of the mobile quiz limitations.");
+        NSString *cancelButtonText = NSLocalizedString(@"Cancel", @"Cancel button title");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:message delegate:self cancelButtonTitle:cancelButtonText otherButtonTitles:continueButtonText, moreInfoButtonText, nil];
         
         [alert show];

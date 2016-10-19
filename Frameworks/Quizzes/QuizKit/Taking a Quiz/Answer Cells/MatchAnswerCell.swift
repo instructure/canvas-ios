@@ -65,7 +65,7 @@ class MatchAnswerCell: UITableViewCell {
 
         let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Done button"), style: .Plain, target: self, action: #selector(MatchAnswerCell.doneButtonSelected))
         let spaceItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Cancel button"), style: .Plain, target: self, action: #selector(MatchAnswerCell.cancelButtonSelected))
+        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Cancel button title"), style: .Plain, target: self, action: #selector(MatchAnswerCell.cancelButtonSelected))
         toolbar.setItems([cancelButton, spaceItem, doneButton], animated: false)
 
         hiddenTextField.inputView = pickerView

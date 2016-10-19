@@ -167,8 +167,8 @@ CGFloat square(CGFloat x){return x*x;}
     [self.nameLabel setAlpha:0.0f];
     [self.emailLabel setAlpha:0.0f];
     [self.filesButton setTitle:NSLocalizedString(@"My Files", @"files button") forState:UIControlStateNormal];
-    [self.logoutButton setTitle:NSLocalizedString(@"Logout", @"logout button") forState:UIControlStateNormal];
-    [self.settingsButton setTitle:NSLocalizedString(@"Settings", @"settings button") forState:UIControlStateNormal];
+    [self.logoutButton setTitle:NSLocalizedString(@"Logout", @"Title for a button to logout a user") forState:UIControlStateNormal];
+    [self.settingsButton setTitle:NSLocalizedString(@"Settings", @"Title for Settings") forState:UIControlStateNormal];
     [self.helpButton setTitle:NSLocalizedString(@"Help", @"help button") forState:UIControlStateNormal];
     
     [self.avatarButton setAdjustsImageWhenHighlighted:NO];
@@ -345,7 +345,7 @@ CGFloat square(CGFloat x){return x*x;}
     DDLogVerbose(@"fileButtonPressed");
     FolderViewController *folderController = [[FolderViewController alloc] initWithInterfaceStyle:FolderInterfaceStyleLight];
     folderController.canvasAPI = self.canvasAPI;
-    folderController.title = NSLocalizedString(@"Files", @"Name of a tab displaying files in a course");
+    folderController.title = NSLocalizedString(@"Files", @"Title for the files screen");
     CKContextInfo *context = [CKContextInfo contextInfoFromUser:self.user];
     [folderController loadRootFolderForContext:context];
     [self.navigationController pushViewController:folderController animated:YES];
@@ -366,7 +366,7 @@ CGFloat square(CGFloat x){return x*x;}
     UIActionSheet *actionSheet;
     NSString *localizedTitle = NSLocalizedString(@"Are you ready to logout?", @"Action sheet title verifying that a user wants to logout.");
     NSString *localizedCancelButtonTitle = NSLocalizedString(@"Stay Logged In", @"button title for cancelling a logout.");
-    NSString *localizedLogoutButtonTitle = NSLocalizedString(@"Logout", @"logout action sheet logout button title");
+    NSString *localizedLogoutButtonTitle = NSLocalizedString(@"Logout", @"Title for a button to logout a user");
     
     actionSheet = [[UIActionSheet alloc] initWithTitle:localizedTitle delegate:self cancelButtonTitle:localizedCancelButtonTitle destructiveButtonTitle:localizedLogoutButtonTitle otherButtonTitles:NSLocalizedString(@"Change User", nil), nil];
 
@@ -651,7 +651,7 @@ CGFloat square(CGFloat x){return x*x;}
     DDLogVerbose(@"helpButtonTouched");
     [Analytics logScreenView: @"View Help Options"];
     
-    UIActionSheet *helpSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "cancel view help options") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Report a problem", "option to report a problem"), NSLocalizedString(@"Request a feature", "option to request a feature"), nil];
+    UIActionSheet *helpSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "Cancel button title") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Report a problem", "option to report a problem"), NSLocalizedString(@"Request a feature", "option to request a feature"), nil];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [helpSheet showFromRect:sender.bounds inView:sender animated:YES];

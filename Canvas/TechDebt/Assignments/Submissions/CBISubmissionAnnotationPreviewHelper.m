@@ -87,7 +87,7 @@
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)task.response;
             if (httpResponse.statusCode != 302) { // Always hits here when redirecting, so ignore that
                 [SVProgressHUD dismiss];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Couldn't Load Submission", @"error title for failure to load a file submission") message:NSLocalizedString(@"We had a problem loading the submission. Please try again later.", @"error message for failure to load a file submission") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"OK button") otherButtonTitles:nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Couldn't Load Submission", @"error title for failure to load a file submission") message:NSLocalizedString(@"We had a problem loading the submission. Please try again later.", @"error message for failure to load a file submission") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"OK Button Title") otherButtonTitles:nil];
                 [alert show];
             }
         }];

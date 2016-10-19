@@ -341,7 +341,7 @@ static NSURL *receivedFilesFolder() {
                                 }
                             }];
     actionSheet.destructiveButtonIndex = actionSheet.numberOfButtons - 1;
-    [actionSheet addCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel button for removing a file")];
+    [actionSheet addCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel button title")];
     
     actionSheet.dismissalBlock = ^{
         sender.enabled = YES;

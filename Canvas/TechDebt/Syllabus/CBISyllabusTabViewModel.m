@@ -36,7 +36,7 @@ typedef NS_ENUM(NSInteger, sectionType) {
     self = [super init];
     if (self) {
         NSCalendar *current = [NSCalendar currentCalendar];
-        self.viewControllerTitle = NSLocalizedString(@"Syllabus", @"Syllabus screen name");
+        self.viewControllerTitle = NSLocalizedString(@"Syllabus", @"Title for Syllabus screen");
         self.collectionController = [MLVCCollectionController collectionControllerGroupingByBlock:^(id viewModel){
             NSString *class = NSStringFromClass([viewModel class]);
             NSDate *syllabusDate = nil;

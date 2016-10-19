@@ -50,7 +50,7 @@
             NSLog(@"there was an error sending a message");
             NSString *title = NSLocalizedString(@"Upload Error", @"title for upload error alert");
             NSString *errorMessage = error.localizedDescription;
-            NSString *dismissButton = NSLocalizedString(@"Dismiss", @"Dismiss button for an error dialoue");
+            NSString *dismissButton = NSLocalizedString(@"Dismiss", @"Dismiss button title");
 
             NSData *data = [error.localizedDescription dataUsingEncoding:NSUTF8StringEncoding];
             id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];

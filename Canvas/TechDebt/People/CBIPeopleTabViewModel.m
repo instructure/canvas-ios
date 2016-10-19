@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, CBIPeopleTabSection) {
 {
     self = [super init];
     if (self) {
-        self.viewControllerTitle = NSLocalizedString(@"People", @"People list title");
+        self.viewControllerTitle = NSLocalizedString(@"People", @"Title for the people view");
         self.collectionController = [MLVCCollectionController collectionControllerGroupingByBlock:^id(CBIPeopleViewModel *viewModel) {
             CKIUser *user = (CKIUser *) viewModel.model;
             NSArray *enrollments = user.enrollments;

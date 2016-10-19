@@ -446,12 +446,12 @@ public class SelectDomainViewController: UIViewController {
     // MARK: - Error Handling
     // ---------------------------------------------
     func presentError(error: NSError) {
-        let title = NSLocalizedString("Error", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Error Alert Title")
+        let title = NSLocalizedString("Error", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Title for an error popup")
         let message = error.localizedDescription
 
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "OK"), style: .Default, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "OK Button Title"), style: .Default, handler: { _ in
         }))
 
         presentViewController(alert, animated: true, completion: nil)

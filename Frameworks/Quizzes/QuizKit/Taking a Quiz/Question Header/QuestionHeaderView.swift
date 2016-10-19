@@ -75,8 +75,8 @@ class QuestionHeaderView: UITableViewHeaderFooterView {
 extension QuestionHeaderView {
     
     func updateAccessibilityLabel() {
-        let question = NSLocalizedString("Question ", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "accessibility label for a quiz question")
-        var label = question + "\(questionNumber)."
+        let question = NSLocalizedString("Question", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "accessibility label for a quiz question")
+        var label = question + " \(questionNumber)."
         
         if flagged {
             label += " " + NSLocalizedString("Flagged", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "State of the flagged question")

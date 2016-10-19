@@ -21,7 +21,7 @@ class NextOrSubmitView: UIView {
             case .Next:
                 return NSLocalizedString("Next", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Next button for advancing a quiz")
             case .Submit:
-                return NSLocalizedString("Submit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Submit button for completing a quiz")
+                return NSLocalizedString("Submit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Submit button title")
             }
         }
     }

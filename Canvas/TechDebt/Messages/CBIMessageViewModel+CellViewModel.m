@@ -57,7 +57,7 @@
 
 - (NSString *)tableViewController:(MLVCTableViewController *)tableViewController titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NSLocalizedString(@"Archive", @"mark a message as archived");
+    return NSLocalizedString(@"Archive", @"Archive selected messages button");
 }
 
 @end

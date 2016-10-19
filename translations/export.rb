@@ -7,6 +7,16 @@
 require 'nokogiri'
 require 'pathname'
 require 'json'
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = 'Usage: import.rb [options]'
+
+  opts.on('-s', '--skipPush', 'Skips pushing file to transifex') do |v|
+    options[:skipPush] = v
+  end
+end.parse!
 
 class ExportLocalizations
 
@@ -49,7 +59,7 @@ unless File.exists? 'translations/projects.json'
 end
 
 tx_version = `tx --version`
-puts 'Transifex cli version: #{tx_version}'
+puts "Transifex cli version: #{tx_version}"
 puts 'Exporting all localizations to /translations/source'
 
 json = IO.read('translations/projects.json', encoding:'utf-8')
@@ -57,7 +67,10 @@ projects = JSON.parse json
 exporter = ExportLocalizations.new(projects)
 exporter.do_the_thing
 
-puts 'Pushing all source files to Transifex'
-success = system('tx push -s')
-raise 'tx push -s failed miserable, this is such a sad turn of events' unless success
+unless options[:skipPush]
+    puts 'Pushing all source files to Transifex'
+    success = system('tx push -s')
+    raise 'tx push -s failed miserable, this is such a sad turn of events' unless success
+end
+
 puts "Finished!"

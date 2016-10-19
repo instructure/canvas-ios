@@ -544,7 +544,7 @@
         
         self.tempRecipientForNewMessageAction = [[CKConversationRecipient alloc] initWithInfo:@{@"id": userID, @"name": [userName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]}];
         
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Would you like to create a new message?", @"Title for action sheet giving the user an option to create a new message for a user.") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "cancel message creation") destructiveButtonTitle:nil otherButtonTitles:[NSString stringWithFormat:NSLocalizedString(@"Send %@ a message", @"Action sheet button title for sending a new message to a user. %@ will be replaced with the user's name"), [userName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]], nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Would you like to create a new message?", @"Title for action sheet giving the user an option to create a new message for a user.") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "Cancel button title") destructiveButtonTitle:nil otherButtonTitles:[NSString stringWithFormat:NSLocalizedString(@"Send %@ a message", @"Action sheet button title for sending a new message to a user. %@ will be replaced with the user's name"), [userName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]], nil];
         [actionSheet showFromTabBar:self.tabBarController.tabBar];
 
     }

@@ -280,7 +280,7 @@ typedef enum CBISubmissionState : NSUInteger {
 
 - (void)postUploadError {
     DDLogVerbose(([NSString stringWithFormat:@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd)]));
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Submission Error", @"Title for file submission error") message:NSLocalizedString(@"There was a network problem while attempting to upload your submission", @"message for failed submission upload") delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"dismiss the alert button") otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Submission Error", @"Title for file submission error") message:NSLocalizedString(@"There was a network problem while attempting to upload your submission", @"message for failed submission upload") delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Dismiss button title") otherButtonTitles:nil];
     
     [alert show];
 }
@@ -349,7 +349,7 @@ typedef enum CBISubmissionState : NSUInteger {
 
 - (void)updateActions {
     if (self.userIsCommenting) {
-        self.addCommentButton.title = NSLocalizedString(@"Cancel Message", @"Cancel adding a comment button");
+        self.addCommentButton.title = NSLocalizedString(@"Cancel Message", @"Cancel button title");
     } else {
         self.addCommentButton.title = self.isTeacherOrTA ? NSLocalizedString(@"Comment", @"Add message button for teacher or ta") : NSLocalizedString(@"Message Instructor", @"Add message button");
     }
@@ -425,7 +425,7 @@ typedef enum CBISubmissionState : NSUInteger {
     
     NSString *recordAudio = NSLocalizedString(@"Record Audio", @"Record audio submission comment");
     
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:recordVideo, chooseVideo, recordAudio, nil];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel button title") destructiveButtonTitle:nil otherButtonTitles:recordVideo, chooseVideo, recordAudio, nil];
 
     CGRect r = sender.bounds;
     r = [self.view convertRect:r fromView:sender];
@@ -483,7 +483,7 @@ typedef enum CBISubmissionState : NSUInteger {
         if (error) {
             DDLogVerbose(([NSString stringWithFormat:@"%@ - error=%@", NSStringFromSelector(_cmd), error]));
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Comment Error", @"title for media comment upload failure") message:NSLocalizedString(@"There was a network error posting your comment.", @"message for media comment upload failure") delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Dismiss an error button") otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Comment Error", @"title for media comment upload failure") message:NSLocalizedString(@"There was a network error posting your comment.", @"message for media comment upload failure") delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Dismiss button title") otherButtonTitles:nil];
             [alert show];
         }
         else {

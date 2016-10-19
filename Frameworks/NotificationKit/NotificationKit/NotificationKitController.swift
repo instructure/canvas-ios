@@ -110,17 +110,22 @@ public class NotificationKitController {
                                         }
                                     })
                                 } else {
-                                    let error = NSError.simpleError("Unable to parse JSON for communication channels", code: 90210)
+                                    
+                                    let localizedDescription = NSLocalizedString("Unable to parse JSON for communication channels", tableName: "Localizable", bundle: .notificationKit(), comment: "Error message when parsing communication preferences")
+                                    let error = NSError.simpleError(localizedDescription, code: 90210)
                                     registrationCompletion(result: RegisterPushNotificationTokenResult.Error(error))
                                 }
                             }
                         })
                     } else {
-                        let error = NSError.simpleError("No push channel found", code: 90211)
+                        
+                        let localizedDescription = NSLocalizedString("No push channel found", tableName: "Localizable", bundle: .notificationKit(), comment: "Error when push channel cannot be found in notificaitons")
+                        let error = NSError.simpleError(localizedDescription, code: 90211)
                         registrationCompletion(result: RegisterPushNotificationTokenResult.Error(error))
                     }
                 } else {
-                    let error = NSError.simpleError("Unable to parse JSON for notification preferences", code: 90212)
+                    let localizedDescription = NSLocalizedString("Unable to parse JSON for notification preferences", tableName: "Localizable", bundle: .notificationKit(), comment: "Error message when parsing notification preferences")
+                    let error = NSError.simpleError(localizedDescription, code: 90212)
                     registrationCompletion(result: RegisterPushNotificationTokenResult.Error(error))
                 }
             }

@@ -50,7 +50,7 @@ class NoStudentsViewController: UIViewController {
         let style = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? UIAlertControllerStyle.Alert : UIAlertControllerStyle.ActionSheet
         let alertController = UIAlertController(title: nil, message: NSLocalizedString("Are you sure you want to logout?", comment: "Logout Confirmation"), preferredStyle: style)
 
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Logout Cancel Button"), style: .Cancel) { _ in }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: .Cancel) { _ in }
         alertController.addAction(cancelAction)
 
         let destroyAction = UIAlertAction(title: NSLocalizedString("Logout", comment: "Logout Confirm Button"), style: .Destructive) { [unowned self] _ in

@@ -69,7 +69,7 @@
 - (id)initWithInterfaceStyle:(FolderInterfaceStyle)style {
     self = [[UIStoryboard storyboardWithName:@"CoursesTab" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"FolderViewController"];
 
-    self.title = NSLocalizedString(@"Files", @"title for files view");
+    self.title = NSLocalizedString(@"Files", @"Title for the files screen");
     
     NSAssert( self != nil, @"Controller creation failed. Did an identifier change?");
     _interfaceStyle = style;
@@ -237,7 +237,7 @@ static NSIndexSet *indexSetFromIndexPathRows(NSArray *paths) {
         NSString *message = NSLocalizedString(@"Some selected folders are not empty. Are you sure you want to delete them?", @"Message for a warning popup");
         
         CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:title message:message];
-        NSString *confirmButton = NSLocalizedString(@"Delete", @"Button to confirm deleting folders");
+        NSString *confirmButton = NSLocalizedString(@"Delete", @"Delete Button title");
         NSString *cancelButton = NSLocalizedString(@"Don't delete", @"Button to cancel deleting folders");
         [alert addButtonWithTitle:confirmButton handler:^{
             [self deleteFolderItems:items];
@@ -618,7 +618,6 @@ static NSIndexSet *indexSetFromIndexPathRows(NSArray *paths) {
                                               otherButtonTitles:nil];
         [alert show];
     }
-    
     else {
         uint64_t fileSizeAlertLimit = 0;
         if (status == ReachableViaWiFi) {
@@ -636,7 +635,7 @@ static NSIndexSet *indexSetFromIndexPathRows(NSArray *paths) {
             [alert addButtonWithTitle:NSLocalizedString(@"Show file", @"Title for button confirming showing a file") handler:^{
                 [self showFile:file];
             }];
-            [alert addCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"Button title for canceling download of a file")];
+            [alert addCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel button title")];
             [alert show];
         }
         else {

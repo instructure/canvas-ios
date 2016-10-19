@@ -287,7 +287,7 @@
         newCell = [[ProgressTableViewCell alloc] init];
     }
     
-    newCell.progressMessage.text = NSLocalizedString(@"Loading...", @"Generic loading title with ellipses");
+    newCell.progressMessage.text = NSLocalizedString(@"Loading...", @"Generic loading title with ellipsis");
     [newCell.activityIndicator startAnimating];
     
     return newCell;

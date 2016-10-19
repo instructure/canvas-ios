@@ -60,7 +60,7 @@
         if ([message isKindOfClass:[NSString class]] && [message isEqualToString:@"Invalid access token."]) {
             if (!_showedAccessTokenError) {
                 // Bad access token error.
-                _accessTokenAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Authentication error", @"Title of alert box")
+                _accessTokenAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Authentication error", @"Title for an error popup")
                                                                    message:NSLocalizedString(@"Could not authenticate with server", nil)
                                                                   delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
                 [_accessTokenAlertView show];
@@ -101,7 +101,7 @@
         if (!previousTimeStamp || [timeStamp timeIntervalSinceDate:previousTimeStamp] > 30.0) {
             _errorHistory[errorMessage] = timeStamp;
             
-            UIAlertView * errorAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Title of alert box")
+            UIAlertView * errorAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Title for an error popup")
                                                                       message:errorMessage
                                                                      delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
            

@@ -65,7 +65,7 @@
 
 - (void)masqueradeAsUser
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Do you want to masquerade as this user?", "Alert title asking if you want to masquerade") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "cancel masquerade") otherButtonTitles:NSLocalizedString(@"Masquerade", "try masquerading"), nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Do you want to masquerade as this user?", "Alert title asking if you want to masquerade") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "Cancel button title") otherButtonTitles:NSLocalizedString(@"Masquerade", "Button title for beginning masquerading"), nil];
     alertView.alertViewStyle = UIAlertViewStyleDefault;
     
     [alertView show];
@@ -96,7 +96,7 @@
         } error:^(NSError *error) {
             DDLogVerbose(@"masqueradeAsUserError : %@", [error localizedDescription]);
             
-            CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Oops!", @"Masquerade error title") message:NSLocalizedString(@"You don't have permission to masquerade as this user or there is no user with that ID", @"Masquerade error message")];
+            CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Oops!", @"Title for an error alert") message:NSLocalizedString(@"You don't have permission to masquerade as this user or there is no user with that ID", @"Masquerade error message")];
             [alert addCancelButtonWithTitle:NSLocalizedString(@"OK", nil)];
             [alert show];
         }];

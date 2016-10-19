@@ -211,7 +211,7 @@ public class StudentSettingsViewController : FormViewController {
 
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .Default, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .Default, handler: { _ in
         }))
 
         presentViewController(alert, animated: true, completion: nil)
@@ -252,7 +252,7 @@ public class StudentSettingsViewController : FormViewController {
     func setupToolbar() {
         let rightSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         let leftSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        removeButton = UIBarButtonItem(title: NSLocalizedString("Remove", comment: "Remove Observee Button"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(StudentSettingsViewController.removeButtonPressed(_:)))
+        removeButton = UIBarButtonItem(title: NSLocalizedString("Remove", comment: "Remove button title"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(StudentSettingsViewController.removeButtonPressed(_:)))
         removeButton.tintColor = UIColor.redColor()
         removeToolbarItems = [rightSpace, removeButton, leftSpace]
         self.toolbarItems = removeToolbarItems
@@ -267,10 +267,10 @@ public class StudentSettingsViewController : FormViewController {
     func removeButtonPressed(sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: nil, message: NSLocalizedString("Are you sure you want to remove this observee?", comment: "Remove Observee Confirmation"), preferredStyle: .ActionSheet)
 
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Remove Observee Cancel Button"), style: .Cancel) { _ in }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: .Cancel) { _ in }
         alertController.addAction(cancelAction)
 
-        let destroyAction = UIAlertAction(title: NSLocalizedString("Remove", comment: "Remove Observee Confirm Button"), style: .Destructive) { [unowned self] _ in
+        let destroyAction = UIAlertAction(title: NSLocalizedString("Remove", comment: "Remove button title"), style: .Destructive) { [unowned self] _ in
             self.removeStudent()
         }
         alertController.addAction(destroyAction)

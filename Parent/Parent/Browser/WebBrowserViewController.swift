@@ -170,7 +170,7 @@ class WebBrowserViewController: UIViewController {
                 let presentedOpenInMenu = dic?.presentOpenInMenuFromBarButtonItem(actionButton, animated: true)
                 if presentedOpenInMenu == false {
                     let errorSheet = UIAlertController(title: NSLocalizedString("No installed apps support opening this file", comment: "Error message"), message: nil, preferredStyle: .ActionSheet)
-                    errorSheet.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Okay button"), style: .Default) { _ in })
+                    errorSheet.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .Default) { _ in })
                     self?.presentViewController(errorSheet, animated: true, completion: nil)
                 }
             })
@@ -180,7 +180,7 @@ class WebBrowserViewController: UIViewController {
             actionSheet.title = NSLocalizedString("There are no actions for this item", comment: "Error message")
         }
 
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button"), style: .Cancel) { _ in })
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: .Cancel) { _ in })
 
         actionSheet.popoverPresentationController?.sourceView = self.view
         actionSheet.popoverPresentationController?.barButtonItem = actionButton

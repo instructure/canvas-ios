@@ -119,6 +119,16 @@
                ReferencedContainer = "container:Frameworks/SoPersistent/SoPersistent.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "617BE75C1CA42D26008A6908"
+               BuildableName = "DiscussionsTests.xctest"
+               BlueprintName = "DiscussionsTests"
+               ReferencedContainer = "container:Frameworks/Discussions/Discussions.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

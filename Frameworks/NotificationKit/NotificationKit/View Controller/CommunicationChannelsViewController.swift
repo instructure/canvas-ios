@@ -58,7 +58,7 @@ public class CommunicationChannelsViewController: UITableViewController {
 
                 let title = NSLocalizedString("No Communication Channels Found", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to load communication channels")
                 let message = NSLocalizedString("Unable to load any Communication Channels at this time.  Error: \(result.error?.localizedDescription)", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to load communication channels")
-                let actionText = NSLocalizedString("Ok", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert action button text when unable to load communication channels")
+                let actionText = NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title")
                 
                 self.showSimpleAlert(title, message: message, actionText: actionText)
                 
@@ -70,7 +70,7 @@ public class CommunicationChannelsViewController: UITableViewController {
                     
                     let title = NSLocalizedString("Can't Display Communication Channels", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to parse JSON for communication channels")
                     let message = NSLocalizedString("Unable to display any Communication Channels returned from the server at this time.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to parse JSON for communication channels")
-                    let actionText = NSLocalizedString("Ok", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert action button text when unable to parse JSON for communication channels")
+                    let actionText = NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title")
                     
                     self.showSimpleAlert(title, message: message, actionText: actionText)
                 }

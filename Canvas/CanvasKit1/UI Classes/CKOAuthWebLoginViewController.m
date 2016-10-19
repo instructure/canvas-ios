@@ -213,7 +213,7 @@
     // for now if the host is invalid, canvas redirects to canvas.instructure.com/login
     if (![self.baseURL.host isEqualToString:@"canvas.instructure.com"] && [request.URL.absoluteString isEqualToString:@"https://canvas.instructure.com/login"]) {
         NSString *baseMessage = NSLocalizedString(@"%@ is not a valid host", @"%@ is the token where the host name goes. Error message that the host doesn't exist.");
-        CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Error", @"Title of alert box") 
+        CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Error", @"Title for an error popup") 
                                                                             message:[[NSString alloc] initWithFormat:baseMessage, self.baseURL.host]];
         [alert addButtonWithTitle:NSLocalizedString(@"OK",nil) handler:^{
             [self goBack];

@@ -56,7 +56,7 @@ static UIImage *(^iconForSubmissionType)(NSString *) = ^(NSString *submissionTyp
             
             NSDictionary *namesForTypes = @{
                 CKISubmissionTypeOnlineTextEntry : NSLocalizedString(@"Text Submission", @"Title for a text submission cell"),
-                CKISubmissionTypeQuiz: NSLocalizedString(@"Quiz", @"Title for a quiz submission cell"),
+                CKISubmissionTypeQuiz: NSLocalizedString(@"Quiz", @"A short test taken by students"),
                 CKISubmissionTypeExternalTool: NSLocalizedString(@"External Tool", @"Title for an external tool submission"),
                 CKISubmissionTypeMediaRecording: NSLocalizedString(@"Media Submission", @"Title for a media submission"),
                 CKISubmissionTypeDiscussion: NSLocalizedString(@"Discussion Entry", @"Title for discussion entry submission"),

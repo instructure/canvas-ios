@@ -82,7 +82,7 @@
     descriptionInputView.showsAttachmentButton = NO;
     descriptionInputView.backgroundImageView.image = nil;
     descriptionInputView.placeholderText = NSLocalizedString(@"Details", @"Placeholder text for discussion details field");
-    descriptionInputView.attachmentSheetTitle = NSLocalizedString(@"Add inline media", @"Title for the add-inline-media sheet");
+    descriptionInputView.attachmentSheetTitle = NSLocalizedString(@"Add inline media", @"Title on the add-inline-media sheet");
     descriptionInputView.attachmentButtonImage = [UIImage techDebtImageNamed:@"icon_camera_fill"];
     descriptionInputView.delegate = self;
     
@@ -164,8 +164,8 @@
 {
     DDLogVerbose(@"createDiscussionPressed");
     if (![self isReadyToPost]) {
-        CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc]initWithTitle:NSLocalizedString(@"Oops!", @"Error message title") message:NSLocalizedString(@"You need a title and a description to post", @"Error message")];
-        [alert addCancelButtonWithTitle:NSLocalizedString(@"OK", @"Dismiss error message")];
+        CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc]initWithTitle:NSLocalizedString(@"Oops!", @"Title for an error alert") message:NSLocalizedString(@"You need a title and a description to post", @"Error message")];
+        [alert addCancelButtonWithTitle:NSLocalizedString(@"OK", @"OK Button Title")];
         [alert show];
     }
     else {
@@ -219,9 +219,9 @@
             [activityIndicator stopAnimating];
             postButton.enabled = YES;
             
-            CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Oops!", @"Error title") 
+            CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Oops!", @"Title for an error alert") 
                                                                                 message:NSLocalizedString(@"Unable to post. Please try again later", @"Error message")];
-            [alert addCancelButtonWithTitle:NSLocalizedString(@"OK", @"Dismiss error")];
+            [alert addCancelButtonWithTitle:NSLocalizedString(@"OK", @"OK Button Title")];
             [alert show];
         }
         else {

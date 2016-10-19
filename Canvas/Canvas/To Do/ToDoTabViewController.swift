@@ -13,7 +13,6 @@ import TooLegit
 import TechDebt
 
 public func ToDoTabViewController(session session: Session, route: (UIViewController, NSURL)->()) throws -> UIViewController {
-    let toDoTitle = NSLocalizedString("To Do", comment: "To Do page title")
 
     let toDoListVC: UIViewController
         
@@ -28,7 +27,7 @@ public func ToDoTabViewController(session session: Session, route: (UIViewContro
         toDoListVC = split
     }
 
-    toDoListVC.tabBarItem.title = toDoTitle
+    toDoListVC.tabBarItem.title = NSLocalizedString("To Do", comment: "Title of the Todo screen")
     toDoListVC.tabBarItem.image = UIImage.techDebtImageNamed("icon_todo_tab")
     toDoListVC.tabBarItem.selectedImage = UIImage.techDebtImageNamed("icon_todo_tab_selected")
 

@@ -35,7 +35,7 @@
         self.toastManager = [ToastManager new];
         NSSortDescriptor *caseInsensitiveCompare = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
         self.collectionController = [MLVCCollectionController collectionControllerGroupingByBlock:nil groupTitleBlock:nil sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES], caseInsensitiveCompare]];
-        self.viewControllerTitle = NSLocalizedString(@"Files", @"Files view");
+        self.viewControllerTitle = NSLocalizedString(@"Files", @"Title for the files screen");
         
         RAC(self, canAddFilesOrFolders) = [RACObserve(self, model.context) flattenMap:^id(id context) {
             
@@ -78,7 +78,7 @@
 - (void)addButtonTouched:(UIBarButtonItem *)item
 {
     self.addItem.enabled = NO;
-    UIActionSheet *addActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel","Cancel add option") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Add a folder", nil), NSLocalizedString(@"Upload a file", nil), nil];
+    UIActionSheet *addActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel","Cancel button title") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Add a folder", nil), NSLocalizedString(@"Upload a file", nil), nil];
     [addActionSheet showFromBarButtonItem:item animated:YES];
 }
 
@@ -86,7 +86,7 @@
 {
     self.addItem.enabled = YES;
     if (buttonIndex == 0) {
-        UIAlertView *createAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"New Folder", nil) message:NSLocalizedString(@"Choose a name for the new folder", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "Cancel folder name change") otherButtonTitles:NSLocalizedString(@"Create Folder", "cancel folder creation"), nil];
+        UIAlertView *createAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"New Folder", nil) message:NSLocalizedString(@"Choose a name for the new folder", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "Cancel button title") otherButtonTitles:NSLocalizedString(@"Create Folder", "cancel folder creation"), nil];
         createAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
         [createAlertView show];
     } else if (buttonIndex == 1) {

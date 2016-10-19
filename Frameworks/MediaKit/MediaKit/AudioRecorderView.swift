@@ -367,7 +367,7 @@ extension AudioRecorderView {
             onConfirmation()
         })
         
-        let cancel = NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Cancel button")
+        let cancel = NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Cancel button title")
         controller.addAction(UIAlertAction(title: cancel, style: .Cancel) { _ in
             // do nothing!
         })

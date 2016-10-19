@@ -93,7 +93,7 @@
 - (void)addButtonTouched:(UIBarButtonItem *)button
 {
     self.addItem.enabled = NO;
-    UIActionSheet *addActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "cancel add file/folder") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Add a folder", nil), NSLocalizedString(@"Upload a file", nil), nil];
+    UIActionSheet *addActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "Cancel button title") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Add a folder", nil), NSLocalizedString(@"Upload a file", nil), nil];
     [addActionSheet showFromBarButtonItem:button animated:YES];
 }
 
@@ -103,7 +103,7 @@
 {
     self.addItem.enabled = YES;
     if (buttonIndex == 0) {
-        UIAlertView *createAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"New Folder", nil) message:NSLocalizedString(@"Choose a name for the new folder", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "cancel folder creation") otherButtonTitles:@"Create Folder", nil];
+        UIAlertView *createAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"New Folder", nil) message:NSLocalizedString(@"Choose a name for the new folder", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "Cancel button title") otherButtonTitles:@"Create Folder", nil];
         createAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
         [createAlertView show];
     } else if (buttonIndex == 1) {

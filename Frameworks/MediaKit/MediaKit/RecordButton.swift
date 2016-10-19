@@ -75,7 +75,7 @@ class RecordButton: UIButton {
             path = UIBezierPath(roundedRect: CGRectMake(-25, -25, 50, 50), cornerRadius: 25)
             color = UIColor.redColor()
             a11y = NSLocalizedString("Record", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Record button a11y label")
-            a11yHint = NSLocalizedString("Begin recording", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "record button a11y hint")
+            a11yHint = NSLocalizedString("Begin recording", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "stop record button a11y hint")
         case .Stop:
             path = UIBezierPath(rect: CGRectMake(-12, -12, 24, 24))
             a11y = NSLocalizedString("Stop", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "stop recording button a11y label")
@@ -109,7 +109,7 @@ class RecordButton: UIButton {
             } else {
                 title = "?"
                 a11y = NSLocalizedString("Request Audio Recording Permission", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Record button a11y label")
-                a11yHint = NSLocalizedString("Request Permission to record audio", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "record button a11y hint")
+                a11yHint = NSLocalizedString("Request Permission to record audio", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "stop record button a11y hint")
             }
             
         case .Pause:

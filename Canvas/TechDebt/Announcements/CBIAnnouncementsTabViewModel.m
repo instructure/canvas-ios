@@ -26,7 +26,7 @@
         self.discussionCreationStrategy = [AnnouncementCreationIPhoneStrategy new];
         self.discussionViewModelClass = [CBIAnnouncementViewModel class];
         self.createButtonImage = [UIImage techDebtImageNamed:@"icon_announcements"];
-        self.viewControllerTitle = NSLocalizedString(@"Announcements", @"Announcements title");
+        self.viewControllerTitle = NSLocalizedString(@"Announcements", @"Title for the announcements view controller");
         
         self.canCreateSignal = [RACObserve(self, model.context) map:^id(id<CKIContext> context) {
             if ([context isKindOfClass:[CKICourse class]]) {

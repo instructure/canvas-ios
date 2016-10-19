@@ -89,7 +89,7 @@ class QuizPresentingViewController: UIViewController {
         submissionController.almostDue = {
             let alert = UIAlertController(title: NSLocalizedString("Quiz Due", comment: "Title for alert that shows when a quiz hits the due date"), message: NSLocalizedString("The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possbily be late?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Description for alert that shows when the quiz hits the due date"), preferredStyle: .Alert)
             let beASlackerAction = UIAlertAction(title: NSLocalizedString("Continue Quiz", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Button for electing to be late on a quiz"), style: .Destructive, handler: { _ in })
-            let notASlackerAction = UIAlertAction(title: NSLocalizedString("Submit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Button for electing to not be late on a quiz"), style: .Default, handler: { [weak self] _ in
+            let notASlackerAction = UIAlertAction(title: NSLocalizedString("Submit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Submit button title"), style: .Default, handler: { [weak self] _ in
                 self?.goAheadAndSubmit()
             })
             alert.addAction(beASlackerAction)
@@ -425,13 +425,13 @@ extension QuizPresentingViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
         // yes, I'm ready
-        let forTheGlory = NSLocalizedString("Submit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "confirm submitting quiz")
+        let forTheGlory = NSLocalizedString("Submit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Submit button title")
         alert.addAction(UIAlertAction(title: forTheGlory, style: .Default, handler:{ _ in
             onConfirm(); return
         }))
         
         // false, I'm having doubts
-        let noMaybeNot = NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "cancel button for submitting a quiz")
+        let noMaybeNot = NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Cancel button title")
         alert.addAction(UIAlertAction(title: noMaybeNot, style: .Cancel, handler: { _ in
             print("cancelled submission"); return
         }))

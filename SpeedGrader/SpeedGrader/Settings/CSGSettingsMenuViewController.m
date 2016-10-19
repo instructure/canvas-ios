@@ -263,7 +263,7 @@ static NSString *const SETTINGS_SWITCH_CELL_ID = @"SettingsSwitchCell";
         } error:^(NSError *error) {
             DDLogVerbose(@"masqueradeAsUserError : %@", [error localizedDescription]);
             
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", @"Masquerade error title") message:NSLocalizedString(@"You don't have permission to masquerade as this user or there is no user with that ID", @"Masquerade error message") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", @"Title for an error alert") message:NSLocalizedString(@"You don't have permission to masquerade as this user or there is no user with that ID", @"Masquerade error message") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
         }];
     }

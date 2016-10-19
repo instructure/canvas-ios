@@ -90,10 +90,10 @@ extension Router {
         let style = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? UIAlertControllerStyle.Alert : UIAlertControllerStyle.ActionSheet
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: style)
 
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Remove Student Cancel Button"), style: .Cancel) { _ in }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: .Cancel) { _ in }
         alertController.addAction(cancelAction)
 
-        let destroyAction = UIAlertAction(title: NSLocalizedString("Remove", comment: "Remove Student Confirm Button"), style: .Destructive) { [unowned self] _ in
+        let destroyAction = UIAlertAction(title: NSLocalizedString("Remove", comment: "Remove button title"), style: .Destructive) { [unowned self] _ in
             self.removeStudent(studentID)
         }
         alertController.addAction(destroyAction)
@@ -138,7 +138,7 @@ extension Router {
     func presentGenericError(viewController: UIViewController, title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .Default, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .Default, handler: { _ in
         }))
 
         viewController.presentViewController(alert, animated: true, completion: nil)

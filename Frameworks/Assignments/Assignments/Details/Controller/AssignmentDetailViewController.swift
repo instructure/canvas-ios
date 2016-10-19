@@ -247,13 +247,13 @@ class AssignmentDetailViewController: Assignment.DetailViewController {
         if let dueDate = assignment.due {
             let notifiableAssignment = NotifiableObject(due: dueDate, name: assignment.name, url: assignment.url, id: assignment.id)
             
-            let title = NSLocalizedString("Assignment Reminder", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for alert view for assignment reminders")
-            let message = NSLocalizedString("Choose how long before the assignment due date to get a reminder:", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for reminder options for an assignment")
-            let cancel = NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "cancel button")
-            let fiveMinutes = NSLocalizedString("5 minutes", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for 5 minutes assignment reminder")
-            let oneHour = NSLocalizedString("1 hour", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for 1 hour assignment reminder")
-            let oneDay = NSLocalizedString("1 day", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for 1 day assignment reminder")
-            let threeDays = NSLocalizedString("3 days", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for 3 days assignment reminder")
+            let title = NSLocalizedString("Assignment Reminder", tableName: "Localizable", bundle: .assignments(), comment: "Title for alert view for assignment reminders")
+            let message = NSLocalizedString("Choose how long before the assignment due date to get a reminder:", tableName: "Localizable", bundle: .assignments(), comment: "Title for reminder options for an assignment")
+            let cancel = NSLocalizedString("Cancel", tableName: "Localizable", bundle: .assignments(), comment: "cancel button")
+            let fiveMinutes = NSLocalizedString("5 minutes", tableName: "Localizable", bundle: .assignments(), comment: "Title for 5 minutes assignment reminder")
+            let oneHour = NSLocalizedString("1 hour", tableName: "Localizable", bundle: .assignments(), comment: "Title for 1 hour assignment reminder")
+            let oneDay = NSLocalizedString("1 day", tableName: "Localizable", bundle: .assignments(), comment: "Title for 1 day assignment reminder")
+            let threeDays = NSLocalizedString("3 days", tableName: "Localizable", bundle: .assignments(), comment: "Title for 3 days assignment reminder")
             
             let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
             

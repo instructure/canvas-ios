@@ -30,7 +30,7 @@
     self = [super init];
     if (self) {
         [self setupMasterDetail];
-        self.title = NSLocalizedString(@"Messages", @"messages title");
+        self.title = NSLocalizedString(@"Messages", @"Title for the messages screen");
     }
     return self;
 }

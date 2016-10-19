@@ -148,7 +148,7 @@ extension AppDelegate {
     func clearCache() {
         NSURLCache.sharedURLCache().removeAllCachedResponses()
         let alert = UIAlertController(title: NSLocalizedString("Cache cleared", comment: ""), message: nil, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "dismiss a dialog"), style: .Default, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .Default, handler: nil))
         window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
     }
 }

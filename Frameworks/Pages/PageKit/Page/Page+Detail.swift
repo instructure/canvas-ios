@@ -149,7 +149,7 @@ extension Page {
                     } catch { print("Error stripping HTML from lockedExplanation") }
                 }
 
-                UIAlertView(title: NSLocalizedString("Page Locked", comment: "The page is locked by the teacher"), message: explanation, delegate: nil, cancelButtonTitle: NSLocalizedString("Okay", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "Generic button to dismiss the popup message")).show()
+                UIAlertView(title: NSLocalizedString("Page Locked", comment: "The page is locked by the teacher"), message: explanation, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "OK Button Title")).show()
             }
         }
 

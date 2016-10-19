@@ -247,7 +247,7 @@
             [self.tableView reloadData];
         } error:^(NSError *error) {
             NSLog(@"Got back error from new search: %@", [error localizedDescription]);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Couldn't find recipients", @"title for alert displayed when iCanvas can't fetch recipients") message:NSLocalizedString(@"Canvas failed to find recipients for your current search. Please try again later.", @"detail text for recipient fetch error message") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"ok button") otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Couldn't find recipients", @"title for alert displayed when iCanvas can't fetch recipients") message:NSLocalizedString(@"Canvas failed to find recipients for your current search. Please try again later.", @"detail text for recipient fetch error message") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"OK Button Title") otherButtonTitles:nil];
             [alert show];
         }];
         [self.currentSearchSignalDisposables addObject:disposable];

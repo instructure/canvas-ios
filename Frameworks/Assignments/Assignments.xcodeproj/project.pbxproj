@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C9D40B11DB1375A009F69AA /* NSBundle+Assignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D40B01DB1375A009F69AA /* NSBundle+Assignments.swift */; };
 		490A865A1C407C0200351185 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490A86591C407C0200351185 /* AppDelegate.swift */; };
 		490A86611C407C0200351185 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 490A86601C407C0200351185 /* Assets.xcassets */; };
 		490A86811C407CB200351185 /* AssignmentKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 490A86801C407CB200351185 /* AssignmentKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -214,6 +215,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C9D40B01DB1375A009F69AA /* NSBundle+Assignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Assignments.swift"; sourceTree = "<group>"; };
 		490A86561C407C0200351185 /* Assignments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		490A86591C407C0200351185 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		490A86601C407C0200351185 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 				491B3DF81C41D3E00094575A /* AssignmentCell.xib */,
 				490A86601C407C0200351185 /* Assets.xcassets */,
 				490A86651C407C0200351185 /* Info.plist */,
+				2C9D40B01DB1375A009F69AA /* NSBundle+Assignments.swift */,
 			);
 			path = Assignments;
 			sourceTree = "<group>";
@@ -1037,6 +1040,7 @@
 				490A865A1C407C0200351185 /* AppDelegate.swift in Sources */,
 				B1A2B5101CC7E5EC00FBD8CB /* GradesList.swift in Sources */,
 				B5FE27AB1C9749B700D07C43 /* CircularGradeView.swift in Sources */,
+				2C9D40B11DB1375A009F69AA /* NSBundle+Assignments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

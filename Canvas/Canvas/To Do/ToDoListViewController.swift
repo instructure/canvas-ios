@@ -88,7 +88,7 @@ class ToDoListViewController: Todo.TableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString("To Do", comment:"Title of to do screen")
+        navigationItem.title = NSLocalizedString("To Do", comment:"Title of the Todo screen")
     }
 
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {

@@ -1186,7 +1186,7 @@ CKDiscussionEntry *asEntry(id entryOrTopic) {
             UIMenuController *editMenu = [UIMenuController sharedMenuController];
             UIMenuItem *editItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"Button to edit a discussion entry")
                                                               action:@selector(editEntry:)];
-            UIMenuItem *deleteItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Delete", @"Button to delete a discussion entry")
+            UIMenuItem *deleteItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Delete", @"Delete Button title")
                                                                 action:@selector(deleteEntry:)];
             editMenu.menuItems = @[ editItem, deleteItem ];
             [editMenu setTargetRect:cell.frame inView:self.tableView];
@@ -1270,15 +1270,15 @@ CKDiscussionEntry *asEntry(id entryOrTopic) {
 - (void)deleteEntry:(id)sender
 {
     CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Confirm deletion", @"Alert title") message:NSLocalizedString(@"Delete this reply?", @"Alert message")];
-    [alert addCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel deletion of discussion entry")];
-    [alert addButtonWithTitle:NSLocalizedString(@"Delete", @"Confirm deletion of discussion entry") handler:^{
+    [alert addCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel button title")];
+    [alert addButtonWithTitle:NSLocalizedString(@"Delete", @"Delete Button title") handler:^{
         CKDiscussionEntry *entry = [self itemForIndexPath:tappedIndexPath];
         
         [_canvasAPI deleteDiscussionEntry:entry block:^(NSError *error, BOOL isFinalValue) {
             if (error) {
                 NSLog(@"Unable to delete discussion entry. Error message: %@", error);
                 
-                CKAlertViewWithBlocks *errorAlert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Error", @"Error alert title") message:NSLocalizedString(@"You do not have permission to delete this reply", @"Error message")];
+                CKAlertViewWithBlocks *errorAlert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Error", @"Title for an error popup") message:NSLocalizedString(@"You do not have permission to delete this reply", @"Error message")];
                 [errorAlert addCancelButtonWithTitle:NSLocalizedString(@"OK", nil)];
                 [errorAlert show];
             }

@@ -547,7 +547,7 @@ extension SubmissionViewController {
                     let message = NSLocalizedString("This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Warning to users editing an essay question that was edited on the web.")
                     let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 
-                    let cancel = NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Cancel removing the formatting")
+                    let cancel = NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Cancel button title")
                     alert.addAction(UIAlertAction(title: cancel, style: .Cancel, handler: { _ in
                         // Nothing to do if they cancel
                     }))

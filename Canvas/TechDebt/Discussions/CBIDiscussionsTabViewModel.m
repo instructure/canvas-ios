@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger, sectionType) {
             [sortDescriptors insertObject:[NSSortDescriptor sortDescriptorWithKey:@"position" ascending:YES] atIndex:0];
         }
         
-        self.viewControllerTitle = NSLocalizedString(@"Discussions", @"Discussions title");
+        self.viewControllerTitle = NSLocalizedString(@"Discussions", @"Title for Discussions view controller");
         
         self.collectionController = [MLVCCollectionController collectionControllerGroupingByBlock:^id(CBIDiscussionTopicViewModel *viewModel) {
             if (viewModel.model.isPinned) {

@@ -93,7 +93,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             CKIModel *context = [type modelWithID:[params[@"contextID"] description]];
             CKITab *filesTab = [CKITab modelWithID:@"files" context:context];
             viewModel = [CBIFilesTabViewModel viewModelForModel:filesTab];
-            viewModel.viewControllerTitle = NSLocalizedString(@"Files", @"Title for the Files View Controller");
+            viewModel.viewControllerTitle = NSLocalizedString(@"Files", @"Title for the files screen");
         }
 
         ((CBIColorfulViewModel *)viewModel).tintColor = [self tintColorForContextID:params[@"contextID"] contextClass:type];
@@ -267,7 +267,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             id<CKIContext> context = ([type isSubclassOfClass:[CKICourse class]]) ? [CKICourse modelWithID:contextID] : [CKIGroup modelWithID:contextID];
             CKITab *peopleTab = [CKITab modelWithID:@"people" context:context];
             viewModel = [CBIPeopleTabViewModel viewModelForModel:peopleTab];
-            ((CBIColorfulViewModel *)viewModel).viewControllerTitle = NSLocalizedString(@"People",@"Title for People view controller");
+            ((CBIColorfulViewModel *)viewModel).viewControllerTitle = NSLocalizedString(@"People", @"Title for the people view");
         }
         
         ((CBIColorfulViewModel *)viewModel).tintColor = [self tintColorForContextID:params[@"contextID"] contextClass:type];
@@ -401,7 +401,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             if(viewModel == nil){
                 CKICourse *course = [CKICourse modelWithID:[params[@"courseID"] description]];
                 viewModel = [CBISyllabusViewModel viewModelForModel:course];
-                ((CBIColorfulViewModel *)viewModel).viewControllerTitle = NSLocalizedString(@"Syllabus",@"Title for Syllabus view controller");
+                ((CBIColorfulViewModel *)viewModel).viewControllerTitle = NSLocalizedString(@"Syllabus",@"Title for Syllabus screen");
             }
 
         ((CBIColorfulViewModel *)viewModel).tintColor = [TheKeymaster.currentClient.authSession colorForCourse:[params[@"courseID"] description]];
@@ -507,7 +507,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
 
         @"/courses/:contextID/settings" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
-            unsupportedVC.tabName = NSLocalizedString(@"Settings",@"Title for Settings tab");
+            unsupportedVC.tabName = NSLocalizedString(@"Settings",@"Title for Settings");
             unsupportedVC.canvasURL = params[@"url"];
             return unsupportedVC;
         },

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C9D40B31DB14061009F69AA /* NSBundle+NotificationKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D40B21DB14061009F69AA /* NSBundle+NotificationKit.swift */; };
 		49A9C3DB1BCEFFC8002E3A62 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A9C3DA1BCEFFC8002E3A62 /* TooLegit.framework */; };
 		49EB0BD01BC47B39008F938C /* NotificationKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 49EB0BCF1BC47B39008F938C /* NotificationKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49EB0BD61BC47B39008F938C /* NotificationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB0BCA1BC47B39008F938C /* NotificationKit.framework */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C9D40B21DB14061009F69AA /* NSBundle+NotificationKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+NotificationKit.swift"; sourceTree = "<group>"; };
 		49A9C3DA1BCEFFC8002E3A62 /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EB0BCA1BC47B39008F938C /* NotificationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NotificationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EB0BCE1BC47B39008F938C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			children = (
 				49EB0C001BC48426008F938C /* SimpleAlertExtension.swift */,
 				49EB0C011BC48426008F938C /* SimpleErrorExtension.swift */,
+				2C9D40B21DB14061009F69AA /* NSBundle+NotificationKit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				49EB0BFB1BC48379008F938C /* NotificationKitController.swift in Sources */,
 				49EB0BF61BC47EA5008F938C /* NotificationPreferencesViewController.swift in Sources */,
 				49EB0C031BC48426008F938C /* SimpleErrorExtension.swift in Sources */,
+				2C9D40B31DB14061009F69AA /* NSBundle+NotificationKit.swift in Sources */,
 				49EB0BEC1BC47E71008F938C /* PushNotificationToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

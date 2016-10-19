@@ -21,7 +21,7 @@
 {
     self = [super init];
     if (self) {
-        self.name = NSLocalizedString(@"Syllabus", @"Title for Syllabus view controller");
+        self.name = NSLocalizedString(@"Syllabus", @"Title for Syllabus screen");
         self.icon = [self imageForTypeName:nil];
         self.syllabusDate = [NSDate date];
         self.viewControllerTitle = self.name;

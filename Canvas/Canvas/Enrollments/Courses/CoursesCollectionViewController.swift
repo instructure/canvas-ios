@@ -119,7 +119,7 @@ public class CoursesCollectionViewController: Course.CollectionViewController {
     private lazy var editButton: UIBarButtonItem = {
         let image = UIImage(named: "icon_cog_small", inBundle: NSBundle(forClass: GroupsCollectionViewController.self), compatibleWithTraitCollection: nil)
         let edit = UIBarButtonItem(image: image, landscapeImagePhone: nil, style: .Plain, target: self, action: #selector(editFavorites(_:)))
-        edit.accessibilityLabel = NSLocalizedString("Edit Course List", comment: "Edit the items in the course list")
+        edit.accessibilityLabel = NSLocalizedString("Edit Course List", comment: "Edit course list title")
         edit.accessibilityIdentifier = "editCourseListButton"
         return edit
     }()

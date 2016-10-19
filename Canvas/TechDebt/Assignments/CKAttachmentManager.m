@@ -178,7 +178,7 @@
                          animated:YES];
     } else{
         
-        [self.actionSheet addCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+        [self.actionSheet addCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel button title")];
         
         self.actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
         if (self.presentFromViewController.tabBarController) {
@@ -229,7 +229,7 @@
                                                             message:NSLocalizedString(@"No audio was recorded.", @"Message for attempting submission without a comment")
                                                            delegate:self
                                                   cancelButtonTitle:nil
-                                                  otherButtonTitles:NSLocalizedString(@"Ok", nil) , nil];
+                                                  otherButtonTitles:NSLocalizedString(@"OK", nil) , nil];
         [alertView show];
         return;
     }

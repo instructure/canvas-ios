@@ -7286,12 +7286,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BA6E8F462E36EF46ACD6089A /* Build configuration list for PBXNativeTarget "SpeedGraderTests" */;
 			buildPhases = (
-				4AF52EEDD6948D2041BBAA97 /* [CP] Check Pods Manifest.lock */,
 				BA6E87AE8C5D97344952E8EF /* Sources */,
 				BA6E84CD1CE8CB1E983D63CE /* Frameworks */,
 				BA6E898BCAA845BBB9BDEAEB /* Resources */,
-				3A954F48C04DE79DF197F641 /* [CP] Embed Pods Frameworks */,
-				A0BDBC89F340EE815FFC2A18 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -7479,37 +7476,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3A954F48C04DE79DF197F641 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpeedGraderTests/Pods-SpeedGraderTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3B3C9A277E8C372464EC4156 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		4AF52EEDD6948D2041BBAA97 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -7564,21 +7531,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-SpeedGrader/Pods-SpeedGrader-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A0BDBC89F340EE815FFC2A18 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpeedGraderTests/Pods-SpeedGraderTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7BFBCD9FE0B2A957119C0BD /* [CP] Copy Pods Resources */ = {

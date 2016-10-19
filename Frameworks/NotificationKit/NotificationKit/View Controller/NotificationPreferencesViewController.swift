@@ -53,7 +53,7 @@ public class NotificationPreferencesViewController: UITableViewController {
                 
                 let title = NSLocalizedString("Could not load notification preferences", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to load notification preferences")
                 let message = NSLocalizedString("Unable to load any notification preferences at this time.  Error: \(result.error?.localizedDescription)", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to load notification preferences")
-                let actionText = NSLocalizedString("Ok", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert action button text when unable to load notification preferences")
+                let actionText = NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title")
                 
                 self.showSimpleAlert(title, message: message, actionText: actionText)
 
@@ -68,7 +68,7 @@ public class NotificationPreferencesViewController: UITableViewController {
             } else {
                 let title = NSLocalizedString("Can't Display Notification Preferences", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to parse JSON for notification preferences")
                 let message = NSLocalizedString("Unable to display any notification preferences returned from the server at this time.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to parse JSON for notification preferences")
-                let actionText = NSLocalizedString("Ok", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert action button text when unable to parse JSON for notification preferences")
+                let actionText = NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title")
                 
                 self.showSimpleAlert(title, message: message, actionText: actionText)
             }
@@ -141,7 +141,7 @@ extension NotificationPreferencesViewController: ChangeNotificationPreferencePro
     func showCouldNotUpdatePushNotificationAlert() {
         let alert = UIAlertController(title: NSLocalizedString("Could not update", comment: "Error title for being unable to update a push notification preference"), message: NSLocalizedString("We were not able to update this value with the server", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Error message for being unable to update a push notification preference"), preferredStyle: UIAlertControllerStyle.Alert)
         
-        let alertAction = UIAlertAction(title: NSLocalizedString("Ok", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Action title for being unable to update a push notification preference"), style: UIAlertActionStyle.Default, handler: nil)
+        let alertAction = UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title"), style: UIAlertActionStyle.Default, handler: nil)
         alert.addAction(alertAction)
         self.presentViewController(alert, animated: true, completion: nil)
     }

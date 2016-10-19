@@ -94,7 +94,7 @@
                 typeDescriptionString = NSLocalizedString(@"Graded Discussion", @"Label for a discussion");
                 break;
             case CKAssignmentTypeQuiz:
-                typeDescriptionString = NSLocalizedString(@"Quiz", @"Label for a quiz");
+                typeDescriptionString = NSLocalizedString(@"Quiz", @"A short test taken by students");
                 break;
             case CKAssignmentTypeAttendance:
                 typeDescriptionString = NSLocalizedString(@"Attendance", @"Label for a discussion");

@@ -192,13 +192,13 @@
     switch (self.scoringType) {
         case CKAssignmentScoringTypePassFail: {
             if ([submissionGrade equalIgnoringCase:@"complete"]) {
-                return NSLocalizedString(@"Complete", @"Pass/fail assignment is complete");
+                return NSLocalizedString(@"Complete", @"Assignment grade: Complete");
             }
             else if ([submissionGrade equalIgnoringCase:@"not complete"]) {
                 return NSLocalizedString(@"Not Complete", @"Pass/fail assignment is not complete");
             }
             else if ([submissionGrade equalIgnoringCase:@"incomplete"]) {
-                return NSLocalizedString(@"Incomplete", @"Pass/fail assignment is incomplete");
+                return NSLocalizedString(@"Incomplete", @"Assignment grade: Incomplete");
             }
             
             // Previous functionality just returned the value so this is at least as good as that

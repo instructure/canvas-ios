@@ -171,7 +171,7 @@ class SettingsViewController: UIViewController {
     @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: nil, message: NSLocalizedString("Are you sure you want to logout?", comment: "Logout Confirmation"), preferredStyle: .ActionSheet)
 
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel Button"), style: .Cancel) { _ in }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: .Cancel) { _ in }
         alertController.addAction(cancelAction)
 
         let destroyAction = UIAlertAction(title: NSLocalizedString("Logout", comment: "Logout Confirm Button"), style: .Destructive) { [weak self] _ in
@@ -196,7 +196,7 @@ class SettingsViewController: UIViewController {
     @IBAction func helpButtonPressed(sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: nil, message: NSLocalizedString("How can we help?", comment: "Help Menu Message"), preferredStyle: .ActionSheet)
 
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel Button"), style: .Cancel) { _ in }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: .Cancel) { _ in }
         alertController.addAction(cancelAction)
 
         let guideAction = UIAlertAction(title: NSLocalizedString("Help Guide", comment: "Help Guide Button"), style: .Default) { [weak self] _ in
