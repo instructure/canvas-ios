@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PROJECT_FILE_PATH=$1
+XLF_FOLDER=$2
+
+echo "Hello $USER!"
+if [ -z $PROJECT_FILE_PATH ]; then echo "Project File Path is not set"; exit 1; fi
+if [ -z $XLF_FOLDER ]; then echo "XLF Folder is not set"; exit 1; fi
+
+echo "Project File Path: $PROJECT_FILE_PATH"
+echo "XLF Folder Path: $XLF_FOLDER"
+
+for file in $XLF_FOLDER/*
+do
+    xcodebuild -importLocalizations -localizationPath $file -project $PROJECT_FILE_PATH
+done

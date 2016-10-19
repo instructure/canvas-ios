@@ -1,6 +1,9 @@
 /* Back Button Title */
 "Back" = "Zurück";
 
+/* Error alert message */
+"Could not create domain.  Please check your school's domain and try again." = "Domain konnte nicht angelegt werden. Bitte überprüfen Sie die Domain Ihres Instituts und versuchen Sie es erneut.";
+
 /* Error Alert Title */
 "Error" = "Fehler";
 

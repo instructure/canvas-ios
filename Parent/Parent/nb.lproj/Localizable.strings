@@ -1,0 +1,318 @@
+/* Label indicating when the event takes place */
+"%@" = "%@";
+
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d of %3$d";
+
+/* Something to Something */
+"%@ to %@" = "%1$@ to %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Det har oppstått en serverfeil. Vennligst forsøk igjen.";
+
+/* Alerts Tab */
+"ALERTS" = "VARSLER";
+
+/* Unauthorized Student Error Title */
+"Access Denied" = "Nektet tilgang";
+
+/* Add Student Settings Button Title */
+"Add Student" = "Legg til student";
+
+/* Alert Section Header */
+"Alert me when:" = "Varsle meg når:";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "Det oppsto en uventet feil. Vennligst forsøk igjen.";
+
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "Er du sikker på at du ønsker å logge av?";
+
+/* Remove Observee Confirmation */
+"Are you sure you want to remove this observee?" = "Er du sikker på ar du ønsker å fjerne denne observatøren? ";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Oppgavevurdering over";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Oppgavevurdering under";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Oppgave mangler";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@" = "Oppgavepåminnelse: %@";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@ is due at %@" = "Oppgavepåminnelse: %1$@ har frist til %2$@";
+
+/* Authorization Failed Title */
+"Authorization Failed." = "Autorisasjon mislyktes.";
+
+/* Courses Tab */
+"COURSES" = "KURS";
+
+/* Cancel button
+   Cancel Button
+   Logout Cancel Button
+   Remove Observee Cancel Button
+   Remove Student Cancel Button */
+"Cancel" = "Avbryt";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Kan ikke bruke prosent som er høyere enn 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Kan ikke bruke prosent som er mindre enn 0";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Hengt opp i varsler";
+
+/* Close Button Title */
+"Close" = "Lukk";
+
+/* Course Announcement Description */
+"Course announcements" = "Kurskunngjøringer";
+
+/* Course Grade High On Description */
+"Course grade above" = "Kursvurdering over";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Kursvurdering under";
+
+/* Submits the form to create an account */
+"Create Account" = "Opprett konto";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Avvis";
+
+/* Title for alert shown when the server couldn't find an email to reset the password for */
+"Email Not Found" = "E-post ikke funnet";
+
+/* Title for alert shown when user attempts to reset their password */
+"Email Sent" = "E-post sendt";
+
+/* Prompt for logging in as student */
+"Enter student's login information" = "Skriv inn studentens påloggingsinformasjon";
+
+/* No comment provided by engineer. */
+"Error" = "Feil";
+
+/* No comment provided by engineer. */
+"Event reminder: %@" = "Hendelsespåminnelse: %@";
+
+/* No comment provided by engineer. */
+"Event reminder: %@ will begin at %@" = "Påminnelse: %1$@ vil begynne %2$@";
+
+/* No comment provided by engineer. */
+"Excused" = "Unnskyldt";
+
+/* Domain Picker Search Placeholder */
+"Find your student's school or district" = "Finn studenten din sin skole eller distrikt";
+
+/* Help Button Title */
+"Help" = "Hjelp";
+
+/* Help Guide Button */
+"Help Guide" = "Hjelpeguide";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "Høy oppgavevurdering kan ikke være lavere enn lav oppgavevurdering";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "Høy kursvurdering kan ikke være lavere enn lav kursvurdering";
+
+/* Help Menu Message */
+"How can we help?" = "Hvordan kan vi hjelpe?";
+
+/* No comment provided by engineer. */
+"In-Class" = "I klassen";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Institusjonskunngjøringer";
+
+/* Alert title when logging in with invalid credentials */
+"Invalid Credentials" = "Ugyldige akkreditering";
+
+/* Title for an alert view */
+"Invalid Input" = "Ugyldig inndata";
+
+/* Alert Message for invalid domain */
+"Invalid student domain.
+Please double-check the domain and try again." = "Ugyldig studentdomene.
+Dobbeltsjekk domene og forsøk igjen.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "Siste uke";
+
+/* No comment provided by engineer. */
+"Late" = "Seint";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Seint: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Seint: %1$@ (%2$@/%3$@)";
+
+/* Submits the login form */
+"Login" = "Logg inn";
+
+/* Button title to log out the user
+   Logout Confirm Button */
+"Logout" = "Logg ut";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Lav oppgavevurdering kan ikke være høyere enn høy oppgavevudering";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Lav kursvurdering kan ikke være høyere enn høy kursvurdering";
+
+/* No comment provided by engineer. */
+"Missing" = "Mangler";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Mangler: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Nettverksfeil";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "Neste uke";
+
+/* Empty Courses Text */
+"No Courses" = "Ingen kurs";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Ingen vurdering";
+
+/* Empty Students Text */
+"No Students" = "Ingen studenter";
+
+/* Error message */
+"No installed apps support opening this file" = "Ingen installerte apper støtter åpning av denne filen.";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Ikke autorisert";
+
+/* Not Found Error Title */
+"Not Found" = "Ikke funnet";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Ingenting denne uken";
+
+/* OK
+   OK Button Title
+   Okay button */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Åpne i Safari";
+
+/* Open file in another application */
+"Open in..." = "Åpne i ...";
+
+/* Title for alert when resetting password is successful */
+"Password Reset Successful" = "Passordet tilbakestilt";
+
+/* Title for alert shown when something goes wrong resetting the password */
+"Problem Resetting Password" = "Problem med å tilbakestille passordet";
+
+/* Remove Observee Button
+   Remove Observee Confirm Button
+   Remove Student Confirm Button */
+"Remove" = "Fjern";
+
+/* delete student from login */
+"Remove Student" = "Fjern student";
+
+/* re-authenticate user when token fails */
+"Repair Access" = "Reparere tilgang";
+
+/* Report Problem Button */
+"Report a Problem" = "Rapporter et problem";
+
+/* Feature Request Button */
+"Request a Feature" = "Be om en funksjon";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Kilden ikke funnet. Forsøk igjen.";
+
+/* Server Error Title */
+"Server Error" = "Serverfeil";
+
+/* Settings Button Title
+   Title of the settings screen */
+"Settings" = "Innstillinger";
+
+/* Share Some Love Button */
+"Share Some Love" = "Del litt kjærlighet";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to reset your password. Try again later." = "Noe gikk galt under forsøket på å tilbakestille passordet ditt. Forsøk igjen senere.";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to send a password reset email. Try again later." = "Noe gikk galt under forsøket på å sende en e-post for å tilbakestille passordet. Forsøk igjen seinere. ";
+
+/* Button title for forgot password */
+"Submit" = "Send inn";
+
+/* No comment provided by engineer. */
+"Submitted" = "Sendt inn";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Innsendt: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Innsendt: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Pensum";
+
+/* Alert message when logging in with invalid credentials */
+"The email and password combination were invalid" = "E-post og passordkombinasjonen er ugyldig";
+
+/* Error message */
+"There are no actions for this item" = "Det er ingen handlinger for dette elementet";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Det oppsto en feil med lasting av innholdet ditt. Hvis det er en lyd- eller video-opplasting kan den fremdeles være under behandling.";
+
+/* Alert Message for institution not authorized */
+"This institution has not enabled access to the Canvas Parent mobile app." = "Denne institusjonen har ikke aktivert tilgang til mobilappen Canvas forelder.";
+
+/* Title for alert when failing to add student domain */
+"Unable to Add Student" = "Kunne ikke legge til student";
+
+/* Title for alert when failing to create account */
+"Unable to Create Account" = "Kunne ikke opprette konto";
+
+/* Auth Failed Message */
+"Unexpected Authentication Error.  Please try logging in again" = "Uventet autentiseringsfeil. Forsøk å logge inn på nytt";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Ukjent";
+
+/* Name of action when viewing a reminder */
+"View" = "Vis";
+
+/* Calendar Tab */
+"WEEK" = "UKE";
+
+/* Error message when failing to create account */
+"We couldn't create your account. Double check your information or try again later." = "Vi kunne ikke opprette kontoen din. Dobbeltsjekk informasjonen din eller forsøk seinere.";
+
+/* Body for alert shown when the server couldn't find an email to reset the password for */
+"We couldn't find an account associated with that email. Double check that you entered it correctly and try again." = "Vi kunne ikke finne kontoen forbundet med den e-posten. Dobbeltsjekk at du skrev det inn korrekt og forsøk igjen.";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "Du er ikke autorisert til å få tilgang til denne informasjonen. Sjekk brukertillatelsene dine og forsøk igjen.";
+
+/* Body for alert shown when resetting password */
+"You will receive an email shortly to finish the process of resetting your password." = "Du vil snart motta en e-post for å fullføre behandlingen av å tilbakestille passordet ditt.";
+
+/* Body for alert after having successfully reset the password */
+"Your password has been successfully reset. Please log in now." = "Passordet ditt er tilbakestilt. Forsøk å logge inn nå.";
+

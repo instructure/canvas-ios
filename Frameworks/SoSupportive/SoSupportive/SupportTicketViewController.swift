@@ -56,15 +56,15 @@ public class SupportTicketViewController : FormViewController {
         super.viewDidLoad()
 
         cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(SupportTicketViewController.cancelTapped(_:)))
-        doneButton = UIBarButtonItem(title: "Send", style: .Plain, target: self, action: #selector(SupportTicketViewController.doneTapped(_:)))
-
+        doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(SupportTicketViewController.doneTapped(_:)))
+        
         self.navigationItem.leftBarButtonItem = cancelButton
         self.navigationItem.rightBarButtonItem = doneButton
 
         form +++ Section()
             <<< PushRow<String>() {
                 $0.title = NSLocalizedString("Impact:", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Impact Title")
-                $0.selectorTitle = NSLocalizedString("Select Impact", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Select Impact Placeholder")
+                $0.selectorTitle = NSLocalizedString("Select Impact", tableName: "Localizable", bundle: .soSupportive(), value: "", comment: "Select Impact Placeholder")
                 $0.options = ImpactLevel.impacts().map { $0.description() }
                 $0.value = ImpactLevel.None.description()
                 $0.tag = SupportTicketCellTag.Impact.rawValue
@@ -75,12 +75,12 @@ public class SupportTicketViewController : FormViewController {
                 let rowHidden = (self?.requesterEmail != nil)
                 $0.hidden = Condition(booleanLiteral: rowHidden)
                 }.cellSetup { cell, row in
-                cell.textField.placeholder = NSLocalizedString("Your Email", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Title for the email field")
+                cell.textField.placeholder = NSLocalizedString("Your Email", tableName: "Localizable", bundle: .soSupportive(), value: "", comment: "Title for the email field")
                 }.onChange { [weak self] row in
                     self?.validateForm()
             }
             <<<  TextRow(SupportTicketCellTag.Subject.rawValue).cellSetup { cell, row in
-                cell.textField.placeholder = row.tag
+                cell.textField.placeholder = NSLocalizedString("Subject", bundle: .soSupportive(), comment: "Title for the subject field")
                 }.onChange { [weak self] row in
                     self?.validateForm()
             }

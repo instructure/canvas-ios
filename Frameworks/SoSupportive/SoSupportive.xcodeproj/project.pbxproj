@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CCDE39C1DAC0BB100B46D87 /* NSBundle+SoSupportive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCDE39B1DAC0BB100B46D87 /* NSBundle+SoSupportive.swift */; };
 		49BE5A381D95A7CB00292757 /* DeviceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5F9B561D2ECE0D0034207D /* DeviceKit.framework */; };
 		49BE5A391D95A7CB00292757 /* DeviceKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5F9B561D2ECE0D0034207D /* DeviceKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49BE5A3A1D95A7CB00292757 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5F9B431D2EC2B10034207D /* TooLegit.framework */; };
@@ -107,6 +108,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2CCDE39B1DAC0BB100B46D87 /* NSBundle+SoSupportive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+SoSupportive.swift"; sourceTree = "<group>"; };
 		49BE5A451D95B77F00292757 /* CWStatusBarNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49BE5A481D95B7E600292757 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49BE5A491D95B7E600292757 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +271,7 @@
 				5E36A4F11D10B02B00480B91 /* SupportTicket.swift */,
 				5E36A4F21D10B02B00480B91 /* SupportTicketViewController.swift */,
 				5E5F9B591D2ECFFC0034207D /* Session+Log.swift */,
+				2CCDE39B1DAC0BB100B46D87 /* NSBundle+SoSupportive.swift */,
 			);
 			path = SoSupportive;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				5E36A4F41D10B02B00480B91 /* SupportTicket.swift in Sources */,
 				5E5F9B5A1D2ECFFC0034207D /* Session+Log.swift in Sources */,
 				5E36A4F51D10B02B00480B91 /* SupportTicketViewController.swift in Sources */,
+				2CCDE39C1DAC0BB100B46D87 /* NSBundle+SoSupportive.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

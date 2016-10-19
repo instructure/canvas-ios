@@ -100,7 +100,7 @@ class AirwolfLoginViewController: UIViewController {
         reachability?.startNotifier()
 
         primaryButton.rac_enabled <~ combineLatest(firstNameField.rac_text.producer, lastNameField.rac_text.producer, emailField.rac_text.producer, passwordField.rac_text.producer, confirmPasswordField.rac_text.producer, state.producer).map { (firstName, lastName, email, password, confirmedPassword, state) in
-            let emailValid = self.isValidEmail(email)
+            let emailValid = email.isValidEmail()
 
             switch state {
             case .DoingSomethingImportant, .Disabled:
@@ -311,14 +311,8 @@ class AirwolfLoginViewController: UIViewController {
         }
     }
 
-    func isValidEmail(str: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluateWithObject(str)
-    }
-
     func attemptLogin(email email: String, password: String) {
-        guard isValidEmail(email) else { return }
+        guard email.isValidEmail() else { return }
         guard password.characters.count > 0 else { return }
         guard state.value != .DoingSomethingImportant else { return }
 
@@ -366,7 +360,7 @@ class AirwolfLoginViewController: UIViewController {
     }
 
     func createAccount(email email: String, password: String, confirmedPassword: String, firstName: String, lastName: String) {
-        guard isValidEmail(email) else { return }
+        guard email.isValidEmail() else { return }
         guard password == confirmedPassword && password.characters.count > 0 else { return }
         guard firstName.characters.count > 0 && lastName.characters.count > 0 else { return }
         guard state.value != .DoingSomethingImportant else { return }
@@ -409,7 +403,7 @@ class AirwolfLoginViewController: UIViewController {
     }
 
     func sendPasswordResetEmail(email email: String) {
-        guard isValidEmail(email) else { return }
+        guard email.isValidEmail() else { return }
         guard state.value != .DoingSomethingImportant else { return }
 
         state.value = .DoingSomethingImportant

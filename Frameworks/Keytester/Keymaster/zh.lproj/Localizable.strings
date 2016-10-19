@@ -1,6 +1,9 @@
 /* Back Button Title */
 "Back" = "返回";
 
+/* Error alert message */
+"Could not create domain.  Please check your school's domain and try again." = "无法创建域名。请检查您学校的域名，然后再试一次。";
+
 /* Error Alert Title */
 "Error" = "错误";
 

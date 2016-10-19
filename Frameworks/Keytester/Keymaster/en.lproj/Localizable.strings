@@ -1,6 +1,9 @@
 /* Back Button Title */
 "Back" = "Back";
 
+/* Error alert message */
+"Could not create domain.  Please check your school's domain and try again." = "Could not create domain.  Please check your school's domain and try again.";
+
 /* Error Alert Title */
 "Error" = "Error";
 
@@ -12,4 +15,3 @@
 
 /* AccountDomain Database Load Failure Message */
 "There was a problem loading the AccountDomain database file." = "There was a problem loading the AccountDomain database file.";
-

@@ -17,16 +17,24 @@ let defaultHTTPHeaders: [String: String] = {
     
     // Accept-Language HTTP Header; see https://tools.ietf.org/html/rfc7231#section-5.3.5
     let acceptLanguage: String = {
-        var components: [String] = []
-        for (index, languageCode) in (NSLocale.preferredLanguages() as [String]).enumerate() {
-            let q = 1.0 - (Double(index) * 0.1)
-            components.append("\(languageCode);q=\(q)")
-            if q <= 0.5 {
-                break
+        
+        // Airwolf doesn't support regions yet, so, this adds additional headers that strip that out
+        // Example: ["de-US;q=1.0", "de;q=0.95", "ar-US;q=0.9", "ar;q=0.85", "en;q=0.80"]
+        let preferred = NSLocale.preferredLanguages()
+        let languages = preferred.reduce([String]()) { memo, item in
+            
+            if let range = item.rangeOfString("-", options: [.BackwardsSearch], range: nil, locale: nil) {
+                let stripped = item.substringToIndex(range.startIndex)
+                return memo + [item, stripped]
             }
+            else {
+                return memo + [item]
+            }
+            }.enumerate().map { index, element in
+                return "\(element);q=\(1.0 - (Double(index) * 0.05))"
         }
         
-        return components.joinWithSeparator(",")
+        return languages.joinWithSeparator(",")
     }()
     
     // User-Agent Header; see https://tools.ietf.org/html/rfc7231#section-5.5.3
@@ -54,3 +62,14 @@ let defaultHTTPHeaders: [String: String] = {
         "User-Agent": userAgent
     ]
 }()
+
+extension NSMutableURLRequest {
+    
+    /// Adds our default set of headers to the url request
+    /// *Note* Will OVERWRITE any other headers that were set
+    public func addDefaultHTTPHeaders() {
+        defaultHTTPHeaders.forEach { (key, value) in
+            self.addValue(value, forHTTPHeaderField: key)
+        }
+    }
+}

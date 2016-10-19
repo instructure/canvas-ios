@@ -1,6 +1,9 @@
 /* Back Button Title */
 "Back" = "Tilbage";
 
+/* Error alert message */
+"Could not create domain.  Please check your school's domain and try again." = "Kunne ikke oprette domæne. Tjek venligst din skoles domæne og prøv igen.";
+
 /* Error Alert Title */
 "Error" = "Fejl";
 

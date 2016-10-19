@@ -84,7 +84,7 @@ class AddStudentViewController: UIViewController {
             return
         }
 
-        let backImage = UIImage(named: "icon_back")?.imageWithRenderingMode(.AlwaysTemplate)
+        let backImage = UIImage.RTLImage("icon_back", renderingMode: .AlwaysTemplate)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.setBackgroundImage(backImage, forState: .Normal)
         backButton.setBackgroundImage(backImage, forState: .Selected)
@@ -116,8 +116,10 @@ class AddStudentViewController: UIViewController {
     }
 
     func startLoginRequest() {
-        if let request = try? AirwolfAPI.addStudentRequest(session, parentID: session.user.id, studentDomain: domain) {
-            webView.loadRequest(request)
+        if let request = try? AirwolfAPI.addStudentRequest(session, parentID: session.user.id, studentDomain: domain),
+            let mutableRequest = request.mutableCopy() as? NSMutableURLRequest {
+            mutableRequest.addDefaultHTTPHeaders()
+            webView.loadRequest(mutableRequest)
         }
     }
 

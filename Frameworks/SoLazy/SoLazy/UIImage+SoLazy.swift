@@ -34,4 +34,18 @@ public extension UIImage {
         
         return newImage
     }
+    
+    /// Creates an image that has RTL support if available
+    public static func RTLImage(named: String, renderingMode: UIImageRenderingMode? = nil) -> UIImage? {
+        var image = UIImage(named: named)
+        if let mode = renderingMode {
+            image = image?.imageWithRenderingMode(mode)
+        }
+        
+        if #available(iOS 9.0, *) {
+            return image?.imageFlippedForRightToLeftLayoutDirection()
+        }
+        
+        return image
+     }
 }

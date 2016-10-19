@@ -1,0 +1,30 @@
+/* Class = "UILabel"; text = "Label"; ObjectID = "0dp-Vg-UGf"; */
+"0dp-Vg-UGf.text" = "Etiket";
+
+/* Class = "UIButton"; accessibilityIdentifier = "settings_button"; ObjectID = "5Jd-6d-Mng"; */
+"5Jd-6d-Mng.accessibilityIdentifier" = "indstillingsknap";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Cyr-5h-ISn"; */
+"Cyr-5h-ISn.text" = "Etiket";
+
+/* Class = "UIView"; accessibilityIdentifier = "alerts_tab_button"; ObjectID = "Yya-kZ-MC1"; */
+"Yya-kZ-MC1.accessibilityIdentifier" = "alarm_faneknap";
+
+/* Class = "UILabel"; accessibilityIdentifier = "student_name_label"; ObjectID = "ax4-W0-zFC"; */
+"ax4-W0-zFC.accessibilityIdentifier" = "studerendes_navenetiket";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "ax4-W0-zFC"; */
+"ax4-W0-zFC.text" = "-";
+
+/* Class = "UIView"; accessibilityIdentifier = "courses_tab_button"; ObjectID = "ggc-Op-DMI"; */
+"ggc-Op-DMI.accessibilityIdentifier" = "kursus_faneknap";
+
+/* Class = "UIView"; accessibilityIdentifier = "user_selection_carousel"; ObjectID = "k8J-bS-THt"; */
+"k8J-bS-THt.accessibilityIdentifier" = "brugervalgskarrusel";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "kwx-oe-CqA"; */
+"kwx-oe-CqA.text" = "Etiket";
+
+/* Class = "UIView"; accessibilityIdentifier = "week_tab_button"; ObjectID = "wp1-PN-6an"; */
+"wp1-PN-6an.accessibilityIdentifier" = "uge_faneknap";
+

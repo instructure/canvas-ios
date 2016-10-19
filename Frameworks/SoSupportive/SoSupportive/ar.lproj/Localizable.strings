@@ -46,3 +46,5 @@
 /* Title for the email field */
 "Your Email" = "بريدك الإلكتروني";
 
+"Subject" = "موضوع";
+

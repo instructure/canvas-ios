@@ -76,16 +76,19 @@ class CalendarEventWeekPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let nextImage = UIImage.RTLImage("icon_forward", renderingMode: .AlwaysTemplate)
+        let prevImage = UIImage.RTLImage("icon_back", renderingMode: .AlwaysTemplate)
+        
         nextWeekButton.tintColor = UIColor.whiteColor()
-        nextWeekButton.setImage(UIImage(named: "icon_forward")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        nextWeekButton.setImage(nextImage, forState: .Normal)
         nextWeekButton.accessibilityIdentifier = "next_week_button"
         nextWeekButton.accessibilityLabel = NSLocalizedString("Next Week", comment: "Next Week Button Accessibility Label")
-
+        
         prevWeekButton.tintColor = UIColor.whiteColor()
-        prevWeekButton.setImage(UIImage(named: "icon_back")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        prevWeekButton.setImage(prevImage, forState: .Normal)
         prevWeekButton.accessibilityIdentifier = "last_week_button"
         prevWeekButton.accessibilityLabel = NSLocalizedString("Last Week", comment: "Last Week Button Accessibility Label")
-
+        
         updateHeaderTitle()
 
         if useBackgroundView {

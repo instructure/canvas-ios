@@ -14,11 +14,17 @@ import Marshal
 import CalendarKit
 
 extension CalendarEvent {
+    
     // MARK: - Collection
     public static func getCalendarEventsFromAirwolf(session: Session, studentID: String, startDate: NSDate, endDate: NSDate, contextCodes: [String]) throws -> SignalProducer<[JSONObject], NSError> {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        dateFormatter.locale = NSLocale(localeIdentifier: "en")
+        
         let nillableParams: [String: AnyObject?] = [
-            "start_date": CalendarEvent.dayDateFormatter.stringFromDate(startDate),
-            "end_date": CalendarEvent.dayDateFormatter.stringFromDate(endDate),
+            "start_date": dateFormatter.stringFromDate(startDate),
+            "end_date": dateFormatter.stringFromDate(endDate),
             "context_codes": contextCodes,
             "include": ["submission"]
         ]

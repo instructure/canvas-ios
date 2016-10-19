@@ -1,0 +1,318 @@
+/* Label indicating when the event takes place */
+"%@" = "%@";
+
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d из %3$d";
+
+/* Something to Something */
+"%@ to %@" = "%1$@ до %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Произошла ошибка сервера. Пожалуйста, попробуйте еще раз.";
+
+/* Alerts Tab */
+"ALERTS" = "ПРЕДУПРЕЖДЕНИЯ";
+
+/* Unauthorized Student Error Title */
+"Access Denied" = "Доступ закрыт";
+
+/* Add Student Settings Button Title */
+"Add Student" = "Добавить студента";
+
+/* Alert Section Header */
+"Alert me when:" = "Оповестить меня, когда:";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "Произошла непредвиденная ошибка. Пожалуйста, попробуйте еще раз.";
+
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "Вы действительно хотите выйти?";
+
+/* Remove Observee Confirmation */
+"Are you sure you want to remove this observee?" = "Вы уверены, что хотите удалить этого наблюдаемого?";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Оценка за задание выше";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Оценка за задание ниже";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Задание отсутствует";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@" = "Напоминание о задании: %@";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@ is due at %@" = "Напоминание о задании: %1$@ необходимо выполнить %2$@";
+
+/* Authorization Failed Title */
+"Authorization Failed." = "Авторизация не удалась.";
+
+/* Courses Tab */
+"COURSES" = "КУРСЫ";
+
+/* Cancel button
+   Cancel Button
+   Logout Cancel Button
+   Remove Observee Cancel Button
+   Remove Student Cancel Button */
+"Cancel" = "Отменить";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Нельзя использовать проценты выше 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Нельзя использовать проценты меньше 0";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Выполнить задания по оповещениям";
+
+/* Close Button Title */
+"Close" = "Закрыть";
+
+/* Course Announcement Description */
+"Course announcements" = "Объявления курса";
+
+/* Course Grade High On Description */
+"Course grade above" = "Оценка за курс выше";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Оценка за курс ниже";
+
+/* Submits the form to create an account */
+"Create Account" = "Создать аккаунт";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Отклонить";
+
+/* Title for alert shown when the server couldn't find an email to reset the password for */
+"Email Not Found" = "Email не найден";
+
+/* Title for alert shown when user attempts to reset their password */
+"Email Sent" = "Email отправлен";
+
+/* Prompt for logging in as student */
+"Enter student's login information" = "Введите информацию для входа студента";
+
+/* No comment provided by engineer. */
+"Error" = "Ошибка";
+
+/* No comment provided by engineer. */
+"Event reminder: %@" = "Напоминание о событии: %@";
+
+/* No comment provided by engineer. */
+"Event reminder: %@ will begin at %@" = "Напоминание о событии: %1$@ начнется в %2$@";
+
+/* No comment provided by engineer. */
+"Excused" = "По уважительной причине";
+
+/* Domain Picker Search Placeholder */
+"Find your student's school or district" = "Найди школу или район своего студента";
+
+/* Help Button Title */
+"Help" = "Справка";
+
+/* Help Guide Button */
+"Help Guide" = "Справочное руководство";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "Высокая оценка за задание не может быть ниже низкой оценки за задание";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "Высокая оценка за курс не может быть ниже низкой оценки за курс";
+
+/* Help Menu Message */
+"How can we help?" = "Как мы можем помочь?";
+
+/* No comment provided by engineer. */
+"In-Class" = "Аудиторный";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Объявления заведения";
+
+/* Alert title when logging in with invalid credentials */
+"Invalid Credentials" = "Неверные учетные данные";
+
+/* Title for an alert view */
+"Invalid Input" = "Некорректный ввод";
+
+/* Alert Message for invalid domain */
+"Invalid student domain.
+Please double-check the domain and try again." = "Недопустимый домен студента.
+Пожалуйста, дважды проверьте домен и повторите попытку.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "На прошлой неделе";
+
+/* No comment provided by engineer. */
+"Late" = "Поздно";
+
+/* No comment provided by engineer. */
+"Late: %@" = "С опозданием: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "С опозданием: %1$@ (%2$@/%3$@)";
+
+/* Submits the login form */
+"Login" = "Логин";
+
+/* Button title to log out the user
+   Logout Confirm Button */
+"Logout" = "Выйти";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Низкая оценка за задание не может быть выше высокой оценки за задание";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Низкая оценка за курс не может быть выше высокой оценки за курс";
+
+/* No comment provided by engineer. */
+"Missing" = "Отсутствует";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Отсутствует: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Ошибка сети";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "На следующей неделе";
+
+/* Empty Courses Text */
+"No Courses" = "Курсы отсутствуют";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Без оценки";
+
+/* Empty Students Text */
+"No Students" = "Студенты отсутствуют";
+
+/* Error message */
+"No installed apps support opening this file" = "Установленные приложения не поддерживают открытие этого файла";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Не авторизовано";
+
+/* Not Found Error Title */
+"Not Found" = "Не найдено";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Ничего на этой неделе";
+
+/* OK
+   OK Button Title
+   Okay button */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Открыть в Safari";
+
+/* Open file in another application */
+"Open in..." = "Открыть в...";
+
+/* Title for alert when resetting password is successful */
+"Password Reset Successful" = "Пароль успешно переустановлен";
+
+/* Title for alert shown when something goes wrong resetting the password */
+"Problem Resetting Password" = "Проблема при сбросе пароля";
+
+/* Remove Observee Button
+   Remove Observee Confirm Button
+   Remove Student Confirm Button */
+"Remove" = "Удалить";
+
+/* delete student from login */
+"Remove Student" = "Удалить студента";
+
+/* re-authenticate user when token fails */
+"Repair Access" = "Настроить доступ";
+
+/* Report Problem Button */
+"Report a Problem" = "Сообщить о проблеме";
+
+/* Feature Request Button */
+"Request a Feature" = "Запрос функции";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Ресурс не найден. Пожалуйста, попробуйте еще раз.";
+
+/* Server Error Title */
+"Server Error" = "Ошибка сервера";
+
+/* Settings Button Title
+   Title of the settings screen */
+"Settings" = "Настройки";
+
+/* Share Some Love Button */
+"Share Some Love" = "Поделись своей любовью";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to reset your password. Try again later." = "Что-то пошло не так при попытке сбрасываются пароль. Попробуйте позже.";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to send a password reset email. Try again later." = "Что-то пошло не так при попытке отправить письмо для сброса пароля. Попробуйте позже.";
+
+/* Button title for forgot password */
+"Submit" = "Отправить";
+
+/* No comment provided by engineer. */
+"Submitted" = "Отправлено";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Отправлено: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Отправлено: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Учебный план";
+
+/* Alert message when logging in with invalid credentials */
+"The email and password combination were invalid" = "Комбинация электронной почты и пароля недействительна";
+
+/* Error message */
+"There are no actions for this item" = "Отсутствуют действия для этого элемента";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Возникла ошибка при загрузке контента. Если это загрузка аудио или видео, она все еще может быть в обработке.";
+
+/* Alert Message for institution not authorized */
+"This institution has not enabled access to the Canvas Parent mobile app." = "Это заведение не включило доступ к Родительскому мобильному приложению Canvas.";
+
+/* Title for alert when failing to add student domain */
+"Unable to Add Student" = "Невозможно добавить студента";
+
+/* Title for alert when failing to create account */
+"Unable to Create Account" = "Невозможно создать учетную запись";
+
+/* Auth Failed Message */
+"Unexpected Authentication Error.  Please try logging in again" = "Непредвиденная ошибка аутентификации. Пожалуйста, попробуйте войти снова";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Неизвестно";
+
+/* Name of action when viewing a reminder */
+"View" = "Просмотр";
+
+/* Calendar Tab */
+"WEEK" = "НЕДЕЛЯ";
+
+/* Error message when failing to create account */
+"We couldn't create your account. Double check your information or try again later." = "Мы не смогли создать учетную запись. Дважды проверьте вашу информацию или повторите попытку позже.";
+
+/* Body for alert shown when the server couldn't find an email to reset the password for */
+"We couldn't find an account associated with that email. Double check that you entered it correctly and try again." = "Мы не смогли найти аккаунт, связанный с этим электронным письмом. Дважды проверьте, что вы ввели его правильно, и повторите попытку.";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "Вы не авторизованы для доступа к этой информации. Проверьте права доступа пользователя и повторите попытку.";
+
+/* Body for alert shown when resetting password */
+"You will receive an email shortly to finish the process of resetting your password." = "В ближайшее время вы получите письмо по электронной почте, чтобы завершить процесс восстановления пароля.";
+
+/* Body for alert after having successfully reset the password */
+"Your password has been successfully reset. Please log in now." = "Ваш пароль был успешно восстановлен. Теперь вы можете войти в систему.";
+

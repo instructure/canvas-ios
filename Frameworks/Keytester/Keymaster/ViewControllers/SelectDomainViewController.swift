@@ -203,13 +203,19 @@ public class SelectDomainViewController: UIViewController {
         searchTextField.returnKeyType = .Go;
         searchTextField.keyboardType = .Default;
         searchTextField.autocorrectionType = .No;
-
         searchTextField.addTarget(self, action: #selector(SelectDomainViewController.updateSearchTerm(_:)), forControlEvents: .EditingChanged)
         searchTextField.delegate = self
 
         searchTextField.accessibilityIdentifier = "domain_search_field"
         if let searchImage = UIImage(named: "icon_search", inBundle: NSBundle(forClass: SelectDomainViewController.self), compatibleWithTraitCollection: nil)?.imageWithRenderingMode(.AlwaysTemplate) {
-            let imageView = UIImageView(image: searchImage)
+            
+            var image = searchImage
+            
+            if #available(iOS 9.0, *) {
+                image = image.imageFlippedForRightToLeftLayoutDirection()
+            }
+            
+            let imageView = UIImageView(image: image)
             imageView.frame = CGRectMake(0, 0, 40, 21)
             imageView.contentMode = .ScaleAspectFit
             imageView.tintColor = UIColor.lightGrayColor()
@@ -277,7 +283,7 @@ public class SelectDomainViewController: UIViewController {
     }
 
     func setupBackButton() {
-        let backImage = UIImage(named: "icon_back")?.imageWithRenderingMode(.AlwaysTemplate)
+        let backImage = UIImage.RTLImage("icon_back", renderingMode: .AlwaysTemplate)
         let button = UIButton(type: .Custom)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(backImage, forState: .Normal)
@@ -545,7 +551,10 @@ extension SelectDomainViewController: UITextFieldDelegate {
             } else {
                 domain.addURLScheme()
                 guard let url = NSURL(string: domain) else {
-                    presentError(NSError(domain: "com.instructure.selectdomain", code: 101, userInfo: [ NSLocalizedDescriptionKey: "Could not create domain.  Please check your school's domain and try again." ]))
+                    
+                    let errorDescription = NSLocalizedString("Could not create domain.  Please check your school's domain and try again.", bundle: .keymaster(), comment: "Error alert message")
+                    
+                    presentError(NSError(domain: "com.instructure.selectdomain", code: 101, userInfo: [ NSLocalizedDescriptionKey:  errorDescription]))
                     return false
                 }
                 pickedDomainAction?(url)

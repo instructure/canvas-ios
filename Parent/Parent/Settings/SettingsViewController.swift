@@ -75,7 +75,7 @@ class SettingsViewController: UIViewController {
 
         setupObserveeList()
 
-        self.title = "Settings"
+        self.title = NSLocalizedString("Settings", comment: "Title of the settings screen")
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -111,7 +111,7 @@ class SettingsViewController: UIViewController {
     }
 
     func setupHelpButton() {
-        let helpButton = UIBarButtonItem(image: UIImage(named: "icon_help"), style: .Plain, target: self, action: #selector(SettingsViewController.helpButtonPressed(_:)))
+        let helpButton = UIBarButtonItem(image: UIImage.RTLImage("icon_help"), style: .Plain, target: self, action: #selector(SettingsViewController.helpButtonPressed(_:)))
         helpButton.accessibilityLabel = NSLocalizedString("Help", comment: "Help Button Title")
         helpButton.accessibilityIdentifier = "help_button"
         helpButton.tintColor = UIColor.whiteColor()
@@ -158,7 +158,8 @@ class SettingsViewController: UIViewController {
         
         let rightSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         let leftSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        let logoutButton = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SettingsViewController.logoutButtonPressed(_:)))
+        let logoutTitle = NSLocalizedString("Logout", comment: "Button title to log out the user")
+        let logoutButton = UIBarButtonItem(title: logoutTitle, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SettingsViewController.logoutButtonPressed(_:)))
         logoutButton.accessibilityIdentifier = "logout_button"
         self.toolbarItems = [rightSpace, logoutButton, leftSpace]
 

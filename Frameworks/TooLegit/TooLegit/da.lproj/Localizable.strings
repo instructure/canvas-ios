@@ -1,3 +1,6 @@
+/* Error message when the server returns a invalid response */
+"Expected a response in the 200-299 range. Got %@" = "Forventet et svar i området 200-299. Fik %@";
+
 /* Title for network errors */
 "Network Error" = "Netværkfejl";
 

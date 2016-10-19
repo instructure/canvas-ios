@@ -13,7 +13,8 @@ private let regions = [
     "airwolf-iad-prod.instructure.com",
     "airwolf-dub-prod.instructure.com",
     "airwolf-syd-prod.instructure.com",
-    "airwolf-sin-prod.instructure.com"
+    "airwolf-sin-prod.instructure.com",
+    "airwolf-fra-prod.instructure.com"
 ]
 
 private let pickedRegionKey = "picked-region"

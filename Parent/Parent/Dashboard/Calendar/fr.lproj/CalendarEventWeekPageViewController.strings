@@ -1,0 +1,6 @@
+/* Class = "UILabel"; text = "Header Text Here"; ObjectID = "TS5-Tf-EOd"; */
+"TS5-Tf-EOd.text" = "Texte d'entête ici";
+
+/* Class = "UIButton"; accessibilityIdentifier = "next_week_button"; ObjectID = "sNr-9V-PDF"; */
+"sNr-9V-PDF.accessibilityIdentifier" = "next_week_button";
+

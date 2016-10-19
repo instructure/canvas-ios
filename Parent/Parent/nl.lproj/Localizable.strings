@@ -1,0 +1,318 @@
+/* Label indicating when the event takes place */
+"%@" = "%@";
+
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d van %3$d";
+
+/* Something to Something */
+"%@ to %@" = "%1$@ tot %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Er heeft zich een serverfout voorgedaan. Probeer het nogmaals.";
+
+/* Alerts Tab */
+"ALERTS" = "WAARSCHUWINGEN";
+
+/* Unauthorized Student Error Title */
+"Access Denied" = "Toegang geweigerd";
+
+/* Add Student Settings Button Title */
+"Add Student" = "Cursist toevoegen";
+
+/* Alert Section Header */
+"Alert me when:" = "Waarschuw me als:";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "Er heeft zich een onverwachte fout voorgedaan. Probeer het nogmaals.";
+
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "Weet je zeker dat je je wilt afmelden?";
+
+/* Remove Observee Confirmation */
+"Are you sure you want to remove this observee?" = "Weet je zeker dat je deze geobserveerde wilt verwijderen?";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Opdrachtcijfer hoger dan";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Opdrachtcijfer lager dan";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Opdracht ontbreekt";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@" = "Opdracht herinnering: %@";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@ is due at %@" = "Opdracht herinnering: %1$@ moet ingeleverd zijn op  %2$@";
+
+/* Authorization Failed Title */
+"Authorization Failed." = "Toestemming mislukt.";
+
+/* Courses Tab */
+"COURSES" = "CURSUSSEN";
+
+/* Cancel button
+   Cancel Button
+   Logout Cancel Button
+   Remove Observee Cancel Button
+   Remove Student Cancel Button */
+"Cancel" = "Annuleren";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Kan geen percentage gebruiken dat hoger is dan 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Kan geen percentage gebruiken dat lager is dan 100";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Waarschuwingen bijgewerkt";
+
+/* Close Button Title */
+"Close" = "Sluiten";
+
+/* Course Announcement Description */
+"Course announcements" = "Cursusaankondigingen";
+
+/* Course Grade High On Description */
+"Course grade above" = "Cursuscijfer hoger dan";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Cursuscijfer lager dan";
+
+/* Submits the form to create an account */
+"Create Account" = "Account aanmaken";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Verwijderen";
+
+/* Title for alert shown when the server couldn't find an email to reset the password for */
+"Email Not Found" = "E-mail niet aangetroffen";
+
+/* Title for alert shown when user attempts to reset their password */
+"Email Sent" = "E-mail verzonden";
+
+/* Prompt for logging in as student */
+"Enter student's login information" = "Inloggegevens van studenten invoeren";
+
+/* No comment provided by engineer. */
+"Error" = "Fout";
+
+/* No comment provided by engineer. */
+"Event reminder: %@" = "Evenement herinnering: %@";
+
+/* No comment provided by engineer. */
+"Event reminder: %@ will begin at %@" = "Evenement herinnering: %1$@ begint om %2$@";
+
+/* No comment provided by engineer. */
+"Excused" = "Verontschuldigd";
+
+/* Domain Picker Search Placeholder */
+"Find your student's school or district" = "Vind de school of het district van je cursist";
+
+/* Help Button Title */
+"Help" = "Help";
+
+/* Help Guide Button */
+"Help Guide" = "Hulpgids";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "Hoog beoordelingscijfer kan niet lager zijn dan laag beoordelingscijfer";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "Hoog cursuscijfer kan niet lager zijn dan laag cursuscijfer";
+
+/* Help Menu Message */
+"How can we help?" = "Hoe kunnen wij helpen?";
+
+/* No comment provided by engineer. */
+"In-Class" = "In-Klas";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Aankondigingen van de instelling";
+
+/* Alert title when logging in with invalid credentials */
+"Invalid Credentials" = "Ongeldige referenties";
+
+/* Title for an alert view */
+"Invalid Input" = "Ongeldige invoer";
+
+/* Alert Message for invalid domain */
+"Invalid student domain.
+Please double-check the domain and try again." = "Ongeldig cursistdomein.
+Dubbel check het domein en probeer nogmaals.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "Vorige week";
+
+/* No comment provided by engineer. */
+"Late" = "Laat";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Laat: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Laat: %1$@ (%2$@/%3$@)";
+
+/* Submits the login form */
+"Login" = "Inloggen";
+
+/* Button title to log out the user
+   Logout Confirm Button */
+"Logout" = "Afmelden";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Laag opdrachtcijfer kan niet hoger zijn dan hoog beoordelingscijfer";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Laag cursuscijfer kan niet hoger zijn dan hoog cursuscijfer";
+
+/* No comment provided by engineer. */
+"Missing" = "Ontbrekend";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Ontbrekend: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Netwerkfout";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "Volgende week";
+
+/* Empty Courses Text */
+"No Courses" = "Geen cursussen";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Geen beoordeling";
+
+/* Empty Students Text */
+"No Students" = "Geen cursisten";
+
+/* Error message */
+"No installed apps support opening this file" = "Geen geïnstalleerde apps die het openen van dit bestand ondersteunen";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Niet toegestaan";
+
+/* Not Found Error Title */
+"Not Found" = "Niet aangetroffen";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Niets deze week";
+
+/* OK
+   OK Button Title
+   Okay button */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Openen in Safari";
+
+/* Open file in another application */
+"Open in..." = "Openen in...";
+
+/* Title for alert when resetting password is successful */
+"Password Reset Successful" = "Wachtwoord succesvol hersteld";
+
+/* Title for alert shown when something goes wrong resetting the password */
+"Problem Resetting Password" = "Probleem bij het opnieuw instellen van wachtwoord";
+
+/* Remove Observee Button
+   Remove Observee Confirm Button
+   Remove Student Confirm Button */
+"Remove" = "Verwijderen";
+
+/* delete student from login */
+"Remove Student" = "Cursist verwijderen";
+
+/* re-authenticate user when token fails */
+"Repair Access" = "Toegang tot reparatie";
+
+/* Report Problem Button */
+"Report a Problem" = "Een probleem melden";
+
+/* Feature Request Button */
+"Request a Feature" = "Een functie aanvragen";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Bron niet gevonden. Probeer het nogmaals.";
+
+/* Server Error Title */
+"Server Error" = "Serverfout";
+
+/* Settings Button Title
+   Title of the settings screen */
+"Settings" = "Instellingen";
+
+/* Share Some Love Button */
+"Share Some Love" = "Deel wat liefde";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to reset your password. Try again later." = "Er is iets fout gegaan bij het herstellen van je wachtwoord. Probeer het later nogmaals.";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to send a password reset email. Try again later." = "Er is iets fout gegaan bij het verzenden van een wachtwoordherstel e-mail. Probeer het later nogmaals.";
+
+/* Button title for forgot password */
+"Submit" = "Indienen";
+
+/* No comment provided by engineer. */
+"Submitted" = "Ingediend";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Ingediend: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Ingediend: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Syllabus";
+
+/* Alert message when logging in with invalid credentials */
+"The email and password combination were invalid" = "De combinatie van e-mail en wachtwoord is ongeldig";
+
+/* Error message */
+"There are no actions for this item" = "Er zijn geen handelingen voor dit item";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Er was een probleem bij het laden van je content. Als het een audio of video upload is, wordt het misschien nog verwerkt.";
+
+/* Alert Message for institution not authorized */
+"This institution has not enabled access to the Canvas Parent mobile app." = "Het instituut heeft toegang tot de Canvas Ouders mobiele app niet ingeschakeld.";
+
+/* Title for alert when failing to add student domain */
+"Unable to Add Student" = "Kon cursist niet toevoegen";
+
+/* Title for alert when failing to create account */
+"Unable to Create Account" = "Kon geen account aanmaken";
+
+/* Auth Failed Message */
+"Unexpected Authentication Error.  Please try logging in again" = "Onverwachte verificatiefout. Probeer opnieuw in te loggen";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Onbekend";
+
+/* Name of action when viewing a reminder */
+"View" = "Bekijken";
+
+/* Calendar Tab */
+"WEEK" = "WEEK";
+
+/* Error message when failing to create account */
+"We couldn't create your account. Double check your information or try again later." = "We konden je account niet aanmaken. Dubbel check je gegevens of probeer het later nogmaals.";
+
+/* Body for alert shown when the server couldn't find an email to reset the password for */
+"We couldn't find an account associated with that email. Double check that you entered it correctly and try again." = "We konden geen account vinden die overeenkomt met die e-mail. Dubbel check dat je het juist hebt ingevoerd en probeer het nogmaals.";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "Je hebt geen toestemming voor toegang tot deze informatie. Controleer je gebruikersvergunningen en probeer het nogmaals.";
+
+/* Body for alert shown when resetting password */
+"You will receive an email shortly to finish the process of resetting your password." = "Je ontvangt binnenkort een e-mail om het proces van het herstellen van je wachtwoord te voltooien.";
+
+/* Body for alert after having successfully reset the password */
+"Your password has been successfully reset. Please log in now." = "Je wachtwoord is succesvol opnieuw ingesteld. Log nu in.";
+

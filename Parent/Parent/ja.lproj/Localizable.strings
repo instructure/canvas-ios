@@ -1,0 +1,318 @@
+/* Label indicating when the event takes place */
+"%@" = "%@";
+
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%3$d 中 %1$@ %2$d";
+
+/* Something to Something */
+"%@ to %@" = "%1$@から%2$@へ";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "サーバーエラーが発生しました。再度お試しください。";
+
+/* Alerts Tab */
+"ALERTS" = "アラート";
+
+/* Unauthorized Student Error Title */
+"Access Denied" = "アクセスが拒否されました";
+
+/* Add Student Settings Button Title */
+"Add Student" = "受講生を追加する";
+
+/* Alert Section Header */
+"Alert me when:" = "次の時にアラートしてください：";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "予期しないエラーが発生しました。再度お試しください。";
+
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "ログアウトしますか？";
+
+/* Remove Observee Confirmation */
+"Are you sure you want to remove this observee?" = "この被監視者を削除しますか？";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "より上の課題成績";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "より下の課題成績";
+
+/* Assignment Missing Description */
+"Assignment missing" = "未提出の課題";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@" = "課題のリマインダー: %@";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@ is due at %@" = "課題のリマインダー: %1$@の期限は%2$@です";
+
+/* Authorization Failed Title */
+"Authorization Failed." = "認証に失敗しました。";
+
+/* Courses Tab */
+"COURSES" = "コース";
+
+/* Cancel button
+   Cancel Button
+   Logout Cancel Button
+   Remove Observee Cancel Button
+   Remove Student Cancel Button */
+"Cancel" = "キャンセル";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "100以上のパーセントは使えません";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "0以下のパーセントは使えません";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "アラートにこだわる";
+
+/* Close Button Title */
+"Close" = "閉じる";
+
+/* Course Announcement Description */
+"Course announcements" = "コースのアナウンスメント";
+
+/* Course Grade High On Description */
+"Course grade above" = "より上のコース成績";
+
+/* Course Grade Low On Description */
+"Course grade below" = "より下のコース成績";
+
+/* Submits the form to create an account */
+"Create Account" = "アカウントの作成";
+
+/* No comment provided by engineer. */
+"Dismiss" = "棄却する";
+
+/* Title for alert shown when the server couldn't find an email to reset the password for */
+"Email Not Found" = "Eメールが見つかりません";
+
+/* Title for alert shown when user attempts to reset their password */
+"Email Sent" = "送信済みのEメール";
+
+/* Prompt for logging in as student */
+"Enter student's login information" = "受講生のログイン情報を入力する";
+
+/* No comment provided by engineer. */
+"Error" = "エラー";
+
+/* No comment provided by engineer. */
+"Event reminder: %@" = "イベントのリマインダー: %@";
+
+/* No comment provided by engineer. */
+"Event reminder: %@ will begin at %@" = "イベントのリマインダー: %1$@は%2$@に始まります";
+
+/* No comment provided by engineer. */
+"Excused" = "免除";
+
+/* Domain Picker Search Placeholder */
+"Find your student's school or district" = "受講生の学校または学区を探す";
+
+/* Help Button Title */
+"Help" = "ヘルプ";
+
+/* Help Guide Button */
+"Help Guide" = "ヘルプガイド";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "高い課題成績は、低い課題成績より低くしないでください";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "高いコース成績は、低いコース成績より低くしないでください";
+
+/* Help Menu Message */
+"How can we help?" = "ヘルプが必要ですか？";
+
+/* No comment provided by engineer. */
+"In-Class" = "教室内";
+
+/* Institution Announcement Description */
+"Institution announcements" = "教育機関のアナウンスメント";
+
+/* Alert title when logging in with invalid credentials */
+"Invalid Credentials" = "無効な資格証明";
+
+/* Title for an alert view */
+"Invalid Input" = "無効な入力";
+
+/* Alert Message for invalid domain */
+"Invalid student domain.
+Please double-check the domain and try again." = "無効な受講生ドメインです。
+ドメインを再確認してやり直してください。";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "先週";
+
+/* No comment provided by engineer. */
+"Late" = "遅滞";
+
+/* No comment provided by engineer. */
+"Late: %@" = "遅滞: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "遅滞: %1$@ (%2$@/%3$@)";
+
+/* Submits the login form */
+"Login" = "ログイン";
+
+/* Button title to log out the user
+   Logout Confirm Button */
+"Logout" = "ログアウト";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "低い課題成績は、高い課題成績より高くしないでください";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "低いコース成績は、高いコース成績より高くしないでください";
+
+/* No comment provided by engineer. */
+"Missing" = "紛失";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "紛失: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "ネットワークエラー";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "次週";
+
+/* Empty Courses Text */
+"No Courses" = "コースなし";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "成績なし";
+
+/* Empty Students Text */
+"No Students" = "受講生なし";
+
+/* Error message */
+"No installed apps support opening this file" = "このファイルを開くことができるアプリがインストールされていません";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "承認されていません";
+
+/* Not Found Error Title */
+"Not Found" = "見つかりません";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "今週はありません";
+
+/* OK
+   OK Button Title
+   Okay button */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Safariで開く";
+
+/* Open file in another application */
+"Open in..." = "...で開く";
+
+/* Title for alert when resetting password is successful */
+"Password Reset Successful" = "パスワードのリセットが完了しました";
+
+/* Title for alert shown when something goes wrong resetting the password */
+"Problem Resetting Password" = "パスワードリセットに関する問題";
+
+/* Remove Observee Button
+   Remove Observee Confirm Button
+   Remove Student Confirm Button */
+"Remove" = "削除する";
+
+/* delete student from login */
+"Remove Student" = "受講生を削除する";
+
+/* re-authenticate user when token fails */
+"Repair Access" = "アクセスを修復する";
+
+/* Report Problem Button */
+"Report a Problem" = "問題を報告する";
+
+/* Feature Request Button */
+"Request a Feature" = "機能をリクエストする";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "リソースが見つかりません。再度お試しください。";
+
+/* Server Error Title */
+"Server Error" = "サーバーエラー";
+
+/* Settings Button Title
+   Title of the settings screen */
+"Settings" = "設定";
+
+/* Share Some Love Button */
+"Share Some Love" = "愛を共有しましょう";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to reset your password. Try again later." = "パスワードのリセット中に問題が発生しました。時間をおいて再度お試しください。";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to send a password reset email. Try again later." = "パスワードリセット用のEメール送信中に問題が発生しました。時間をおいて再度お試しください。";
+
+/* Button title for forgot password */
+"Submit" = "提出する";
+
+/* No comment provided by engineer. */
+"Submitted" = "提出済み";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "提出済み: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "提出済み: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "シラバス";
+
+/* Alert message when logging in with invalid credentials */
+"The email and password combination were invalid" = "Eメールとパスワードの組み合わせが無効です";
+
+/* Error message */
+"There are no actions for this item" = "このアイテムへのアクションはありません";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "コンテンツのロード中にエラーが発生しました。コンテンツがオーディオまたは動画のアップロードの場合、処理が継続中の可能性があります。";
+
+/* Alert Message for institution not authorized */
+"This institution has not enabled access to the Canvas Parent mobile app." = "この機関は、Canvasペアレントモバイルアプリへのアクセスを有効にしていません。";
+
+/* Title for alert when failing to add student domain */
+"Unable to Add Student" = "受講生の追加ができません";
+
+/* Title for alert when failing to create account */
+"Unable to Create Account" = "アカウントの作成ができません";
+
+/* Auth Failed Message */
+"Unexpected Authentication Error.  Please try logging in again" = "予期しない認証エラーです。再度ログインしなおしてください";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "未知の";
+
+/* Name of action when viewing a reminder */
+"View" = "表示";
+
+/* Calendar Tab */
+"WEEK" = "週";
+
+/* Error message when failing to create account */
+"We couldn't create your account. Double check your information or try again later." = "アカウントの作成ができませんでした。情報を再確認するか、時間をおいて再度お試しください。";
+
+/* Body for alert shown when the server couldn't find an email to reset the password for */
+"We couldn't find an account associated with that email. Double check that you entered it correctly and try again." = "そのEメールに関連するアカウントが見つかりません。入力内容が正しいか確認のうえ、再度お試しください。";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "この情報にアクセスする権限がありません。ユーザー承認をご確認のうえ、再度お試しください。";
+
+/* Body for alert shown when resetting password */
+"You will receive an email shortly to finish the process of resetting your password." = "パスワードリセットのプロセスを完了するためのEメールがすぐに送信されます。";
+
+/* Body for alert after having successfully reset the password */
+"Your password has been successfully reset. Please log in now." = "パスワードのリセットが完了しました。今すぐログインしてください。";
+

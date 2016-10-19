@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ti8-u6-vv3">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Settings View Controller-->
+        <scene sceneID="80n-RF-5y1">
+            <objects>
+                <viewController id="ti8-u6-vv3" customClass="SettingsViewController" customModule="Parent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rFC-PG-5L5"/>
+                        <viewControllerLayoutGuide type="bottom" id="JcB-Kz-CVm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FeA-Wt-DwP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v93-7I-8v1">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="v93-7I-8v1" secondAttribute="trailing" id="5cx-Sl-HiD"/>
+                            <constraint firstItem="JcB-Kz-CVm" firstAttribute="top" secondItem="v93-7I-8v1" secondAttribute="bottom" id="H40-AI-WDn"/>
+                            <constraint firstItem="v93-7I-8v1" firstAttribute="top" secondItem="rFC-PG-5L5" secondAttribute="bottom" id="K6c-Vj-vRp"/>
+                            <constraint firstAttribute="trailing" secondItem="v93-7I-8v1" secondAttribute="trailing" id="ZZV-Pf-yM0"/>
+                            <constraint firstItem="v93-7I-8v1" firstAttribute="leading" secondItem="FeA-Wt-DwP" secondAttribute="leading" id="exf-xJ-9TS"/>
+                            <constraint firstItem="JcB-Kz-CVm" firstAttribute="top" secondItem="v93-7I-8v1" secondAttribute="bottom" id="iEZ-AO-E1T"/>
+                            <constraint firstItem="v93-7I-8v1" firstAttribute="leading" secondItem="FeA-Wt-DwP" secondAttribute="leading" id="ngg-Se-SpA"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="observeesContainerView" destination="v93-7I-8v1" id="6YI-FL-GdS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1ye-Xl-3av" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="442" y="263"/>
+        </scene>
+    </scenes>
+</document>

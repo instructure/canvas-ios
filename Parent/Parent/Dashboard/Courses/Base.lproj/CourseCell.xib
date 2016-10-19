@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" selectionStyle="default" indentationWidth="10" rowHeight="107" id="ouo-LI-qts" customClass="CourseCell" customModule="Parent" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" tableViewCell="ouo-LI-qts" id="LPH-MZ-O43">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="106.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hvn-9D-M63">
+                        <rect key="frame" x="15" y="15" width="283" height="20"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="y0A-yy-Eah">
+                        <rect key="frame" x="15" y="37" width="283" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="R5W-ao-529"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="R5W-ao-529"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRL-Vj-wuj">
+                        <rect key="frame" x="15" y="72" width="283" height="20"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <color key="textColor" red="0.11372549019607843" green="0.1764705882352941" blue="0.55294117647058827" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bRL-Vj-wuj" firstAttribute="top" secondItem="y0A-yy-Eah" secondAttribute="bottom" constant="18" id="0BO-vx-xgt"/>
+                    <constraint firstItem="y0A-yy-Eah" firstAttribute="top" secondItem="Hvn-9D-M63" secondAttribute="bottom" constant="2" id="DGv-Ve-FSo"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Hvn-9D-M63" secondAttribute="trailing" constant="7" id="DP6-1E-Khf"/>
+                    <constraint firstItem="bRL-Vj-wuj" firstAttribute="trailing" secondItem="y0A-yy-Eah" secondAttribute="trailing" id="M0c-08-ST2"/>
+                    <constraint firstItem="bRL-Vj-wuj" firstAttribute="leading" secondItem="Hvn-9D-M63" secondAttribute="leading" id="XwW-mM-u8P"/>
+                    <constraint firstItem="Hvn-9D-M63" firstAttribute="leading" secondItem="LPH-MZ-O43" secondAttribute="leadingMargin" id="Zyl-S0-Wx2"/>
+                    <constraint firstItem="y0A-yy-Eah" firstAttribute="leading" secondItem="Hvn-9D-M63" secondAttribute="leading" id="oN7-Pt-DUL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="y0A-yy-Eah" secondAttribute="trailing" constant="7" id="s6y-F3-cG6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Hvn-9D-M63" secondAttribute="trailing" constant="6" id="xCd-tt-4nw"/>
+                    <constraint firstAttribute="bottom" secondItem="bRL-Vj-wuj" secondAttribute="bottom" constant="15" id="xpt-xg-FTn"/>
+                    <constraint firstItem="Hvn-9D-M63" firstAttribute="top" secondItem="LPH-MZ-O43" secondAttribute="top" constant="15" id="zH3-QH-UP1"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="xCd-tt-4nw"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="codeLabel" destination="y0A-yy-Eah" id="Xdx-w1-MWn"/>
+                <outlet property="gradeLabel" destination="bRL-Vj-wuj" id="Qx8-Fm-4Sp"/>
+                <outlet property="titleLabel" destination="Hvn-9D-M63" id="fmd-B2-KAV"/>
+            </connections>
+            <point key="canvasLocation" x="358" y="313.5"/>
+        </tableViewCell>
+    </objects>
+</document>

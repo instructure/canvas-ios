@@ -46,3 +46,4 @@
 /* Title for the email field */
 "Your Email" = "Su correo electrónico";
 
+"Subject" = "Tema";

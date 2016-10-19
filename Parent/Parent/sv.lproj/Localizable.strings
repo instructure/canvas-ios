@@ -1,0 +1,318 @@
+/* Label indicating when the event takes place */
+"%@" = "%@";
+
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d av %3$d";
+
+/* Something to Something */
+"%@ to %@" = "%1$@ till %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Ett serverfel inträffade. Försök igen.";
+
+/* Alerts Tab */
+"ALERTS" = "LARM";
+
+/* Unauthorized Student Error Title */
+"Access Denied" = "Åtkomst nekad";
+
+/* Add Student Settings Button Title */
+"Add Student" = "Lägg till elev";
+
+/* Alert Section Header */
+"Alert me when:" = "Larma mig när:";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "Ett oväntat fel inträffade. Försök igen.";
+
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "Är du säker på att du vill logga ut?";
+
+/* Remove Observee Confirmation */
+"Are you sure you want to remove this observee?" = "Är du säker på att du vill ta bort den här observatören?";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Uppgiftsbetyg över";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Uppgiftsbetyg under";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Uppgiften saknas";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@" = "Uppgiftspåminnelse: %@";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@ is due at %@" = "Uppgiftspåminnelse: %1$@ ska vara klar %2$@";
+
+/* Authorization Failed Title */
+"Authorization Failed." = "Auktorisering misslyckades.";
+
+/* Courses Tab */
+"COURSES" = "KURSER";
+
+/* Cancel button
+   Cancel Button
+   Logout Cancel Button
+   Remove Observee Cancel Button
+   Remove Student Cancel Button */
+"Cancel" = "Avbryt";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Kan inte använda en procentsats som är högre än 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Kan inte använda en procentsats som är lägre än 0";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Läst av larmen";
+
+/* Close Button Title */
+"Close" = "Stäng";
+
+/* Course Announcement Description */
+"Course announcements" = "Kursannonseringar";
+
+/* Course Grade High On Description */
+"Course grade above" = "Kursbetyg över";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Kursbetyg under";
+
+/* Submits the form to create an account */
+"Create Account" = "Skapa konto";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Avfärda";
+
+/* Title for alert shown when the server couldn't find an email to reset the password for */
+"Email Not Found" = "E-posten hittades inte";
+
+/* Title for alert shown when user attempts to reset their password */
+"Email Sent" = "E-postmeddelandet skickades";
+
+/* Prompt for logging in as student */
+"Enter student's login information" = "Fyll i elevens inloggningsinformation";
+
+/* No comment provided by engineer. */
+"Error" = "Fel";
+
+/* No comment provided by engineer. */
+"Event reminder: %@" = "Händelsepåminnelse: %@";
+
+/* No comment provided by engineer. */
+"Event reminder: %@ will begin at %@" = "Händelsepåminnelse: %1$@ kommer att börja %2$@";
+
+/* No comment provided by engineer. */
+"Excused" = "Befriad";
+
+/* Domain Picker Search Placeholder */
+"Find your student's school or district" = "Hitta din students skola eller distrikt";
+
+/* Help Button Title */
+"Help" = "Hjälp";
+
+/* Help Guide Button */
+"Help Guide" = "Hjälpguide";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "Högt uppgiftsbetyg kan inte vara lägre än lågt uppgiftsbetyg";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "Högt kursbetyg kan inte vara lägre än lågt kursbetyg";
+
+/* Help Menu Message */
+"How can we help?" = "Hur kan vi hjälpa till?";
+
+/* No comment provided by engineer. */
+"In-Class" = "I klassen";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Institutionsannonseringar";
+
+/* Alert title when logging in with invalid credentials */
+"Invalid Credentials" = "Ogiltiga uppgifter";
+
+/* Title for an alert view */
+"Invalid Input" = "Ogiltig inmatning";
+
+/* Alert Message for invalid domain */
+"Invalid student domain.
+Please double-check the domain and try again." = "Ogiltig elevdomän.
+Dubbelkolla domänen och försök igen.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "Förra veckan";
+
+/* No comment provided by engineer. */
+"Late" = "Sen";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Sen: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Sen: %1$@ (%2$@/%3$@)";
+
+/* Submits the login form */
+"Login" = "Inloggning";
+
+/* Button title to log out the user
+   Logout Confirm Button */
+"Logout" = "Logga ut";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Lågt uppgiftsbetyg kan inte vara högre än högt uppgiftsbetyg";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Lågt kursbetyg kan inte vara högre än högt kursbetyg";
+
+/* No comment provided by engineer. */
+"Missing" = "Saknas";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Saknas: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Nätverksfel";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "Nästa vecka";
+
+/* Empty Courses Text */
+"No Courses" = "Inga kurser";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Inget betyg";
+
+/* Empty Students Text */
+"No Students" = "Inga studenter";
+
+/* Error message */
+"No installed apps support opening this file" = "Inga installerade appar stöder öppning av den här filen";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Inte behörig";
+
+/* Not Found Error Title */
+"Not Found" = "Hittades inte";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Inget den här veckan";
+
+/* OK
+   OK Button Title
+   Okay button */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Öppna i Safari";
+
+/* Open file in another application */
+"Open in..." = "Öppna i...";
+
+/* Title for alert when resetting password is successful */
+"Password Reset Successful" = "Återställning av lösenord lyckades";
+
+/* Title for alert shown when something goes wrong resetting the password */
+"Problem Resetting Password" = "Problem vid återställning av lösenord";
+
+/* Remove Observee Button
+   Remove Observee Confirm Button
+   Remove Student Confirm Button */
+"Remove" = "Ta bort";
+
+/* delete student from login */
+"Remove Student" = "Ta bort elev";
+
+/* re-authenticate user when token fails */
+"Repair Access" = "Reparera åtkomst";
+
+/* Report Problem Button */
+"Report a Problem" = "Rapportera ett problem";
+
+/* Feature Request Button */
+"Request a Feature" = "Efterfråga en funktion";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Resursen hittades inte. Försök igen.";
+
+/* Server Error Title */
+"Server Error" = "Serverfel";
+
+/* Settings Button Title
+   Title of the settings screen */
+"Settings" = "Inställningar";
+
+/* Share Some Love Button */
+"Share Some Love" = "Dela kärlek";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to reset your password. Try again later." = "Något gick fel när ditt lösenord återställdes. Försök igen senare.";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to send a password reset email. Try again later." = "Något gick fel när mailet för lösenordsåterställning skickades. Försök igen senare.";
+
+/* Button title for forgot password */
+"Submit" = "Skicka in";
+
+/* No comment provided by engineer. */
+"Submitted" = "Inskickad";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Inskickad: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Inskickad: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Antura tidsplan";
+
+/* Alert message when logging in with invalid credentials */
+"The email and password combination were invalid" = "Kombination av lösenord och e-post är ogiltig";
+
+/* Error message */
+"There are no actions for this item" = "Det finns inga åtgärder för det här objektet";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Ett fel inträffade när innehållet laddades. Om det var ljud eller video kanske innehållet fortfarande bearbetas.";
+
+/* Alert Message for institution not authorized */
+"This institution has not enabled access to the Canvas Parent mobile app." = "Den här institutionen har inte aktiverat mobilappen Canvas Parent.";
+
+/* Title for alert when failing to add student domain */
+"Unable to Add Student" = "Kunde inte lägga till elev";
+
+/* Title for alert when failing to create account */
+"Unable to Create Account" = "Kunde inte skapa konto";
+
+/* Auth Failed Message */
+"Unexpected Authentication Error.  Please try logging in again" = "Ett oväntat autentiseringsfel inträffade. Försök att logga in igen.";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Okänd";
+
+/* Name of action when viewing a reminder */
+"View" = "Visa";
+
+/* Calendar Tab */
+"WEEK" = "VECKA";
+
+/* Error message when failing to create account */
+"We couldn't create your account. Double check your information or try again later." = "Vi kunde inte skapa ditt konto. Dubbelkolla din information och försök igen senare.";
+
+/* Body for alert shown when the server couldn't find an email to reset the password for */
+"We couldn't find an account associated with that email. Double check that you entered it correctly and try again." = "Vi kunde inte hitta ett konto associerat med den e-posten. Dubbelkolla att den är korrekt ifylld och försök igen.";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "Du har inte behörighet att komma åt den här informationen. Kontrollera din behörighet och försök igen.";
+
+/* Body for alert shown when resetting password */
+"You will receive an email shortly to finish the process of resetting your password." = "Du kommer att få ett e-postmeddelande inom kort för att slutföra återställningen av ditt lösenord.";
+
+/* Body for alert after having successfully reset the password */
+"Your password has been successfully reset. Please log in now." = "Ditt lösenord har återställts. Nu kan du logga in.";
+

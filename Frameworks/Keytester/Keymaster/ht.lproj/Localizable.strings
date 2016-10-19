@@ -1,6 +1,9 @@
 /* Back Button Title */
 "Back" = "Retounen";
 
+/* Error alert message */
+"Could not create domain.  Please check your school's domain and try again." = "Pa kapab kreye domèn. Tanpri verifye domèn lekòl ou a epi eseye ankò.";
+
 /* Error Alert Title */
 "Error" = "Erè";
 

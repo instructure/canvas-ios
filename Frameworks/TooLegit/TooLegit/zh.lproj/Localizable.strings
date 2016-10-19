@@ -1,3 +1,6 @@
+/* Error message when the server returns a invalid response */
+"Expected a response in the 200-299 range. Got %@" = "预计在200-299范围内的应答达到 ％@";
+
 /* Title for network errors */
 "Network Error" = "网络错误";
 

@@ -1,0 +1,15 @@
+/* Class = "UILabel"; accessibilityIdentifier = "time_label"; ObjectID = "0Bw-w1-Rfh"; */
+"0Bw-w1-Rfh.accessibilityIdentifier" = "时间_标签";
+
+/* Class = "UILabel"; text = "Time"; ObjectID = "0Bw-w1-Rfh"; */
+"0Bw-w1-Rfh.text" = "时间";
+
+/* Class = "UILabel"; text = "9/18/15, 11:00 AM"; ObjectID = "0L6-C4-tpu"; */
+"0L6-C4-tpu.text" = "9/18/15, 上午 11:00 ";
+
+/* Class = "UILabel"; accessibilityIdentifier = "set_reminder_label"; ObjectID = "RHa-wa-8Mq"; */
+"RHa-wa-8Mq.accessibilityIdentifier" = "设置_提醒_标签";
+
+/* Class = "UILabel"; text = "Set Reminder"; ObjectID = "RHa-wa-8Mq"; */
+"RHa-wa-8Mq.text" = "设置提醒";
+

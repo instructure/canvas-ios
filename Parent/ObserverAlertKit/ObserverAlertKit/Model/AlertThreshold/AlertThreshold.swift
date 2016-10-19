@@ -34,27 +34,6 @@ public enum AlertThresholdType: String {
         ]
     }
 
-    public var description: String {
-        switch self {
-        case .CourseGradeLow:
-            return NSLocalizedString("Course grade below", comment: "Course Grade Low On Description")
-        case .CourseGradeHigh:
-            return NSLocalizedString("Course grade above", comment: "Course Grade High On Description")
-        case .AssignmentMissing:
-            return NSLocalizedString("Assignment missing", comment: "Assignment Missing Description")
-        case .AssignmentGradeLow:
-            return NSLocalizedString("Assignment grade below", comment: "Assignment Grade Low On Description")
-        case .AssignmentGradeHigh:
-            return NSLocalizedString("Assignment grade above", comment: "Assignment Grade High On Description")
-        case .InstitutionAnnouncement:
-            return NSLocalizedString("Institution announcements", comment: "Institution Announcement Description")
-        case .CourseAnnouncement:
-            return NSLocalizedString("Course announcements", comment: "Course Announcement Description")
-        case .Unknown:
-            return NSLocalizedString("Unknown", comment: "Unknown T`hreshold Description")
-        }
-    }
-
     public var allowsThresholdValue: Bool {
         switch self {
         case .CourseGradeLow:

@@ -1,0 +1,318 @@
+/* Label indicating when the event takes place */
+"%@" = "%@";
+
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d de %3$d";
+
+/* Something to Something */
+"%@ to %@" = "%1$@ a %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Yon erè te fèt sou sèvè a. Tanpri eseye ankò.";
+
+/* Alerts Tab */
+"ALERTS" = "AVÈTISMAN";
+
+/* Unauthorized Student Error Title */
+"Access Denied" = "Aksè Refize";
+
+/* Add Student Settings Button Title */
+"Add Student" = "Ajoute Elèv";
+
+/* Alert Section Header */
+"Alert me when:" = "Avèti mwen lè:";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "Yon erè ki fèt sanzatann. Tanpri eseye ankò.";
+
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "Èske vrèman ou vle dekonekte?";
+
+/* Remove Observee Confirmation */
+"Are you sure you want to remove this observee?" = "Èske vrèman ou vle retire obsèvat sa a?";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Nòt sesyon pi wo a";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Nòt sesyon pi ba a";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Sesyon ki manke";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@" = "Rapèl sesyon: %@";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@ is due at %@" = "Rapèl Sesyon: %1$@ gen delè %2$@";
+
+/* Authorization Failed Title */
+"Authorization Failed." = "Otorizasyon Echwe.";
+
+/* Courses Tab */
+"COURSES" = "KOU";
+
+/* Cancel button
+   Cancel Button
+   Logout Cancel Button
+   Remove Observee Cancel Button
+   Remove Student Cancel Button */
+"Cancel" = "Anile";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Pa kapab itilize pousantaj ki pi wo ke 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Pa kapab itilize pousantaj ki mwens ke 0";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Pran nan Avètisman";
+
+/* Close Button Title */
+"Close" = "Fèmen";
+
+/* Course Announcement Description */
+"Course announcements" = "Anons kou";
+
+/* Course Grade High On Description */
+"Course grade above" = "Nòt kou pi wo a";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Nòt kou pi ba a";
+
+/* Submits the form to create an account */
+"Create Account" = "Kreye Kont";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Rejte";
+
+/* Title for alert shown when the server couldn't find an email to reset the password for */
+"Email Not Found" = "Imèl Entwouvab";
+
+/* Title for alert shown when user attempts to reset their password */
+"Email Sent" = "Imèl Ale";
+
+/* Prompt for logging in as student */
+"Enter student's login information" = "Antre enfòmasyon koneksyon elèv";
+
+/* No comment provided by engineer. */
+"Error" = "Erè";
+
+/* No comment provided by engineer. */
+"Event reminder: %@" = "Rapèl evènman: %@";
+
+/* No comment provided by engineer. */
+"Event reminder: %@ will begin at %@" = "Rapèl evènman: %1$@ ap kòmanse a %2$@";
+
+/* No comment provided by engineer. */
+"Excused" = "Eskize";
+
+/* Domain Picker Search Placeholder */
+"Find your student's school or district" = "Jwenn lekòl oswa distri elèv ou a";
+
+/* Help Button Title */
+"Help" = "Èd";
+
+/* Help Guide Button */
+"Help Guide" = "Gid Èd";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "Klas sesyon elve pa kapab enferyè a klas sesyon fèb";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "Klas kou elve pa kapab enferyè a klas kou fèb";
+
+/* Help Menu Message */
+"How can we help?" = "Kijan nou ka ede?";
+
+/* No comment provided by engineer. */
+"In-Class" = "Nan Klas";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Anons Enstitisyon";
+
+/* Alert title when logging in with invalid credentials */
+"Invalid Credentials" = "Kalifikasyon Envalid";
+
+/* Title for an alert view */
+"Invalid Input" = "Antre Envalid";
+
+/* Alert Message for invalid domain */
+"Invalid student domain.
+Please double-check the domain and try again." = "Domèn etidyan envalid
+Tanpri byen verifye domèn nan epi eseye ankò.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "Semenn Pase";
+
+/* No comment provided by engineer. */
+"Late" = "Ta";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Ta: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Ta: %1$@ (%2$@/%3$@)";
+
+/* Submits the login form */
+"Login" = "Koneksyon";
+
+/* Button title to log out the user
+   Logout Confirm Button */
+"Logout" = "Dekoneksyon";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Klas sesyon fèb pa kapab siperyè a klas sesyon elve";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Klas kou fèb pa kapab siperyè a klas kou elve";
+
+/* No comment provided by engineer. */
+"Missing" = "Manke";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Manke: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Erè Rezo";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "Semenn Pwochen";
+
+/* Empty Courses Text */
+"No Courses" = "Pa gen Kou";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Pa gen Klas";
+
+/* Empty Students Text */
+"No Students" = "Pa gen Elèv";
+
+/* Error message */
+"No installed apps support opening this file" = "Pa gen app instale ki sipòte ouvèti fichye sa a";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Pa Otorize";
+
+/* Not Found Error Title */
+"Not Found" = "Entwouvab";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Pa gen anyen pou semenn sa a";
+
+/* OK
+   OK Button Title
+   Okay button */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Ouvri nan Safari";
+
+/* Open file in another application */
+"Open in..." = "Ouvri nan...";
+
+/* Title for alert when resetting password is successful */
+"Password Reset Successful" = "Retablisman Modpas Reyisi";
+
+/* Title for alert shown when something goes wrong resetting the password */
+"Problem Resetting Password" = "Pwoblèm nan Retablisman Modpas";
+
+/* Remove Observee Button
+   Remove Observee Confirm Button
+   Remove Student Confirm Button */
+"Remove" = "Elimine";
+
+/* delete student from login */
+"Remove Student" = "Elimine Elèv";
+
+/* re-authenticate user when token fails */
+"Repair Access" = "Aksè Reparasyon";
+
+/* Report Problem Button */
+"Report a Problem" = "Rapòte yon Pwoblèm";
+
+/* Feature Request Button */
+"Request a Feature" = "Mande yon Opsyon";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Resous entwouvab. Tanpri eseye ankò.";
+
+/* Server Error Title */
+"Server Error" = "Erè Sèvè";
+
+/* Settings Button Title
+   Title of the settings screen */
+"Settings" = "Reglaj";
+
+/* Share Some Love Button */
+"Share Some Love" = "Pataje yon ti Lanmou";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to reset your password. Try again later." = "Gen yon bagay ki mal fèt pandan w t ap eseye retabli modpas ou a. Eseye ankò.";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to send a password reset email. Try again later." = "Gen yon bagay ki mal fèt pandan w t ap eseye voye imèl pou retablisman modpas la. Eseye ankò.";
+
+/* Button title for forgot password */
+"Submit" = "Soumèt";
+
+/* No comment provided by engineer. */
+"Submitted" = "Soumèt";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Soumèt: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Soumèt: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Pwogram";
+
+/* Alert message when logging in with invalid credentials */
+"The email and password combination were invalid" = "Konbinezon imèl ak modpas la envalid";
+
+/* Error message */
+"There are no actions for this item" = "Pa gen aksyon pou atik sa a";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Te gen yon erè nan chajman kontni ou an. Si se yon odyo oswa videyo li kapab ap chaje toujou.";
+
+/* Alert Message for institution not authorized */
+"This institution has not enabled access to the Canvas Parent mobile app." = "Enstitisyon sa a pa otorize nan app mobil Canvas Parent lan.";
+
+/* Title for alert when failing to add student domain */
+"Unable to Add Student" = "Enposib pou Ajoute Elèv";
+
+/* Title for alert when failing to create account */
+"Unable to Create Account" = "Enposib pou Kreye Kont";
+
+/* Auth Failed Message */
+"Unexpected Authentication Error.  Please try logging in again" = "Erè Otantifikasyon Sanzatann. Tanpri eseye konekte ankò.";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Enkoni";
+
+/* Name of action when viewing a reminder */
+"View" = "Gade";
+
+/* Calendar Tab */
+"WEEK" = "SEMENN";
+
+/* Error message when failing to create account */
+"We couldn't create your account. Double check your information or try again later." = "Nou pa kapab kreye kont ou a. Byen verifye enfòmasyon ou yo oswa eseye ankò.";
+
+/* Body for alert shown when the server couldn't find an email to reset the password for */
+"We couldn't find an account associated with that email. Double check that you entered it correctly and try again." = "Nou pa kapab jwenn yon kont ki asosye ak imèl sa a. Byen verifye ke ou ekri li kòrèkteman epi eseye ankò.";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "Ou pa otorize pou gen aksè a enfòmasyon sa a. Verifye pèmisyon itilizatè ou epi eseye ankò.";
+
+/* Body for alert shown when resetting password */
+"You will receive an email shortly to finish the process of resetting your password." = "Nan yon ti tan ankò w ap resevwa yon imèl pou fini pwosesis retablisman modpas la.";
+
+/* Body for alert after having successfully reset the password */
+"Your password has been successfully reset. Please log in now." = "Ou reyisi retabli modpas ou a.Tanpri konekte kounye a.";
+

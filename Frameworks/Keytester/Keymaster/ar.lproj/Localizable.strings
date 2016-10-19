@@ -1,6 +1,9 @@
 /* Back Button Title */
 "Back" = "عودة";
 
+/* Error alert message */
+"Could not create domain.  Please check your school's domain and try again." = "تعذر إنشاء المجال. يرجى التحقق من مجال مدرستك وإعادة المحاولة.";
+
 /* Error Alert Title */
 "Error" = "خطأ";
 

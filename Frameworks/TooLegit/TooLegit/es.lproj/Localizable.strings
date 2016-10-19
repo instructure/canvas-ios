@@ -1,3 +1,6 @@
+/* Error message when the server returns a invalid response */
+"Expected a response in the 200-299 range. Got %@" = "Se esperaba una respuesta en el rango de 200-299. Obtuvo %@";
+
 /* Title for network errors */
 "Network Error" = "Error de la red";
 

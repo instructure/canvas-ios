@@ -22,8 +22,12 @@ extension NSError {
     }
 
     private static func invalidResponse(response: NSHTTPURLResponse, data: NSData, _ file: String = #file, _ line: UInt = #line) -> NSError {
+
         let desc = NSLocalizedString("There was an error while communicating with the server.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Error message for a network fail")
-        let reason = "Expected a response in the 200-299 range. Got \(response.statusCode) \(String(data: data, encoding: NSUTF8StringEncoding))"
+        let reasonTemplate = NSLocalizedString("Expected a response in the 200-299 range. Got %@", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Error message when the server returns a invalid response")
+        
+        let reason = String.localizedStringWithFormat(reasonTemplate, String(response.statusCode))
+        
         return NSError(subdomain: "TooLegit", code: response.statusCode, apiURL: response.URL, title: networkErrorTitle, description: desc, failureReason: reason, data: data, file: file, line: line)
     }
 }

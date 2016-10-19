@@ -1,0 +1,318 @@
+/* Label indicating when the event takes place */
+"%@" = "%@";
+
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d من %3$d";
+
+/* Something to Something */
+"%@ to %@" = "%1$@ على %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "حدث خطأ في الخادم. يرجى إعادة المحاولة.";
+
+/* Alerts Tab */
+"ALERTS" = "تنبيهات";
+
+/* Unauthorized Student Error Title */
+"Access Denied" = "الوصول مرفوض";
+
+/* Add Student Settings Button Title */
+"Add Student" = "إضافة طالب";
+
+/* Alert Section Header */
+"Alert me when:" = "تنبيهي عندما:";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "حدث خطأ غير متوقع. يرجى إعادة المحاولة.";
+
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "هل تريد حقاً تسجيل الخروج؟";
+
+/* Remove Observee Confirmation */
+"Are you sure you want to remove this observee?" = "هل تريد حقاً إزالة هذا الشخص الموجود تحت المراقبة؟";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "درجة المهمة أكبر من";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "درجة المهمة أصغر من";
+
+/* Assignment Missing Description */
+"Assignment missing" = "مهمة مفقودة";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@" = "تذكير بالمهمة: %@";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@ is due at %@" = "تذكير بالمهمة: موعد استحقاق %1$@ هو %2$@";
+
+/* Authorization Failed Title */
+"Authorization Failed." = "فشل التخويل.";
+
+/* Courses Tab */
+"COURSES" = "المساقات";
+
+/* Cancel button
+   Cancel Button
+   Logout Cancel Button
+   Remove Observee Cancel Button
+   Remove Student Cancel Button */
+"Cancel" = "إلغاء";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "لا يمكن استخدام نسبة مئوية أكبر من 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "لا يمكن استخدام نسبة مئوية أقل من 0";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "لا توجد تنبيهات عالقة";
+
+/* Close Button Title */
+"Close" = "إغلاق";
+
+/* Course Announcement Description */
+"Course announcements" = "إعلانات المساق";
+
+/* Course Grade High On Description */
+"Course grade above" = "درجة المساق أكبر من";
+
+/* Course Grade Low On Description */
+"Course grade below" = "درجة المساق أصغر من";
+
+/* Submits the form to create an account */
+"Create Account" = "إنشاء حساب";
+
+/* No comment provided by engineer. */
+"Dismiss" = "رفض";
+
+/* Title for alert shown when the server couldn't find an email to reset the password for */
+"Email Not Found" = "لم يتم العثور على البريد الإلكتروني";
+
+/* Title for alert shown when user attempts to reset their password */
+"Email Sent" = "تم إرسال البريد الإلكتروني";
+
+/* Prompt for logging in as student */
+"Enter student's login information" = "إدخال معلومات تسجيل دخول الطالب";
+
+/* No comment provided by engineer. */
+"Error" = "خطأ";
+
+/* No comment provided by engineer. */
+"Event reminder: %@" = "تذكير بالحدث: %@";
+
+/* No comment provided by engineer. */
+"Event reminder: %@ will begin at %@" = "تذكير بالحدث: سيبدأ %1$@ على الساعة %2$@";
+
+/* No comment provided by engineer. */
+"Excused" = "غير إجباري";
+
+/* Domain Picker Search Placeholder */
+"Find your student's school or district" = "ابحث عن مدرسة أو مقاطعة طالبك";
+
+/* Help Button Title */
+"Help" = "مساعدة";
+
+/* Help Guide Button */
+"Help Guide" = "دليل المساعدة";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "لا يمكن أن تكون أعلى درجة للمهمة أقل من أدنى درجة للمهمة";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "لا يمكن أن تكون أعلى درجة للمساق أقل من أدنى درجة للمساق";
+
+/* Help Menu Message */
+"How can we help?" = "كيف يمكننا مساعدتك؟";
+
+/* No comment provided by engineer. */
+"In-Class" = "في الصف";
+
+/* Institution Announcement Description */
+"Institution announcements" = "إعلانات المؤسسة";
+
+/* Alert title when logging in with invalid credentials */
+"Invalid Credentials" = "بيانات اعتماد غير صالحة";
+
+/* Title for an alert view */
+"Invalid Input" = "إدخال غير صالح";
+
+/* Alert Message for invalid domain */
+"Invalid student domain.
+Please double-check the domain and try again." = "مجال طالب غير صالح.
+يرجى التحقق من المجال وإعادة المحاولة.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "الأسبوع الماضي";
+
+/* No comment provided by engineer. */
+"Late" = "متأخر";
+
+/* No comment provided by engineer. */
+"Late: %@" = "متأخر: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "متأخر: %1$@ (%2$@/%3$@)";
+
+/* Submits the login form */
+"Login" = "تسجيل الدخول";
+
+/* Button title to log out the user
+   Logout Confirm Button */
+"Logout" = "تسجيل الخروج";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "لا يمكن أن تكون أدنى درجة للمهمة أكبر من أعلى درجة للمهمة";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "لا يمكن أن تكون أدنى درجة للمساق أكبر من أعلى درجة للمساق";
+
+/* No comment provided by engineer. */
+"Missing" = "غير منجزة";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "غير منجزة: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "خطأ في الشبكة";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "الأسبوع المقبل";
+
+/* Empty Courses Text */
+"No Courses" = "لا يوجد أي مساق";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "لا توجد أي درجة";
+
+/* Empty Students Text */
+"No Students" = "لا يوجد أي طالب";
+
+/* Error message */
+"No installed apps support opening this file" = "لا يوجد أي تطبيق مثبّت يسمح بفتح هذا الملف";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "غير مخوّل";
+
+/* Not Found Error Title */
+"Not Found" = "غير موجود";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "لا شيء هذا الأسبوع";
+
+/* OK
+   OK Button Title
+   Okay button */
+"OK" = "موافق";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "الفتح في Safari";
+
+/* Open file in another application */
+"Open in..." = "الفتح في...";
+
+/* Title for alert when resetting password is successful */
+"Password Reset Successful" = "تمت إعادة تعيين كلمة المرور بنجاح";
+
+/* Title for alert shown when something goes wrong resetting the password */
+"Problem Resetting Password" = "حدثت مشكلة أثناء إعادة تعيين كلمة المرور";
+
+/* Remove Observee Button
+   Remove Observee Confirm Button
+   Remove Student Confirm Button */
+"Remove" = "إزالة";
+
+/* delete student from login */
+"Remove Student" = "إزالة طالب";
+
+/* re-authenticate user when token fails */
+"Repair Access" = "إصلاح الوصول";
+
+/* Report Problem Button */
+"Report a Problem" = "الإبلاغ عن مشكلة";
+
+/* Feature Request Button */
+"Request a Feature" = "طلب ميزة";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "لم يتم العثور على المورد. يرجى إعادة المحاولة.";
+
+/* Server Error Title */
+"Server Error" = "خطأ في الخادم";
+
+/* Settings Button Title
+   Title of the settings screen */
+"Settings" = "الإعدادات";
+
+/* Share Some Love Button */
+"Share Some Love" = "شارك حماسك";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to reset your password. Try again later." = "حدثت مشكلة أثناء محاولة إعادة تعيين كلمة المرور. أعد المحاولة لاحقاً.";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to send a password reset email. Try again later." = "حدثت مشكلة أثناء محاولة إرسال البريد الإلكتروني لإعادة تعيين كلمة المرور. أعد المحاولة لاحقاً.";
+
+/* Button title for forgot password */
+"Submit" = "إرسال";
+
+/* No comment provided by engineer. */
+"Submitted" = "تم الإرسال";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "تم الإرسال: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "تم الإرسال: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "المناهج";
+
+/* Alert message when logging in with invalid credentials */
+"The email and password combination were invalid" = "تركيبة البريد الإلكتروني وكلمة المرور غير صالحة";
+
+/* Error message */
+"There are no actions for this item" = "لا توجد أي عملية لهذا العنصر";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "حدث خطأ أثناء تحميل محتوياتك. إذا كان ملف صوت أو فيديو فقد يزال قيد المعالجة.";
+
+/* Alert Message for institution not authorized */
+"This institution has not enabled access to the Canvas Parent mobile app." = "لم تقم هذه المؤسسة بتمكين الوصول إلى تطبيق Canvas للأولياء على الأجهزة المحمولة.";
+
+/* Title for alert when failing to add student domain */
+"Unable to Add Student" = "تعذر إضافة طالب";
+
+/* Title for alert when failing to create account */
+"Unable to Create Account" = "تعذر إنشاء حساب";
+
+/* Auth Failed Message */
+"Unexpected Authentication Error.  Please try logging in again" = "حدث خطأ مصادقة غير متوقع. يرجى إعادة تسجيل الدخول.";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "غير معروف";
+
+/* Name of action when viewing a reminder */
+"View" = "عرض";
+
+/* Calendar Tab */
+"WEEK" = "أسبوع";
+
+/* Error message when failing to create account */
+"We couldn't create your account. Double check your information or try again later." = "لم نتمكن من إنشاء حسابك. تحقق من معلوماتك أو أعد المحاولة لاحقاً.";
+
+/* Body for alert shown when the server couldn't find an email to reset the password for */
+"We couldn't find an account associated with that email. Double check that you entered it correctly and try again." = "لم نتمكن من العثور على حساب مرتبط بهذا البريد الإلكتروني. تحقق من أنك أدخلته بشكل صحيح وأعد المحاولة.";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "غير مخول لك بالوصول إلى هذه المعلومات. تحقق من أذونات المستخدم وأعد المحاولة.";
+
+/* Body for alert shown when resetting password */
+"You will receive an email shortly to finish the process of resetting your password." = "ستتلقى قريبًا بريدًا إلكترونيًا للانتهاء من عملية إعادة تعيين كلمة المرور.";
+
+/* Body for alert after having successfully reset the password */
+"Your password has been successfully reset. Please log in now." = "تمت إعادة تعيين كلمة مرورك بنجاح. يرجى تسجيل الدخول الآن.";
+

@@ -120,7 +120,7 @@ public class StudentSettingsViewController : FormViewController {
         switch type {
         case .CourseAnnouncement, .AssignmentMissing:
             let row = SwitchRow(type.rawValue) {
-                $0.title = type.description
+                $0.title = self.descriptionForType(type)
                 if let _ = thresholdForType(type) {
                     $0.value = true
                 }
@@ -130,7 +130,7 @@ public class StudentSettingsViewController : FormViewController {
             return row
         default:
             let row = IntRow(type.rawValue) {
-                $0.title = type.description
+                $0.title = self.descriptionForType(type)
                 $0.placeholder = percentagePlaceholder
                 $0.textFieldPercentage = 0.20
                 if let threshold = thresholdForType(type), value = threshold.threshold {
@@ -207,7 +207,7 @@ public class StudentSettingsViewController : FormViewController {
     }
 
     func notifyUserOfInvalidInput(message: String) {
-        let title = "Invalid Input"
+        let title = NSLocalizedString("Invalid Input", comment: "Title for an alert view")
 
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 
@@ -381,5 +381,26 @@ public class StudentSettingsViewController : FormViewController {
         }
 
         return matchingThresholds?.first
+    }
+    
+    func descriptionForType(type: AlertThresholdType) -> String {
+        switch type {
+        case .CourseGradeLow:
+            return NSLocalizedString("Course grade below", comment: "Course Grade Low On Description")
+        case .CourseGradeHigh:
+            return NSLocalizedString("Course grade above", comment: "Course Grade High On Description")
+        case .AssignmentMissing:
+            return NSLocalizedString("Assignment missing", comment: "Assignment Missing Description")
+        case .AssignmentGradeLow:
+            return NSLocalizedString("Assignment grade below", comment: "Assignment Grade Low On Description")
+        case .AssignmentGradeHigh:
+            return NSLocalizedString("Assignment grade above", comment: "Assignment Grade High On Description")
+        case .InstitutionAnnouncement:
+            return NSLocalizedString("Institution announcements", comment: "Institution Announcement Description")
+        case .CourseAnnouncement:
+            return NSLocalizedString("Course announcements", comment: "Course Announcement Description")
+        case .Unknown:
+            return NSLocalizedString("Unknown", comment: "Unknown T`hreshold Description")
+        }
     }
 }

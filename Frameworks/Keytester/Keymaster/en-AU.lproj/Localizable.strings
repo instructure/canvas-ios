@@ -1,6 +1,9 @@
 /* Back Button Title */
 "Back" = "Back";
 
+/* Error alert message */
+"Could not create domain.  Please check your school's domain and try again." = "Could not create domain.  Please check your school's domain and try again.";
+
 /* Error Alert Title */
 "Error" = "Error";
 

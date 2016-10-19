@@ -1,0 +1,6 @@
+/* Class = "UILabel"; accessibilityIdentifier = "nothing_due_label"; ObjectID = "Khu-jV-mWb"; */
+"Khu-jV-mWb.accessibilityIdentifier" = "nothing_due_label";
+
+/* Class = "UILabel"; text = "Nothing Due"; ObjectID = "Khu-jV-mWb"; */
+"Khu-jV-mWb.text" = "Ingen frister utløpt";
+

@@ -8,6 +8,14 @@
 
 import Foundation
 
+public extension NSURLRequest {
+    public static func requestWithDefaultHTTPHeaders(url: NSURL) -> NSURLRequest {
+        let request = NSMutableURLRequest(URL: url)
+        request.addDefaultHTTPHeaders()
+        return request
+    }
+}
+
 extension NSMutableURLRequest {
     public convenience init(method: Method, URL: NSURL, parameters: [String: AnyObject], encoding: ParameterEncoding) throws {
         

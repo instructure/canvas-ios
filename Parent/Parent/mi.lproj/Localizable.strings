@@ -1,0 +1,318 @@
+/* Label indicating when the event takes place */
+"%@" = "%@";
+
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d o %3$d";
+
+/* Something to Something */
+"%@ to %@" = "%1$@ ki %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Kua puta tētahi hapa tūmau. Koa ngana anō.";
+
+/* Alerts Tab */
+"ALERTS" = "MATOHI";
+
+/* Unauthorized Student Error Title */
+"Access Denied" = "Aukatia te Uru";
+
+/* Add Student Settings Button Title */
+"Add Student" = "Tāpiri Ākonga";
+
+/* Alert Section Header */
+"Alert me when:" = "Matohi ahau ina:";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "He hapa ohorere. Koa ngana anō.";
+
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "Kei te tino hiahia ki te takiuru atu koutou a koutou?";
+
+/* Remove Observee Confirmation */
+"Are you sure you want to remove this observee?" = "E tino koe te hiahia koe ki te tango i tenei observee?";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "kōeke Taumahi runga";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "kōeke Taumahi raro";
+
+/* Assignment Missing Description */
+"Assignment missing" = "e ngaro ana Taumahi";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@" = "Taumahi whakamaumahara: %@";
+
+/* No comment provided by engineer. */
+"Assignment reminder: %@ is due at %@" = "Taumahi whakamaumahara: %1$@ he tika i %2$@";
+
+/* Authorization Failed Title */
+"Authorization Failed." = "I rahua Whakamanatanga.";
+
+/* Courses Tab */
+"COURSES" = "NGĀ AKORANGA";
+
+/* Cancel button
+   Cancel Button
+   Logout Cancel Button
+   Remove Observee Cancel Button
+   Remove Student Cancel Button */
+"Cancel" = "Whakakore";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Kāore e taea te whakamahi i ōrau e tiketike ake ana i te 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Kāore e taea te whakamahi i ōrau e he iti iho i te 0";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Mau ake i runga i Matohi";
+
+/* Close Button Title */
+"Close" = "Katia";
+
+/* Course Announcement Description */
+"Course announcements" = "mau faaararaa akoranga";
+
+/* Course Grade High On Description */
+"Course grade above" = "kōeke akoranga i runga";
+
+/* Course Grade Low On Description */
+"Course grade below" = "kōeke akoranga i raro";
+
+/* Submits the form to create an account */
+"Create Account" = "Waihanga Pūkete";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Tonoa";
+
+/* Title for alert shown when the server couldn't find an email to reset the password for */
+"Email Not Found" = "Īmēra Kāore Kitea";
+
+/* Title for alert shown when user attempts to reset their password */
+"Email Sent" = "Īmēra Tono";
+
+/* Prompt for logging in as student */
+"Enter student's login information" = "Tomo ngā mōhiohio takiuru o ngā ākonga";
+
+/* No comment provided by engineer. */
+"Error" = "Hapa";
+
+/* No comment provided by engineer. */
+"Event reminder: %@" = "Takahanga whakamaumahara: %@ ";
+
+/* No comment provided by engineer. */
+"Event reminder: %@ will begin at %@" = "Takahanga whakamaumahara: %1$@ ka timata i %2$@";
+
+/* No comment provided by engineer. */
+"Excused" = "Tukua";
+
+/* Domain Picker Search Placeholder */
+"Find your student's school or district" = "Kimihia te kura o tou ākonga rohe ranei";
+
+/* Help Button Title */
+"Help" = "Āwhina";
+
+/* Help Guide Button */
+"Help Guide" = "Aratohu Āwhina";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "e kore e taea e ohipa teitei kōeke e raro atu kōeke taumahi iti";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "e kore e taea e kōeke akoranga tiketike e raro atu kōeke akoranga iti";
+
+/* Help Menu Message */
+"How can we help?" = "Nahea tatou e nehenehe e tauturu ia?";
+
+/* No comment provided by engineer. */
+"In-Class" = "I roto i te-Class";
+
+/* Institution Announcement Description */
+"Institution announcements" = "mau faaararaa MoE";
+
+/* Alert title when logging in with invalid credentials */
+"Invalid Credentials" = "Taipitopito Muhu";
+
+/* Title for an alert view */
+"Invalid Input" = "Tāuru muhu";
+
+/* Alert Message for invalid domain */
+"Invalid student domain.
+Please double-check the domain and try again." = "rohe ākonga muhu.
+Koa-tirohia rua te rohe, me te ngana anō.";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "Wiki Whakamutunga";
+
+/* No comment provided by engineer. */
+"Late" = "Te mutunga";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Te mutunga: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Late: %1$@ (%2$@/%3$@)";
+
+/* Submits the login form */
+"Login" = "Takiuru I roto i";
+
+/* Button title to log out the user
+   Logout Confirm Button */
+"Logout" = "Takiuru Out";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "e kore e taea e Nana taumahi kōeke e tiketike ake kōeke taumahi teitei";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "e kore e taea e kōeke akoranga iti kia tiketike ake kōeke akoranga tiketike";
+
+/* No comment provided by engineer. */
+"Missing" = "Ngaro";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Ngaro: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Hapa Whatunga";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "Wiki Muri";
+
+/* Empty Courses Text */
+"No Courses" = "Kāore he Kōhi";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Kahore Kōeke";
+
+/* Empty Students Text */
+"No Students" = "Kāore he ākonga";
+
+/* Error message */
+"No installed apps support opening this file" = "No taupānga tāutatia tautoko te whakatuwhera i tēnei kōnae";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "e kore e faati'ahia te";
+
+/* Not Found Error Title */
+"Not Found" = "e kore e kitea";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Kahore tenei wiki";
+
+/* OK
+   OK Button Title
+   Okay button */
+"OK" = "Ok";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Tuwhera i roto i te Safari";
+
+/* Open file in another application */
+"Open in..." = "Tuwhera i roto i ...";
+
+/* Title for alert when resetting password is successful */
+"Password Reset Successful" = "Tautuhi Kupuhipa Momoho";
+
+/* Title for alert shown when something goes wrong resetting the password */
+"Problem Resetting Password" = "Raruraru Kupuhipa Tautuhianō";
+
+/* Remove Observee Button
+   Remove Observee Confirm Button
+   Remove Student Confirm Button */
+"Remove" = "Tangohia te";
+
+/* delete student from login */
+"Remove Student" = "Tangohia Te Ākonga";
+
+/* re-authenticate user when token fails */
+"Repair Access" = "Uru Tapia";
+
+/* Report Problem Button */
+"Report a Problem" = "Pūrongo i te Raruraru";
+
+/* Feature Request Button */
+"Request a Feature" = "Tono te Āhuahira";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Rauemi kore i kitea. Koa ngana anō.";
+
+/* Server Error Title */
+"Server Error" = "Hapa Tūmau";
+
+/* Settings Button Title
+   Title of the settings screen */
+"Settings" = "Tautuhinga";
+
+/* Share Some Love Button */
+"Share Some Love" = "A faaite i te tahi aroha";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to reset your password. Try again later." = "haere he tahi mea i te ngana ki te tautuhi anō i tō kupuhipa. Whakamātauria ano i muri mai.";
+
+/* Body for alert shown when something goes wrong resetting the password */
+"Something went wrong while attempting to send a password reset email. Try again later." = "haere he tahi mea i te ngana ki te tuku i te īmēra tautuhi kupuhipa. Whakamātauria ano i muri mai.";
+
+/* Button title for forgot password */
+"Submit" = "Tuku";
+
+/* No comment provided by engineer. */
+"Submitted" = "Tukuna";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Tukuna: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Tukuna: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Marautanga";
+
+/* Alert message when logging in with invalid credentials */
+"The email and password combination were invalid" = "I muhu te huinga īmēra me te kupuhipa";
+
+/* Error message */
+"There are no actions for this item" = "Kāore he mahi hoki tenei tūemi";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "He ko he hapa uta koutou ihirangi. Ki te mea he ororongo ataata ranei tukuake ai tonu te tukatuka i te reira.";
+
+/* Alert Message for institution not authorized */
+"This institution has not enabled access to the Canvas Parent mobile app." = "e kore i tenei whare whakahohea uru ki te taupānga pūkoro Kanaweti Parent.";
+
+/* Title for alert when failing to add student domain */
+"Unable to Add Student" = "Kāore e taea te Tāpiri Ākonga";
+
+/* Title for alert when failing to create account */
+"Unable to Create Account" = "Kāore e taea te Waihanga Pūkete";
+
+/* Auth Failed Message */
+"Unexpected Authentication Error.  Please try logging in again" = "Hapa Motuhēhēnga Ta'e'amanekina. Koa ngana takiuru roto ano";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "unknown";
+
+/* Name of action when viewing a reminder */
+"View" = "Tirohia";
+
+/* Calendar Tab */
+"WEEK" = "WIKI";
+
+/* Error message when failing to create account */
+"We couldn't create your account. Double check your information or try again later." = "kihai matou i taea te waihanga i tō pūkete. Rua tirohia koutou mōhiohio ngana anō i muri mai ranei.";
+
+/* Body for alert shown when the server couldn't find an email to reset the password for */
+"We couldn't find an account associated with that email. Double check that you entered it correctly and try again." = "kihai i taea e kitea e tatou he pūkete e pā ana ki taua īmēra. Taki Rua e tomo koe i te reira tika, me te ngana anō.";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "He kāore i ki te uru i tēnei mōhiohio e koe. Tirohia koutou whakaaetanga kaiwhakamahi, me te ngana anō.";
+
+/* Body for alert shown when resetting password */
+"You will receive an email shortly to finish the process of resetting your password." = "ka riro ia koe he īmēra tata ki te whakaoti i te tukanga o te tautuhianō o koutou kupuhipa.";
+
+/* Body for alert after having successfully reset the password */
+"Your password has been successfully reset. Please log in now." = "kua tou kupuhipa kua pai tautuhi anō. Tena takiuru roto i teie nei.";
+
