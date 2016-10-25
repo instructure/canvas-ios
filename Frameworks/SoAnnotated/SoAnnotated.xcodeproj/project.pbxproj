@@ -144,7 +144,7 @@
 		61A943521D55184300E0DEA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61A9435D1D5518A000E0DEA5 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		61A9435E1D5518A000E0DEA5 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
-		61A943631D5521F000E0DEA5 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = PSPDFKit/PSPDFKit.framework; sourceTree = "<group>"; };
+		61A943631D5521F000E0DEA5 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../../../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		61A943651D55279A00E0DEA5 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61A943691D55292200E0DEA5 /* PreSubmissionPDFDocumentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreSubmissionPDFDocumentPresenter.swift; sourceTree = "<group>"; };
 		61A943731D55294500E0DEA5 /* CanvadocsPDFDocumentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsPDFDocumentPresenter.swift; sourceTree = "<group>"; };
@@ -774,7 +774,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SoAnnotated/Dependencies/PSPDFKit",
+					"$(PROJECT_DIR)/../../ExternalFrameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -810,7 +810,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SoAnnotated/Dependencies/PSPDFKit",
+					"$(PROJECT_DIR)/../../ExternalFrameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

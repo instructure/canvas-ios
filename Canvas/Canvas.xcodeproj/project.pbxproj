@@ -2094,7 +2094,7 @@
 		6137294F1D54E91800C020A0 /* UIImage+CanvasKit1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CanvasKit1.h"; sourceTree = "<group>"; };
 		613729501D54E91800C020A0 /* UIImage+CanvasKit1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CanvasKit1.m"; sourceTree = "<group>"; };
 		61681E9A1D58E5000011E75D /* SoAnnotated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAnnotated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		61681E9D1D58E5380011E75D /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../Frameworks/SoAnnotated/SoAnnotated/Dependencies/PSPDFKit/PSPDFKit.framework; sourceTree = "<group>"; };
+		61681E9D1D58E5380011E75D /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		61F8ED851D999EFD00DFAC6E /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84BE025DDD28359B14D38BA4 /* Pods-TechDebt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechDebt.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TechDebt/Pods-TechDebt.debug.xcconfig"; sourceTree = "<group>"; };
 		962C895A87C658B3F80897FF /* Pods-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TechDebt/Pods-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
@@ -5478,7 +5478,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Frameworks/SoAnnotated/SoAnnotated/Dependencies/PSPDFKit/";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../ExternalFrameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -5527,7 +5527,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Frameworks/SoAnnotated/SoAnnotated/Dependencies/PSPDFKit/";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../ExternalFrameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
