@@ -442,7 +442,7 @@
 		5E22727519DF0D740023F4F3 /* CSGAssignmentGroupTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CSGAssignmentGroupTableViewController.storyboard; sourceTree = "<group>"; };
 		5E2380F919DF07C80061D4C9 /* CSGAssignmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSGAssignmentTableViewCell.h; sourceTree = "<group>"; };
 		5E2380FA19DF07C80061D4C9 /* CSGAssignmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGAssignmentTableViewCell.m; sourceTree = "<group>"; };
-		5E303C371A5F3F8E00104915 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		5E303C371A5F3F8E00104915 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../ExternalFrameworks/Fabric.framework; sourceTree = "<group>"; };
 		5E3DBEB819D5AD180092F224 /* CSGDocumentHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSGDocumentHandler.h; sourceTree = "<group>"; };
 		5E3DBEB919D5AD180092F224 /* CSGDocumentViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSGDocumentViewControllerFactory.h; sourceTree = "<group>"; };
 		5E3DBEBA19D5AD180092F224 /* CSGDocumentViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGDocumentViewControllerFactory.m; sourceTree = "<group>"; };
@@ -552,7 +552,7 @@
 		5EF8319A1AA4F26B0027CB09 /* CSGLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGLogger.m; sourceTree = "<group>"; };
 		5EF8319C1AA4F7160027CB09 /* CSGLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSGLog.h; sourceTree = "<group>"; };
 		5EFC625D1975B8E200B1EA6F /* SpeedGrader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SpeedGrader.entitlements; sourceTree = "<group>"; };
-		5EFC625F1975BB1D00B1EA6F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		5EFC625F1975BB1D00B1EA6F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../ExternalFrameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		5EFD925719F7E594000C4AB8 /* CSGStudentPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSGStudentPickerCell.xib; sourceTree = "<group>"; };
 		5EFD926419F83FC7000C4AB8 /* CSGStudentPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSGStudentPickerViewController.h; sourceTree = "<group>"; };
 		5EFD926519F83FC7000C4AB8 /* CSGStudentPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGStudentPickerViewController.m; sourceTree = "<group>"; };
@@ -7502,7 +7502,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 7cf76817b5c71690f9c8655cc366155508371fc6 f47067a1c45bff8852736f919c942fabe3f29421be87e8157e920616d5f4766b";
+			shellScript = "../ExternalFrameworks/Fabric.framework/run 7cf76817b5c71690f9c8655cc366155508371fc6 f47067a1c45bff8852736f919c942fabe3f29421be87e8157e920616d5f4766b";
 		};
 		613F69E21C18B97E005102BD /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;

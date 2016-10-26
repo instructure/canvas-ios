@@ -1730,8 +1730,8 @@
 		49A04E7C1CF653050051E1E7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		49A04E7F1CF654AB0051E1E7 /* LoginConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConfiguration.swift; sourceTree = "<group>"; };
 		49A04E801CF654AB0051E1E7 /* Session+Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Login.swift"; sourceTree = "<group>"; };
-		49AA290C1CF4CD320055862D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		49AA290D1CF4CD320055862D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		49AA290C1CF4CD320055862D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../../ExternalFrameworks/Crashlytics.framework; sourceTree = "<group>"; };
+		49AA290D1CF4CD320055862D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../../ExternalFrameworks/Fabric.framework; sourceTree = "<group>"; };
 		49AA29171CF4D1880055862D /* CanvasKit1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AA29191CF4D1880055862D /* CanvasKit1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasKit1.h; sourceTree = "<group>"; };
 		49AA291B1CF4D1880055862D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -4852,7 +4852,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./External/Fabric.framework/run 7cf76817b5c71690f9c8655cc366155508371fc6 f47067a1c45bff8852736f919c942fabe3f29421be87e8157e920616d5f4766b";
+			shellScript = "../ExternalFrameworks/Fabric.framework/run 7cf76817b5c71690f9c8655cc366155508371fc6 f47067a1c45bff8852736f919c942fabe3f29421be87e8157e920616d5f4766b";
 		};
 		49AA2D391CF4EA8B0055862D /* 📄Strip PSPDFKit */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -5557,7 +5557,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/External",
 					Dependencies,
 				);
 				INFOPLIST_FILE = Canvas/Info.plist;
@@ -5583,7 +5582,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/External",
 					Dependencies,
 				);
 				INFOPLIST_FILE = Canvas/Info.plist;
@@ -5636,7 +5634,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/External",
 					"$(PROJECT_DIR)/TechDebt/Dropbox",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -5665,7 +5662,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/External",
 					"$(PROJECT_DIR)/TechDebt/Dropbox",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
