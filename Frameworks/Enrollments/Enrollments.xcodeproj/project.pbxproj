@@ -188,7 +188,7 @@
 		2A37B8671D25C23800F18A26 /* TabTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabTests.swift; sourceTree = "<group>"; };
 		2A625C131D26DC5300ACDEBA /* Tab+CollectionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tab+CollectionsTest.swift"; sourceTree = "<group>"; };
 		2A625C151D26E8AA00ACDEBA /* refresh-all-tabs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "refresh-all-tabs.json"; sourceTree = "<group>"; };
-		2A625C1C1D27094900ACDEBA /* Enrollment+FavoritesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Enrollment+FavoritesTests.swift"; path = "../../EnrollmentKit/Enrollment/Enrollment+FavoritesTests.swift"; sourceTree = "<group>"; };
+		2A625C1C1D27094900ACDEBA /* Enrollment+FavoritesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Enrollment+FavoritesTests.swift"; sourceTree = "<group>"; };
 		490550211CAC897B009D4AD8 /* Group+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Group+Collections.swift"; sourceTree = "<group>"; };
 		490550231CAC8990009D4AD8 /* Enrollment+Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Enrollment+Favorites.swift"; sourceTree = "<group>"; };
 		4909C6FD1C73E94A00FAC8FB /* EnrollmentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentCollectionViewCell.swift; sourceTree = "<group>"; };
