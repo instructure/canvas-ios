@@ -22,6 +22,16 @@ public func /<T: PathComponent>(url: NSURL, @autoclosure component: ()->T) -> NS
     return url.URLByAppendingPathComponent(component().pathComponent)!
 }
 
+public extension NSURL {
+    func appending(queryItem: NSURLQueryItem) -> NSURL? {
+        let components = NSURLComponents(URL: self, resolvingAgainstBaseURL: false)
+        var query = components?.queryItems ?? []
+        query.append(queryItem)
+        components?.queryItems = query
+        return components?.URL
+    }
+}
+
 extension String : PathComponent {
     public var pathComponent: String {
         return self

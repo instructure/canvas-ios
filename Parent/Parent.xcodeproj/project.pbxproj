@@ -11,7 +11,6 @@
 		2C61CD1F1D9311E800196C03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD211D9311E800196C03 /* InfoPlist.strings */; };
 		2C61CD301D9311EC00196C03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD321D9311EC00196C03 /* InfoPlist.strings */; };
 		2CB69BA21D91CD060059C5A5 /* AirwolfLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BA41D91CD060059C5A5 /* AirwolfLoginViewController.xib */; };
-		2CB69BA51D91CDD70059C5A5 /* NoStudentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BA71D91CDD70059C5A5 /* NoStudentsViewController.xib */; };
 		2CB69BA81D91CDE00059C5A5 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BAA1D91CDE00059C5A5 /* CourseCell.xib */; };
 		2CB69BAB1D91CDE50059C5A5 /* EmptyCalendarEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BAD1D91CDE50059C5A5 /* EmptyCalendarEventCell.xib */; };
 		2CB69BAE1D91CDE90059C5A5 /* CalendarEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BB01D91CDE90059C5A5 /* CalendarEventCell.xib */; };
@@ -32,6 +31,9 @@
 		4907F9181DA80941004AB1A3 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4907F9171DA80936004AB1A3 /* SoIconic.framework */; };
 		4907F9191DA80941004AB1A3 /* SoIconic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4907F9171DA80936004AB1A3 /* SoIconic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		492246081D1C75EF0053766B /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492246061D1C75DE0053766B /* EarlGrey.framework */; };
+		4959161E1DC134B6006583C4 /* NoStudentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49ED5A341DBFC84D009E2896 /* NoStudentsViewController.xib */; };
+		496A49D91DB810620044E19C /* ParentSelectDomainDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A49D81DB810620044E19C /* ParentSelectDomainDataSource.swift */; };
+		496A49DB1DB822A40044E19C /* CanvasObserverLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A49DA1DB822A40044E19C /* CanvasObserverLoginViewController.swift */; };
 		49E21B081D1C66CA00B7B9B4 /* SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E21B071D1C667A00B7B9B4 /* SoGrey.framework */; };
 		5E0377751D5BBF04008987FE /* LogoutBeforeEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0377741D5BBF04008987FE /* LogoutBeforeEach.swift */; };
 		5E0F9A671C739E6A00BB7707 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A501C739E6A00BB7707 /* AlertCell.swift */; };
@@ -228,7 +230,6 @@
 		2C61CD281D9311EA00196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CD291D9311EA00196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CD2A1D9311EA00196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CD2B1D9311EA00196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CD2C1D9311EB00196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CD2D1D9311EB00196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CD311D9311EC00196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -250,7 +251,6 @@
 		2C61CD461D93123000196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CD471D93123000196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CD481D93123000196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CD491D93123100196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CD4A1D93123100196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CD4B1D93123100196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CD4C1D93123200196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -272,7 +272,6 @@
 		2C61CD5F1D93124600196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CD601D93124600196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CD611D93124700196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CD621D93124700196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CD631D93124700196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CD641D93124800196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CD651D93124800196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -294,7 +293,6 @@
 		2C61CD781D93126C00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
 		2C61CD791D93126C00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C61CD7A1D93126C00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Main.strings"; sourceTree = "<group>"; };
-		2C61CD7B1D93126C00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/NoStudentsViewController.strings"; sourceTree = "<group>"; };
 		2C61CD7C1D93126D00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/AirwolfLoginViewController.strings"; sourceTree = "<group>"; };
 		2C61CD7D1D93126D00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
 		2C61CD7E1D93126D00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -316,7 +314,6 @@
 		2C61CD911D93128A00196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
 		2C61CD921D93128B00196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C61CD931D93128B00196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Main.strings"; sourceTree = "<group>"; };
-		2C61CD941D93128B00196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/NoStudentsViewController.strings"; sourceTree = "<group>"; };
 		2C61CD951D93128C00196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/AirwolfLoginViewController.strings"; sourceTree = "<group>"; };
 		2C61CD961D93128C00196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
 		2C61CD971D93128C00196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -338,7 +335,6 @@
 		2C61CDAA1D9312AF00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CDAB1D9312AF00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CDAC1D9312B000196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CDAD1D9312B000196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CDAE1D9312B000196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CDAF1D9312B100196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CDB01D9312B100196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -360,7 +356,6 @@
 		2C61CDC31D9312C700196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CDC41D9312C800196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CDC51D9312C800196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CDC61D9312C800196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CDC71D9312C900196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CDC81D9312C900196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CDC91D9312C900196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -382,7 +377,6 @@
 		2C61CDDC1D9312E500196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CDDD1D9312E600196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CDDE1D9312E600196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CDDF1D9312E600196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CDE01D9312E700196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CDE11D9312E700196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CDE21D9312E700196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -404,7 +398,6 @@
 		2C61CDF51D9312FF00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CDF61D9312FF00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CDF71D93130000196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CDF81D93130000196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CDF91D93130000196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CDFA1D93130100196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CDFB1D93130100196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -426,7 +419,6 @@
 		2C61CE0E1D93131F00196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CE0F1D93132000196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CE101D93132000196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CE111D93132000196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CE121D93132100196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CE131D93132100196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CE141D93132100196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -448,7 +440,6 @@
 		2C61CE271D9313BE00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CE281D9313BE00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CE291D9313BF00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CE2A1D9313BF00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CE2B1D9313BF00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CE2C1D9313C200196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CE2D1D9313C300196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -470,7 +461,6 @@
 		2C61CE401D9313EF00196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CE411D9313F000196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CE421D9313F000196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CE431D9313F100196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CE441D9313F100196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CE451D9313F100196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CE461D9313F200196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -492,7 +482,6 @@
 		2C61CE591D93141D00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CE5A1D93141D00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CE5B1D93141E00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CE5C1D93141E00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CE5D1D93141F00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CE5E1D93141F00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CE5F1D93141F00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -514,7 +503,6 @@
 		2C61CE721D93144200196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
 		2C61CE731D93144300196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C61CE741D93144300196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
-		2C61CE751D93144400196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/NoStudentsViewController.strings"; sourceTree = "<group>"; };
 		2C61CE761D93144400196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/AirwolfLoginViewController.strings"; sourceTree = "<group>"; };
 		2C61CE771D93144600196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
 		2C61CE781D93144700196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -536,7 +524,6 @@
 		2C61CE8B1D93146000196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CE8C1D93146000196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CE8D1D93146100196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CE8E1D93146100196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CE8F1D93146200196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CE901D93146200196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CE911D93146800196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -558,7 +545,6 @@
 		2C61CEA41D93148500196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CEA51D93148500196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CEA61D93148600196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CEA71D93148600196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CEA81D93148600196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CEA91D93148700196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CEAA1D93148700196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -580,7 +566,6 @@
 		2C61CEBD1D9314AD00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CEBE1D9314AD00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CEBF1D9314AD00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CEC01D9314AE00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CEC11D9314AE00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CEC21D9314AE00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CEC31D9314AF00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -602,7 +587,6 @@
 		2C61CED61D9314CC00196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
 		2C61CED71D9314CC00196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C61CED81D9314CC00196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Main.strings"; sourceTree = "<group>"; };
-		2C61CED91D9314CF00196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/NoStudentsViewController.strings"; sourceTree = "<group>"; };
 		2C61CEDA1D9314CF00196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/AirwolfLoginViewController.strings"; sourceTree = "<group>"; };
 		2C61CEDB1D9314D000196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
 		2C61CEDC1D9314D100196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -624,14 +608,12 @@
 		2C61CEEF1D9314ED00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CEF01D9314EE00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CEF11D9314EE00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Main.strings; sourceTree = "<group>"; };
-		2C61CEF21D9314EE00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
 		2C61CEF31D9314EF00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/AirwolfLoginViewController.strings; sourceTree = "<group>"; };
 		2C61CEF41D9314EF00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CEF51D9314EF00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CEF61D9314F000196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/SettingsViewController.strings; sourceTree = "<group>"; };
 		2C61CEF71D9314F000196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/StudentSettingsHeaderView.strings; sourceTree = "<group>"; };
 		2CB69BA31D91CD060059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AirwolfLoginViewController.xib; sourceTree = "<group>"; };
-		2CB69BA61D91CDD70059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoStudentsViewController.xib; sourceTree = "<group>"; };
 		2CB69BA91D91CDE00059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CourseCell.xib; sourceTree = "<group>"; };
 		2CB69BAC1D91CDE50059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EmptyCalendarEventCell.xib; sourceTree = "<group>"; };
 		2CB69BAF1D91CDE90059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CalendarEventCell.xib; sourceTree = "<group>"; };
@@ -669,7 +651,31 @@
 		2CCDE2A91DA7E5D000B46D87 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4907F9171DA80936004AB1A3 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492246061D1C75DE0053766B /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EarlGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4968E29E1DB977CF00A39703 /* Parent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Parent.entitlements; sourceTree = "<group>"; };
+		496A49D81DB810620044E19C /* ParentSelectDomainDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentSelectDomainDataSource.swift; sourceTree = "<group>"; };
+		496A49DA1DB822A40044E19C /* CanvasObserverLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasObserverLoginViewController.swift; sourceTree = "<group>"; };
 		49E21B071D1C667A00B7B9B4 /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49ED5A351DBFC84D009E2896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoStudentsViewController.xib; sourceTree = "<group>"; };
+		49ED5A391DBFC943009E2896 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A3A1DBFC945009E2896 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A3B1DBFC947009E2896 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A3C1DBFC94A009E2896 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/NoStudentsViewController.strings"; sourceTree = "<group>"; };
+		49ED5A3D1DBFC94C009E2896 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/NoStudentsViewController.strings"; sourceTree = "<group>"; };
+		49ED5A3E1DBFC94E009E2896 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A3F1DBFC951009E2896 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A401DBFC953009E2896 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A411DBFC953009E2896 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A421DBFC955009E2896 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A431DBFC957009E2896 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A441DBFC958009E2896 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A451DBFC959009E2896 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A461DBFC959009E2896 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/NoStudentsViewController.strings"; sourceTree = "<group>"; };
+		49ED5A471DBFC95A009E2896 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A481DBFC95C009E2896 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A491DBFC95C009E2896 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A4A1DBFC95D009E2896 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/NoStudentsViewController.strings"; sourceTree = "<group>"; };
+		49ED5A4B1DBFC95F009E2896 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
+		49ED5A4C1DBFD02E009E2896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5E0377741D5BBF04008987FE /* LogoutBeforeEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutBeforeEach.swift; sourceTree = "<group>"; };
 		5E0F9A501C739E6A00BB7707 /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
 		5E0F9A521C739E6A00BB7707 /* AlertCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCellViewModel.swift; sourceTree = "<group>"; };
@@ -963,6 +969,7 @@
 			isa = PBXGroup;
 			children = (
 				2CCDE2971DA7E3AB00B46D87 /* InfoPlist.strings */,
+				4968E29E1DB977CF00A39703 /* Parent.entitlements */,
 				619014B51CB5949C00B51FF8 /* Login */,
 				5E0F9A4E1C739E6A00BB7707 /* Dashboard */,
 				6153FFFC1C80AA19002529CF /* Details */,
@@ -976,6 +983,7 @@
 				5E6442331C3F1C9C003D7397 /* Parent-Bridging-Header.h */,
 				5E6441961C3EE2E0003D7397 /* Info.plist */,
 				5E64418A1C3EE2E0003D7397 /* AppDelegate.swift */,
+				496A49D81DB810620044E19C /* ParentSelectDomainDataSource.swift */,
 				5E6441911C3EE2E0003D7397 /* Assets.xcassets */,
 				5E6441931C3EE2E0003D7397 /* LaunchScreen.storyboard */,
 				5E64418E1C3EE2E0003D7397 /* Main.storyboard */,
@@ -1087,7 +1095,8 @@
 				618E010A1CB6CF9E00B2DD94 /* AirwolfLoginViewController.swift */,
 				2CB69BA41D91CD060059C5A5 /* AirwolfLoginViewController.xib */,
 				61EB8D631CF62A2100E794A4 /* NoStudentsViewController.swift */,
-				2CB69BA71D91CDD70059C5A5 /* NoStudentsViewController.xib */,
+				49ED5A341DBFC84D009E2896 /* NoStudentsViewController.xib */,
+				496A49DA1DB822A40044E19C /* CanvasObserverLoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1203,6 +1212,11 @@
 						DevelopmentTeam = B6333T4PXQ;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					5E64419A1C3EE2E0003D7397 = {
 						CreatedOnToolsVersion = 7.2;
@@ -1244,11 +1258,11 @@
 				2CB69BC91D91CE1D0059C5A5 /* TableEmptyView.xib in Resources */,
 				2CB69BB71D91CDF30059C5A5 /* DetailsReminderCell.xib in Resources */,
 				2CB69BCF1D91CE4A0059C5A5 /* DashboardViewController.storyboard in Resources */,
+				4959161E1DC134B6006583C4 /* NoStudentsViewController.xib in Resources */,
 				2CB69BC31D91CE140059C5A5 /* UserCell.xib in Resources */,
 				5E6441951C3EE2E0003D7397 /* LaunchScreen.storyboard in Resources */,
 				2CB69BAE1D91CDE90059C5A5 /* CalendarEventCell.xib in Resources */,
 				2CB69BBA1D91CDF70059C5A5 /* DetailsDateCell.xib in Resources */,
-				2CB69BA51D91CDD70059C5A5 /* NoStudentsViewController.xib in Resources */,
 				2CB69BAB1D91CDE50059C5A5 /* EmptyCalendarEventCell.xib in Resources */,
 				2CCDE2951DA7E3AB00B46D87 /* InfoPlist.strings in Resources */,
 				2CB69C191D92C5860059C5A5 /* DetailsAttachmentCell.xib in Resources */,
@@ -1311,6 +1325,7 @@
 				619FCC5D1CAC57AB003C97AA /* WebBrowserViewController.swift in Sources */,
 				619CB8BA1CA9B3B60022D26F /* UINavigationController+Parent.swift in Sources */,
 				5E0F9A741C739E6A00BB7707 /* SettingsObserveeCell.swift in Sources */,
+				496A49D91DB810620044E19C /* ParentSelectDomainDataSource.swift in Sources */,
 				5E6441CA1C3EE581003D7397 /* Router.swift in Sources */,
 				617BE8751CA584EF008A6908 /* AnnouncementDetailsViewController.swift in Sources */,
 				5EE9A5191D1449F900EFCDAE /* StudentSettingsViewController.swift in Sources */,
@@ -1324,6 +1339,7 @@
 				618E010C1CB6CF9E00B2DD94 /* AirwolfLoginViewController.swift in Sources */,
 				5E0F9A711C739E6A00BB7707 /* ObservedUsersCarouselViewController.swift in Sources */,
 				5EA8B06A1CB7078500C8A9F1 /* DefaultAvatarCoordinator.swift in Sources */,
+				496A49DB1DB822A40044E19C /* CanvasObserverLoginViewController.swift in Sources */,
 				61B536E11C97C25A0052B8CB /* CalendarEventDetailsViewController.swift in Sources */,
 				5E0F9A6A1C739E6A00BB7707 /* CalendarEventCell.swift in Sources */,
 				612D64431C8794480045E03B /* DetailsInfoCell.swift in Sources */,
@@ -1503,33 +1519,6 @@
 				2C61CEF31D9314EF00196C03 /* zh */,
 			);
 			name = AirwolfLoginViewController.xib;
-			sourceTree = "<group>";
-		};
-		2CB69BA71D91CDD70059C5A5 /* NoStudentsViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2CB69BA61D91CDD70059C5A5 /* Base */,
-				2C61CD2B1D9311EA00196C03 /* ar */,
-				2C61CD491D93123100196C03 /* da */,
-				2C61CD621D93124700196C03 /* de */,
-				2C61CD7B1D93126C00196C03 /* en-AU */,
-				2C61CD941D93128B00196C03 /* en-GB */,
-				2C61CDAD1D9312B000196C03 /* es */,
-				2C61CDC61D9312C800196C03 /* fr */,
-				2C61CDDF1D9312E600196C03 /* ht */,
-				2C61CDF81D93130000196C03 /* ja */,
-				2C61CE111D93132000196C03 /* mi */,
-				2C61CE2A1D9313BF00196C03 /* nb */,
-				2C61CE431D9313F100196C03 /* nl */,
-				2C61CE5C1D93141E00196C03 /* pl */,
-				2C61CE751D93144400196C03 /* pt-BR */,
-				2C61CE8E1D93146100196C03 /* pt */,
-				2C61CEA71D93148600196C03 /* ru */,
-				2C61CEC01D9314AE00196C03 /* sv */,
-				2C61CED91D9314CF00196C03 /* zh-HK */,
-				2C61CEF21D9314EE00196C03 /* zh */,
-			);
-			name = NoStudentsViewController.xib;
 			sourceTree = "<group>";
 		};
 		2CB69BAA1D91CDE00059C5A5 /* CourseCell.xib */ = {
@@ -1967,8 +1956,36 @@
 				2CCDE2A71DA7E5A100B46D87 /* sv */,
 				2CCDE2A81DA7E5BC00B46D87 /* zh-HK */,
 				2CCDE2A91DA7E5D000B46D87 /* zh */,
+				49ED5A4C1DBFD02E009E2896 /* Base */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		49ED5A341DBFC84D009E2896 /* NoStudentsViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49ED5A351DBFC84D009E2896 /* Base */,
+				49ED5A391DBFC943009E2896 /* ar */,
+				49ED5A3A1DBFC945009E2896 /* da */,
+				49ED5A3B1DBFC947009E2896 /* de */,
+				49ED5A3C1DBFC94A009E2896 /* en-AU */,
+				49ED5A3D1DBFC94C009E2896 /* en-GB */,
+				49ED5A3E1DBFC94E009E2896 /* es */,
+				49ED5A3F1DBFC951009E2896 /* fr */,
+				49ED5A401DBFC953009E2896 /* ht */,
+				49ED5A411DBFC953009E2896 /* ja */,
+				49ED5A421DBFC955009E2896 /* mi */,
+				49ED5A431DBFC957009E2896 /* nb */,
+				49ED5A441DBFC958009E2896 /* nl */,
+				49ED5A451DBFC959009E2896 /* pl */,
+				49ED5A461DBFC959009E2896 /* pt-BR */,
+				49ED5A471DBFC95A009E2896 /* pt */,
+				49ED5A481DBFC95C009E2896 /* ru */,
+				49ED5A491DBFC95C009E2896 /* sv */,
+				49ED5A4A1DBFC95D009E2896 /* zh-HK */,
+				49ED5A4B1DBFC95F009E2896 /* zh */,
+			);
+			name = NoStudentsViewController.xib;
 			sourceTree = "<group>";
 		};
 		5E64418E1C3EE2E0003D7397 /* Main.storyboard */ = {
@@ -2120,6 +2137,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Parent/Parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: iOS Builds (73MVYX3ELK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: iOS Builds (73MVYX3ELK)";
 				CURRENT_PROJECT_VERSION = 1981;
@@ -2131,7 +2149,7 @@
 					"$(PROJECT_DIR)/../ExternalFrameworks/",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp;
@@ -2149,6 +2167,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Parent/Parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Instructure, Inc. (B6333T4PXQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Instructure, Inc. (B6333T4PXQ)";
 				CURRENT_PROJECT_VERSION = 1981;
@@ -2160,7 +2179,7 @@
 					"$(PROJECT_DIR)/../ExternalFrameworks/",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp;

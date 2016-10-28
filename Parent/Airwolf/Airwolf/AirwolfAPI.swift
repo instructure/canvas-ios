@@ -9,16 +9,20 @@
 import Foundation
 import TooLegit
 
-private let airwolfBaseURL = NSURL(string: "https://airwolf-iad-prod.instructure.com")!
-private let airwolfEdgeBaseURL = NSURL(string: "https://airwolf-edge.inseng.net")!
-private let airwolfBetaBaseURL = NSURL(string: "https://airwolf-beta.inseng.net")!
-
 public class AirwolfAPI {
-    public static var baseURL: NSURL = airwolfBaseURL
+    public static var baseURL = RegionPicker.regions[0]
 
     // MARK: Parent calls
     public class func authenticateRequest(email email: String, password: String) throws -> NSURLRequest {
         return try NSMutableURLRequest(method: .POST, URL: AirwolfAPI.baseURL.URLByAppendingPathComponent("authenticate")!, parameters: ["username": email, "password": password], encoding: .JSON)
+    }
+    
+    public class func authenticateAsCanvasObserver(domain: String) -> NSURLRequest {
+        let url = AirwolfAPI.baseURL
+            .URLByAppendingPathComponent("canvas")!
+            .URLByAppendingPathComponent("authenticate")!
+        
+        return try! NSMutableURLRequest(method: .GET, URL: url, parameters: ["domain": domain], encoding: .URL)
     }
 
     public class func createAccountRequest(email email: String, password: String, firstName: String, lastName: String) throws -> NSURLRequest {

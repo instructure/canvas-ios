@@ -163,7 +163,7 @@ extension Router {
     
     func loginRouteHandler() -> RouteHandler {
         return { params in
-            let loginViewController = AirwolfLoginViewController()
+            let loginViewController = AirwolfLoginViewController(changePasswordInfo: nil)
             loginViewController.loggedInHandler = { session in
                 Keymaster.sharedInstance.login(session)
                 self.session = session
@@ -237,7 +237,7 @@ extension Router {
     func addStudentHandler() -> RouteHandler {
         return { params in
             let selectDomainViewController = SelectDomainViewController.new()
-            selectDomainViewController.dataSource = self.appDelegate()
+            selectDomainViewController.dataSource = ParentSelectDomainDataSource.instance
             selectDomainViewController.pickedDomainAction = { [unowned self] domain in
                 guard let session = self.session else {
                     fatalError("You can't add a user without a session")
@@ -259,11 +259,15 @@ extension Router {
                                                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
                                                 selectDomainViewController.presentViewController(alert, animated: true, completion: nil)
                                             case .Completed:
-                                                let addVC = AddStudentViewController(session: session, domain: domain, useBackButton: true) { result in
-                                                    selectDomainViewController.navigationController?.popToRootViewControllerAnimated(true)
+                                                do {
+                                                    let addVC = try AddStudentViewController(session: session, domain: domain, useBackButton: true) { result in
+                                                        selectDomainViewController.navigationController?.popToRootViewControllerAnimated(true)
+                                                    }
+                                                    addVC.prompt = NSLocalizedString("Enter student's login information", comment: "Prompt for logging in as student")
+                                                    selectDomainViewController.navigationController?.pushViewController(addVC, animated: true)
+                                                } catch let e as NSError {
+                                                    e.report(false, alertUserFrom: selectDomainViewController)
                                                 }
-                                                addVC.prompt = NSLocalizedString("Enter student's login information", comment: "Prompt for logging in as student")
-                                                selectDomainViewController.navigationController?.pushViewController(addVC, animated: true)
                                             default:
                                                 break
                                             }

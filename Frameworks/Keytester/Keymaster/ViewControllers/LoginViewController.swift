@@ -93,15 +93,15 @@ public class LoginViewController: UIViewController {
     // MARK: - Initializers
     // ---------------------------------------------
     private static let defaultStoryboardName = "LoginViewController"
-    public static func new(storyboardName: String = defaultStoryboardName, baseURL: NSURL, clientID: String, clientSecret: String) -> LoginViewController {
-        guard let controller = UIStoryboard(name: storyboardName, bundle: NSBundle(forClass: self)).instantiateInitialViewController() as? LoginViewController else {
+    public static func new(baseURL: NSURL, clientID: String, clientSecret: String) -> LoginViewController {
+        guard let controller = UIStoryboard(name: defaultStoryboardName, bundle: NSBundle(forClass: self)).instantiateInitialViewController() as? LoginViewController else {
             ❨╯°□°❩╯⌢"Initial ViewController is not of type LoginViewController"
         }
 
         controller.clientID = clientID
         controller.clientSecret = clientSecret
         controller.baseURL = baseURL
-        controller.loginOAuthURL = controller.loginOAuthURL(baseURL, clientID: clientID)
+        controller.loginOAuthURL = controller.canvasLoginOAuthURL(baseURL, clientID: clientID)
 
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         controller.session = NSURLSession(configuration: config, delegate: controller, delegateQueue: nil)
@@ -228,8 +228,7 @@ public class LoginViewController: UIViewController {
 
     private func startLoginRequest() {
 
-        print(loginOAuthURL(baseURL, clientID: clientID))
-        guard let url = loginOAuthURL(baseURL, clientID: clientID) else {
+        guard let url = loginOAuthURL else {
             ❨╯°□°❩╯⌢"Request cannot be created from the baseURL and client_id provided"
         }
 
@@ -244,7 +243,7 @@ public class LoginViewController: UIViewController {
     }
 
     private func loadLoginRequest() {
-        guard let url = loginOAuthURL(baseURL, clientID: clientID) else {
+        guard let url = loginOAuthURL else {
             ❨╯°□°❩╯⌢"Request cannot be created from the baseURL and client_id provided"
         }
 
@@ -270,7 +269,7 @@ public class LoginViewController: UIViewController {
         challengeHandler?(.UseCredential, secretHandshake)
     }
 
-    func loginOAuthURL(baseURL: NSURL?, clientID: String?) -> NSURL? {
+    func canvasLoginOAuthURL(baseURL: NSURL?, clientID: String?) -> NSURL? {
         guard let baseURL = baseURL, let clientID = clientID else {
             return nil
         }

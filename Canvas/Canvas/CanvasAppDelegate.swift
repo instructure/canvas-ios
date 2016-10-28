@@ -8,12 +8,12 @@
 
 import UIKit
 import TooLegit
-import CanvasKeymaster
 import TechDebt
 import PSPDFKit
 import SoPretty
 import SoLazy
 import SoPersistent
+import CanvasKeymaster
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -15,6 +15,7 @@ import Marshal
 import Airwolf
 import Result
 import Reachability
+import Keymaster
 
 class AirwolfLoginViewController: UIViewController {
 
@@ -28,6 +29,7 @@ class AirwolfLoginViewController: UIViewController {
     @IBOutlet var createAccountButton: UIButton!
     @IBOutlet var forgotPasswordButton: UIButton!
     @IBOutlet var cancelButton: UIButton!
+    @IBOutlet var canvasLoginButton: UIButton!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var fields: [UITextField]!
 
@@ -56,7 +58,7 @@ class AirwolfLoginViewController: UIViewController {
         case ChangePassword
     }
 
-    private (set) var state: MutableProperty<State>
+    let state: MutableProperty<State>
     private var viewDidLoadFinished: Bool = false
     private var reachability: Reachability?
 
@@ -81,6 +83,13 @@ class AirwolfLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let spacing: CGFloat = 20.0
+        let insetAmount = spacing / 2
+        
+        canvasLoginButton.imageView?.contentMode = .ScaleAspectFit
+        canvasLoginButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: -insetAmount)
+        canvasLoginButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: insetAmount)
+        
         let colors = ColorScheme.blueColorScheme
         triangleBackgroundGradientView.diagonal = false
         triangleBackgroundGradientView.transitionToColors(colors.tintBottomColor, tintBottomColor: colors.tintTopColor) // Flip the colors the other way
@@ -144,7 +153,7 @@ class AirwolfLoginViewController: UIViewController {
         primaryButton.rac_enabled.producer.startWithNext { [unowned self] enabled in
             self.primaryButton.alpha = enabled ? 1.0 : 0.7
         }
-
+        
         state.producer.startWithNext { [unowned self] next in
             switch next {
             case .DoingSomethingImportant:
@@ -156,7 +165,7 @@ class AirwolfLoginViewController: UIViewController {
                 self.fieldContainerHeightConstraint.constant = self.loginFieldContainerHeight
                 self.emailFieldTopCollapsedConstraint.active = true
                 self.passwordFieldTopCollapsedConstraint.constant = self.passwordTopDefault
-                self.passwordFieldTopCollapsedConstraint.active = false
+                self.passwordFieldTopCollapsedConstraint.active = true
 
                 self.emailField.updateReturnKey(toType: .Next)
                 self.passwordField.updateReturnKey(toType: .Done)
@@ -209,7 +218,7 @@ class AirwolfLoginViewController: UIViewController {
 
                 self.showItemsForState(next)
             }
-
+            
             if next != .DoingSomethingImportant {
                 self.view.setNeedsUpdateConstraints()
                 UIView.animateWithDuration(self.viewDidLoadFinished ? 0.3 : 0.0) {
@@ -224,7 +233,7 @@ class AirwolfLoginViewController: UIViewController {
     }
 
     private func checkRegion() {
-        if RegionPicker.defaultPicker.pickedRegion() == nil {
+        if RegionPicker.defaultPicker.pickedRegionURL == nil {
             state.value = .DoingSomethingImportant
             RegionPicker.defaultPicker.pickBestRegion { url in
                 if let url = url {
@@ -278,6 +287,26 @@ class AirwolfLoginViewController: UIViewController {
         clearFields()
     }
 
+    @IBAction func canvasLogin(sender: AnyObject) {
+        let domainPicker = SelectDomainViewController.new()
+        domainPicker.useMobileVerify = true
+        domainPicker.useKeymasterLogin = false
+        domainPicker.dataSource = ParentSelectDomainDataSource.instance
+        domainPicker.pickedDomainAction = { [weak self] url in
+            dispatch_async(dispatch_get_main_queue()) {
+                guard let me = self, let host = NSURLComponents(URL: url, resolvingAgainstBaseURL: false)?.host else {
+                    return
+                }
+                let login = CanvasObserverLoginViewController(domain: host) { [weak me] session in
+                    me?.completeLogin(session)
+                }
+                
+                me.navigationController?.pushViewController(login, animated: true)
+            }
+        }
+        navigationController?.pushViewController(domainPicker, animated: true)
+    }
+    
     func clearFields() {
         // clear all the fields between state changes
         for field in fields {
@@ -337,18 +366,7 @@ class AirwolfLoginViewController: UIViewController {
                         if let token: String = try? value <| "token", parentID: String = try? value <| "parent_id" {
                             let user = SessionUser(id: parentID, name: "", email: email)
                             let session = Session(baseURL: AirwolfAPI.baseURL, user: user, token: token)
-
-                            do {
-                                let refresher = try Student.observedStudentsRefresher(session)
-                                refresher.refreshingCompleted.observeNext { _ in
-                                    self.state.value = .Login
-                                    self.loggedInHandler?(session: session)
-                                }
-                                refresher.refresh(true)
-                            } catch let e as NSError {
-                                self.state.value = .Login
-                                print(e)
-                            }
+                            self.completeLogin(session)
                         }
                     }
                 }
@@ -356,6 +374,20 @@ class AirwolfLoginViewController: UIViewController {
         } catch {
             state.value = .Login
             print(error)
+        }
+    }
+    
+    func completeLogin(session: Session) {
+        do {
+            let refresher = try Student.observedStudentsRefresher(session)
+            refresher.refreshingCompleted.observeNext { _ in
+                self.state.value = .Login
+                self.loggedInHandler?(session: session)
+            }
+            refresher.refresh(true)
+        } catch let e as NSError {
+            self.state.value = .Login
+            print(e)
         }
     }
 

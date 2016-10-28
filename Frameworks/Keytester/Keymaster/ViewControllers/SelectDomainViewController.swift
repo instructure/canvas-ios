@@ -504,7 +504,7 @@ extension SelectDomainViewController: UIGestureRecognizerDelegate {
 
         if useKeymasterLogin {
             dispatch_async(dispatch_get_main_queue(), {
-                let loginViewController = LoginViewController.new(baseURL: baseURL, clientID: clientID, clientSecret: clientSecret)
+                let loginViewController = LoginViewController.new(baseURL, clientID: clientID, clientSecret: clientSecret)
                 loginViewController.useBackButton = self.useBackButton
                 loginViewController.result = { [weak self] result in
                     if let error = result.error {

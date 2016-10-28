@@ -18,18 +18,9 @@ import Crashlytics
 import Airwolf
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, SelectDomainDataSource {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    var logoImage: UIImage = UIImage(named: "parent_logo")!
-    var mobileVerifyName: String = "parent-app"
-    var tintTopColor: UIColor {
-        return ColorScheme.blueColorScheme.inverse().tintTopColor
-    }
-    var tintBottomColor: UIColor {
-        return ColorScheme.blueColorScheme.inverse().tintBottomColor
-    }
 
     var topViewController: UIViewController {
         var topViewControler = window!.rootViewController!
@@ -45,12 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SelectDomainDataSource {
         let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
 
-        if let url = RegionPicker.defaultPicker.pickedRegion() {
+        if let url = RegionPicker.defaultPicker.pickedRegionURL {
             AirwolfAPI.baseURL = url
         } else {
             if let _ = Keymaster.sharedInstance.mostRecentSession() { // Currently already signed in, without a region. They are already in the original default region
                 RegionPicker.defaultPicker.setRegionToDefault()
-                AirwolfAPI.baseURL = RegionPicker.defaultPicker.pickedRegion()!
+                AirwolfAPI.baseURL = RegionPicker.defaultPicker.pickedRegionURL!
             } else {
                 RegionPicker.defaultPicker.pickBestRegion { url in
                     if let url = url {

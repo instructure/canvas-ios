@@ -66,6 +66,7 @@ public extension NSDateComponents {
     class func zero() -> NSDateComponents {
         let c = NSDateComponents()
         
+        c.era = 0
         c.nanosecond = 0
         c.year = 0
         c.month = 0
@@ -206,6 +207,7 @@ public func +(lhs: NSDateComponents, rhs: NSDateComponents) -> NSDateComponents 
     
     let sum = NSDateComponents.zero()
     
+    sum.era = lhs.era + rhs.era
     sum.nanosecond = lhs.nanosecond + rhs.nanosecond
     sum.year = lhs.year + rhs.year
     sum.month = lhs.month + rhs.month

@@ -23,6 +23,8 @@ extension NSMutableURLRequest {
         
         self.init(URL: url)
         
+        addDefaultHTTPHeaders()
+        
         if let contentType = encoding.contentType(method) {
             setValue(contentType, forHTTPHeaderField: "Content-Type")
         }
