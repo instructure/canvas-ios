@@ -13,6 +13,7 @@ import TooLegit
 import SoPersistent
 import ReactiveCocoa
 import SoLazy
+import Armchair
 
 class CourseSyllabusViewController: UIViewController {
 
@@ -46,6 +47,7 @@ class CourseSyllabusViewController: UIViewController {
         session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .Course)).observeOn(UIScheduler()).startWithNext { next in
             guard let course = next as? Course else { return }
             self.whizzyWigView.loadHTMLString(course.syllabusBody ?? "", baseURL: session.baseURL)
+            Armchair.userDidSignificantEvent(true)
         }
     }
     
@@ -64,8 +66,8 @@ class CourseSyllabusViewController: UIViewController {
         configureRefresher()
         
         refresher?.refresh(false)
-    }
     
+    }
     func configureRefresher() {
         guard let r = refresher else { return }
         

@@ -8,11 +8,12 @@ github "derrh/CWStatusBarNotification" "swift23"
 github "utahiosmac/Marshal" "swift2_3"
 github "n8armstrong/DVR" "develop"
 github "google/EarlGrey" "master"
-github "xmartlabs/Eureka" "swift2.3"
+github "xmartlabs/Eureka" "29e73c3a2196732de0acac136e911143290390cf"
 github "dennisweissmann/DeviceKit" == 0.3.5
 
 # Parent
 github "michaeltyson/TPKeyboardAvoiding" == 1.3
+github "UrbanApps/Armchair" "master"
 
 # Canvas
 github "instructure/canvaskeymaster-ios" "master"

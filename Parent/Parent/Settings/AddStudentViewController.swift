@@ -13,6 +13,7 @@ import TooLegit
 import Airwolf
 import SoPersistent
 import CWStatusBarNotification
+import Armchair
 
 class WebLoginViewController: UIViewController {
     
@@ -150,6 +151,7 @@ extension AddStudentViewController: UIWebViewDelegate {
 
             if url.absoluteString!.containsString("/oauthSuccess") {
                 // Clear the cookies so you're not automatically logged into a session on the next browser launch
+                Armchair.userDidSignificantEvent(true)
                 clearExistingCookies()
                 refresher.refreshingCompleted.observeNext { [weak self] _ in
                     self?.completionHandler?(.Success(true))

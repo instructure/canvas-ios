@@ -19,6 +19,7 @@ import ObserverAlertKit
 import SoPretty
 import SoLazy
 import Airwolf
+import Armchair
 
 typealias DashboardSettingsAction = (session: Session)->Void
 typealias DashboardSelectCalendarEventAction = (session: Session, observeeID: String, calendarEvent: CalendarEvent)->Void
@@ -111,6 +112,12 @@ class DashboardViewController: UIViewController {
         } catch let error as NSError {
             print(error)
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Armchair.showPromptIfNecessary()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
