@@ -155,7 +155,7 @@ extension Course: SynchronizedModel {
         name            = try json <| "name"
         originalName    = try json <| "original_name"
         code            = try json <| "course_code"
-        isFavorite      = try json <| "is_favorite"
+        isFavorite      = try json <| "is_favorite" ?? false
         startAt         = try json <| "start_at"
         endAt           = try json <| "end_at"
         hideFinalGrades = try json <| "hide_final_grades"

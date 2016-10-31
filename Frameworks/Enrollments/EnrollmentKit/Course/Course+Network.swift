@@ -14,6 +14,10 @@ extension Course {
     public static var getCoursesParameters: [String: AnyObject] {
         return ["include": ["needs_grading_count", "syllabus_body", "total_scores", "term", "permissions", "current_grading_period_scores", "favorites"]]
     }
+    
+    public static var getCourseParameters: [String: AnyObject] {
+        return ["include": ["needs_grading_count", "syllabus_body", "total_scores", "term", "permissions", "current_grading_period_scores"]]
+    }
 
     public static func getAllCourses(session: Session) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try session.GET(api/v1/"courses", parameters: getCoursesParameters)

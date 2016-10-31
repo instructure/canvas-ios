@@ -10,7 +10,9 @@ import UIKit
 import WhizzyWig
 import EnrollmentKit
 import TooLegit
+import SoPersistent
 import ReactiveCocoa
+import SoLazy
 
 class CourseSyllabusViewController: UIViewController {
 
@@ -18,7 +20,8 @@ class CourseSyllabusViewController: UIViewController {
     let studentID: String
     let session: Session
     let whizzyWigView: WhizzyWigView
-
+    internal var refresher: Refresher?
+    
     private var course: Course?
 
     init(courseID: String, studentID: String, session: Session) {
@@ -27,6 +30,14 @@ class CourseSyllabusViewController: UIViewController {
         self.session = session
         whizzyWigView = WhizzyWigView(frame: CGRectZero)
         whizzyWigView.scrollView.scrollEnabled = true
+        
+        do {
+            self.refresher = try Course.airwolfRefresher(session, studentID: studentID, courseID: courseID)
+        } catch let error as NSError {
+            self.refresher = nil
+            error.report()
+        }
+        
         super.init(nibName: nil, bundle: nil)
 
         whizzyWigView.contentInsets = UIEdgeInsets(top: 5.0, left: 15.0, bottom: 5.0, right: 15.0)
@@ -49,6 +60,27 @@ class CourseSyllabusViewController: UIViewController {
         view.addSubview(whizzyWigView)
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[whizzy]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["whizzy": whizzyWigView]))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[whizzy]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["whizzy": whizzyWigView]))
+        
+        configureRefresher()
+        
+        refresher?.refresh(false)
     }
-
+    
+    func configureRefresher() {
+        guard let r = refresher else { return }
+        
+        r.refreshControl.addTarget(self, action: #selector(CourseSyllabusViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
+        
+        whizzyWigView.scrollView.addSubview(r.refreshControl)
+        
+        r.refreshingCompleted.observeNext { [weak self] error in
+            if let me = self, let error = error {
+                error.presentAlertFromViewController(me)
+            }
+        }
+    }
+    
+    internal func refresh() {
+        refresher?.refresh(true)
+    }
 }
