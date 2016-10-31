@@ -58,12 +58,14 @@ extension Assignment {
     }
 }
 
-class AssignmentsTableViewController: Assignment.TableViewController {
+class AssignmentsTableViewController: Assignment.TableViewController, UISearchResultsUpdating, UISearchBarDelegate {
     let session: Session
     let courseID: String
     let route: (UIViewController, NSURL)->()
     
     var header: GradingPeriod.Header!
+    var searchController: UISearchController!
+    
     var multipleGradingPeriodsEnabled: Bool {
         return (session.enrollmentsDataSource[ContextID(id: courseID, context: .Course)] as? Course)?.multipleGradingPeriodsEnabled ?? false
     }
@@ -102,6 +104,9 @@ class AssignmentsTableViewController: Assignment.TableViewController {
         if multipleGradingPeriodsEnabled {
             header.tableView.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(view.bounds), height: 44)
             tableView.tableHeaderView = header.tableView
+            configureSearchController(header.tableView)
+        } else {
+            configureSearchController(tableView)
         }
     }
 
@@ -115,6 +120,43 @@ class AssignmentsTableViewController: Assignment.TableViewController {
         route(self, assignment.htmlURL)
     }
 
+    private func configureSearchController(table: UITableView) {
+        // Initialize and perform a minimum configuration to the search controller.
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = NSLocalizedString("Search here...", comment: "Placeholder text for search bar on assignments page")
+        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        
+        table.tableHeaderView = searchController.searchBar
+    }
+    
+    private func updateCollections(courseID: String, gradingPeriodID: String?, name: String?) throws {
+        let collection = try self.collection(session, courseID: courseID, gradingPeriodID: gradingPeriodID, name: name)
+        
+        let invalidGradingPeriods = try GradingPeriod.gradingPeriodIDs(session, courseID: courseID, excludingGradingPeriodID: gradingPeriodID)
+        let assignments = try Assignment.refreshSignalProducer(session, courseID: courseID, gradingPeriodID: gradingPeriodID, invalidatingGradingPeriodIDs: invalidGradingPeriods, cacheKey: cacheKey)
+        let grades = try Grade.refreshSignalProducer(session, courseID: courseID, gradingPeriodID: gradingPeriodID).map { _ in () }
+        let sync: SignalProducer<SignalProducer<Void, NSError>, NSError> = SignalProducer(values: [assignments, grades])
+        
+        let key = cacheKey(courseID, gradingPeriodID: gradingPeriodID)
+        let refresher = SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
+        let theSession = self.session
+        
+        prepare(collection, refresher: refresher) { (assignment: Assignment) -> ColorfulViewModel in
+            let dataSource = theSession.enrollmentsDataSource
+            return assignment.colorfulViewModel(dataSource)
+        }
+        
+        // manually show the refresh control because of some bug somewhere
+        if refresher.shouldRefresh  {
+            tableView.contentOffset = CGPoint(x: 0, y: tableView.contentOffset.y - refresher.refreshControl.frame.size.height)
+        }
+        
+        refresher.refresh(false)
+    }
+    
     private func updateCollections(courseID: String, gradingPeriodID: String?) throws {
         let collection = try self.collection(session, courseID: courseID, gradingPeriodID: gradingPeriodID)
 
@@ -143,12 +185,44 @@ class AssignmentsTableViewController: Assignment.TableViewController {
     func collection(session: Session, courseID: String, gradingPeriodID: String?) throws -> FetchedCollection<Assignment> {
         return try Assignment.collectionByDueStatus(session, courseID: courseID, gradingPeriodID: gradingPeriodID)
     }
+    
+    func collection(session: Session, courseID: String, gradingPeriodID: String?, name: String?) throws -> FetchedCollection<Assignment> {
+        return try Assignment.collectionByAssignmentName(session, courseID: courseID, gradingPeriodID: gradingPeriodID, name: name)
+    }
 
     func viewModelFactory(assignment: Assignment) -> ColorfulViewModel {
         let dataSource = session.enrollmentsDataSource
         return assignment.colorfulViewModel(dataSource)
     }
 
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchString = searchController.searchBar.text ?? ""
+        if searchString == "" {
+            return
+        }
+        
+        let fuzzySearchString = self.fuzzySearchStringFormatter(searchString)
+        
+        do {
+            try updateCollections(courseID, gradingPeriodID: header.selectedGradingPeriod.value?.gradingPeriodID, name: fuzzySearchString)
+        } catch let error as NSError {
+            error.presentAlertFromViewController(self)
+        }
+    }
+    
+    private func fuzzySearchStringFormatter(searchString: String) -> String {
+       let searchWithWildcards = NSMutableString(string: "*")
+        
+        searchString.enumerateSubstringsInRange(searchString.startIndex..<searchString.endIndex, options: NSStringEnumerationOptions.ByComposedCharacterSequences, { (substring, substringRange, enclosingRange, stop) -> () in
+            if let substring = substring {
+                searchWithWildcards.appendString(substring)
+                searchWithWildcards.appendString("*")
+            }
+        })
+        
+        return searchWithWildcards as String
+    }
+    
 }
 
 func cacheKey(courseID: String, gradingPeriodID: String?) -> String {
@@ -193,8 +267,9 @@ class GradesTableViewController: AssignmentsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        header.tableView.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(view.bounds), height: header.includeGradingPeriods ? 88 : 44)
+        header.tableView.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(view.bounds), height: header.includeGradingPeriods ? 132 : 88)
         tableView.tableHeaderView = header.tableView
+        configureSearchController(header.tableView)
     }
 
     override func viewModelFactory(assignment: Assignment) -> ColorfulViewModel {

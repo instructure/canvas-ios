@@ -107,7 +107,7 @@ extension GradingPeriod {
         public let includeGradingPeriods: Bool
         public weak var viewController: UIViewController?
         public let grade: MutableProperty<String?>
-
+        
         // Output
         public var selectedGradingPeriod: AnyProperty<GradingPeriodItem?> {
             guard includeGradingPeriods else {
@@ -122,7 +122,7 @@ extension GradingPeriod {
             tableView.delegate = self
             tableView.scrollEnabled = false
             tableView.tableFooterView = UIView(frame: CGRectZero)
-            tableView.estimatedRowHeight = 44
+            tableView.estimatedRowHeight = 44.0
             tableView.rowHeight = UITableViewAutomaticDimension
             return tableView
         }()
