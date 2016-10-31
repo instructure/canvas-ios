@@ -53,11 +53,17 @@ private struct Submission {
             }
             let score = currentScore.doubleValue
             let pointsPossible = self.pointsPossible?.doubleValue ?? 0.0
-            let percentage = Submission.percentFormatter.stringFromNumber(score / pointsPossible)
+            var grade = Submission.percentFormatter.stringFromNumber(score / pointsPossible)
+            if (score > 0 && pointsPossible == 0) {
+                grade = String(format: "(%g/%g)", score, pointsPossible)
+            } else if (score == 0 && pointsPossible == 0) {
+                grade = "(0/0)"
+            }
+            
             if status.contains(.Late) {
-                return String(format: NSLocalizedString("Late: %@", comment: ""), percentage ?? "")
+                return String(format: NSLocalizedString("Late: %@", comment: ""), grade ?? "")
             } else {
-                return String(format: NSLocalizedString("Submitted: %@", comment: ""), percentage ?? "")
+                return String(format: NSLocalizedString("Submitted: %@", comment: ""), grade ?? "")
             }
         } else if status.contains(.Submitted) {
             if status.contains(.Late) {
@@ -79,7 +85,8 @@ private struct Submission {
     var displayVerboseText: String {
         if status.contains(.Graded) && !muted {
             guard let pointsPossible = pointsPossible, score = currentScore else { return self.displayText }
-            let percentage = Submission.percentFormatter.stringFromNumber(score.doubleValue/pointsPossible.doubleValue)
+            let percentage = pointsPossible != 0 ? Submission.percentFormatter.stringFromNumber(score.doubleValue/pointsPossible.doubleValue) : ""
+            
             if status.contains(.Late) {
                 return String(format: NSLocalizedString("Late: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
             } else {
