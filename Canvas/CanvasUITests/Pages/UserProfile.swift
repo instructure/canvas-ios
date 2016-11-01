@@ -1,7 +1,7 @@
 class UserProfile {
 
-    static let domain = "mobileqa.instructure.com"
+    static let domain = ""
 
-    static let student1 = "UIA-iOS-Student1"
-    static let passwordStudent1 = "Q8fx9u-)?uT:wQuE"
+    static let student1 = ""
+    static let passwordStudent1 = ""
 }
