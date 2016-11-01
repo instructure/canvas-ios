@@ -96,8 +96,8 @@ public class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewM
             case .Deleted(let indexPath, _):
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
 
-            case .Reload:
-                tableView.reloadData()
+            default:
+                break
             }
         }
         tableView.endUpdates()

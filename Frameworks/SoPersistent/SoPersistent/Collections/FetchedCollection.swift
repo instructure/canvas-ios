@@ -16,13 +16,15 @@ extension NSIndexPath {
     }
 }
 
-public class FetchedCollection<Model>: NSObject, Collection, SequenceType, NSFetchedResultsControllerDelegate {
+public class FetchedCollection<Model where Model: NSManagedObject>: NSObject, Collection, SequenceType, NSFetchedResultsControllerDelegate {
     public typealias Object = Model
     
     let fetchedResultsController: NSFetchedResultsController
     let titleForSectionTitle: String?->String?
     public var collectionUpdated: [CollectionUpdate<Object>]->() = { _ in print("no one is watching!") }
-    var updateBatch: [CollectionUpdate<Object>] = []
+
+    private var updateBatch: [CollectionUpdate<Object>] = []
+    private var insertedSections = NSMutableIndexSet()
 
     public init(frc: NSFetchedResultsController, titleForSectionTitle: String?->String? = { $0 }) throws {
         self.fetchedResultsController = frc
@@ -39,7 +41,7 @@ public class FetchedCollection<Model>: NSObject, Collection, SequenceType, NSFet
     public var isEmpty: Bool {
         return fetchedResultsController.fetchedObjects?.isEmpty ?? true
     }
-    
+
     public func numberOfSections() -> Int {
         return fetchedResultsController.sections?.count ?? 0
     }
@@ -61,12 +63,14 @@ public class FetchedCollection<Model>: NSObject, Collection, SequenceType, NSFet
     
     public func controllerWillChangeContent(controller: NSFetchedResultsController) {
         updateBatch = []
+        insertedSections.removeAllIndexes()
     }
     
     public func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         switch type {
         case .Insert:
             updateBatch.append(.SectionInserted(sectionIndex))
+            insertedSections.addIndex(sectionIndex)
         case .Delete:
             updateBatch.append(.SectionDeleted(sectionIndex))
         default:
@@ -82,8 +86,18 @@ public class FetchedCollection<Model>: NSObject, Collection, SequenceType, NSFet
         case .Insert:
             updateBatch.append(.Inserted(newIndexPath!.safeCopy, m))
         case .Update:
-            updateBatch.append(.Updated(indexPath!.safeCopy, m))
-            
+            // tl;dr is this is terrible, NSFetchedResultsController is terrible, Apple is terrible
+            // Occassionaly NSFRC reports an Update instead of a Move, as mentioned here: https://developer.apple.com/library/content/releasenotes/iPhone/NSFetchedResultsChangeMoveReportedAsNSFetchedResultsChangeUpdate/index.html
+            // Instead of doing that terrible workaround, someone on SO found that `indexPathForObject` 
+            // reports the new correct location for the object, if it changed sections. So if this were
+            // *really* an update, the sections should be the same. In the case of NSFRC reporting an update
+            // it still passes in a newIndexPath, so you can key off that, and do the right thing (maybe)
+            if let section = fetchedResultsController.indexPathForObject(m)?.section where section == indexPath!.section && !insertedSections.contains(indexPath!.section) {
+                updateBatch.append(.Updated(indexPath!.safeCopy, m))
+            } else if let newIndexPath = newIndexPath where newIndexPath.section != indexPath!.section {
+                updateBatch.append(.Moved(indexPath!.safeCopy, newIndexPath.safeCopy, m))
+            }
+
         case .Move:
             let from = indexPath!.safeCopy
             let to = newIndexPath!.safeCopy
