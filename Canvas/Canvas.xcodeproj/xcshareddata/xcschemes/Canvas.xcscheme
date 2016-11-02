@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Canvas.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "492704911CF4AF7100C631C6"
+               BuildableName = "CanvasUITests.xctest"
+               BlueprintName = "CanvasUITests"
+               ReferencedContainer = "container:Canvas.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -36,16 +50,6 @@
                BlueprintIdentifier = "B1BFE4381D492ABD00ED3887"
                BuildableName = "CanvasTests.xctest"
                BlueprintName = "CanvasTests"
-               ReferencedContainer = "container:Canvas.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "492704911CF4AF7100C631C6"
-               BuildableName = "CanvasUITests.xctest"
-               BlueprintName = "CanvasUITests"
                ReferencedContainer = "container:Canvas.xcodeproj">
             </BuildableReference>
          </TestableReference>

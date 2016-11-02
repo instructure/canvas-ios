@@ -15,17 +15,16 @@ import SoPretty
 public struct ColorfulViewModel: TableViewCellViewModel {
     public let color = MutableProperty(UIColor.prettyGray())
     public let title = MutableProperty("")
-    public let titleAccessibilityIdentifier = MutableProperty<String?>(nil)
     public let titleAccessibilityLabel = MutableProperty<String?>(nil)
     public let detail = MutableProperty("")
-    public let detailAccessibilityIdentifier = MutableProperty<String?>(nil)
     public let icon = MutableProperty<UIImage?>(nil)
     public let accessoryView = MutableProperty<UIView?>(nil)
     public let accessoryType = MutableProperty<UITableViewCellAccessoryType>(.None)
     public let tokenViewText = MutableProperty("")
-    
+    public let accessibilityIdentifier = MutableProperty<String?>(nil)
+
     public let style: ColorfulTableViewCell.Style
-    
+
     public init(style: ColorfulTableViewCell.Style) {
         self.style = style
     }
@@ -33,6 +32,14 @@ public struct ColorfulViewModel: TableViewCellViewModel {
     public func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCellWithIdentifier(style.rawValue) as? ColorfulTableViewCell else { ❨╯°□°❩╯⌢"be sure and call prepareTableView:" }
         cell.viewModel = self
+
+        let indexPathIdentifier = "\(indexPath.section)_\(indexPath.row)"
+        cell.disposable += cell.rac_a11yIdentifier <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_cell_\(indexPathIdentifier)" }
+        cell.disposable += ((cell.tokenCellTitleLabel ?? cell.textLabel)?.rac_a11yIdentifier).map { $0 <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_title_\(indexPathIdentifier)" } }
+        cell.disposable += (cell.detailTextLabel?.rac_a11yIdentifier).map { $0 <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_detail_\(indexPathIdentifier)" } }
+        cell.disposable += (cell.accessoryView?.rac_a11yIdentifier).map { $0 <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_accessory_image_\(indexPathIdentifier)" } }
+        cell.disposable += (cell.imageView?.rac_a11yIdentifier).map { $0 <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_icon_\(indexPathIdentifier)" } }
+
         return cell
     }
     
@@ -82,10 +89,8 @@ public class ColorfulTableViewCell: UITableViewCell {
         
         disposable += (tokenView?.text).map { $0 <~ vm.tokenViewText.producer }
         disposable += ((tokenCellTitleLabel ?? textLabel)?.rac_text).map { $0 <~ vm.title.producer }
-        disposable += ((tokenCellTitleLabel ?? textLabel)?.rac_a11yIdentifier).map { $0 <~ vm.titleAccessibilityIdentifier.producer }
         disposable += ((tokenCellTitleLabel ?? textLabel)?.rac_a11yLabel).map { $0 <~ vm.titleAccessibilityLabel.producer }
         disposable += (detailTextLabel?.rac_text).map { $0 <~ vm.detail.producer }
-        disposable += (detailTextLabel?.rac_a11yIdentifier).map { $0 <~ vm.detailAccessibilityIdentifier.producer }
         disposable += (imageView?.rac_image).map { $0 <~ vm.icon.producer }
         disposable += vm.color.producer.startWithNext { [weak self] color in
             self?.updateColor(color)

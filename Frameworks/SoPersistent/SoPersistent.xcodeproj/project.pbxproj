@@ -67,6 +67,8 @@
 		B1451F6C1C8FD78900E78FCE /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1451F6B1C8FD78900E78FCE /* SessionTests.swift */; };
 		B1451F6E1C8FDE6B00E78FCE /* CollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1451F6D1C8FDE6B00E78FCE /* CollectionTests.swift */; };
 		B1451F701C906B5900E78FCE /* Panda+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1451F6F1C906B5900E78FCE /* Panda+Collections.swift */; };
+		B163987B1DC7BAD200A5B68B /* ColorfulTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B163987A1DC7BAD200A5B68B /* ColorfulTableViewCellTests.swift */; };
+		B163987D1DC7CF8400A5B68B /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B163987C1DC7CF8400A5B68B /* SoIconic.framework */; };
 		B19810891C8F2A370075869B /* LockableModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19810881C8F2A370075869B /* LockableModelTests.swift */; };
 		B198108B1C8F2ACB0075869B /* FetchedCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B198108A1C8F2ACB0075869B /* FetchedCollectionTests.swift */; };
 		B19D625F1CAF087700E16D11 /* SWPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19D625E1CAF087700E16D11 /* SWPerson.swift */; };
@@ -160,6 +162,8 @@
 		B1451F6B1C8FD78900E78FCE /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		B1451F6D1C8FDE6B00E78FCE /* CollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTests.swift; sourceTree = "<group>"; };
 		B1451F6F1C906B5900E78FCE /* Panda+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Panda+Collections.swift"; sourceTree = "<group>"; };
+		B163987A1DC7BAD200A5B68B /* ColorfulTableViewCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorfulTableViewCellTests.swift; sourceTree = "<group>"; };
+		B163987C1DC7CF8400A5B68B /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19810881C8F2A370075869B /* LockableModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockableModelTests.swift; sourceTree = "<group>"; };
 		B198108A1C8F2ACB0075869B /* FetchedCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedCollectionTests.swift; sourceTree = "<group>"; };
 		B19D625E1CAF087700E16D11 /* SWPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWPerson.swift; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B163987D1DC7CF8400A5B68B /* SoIconic.framework in Frameworks */,
 				B1D92AB81C8F366A00EACE5C /* SoPretty.framework in Frameworks */,
 				4934799F1CB45549008D14DD /* DoNotShipThis.framework in Frameworks */,
 				491FC7501C406CCB00550505 /* SoPersistent.framework in Frameworks */,
@@ -424,6 +429,7 @@
 				B1AA93441D6BA0C7004B3226 /* Nimble.framework */,
 				B1AA93451D6BA0C7004B3226 /* Quick.framework */,
 				B1AA93461D6BA0C7004B3226 /* SoAutomated.framework */,
+				B163987C1DC7CF8400A5B68B /* SoIconic.framework */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				B11273C11C922AAD00452060 /* TableViewControllerTests.swift */,
+				B163987A1DC7BAD200A5B68B /* ColorfulTableViewCellTests.swift */,
 			);
 			path = "Table View";
 			sourceTree = "<group>";
@@ -664,6 +671,7 @@
 				B11273BE1C9225BB00452060 /* SimpleCollectionViewController.swift in Sources */,
 				B1D801241C91E665006A1143 /* RefresherTests.swift in Sources */,
 				B1451F621C8F6BD500E78FCE /* Panda.swift in Sources */,
+				B163987B1DC7BAD200A5B68B /* ColorfulTableViewCellTests.swift in Sources */,
 				61EB8D621CF4CCC700E794A4 /* ManagedObjectCountObserverTests.swift in Sources */,
 				B1451F4D1C8F4FA400E78FCE /* ManagedObjectObserverTests.swift in Sources */,
 				B11273C61C922BAA00452060 /* SimpleCollection.swift in Sources */,
