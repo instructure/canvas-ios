@@ -21,4 +21,10 @@ extension DiscussionTopic {
         let request = try DiscussionTopicAPI.getDiscussionTopics(session, courseID: courseID)
         return session.paginatedJSONSignalProducer(request)
     }
+    
+    public static func getDiscussionTopicView(session: Session, contextID: ContextID, topicID: String) -> SignalProducer<JSONObject, NSError> {
+        return attemptProducer {
+            try DiscussionTopicAPI.getDiscussionTopicView(session, contextID: contextID, topicID: topicID)
+            }.flatMap(.Latest, transform: session.JSONSignalProducer)
+    }
 }

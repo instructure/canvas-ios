@@ -25,13 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
-        let courseID = "24219" // Beginning iOS
-        let discussionTopicID = "4417935"
+        let context = ContextID(id: "40", context: .Course)
+        let topicID = "1373"
+        let vc = try! EntriesTableViewController(session: .twilsonStudent2, contextID: context, topicID: topicID)
+        
 
         let navigationController = UINavigationController()
-        let session = Session.ns
-        let vc = try! DiscussionTopicDetailViewController.new(session, courseID: courseID, discussionTopicID: discussionTopicID)
-
         navigationController.viewControllers = [vc]
         window?.rootViewController = navigationController
 

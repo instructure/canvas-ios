@@ -213,6 +213,28 @@ let _eg: Session = {
     
 }()
 
+let _twilsonStudent2: Session = {
+    
+    let user = SessionUser(id: "12",
+                           
+                           name: "student1hahahaha",
+                           
+                           loginID: "student1",
+                           
+                           sortableName: "One, Studenthahahah",
+                           
+                           email: "whoknows@somedomain.whatevs",
+                           
+                           avatarURL: NSURL(string: "https://twilson.instructure.com/files/375/download?download_frd=1&verifier=YUK83UfpkaN815lL5nnl986DIOYjfgIHlfUBCcIz")!)
+    
+    return Session(baseURL: NSURL(string: "https://twilson.instructure.com")!,
+                   
+                   user: user,
+                   
+                   token: "6040~FsPMsaFCsTlUwhrTkshvlP8p1Z2WHDp1763NkXyPiu6Mr3wdDleNYitRiG8fjk25")
+    
+}()
+
 extension Session {
     public static var ivy: Session { return _ivy() }
     public static var art: Session { return _art() }
@@ -227,4 +249,5 @@ extension Session {
     public static var teacher: Session { return _teacher() }
     public static var inMemory: Session { return _inMemory() }
     public static var eg: Session { return _eg }
+    public static var twilsonStudent2: Session { return _twilsonStudent2 }
 }

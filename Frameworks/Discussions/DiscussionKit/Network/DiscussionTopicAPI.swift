@@ -22,4 +22,8 @@ public class DiscussionTopicAPI {
         return try session.GET(path)
     }
     
+    public class func getDiscussionTopicView(session: Session, contextID: ContextID, topicID: String) throws -> NSURLRequest {
+        let path = contextID.apiPath / "discussion_topics" / topicID / "view"
+        return try session.GET(path)
+    }
 }

@@ -23,6 +23,7 @@ public final class DiscussionTopic: NSManagedObject, LockableModel {
     @NSManaged internal (set) public var username: String    // The username of the topic creator
     @NSManaged internal (set) public var htmlURL: NSURL      // The URL to the discussion topic in canvas
     @NSManaged internal (set) public var postedAt: NSDate?   // The datetime if the topic was posted.
+    @NSManaged internal (set) public var isAnnouncement: Bool   // Announcements are just discussions in disguise
 
     @NSManaged private var primitiveType: String
     internal (set) public var type: DiscussionTopicType {
