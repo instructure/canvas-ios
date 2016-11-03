@@ -12,6 +12,14 @@
 @implementation Analytics
 
 + (void)prepare {
+    
+    // Some open source clients might not use this at all
+    NSURL *plistURL = [[NSBundle mainBundle] URLForResource:@"GoogleServices-Info" withExtension:@"plist"];
+    NSDictionary *data = [NSDictionary dictionaryWithContentsOfURL:plistURL];
+    if (!data) {
+        return;
+    }
+    
     // Configure tracker from GoogleService-Info.plist. (included in Canvas Target)
     NSError *configureError;
     [[GGLContext sharedInstance] configureWithError:&configureError];

@@ -121,6 +121,9 @@
       location = "container:Frameworks"
       name = "Frameworks">
       <FileRef
+         location = "group:Secrets/Secrets.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Assignments/Assignments.xcodeproj">
       </FileRef>
       <FileRef

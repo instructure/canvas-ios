@@ -25,6 +25,7 @@
 #import "Router.h"
 
 @import CocoaLumberjack;
+@import Secrets;
 
 #ifdef SNAPSHOT
 #import <SDStatusBarManager.h>
@@ -34,12 +35,8 @@
 @import CocoaLumberjack;
 
 // Crashlytics Keys
-static NSString *const CRASHLYTICS_AGENT_KEY = @"7cf76817b5c71690f9c8655cc366155508371fc6";
 static NSString *const CRASHLYTICS_BASE_URL_KEY = @"DOMAIN";
 static NSString *const CRASHLYTICS_MASQUERADE_USER_ID_KEY = @"MASQUERADE_AS_USER_ID";
-
-// Google Analytics Keys
-static NSString *const GOOGLE_ANALYTICS_APP_ID = @"UA-37592364-3";
 
 @implementation CSGAppDelegate
 
@@ -69,17 +66,7 @@ static NSString *const GOOGLE_ANALYTICS_APP_ID = @"UA-37592364-3";
     [[SDStatusBarManager sharedInstance] enableOverrides];
 #endif
     
-    [PSPDFKit setLicenseKey:@"x3KSCrOk6TpFYgRQ2qZ6dthhmekvQ43Huc65mgNxZEd/ARwoKUwl/9cTL0Dt"
-                             "c0ilxJs6cq2asWom/vswjAA8ftsiuNchhy3n3UGrLln7ycJSqxxvWpNMsAJ8"
-                             "fZDD7WrphgZE5iCd2OLBTvgUX1zsK6K8UXsacan6D/Ws9SCZhbF8Pke9zrAK"
-                             "I83ZCCd2gFvjFVwumNJR69xWTQetOk9RKmHKFKGxpaA0qcsHG3S+d62xoU9w"
-                             "/OMfevBs4tT6CABzkCc7LbxBTmmj/tbdTvLdXaRyTaZS6kkrgxYjGmt8Tl3a"
-                             "FLV5t8Yg2UIrRkHIO1eNTQNEWa3eQDXhIZpSdCwVhil0nNJjdyJFJDok2Cdp"
-                             "+8jNZEkY3NXzA1v4Xpo8Alza7MOj0xz5RvoAF+cW1TVvtCe5aX9CNc5FZ7Uw"
-                             "w4Lw4dEXw9+RuB8Jg3IYzlg5QhOhVGf8gQ5XNtZjZ1f2GjKwAlMjU3YPjzjn"
-                             "HuETRbngPrNvihc0VAIqY1qYC3rTq9M068Pvc9+4weSJmNmrYpUIElTBn6fP"
-                             "YdgAwK8lJ3cLPOj0LJLrrrb1f9PxrbT7lY/8"];
-    
+    [self setupPSPDFKit];
     [self setupGoogleAnalytics];
     [self styleUIElements];
     [self setupLogging];
@@ -139,6 +126,13 @@ static NSString *const GOOGLE_ANALYTICS_APP_ID = @"UA-37592364-3";
     [Fabric with:@[CrashlyticsKit]];
 }
 
+- (void)setupPSPDFKit {
+    NSString *pspdfKitLicenceKey = [Secrets fetch:SecretKeySpeedGraderPSPDFKit];
+    if (pspdfKitLicenceKey) {
+        [PSPDFKit setLicenseKey:pspdfKitLicenceKey];
+    }
+}
+
 - (void)setupCrashlyticsDebugInformation {
     CKIClient *client = TheKeymaster.currentClient;
     
@@ -146,10 +140,8 @@ static NSString *const GOOGLE_ANALYTICS_APP_ID = @"UA-37592364-3";
     // Make sure that we are not adding user data to crash reports
     NSString *baseURLString = [client.baseURL absoluteString];
     if (![baseURLString hasSuffix:@"sfu.ca"]) {
-        CKIUser *user = [client currentUser];
         
-        [[Crashlytics sharedInstance] setUserName:user.name];
-        [[Crashlytics sharedInstance] setUserEmail:user.email];
+        CKIUser *user = [client currentUser];
         [[Crashlytics sharedInstance] setObjectValue:client.actAsUserID forKey:CRASHLYTICS_MASQUERADE_USER_ID_KEY];  // Set this at top of file
         [[Crashlytics sharedInstance] setObjectValue:baseURLString forKey:CRASHLYTICS_BASE_URL_KEY];                 // Set this at top of file
         [[Crashlytics sharedInstance] setUserIdentifier:user.id];
@@ -157,9 +149,13 @@ static NSString *const GOOGLE_ANALYTICS_APP_ID = @"UA-37592364-3";
 }
 
 - (void)setupGoogleAnalytics {
-    [[GAI sharedInstance] trackerWithTrackingId:@"UA-37592364-3"];        // Set this at top of file
-    [[GAI sharedInstance] setTrackUncaughtExceptions:YES];
-    [GAI sharedInstance].dispatchInterval = 120; // in seconds
+    
+    NSString *googleTrackingId = [Secrets fetch:SecretKeySpeedGraderGoogleAnalytics];
+    if (googleTrackingId) {
+        [[GAI sharedInstance] trackerWithTrackingId:googleTrackingId];
+        [[GAI sharedInstance] setTrackUncaughtExceptions:YES];
+        [GAI sharedInstance].dispatchInterval = 120; // in seconds
+    }
 }
 
 - (void)setupLogging

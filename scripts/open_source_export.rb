@@ -25,7 +25,8 @@ targets = [workspace_name,
            'Podfile',
            'Podfile.lock',
            'ExternalFrameworks',
-           'SpeedGrader'] 
+           'SpeedGrader',
+           'secrets.plist']
 
 destination = 'ios-open-source'
 workspace_path = File.join(destination, workspace_name)
@@ -90,6 +91,12 @@ end
 remove_plist_stuff File.join(destination, 'Canvas', 'Canvas', 'Info.plist')
 remove_plist_stuff File.join(destination, 'SpeedGrader', 'SpeedGrader', 'SpeedGrader-Info.plist')
 
+# Strip out all of the keys from our stuff, making an empty template file
+keys_path = File.join(destination, 'secrets.plist')
+keys_hash = Plist::parse_xml(keys_path)
+keys_hash.each { |key, value| keys_hash[key] = '' }
+File.write(keys_path, keys_hash.to_plist)
+
 opensource_files_dir = File.join('opensource', 'files')
 external_frameworks_dir = File.join(destination, 'ExternalFrameworks')
 
@@ -101,5 +108,8 @@ FileUtils.cp File.join(opensource_files_dir, 'EFREADME.md'), File.join(external_
 # Remove PSPDFKit from ExternalFrameworks
 pspdfkit_dir = File.join(external_frameworks_dir, 'PSPDFKit.framework')
 FileUtils.rm_r pspdfkit_dir if File.exists? pspdfkit_dir
+
+# Remove GoogleServices plist
+FileUtils.rm File.join(destination, 'Canvas', 'Canvas', 'Shrug', 'GoogleService-Info.plist')
 
 puts "PRAISE THE SUN IT'S FINISHED"

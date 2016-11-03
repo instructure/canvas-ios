@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C6DC3DA1DC39FDF00F3E8C2 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */; };
+		2C6DC3DB1DC39FDF00F3E8C2 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4902E1251CF4C8890069E043 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 4902E1231CF4C8890069E043 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4902E1261CF4C8890069E043 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 4902E1241CF4C8890069E043 /* Analytics.m */; };
 		490687941D02151E0072DBEA /* PushNotificationPreauthorizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687901D02151E0072DBEA /* PushNotificationPreauthorizationCell.swift */; };
@@ -1090,6 +1092,7 @@
 				492708771CF4C38100C631C6 /* CalendarKit.framework in Embed Frameworks */,
 				4927089D1CF4C38100C631C6 /* TooLegit.framework in Embed Frameworks */,
 				4927087D1CF4C38100C631C6 /* CWStatusBarNotification.framework in Embed Frameworks */,
+				2C6DC3DB1DC39FDF00F3E8C2 /* Secrets.framework in Embed Frameworks */,
 				61681E9F1D58E5410011E75D /* PSPDFKit.framework in Embed Frameworks */,
 				491A66091D9057530092CDE9 /* TBBModal.framework in Embed Frameworks */,
 				491A66071D9057530092CDE9 /* SVProgressHUD.framework in Embed Frameworks */,
@@ -1172,6 +1175,7 @@
 
 /* Begin PBXFileReference section */
 		04620E9714197D5A7E2A2FBF /* Pods_TechDebt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TechDebt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		396B37BFEED26519D8237DA7 /* Pods_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E3C1D72C08DB705A5532B30 /* Pods-Canvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.release.xcconfig"; sourceTree = "<group>"; };
 		4902E1231CF4C8890069E043 /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
@@ -2194,6 +2198,7 @@
 				492708801CF4C38100C631C6 /* FileKit.framework in Frameworks */,
 				492704B21CF4B6D700C631C6 /* TechDebt.framework in Frameworks */,
 				492708841CF4C38100C631C6 /* Marshal.framework in Frameworks */,
+				2C6DC3DA1DC39FDF00F3E8C2 /* Secrets.framework in Frameworks */,
 				4927087A1CF4C38100C631C6 /* CocoaLumberjack.framework in Frameworks */,
 				61681E9E1D58E5410011E75D /* PSPDFKit.framework in Frameworks */,
 				4927088E1CF4C38100C631C6 /* ReactiveCocoa.framework in Frameworks */,
@@ -3167,6 +3172,7 @@
 		4927085D1CF4C33700C631C6 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */,
 				61F8ED851D999EFD00DFAC6E /* SoIconic.framework */,
 				491A66011D9057410092CDE9 /* Masonry.framework */,
 				491A66021D9057410092CDE9 /* SVProgressHUD.framework */,

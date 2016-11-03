@@ -12,6 +12,7 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "EasyAlertView.h"
 
+@import Secrets;
 @import CanvasKeymaster;
 
 // debugging launch arguments
@@ -85,10 +86,13 @@ static RatingsController *_ratingsController;
 
 /** Open up our own app in the app store*/
 -(void)gotoAppStore{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms://itunes.apple.com/us/app/canvas-by-instructure/id480883488?mt=8"]];
+    NSString *stringURL = [Secrets fetch:SecretKeyCanvasAppStore];
+    if (stringURL) {
+        NSURL *url = [NSURL URLWithString:stringURL];
+        [[UIApplication sharedApplication] openURL:url];
+    }
 }
 
-/** Submit feedback through zendesk*/
 -(void)submitFeedback{
     self.alertView.view.hidden = YES;
     

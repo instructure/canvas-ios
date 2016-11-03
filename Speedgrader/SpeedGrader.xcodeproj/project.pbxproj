@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C6DC3DD1DC3A31100F3E8C2 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3DC1DC3A31100F3E8C2 /* Secrets.framework */; };
+		2C6DC3DE1DC3A31100F3E8C2 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3DC1DC3A31100F3E8C2 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E0FECA61A1E683D00B612F2 /* actionscript.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0FEC521A1E683D00B612F2 /* actionscript.plist */; };
 		5E0FECA71A1E683D00B612F2 /* actionscript3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0FEC531A1E683D00B612F2 /* actionscript3.plist */; };
 		5E0FECA81A1E683D00B612F2 /* active4d.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0FEC541A1E683D00B612F2 /* active4d.plist */; };
@@ -334,6 +336,7 @@
 				61C2E9921DAD454700073F62 /* EnrollmentKit.framework in Embed Frameworks */,
 				61C2E9981DAD45B100073F62 /* SoIconic.framework in Embed Frameworks */,
 				61C2E96B1DAD42F000073F62 /* AFNetworking.framework in Embed Frameworks */,
+				2C6DC3DE1DC3A31100F3E8C2 /* Secrets.framework in Embed Frameworks */,
 				6145A4C41DAC3DA400DFE0AA /* CanvasKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -343,6 +346,7 @@
 
 /* Begin PBXFileReference section */
 		292EF160D866B939F89B3665 /* Pods-SpeedGrader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpeedGrader.release.xcconfig"; path = "../Pods/Target Support Files/Pods-SpeedGrader/Pods-SpeedGrader.release.xcconfig"; sourceTree = "<group>"; };
+		2C6DC3DC1DC3A31100F3E8C2 /* Secrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EFD6FE90AB70B68AA8EB761 /* Pods-SpeedGrader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpeedGrader.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-SpeedGrader/Pods-SpeedGrader.debug.xcconfig"; sourceTree = "<group>"; };
 		53E37FFA1C18C3392E83CCCB /* Pods-SpeedGrader.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpeedGrader.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-SpeedGrader/Pods-SpeedGrader.beta.xcconfig"; sourceTree = "<group>"; };
 		5711250E217919EA115D2348 /* libPods-SpeedGraderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpeedGraderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1911,6 +1915,7 @@
 				613A9D5C1DAC5C3100AB4C6D /* TooLegit.framework in Frameworks */,
 				61C2E9A01DAD463000073F62 /* Reachability.framework in Frameworks */,
 				61C2E99A1DAD45D300073F62 /* SoProgressive.framework in Frameworks */,
+				2C6DC3DD1DC3A31100F3E8C2 /* Secrets.framework in Frameworks */,
 				6145A4C51DAC430800DFE0AA /* Pods_SpeedGrader.framework in Frameworks */,
 				61C2E99D1DAD460900073F62 /* Mantle.framework in Frameworks */,
 				61C2E9761DAD43B400073F62 /* Kingfisher.framework in Frameworks */,
@@ -2441,6 +2446,7 @@
 		6145A49A1DAC2F9300DFE0AA /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				2C6DC3DC1DC3A31100F3E8C2 /* Secrets.framework */,
 				61C2E99F1DAD462A00073F62 /* Reachability.framework */,
 				61C2E99C1DAD45FB00073F62 /* Mantle.framework */,
 				61C2E9991DAD45CE00073F62 /* SoProgressive.framework */,

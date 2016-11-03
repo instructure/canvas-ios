@@ -30,8 +30,6 @@
     NSString *baseURLString = [client.baseURL absoluteString];
     if (![baseURLString hasSuffix:@"sfu.ca"]) {
         CKIUser *user = [[CKIClient currentClient] currentUser];
-        [[Crashlytics sharedInstance] setUserName:user.name];
-        [[Crashlytics sharedInstance] setUserEmail:user.email];
         [[Crashlytics sharedInstance] setObjectValue:[CKIClient currentClient].actAsUserID forKey:kCrashlyticsMasqueradeAsUserID];
         [[Crashlytics sharedInstance] setObjectValue:baseURLString forKey:kCrashlyticsBaseURLKey];
         [[Crashlytics sharedInstance] setUserIdentifier:user.id];
