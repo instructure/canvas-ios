@@ -197,9 +197,6 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
 
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchString = searchController.searchBar.text ?? ""
-        if searchString == "" {
-            return
-        }
         
         let fuzzySearchString = self.fuzzySearchStringFormatter(searchString)
         
