@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CA548331DCB8CDF00A05E0F /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BE5A511D95B85200292757 /* Eureka.framework */; };
 		2CCDE39C1DAC0BB100B46D87 /* NSBundle+SoSupportive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCDE39B1DAC0BB100B46D87 /* NSBundle+SoSupportive.swift */; };
 		49BE5A381D95A7CB00292757 /* DeviceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5F9B561D2ECE0D0034207D /* DeviceKit.framework */; };
 		49BE5A391D95A7CB00292757 /* DeviceKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5F9B561D2ECE0D0034207D /* DeviceKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -190,6 +191,7 @@
 				5E5F9B441D2EC2BF0034207D /* TooLegit.framework in Frameworks */,
 				5E7949641D1C711B005FD5C0 /* SoLazy.framework in Frameworks */,
 				5E4C23531D26B28200238215 /* SoPretty.framework in Frameworks */,
+				2CA548331DCB8CDF00A05E0F /* Eureka.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
