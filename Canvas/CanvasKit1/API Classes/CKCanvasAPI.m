@@ -57,6 +57,8 @@
 #import "CKMediaServer.h"
 #import "CKRubricAssessment.h"
 
+@import AFNetworking;
+
 // TODO: probably should turn this into a dictionary of domain=>api_key
 #define PROD_CLIENT_ID @"4"
 #define PROD_CLIENT_SECRET @"5m6iCvv5dKhia4u3bS2XkmCYHtSkmjk9"
@@ -97,6 +99,10 @@ StringConstant(CKCanvasAPIProtocolKey);
 StringConstant(CKCanvasUserInfoVersionKey);
 
 #pragma mark - Helper categories
+
+
+@interface CKCanvasAPIResponseParser : AFHTTPResponseSerializer
+@end
 
 @interface CKContextInfo (URLRouting)
 @property (readonly) NSString * typeComponentForURLs;
@@ -3911,6 +3917,23 @@ NSString * const CKAPIConversationScopeArchived = @"archived";
 
 - (void)uploadFileAtPath:(NSString *)path ofMediaType:(CKAttachmentMediaType)mediaType withToken:(NSString *)token sessionId:(NSString *)sessionId block:(CKSimpleBlock)block
 {
+    NSURL *pathURL = [NSURL fileURLWithPath:path];
+    NSNumber *fileSizeValue = nil;
+    NSError *fileSizeError = nil;
+    NSInteger maxFileSize = 524288000; // 500 MB
+    
+    [pathURL getResourceValue:&fileSizeValue forKey:NSURLFileSizeKey error:&fileSizeError];
+    if (fileSizeValue.integerValue > maxFileSize) {
+        
+        NSByteCountFormatter *formatter = [NSByteCountFormatter new];
+        NSString *template = NSLocalizedString(@"The file you are trying to uploading is %@, but the maximum size is %@.", @"Error description when a user tries to upload a file that's too big");
+        NSString *errorDescription = [NSString localizedStringWithFormat:template, [formatter stringFromByteCount:fileSizeValue.longLongValue], [formatter stringFromByteCount:maxFileSize]];
+        NSDictionary* userInfo = @{NSLocalizedDescriptionKey: errorDescription};
+        NSError *error = [NSError errorWithDomain:CKCanvasErrorDomain code:1 userInfo:userInfo];
+        block(error, nil);
+        return;
+    }
+    
     // POST http://www.kaltura.com/api_v3/index.php?service=uploadtoken&action=upload
     // (multipart body:)
     // ks=blah
@@ -3919,38 +3942,43 @@ NSString * const CKAPIConversationScopeArchived = @"archived";
     // response: <?xml version="1.0" encoding="utf-8"?><xml><result><objectType>KalturaUploadToken</objectType><id>0_5e929ce09b1155753a3921e78d65e992</id><partnerId>156652</partnerId><userId>231890_10</userId><status>2</status><fileName>2010-07-19 13:20:06 -0600.mov</fileName><fileSize></fileSize><uploadedFileSize>213603</uploadedFileSize><createdAt>1279570943</createdAt><updatedAt>1279571114</updatedAt></result><executionTime>0.051121950149536</executionTime></xml>
     NSURL *url = [self.mediaServer apiURLUpload];
     
-    NSString *boundary = @"---------------------------3klfenalksjflkjoi9auf89eshajsnl3kjnwal";
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-    
-    NSMutableData *body = [NSMutableData data];
-    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"ks\"\r\n\r\n%@", sessionId] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"uploadTokenId\"\r\n\r\n%@", token] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    if (mediaType == CKAttachmentMediaTypeAudio) {
-        [body appendData:[@"Content-Disposition: form-data; name=\"fileData\"; filename=\"audiocomment.wav\"\r\nContent-Type: audio/x-aiff\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    else {
-        [body appendData:[@"Content-Disposition: form-data; name=\"fileData\"; filename=\"videocomment.mp4\"\r\nContent-Type: video/mp4\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    [body appendData:[NSData dataWithContentsOfFile:path]];
-    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    
     block = [block copy];
-    [self runForURL:url
-            options:@{CKAPIHTTPMethodKey: @"POST",
-                     CKAPIHTTPBodyDataKey: body,
-                     CKAPIShouldIgnoreCacheKey: @YES,
-                     CKAPIHTTPHeadersKey: @{@"Content-Type": contentType},
-                     CKAPIProgressNotificationObjectKey: path}
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error != nil) {
-            NSLog(@"Error uploading media comment: %@", error);
-            block(error, isFinalValue);
-            return;
+    
+    NSDictionary *options = @{CKAPIHTTPMethodKey: @"POST",
+                              CKAPIShouldIgnoreCacheKey: @YES,
+                              CKAPIProgressNotificationObjectKey: path};
+    
+    NSMutableURLRequest *request = [self mutableRequestForURL:url options:options];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [CKCanvasAPIResponseParser new];
+    NSString *stringURL = request.URL.absoluteString;
+    [manager POST:stringURL parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        [formData appendPartWithFormData:[sessionId dataUsingEncoding:NSUTF8StringEncoding] name:@"ks"];
+        [formData appendPartWithFormData:[token dataUsingEncoding:NSUTF8StringEncoding] name:@"uploadTokenId"];
+        
+        if (mediaType == CKAttachmentMediaTypeAudio) {
+            [formData appendPartWithFileURL:pathURL name:@"fileData" fileName:@"audiocomment.wav" mimeType:@"audio/x-aiff" error:nil];
         }
+        else {
+            
+            [formData appendPartWithFileURL:pathURL name:@"fileData" fileName:@"videocomment.mp4" mimeType:@"video/mp4" error:nil];
+        }
+        
+    } progress:^(NSProgress *progress) {
+        
+        NSDictionary *info = @{CKCanvasURLConnectionProgressPercentageKey: @(progress.fractionCompleted),
+                               CKCanvasURLConnectionProgressCurrentBytesKey: @(progress.completedUnitCount),
+                               CKCanvasURLConnectionProgressExpectedBytesKey: @(progress.totalUnitCount)};
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:CKCanvasURLConnectionProgressNotification
+                                                            object:path
+                                                          userInfo:info];
+        
+    } success:^(NSURLSessionDataTask *task, CKCanvasAPIResponse *apiResponse) {
+        
+        BOOL isFinalValue = YES;
         
         // Verify that the returned token id is the same. If it is, we assume the upload succeeded.
         CXMLDocument *doc = [apiResponse XMLValue];
@@ -3976,6 +4004,13 @@ NSString * const CKAPIConversationScopeArchived = @"archived";
         }
         
         block(nil, isFinalValue);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error uploading media comment: %@", error);
+            block(error, YES);
+            return;
+        }
     }];
 }
 
@@ -4305,6 +4340,18 @@ NSString *CKDownloadsInProgressDirectory(void)
         
         completion(error, array, paginationInfo);
     }];
+}
+
+@end
+
+@implementation CKCanvasAPIResponseParser
+
+- (id)responseObjectForResponse:(NSURLResponse *)response data:(NSData *)data error:(NSError *__autoreleasing  _Nullable *)error {
+    if (![response isKindOfClass:[NSHTTPURLResponse class]]) {
+        return nil;
+    }
+    
+    return [[CKCanvasAPIResponse alloc] initWithResponse:(NSHTTPURLResponse *)response data:data];
 }
 
 @end

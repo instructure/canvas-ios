@@ -122,7 +122,9 @@ extension NSError {
             alertDismissed?()
         }))
         
-        viewController.presentViewController(alert, animated: true, completion: nil)
+        dispatch_async(dispatch_get_main_queue()) {
+            viewController.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     public var reportDescription: String {

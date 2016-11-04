@@ -43,7 +43,7 @@
 {
     NSString *apiString = @"/api_v3/index.php?service=uploadtoken&action=add";
     NSString *apiAbsoluteString = [[self.domain host] stringByAppendingPathComponent:apiString];
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@",[self.domain scheme], apiAbsoluteString];
+    NSString *urlString = [NSString stringWithFormat:@"https://%@", apiAbsoluteString];
     return [NSURL URLWithString:urlString];
 }
 
@@ -51,7 +51,7 @@
 {
     NSString *apiString = @"/api_v3/index.php?service=uploadtoken&action=upload";
     NSString *apiAbsoluteString = [[self.domain host] stringByAppendingPathComponent:apiString];
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@",[self.domain scheme], apiAbsoluteString];
+    NSString *urlString = [NSString stringWithFormat:@"https://%@", apiAbsoluteString];
     return [NSURL URLWithString:urlString];
 }
 
@@ -59,7 +59,7 @@
 {
     NSString *apiString = @"/api_v3/index.php?service=media&action=addFromUploadedFile";
     NSString *apiAbsoluteString = [[self.domain host] stringByAppendingPathComponent:apiString];
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@",[self.domain scheme], apiAbsoluteString];
+    NSString *urlString = [NSString stringWithFormat:@"https://%@", apiAbsoluteString];
     return [NSURL URLWithString:urlString];
 }
 

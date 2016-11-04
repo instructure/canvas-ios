@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C7205341DC8F1940095FA0A /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4985D3BC1CFE354D00BA3685 /* AFNetworking.framework */; };
 		2C6DC3DA1DC39FDF00F3E8C2 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */; };
 		2C6DC3DB1DC39FDF00F3E8C2 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4902E1251CF4C8890069E043 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 4902E1231CF4C8890069E043 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2273,6 +2274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49A04DAD1CF4F65D0051E1E7 /* libxml2.tbd in Frameworks */,
+				2C7205341DC8F1940095FA0A /* AFNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

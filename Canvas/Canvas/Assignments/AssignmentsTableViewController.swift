@@ -142,11 +142,10 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         
         let key = cacheKey(courseID, gradingPeriodID: gradingPeriodID)
         let refresher = SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
-        let theSession = self.session
         
-        prepare(collection, refresher: refresher) { (assignment: Assignment) -> ColorfulViewModel in
-            let dataSource = theSession.enrollmentsDataSource
-            return assignment.colorfulViewModel(dataSource)
+        prepare(collection, refresher: refresher) { [weak self] (assignment: Assignment) -> ColorfulViewModel in
+            guard let me = self else { return ColorfulViewModel(style: .Basic) }
+            return me.viewModelFactory(assignment)
         }
         
         // manually show the refresh control because of some bug somewhere
