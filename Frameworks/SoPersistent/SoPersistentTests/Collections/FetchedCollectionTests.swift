@@ -137,7 +137,7 @@ class FetchedCollectionTests: XCTestCase {
                 it("notifies collectionUpdated") {
                     beforeEach()
                     let expectation = self.expectationWithDescription("section was inserted")
-                    collection.collectionUpdated = { updates in
+                    collection.collectionUpdates.observeNext { updates in
                         for update in updates {
                             if case .SectionInserted(let s) = update where s == 3 {
                                 expectation.fulfill()
@@ -167,7 +167,7 @@ class FetchedCollectionTests: XCTestCase {
                 it("notifies collectionUpdated") {
                     beforeEach()
                     let expectation = self.expectationWithDescription("section was deleted")
-                    collection.collectionUpdated = { updates in
+                    collection.collectionUpdates.observeNext { updates in
                         for update in updates {
                             if case .SectionDeleted(let s) = update where s == 3 {
                                 expectation.fulfill()
@@ -201,7 +201,7 @@ class FetchedCollectionTests: XCTestCase {
                     let expectedIndexPath = NSIndexPath(forRow: 1, inSection: 0)
                     let expectation = self.expectationWithDescription("object was inserted")
                     let newObject = Panda.build(childContext, name: "Alpha")
-                    collection.collectionUpdated = { updates in
+                    collection.collectionUpdates.observeNext { updates in
                         for update in updates {
                             if case .Inserted(let indexPath, let m) = update
                                 where indexPath == expectedIndexPath && m == newObject {
@@ -221,7 +221,7 @@ class FetchedCollectionTests: XCTestCase {
                     beforeEach()
                     let updatedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
                     let expectation = self.expectationWithDescription("object was updated")
-                    collection.collectionUpdated = { updates in
+                    collection.collectionUpdates.observeNext { updates in
                         for update in updates {
                             if case .Updated(let ip, let m) = update
                                 where ip == updatedIndexPath &&  m.name == "Another 'A' name" {
@@ -243,7 +243,7 @@ class FetchedCollectionTests: XCTestCase {
                     let originalIndexPath = NSIndexPath(forRow: 1, inSection: 2)
                     let updatedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
                     let expectation = self.expectationWithDescription("object was moved")
-                    collection.collectionUpdated = { updates in
+                    collection.collectionUpdates.observeNext { updates in
                         for update in updates {
                             if case .Moved(let i, let ii, let m) = update
                                 where i == originalIndexPath && ii == updatedIndexPath && m.name == "Aapple" {
@@ -264,7 +264,7 @@ class FetchedCollectionTests: XCTestCase {
                     beforeEach()
                     let deletedIndexPath = NSIndexPath(forRow: 1, inSection: 0)
                     let expectation = self.expectationWithDescription("object was deleted")
-                    collection.collectionUpdated = { updates in
+                    collection.collectionUpdates.observeNext { updates in
                         for update in updates {
                             if case .Deleted(let i, let m) = update where i == deletedIndexPath && m.name == one.name {
                                 expectation.fulfill()

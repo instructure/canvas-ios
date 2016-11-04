@@ -18,6 +18,7 @@
     
 
 import UIKit
+import ReactiveCocoa
 
 @objc
 public protocol TableViewDataSource: NSObjectProtocol, UITableViewDataSource {
@@ -31,6 +32,7 @@ public class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewM
     public let collection: C
     public let viewModelFactory: C.Object->VM
     public var collectionDidChange: (Void)->Void = { }
+    private var disposable: Disposable?
 
     weak var tableView: UITableView? {
         didSet {
@@ -45,10 +47,10 @@ public class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewM
         self.viewModelFactory = viewModelFactory
         super.init()
 
-        collection.collectionUpdated = { [weak self] updates in
+        disposable = collection.collectionUpdates.observeNext { [weak self] updates in
             self?.processUpdates(updates)
             self?.collectionDidChange()
-        }
+        }.map(ScopedDisposable.init)
     }
 
     public func viewDidLoad(controller: UITableViewController) {

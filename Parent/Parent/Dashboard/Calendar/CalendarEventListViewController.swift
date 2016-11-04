@@ -23,6 +23,7 @@ import TooLegit
 import EnrollmentKit
 import SoLazy
 import Airwolf
+import ReactiveCocoa
 
 typealias CalendarEventListSelectCalendarEventAction = (session: Session, observeeID: String, calendarEvent: CalendarEvent)->Void
 
@@ -101,13 +102,18 @@ class CalendarEventListViewController: UITableViewController {
         CalendarEventCellViewModel.tableViewDidLoad(tableView)
         tableView.registerNib(UINib(nibName: "EmptyCalendarEventCell", bundle: NSBundle(forClass: AppDelegate.self)), forCellReuseIdentifier: "EmptyCalendarEventCell")
     }
+    
+    private var courseUpdatesDisposable: Disposable?
+    private var eventUpdatesDisposable: Disposable?
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        courseCollection?.collectionUpdated = { [unowned self] _ in
-            self.updateData()
-        }
+        courseUpdatesDisposable = courseCollection?.collectionUpdates
+            .observeOn(UIScheduler())
+            .observeNext { [unowned self] _ in
+                self.updateData()
+            }.map(ScopedDisposable.init)
         self.updateData()
     }
 
@@ -129,9 +135,11 @@ class CalendarEventListViewController: UITableViewController {
         
         self.refresher?.refresh(false)
         self.updateEmptyView()
-        collection.collectionUpdated = { [unowned self] updates in
-            self.processUpdates(updates)
-        }
+        eventUpdatesDisposable = collection.collectionUpdates
+            .observeOn(UIScheduler())
+            .observeNext { [unowned self] updates in
+                self.processUpdates(updates)
+            }.map(ScopedDisposable.init)
     }
 
     // ---------------------------------------------

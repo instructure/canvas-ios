@@ -57,14 +57,16 @@ class EnrollmentCardCell: EnrollmentCollectionViewCell {
             refresher?.refresh(false)
         }
     }
+    private var shortcutsDisposable: Disposable?
     var shortcutsCollection: FetchedCollection<Tab>? {
         didSet {
-            oldValue?.collectionUpdated = {_ in }
-            shortcutsCollection?.collectionUpdated = { [weak self] _ in
-                if let me = self {
-                    me.updateShortcuts()
-                }
-            }
+            shortcutsDisposable = shortcutsCollection?.collectionUpdates
+                .observeOn(UIScheduler())
+                .observeNext { [weak self] _ in
+                    if let me = self {
+                        me.updateShortcuts()
+                    }
+                }.map(ScopedDisposable.init)
             updateShortcuts()
         }
     }

@@ -34,7 +34,7 @@ let kitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem l
 // ---------------------------------------------
 extension Session {
     func todosManagedObjectContext() throws -> NSManagedObjectContext {
-        guard let model = NSManagedObjectModel(named: kitModelName, inBundle: NSBundle(forClass: Todo.self))?.mutableCopy() as? NSManagedObjectModel else {
+        guard let model = NSManagedObjectModel(named: kitModelName, inBundle: NSBundle(forClass: Todo.self)) else {
             throw NSError(subdomain: kitSubdomain, code: kitFailedToLoadErrorCode, title: kitFailedToLoadErrorDescription, description: kitDBFailedToLoadErrorDescription)
         }
 

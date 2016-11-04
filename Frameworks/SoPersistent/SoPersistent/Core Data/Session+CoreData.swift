@@ -90,6 +90,7 @@ extension Session {
         let contextsByStoreID = self.contextsByStoreID
         guard let context = contextsByStoreID[id.storeName] as? NSManagedObjectContext else {
             let storeURL = localStoreDirectoryURL.URLByAppendingPathComponent("\(id.storeName).sqlite")
+            print(storeURL)
 
             do {
                 let context = try NSManagedObjectContext(storeURL: storeURL!, model: id.model, concurrencyType: .MainQueueConcurrencyType, storeType: storeType) {

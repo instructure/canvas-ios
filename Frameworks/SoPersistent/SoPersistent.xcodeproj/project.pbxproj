@@ -16,6 +16,7 @@
 		491FC76C1C406E5A00550505 /* NSSortDescriptor+SoPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491FC76B1C406E5A00550505 /* NSSortDescriptor+SoPersistent.swift */; };
 		491FC7731C406F1200550505 /* SyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491FC7721C406F1200550505 /* SyncOperation.swift */; };
 		491FC7751C4070BE00550505 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491FC7741C4070BE00550505 /* SoLazy.framework */; };
+		492560E31DB169EB0046A163 /* ManagedObjectsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492560E21DB169EB0046A163 /* ManagedObjectsObserver.swift */; };
 		4925F9861C92128B00C55BD5 /* ManagedObjectContextScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4925F9851C92128B00C55BD5 /* ManagedObjectContextScheduler.swift */; };
 		4928EBE41C84DF2400799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBE31C84DF2400799E04 /* Marshal.framework */; };
 		4934799F1CB45549008D14DD /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4934799E1CB45549008D14DD /* DoNotShipThis.framework */; };
@@ -85,7 +86,6 @@
 		B1F820E21CEBD2B4006EC0BC /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820E11CEBD2B4006EC0BC /* Factories.swift */; };
 		B1F820E41CEBD421006EC0BC /* Session+SoPersistentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820E31CEBD421006EC0BC /* Session+SoPersistentTests.swift */; };
 		B526E3491D8CAA32008DA358 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B526E3461D8CAA32008DA358 /* Localizable.strings */; };
-		B526E34A1D8CAA32008DA358 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491FC74A1C406CCB00550505 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +111,7 @@
 		491FC76B1C406E5A00550505 /* NSSortDescriptor+SoPersistent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSSortDescriptor+SoPersistent.swift"; sourceTree = "<group>"; };
 		491FC7721C406F1200550505 /* SyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncOperation.swift; sourceTree = "<group>"; };
 		491FC7741C4070BE00550505 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		492560E21DB169EB0046A163 /* ManagedObjectsObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectsObserver.swift; sourceTree = "<group>"; };
 		4925F9851C92128B00C55BD5 /* ManagedObjectContextScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContextScheduler.swift; sourceTree = "<group>"; };
 		4928EBE31C84DF2400799E04 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4934799E1CB45549008D14DD /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DoNotShipThis.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Vanilla-hetxifhysflutvhgkjdeujziyhst/Build/Products/Debug-iphoneos/DoNotShipThis.framework"; sourceTree = "<group>"; };
@@ -313,6 +314,7 @@
 				61EB8D5D1CF4C76400E794A4 /* ManagedObjectCountObserver.swift */,
 				49CF63FE1C690F4500CA2EEA /* Session+CoreData.swift */,
 				4925F9851C92128B00C55BD5 /* ManagedObjectContextScheduler.swift */,
+				492560E21DB169EB0046A163 /* ManagedObjectsObserver.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -596,7 +598,6 @@
 			files = (
 				B526E3491D8CAA32008DA358 /* Localizable.strings in Resources */,
 				61AC4EBF1CD01D2C005CD8B3 /* ColorfulTableViewCellBasic.xib in Resources */,
-				B526E34A1D8CAA32008DA358 /* Info.plist in Resources */,
 				61AC4EC11CD01D2C005CD8B3 /* ColorfulTableViewCellSubtitle.xib in Resources */,
 				ACBB94781CF766D500D8808E /* ColorfulTableViewCellBasicToken.xib in Resources */,
 				61AC4EC01CD01D2C005CD8B3 /* ColorfulTableViewCellRightDetail.xib in Resources */,
@@ -633,6 +634,7 @@
 				491FC7731C406F1200550505 /* SyncOperation.swift in Sources */,
 				614359E81C6A343B00F47A91 /* ManagedObjectObserver.swift in Sources */,
 				49893A111C8E289800A8CFBA /* TableViewController.swift in Sources */,
+				492560E31DB169EB0046A163 /* ManagedObjectsObserver.swift in Sources */,
 				49895F061C46F5C9002A16EC /* LockableModel.swift in Sources */,
 				49893A091C8E280F00A8CFBA /* FetchedCollection.swift in Sources */,
 				49893A0D1C8E282400A8CFBA /* Collection.swift in Sources */,

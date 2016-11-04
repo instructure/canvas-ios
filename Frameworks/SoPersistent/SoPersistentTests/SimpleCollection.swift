@@ -19,13 +19,15 @@
 
 import Foundation
 import SoPersistent
+import ReactiveCocoa
+import Result
 
 class SimpleCollection: Collection {
     struct CollectionItem {}
 
     typealias Object = CollectionItem
 
-    var collectionUpdated: [CollectionUpdate<CollectionItem>] -> () = { _ in }
+    var collectionUpdates: Signal<[CollectionUpdate<CollectionItem>], NoError> { return .empty }
 
     init() {}
 
@@ -44,4 +46,6 @@ class SimpleCollection: Collection {
     subscript(indexPath: NSIndexPath) -> CollectionItem {
         return CollectionItem()
     }
+    
+    
 }

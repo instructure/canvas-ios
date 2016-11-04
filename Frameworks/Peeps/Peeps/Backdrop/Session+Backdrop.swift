@@ -59,15 +59,15 @@ extension Session {
     public func backdropPhoto(completion: (UIImage?) -> ()) {
         backdropPhoto
             .observeOn(UIScheduler())
-            .startWithNext(completion)
+            .startWithResult { completion($0.value!) }
     }
     
     public func updateBackdropFileFromServer(completed: Bool->()) {
         getBackdropOnServer(self)
             .observeOn(UIScheduler())
             .on(failed: { err in print(err.debugDescription); completed(false) })
-            .startWithNext { [weak self] file in
-                self?.backdropFile = file
+            .startWithResult { [weak self] result in
+                self?.backdropFile = result.value!
                 completed(true)
             }
     }

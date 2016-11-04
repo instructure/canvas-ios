@@ -52,6 +52,7 @@ public class StudentSettingsViewController : FormViewController {
     var studentObserver: ManagedObjectObserver<Student>?
     private var collection: FetchedCollection<AlertThreshold>?
     var thresholdsRefresher: Refresher?
+    private var observeUpdatesDisposable: Disposable?
 
     // ---------------------------------------------
     // MARK: - Initializers
@@ -71,9 +72,11 @@ public class StudentSettingsViewController : FormViewController {
         controller.studentObserver = try! Student.observer(session, studentID: studentID)
 
         controller.collection = try! AlertThreshold.collectionOfAlertThresholds(session, studentID: studentID)
-        controller.collection?.collectionUpdated = { updates in
-            controller.updateValues()
-        }
+        controller.observeUpdatesDisposable = controller.collection?.collectionUpdates
+            .observeOn(UIScheduler())
+            .observeNext { updates in
+                controller.updateValues()
+            }.map(ScopedDisposable.init)
 
         return controller
     }

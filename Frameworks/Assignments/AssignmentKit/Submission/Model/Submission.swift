@@ -27,6 +27,7 @@ public final class Submission: SubmissionEvent {
     @NSManaged internal (set) public var userID: String
     @NSManaged internal (set) public var courseID: String?
     @NSManaged internal (set) public var attempt: Int32
+    @NSManaged internal (set) public var submittedAt: NSDate?
     
     @NSManaged internal (set) public var late: Bool
     @NSManaged internal (set) public var excused: Bool
@@ -118,6 +119,8 @@ extension Submission: SynchronizedModel {
         dateGraded              = try json <| "graded_at"
         score                   = try json <| "score" ?? 0.0
         grade                   = try json <| "grade"
+        
+        submittedAt             = try (try json <| "submitted_at") ?? (try json <| "finished_at")
 
         if let rubricAssessmentsJSON: JSONObject = try json <| "rubric_assessment" {
             for (_, assessment) in rubricAssessmentsJSON.enumerate() {

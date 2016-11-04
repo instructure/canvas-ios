@@ -114,6 +114,8 @@ public class CalendarMonthViewController: UIViewController, CalendarViewDelegate
         return controller
     }
 
+    private var favCoursesDisposable: Disposable?
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -130,9 +132,11 @@ public class CalendarMonthViewController: UIViewController, CalendarViewDelegate
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["view": calendarView]))
 
         favCoursesCollection = try! Course.favoritesCollection(session)
-        favCoursesCollection.collectionUpdated = { [unowned self] _ in
-            self.updateCalendarEvents()
-        }
+        favCoursesDisposable = favCoursesCollection.collectionUpdates
+            .observeOn(UIScheduler())
+            .observeNext { [weak self] _ in
+                self?.updateCalendarEvents()
+            }
 
         updateCalendarEvents()
     }
@@ -264,6 +268,8 @@ public class CalendarMonthViewController: UIViewController, CalendarViewDelegate
         self.refresher?.refresh(forced)
     }
 
+    private var eventsDisposable: Disposable?
+    
     func updateCalendarEvents() {
         let startDate = NSDate().dateByAddingTimeInterval(-365.days)
         let endDate = NSDate().dateByAddingTimeInterval(365.days)
@@ -271,9 +277,11 @@ public class CalendarMonthViewController: UIViewController, CalendarViewDelegate
         eventsCollection = try! CalendarEvent.collectionByDueDate(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
         refresher = try! CalendarEvent.refresher(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
         refresher?.refresh(false)
-        eventsCollection.collectionUpdated = { [unowned self] updates in
-            self.calendarView?.reloadVisibleCells()
-        }
+        eventsDisposable = eventsCollection.collectionUpdates
+            .observeOn(UIScheduler())
+            .observeNext { [unowned self] updates in
+                self.calendarView?.reloadVisibleCells()
+            }.map(ScopedDisposable.init)
     }
 
     public func selectedContextCodes() -> [String] {

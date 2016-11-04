@@ -26,6 +26,8 @@
 import Foundation
 import CoreData
 import SoLazy
+import ReactiveCocoa
+import Result
 
 extension NSIndexPath {
     var safeCopy: NSIndexPath {
@@ -40,14 +42,21 @@ public class FetchedCollection<Model where Model: NSManagedObject>: NSObject, Co
     
     let fetchedResultsController: NSFetchedResultsController
     let titleForSectionTitle: String?->String?
-    public var collectionUpdated: [CollectionUpdate<Object>]->() = { _ in print("no one is watching!") }
 
     private var updateBatch: [CollectionUpdate<Object>] = []
     private var insertedSections = NSMutableIndexSet()
+    
+    public let collectionUpdates: Signal<[CollectionUpdate<Model>], NoError>
+    internal let updatesObserver: Observer<[CollectionUpdate<Model>], NoError>
+    
+    public func reload() {
+        
+    }
 
     public init(frc: NSFetchedResultsController, titleForSectionTitle: String?->String? = { $0 }) throws {
         self.fetchedResultsController = frc
         self.titleForSectionTitle = titleForSectionTitle
+        (collectionUpdates, updatesObserver) = Signal.pipe()
         super.init()
         frc.delegate = self
         try frc.performFetch()
@@ -76,6 +85,18 @@ public class FetchedCollection<Model where Model: NSManagedObject>: NSObject, Co
     public subscript(indexPath: NSIndexPath) -> Object {
         guard let m = fetchedResultsController.objectAtIndexPath(indexPath) as? Object else { ❨╯°□°❩╯⌢"You must have your entities crossed" }
         return m
+    }
+    
+    public var first: Object? {
+        return fetchedResultsController.fetchedObjects?.first as? Object
+    }
+    
+    public var last: Object? {
+        return fetchedResultsController.fetchedObjects?.last as? Object
+    }
+    
+    public var count: Int {
+        return fetchedResultsController.fetchedObjects?.count ?? 0
     }
     
     // MARK: NSFetchedResultsControllerDelegate
@@ -127,7 +148,7 @@ public class FetchedCollection<Model where Model: NSManagedObject>: NSObject, Co
     }
     
     public func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        collectionUpdated(updateBatch)
+        updatesObserver.sendNext(updateBatch)
     }
     
 }

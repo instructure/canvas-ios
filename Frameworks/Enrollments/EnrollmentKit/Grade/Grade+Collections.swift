@@ -42,7 +42,7 @@ extension Grade {
 
     public static func collectionByCourseID(session: Session, courseID: String) throws -> FetchedCollection<Grade> {
         let context = try session.enrollmentManagedObjectContext()
-        let frc = try fetchedResults(coursePredicate(courseID), sortDescriptors: [], sectionNameKeypath: nil, inContext: context)
+        let frc = fetchedResults(coursePredicate(courseID), sortDescriptors: [], sectionNameKeypath: nil, inContext: context)
         return try FetchedCollection(frc: frc)
     }
 

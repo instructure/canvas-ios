@@ -42,7 +42,7 @@ public class CustomizeEnrollmentViewController: UIViewController {
     ]
 
     let session: Session
-    let dataSource: ContextDataSource
+    let dataSource: EnrollmentsDataSource
     let context: ContextID
     
     @IBOutlet var courseColorButtons: [UIButton]!

@@ -76,6 +76,8 @@ extension NSError {
     
     /// Reports an error either to the user, to the error reporter, or both
     public func report(externally: Bool = true, alertUserFrom: UIViewController? = nil, onDismiss: (() -> ())? = nil) {
+        
+        print(reportDescription)
      
         if externally == true {
             ErrorReporter.sharedErrorReporter.reportError(self)

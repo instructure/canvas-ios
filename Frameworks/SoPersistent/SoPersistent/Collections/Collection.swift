@@ -18,6 +18,8 @@
     
 
 import Foundation
+import ReactiveCocoa
+import Result
 
 public enum CollectionUpdate<Model>: CustomStringConvertible, Equatable {
     case SectionInserted(Int)
@@ -93,6 +95,6 @@ public protocol Collection: class {
     func titleForSection(section: Int) -> String?
     
     subscript(indexPath: NSIndexPath) -> Object { get }
-
-    var collectionUpdated: [CollectionUpdate<Object>] -> () { get set }
+    
+    var collectionUpdates: Signal<[CollectionUpdate<Object>], NoError> { get }
 }

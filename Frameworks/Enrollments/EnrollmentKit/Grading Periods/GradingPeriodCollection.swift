@@ -51,7 +51,7 @@ public func ==(lhs: GradingPeriodItem, rhs: GradingPeriodItem) -> Bool {
 }
 
 import ReactiveCocoa
-
+import Result
 
 /**
  A collection of GradingPeriodItems where the first row in the first section is 'All'.
@@ -59,20 +59,22 @@ import ReactiveCocoa
 public class GradingPeriodCollection: Collection {
     public let selectedGradingPeriod: MutableProperty<GradingPeriodItem?> = MutableProperty(nil)
 
-    public var collectionUpdated: [CollectionUpdate<GradingPeriodItem>]->() = { _ in print("no one is watching!") }
+    public let collectionUpdates: Signal<[CollectionUpdate<GradingPeriodItem>], NoError>
+    let updatesObserver: Observer<[CollectionUpdate<GradingPeriodItem>], NoError>
 
     private let gradingPeriods: FetchedCollection<GradingPeriod>
     private let allSection = 0
+    private var disposable: Disposable?
 
     public init(course: Course, gradingPeriods: FetchedCollection<GradingPeriod>) {
         self.gradingPeriods = gradingPeriods
-
-        gradingPeriods.collectionUpdated = { [weak self] updates in
+        (collectionUpdates, updatesObserver) = Signal.pipe()
+        disposable = gradingPeriods.collectionUpdates.observeNext { [weak self] updates in
             guard let me = self else { return }
-            me.collectionUpdated(updates.map(me.offsetUpdate))
+            me.updatesObserver.sendNext(updates.map(me.offsetUpdate))
             
             self?.selectInitialGradingPeriod(course)
-        }
+        }.map(ScopedDisposable.init)
         selectInitialGradingPeriod(course)
     }
     

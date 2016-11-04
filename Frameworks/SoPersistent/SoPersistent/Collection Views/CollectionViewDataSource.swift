@@ -19,6 +19,7 @@
 
 import UIKit
 import SoPretty
+import ReactiveCocoa
 
 @objc
 public protocol CollectionViewDataSource: NSObjectProtocol, UICollectionViewDataSource {
@@ -31,6 +32,7 @@ public class CollectionCollectionViewDataSource<C: Collection, VM: CollectionVie
     
     public let collection: C
     public let viewModelFactory: C.Object->VM
+    private var disposable: Disposable?
     
     weak var collectionView: UICollectionView? {
         didSet {
@@ -45,9 +47,9 @@ public class CollectionCollectionViewDataSource<C: Collection, VM: CollectionVie
         self.viewModelFactory = viewModelFactory
         super.init()
         
-        collection.collectionUpdated = { [weak self] updates in
+        disposable = collection.collectionUpdates.observeNext { [weak self] updates in
             self?.processUpdates(updates)
-        }
+        }.map(ScopedDisposable.init)
     }
     
     

@@ -23,7 +23,7 @@ import Quick
 import Nimble
 import CoreData
 import TooLegit
-import SoPersistent
+@testable import SoPersistent
 
 class GradingPeriodItemSpec: QuickSpec {
     override func spec() {
@@ -129,7 +129,7 @@ class GradingPeriodCollectionSpec: QuickSpec {
                     var gradingPeriods: [GradingPeriod]!
                     beforeEach {
                         var updated = false
-                        collection.collectionUpdated = { _ in
+                        collection.collectionUpdates.observeNext { _ in
                             updated = true
                         }
                         gradingPeriods = [
@@ -143,7 +143,7 @@ class GradingPeriodCollectionSpec: QuickSpec {
                     }
                     let expectUpdate: (CollectionUpdate<GradingPeriodItem>, (Void) -> Void) -> Void = { update, block in
                         var gotUpdate = false
-                        collection.collectionUpdated = { updates in
+                        collection.collectionUpdates.observeNext { updates in
                             gotUpdate = gotUpdate || updates.indexOf(update) != nil
                         }
                         block()
@@ -214,10 +214,10 @@ class GradingPeriodCollectionSpec: QuickSpec {
                 var reloaded = false
                 let gradingPeriods = try! GradingPeriod.collectionByCourseID(session, courseID: course.id)
                 let collection = GradingPeriodCollection(course: course, gradingPeriods: gradingPeriods)
-                collection.collectionUpdated = { updates in
+                collection.collectionUpdates.observeNext { updates in
                     reloaded = reloaded || updates.contains(.Reload)
                 }
-                gradingPeriods.collectionUpdated([.Reload])
+                gradingPeriods.updatesObserver.sendNext([.Reload])
                 expect(reloaded).toEventually(beTrue())
             }
         }

@@ -47,6 +47,8 @@
 		2AACDFD71D022F81008B52A4 /* WhizzyWig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AACDFD61D022F81008B52A4 /* WhizzyWig.framework */; };
 		2AC402971D05EF8B00EB3E84 /* upload-file.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AC402961D05EF8B00EB3E84 /* upload-file.json */; };
 		2AFE57B41D0A2AF9003C3E1F /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AACDFD41D022E0D008B52A4 /* DoNotShipThis.framework */; };
+		492560E51DB178220046A163 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C866881D539B3B00100D00 /* Result.framework */; };
+		492560E61DB178220046A163 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61C866881D539B3B00100D00 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4928EBD41C84DE7C00799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBD31C84DE7C00799E04 /* Marshal.framework */; };
 		495FD06B1BEBE818004A91C6 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495FD0691BEBE818004A91C6 /* SoLazy.framework */; };
 		49895EF91C46EFE4002A16EC /* FileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49895EF81C46EFE4002A16EC /* FileNode.swift */; };
@@ -95,6 +97,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2A7F6DA01CE64E8600286CD4 /* FileKit.framework in Embed Frameworks */,
+				492560E61DB178220046A163 /* Result.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,6 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				492560E51DB178220046A163 /* Result.framework in Frameworks */,
 				2AFE57B41D0A2AF9003C3E1F /* DoNotShipThis.framework in Frameworks */,
 				2A7F6D9F1CE64E8600286CD4 /* FileKit.framework in Frameworks */,
 			);

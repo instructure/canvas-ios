@@ -51,6 +51,7 @@ public class AccountDomainListViewController: UITableViewController {
     let syncProducer: ReactiveCocoa.SignalProducer<[AccountDomain], NSError>
     var disposable: Disposable?
     var pickedDomainAction: ((NSURL)->Void)?
+    var collectionUpdatesDisposable: Disposable?
 
     let context: NSManagedObjectContext = {
         let bundle = NSBundle(forClass: AccountDomain.self)
@@ -99,9 +100,9 @@ public class AccountDomainListViewController: UITableViewController {
         dataSource?.viewDidLoad(self)
 
         AccountDomainViewModel.tableViewDidLoad(tableView)
-        collection.collectionUpdated = { [unowned self] updates in
+        collectionUpdatesDisposable = collection.collectionUpdates.observeNext { [unowned self] updates in
             self.handleUpdates(updates)
-        }
+        }.map(ScopedDisposable.init)
 
         refresh(nil)
 

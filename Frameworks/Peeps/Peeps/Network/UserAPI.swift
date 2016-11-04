@@ -21,9 +21,10 @@ import TooLegit
 import SoLazy
 
 public class UserAPI {
-    public enum RequestType: String {
-        case Event = "event"
-        case Assignment = "assignment"
+    public static func getUsers(session: Session, context: ContextID) throws -> NSURLRequest {
+        let path = context.apiPath/"users"
+        let parameters = ["include": ["enrollments", "avatar_url"]]
+        return try session.GET(path, parameters: parameters)
     }
 
     public class func getObserveeUsers(session: Session) throws -> NSURLRequest {

@@ -22,6 +22,12 @@ import TooLegit
 import Marshal
 
 extension User {
+    public static func getUsers(context: ContextID, session: Session) throws -> SignalProducer<[JSONObject], NSError> {
+        let request = try UserAPI.getUsers(session, context: context)
+        return session.paginatedJSONSignalProducer(request)
+    }
+    
+    
     public static func getObserveeUsers(session: Session) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try UserAPI.getObserveeUsers(session)
         return session.paginatedJSONSignalProducer(request)

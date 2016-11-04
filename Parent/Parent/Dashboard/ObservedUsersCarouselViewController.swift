@@ -59,6 +59,8 @@ class ObserveesCarouselViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private var userUpdatesDisposable: Disposable?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,12 +73,14 @@ class ObserveesCarouselViewController: UIViewController {
 
         reloadData()
         reloadCoverFlowType()
-        collection.collectionUpdated = { [unowned self] updates in
-            self.reloadCoverFlowType()
-            self.carousel.reloadData()
+        userUpdatesDisposable = collection.collectionUpdates
+            .observeOn(UIScheduler())
+            .observeNext { [unowned self] updates in
+                self.reloadCoverFlowType()
+                self.carousel.reloadData()
 
-            self.currentStudent = self.studentAtCarouselIndex(self.carousel.currentItemIndex)
-        }
+                self.currentStudent = self.studentAtCarouselIndex(self.carousel.currentItemIndex)
+            }.map(ScopedDisposable.init)
     }
 
     func reloadCoverFlowType() {

@@ -27,7 +27,7 @@ let peepKitStoreName = "ObservedUsers"
 let peepKitSubdomain = "PeepKit"
 let peepKitFailedToLoadErrorCode = 10001
 let peepKitFailedToLoadErrorDescription = "Failed to load \(peepKitModelName) NSManagedObjectModel"
-let peepKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the PeepKit database file.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Peeps")!, value: "", comment: "PeepKit Database Load Failure Message")
+let peepKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the PeepKit database file.", tableName: "Localizable", bundle: .peeps, value: "", comment: "PeepKit Database Load Failure Message")
 
 // ---------------------------------------------
 // MARK: - Session for current user observees
@@ -41,6 +41,24 @@ extension Session {
         let storeID = StoreID(storeName: peepKitStoreName, model: model,
             localizedErrorDescription: peepKitDBFailedToLoadErrorDescription)
 
+        return try managedObjectContext(storeID)
+    }
+}
+
+
+private let peepsErrorMessage = NSLocalizedString("There was an error loading the Users cache.", tableName: "Localizable", bundle: .peeps, value: "", comment: "An error message shown when the Users cache file fails to load")
+
+// ---------------------------------------------
+// MARK: - Session for current user observees
+// ---------------------------------------------
+extension Session {
+    public func peepsManagedObjectContext() throws -> NSManagedObjectContext {
+        guard let model = NSManagedObjectModel(named: "Peeps", inBundle: .peeps) else {
+            throw NSError(subdomain: "Peeps", code: 10002, sessionID: sessionID, apiURL: nil, title: nil, description: peepsErrorMessage, failureReason: "Error loading Peeps.xcdatamodel", data: nil)
+        }
+
+        let storeID = StoreID(storeName: "Peeps", model: model, localizedErrorDescription: peepsErrorMessage)
+        
         return try managedObjectContext(storeID)
     }
 }

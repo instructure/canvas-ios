@@ -22,6 +22,11 @@ import TooLegit
 import Marshal
 
 extension Submission {
+    static func getStudentSubmissions(session: Session, courseID: String, assignmentID: String) throws -> SignalProducer<[JSONObject], NSError> {
+        let request = try SubmissionAPI.getStudentSubmissions(session, courseID: courseID, assignmentID: assignmentID)
+        return session.paginatedJSONSignalProducer(request)
+    }
+    
     static func getSubmission(session: Session, courseID: String, assignmentID: String) throws -> SignalProducer<JSONObject, NSError> {
         let request = try SubmissionAPI.getSubmission(session, courseID: courseID, assignmentID: assignmentID)
         

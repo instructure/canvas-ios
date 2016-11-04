@@ -60,7 +60,7 @@ extension Course {
 }
 
 extension Assignment {
-    func colorfulViewModel(dataSource: ContextDataSource) -> ColorfulViewModel {
+    func colorfulViewModel(dataSource: EnrollmentsDataSource) -> ColorfulViewModel {
         let model = ColorfulViewModel(style: .Basic)
         model.title.value = name
         model.color <~ dataSource.producer(ContextID(id: courseID, context: .Course)).map { $0?.color ?? .prettyGray() }
@@ -263,13 +263,8 @@ class GradesTableViewController: AssignmentsTableViewController {
             ❨╯°□°❩╯⌢"We should have a course."
         }
 
-        let gradingPeriod = header.selectedGradingPeriod.producer
-        let grades = SignalProducer<Void, NoError> { [weak self] observer, _ in
-            observer.sendNext(())
-            self?.gradesCollection.collectionUpdated = { _ in
-                observer.sendNext(())
-            }
-        }
+        let gradingPeriod = header.selectedGradingPeriod.signal
+        let grades = gradesCollection.collectionUpdates
 
         header.grade <~ combineLatest(gradingPeriod, grades)
             .observeOn(UIScheduler())

@@ -26,7 +26,7 @@ import ReactiveCocoa
 import Cartography
 
 extension GradingPeriodItem {
-    func colorfulViewModel(dataSource: ContextDataSource, courseID: String, selected: Bool) -> ColorfulViewModel {
+    func colorfulViewModel(dataSource: EnrollmentsDataSource, courseID: String, selected: Bool) -> ColorfulViewModel {
         let model = ColorfulViewModel(style: .Basic)
         model.title.value = title
         model.color <~ dataSource.producer(ContextID(id: courseID, context: .Course)).map { $0?.color ?? .prettyGray() }
@@ -86,7 +86,7 @@ extension GradingPeriod {
             title = NSLocalizedString("Grading Periods", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Title for grading periods picker")
             collection.selectedGradingPeriod.producer
                 .observeOn(UIScheduler())
-                .startWithNext { _ in collection.collectionUpdated([.Reload]) }
+                .startWithNext { [weak collection] _ in collection?.updatesObserver.sendNext([.Reload]) }
 
             let dataSource = session.enrollmentsDataSource
             prepare(collection, refresher: refresher) { item in

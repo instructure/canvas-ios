@@ -59,10 +59,11 @@ extension NSManagedObject {
         return request
     }
 
-    public static func fetchedResults(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor], sectionNameKeypath: String?, inContext context: NSManagedObjectContext) -> NSFetchedResultsController {
+    public static func fetchedResults(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor], sectionNameKeypath: String? = nil, propertiesToFetch: [String]? = nil, inContext context: NSManagedObjectContext) -> NSFetchedResultsController {
         let fetchRequest = fetch(predicate, sortDescriptors: sortDescriptors, inContext: context)
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.fetchBatchSize = 30
+        if let props = propertiesToFetch { fetchRequest.propertiesToFetch = props }
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: sectionNameKeypath, cacheName: nil)
         
         return frc

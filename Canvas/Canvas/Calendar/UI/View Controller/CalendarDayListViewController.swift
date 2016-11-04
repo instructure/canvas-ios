@@ -112,14 +112,18 @@ public class CalendarDayListViewController: UITableViewController {
         controller.day = date
         return controller
     }
+    
+    private var favCoursesDisposable: Disposable?
 
     public override func viewDidLoad() {
         super.viewDidLoad()
 
         favCoursesCollection = try! Course.favoritesCollection(session)
-        favCoursesCollection.collectionUpdated = { [unowned self] _ in
-            self.updateCalendarEvents()
-        }
+        favCoursesDisposable = favCoursesCollection.collectionUpdates
+            .observeOn(UIScheduler())
+            .observeNext { [weak self] _ in
+                self?.updateCalendarEvents()
+            }.map(ScopedDisposable.init)
 
         updateCalendarEvents()
 
@@ -209,11 +213,7 @@ public class CalendarDayListViewController: UITableViewController {
         }
 
         cell.typeImage.tintColor = color
-        let matchingContextName = session.enrollmentsDataSource.enrollmentsByContextID.filter { (contextID, enrollment) -> Bool in
-            return enrollment.contextID.id == context.id
-            }.map { (contextID, enrollment) -> String in
-                return enrollment.name
-            }.first
+        let matchingContextName = session.enrollmentsDataSource[context]?.name
         cell.courseLabel.text = matchingContextName
     }
 
@@ -235,6 +235,8 @@ public class CalendarDayListViewController: UITableViewController {
     public func reloadData() {
         self.refresher?.refresh(true)
     }
+    
+    private var eventsDisposable: Disposable?
 
     func updateCalendarEvents() {
         let startDate = day!.startOfDay(calendar)
@@ -242,9 +244,11 @@ public class CalendarDayListViewController: UITableViewController {
         eventsCollection = try! CalendarEvent.collectionByDueDate(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
         refresher = try! CalendarEvent.refresher(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
         refresher?.refresh(false)
-        eventsCollection.collectionUpdated = { [unowned self] updates in
-            self.tableView?.reloadData()
-        }
+        eventsDisposable = eventsCollection.collectionUpdates
+            .observeOn(UIScheduler())
+            .observeNext { [unowned self] updates in
+                self.tableView?.reloadData()
+            }.map(ScopedDisposable.init)
     }
 
     public func selectedContextCodes() -> [String] {

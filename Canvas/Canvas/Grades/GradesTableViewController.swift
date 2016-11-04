@@ -27,7 +27,7 @@ import ReactiveCocoa
 import Result
 
 extension Assignment {
-    func gradeColorfulViewModel(dataSource: ContextDataSource) -> ColorfulViewModel {
+    func gradeColorfulViewModel(dataSource: EnrollmentsDataSource) -> ColorfulViewModel {
         let model = ColorfulViewModel(style: .RightDetail)
         model.title.value = name
         model.detail.value = grade

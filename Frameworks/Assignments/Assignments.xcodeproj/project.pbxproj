@@ -38,6 +38,7 @@
 		490A86D11C407D9600351185 /* SoPersistent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 490A86A51C407D4D00351185 /* SoPersistent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		490A86D61C4080E100351185 /* Session+AssignmentKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490A86D41C4080E100351185 /* Session+AssignmentKit.swift */; };
 		491B3DF91C41D3E00094575A /* AssignmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 491B3DF81C41D3E00094575A /* AssignmentCell.xib */; };
+		492560E11DB0A9DC0046A163 /* Submission+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492560E01DB0A9DC0046A163 /* Submission+Collections.swift */; };
 		4928EBC21C84DE0400799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBC11C84DE0400799E04 /* Marshal.framework */; };
 		4928EBC91C84DE3A00799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBC71C84DE3300799E04 /* Marshal.framework */; };
 		4928EBCA1C84DE3A00799E04 /* Marshal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBC71C84DE3300799E04 /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -55,6 +56,7 @@
 		49895EDF1C45B883002A16EC /* Assignment+AllowedFileSubmissionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49895ED01C45B883002A16EC /* Assignment+AllowedFileSubmissionTypes.swift */; };
 		49895EE91C45B883002A16EC /* Submission Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49895EDB1C45B883002A16EC /* Submission Icons.xcassets */; };
 		49895EEF1C45B9EC002A16EC /* WhizzyWig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49895EED1C45B9EC002A16EC /* WhizzyWig.framework */; };
+		49CE1DBE1DC06E8100E300E2 /* Assignment+Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE1DBD1DC06E8100E300E2 /* Assignment+Attachment.swift */; };
 		49D3B89A1C51823100291009 /* WhizzyWig.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49895EED1C45B9EC002A16EC /* WhizzyWig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49D3B89B1C51825300291009 /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494E4B471C503C1200E20CA7 /* DoNotShipThis.framework */; };
 		49D3B89C1C51825300291009 /* DoNotShipThis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 494E4B471C503C1200E20CA7 /* DoNotShipThis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -69,7 +71,6 @@
 		B10AED771DAEE997001A9438 /* upload-file-submission.json in Resources */ = {isa = PBXBuildFile; fileRef = B157F0BC1CED3D80004EB3AE /* upload-file-submission.json */; };
 		B11B53E71CA58C39008971D3 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490A86AB1C407D7000351185 /* ReactiveCocoa.framework */; };
 		B11B53E81CA58C40008971D3 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490A86AC1C407D7000351185 /* Result.framework */; };
-		B1310A321C9C6DEF005BFC20 /* Assignment+Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1310A311C9C6DEF005BFC20 /* Assignment+Attachment.swift */; };
 		B1310A371CA1983D005BFC20 /* PickerCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1310A361CA1983D005BFC20 /* PickerCellViewModel.swift */; };
 		B131B7B71DAD446700B10936 /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B131B7B61DAD446700B10936 /* SpecHelper.swift */; };
 		B131B7BB1DAD4A9D00B10936 /* AssignmentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B131B7BA1DAD4A9D00B10936 /* AssignmentSpec.swift */; };
@@ -235,6 +236,7 @@
 		490A86AF1C407D7000351185 /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		490A86D41C4080E100351185 /* Session+AssignmentKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Session+AssignmentKit.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		491B3DF81C41D3E00094575A /* AssignmentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssignmentCell.xib; sourceTree = "<group>"; };
+		492560E01DB0A9DC0046A163 /* Submission+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Submission+Collections.swift"; sourceTree = "<group>"; };
 		4928EBC11C84DE0400799E04 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4928EBC71C84DE3300799E04 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4934797F1CB42430008D14DD /* Assignment+Progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+Progress.swift"; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 		49895ED01C45B883002A16EC /* Assignment+AllowedFileSubmissionTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+AllowedFileSubmissionTypes.swift"; sourceTree = "<group>"; };
 		49895EDB1C45B883002A16EC /* Submission Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Submission Icons.xcassets"; sourceTree = "<group>"; };
 		49895EED1C45B9EC002A16EC /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhizzyWig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49CE1DBD1DC06E8100E300E2 /* Assignment+Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+Attachment.swift"; sourceTree = "<group>"; };
 		49E696E91CC1327800A17AF1 /* DueDateOverride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDateOverride.swift; sourceTree = "<group>"; };
 		5E5560001C8EB37500933E08 /* Assignment+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+Network.swift"; sourceTree = "<group>"; };
 		5E5560061C8EB93700933E08 /* AssignmentAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentAPI.swift; sourceTree = "<group>"; };
@@ -258,7 +261,6 @@
 		B10713A81D7491160061E84A /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10713A91D7491160061E84A /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10713AD1D7492B70061E84A /* refresh-submission.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "refresh-submission.json"; sourceTree = "<group>"; };
-		B1310A311C9C6DEF005BFC20 /* Assignment+Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+Attachment.swift"; sourceTree = "<group>"; };
 		B1310A351CA0BA44005BFC20 /* AssignmentsShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AssignmentsShare.entitlements; sourceTree = "<group>"; };
 		B1310A361CA1983D005BFC20 /* PickerCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerCellViewModel.swift; sourceTree = "<group>"; };
 		B131B7B61DAD446700B10936 /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
@@ -554,10 +556,11 @@
 				49895EDB1C45B883002A16EC /* Submission Icons.xcassets */,
 				B5549F8A1C99FA5E0040CB05 /* RubricAssessment.swift */,
 				49893A241C8E5C9D00A8CFBA /* Submission.swift */,
+				492560E01DB0A9DC0046A163 /* Submission+Collections.swift */,
 				B5996FB71CF7C2C8003C101C /* Submission+Details.swift */,
 				B5996FB11CF796F2003C101C /* Submission+Network.swift */,
 				49895ED01C45B883002A16EC /* Assignment+AllowedFileSubmissionTypes.swift */,
-				B1310A311C9C6DEF005BFC20 /* Assignment+Attachment.swift */,
+				49CE1DBD1DC06E8100E300E2 /* Assignment+Attachment.swift */,
 				B13A392D1CBF5C5100CBD98B /* Upload+Collections.swift */,
 				B13746851DB05D260048F7DD /* NewUpload+Attachment.swift */,
 				B1F123DC1DAEBA29004EBC57 /* Upload+Details.swift */,
@@ -1051,6 +1054,7 @@
 				B5996FB81CF7C2C8003C101C /* Submission+Details.swift in Sources */,
 				B1EC04351CB5BE10001E8367 /* SubmissionUpload.swift in Sources */,
 				B5996FBA1CFE1B2D003C101C /* Rubric+Details.swift in Sources */,
+				49CE1DBE1DC06E8100E300E2 /* Assignment+Attachment.swift in Sources */,
 				B5549F8F1C99FA760040CB05 /* RubricCriterionRating.swift in Sources */,
 				49893A281C8E5C9D00A8CFBA /* SubmissionEvent.swift in Sources */,
 				49E696EA1CC1327800A17AF1 /* DueDateOverride.swift in Sources */,
@@ -1068,7 +1072,7 @@
 				49893A221C8E5C6F00A8CFBA /* Assignment.swift in Sources */,
 				B5549F8B1C99FA5E0040CB05 /* RubricAssessment.swift in Sources */,
 				49893A1E1C8E5BB400A8CFBA /* Assignment+Collections.swift in Sources */,
-				B1310A321C9C6DEF005BFC20 /* Assignment+Attachment.swift in Sources */,
+				492560E11DB0A9DC0046A163 /* Submission+Collections.swift in Sources */,
 				B5996FB21CF796F2003C101C /* Submission+Network.swift in Sources */,
 				B1409A7D1CA2F4CF00E88AE5 /* AssignmentGroup+Network.swift in Sources */,
 				49893A201C8E5C4E00A8CFBA /* Assignment+Details.swift in Sources */,

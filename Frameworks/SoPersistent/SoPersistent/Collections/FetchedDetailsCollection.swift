@@ -20,6 +20,7 @@
 import Foundation
 import CoreData
 import ReactiveCocoa
+import Result
 
 public class FetchedDetailsCollection<M, DVM where M: NSManagedObject, DVM: Equatable>: Collection {
     public typealias Object = DVM
@@ -28,11 +29,14 @@ public class FetchedDetailsCollection<M, DVM where M: NSManagedObject, DVM: Equa
     let observer: ManagedObjectObserver<M>
     let detailsFactory: M->[DVM]
     var details: [DVM] = []
-    public var collectionUpdated: [CollectionUpdate<DVM>] -> () = {_ in print("No one is watching...") }
+    public let collectionUpdates: Signal<[CollectionUpdate<DVM>], NoError>
+    private let updatesObserver: Observer<[CollectionUpdate<DVM>], NoError>
     
     public init(observer: ManagedObjectObserver<M>, detailsFactory: M->[DVM]) {
         self.observer = observer
         self.detailsFactory = detailsFactory
+        
+        (collectionUpdates, updatesObserver) = Signal.pipe()
         
         details = self.observer.object.map(detailsFactory) ?? []
         disposable = observer.signal
@@ -55,7 +59,7 @@ public class FetchedDetailsCollection<M, DVM where M: NSManagedObject, DVM: Equa
                             return .Moved(NSIndexPath(forRow: fromIndex, inSection: 0), NSIndexPath(forRow: toIndex, inSection: 0), item)
                         }
                     }
-                    me.collectionUpdated(updates)
+                    me.updatesObserver.sendNext(updates)
                 }
             }
     }
