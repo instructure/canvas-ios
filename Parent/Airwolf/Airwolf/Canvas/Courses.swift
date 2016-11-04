@@ -30,7 +30,11 @@ extension Course {
     }
     
     public static func getCoursesFromAirwolf(session: Session, studentID: String) throws -> SignalProducer<[JSONObject], NSError> {
-        let request = try session.GET("/canvas/\(session.user.id)/\(studentID)/courses", parameters: Course.getCoursesParameters)
+        
+        var coursesParams = getCoursesParameters
+        coursesParams["enrollment_state"] = "active"
+        
+        let request = try session.GET("/canvas/\(session.user.id)/\(studentID)/courses", parameters: coursesParams)
         return session.paginatedJSONSignalProducer(request)
             
             // filter out restricted courses because their json is too sparse and will cause parsing issues
