@@ -128,8 +128,17 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         searchController.searchBar.placeholder = NSLocalizedString("Search here...", comment: "Placeholder text for search bar on assignments page")
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
-        
         table.tableHeaderView = searchController.searchBar
+        
+        if let refresher = refresher {
+            refresher.refreshingBegan.observeNext({ [weak self] in
+                self?.searchController.searchBar.userInteractionEnabled = false
+            })
+            
+            refresher.refreshingCompleted.observeNext({ [weak self] _ in
+                self?.searchController.searchBar.userInteractionEnabled = true
+            })
+        }
     }
     
     private func updateCollections(courseID: String, gradingPeriodID: String?, name: String?) throws {
@@ -204,6 +213,12 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         } catch let error as NSError {
             error.presentAlertFromViewController(self)
         }
+    }
+    
+    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+        guard let r = refresher else { return true }
+        
+        return !r.isRefreshing
     }
     
     private func fuzzySearchStringFormatter(searchString: String) -> String {
