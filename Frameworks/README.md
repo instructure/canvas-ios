@@ -13,7 +13,6 @@ To install the dependencies, run the following:
 ```
 carthage checkout --no-use-binaries
 ```
-<<<<<<< HEAD
 
 ## Unit Tests
 
@@ -71,5 +70,3 @@ let page2Matcher = session.match(.GET, "/pages", parameters: ["page": 2])
 stub(page1Matcher, builder: json(["pages": [["one": "a"]]], headers: headers))
 stub(page2Matcher, builder: json(["pages": [["two": "b"]]]))
 ```
-=======
->>>>>>> origin/dev/assignments-and-submissions
