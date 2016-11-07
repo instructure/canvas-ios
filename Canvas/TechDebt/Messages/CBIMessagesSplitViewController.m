@@ -28,10 +28,6 @@
 #import "CBIMessagesListViewController.h"
 #import "UIImage+TechDebt.h"
 
-@interface CBIMessagesSplitViewController ()
-@property (nonatomic) UINavigationController *master;
-@end
-
 @implementation CBIMessagesSplitViewController
 @synthesize viewModel;
 
@@ -54,20 +50,15 @@
     
     CBIMessageDetailViewController *messageDetail = [CBIMessageDetailViewController new];
     messageDetail.viewModel = [CBIMessageViewModel new];
-    
-    self.master = [[UINavigationController alloc] initWithRootViewController:messages];
-    CGRect frame = self.master.view.frame;
-    frame.size.height -= 64.f;
-    frame.origin.y += 64.f;
-    self.master.view.frame = frame;
-    
+
+    self.master = messages;    
     self.detail = messageDetail;
 }
 
 - (void)startAConversationWithRecipients:(NSArray *)conversationRecipients
 {
     [self setupMasterDetail];
-    [[self.master.viewControllers firstObject] startAConversationWithRecipients:conversationRecipients];
+    [((CBIMessagesListViewController *)self.master) startAConversationWithRecipients:conversationRecipients];
 }
 
 @end
