@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A9CB1101DD126F70060948B /* AccountAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9CB10F1DD126F70060948B /* AccountAdmin.swift */; };
 		4922460A1D1C90890053766B /* AssignmentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492246091D1C90890053766B /* AssignmentViewModelTests.swift */; };
 		493F70BB1D076BE00068B262 /* AssignmentDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F70B81D076BE00068B262 /* AssignmentDetail.swift */; };
 		493F70BC1D076BE00068B262 /* AssignmentDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 493F70B91D076BE00068B262 /* AssignmentDetailViewController.storyboard */; };
@@ -190,6 +191,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A9CB10F1DD126F70060948B /* AccountAdmin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountAdmin.swift; sourceTree = "<group>"; };
 		492246091D1C90890053766B /* AssignmentViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentViewModelTests.swift; sourceTree = "<group>"; };
 		493F70B81D076BE00068B262 /* AssignmentDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetail.swift; sourceTree = "<group>"; };
 		493F70B91D076BE00068B262 /* AssignmentDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AssignmentDetailViewController.storyboard; sourceTree = "<group>"; };
@@ -327,6 +329,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A9CB10E1DD126F70060948B /* EarlGreySecrets */ = {
+			isa = PBXGroup;
+			children = (
+				0A9CB10F1DD126F70060948B /* AccountAdmin.swift */,
+			);
+			path = EarlGreySecrets;
+			sourceTree = "<group>";
+		};
 		493F70BE1D076C030068B262 /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,6 +521,7 @@
 		F9562F011D22D93300F40699 /* TeachEarlGrey */ = {
 			isa = PBXGroup;
 			children = (
+				0A9CB10E1DD126F70060948B /* EarlGreySecrets */,
 				F9562F021D22D93300F40699 /* TeachEarlGrey.swift */,
 				F9562F041D22D93300F40699 /* Info.plist */,
 				F91AF9831D392E1300A75B3F /* LogoutBeforeEach.swift */,
@@ -718,6 +729,7 @@
 				B1FF75691D5543EB00FD1767 /* LoginConfiguration.swift in Sources */,
 				B1FF75661D5543EB00FD1767 /* CourseCell.swift in Sources */,
 				B1FF756B1D55441100FD1767 /* Navigator.swift in Sources */,
+				0A9CB1101DD126F70060948B /* AccountAdmin.swift in Sources */,
 				B1FF75521D5543EB00FD1767 /* AppDelegate.swift in Sources */,
 				F91AF9841D392E1300A75B3F /* LogoutBeforeEach.swift in Sources */,
 				F9562F031D22D93300F40699 /* TeachEarlGrey.swift in Sources */,

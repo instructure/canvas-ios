@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A9CB1131DD127020060948B /* AccountAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9CB1121DD127020060948B /* AccountAdmin.swift */; };
 		2C61CD091D9311B400196C03 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD0B1D9311B400196C03 /* Localizable.strings */; };
 		2C61CD1F1D9311E800196C03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD211D9311E800196C03 /* InfoPlist.strings */; };
 		2C61CD301D9311EC00196C03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD321D9311EC00196C03 /* InfoPlist.strings */; };
@@ -217,6 +218,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A9CB1121DD127020060948B /* AccountAdmin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountAdmin.swift; sourceTree = "<group>"; };
 		2C61CD0A1D9311B400196C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CD0C1D9311E300196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2C61CD0D1D9311E400196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CourseCell.strings; sourceTree = "<group>"; };
@@ -859,6 +861,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A9CB1111DD127020060948B /* EarlGreySecrets */ = {
+			isa = PBXGroup;
+			children = (
+				0A9CB1121DD127020060948B /* AccountAdmin.swift */,
+			);
+			path = EarlGreySecrets;
+			sourceTree = "<group>";
+		};
 		5E0F9A4E1C739E6A00BB7707 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1157,6 +1167,7 @@
 		F96C7E6B1D108AEB008935F3 /* ParentEarlGreyTests */ = {
 			isa = PBXGroup;
 			children = (
+				0A9CB1111DD127020060948B /* EarlGreySecrets */,
 				2C61CD211D9311E800196C03 /* InfoPlist.strings */,
 				F96C7E6C1D108AEB008935F3 /* ParentEarlGreyTests.swift */,
 				F96C7E6E1D108AEB008935F3 /* Info.plist */,
@@ -1442,6 +1453,7 @@
 			files = (
 				5E0377751D5BBF04008987FE /* LogoutBeforeEach.swift in Sources */,
 				F96C7E6D1D108AEB008935F3 /* ParentEarlGreyTests.swift in Sources */,
+				0A9CB1131DD127020060948B /* AccountAdmin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
