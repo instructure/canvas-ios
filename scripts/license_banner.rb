@@ -12,13 +12,12 @@ OptionParser.new do |opts|
 end.parse!
 
 # The folders which to recursively check for source files
-folders = %w[Frameworks Canvas Parent Teacher]
+folders = %w[Frameworks Canvas Parent Teacher SpeedGrader]
 files = []
 
 # Returns the correct banner based on the file
 def appropriate_banner(file)
-    gpl_header = %q(
-//
+    gpl_header = %q(//
 // Copyright (C) 2016-present Instructure, Inc.
 //   
 // This program is free software: you can redistribute it and/or modify
@@ -32,11 +31,9 @@ def appropriate_banner(file)
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
-    )
+//)
 
-    apache_header = %q(
-//
+    apache_header = %q(//
 // Copyright (C) 2016-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -50,8 +47,7 @@ def appropriate_banner(file)
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
-    )
+//)
 
     return apache_header if file.start_with? "Frameworks"
     return apache_header if file.include? "Tests"
