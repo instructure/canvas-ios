@@ -59,6 +59,8 @@ public class EditFavoriteEnrollmentsViewController: TableViewController {
     
     
     public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
         let enrollment = collection[indexPath]
         
         enrollment.markAsFavorite(!enrollment.isFavorite, session: session).startWithFailed { [weak self] error in
