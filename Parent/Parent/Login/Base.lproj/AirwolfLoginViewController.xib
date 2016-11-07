@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -267,6 +265,16 @@
                                     </connections>
                                 </button>
                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ghx-JN-SS0"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBN-Ir-Nor">
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="W7C-FD-d5w"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Log in with Canvas" image="icon_canvas_white"/>
+                                    <connections>
+                                        <action selector="canvasLogin:" destination="-1" eventType="touchUpInside" id="LQF-cr-nXe"/>
+                                    </connections>
+                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5q-Iz-QjI" userLabel="Cancel Button">
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <accessibility key="accessibilityConfiguration" identifier="cancel_button"/>
@@ -294,15 +302,6 @@
                                         <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="Z2o-Rc-gRW"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBN-Ir-Nor">
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="W7C-FD-d5w"/>
-                                    </constraints>
-                                    <state key="normal" title="Log in with Canvas" image="icon_canvas_white"/>
-                                    <connections>
-                                        <action selector="canvasLogin:" destination="-1" eventType="touchUpInside" id="LQF-cr-nXe"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -310,27 +309,21 @@
                                 <constraint firstItem="dbH-uS-X2F" firstAttribute="centerX" secondItem="ghx-JN-SS0" secondAttribute="centerX" id="9Op-TV-Pr1"/>
                                 <constraint firstItem="g5q-Iz-QjI" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="ANy-xP-P7E"/>
                                 <constraint firstItem="ghx-JN-SS0" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="Dky-gJ-03w"/>
-                                <constraint firstItem="cBu-44-Ntj" firstAttribute="baseline" secondItem="Zjh-td-3qY" secondAttribute="firstBaseline" id="FtY-pc-z4J"/>
-                                <constraint firstAttribute="bottom" secondItem="NBN-Ir-Nor" secondAttribute="bottom" constant="28" id="JGE-uv-Dh1"/>
-                                <constraint firstItem="dbH-uS-X2F" firstAttribute="trailing" secondItem="Zjh-td-3qY" secondAttribute="trailing" id="K9L-d4-Ufa"/>
+                                <constraint firstAttribute="bottom" secondItem="NBN-Ir-Nor" secondAttribute="bottom" constant="20" id="JGE-uv-Dh1"/>
+                                <constraint firstItem="cBu-44-Ntj" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="LzG-ZN-goF"/>
                                 <constraint firstItem="i9A-lG-qDQ" firstAttribute="leading" secondItem="dbH-uS-X2F" secondAttribute="leading" id="Mgn-2c-Lq8"/>
                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="375" id="Plf-SD-LsX"/>
                                 <constraint firstItem="cBu-44-Ntj" firstAttribute="top" secondItem="dbH-uS-X2F" secondAttribute="bottom" constant="10" id="QM5-up-dJi"/>
-                                <constraint firstItem="Zjh-td-3qY" firstAttribute="top" secondItem="ghx-JN-SS0" secondAttribute="bottom" constant="21" id="SFQ-qx-sme"/>
+                                <constraint firstItem="Zjh-td-3qY" firstAttribute="top" secondItem="cBu-44-Ntj" secondAttribute="bottom" constant="5" id="SlJ-TZ-4fp"/>
                                 <constraint firstItem="i9A-lG-qDQ" firstAttribute="top" secondItem="mD1-mU-LCt" secondAttribute="bottom" constant="42" id="Smb-oS-ane"/>
-                                <constraint firstItem="Zjh-td-3qY" firstAttribute="width" secondItem="cBu-44-Ntj" secondAttribute="width" id="Uip-c4-SW9"/>
-                                <constraint firstItem="dbH-uS-X2F" firstAttribute="leading" secondItem="cBu-44-Ntj" secondAttribute="leading" id="YWl-TW-78u"/>
                                 <constraint firstItem="i9A-lG-qDQ" firstAttribute="trailing" secondItem="dbH-uS-X2F" secondAttribute="trailing" id="cMr-cm-IBc"/>
-                                <constraint firstAttribute="bottom" secondItem="cBu-44-Ntj" secondAttribute="bottom" constant="53" id="cWS-IL-A7h"/>
                                 <constraint firstItem="dbH-uS-X2F" firstAttribute="centerY" secondItem="ghx-JN-SS0" secondAttribute="centerY" id="caN-E9-t4h"/>
                                 <constraint firstItem="mD1-mU-LCt" firstAttribute="top" secondItem="bCb-gI-z2L" secondAttribute="top" constant="39" id="cgX-cF-fDQ"/>
                                 <constraint firstItem="g5q-Iz-QjI" firstAttribute="top" secondItem="dbH-uS-X2F" secondAttribute="bottom" constant="5" id="klf-gR-AH9"/>
-                                <constraint firstItem="Zjh-td-3qY" firstAttribute="leading" secondItem="cBu-44-Ntj" secondAttribute="trailing" constant="11" id="nxQ-83-9vi"/>
-                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="508" id="que-uJ-XJl"/>
                                 <constraint firstItem="dbH-uS-X2F" firstAttribute="top" secondItem="i9A-lG-qDQ" secondAttribute="bottom" constant="16" id="tnN-ds-nrh"/>
-                                <constraint firstItem="NBN-Ir-Nor" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="veB-OE-ih9"/>
-                                <constraint firstItem="Zjh-td-3qY" firstAttribute="baseline" secondItem="cBu-44-Ntj" secondAttribute="firstBaseline" id="wEH-vp-hvu"/>
-                                <constraint firstItem="cBu-44-Ntj" firstAttribute="top" secondItem="Zjh-td-3qY" secondAttribute="top" id="wpo-Uy-hbY"/>
+                                <constraint firstItem="NBN-Ir-Nor" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" constant="-12" id="veB-OE-ih9"/>
+                                <constraint firstItem="Zjh-td-3qY" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="xYp-lH-BTE"/>
+                                <constraint firstItem="NBN-Ir-Nor" firstAttribute="top" secondItem="Zjh-td-3qY" secondAttribute="bottom" constant="8" id="zkm-sI-zmv"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -341,8 +334,6 @@
                         <constraint firstItem="bCb-gI-z2L" firstAttribute="top" secondItem="wKW-Hc-6zZ" secondAttribute="top" priority="999" constant="52" id="JIT-eY-fEK"/>
                         <constraint firstAttribute="trailing" secondItem="bCb-gI-z2L" secondAttribute="trailing" priority="999" constant="20" id="Wh2-xB-TtA"/>
                         <constraint firstAttribute="bottom" secondItem="bCb-gI-z2L" secondAttribute="bottom" id="ZIk-r9-5Ta"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="375" id="bCF-eJ-Sru"/>
-                        <constraint firstAttribute="height" priority="999" constant="560" id="lcK-Tf-hSy"/>
                         <constraint firstItem="bCb-gI-z2L" firstAttribute="leading" secondItem="wKW-Hc-6zZ" secondAttribute="leading" priority="999" constant="20" id="qrP-pK-pJ4"/>
                     </constraints>
                 </scrollView>
@@ -352,7 +343,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="wKW-Hc-6zZ" secondAttribute="trailing" id="0bM-As-LYM"/>
                 <constraint firstItem="bCb-gI-z2L" firstAttribute="centerY" secondItem="tyS-0b-jkQ" secondAttribute="centerY" constant="-42" id="A2h-7e-2Px"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wKW-Hc-6zZ" secondAttribute="bottom" id="JCa-4D-bYJ"/>
+                <constraint firstAttribute="bottom" secondItem="wKW-Hc-6zZ" secondAttribute="bottom" id="JCa-4D-bYJ"/>
                 <constraint firstItem="wKW-Hc-6zZ" firstAttribute="top" secondItem="tyS-0b-jkQ" secondAttribute="top" id="NwP-HA-5Rp"/>
                 <constraint firstItem="B3t-q5-Vry" firstAttribute="top" secondItem="tyS-0b-jkQ" secondAttribute="top" id="WoK-WK-zbU"/>
                 <constraint firstAttribute="bottom" secondItem="B3t-q5-Vry" secondAttribute="bottom" id="aOo-Fs-WHU"/>

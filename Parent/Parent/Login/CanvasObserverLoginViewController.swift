@@ -55,7 +55,15 @@ class CanvasObserverLoginViewController: WebLoginViewController, UIWebViewDelega
     // MARK: UIWebViewDelegate
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
-        guard let url = request.URL where url.path == "/canvas/tokenReady" else { return true }
+        guard let url = request.URL else { return true }
+        
+        
+        let commonResponses = handleCommonResponses(url)
+        if commonResponses.failedLogin {
+            return commonResponses.shouldStartLoad
+        }
+        
+        guard url.path == "/canvas/tokenReady" else { return true }
         guard let host = request.URL?.host, baseURL = NSURL(string: "https://\(host)") else { return true }
         guard let token = url.queryItemForKey("token")?.value else { return true }
         guard let parentID = url.queryItemForKey("parent_id")?.value else { return true }

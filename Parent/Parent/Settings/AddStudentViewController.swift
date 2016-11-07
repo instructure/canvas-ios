@@ -132,6 +132,20 @@ class WebLoginViewController: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
+    func handleCommonResponses(url: NSURL) -> (failedLogin: Bool, shouldStartLoad: Bool) {
+        if url.absoluteString!.containsString("/oauthFailure") {
+            self.presentUnexpectedAuthError()
+            return (true, false)
+        } else if url.absoluteString!.containsString("/oauth2/deny") {
+            self.navigationController?.popViewControllerAnimated(true)
+            return (true, false)
+        } else if url.absoluteString!.containsString("404") {
+            backButton.tintColor = UIColor.blackColor()
+            return (true, true)
+        }
+        
+        return (false, false)
+    }
 }
 
 class AddStudentViewController: WebLoginViewController {
@@ -160,6 +174,11 @@ extension AddStudentViewController: UIWebViewDelegate {
                 return false
             }
 
+            let commonErrorResults = handleCommonResponses(url)
+            if commonErrorResults.failedLogin {
+                return commonErrorResults.shouldStartLoad
+            }
+            
             if url.absoluteString!.containsString("/oauthSuccess") {
                 // Clear the cookies so you're not automatically logged into a session on the next browser launch
                 Armchair.userDidSignificantEvent(true)
@@ -169,13 +188,6 @@ extension AddStudentViewController: UIWebViewDelegate {
                 }
                 refresher.refresh(true)
                 return false
-            } else if url.absoluteString!.containsString("/oauthFailure") {
-                self.presentUnexpectedAuthError()
-                return false
-            } else if url.absoluteString!.containsString("/oauth2/deny") {
-                self.navigationController?.popViewControllerAnimated(true)
-            } else if url.absoluteString!.containsString("404") {
-                backButton.tintColor = UIColor.blackColor()
             }
         }
 
