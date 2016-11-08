@@ -50,11 +50,11 @@ public class Secrets: NSObject {
     private lazy var keys: [String: String] = {
         
         guard let path = NSBundle.secrets().URLForResource("secrets", withExtension: "plist") else {
-            assert(false, "keys.plist not found")
+            fatalError("keys.plist not found")
         }
         
         guard let keys = NSDictionary(contentsOfURL: path) as? [String: String] else {
-            assert(false, "keys.plist couldn't be created and used. :(:(:(")
+            fatalError("keys.plist couldn't be created and used. :(:(:(")
         }
         
         return keys
@@ -65,7 +65,7 @@ public class Secrets: NSObject {
         let stringKey = key.toString()
         
         guard let value = keys[stringKey] else {
-            assert(false, "Cannot find a secret with the key \(stringKey). Please verify keys.plist")
+            fatalError("Cannot find a secret with the key \(stringKey). Please verify keys.plist")
         }
         
         assert(value.isEmpty == false, "Missing secret value for key: \(stringKey)")
