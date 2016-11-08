@@ -43,6 +43,6 @@ class LoginConfiguration: NSObject, CanvasKeymasterDelegate {
     }
     
     var logFilePath: String! {
-        return logFileManager.sortedLogFilePaths()[0] as! String
+        return logFileManager.sortedLogFilePaths().first as? String
     }
 }
