@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A9CB1131DD127020060948B /* AccountAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9CB1121DD127020060948B /* AccountAdmin.swift */; };
+		2C47623B1DD0FFB40003BEAE /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47623A1DD0FFB40003BEAE /* SoThankful.framework */; };
+		2C47623C1DD0FFB40003BEAE /* SoThankful.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47623A1DD0FFB40003BEAE /* SoThankful.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C61CD091D9311B400196C03 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD0B1D9311B400196C03 /* Localizable.strings */; };
 		2C61CD1F1D9311E800196C03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD211D9311E800196C03 /* InfoPlist.strings */; };
 		2C61CD301D9311EC00196C03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD321D9311EC00196C03 /* InfoPlist.strings */; };
@@ -192,6 +194,7 @@
 				4907F9191DA80941004AB1A3 /* SoIconic.framework in Embed Frameworks */,
 				61E94C581C87366900777B95 /* AssignmentKit.framework in Embed Frameworks */,
 				61AABCA21D6F8EB7009500C3 /* Reachability.framework in Embed Frameworks */,
+				2C47623C1DD0FFB40003BEAE /* SoThankful.framework in Embed Frameworks */,
 				61E4E7791C6BB23B0043D3B2 /* Keymaster.framework in Embed Frameworks */,
 				5E5F9B631D2F13C30034207D /* DeviceKit.framework in Embed Frameworks */,
 				617A67291CE2717A0065E487 /* CWStatusBarNotification.framework in Embed Frameworks */,
@@ -219,6 +222,7 @@
 
 /* Begin PBXFileReference section */
 		0A9CB1121DD127020060948B /* AccountAdmin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountAdmin.swift; sourceTree = "<group>"; };
+		2C47623A1DD0FFB40003BEAE /* SoThankful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SoThankful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C61CD0A1D9311B400196C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CD0C1D9311E300196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2C61CD0D1D9311E400196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CourseCell.strings; sourceTree = "<group>"; };
@@ -808,6 +812,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C47623B1DD0FFB40003BEAE /* SoThankful.framework in Frameworks */,
 				61DA38891D468DE6002FEE31 /* Fabric.framework in Frameworks */,
 				61DA388A1D468DE6002FEE31 /* Crashlytics.framework in Frameworks */,
 				5EE9A5171D1448C100EFCDAE /* Eureka.framework in Frameworks */,
@@ -1073,6 +1078,7 @@
 		5E7790AF1C46CBA100429BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C47623A1DD0FFB40003BEAE /* SoThankful.framework */,
 				B5CB1B5C1DC1433800FE9C93 /* Armchair.framework */,
 				4907F9171DA80936004AB1A3 /* SoIconic.framework */,
 				61AABCA01D6F8EAD009500C3 /* Reachability.framework */,

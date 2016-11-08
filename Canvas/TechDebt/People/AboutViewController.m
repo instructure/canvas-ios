@@ -26,6 +26,7 @@
 #import "WebBrowserViewController.h"
 #import "Analytics.h"
 @import SoPretty;
+@import SoThankful;
 #import "CBILog.h"
 
 typedef NS_ENUM(NSInteger, AboutSections) {
@@ -37,7 +38,8 @@ typedef NS_ENUM(NSInteger, AboutSections) {
 typedef NS_ENUM(NSInteger, LegalRows) {
     EULARow,
     PrivacyRow,
-    TermsRow
+    TermsRow,
+    OpenSourceRow
 };
 
 @interface AboutViewController ()
@@ -249,6 +251,13 @@ typedef NS_ENUM(NSInteger, LegalRows) {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == LegalSection) {
+        
+        if (indexPath.row == OpenSourceRow) {
+            ThankfulViewController *soThankful = [ThankfulViewController new];
+            [self.navigationController pushViewController:soThankful animated:YES];
+            return;
+        }
+        
         NSString *urlAddress = @"";
         
         if (indexPath.row == EULARow) {
