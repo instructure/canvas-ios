@@ -113,6 +113,20 @@ class AssignmentSpec: QuickSpec {
                     }
                 }
 
+                context("when the assignment has been graded and it is past due with no submission") {
+                    it("should be marked as Past, not Overdue") {
+                        var json = assignmentJSON
+                        let due = NSDate(year: 2016, month: 9, day: 1)
+                        json["due_at"] = jsonify(date: due)
+                        let graded = NSDate(year: 2016, month: 10, day: 1)
+                        json["submission"] = ["graded_at": jsonify(date: graded), "workflow_state": "graded", "grade": "A"]
+                        Clock.timeTravel(to: NSDate(year: 2016, month: 10, day: 2)) {
+                            try! assignment.updateValues(json, inContext: assignment.managedObjectContext!)
+                        }
+                        expect(assignment.rawDueStatus) == DueStatus.Past.rawValue
+                    }
+                }
+
                 context("when the assignment is upcoming") {
                     beforeEach {
                         var json = assignmentJSON

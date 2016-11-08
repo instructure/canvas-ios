@@ -104,8 +104,6 @@ public final class Assignment: NSManagedObject, LockableModel {
     }
     
     public var icon: UIImage {
-        let name: String
-        
         switch submissionTypes {
         case [.Quiz]:               return .icon(.quiz)
         case [.DiscussionTopic]:    return .icon(.discussion)
@@ -143,6 +141,10 @@ public final class Assignment: NSManagedObject, LockableModel {
             grade = "-"
         }
         return grade
+    }
+
+    public var graded: Bool {
+        return status.contains(.Graded)
     }
 
     var assignmentGroupName: String {
@@ -184,7 +186,7 @@ public enum DueStatus: String, CustomStringConvertible {
             self = .Upcoming
         } else {
             let types = assignment.submissionTypes
-            if types.onlineSubmission && types.canSubmit && !assignment.lockedForUser && !assignment.hasSubmitted {
+            if types.onlineSubmission && types.canSubmit && !assignment.lockedForUser && !assignment.hasSubmitted && !assignment.graded {
                 self = .Overdue
             } else {
                 self = .Past
