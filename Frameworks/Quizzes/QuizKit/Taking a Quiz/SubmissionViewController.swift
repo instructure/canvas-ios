@@ -650,6 +650,12 @@ extension SubmissionViewController {
             let whizzyCell = cell as! WhizzyWigTableViewCell
             prepareWhizzyCell(whizzyCell, forRowAtIndexPath: indexPath)
             whizzyCell.whizzyWigView.loadHTMLString(quiz?.description ?? "", baseURL: whizzyBaseURL)
+            whizzyCell.readMore = { wwvc in
+                let nav = UINavigationController(rootViewController: wwvc)
+                self.presentViewController(nav, animated: true) {
+                    wwvc.whizzyWigView.loadHTMLString(self.quiz?.description ?? "", baseURL: self.whizzyBaseURL)
+                }
+            }
         case .Question(question: let questionIndex):
             let whizzyCell = cell as! WhizzyWigTableViewCell
             let question = questions[questionIndex]

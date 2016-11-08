@@ -80,6 +80,12 @@ class QuizDetailsViewController: UITableViewController {
                 tv.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .None)
             }
         }
+        descriptionCell.readMore = { wwvc in
+            let nav = UINavigationController(rootViewController: wwvc)
+            self.presentViewController(nav, animated: true) {
+                wwvc.whizzyWigView.loadHTMLString(self.quiz?.description ?? "", baseURL: self.baseURL)
+            }
+        }
         descriptionCell.selectionStyle = .None
     }
     
