@@ -40,17 +40,21 @@ extension Assignment {
         return NSPredicate(format: "%K == %@ && %K == %@", "courseID", courseID, "gradingPeriodID", gradingPeriodID)
     }
 
-    public static func predicate(courseID: String, name: String) -> NSPredicate {
-        return NSPredicate(format: "%K == %@ && %K LIKE[cd] %@", "courseID", courseID, "name", name)
+    // Only meant to be used in conjunction with another predicate in a compound predicate
+    public static func predicate(withName name: String) -> NSPredicate {
+        return NSPredicate(format: "%K LIKE[cd] %@", "name", name)
     }
     
-    public static func predicate(courseID: String, gradingPeriodID: String, name: String) -> NSPredicate {
-        return NSPredicate(format: "%K == %@ && %K == %@ && %K LIKE[cd] %@", "courseID", courseID, "gradingPeriodID", gradingPeriodID, "name", name)
-    }
-    
-    public static func collectionByDueStatus(session: Session, courseID: String, gradingPeriodID: String? = nil) throws -> FetchedCollection<Assignment> {
+    public static func collectionByDueStatus(session: Session, courseID: String, gradingPeriodID: String? = nil, filteredByName name: String? = nil) throws -> FetchedCollection<Assignment> {
         let predicate = gradingPeriodID.flatMap { Assignment.predicate(courseID, gradingPeriodID: $0) } ?? Assignment.predicate(courseID)
-        let frc = Assignment.fetchedResults(predicate, sortDescriptors: ["rawDueStatus".ascending, "due".ascending, "name".ascending], sectionNameKeypath: "rawDueStatus", inContext: try session.assignmentsManagedObjectContext())
+        let predicateFRD: NSPredicate
+        if let name = name {
+            let namePredicate = Assignment.predicate(withName: name)
+            predicateFRD = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, namePredicate])
+        } else {
+            predicateFRD = predicate
+        }
+        let frc = Assignment.fetchedResults(predicateFRD, sortDescriptors: ["rawDueStatus".ascending, "due".ascending, "name".ascending], sectionNameKeypath: "rawDueStatus", inContext: try session.assignmentsManagedObjectContext())
         let titleFunction: String?->String? = { $0.flatMap { DueStatus(rawValue: $0) }?.description }
         return try FetchedCollection<Assignment>(frc: frc, titleForSectionTitle:titleFunction)
     }
@@ -59,24 +63,17 @@ extension Assignment {
         let frc = Assignment.fetchedResults(Assignment.predicate(courseID), sortDescriptors: ["due".ascending, "name".ascending, "id".ascending], sectionNameKeypath: nil, inContext: try session.assignmentsManagedObjectContext())
         return try FetchedCollection(frc: frc)
     }
-
-    public static func collectionByAssignmentName(session: Session, courseID: String, gradingPeriodID: String?, name: String?) throws -> FetchedCollection<Assignment> {
-        var predicate: NSPredicate = Assignment.predicate(courseID)
-        
-        if let name = name {
-            predicate = Assignment.predicate(courseID, name: name)
-            if let gradingPeriodID = gradingPeriodID {
-                predicate = Assignment.predicate(courseID, gradingPeriodID: gradingPeriodID, name: name)
-            }
-        }
-        
-        let frc = Assignment.fetchedResults(predicate, sortDescriptors: ["assignmentGroup.position".ascending, "due".ascending, "name".ascending, "id".ascending], sectionNameKeypath: "assignmentGroupName", inContext: try session.assignmentsManagedObjectContext())
-        return try FetchedCollection(frc: frc)
-    }
     
-    public static func collectionByAssignmentGroup(session: Session, courseID: String, gradingPeriodID: String? = nil) throws -> FetchedCollection<Assignment> {
+    public static func collectionByAssignmentGroup(session: Session, courseID: String, gradingPeriodID: String? = nil, filteredByName name: String? = nil) throws -> FetchedCollection<Assignment> {
         let predicate = gradingPeriodID.flatMap { Assignment.predicate(courseID, gradingPeriodID: $0) } ?? Assignment.predicate(courseID)
-        let frc = Assignment.fetchedResults(predicate, sortDescriptors: ["assignmentGroup.position".ascending, "due".ascending, "name".ascending, "id".ascending], sectionNameKeypath: "assignmentGroupName", inContext: try session.assignmentsManagedObjectContext())
+        let predicateFRD: NSPredicate
+        if let name = name {
+            let namePredicate = Assignment.predicate(withName: name)
+            predicateFRD = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, namePredicate])
+        } else {
+            predicateFRD = predicate
+        }
+        let frc = Assignment.fetchedResults(predicateFRD, sortDescriptors: ["assignmentGroup.position".ascending, "due".ascending, "name".ascending, "id".ascending], sectionNameKeypath: "assignmentGroupName", inContext: try session.assignmentsManagedObjectContext())
         return try FetchedCollection(frc: frc)
     }
 

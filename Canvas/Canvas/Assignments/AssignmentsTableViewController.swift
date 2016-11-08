@@ -151,7 +151,7 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         }
     }
     
-    private func updateCollections(courseID: String, gradingPeriodID: String?, name: String?) throws {
+    private func updateCollections(courseID: String, gradingPeriodID: String?, name: String? = nil) throws {
         let collection = try self.collection(session, courseID: courseID, gradingPeriodID: gradingPeriodID, name: name)
         
         let invalidGradingPeriods = try GradingPeriod.gradingPeriodIDs(session, courseID: courseID, excludingGradingPeriodID: gradingPeriodID)
@@ -160,31 +160,6 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         let sync: SignalProducer<SignalProducer<Void, NSError>, NSError> = SignalProducer(values: [assignments, grades])
         
         let key = cacheKey(courseID, gradingPeriodID: gradingPeriodID)
-        let refresher = SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
-        
-        prepare(collection, refresher: refresher) { [weak self] (assignment: Assignment) -> ColorfulViewModel in
-            guard let me = self else { return ColorfulViewModel(style: .Basic) }
-            return me.viewModelFactory(assignment)
-        }
-        
-        // manually show the refresh control because of some bug somewhere
-        if refresher.shouldRefresh  {
-            tableView.contentOffset = CGPoint(x: 0, y: tableView.contentOffset.y - refresher.refreshControl.frame.size.height)
-        }
-        
-        refresher.refresh(false)
-    }
-    
-    private func updateCollections(courseID: String, gradingPeriodID: String?) throws {
-        let collection = try self.collection(session, courseID: courseID, gradingPeriodID: gradingPeriodID)
-
-        let invalidGradingPeriods = try GradingPeriod.gradingPeriodIDs(session, courseID: courseID, excludingGradingPeriodID: gradingPeriodID)
-        let assignments = try Assignment.refreshSignalProducer(session, courseID: courseID, gradingPeriodID: gradingPeriodID, invalidatingGradingPeriodIDs: invalidGradingPeriods, cacheKey: cacheKey)
-        let grades = try Grade.refreshSignalProducer(session, courseID: courseID, gradingPeriodID: gradingPeriodID).map { _ in () }
-        let sync: SignalProducer<SignalProducer<Void, NSError>, NSError> = SignalProducer(values: [assignments, grades])
-
-        let key = cacheKey(courseID, gradingPeriodID: gradingPeriodID)
-        
         let refresher = SignalProducerRefresher(refreshSignalProducer: sync.flatten(.Merge), scope: session.refreshScope, cacheKey: key)
         
         prepare(collection, refresher: refresher) { [weak self] (assignment: Assignment) -> ColorfulViewModel in
@@ -196,16 +171,12 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         if refresher.shouldRefresh  {
             tableView.contentOffset = CGPoint(x: 0, y: tableView.contentOffset.y - refresher.refreshControl.frame.size.height)
         }
-
+        
         refresher.refresh(false)
     }
-
-    func collection(session: Session, courseID: String, gradingPeriodID: String?) throws -> FetchedCollection<Assignment> {
-        return try Assignment.collectionByDueStatus(session, courseID: courseID, gradingPeriodID: gradingPeriodID)
-    }
     
-    func collection(session: Session, courseID: String, gradingPeriodID: String?, name: String?) throws -> FetchedCollection<Assignment> {
-        return try Assignment.collectionByAssignmentName(session, courseID: courseID, gradingPeriodID: gradingPeriodID, name: name)
+    func collection(session: Session, courseID: String, gradingPeriodID: String?, name: String? = nil) throws -> FetchedCollection<Assignment> {
+        return try Assignment.collectionByDueStatus(session, courseID: courseID, gradingPeriodID: gradingPeriodID, filteredByName: name)
     }
 
     func viewModelFactory(assignment: Assignment) -> ColorfulViewModel {
@@ -265,6 +236,7 @@ class GradesTableViewController: AssignmentsTableViewController {
         let gradingPeriod = header.selectedGradingPeriod.signal
         let grades = gradesCollection.collectionUpdates
 
+        header.grade.value = course.totalGrade(header.selectedGradingPeriod.value)
         header.grade <~ combineLatest(gradingPeriod, grades)
             .observeOn(UIScheduler())
             .map { gradingPeriodItem, _ in
@@ -293,7 +265,7 @@ class GradesTableViewController: AssignmentsTableViewController {
         return assignment.gradeColorfulViewModel(dataSource)
     }
 
-    override func collection(session: Session, courseID: String, gradingPeriodID: String?) throws -> FetchedCollection<Assignment> {
-        return try Assignment.collectionByAssignmentGroup(session, courseID: courseID, gradingPeriodID: gradingPeriodID)
+    override func collection(session: Session, courseID: String, gradingPeriodID: String?, name: String? = nil) throws -> FetchedCollection<Assignment> {
+        return try Assignment.collectionByAssignmentGroup(session, courseID: courseID, gradingPeriodID: gradingPeriodID, filteredByName: name)
     }
 }
