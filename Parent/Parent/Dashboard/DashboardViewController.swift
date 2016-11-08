@@ -151,8 +151,8 @@ class DashboardViewController: UIViewController {
 
     func setupCarousel() throws {
         observedUserCarousel = try! ObserveesCarouselViewController(session: session)
-        observedUserCarousel.studentChanged = { student in
-            self.currentStudent = student
+        observedUserCarousel.studentChanged = { [weak self] student in
+            self?.currentStudent = student
         }
         observedUserCarousel.willMoveToParentViewController(self)
         addChildViewController(observedUserCarousel)
@@ -265,7 +265,9 @@ class DashboardViewController: UIViewController {
         }
 
         let coursesViewController = try! CourseListViewController(session: session, studentID: currentStudent.id)
-        coursesViewController.selectCourseAction = selectCourseAction
+        coursesViewController.selectCourseAction = { [weak self] in
+            self?.selectCourseAction?(session: $0, observeeID: $1, course: $2)
+        }
         return coursesViewController
     }
     
@@ -276,7 +278,9 @@ class DashboardViewController: UIViewController {
 
         let calendarWeekPageVC = CalendarEventWeekPageViewController.new(session: session, studentID: currentStudent.id)
         calendarWeekPageVC.view.backgroundColor = UIColor.clearColor()
-        calendarWeekPageVC.selectCalendarEventAction = selectCalendarEventAction
+        calendarWeekPageVC.selectCalendarEventAction = { [weak self] in
+            self?.selectCalendarEventAction?(session: $0, observeeID: $1, calendarEvent: $2)
+        }
 
         return calendarWeekPageVC
     }

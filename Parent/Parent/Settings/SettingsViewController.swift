@@ -71,8 +71,8 @@ class SettingsViewController: UIViewController {
 
         controller.viewModel = SettingsViewModel(session: session)
         controller.observeesViewController = try! StudentsListViewController(session: session)
-        controller.observeesViewController?.selectStudentAction = { session, student in
-            controller.observeeSelectedAction?(session: session, observee: student)
+        controller.observeesViewController?.selectStudentAction = { [weak controller] session, student in
+            controller?.observeeSelectedAction?(session: session, observee: student)
         }
         
         return controller
@@ -188,7 +188,9 @@ class SettingsViewController: UIViewController {
 
         let destroyAction = UIAlertAction(title: NSLocalizedString("Logout", comment: "Logout Confirm Button"), style: .Destructive) { [weak self] _ in
             guard let me = self else { return }
-            me.logoutAction?(session: me.viewModel.session)
+            me.dismissViewControllerAnimated(true) {
+                me.logoutAction?(session: me.viewModel.session)
+            }
         }
         alertController.addAction(destroyAction)
 

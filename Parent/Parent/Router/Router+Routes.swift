@@ -212,10 +212,12 @@ extension Router {
             }
             
             let dashboardVC = DashboardViewController.new(session: session)
-            dashboardVC.settingsButtonAction = { session in
+            dashboardVC.settingsButtonAction = { [weak dashboardVC] session in
+                guard let dashboardVC = dashboardVC else { return }
                 self.route(dashboardVC, toURL: self.settingsRoute(), animated: true, modal: true)
             }
-            dashboardVC.selectCalendarEventAction = { session, studentID, calendarEvent in
+            dashboardVC.selectCalendarEventAction = { [weak dashboardVC] session, studentID, calendarEvent in
+                guard let dashboardVC = dashboardVC else { return }
                 guard let courseID = ContextID(canvasContext: calendarEvent.contextCode)?.id else {
                     return
                 }
@@ -230,13 +232,15 @@ extension Router {
 
 
             }
-            dashboardVC.selectCourseAction = { session, studentID, course in
+            dashboardVC.selectCourseAction = { [weak dashboardVC] session, studentID, course in
+                guard let dashboardVC = dashboardVC else { return }
                 self.route(dashboardVC, toURL: self.courseCalendarEventsRoute(studentID: studentID, courseID: course.id), modal: true)
             }
             dashboardVC.logoutAction = {
                 self.logout()
             }
-            dashboardVC.addStudentAction = {
+            dashboardVC.addStudentAction = { [weak dashboardVC] in
+                guard let dashboardVC = dashboardVC else { return }
                 self.route(dashboardVC, toURL: self.addStudentRoute())
             }
             
@@ -248,8 +252,8 @@ extension Router {
         return { params in
             let selectDomainViewController = SelectDomainViewController.new()
             selectDomainViewController.dataSource = ParentSelectDomainDataSource.instance
-            selectDomainViewController.pickedDomainAction = { [unowned self] domain in
-                guard let session = self.session else {
+            selectDomainViewController.pickedDomainAction = { [weak self, weak selectDomainViewController] domain in
+                guard let session = self?.session else {
                     fatalError("You can't add a user without a session")
                 }
                 let producer = try! Student.checkDomain(session, parentID: session.user.id, domain: domain)
@@ -267,16 +271,18 @@ extension Router {
                                                 }
                                                 let alert = UIAlertController(title: createAccountTitle, message: createAccountMessage, preferredStyle: .Alert)
                                                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
-                                                selectDomainViewController.presentViewController(alert, animated: true, completion: nil)
+                                                selectDomainViewController?.presentViewController(alert, animated: true, completion: nil)
                                             case .Completed:
                                                 do {
                                                     let addVC = try AddStudentViewController(session: session, domain: domain, useBackButton: true) { result in
-                                                        selectDomainViewController.navigationController?.popToRootViewControllerAnimated(true)
+                                                        selectDomainViewController?.navigationController?.popToRootViewControllerAnimated(true)
                                                     }
                                                     addVC.prompt = NSLocalizedString("Enter student's login information", comment: "Prompt for logging in as student")
-                                                    selectDomainViewController.navigationController?.pushViewController(addVC, animated: true)
+                                                    selectDomainViewController?.navigationController?.pushViewController(addVC, animated: true)
                                                 } catch let e as NSError {
-                                                    e.report(false, alertUserFrom: selectDomainViewController)
+                                                    if let selectDomainViewController = selectDomainViewController {
+                                                        e.report(false, alertUserFrom: selectDomainViewController)
+                                                    }
                                                 }
                                             default:
                                                 break
@@ -327,30 +333,35 @@ extension Router {
             guard let session = self.session else {
                 fatalError("You can't get to the Settings Page without a Session")
             }
-            
+
             let settingsVC = SettingsViewController.new(session: session)
             
-            settingsVC.closeAction = { session in
-                settingsVC.dismissViewControllerAnimated(true, completion: nil)
+            settingsVC.closeAction = { [weak settingsVC] session in
+                settingsVC?.dismissViewControllerAnimated(true, completion: nil)
             }
 
-            settingsVC.addObserveeAction = { session in
+            settingsVC.addObserveeAction = { [weak settingsVC] session in
+                guard let settingsVC = settingsVC else { return }
                 self.route(settingsVC, toURL: self.addStudentRoute())
             }
 
-            settingsVC.requestFeatureAction = { session in
+            settingsVC.requestFeatureAction = { [weak settingsVC] session in
+                guard let settingsVC = settingsVC else { return }
                 self.route(settingsVC, toURL: self.requestFeatureRoute())
             }
 
-            settingsVC.reportProblemAction = { session in
+            settingsVC.reportProblemAction = { [weak settingsVC] session in
+                guard let settingsVC = settingsVC else { return }
                 self.route(settingsVC, toURL: self.reportProblemRoute())
             }
 
-            settingsVC.viewGuidesAction = { session in
+            settingsVC.viewGuidesAction = { [weak settingsVC] session in
+                guard let settingsVC = settingsVC else { return }
                 self.route(settingsVC, toURL: self.viewGuidesRoute())
             }
             
-            settingsVC.observeeSelectedAction = { session, observee in
+            settingsVC.observeeSelectedAction = { [weak settingsVC] session, observee in
+                guard let settingsVC = settingsVC else { return }
                 self.route(settingsVC, toURL: self.thresholdSettingsRoute(studentID: String(observee.id)))
             }
             

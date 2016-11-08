@@ -21,11 +21,28 @@ import Keymaster
 import SoLazy
 
 extension AppDelegate {
-    static func resetApplicationForTesting() {
-        resetKeychainForTesting()
-        resetDirectoriesForTesting()
+    static func logout() {
+        // Prevent a memory leak after setting window.rootViewController while another view is presented
+        // like in settings with the log out action sheet.
+        // see rdar://21404408
+        if let
+            window = Router.sharedInstance.applicationWindow(),
+            rootNav = window.rootViewController as? UINavigationController,
+            topViewController = rootNav.topViewController
+            where topViewController.presentedViewController != nil
+        {
+            topViewController.dismissViewControllerAnimated(false) {
+                Router.sharedInstance.routeToLoggedOutViewController()
+            }
+            return
+        }
 
         Router.sharedInstance.routeToLoggedOutViewController()
+    }
+
+    static func resetApplicationForTesting() {
+        AppDelegate.resetKeychainForTesting()
+        AppDelegate.resetCacheForTesting()
     }
 
     static func resetCacheForTesting() {
@@ -43,6 +60,7 @@ extension AppDelegate {
 
     static func resetKeychainForTesting() {
         let keymaster = Keymaster.sharedInstance
+        keymaster.logout()
         for session in keymaster.savedSessions() {
             keymaster.deleteSession(session)
         }

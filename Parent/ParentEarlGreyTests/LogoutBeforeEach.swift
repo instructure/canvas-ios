@@ -27,6 +27,13 @@ class LogoutBeforeEach: XCTestCase {
     override func setUp() {
         super.setUp()
 
+        AppDelegate.logout()
+
+        //
+        // TODO: must wait for domain picker page to load here.
+        //   * ie: parentDomainPickerPage.waitForPageToLoad()
+        //
+
         AppDelegate.resetApplicationForTesting()
     }
 }
