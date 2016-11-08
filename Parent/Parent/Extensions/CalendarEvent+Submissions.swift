@@ -64,7 +64,7 @@ private struct Submission {
             let score = currentScore.doubleValue
             let pointsPossible = self.pointsPossible?.doubleValue ?? 0.0
             var grade = Submission.percentFormatter.stringFromNumber(score / pointsPossible)
-            if (score > 0 && pointsPossible == 0) {
+            if (score != 0 && pointsPossible == 0) {
                 grade = String(format: "(%g/%g)", score, pointsPossible)
             } else if (score == 0 && pointsPossible == 0) {
                 grade = "(0/0)"
