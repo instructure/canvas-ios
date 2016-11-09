@@ -99,7 +99,7 @@ public class AccountDomainListViewController: UITableViewController {
         dataSource?.viewDidLoad(self)
 
         AccountDomainViewModel.tableViewDidLoad(tableView)
-        collectionUpdatesDisposable = collection.collectionUpdates.observeNext { [unowned self] updates in
+        collectionUpdatesDisposable = collection.collectionUpdates.observeOn(UIScheduler()).observeNext { [unowned self] updates in
             self.handleUpdates(updates)
         }.map(ScopedDisposable.init)
 

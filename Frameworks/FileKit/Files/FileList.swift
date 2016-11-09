@@ -76,7 +76,7 @@ class FileList: FileNode.TableViewController {
                 print("completed")
             }
         }
-        fileUploadCollection.collectionUpdates.observeNext { updates in
+        fileUploadCollection.collectionUpdates.observeOn(UIScheduler()).observeNext { updates in
             self.processCollectionUpdates(updates)
         }
         let collection = try FileNode.fetchCollection(session, contextID: contextID, hiddenForUser: hiddenForUser, folderID: folderID)

@@ -46,7 +46,7 @@ public class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewM
         self.viewModelFactory = viewModelFactory
         super.init()
 
-        disposable = collection.collectionUpdates.observeNext { [weak self] updates in
+        disposable = collection.collectionUpdates.observeOn(UIScheduler()).observeNext { [weak self] updates in
             self?.processUpdates(updates)
             self?.collectionDidChange()
         }.map(ScopedDisposable.init)

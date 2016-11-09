@@ -68,7 +68,7 @@ public class GradingPeriodCollection: Collection {
     public init(course: Course, gradingPeriods: FetchedCollection<GradingPeriod>) {
         self.gradingPeriods = gradingPeriods
         (collectionUpdates, updatesObserver) = Signal.pipe()
-        disposable = gradingPeriods.collectionUpdates.observeNext { [weak self] updates in
+        disposable = gradingPeriods.collectionUpdates.observeOn(UIScheduler()).observeNext { [weak self] updates in
             guard let me = self else { return }
             me.updatesObserver.sendNext(updates.map(me.offsetUpdate))
             
