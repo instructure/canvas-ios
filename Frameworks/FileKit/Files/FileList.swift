@@ -21,6 +21,7 @@ import SoPersistent
 import TooLegit
 import CoreData
 import MobileCoreServices
+import ReactiveCocoa
 
 struct FileViewModel: TableViewCellViewModel {
     static let fileReuseIdentifier = "FileCell"
