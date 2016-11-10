@@ -14,4 +14,11 @@
 // limitations under the License.
 //
 
-// Placeholder for auto-generated user credentials
+import Foundation
+
+extension NSBundle {
+    
+    static func soThankfulBundle() -> NSBundle {
+        return NSBundle(identifier: "com.instructure.SoThankful")!
+    }
+}

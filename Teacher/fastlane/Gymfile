@@ -1,6 +1,0 @@
-scheme 'Teach'
-workspace 'Teach.xcworkspace'
-clean true
-output_directory './build'
-export_method 'development'
-

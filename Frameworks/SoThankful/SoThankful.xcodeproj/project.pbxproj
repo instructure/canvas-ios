@@ -10,7 +10,7 @@
 		2C4762281DD0CCBB0003BEAE /* SoThankful.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4762261DD0CCBB0003BEAE /* SoThankful.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C47622F1DD0CCE50003BEAE /* ThankfulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C47622E1DD0CCE50003BEAE /* ThankfulViewController.swift */; };
 		2C4762311DD0CFCE0003BEAE /* components.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C4762301DD0CFCE0003BEAE /* components.plist */; };
-		2C4762361DD0D4BF0003BEAE /* NSBundle+SoThankfule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4762351DD0D4BF0003BEAE /* NSBundle+SoThankfule.swift */; };
+		2C4762361DD0D4BF0003BEAE /* NSBundle+SoThankful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4762351DD0D4BF0003BEAE /* NSBundle+SoThankful.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,7 +19,7 @@
 		2C4762271DD0CCBB0003BEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C47622E1DD0CCE50003BEAE /* ThankfulViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankfulViewController.swift; sourceTree = "<group>"; };
 		2C4762301DD0CFCE0003BEAE /* components.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = components.plist; sourceTree = "<group>"; };
-		2C4762351DD0D4BF0003BEAE /* NSBundle+SoThankfule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+SoThankfule.swift"; sourceTree = "<group>"; };
+		2C4762351DD0D4BF0003BEAE /* NSBundle+SoThankful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+SoThankful.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +56,7 @@
 				2C4762271DD0CCBB0003BEAE /* Info.plist */,
 				2C47622E1DD0CCE50003BEAE /* ThankfulViewController.swift */,
 				2C4762301DD0CFCE0003BEAE /* components.plist */,
-				2C4762351DD0D4BF0003BEAE /* NSBundle+SoThankfule.swift */,
+				2C4762351DD0D4BF0003BEAE /* NSBundle+SoThankful.swift */,
 			);
 			path = SoThankful;
 			sourceTree = "<group>";
@@ -143,7 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C47622F1DD0CCE50003BEAE /* ThankfulViewController.swift in Sources */,
-				2C4762361DD0D4BF0003BEAE /* NSBundle+SoThankfule.swift in Sources */,
+				2C4762361DD0D4BF0003BEAE /* NSBundle+SoThankful.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

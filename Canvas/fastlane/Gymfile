@@ -1,4 +1,0 @@
-workspace "Canvas.xcworkspace"
-scheme "Canvas"
-use_legacy_build_api true
-

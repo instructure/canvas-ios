@@ -1,7 +1,9 @@
 # Instructure iOS
 
+### PLEASE NOTE: This repository will be updated frequently with *breaking* changes. Fork with caution.
+
 ## Prerequisites:
-- Xocde 8
+- Xcode 8
 - macOS 10.12
 - [Cocoapods 1.0.1](https://cocoapods.org)
 - [Carthage 0.18](https://github.com/Carthage/Carthage)
@@ -18,7 +20,7 @@
 App | Description
 --- | ---
 [Canvas][canvas]           | Used by Students all over the world to be smarter, go faster, and do more. 
-[SpeedGrader][speedgrader] | Used by Teachers all over the work to grade at lightning speeds.
+[SpeedGrader][speedgrader] | Used by Teachers all over the world to grade at lightning speeds.
 
 ## Instructure Frameworks
 A collection of frameworks that are specific to Instructure
@@ -76,7 +78,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ```
 
-#### Our Modules are licensed under the Apache v2 License.
+#### Our frameworks are licensed under the Apache v2 License.
 
 ```
 Copyright (C) 2016 - present Instructure, Inc.

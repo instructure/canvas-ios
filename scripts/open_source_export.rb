@@ -26,7 +26,9 @@ targets = [workspace_name,
            'Podfile.lock',
            'ExternalFrameworks',
            'SpeedGrader',
-           'secrets.plist']
+           'secrets.plist',
+           '.gitignore',
+           'fastlane']
 
 destination = 'ios-open-source'
 workspace_path = File.join(destination, workspace_name)
@@ -124,5 +126,9 @@ FileUtils.rm_r pspdfkit_dir if File.exists? pspdfkit_dir
 
 # Remove GoogleServices plist
 FileUtils.rm File.join(destination, 'Canvas', 'Canvas', 'Shrug', 'GoogleService-Info.plist')
+
+# Remove Matchfile
+FileUtils.rm File.join(destination, 'fastlane', 'Matchfile')
+FileUtils.rm File.join(destination, 'fastlane', 'Appfile')
 
 puts "PRAISE THE SUN IT'S FINISHED"
