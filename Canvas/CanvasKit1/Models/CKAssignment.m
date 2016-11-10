@@ -117,6 +117,8 @@
     self.quizIdent = [info[@"quiz_id"] unsignedLongLongValue];
     
     _contentLock = [CKContentLock contentLockWithInfo:info];
+    
+    self.groupCategoryID = info[@"group_category_id"];
 }
 
 
@@ -233,6 +235,7 @@
         }
     }
 }
+
 @end
 
 

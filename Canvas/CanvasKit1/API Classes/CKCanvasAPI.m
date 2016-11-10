@@ -2564,25 +2564,59 @@ static CGFloat overallProgressForDictionaries(NSArray *progressDicts) {
     return (CGFloat)( (double)totalCurrent / (double)totalExpected );
 }
 
+- (void)determinURLForUploadSubmissionForAssignment:(CKAssignment *)assignment completionBlock:(void (^)(NSError *error, BOOL isFinalValue, NSURL *url))completed {
+    NSURL *selfURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@/api/v1/courses/%qu/assignments/%qu/submissions/%qu/files",
+                                       self.apiProtocol, self.hostname, assignment.courseIdent, assignment.ident, self.user.ident]];
+    
+    if (assignment.groupCategoryID == nil) {
+        completed(nil, YES, selfURL);
+        return;
+    }
+    
+    NSURL *overridesURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@/api/v1/courses/%qu/assignments/%qu/overrides", self.apiProtocol, self.hostname, assignment.courseIdent, assignment.ident]];
+    
+    
+    [self runForURL:overridesURL options:@{} block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
+        if (error) {
+            completed(error, YES, nil);
+            return;
+        }
+        
+        NSArray *json = [apiResponse JSONValue];
+        if (![json isKindOfClass:[NSArray class]]) {
+            completed(nil, YES, selfURL);
+            return;
+        }
+        for (NSDictionary *overrideJSON in json) {
+            NSNumber *groupID = overrideJSON[@"group_id"];
+            if (groupID) {
+                NSString *groupUploadURLString = [NSString stringWithFormat:@"%@://%@/api/v1/groups/%@/files", self.apiProtocol, self.hostname, groupID];
+                completed(nil, YES, [NSURL URLWithString:groupUploadURLString]);
+                return;
+            }
+        }
+        
+        completed(nil, YES, selfURL);
+    }];
+}
+
 - (void)postFileURLs:(NSArray *)files asSubmissionForAssignment:(CKAssignment *)assignment
        progressBlock:(void (^)(float))progressBlock
      completionBlock:(CKSubmissionBlock)completionBlock {
 
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/courses/%qu/assignments/%qu/submissions/%qu/files",
-                           self.apiProtocol, self.hostname, assignment.courseIdent, assignment.ident, self.user.ident];
-    NSURL *endpoint = [NSURL URLWithString:urlString];
-    
-    
-    [self _uploadFiles:files toEndpoint:endpoint progressBlock:progressBlock completionBlock:^(NSError *error, BOOL isFinalValue, NSArray *attachments) {
-        if (error) {
-            completionBlock(error, isFinalValue, nil);
-        }
-        else {
-            [self postAttachments:attachments asSubmissionForAssignment:(CKAssignment *)assignment block:
-             ^(NSError *postingError, BOOL isFinalValue, CKSubmission *submission) {
-                 completionBlock(postingError, isFinalValue, submission);
-             }];
-        }
+    [self determinURLForUploadSubmissionForAssignment:assignment completionBlock:^(NSError *error, BOOL isFinalValue, NSURL *endpoint) {
+        
+        [self _uploadFiles:files toEndpoint:endpoint progressBlock:progressBlock completionBlock:^(NSError *error, BOOL isFinalValue, NSArray *attachments) {
+            if (error) {
+                completionBlock(error, isFinalValue, nil);
+            }
+            else {
+                [self postAttachments:attachments asSubmissionForAssignment:(CKAssignment *)assignment block:
+                 ^(NSError *postingError, BOOL isFinalValue, CKSubmission *submission) {
+                     completionBlock(postingError, isFinalValue, submission);
+                 }];
+            }
+        }];
     }];
 }
 

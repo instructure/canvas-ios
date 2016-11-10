@@ -54,6 +54,7 @@ typedef enum {
 @property (nonatomic, assign) CKAssignmentScoringType scoringType;
 @property (nonatomic, assign) double pointsPossible;
 @property (nonatomic, assign) uint64_t assignmentGroupId;
+@property (nonatomic, assign) NSNumber *groupCategoryID; // for group assignments
 @property (nonatomic, assign) NSInteger position;
 @property (nonatomic, strong) CKDiscussionTopic *discussionTopic;
 @property BOOL useRubricForGrading;
@@ -64,6 +65,8 @@ typedef enum {
 @property (nonatomic, assign) uint64_t quizIdent;
 @property (nonatomic) NSURL *url;
 @property (readonly) CKContentLock *contentLock;
+
+@property (nonatomic, readonly) NSURL *urlForSubmissionFileUpload;
 
 - (id)initWithInfo:(NSDictionary *)info;
 

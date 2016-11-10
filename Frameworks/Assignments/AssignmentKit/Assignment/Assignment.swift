@@ -58,6 +58,7 @@ public final class Assignment: NSManagedObject, LockableModel {
     @NSManaged internal (set) public var gradedAt: NSDate?
     @NSManaged private (set) public var rawStatus: Int64
     @NSManaged internal (set) public var muted: Bool
+    @NSManaged internal (set) public var groupSetID: String?
     
     @NSManaged internal (set) public var needsGradingCount: Int32
     @NSManaged internal (set) public var published: Bool
@@ -351,6 +352,8 @@ extension Assignment: SynchronizedModel {
         htmlURL             = try json <| "html_url"
         muted               = try json <| "muted" ?? false
         assignmentGroupID   = try json.stringID("assignment_group_id")
+        groupSetID          = try json.stringID("group_category_id")
+        
         assignmentGroup     = try assignmentGroupID.flatMap { try context.findOne(withValue: $0, forKey: "id") }
 
         try updateSubmission(json, inContext: context)

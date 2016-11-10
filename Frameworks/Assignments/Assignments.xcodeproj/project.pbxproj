@@ -60,6 +60,12 @@
 		49D3B89A1C51823100291009 /* WhizzyWig.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49895EED1C45B9EC002A16EC /* WhizzyWig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49D3B89B1C51825300291009 /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494E4B471C503C1200E20CA7 /* DoNotShipThis.framework */; };
 		49D3B89C1C51825300291009 /* DoNotShipThis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 494E4B471C503C1200E20CA7 /* DoNotShipThis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49E67B1B1DD43DB800A3BFEF /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E67B1A1DD43DA700A3BFEF /* Kingfisher.framework */; };
+		49E67B1C1DD43DB800A3BFEF /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49E67B1A1DD43DA700A3BFEF /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49E67B1E1DD43DF100A3BFEF /* CWStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E67B1D1DD43DF100A3BFEF /* CWStatusBarNotification.framework */; };
+		49E67B1F1DD43DF100A3BFEF /* CWStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49E67B1D1DD43DF100A3BFEF /* CWStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49E67B201DD43E2A00A3BFEF /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61913DB51D9F09BC000D4DF2 /* SoIconic.framework */; };
+		49E67B211DD43E2A00A3BFEF /* SoIconic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61913DB51D9F09BC000D4DF2 /* SoIconic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E696EA1CC1327800A17AF1 /* DueDateOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E696E91CC1327800A17AF1 /* DueDateOverride.swift */; };
 		5E5560011C8EB37500933E08 /* Assignment+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5560001C8EB37500933E08 /* Assignment+Network.swift */; };
 		5E5560071C8EB93700933E08 /* AssignmentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5560061C8EB93700933E08 /* AssignmentAPI.swift */; };
@@ -183,12 +189,14 @@
 			dstSubfolderSpec = 10;
 			files = (
 				B1409A821CA34D5100E88AE5 /* Keymaster.framework in Embed Frameworks */,
+				49E67B1F1DD43DF100A3BFEF /* CWStatusBarNotification.framework in Embed Frameworks */,
 				B5FE27CB1C97769900D07C43 /* SoPretty.framework in Embed Frameworks */,
 				493479841CB42458008D14DD /* SoProgressive.framework in Embed Frameworks */,
 				B1BF2CF01CA4415A00196663 /* Cartography.framework in Embed Frameworks */,
 				490A86CF1C407D9600351185 /* TooLegit.framework in Embed Frameworks */,
 				49D3B89A1C51823100291009 /* WhizzyWig.framework in Embed Frameworks */,
 				490A86CB1C407D9500351185 /* SoLazy.framework in Embed Frameworks */,
+				49E67B1C1DD43DB800A3BFEF /* Kingfisher.framework in Embed Frameworks */,
 				490A86941C407CB200351185 /* AssignmentKit.framework in Embed Frameworks */,
 				490A86C51C407D9400351185 /* MediaKit.framework in Embed Frameworks */,
 				4928EBCA1C84DE3A00799E04 /* Marshal.framework in Embed Frameworks */,
@@ -197,6 +205,7 @@
 				490A86C11C407D9300351185 /* FileKit.framework in Embed Frameworks */,
 				490A86C71C407D9400351185 /* ReactiveCocoa.framework in Embed Frameworks */,
 				49D3B89C1C51825300291009 /* DoNotShipThis.framework in Embed Frameworks */,
+				49E67B211DD43E2A00A3BFEF /* SoIconic.framework in Embed Frameworks */,
 				B181C31B1CA43A6200277440 /* EnrollmentKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -253,6 +262,8 @@
 		49895EDB1C45B883002A16EC /* Submission Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Submission Icons.xcassets"; sourceTree = "<group>"; };
 		49895EED1C45B9EC002A16EC /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhizzyWig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49CE1DBD1DC06E8100E300E2 /* Assignment+Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+Attachment.swift"; sourceTree = "<group>"; };
+		49E67B1A1DD43DA700A3BFEF /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49E67B1D1DD43DF100A3BFEF /* CWStatusBarNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49E696E91CC1327800A17AF1 /* DueDateOverride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDateOverride.swift; sourceTree = "<group>"; };
 		5E5560001C8EB37500933E08 /* Assignment+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+Network.swift"; sourceTree = "<group>"; };
 		5E5560061C8EB93700933E08 /* AssignmentAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentAPI.swift; sourceTree = "<group>"; };
@@ -355,15 +366,18 @@
 				B1BF2CEF1CA4415A00196663 /* Cartography.framework in Frameworks */,
 				B5FE27CA1C97769900D07C43 /* SoPretty.framework in Frameworks */,
 				490A86CE1C407D9600351185 /* TooLegit.framework in Frameworks */,
+				49E67B1E1DD43DF100A3BFEF /* CWStatusBarNotification.framework in Frameworks */,
 				490A86CA1C407D9500351185 /* SoLazy.framework in Frameworks */,
 				490A86931C407CB200351185 /* AssignmentKit.framework in Frameworks */,
 				490A86C41C407D9400351185 /* MediaKit.framework in Frameworks */,
 				493479831CB42458008D14DD /* SoProgressive.framework in Frameworks */,
 				4928EBC91C84DE3A00799E04 /* Marshal.framework in Frameworks */,
 				B181C31A1CA43A6200277440 /* EnrollmentKit.framework in Frameworks */,
+				49E67B1B1DD43DB800A3BFEF /* Kingfisher.framework in Frameworks */,
 				490A86C81C407D9500351185 /* Result.framework in Frameworks */,
 				B1409A811CA34D5100E88AE5 /* Keymaster.framework in Frameworks */,
 				490A86D01C407D9600351185 /* SoPersistent.framework in Frameworks */,
+				49E67B201DD43E2A00A3BFEF /* SoIconic.framework in Frameworks */,
 				490A86C01C407D9300351185 /* FileKit.framework in Frameworks */,
 				490A86C61C407D9400351185 /* ReactiveCocoa.framework in Frameworks */,
 			);
@@ -498,22 +512,24 @@
 		490A869C1C407CDC00351185 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				61913DB51D9F09BC000D4DF2 /* SoIconic.framework */,
-				493479811CB4244C008D14DD /* SoProgressive.framework */,
 				B1BF2CED1CA4412D00196663 /* Cartography.framework */,
-				B181C3161CA43A5000277440 /* EnrollmentKit.framework */,
-				B1409A7F1CA34D3400E88AE5 /* Keymaster.framework */,
+				49E67B1D1DD43DF100A3BFEF /* CWStatusBarNotification.framework */,
 				494E4B471C503C1200E20CA7 /* DoNotShipThis.framework */,
-				4928EBC11C84DE0400799E04 /* Marshal.framework */,
-				49895EED1C45B9EC002A16EC /* WhizzyWig.framework */,
+				B181C3161CA43A5000277440 /* EnrollmentKit.framework */,
 				490A86A81C407D7000351185 /* FileKit.framework */,
+				B1409A7F1CA34D3400E88AE5 /* Keymaster.framework */,
+				49E67B1A1DD43DA700A3BFEF /* Kingfisher.framework */,
+				4928EBC11C84DE0400799E04 /* Marshal.framework */,
 				490A86AA1C407D7000351185 /* MediaKit.framework */,
 				490A86AB1C407D7000351185 /* ReactiveCocoa.framework */,
 				490A86AC1C407D7000351185 /* Result.framework */,
+				61913DB51D9F09BC000D4DF2 /* SoIconic.framework */,
 				490A86AD1C407D7000351185 /* SoLazy.framework */,
-				490A86AF1C407D7000351185 /* TooLegit.framework */,
 				490A86A51C407D4D00351185 /* SoPersistent.framework */,
 				B1D92AB11C8F35B800EACE5C /* SoPretty.framework */,
+				493479811CB4244C008D14DD /* SoProgressive.framework */,
+				490A86AF1C407D7000351185 /* TooLegit.framework */,
+				49895EED1C45B9EC002A16EC /* WhizzyWig.framework */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";

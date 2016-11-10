@@ -73,16 +73,17 @@ public final class File: FileNode {
         } else {
             path = contextID.apiPath/"files"
         }
+        
         for newUploadFile in newUploadFiles {
             let name = newUploadFile.name
             let contentType = newUploadFile.contentType
-            newUploadFile.extract { data in
+            newUploadFile.extractDataProducer.on(next: { data in
                 if let data = data {
                     let fileUpload = FileUpload.createInContext(context)
                     fileUpload.prepare(backgroundSession.sessionID, path: path, data: data, name: name, contentType: contentType, parentFolderID: folderID, contextID: contextID)
                     fileUpload.begin(inSession: backgroundSession, inContext: context)
                 }
-            }
+            }).start()
         }
     }
     

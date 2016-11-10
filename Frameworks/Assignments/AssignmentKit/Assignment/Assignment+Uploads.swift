@@ -20,22 +20,51 @@ import TooLegit
 import CoreData
 import SoLazy
 import FileKit
+import ReactiveCocoa
+import SoPersistent
+import Marshal
 
 extension Assignment {
+    
+    private func apiPathForSubmissionFileUpload(in session: Session) -> SignalProducer<String, NSError> {
+        let singleSubmissionPath = SignalProducer<String, NSError>(value: "/api/v1/courses/\(courseID)/assignments/\(id)/submissions/self/files")
+        
+        if groupSetID != nil {
+            let overridesPath = "/api/v1/courses/\(courseID)/assignments/\(id)/overrides"
+            let request = try! session.GET(overridesPath)
+            return session.paginatedJSONSignalProducer(request)
+                .flatMap(.Merge, transform: { (overrides) -> SignalProducer<String, NSError> in
+                    for overrideJSON in overrides {
+                        if let groupID: String = try? overrideJSON.stringID("group_id") {
+                            return SignalProducer<String, NSError>(value: groupID)
+                        }
+                    }
+                    return .empty
+                })
+                .map { "/api/v1/groups/\($0)/files" }
+                .concat(singleSubmissionPath)
+                .take(1)
+        }
+
+        return singleSubmissionPath
+    }
 
     public func uploadForNewSubmission(newSubmission: NewUpload, inSession session: Session, handler: SubmissionUpload?->Void) throws {
         let identifier = submissionUploadIdentifier
         let context = try session.assignmentsManagedObjectContext()
-        let filesPath = "/api/v1/courses/\(courseID)/assignments/\(id)/submissions/self/files"
-
         func convertFile(file: NewUploadFile, toUpload fileUploadHandler: SubmissionFileUpload?->Void) {
-            file.extract { data in
-                guard let data = data else {
+            
+            apiPathForSubmissionFileUpload(in: session)
+                .zipWith(file.extractDataProducer)
+                .observeOn(ManagedObjectContextScheduler(context: context))
+                .startWithResult
+            { result in
+                guard let (apiPath, optionalData) = result.value, data = optionalData else {
                     fileUploadHandler(nil)
                     return
                 }
                 let fileUpload = SubmissionFileUpload(inContext: context)
-                fileUpload.prepare(identifier, path: filesPath, data: data, name: file.name, contentType: file.contentType, parentFolderID: nil, contextID: ContextID(id: self.id, context: .Course))
+                fileUpload.prepare(identifier, path: apiPath, data: data, name: file.name, contentType: file.contentType, parentFolderID: nil, contextID: ContextID(id: self.id, context: .Course))
                 fileUploadHandler(fileUpload)
             }
         }

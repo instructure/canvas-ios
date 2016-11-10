@@ -40,13 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        let courseID: String = "24219" // Beginning iOS
+        let courseID = "968776" // String Tricks for Dummies
+//        let courseID: String = "24219" // Beginning iOS
 //        let courseID: String = "1140383" // Advanced Lobster Tasting
 //        let courseID: String = "1787647" // All Hands On Deck
 //        let courseID: String = "1422605"
         
         let navigationController = UINavigationController()
-        let session = Session.nas
+        let session = Session.art
         // Keymaster.sharedInstance.addSession(session)
         let vc = try! AssignmentList(session: session, courseID: courseID)
         

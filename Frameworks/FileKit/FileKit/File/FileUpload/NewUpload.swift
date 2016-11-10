@@ -122,33 +122,35 @@ public enum NewUploadFile {
         }
     }
 
-    public func extract(block: NSData?->Void) {
-        switch self {
-        case .FileURL(let url):
-            block(NSData(contentsOfURL: url))
-        case .AudioFile(let url):
-            block(NSData(contentsOfURL: url))
-        case .VideoURL(let url):
-            block(NSData(contentsOfURL: url))
-        case .Photo(let image):
-            block(UIImagePNGRepresentation(image))
-        case .CameraRollAsset(let asset):
-            let manager = PHCachingImageManager()
-            switch asset.mediaType {
-            case .Image:
-                manager.requestImageDataForAsset(asset, options: nil) { (data, _, _, _) in
-                    block(data)
-                }
-            case .Video:
-                manager.requestAVAssetForVideo(asset, options: nil) { asset, audioMix, info in
-                    if let asset = asset as? AVURLAsset, data = NSData(contentsOfURL: asset.URL) {
-                        block(data)
+    public var extractDataProducer: SignalProducer<NSData?, NSError> {
+        return SignalProducer() { observer, disposable in
+            switch self {
+            case .FileURL(let url):
+                observer.sendNext(NSData(contentsOfURL: url))
+            case .AudioFile(let url):
+                observer.sendNext(NSData(contentsOfURL: url))
+            case .VideoURL(let url):
+                observer.sendNext(NSData(contentsOfURL: url))
+            case .Photo(let image):
+                observer.sendNext(UIImagePNGRepresentation(image))
+            case .CameraRollAsset(let asset):
+                let manager = PHCachingImageManager()
+                switch asset.mediaType {
+                case .Image:
+                    manager.requestImageDataForAsset(asset, options: nil) { (data, _, _, _) in
+                        observer.sendNext(data)
                     }
+                case .Video:
+                    manager.requestAVAssetForVideo(asset, options: nil) { asset, audioMix, info in
+                        if let asset = asset as? AVURLAsset, data = NSData(contentsOfURL: asset.URL) {
+                            observer.sendNext(data)
+                        }
+                    }
+                default: observer.sendNext(nil)
                 }
-            default: block(nil)
+            case .Data(let data):
+                observer.sendNext(data)
             }
-        case .Data(let data):
-            block(data)
         }
     }
 }
