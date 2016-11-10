@@ -937,40 +937,6 @@
 		49E80A281CFF8E42002AF45E /* PageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E80A271CFF8E37002AF45E /* PageKit.framework */; };
 		49E80A291CFF8E42002AF45E /* PageKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49E80A271CFF8E37002AF45E /* PageKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E80A2A1CFF8E67002AF45E /* PageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E80A271CFF8E37002AF45E /* PageKit.framework */; };
-		49E80A331CFF93F7002AF45E /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E80A321CFF93EF002AF45E /* DVR.framework */; };
-		49E80A341CFF93F7002AF45E /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E80A311CFF93E6002AF45E /* SoAutomated.framework */; };
-		49E80A361CFF95B8002AF45E /* DVR.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49E80A321CFF93EF002AF45E /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A371CFF95B8002AF45E /* SoAutomated.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49E80A311CFF93E6002AF45E /* SoAutomated.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A381CFF95B8002AF45E /* PageKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49E80A271CFF8E37002AF45E /* PageKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A391CFF95B8002AF45E /* FXKeychain.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4985D3C21CFE35D600BA3685 /* FXKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A3A1CFF95B8002AF45E /* Mantle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4985D3BF1CFE35A500BA3685 /* Mantle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A3B1CFF95B8002AF45E /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4985D3BC1CFE354D00BA3685 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A3D1CFF95B8002AF45E /* AssignmentKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4927085E1CF4C37100C631C6 /* AssignmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A3E1CFF95B8002AF45E /* CalendarKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4927085F1CF4C37100C631C6 /* CalendarKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A3F1CFF95B8002AF45E /* CanvasKeymaster.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A401CFF95B8002AF45E /* CanvasKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A411CFF95B8002AF45E /* Cartography.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708601CF4C37100C631C6 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A421CFF95B8002AF45E /* CocoaLumberjack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708611CF4C37100C631C6 /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A431CFF95B8002AF45E /* CWStatusBarNotification.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708621CF4C37100C631C6 /* CWStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A441CFF95B8002AF45E /* EnrollmentKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708631CF4C37100C631C6 /* EnrollmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A451CFF95B8002AF45E /* FileKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708641CF4C37100C631C6 /* FileKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A461CFF95B8002AF45E /* Kingfisher.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708651CF4C37100C631C6 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A471CFF95B8002AF45E /* Marshal.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708661CF4C37100C631C6 /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A481CFF95B8002AF45E /* MediaKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708671CF4C37100C631C6 /* MediaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A491CFF95B8002AF45E /* MyLittleViewController.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708681CF4C37100C631C6 /* MyLittleViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A4A1CFF95B8002AF45E /* NotificationKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49A04E581CF64CBE0051E1E7 /* NotificationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A4B1CFF95B8002AF45E /* Peeps.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708691CF4C37100C631C6 /* Peeps.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A4D1CFF95B9002AF45E /* QuizKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4927086A1CF4C37100C631C6 /* QuizKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A4E1CFF95B9002AF45E /* Reachability.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4985D3B91CFE34EB00BA3685 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A4F1CFF95B9002AF45E /* ReactiveCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4927086B1CF4C37100C631C6 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A501CFF95B9002AF45E /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4927086C1CF4C37100C631C6 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A511CFF95B9002AF45E /* SoLazy.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4927086D1CF4C37100C631C6 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A521CFF95B9002AF45E /* SoPersistent.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4927086E1CF4C37100C631C6 /* SoPersistent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A531CFF95B9002AF45E /* SoPretty.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4927086F1CF4C37100C631C6 /* SoPretty.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A541CFF95B9002AF45E /* SoProgressive.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708701CF4C37100C631C6 /* SoProgressive.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A551CFF95B9002AF45E /* TodoKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708711CF4C37100C631C6 /* TodoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A561CFF95B9002AF45E /* TooLegit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708721CF4C37100C631C6 /* TooLegit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E80A571CFF95B9002AF45E /* WhizzyWig.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492708731CF4C37100C631C6 /* WhizzyWig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49F9FA471CF7B6F600654758 /* TechDebt.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F9FA461CF7B6F600654758 /* TechDebt.xcassets */; };
 		49F9FA4B1CF7B73100654758 /* Canvas.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F9FA4A1CF7B73100654758 /* Canvas.xcassets */; };
 		49F9FA4D1CF89F8600654758 /* Router+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA4C1CF89F8600654758 /* Router+Canvas.swift */; };
@@ -978,14 +944,6 @@
 		49F9FA561CF8CB3B00654758 /* GradesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA531CF8CB3B00654758 /* GradesTableViewController.swift */; };
 		49F9FA5A1CF8CDC400654758 /* UIImage+TechDebt.h in Headers */ = {isa = PBXBuildFile; fileRef = 49F9FA581CF8CDC400654758 /* UIImage+TechDebt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49F9FA5B1CF8CDC400654758 /* UIImage+TechDebt.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA591CF8CDC400654758 /* UIImage+TechDebt.m */; };
-		49F9FA631CF8FC1E00654758 /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA5D1CF8FC1E00654758 /* DomainPickerPage.swift */; };
-		49F9FA641CF8FC1E00654758 /* FindSchoolDomainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA5E1CF8FC1E00654758 /* FindSchoolDomainPage.swift */; };
-		49F9FA651CF8FC1E00654758 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA5F1CF8FC1E00654758 /* LoginPage.swift */; };
-		49F9FA661CF8FC1E00654758 /* PageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA601CF8FC1E00654758 /* PageObjects.swift */; };
-		49F9FA671CF8FC1E00654758 /* ReportProblemPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA611CF8FC1E00654758 /* ReportProblemPage.swift */; };
-		49F9FA681CF8FC1E00654758 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA621CF8FC1E00654758 /* UserProfile.swift */; };
-		49F9FA6B1CF8FC3300654758 /* DomainPickerPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA691CF8FC3300654758 /* DomainPickerPageTests.swift */; };
-		49F9FA6C1CF8FC3300654758 /* LoginPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA6A1CF8FC3300654758 /* LoginPageTests.swift */; };
 		49F9FA6F1CF8FC8500654758 /* AppDelegate+Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */; };
 		5E2159051D4BEA540005D2DF /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5E95954A1D36CA2D00C86F93 /* CalendarEvent+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9595491D36CA2D00C86F93 /* CalendarEvent+Display.swift */; };
@@ -1048,20 +1006,12 @@
 		B5A790BC1D8C743400ACA9FE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 492704AF1CF4B6D700C631C6 /* Info.plist */; };
 		B5E212CB1D888529009D8C07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212CD1D888529009D8C07 /* InfoPlist.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
-		B5E212E41D8885AE009D8C07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212E61D8885AE009D8C07 /* InfoPlist.strings */; };
 		B5F122C81D8C4D6C0045063A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 492704821CF4AF7100C631C6 /* Info.plist */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
 		C8D39A611751A5F521221CFA /* Pods_TechDebt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04620E9714197D5A7E2A2FBF /* Pods_TechDebt.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		492704931CF4AF7100C631C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4927046B1CF4AF7100C631C6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 492704721CF4AF7100C631C6;
-			remoteInfo = Canvas;
-		};
 		492704B01CF4B6D700C631C6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4927046B1CF4AF7100C631C6 /* Project object */;
@@ -1136,47 +1086,6 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		49E80A351CFF95A9002AF45E /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				49E80A361CFF95B8002AF45E /* DVR.framework in CopyFiles */,
-				49E80A371CFF95B8002AF45E /* SoAutomated.framework in CopyFiles */,
-				49E80A381CFF95B8002AF45E /* PageKit.framework in CopyFiles */,
-				49E80A391CFF95B8002AF45E /* FXKeychain.framework in CopyFiles */,
-				49E80A3A1CFF95B8002AF45E /* Mantle.framework in CopyFiles */,
-				49E80A3B1CFF95B8002AF45E /* AFNetworking.framework in CopyFiles */,
-				49E80A3D1CFF95B8002AF45E /* AssignmentKit.framework in CopyFiles */,
-				49E80A3E1CFF95B8002AF45E /* CalendarKit.framework in CopyFiles */,
-				49E80A3F1CFF95B8002AF45E /* CanvasKeymaster.framework in CopyFiles */,
-				49E80A401CFF95B8002AF45E /* CanvasKit.framework in CopyFiles */,
-				49E80A411CFF95B8002AF45E /* Cartography.framework in CopyFiles */,
-				49E80A421CFF95B8002AF45E /* CocoaLumberjack.framework in CopyFiles */,
-				49E80A431CFF95B8002AF45E /* CWStatusBarNotification.framework in CopyFiles */,
-				49E80A441CFF95B8002AF45E /* EnrollmentKit.framework in CopyFiles */,
-				49E80A451CFF95B8002AF45E /* FileKit.framework in CopyFiles */,
-				49E80A461CFF95B8002AF45E /* Kingfisher.framework in CopyFiles */,
-				49E80A471CFF95B8002AF45E /* Marshal.framework in CopyFiles */,
-				49E80A481CFF95B8002AF45E /* MediaKit.framework in CopyFiles */,
-				49E80A491CFF95B8002AF45E /* MyLittleViewController.framework in CopyFiles */,
-				49E80A4A1CFF95B8002AF45E /* NotificationKit.framework in CopyFiles */,
-				49E80A4B1CFF95B8002AF45E /* Peeps.framework in CopyFiles */,
-				49E80A4D1CFF95B9002AF45E /* QuizKit.framework in CopyFiles */,
-				49E80A4E1CFF95B9002AF45E /* Reachability.framework in CopyFiles */,
-				49E80A4F1CFF95B9002AF45E /* ReactiveCocoa.framework in CopyFiles */,
-				49E80A501CFF95B9002AF45E /* Result.framework in CopyFiles */,
-				49E80A511CFF95B9002AF45E /* SoLazy.framework in CopyFiles */,
-				49E80A521CFF95B9002AF45E /* SoPersistent.framework in CopyFiles */,
-				49E80A531CFF95B9002AF45E /* SoPretty.framework in CopyFiles */,
-				49E80A541CFF95B9002AF45E /* SoProgressive.framework in CopyFiles */,
-				49E80A551CFF95B9002AF45E /* TodoKit.framework in CopyFiles */,
-				49E80A561CFF95B9002AF45E /* TooLegit.framework in CopyFiles */,
-				49E80A571CFF95B9002AF45E /* WhizzyWig.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -1199,8 +1108,6 @@
 		492704761CF4AF7100C631C6 /* CanvasAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasAppDelegate.swift; sourceTree = "<group>"; };
 		492704821CF4AF7100C631C6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4927048D1CF4AF7100C631C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		492704921CF4AF7100C631C6 /* CanvasUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		492704981CF4AF7100C631C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		492704AB1CF4B6D700C631C6 /* TechDebt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TechDebt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492704AD1CF4B6D700C631C6 /* TechDebt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TechDebt.h; sourceTree = "<group>"; };
 		492704AF1CF4B6D700C631C6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2059,14 +1966,6 @@
 		49F9FA531CF8CB3B00654758 /* GradesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradesTableViewController.swift; sourceTree = "<group>"; };
 		49F9FA581CF8CDC400654758 /* UIImage+TechDebt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TechDebt.h"; sourceTree = "<group>"; };
 		49F9FA591CF8CDC400654758 /* UIImage+TechDebt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TechDebt.m"; sourceTree = "<group>"; };
-		49F9FA5D1CF8FC1E00654758 /* DomainPickerPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DomainPickerPage.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		49F9FA5E1CF8FC1E00654758 /* FindSchoolDomainPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FindSchoolDomainPage.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		49F9FA5F1CF8FC1E00654758 /* LoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LoginPage.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		49F9FA601CF8FC1E00654758 /* PageObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageObjects.swift; sourceTree = "<group>"; };
-		49F9FA611CF8FC1E00654758 /* ReportProblemPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ReportProblemPage.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		49F9FA621CF8FC1E00654758 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
-		49F9FA691CF8FC3300654758 /* DomainPickerPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainPickerPageTests.swift; sourceTree = "<group>"; };
-		49F9FA6A1CF8FC3300654758 /* LoginPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPageTests.swift; sourceTree = "<group>"; };
 		49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Push.swift"; sourceTree = "<group>"; };
 		5E9595491D36CA2D00C86F93 /* CalendarEvent+Display.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CalendarEvent+Display.swift"; sourceTree = "<group>"; };
 		5EB46DBE1D21A75C00C859A4 /* NSDate+DayConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+DayConvenience.swift"; sourceTree = "<group>"; };
@@ -2147,15 +2046,11 @@
 		B5E212D41D88856B009D8C07 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5E212D91D8885AA009D8C07 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5E212E11D8885AD009D8C07 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B5E212E51D8885AE009D8C07 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B5F1229D1D8C4BF30045063A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5F1229E1D8C4BF30045063A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B5F1229F1D8C4BF30045063A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B5F122A51D8C4C010045063A /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B5F122A61D8C4C010045063A /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B5F122A71D8C4C010045063A /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B5F122AC1D8C4CBA0045063A /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		B5F122AF1D8C4CBC0045063A /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B5F122B01D8C4CBD0045063A /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B5F122C11D8C4D2B0045063A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5F122C21D8C4D6C0045063A /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -2223,15 +2118,6 @@
 				49AA291E1CF4D1880055862D /* CanvasKit1.framework in Frameworks */,
 				492708761CF4C38100C631C6 /* CalendarKit.framework in Frameworks */,
 				4972CBDB2B8CB711A3B56911 /* Pods_Canvas.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4927048F1CF4AF7100C631C6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				49E80A331CFF93F7002AF45E /* DVR.framework in Frameworks */,
-				49E80A341CFF93F7002AF45E /* SoAutomated.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2329,7 +2215,6 @@
 				4927085D1CF4C33700C631C6 /* Dependencies */,
 				492704751CF4AF7100C631C6 /* Canvas */,
 				4927048A1CF4AF7100C631C6 /* CanvasTests */,
-				492704951CF4AF7100C631C6 /* CanvasUITests */,
 				492704AC1CF4B6D700C631C6 /* TechDebt */,
 				49AA29181CF4D1880055862D /* CanvasKit1 */,
 				492704741CF4AF7100C631C6 /* Products */,
@@ -2342,7 +2227,6 @@
 			isa = PBXGroup;
 			children = (
 				492704731CF4AF7100C631C6 /* Canvas.app */,
-				492704921CF4AF7100C631C6 /* CanvasUITests.xctest */,
 				492704AB1CF4B6D700C631C6 /* TechDebt.framework */,
 				49AA29171CF4D1880055862D /* CanvasKit1.framework */,
 				B1BFE4391D492ABD00ED3887 /* CanvasTests.xctest */,
@@ -2390,18 +2274,6 @@
 				B10713A51D748A1A0061E84A /* CourseSpec.swift */,
 			);
 			path = CanvasTests;
-			sourceTree = "<group>";
-		};
-		492704951CF4AF7100C631C6 /* CanvasUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B5E212E61D8885AE009D8C07 /* InfoPlist.strings */,
-				49F9FA691CF8FC3300654758 /* DomainPickerPageTests.swift */,
-				49F9FA6A1CF8FC3300654758 /* LoginPageTests.swift */,
-				49F9FA5C1CF8FBF300654758 /* Pages */,
-				492704981CF4AF7100C631C6 /* Info.plist */,
-			);
-			path = CanvasUITests;
 			sourceTree = "<group>";
 		};
 		492704AC1CF4B6D700C631C6 /* TechDebt */ = {
@@ -3940,19 +3812,6 @@
 			path = "Grading Periods";
 			sourceTree = "<group>";
 		};
-		49F9FA5C1CF8FBF300654758 /* Pages */ = {
-			isa = PBXGroup;
-			children = (
-				49F9FA5D1CF8FC1E00654758 /* DomainPickerPage.swift */,
-				49F9FA5E1CF8FC1E00654758 /* FindSchoolDomainPage.swift */,
-				49F9FA5F1CF8FC1E00654758 /* LoginPage.swift */,
-				49F9FA601CF8FC1E00654758 /* PageObjects.swift */,
-				49F9FA611CF8FC1E00654758 /* ReportProblemPage.swift */,
-				49F9FA621CF8FC1E00654758 /* UserProfile.swift */,
-			);
-			path = Pages;
-			sourceTree = "<group>";
-		};
 		49F9FA6D1CF8FC6A00654758 /* SoPushy */ = {
 			isa = PBXGroup;
 			children = (
@@ -4445,25 +4304,6 @@
 			productReference = 492704731CF4AF7100C631C6 /* Canvas.app */;
 			productType = "com.apple.product-type.application";
 		};
-		492704911CF4AF7100C631C6 /* CanvasUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 492704A11CF4AF7200C631C6 /* Build configuration list for PBXNativeTarget "CanvasUITests" */;
-			buildPhases = (
-				4927048E1CF4AF7100C631C6 /* Sources */,
-				4927048F1CF4AF7100C631C6 /* Frameworks */,
-				492704901CF4AF7100C631C6 /* Resources */,
-				49E80A351CFF95A9002AF45E /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				492704941CF4AF7100C631C6 /* PBXTargetDependency */,
-			);
-			name = CanvasUITests;
-			productName = CanvasUITests;
-			productReference = 492704921CF4AF7100C631C6 /* CanvasUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		492704AA1CF4B6D700C631C6 /* TechDebt */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 492704B41CF4B6D700C631C6 /* Build configuration list for PBXNativeTarget "TechDebt" */;
@@ -4550,11 +4390,6 @@
 							};
 						};
 					};
-					492704911CF4AF7100C631C6 = {
-						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
-						TestTargetID = 492704721CF4AF7100C631C6;
-					};
 					492704AA1CF4B6D700C631C6 = {
 						CreatedOnToolsVersion = 7.3;
 						LastSwiftMigration = 0800;
@@ -4606,7 +4441,6 @@
 			projectRoot = "";
 			targets = (
 				492704721CF4AF7100C631C6 /* Canvas */,
-				492704911CF4AF7100C631C6 /* CanvasUITests */,
 				492704AA1CF4B6D700C631C6 /* TechDebt */,
 				49AA29161CF4D1880055862D /* CanvasKit1 */,
 				B1BFE4381D492ABD00ED3887 /* CanvasTests */,
@@ -4634,14 +4468,6 @@
 				4906879A1D0215440072DBEA /* Settings.storyboard in Resources */,
 				49F9FA4B1CF7B73100654758 /* Canvas.xcassets in Resources */,
 				496D31241CF7529A00A3B11E /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		492704901CF4AF7100C631C6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B5E212E41D8885AE009D8C07 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5013,21 +4839,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4927048E1CF4AF7100C631C6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				49F9FA6C1CF8FC3300654758 /* LoginPageTests.swift in Sources */,
-				49F9FA651CF8FC1E00654758 /* LoginPage.swift in Sources */,
-				49F9FA661CF8FC1E00654758 /* PageObjects.swift in Sources */,
-				49F9FA6B1CF8FC3300654758 /* DomainPickerPageTests.swift in Sources */,
-				49F9FA681CF8FC1E00654758 /* UserProfile.swift in Sources */,
-				49F9FA631CF8FC1E00654758 /* DomainPickerPage.swift in Sources */,
-				49F9FA641CF8FC1E00654758 /* FindSchoolDomainPage.swift in Sources */,
-				49F9FA671CF8FC1E00654758 /* ReportProblemPage.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		492704A61CF4B6D700C631C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5361,11 +5172,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		492704941CF4AF7100C631C6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 492704721CF4AF7100C631C6 /* Canvas */;
-			targetProxy = 492704931CF4AF7100C631C6 /* PBXContainerItemProxy */;
-		};
 		492704B11CF4B6D700C631C6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 492704AA1CF4B6D700C631C6 /* TechDebt */;
@@ -5455,17 +5261,6 @@
 				B5F122D01D8C4E050045063A /* en */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		B5E212E61D8885AE009D8C07 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5E212E51D8885AE009D8C07 /* da */,
-				B5F1229F1D8C4BF30045063A /* de */,
-				B5F122A71D8C4C010045063A /* en-AU */,
-				B5F122AF1D8C4CBC0045063A /* en-GB */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -5610,32 +5405,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.instructure.icanvas";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		492704A21CF4AF7200C631C6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = CanvasUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
-				TEST_TARGET_NAME = Canvas;
-			};
-			name = Debug;
-		};
-		492704A31CF4AF7200C631C6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = CanvasUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
-				TEST_TARGET_NAME = Canvas;
 			};
 			name = Release;
 		};
@@ -5801,15 +5570,6 @@
 			buildConfigurations = (
 				4927049C1CF4AF7200C631C6 /* Debug */,
 				4927049D1CF4AF7200C631C6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		492704A11CF4AF7200C631C6 /* Build configuration list for PBXNativeTarget "CanvasUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				492704A21CF4AF7200C631C6 /* Debug */,
-				492704A31CF4AF7200C631C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
