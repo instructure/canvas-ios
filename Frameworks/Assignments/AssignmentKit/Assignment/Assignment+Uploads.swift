@@ -32,15 +32,20 @@ extension Assignment {
         if groupSetID != nil {
             let overridesPath = "/api/v1/courses/\(courseID)/assignments/\(id)/overrides"
             let request = try! session.GET(overridesPath)
+            
+            let firstGroupID: ([JSONObject]) -> String? = { overrides in
+                let groupID: (JSONObject) -> String? = {
+                    return try? $0.stringID("group_id")
+                }
+                return overrides
+                    .lazy
+                    .flatMap(groupID)
+                    .first
+            }
+            
             return session.paginatedJSONSignalProducer(request)
-                .flatMap(.Merge, transform: { (overrides) -> SignalProducer<String, NSError> in
-                    for overrideJSON in overrides {
-                        if let groupID: String = try? overrideJSON.stringID("group_id") {
-                            return SignalProducer<String, NSError>(value: groupID)
-                        }
-                    }
-                    return .empty
-                })
+                .map(firstGroupID)
+                .ignoreNil()
                 .map { "/api/v1/groups/\($0)/files" }
                 .concat(singleSubmissionPath)
                 .take(1)
