@@ -18,7 +18,7 @@ fast_execute = [
   'test_parent',
   'build_earlgrey_parent',
   'test_earlgrey_parent'
-].include? ARGV.first
+].include?(ARGV.first)
 
 update_fastlane unless fast_execute
 
@@ -26,6 +26,7 @@ default_platform :ios
 require 'slather'
 require 'scan'
 require_relative 'xcode_8_xctestrun'
+require_relative 'fbsimctl'
 Xcode8.runner = self.runner
 
 XC_WORKSPACE='AllTheThings.xcworkspace'
@@ -219,6 +220,12 @@ platform :ios do
 
   desc 'Parent.app EarlGrey test-without-building'
   lane :test_earlgrey_parent do
+    video_out = File.expand_path(File.join(__dir__, '..', 'video.mp4'))
+    simulator = FBSimctl.new video_out: video_out
+    simulator.start_recording
+
     Xcode8.test_without_building(scheme: 'ParentEarlGreyTests')
+
+    simulator.stop_recording
   end
 end
