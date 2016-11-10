@@ -4374,7 +4374,7 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = B6333T4PXQ;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -5364,9 +5364,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Canvas/Canvas.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: iOS Builds (73MVYX3ELK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: iOS Builds (73MVYX3ELK)";
-				DEVELOPMENT_TEAM = B6333T4PXQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5376,8 +5373,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8f85b8f2-f93d-4da5-852e-2da86cf4334e";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.instructure.icanvas";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -5389,9 +5384,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Canvas/Canvas.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Instructure, Inc. (B6333T4PXQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = B6333T4PXQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5401,8 +5393,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5524c295-6bfb-4c0e-8da3-a0b1edcbc2a6";
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.instructure.icanvas";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -83,8 +83,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Help us find schools near you.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Attach audio recordings to messages and discussion posts or turn them in as assignment submissions.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.instructure.icanvas.watchApp</string>
