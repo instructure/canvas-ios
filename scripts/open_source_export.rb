@@ -131,4 +131,9 @@ FileUtils.rm File.join(destination, 'Canvas', 'Canvas', 'Shrug', 'GoogleService-
 FileUtils.rm File.join(destination, 'fastlane', 'Matchfile')
 FileUtils.rm File.join(destination, 'fastlane', 'Appfile')
 
+# Remove folders from frameworks that shouldn't be there
+frameworks_to_remove.each do |folder|
+    FileUtils.rm_r File.join(destination, 'Frameworks', folder)
+end
+
 puts "PRAISE THE SUN IT'S FINISHED"

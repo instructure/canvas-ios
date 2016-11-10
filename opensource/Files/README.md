@@ -33,7 +33,7 @@ DiscussionKit	| Models Discussions includes utilities for fetching and aggregati
 EnrollmentKit	| Models Courses, Groups and Tabs (used for navigation within a course or group). EnrollmentKit also includes an in-memory store for easy access to the logged in user's enrollments.
 FileKit        	| Models Files and provides utilities for refreshing, aggregating and uploading files.
 Icons 			| Contains the common set of icons used throughout our mobile apps.
-Keymaster 		| Provides a common UI for logging into Canvas as well as searching for schools. Also includes keychain storage and retreval of Canvas sessions.
+Keymaster 		| Provides a common UI for logging into Canvas as well as searching for schools. Also includes keychain storage and retrieval of Canvas sessions.
 MediaKit 		| Models media recording and commenting.
 MessageKit 		| Models conversation messages within Canvas. Includes utilities for fetching and aggregating conversations and conversation messages.
 NotificationKit | Includes utilities for managing the user's notification preferences including push notifications.
@@ -41,7 +41,7 @@ Pages 		    | Models Canvas wiki pages and includes utilities for fetching and a
 Peeps 			| Models Users and their enrollments within Canvas. Includes utilities for fetching and aggregating Users and their Enrollments.
 Quizzes 	    | Contains code for taking Quizzes.
 SoAnnotated 	| Supports annotating PDFs with PSPDFKit.
-SoEdventurous 	| Contains code for Modules and Mastery Paths. Includes utilties for fetching and aggregating Modules and Module Items.
+SoEdventurous 	| Contains code for Modules and Mastery Paths. Includes utilities for fetching and aggregating Modules and Module Items.
 SoProgressive 	| Includes code to publish and subscribe to course progress. This framework exists to decouple consumers of user progress, such as Modules, from frameworks such as AssignmentKit and Quizzes which contain code to allow the student to make progress within a course.
 SoSupportive 	| Includes code allowing users to submit support requests directly from the apps.
 Todo 			| Models the Canvas Todo List. Includes code to fetch and aggregate Todo Items.
@@ -52,9 +52,9 @@ A collection of frameworks that are general purpose
 
 Framework | Description
 --- | ---
-SoLazy 			| A collection of utilties and extensions that simplify tasks or provide a more Swift friendly interface to Apple APIs. 
+SoLazy 			| A collection of utilities and extensions that simplify tasks or provide a more Swift friendly interface to Apple APIs. 
 SoPersistent 	| A powerhouse of persistence goodness. SoPersistent is based on CoreData and provides a unified Collection interface around NSFetchedResultsController. It also contains table and collection view controllers that exploit these collections. These utilities are optimized for reuse and customization.
-SoPretty        | A collection of UI utilitites, custom views, and colors used throughout Canvas.
+SoPretty        | A collection of UI utilities, custom views, and colors used throughout Canvas.
 WhizzyWig 		| Views for displaying and authoring rich text (html) content. Because we let our users do _anything_ they want.
 SoGrey          | Automated testing with [EarlGrey](https://github.com/google/EarlGrey)
 
