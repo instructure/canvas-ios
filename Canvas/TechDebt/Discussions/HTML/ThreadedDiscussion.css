@@ -20,7 +20,6 @@ video {
 
 .discussion_entry {
     font-size: 12pt;
-    overflow: scroll;
 }
 
 .discussion_content p:first-child {
