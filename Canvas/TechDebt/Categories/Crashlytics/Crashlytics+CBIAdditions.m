@@ -28,7 +28,13 @@
 
 + (void)prepare
 {
-    [Fabric with:@[[Crashlytics self]]];
+    NSDictionary *fabric = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Fabric"];
+    if (fabric) {
+        [Fabric with:@[[Crashlytics self]]];
+    }
+    else {
+        NSLog(@"WARNING: Crashlytics was not properly initialized.");
+    }
 }
 
 + (void)setDebugInformation

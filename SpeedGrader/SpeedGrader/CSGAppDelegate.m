@@ -131,7 +131,13 @@ static NSString *const CRASHLYTICS_MASQUERADE_USER_ID_KEY = @"MASQUERADE_AS_USER
 
 - (void)setupCrashlytics
 {
-    [Fabric with:@[CrashlyticsKit]];
+    NSDictionary *fabric = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Fabric"];
+    if (fabric) {
+        [Fabric with:@[[Crashlytics self]]];
+    }
+    else {
+        NSLog(@"WARNING: Crashlytics was not properly initialized.");
+    }
 }
 
 - (void)setupPSPDFKit {

@@ -97,20 +97,29 @@ remove_fabric_from_project File.join(destination, 'Canvas', 'Canvas.xcodeproj')
 remove_fabric_from_project File.join(destination, 'SpeedGrader', 'SpeedGrader.xcodeproj')
 
 # Remove stuff from the Info.plist files
-def remove_plist_stuff(plist_path) 
+def remove_fabric_from_plist(plist_path) 
     hash = Plist::parse_xml(plist_path)
     hash.delete 'Fabric'
     File.write(plist_path, hash.to_plist)
 end
 
-remove_plist_stuff File.join(destination, 'Canvas', 'Canvas', 'Info.plist')
-remove_plist_stuff File.join(destination, 'SpeedGrader', 'SpeedGrader', 'SpeedGrader-Info.plist')
+def prune_plist(plist_path)
+    keys_hash = Plist::parse_xml(plist_path)
+    keys_hash.each { |key, value| keys_hash[key] = '' }
+    File.write(plist_path, keys_hash.to_plist)
+end
+
+def purge_plist(plist_path)
+    keys_hash = Plist::parse_xml(plist_path)
+    keys_hash.each { |key, value| keys_hash.delete key }
+    File.write(plist_path, keys_hash.to_plist)
+end
+
+remove_fabric_from_plist File.join(destination, 'Canvas', 'Canvas', 'Info.plist')
+remove_fabric_from_plist File.join(destination, 'SpeedGrader', 'SpeedGrader', 'SpeedGrader-Info.plist')
 
 # Strip out all of the keys from our stuff, making an empty template file
-keys_path = File.join(destination, 'secrets.plist')
-keys_hash = Plist::parse_xml(keys_path)
-keys_hash.each { |key, value| keys_hash[key] = '' }
-File.write(keys_path, keys_hash.to_plist)
+prune_plist File.join(destination, 'secrets.plist')
 
 opensource_files_dir = File.join('opensource', 'files')
 external_frameworks_dir = File.join(destination, 'ExternalFrameworks')
@@ -125,7 +134,8 @@ pspdfkit_dir = File.join(external_frameworks_dir, 'PSPDFKit.framework')
 FileUtils.rm_r pspdfkit_dir if File.exists? pspdfkit_dir
 
 # Remove GoogleServices plist
-FileUtils.rm File.join(destination, 'Canvas', 'Canvas', 'Shrug', 'GoogleService-Info.plist')
+google_services_path = File.join(destination, 'Canvas', 'Canvas', 'Shrug', 'GoogleService-Info.plist')
+purge_plist google_services_path
 
 # Remove Matchfile
 FileUtils.rm File.join(destination, 'fastlane', 'Matchfile')
