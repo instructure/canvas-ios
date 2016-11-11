@@ -26,11 +26,6 @@
 
 @implementation CBINotificationSplitViewController
 
-- (void)didMoveToParentViewController:(UIViewController *)parent {
-    [super didMoveToParentViewController:parent];
-    self.navigationController.tabBarItem.selectedImage = [UIImage techDebtImageNamed:@"icon_notifications_tab_selected"];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

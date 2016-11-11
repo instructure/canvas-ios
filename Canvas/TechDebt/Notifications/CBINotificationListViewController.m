@@ -24,11 +24,6 @@
 @implementation CBINotificationListViewController
 @dynamic viewModel;
 
-- (void)didMoveToParentViewController:(UIViewController *)parent {
-    [super didMoveToParentViewController:parent];
-    self.navigationController.tabBarItem.selectedImage = [UIImage techDebtImageNamed:@"icon_notifications_tab_selected"];
-}
-
 - (CBINotificationTableViewModel *)viewModel {
     if (super.viewModel) {
         return super.viewModel;

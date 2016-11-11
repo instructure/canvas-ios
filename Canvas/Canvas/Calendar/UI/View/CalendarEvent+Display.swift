@@ -18,6 +18,7 @@
 
 import Foundation
 import CalendarKit
+import SoIconic
 
 extension CalendarEvent {
 
@@ -35,16 +36,14 @@ extension CalendarEvent {
 
     public func typeImage() -> UIImage {
         switch self.type {
-        case .CalendarEvent:
-            return (UIImage(named: "icon_calendar_event", inBundle: NSBundle(forClass: CalendarDayListCell.self), compatibleWithTraitCollection: nil)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate))!
         case .Assignment:
-            return (UIImage(named: "icon_assignment", inBundle: NSBundle(forClass: CalendarDayListCell.self), compatibleWithTraitCollection: nil)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate))!
+            return .icon(.assignment)
         case .Quiz:
-            return (UIImage(named: "icon_quiz", inBundle: NSBundle(forClass: CalendarDayListCell.self), compatibleWithTraitCollection: nil)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate))!
+            return .icon(.quiz)
         case .Discussion:
-            return (UIImage(named: "icon_discussion", inBundle: NSBundle(forClass: CalendarDayListCell.self), compatibleWithTraitCollection: nil)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate))!
+            return .icon(.discussion)
         default:
-            return (UIImage(named: "icon_calendar_event", inBundle: NSBundle(forClass: CalendarDayListCell.self), compatibleWithTraitCollection: nil)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate))!
+            return .icon(.calendar)
         }
     }
 }

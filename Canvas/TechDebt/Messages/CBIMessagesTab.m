@@ -50,9 +50,6 @@
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.tabBarItem.title = title;
-    nav.tabBarItem.image = [UIImage techDebtImageNamed: @"icon_messages_tab"];
-    nav.tabBarItem.selectedImage = [UIImage techDebtImageNamed: @"icon_messages_tab_selected"];
-    
     [vm badgeTabBarItem:nav.tabBarItem];
     
     

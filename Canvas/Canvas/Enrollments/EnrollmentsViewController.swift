@@ -19,6 +19,7 @@
 import EnrollmentKit
 import SoPretty
 import TooLegit
+import SoIconic
 
 public func EnrollmentsViewController(session session: Session, route: (UIViewController, NSURL)->()) throws -> UIViewController {
     let coursesTitle = NSLocalizedString("Courses", comment: "Courses page title")
@@ -33,8 +34,8 @@ public func EnrollmentsViewController(session session: Session, route: (UIViewCo
     ])
     
     enrollments.tabBarItem.title = coursesTitle
-    enrollments.tabBarItem.image = UIImage.techDebtImageNamed("icon_courses_tab")
-    enrollments.tabBarItem.selectedImage = UIImage.techDebtImageNamed("icon_courses_tab_selected")
+    enrollments.tabBarItem.image = .icon(.course)
+    enrollments.tabBarItem.selectedImage = .icon(.course, filled: true)
     
     return enrollments
 }

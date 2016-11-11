@@ -54,6 +54,8 @@ public enum Icon: String {
     case user
 
     case inbox
+    case todo
+    case notification
 
     case edit
     case lock

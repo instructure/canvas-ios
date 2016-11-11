@@ -57,7 +57,7 @@ func rootViewController(session: Session) -> UIViewController {
             calendarNav,
             todoNav,
             NotificationsTab(),
-            UIViewController.messagesTab()
+            MessagesTab()
         ]
     } catch let e as NSError {
         delay(0.1) {

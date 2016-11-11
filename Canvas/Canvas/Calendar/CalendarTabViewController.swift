@@ -21,6 +21,7 @@ import SoPretty
 import TooLegit
 import CalendarKit
 import TechDebt
+import SoIconic
 
 public func CalendarTabViewController(session session: Session, route: (UIViewController, NSURL)->()) throws -> UIViewController {
     let calendarTitle = NSLocalizedString("Calendar", comment: "Calendar page title")
@@ -41,8 +42,8 @@ public func CalendarTabViewController(session session: Session, route: (UIViewCo
     }
     
     calendarVC.tabBarItem.title = calendarTitle
-    calendarVC.tabBarItem.image = UIImage.techDebtImageNamed("icon_calendar_tab")
-    calendarVC.tabBarItem.selectedImage = UIImage.techDebtImageNamed("icon_calendar_tab_selected")
+    calendarVC.tabBarItem.image = .icon(.calendar)
+    calendarVC.tabBarItem.selectedImage = .icon(.calendar, filled: true)
 
     return calendarVC
 }

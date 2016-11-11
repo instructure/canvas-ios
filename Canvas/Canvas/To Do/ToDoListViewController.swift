@@ -23,6 +23,7 @@ import SoPersistent
 import SoPretty
 import ReactiveCocoa
 import SoLazy
+import SoIconic
 
 func colorfulToDoViewModel(session session: Session, toDoItem: Todo) -> ColorfulViewModel {
     struct DateFormatters {
@@ -69,11 +70,11 @@ func colorfulToDoViewModel(session session: Session, toDoItem: Todo) -> Colorful
     vm.color <~ session.enrollmentsDataSource.producer(toDoItem.contextID).map { $0?.color ?? .prettyGray() }
 
     if toDoItem.submissionTypes.contains(.Quiz) {
-        vm.icon.value = UIImage.techDebtImageNamed("icon_quizzes").imageWithRenderingMode(.AlwaysTemplate)
+        vm.icon.value = .icon(.quiz)
     } else if toDoItem.submissionTypes.contains(.DiscussionTopic) {
-        vm.icon.value = UIImage.techDebtImageNamed("icon_discussions").imageWithRenderingMode(.AlwaysTemplate)
+        vm.icon.value = .icon(.discussion)
     } else {
-        vm.icon.value = UIImage.techDebtImageNamed("icon_assignments").imageWithRenderingMode(.AlwaysTemplate)
+        vm.icon.value = .icon(.assignment)
     }
 
     return vm

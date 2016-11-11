@@ -21,6 +21,7 @@ import Foundation
 import SoPretty
 import TooLegit
 import TechDebt
+import SoIconic
 
 public func ToDoTabViewController(session session: Session, route: (UIViewController, NSURL)->()) throws -> UIViewController {
 
@@ -38,8 +39,7 @@ public func ToDoTabViewController(session session: Session, route: (UIViewContro
     }
 
     toDoListVC.tabBarItem.title = NSLocalizedString("To Do", comment: "Title of the Todo screen")
-    toDoListVC.tabBarItem.image = UIImage.techDebtImageNamed("icon_todo_tab")
-    toDoListVC.tabBarItem.selectedImage = UIImage.techDebtImageNamed("icon_todo_tab_selected")
-
+    toDoListVC.tabBarItem.image = .icon(.todo)
+    toDoListVC.tabBarItem.selectedImage = .icon(.todo)
     return toDoListVC
 }

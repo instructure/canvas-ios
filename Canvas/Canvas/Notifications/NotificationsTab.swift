@@ -19,7 +19,7 @@
 import UIKit
 import Foundation
 import TechDebt
-
+import SoIconic
 
 func NotificationsTab() -> UIViewController {
     let vc: UIViewController
@@ -35,8 +35,7 @@ func NotificationsTab() -> UIViewController {
     vc.navigationItem.title = title
     
     vc.tabBarItem.title = title
-    vc.tabBarItem.image = UIImage.techDebtImageNamed("icon_notifications_tab")
-    vc.tabBarItem.selectedImage = UIImage.techDebtImageNamed("icon_notifications_tab_selected")
-    
+    vc.tabBarItem.image = .icon(.notification)
+    vc.tabBarItem.selectedImage = .icon(.notification, filled: true)
     return UINavigationController(rootViewController: vc);
 }
