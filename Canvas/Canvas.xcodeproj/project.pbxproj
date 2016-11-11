@@ -1003,10 +1003,8 @@
 		B1CB84F21D076025004D2265 /* ExpandingComment.html in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EE1D076025004D2265 /* ExpandingComment.html */; };
 		B1CB84F31D076026004D2265 /* ExpandingComment.js in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EF1D076025004D2265 /* ExpandingComment.js */; };
 		B5A790BB1D8C743400ACA9FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
-		B5A790BC1D8C743400ACA9FE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 492704AF1CF4B6D700C631C6 /* Info.plist */; };
 		B5E212CB1D888529009D8C07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212CD1D888529009D8C07 /* InfoPlist.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
-		B5F122C81D8C4D6C0045063A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 492704821CF4AF7100C631C6 /* Info.plist */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
 		C8D39A611751A5F521221CFA /* Pods_TechDebt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04620E9714197D5A7E2A2FBF /* Pods_TechDebt.framework */; };
 /* End PBXBuildFile section */
@@ -4367,7 +4365,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					492704721CF4AF7100C631C6 = {
@@ -4460,7 +4458,6 @@
 				49A04E6C1CF64D130051E1E7 /* GroupCardCell.xib in Resources */,
 				5EB46DEF1D21A75C00C859A4 /* Images.xcassets in Resources */,
 				495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */,
-				B5F122C81D8C4D6C0045063A /* Info.plist in Resources */,
 				B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */,
 				5EB46DF51D21A75C00C859A4 /* CalendarDayListCell.xib in Resources */,
 				5EB46DFE1D21A75C00C859A4 /* NoResultsView.xib in Resources */,
@@ -4524,7 +4521,6 @@
 				492707561CF4BACB00C631C6 /* ConversationSubmissionEntry.html in Resources */,
 				495068761D414DC00030A9D5 /* icon_video_large@2x.png in Resources */,
 				49AA2D2A1CF4DC540055862D /* CBIPeopleDetail.storyboard in Resources */,
-				B5A790BC1D8C743400ACA9FE /* Info.plist in Resources */,
 				49AA2D311CF4DC540055862D /* Profile.storyboard in Resources */,
 				B1CB84F21D076025004D2265 /* ExpandingComment.html in Resources */,
 				492708391CF4BC3200C631C6 /* filled@3x.png in Resources */,
@@ -5270,6 +5266,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -5319,6 +5316,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
