@@ -19,6 +19,7 @@
 import Foundation
 import CoreData
 import SoPersistent
+import TooLegit
 
 extension NSManagedObject {
 
@@ -28,6 +29,56 @@ extension NSManagedObject {
             return true
         } catch {
             return false
+        }
+    }
+
+    public static func factory(session: Session, options: [String: AnyObject] = [:]) -> Self {
+        let context = session.managedObjectContext(self, options: options)
+        let entityName = self.entityName(context)
+        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context)!
+        let me = self.init(entity: entity, insertIntoManagedObjectContext: context)
+        addDefaultValues(me, context: context)
+        try! context.saveFRD()
+        return me
+    }
+
+    static func addDefaultValues(object: NSManagedObject, context: NSManagedObjectContext) {
+        let entities = [object.entity, object.entity.superentity].flatMap { $0 }
+        for entity in entities {
+            for property in entity.properties {
+                guard !property.optional else {
+                    continue
+                }
+
+                guard let attribute = entity.attributesByName[property.name] where attribute.defaultValue == nil else {
+                    continue
+                }
+
+                guard let defaultValue = self.defaultValue(property.name, attributeType: attribute.attributeType, context: context) else {
+                    fatalError("Override defaultValue(propertyName:attributeType) and provide a default value for \(property.name)")
+                }
+
+                object.setValue(defaultValue, forKey: property.name)
+            }
+        }
+    }
+
+    static func defaultValue(propertyName: String, attributeType: NSAttributeType, context: NSManagedObjectContext) -> AnyObject? {
+        switch attributeType {
+        case .StringAttributeType:
+            return ""
+        case .BooleanAttributeType:
+            return false
+        case .Integer16AttributeType, .Integer32AttributeType, .Integer64AttributeType:
+            return 1
+        case .DateAttributeType:
+            return NSDate()
+        case .DoubleAttributeType, .DecimalAttributeType, .FloatAttributeType:
+            return 1.0
+        case .BinaryDataAttributeType:
+            return NSData()
+        default:
+            return nil
         }
     }
 

@@ -34,6 +34,8 @@
 		B1C25A181DAC07D8001F1436 /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C25A171DAC07D8001F1436 /* Factories.swift */; };
 		B1D801191C91BA4F006A1143 /* SoAutomatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D801181C91BA4F006A1143 /* SoAutomatedTests.swift */; };
 		B1D8011B1C91BA4F006A1143 /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F972191C1C15F8EE0034775D /* SoAutomated.framework */; };
+		B1E5B3821DD606F90074A510 /* ManagedObjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E5B3811DD606F90074A510 /* ManagedObjectSpec.swift */; };
+		B1E5B3841DD6087F0074A510 /* Session+ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E5B3831DD6087F0074A510 /* Session+ManagedObjectContext.swift */; };
 		B1E7B2CC1D2D87E70076F377 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B2CB1D2D87E70076F377 /* User.swift */; };
 		F97219201C15F8EE0034775D /* SoAutomated.h in Headers */ = {isa = PBXBuildFile; fileRef = F972191F1C15F8EE0034775D /* SoAutomated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -76,6 +78,8 @@
 		B1D801161C91BA4F006A1143 /* SoAutomatedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoAutomatedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1D801181C91BA4F006A1143 /* SoAutomatedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoAutomatedTests.swift; sourceTree = "<group>"; };
 		B1D8011A1C91BA4F006A1143 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1E5B3811DD606F90074A510 /* ManagedObjectSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectSpec.swift; sourceTree = "<group>"; };
+		B1E5B3831DD6087F0074A510 /* Session+ManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+ManagedObjectContext.swift"; sourceTree = "<group>"; };
 		B1E7B2CB1D2D87E70076F377 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F972191C1C15F8EE0034775D /* SoAutomated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F972191F1C15F8EE0034775D /* SoAutomated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoAutomated.h; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				B1451F481C8F4D6A00E78FCE /* NSManagedObjectContext+SoAutomated.swift */,
 				B1451F4A1C8F4DBF00E78FCE /* ErrorProneStore.swift */,
 				B11273DA1C9239DF00452060 /* NSManagedObject+SoAutomated.swift */,
+				B1E5B3831DD6087F0074A510 /* Session+ManagedObjectContext.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				B1D801181C91BA4F006A1143 /* SoAutomatedTests.swift */,
 				B1D8011A1C91BA4F006A1143 /* Info.plist */,
 				B11544AD1D42770E0011E5DF /* JSONShapeSpec.swift */,
+				B1E5B3811DD606F90074A510 /* ManagedObjectSpec.swift */,
 			);
 			path = SoAutomatedTests;
 			sourceTree = "<group>";
@@ -339,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B131B7C31DAD593000B10936 /* AssignmentsAPISpec.swift in Sources */,
+				B1E5B3821DD606F90074A510 /* ManagedObjectSpec.swift in Sources */,
 				B1B75B241DAD6C7D00692869 /* IntegrationHelper.swift in Sources */,
 				B11544AE1D42770E0011E5DF /* JSONShapeSpec.swift in Sources */,
 				B131B7B31DAC2C4D00B10936 /* ChangeSpec.swift in Sources */,
@@ -352,6 +359,7 @@
 			files = (
 				B1C25A181DAC07D8001F1436 /* Factories.swift in Sources */,
 				B131B7B01DAC24E700B10936 /* Change.swift in Sources */,
+				B1E5B3841DD6087F0074A510 /* Session+ManagedObjectContext.swift in Sources */,
 				B1E7B2CC1D2D87E70076F377 /* User.swift in Sources */,
 				B11273DB1C9239DF00452060 /* NSManagedObject+SoAutomated.swift in Sources */,
 				B13A39301CBFF76900CBD98B /* DVR+SoAutomated.swift in Sources */,
