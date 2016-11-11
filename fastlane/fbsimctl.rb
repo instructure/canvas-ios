@@ -28,6 +28,7 @@ class FBSimctl
     FileUtils.rm_rf @video_out
 
     @udid = ::TEST_SIMULATOR.udid
+    @port = 8091
 
     @client = HTTPClient.new
     @client.transparent_gzip_decompression = true
@@ -65,26 +66,31 @@ class FBSimctl
 
     boot_simulator
 
+    # Remove any existing fbsimctl process
+    `killall -KILL fbsimctl > /dev/null 2&>1`
+
     @start_server ||= begin
       arguments = [
           'listen',
-          '--http 8090',
-          @udid
+          "--http #{@port}"
       ].join(' ')
       "#{fbsimctl} #{arguments}"
     end
 
     puts @start_server
     @pid, @in, @out, @err = POSIX::Spawn::popen4(@start_server)
+    sleep 2 # wait for http server to startup.
   end
 
   def stop_server
+    Process.kill(:SIGTERM, @pid)
+
     [@in, @out, @err].each { |io| io.close unless io.nil? || io.closed? }
     Process.wait(@pid) if @pid
   end
 
   def _get_url endpoint
-    "http://localhost:8090/#{@udid}/#{endpoint}"
+    "http://localhost:#{@port}/#{@udid}/#{endpoint}"
   end
 
   def _record_request start_value

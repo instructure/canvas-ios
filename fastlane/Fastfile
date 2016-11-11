@@ -16,6 +16,7 @@ fastlane_version '1.108.0'
 
 # noinspection RubyLiteralArrayInspection
 fast_execute = [
+    'list',
     'test_parent',
     'build_earlgrey_parent',
     'test_earlgrey_parent'
