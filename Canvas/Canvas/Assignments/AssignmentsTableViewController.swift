@@ -68,7 +68,7 @@ extension Assignment {
     }
 }
 
-class AssignmentsTableViewController: Assignment.TableViewController, UISearchResultsUpdating, UISearchBarDelegate {
+class AssignmentsTableViewController: Assignment.TableViewController, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
     let session: Session
     let courseID: String
     let route: (UIViewController, NSURL)->()
@@ -111,6 +111,8 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        definesPresentationContext = true
+
         if multipleGradingPeriodsEnabled {
             header.tableView.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(view.bounds), height: 44)
             tableView.tableHeaderView = header.tableView
@@ -138,6 +140,7 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         searchController.searchBar.placeholder = NSLocalizedString("Search here...", comment: "Placeholder text for search bar on assignments page")
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
+        searchController.delegate = self
         table.tableHeaderView = searchController.searchBar
         
         if let refresher = refresher {
@@ -170,6 +173,10 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         // manually show the refresh control because of some bug somewhere
         if refresher.shouldRefresh  {
             tableView.contentOffset = CGPoint(x: 0, y: tableView.contentOffset.y - refresher.refreshControl.frame.size.height)
+        }
+
+        if searchController.active {
+            refreshControl = nil
         }
         
         refresher.refresh(false)
@@ -214,7 +221,10 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         
         return searchWithWildcards as String
     }
-    
+
+    func willDismissSearchController(searchController: UISearchController) {
+        refresher?.makeRefreshable(self)
+    }
 }
 
 func cacheKey(courseID: String, gradingPeriodID: String?) -> String {
