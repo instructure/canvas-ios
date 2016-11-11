@@ -1,30 +1,33 @@
-=begin
-Copyright (C) 2016 - present Instructure, Inc.
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-    http://www.apache.org/licenses/LICENSE-2.0
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-=end
+# Copyright (C) 2016 - present Instructure, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-fastlane_version '1.89.0'
+fastlane_version '1.108.0'
 
 # noinspection RubyLiteralArrayInspection
 fast_execute = [
-  'test_parent',
-  'build_earlgrey_parent',
-  'test_earlgrey_parent'
+    'test_parent',
+    'build_earlgrey_parent',
+    'test_earlgrey_parent'
 ].include?(ARGV.first)
 
 update_fastlane unless fast_execute
 
+require_relative 'fastlane_utils'
+
 default_platform :ios
-require 'slather'
-require 'scan'
+fastlane_require 'slather'
+fastlane_require 'scan'
 require_relative 'xcode_8_xctestrun'
 require_relative 'fbsimctl'
 Xcode8.runner = self.runner
@@ -46,67 +49,52 @@ CANVAS_PROJECT='Canvas/Canvas.xcodeproj'
 FRAMEWORKS_SCHEME='EverythingBagel'
 FRAMEWORKS_PROJECT='Frameworks/EverythingBagel/EverythingBagel.xcodeproj'
 
-def retry_cmd cmd_name, limit = 3, &block
-  # if execution fails then we retry up to limit - 1 times.
-  tries = limit
-  begin
-    block.call
-  rescue
-    unless (tries -= 1).zero?
-      puts "Retry ##{limit - tries}: #{cmd_name}"
-      retry
-    end
-    raise
-  end
-end
 
 platform :ios do
   before_all do
-      unless fast_execute
-        retry_cmd('carthage', 10)  { carthage(no_build: true, use_binaries: false, use_ssh: true) }
-        retry_cmd('cocoapods', 10) { cocoapods }
-      end
+    unless fast_execute
+      retry_cmd('carthage', 10) { carthage(no_build: true, use_binaries: false, use_ssh: true) }
+      retry_cmd('cocoapods', 10) { cocoapods }
+    end
   end
 
   def update_build_number(xc_project)
     if ENV['BITRISE_BUILD_NUMBER']
       increment_build_number(
-        build_number: ENV['BITRISE_BUILD_NUMBER'],
-        xcodeproj: xc_project
+          build_number: ENV['BITRISE_BUILD_NUMBER'],
+          xcodeproj: xc_project
       )
     end
   end
 
   def test(xc_scheme, xc_project, coverage=true)
-    device = 'iPhone 6'
+
 
     retry_cmd('scan') do
       scan(
-        scheme: xc_scheme,
-        device: device,
-        # Specify destination directly to ensure Bitrise uses latest iOS Simulator
-        destination: "platform=iOS Simulator,name=#{device},OS=latest",
-        workspace: XC_WORKSPACE,
-        skip_build: true,
-        output_directory: './artifacts',
-        skip_slack: true,
+          scheme: xc_scheme,
+          device: TEST_SIMULATOR.udid,
+          workspace: XC_WORKSPACE,
+          skip_build: true,
+          output_directory: './artifacts',
+          skip_slack: true,
       )
     end
 
     if coverage
       slather(
-        proj: xc_project,
-        workspace: XC_WORKSPACE,
-        scheme: xc_scheme,
-        output_directory: './artifacts'
+          proj: xc_project,
+          workspace: XC_WORKSPACE,
+          scheme: xc_scheme,
+          output_directory: './artifacts'
       )
     end
   end
 
   def distribute_adhoc
     hockey(
-      api_token: ENV['HOCKEY_API_KEY'],
-      notes: 'Sending the canary down the coalmine'
+        api_token: ENV['HOCKEY_API_KEY'],
+        notes: 'Sending the canary down the coalmine'
     )
   end
 
@@ -116,13 +104,13 @@ platform :ios do
       # Fix 'module 'Masonry' not found'
       clear_derived_data
       gym(
-        scheme: xc_scheme,
-        workspace: XC_WORKSPACE,
-        clean: false,
-        output_directory: './artifacts',
-        export_team_id: 'B6333T4PXQ',
-        use_legacy_build_api: true, # required or Xcode will flake out.
-        toolchain: :swift_2_3
+          scheme: xc_scheme,
+          workspace: XC_WORKSPACE,
+          clean: false,
+          output_directory: './artifacts',
+          export_team_id: 'B6333T4PXQ',
+          use_legacy_build_api: true, # required or Xcode will flake out.
+          toolchain: :swift_2_3
       )
     end
   end
@@ -148,10 +136,10 @@ platform :ios do
 
     match(type: 'appstore', app_identifier: app_id)
     pilot(
-      app_identifier: app_id,
-      ipa: "./artifacts/#{xc_scheme}.ipa",
-      skip_submission: true,
-      skip_waiting_for_build_processing: true
+        app_identifier: app_id,
+        ipa: "./artifacts/#{xc_scheme}.ipa",
+        skip_submission: true,
+        skip_waiting_for_build_processing: true
     )
   end
 
@@ -218,14 +206,24 @@ platform :ios do
     Xcode8.build_for_testing(scheme: 'ParentEarlGreyTests')
   end
 
-  desc 'Parent.app EarlGrey test-without-building'
+  desc %q(Parent.app EarlGrey test-without-building.
+Requires fbsimctl
+
+brew tap facebook/fb
+brew install fbsimctl --HEAD)
   lane :test_earlgrey_parent do
     video_out = File.expand_path(File.join(__dir__, '..', 'video.mp4'))
     simulator = FBSimctl.new video_out: video_out
-    simulator.start_recording
 
-    Xcode8.test_without_building(scheme: 'ParentEarlGreyTests')
+    begin
+      simulator.start_server
+      simulator.start_recording
 
-    simulator.stop_recording
+      Xcode8.test_without_building(scheme: 'ParentEarlGreyTests')
+
+      simulator.stop_recording
+    ensure
+      simulator.stop_server
+    end
   end
 end

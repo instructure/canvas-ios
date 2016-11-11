@@ -60,7 +60,11 @@ Parent.app EarlGrey build-for-testing
 ```
 fastlane ios test_earlgrey_parent
 ```
-Parent.app EarlGrey test-without-building
+Parent.app EarlGrey test-without-building.
+Requires fbsimctl
+
+brew tap facebook/fb
+brew install fbsimctl --HEAD
 
 ----
 

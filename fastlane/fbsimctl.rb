@@ -1,18 +1,24 @@
-def require_install gem_name
-  begin
-    require gem_name
-  rescue LoadError
-    rubygem_name = gem_name.gsub('/', '-')
+# Copyright (C) 2016 - present Instructure, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-    system("gem install #{rubygem_name} --no-document")
-    Gem.clear_paths
-    require gem_name
-  end
-end
-
-require_install 'posix/spawn'
+fastlane_require 'posix-spawn'
 require 'fileutils'
 require 'json'
+require 'uri'
+fastlane_require 'httpclient'
+
+require 'pry'
 
 class FBSimctl
   attr_reader :video_out
@@ -20,77 +26,97 @@ class FBSimctl
   def initialize opts={}
     @video_out = opts.fetch(:video_out)
     FileUtils.rm_rf @video_out
+
+    @udid = ::TEST_SIMULATOR.udid
+
+    @client = HTTPClient.new
+    @client.transparent_gzip_decompression = true
   end
 
-  # assumes a booted simulator.
-  # fbsimctl --json A34700F6-F9E1-4AF4-9748-4C6A12A03C19 boot
-  def fbsimctl_record_command
-    # do **not** redirect stderr to stdout. that will mess up json output.
-    @fbsimctl_record_command ||= begin
-      fbsimctl = File.expand_path(File.join(__dir__, 'fbsimctl', 'bin', 'fbsimctl'))
+  def fbsimctl
+    @fbsimctl ||= '/usr/local/opt/fbsimctl/bin/fbsimctl'
+  end
+
+  def boot_simulator
+    return if @boot_simulator
+
+    @boot_simulator ||= begin
       arguments = [
           '--json',
-          'record start --',
-          'listen --',
-          'record stop'
+          @udid,
+          'boot'
       ].join(' ')
       "#{fbsimctl} #{arguments}"
     end
+
+    puts @boot_simulator
+    child = POSIX::Spawn::Child.new(@boot_simulator)
+
+    output = "#{child.out}\n#{child.err}"
+
+    # Ignore already booted simulator.
+    return if output.include? "to be Shutdown, but it was 'Booted'"
+
+    abort("Simulator boot failed! #{output}") unless child.status.success?
   end
 
-  def _process_wait &block
-    # todo: timeout instead of looping forever.
-    while true do
-      line = @out.readline rescue break
-      json = JSON.parse(line) rescue {}
+  def start_server
+    return if @start_server
 
-      if block.call(json)
-        break
-      end
+    boot_simulator
+
+    @start_server ||= begin
+      arguments = [
+          'listen',
+          '--http 8090',
+          @udid
+      ].join(' ')
+      "#{fbsimctl} #{arguments}"
     end
+
+    puts @start_server
+    @pid, @in, @out, @err = POSIX::Spawn::popen4(@start_server)
   end
 
-  # {"event_type":"started","timestamp":1478809645,"subject":{"type":"empty"},"event_name":"listen"}
-  # {"event_type":"ended","timestamp":1478809645,"subject":{"type":"empty"},"event_name":"listen"}
-  def process_wait_for_event event_name, event_type
-    puts "Waiting for #{event_name} #{event_type}"
-    _process_wait { |json| json['event_name'] == event_name && json['event_type'] == event_type }
+  def stop_server
+    [@in, @out, @err].each { |io| io.close unless io.nil? || io.closed? }
+    Process.wait(@pid) if @pid
   end
 
-  # {"event_type":"discrete","timestamp":1478811432,"level":"info",
-  # "subject":"Started Recording video at path \/Users\/user\/Library\/Developer\/CoreSimulator\/Devices\/A34700F6-F9E1-4AF4-9748-4C6A12A03C19\/data\/fbsimulatorcontrol\/diagnostics\/video.mp4",
-  # "event_name":"log"}
-  def process_wait_for_video_path
-    puts 'Waiting for video path'
-    event = ''
-    _process_wait { |json| event = json['subject']; event.include?('Started Recording video at path') }
-
-    video_path = event.match(/Started Recording video at path (.*)/)
-    video_path[1] if video_path && video_path.length == 2
+  def _get_url endpoint
+    "http://localhost:8090/#{@udid}/#{endpoint}"
   end
 
-  def process_terminate
-    Process.kill(:SIGTERM, @pid)
+  def _record_request start_value
+    url = _get_url 'record'
+
+    args = {
+        header: {
+            'content-type': 'application/json',
+        },
+        body: %Q({ "start": #{start_value} })
+    }
+
+    @client.post(url, args)
   end
 
   def start_recording
-    puts fbsimctl_record_command
-    @pid, @in, @out, @err = POSIX::Spawn::popen4(fbsimctl_record_command)
+    # post to: localhost:8090/A34700F6-F9E1-4AF4-9748-4C6A12A03C19/record
+    # with: { "start": true }
+    response = _record_request(true)
 
-    process_wait_for_event('listen', 'started')
-    @video_path = process_wait_for_video_path
+    unless response.status_code == 200
+      abort("Start recording failed:\n#{response.body}")
+    end
 
-    puts "parsed video: #{@video_path}"
+    @video_path = "#{Dir.home}/Library/Developer/CoreSimulator/Devices/#{@udid}/data/fbsimulatorcontrol/diagnostics/video.mp4"
   end
 
   def stop_recording
-    # must sleep a few seconds before termination to avoid 0 byte video.
-    sleep 2
-    process_terminate
+    # post to: localhost:8090/A34700F6-F9E1-4AF4-9748-4C6A12A03C19/record
+    # with: { "start": false }
 
-    process_wait_for_event('listen', 'ended')
-    process_wait_for_event('shutdown', 'ended')
-    Process.waitpid(@pid)
+    _record_request(false)
 
     abort("No video at path #{@video_path}") unless File.exist?(@video_path || '')
     FileUtils.cp @video_path, @video_out
