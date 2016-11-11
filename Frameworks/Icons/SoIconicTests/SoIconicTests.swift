@@ -47,5 +47,7 @@ class SoIconicTests: XCTestCase {
         imageExists(.icon(.lti))
         
         imageExists(.icon(.discussion))
+
+        imageExists(.icon(.page))
     }
 }

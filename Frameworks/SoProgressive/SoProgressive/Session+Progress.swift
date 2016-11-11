@@ -42,10 +42,10 @@ extension Session {
         let progress = Progress(kind: kind, contextID: contextID, itemType: type, itemID: itemID)
         progressDispatcher.dispatch(progress)
     }
-    
+
     
     // MARK: - Objective-C Compatability
-    
+
     // MARK: Discussions
     @available(*, deprecated=1.0)
     public func postProgressDiscussionContributed(courseID courseID: String, discussionTopicID: String) {

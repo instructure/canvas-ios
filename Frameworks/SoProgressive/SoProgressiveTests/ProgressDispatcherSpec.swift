@@ -20,7 +20,6 @@ import XCTest
 import Result
 import ReactiveCocoa
 import TooLegit
-import DoNotShipThis
 import SoProgressive
 
 class DescribeProgressDispatcher: XCTestCase {

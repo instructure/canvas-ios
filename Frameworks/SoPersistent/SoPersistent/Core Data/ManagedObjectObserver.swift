@@ -58,6 +58,7 @@ public enum ManagedObjectChange {
 }
 
 import ReactiveCocoa
+import Result
 
 public final class ManagedObjectObserver<Object: NSManagedObject> {
     
@@ -66,14 +67,14 @@ public final class ManagedObjectObserver<Object: NSManagedObject> {
     private (set) public var object: Object?
     private var token: NSObjectProtocol! = nil
     
-    public let signal: Signal<(ManagedObjectChange, Object?), NSError>
-    private let observer: Observer<(ManagedObjectChange, Object?), NSError>
+    public let signal: Signal<(ManagedObjectChange, Object?), NoError>
+    private let observer: Observer<(ManagedObjectChange, Object?), NoError>
     
     public init(predicate: NSPredicate, inContext context: NSManagedObjectContext) throws {
         self.predicate = predicate
         self.context = context
         
-        let sig: Signal<(ManagedObjectChange, Object?), NSError>
+        let sig: Signal<(ManagedObjectChange, Object?), NoError>
         (sig, observer) = Signal.pipe()
         self.signal = sig.observeOn(UIScheduler())
         

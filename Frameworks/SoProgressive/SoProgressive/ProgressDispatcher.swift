@@ -21,15 +21,18 @@ import ReactiveCocoa
 import Result
 
 public class ProgressDispatcher: NSObject {
-    private var pipe = Signal<Progress, NoError>.pipe()
-    
-    public var onProgress: Signal<Progress, NoError> {
-        return pipe.0
+    private let dispatcher: Dispatcher<Progress, Progress, NSError>
+
+    public override init() {
+        dispatcher = Dispatcher { SignalProducer(value: $0) }
+        super.init()
     }
-    
+
+    public var onProgress: Signal<Progress, NoError> {
+        return dispatcher.values
+    }
+
     public func dispatch(progress: Progress) {
-        pipe.1.sendNext(progress)
+        dispatcher.apply(progress).start()
     }
 }
-
-

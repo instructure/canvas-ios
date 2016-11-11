@@ -22,12 +22,14 @@ import TooLegit
 import SoPersistent
 import ReactiveCocoa
 import CoreData
+import Quick
+import Result
 
 public let DefaultNetworkTimeout: NSTimeInterval = 5
 
 extension Refresher {
-    public func refreshAndWait() {
-        waitUntil { done in
+    public func refreshAndWait(timeout: NSTimeInterval = 1) {
+        waitUntil(timeout: timeout) { done in
             self.refreshingCompleted.observeNext { error in
                 expect(error).to(beNil())
                 done()
@@ -36,9 +38,9 @@ extension Refresher {
         }
     }
 
-    public func playback(name: String, in bundle: NSBundle, with session: TooLegit.Session) {
+    public func playback(name: String, in bundle: NSBundle, with session: TooLegit.Session, timeout: NSTimeInterval = 1) {
         session.playback(name, in: bundle) {
-            refreshAndWait()
+            refreshAndWait(timeout)
         }
     }
 }
@@ -46,13 +48,53 @@ extension Refresher {
 extension TooLegit.Session {
     public func playback(name: String, in bundle: NSBundle, @noescape block: ()->Void) {
         let URLSession = self.URLSession
+
+        // remove User-Agent header temporarily because it varies from target to target
+        let userAgent = URLSession.configuration.HTTPAdditionalHeaders?["User-Agent"]
+        URLSession.configuration.HTTPAdditionalHeaders?.removeValueForKey("User-Agent")
+
         let DVRSession = DVR.Session(outputDirectory: "~/Desktop/", cassetteName: name, testBundle: bundle, backingSession: URLSession)
         self.URLSession = DVRSession
         DVRSession.beginRecording()
         block()
         DVRSession.endRecording()
+        
         self.URLSession = URLSession
+        self.URLSession.configuration.HTTPAdditionalHeaders?["User-Agent"] = userAgent
     }
+}
+
+// MARK: - RAC+SoAutomated
+
+public enum TestError: Int {
+	case Default = 0
+	case Error1 = 1
+	case Error2 = 2
+}
+
+extension TestError: ErrorType {
+}
+
+extension SignalProducerType {
+	/// Halts if an error is emitted in the receiver signal.
+	/// This is useful in tests to be able to just use `startWithNext`
+	/// in cases where we know that an error won't be emitted.
+	public func assumeNoErrors() -> SignalProducer<Value, NoError> {
+		return self.lift { $0.assumeNoErrors() }
+	}
+}
+
+extension SignalType {
+	/// Halts if an error is emitted in the receiver signal.
+	/// This is useful in tests to be able to just use `startWithNext`
+	/// in cases where we know that an error won't be emitted.
+	public func assumeNoErrors() -> Signal<Value, NoError> {
+		return self.mapError { error in
+			fatalError("Unexpected error: \(error)")
+
+			()
+		}
+	}
 }
 
 extension SignalProducerType {
@@ -123,6 +165,11 @@ public func ==<U: Equatable>(a: CollectionUpdate<U>, b: CollectionUpdate<U>) -> 
     case (.Deleted(let a, let pa), .Deleted(let b, let pb)) where a == b && pa == pb: return true
     default: return false
     }
+}
+
+private class Bundle {}
+extension NSBundle {
+    public static var soAutomated: NSBundle { return NSBundle(forClass: Bundle.self) }
 }
 
 // MARK: - Deprecated

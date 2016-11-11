@@ -33,6 +33,9 @@
 		49C98E111D9230FC006AF2FB /* TodoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49C98E0C1D9230AA006AF2FB /* TodoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49C98E121D9230FC006AF2FB /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C98E0B1D923096006AF2FB /* SoPersistent.framework */; };
 		49C98E131D9230FC006AF2FB /* SoPersistent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49C98E0B1D923096006AF2FB /* SoPersistent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1254B0C1DCA710D00DCD110 /* SoEdventurous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1254B0A1DCA710300DCD110 /* SoEdventurous.framework */; };
+		B1254B0E1DCA712100DCD110 /* SoEdventurous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1254B0A1DCA710300DCD110 /* SoEdventurous.framework */; };
+		B1254B0F1DCA712100DCD110 /* SoEdventurous.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1254B0A1DCA710300DCD110 /* SoEdventurous.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +53,7 @@
 				49C98DF71D922CCF006AF2FB /* EnrollmentKit.framework in Embed Frameworks */,
 				49C98E061D922EA0006AF2FB /* MediaKit.framework in Embed Frameworks */,
 				49C98E131D9230FC006AF2FB /* SoPersistent.framework in Embed Frameworks */,
+				B1254B0F1DCA712100DCD110 /* SoEdventurous.framework in Embed Frameworks */,
 				49C98E0F1D9230FC006AF2FB /* DiscussionKit.framework in Embed Frameworks */,
 				49C98E111D9230FC006AF2FB /* TodoKit.framework in Embed Frameworks */,
 			);
@@ -77,6 +81,7 @@
 		49C98E0B1D923096006AF2FB /* SoPersistent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPersistent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C98E0C1D9230AA006AF2FB /* TodoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TodoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C98E0D1D9230F3006AF2FB /* DiscussionKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DiscussionKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1254B0A1DCA710300DCD110 /* SoEdventurous.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoEdventurous.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +90,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				49C98E091D922EA0006AF2FB /* TooLegit.framework in Frameworks */,
+				B1254B0E1DCA712100DCD110 /* SoEdventurous.framework in Frameworks */,
+				B1254B0C1DCA710D00DCD110 /* SoEdventurous.framework in Frameworks */,
 				49C98E011D922EA0006AF2FB /* CalendarKit.framework in Frameworks */,
 				49C98E031D922EA0006AF2FB /* FileKit.framework in Frameworks */,
 				49C98E071D922EA0006AF2FB /* PageKit.framework in Frameworks */,
@@ -134,6 +141,7 @@
 		49C98DF41D922853006AF2FB /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				B1254B0A1DCA710300DCD110 /* SoEdventurous.framework */,
 				496268F61DAC44E400B45487 /* SoAutomated.framework */,
 				49C98E0D1D9230F3006AF2FB /* DiscussionKit.framework */,
 				49C98E0C1D9230AA006AF2FB /* TodoKit.framework */,

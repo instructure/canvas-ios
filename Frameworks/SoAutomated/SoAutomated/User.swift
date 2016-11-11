@@ -123,10 +123,18 @@ public struct Credentials {
         token: teacher1.token,
         name: teacher1.name
     )
+
+    public static let s4Beta = Credentials(
+        id: "4976624",
+        domain: "mobiledev.beta.instructure.com",
+        email: "s4",
+        password: "instruct",
+        token: "1~ga6Zb3pcUEbdt8HYb9aD2Lu7Xe9LMhDlzLipeOEuE9Yr01xOw9whYlBn7VKXgS66", name: "S4"
+    )
 }
 
 public class User {
-    let credentials: Credentials
+    public let credentials: Credentials
 
     public var id: String {
         return credentials.id

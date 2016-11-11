@@ -23,6 +23,7 @@ import PSPDFKit
 import SoPretty
 import SoLazy
 import SoPersistent
+import SoEdventurous
 import CanvasKeymaster
 
 @UIApplicationMain
@@ -34,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if unitTesting {
             return true
         }
-        
+
         makeAWindow()
         postLaunchSetup()
         prepareTheKeymaster()
@@ -132,8 +133,9 @@ extension AppDelegate {
     }
     
     func didLogin(session: Session) {
-        
+
         LegacyModuleProgressShim.observeProgress(session)
+        ModuleItem.beginObservingProgress(session)
         Crashlytics.setDebugInformation()
         ConversationUpdater.sharedConversationUpdater().updateUnreadConversationCount()
         CKCanvasAPI.updateCurrentAPI() // set's currenAPI from CKIClient.currentClient()

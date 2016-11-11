@@ -20,6 +20,7 @@ import Foundation
 import TooLegit
 import Marshal
 import ReactiveCocoa
+import SoLazy
 
 extension ModuleItem {
     public static var getModuleItemsParameters: [String: AnyObject] {
@@ -28,20 +29,22 @@ extension ModuleItem {
 
     public static func getModuleItems(session: Session, courseID: String, moduleID: String) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try session.GET(api/v1/"courses"/courseID/"modules"/moduleID/"items", parameters: getModuleItemsParameters)
-        return session.paginatedJSONSignalProducer(request)
+        return session.paginatedJSONSignalProducer(request).map(insert(courseID, forKey: "course_id"))
     }
 
-    // TODO: what does this return? documentation did not say :(
-    public static func markModuleItemDone(session: Session, courseID: String, moduleID: String, moduleItemID: String, done: Bool) throws -> SignalProducer<JSONObject, NSError> {
-        let path: String = api/v1/"courses"/courseID/"modules"/moduleID/"items"/moduleID/"done"
-        let request = done ? try session.PUT(path) : try session.DELETE(path)
-        // TODO: is this correct?
-        return session.JSONSignalProducer(request)
+    static func markDone(session: Session, courseID: String, moduleID: String, moduleItemID: String) throws -> SignalProducer<(), NSError> {
+        let path: String = api/v1/"courses"/courseID/"modules"/moduleID/"items"/moduleItemID/"done"
+        let request = try session.PUT(path)
+        return session.emptyResponseSignalProducer(request)
     }
 
-    // TODO: This too, what is the response? a json object?
-    public static func markModuleItemRead(session: Session, courseID: String, moduleID: String, moduleItemID: String) throws -> SignalProducer<JSONObject, NSError> {
+    static func markRead(session: Session, courseID: String, moduleID: String, moduleItemID: String) throws -> SignalProducer<(), NSError> {
         let request = try session.POST(api/v1/"courses"/courseID/"modules"/moduleID/"items"/moduleItemID/"mark_read")
+        return session.emptyResponseSignalProducer(request)
+    }
+
+    public static func selectMasteryPath(session: Session, courseID: String, moduleID: String, moduleItemID: String, assignmentSetID: String) throws -> SignalProducer<JSONObject, NSError> {
+        let request = try session.POST(api/v1/"courses"/courseID/"modules"/moduleID/"items"/moduleItemID/"select_mastery_path", parameters: ["assignment_set_id": assignmentSetID], encoding: .URLEncodedInURL)
         return session.JSONSignalProducer(request)
     }
 }

@@ -28,6 +28,25 @@ public extension CollectionType {
     }
 }
 
+public extension CollectionType {
+    public func findFirst(test: (Generator.Element) throws -> Bool) rethrows -> Generator.Element? {
+        for (_, element) in enumerate() {
+            if try test(element) {
+                return element
+            }
+        }
+        return nil
+    }
+
+    public func any(test: ((Generator.Element) throws -> Bool)) rethrows -> Bool {
+        return try findFirst(test) != nil
+    }
+
+    public func any() -> Bool {
+        return any { _ in true }
+    }
+}
+
 public extension MutableCollectionType where Index == Int {
     /// Shuffle the elements of `self` in-place.
     public mutating func shuffleInPlace() {

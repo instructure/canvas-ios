@@ -22,5 +22,7 @@ import AssignmentKit
 
 
 class SubmissionsTableViewController: User.TableViewController {
-    // 
+    override init() {
+        super.init()
+    }
 }

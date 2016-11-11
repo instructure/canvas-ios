@@ -54,3 +54,15 @@ extension SWPerson: SynchronizedModel {
     }
 
 }
+
+// MARK: SWPerson+Collections
+extension SWPerson {
+    static func collection<T>(inContext context: NSManagedObjectContext) throws -> FetchedCollection<T> {
+        let frc = SWPerson.fetchedResults(nil, sortDescriptors: ["name".ascending], sectionNameKeypath: nil, inContext: context)
+        return try FetchedCollection(frc: frc)
+    }
+
+    static func fetchedResults(inContext context: NSManagedObjectContext) throws -> NSFetchedResultsController {
+        return SWPerson.fetchedResults(nil, sortDescriptors: [], sectionNameKeypath: nil, inContext: context)
+    }
+}

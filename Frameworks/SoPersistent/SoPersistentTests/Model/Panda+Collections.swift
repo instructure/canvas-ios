@@ -22,15 +22,15 @@ import TooLegit
 import CoreData
 
 extension Panda {
-    static func collectionByFirstLetterOfName(session: Session, inContext context: NSManagedObjectContext) throws -> FetchedCollection<Panda> {
+    static func collectionByFirstLetterOfName<T>(session: Session, inContext context: NSManagedObjectContext) throws -> FetchedCollection<T> {
         let frc = Panda.fetchedResults(nil, sortDescriptors: ["name".ascending], sectionNameKeypath: "firstLetterOfName", inContext: context)
         let titleFunction: String?->String? = { $0.flatMap { "\($0.uppercaseString)" } }
-        return try FetchedCollection<Panda>(frc: frc, titleForSectionTitle:titleFunction)
+        return try FetchedCollection(frc: frc, titleForSectionTitle:titleFunction)
     }
 
-    static func collection(session: Session, inContext context: NSManagedObjectContext) throws -> FetchedCollection<Panda> {
+    static func collection<T>(session: Session, inContext context: NSManagedObjectContext) throws -> FetchedCollection<T> {
         let frc = Panda.fetchedResults(nil, sortDescriptors: ["name".ascending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection<Panda>(frc: frc)
+        return try FetchedCollection(frc: frc)
     }
 
     static func pandasNamedPo(session: Session, inContext context: NSManagedObjectContext) throws -> FetchedCollection<Panda> {

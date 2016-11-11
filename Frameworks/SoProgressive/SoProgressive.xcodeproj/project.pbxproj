@@ -20,6 +20,11 @@
 		4934799B1CB445E1008D14DD /* ProgressSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934799A1CB445E1008D14DD /* ProgressSpec.swift */; };
 		4934799D1CB4488F008D14DD /* ProgressDispatcherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934799C1CB4488F008D14DD /* ProgressDispatcherSpec.swift */; };
 		493479A11CB457AF008D14DD /* Session+ProgressSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493479A01CB457AF008D14DD /* Session+ProgressSpec.swift */; };
+		B1ABA82D1DC2BF750021021C /* DispatcherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABA82C1DC2BF750021021C /* DispatcherSpec.swift */; };
+		B1ABA8321DC2C05D0021021C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ABA82F1DC2C05D0021021C /* Nimble.framework */; };
+		B1ABA8331DC2C05D0021021C /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ABA8301DC2C05D0021021C /* Quick.framework */; };
+		B1ABA8341DC2C05D0021021C /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ABA8311DC2C05D0021021C /* SoAutomated.framework */; };
+		B1ABA8361DC2C1A50021021C /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABA8351DC2C1A50021021C /* Dispatcher.swift */; };
 		B5B4DC241D6255DB0051C04C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5B4DC261D6255DB0051C04C /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +55,11 @@
 		4934799A1CB445E1008D14DD /* ProgressSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressSpec.swift; sourceTree = "<group>"; };
 		4934799C1CB4488F008D14DD /* ProgressDispatcherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressDispatcherSpec.swift; sourceTree = "<group>"; };
 		493479A01CB457AF008D14DD /* Session+ProgressSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+ProgressSpec.swift"; sourceTree = "<group>"; };
+		B1ABA82C1DC2BF750021021C /* DispatcherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatcherSpec.swift; sourceTree = "<group>"; };
+		B1ABA82F1DC2C05D0021021C /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-bfbrqncyiycsvlbivmvakhrbtxmo/Build/Products/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
+		B1ABA8301DC2C05D0021021C /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-bfbrqncyiycsvlbivmvakhrbtxmo/Build/Products/Debug-iphoneos/Quick.framework"; sourceTree = "<group>"; };
+		B1ABA8311DC2C05D0021021C /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoAutomated.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-bfbrqncyiycsvlbivmvakhrbtxmo/Build/Products/Debug-iphoneos/SoAutomated.framework"; sourceTree = "<group>"; };
+		B1ABA8351DC2C1A50021021C /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		B5B4DC251D6255DB0051C04C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +80,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4934798E1CB44510008D14DD /* SoProgressive.framework in Frameworks */,
+				B1ABA8321DC2C05D0021021C /* Nimble.framework in Frameworks */,
+				B1ABA8331DC2C05D0021021C /* Quick.framework in Frameworks */,
+				B1ABA8341DC2C05D0021021C /* SoAutomated.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +117,7 @@
 				493479941CB44558008D14DD /* ProgressDispatcher.swift */,
 				493479961CB44566008D14DD /* Progress.swift */,
 				B5B4DC261D6255DB0051C04C /* Localizable.strings */,
+				B1ABA8351DC2C1A50021021C /* Dispatcher.swift */,
 			);
 			path = SoProgressive;
 			sourceTree = "<group>";
@@ -122,13 +136,25 @@
 		4934798A1CB44510008D14DD /* SoProgressiveTests */ = {
 			isa = PBXGroup;
 			children = (
+				B1ABA82E1DC2BF830021021C /* Dependencies */,
 				4934798B1CB44510008D14DD /* SoProgressiveTests.swift */,
 				4934799A1CB445E1008D14DD /* ProgressSpec.swift */,
 				4934799C1CB4488F008D14DD /* ProgressDispatcherSpec.swift */,
 				493479A01CB457AF008D14DD /* Session+ProgressSpec.swift */,
 				4934798D1CB44510008D14DD /* Info.plist */,
+				B1ABA82C1DC2BF750021021C /* DispatcherSpec.swift */,
 			);
 			path = SoProgressiveTests;
+			sourceTree = "<group>";
+		};
+		B1ABA82E1DC2BF830021021C /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				B1ABA82F1DC2C05D0021021C /* Nimble.framework */,
+				B1ABA8301DC2C05D0021021C /* Quick.framework */,
+				B1ABA8311DC2C05D0021021C /* SoAutomated.framework */,
+			);
+			name = Dependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +270,7 @@
 			files = (
 				493479971CB44566008D14DD /* Progress.swift in Sources */,
 				4934797C1CB2DE8A008D14DD /* Session+Progress.swift in Sources */,
+				B1ABA8361DC2C1A50021021C /* Dispatcher.swift in Sources */,
 				493479951CB44558008D14DD /* ProgressDispatcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,6 +282,7 @@
 				4934799B1CB445E1008D14DD /* ProgressSpec.swift in Sources */,
 				4934798C1CB44510008D14DD /* SoProgressiveTests.swift in Sources */,
 				4934799D1CB4488F008D14DD /* ProgressDispatcherSpec.swift in Sources */,
+				B1ABA82D1DC2BF750021021C /* DispatcherSpec.swift in Sources */,
 				493479A11CB457AF008D14DD /* Session+ProgressSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

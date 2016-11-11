@@ -45,8 +45,12 @@ class ManagedObjectObserverChangeTests: XCTestCase {
     func testInsert() {
         guard let observer = observer, managedObjectContext = managedObjectContext else { return }
         let expectation = expectationWithDescription("object was inserted")
-        let inserted = Panda.build(managedObjectContext)
-        observer.observe(inserted, change: .Insert, withExpectation: expectation)
+        observer.signal.assumeNoErrors().observeNext { change, _ in
+            if case .Insert = change {
+                expectation.fulfill()
+            }
+        }
+        Panda.build(managedObjectContext)
         waitForExpectationsWithTimeout(1, handler: nil)
     }
 

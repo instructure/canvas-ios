@@ -92,7 +92,7 @@ public class CollectionViewCellViewModelFactory<T>: CollectionViewCellViewModel 
 }
 
 public class EmptyRefresher: Refresher {
-    public let cacheKey: String = "empty"
+    public let cacheKey: String
     public let isRefreshing: Bool = false
     public let refreshControl = UIRefreshControl()
 
@@ -101,7 +101,8 @@ public class EmptyRefresher: Refresher {
     public var refreshingCompleted: Signal<NSError?, NoError>
     var refreshingCompletedObserver: Observer<NSError?, NoError>
 
-    public init() {
+    public init(cacheKey: String = "empty") {
+        self.cacheKey = cacheKey
         let (beganSignal, beganObserver) = Signal<(), NoError>.pipe()
         self.refreshingBegan = beganSignal.observeOn(UIScheduler())
         self.refreshingBeganObserver = beganObserver

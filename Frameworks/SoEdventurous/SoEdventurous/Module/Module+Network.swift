@@ -20,10 +20,12 @@ import Foundation
 import TooLegit
 import Marshal
 import ReactiveCocoa
+import SoLazy
 
 extension Module {
     public static func getModules(session: Session, courseID: String) throws -> SignalProducer<[JSONObject], NSError> {
-        let request = try session.GET(api/v1/"courses"/courseID/"modules")
-        return session.paginatedJSONSignalProducer(request)
+        let params = ["include": ["items"]]
+        let request = try session.GET(api/v1/"courses"/courseID/"modules", parameters: params)
+        return session.paginatedJSONSignalProducer(request).map(insert(courseID, forKey: "course_id"))
     }
 }

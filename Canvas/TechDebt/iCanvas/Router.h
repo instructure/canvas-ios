@@ -23,6 +23,7 @@
 typedef UIViewController *(^RouteHandler)(NSDictionary<NSString *, id> *params, id sender);
 typedef void(^DispatchHandler)(UIViewController *viewController);
 typedef void(^FallbackHandler)(NSURL *url, UIViewController *sender);
+typedef void(^ControllerHandler)(UIViewController *controller);
 
 @interface UIViewController (Routing)
 - (void)applyRoutingParameters:(NSDictionary *)params;
@@ -37,8 +38,12 @@ typedef void(^FallbackHandler)(NSURL *url, UIViewController *sender);
 - (void)addRoute:(NSString *)route forControllerClass:(Class)controllerClass;
 - (void)addRoutesWithDictionary:(NSDictionary *)routes;
 
+#pragma marks - Removing Routes
+- (void)removeRoute:(NSString *)route;
+
 #pragma marks - Dispatching
 - (UIViewController *)controllerForHandlingURL:(NSURL *)url;
+- (void)controllerForHandlingURL:(NSURL *)url handler:(ControllerHandler)handler;
 
 /**
  @return the view controller that was routed to

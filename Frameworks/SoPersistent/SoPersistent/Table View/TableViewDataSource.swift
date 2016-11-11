@@ -22,18 +22,33 @@ import ReactiveCocoa
 @objc
 public protocol TableViewDataSource: NSObjectProtocol, UITableViewDataSource {
     var collectionDidChange: (Void)->Void { get set }
+    var tableView: UITableView? { get set }
     func viewDidLoad(controller: UITableViewController)
     func isEmpty() -> Bool
 }
 
-public class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewModel>: NSObject, TableViewDataSource {
+extension TableViewDataSource {
+    public var isEmpty: Bool {
+        guard let table = tableView else {
+            return true
+        }
 
+        let numberOfSections = numberOfSectionsInTableView?(table) ?? 0
+        var empty = numberOfSections == 0
+        if numberOfSections == 1 && tableView(table, numberOfRowsInSection: 0) == 0 {
+            empty = true
+        }
+        return empty
+    }
+}
+
+public class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewModel>: NSObject, TableViewDataSource {
     public let collection: C
     public let viewModelFactory: C.Object->VM
     public var collectionDidChange: (Void)->Void = { }
     private var disposable: Disposable?
 
-    weak var tableView: UITableView? {
+    weak public var tableView: UITableView? {
         didSet {
             oldValue?.dataSource = nil
             tableView?.dataSource = self
@@ -85,6 +100,8 @@ public class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewM
             return
         }
 
+        let selectedIndexPath = tableView.indexPathForSelectedRow
+
         tableView.beginUpdates()
         for update in updates {
             switch update {
@@ -113,17 +130,11 @@ public class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewM
             }
         }
         tableView.endUpdates()
+
+        tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .None)
     }
 
     public func isEmpty() -> Bool {
-        guard let table = tableView else {
-            return true
-        }
-
-        var empty = numberOfSectionsInTableView(table) == 0
-        if numberOfSectionsInTableView(table) == 1 && tableView(table, numberOfRowsInSection: 0) == 0 {
-            empty = true
-        }
-        return empty
+        return self.isEmpty
     }
 }

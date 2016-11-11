@@ -92,7 +92,7 @@ public protocol Collection: class {
     func numberOfItemsInSection(section: Int) -> Int
     
     func titleForSection(section: Int) -> String?
-    
+
     subscript(indexPath: NSIndexPath) -> Object { get }
     
     var collectionUpdates: Signal<[CollectionUpdate<Object>], NoError> { get }

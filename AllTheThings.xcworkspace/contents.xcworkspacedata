@@ -214,4 +214,10 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Canvas/Canvas.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SpeedGrader/SpeedGrader.xcodeproj">
+   </FileRef>
 </Workspace>

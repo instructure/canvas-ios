@@ -25,7 +25,7 @@ import TooLegit
 extension SynchronizedModel where Self: NSManagedObject {
     public typealias ModelPageSignalProducer = SignalProducer<[Self], NSError>
     
-    public static func syncSignalProducer(localPredicate: NSPredicate? = nil, inContext context: NSManagedObjectContext, fetchRemote: SignalProducer<[JSONObject], NSError>, postProcess: (Self, JSONObject) throws -> Void = { _, _ in }) -> ModelPageSignalProducer {
+    public static func syncSignalProducer(localPredicate: NSPredicate? = nil, includeSubentities: Bool = true, inContext context: NSManagedObjectContext, fetchRemote: SignalProducer<[JSONObject], NSError>, postProcess: (Self, JSONObject) throws -> Void = { _, _ in }) -> ModelPageSignalProducer {
         
         let syncContextModelsSignal = ModelPageSignalProducer({ observer, compositeDisposable in
             
@@ -36,6 +36,7 @@ extension SynchronizedModel where Self: NSManagedObject {
                     let fetchLocal = fetch(localPredicate, sortDescriptors: nil, inContext: syncContext)
                     fetchLocal.includesPropertyValues = false
                     fetchLocal.returnsObjectsAsFaults = true
+                    fetchLocal.includesSubentities = includeSubentities
                     var existing = try Set(syncContext.findAll(fromFetchRequest: fetchLocal))
                     
                     let upsertSignal: ModelPageSignalProducer = fetchRemote.flatMap(.Concat, transform: Self.upsert(inContext: syncContext, postProcess: postProcess))

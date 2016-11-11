@@ -20,6 +20,18 @@ import Foundation
 
 
 public enum Icon: String {
+    public enum Size {
+        case standard
+        case small
+
+        var identifier: String {
+            switch self {
+            case .standard: return ""
+            case .small:    return "sm"
+            }
+        }
+    }
+
     case announcement
     case assignment
     case calendar
@@ -45,13 +57,18 @@ public enum Icon: String {
 
     case edit
     case lock
+    case unlock
     case empty
     case complete
     
     
     /** name of the icon of the form "icon_lined"
      */
-    func imageName(filled: Bool) -> String {
-        return rawValue + (!filled ? "_line": "")
+    func imageName(filled: Bool, size: Size = .standard) -> String {
+        var name = rawValue + (!filled ? "_line": "")
+        if size != .standard {
+            name += "_\(size.identifier)"
+        }
+        return name
     }
 }

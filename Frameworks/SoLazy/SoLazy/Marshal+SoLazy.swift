@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-    
-    
+
+
 
 import Foundation
 import Marshal
@@ -94,4 +94,13 @@ extension Dictionary where Key: KeyType {
             return id
         }
     }
+}
+
+public func insert(value: AnyObject?, forKey key: String) -> (array: [JSONObject]) -> [JSONObject] {
+    func insert(json: JSONObject) -> JSONObject {
+        var json = json
+        json[key] = value
+        return json
+    }
+    return { $0.map(insert) }
 }

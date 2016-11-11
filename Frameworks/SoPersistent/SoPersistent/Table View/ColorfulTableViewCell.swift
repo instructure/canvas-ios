@@ -25,16 +25,27 @@ import SoPretty
 public struct ColorfulViewModel: TableViewCellViewModel {
     public let color = MutableProperty(UIColor.prettyGray())
     public let title = MutableProperty("")
-    public let titleAccessibilityLabel = MutableProperty<String?>(nil)
+    public let titleFontStyle = MutableProperty(FontStyle.regular)
+    public let titleTextColor = MutableProperty(UIColor.blackColor())
     public let detail = MutableProperty("")
     public let icon = MutableProperty<UIImage?>(nil)
     public let accessoryView = MutableProperty<UIView?>(nil)
     public let accessoryType = MutableProperty<UITableViewCellAccessoryType>(.None)
     public let tokenViewText = MutableProperty("")
+    public let indentationLevel = MutableProperty(0)
+    public let selectionEnabled = MutableProperty(true)
+    public let setSelected = MutableProperty<Bool?>(nil)
     public let accessibilityIdentifier = MutableProperty<String?>(nil)
+    public let accessibilityLabel = MutableProperty<String?>(nil)
 
     public let style: ColorfulTableViewCell.Style
 
+    public enum FontStyle {
+        case regular
+        case bold
+        case italic
+    }
+    
     public init(style: ColorfulTableViewCell.Style) {
         self.style = style
     }
@@ -45,6 +56,7 @@ public struct ColorfulViewModel: TableViewCellViewModel {
 
         let indexPathIdentifier = "\(indexPath.section)_\(indexPath.row)"
         cell.disposable += cell.rac_a11yIdentifier <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_cell_\(indexPathIdentifier)" }
+        cell.disposable += cell.rac_a11yLabel <~ accessibilityLabel
         cell.disposable += ((cell.tokenCellTitleLabel ?? cell.textLabel)?.rac_a11yIdentifier).map { $0 <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_title_\(indexPathIdentifier)" } }
         cell.disposable += (cell.detailTextLabel?.rac_a11yIdentifier).map { $0 <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_detail_\(indexPathIdentifier)" } }
         cell.disposable += (cell.accessoryView?.rac_a11yIdentifier).map { $0 <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_accessory_image_\(indexPathIdentifier)" } }
@@ -99,19 +111,48 @@ public class ColorfulTableViewCell: UITableViewCell {
         
         disposable += (tokenView?.text).map { $0 <~ vm.tokenViewText.producer }
         disposable += ((tokenCellTitleLabel ?? textLabel)?.rac_text).map { $0 <~ vm.title.producer }
-        disposable += ((tokenCellTitleLabel ?? textLabel)?.rac_a11yLabel).map { $0 <~ vm.titleAccessibilityLabel.producer }
         disposable += (detailTextLabel?.rac_text).map { $0 <~ vm.detail.producer }
         disposable += (imageView?.rac_image).map { $0 <~ vm.icon.producer }
         disposable += vm.color.producer.startWithNext { [weak self] color in
             self?.updateColor(color)
         }
-        
-        disposable += vm.accessoryView.producer.startWithNext { [weak self] accessory in
+        disposable += vm.accessoryView.producer.observeOn(UIScheduler()).startWithNext { [weak self] accessory in
             self?.accessoryView = accessory
         }
-        
         disposable += vm.accessoryType.producer.startWithNext { [weak self] accessory in
             self?.accessoryType = accessory
+        }
+        disposable += vm.titleFontStyle.producer.startWithNext { [weak self] style in
+            var fontDescriptor = UIFontDescriptor.preferredFontDescriptorWithTextStyle(UIFontTextStyleBody)
+            switch style {
+            case .italic:
+                guard let italicDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(.TraitItalic) else { break }
+                let font = UIFont(descriptor: italicDescriptor, size: 0)
+                self?.textLabel?.font = font
+                self?.tokenCellTitleLabel?.font = font
+            case .bold:
+                guard let boldDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(.TraitBold) else { break }
+                let font = UIFont(descriptor: boldDescriptor, size: 0)
+                self?.textLabel?.font = font
+                self?.tokenCellTitleLabel?.font = font
+            default:
+                let font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+                self?.textLabel?.font = font
+                self?.tokenCellTitleLabel?.font = font
+            }
+        }
+        disposable += vm.indentationLevel.producer.startWithNext { [weak self] level in
+            self?.indentationLevel = level
+        }
+        disposable += vm.selectionEnabled.producer.startWithNext { [weak self] selectionEnabled in
+            self?.selectionStyle = selectionEnabled ? .Default : .None
+            self?.userInteractionEnabled = selectionEnabled
+        }
+        disposable += vm.titleTextColor.producer.startWithNext { [weak self] textColor in
+            self?.textLabel?.textColor = textColor
+        }
+        disposable += vm.setSelected.producer.ignoreNil().startWithNext { [weak self] selected in
+            self?.setSelected(selected, animated: true)
         }
         
         updateTitleConstraints()
@@ -122,7 +163,24 @@ public class ColorfulTableViewCell: UITableViewCell {
             beginObservingViewModel()
         }
     }
-    
+
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+
+        // Indent the images like they should be
+        if let imageView = self.imageView where indentationLevel != 0 {
+            imageView.frame = CGRect(x: imageView.frame.origin.x + (CGFloat(indentationLevel) * indentationWidth), y: imageView.frame.origin.y, width: imageView.frame.size.width, height: imageView.frame.size.height)
+        }
+
+        if let title = self.textLabel, let detail = self.detailTextLabel where self.reuseIdentifier == Style.RightDetail.rawValue {
+            var minX: CGFloat = CGRectGetMinX(title.frame)
+            let width = (CGRectGetMinX(detail.frame) - minX) - 8.0
+            var frame = title.frame
+            frame.size.width = width
+            title.frame = frame
+        }
+    }
+
     // Prevent token from changing background color on selection/highlight
     
     override public func setSelected(selected: Bool, animated: Bool) {
@@ -145,18 +203,6 @@ public class ColorfulTableViewCell: UITableViewCell {
     
     public override func prepareForReuse() {
         viewModel = nil
-    }
-    
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if let title = self.textLabel, let detail = self.detailTextLabel where self.reuseIdentifier == Style.RightDetail.rawValue {
-            var minX: CGFloat = CGRectGetMinX(title.frame)
-            let width = (CGRectGetMinX(detail.frame) - minX) - 8.0
-            var frame = title.frame
-            frame.size.width = width
-            title.frame = frame
-        }
     }
     
     public func updateColor(color: UIColor) {

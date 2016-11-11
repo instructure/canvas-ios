@@ -1,0 +1,55 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1476911671.77502,
+      "response" : {
+        "body" : {
+          "errors" : [
+            {
+              "message" : "The specified resource does not exist."
+            }
+          ],
+          "error_report_id" : 245247834
+        },
+        "status" : 404,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/modules\/3001848\/items\/does%20not%20exist\/mark_read",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "X-Runtime" : "0.216708",
+          "Set-Cookie" : "_csrf_token=bGak0HQzcnSGFrbIjJFFMBUDtCDE0OvrUDuRX6QEzBUhNN2ZOgciLeVf5Y%2Ft4h95WXDFRKi13aYdetk14VerZw%3D%3D; path=\/; secure, log_session_id=bc2a3744e8ff8a8e1a38a8bf8b057b18; path=\/, canvas_session=Mba_M9SeuCaSNJ4rlvDJnw.DKMLkTargA6HHusYbesjH4RbzkAkY5JRJpQ8sh7yCQ1Cia4fT7ULUDWJP5rhovwEUSLEsyof-mtrZ9Zb_Ah2bPh0gkdIGEEfjibwi4sjc90HB5YMQJ4eraiODFwCMp3D.K0PgCC0If7I1zQcN0bq93tcFkR8.WAfiNw; path=\/; secure; HttpOnly",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "Cache-Control" : "no-cache",
+          "X-Session-Id" : "bc2a3744e8ff8a8e1a38a8bf8b057b18",
+          "X-Request-Processor" : "a01d2cf",
+          "Status" : "404 Not Found",
+          "X-Request-Context-Id" : "1c17ca01-f7ae-4e61-9e4f-7c841f962fe6",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Cost" : "0.1852810420000136",
+          "Content-Length" : "105",
+          "X-Canvas-Meta" : "q=765;at=10000000613067;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1c;b=1265188;m=1265188;u=0.11;y=0.00;d=0.08;",
+          "X-XSS-Protection" : "1; mode=block",
+          "Date" : "Wed, 19 Oct 2016 21:14:31 GMT",
+          "Connection" : "keep-alive",
+          "Vary" : "Accept-Encoding",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000007086865",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "POST",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/modules\/3001848\/items\/does%20not%20exist\/mark_read",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en;q=1.0",
+          "Content-Type" : "application\/json",
+          "User-Agent" : "Canvas\/com.instructure.icanvas (2008; OS Version 10.0 (Build 14A345))",
+          "Authorization" : "Bearer 1~O7YyCsxPDKM4GCd3aybOh6jrX4kaRAgT1CXtFa7ClmG79u9mOF2j7Nr56liMdGro"
+        }
+      }
+    }
+  ],
+  "name" : "ModuleItemMarkReadFailure"
+}

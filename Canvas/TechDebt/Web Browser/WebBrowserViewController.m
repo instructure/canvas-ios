@@ -61,6 +61,14 @@
 
 @implementation WebBrowserViewController
 
+- (instancetype)initWithURL:(NSURL *)url
+{
+    UINavigationController *nav = (UINavigationController *)[[UIStoryboard storyboardWithName:@"Storyboard-WebBrowser" bundle:[NSBundle bundleForClass:[self class]]] instantiateInitialViewController];
+    self = nav.viewControllers[0];
+    [self setUrl:url];
+    return self;
+}
+
 - (void)dealloc {
     _webView.delegate = nil;
     dic.delegate = nil;
@@ -420,6 +428,7 @@
     }
     
     [theWebView replaceHREFsWithAPISafeURLs];
+    [self.delegate webBrowser:self didFinishLoadingWebView:theWebView];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex

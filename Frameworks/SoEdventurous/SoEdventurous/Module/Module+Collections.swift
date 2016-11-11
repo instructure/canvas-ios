@@ -20,27 +20,33 @@ import Foundation
 import CoreData
 import SoPersistent
 import TooLegit
+import ReactiveCocoa
 
 extension Module {
     public static func predicate(forModulesIn courseID: String) -> NSPredicate {
         return NSPredicate(format:"%K == %@", "courseID", courseID)
     }
 
-    public static func allModulesCollection(session: Session, courseID: String) throws -> FetchedCollection<Module> {
+    public static func predicate(withIDs ids: [String]) -> NSPredicate {
+        return NSPredicate(format: "%K IN %@", "id", ids)
+    }
+
+    public static func collectionCacheKey(context: NSManagedObjectContext, courseID: String) -> String {
+        return cacheKey(context, [courseID])
+    }
+
+    public static func collection<T>(session: Session, courseID: String, moduleIDs: [String]? = nil, titleForSectionTitle: String? -> String? = { _ in nil }) throws -> FetchedCollection<T> {
         let context = try session.soEdventurousManagedObjectContext()
-        let frc = Module.fetchedResults(predicate(forModulesIn: courseID), sortDescriptors: ["position".ascending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection(frc: frc)
+        let pred = moduleIDs.flatMap { NSCompoundPredicate(andPredicateWithSubpredicates: [predicate(forModulesIn: courseID), predicate(withIDs: $0)]) } ?? predicate(forModulesIn: courseID)
+        let frc = Module.fetchedResults(pred, sortDescriptors: ["position".ascending], sectionNameKeypath: nil, inContext: context)
+        return try FetchedCollection(frc: frc, titleForSectionTitle: titleForSectionTitle)
     }
 
     public static func refresher(session: Session, courseID: String) throws -> Refresher {
-        let remote = try Module.getModules(session, courseID: courseID)
         let context = try session.soEdventurousManagedObjectContext()
-        let sync = Module.syncSignalProducer(inContext: context, fetchRemote: remote) { module, _ in
-            module.courseID = courseID
-        }
-
-        let key = cacheKey(context)
-
+        let remote = try Module.getModules(session, courseID: courseID)
+        let sync = Module.syncSignalProducer(inContext: context, fetchRemote: remote)
+        let key = collectionCacheKey(context, courseID: courseID)
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 

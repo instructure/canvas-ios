@@ -17,13 +17,13 @@
     
 
 import XCTest
+import SoAutomated
 import TooLegit
-import DoNotShipThis
 import SoProgressive
 
 class DescribeSessionProgress: XCTestCase {
     func test_itHasAProgressDispatcher() {
-        let session = Session.art
+        let session = Session.user1
         
         let dispatcher = session.progressDispatcher
         XCTAssert(dispatcher === session.progressDispatcher)

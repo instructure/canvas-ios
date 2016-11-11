@@ -39,6 +39,16 @@
                ReferencedContainer = "container:SoPersistent.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B1EE2EEE1D89B720007A9B4B"
+               BuildableName = "SoPersistentSpecs.xctest"
+               BlueprintName = "SoPersistentSpecs"
+               ReferencedContainer = "container:SoPersistent.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -54,6 +54,7 @@ public final class Tab: NSManagedObject {
         case "modules":         return .icon(.module)
         case "outcomes":        return .icon(.outcome)
         case "pages":           return .icon(.page)
+        case "people":          return .icon(.user)
         case "quizzes":         return .icon(.quiz)
         case "settings":        return .icon(.settings)
         case "syllabus":        return .icon(.syllabus)

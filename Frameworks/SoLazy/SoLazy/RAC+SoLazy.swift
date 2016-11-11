@@ -30,6 +30,7 @@ struct AssociationKey {
     static var image: UInt8 = 0
     static var title: UInt8 = 0
     static var enabled: UInt8 = 0
+    static var rightBarButtonItems: UInt8 = 0
 }
 
 // lazily creates a gettable associated property via the given factory
@@ -132,5 +133,17 @@ extension UIControl {
 extension UIAccessibilityIdentification {
     public var rac_a11yIdentifier: MutableProperty<String?> {
         return lazyMutableProperty(self, key: &AssociationKey.a11yIdentifier, setter: { [unowned self] in self.accessibilityIdentifier = $0 }, getter: { [unowned self] in self.accessibilityIdentifier })
+    }
+}
+
+extension UIBarItem {
+    public var rac_enabled: MutableProperty<Bool> {
+        return lazyMutableProperty(self, key: &AssociationKey.enabled, setter: { [unowned self] in self.enabled = $0 }, getter: { [unowned self] in self.enabled  })
+    }
+}
+
+extension UINavigationItem {
+    public var rac_rightBarButtonItems: MutableProperty<[UIBarButtonItem]?> {
+        return lazyMutableProperty(self, key: &AssociationKey.rightBarButtonItems, setter: { [unowned self] in self.rightBarButtonItems = $0 }, getter: { [unowned self] in self.rightBarButtonItems })
     }
 }

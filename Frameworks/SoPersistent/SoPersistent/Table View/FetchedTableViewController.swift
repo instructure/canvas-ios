@@ -26,6 +26,10 @@ public class FetchedTableViewController<M: NSManagedObject>: SoPersistent.TableV
     public override init() {
         super.init()
     }
+
+    public override init(style: UITableViewStyle) {
+        super.init(style: style)
+    }
     
     public func prepare<VM: TableViewCellViewModel>(collection: FetchedCollection<M>, refresher: Refresher? = nil, viewModelFactory: M->VM) {
         self.collection = collection

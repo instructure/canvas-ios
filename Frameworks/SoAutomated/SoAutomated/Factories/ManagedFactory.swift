@@ -25,7 +25,7 @@ import SoPersistent
 public typealias FactoryOptions = [String: AnyObject]
 
 public enum ManagedObjectContext {
-    case EnrollmentKit, AssignmentKit, FileKit
+    case EnrollmentKit, AssignmentKit, FileKit, SoEdventurous
 
     public func value(session: Session, options: FactoryOptions = [:]) -> NSManagedObjectContext {
         let scope: String? = try? options <| "scope"
@@ -37,6 +37,8 @@ public enum ManagedObjectContext {
             return try! session.assignmentsManagedObjectContext(scope)
         case .FileKit:
             return try! session.filesManagedObjectContext()
+        case .SoEdventurous:
+            return try! session.soEdventurousManagedObjectContext()
         }
     }
 }
@@ -44,6 +46,14 @@ public enum ManagedObjectContext {
 public protocol ManagedFactory {
     static var auto_managedObjectContext: ManagedObjectContext { get }
     static func define(object: Self)
+}
+
+extension LockableModel {
+    func defineLockedStatus() {
+        lockedForUser = false
+        canView = true
+        lockExplanation = nil
+    }
 }
 
 extension ManagedFactory where Self: NSManagedObject {
@@ -54,6 +64,9 @@ extension ManagedFactory where Self: NSManagedObject {
     
     public static func build(inContext context: NSManagedObjectContext, customize: (Self) -> Void = { _ in }) -> Self {
         let f: Self = create(inContext: context)
+        if let lockable = f as? LockableModel {
+            lockable.defineLockedStatus()
+        }
         define(f)
         customize(f)
         try! context.saveFRD()

@@ -22,6 +22,7 @@ import SoPersistent
 class SimpleTableViewDataSource: NSObject, TableViewDataSource {
     var viewDidLoadWasCalled = false
     var collectionDidChange: (Void)->Void = { }
+    var tableView: UITableView?
     
     func viewDidLoad(controller: UITableViewController) {
         viewDidLoadWasCalled = true

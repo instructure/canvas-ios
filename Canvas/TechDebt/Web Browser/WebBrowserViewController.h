@@ -23,6 +23,12 @@
 @property (nonatomic, readonly) BOOL canOpenInSafari;
 @end
 
+@class WebBrowserViewController;
+
+@protocol WebBrowserViewControllerDelegate <NSObject>
+- (void)webBrowser:(WebBrowserViewController *)webBrowser didFinishLoadingWebView:(UIWebView *)webView;
+@end
+
 @interface NSURLRequest (WebBrowser) <WebBrowserRequest>
 @end
 
@@ -32,6 +38,8 @@
 
 @interface WebBrowserViewController : UIViewController
 
+- (instancetype)initWithURL:(NSURL *)url;
+
 // EITHER
 @property (nonatomic) NSURL *url;
 // OR
@@ -40,5 +48,7 @@
 - (void)setContentHTML:(NSString *)html baseURL:(NSURL *)baseURL;
 
 @property (nonatomic, copy) void (^browserWillDismissBlock)();
+
+@property (nonatomic, weak) id<WebBrowserViewControllerDelegate> delegate;
 
 @end

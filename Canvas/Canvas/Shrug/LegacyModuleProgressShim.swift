@@ -20,29 +20,52 @@ import Foundation
 import SoProgressive
 import TooLegit
 import TechDebt
-
-private let MustView = "must_view"
-private let MustSubmit = "must_submit"
-private let MustContribute = "must_contribute"
-private let MinimumScore = "min_score"
-private let MustMarkDone = "must_mark_done"
+import CanvasKit
+import SoEdventurous
 
 /** Keeps TechDebt Modules and Assignments UI up to date course progress
  */
 public class LegacyModuleProgressShim: NSObject {
     public static func observeProgress(session: Session) {
-        session.progressDispatcher
-            .onProgress
-            .observeNext { progress in
-                let kind: String
-                switch progress.kind {
-                case .Viewed: kind = MustView
-                case .Contributed: kind = MustContribute
-                case .MarkedDone: kind = MustMarkDone
-                case .Submitted: kind = MustSubmit
-                case .MinimumScore: kind = MinimumScore
-                }
-                CBIPostModuleItemProgressUpdate(progress.itemID, kind)
-            }
+        NSNotificationCenter.defaultCenter().addObserver(session, selector: #selector(Session.legacyModuleItemProgressUpdated(_:)), name: CBIModuleItemProgressUpdatedNotification, object: nil)
+    }
+}
+
+extension Session {
+    func legacyModuleItemProgressUpdated(note: NSNotification) {
+        if let progress = Progress(contextID: ContextID(id: user.id, context: .User), notification: note) {
+            progressDispatcher.dispatch(progress)
+        }
+    }
+}
+
+extension Progress {
+    init?(contextID: ContextID, notification: NSNotification) {
+        guard let
+            id = notification.userInfo?[CBIUpdatedModuleItemIDStringKey] as? String,
+            noteKind = notification.userInfo?[CBIUpdatedModuleItemTypeKey] as? String
+        else {
+            return nil
+        }
+
+        let kind: Progress.Kind
+        switch noteKind {
+        case CKIModuleItemCompletionRequirementMustView:
+            kind = .Viewed
+        case CKIModuleItemCompletionRequirementMustSubmit:
+            kind = .Submitted
+        case CKIModuleItemCompletionRequirementMustContribute:
+            kind = .Contributed
+        case CKIModuleItemCompletionRequirementMustMarkDone:
+            kind = .MarkedDone
+        case CKIModuleItemCompletionRequirementMinimumScore:
+            kind = .MinimumScore
+        default: fatalError("Unknown completion requirement")
+        }
+
+        self.kind = kind
+        self.contextID = contextID
+        self.itemType = .LegacyModuleProgressShim
+        self.itemID = id
     }
 }

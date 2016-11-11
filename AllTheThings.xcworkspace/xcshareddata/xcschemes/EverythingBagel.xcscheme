@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Frameworks/EverythingBagel/EverythingBagel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "610AF2E81D79E6BB00386E81"
+               BuildableName = "SoEdventurousTests.xctest"
+               BlueprintName = "SoEdventurousTests"
+               ReferencedContainer = "container:Frameworks/SoEdventurous/SoEdventurous.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -127,6 +141,16 @@
                BuildableName = "DiscussionsTests.xctest"
                BlueprintName = "DiscussionsTests"
                ReferencedContainer = "container:Frameworks/Discussions/Discussions.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "610AF2E81D79E6BB00386E81"
+               BuildableName = "SoEdventurousTests.xctest"
+               BlueprintName = "SoEdventurousTests"
+               ReferencedContainer = "container:Frameworks/SoEdventurous/SoEdventurous.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

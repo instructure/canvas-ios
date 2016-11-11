@@ -25,8 +25,11 @@
 		49B997151C3FF4D20068337C /* NSError+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B997141C3FF4D20068337C /* NSError+SoLazy.swift */; };
 		5E75B6141C4D5DAE00A44160 /* UIDevice+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E75B6131C4D5DAE00A44160 /* UIDevice+Model.swift */; };
 		617BE7A71CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617BE7A61CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift */; };
-		61D6A8331C8F6A3000370117 /* IDString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A8321C8F6A3000370117 /* IDString.swift */; };
+		61D6A8331C8F6A3000370117 /* Marshal+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A8321C8F6A3000370117 /* Marshal+SoLazy.swift */; };
 		B135FEB91CB8632F0093DE0B /* NSURLSession+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B135FEB81CB8632F0093DE0B /* NSURLSession+SoLazy.swift */; };
+		B16398761DC7A82D00A5B68B /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16398741DC7A82D00A5B68B /* Nimble.framework */; };
+		B16398771DC7A82D00A5B68B /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16398751DC7A82D00A5B68B /* Quick.framework */; };
+		B16398791DC7A87500A5B68B /* ArraySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16398781DC7A87500A5B68B /* ArraySpec.swift */; };
 		B16A8D841C99CE03009E364E /* RAC+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53D1B3B1C90C74300303604 /* RAC+SoLazy.swift */; };
 		B18799B51CD90906008F712A /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18799B41CD90906008F712A /* Environment.swift */; };
 		B51C17C71C46EE820053AC6E /* LocalNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51C17C61C46EE820053AC6E /* LocalNotificationHandler.swift */; };
@@ -67,8 +70,11 @@
 		49B997141C3FF4D20068337C /* NSError+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+SoLazy.swift"; sourceTree = "<group>"; };
 		5E75B6131C4D5DAE00A44160 /* UIDevice+Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Model.swift"; sourceTree = "<group>"; };
 		617BE7A61CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "❨╯°□°❩╯⌢.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		61D6A8321C8F6A3000370117 /* IDString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDString.swift; sourceTree = "<group>"; };
+		61D6A8321C8F6A3000370117 /* Marshal+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Marshal+SoLazy.swift"; sourceTree = "<group>"; };
 		B135FEB81CB8632F0093DE0B /* NSURLSession+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSession+SoLazy.swift"; sourceTree = "<group>"; };
+		B16398741DC7A82D00A5B68B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B16398751DC7A82D00A5B68B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B16398781DC7A87500A5B68B /* ArraySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraySpec.swift; sourceTree = "<group>"; };
 		B18799B41CD90906008F712A /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		B51C17C61C46EE820053AC6E /* LocalNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHandler.swift; sourceTree = "<group>"; };
 		B53D1B3B1C90C74300303604 /* RAC+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RAC+SoLazy.swift"; sourceTree = "<group>"; };
@@ -111,6 +117,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				49A9608A1BC315C600592D94 /* SoLazy.framework in Frameworks */,
+				B16398761DC7A82D00A5B68B /* Nimble.framework in Frameworks */,
+				B16398771DC7A82D00A5B68B /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +165,7 @@
 				49A9609F1BC315E000592D94 /* Temporal.swift */,
 				49A960A01BC315E000592D94 /* UIFont+SoLazy.swift */,
 				49A960A11BC315E000592D94 /* UIImage+SoLazy.swift */,
-				61D6A8321C8F6A3000370117 /* IDString.swift */,
+				61D6A8321C8F6A3000370117 /* Marshal+SoLazy.swift */,
 				49A960831BC315C600592D94 /* SoLazy.h */,
 				49A960811BC315C600592D94 /* Supporting Files */,
 				49B997141C3FF4D20068337C /* NSError+SoLazy.swift */,
@@ -183,8 +191,10 @@
 		49A9608D1BC315C600592D94 /* SoLazyTests */ = {
 			isa = PBXGroup;
 			children = (
+				B16398731DC7A81900A5B68B /* Dependencies */,
 				49A960901BC315C600592D94 /* SoLazyTests.swift */,
 				49A9608E1BC315C600592D94 /* Supporting Files */,
+				B16398781DC7A87500A5B68B /* ArraySpec.swift */,
 			);
 			path = SoLazyTests;
 			sourceTree = "<group>";
@@ -203,6 +213,15 @@
 				49A25A0C1CA1E67C007D8C22 /* Result.framework */,
 				B5FE278C1C90D2D600D07C43 /* ReactiveCocoa.framework */,
 				4928EBE11C84DF1400799E04 /* Marshal.framework */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		B16398731DC7A81900A5B68B /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				B16398741DC7A82D00A5B68B /* Nimble.framework */,
+				B16398751DC7A82D00A5B68B /* Quick.framework */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -353,7 +372,7 @@
 				B135FEB91CB8632F0093DE0B /* NSURLSession+SoLazy.swift in Sources */,
 				5E75B6141C4D5DAE00A44160 /* UIDevice+Model.swift in Sources */,
 				B51C17C71C46EE820053AC6E /* LocalNotificationHandler.swift in Sources */,
-				61D6A8331C8F6A3000370117 /* IDString.swift in Sources */,
+				61D6A8331C8F6A3000370117 /* Marshal+SoLazy.swift in Sources */,
 				49A960A71BC315E000592D94 /* Temporal.swift in Sources */,
 				49A960A61BC315E000592D94 /* String+SoLazy.swift in Sources */,
 				4962EEDB1C7FA07F000DDCAF /* NSObject+PureEvil.swift in Sources */,
@@ -373,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B16398791DC7A87500A5B68B /* ArraySpec.swift in Sources */,
 				49A960911BC315C600592D94 /* SoLazyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

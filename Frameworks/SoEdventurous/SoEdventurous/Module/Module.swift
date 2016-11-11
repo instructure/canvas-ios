@@ -19,6 +19,7 @@
 import Foundation
 import CoreData
 import SoPersistent
+import SoLazy
 
 public class Module: NSManagedObject {
     @NSManaged internal (set) public var id: String
@@ -34,7 +35,7 @@ public class Module: NSManagedObject {
     internal (set) public var prerequisiteModuleIDs: [String] {
         get {
             willAccessValueForKey("prerequisiteModuleIDs")
-            let value = primitivePrerequisiteModuleIDs.componentsSeparatedByString(",")
+            let value = primitivePrerequisiteModuleIDs.componentsSeparatedByString(",").filter { !$0.isEmpty }
             didAccessValueForKey("prerequisiteModuleIDs")
             return value
         }
@@ -46,44 +47,51 @@ public class Module: NSManagedObject {
     }
 
     public enum State: String {
-        case Locked = "locked"
-        case Unlocked = "unlocked"
-        case Started = "started"
-        case Completed = "completed"
+        case locked = "locked"
+        case unlocked = "unlocked"
+        case started = "started"
+        case completed = "completed"
     }
-    @NSManaged private var primitiveState: String
+    @NSManaged private var primitiveState: String?
 
-    internal (set) public var state: State {
+    internal (set) public var state: State? {
         get {
             willAccessValueForKey("state")
-            guard let value = State(rawValue: primitiveState) else { fatalError("invalid state value") }
+            let value = primitiveState.flatMap(State.init)
             didAccessValueForKey("state")
             return value
         }
         set {
             willChangeValueForKey("state")
-            primitiveState = newValue.rawValue
+            primitiveState = newValue?.rawValue
             didChangeValueForKey("state")
         }
     }
 
     public enum WorkflowState: String {
-        case Active = "active"
-        case Deleted = "deleted"
+        case active = "active"
+        case deleted = "deleted"
     }
-    @NSManaged private var primitiveWorkflowState: String
-    internal (set) public var workflowState: WorkflowState {
+    @NSManaged private var primitiveWorkflowState: String?
+    internal (set) public var workflowState: WorkflowState? {
         get {
             willAccessValueForKey("workflowState")
-            guard let value = WorkflowState(rawValue: primitiveWorkflowState) else { fatalError("invalid workflow state value") }
+            var value: WorkflowState? = nil
+            if let primitiveWorkflowState = primitiveWorkflowState {
+                value = WorkflowState(rawValue: primitiveWorkflowState)
+            }
             didAccessValueForKey("workflowState")
             return value
         }
         set {
             willChangeValueForKey("workflowState")
-            primitiveWorkflowState = newValue.rawValue
+            primitiveWorkflowState = newValue?.rawValue
             didChangeValueForKey("workflowState")
         }
+    }
+
+    public var hasPrerequisites: Bool {
+        return !prerequisiteModuleIDs.isEmpty
     }
 }
 
@@ -98,6 +106,7 @@ extension Module: SynchronizedModel {
 
     public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id                          = try json.stringID("id")
+        courseID                    = try json.stringID("course_id")
         name                        = try json <| "name"
         position                    = try json <| "position" ?? 1
         requireSequentialProgress   = try json <| "require_sequential_progress" ?? false
@@ -105,17 +114,23 @@ extension Module: SynchronizedModel {
         unlockDate                  = try json <| "unlock_at"
         completionDate              = try json <| "completed_at"
         prerequisiteModuleIDs       = try json.stringIDs("prerequisite_module_ids")
+        workflowState               = try json <| "workflow_state"
 
-        if let stateValue: String = try json <| "state", s = State(rawValue: stateValue) {
-            state = s
-        } else {
-            state = .Locked
-        }
+        try updateState(json, inContext: context)
+    }
 
-        if let workflowStateValue: String = try json <| "workflow_state", ws = WorkflowState(rawValue: workflowStateValue) {
-            workflowState = ws
-        } else {
-            workflowState = .Active
+    func updateState(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+        state = try json <| "state"
+
+        if state == .completed {
+            let hasCompletionRequirement: (JSONObject) throws -> Bool = { json in
+                let (completionRequirement, _, _) = try ModuleItem.parseCompletionRequirement(json)
+                return completionRequirement != nil && completionRequirement != .MustChoose
+            }
+            let items: [JSONObject] = try json <| "items" ?? []
+            if try items.findFirst(hasCompletionRequirement) == nil {
+                state = nil
+            }
         }
     }
 }

@@ -29,7 +29,15 @@ public struct Progress: Equatable, Hashable {
     }
     
     public enum ItemType: String {
-        case File, Page, Discussion, Assignment, Quiz, URL, ExternalTool
+        case File
+        case Page
+        case Discussion
+        case Assignment
+        case Quiz
+        case URL
+        case ExternalTool
+        case LegacyModuleProgressShim
+        case ModuleItem
     }
     
     public init(kind: Kind, contextID: ContextID, itemType: ItemType, itemID: String) {

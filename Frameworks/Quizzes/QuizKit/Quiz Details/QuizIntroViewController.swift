@@ -192,7 +192,7 @@ public class QuizIntroViewController: UIViewController {
         }
         
         updateTakeButtonAndPages()
-        
+
         if let quiz = quizController.quiz {
             let service = quizController.service
             service.session.progressDispatcher.dispatch(Progress(kind: .Viewed, contextID: service.context, itemType: .Quiz, itemID: quiz.id))

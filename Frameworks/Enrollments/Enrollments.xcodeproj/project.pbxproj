@@ -54,7 +54,6 @@
 		498400F31C6408F600BDCE75 /* SoPretty.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498400DF1C6408E600BDCE75 /* SoPretty.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		498400F41C6408F700BDCE75 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498400E01C6408E600BDCE75 /* TooLegit.framework */; };
 		498400F51C6408F700BDCE75 /* TooLegit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 498400E01C6408E600BDCE75 /* TooLegit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49A587691DA5A6F20032AB0B /* EnrollmentKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49EB130F1C97776200C177C8 /* EnrollmentKit.xcassets */; };
 		49C3E6921C6D1A54004201F9 /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C3E68F1C6D1A37004201F9 /* DoNotShipThis.framework */; };
 		49C3E6931C6D1A54004201F9 /* DoNotShipThis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49C3E68F1C6D1A37004201F9 /* DoNotShipThis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49C3E6951C6D1A96004201F9 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3E6941C6D1A96004201F9 /* IntroViewController.swift */; };
@@ -78,6 +77,7 @@
 		5ECEDDA51C49570E00E59B53 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECEDD901C49570E00E59B53 /* EnrollmentKit.framework */; };
 		5ECEDDA61C49570E00E59B53 /* EnrollmentKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECEDD901C49570E00E59B53 /* EnrollmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5ECEDDB81C49573C00E59B53 /* EnrollmentKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5ECEDDB61C49573C00E59B53 /* EnrollmentKit.xcdatamodeld */; };
+		611CB6FD1DA71375009219C9 /* EnrollmentKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49EB130F1C97776200C177C8 /* EnrollmentKit.xcassets */; };
 		61913DB81D9F0B27000D4DF2 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61913DB71D9F0B21000D4DF2 /* SoIconic.framework */; };
 		B10713A41D7470350061E84A /* GradingPeriodHeaderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10713A31D7470350061E84A /* GradingPeriodHeaderSpec.swift */; };
 		B10A083B1CE3DBB100666CBF /* GradeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A083A1CE3DBB100666CBF /* GradeTests.swift */; };
@@ -908,7 +908,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B564DE081D8CB87600E25BDA /* Localizable.strings in Resources */,
-				49A587691DA5A6F20032AB0B /* EnrollmentKit.xcassets in Resources */,
+				611CB6FD1DA71375009219C9 /* EnrollmentKit.xcassets in Resources */,
 				491C45EA1C90C5FF00BD6441 /* CustomizeEnrollmentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

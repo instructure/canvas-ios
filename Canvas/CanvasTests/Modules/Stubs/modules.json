@@ -1,0 +1,66 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1473694922.42511,
+      "response" : {
+        "body" : [
+          {
+            "prerequisite_module_ids" : [
+
+            ],
+            "position" : 1,
+            "require_sequential_progress" : false,
+            "id" : 3001848,
+            "publish_final_grade" : false,
+            "items_count" : 1,
+            "completed_at" : "2016-09-12T15:28:40Z",
+            "items_url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/modules\/3001848\/items",
+            "unlock_at" : null,
+            "name" : "Module 1",
+            "state" : "completed"
+          }
+        ],
+        "status" : 200,
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/modules?per_page=99",
+        "headers" : {
+          "Content-Encoding" : "gzip",
+          "Set-Cookie" : "_csrf_token=yWyiQKAOAd2l4H0a11LOXmkb1%2FUtnoVG3ZGAyC6WMu2dP5Uyz15ilOyxC261GaMbWlGPjHyq9Q2S%2BO2bFqICpA%3D%3D; path=\/; secure, log_session_id=3534227089e7008d502c4a8494d3746b; path=\/, canvas_session=Wv-vjAQfBEckyIHHQXTKwg.DXoOuPY-v2wu66upwWK1Id4OyHCbm1W6s_AnA7t1_T2h3SoKV3FfRi5-4aqHOned6RopH8xIwhkfKGm7HCmm5Vg4i9a0nxHLdypXH5ALGW0KUaUtZU1cjkxMkxCT3McN.7a6N4cap4eAI3ny79zQyWBnjUio.V9bMyg; path=\/; secure; HttpOnly",
+          "X-Runtime" : "0.539240",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "Server" : "Apache",
+          "Link" : "<https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/modules?page=1&per_page=99>; rel=\"current\",<https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/modules?page=1&per_page=99>; rel=\"first\",<https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/modules?page=1&per_page=99>; rel=\"last\"",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "X-Request-Processor" : "a01dba3",
+          "Status" : "200 OK",
+          "X-Session-Id" : "3534227089e7008d502c4a8494d3746b",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "X-Request-Context-Id" : "c2168abc-dfe1-4675-adbe-48a6618e1f11",
+          "X-Request-Cost" : "0.37362599100000016",
+          "Content-Length" : "245",
+          "X-Canvas-Meta" : "q=908;at=10000000613067;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1e;o=context_modules_api;n=index;t=Course;i=1867097;b=946384;m=946384;u=0.16;y=0.01;d=0.21;",
+          "Date" : "Mon, 12 Sep 2016 15:42:01 GMT",
+          "Vary" : "Accept-Encoding",
+          "X-XSS-Protection" : "1; mode=block",
+          "Connection" : "keep-alive",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Canvas-User-Id" : "10000007086865",
+          "Etag" : "\"c3752db0665f9a7ffec88bfa87e3cf17\"",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1"
+        }
+      },
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses\/1867097\/modules?per_page=99",
+        "headers" : {
+          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
+          "Accept-Language" : "en-US;q=1.0",
+          "User-Agent" : "Canvas\/com.instructure.icanvas (1993; OS Version 9.3 (Build 13E230))",
+          "Authorization" : "Bearer 1~O7YyCsxPDKM4GCd3aybOh6jrX4kaRAgT1CXtFa7ClmG79u9mOF2j7Nr56liMdGro"
+        }
+      }
+    }
+  ],
+  "name" : "modules"
+}

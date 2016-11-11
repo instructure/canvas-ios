@@ -25,6 +25,7 @@ import ReactiveCocoa
 import Result
 import EnrollmentKit
 import SoPretty
+import Result
 
 protocol DetailCell {
     var paddingConstraints: [NSLayoutConstraint]! { get }
@@ -45,7 +46,7 @@ class AssignmentDetailViewController: Assignment.DetailViewController {
         me.prepare(try Assignment.observer(session, courseID: courseID, assignmentID: assignmentID), refresher: try Assignment.refresher(session, courseID: courseID, assignmentID: assignmentID), detailsFactory: AssignmentDetail.details(session.baseURL, color: colorProducer))
         
         me.title = me.observer?.object?.name
-        let titleSignal: Signal<String?, NSError> = me.observer.signal
+        let titleSignal: Signal<String?, NoError> = me.observer.signal
             .map { $0.1?.name }
         let producer: SignalProducer<String?, NoError> = SignalProducer(signal: titleSignal)
             .flatMapError { _ in SignalProducer.empty }

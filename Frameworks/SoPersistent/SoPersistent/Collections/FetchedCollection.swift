@@ -140,6 +140,10 @@ public class FetchedCollection<Model where Model: NSManagedObject>: NSObject, Co
         case .Move:
             let from = indexPath!.safeCopy
             let to = newIndexPath!.safeCopy
+            guard from != to else {
+                updateBatch.append(.Updated(from, m))
+                return
+            }
             updateBatch.append(.Moved(from, to, m))
         case .Delete:
             updateBatch.append(.Deleted(indexPath!.safeCopy, m))

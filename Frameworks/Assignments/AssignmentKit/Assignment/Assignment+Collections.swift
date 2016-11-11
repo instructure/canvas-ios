@@ -25,10 +25,10 @@ import SoPersistent
 import SoLazy
 import ReactiveCocoa
 import Marshal
+import EnrollmentKit
 
 extension Assignment {
-    
-    static func collectionCacheKey(context: NSManagedObjectContext, courseID: String, gradingPeriodID: String? = nil) -> String {
+    public static func collectionCacheKey(context: NSManagedObjectContext, courseID: String, gradingPeriodID: String? = nil) -> String {
         return cacheKey(context, [courseID, gradingPeriodID].flatMap { $0 })
     }
     
@@ -115,6 +115,14 @@ extension Assignment {
         }
         let key = collectionCacheKey(context, courseID: courseID, gradingPeriodID: gradingPeriodID)
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
+    }
+
+    public static func invalidateCache(session: Session, courseID: String) throws {
+        let context = try session.assignmentsManagedObjectContext()
+        session.refreshScope.invalidateCache(collectionCacheKey(context, courseID: courseID), refresh: false)
+        for gradingPeriodID in try GradingPeriod.gradingPeriodIDs(session, courseID: courseID, excludingGradingPeriodID: nil) {
+            session.refreshScope.invalidateCache(collectionCacheKey(context, courseID: courseID, gradingPeriodID: gradingPeriodID), refresh: false)
+        }
     }
 
     public typealias TableViewController = FetchedTableViewController<Assignment>

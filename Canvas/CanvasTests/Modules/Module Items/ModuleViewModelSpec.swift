@@ -1,0 +1,93 @@
+//
+//  ModuleViewModelSpec.swift
+//  Canvas
+//
+//  Created by Nathan Armstrong on 10/20/16.
+//  Copyright © 2016 Instructure. All rights reserved.
+//
+
+@testable import Canvas
+import Quick
+import Nimble
+import SoAutomated
+import TooLegit
+@testable import SoEdventurous
+@testable import EnrollmentKit
+import SoPersistent
+import ReactiveCocoa
+import SoLazy
+
+class ModuleViewModelSpec: QuickSpec {
+    override func spec() {
+        describe("ModuleViewModel") {
+            var module: Module!
+            var vm: ModuleViewModel!
+            beforeEach {
+                login()
+                module = Module.build()
+                vm = try! ModuleViewModel(session: currentSession, module: module)
+            }
+
+            it("should format the unlock date") {
+                module.unlockDate = NSDate(year: 2016, month: 10, day: 20)
+                expect(vm.unlockDate.value).toEventually(equal("Locked until October 20, 2016"))
+
+                module.unlockDate = nil
+                expect(vm.unlockDate.value).toEventually(beNil())
+            }
+
+            describe("table view cell") {
+                let tableView = UITableView()
+                var cell: UITableViewCell!
+                beforeEach {
+                    ModuleViewModel.tableViewDidLoad(tableView)
+                    cell = vm.cellForTableView(tableView, indexPath: NSIndexPath(forRow: 0, inSection: 0))
+
+                    Course.build {
+                        $0.id = module.courseID
+                        $0.roles = [.Student]
+                    }
+                    ModuleItem.build {
+                        $0.moduleID = module.id
+                        $0.completionRequirement = .MustView
+                        $0.completed = false
+                    }
+                }
+
+                it("should have an accessibility label") {
+                    module.name = "Module 1"
+                    module.unlockDate = nil
+                    module.state = nil
+                    expect(cell.accessibilityLabel).toEventually(equal("Module 1"))
+
+                    module.name = "Module 2"
+                    module.unlockDate = nil
+                    module.state = .started
+                    expect(cell.accessibilityLabel).toEventually(equal("Module 2. Status: Started"))
+
+                    module.state = .completed
+                    expect(cell.accessibilityLabel).toEventually(equal("Module 2. Status: Completed"))
+
+                    module.unlockDate = NSDate(year: 2016, month: 1, day: 1)
+                    expect(cell.accessibilityLabel).toEventually(equal("Module 2. Locked until January 1, 2016. Status: Completed"))
+                }
+
+                it("should have an accessory view") {
+                    module.state = nil
+                    expect(cell.accessoryView).toEventually(beNil())
+
+                    module.state = .started
+                    expect(cell.accessoryView).toEventuallyNot(beNil())
+                }
+
+                it("should not have an accessory view if the state is nil") {
+                    module.state = .completed
+                    expect(cell.accessoryView).toEventuallyNot(beNil())
+
+                    module.state = nil
+                    expect(cell.accessoryView).toEventually(beNil())
+                }
+            }
+        }
+    }
+}

@@ -443,43 +443,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         
             return calendarEventViewController;
         },
-        @"/courses/:courseID/modules": ^(NSDictionary *params, CBIModulesTabViewModel *modulesTabViewModel) {
-        NSString *courseID = [params[@"courseID"] description];
-            if (modulesTabViewModel == nil) {
-                modulesTabViewModel = [CBIModulesTabViewModel new];
-                modulesTabViewModel.model = [CKITab modelWithID:@"modules" context:[CKICourse modelWithID:courseID]];
-            }
-            modulesTabViewModel.tintColor = [self tintColorForContextID:courseID contextClass:[CKICourse class]];
-            return [self MLVCTableViewControllerForViewModel:modulesTabViewModel screenName:@"Modules List Screen" canBeMaster:YES style:UITableViewStylePlain];
-        },
-        @"/courses/:courseID/modules/:id": ^(NSDictionary *params, CBIModuleViewModel *tabViewModel) {
-            if (tabViewModel == nil) {
-                tabViewModel = [CBIModuleViewModel new];
-                
-                //When routing from Pages id is stored as a NSNumber. This fells a little hacky, but safer then possibly breaking the code by changing where it is set.
-                NSString *moduleID = [NSString stringWithFormat:@"%@", params[@"id"]];
-                
-                tabViewModel.model = [CKIModule modelWithID:moduleID context:[CKICourse modelWithID:[params[@"courseID"] description]]];
-            }
-
-            MLVCTableViewController *viewController = [self MLVCTableViewControllerForViewModel:tabViewModel screenName:@"Module Detail Screen" canBeMaster:YES style:UITableViewStylePlain];
-
-            // use a custom transitioning delegate to wrap the module item in the module progression vc
-            viewController.cbi_transitioningDelegate = [[CBIModuleItemTransitioningDelegate alloc] initWithTransitioningDelegate:viewController.cbi_transitioningDelegate];
-
-            return viewController;
-        },
-        @"/courses/:courseID/modules/:moduleID/items/:moduleItemID" : ^ (NSDictionary *params, id viewModel) {
-            if(viewModel == nil){
-                CKICourse *course = [CKICourse modelWithID:[params[@"courseID"] description]];
-                CKIModule *module = [CKIModule modelWithID:[params[@"moduleID"] description] context:course];
-                CKIModuleItem *moduleItem = [CKIModuleItem modelWithID:params[@"moduleItemID"] context:module];
-                viewModel = [CBIModuleItemViewModel viewModelForModel:moduleItem];
-            }
-            
-            ((CBIColorfulViewModel *)viewModel).tintColor = [TheKeymaster.currentClient.authSession colorForCourse:[params[@"courseID"] description]];
-            return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Module Item Screen" canBeMaster:YES style:UITableViewStylePlain];
-        },
         @"/courses/:courseID/quizzes": ^(NSDictionary *params, CBIQuizzesTabViewModel *quizzesTabViewModel) {
             NSString *contextID = [params[@"courseID"] description];
             if (quizzesTabViewModel == nil) {

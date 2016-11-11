@@ -32,4 +32,3 @@ target 'SpeedGrader' do
     pod 'SimulatorStatusMagic', :configurations => ['Debug']
 end
 
-

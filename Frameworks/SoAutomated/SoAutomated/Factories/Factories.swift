@@ -18,6 +18,15 @@
 
 import SoPersistent
 import TooLegit
+import CoreData
+
+public typealias Stub = String
+
+func defineLockedStatus(object: LockableModel) {
+    object.lockedForUser = false
+    object.canView = true
+    object.lockExplanation = nil
+}
 
 // MARK: - EnrollmentKit
 
@@ -127,5 +136,57 @@ extension File: ManagedFactory {
         object.id = "1"
         object.contextID = ContextID(id: "1", context: .User)
         object.name = "New File"
+    }
+}
+
+// MARK: - SoEdventurous
+
+@testable import SoEdventurous
+
+extension Module: ManagedFactory {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .SoEdventurous }
+    public static func define(object: Module) {
+        object.id = "1"
+        object.courseID = "1"
+        object.name = "Module 1"
+        object.position = 0
+    }
+}
+
+extension ModuleItem: ManagedFactory {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .SoEdventurous }
+    public static func define(object: ModuleItem) {
+        object.id = "1"
+        object.courseID = "1"
+        object.moduleID = "1"
+        object.position = 0
+        object.title = "Module Item 1"
+        object.content = .Assignment(id: "1")
+        object.completed = false
+    }
+}
+
+extension MasteryPathsItem {
+    public static func factory(inSession session: Session, customize: (MasteryPathsItem) -> Void = { _ in }) -> MasteryPathsItem {
+        let object = factory(auto_managedObjectContext.value(session))
+        customize(object)
+        return object
+    }
+
+    static func factory(context: NSManagedObjectContext) -> MasteryPathsItem {
+        let object: MasteryPathsItem = create(inContext: context)
+        ModuleItem.define(object)
+        object.moduleItemID = "1"
+        object.locked = true
+        object.defineLockedStatus()
+        return object
+    }
+}
+
+extension MasteryPathAssignmentSet: ManagedFactory {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .SoEdventurous }
+    public static func define(object: MasteryPathAssignmentSet) {
+        object.id = "1"
+        object.position = 0
     }
 }

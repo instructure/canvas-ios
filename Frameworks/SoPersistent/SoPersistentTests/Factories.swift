@@ -31,6 +31,7 @@ extension Panda {
         let panda = Panda(inContext: context)
         panda.id = id
         panda.name = name
+        try! context.saveFRD()
         return panda
     }
 }
@@ -44,6 +45,7 @@ extension SWPerson {
         let person = SWPerson(inContext: context)
         person.name = name
         person.height = height
+        try! context.saveFRD()
         return person
     }
 }

@@ -197,6 +197,12 @@ extension NSManagedObjectContext {
         return models
     }
 
+    public func findAll<T: NSManagedObject>(matchingPredicate predicate: NSPredicate) throws -> [T] {
+        let request = NSFetchRequest(entityName: T.entityName(self))
+        request.predicate = predicate
+        return try findAll(fromFetchRequest: request)
+    }
+
     public func findAll<T: NSManagedObject>(withValue value: AnyObject, forKey key: String) throws -> [T] {
         let predicate = NSPredicate(format: "%K == %@", argumentArray: [key, value])
         let request = T.fetch(predicate, inContext: self)

@@ -34,7 +34,7 @@
 #import "CBILocalNotificationHandler.h"
 #import "RatingsController.h"
 #import <StoreKit/StoreKit.h>
-#import <Masonry/Masonry.h>
+@import Masonry;
 #import "EXTScope.h"
 #import "CKCanvasAPI+CurrentAPI.h"
 @import CanvasKeymaster;

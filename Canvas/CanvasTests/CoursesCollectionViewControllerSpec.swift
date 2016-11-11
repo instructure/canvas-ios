@@ -49,7 +49,7 @@ class CoursesCollectionViewControllerSpec: QuickSpec {
                 }
 
                 it("updates the collection view") {
-                    expect(vc.collectionView?.numberOfItemsInSection(0)).toEventually(equal(3))
+                    expect(vc.collectionView?.numberOfItemsInSection(0)).toEventually(equal(3), timeout: 2)
                 }
             }
         }

@@ -94,6 +94,11 @@
     self.routes[route] = controllerClass;
 }
 
+- (void)removeRoute:(NSString *)route
+{
+    self.routes[route] = nil;
+}
+
 - (void)addRoutesWithDictionary:(NSDictionary *)routes {
     [routes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         // if it's a class, make sure it's a subclass of UIViewController
@@ -127,6 +132,19 @@
         }
     }];
     return viewController;
+}
+
+- (void)controllerForHandlingURL:(NSURL *)url handler:(ControllerHandler)handler {
+    [self matchURL:url matchHandler:^(NSDictionary *params, id classOrBlock) {
+        if (class_isMetaClass(object_getClass(classOrBlock))) { // it's a class
+            UIViewController *returnedController = [self controllerForClass:classOrBlock params:params];
+            handler(returnedController);
+        } else {
+            UIViewController *(^blockForPath)(NSDictionary *, id) = classOrBlock;
+            UIViewController *returnedController = blockForPath(params, nil);
+            handler(returnedController);
+        }
+    }];
 }
 
 #pragma marks - Primary iPad Routing Methods

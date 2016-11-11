@@ -64,13 +64,17 @@ public class TableViewController: UITableViewController {
     }
 
     public init() {
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: .Plain)
     }
 
-    public init(dataSource: TableViewDataSource, refresher: Refresher? = nil) {
+    public override init(style: UITableViewStyle) {
+        super.init(style: style)
+    }
+
+    public init(dataSource: TableViewDataSource, refresher: Refresher? = nil, style: UITableViewStyle = .Plain) {
         self.dataSource = dataSource
         self.refresher = refresher
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: style)
         setupRefreshingObservation()
     }
 
