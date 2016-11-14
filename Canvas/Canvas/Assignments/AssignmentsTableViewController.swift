@@ -175,7 +175,7 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
             tableView.contentOffset = CGPoint(x: 0, y: tableView.contentOffset.y - refresher.refreshControl.frame.size.height)
         }
 
-        if searchController.active {
+        if let sc = searchController where sc.active {
             refreshControl = nil
         }
         
