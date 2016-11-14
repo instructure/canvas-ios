@@ -265,7 +265,7 @@ CGFloat iOS7HeightForRowAtIndexPath(CKRubricView *self, SEL _cmd, UITableView *t
     
 }
 
-- (BOOL)hasCustomGradeForSection:(int)section {
+- (BOOL)hasCustomGradeForSection:(NSInteger)section {
     
     NSIndexPath *customGradeForSection = [self customGradeIndexPathForSection:section];
     
@@ -700,8 +700,6 @@ CGFloat iOS7HeightForRowAtIndexPath(CKRubricView *self, SEL _cmd, UITableView *t
             self.rubricCellDescriptionMargin = 13;
             self.rubricCell = nil;
         }
-        
-        CKRubricCriterionRating *rating = (criterion.ratings)[indexPath.row];
         
         CGSize labelCalculationSize = CGSizeMake(self.rubricCellDescriptionFrame.size.width - self.rubricCellDescriptionMargin, 9999);
         

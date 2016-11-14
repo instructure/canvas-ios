@@ -194,7 +194,7 @@
 }
 
 -(NSUInteger)hash {
-    return self.ident;
+    return (NSUInteger)self.ident;
 }
 
 - (NSString *)gradeStringForSubmission:(CKSubmission *)submission

@@ -16,7 +16,7 @@
     
     
 
-@import MyLittleViewController;
+#import <MyLittleViewController/MyLittleViewController.h>
 
 typedef NSString *(^IdentityBlock)(id object);
 

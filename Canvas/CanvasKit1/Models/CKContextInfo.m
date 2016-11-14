@@ -90,7 +90,7 @@
 }
 
 - (NSUInteger)hash {
-    return self.contextType ^ self.ident;
+    return (NSUInteger)(self.contextType ^ self.ident);
 }
 
 @end

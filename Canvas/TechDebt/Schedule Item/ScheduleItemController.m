@@ -22,6 +22,11 @@
 #import <CanvasKit1/CKActionSheetWithBlocks.h>
 #import <CanvasKit1/CKAlertViewWithBlocks.h>
 #import <CanvasKit1/CKAudioCommentRecorderView.h>
+#import <CanvasKit1/CKCommentViewController.h>
+#import <CanvasKit1/CKAssignment.h>
+#import <CanvasKit1/CKCourse.h>
+#import <CanvasKit1/CKSubmission.h>
+#import <CanvasKit1/CKURLRouter.h>
 
 #import "ScheduleItemController.h"
 #import "ScheduleItem.h"
@@ -36,9 +41,7 @@
 #import "ReceivedFilesViewController.h"
 #import "UIWebView+SafeAPIURL.h"
 #import "Router.h"
-#import <CanvasKit1/CKURLRouter.h>
 
-#import "CKCanvasAPI+RealmAssignmentBridge.h"
 #import "CKIClient+CBIClient.h"
 #import "CKRichTextInputView.h"
 @import CanvasKit;
@@ -663,7 +666,7 @@ static void showErrorForAssignment(NSError *error, CKAssignment *assignment) {
     __weak ScheduleItemController *weakSelf = self;
     
     [self updateProgressViewWithIndeterminateProgress];
-    [canvasAPI postHTML:comment asSubmissionForAssignment:assignment session:TheKeymaster.currentClient.authSession
+    [canvasAPI postHTML:comment asSubmissionForAssignment:assignment
         completionBlock:^(NSError *error, BOOL isFinalValue, CKSubmission *submission) {
             if (error) {
                 showErrorForAssignment(error, assignment);

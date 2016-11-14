@@ -147,7 +147,7 @@ static CKContextType _contextTypeForTypeString(NSString *typeStr) {
 
 
 - (NSUInteger)hash {
-    return _ident;
+    return (NSUInteger)_ident;
 }
 
 @end

@@ -46,6 +46,8 @@
 }
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     self.clipsToBounds = YES;
     
     CGRect textViewFrame = self.bounds;

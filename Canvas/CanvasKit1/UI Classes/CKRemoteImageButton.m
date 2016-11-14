@@ -53,6 +53,7 @@ static void commonSetup(CKRemoteImageButton *self) {
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     commonSetup(self);
 }
 

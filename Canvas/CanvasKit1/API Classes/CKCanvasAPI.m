@@ -25,24 +25,16 @@
 #import "TouchXML.h"
 #import "NSDictionary+CKAdditions.h"
 #import "CKUser.h"
-#import "CKUserAvatar.h"
 #import <UIKit/UIKit.h>
-#import "CKOAuthController.h"
-#import "CKStreamItem.h"
 #import "CKConversation.h"
-#import "CKTodoItem.h"
 #import "CKConversationMessage.h"
 #import "CKConversationRecipient.h"
 #import "CKDiscussionEntry.h"
-#import "INCal.h"
 #import "CKCalendarItem.h"
 #import "NSHTTPURLResponse+CKAdditions.h"
-#import "SDURLCache.h"
 #import "CKEmbeddedMediaAttachment.h"
 #import "CKSubmission.h"
 #import "CKEnrollment.h"
-#import "CKCollection.h"
-#import "CKCollectionItem.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "NSFileManager+CKAdditions.h"
 #import "NSArray+CKAdditions.h"
@@ -50,11 +42,8 @@
 #import "CKFolder.h"
 #import "CKMediaComment.h"
 #import "CKPaginationInfo.h"
-#import "CKPage.h"
 #import "CKGroup.h"
-#import "CKGroupMembership.h"
 #import "CKContextInfo.h"
-#import "CKTab.h"
 #import "CKTerm.h"
 #import "CKAssignmentOverride.h"
 #import "CKCanvasAPI+Private.h"
@@ -143,7 +132,6 @@ StringConstant(CKCanvasUserInfoVersionKey);
 
 @interface CKCanvasAPI () {
     NSMutableArray *afterLoginBlocks;
-    BOOL usingMockCache;
 }
 NSString *CKDownloadsInProgressDirectory(void);
 
@@ -235,37 +223,6 @@ NSString *CKDownloadsInProgressDirectory(void);
         block = [block copy];
         [afterLoginBlocks addObject:block];
     }
-}
-
-- (CKOAuthController *)controllerForOAuthLoginWithCompletionBlock:(void (^)(NSString *accessToken, NSError *error))block {
-    
-    UIStoryboard *storyboard = nil;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        storyboard = [UIStoryboard storyboardWithName:@"CKOAuthLoginHD" bundle:[NSBundle bundleForClass:[self class]]];
-    } else {
-        storyboard = [UIStoryboard storyboardWithName:@"CKOAuthLogin" bundle:[NSBundle bundleForClass:[self class]]];
-    }
-    
-    CKOAuthController *oauthController = (CKOAuthController *)[storyboard instantiateInitialViewController];
-    oauthController.canvasAPI = self;
-    
-    block = [block copy];
-    oauthController.finishedBlock = ^(NSError *error, NSString *newAccessToken, CKUser *newUser) {
-        self.accessToken = newAccessToken;
-        self.user = newUser;
-        if (block) {
-            block(self.accessToken, error);
-        }
-        if (accessToken) {
-            while (afterLoginBlocks.count > 0) {
-                dispatch_block_t postLoginBlock = afterLoginBlocks[0];
-                postLoginBlock();
-                [afterLoginBlocks removeObjectAtIndex:0];
-            }
-        }
-    };
-    
-    return oauthController;
 }
 
 - (void)revokeAccessTokenWithCompletionBlock:(CKSimpleBlock)block
@@ -436,99 +393,6 @@ NSString *CKDownloadsInProgressDirectory(void);
               }];
 }
 
-- (void)getUserProfileForId:(uint64_t)ident block:(CKUserBlock)block
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/users/%llu/profile", self.apiProtocol, self.hostname, ident];
-    NSURL *url = [NSURL URLWithString:urlString];
-    if (!url) {
-        // TODO: better error handling
-        NSLog(@"Could not convert %@ to URL", urlString);
-        block([NSError errorWithDomain:CKCanvasErrorDomain code:0 userInfo:nil], YES, nil);
-        return;
-    }
-    
-    block = [block copy];
-    [self runForURL:url
-            options:nil
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-                  if (error != nil) {
-                      block(error, isFinalValue, nil);
-                      return;
-                  }
-                  
-                  CKUser *fetchedUser = [[CKUser alloc] initWithInfo:[apiResponse JSONValue]];
-                  block(nil, isFinalValue, fetchedUser);
-              }];    
-}
-
-- (void)updateUserName:(NSString *)newName block:(CKSimpleBlock)block
-{
-    // Make sure the name has actually changed
-    if ([self.user.name isEqualToString:newName]) {
-        block(nil, YES);
-        return;
-    }
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/users/self", self.apiProtocol, self.hostname];
-    NSURL *url = [NSURL URLWithString:urlString];
-    if (!url) {
-        // TODO: better error handling
-        NSLog(@"Could not convert %@ to URL", urlString);
-        block([NSError errorWithDomain:CKCanvasErrorDomain code:0 userInfo:nil], YES);
-        return;
-    }
-    
-    NSDictionary *parameters = @{@"user[name]": newName};
-    
-    block = [block copy];
-    [self runForURL:url
-            options:@{CKAPIHTTPMethodKey: @"PUT",
-                     CKAPIHTTPPOSTParameters: parameters}
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-                  if (error != nil) {
-                      block(error, isFinalValue);
-                      return;
-                  }
-                  
-                  NSDictionary *responseDict = [apiResponse JSONValue];
-                  
-                  self.user.name = responseDict[@"name"];
-                  
-                  block(nil, isFinalValue);
-              }];
-}
-
-- (void)getUserAvatarsForLoggedInUserWithBlock:(CKArrayBlock)block
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/users/self/avatars", self.apiProtocol, self.hostname];
-    NSURL *url = [NSURL URLWithString:urlString];
-    if (!url) {
-        // TODO: better error handling
-        NSLog(@"Could not convert %@ to URL", urlString);
-        block([NSError errorWithDomain:CKCanvasErrorDomain code:0 userInfo:nil], YES, nil);
-        return;
-    }
-    
-    block = [block copy];
-    [self runForURL:url
-            options:nil
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-                  if (error != nil) {
-                      block(error, isFinalValue, nil);
-                      return;
-                  }
-                  
-                  NSArray *response = [apiResponse JSONValue];
-                  
-                  NSMutableArray *avatars = [NSMutableArray new];
-                  for (NSDictionary *avatarInfo in response) {
-                      [avatars addObject:[[CKUserAvatar alloc] initWithInfo:avatarInfo]];
-                  }
-                  
-                  block(nil, isFinalValue, avatars);
-              }];   
-}
-
 - (void)postAvatarNamed:(NSString *)name fileURL:(NSURL *)fileURL block:(CKAttachmentBlock)block
 {
     NSURL *uploadUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@/api/v1/users/self/files",
@@ -571,192 +435,9 @@ NSString *CKDownloadsInProgressDirectory(void);
               }];  
 }
 
-- (void)getTodoItemsWithBlock:(CKArrayBlock)block
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/users/self/todo.json", self.apiProtocol, self.hostname];
-    NSURL *url = [NSURL URLWithString:urlString];
-    if (!url) {
-        // TODO: better error handling
-        NSLog(@"Could not convert %@ to URL", urlString);
-        block([NSError errorWithDomain:CKCanvasErrorDomain code:0 userInfo:nil], YES, nil);
-        return;
-    }
-    
-    block = [block copy];
-    [self runForURL:url
-            options:nil
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-                  if (error != nil) {
-                      block(error, isFinalValue, nil);
-                      return;
-                  }
-                  
-                  NSArray *newTodoItems = [apiResponse JSONValue];
-                  NSMutableArray *todoItems = [NSMutableArray array];
-                  
-                  for (NSDictionary *todoItemInfo in newTodoItems) {
-                      CKTodoItem *todoItem = [[CKTodoItem alloc] initWithInfo:todoItemInfo api:self];
-                      [todoItems addObject:todoItem];
-                  }
-                  block(nil, isFinalValue, todoItems);
-              }];
-}
-
-
-- (void)ignoreTodoItem:(CKTodoItem *)todoItem permanently:(BOOL)permanently withBlock:(CKSimpleBlock)block {
-    NSURL *url;
-    if (permanently) {
-        url = todoItem.ignorePermanentlyURL;
-    }
-    else {
-        url = todoItem.ignoreURL;
-    }
-    
-    NSDictionary *options = @{CKAPIHTTPMethodKey: @"DELETE"};
-    
-    block = [block copy];
-    [self runForURL:url
-            options:options
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-                  if (error != nil) {
-                      block(error, isFinalValue);
-                      return;
-                  }
-                  
-                  block(nil, isFinalValue);
-              }];
-    
-}
-
-////////////////////////////////////////////
-#pragma mark - Activity stream
-////////////////////////////////////////////
-
-- (void)getActivityStreamItemsWithPageURL:(NSURL *)url block:(CKPagedArrayBlock)block
-{
-    CKContextInfo *context = [[CKContextInfo alloc] initWithContextType:CKContextTypeUser ident:self.user.ident];
-    [self getActivityStreamItemsForContext:context pageURL:url block:block];
-}
-
-- (void)getActivityStreamItemsForContext:(CKContextInfo *)context pageURL:(NSURL *)url block:(CKPagedArrayBlock)block {
-    
-    if (url == nil) {
-        NSString *contextIdent = [NSString stringWithFormat:@"%llu", context.ident];
-        if (context.contextType == CKContextTypeUser) {
-            // This is the only valid value when the context type is user. Even the user ID doesn't work.
-            contextIdent = @"self";
-        }
-        NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/%@/%@/activity_stream.json",
-                               self.apiProtocol, self.hostname, [context typeComponentForURLs], contextIdent];
-        url = [NSURL URLWithString:urlString];
-    }
-    
-    
-    NSDictionary *options = @{ CKAPIShouldIgnoreCacheKey : @YES};
-    block = [block copy];
-    [self runForURL:url
-            options:options
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-                  
-                  CKPaginationInfo *pagination = [[CKPaginationInfo alloc] initWithResponse:apiResponse];
-                  
-                  if (error != nil) {
-                      block(error, nil, pagination);
-                      return;
-                  }
-                  
-                  NSArray *newStreamItems = [apiResponse JSONValue];
-                  NSMutableArray *streamItems = [NSMutableArray array];
-                  
-                  for (NSDictionary *streamItemInfo in newStreamItems) {
-                      CKStreamItem *streamItem = [[CKStreamItem alloc] initWithInfo:streamItemInfo];
-                      [streamItems addObject:streamItem];
-                  }
-                  block(nil, streamItems, pagination);
-              }];
-}
-
 ////////////////////////////////////////////
 #pragma mark - Courses
 ////////////////////////////////////////////
-
-- (void)getCoursesWithOptions:(NSDictionary *)options block:(CKArrayBlock)block
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/courses?include[]=term", self.apiProtocol, self.hostname];
-    BOOL forGradingRole = [options[CKAPICoursesForGradingRoleKey] boolValue];
-    if (forGradingRole) {
-        urlString = [urlString stringByAppendingString:@"&enrollment_type=teacher&include[]=needs_grading_count"];
-    }
-    if ([options[CKAPIIncludeTotalScoresKey] boolValue]) {
-        urlString = [urlString stringByAppendingString:@"&include[]=total_scores"];
-    }
-    if (options[CKAPILimitEnrollmentTypesKey]) {
-        CKEnrollmentType type = [options[CKAPILimitEnrollmentTypesKey] unsignedIntegerValue];
-        urlString = [urlString stringByAppendingFormat:@"&enrollment_type=%@", [CKEnrollment simpleEnrollmentStringForType:type]];
-    }
-
-    NSURL *url = [NSURL URLWithString:urlString];
-    block = [block copy];
-    [self runForURL:url
-            options:nil
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalTeacherValue) {
-                  if (error != nil) {
-                      block(error, isFinalTeacherValue, nil);
-                      return;
-                  }
-                  
-                  NSArray *newCourses = [apiResponse JSONValue];
-                  
-                  NSMutableArray *courses = [NSMutableArray array];
-                  NSDate *now = [NSDate date];
-                  for (NSDictionary *courseInfo in newCourses) {
-                      CKCourse *course = [[CKCourse alloc] initWithInfo:courseInfo];
-                      if ([options[CKAPICurrentCoursesOnlyKey] boolValue]) {
-                          NSDate *startDate = course.startDate ?: course.term.startDate;
-                          NSDate *endDate = course.endDate ?: course.term.endDate;
-                          BOOL shouldAdd = YES;
-                          if (startDate && [now compare:startDate] == NSOrderedAscending) {
-                              // course hasn't started yet
-                              shouldAdd = NO;
-                          }
-                          if (endDate && [endDate compare:now] == NSOrderedAscending) {
-                              // course has already ended
-                              shouldAdd = NO;
-                          }
-                          if (shouldAdd) {
-                              [courses addObject:course];
-                          }
-                      }
-                      else {
-                          [courses addObject:course];
-                      }
-                  }
-                  
-                  if (forGradingRole) {
-                      // Run the request again for 'ta' enrollments, and combine the results.
-                      NSString *newURLString = [urlString stringByReplacingOccurrencesOfString:@"enrollment_type=teacher"
-                                                                                    withString:@"enrollment_type=ta"];
-                      NSURL *newURL = [NSURL URLWithString:newURLString];
-                      [self runForURL:newURL options:nil
-                                block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalTAValue) {
-                                    NSArray *newCourses = [apiResponse JSONValue];
-                                    
-                                    for (NSDictionary *courseInfo in newCourses) {
-                                        CKCourse *course = [[CKCourse alloc] initWithInfo:courseInfo];
-                                        if ([courses containsObject:course] == NO) {
-                                            [courses addObject:course];
-                                        }
-                                    }
-                                    block(nil, isFinalTeacherValue && isFinalTAValue, courses);
-                                }];
-                      
-                  }
-                  else {
-                      block(nil, isFinalTeacherValue, courses);
-                  }
-
-              }];
-}
 
 - (void)getCourseWithId:(uint64_t)courseId options:(NSDictionary *)options block:(CKObjectBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/courses/%qu.json", self.apiProtocol, self.hostname, courseId];
@@ -804,88 +485,6 @@ NSString *CKDownloadsInProgressDirectory(void);
 #pragma mark (Course enrollment and schedule)
 /////////////////////////////////////////////
 
-- (void)getStudentsForCourse:(CKCourse *)course block:(CKArrayBlock)block
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/courses/%qu/students.json", self.apiProtocol, self.hostname, course.ident];
-    NSURL *url = [NSURL URLWithString:urlString];
-    if (!url) {
-        // TODO: better error handling
-        NSLog(@"Could not convert %@ to URL", urlString);
-        block([NSError errorWithDomain:CKCanvasErrorDomain code:0 userInfo:nil], YES, nil);
-        return;
-    }
-    
-    block = [block copy];
-    [self runForURL:url options:nil block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error != nil) {
-            block(error, isFinalValue, nil);
-            return;
-        }
-        
-        NSArray *result = [apiResponse JSONValue];
-        
-        for (NSDictionary *studentInfo in result) {
-            uint64_t studentIdent = [studentInfo[@"id"] unsignedLongLongValue];
-            BOOL foundExisting = NO;
-            for (CKStudent *existingStudent in course.students) {
-                if (existingStudent.ident == studentIdent) {
-                    [existingStudent updateWithInfo:studentInfo];
-                    foundExisting = YES;
-                    break;
-                }
-            }
-            if (!foundExisting) {
-                CKStudent *student = [[CKStudent alloc] initWithInfo:studentInfo];
-                [course.students addObject:student];
-            }
-        }
-        block(nil, isFinalValue, course.students);
-    }];
-}
-
-- (void)getUsersAndEnrollmentsForCourse:(CKCourse *)course byEnrollmentType:(CKEnrollmentType)type pageURL:(NSURL *)pageURLOrNil block:(CKPagedUsersAndEnrollmentsBlock)block
-{
-    NSString *enrollment = [CKEnrollment simpleEnrollmentStringForType:type];
-    NSURL *url = pageURLOrNil;
-    if (!url) {
-        NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/courses/%llu/users?per_page=%d&enrollment_type=%@&include[]=enrollments&include[]=avatar_url&include[]=email",
-                               self.apiProtocol, self.hostname, course.ident, self.itemsPerPage, enrollment];
-        
-        url = [NSURL URLWithString:urlString];
-    }
-    
-    NSDictionary *options = @{CKAPIShouldIgnoreCacheKey: @YES};
-    
-    [self runForURL:url options:options block:
-     ^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-         if (error != nil) {
-             block(error, nil, nil, 0);
-             return;
-         }
-         NSArray *response = [apiResponse JSONValue];
-         
-         NSMutableArray *users = [NSMutableArray new];
-         NSMutableArray *enrollments = [NSMutableArray new];
-         for (NSDictionary *userInfo in response) {
-             CKUser *aUser = [[CKUser alloc] initWithInfo:userInfo];
-             [users addObject:aUser];
-             
-             for (NSDictionary *enrollmentInfo in userInfo[@"enrollments"]) {
-                 CKEnrollment *anEnrollment = [[CKEnrollment alloc] initWithInfo:enrollmentInfo];
-                 [enrollments addObject:anEnrollment];
-             }
-         }
-         
-         CKPaginationInfo *pagination = [[CKPaginationInfo alloc] initWithResponse:apiResponse];
-         
-         block(error, users, enrollments, pagination);
-     }];
-}
-
-- (void)getGroupsWithPageURL:(NSURL *)pageURL block:(CKPagedArrayBlock)handler {
-    [self getGroupsWithPageURL:pageURL isCourseAffiliated:NO block:handler];
-}
-
 - (void)getGroupsWithPageURL:(NSURL *)pageURL isCourseAffiliated:(BOOL)isCourseAffiliated block:(CKPagedArrayBlock)handler; {
     NSURL *url = pageURL;
     if (url == nil) {
@@ -932,119 +531,6 @@ NSString *CKDownloadsInProgressDirectory(void);
     }];
 }
 
-- (void)getGroupMembershipsInGroup:(CKGroup *)group pageURL:(NSURL *)pageURLOrNil block:(CKPagedArrayBlock)handler {
-    NSURL *url = pageURLOrNil;
-    if (!url) {
-        NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/groups/%qu/memberships?filter_states[]=accepted&per_page=%u", self.apiProtocol, self.hostname, group.ident, self.itemsPerPage];
-        url = [NSURL URLWithString:urlString];
-    }
-    
-    NSDictionary *options = @{CKAPIShouldIgnoreCacheKey : @YES};
-    [self runForURL:url options:options block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error) {
-            handler(error, nil, nil);
-        }
-        else {
-            CKPaginationInfo *pagination = [[CKPaginationInfo alloc] initWithResponse:apiResponse];
-            
-            NSMutableArray *memberships = [NSMutableArray new];
-            for (NSDictionary *dict in [apiResponse JSONValue]) {
-                CKGroupMembership *membership = [[CKGroupMembership alloc] initWithInfo:dict];
-                [memberships addObject:membership];
-            }
-            handler(nil, memberships, pagination);
-        }
-    }];
-    
-}
-
-- (void)getUsersInGroup:(CKGroup *)group pageURL:(NSURL *)pageURLOrNil block:(CKPagedArrayBlock)handler
-{
-    NSURL *url = pageURLOrNil;
-    if (!url) {
-        NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/groups/%qu/users?filter_states[]=accepted&include[]=avatar_url&per_page=%u", self.apiProtocol, self.hostname, group.ident, self.itemsPerPage];
-        url = [NSURL URLWithString:urlString];
-    }
-    
-    NSDictionary *options = @{CKAPIShouldIgnoreCacheKey : @YES};
-    [self runForURL:url options:options block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error) {
-            handler(error, nil, nil);
-        }
-        else {
-            CKPaginationInfo *pagination = [[CKPaginationInfo alloc] initWithResponse:apiResponse];
-            
-            NSMutableArray *users = [NSMutableArray new];
-            for (NSDictionary *dict in [apiResponse JSONValue]) {
-                CKUser *ckUser = [[CKUser alloc] initWithInfo:dict];
-                [users addObject:ckUser];
-            }
-            handler(nil, users, pagination);
-        }
-    }];
-}
-
-- (void)getUserProfilesWithIdents:(NSArray *)idents block:(CKFailuresAndObjectsDictionariesBlock)block {
-    dispatch_group_t group = dispatch_group_create();
-
-    NSMutableDictionary *errors = [NSMutableDictionary new];
-    NSMutableDictionary *users = [NSMutableDictionary new];
-    
-    for (NSNumber *identNum in idents) {
-        uint64_t ident = [identNum unsignedLongLongValue];
-        dispatch_group_enter(group);
-        [self getUserProfileForId:ident block:^(NSError *error, BOOL isFinalValue, CKUser *aUser) {
-            if (users[identNum] != nil) {
-                // We're going to always prefer cached results for this call, when possible.
-                return;
-            }
-            if (error) {
-                errors[identNum] = error;
-                if (isFinalValue) {
-                    dispatch_group_leave(group);
-                }
-            }
-            else {
-                users[identNum] = aUser;
-                dispatch_group_leave(group);
-            }
-        }];
-    }
-    
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        block(errors, users);
-    });
-}
-
-- (void)getAssignmentGroupsForCourse:(CKCourse *)course block:(CKArrayBlock)block
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/courses/%qu/assignment_groups.json?include[]=assignments", self.apiProtocol, self.hostname, course.ident];
-    NSURL *url = [NSURL URLWithString:urlString];
-    if (!url) {
-        // TODO: better error handling
-        NSLog(@"Could not convert %@ to URL", urlString);
-        block([NSError errorWithDomain:CKCanvasErrorDomain code:0 userInfo:nil], YES, nil);
-        return;
-    }
-
-    [self runForURL:url options:nil block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error != nil) {
-            block(error, isFinalValue, nil);
-            return;
-        }
-
-        NSArray *result = [apiResponse JSONValue];
-
-        NSMutableArray *groups = [@[] mutableCopy];;
-        [result enumerateObjectsUsingBlock:^(NSDictionary *assignmentGroupInfo, NSUInteger idx, BOOL *stop) {
-            CKAssignmentGroup *group = nil;
-            group = [[CKAssignmentGroup alloc] initWithInfo:assignmentGroupInfo andCourse:course];
-            [groups addObject:group];
-        }];
-        block(error, isFinalValue, groups);
-    }];
-}
-
 - (void)getAssignmentForContext:(CKContextInfo *)context assignmentIdent:(uint64_t)assignmentIdent block:(CKAssignmentBlock)block
 {
     NSAssert(context.contextType == CKContextTypeCourse, @"You can't have assignments outside of a course");
@@ -1064,40 +550,6 @@ NSString *CKDownloadsInProgressDirectory(void);
         block(error, assignment);
     }];
 }
-
-- (void)getAssignmentsForCourse:(CKCourse *)course pageURL:(NSURL *)pageURL block:(CKPagedArrayBlock)block
-{
-    NSURL *url = pageURL;
-    if (!url) {
-        NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/courses/%qu/assignments?per_page=%d", self.apiProtocol, self.hostname, course.ident, itemsPerPage];
-        url = [NSURL URLWithString:urlString];
-    }
-    
-    
-    block = [block copy];
-    NSDictionary *options = @{CKAPIShouldIgnoreCacheKey : @YES};
-    [self runForURL:url options:options block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error) {
-            NSLog(@"Error getting assignments: %@", error);
-            block(error, nil, 0);
-            return;
-        }
-        
-        NSHTTPURLResponse *response = apiResponse;
-        CKPaginationInfo *info = [[CKPaginationInfo alloc] initWithResponse:response];
-        
-        NSArray *results = [apiResponse JSONValue];
-        NSMutableArray *assignments = [[NSMutableArray alloc] initWithCapacity:results.count];
-        for (NSDictionary *assignmentInfo in results) {
-            CKAssignment *assignment = [[CKAssignment alloc] initWithInfo:assignmentInfo];
-            assignment.course = course;
-            [assignments addObject:assignment];
-        }
-        
-        block(error, assignments, info);
-    }];
-}
-
 
 - (void)getOverridesForCourseIdent:(uint64_t)courseIdent assignmentIdent:(uint64_t)assignmentIdent pageURL:(NSURL *)pageURL block:(CKPagedArrayBlock)handler {
     NSURL *url = pageURL;
@@ -1125,232 +577,6 @@ NSString *CKDownloadsInProgressDirectory(void);
         handler(error, overrides, pagination);
     }];
 }
-
-- (void)getCalendarItemsForCourse:(CKCourse *)course block:(CKArrayBlock)block
-{
-    NSURL *url = course.calendarFeedURL;
-    if (!url) {
-        block([NSError errorWithDomain:CKCanvasErrorDomain code:0 userInfo:nil], YES, nil);
-        return;
-    }
-    
-    block = [block copy];
-    [self runForURL:url options:nil block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error != nil) {
-            block(error, isFinalValue, nil);
-            return;
-        }
-        
-        NSDictionary *parsedDict = [apiResponse ICSValue];
-        NSArray *parsedEvents = parsedDict[INCalParsedFeedEventsKey];
-        
-        for (NSDictionary *eventInfo in parsedEvents) {
-            
-            // We create the object, because the ID for the object needs to be parsed out of the info
-            CKCalendarItem *calendarItem = [[CKCalendarItem alloc] initWithInfo:eventInfo];
-            
-            BOOL foundExistingCalendarEvent = NO;
-            for (CKCalendarItem *existingCalendarEvent in course.calendarEvents) {
-                if (calendarItem.typeId == existingCalendarEvent.typeId) {
-                    [existingCalendarEvent updateWithInfo:eventInfo];
-                    foundExistingCalendarEvent = YES;
-                    break;
-                }
-            }
-            
-            if (foundExistingCalendarEvent == NO) {
-                [course.calendarEvents addObject:calendarItem];
-            }
-
-        }
-        block(nil, isFinalValue, course.calendarEvents);
-    }];
-}
-
-- (void)getCalendarItemsForContext:(CKContextInfo *)context pageURL:(NSURL*)pageURL block:(CKPagedArrayBlock)block
-{
-    NSURL *url = pageURL;
-    if (!url) {
-        NSString *contextType;
-        switch (context.contextType) {
-            case CKContextTypeCourse:
-                contextType = @"course";
-                break;
-            case CKContextTypeGroup:
-                contextType = @"group";
-                break;
-            case CKContextTypeUser:
-                contextType = @"user";
-                break;
-            case CKContextTypeNone:
-                contextType = @"";
-                break;
-        }
-        NSString *contextCode = [NSString stringWithFormat:@"%@_%qu", contextType, context.ident];
-        NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/calendar_events?type=event&context_codes[]=%@&start_date=1900-01-01&end_date=2099-12-31&per_page=%d", self.apiProtocol, self.hostname, contextCode, itemsPerPage];
-        url = [NSURL URLWithString:urlString];
-    }
-    
-    block = [block copy];
-    NSDictionary *options = @{ CKAPIShouldIgnoreCacheKey : @YES };
-    [self runForURL:url options:options block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error) {
-            NSLog(@"Error getting calendar items for course %qu: %@", context.ident, error);
-            block(error, nil, 0);
-            return;
-        }
-        
-        NSHTTPURLResponse *response = apiResponse;
-        CKPaginationInfo *info = [[CKPaginationInfo alloc] initWithResponse:response];
-
-        NSArray *results = [apiResponse JSONValue];
-        
-        NSMutableArray *calendarItems = [[NSMutableArray alloc] initWithCapacity:results.count];
-        for (NSDictionary *eventInfo in results) {
-            CKCalendarItem *calendarItem = [[CKCalendarItem alloc] initWithInfo:eventInfo];
-            [calendarItems addObject:calendarItem];
-        }
-        
-        block(error, calendarItems, info);
-    }];
-    
-}
-
-- (void)getCalendarItemWithId:(uint64_t)ident block:(CKObjectBlock)block {
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/calendar_events/%qu", self.apiProtocol, self.hostname, ident];
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    [self runForURL:url options:nil block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error) {
-            block(error, isFinalValue, nil);
-        }
-        
-        NSDictionary *result = [apiResponse JSONValue];
-        CKCalendarItem *item = [[CKCalendarItem alloc] initWithInfo:result];
-        block(nil, isFinalValue, item);
-    }];
-}
-
-- (void)getEnrollmentsForCourse:(CKCourse *)course block:(CKArrayBlock)block
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/courses/%llu/enrollments", self.apiProtocol, self.hostname, course.ident];
-    NSURL *url = [NSURL URLWithString:urlString];
-    if (!url) {
-        // TODO: better error handling
-        NSLog(@"Could not convert %@ to URL", urlString);
-        block([NSError errorWithDomain:CKCanvasErrorDomain code:0 userInfo:nil], YES, nil);
-        return;
-    }
-    
-    block = [block copy];
-    [self runForURL:url options:nil block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error != nil) {
-            block(error, isFinalValue, nil);
-            return;
-        }
-        
-        NSArray *result = [apiResponse JSONValue];
-        
-        NSMutableArray *enrollments = [NSMutableArray new];
-        
-        for (NSDictionary *enrollmentInfo in result) {
-            CKEnrollment *tempEnrollment = [[CKEnrollment alloc] initWithInfo:enrollmentInfo];
-            [enrollments addObject:tempEnrollment];
-        }
-        block(nil, isFinalValue, enrollments);
-    }];
-
-}
-
-- (void)getTabsForContext:(CKContextInfo *)context block:(CKArrayBlock)block {
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/%@/%llu/tabs?include[]=external", self.apiProtocol, self.hostname, [context typeComponentForURLs], context.ident];
-    NSURL *url = [NSURL URLWithString:urlString];
-    block = [block copy];
-    [self runForURL:url options:nil block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error != nil) {
-            if (error.code == 401) {
-                NSString *errorMessage = ([apiResponse.JSONValue valueForKeyPath:@"errors.message"] ?: NSLocalizedString(@"Not Authorized", @"error message for a 401 response."));
-                error = [NSError errorWithDomain:@"com.instructure.CanvasKit" code:error.code userInfo:@{NSLocalizedDescriptionKey: errorMessage}];
-            }
-            block(error, isFinalValue, nil);
-            return;
-        }
-        
-        NSArray *result = [apiResponse JSONValue];
-        
-        NSMutableArray *tabs = [NSMutableArray new];
-        
-        for (NSDictionary *tabInfo in result) {
-            CKTab *tab = [[CKTab alloc] initWithInfo:tabInfo];
-            [tabs addObject:tab];
-        }
-        block(nil, isFinalValue, tabs);
-    }];
-}
-
-////////////////////////////////////////////
-#pragma mark - Favorites
-////////////////////////////////////////////
-
-- (void)getFavoriteCoursesWithOptions:(NSDictionary *)options block:(CKArrayBlock)block
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/users/self/favorites/courses", self.apiProtocol, self.hostname];
-    
-    if (options[CKAPICoursesForGradingRoleKey]) {
-        urlString = [urlString stringByAppendingString:@"?include[]=needs_grading_count"];
-    }
-    
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    block = [block copy];
-    [self runForURL:url options:nil block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error != nil) {
-            block(error, isFinalValue, nil);
-            return;
-        }
-        
-        NSArray *newCourses = [apiResponse JSONValue];
-        
-        NSMutableArray *courses = [NSMutableArray array];
-        for (NSDictionary *courseInfo in newCourses) {
-            CKCourse *course = [[CKCourse alloc] initWithInfo:courseInfo];
-            [courses addObject:course];
-        }
-        
-        block(nil, isFinalValue, courses);
-    }];
-}
-
-
-- (void)getFavoriteCoursesWithBlock:(CKArrayBlock)block
-{
-    [self getFavoriteCoursesWithOptions:nil block:block];
-}
-
-- (void)updateFavorite:(CKCourse *)course HTTPMethod:(NSString *)method withBlock:(CKSimpleBlock)block
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/users/self/favorites/courses/%lld", self.apiProtocol, self.hostname, course.ident];
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    block = [block copy];
-    
-    [self runForURL:url
-            options:@{ CKAPIHTTPMethodKey : method }
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-                  block(error, isFinalValue);
-              }];
-}
-
-- (void)markCourseAsFavorite:(CKCourse *)course withBlock:(CKSimpleBlock)block
-{
-    [self updateFavorite:course HTTPMethod:@"POST" withBlock:block];
-}
-
-- (void)unmarkCourseAsFavorite:(CKCourse *)course withBlock:(CKSimpleBlock)block
-{
-    [self updateFavorite:course HTTPMethod:@"DELETE" withBlock:block];
-}
-
 
 #pragma mark Discussion/Announcement Helpers
 
@@ -1810,27 +1036,6 @@ NSString *CKDownloadsInProgressDirectory(void);
 #pragma mark (Deleting)
 ////////////////////////////////////////////
 
-- (void)deleteDiscussionTopic:(CKDiscussionTopic *)topic forContext:(CKContextInfo *)context block:(CKSimpleBlock)block
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/%@/%qu/discussion_topics/%qu", self.apiProtocol, self.hostname, context.typeComponentForURLs, context.ident, topic.ident];
-    
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    NSDictionary *options = @{CKAPIHTTPMethodKey: @"DELETE"};
-    
-    block = [block copy];
-    [self runForURL:url
-            options:options
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-                  if (error != nil) {
-                      block(error, isFinalValue);
-                      return;
-                  }
-                  
-                  block(nil, isFinalValue);
-              }];
-}
-
 - (void)deleteDiscussionEntry:(CKDiscussionEntry *)entry block:(CKSimpleBlock)block
 {
     NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/%@/%qu/discussion_topics/%qu/entries/%qu", self.apiProtocol, self.hostname, entry.discussionTopic.contextInfo.typeComponentForURLs, entry.discussionTopic.contextInfo.ident, entry.discussionTopic.ident, entry.ident];
@@ -1894,10 +1099,6 @@ NSString *CKDownloadsInProgressDirectory(void);
 ////////////////////////////////////////////
 #pragma mark - Announcements
 ////////////////////////////////////////////
-
-- (void)getAnnouncementsForContext:(CKContextInfo *)contextInfo pageURL:(NSURL *)pageURL block:(CKPagedArrayBlock)block {
-    [self getDiscussionTopicsForContext:contextInfo pageURL:pageURL announcementsOnly:YES block:block];
-}
 
 #pragma mark (Posting)
 - (void)postAnnouncementForContext:(CKContextInfo *)context withTitle:(NSString *)title message:(NSString *)message attachments:(NSArray *)attachments block:(CKDiscussionTopicBlock)block
@@ -2182,32 +1383,6 @@ NSString *CKDownloadsInProgressDirectory(void);
 ////////////////////////////////////////////
 #pragma mark (Viewing)
 ////////////////////////////////////////////
-
-- (void)getSubmissionsForAssignment:(CKAssignment *)assignment includeHistory:(BOOL)includeHistory block:(CKArrayBlock)block
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/courses/%qu/assignments/%qu/submissions.json?include[]=submission_history&include[]=rubric_assessment&include[]=submission_comments", self.apiProtocol, self.hostname, assignment.courseIdent, assignment.ident];
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    block = [block copy];
-    [self runForURL:url options:nil block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error != nil) {
-            block(error, isFinalValue, nil);
-            return;
-        }
-        
-        NSArray *submissionDicts = [apiResponse JSONValue];
-        NSMutableArray *submissions = [NSMutableArray arrayWithCapacity:[submissionDicts count]];
-        
-        for (NSDictionary *submissionInfo in submissionDicts) {
-            CKSubmission *submission = [[CKSubmission alloc] initWithInfo:submissionInfo andAssignment:assignment];
-            [submissions addObject:submission];
-        }
-        
-        block(nil, isFinalValue, submissions);
-    }];
-}
-
-
 
 - (void)getSubmissionForAssignment:(CKAssignment *)assignment studentID:(uint64_t)studentId includeHistory:(BOOL)includeHistory block:(CKObjectBlock)block
 {
@@ -2781,81 +1956,6 @@ static CGFloat overallProgressForDictionaries(NSArray *progressDicts) {
                   block(nil, isFinalValue, attempt);
               }];
 }
-        
-////////////////////////////////////////////
-#pragma mark (Grading)
-////////////////////////////////////////////
-
-- (void)postGrade:(NSString *)grade forSubmission:(CKSubmission *)submission block:(CKSimpleBlock)block
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/courses/%qu/assignments/%qu/submissions/%qu.json",
-                           self.apiProtocol,
-                           self.hostname,
-                           submission.assignment.courseIdent,
-                           submission.assignment.ident,
-                           submission.student.ident];
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    // If this is a percentage grade, we need to add a percent sign to the end so the server understands
-    if (submission.assignment.scoringType == CKAssignmentScoringTypePercentage) {
-        grade = [grade stringByAppendingString:@"%"];
-    }
-    
-    NSDictionary *parameters = @{@"submission[posted_grade]": grade};
-    
-    block = [block copy];
-    [self runForURL:url options:@{CKAPIHTTPMethodKey: @"PUT",
-                                 CKAPIHTTPPOSTParameters: parameters}
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error != nil) {
-            block(error, isFinalValue);
-            return;
-        }
-        
-        NSDictionary *submissionInfo = [apiResponse JSONValue];
-        [submission updateGradeWithInfo:submissionInfo];
-        
-        // Update the last submission attempt so we don't have to go back to the server for more
-        [submission.lastAttempt updateWithInfo:submissionInfo];
-        
-        block(nil, isFinalValue);
-    }];
-}
-
-
-- (void)postRubricAssessment:(CKRubricAssessment *)assessment forSubmission:(CKSubmission *)submission block:(CKSimpleBlock)block
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/courses/%qu/assignments/%qu/submissions/%qu.json",
-                           self.apiProtocol,
-                           self.hostname,
-                           submission.assignment.courseIdent,
-                           submission.assignment.ident,
-                           submission.student.ident];
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters addEntriesFromDictionary:[assessment parametersDictionary]];
-    
-    block = [block copy];
-    [self runForURL:url options:@{CKAPIHTTPMethodKey: @"PUT",
-                                 CKAPIHTTPPOSTParameters: parameters}
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error != nil) {
-            NSLog(@"error: %@", error);
-            block(error, isFinalValue);
-            return;
-        }
-        
-        NSDictionary *submissionInfo = [apiResponse JSONValue];
-        [submission updateWithInfo:submissionInfo];
-        
-        [assessment resetOriginalRatings];
-        submission.rubricAssessment = assessment;
-        
-        block(nil, isFinalValue);
-    }];
-    
-}
 
 ////////////////////////////////////////////
 #pragma mark - Media Comments
@@ -3382,10 +2482,6 @@ NSString * const CKAPIConversationScopeArchived = @"archived";
     [self _setWorkflowState:stateParam forConversation:conversation withBlock:block];
 }
 
-- (void)archiveConversation:(CKConversation *)conversation withBlock:(CKSimpleBlock)block {
-    [self _setWorkflowState:@"archived" forConversation:conversation withBlock:block];
-}
-
 - (void)_setWorkflowState:(NSString *)state forConversation:(CKConversation *)conversation withBlock:(CKSimpleBlock)block {
 
     NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/conversations/%qu",
@@ -3408,91 +2504,6 @@ NSString * const CKAPIConversationScopeArchived = @"archived";
               }];
     
 }
-
-//////////////////////////////////////
-#pragma mark - Collections
-//////////////////////////////////////
-
-- (void)getCollectionsForUser:(CKUser *)someUser block:(CKArrayBlock)block
-{
-    if (!someUser || someUser.ident == 0) {
-        NSLog(@"Invalid user. Cannot retrieve profile.");
-        block([NSError errorWithDomain:CKCanvasErrorDomain code:0 userInfo:nil], YES, nil);
-        return;
-    }
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/users/%llu/collections.json", self.apiProtocol, self.hostname, someUser.ident];
-    NSURL *url = [NSURL URLWithString:urlString];
-    if (!url) {
-        NSLog(@"Could not convert %@ to URL", urlString);
-        block([NSError errorWithDomain:CKCanvasErrorDomain code:0 userInfo:nil], YES, nil);
-        return;
-    }
-    
-    block = [block copy];
-    [self runForURL:url
-            options:nil
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-                  if (error != nil) {
-                      block(error, isFinalValue, nil);
-                      return;
-                  }
-                  
-                  NSArray *collectionsList = [apiResponse JSONValue];
-                  
-                  NSMutableArray *collections = [NSMutableArray array];
-                  for (NSDictionary *collectionInfo in collectionsList) {
-                      CKCollection *collection = [[CKCollection alloc] initWithInfo:collectionInfo];
-#ifdef DEBUG
-                      collection.rawInfo = collectionInfo;
-#endif
-                      [collections addObject:collection];
-                  }
-                  
-                  block(nil, isFinalValue, collections);
-              }];
-}
-
-- (void)getCollectionItemsForCollection:(CKCollection *)aCollection block:(CKArrayBlock)block
-{
-    if (!aCollection || aCollection.ident == 0) {
-        NSLog(@"Invalid collection. Cannot retrieve collection items.");
-        block([NSError errorWithDomain:CKCanvasErrorDomain code:0 userInfo:nil], YES, nil);
-        return;
-    }
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/collections/%llu/items", self.apiProtocol, self.hostname, aCollection.ident];
-    NSURL *url = [NSURL URLWithString:urlString];
-    if (!url) {
-        NSLog(@"Could not convert %@ to URL", urlString);
-        block([NSError errorWithDomain:CKCanvasErrorDomain code:0 userInfo:nil], YES, nil);
-        return;
-    }
-    
-    block = [block copy];
-    [self runForURL:url
-            options:nil
-              block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-                  if (error != nil) {
-                      block(error, isFinalValue, nil);
-                      return;
-                  }
-                  
-                  NSArray *result = [apiResponse JSONValue];
-                  
-                  NSMutableArray *collectionItems = [NSMutableArray array];
-                  for (NSDictionary *collectionItemInfo in result) {
-                      CKCollectionItem *collectionItem = [[CKCollectionItem alloc] initWithInfo:collectionItemInfo];
-#ifdef DEBUG
-                      collectionItem.rawInfo = collectionItemInfo;
-#endif
-                      [collectionItems addObject:collectionItem];
-                  }
-                  
-                  block(nil, isFinalValue, collectionItems);
-              }];    
-}
-
 
 //////////////////////////////////////
 #pragma mark - Files
@@ -3701,179 +2712,17 @@ NSString * const CKAPIConversationScopeArchived = @"archived";
     
 }
 
-
-//////////////////////////////////////
-#pragma mark - Pages
-//////////////////////////////////////
-- (void)listPagesInContext:(CKContextInfo *)context pageURL:(NSURL *)pageURLOrNil block:(CKPagedArrayBlock)block {
-    NSURL *url = pageURLOrNil;
-    if (!url) {
-        NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/%@/%qu/pages?per_page=%d", self.apiProtocol, self.hostname, context.typeComponentForURLs, context.ident, itemsPerPage];
-        url = [NSURL URLWithString:urlString];
-    }
-    NSDictionary *options = @{CKAPIShouldIgnoreCacheKey: @YES};
-    [self runForURL:url options:options block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error) {
-            block(error, nil, nil);
-            return;
-        }
-        
-        CKPaginationInfo *pagination = [[CKPaginationInfo alloc] initWithResponse:apiResponse];
-        
-        NSArray *responseJSON = [apiResponse JSONValue];
-        NSMutableArray *pages = [NSMutableArray new];
-        for (NSDictionary *json in responseJSON) {
-            CKPage *page = [[CKPage alloc] initWithInfo:json];
-            [pages addObject:page];
-        }
-        block(nil, pages, pagination);
-    }];
-}
-
-- (void)getFrontPageForContext:(CKContextInfo *)context block:(CKObjectBlock)block {
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/%@/%qu/front_page", self.apiProtocol, self.hostname, context.typeComponentForURLs, context.ident];
-    [self getPageURL:urlString onCompletion:block];
-}
-
-- (void)getPageInContext:(CKContextInfo *)context withIdentifier:(NSString *)identifier block:(CKObjectBlock)block {
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/api/v1/%@/%qu/pages/%@", self.apiProtocol, self.hostname, context.typeComponentForURLs, context.ident, [identifier realURLEncodedString]];
-    [self getPageURL:urlString onCompletion:block];
-}
-
-- (void) getPageURL:(NSString *)urlString onCompletion:(CKObjectBlock)block
-{
-    NSURL *url = [NSURL URLWithString:urlString];
-    [self runForURL:url options:nil block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
-        if (error) {
-            block(error, NO, nil);
-            return;
-        }
-        CKPage *page = [[CKPage alloc] initWithInfo:[apiResponse JSONValue]];
-        
-        block(error, isFinalValue, page);
-    }];
-}
-
 //////////////////////////////////////
 #pragma mark - Mock Response/Cache
 //////////////////////////////////////
 
-+ (NSString *)mockCacheDirectory {
-    NSString *dir = [[NSUserDefaults standardUserDefaults] valueForKey:@"CKMockResponseData"];
-    if (!dir) {
-        dir = [[[NSProcessInfo processInfo] environment] objectForKey:@"CKMockResponseData"];
-    }
-    return dir;
-}
-
-- (NSString *)mockCacheDirectory {
-    return [[self class] mockCacheDirectory];
-}
-
-- (BOOL)useMockCache {
-    return usingMockCache;
-}
-
-- (void)setUseMockCache:(BOOL)shouldUse {
-    if (shouldUse) {        
-        NSString *mockCacheDirectory = [self mockCacheDirectory];
-        if (mockCacheDirectory) {
-            usingMockCache = YES;
-        }
-    }
-    else {
-        usingMockCache = NO;
-    }
-}
-
-+ (void)clearMockedResponsesBeforeTimestampString:(const char *)dateCString {
-    static NSDateFormatter *timestampDateFormatter = nil;
-    if (!timestampDateFormatter) {
-        timestampDateFormatter = [[NSDateFormatter alloc] init];
-        timestampDateFormatter.dateFormat = @"EEE MMM d HH:mm:ss y";
-    }
-    
-    NSString *dateString = @(dateCString);
-    NSDate *date = [timestampDateFormatter dateFromString:dateString];
-    [self clearMockedResponsesBeforeDate:date];
-}
-
-+ (void)clearMockedResponsesBeforeDate:(NSDate *)date {
-    NSString *mockCacheDirectory = [self mockCacheDirectory];
-    mockCacheDirectory = [mockCacheDirectory stringByStandardizingPath];
-    if (mockCacheDirectory == nil) {
-        return;
-    }
-    
-    NSURL *directoryURL = [NSURL fileURLWithPath:mockCacheDirectory];
-    NSArray *requestedKeys = @[NSURLContentModificationDateKey];
-    
-    NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager]
-                                         enumeratorAtURL:directoryURL
-                                         includingPropertiesForKeys:requestedKeys
-                                         options:0 errorHandler:NULL];
-    BOOL hasOldResponses = NO;
-    for (NSURL *url in enumerator) {
-        __autoreleasing NSDate *responseDate = nil;
-        [url getResourceValue:&responseDate forKey:NSURLContentModificationDateKey error:NULL];
-        if ([responseDate timeIntervalSinceDate:date] < 0) {
-            // It's older than the passed-in date. Just nuke everything.
-            hasOldResponses = YES;
-        }
-    }
-    
-    if (hasOldResponses) {
-        NSLog(@"Deleting out-of-date cache");
-        [[NSFileManager defaultManager] removeItemAtURL:directoryURL error:NULL];
-    }
-}
-
-
 - (void)setupSharedURLCache {
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    
-    NSString * cachesDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
-    
     NSUInteger memoryCapacity = 2 * 1024 * 1024; // 2 MB
     NSUInteger diskCapacity = 80 * 1024 * 1024; // 80 MB
-
-    // Check for a mock cache directory on the command line.
-    NSString *cacheDirectory = [cachesDirectory stringByAppendingPathComponent:@"CKCachedResponses"];
-    NSString *mockCacheDirectory = [self mockCacheDirectory];
-    if (mockCacheDirectory) {
-        usingMockCache = YES;
-        
-        cacheDirectory = [mockCacheDirectory stringByStandardizingPath];
-    }
-        
-
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-
-        
-        NSURLCache *cache = nil;
-        if (!usingMockCache) {
-            cache = [[NSURLCache alloc] initWithMemoryCapacity:memoryCapacity diskCapacity:diskCapacity diskPath:@"Cache.db"];
-        }
-        else {
-            NSError *error;
-            if (![fileManager createDirectoryAtPath:cacheDirectory
-                        withIntermediateDirectories:YES
-                                         attributes:nil
-                                              error:&error]) {
-                NSLog(@"Error creating CKCachedResponses directory: %@", error);
-            }
-            else {
-                SDURLCache *urlCache = [[SDURLCache alloc] initWithMemoryCapacity:memoryCapacity
-                                                                       diskCapacity:diskCapacity
-                                                                           diskPath:cacheDirectory];
-                urlCache.minCacheInterval = 0;
-                cache = urlCache;
-                NSLog(@"****** Using mock response directory: %@ ******", cacheDirectory);
-            }
-            
-        }
+        NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:memoryCapacity diskCapacity:diskCapacity diskPath:@"Cache.db"];
         [NSURLCache setSharedURLCache:cache];
         
     });
@@ -4195,7 +3044,7 @@ NSString * const CKAPIConversationScopeArchived = @"archived";
             // Add a hash of the access token to the URL, so that the caching mechanism stores them separately.
             unsigned char hash[CC_SHA1_DIGEST_LENGTH];
             NSData *urlData = [self.accessToken dataUsingEncoding:NSUTF8StringEncoding];
-            CC_SHA1([urlData bytes], urlData.length, hash);
+            CC_SHA1([urlData bytes], (uint32_t)urlData.length, hash);
             BOOL hasQuery = url.query != nil;
             
             NSMutableString *hashString = [NSMutableString new];
@@ -4255,11 +3104,6 @@ NSString * const CKAPIConversationScopeArchived = @"archived";
         ignoreCache = YES;
     }
     
-    if (usingMockCache) {
-        ignoreCache = NO;
-        shouldCacheResponse = YES;
-    }
-    
     self.refreshCacheOnNextRequest = NO;
     
     if (!ignoreCache) {
@@ -4270,11 +3114,6 @@ NSString * const CKAPIConversationScopeArchived = @"archived";
             NSHTTPURLResponse *cachedHttpResponse = (NSHTTPURLResponse *)[cachedResponse response];
             CKCanvasAPIResponse *response = [[CKCanvasAPIResponse alloc] initWithResponse:cachedHttpResponse
                                                                                      data:cachedResponse.data];
-            if (usingMockCache) {
-                block(nil, response, YES);
-                return nil;
-            }
-            
             NSDate *cacheDate = [cachedHttpResponse ck_date];
             if (cacheDate == nil) {
                 cacheDate = [NSDate distantPast];

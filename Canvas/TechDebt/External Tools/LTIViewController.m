@@ -20,7 +20,6 @@
 #import <CanvasKit1/CanvasKit1.h>
 #import <CanvasKit/CanvasKit.h>
 #import "iCanvasErrorHandler.h"
-#import "UIImage+Color.h"
 
 #import "UIViewController+AnalyticsTracking.h"
 #import "UIWebView+SafeAPIURL.h"

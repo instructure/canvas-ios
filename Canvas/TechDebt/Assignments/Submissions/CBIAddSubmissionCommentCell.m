@@ -30,6 +30,8 @@
 @implementation CBIAddSubmissionCommentCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     RACSignal *hasText = [RACObserve(self, comment) map:^(NSString *comment) {
         return @(comment.length > 0);
     }];

@@ -34,6 +34,8 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
+    
     UIImageView *disclosure = [[UIImageView alloc] initWithImage:[[UIImage techDebtImageNamed:@"icon_arrow_right"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
     disclosure.tintColor = [UIColor whiteColor];
     self.accessoryView = disclosure;

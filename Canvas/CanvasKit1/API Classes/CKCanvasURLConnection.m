@@ -20,7 +20,6 @@
 #import "CKCanvasAPI.h"
 #import "CKCanvasAPIResponse.h"
 #import "TouchXML.h"
-#import "INCal.h"
 
 NSString *CKAbortAllConnectionsNotification = @"CKAbortAllConnectionsNotification";
 
@@ -128,19 +127,11 @@ static NSOperationQueue *writingQueue = nil;
 - (id)responseJSON
 {
     return [NSJSONSerialization JSONObjectWithData:self.data options:NSJSONReadingAllowFragments error:nil];
-//    NSString *responseString = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
-//    return [responseString JSONValue];
 }
 
 - (CXMLDocument *)responseXML
 {
     return [[CXMLDocument alloc] initWithData:self.data options:0 error:nil];
-}
-
-- (NSDictionary *)responseICS
-{
-    NSString *responseString = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
-    return [responseString ICSValue];
 }
 
 - (void)cancel {
@@ -314,7 +305,7 @@ static NSOperationQueue *writingQueue = nil;
             }
             error = [NSError errorWithDomain:CKCanvasErrorDomain code:[httpResponse statusCode] userInfo:userInfo];
             [[NSURLCache sharedURLCache] removeCachedResponseForRequest:originalRequest];
-            NSLog(@"%i error connecting to url: %@ (Message: %@)", error.code, self.url, error.localizedDescription);
+            NSLog(@"%li error connecting to url: %@ (Message: %@)", (long)error.code, self.url, error.localizedDescription);
         }
     }
     

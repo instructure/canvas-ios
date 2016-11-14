@@ -221,7 +221,7 @@
 }
 
 - (NSUInteger)hash {
-    return self.ident;
+    return (NSUInteger)self.ident;
 }
 
 - (NSString *)description {

@@ -35,7 +35,6 @@
 #import "CKIClient+CBIClient.h"
 #import "CBIAssignmentDetailViewController.h"
 #import "CBISplitViewController.h"
-#import "CBIModuleProgressionViewController.h"
 
 @import SoAnnotated;
 @import PSPDFKit;
@@ -360,12 +359,14 @@
         CBISplitViewController *splitView = (CBISplitViewController *)realFRD;
         if ([splitView.detail isKindOfClass:[CBIAssignmentDetailViewController class]]) {
             realFRD = splitView.detail;
-        } else if ([splitView.detail isKindOfClass:[CBIModuleProgressionViewController class]]) {
+        }
+        // TODO: This never worked in the first place, put we should fix it!
+        /*else if ([splitView.detail isKindOfClass:[CBIModuleProgressionViewController class]]) {
             CBIModuleProgressionViewController *progressionVC = (CBIModuleProgressionViewController *)splitView.detail;
             if ([progressionVC.childViewController isKindOfClass:[CBIAssignmentDetailViewController class]]) {
                 realFRD = progressionVC.childViewController;
             }
-        }
+        }*/
     }
 
     if ([realFRD isKindOfClass:[CBIAssignmentDetailViewController class]]) {

@@ -22,6 +22,8 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
+    
     self.layer.cornerRadius = self.bounds.size.height / 2.f;
     self.layer.rasterizationScale = [UIScreen mainScreen].scale;
     self.layer.shouldRasterize = YES;

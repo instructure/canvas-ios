@@ -94,6 +94,8 @@
 }
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     if (self.subviews.count == 0) {
         self.backgroundColor = [UIColor clearColor];
         [self _loadSubviewsFromXib];

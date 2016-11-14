@@ -155,7 +155,7 @@ NSString *CKDiscussionAttemptFilename = @"SGDiscussionAttemptFilename-v3";
     
     if (self.type == CKSubmissionTypeDiscussionTopic) {
         CKAttachment *attachment = [[CKFakeAttachment alloc] initWithDisplayName:[NSString stringWithFormat:@"%@-%i",CKDiscussionAttemptFilename,self.attempt]
-                                                                         atIndex:[attachments count]
+                                                                         atIndex:(int)[attachments count]
                                                             andSubmissionAttempt:self];
         [attachments addObject:attachment];
         
@@ -185,10 +185,6 @@ NSString *CKDiscussionAttemptFilename = @"SGDiscussionAttemptFilename-v3";
         discussionEntries = newDiscussionEntries;
         
         if (shouldCacheEntries) {
-            
-            NSString *htmlString = [NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"discussion_submissions" ofType:@"html"]
-                                                             encoding:NSUTF8StringEncoding
-                                                                error:nil];
             NSString *relativePathToResourcesDir = [attachment relativePathToResourcesDir];
             NSString *htmlReplacedString =[NSString stringWithFormat:@""
             @"<!DOCTYPE html>"

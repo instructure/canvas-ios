@@ -20,7 +20,7 @@
 
 @interface CKURLPreviewViewController : QLPreviewController
 
-@property (strong) NSString *title;
+@property (nonatomic, copy) NSString *title;
 @property (nonatomic, strong) NSURL *url;
 @property (assign) UIBarStyle modalBarStyle;
 @end

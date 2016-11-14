@@ -34,6 +34,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 

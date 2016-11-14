@@ -44,7 +44,7 @@ static NSString *OldDelegateKey = @"OldDelegateKey";
 }
 
 - (void)enableImplicitAnimationsInBlock:(void(^)(void))block {    
-    UIView *oldDelegate = self.delegate;
+    id oldDelegate = self.delegate;
 
     [self setValue:oldDelegate forKey:OldDelegateKey];
     

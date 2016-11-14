@@ -70,7 +70,7 @@
 }
 
 - (NSUInteger)hash {
-    return self.ident;
+    return (NSUInteger)self.ident;
 }
 
 @end

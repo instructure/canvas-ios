@@ -30,7 +30,6 @@
 #import "WebBrowserViewController.h"
 #import "AttachmentsTableViewController.h"
 #import "ProfileViewController.h"
-#import "UIImage+Color.h"
 
 #import "UIWebView+SafeAPIURL.h"
 #import "CBIURLParser.h"
@@ -571,8 +570,10 @@
     
     CKConversation *localConversation = self.conversation;
     __weak typeof(self) weakSelf = self;
-    
+
+    @weakify(self);
     [canvasAPI addRecipients:newRecipients toConversation:self.conversation block:^(NSError *error, BOOL isFinalValue, CKConversation *updatedConversation) {
+        @strongify(self);
         if (error) {
             NSString *title = NSLocalizedString(@"Error adding recipients", @"Title of an alert popup");
             NSString *message = NSLocalizedString(@"The recipients could not be added. Please try again. (%@)", @"Text explaining the error");

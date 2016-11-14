@@ -42,11 +42,11 @@
             break;
     }
     
-    return [NSString stringWithFormat:@"[%@][%@ %@][Line %d] %@",
+    return [NSString stringWithFormat:@"[%@][%@ %@][Line %lu] %@",
             logLevel,
             logMessage->_fileName,
             logMessage->_function,
-            logMessage->_line,
+            (unsigned long)logMessage->_line,
             logMessage->_message];
 }
 @end

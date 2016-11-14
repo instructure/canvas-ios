@@ -85,7 +85,7 @@
 
 - (NSUInteger)hash
 {
-    return self.typeId;
+    return (NSUInteger)self.typeId;
 }
 
 - (NSString *)description

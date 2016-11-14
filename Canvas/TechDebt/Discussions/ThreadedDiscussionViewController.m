@@ -38,7 +38,6 @@
 #import "RatingsController.h"
 #import "CKIClient+CBIClient.h"
 #import "CKRichTextInputView.h"
-#import "CKCanvasAPI+RealmAssignmentBridge.h"
 #import "Analytics.h"
 #import "iCanvasErrorHandler.h"
 
@@ -1628,7 +1627,7 @@ NSArray *indexPathsForRangeInSection(NSRange range, NSInteger section) {
     else if (_entry) {
         CKDiscussionEntry *theEntry = _entry;
         CKDiscussionTopic *topic = _topic;
-        [self.canvasAPI postReply:comment withAttachments:attachments toDiscussionEntry:theEntry inTopic:_topic session:TheKeymaster.currentClient.authSession
+        [self.canvasAPI postReply:comment withAttachments:attachments toDiscussionEntry:theEntry inTopic:_topic
                             block:^(NSError *error, CKDiscussionEntry *newEntry) {
 
                                 [weakProgressToolbar transitionToUploadCompletedWithError:error
@@ -1667,7 +1666,7 @@ NSArray *indexPathsForRangeInSection(NSRange range, NSInteger section) {
     }
     else {
         CKDiscussionTopic *topic = _topic;
-        [self.canvasAPI postEntry:comment withAttachments:attachments toDiscussionTopic:topic session:TheKeymaster.currentClient.authSession
+        [self.canvasAPI postEntry:comment withAttachments:attachments toDiscussionTopic:topic
                             block:^(NSError *error, CKDiscussionEntry *newEntry) {
                                 [weakProgressToolbar transitionToUploadCompletedWithError:error 
                                                                                completion:

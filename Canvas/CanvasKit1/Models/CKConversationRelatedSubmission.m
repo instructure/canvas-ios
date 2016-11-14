@@ -58,7 +58,7 @@
 }
 
 - (NSUInteger)hash {
-    return assignmentIdent ^ userIdent;
+    return (NSUInteger)assignmentIdent ^ userIdent;
 }
 
 @end

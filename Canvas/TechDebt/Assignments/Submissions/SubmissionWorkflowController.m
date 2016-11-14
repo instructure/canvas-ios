@@ -27,7 +27,6 @@
 #import "ThreadedDiscussionViewController.h"
 #import "CBISubmissionInputViewController.h"
 #import "Router.h"
-#import "CKCanvasAPI+RealmAssignmentBridge.h"
 #import "CKIClient+CBIClient.h"
 #import "CKRichTextInputView.h"
 #import "MobileQuizInformationViewController.h"
@@ -282,7 +281,7 @@ static void deleteFiles(NSArray *fileURLs) {
         
         CKAssignment *assignment = self.legacyAssignment;
         [weakSelf reportProgress:0.0];
-        [self.canvasAPI postMediaURL:movieURL asSubmissionForAssignment:assignment session:TheKeymaster.currentClient.authSession
+        [self.canvasAPI postMediaURL:movieURL asSubmissionForAssignment:assignment
                        progressBlock:^(float progress) {
                            [weakSelf reportProgress:progress];
                        }
@@ -346,7 +345,7 @@ static void deleteFiles(NSArray *fileURLs) {
     CKAssignment *assignment = self.legacyAssignment;
     [weakSelf reportProgress:0.0];
     
-    [canvasAPI postMediaURL:audioURL asSubmissionForAssignment:assignment session:TheKeymaster.currentClient.authSession
+    [canvasAPI postMediaURL:audioURL asSubmissionForAssignment:assignment
               progressBlock:^(float progress) {
                   [weakSelf reportProgress:progress];
               }
@@ -382,7 +381,7 @@ static void deleteFiles(NSArray *fileURLs) {
     UIViewController *controller = [URLSubmissionPreviewViewController createWithSubmissionHandler:^(NSURL *url) {
         
         [weakSelf reportProgress:-1];
-        [canvasAPI postURL:url asSubmissionForAssignment:assignment session:TheKeymaster.currentClient.authSession
+        [canvasAPI postURL:url asSubmissionForAssignment:assignment
            completionBlock:^(NSError *error, BOOL isFinalValue, CKSubmission *submission) {
                if (error) {
                    showErrorForAssignment(error, assignment);
@@ -427,7 +426,7 @@ static void deleteFiles(NSArray *fileURLs) {
         
         CKCanvasAPI *canvasAPI = self.canvasAPI;
         [weakSelf reportProgress:0.0];
-        [canvasAPI postFileURLs:urls asSubmissionForAssignment:assignment session:TheKeymaster.currentClient.authSession
+        [canvasAPI postFileURLs:urls asSubmissionForAssignment:assignment
                   progressBlock:^(float progress) {
                       [weakSelf reportProgress:progress];
                   }
@@ -460,7 +459,7 @@ static void deleteFiles(NSArray *fileURLs) {
     __weak typeof(self) weakSelf = self;
     
     [self reportProgress:-1];
-    [canvasAPI postHTML:comment asSubmissionForAssignment:assignment session:TheKeymaster.currentClient.authSession
+    [canvasAPI postHTML:comment asSubmissionForAssignment:assignment
         completionBlock:^(NSError *error, BOOL isFinalValue, CKSubmission *submission) {
             if (error) {
                 showErrorForAssignment(error, assignment);

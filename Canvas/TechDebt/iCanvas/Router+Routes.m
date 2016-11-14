@@ -22,15 +22,11 @@
 #import <CanvasKit1/CanvasKit1.h>
 #import <CanvasKit/CanvasKit.h>
 #import "UIViewController+Transitions.h"
-#import "CBIModuleItemTransitioningDelegate.h"
 #import "CBIQuizzesTabViewModel.h"
 #import "CBIQuizViewModel.h"
 @import MyLittleViewController;
 
 #import "CBIAnnouncementsTabViewModel.h"
-#import "CBIModulesTabViewModel.h"
-#import "CBIModuleViewModel.h"
-#import "CBIModuleItemViewModel.h"
 #import "CBISyllabusTabViewModel.h"
 #import "CBISyllabusViewModel.h"
 #import "CBICalendarEventViewModel.h"
@@ -56,7 +52,6 @@
 #import "CBIPeopleDetailViewController.h"
 #import "CBIAnnouncementViewModel.h"
 #import "CKIClient+CBIClient.h"
-#import "CBISadPandaTabViewModel.h"
 #import "UnsupportedViewController.h"
 #import "CBIMessageViewModel.h"
 #import "CBIMessageDetailViewController.h"

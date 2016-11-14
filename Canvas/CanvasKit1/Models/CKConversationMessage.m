@@ -97,7 +97,7 @@
 }
 
 - (NSUInteger)hash {
-    return ident;
+    return (NSUInteger)ident;
 }
 
 @end

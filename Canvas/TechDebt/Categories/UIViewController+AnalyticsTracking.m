@@ -23,8 +23,6 @@
 @implementation UIViewController (AnalyticsTracking)
 
 - (void)sendTrackingByClassName {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-
     NSString *className = NSStringFromClass([self class]);
     NSString *viewName = [className stringByReplacingOccurrencesOfString:@"Controller" withString:@""];
     

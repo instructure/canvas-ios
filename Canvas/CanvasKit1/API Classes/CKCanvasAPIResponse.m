@@ -18,7 +18,6 @@
 
 #import "CKCanvasAPIResponse.h"
 #import "TouchXML.h"
-#import "NSString+INCal.h"
 
 @interface CKCanvasAPIResponse ()
 @property (readwrite, copy) NSData *data;
@@ -58,17 +57,6 @@
 {
     if (self.data) {
         return [[CXMLDocument alloc] initWithData:self.data options:0 error:nil];
-    }
-    else {
-        return nil;
-    }
-}
-
-- (NSDictionary *)ICSValue
-{
-    if (self.data) {
-        NSString *responseString = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
-        return [responseString ICSValue];
     }
     else {
         return nil;

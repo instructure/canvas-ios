@@ -23,15 +23,15 @@
 #pragma mark - Font Generators
 
 + (UIFont *)canvasFontOfSize:(CGFloat)size {
-    return [UIFont fontWithName:@"HelveticaNeue" size:size];
+    return [UIFont systemFontOfSize:size];
 }
 
 + (UIFont *)boldCanvasFontOfSize:(CGFloat)size {
-    return [UIFont fontWithName:@"HelveticaNeue-Bold" size:size];
+    return [UIFont boldSystemFontOfSize:size];
 }
 
-+ (UIFont *)italicCanvasFontOfSize:(CGFloat)size{
-    return [UIFont fontWithName:@"HelveticaNeue-Italic" size:size];
++ (UIFont *)italicCanvasFontOfSize:(CGFloat)size {
+    return [UIFont italicSystemFontOfSize:size];
 }
 
 #pragma mark - Predefined Fonts

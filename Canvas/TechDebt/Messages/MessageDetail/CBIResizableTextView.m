@@ -28,6 +28,8 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
+    
     self.layer.cornerRadius = 8.f;
     self.layer.borderWidth = 1/[UIScreen mainScreen].scale;
     self.layer.borderColor = [UIColor prettyGray].CGColor;

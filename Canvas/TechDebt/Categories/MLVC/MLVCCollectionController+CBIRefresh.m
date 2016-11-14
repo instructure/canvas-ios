@@ -16,8 +16,12 @@
     
     
 
-#import "MLVCCollectionController+CBIRefresh.h"
-#import "EXTScope.h"
+@import MyLittleViewController;
+@import ReactiveCocoa;
+
+typedef id<MLVCViewModel> (^ViewModelFactory)(id model);
+typedef void (^ViewModelUpdateBlock)(id<MLVCViewModel> existingViewModel, id model);
+typedef id (^IdentityBlock)(id);
 
 @implementation MLVCCollectionController (CBIRefresh)
 
@@ -34,7 +38,7 @@
     return [NSIndexPath indexPathForRow:objectIndex inSection:groupIndex];
 }
 
-- (RACTuple *)refreshCollectionWithModelSignal:(RACSignal *)modelSignal modelIDBlock:(IdentityBlock)modelIDBlock viewModelIDBlock:(IdentityBlock)viewModelIDBlock viewModelUpdateBlock:(void (^)(id<MLVCViewModel> existingViewModel, id model))viewModelUpdateBlock viewModelFactoryBlock:(id<MLVCViewModel> (^)(id model))factoryBlock;
+- (RACTuple *)refreshCollectionWithModelSignal:(RACSignal *)modelSignal modelIDBlock:(IdentityBlock)modelIDBlock viewModelIDBlock:(IdentityBlock)viewModelIDBlock viewModelUpdateBlock:(ViewModelUpdateBlock)viewModelUpdateBlock viewModelFactoryBlock:(ViewModelFactory)factoryBlock;
 {
     NSArray *existing = [self.groups.rac_sequence flattenMap:^RACStream *(MLVCCollectionControllerGroup *group) {
         return group.objects.rac_sequence;

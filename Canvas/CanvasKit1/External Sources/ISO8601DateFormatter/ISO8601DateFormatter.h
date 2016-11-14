@@ -16,12 +16,12 @@
 
 ///Which of ISO 8601's three date formats the formatter should produce.
 typedef NS_ENUM(NSUInteger, ISO8601DateFormat) {
-	///YYYY-MM-DD.
-	ISO8601DateFormatCalendar,
-	///YYYY-DDD, where DDD ranges from 1 to 366; for example, 2009-32 is 2009-02-01.
-	ISO8601DateFormatOrdinal,
-	///YYYY-Www-D, where ww ranges from 1 to 53 (the 'W' is literal) and D ranges from 1 to 7; for example, 2009-W05-07.
-	ISO8601DateFormatWeek,
+    ///YYYY-MM-DD.
+    ISO8601DateFormatCalendar,
+    ///YYYY-DDD, where DDD ranges from 1 to 366; for example, 2009-32 is 2009-02-01.
+    ISO8601DateFormatOrdinal,
+    ///YYYY-Www-D, where ww ranges from 1 to 53 (the 'W' is literal) and D ranges from 1 to 7; for example, 2009-W05-07.
+    ISO8601DateFormatWeek,
 };
 
 ///The default separator for time values. Currently, this is ':'.
@@ -47,18 +47,18 @@ extern const unichar ISO8601DefaultTimeSeparatorCharacter;
 
 @interface ISO8601DateFormatter: NSFormatter
 {
-	NSString *lastUsedFormatString;
-	NSDateFormatter *unparsingFormatter;
-    
-	NSCalendar *parsingCalendar, *unparsingCalendar;
-    
-	NSTimeZone *defaultTimeZone;
-	ISO8601DateFormat format;
-	unichar timeSeparator;
+    NSString *lastUsedFormatString;
+    NSDateFormatter *unparsingFormatter;
+
+    NSCalendar *parsingCalendar, *unparsingCalendar;
+
+    NSTimeZone *defaultTimeZone;
+    ISO8601DateFormat format;
+    unichar timeSeparator;
     unichar timeZoneSeparator;
-	BOOL includeTime;
-	BOOL useMillisecondPrecision;
-	BOOL parsesStrictly;
+    BOOL includeTime;
+    BOOL useMillisecondPrecision;
+    BOOL parsesStrictly;
 }
 
 @property(nonatomic, retain) NSTimeZone *ISO8601_NULLABLE defaultTimeZone;

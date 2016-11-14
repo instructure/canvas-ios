@@ -155,7 +155,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<(CKConversation %p) id: %qu, messageCount: %d>", self, ident, messageCount];
+    return [NSString stringWithFormat:@"<(CKConversation %p) id: %qu, messageCount: %lu>", self, ident, (unsigned long)messageCount];
 }
 
 
@@ -180,7 +180,7 @@
 }
 
 - (NSUInteger)hash {
-    return ident << 6 + messageCount << 3 + state;
+    return ident << (6 + messageCount) << (3 + state);
 }
 
 @end

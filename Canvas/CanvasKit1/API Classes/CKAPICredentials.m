@@ -17,7 +17,6 @@
     
 
 #import "CKAPICredentials.h"
-#import "KeychainStorage.h"
 #import <Security/Security.h>
 
 
@@ -82,10 +81,6 @@ static NSString * const ActAsID = @"ActAsID";
     searchDictionary[(__bridge id)kSecReturnData] = (__bridge id)kCFBooleanTrue;
     CFTypeRef cfResultData = NULL;
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)searchDictionary, &cfResultData);
-    if (status == errSecItemNotFound) {
-        [self _migrateToSharedKeychain];
-        status = SecItemCopyMatching((__bridge CFDictionaryRef)searchDictionary, &cfResultData);
-    }
     
     if (status != errSecSuccess && status != errSecItemNotFound) {
         NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
@@ -181,102 +176,6 @@ static NSString * const ActAsID = @"ActAsID";
 - (BOOL)isValid
 {
     return _userName && _userIdent && _hostname && _apiProtocol && _accessToken;
-}
-
-
-+ (void)_migrateToSharedKeychain
-{    
-    /*
-     We used to store things in user defaults like this:
-     
-     // Version 0
-     // {
-     //   CKCanvasUserInfoKey: {
-     //     @"CKCanvasUserNameKey":    @"john.appleseed@example.com",
-     //     @"CKCanvasUserIDKey":      @12345,
-     //     @"CKCanvasAccessTokenKey": <some access token as an NSString>
-     //   }
-     // }
-     
-     Then we realized we needed to store the hostname, and that
-     it was dumb to store the access token in NSUserDefaults, so
-     we moved the access token to the keychain, with the following attributes:
-     
-     // Version 1
-     // Keychain: {
-     //   kSecattrClassKey: kSecAttrClassGenericPassword
-     //   kSecAttrService: [[NSBundle mainBundle] bundleIdentifier]
-     //   kSecAttrGeneric: utf8("CKCanvasAccessTokenKey")
-     //   kSecAttrAccount: utf8("CKCanvasAccessTokenKey")
-     //   kSecValueData:   utf8(<access token>)
-     // }
-     // NSUserDefaults: {
-     //   CKCanvasUserInfoVersionKey:  @1,
-     //   CKCanvasUserInfoKey: {
-     //     @"CKCanvasUserNameKey":    @"john.appleseed@example.com",
-     //     @"CKCanvasUserIDKey":      @12345,
-     //     @"CKCanvasHostNameKey":    @"canvas.instructure.com",
-     //     @"CKCanvasAPIProtocolKey": @"https",
-     //   }
-     // }
-     
-     Then, however, we wanted to share items between our apps, so we moved
-     everything to a shared keychain group. As of version 2, everything is
-     stored in the keychain, and none of the above should exist in NSUserDefaults
-     anymore.
-     
-     // Version 2
-     // Keychain: {
-     //   kSecattrClassKey:    kSecAttrClassGenericPassword
-     //   kSecAttrService:     "com.instructure.shared-credentials"
-     //   kSecAttrAccessGroup: "8MKNFMCD9M.com.instructure.shared-credentials"
-     //   kSecValueData:       NSKeyedArchiverData({
-     //                          UserName:    @"john.appleseed@example.com",
-     //                          UserID:      @12345,
-     //                          Hostname:    @"canvas.instructure.com",
-     //                          APIProtocol: @"https",
-     //                          AccessToken: @"<some access token>",
-     //                          DataVersion: @2
-     //                        })
-     // }
-     
-     */
-    
-    NSDictionary *defaults = [[NSUserDefaults standardUserDefaults]
-                              dictionaryForKey:CKCanvasUserInfoKey];
-    
-    
-    NSString *serviceName = [[NSBundle mainBundle] bundleIdentifier] ?: @"";
-    KeychainStorage *keychainStorage = [[KeychainStorage alloc] initWithServiceName:serviceName];
-    
-    NSString *accessToken = [keychainStorage valueForIdentifier:CKCanvasAccessTokenKey];
-    if (!accessToken) {
-        accessToken = defaults[CKCanvasAccessTokenKey];
-    }
-    
-    CKAPICredentials *creds = [CKAPICredentials new];
-    creds.userName = defaults[CKCanvasUserNameKey];
-    creds.userIdent = [defaults[CKCanvasUserIDKey] unsignedLongLongValue];
-    creds.hostname = defaults[CKCanvasHostnameKey];
-    creds.apiProtocol = defaults[CKCanvasAPIProtocolKey];
-    creds.accessToken = accessToken;
-    if ([defaults[ActAsID] isEqualToString:@""]) {
-        creds.actAsId = nil;
-    }
-    else {
-        creds.actAsId = defaults[ActAsID];
-    }
-    
-    if ([creds isValid] == NO) {
-        // We don't have enough information, don't bother saving anything
-        return;
-    }
-    else {
-        [creds saveToKeychain];
-        [keychainStorage deleteKeychainValue:CKCanvasAccessTokenKey];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:CKCanvasUserInfoVersionKey];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:CKCanvasUserInfoKey];
-    }
 }
 
 

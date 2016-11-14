@@ -27,6 +27,5 @@
 @property (readonly, copy) NSData *data;
 @property (readonly, copy) id JSONValue;
 @property (readonly, copy) CXMLDocument *XMLValue;
-@property (readonly, copy) NSDictionary *ICSValue;
 
 @end

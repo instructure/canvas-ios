@@ -364,7 +364,7 @@
 - (CGFloat)calculateHeightOfWebView:(UIWebView *)webView {
     NSString *heightStr = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('entry').scrollHeight"];
     NSString *widthStr = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('entry').scrollWidth"];
-    long numberOfVideoObjects = [[webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('video').length"] longLongValue];
+    long long numberOfVideoObjects = [[webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('video').length"] longLongValue];
     
     CGFloat maxCumulativeVideoHeight = [widthStr floatValue] * W_TO_H_VIDEO_RATIO * numberOfVideoObjects;
     CGFloat cumulativeVideoHeight = 0;

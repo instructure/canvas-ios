@@ -170,21 +170,10 @@ NSString *CKDiscussionEntryMediaToken = @"instructure_inline_media_comment_on_ip
 
 - (BOOL)isEqual:(id)object {
     return [super isEqual:object];
-    
-    if ([object isKindOfClass:[CKDiscussionEntry class]]) {
-        CKDiscussionEntry *otherEntry = (CKDiscussionEntry *)object;
-        BOOL identMatches = (self->ident == otherEntry->ident);
-        BOOL messagesMatches = (self->entryMessage == otherEntry->entryMessage ||  // entryMessage might be nil
-                                [self->entryMessage isEqualToString:otherEntry->entryMessage]);
-        return identMatches && messagesMatches;
-    }
-    else {
-        return NO;
-    }
 }
 
 - (NSUInteger)hash {
-    return self->ident << 10 + self->entryMessage.hash;
+    return (NSUInteger)self->ident << (10 + self->entryMessage.hash);
 }
 
 - (NSString *)description {

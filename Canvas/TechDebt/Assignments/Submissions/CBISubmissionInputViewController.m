@@ -18,7 +18,6 @@
 
 #import "CBISubmissionInputViewController.h"
 #import "CBISubmissionInputView.h"
-#import "CKCanvasAPI+RealmAssignmentBridge.h"
 #import "CKIClient+CBIClient.h"
 @import CanvasKeymaster;
 
@@ -77,7 +76,7 @@
     [inputView dismissKeyboard];
 
     @weakify(self);
-    [canvasAPI postHTML:comment asSubmissionForAssignment:assignment session:TheKeymaster.currentClient.authSession completionBlock:^(NSError *error, BOOL isFinalValue, CKSubmission *submission) {
+    [canvasAPI postHTML:comment asSubmissionForAssignment:assignment completionBlock:^(NSError *error, BOOL isFinalValue, CKSubmission *submission) {
         @strongify(self);
         if (error) {
         } else {

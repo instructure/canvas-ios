@@ -27,7 +27,7 @@
     NSData *utfData = [self dataUsingEncoding:NSUTF8StringEncoding];
     const char *str = [utfData bytes];
     unsigned char result[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(str, [utfData length], result);
+    CC_MD5(str, (CC_LONG)[utfData length], result);
     NSMutableString *hash = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
     for (int i = 0; i < CC_MD5_DIGEST_LENGTH; ++i) {
         [hash appendFormat:@"%02X", result[i]];

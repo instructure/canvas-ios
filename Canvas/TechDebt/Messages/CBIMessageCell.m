@@ -38,6 +38,8 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
+    
     self.unreadImageView.image = [self.unreadImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.attachmentImageView.image = [self.attachmentImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.discloserIndicator.image = [self.discloserIndicator.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];

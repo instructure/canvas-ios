@@ -36,7 +36,7 @@
 
 
 - (void)addButtonWithTitle:(NSString *)title handler:(void (^)(void))handler {
-    int buttonIndex = [self addButtonWithTitle:title];
+    NSInteger buttonIndex = [self addButtonWithTitle:title];
     NSNumber *buttonNumber = @(buttonIndex);
     
     blocks[buttonNumber] = [handler copy];
@@ -44,7 +44,7 @@
 
 
 - (void)addCancelButtonWithTitle:(NSString *)title {
-    int buttonIndex = [self addButtonWithTitle:title];
+    NSInteger buttonIndex = [self addButtonWithTitle:title];
     self.cancelButtonIndex = buttonIndex;
 }
 

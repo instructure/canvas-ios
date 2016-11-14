@@ -146,13 +146,13 @@
     NSError *err = nil;
     [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&err];
     if(err){
-        NSLog(@"audioSession: %@ %d %@", [err domain], [err code], [[err userInfo] description]);
+        NSLog(@"audioSession: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
         return NO;
     }
     err = nil;
     [audioSession setActive:YES error:&err];
     if(err){
-        NSLog(@"audioSession: %@ %d %@", [err domain], [err code], [[err userInfo] description]);
+        NSLog(@"audioSession: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
         return NO;
     }
     
@@ -177,7 +177,7 @@
     err = nil;
     recorder = [[AVAudioRecorder alloc] initWithURL:url settings:recorderSettings error:&err];
     if(!self.recorder){
-        NSLog(@"recorder: %@ %d %@", [err domain], [err code], [[err userInfo] description]);
+        NSLog(@"recorder: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
         UIAlertView *alert =
         [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Warning",nil)
                                    message: [err localizedDescription]
@@ -251,7 +251,7 @@
     NSError *err = nil;
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:self.recorderFilePath] error:&err];
     if (err) {
-        NSLog(@"error playing audio comment: %@ %d %@",[err domain], [err code], [[err userInfo] description]);
+        NSLog(@"error playing audio comment: %@ %ld %@",[err domain], (long)[err code], [[err userInfo] description]);
         self.audioPlayer = nil;
         return NO;
     }

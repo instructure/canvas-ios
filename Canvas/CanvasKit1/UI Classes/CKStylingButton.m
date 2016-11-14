@@ -134,7 +134,7 @@
     
     UIImage *backgroundImagePressed = [UIImage canvasKit1ImageNamed:@"button-get-started-pressed"];
     backgroundImagePressed = [backgroundImagePressed resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
-    [self setBackgroundImage:backgroundImagePressed forState:UIControlEventTouchUpInside];
+    [self setBackgroundImage:backgroundImagePressed forState:UIControlStateHighlighted];
     
     [self setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.7]];
     [self setTitleColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7] forState:UIControlStateNormal];

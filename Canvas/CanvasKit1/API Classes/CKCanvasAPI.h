@@ -21,7 +21,7 @@
 #import <CanvasKit1/CKDiscussionTopic.h>
 #import <CanvasKit1/CKAttachment.h>
 
-@class CKOAuthController, CKConversation, CKGroup, CKDiscussionEntry, CKTodoItem, CKAPICredentials, CKFolder, CKPaginationInfo, CKAssignmentOverride, CKUser, CKContextInfo, CKCourse, CKCanvasURLConnection, CKCollection, CKSubmission, CKRubricAssessment;
+@class CKConversation, CKGroup, CKDiscussionEntry, CKAPICredentials, CKFolder, CKPaginationInfo, CKAssignmentOverride, CKUser, CKContextInfo, CKCourse, CKCanvasURLConnection, CKSubmission, CKRubricAssessment;
 
 
 
@@ -82,9 +82,6 @@ extern NSString * const CKCanvasUserInfoVersionKey;
 
 @property (assign) int itemsPerPage;
 
-// Requires "CKMockResponseData" argument. Otherwise, always NO.
-@property (assign) BOOL useMockCache;
-
 @property (copy) NSString *accessToken;
 
 // ow my eyes! I just don't want to refactor all the methods below to plumb this in yet...
@@ -97,84 +94,46 @@ extern NSString * const CKCanvasUserInfoVersionKey;
 // OAuth2 Auth. Make sure you call -oauthLogin... before any calls that require authentication
 - (id)init;
 - (void)performBlockAfterLogin:(dispatch_block_t)block;
-- (CKOAuthController *)controllerForOAuthLoginWithCompletionBlock:(void (^)(NSString *accessToken, NSError *error))block; // Must be presented in a navigation controller
 - (void)revokeAccessTokenWithCompletionBlock:(CKSimpleBlock)block;
 - (void)verifyMobileAppWithBlock:(CKSimpleBlock)block;
 
 
 
-
 #pragma mark - User Info
 - (void)getUserProfileWithBlock:(CKSimpleBlock)block;
-- (void)getUserProfileForId:(uint64_t)ident block:(CKUserBlock)block;
-- (void)getUserProfilesWithIdents:(NSArray *)idents block:(CKFailuresAndObjectsDictionariesBlock)block;
-- (void)updateUserName:(NSString *)newName block:(CKSimpleBlock)block;
-- (void)getUserAvatarsForLoggedInUserWithBlock:(CKArrayBlock)block;
 - (void)postAvatarNamed:(NSString *)name fileURL:(NSURL *)fileURL block:(CKAttachmentBlock)block;
 - (void)updateLoggedInUserAvatarWithURL:(NSURL *)URL block:(CKDictionaryBlock)block;
-- (void)getTodoItemsWithBlock:(CKArrayBlock)block;
-- (void)ignoreTodoItem:(CKTodoItem *)todoItem permanently:(BOOL)permanently withBlock:(CKSimpleBlock)block;
 
-#pragma mark - Activity Stream
-- (void)getActivityStreamItemsWithPageURL:(NSURL *)pageURLOrNil block:(CKPagedArrayBlock)block;
-- (void)getActivityStreamItemsForContext:(CKContextInfo *)context pageURL:(NSURL *)pageURLOrNil block:(CKPagedArrayBlock)block;
 
 
 #pragma mark - Courses
 extern NSString * const CKAPIIncludeSyllabusBodyKey; // NSNumber (bool)
-extern NSString * const CKAPICurrentCoursesOnlyKey;  // NSNumber (bool)
-extern NSString * const CKAPILimitEnrollmentTypesKey; // NSNumber (CKEnrollmentType)
 // These two options are mutally exclusive; use at most one of them.
 extern NSString * const CKAPICoursesForGradingRoleKey; // NSNumber (bool)
 extern NSString * const CKAPIIncludeTotalScoresKey; // NSNumber (bool)
 
-extern NSString * const CKAPIIncludePermissionsKey; // NSNumber (bool)
-
-- (void)getCoursesWithOptions:(NSDictionary *)options block:(CKArrayBlock)block;
 - (void)getCourseWithId:(uint64_t)courseId options:(NSDictionary *)options block:(CKObjectBlock)block;
-
-#pragma mark (Course enrollment and schedule)
-- (void)getStudentsForCourse:(CKCourse *)course block:(CKArrayBlock)block;
-typedef void (^CKPagedUsersAndEnrollmentsBlock)(NSError *error, NSArray *users, NSArray *enrollments, CKPaginationInfo *info);
-- (void)getUsersAndEnrollmentsForCourse:(CKCourse *)course byEnrollmentType:(CKEnrollmentType)type pageURL:(NSURL *)pageURLOrNil block:(CKPagedUsersAndEnrollmentsBlock)block;
-- (void)getAssignmentGroupsForCourse:(CKCourse *)course block:(CKArrayBlock)block;
-- (void)getCalendarItemsForCourse:(CKCourse *)course block:(CKArrayBlock)block DEPRECATED_ATTRIBUTE;
-- (void)getAssignmentsForCourse:(CKCourse *)course pageURL:(NSURL *)pageURL block:(CKPagedArrayBlock)block;
-- (void)getCalendarItemsForContext:(CKContextInfo *)context pageURL:(NSURL*)pageURL block:(CKPagedArrayBlock)block;
-- (void)getEnrollmentsForCourse:(CKCourse *)course block:(CKArrayBlock)block;
-
-// The only supported context types are CKContextTypeCourse and CKContextTypeGroup. Anything else causes an
-// NSInvalidArgumentException to be thrown.
-- (void)getTabsForContext:(CKContextInfo *)context block:(CKArrayBlock)block;
-
-- (void)getCalendarItemWithId:(uint64_t)ident block:(CKObjectBlock)block;
 
 
 
 #pragma mark - Groups
-- (void)getGroupsWithPageURL:(NSURL *)pageURLOrNil block:(CKPagedArrayBlock)handler;
 - (void)getGroupsWithPageURL:(NSURL *)pageURL isCourseAffiliated:(BOOL)isCourseAffiliated block:(CKPagedArrayBlock)handler;
 - (void)getGroupWithId:(uint64_t)ident block:(CKObjectBlock)handler;
-- (void)getGroupMembershipsInGroup:(CKGroup *)group pageURL:(NSURL *)pageURLOrNil block:(CKPagedArrayBlock)handler;
-- (void)getUsersInGroup:(CKGroup *)group pageURL:(NSURL *)pageURLOrNil block:(CKPagedArrayBlock)handler;
 
 
 
 #pragma mark - Assignments
 typedef void (^CKAssignmentBlock)(NSError *error, CKAssignment *assignment);
 - (void)getAssignmentForContext:(CKContextInfo *)context assignmentIdent:(uint64_t)assignmentIdent block:(CKAssignmentBlock)block; // Assignments only exist in courses
+- (void)postFileURLs:(NSArray *)files asSubmissionForAssignment:(CKAssignment *)assignment progressBlock:(void(^)(float progress))progressBlock completionBlock:(CKSubmissionBlock)block;
+- (void)postMediaURL:(NSURL *)mediaURL asSubmissionForAssignment:(CKAssignment *)assignment progressBlock:(void(^)(float progress))progressBlock completionBlock:(CKSubmissionBlock)block;
+- (void)postHTML:(NSString *)html asSubmissionForAssignment:(CKAssignment *)assignment completionBlock:(CKSubmissionBlock)block;
+- (void)postURL:(NSURL *)contentURL asSubmissionForAssignment:(CKAssignment *)assignment completionBlock:(CKSubmissionBlock)block;
+
+
 
 #pragma mark - AssignmentOverrides
 - (void)getOverridesForCourseIdent:(uint64_t)courseIdent assignmentIdent:(uint64_t)assignmentIdent pageURL:(NSURL *)pageURL block:(CKPagedArrayBlock)handler;
-
-
-
-#pragma mark - Favorites
-- (void)getFavoriteCoursesWithOptions:(NSDictionary *)options block:(CKArrayBlock)block;
-- (void)getFavoriteCoursesWithBlock:(CKArrayBlock)block;
-- (void)markCourseAsFavorite:(CKCourse *)course withBlock:(CKSimpleBlock)block;
-- (void)unmarkCourseAsFavorite:(CKCourse *)course withBlock:(CKSimpleBlock)block;
-
 
 
 
@@ -190,9 +149,10 @@ typedef void (^CKAssignmentBlock)(NSError *error, CKAssignment *assignment);
 typedef void (^CKDiscussionEntryBlock)(NSError *error, CKDiscussionEntry *entry);
 typedef void (^CKDiscussionTopicBlock)(NSError *error, CKDiscussionTopic *topic);
 - (void)postDiscussionTopicForContext:(CKContextInfo *)context withTitle:(NSString *)title message:(NSString *)message attachments:(NSArray *)attachments topicType:(CKDiscussionTopicType)topicType block:(CKDiscussionTopicBlock)block;
+- (void)postEntry:(NSString *)entryText withAttachments:(NSArray *)attachments toDiscussionTopic:(CKDiscussionTopic *)topic block:(CKDiscussionEntryBlock)block;
+- (void)postReply:(NSString *)replyText withAttachments:(NSArray *)attachments toDiscussionEntry:(CKDiscussionEntry *)entry inTopic:(CKDiscussionTopic *)topic block:(CKDiscussionEntryBlock)block;
 
 #pragma mark (Deleting)
-- (void)deleteDiscussionTopic:(CKDiscussionTopic *)topic forContext:(CKContextInfo *)context block:(CKSimpleBlock)block;
 - (void)deleteDiscussionEntry:(CKDiscussionEntry *)entry block:(CKSimpleBlock)block;
 
 #pragma mark (Editing)
@@ -201,10 +161,6 @@ typedef void (^CKDiscussionTopicBlock)(NSError *error, CKDiscussionTopic *topic)
 
 
 #pragma mark - Announcements
-#pragma mark (Viewing)
-
-- (void)getAnnouncementsForContext:(CKContextInfo *)contextInfo pageURL:(NSURL *)pageURL block:(CKPagedArrayBlock)block;
-
 #pragma mark (Posting)
 - (void)postAnnouncementForContext:(CKContextInfo *)context withTitle:(NSString *)title message:(NSString *)message attachments:(NSArray *)attachments block:(CKDiscussionTopicBlock)block;
 
@@ -212,10 +168,8 @@ typedef void (^CKDiscussionTopicBlock)(NSError *error, CKDiscussionTopic *topic)
 
 #pragma mark - Submissions
 #pragma mark (Viewing)
-- (void)getSubmissionsForAssignment:(CKAssignment *)assignment includeHistory:(BOOL)includeHistory block:(CKArrayBlock)block;
-- (void)getSubmissionForCourseID:(uint64_t)courseIdent assignmentID:(uint64_t)assignmentIdent studentID:(uint64_t)studentIdent block:(CKObjectBlock)block;
 - (void)getSubmissionForAssignment:(CKAssignment *)assignment studentID:(uint64_t)studentId includeHistory:(BOOL)includeHistory block:(CKObjectBlock)block;
-- (void)getUpdatedSubmission:(CKSubmission *)submission block:(CKSimpleBlock)block;
+//- (void)getUpdatedSubmission:(CKSubmission *)submission block:(CKSimpleBlock)block;
 - (void)getCommentsForSubmission:(CKSubmission *)submission block:(CKArrayBlock)block;
 - (CKCanvasURLConnection *)getURLForAttachment:(CKAttachment *)attachment block:(CKURLBlock)block;
 - (CKCanvasURLConnection *)downloadAttachment:(CKAttachment *)attachment progressBlock:(void (^)(float progress))progressBlock completionBlock:(CKURLBlock)completionBlock;
@@ -227,18 +181,10 @@ typedef void (^CKDiscussionTopicBlock)(NSError *error, CKDiscussionTopic *topic)
 
 
 
-#pragma mark (Grading)
-- (void)postGrade:(NSString *)grade forSubmission:(CKSubmission *)submission block:(CKSimpleBlock)block;
-- (void)postRubricAssessment:(CKRubricAssessment *)assessment forSubmission:(CKSubmission *)submission block:(CKSimpleBlock)block;
-
-
-
-
 #pragma mark - Media Comments
 - (void)getMediaServerConfigurationWithBlock:(CKSimpleBlock)block;
 // Nest the call to post a media comment into this method when uploading audio or video to kaltura
 - (void)postMediaCommentAtPath:(NSString *)path ofMediaType:(CKAttachmentMediaType)mediaType block:(CKMediaBlock)block;
-
 
 
 
@@ -268,15 +214,6 @@ typedef void (^CKSearchResultsBlock)(NSError *error, NSArray *results, NSString 
 
 #pragma mark (Workflow)
 - (void)markConversation:(CKConversation *)conversation asRead:(BOOL)read withBlock:(CKSimpleBlock)block;
-- (void)archiveConversation:(CKConversation *)conversation withBlock:(CKSimpleBlock)block;
-
-
-
-
-#pragma mark - Collections
-- (void)getCollectionsForUser:(CKUser *)someUser block:(CKArrayBlock)block;
-- (void)getCollectionItemsForCollection:(CKCollection *)aCollection block:(CKArrayBlock)block;
-
 
 
 
@@ -291,18 +228,5 @@ typedef void (^CKSearchResultsBlock)(NSError *error, NSArray *results, NSString 
 - (void)uploadFiles:(NSArray *)fileURLs toFolder:(CKFolder *)folder progressBlock:(void (^)(float progress))progressBlock completionBlock:(CKArrayBlock)block;
 - (void)deleteFolderItems:(NSArray *)foldersAndAttachments withBlock:(CKFailuresDictionaryBlock)failedDownloadsHandler;
 
-
-
-#pragma mark - Pages
-- (void)listPagesInContext:(CKContextInfo *)context pageURL:(NSURL *)pageURLOrNil block:(CKPagedArrayBlock)block;
-- (void)getPageInContext:(CKContextInfo *)context withIdentifier:(NSString *)identifier block:(CKObjectBlock)block;
-- (void)getFrontPageForContext:(CKContextInfo *)context block:(CKObjectBlock)block;
-
-
-
-
-#pragma mark - Mock Response
-+ (void)clearMockedResponsesBeforeDate:(NSDate *)date;
-+ (void)clearMockedResponsesBeforeTimestampString:(const char *)dateCString;
 
 @end
