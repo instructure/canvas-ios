@@ -116,9 +116,9 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         if multipleGradingPeriodsEnabled {
             header.tableView.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(view.bounds), height: 44)
             tableView.tableHeaderView = header.tableView
-            configureSearchController(header.tableView)
+//            configureSearchController(header.tableView)
         } else {
-            configureSearchController(tableView)
+//            configureSearchController(tableView)
         }
     }
 
@@ -142,6 +142,12 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         searchController.searchBar.sizeToFit()
         searchController.delegate = self
         table.tableHeaderView = searchController.searchBar
+
+        // TODO: When removing the custom split stuff, we should nuke this code
+        // if iPad...
+        if self.traitCollection.horizontalSizeClass == .Regular && self.traitCollection.verticalSizeClass == .Regular {
+            searchController.hidesNavigationBarDuringPresentation = false
+        }
         
         if let refresher = refresher {
             refresher.refreshingBegan.observeNext({ [weak self] in
