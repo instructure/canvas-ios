@@ -161,6 +161,7 @@ extension ModuleItem: ManagedFactory {
         object.moduleID = "1"
         object.position = 0
         object.title = "Module Item 1"
+        object.contentType = .assignment
         object.content = .Assignment(id: "1")
         object.completed = false
     }

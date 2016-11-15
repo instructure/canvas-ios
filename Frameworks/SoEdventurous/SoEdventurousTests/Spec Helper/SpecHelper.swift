@@ -41,10 +41,10 @@ extension ModuleItem {
         ]
     }
 
-    static var jsonWithMasteryPaths: JSONObject {
+    static func jsonWithMasteryPaths(locked locked: Bool = true) -> JSONObject {
         var json = validJSON
         json["mastery_paths"] = [
-            "locked": true,
+            "locked": locked,
             "assignment_sets": [
                 [
                     "id": 1,

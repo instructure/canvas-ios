@@ -241,12 +241,14 @@ extension ModuleItem: SynchronizedModel {
             masteryPathsItem.pageURL = nil
             masteryPathsItem.externalURL = nil
             masteryPathsItem.completionRequirement = .MustChoose
-            masteryPathsItem.completed = false
-            masteryPathsItem.locked = try masteryPaths <| "locked"
             masteryPathsItem.selectedSetID = try masteryPaths.stringID("selected_set_id")
             masteryPathsItem.lockedForUser = false
             masteryPathsItem.lockExplanation = nil
             masteryPathsItem.canView = true
+
+            let locked: Bool = try masteryPaths <| "locked"
+            masteryPathsItem.locked = locked
+            masteryPathsItem.completed = !locked
 
             var existingAssignmentSets = masteryPathsItem.assignmentSets as! Set<MasteryPathAssignmentSet>
             let assignmentSetsJSON: [JSONObject] = try masteryPaths <| "assignment_sets"

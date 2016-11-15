@@ -75,15 +75,9 @@ class ModuleDetailsViewController: SoPersistent.TableViewController {
             route(self, url)
         case 1:
             let moduleItem = dataSource.itemsCollection[NSIndexPath(forRow: indexPath.row, inSection: 0)]
-            guard let content = moduleItem.content else { return }
-            if content == .SubHeader { return }
-            if let masteryPathsItem = moduleItem as? MasteryPathsItem where content == .MasteryPaths {
-                let url = NSURL(string: ContextID(id: courseID, context: .Course).htmlPath/"modules"/moduleItem.moduleID/"items"/masteryPathsItem.moduleItemID/"select_mastery_path")!
-                route(self, url)
-            } else {
-                let url = NSURL(string: ContextID(id: courseID, context: .Course).htmlPath/"modules"/moduleItem.moduleID/"items"/moduleItem.id)!
-                route(self, url)
-            }
+            guard let content = moduleItem.content where content != .SubHeader else { return }
+            let url = NSURL(string: ContextID(id: courseID, context: .Course).htmlPath/"modules"/moduleItem.moduleID/"items"/moduleItem.id)!
+            route(self, url)
         default:
             return
         }

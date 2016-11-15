@@ -144,11 +144,11 @@ class ModuleItemViewModel: NSObject {
             }
         vm.titleTextColor <~ locked.map { $0 ? .lightGrayColor() : .blackColor() }
         vm.indentationLevel <~ self.moduleItem.producer.map { $0?.indent ?? 0 }
-        vm.selectionEnabled <~ combineLatest(self.moduleItem.producer, self.lockedForSequentialProgress.producer, moduleLocked)
+        vm.selectionEnabled <~ combineLatest(self.moduleItem.producer, locked, moduleLocked)
             .map { item, locked, moduleLocked in
                 guard !locked && !moduleLocked else { return false }
                 guard let content = item?.content else { return true }
-                if content == .MasteryPaths && ((item as? MasteryPathsItem)?.locked ?? false) {
+                if let masteryPathsItem = item as? MasteryPathsItem where content == .MasteryPaths && masteryPathsItem.locked {
                     return false
                 }
                 return content != .SubHeader

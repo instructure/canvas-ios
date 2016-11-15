@@ -102,7 +102,7 @@ extension Router {
         }
         addContextRoute([.Course], subPath: "modules/:id/items/:itemID") { contextID, parameters in
             let moduleID = String(parameters["id"] as! NSNumber)
-            let itemID = String(parameters["itemID"] as! NSNumber)
+            let itemID: String = try parameters.stringID("itemID")
             return try ModuleItemDetailViewController(session: currentSession, courseID: contextID.id, moduleID: moduleID, moduleItemID: itemID, route: route)
         }
     }

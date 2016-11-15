@@ -66,7 +66,7 @@ class ModuleItemSpec: QuickSpec {
                     expect(try! otherIncomplete.lockedBySequentialProgress(session)) == true
                 }
 
-                it("should be true if a prerequiste module requires sequential progress with incomplete items") {
+                it("should be true if a prerequisite module requires sequential progress with incomplete items") {
                     let sequential = Module.build(inSession: session) {
                         $0.id = "1"
                         $0.requireSequentialProgress = true
@@ -259,7 +259,7 @@ class ModuleItemSpec: QuickSpec {
                 it("should create a mastery paths module item") {
                     let count = MasteryPathsItem.observeCount(inSession: session)
                     expect {
-                        try! moduleItem.updateValues(ModuleItem.jsonWithMasteryPaths, inContext: moc)
+                        try! moduleItem.updateValues(ModuleItem.jsonWithMasteryPaths(), inContext: moc)
                         return try! moc.saveFRD()
                     }.to(change({ count.currentCount }, from: 0, to: 1))
                 }
@@ -270,14 +270,14 @@ class ModuleItemSpec: QuickSpec {
                         $0.moduleItemID = "1"
                     }
                     expect {
-                        try! moduleItem.updateValues(ModuleItem.jsonWithMasteryPaths, inContext: moc)
+                        try! moduleItem.updateValues(ModuleItem.jsonWithMasteryPaths(), inContext: moc)
                     }.toEventually(change({ masteryPathsItem.id }))
                 }
 
                 it("should create assignment sets") {
                     let count = MasteryPathAssignmentSet.observeCount(inSession: session)
                     expect {
-                        try! moduleItem.updateValues(ModuleItem.jsonWithMasteryPaths, inContext: moc)
+                        try! moduleItem.updateValues(ModuleItem.jsonWithMasteryPaths(), inContext: moc)
                         return try! moc.saveFRD()
                     }.to(change({ count.currentCount }, from: 0, to: 1))
                 }
@@ -291,7 +291,7 @@ class ModuleItemSpec: QuickSpec {
                         $0.masteryPathsItem = masteryPathsItem
                     }
 
-                    var json = ModuleItem.jsonWithMasteryPaths
+                    var json = ModuleItem.jsonWithMasteryPaths()
                     json["mastery_paths"] = nil
 
                     expect {
@@ -304,15 +304,41 @@ class ModuleItemSpec: QuickSpec {
                     MasteryPathsItem.factory(inSession: session) {
                         $0.moduleItemID = "1"
                     }
-                    try! moduleItem.updateValues(ModuleItem.jsonWithMasteryPaths, inContext: moc)
+                    try! moduleItem.updateValues(ModuleItem.jsonWithMasteryPaths(), inContext: moc)
                     try! moc.saveFRD()
 
-                    var json = ModuleItem.jsonWithMasteryPaths
+                    var json = ModuleItem.jsonWithMasteryPaths()
                     json["mastery_paths"] = nil
 
                     expect {
                         try! moduleItem.updateValues(json, inContext: moc)
                     }.to(change({ MasteryPathsItem.count(inContext: moc) }, from: 1, to: 0))
+                }
+
+                it("should mark locked mastery path items as incomplete") {
+                    var json = ModuleItem.jsonWithMasteryPaths(locked: true)
+                    let masteryPathsItem = MasteryPathsItem.factory(inSession: session) {
+                        $0.moduleItemID = "1"
+                        $0.completed = true
+                    }
+
+                    try! moduleItem.updateValues(json, inContext: moc)
+                    try! moc.saveFRD()
+
+                    expect(masteryPathsItem.completed).toEventually(beFalse())
+                }
+
+                it("should mark unlocked mastery path items as complete") {
+                    var json = ModuleItem.jsonWithMasteryPaths(locked: false)
+                    let masteryPathsItem = MasteryPathsItem.factory(inSession: session) {
+                        $0.moduleItemID = "1"
+                        $0.completed = false
+                    }
+
+                    try! moduleItem.updateValues(json, inContext: moc)
+                    try! moc.saveFRD()
+
+                    expect(masteryPathsItem.completed).toEventually(beTrue())
                 }
             }
 

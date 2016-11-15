@@ -215,14 +215,9 @@ class ModuleItemViewModelSpec: QuickSpec {
             }
 
             describe("next/previous Actions") {
-                var module: Module!
                 beforeEach {
-                    module = Module.build {
-                        $0.id = item.moduleID
-                        $0.courseID = item.courseID
-                        $0.prerequisiteModuleIDs = []
-                        $0.requireSequentialProgress = false
-                    }
+                    module.prerequisiteModuleIDs = []
+                    module.requireSequentialProgress = false
 
                     expect(vm.nextAction.enabled.value) == false
                     expect(vm.previousAction.enabled.value) == false
