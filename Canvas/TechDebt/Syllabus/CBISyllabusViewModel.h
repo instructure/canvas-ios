@@ -19,9 +19,13 @@
 #import "CBIColorfulViewModel.h"
 
 @class CKICourse;
+@class CKCourse;
 
 @interface CBISyllabusViewModel : CBIColorfulViewModel
 @property (nonatomic) CKICourse *model;
 @property (nonatomic) NSDate *syllabusDate;
 @property (nonatomic) NSInteger index;
+
++ (NSString *)syllabusHTMLFromCourse:(CKCourse *)course;
+
 @end

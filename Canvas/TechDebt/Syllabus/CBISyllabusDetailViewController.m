@@ -22,6 +22,7 @@
 #import "UIViewController+AnalyticsTracking.h"
 #import "WebBrowserViewController.h"
 #import "UIWebView+SafeAPIURL.h"
+#import "CKIClient+CBIClient.h"
 #import "CBISplitViewController.h"
 #import "Router.h"
 @import CanvasKeymaster;
@@ -81,18 +82,13 @@
 
 - (void)updateWebView
 {
-    if (self.course){
-        NSString *pathToTemplateFile = [[NSBundle bundleForClass:[self class]] pathForResource:@"SyllabusDetails" ofType:@"html"];
-        NSURL *baseURL = [NSURL fileURLWithPath:[pathToTemplateFile stringByDeletingLastPathComponent] isDirectory:YES];
-        NSError *error = nil;
-        NSString *htmlTemplate = [NSString stringWithContentsOfFile:pathToTemplateFile encoding:NSUTF8StringEncoding error:&error];
-        
-        NSString *scrubbedHTML = [htmlTemplate stringByReplacingOccurrencesOfString:@"{$TITLE$}" withString:self.course.name ?: @""];
-        scrubbedHTML = [scrubbedHTML stringByReplacingOccurrencesOfString:@"{$COURSE_CODE$}" withString:self.course.courseCode ?: @""];
-        scrubbedHTML = [scrubbedHTML stringByReplacingOccurrencesOfString:@"{$CONTENT$}" withString:self.course.syllabusBody ?: @""];
+    if (self.course) {
         
         self.webView.dataDetectorTypes = UIDataDetectorTypeAll;
-        [self.webView loadHTMLString:scrubbedHTML baseURL:baseURL];
+        
+        NSString *html = [CBISyllabusViewModel syllabusHTMLFromCourse:self.course];
+        Session *session = TheKeymaster.currentClient.authSession;
+        [self.webView loadHTMLString:html baseURL:session.baseURL];
     }
 }
 
@@ -105,6 +101,7 @@
 #pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
     if (navigationType == UIWebViewNavigationTypeOther) {
         return YES;
     }

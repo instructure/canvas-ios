@@ -22,4 +22,5 @@
 @interface CBISyllabusDetailViewController : UIViewController
 @property (nonatomic) CBISyllabusViewModel *viewModel;
 @property (nonatomic, strong) CKCourse *course;
+
 @end

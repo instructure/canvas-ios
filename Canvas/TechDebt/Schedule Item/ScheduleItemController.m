@@ -27,6 +27,7 @@
 #import <CanvasKit1/CKCourse.h>
 #import <CanvasKit1/CKSubmission.h>
 #import <CanvasKit1/CKURLRouter.h>
+#import "CBISyllabusDetailViewController.h"
 
 #import "ScheduleItemController.h"
 #import "ScheduleItem.h"
@@ -342,17 +343,11 @@
     if (theWebView == nil) {
         return;
     }
-    NSString *pathToTemplateFile = [[NSBundle bundleForClass:[self class]] pathForResource:@"SyllabusDetails" ofType:@"html"];
-    NSURL *baseURL = [NSURL fileURLWithPath:[pathToTemplateFile stringByDeletingLastPathComponent] isDirectory:YES];
-    NSError *error = nil;
-    NSString *htmlTemplate = [NSString stringWithContentsOfFile:pathToTemplateFile encoding:NSUTF8StringEncoding error:&error];
     
-    NSString *scrubbedHTML = [htmlTemplate stringByReplacingOccurrencesOfString:@"{$TITLE$}" withString:self.course.name];
-    scrubbedHTML = [scrubbedHTML stringByReplacingOccurrencesOfString:@"{$COURSE_CODE$}" withString:self.course.courseCode];
-    scrubbedHTML = [scrubbedHTML stringByReplacingOccurrencesOfString:@"{$CONTENT$}" withString:syllabusBody];
-    
+    NSString *html = [CBISyllabusViewModel syllabusHTMLFromCourse:self.course];
     theWebView.dataDetectorTypes = UIDataDetectorTypeAll;
-    [theWebView loadHTMLString:scrubbedHTML baseURL:baseURL];
+    Session *session = TheKeymaster.currentClient.authSession;
+    [theWebView loadHTMLString:html baseURL:session.baseURL];
 }
 
 - (void)loadDetailsForScheduleItem:(ScheduleItem *)item
