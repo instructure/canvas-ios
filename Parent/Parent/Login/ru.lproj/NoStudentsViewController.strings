@@ -1,14 +1,8 @@
-/* Class = "UIButton"; accessibilityIdentifier = "add_student_button"; ObjectID = "AlE-cd-Dx6"; */
-"AlE-cd-Dx6.accessibilityIdentifier" = "add_student_button";
-
 /* Class = "UIButton"; normalTitle = "Add Student"; ObjectID = "AlE-cd-Dx6"; */
 "AlE-cd-Dx6.normalTitle" = "Добавить студента";
 
 /* Class = "UILabel"; text = "There are no students associated with your account."; ObjectID = "eMA-cv-sB2"; */
 "eMA-cv-sB2.text" = "Нет студентов, связанных с вашим аккаунтом.";
-
-/* Class = "UIButton"; accessibilityIdentifier = "logout_button"; ObjectID = "eQ2-Tc-Vhp"; */
-"eQ2-Tc-Vhp.accessibilityIdentifier" = "logout_button";
 
 /* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "eQ2-Tc-Vhp"; */
 "eQ2-Tc-Vhp.normalTitle" = "Выйти";

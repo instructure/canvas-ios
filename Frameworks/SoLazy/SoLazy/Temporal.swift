@@ -321,6 +321,12 @@ public func ..<(lhs: NSDate, rhs: NSDate) -> [NSDate] {
     }
 }
 
+extension NSCalendar {
+    public var numberOfDaysInWeek: Int {
+        return maximumRangeOfUnit(.Weekday).length
+    }
+}
+
 public class Clock {
     static let sharedClock = Clock()
 

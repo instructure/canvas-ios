@@ -55,11 +55,7 @@
 /* Courses Tab */
 "COURSES" = "CURSOS";
 
-/* Cancel button
-   Cancel Button
-   Logout Cancel Button
-   Remove Observee Cancel Button
-   Remove Student Cancel Button */
+/* Cancel button title */
 "Cancel" = "Cancelar";
 
 /* Percent value is over 100 */
@@ -97,6 +93,9 @@
 
 /* Prompt for logging in as student */
 "Enter student's login information" = "Digite as informações de login do estudante";
+
+/* prompt for canvas observer login page */
+"Enter your Canvas Observer credentials" = "Insira as suas credenciais de Observador do Canvas";
 
 /* No comment provided by engineer. */
 "Error" = "Erro";
@@ -136,6 +135,9 @@
 
 /* Alert title when logging in with invalid credentials */
 "Invalid Credentials" = "Credenciais Inválidas";
+
+/* Title for an alert view */
+"Invalid Input" = "Entrada inválida";
 
 /* Alert Message for invalid domain */
 "Invalid student domain.
@@ -200,9 +202,7 @@ Por favor cheque de novo o domínio e tente novamente.";
 /* Empty Calendar Events Text */
 "Nothing this week" = "Nada esta semana";
 
-/* OK
-   OK Button Title
-   Okay button */
+/* OK Button Title */
 "OK" = "OK";
 
 /* Open a url in the application Safari */
@@ -217,9 +217,7 @@ Por favor cheque de novo o domínio e tente novamente.";
 /* Title for alert shown when something goes wrong resetting the password */
 "Problem Resetting Password" = "Problema ao Redefinir Senha";
 
-/* Remove Observee Button
-   Remove Observee Confirm Button
-   Remove Student Confirm Button */
+/* Remove button title */
 "Remove" = "Remover";
 
 /* delete student from login */

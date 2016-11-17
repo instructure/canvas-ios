@@ -18,16 +18,14 @@
 
 import Foundation
 import SystemConfiguration
+import ReactiveCocoa
 
-// if betaURL is set, then the app will only use that url
-private let betaURL: NSURL? =
-    nil
-//    NSURL(string: "https://airwolf-iad-gamma.inscloudgate.net/")
 
 public class RegionPicker: NSObject {
     
-    // the only region used is beta when `betaURL` is set
-    static let regions = betaURL.map { [$0] } ?? [
+    public static let betaURL = NSURL(string: "https://airwolf-iad-gamma.inscloudgate.net/")!
+    
+    private static let prodRegions = [
         NSURL(string: "https://airwolf-iad-prod.instructure.com")!,
         NSURL(string: "https://airwolf-dub-prod.instructure.com")!,
         NSURL(string: "https://airwolf-syd-prod.instructure.com")!,
@@ -35,6 +33,11 @@ public class RegionPicker: NSObject {
         NSURL(string: "https://airwolf-fra-prod.instructure.com")!
     ]
     
+    public var defaultURL: NSURL {
+        return RegionPicker.prodRegions[0]
+    }
+    
+    public let beta = MutableProperty<Bool>(false)
 
     public static let defaultPicker = RegionPicker()
 
@@ -50,7 +53,7 @@ public class RegionPicker: NSObject {
     override public init() {
         super.init()
 
-        for region in RegionPicker.regions {
+        for region in RegionPicker.prodRegions {
             let pinger = SimplePing(hostName: region.host!)
             pinger.delegate = self
             pingers[region.host!] = pinger
@@ -77,16 +80,16 @@ public class RegionPicker: NSObject {
     
     internal(set) public var pickedRegionURL: NSURL? {
         set {
-            if betaURL != nil { return } // don't alter the picked region when using beta
+            if beta.value { return } // don't alter the picked region when using beta
             NSUserDefaults.standardUserDefaults().setURL(newValue, forKey: "picked-region")
         } get {
-            if let beta = betaURL { return betaURL } // only ever use beta when its turned on
+            if beta.value { return RegionPicker.betaURL } // only ever use beta when its turned on
             return NSUserDefaults.standardUserDefaults().URLForKey("picked-region")
         }
     }
 
     public func setRegionToDefault() {
-        pickedRegionURL = RegionPicker.regions[0]
+        pickedRegionURL = RegionPicker.prodRegions[0]
     }
 
     public func pickBestRegion(completion: (NSURL?)->Void) {
@@ -120,7 +123,7 @@ public class RegionPicker: NSObject {
 
             print("5 or more recorded response times for host: \(host) with average of: \(average)")
 
-            if averageResponseTimes.keys.count == RegionPicker.regions.count {
+            if averageResponseTimes.keys.count == RegionPicker.prodRegions.count {
                 // We have averages for each - time to make a decision!
                 for (_, pinger) in pingers.enumerate() {
                     // Stop it if it's going

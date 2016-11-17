@@ -55,11 +55,7 @@
 /* Courses Tab */
 "COURSES" = "NGĀ AKORANGA";
 
-/* Cancel button
-   Cancel Button
-   Logout Cancel Button
-   Remove Observee Cancel Button
-   Remove Student Cancel Button */
+/* Cancel button title */
 "Cancel" = "Whakakore";
 
 /* Percent value is over 100 */
@@ -97,6 +93,9 @@
 
 /* Prompt for logging in as student */
 "Enter student's login information" = "Tomo ngā mōhiohio takiuru o ngā ākonga";
+
+/* prompt for canvas observer login page */
+"Enter your Canvas Observer credentials" = "Whakauru ō Canvas Kaimātakitaki taipitopito";
 
 /* No comment provided by engineer. */
 "Error" = "Hapa";
@@ -203,9 +202,7 @@ Koa-tirohia rua te rohe, me te ngana anō.";
 /* Empty Calendar Events Text */
 "Nothing this week" = "Kahore tenei wiki";
 
-/* OK
-   OK Button Title
-   Okay button */
+/* OK Button Title */
 "OK" = "Ok";
 
 /* Open a url in the application Safari */
@@ -220,9 +217,7 @@ Koa-tirohia rua te rohe, me te ngana anō.";
 /* Title for alert shown when something goes wrong resetting the password */
 "Problem Resetting Password" = "Raruraru Kupuhipa Tautuhianō";
 
-/* Remove Observee Button
-   Remove Observee Confirm Button
-   Remove Student Confirm Button */
+/* Remove button title */
 "Remove" = "Tangohia te";
 
 /* delete student from login */

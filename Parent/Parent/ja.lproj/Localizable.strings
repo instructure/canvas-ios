@@ -55,11 +55,7 @@
 /* Courses Tab */
 "COURSES" = "コース";
 
-/* Cancel button
-   Cancel Button
-   Logout Cancel Button
-   Remove Observee Cancel Button
-   Remove Student Cancel Button */
+/* Cancel button title */
 "Cancel" = "キャンセル";
 
 /* Percent value is over 100 */
@@ -97,6 +93,9 @@
 
 /* Prompt for logging in as student */
 "Enter student's login information" = "受講生のログイン情報を入力する";
+
+/* prompt for canvas observer login page */
+"Enter your Canvas Observer credentials" = "Canvas オブザーバーの資格情報を入力します";
 
 /* No comment provided by engineer. */
 "Error" = "エラー";
@@ -203,9 +202,7 @@ Please double-check the domain and try again." = "無効な受講生ドメイン
 /* Empty Calendar Events Text */
 "Nothing this week" = "今週はありません";
 
-/* OK
-   OK Button Title
-   Okay button */
+/* OK Button Title */
 "OK" = "OK";
 
 /* Open a url in the application Safari */
@@ -220,9 +217,7 @@ Please double-check the domain and try again." = "無効な受講生ドメイン
 /* Title for alert shown when something goes wrong resetting the password */
 "Problem Resetting Password" = "パスワードリセットに関する問題";
 
-/* Remove Observee Button
-   Remove Observee Confirm Button
-   Remove Student Confirm Button */
+/* Remove button title */
 "Remove" = "削除する";
 
 /* delete student from login */

@@ -2274,6 +2274,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2321,6 +2322,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2365,7 +2367,7 @@
 				CODE_SIGN_ENTITLEMENTS = Parent/Parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: iOS Builds (73MVYX3ELK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: iOS Builds (73MVYX3ELK)";
-				CURRENT_PROJECT_VERSION = 1981;
+				CURRENT_PROJECT_VERSION = 2012;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2395,7 +2397,7 @@
 				CODE_SIGN_ENTITLEMENTS = Parent/Parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Instructure, Inc. (B6333T4PXQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Instructure, Inc. (B6333T4PXQ)";
-				CURRENT_PROJECT_VERSION = 1981;
+				CURRENT_PROJECT_VERSION = 2012;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -1,5 +1,5 @@
-/* Class = "UITextField"; accessibilityIdentifier = "password_field"; ObjectID = "RIt-Gd-vf8"; */
-"RIt-Gd-vf8.accessibilityIdentifier" = "密码_栏";
+/* Class = "UIButton"; normalTitle = "Log in with Canvas"; ObjectID = "NBN-Ir-Nor"; */
+"NBN-Ir-Nor.normalTitle" = "用 Canvas 登录";
 
 /* Class = "UITextField"; accessibilityLabel = "Password"; ObjectID = "RIt-Gd-vf8"; */
 "RIt-Gd-vf8.accessibilityLabel" = "密码";
@@ -7,20 +7,11 @@
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "RIt-Gd-vf8"; */
 "RIt-Gd-vf8.placeholder" = "密码";
 
-/* Class = "UIButton"; accessibilityIdentifier = "forgot_password_button"; ObjectID = "Zjh-td-3qY"; */
-"Zjh-td-3qY.accessibilityIdentifier" = "忘记_密码_按钮";
-
 /* Class = "UIButton"; normalTitle = "Forgot Password?"; ObjectID = "Zjh-td-3qY"; */
 "Zjh-td-3qY.normalTitle" = "忘记密码吗？";
 
-/* Class = "UIButton"; accessibilityIdentifier = "create_account_button"; ObjectID = "cBu-44-Ntj"; */
-"cBu-44-Ntj.accessibilityIdentifier" = "创建_帐户_按钮";
-
 /* Class = "UIButton"; normalTitle = "Create Account"; ObjectID = "cBu-44-Ntj"; */
 "cBu-44-Ntj.normalTitle" = "创建帐户";
-
-/* Class = "UIButton"; accessibilityIdentifier = "primary_action_button"; ObjectID = "dbH-uS-X2F"; */
-"dbH-uS-X2F.accessibilityIdentifier" = "主要_操作_按钮";
 
 /* Class = "UIButton"; accessibilityLabel = "Login"; ObjectID = "dbH-uS-X2F"; */
 "dbH-uS-X2F.accessibilityLabel" = "登录";
@@ -28,14 +19,8 @@
 /* Class = "UIButton"; normalTitle = "Next"; ObjectID = "dbH-uS-X2F"; */
 "dbH-uS-X2F.normalTitle" = "下一个";
 
-/* Class = "UIButton"; accessibilityIdentifier = "cancel_button"; ObjectID = "g5q-Iz-QjI"; */
-"g5q-Iz-QjI.accessibilityIdentifier" = "取消_按钮";
-
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "g5q-Iz-QjI"; */
 "g5q-Iz-QjI.normalTitle" = "取消";
-
-/* Class = "UITextField"; accessibilityIdentifier = "last_name_field"; ObjectID = "lHP-23-IvG"; */
-"lHP-23-IvG.accessibilityIdentifier" = "姓_氏_栏";
 
 /* Class = "UITextField"; accessibilityLabel = "Last Name"; ObjectID = "lHP-23-IvG"; */
 "lHP-23-IvG.accessibilityLabel" = "姓氏";
@@ -43,26 +28,17 @@
 /* Class = "UITextField"; placeholder = "Last name"; ObjectID = "lHP-23-IvG"; */
 "lHP-23-IvG.placeholder" = "姓氏";
 
-/* Class = "UITextField"; accessibilityIdentifier = "confirm_password_field"; ObjectID = "qMf-5a-PCQ"; */
-"qMf-5a-PCQ.accessibilityIdentifier" = "确认_密码_栏";
-
 /* Class = "UITextField"; accessibilityLabel = "Confirm Password"; ObjectID = "qMf-5a-PCQ"; */
 "qMf-5a-PCQ.accessibilityLabel" = "确认密码";
 
 /* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "qMf-5a-PCQ"; */
 "qMf-5a-PCQ.placeholder" = "确认密码";
 
-/* Class = "UITextField"; accessibilityIdentifier = "email_field"; ObjectID = "y1y-qJ-k36"; */
-"y1y-qJ-k36.accessibilityIdentifier" = "电子邮件_栏";
-
 /* Class = "UITextField"; accessibilityLabel = "Email Address"; ObjectID = "y1y-qJ-k36"; */
 "y1y-qJ-k36.accessibilityLabel" = "电子邮件地址";
 
 /* Class = "UITextField"; placeholder = "Email address"; ObjectID = "y1y-qJ-k36"; */
 "y1y-qJ-k36.placeholder" = "电子邮件地址";
-
-/* Class = "UITextField"; accessibilityIdentifier = "first_name_field"; ObjectID = "ygr-5L-pCJ"; */
-"ygr-5L-pCJ.accessibilityIdentifier" = "名字_栏";
 
 /* Class = "UITextField"; accessibilityLabel = "First Name"; ObjectID = "ygr-5L-pCJ"; */
 "ygr-5L-pCJ.accessibilityLabel" = "名字";

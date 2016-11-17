@@ -55,11 +55,7 @@
 /* Courses Tab */
 "COURSES" = "KURSER";
 
-/* Cancel button
-   Cancel Button
-   Logout Cancel Button
-   Remove Observee Cancel Button
-   Remove Student Cancel Button */
+/* Cancel button title */
 "Cancel" = "Annuller";
 
 /* Percent value is over 100 */
@@ -97,6 +93,9 @@
 
 /* Prompt for logging in as student */
 "Enter student's login information" = "Indtast studerendes login informationer";
+
+/* prompt for canvas observer login page */
+"Enter your Canvas Observer credentials" = "Indtast dine Canvas Observer legitimationsoplysninger";
 
 /* No comment provided by engineer. */
 "Error" = "Fejl";
@@ -136,6 +135,9 @@
 
 /* Alert title when logging in with invalid credentials */
 "Invalid Credentials" = "Ugyldig legitimationsinformationer";
+
+/* Title for an alert view */
+"Invalid Input" = "Ugyldigt input";
 
 /* Alert Message for invalid domain */
 "Invalid student domain.
@@ -200,9 +202,7 @@ Dobbelt tjek venligst domænet og prøv igen.";
 /* Empty Calendar Events Text */
 "Nothing this week" = "Intet denne uge";
 
-/* OK
-   OK Button Title
-   Okay button */
+/* OK Button Title */
 "OK" = "OK";
 
 /* Open a url in the application Safari */
@@ -217,9 +217,7 @@ Dobbelt tjek venligst domænet og prøv igen.";
 /* Title for alert shown when something goes wrong resetting the password */
 "Problem Resetting Password" = "Problem med nulstilling af adgangskode";
 
-/* Remove Observee Button
-   Remove Observee Confirm Button
-   Remove Student Confirm Button */
+/* Remove button title */
 "Remove" = "Fjern";
 
 /* delete student from login */

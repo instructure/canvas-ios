@@ -34,10 +34,6 @@ class CalendarEventWeekPageViewController: UIViewController {
         return dateFormatter
     }()
 
-    static var numberOfDaysInWeek: Int = {
-        return NSCalendar.currentCalendar().maximumRangeOfUnit(.Weekday).length
-    }()
-
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var nextWeekButton: UIButton!
     @IBOutlet weak var prevWeekButton: UIButton!
@@ -117,7 +113,7 @@ class CalendarEventWeekPageViewController: UIViewController {
             pageVC.dataSource = self
             pageVC.setViewControllers([UIViewController()], direction: .Forward, animated: false, completion: nil)
             let startDate = initialReferenceDate.dateOnSundayAtTheBeginningOfTheWeek
-            let endDate = startDate + CalendarEventWeekPageViewController.numberOfDaysInWeek.daysComponents
+            let endDate = startDate + NSCalendar.currentCalendar().numberOfDaysInWeek.daysComponents
             let initialViewController = try! CalendarEventListViewController(session: session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
             initialViewController.selectCalendarEventAction = selectCalendarEventAction
             pageVC.setViewControllers([initialViewController], direction: .Forward, animated: false, completion: nil)
@@ -175,7 +171,7 @@ class CalendarEventWeekPageViewController: UIViewController {
             fatalError("View Controller in a CalendarEventWeekPageViewController should always be of type CalendarEventListViewController")
         }
 
-        let numDays = CalendarEventWeekPageViewController.numberOfDaysInWeek
+        let numDays = NSCalendar.currentCalendar().numberOfDaysInWeek
         let startDate = viewController.startDate + numDays.daysComponents
         let initialViewController = eventListController(startDate)
         Armchair.userDidSignificantEvent(true)
@@ -191,7 +187,7 @@ class CalendarEventWeekPageViewController: UIViewController {
             fatalError("View Controller in a CalendarEventWeekPageViewController should always be of type CalendarEventListViewController")
         }
 
-        let numDays = CalendarEventWeekPageViewController.numberOfDaysInWeek
+        let numDays = NSCalendar.currentCalendar().numberOfDaysInWeek
         let startDate = viewController.startDate - numDays.daysComponents
         let initialViewController = eventListController(startDate)
         Armchair.userDidSignificantEvent(true)
@@ -211,7 +207,7 @@ class CalendarEventWeekPageViewController: UIViewController {
     // MARK: - Helper Functions
     // ---------------------------------------------
     func eventListController(startDate: NSDate) -> CalendarEventListViewController {
-        let endDate = startDate + CalendarEventWeekPageViewController.numberOfDaysInWeek.daysComponents
+        let endDate = startDate + NSCalendar.currentCalendar().numberOfDaysInWeek.daysComponents
 
         // Failing on purpose here.  If this is broken it's programmer error
         let eventListViewController = try! CalendarEventListViewController(session: session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
@@ -239,7 +235,7 @@ extension CalendarEventWeekPageViewController : UIPageViewControllerDataSource {
             return nil
         }
 
-        let numDays = CalendarEventWeekPageViewController.numberOfDaysInWeek
+        let numDays = NSCalendar.currentCalendar().numberOfDaysInWeek
         let startDate = viewController.startDate - numDays.daysComponents
         return eventListController(startDate)
     }
@@ -249,7 +245,7 @@ extension CalendarEventWeekPageViewController : UIPageViewControllerDataSource {
             return nil
         }
 
-        let numDays = CalendarEventWeekPageViewController.numberOfDaysInWeek
+        let numDays = NSCalendar.currentCalendar().numberOfDaysInWeek
         let startDate = viewController.startDate + numDays.daysComponents
         return eventListController(startDate)
     }

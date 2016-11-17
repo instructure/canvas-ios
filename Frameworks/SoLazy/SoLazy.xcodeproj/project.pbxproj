@@ -32,6 +32,7 @@
 		B16398791DC7A87500A5B68B /* ArraySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16398781DC7A87500A5B68B /* ArraySpec.swift */; };
 		B16A8D841C99CE03009E364E /* RAC+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53D1B3B1C90C74300303604 /* RAC+SoLazy.swift */; };
 		B18799B51CD90906008F712A /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18799B41CD90906008F712A /* Environment.swift */; };
+		B1B8CC6D1DDAB24C0095BEFA /* NSDateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B8CC6C1DDAB24C0095BEFA /* NSDateSpec.swift */; };
 		B51C17C71C46EE820053AC6E /* LocalNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51C17C61C46EE820053AC6E /* LocalNotificationHandler.swift */; };
 		B5D3D92E1D8CAB5F00C70CE3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5D3D92B1D8CAB5F00C70CE3 /* Localizable.strings */; };
 		B5D3D92F1D8CAB5F00C70CE3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49A960821BC315C600592D94 /* Info.plist */; };
@@ -76,6 +77,7 @@
 		B16398751DC7A82D00A5B68B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B16398781DC7A87500A5B68B /* ArraySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraySpec.swift; sourceTree = "<group>"; };
 		B18799B41CD90906008F712A /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		B1B8CC6C1DDAB24C0095BEFA /* NSDateSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateSpec.swift; sourceTree = "<group>"; };
 		B51C17C61C46EE820053AC6E /* LocalNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHandler.swift; sourceTree = "<group>"; };
 		B53D1B3B1C90C74300303604 /* RAC+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RAC+SoLazy.swift"; sourceTree = "<group>"; };
 		B57C97141D8CAB7D00B526E8 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				B16398731DC7A81900A5B68B /* Dependencies */,
 				49A960901BC315C600592D94 /* SoLazyTests.swift */,
 				49A9608E1BC315C600592D94 /* Supporting Files */,
+				B1B8CC6C1DDAB24C0095BEFA /* NSDateSpec.swift */,
 				B16398781DC7A87500A5B68B /* ArraySpec.swift */,
 			);
 			path = SoLazyTests;
@@ -392,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1B8CC6D1DDAB24C0095BEFA /* NSDateSpec.swift in Sources */,
 				B16398791DC7A87500A5B68B /* ArraySpec.swift in Sources */,
 				49A960911BC315C600592D94 /* SoLazyTests.swift in Sources */,
 			);

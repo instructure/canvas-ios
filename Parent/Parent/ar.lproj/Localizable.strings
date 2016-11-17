@@ -55,11 +55,7 @@
 /* Courses Tab */
 "COURSES" = "المساقات";
 
-/* Cancel button
-   Cancel Button
-   Logout Cancel Button
-   Remove Observee Cancel Button
-   Remove Student Cancel Button */
+/* Cancel button title */
 "Cancel" = "إلغاء";
 
 /* Percent value is over 100 */
@@ -97,6 +93,9 @@
 
 /* Prompt for logging in as student */
 "Enter student's login information" = "إدخال معلومات تسجيل دخول الطالب";
+
+/* prompt for canvas observer login page */
+"Enter your Canvas Observer credentials" = "أدخل بيانات اعتماد Canvas Observer الخاصة بك";
 
 /* No comment provided by engineer. */
 "Error" = "خطأ";
@@ -203,9 +202,7 @@ Please double-check the domain and try again." = "مجال طالب غير صا�
 /* Empty Calendar Events Text */
 "Nothing this week" = "لا شيء هذا الأسبوع";
 
-/* OK
-   OK Button Title
-   Okay button */
+/* OK Button Title */
 "OK" = "موافق";
 
 /* Open a url in the application Safari */
@@ -220,9 +217,7 @@ Please double-check the domain and try again." = "مجال طالب غير صا�
 /* Title for alert shown when something goes wrong resetting the password */
 "Problem Resetting Password" = "حدثت مشكلة أثناء إعادة تعيين كلمة المرور";
 
-/* Remove Observee Button
-   Remove Observee Confirm Button
-   Remove Student Confirm Button */
+/* Remove button title */
 "Remove" = "إزالة";
 
 /* delete student from login */

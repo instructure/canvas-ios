@@ -55,11 +55,7 @@
 /* Courses Tab */
 "COURSES" = "課程";
 
-/* Cancel button
-   Cancel Button
-   Logout Cancel Button
-   Remove Observee Cancel Button
-   Remove Student Cancel Button */
+/* Cancel button title */
 "Cancel" = "取消";
 
 /* Percent value is over 100 */
@@ -97,6 +93,9 @@
 
 /* Prompt for logging in as student */
 "Enter student's login information" = "輸入學生的登入資訊";
+
+/* prompt for canvas observer login page */
+"Enter your Canvas Observer credentials" = "輸入您的 Canvas 監督人憑證";
 
 /* No comment provided by engineer. */
 "Error" = "錯誤";
@@ -203,9 +202,7 @@ Please double-check the domain and try again." = "無效的學生域名。
 /* Empty Calendar Events Text */
 "Nothing this week" = "本週無事";
 
-/* OK
-   OK Button Title
-   Okay button */
+/* OK Button Title */
 "OK" = "是";
 
 /* Open a url in the application Safari */
@@ -220,9 +217,7 @@ Please double-check the domain and try again." = "無效的學生域名。
 /* Title for alert shown when something goes wrong resetting the password */
 "Problem Resetting Password" = "密碼重設出現問題";
 
-/* Remove Observee Button
-   Remove Observee Confirm Button
-   Remove Student Confirm Button */
+/* Remove button title */
 "Remove" = "移除";
 
 /* delete student from login */

@@ -20,7 +20,7 @@ import Foundation
 import TooLegit
 
 public class AirwolfAPI {
-    public static var baseURL = RegionPicker.regions[0]
+    public static var baseURL = RegionPicker.defaultPicker.defaultURL
 
     // MARK: Parent calls
     public class func authenticateRequest(email email: String, password: String) throws -> NSURLRequest {

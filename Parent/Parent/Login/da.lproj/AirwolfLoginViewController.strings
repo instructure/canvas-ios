@@ -1,5 +1,5 @@
-/* Class = "UITextField"; accessibilityIdentifier = "password_field"; ObjectID = "RIt-Gd-vf8"; */
-"RIt-Gd-vf8.accessibilityIdentifier" = "adgangskode_felt";
+/* Class = "UIButton"; normalTitle = "Log in with Canvas"; ObjectID = "NBN-Ir-Nor"; */
+"NBN-Ir-Nor.normalTitle" = "Log ind med Canvas";
 
 /* Class = "UITextField"; accessibilityLabel = "Password"; ObjectID = "RIt-Gd-vf8"; */
 "RIt-Gd-vf8.accessibilityLabel" = "Adgangskode";
@@ -7,20 +7,11 @@
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "RIt-Gd-vf8"; */
 "RIt-Gd-vf8.placeholder" = "Adgangskode";
 
-/* Class = "UIButton"; accessibilityIdentifier = "forgot_password_button"; ObjectID = "Zjh-td-3qY"; */
-"Zjh-td-3qY.accessibilityIdentifier" = "glemt_adgangskode_knap";
-
 /* Class = "UIButton"; normalTitle = "Forgot Password?"; ObjectID = "Zjh-td-3qY"; */
 "Zjh-td-3qY.normalTitle" = "Glemt adgangskode?";
 
-/* Class = "UIButton"; accessibilityIdentifier = "create_account_button"; ObjectID = "cBu-44-Ntj"; */
-"cBu-44-Ntj.accessibilityIdentifier" = "opret_konto_knap";
-
 /* Class = "UIButton"; normalTitle = "Create Account"; ObjectID = "cBu-44-Ntj"; */
 "cBu-44-Ntj.normalTitle" = "Opret konto";
-
-/* Class = "UIButton"; accessibilityIdentifier = "primary_action_button"; ObjectID = "dbH-uS-X2F"; */
-"dbH-uS-X2F.accessibilityIdentifier" = "primær_handlingsknap";
 
 /* Class = "UIButton"; accessibilityLabel = "Login"; ObjectID = "dbH-uS-X2F"; */
 "dbH-uS-X2F.accessibilityLabel" = "Login";
@@ -28,14 +19,8 @@
 /* Class = "UIButton"; normalTitle = "Next"; ObjectID = "dbH-uS-X2F"; */
 "dbH-uS-X2F.normalTitle" = "Næste";
 
-/* Class = "UIButton"; accessibilityIdentifier = "cancel_button"; ObjectID = "g5q-Iz-QjI"; */
-"g5q-Iz-QjI.accessibilityIdentifier" = "annuller_knap";
-
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "g5q-Iz-QjI"; */
 "g5q-Iz-QjI.normalTitle" = "Annuller";
-
-/* Class = "UITextField"; accessibilityIdentifier = "last_name_field"; ObjectID = "lHP-23-IvG"; */
-"lHP-23-IvG.accessibilityIdentifier" = "efternavnsfelt";
 
 /* Class = "UITextField"; accessibilityLabel = "Last Name"; ObjectID = "lHP-23-IvG"; */
 "lHP-23-IvG.accessibilityLabel" = "Efternavn";
@@ -43,26 +28,17 @@
 /* Class = "UITextField"; placeholder = "Last name"; ObjectID = "lHP-23-IvG"; */
 "lHP-23-IvG.placeholder" = "Efternavn";
 
-/* Class = "UITextField"; accessibilityIdentifier = "confirm_password_field"; ObjectID = "qMf-5a-PCQ"; */
-"qMf-5a-PCQ.accessibilityIdentifier" = "bekræft_adgangskodefelt";
-
 /* Class = "UITextField"; accessibilityLabel = "Confirm Password"; ObjectID = "qMf-5a-PCQ"; */
 "qMf-5a-PCQ.accessibilityLabel" = "Bekræft adgangskode";
 
 /* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "qMf-5a-PCQ"; */
 "qMf-5a-PCQ.placeholder" = "Bekræft adgangskode";
 
-/* Class = "UITextField"; accessibilityIdentifier = "email_field"; ObjectID = "y1y-qJ-k36"; */
-"y1y-qJ-k36.accessibilityIdentifier" = "e-mailfelt";
-
 /* Class = "UITextField"; accessibilityLabel = "Email Address"; ObjectID = "y1y-qJ-k36"; */
 "y1y-qJ-k36.accessibilityLabel" = "E-mailadresse";
 
 /* Class = "UITextField"; placeholder = "Email address"; ObjectID = "y1y-qJ-k36"; */
 "y1y-qJ-k36.placeholder" = "E-mailadresse";
-
-/* Class = "UITextField"; accessibilityIdentifier = "first_name_field"; ObjectID = "ygr-5L-pCJ"; */
-"ygr-5L-pCJ.accessibilityIdentifier" = "fornavnfelt";
 
 /* Class = "UITextField"; accessibilityLabel = "First Name"; ObjectID = "ygr-5L-pCJ"; */
 "ygr-5L-pCJ.accessibilityLabel" = "Fornavn";

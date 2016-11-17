@@ -1,6 +1,3 @@
-/* Class = "UILabel"; accessibilityIdentifier = "nothing_due_label"; ObjectID = "Khu-jV-mWb"; */
-"Khu-jV-mWb.accessibilityIdentifier" = "kahore_tapanga_tika";
-
 /* Class = "UILabel"; text = "Nothing Due"; ObjectID = "Khu-jV-mWb"; */
 "Khu-jV-mWb.text" = "kahore Nā";
 

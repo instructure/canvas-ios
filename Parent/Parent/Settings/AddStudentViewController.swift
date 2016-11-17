@@ -29,15 +29,17 @@ class WebLoginViewController: UIViewController {
     
     let request: NSURLRequest?
     let useBackButton: Bool
+    let loginFailureMessage: String
     var prompt: String? = nil
     
     let webView = UIWebView()
     private let backButton = UIButton(type: .Custom)
     private let statusBarNotification = CWStatusBarNotification()
     
-    init(request: NSURLRequest?, useBackButton: Bool = false) {
+    init(request: NSURLRequest?, useBackButton: Bool, loginFailureMessage: String) {
         self.request = request
         self.useBackButton = useBackButton
+        self.loginFailureMessage = loginFailureMessage
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -125,7 +127,7 @@ class WebLoginViewController: UIViewController {
     }
     
     func presentUnexpectedAuthError() {
-        let alertController = UIAlertController(title: NSLocalizedString("Authorization Failed.", comment: "Authorization Failed Title"), message: NSLocalizedString("Unexpected Authentication Error.  Please try logging in again", comment: "Auth Failed Message"), preferredStyle: .Alert)
+        let alertController = UIAlertController(title: NSLocalizedString("Authorization Failed.", comment: "Authorization Failed Title"), message: loginFailureMessage, preferredStyle: .Alert)
         let action = UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .Default, handler: { [weak self] _ in self?.navigationController?.popViewControllerAnimated(true) })
         alertController.addAction(action)
         self.presentViewController(alertController, animated: true, completion: nil)
@@ -151,11 +153,11 @@ class AddStudentViewController: WebLoginViewController {
     
     var completionHandler: ((Result<Bool, NSError>)->Void)?
     let refresher: Refresher
-    
+
     init(session: Session, domain: NSURL, useBackButton: Bool = false, completionHandler: (Result<Bool, NSError>)->Void) throws {
         self.refresher = try Student.observedStudentsRefresher(session)
         
-        super.init(request: try? AirwolfAPI.addStudentRequest(session, parentID: session.user.id, studentDomain: domain))
+        super.init(request: try? AirwolfAPI.addStudentRequest(session, parentID: session.user.id, studentDomain: domain), useBackButton: useBackButton, loginFailureMessage: NSLocalizedString("Unexpected Authentication Error.  Please try logging in again", comment: "Auth Failed Message"))
         
         webView.delegate = self
         self.completionHandler = completionHandler

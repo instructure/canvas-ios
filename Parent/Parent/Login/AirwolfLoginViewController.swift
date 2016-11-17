@@ -58,6 +58,8 @@ class AirwolfLoginViewController: UIViewController {
     @IBOutlet var passwordFieldTopCollapsedConstraint: NSLayoutConstraint!
     private let passwordTopDefault: CGFloat = 135.0
     private let passwordTopCollapsed: CGFloat = 6.0
+    
+    @IBOutlet weak var betaButton: UIButton!
 
     enum State {
         case DoingSomethingImportant
@@ -97,8 +99,15 @@ class AirwolfLoginViewController: UIViewController {
         let insetAmount = spacing / 2
         
         canvasLoginButton.imageView?.contentMode = .ScaleAspectFit
-        canvasLoginButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: -insetAmount)
-        canvasLoginButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: insetAmount)
+        if UIView.userInterfaceLayoutDirectionForSemanticContentAttribute(canvasLoginButton.semanticContentAttribute) == .LeftToRight {
+            canvasLoginButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: -insetAmount)
+            canvasLoginButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: insetAmount)
+        }
+        else {
+            canvasLoginButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount, bottom: 0, right: insetAmount)
+            canvasLoginButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: -insetAmount)
+            canvasLoginButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -insetAmount)
+        }
         
         let colors = ColorScheme.blueColorScheme
         triangleBackgroundGradientView.diagonal = false
@@ -169,7 +178,7 @@ class AirwolfLoginViewController: UIViewController {
             case .DoingSomethingImportant:
                 self.activityIndicator.startAnimating()
             case .Login, .Disabled:
-                if !self.emailField.isFirstResponder() { self.emailField.becomeFirstResponder() } // in case any other field was the first responder
+                if !self.emailField.isFirstResponder() { self.view.window?.findFirstResponder()?.resignFirstResponder() } // in case any other field was the first responder
                 self.activityIndicator.stopAnimating()
 
                 self.fieldContainerHeightConstraint.constant = self.loginFieldContainerHeight
@@ -240,8 +249,24 @@ class AirwolfLoginViewController: UIViewController {
         checkRegion()
 
         viewDidLoadFinished = true
+        
+        betaButton.rac_hidden <~ RegionPicker.defaultPicker.beta.producer.map { !$0 }
+        RegionPicker.defaultPicker.beta.signal
+            .observeOn(UIScheduler())
+            .observeNext { beta in
+                AirwolfAPI.baseURL = beta ? RegionPicker.betaURL : (RegionPicker.defaultPicker.pickedRegionURL ?? RegionPicker.defaultPicker.defaultURL)
+            }
+        let turnOnBeta = UITapGestureRecognizer(target: self, action: #selector(toggleBetaRegion(_:)))
+        turnOnBeta.numberOfTapsRequired = 3
+        turnOnBeta.numberOfTouchesRequired = 2
+        view.addGestureRecognizer(turnOnBeta)
     }
-
+    
+    @IBAction func toggleBetaRegion(sender: AnyObject) {
+        RegionPicker.defaultPicker.beta.value = !RegionPicker.defaultPicker.beta.value
+        print("url: \(AirwolfAPI.baseURL)")
+    }
+    
     private func checkRegion() {
         if RegionPicker.defaultPicker.pickedRegionURL == nil {
             state.value = .DoingSomethingImportant

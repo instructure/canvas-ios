@@ -1,5 +1,5 @@
-/* Class = "UITextField"; accessibilityIdentifier = "password_field"; ObjectID = "RIt-Gd-vf8"; */
-"RIt-Gd-vf8.accessibilityIdentifier" = "kupuhipa_field";
+/* Class = "UIButton"; normalTitle = "Log in with Canvas"; ObjectID = "NBN-Ir-Nor"; */
+"NBN-Ir-Nor.normalTitle" = "Takiuru ki Canvas";
 
 /* Class = "UITextField"; accessibilityLabel = "Password"; ObjectID = "RIt-Gd-vf8"; */
 "RIt-Gd-vf8.accessibilityLabel" = "kupuhipa";
@@ -7,20 +7,11 @@
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "RIt-Gd-vf8"; */
 "RIt-Gd-vf8.placeholder" = "kupuhipa";
 
-/* Class = "UIButton"; accessibilityIdentifier = "forgot_password_button"; ObjectID = "Zjh-td-3qY"; */
-"Zjh-td-3qY.accessibilityIdentifier" = "wareware_pātene_kupuhipa";
-
 /* Class = "UIButton"; normalTitle = "Forgot Password?"; ObjectID = "Zjh-td-3qY"; */
 "Zjh-td-3qY.normalTitle" = "Wareware Kupuhipa?";
 
-/* Class = "UIButton"; accessibilityIdentifier = "create_account_button"; ObjectID = "cBu-44-Ntj"; */
-"cBu-44-Ntj.accessibilityIdentifier" = "waihanga_pātene_pūkete";
-
 /* Class = "UIButton"; normalTitle = "Create Account"; ObjectID = "cBu-44-Ntj"; */
 "cBu-44-Ntj.normalTitle" = "Waihanga Pūkete";
-
-/* Class = "UIButton"; accessibilityIdentifier = "primary_action_button"; ObjectID = "dbH-uS-X2F"; */
-"dbH-uS-X2F.accessibilityIdentifier" = "pātene_hohenga_tuatahi";
 
 /* Class = "UIButton"; accessibilityLabel = "Login"; ObjectID = "dbH-uS-X2F"; */
 "dbH-uS-X2F.accessibilityLabel" = "Takiuru";
@@ -28,14 +19,8 @@
 /* Class = "UIButton"; normalTitle = "Next"; ObjectID = "dbH-uS-X2F"; */
 "dbH-uS-X2F.normalTitle" = "Muri";
 
-/* Class = "UIButton"; accessibilityIdentifier = "cancel_button"; ObjectID = "g5q-Iz-QjI"; */
-"g5q-Iz-QjI.accessibilityIdentifier" = "pātene_whakakore";
-
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "g5q-Iz-QjI"; */
 "g5q-Iz-QjI.normalTitle" = "Whakakore";
-
-/* Class = "UITextField"; accessibilityIdentifier = "last_name_field"; ObjectID = "lHP-23-IvG"; */
-"lHP-23-IvG.accessibilityIdentifier" = "āpure_ingoa_whakamutunga";
 
 /* Class = "UITextField"; accessibilityLabel = "Last Name"; ObjectID = "lHP-23-IvG"; */
 "lHP-23-IvG.accessibilityLabel" = "ingoa Mutunga";
@@ -43,26 +28,17 @@
 /* Class = "UITextField"; placeholder = "Last name"; ObjectID = "lHP-23-IvG"; */
 "lHP-23-IvG.placeholder" = "ingoa whakamutunga";
 
-/* Class = "UITextField"; accessibilityIdentifier = "confirm_password_field"; ObjectID = "qMf-5a-PCQ"; */
-"qMf-5a-PCQ.accessibilityIdentifier" = "te whakaū_i te mara_kupuhipa";
-
 /* Class = "UITextField"; accessibilityLabel = "Confirm Password"; ObjectID = "qMf-5a-PCQ"; */
 "qMf-5a-PCQ.accessibilityLabel" = "Whakaū Kupuhipa";
 
 /* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "qMf-5a-PCQ"; */
 "qMf-5a-PCQ.placeholder" = "Whakaū Kupuhipa";
 
-/* Class = "UITextField"; accessibilityIdentifier = "email_field"; ObjectID = "y1y-qJ-k36"; */
-"y1y-qJ-k36.accessibilityIdentifier" = "email_field";
-
 /* Class = "UITextField"; accessibilityLabel = "Email Address"; ObjectID = "y1y-qJ-k36"; */
 "y1y-qJ-k36.accessibilityLabel" = "īmēra Wāhitau";
 
 /* Class = "UITextField"; placeholder = "Email address"; ObjectID = "y1y-qJ-k36"; */
 "y1y-qJ-k36.placeholder" = "īmēra Wāhitau";
-
-/* Class = "UITextField"; accessibilityIdentifier = "first_name_field"; ObjectID = "ygr-5L-pCJ"; */
-"ygr-5L-pCJ.accessibilityIdentifier" = "āpure_first_name";
 
 /* Class = "UITextField"; accessibilityLabel = "First Name"; ObjectID = "ygr-5L-pCJ"; */
 "ygr-5L-pCJ.accessibilityLabel" = "ingoa tuatahi";

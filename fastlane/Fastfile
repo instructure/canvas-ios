@@ -99,19 +99,20 @@ platform :ios do
     )
   end
 
-  def build_for_device(xc_scheme)
+  def build_for_device(xc_scheme, export_method)
     retry_cmd('gym') do
       # Always clear derived data before building becaue Xcode is flaky.
       # Fix 'module 'Masonry' not found'
       clear_derived_data
       gym(
-          scheme: xc_scheme,
-          workspace: XC_WORKSPACE,
-          clean: false,
-          output_directory: './artifacts',
-          export_team_id: 'B6333T4PXQ',
-          use_legacy_build_api: true, # required or Xcode will flake out.
-          toolchain: :swift_2_3
+        scheme: xc_scheme,
+        workspace: XC_WORKSPACE,
+        clean: false,
+        output_directory: './artifacts',
+        export_team_id: 'B6333T4PXQ',
+        use_legacy_build_api: true, # required or Xcode will flake out.
+        toolchain: :swift_2_3,
+        export_method: export_method
       )
     end
   end
@@ -120,7 +121,7 @@ platform :ios do
     update_build_number(xc_project)
     match(type: 'adhoc', app_identifier: app_id)
 
-    build_for_device(xc_scheme)
+    build_for_device(xc_scheme, 'ad-hoc')
 
     test(xc_scheme, xc_project)
 
@@ -128,9 +129,10 @@ platform :ios do
   end
 
   def beta(app_id, xc_project, xc_scheme)
+    update_build_number(xc_project)
     match(type: 'adhoc', app_identifier: app_id) # gym uses adhoc profile for initial signing
 
-    build_for_device(xc_scheme)
+    build_for_device(xc_scheme, 'app-store')
 
     # temporarily disable testing for the sake of time
     #test(xc_scheme, xc_project)

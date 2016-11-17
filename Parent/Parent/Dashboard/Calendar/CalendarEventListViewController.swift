@@ -40,7 +40,6 @@ class CalendarEventListViewController: UITableViewController {
     let studentID: String
     let startDate: NSDate
     let endDate: NSDate
-    var dates: [NSDate]
     private var contextCodes: [String]
     private var courseNamesDictionary = [String: String]()
     var selectCalendarEventAction: CalendarEventListSelectCalendarEventAction? = nil
@@ -70,7 +69,6 @@ class CalendarEventListViewController: UITableViewController {
         self.startDate = startDate
         self.endDate = endDate
         self.contextCodes = contextCodes
-        self.dates = startDate..<endDate
 
         emptyView.textLabel.text = NSLocalizedString("Nothing this week", comment: "Empty Calendar Events Text")
         emptyView.imageView?.image = UIImage(named: "empty_week")
@@ -149,7 +147,7 @@ class CalendarEventListViewController: UITableViewController {
             return 0
         }
 
-        return self.dates.count
+        return NSCalendar.currentCalendar().numberOfDaysInWeek
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -167,7 +165,7 @@ class CalendarEventListViewController: UITableViewController {
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = TableSectionHeaderView()
         view.preservesSuperviewLayoutMargins = true
-        let date = self.dates[section]
+        let date = startDate + section.daysComponents
         view.text = CalendarEventListViewController.dateFormatter.stringFromDate(date).uppercaseString
         view.accessibilityIdentifier = "event_list_header_\(section)"
         return view
@@ -202,7 +200,7 @@ class CalendarEventListViewController: UITableViewController {
             return nil
         }
 
-        let sectionDate = self.dates[daySection]
+        let sectionDate = startDate + daySection.daysComponents
         let sections = 0..<collection.numberOfSections()
         for section in sections {
             guard let dateString = collection.titleForSection(section), collectionDate = CalendarEvent.sectionTitleDateFormatter.dateFromString(dateString) else {

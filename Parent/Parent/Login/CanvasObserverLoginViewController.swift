@@ -29,7 +29,7 @@ class CanvasObserverLoginViewController: WebLoginViewController, UIWebViewDelega
     
     init(domain: String, loginSuccess: (Session)->()) {
         self.loginSuccess = loginSuccess
-        super.init(request: AirwolfAPI.authenticateAsCanvasObserver(domain), useBackButton: true)
+        super.init(request: AirwolfAPI.authenticateAsCanvasObserver(domain), useBackButton: true, loginFailureMessage: NSLocalizedString("Only Canvas observers can authenticate in Canvas Parent.", comment: "Canvas Observer Auth Failed Message"))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,11 +40,6 @@ class CanvasObserverLoginViewController: WebLoginViewController, UIWebViewDelega
         super.viewDidLoad()
         prompt = NSLocalizedString("Enter your Canvas Observer credentials", comment: "prompt for canvas observer login page")
         webView.delegate = self
-    }
-    
-    func somethingWentWrong(error: NSError) {
-        error.report(false, alertUserFrom: self)
-        startLoginRequest()
     }
     
     var jsonBodyData: NSData? {
@@ -63,7 +58,7 @@ class CanvasObserverLoginViewController: WebLoginViewController, UIWebViewDelega
         }
         
         guard url.path == "/canvas/tokenReady" else { return true }
-        guard let host = request.URL?.host, baseURL = NSURL(string: "https://\(host)") else { return true }
+        guard let host = request.URL?.host, let baseURL = NSURL(string: "https://\(host)") else { return true }
         guard let token = url.queryItemForKey("token")?.value else { return true }
         guard let parentID = url.queryItemForKey("parent_id")?.value else { return true }
         
@@ -73,9 +68,5 @@ class CanvasObserverLoginViewController: WebLoginViewController, UIWebViewDelega
         loginSuccess(session)
         
         return true
-    }
-    
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-        somethingWentWrong(error)
     }
 }

@@ -1,14 +1,8 @@
-/* Class = "UILabel"; accessibilityIdentifier = "time_label"; ObjectID = "0Bw-w1-Rfh"; */
-"0Bw-w1-Rfh.accessibilityIdentifier" = "tapanga_wā";
-
 /* Class = "UILabel"; text = "Time"; ObjectID = "0Bw-w1-Rfh"; */
 "0Bw-w1-Rfh.text" = "wā";
 
 /* Class = "UILabel"; text = "9/18/15, 11:00 AM"; ObjectID = "0L6-C4-tpu"; */
 "0L6-C4-tpu.text" = "9/18/15, 11:00 AM";
-
-/* Class = "UILabel"; accessibilityIdentifier = "set_reminder_label"; ObjectID = "RHa-wa-8Mq"; */
-"RHa-wa-8Mq.accessibilityIdentifier" = "tapanga_whakamaumahara_i whakaritea";
 
 /* Class = "UILabel"; text = "Set Reminder"; ObjectID = "RHa-wa-8Mq"; */
 "RHa-wa-8Mq.text" = "whakatakotoria Whakamaumahara";
