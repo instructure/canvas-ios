@@ -18,6 +18,7 @@
 
 import Quick
 import Nimble
+import CoreLocation
 
 @testable import Secrets
 
@@ -27,6 +28,16 @@ class SecretsSpec: QuickSpec {
             it("should fetch secrets") {
                 let secret = Secrets.fetch(.CanvasPSPDFKit)
                 expect(secret).toNot(beNil())
+            }
+        }
+        
+        describe("FeatureToggles") {
+            it("should get feature toggles") {
+                let trueToggle = Secrets.featureEnabled(.ProtectedUserInformation, domain: "mobiledev.instructure.com")
+                expect(trueToggle).to(beTrue())
+                
+                let falseToggle = Secrets.featureEnabled(.ProtectedUserInformation, domain: "hogwarts.instructure.com")
+                expect(falseToggle).to(beFalse())
             }
         }
     }

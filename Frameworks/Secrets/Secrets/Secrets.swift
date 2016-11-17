@@ -17,6 +17,7 @@
     
 
 import Foundation
+import SoLazy
 
 // I wish that I could make this a string enum, but to keep compatible with obj-c it's not. 
 // It has a toString() function instead
@@ -39,6 +40,18 @@ import Foundation
             return "SpeedGraderGoogleAnalyticsKey"
         case .CanvasAppStore:
             return "CanvasAppStoreLinkKey"
+        }
+    }
+}
+
+// Toggle features based on the school/institution
+@objc public enum FeatureToggleKey: Int {
+    case ProtectedUserInformation
+    
+    func toString() -> String {
+        switch self {
+        case ProtectedUserInformation:
+            return "ProtectedUserInformation"
         }
     }
 }
@@ -68,12 +81,37 @@ public class Secrets: NSObject {
             fatalError("Cannot find a secret with the key \(stringKey). Please verify keys.plist")
         }
         
-        assert(value.isEmpty == false, "Missing secret value for key: \(stringKey)")
-        
         return value
     }
     
     public static func fetch(key: SecretKey) -> String? {
         return Secrets._shared.internalFetch(key)
+    }
+    
+    // Support for feature toggles that are based on a domain
+    private lazy var toggles: [String: [String]]? = {
+        
+        guard let path = NSBundle.secrets().URLForResource("feature_toggles", withExtension: "plist") else {
+            return nil
+        }
+        
+        return NSDictionary(contentsOfURL: path) as? [String: [String]]
+    }()
+    
+    // domain is an optional to handle cases where the user isn't logged in yet
+    // While that may not be important, I did it so that this function is easier to use
+    private func internalFeatureEnabled(toggle: FeatureToggleKey, domain: String?) -> Bool {
+        guard let domain = domain else { return false }
+        guard let toggles = toggles else { return false }
+        
+        guard let toggleValues = toggles[toggle.toString()] else {
+            return false
+        }
+        
+        return toggleValues.findFirst { domain.containsString($0) || $0.containsString(domain) } != nil
+    }
+    
+    public static func featureEnabled(toggle: FeatureToggleKey, domain: String?) -> Bool {
+        return Secrets._shared.internalFeatureEnabled(toggle, domain: domain)
     }
 }

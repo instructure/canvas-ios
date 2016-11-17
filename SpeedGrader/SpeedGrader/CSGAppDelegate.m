@@ -150,16 +150,15 @@ static NSString *const CRASHLYTICS_MASQUERADE_USER_ID_KEY = @"MASQUERADE_AS_USER
 - (void)setupCrashlyticsDebugInformation {
     CKIClient *client = TheKeymaster.currentClient;
     
-    // We cannot save user data from Simon Fraser University in Canada.
-    // Make sure that we are not adding user data to crash reports
     NSString *baseURLString = [client.baseURL absoluteString];
-    if (![baseURLString hasSuffix:@"sfu.ca"]) {
-        
-        CKIUser *user = [client currentUser];
-        [[Crashlytics sharedInstance] setObjectValue:client.actAsUserID forKey:CRASHLYTICS_MASQUERADE_USER_ID_KEY];  // Set this at top of file
-        [[Crashlytics sharedInstance] setObjectValue:baseURLString forKey:CRASHLYTICS_BASE_URL_KEY];                 // Set this at top of file
-        [[Crashlytics sharedInstance] setUserIdentifier:user.id];
+    if ([Secrets featureEnabled:FeatureToggleKeyProtectedUserInformation domain:baseURLString]) {
+        return;
     }
+    
+    CKIUser *user = [client currentUser];
+    [[Crashlytics sharedInstance] setObjectValue:client.actAsUserID forKey:CRASHLYTICS_MASQUERADE_USER_ID_KEY];  // Set this at top of file
+    [[Crashlytics sharedInstance] setObjectValue:baseURLString forKey:CRASHLYTICS_BASE_URL_KEY];                 // Set this at top of file
+    [[Crashlytics sharedInstance] setUserIdentifier:user.id];
 }
 
 - (void)setupGoogleAnalytics {

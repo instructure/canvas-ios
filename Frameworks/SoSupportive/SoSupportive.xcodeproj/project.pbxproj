@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2F48A41DDDFEFB00804485 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F48A31DDDFEFB00804485 /* Secrets.framework */; };
+		2C2F48A51DDDFEFB00804485 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F48A31DDDFEFB00804485 /* Secrets.framework */; };
 		2CA548331DCB8CDF00A05E0F /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BE5A511D95B85200292757 /* Eureka.framework */; };
 		2CCDE39C1DAC0BB100B46D87 /* NSBundle+SoSupportive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCDE39B1DAC0BB100B46D87 /* NSBundle+SoSupportive.swift */; };
 		49BE5A381D95A7CB00292757 /* DeviceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5F9B561D2ECE0D0034207D /* DeviceKit.framework */; };
@@ -109,6 +111,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C2F48A11DDDFEA900804485 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../Debug-iphonesimulator/Secrets.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C2F48A31DDDFEFB00804485 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CCDE39B1DAC0BB100B46D87 /* NSBundle+SoSupportive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+SoSupportive.swift"; sourceTree = "<group>"; };
 		49BE5A451D95B77F00292757 /* CWStatusBarNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49BE5A481D95B7E600292757 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +196,7 @@
 				5E7949641D1C711B005FD5C0 /* SoLazy.framework in Frameworks */,
 				5E4C23531D26B28200238215 /* SoPretty.framework in Frameworks */,
 				2CA548331DCB8CDF00A05E0F /* Eureka.framework in Frameworks */,
+				2C2F48A51DDDFEFB00804485 /* Secrets.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +217,7 @@
 				49BE5A461D95B79500292757 /* CWStatusBarNotification.framework in Frameworks */,
 				49BE5A4C1D95B7EC00292757 /* Result.framework in Frameworks */,
 				49BE5A4A1D95B7EC00292757 /* ReactiveCocoa.framework in Frameworks */,
+				2C2F48A41DDDFEFB00804485 /* Secrets.framework in Frameworks */,
 				49BE5A401D95A7CB00292757 /* SoLazy.framework in Frameworks */,
 				49BE5A431D95A7D300292757 /* SoSupportive.framework in Frameworks */,
 				49BE5A4F1D95B82400292757 /* Cartography.framework in Frameworks */,
@@ -239,6 +245,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C2F48A01DDDFEA900804485 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C2F48A11DDDFEA900804485 /* Secrets.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5E36A4CC1D10AFD400480B91 = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +263,7 @@
 				5E36A4D81D10AFD400480B91 /* SoSupportive */,
 				5E36A4E41D10AFD400480B91 /* SoSupportiveTests */,
 				5E36A4D71D10AFD400480B91 /* Products */,
+				2C2F48A01DDDFEA900804485 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -319,6 +334,7 @@
 		5E36A5291D10B25900480B91 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				2C2F48A31DDDFEFB00804485 /* Secrets.framework */,
 				49BE5A571D95B89300292757 /* Marshal.framework */,
 				49BE5A511D95B85200292757 /* Eureka.framework */,
 				49BE5A521D95B85200292757 /* Kingfisher.framework */,
@@ -807,6 +823,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoSupportiveTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -817,6 +834,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoSupportiveTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

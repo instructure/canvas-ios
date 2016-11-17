@@ -31,6 +31,7 @@ targets = [workspace_name,
            'fastlane']
 
 destination = 'ios-open-source'
+frameworks_path = File.join(destination, 'Frameworks')
 workspace_path = File.join(destination, workspace_name)
 
 # The groups in the workspace that shouldn't be included
@@ -120,6 +121,7 @@ remove_fabric_from_plist File.join(destination, 'SpeedGrader', 'SpeedGrader', 'S
 
 # Strip out all of the keys from our stuff, making an empty template file
 prune_plist File.join(destination, 'secrets.plist')
+prune_plist File.join(frameworks_path, 'Secrets', 'Secrets', 'feature_toggles.plist')
 
 opensource_files_dir = File.join('opensource', 'files')
 external_frameworks_dir = File.join(destination, 'ExternalFrameworks')
@@ -143,7 +145,7 @@ FileUtils.rm File.join(destination, 'fastlane', 'Appfile')
 
 # Remove folders from frameworks that shouldn't be there
 frameworks_to_remove.each do |folder|
-    FileUtils.rm_r File.join(destination, 'Frameworks', folder)
+    FileUtils.rm_r File.join(frameworks_path, folder)
 end
 
 puts "PRAISE THE SUN IT'S FINISHED"

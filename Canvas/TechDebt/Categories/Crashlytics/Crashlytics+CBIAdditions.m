@@ -23,6 +23,7 @@
 #define kCrashlyticsMasqueradeAsUserID @"MASQUERADE_AS_USER_ID"
 @import CanvasKit;
 @import CanvasKeymaster;
+@import Secrets;
 
 @implementation Crashlytics (CBIAdditions)
 
@@ -40,16 +41,15 @@
 + (void)setDebugInformation
 {
     CKIClient *client = [CKIClient currentClient];
-
-    // We cannot save user data from Simon Fraser University in Canada.
-    // Make sure that we are not adding user data to crash reports
     NSString *baseURLString = [client.baseURL absoluteString];
-    if (![baseURLString hasSuffix:@"sfu.ca"]) {
-        CKIUser *user = [[CKIClient currentClient] currentUser];
-        [[Crashlytics sharedInstance] setObjectValue:[CKIClient currentClient].actAsUserID forKey:kCrashlyticsMasqueradeAsUserID];
-        [[Crashlytics sharedInstance] setObjectValue:baseURLString forKey:kCrashlyticsBaseURLKey];
-        [[Crashlytics sharedInstance] setUserIdentifier:user.id];
+    if ([Secrets featureEnabled:FeatureToggleKeyProtectedUserInformation domain:baseURLString]) {
+        return;
     }
+    
+    CKIUser *user = [[CKIClient currentClient] currentUser];
+    [[Crashlytics sharedInstance] setObjectValue:[CKIClient currentClient].actAsUserID forKey:kCrashlyticsMasqueradeAsUserID];
+    [[Crashlytics sharedInstance] setObjectValue:baseURLString forKey:kCrashlyticsBaseURLKey];
+    [[Crashlytics sharedInstance] setUserIdentifier:user.id];
 }
 
 

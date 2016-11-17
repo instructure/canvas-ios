@@ -20,6 +20,7 @@ import UIKit
 
 import DeviceKit
 import TooLegit
+import Secrets
 
 public enum ImpactLevel: String {
     case Comment, NotUrgent, WorkaroundPossible, Blocking, Emergency, None
@@ -140,8 +141,7 @@ public class SupportTicket {
         var dictionary = Dictionary<String, AnyObject>()
         let domainString = requesterDomain.absoluteString
 
-        // don't include user info if it's SFU
-        if !domainString!.hasSuffix("sfu.ca") {
+        if Secrets.featureEnabled(.ProtectedUserInformation, domain: domainString) == false {
             dictionary["User"] = requesterUsername
             dictionary["Email"] = requesterEmail
         }
