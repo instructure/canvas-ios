@@ -54,9 +54,10 @@ struct CourseCellViewModel: TableViewCellViewModel {
             fatalError("Incorrect Cell Type Found Expected: CourseCell")
         }
 
-        cell.titleLabel.accessibilityIdentifier = "course_title_\(indexPath.item)"
-        cell.codeLabel.accessibilityIdentifier = "course_code_\(indexPath.item)"
-        cell.gradeLabel.accessibilityIdentifier = "course_grade_\(indexPath.item)"
+        cell.accessibilityIdentifier = "course_cell_\(indexPath.row)"
+        cell.titleLabel.accessibilityIdentifier = "course_title_\(indexPath.row)"
+        cell.codeLabel.accessibilityIdentifier = "course_code_\(indexPath.row)"
+        cell.gradeLabel.accessibilityIdentifier = "course_grade_\(indexPath.row)"
 
         cell.highlightColor = highlightColor
         cell.titleLabel.text = course.name

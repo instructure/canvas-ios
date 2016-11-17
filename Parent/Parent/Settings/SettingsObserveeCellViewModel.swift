@@ -47,6 +47,8 @@ struct SettingsObserveeCellViewModel: TableViewCellViewModel {
 
         cell.highlightColor = highlightColor
         cell.nameLabel?.text = name
+        cell.nameLabel?.accessibilityIdentifier = "observee_name_\(indexPath.row)"
+        cell.avatarImageView?.accessibilityIdentifier = "observee_avatar_\(indexPath.row)"
 
         if let avatarURL = avatarURL {
             cell.avatarImageView?.kf_setImageWithURL(avatarURL, placeholderImage: DefaultAvatarCoordinator.defaultAvatarForStudentID(studentID))
