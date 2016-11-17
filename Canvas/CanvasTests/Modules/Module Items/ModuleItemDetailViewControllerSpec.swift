@@ -30,30 +30,6 @@ class ModuleItemDetailViewControllerSpec: QuickSpec {
                 expect(previous.accessibilityIdentifier).toNot(beNil())
             }
 
-            context("with mark as done requirement") {
-                var vc: ModuleItemDetailViewController!
-                var markAsDoneButton: UIBarButtonItem?
-                beforeEach {
-                    login()
-                    let item = ModuleItem.build {
-                        $0.completed = false
-                        $0.completionRequirement = .MarkDone
-                    }
-                    vc = try! ModuleItemDetailViewController(session: currentSession, courseID: item.courseID, moduleID: item.moduleID, moduleItemID: item.id, route: ignoreRouteAction)
-                    _ = vc.view
-
-                    markAsDoneButton = vc.navigationItem.rightBarButtonItems?.first!
-                }
-
-                it("should add mark as done button") {
-                    expect(markAsDoneButton).toNot(beNil())
-                }
-
-                it("should set mark as done accessibility identifier") {
-                    expect(markAsDoneButton?.accessibilityIdentifier).toNot(beNil())
-                }
-            }
-
             describe("embed") {
                 var item: ModuleItem!
                 var vc: ModuleItemDetailViewController!
@@ -88,12 +64,16 @@ class ModuleItemDetailViewControllerSpec: QuickSpec {
                 it("should display the module item view controller") {
                     expect(vc.view.subviews.count).toEventually(equal(2)) // toolbar + embedded view
                     expect(vc.navigationItem.rightBarButtonItems?.count).toEventually(equal(1))
+                    expect(vc.navigationItem.rightBarButtonItems![0].title) == "Foo"
                 }
 
                 it("should append mark done button") {
                     item.completionRequirement = .MarkDone
                     item.completed = false
                     expect(vc.navigationItem.rightBarButtonItems?.count).toEventually(equal(2))
+                    expect(vc.navigationItem.rightBarButtonItems![0].title) == "Foo"
+                    expect(vc.navigationItem.rightBarButtonItems![1].title) == "Mark as Done"
+                    expect(vc.navigationItem.rightBarButtonItems![1].accessibilityIdentifier).toNot(beNil())
                 }
             }
         }

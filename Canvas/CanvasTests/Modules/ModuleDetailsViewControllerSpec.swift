@@ -40,6 +40,7 @@ class ModuleDetailsViewControllerSpec: QuickSpec {
                 }
 
                 let vc = try! ModuleDetailsViewController(session: currentSession, courseID: module.courseID, moduleID: module.id, route: ignoreRouteAction)
+                _ = vc.view
 
                 expect(vc.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))!.textLabel!.text).toEventually(equal(one.title))
                 expect(vc.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1))!.textLabel!.text).toEventually(equal(two.title))

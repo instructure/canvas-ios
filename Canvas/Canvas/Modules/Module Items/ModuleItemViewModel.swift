@@ -21,14 +21,33 @@ let ModuleItemBecameActiveNotification = "ModuleItemBecameActiveNotification"
 class ModuleItemViewModel: NSObject {
     // Input
     let session: Session
+    let moduleID: String
 
     // Output
     let title: AnyProperty<String?>
     let completionRequirement: AnyProperty<ModuleItem.CompletionRequirement?>
     let errorSignal: Signal<NSError, NoError>
-    var embeddedViewController: AnyProperty<UIViewController?> {
-        return AnyProperty(_embeddedViewController)
-    }
+    lazy var embeddedViewController: SignalProducer<UIViewController?, NoError> = {
+        let content = self.moduleItem.producer.map { $0?.content }.skipRepeats(==)
+        let masteryPathsItemModuleItemID = self.moduleItem.producer.map { $0 as? MasteryPathsItem }.map { $0?.moduleItemID }
+        let url = self.url.producer.skipRepeats(==)
+        return combineLatest(url, content, masteryPathsItemModuleItemID).map { url, content, moduleItemID in
+            if let content = content {
+                switch content {
+                case .ExternalURL(url: let url):
+                    let browser = WebBrowserViewController(URL: url)
+                    browser.delegate = self
+                    return browser
+                case .MasteryPaths:
+                    if let moduleItemID = moduleItemID {
+                        return try! MasteryPathSelectOptionViewController(session: self.session, moduleID: self.moduleID, itemIDWithMasteryPaths: moduleItemID)
+                    }
+                default: break
+                }
+            }
+            return url.flatMap(Router.sharedRouter().controllerForHandlingURL)
+        }
+    }()
 
     // Private
     private let moduleItem: MutableProperty<ModuleItem?>
@@ -51,7 +70,6 @@ class ModuleItemViewModel: NSObject {
     private let nextModuleItemIsValid: AnyProperty<Bool>
     private let previousModuleItemIsValid: AnyProperty<Bool>
     private let lockedForSequentialProgress: AnyProperty<Bool>
-    private let _embeddedViewController = MutableProperty<UIViewController?>(nil)
     private let selected = MutableProperty<Bool?>(nil)
 
     // Actions
@@ -170,6 +188,7 @@ class ModuleItemViewModel: NSObject {
 
     init(session: Session, moduleID: String, moduleItemID: String) throws {
         self.session = session
+        self.moduleID = moduleID
 
         observer = try ModuleItem.observer(session, moduleItemID: moduleItemID)
         moduleItem = MutableProperty(observer.object)
@@ -256,25 +275,6 @@ class ModuleItemViewModel: NSObject {
         }
 
         super.init()
-
-        let content = moduleItem.producer.map { $0?.content }
-        let masteryPathsItemModuleItemID = moduleItem.producer.map { $0 as? MasteryPathsItem }.map { $0?.moduleItemID }
-        _embeddedViewController <~ combineLatest(url.producer, content, masteryPathsItemModuleItemID).map { url, content, moduleItemID in
-            if let content = content {
-                switch content {
-                case .ExternalURL(url: let url):
-                    let browser = WebBrowserViewController(URL: url)
-                    browser.delegate = self
-                    return browser
-                case .MasteryPaths:
-                    if let moduleItemID = moduleItemID {
-                        return try! MasteryPathSelectOptionViewController(session: session, moduleID: moduleID, itemIDWithMasteryPaths: moduleItemID)
-                    }
-                default: break
-                }
-            }
-            return url.flatMap(Router.sharedRouter().controllerForHandlingURL)
-        }
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(moduleItemBecameActive(_:)), name: ModuleItemBecameActiveNotification, object: nil)
     }

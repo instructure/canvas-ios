@@ -84,23 +84,9 @@ class ModuleItemDetailViewController: UIViewController {
 
         /// embed item view controller
         viewModel.embeddedViewController
-            .producer
             .combinePrevious(nil)
+            .observeOn(UIScheduler())
             .startWithNext(embed)
-
-        /// bar button items
-        let completionRequirement = viewModel.completionRequirement
-        let rightBarButtonItems = viewModel.embeddedViewController
-            .producer
-            .map { $0?.navigationItem.rac_rightBarButtonItems.producer ?? SignalProducer(value: []) }
-            .flatten(.Latest)
-        navigationItem.rac_rightBarButtonItems <~ combineLatest(rightBarButtonItems, completionRequirement.producer).map { [weak self] (items, requirement) in
-            var items = items ?? []
-            if let markDone = self?.markDoneButton where requirement == .MarkDone {
-                items.append(markDone)
-            }
-            return items
-        }
 
         /// handle errors
         viewModel.errorSignal.observeNext {
@@ -127,6 +113,17 @@ class ModuleItemDetailViewController: UIViewController {
             view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[childView]|", options: [], metrics: nil, views: ["childView": vc.view]))
 
             viewModel.moduleItemBecameActive()
+            updateNavigationBarButtonItems(vc)
         }
+    }
+
+    func updateNavigationBarButtonItems(embeddedViewController: UIViewController) {
+        var items = embeddedViewController.navigationItem.rightBarButtonItems ?? []
+
+        if viewModel.completionRequirement.value == .MarkDone {
+            items = items + [markDoneButton]
+        }
+
+        navigationItem.rightBarButtonItems = items
     }
 }

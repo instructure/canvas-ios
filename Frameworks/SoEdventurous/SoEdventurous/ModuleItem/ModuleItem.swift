@@ -161,6 +161,7 @@ public class ModuleItem: NSManagedObject, LockableModel {
     }
     @NSManaged private var primitiveCompletionRequirement: String?
     internal (set) public var completionRequirement: CompletionRequirement? {
+        
         get {
             willAccessValueForKey("completionRequirement")
             let value = primitiveCompletionRequirement.flatMap(CompletionRequirement.init)
@@ -182,7 +183,7 @@ import Marshal
 
 extension ModuleItem: SynchronizedModel {
     public static func parseCompletionRequirement(json: JSONObject) throws -> (completionRequirement: CompletionRequirement?, minScore: NSNumber?, completed: Bool) {
-        let completedDefault = true
+        let completedDefault = false
         guard let completionRequirementJSON: JSONObject = try json <| "completion_requirement" else {
             return (nil, nil, completedDefault)
         }

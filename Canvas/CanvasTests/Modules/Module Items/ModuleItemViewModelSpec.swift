@@ -193,14 +193,20 @@ class ModuleItemViewModelSpec: QuickSpec {
 
                 item.url = route.absoluteString
 
-                expect(vm.embeddedViewController.value).toEventually(beAnInstanceOf(EmbeddedViewController.self))
+                var embedded: UIViewController?
+                vm.embeddedViewController.ignoreNil().take(1).startWithNext { embedded = $0 }
+                expect(embedded).toEventuallyNot(beNil())
+                expect(embedded).toEventually(beAnInstanceOf(EmbeddedViewController.self))
 
                 Router.sharedRouter().removeRoute(route.path!)
             }
 
             it("should embed external urls in a web view controller") {
                 item.content = .ExternalURL(url: NSURL(string: "https://google.com")!)
-                expect(vm.embeddedViewController.value).toEventually(beAnInstanceOf(WebBrowserViewController.self))
+                var embedded: UIViewController?
+                vm.embeddedViewController.take(1).startWithNext { embedded = $0 }
+                expect(embedded).toNot(beNil())
+                expect(embedded).to(beAnInstanceOf(WebBrowserViewController.self))
             }
 
             it("should embed a special mastery paths view controller for mastery paths items") {
@@ -211,7 +217,10 @@ class ModuleItemViewModelSpec: QuickSpec {
                     $0.content = .MasteryPaths
                 }
                 let masteryPathVM = try! ModuleItemViewModel(session: currentSession, moduleID: masteryPathsItem.moduleID, moduleItemID: masteryPathsItem.id)
-                expect(masteryPathVM.embeddedViewController.value).toEventually(beAnInstanceOf(MasteryPathSelectOptionViewController.self))
+                var embedded: UIViewController?
+                masteryPathVM.embeddedViewController.take(1).startWithNext { embedded = $0 }
+                expect(embedded).toNot(beNil())
+                expect(embedded).to(beAnInstanceOf(MasteryPathSelectOptionViewController.self))
             }
 
             describe("next/previous Actions") {

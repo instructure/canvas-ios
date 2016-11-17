@@ -213,7 +213,7 @@ class ModuleItemSpec: QuickSpec {
 
                     expect(moduleItem.completionRequirement).to(beNil())
                     expect(moduleItem.minScore).to(beNil())
-                    expect(moduleItem.completed) == true
+                    expect(moduleItem.completed) == false
                 }
 
                 it("sets completion requirements") {
