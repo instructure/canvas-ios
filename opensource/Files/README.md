@@ -1,6 +1,8 @@
 # Instructure iOS
 
-### PLEASE NOTE: This repository will be updated frequently with *breaking* changes. Fork with caution.
+### Please Note:
+- This repository will be updated frequently with *breaking* changes. Fork with caution.
+- The Cartfile currently refers to a private repository to Instructure.
 
 ## Prerequisites:
 - Xcode 8
