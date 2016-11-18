@@ -35,17 +35,6 @@ extension Upload {
     }
 }
 
-extension Credentials {
-    static let mbl6745User = Credentials(
-        id: "17",
-        domain: "cwilliams.instructure.com",
-        email: "narmstrong",
-        password: "X8UwbcduxaP,y",
-        token: "5648~pLTgjBHpwCVz45kSES3PJpisHxrPLPPImHqjaX7Xoq5EsJAaCa5bae6hK7MzLxPr",
-        name: "Hank Aaron"
-    )
-}
-
 class SubmissionUploadSpec: QuickSpec {
     override func spec() {
         describe("submission uploads") {
