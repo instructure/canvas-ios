@@ -73,15 +73,12 @@
 		B10713AA1D7491160061E84A /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10713A71D7491160061E84A /* Nimble.framework */; };
 		B10713AB1D7491160061E84A /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10713A81D7491160061E84A /* Quick.framework */; };
 		B10713AC1D7491160061E84A /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10713A91D7491160061E84A /* SoAutomated.framework */; };
-		B10713AE1D7492B70061E84A /* refresh-submission.json in Resources */ = {isa = PBXBuildFile; fileRef = B10713AD1D7492B70061E84A /* refresh-submission.json */; };
-		B10AED771DAEE997001A9438 /* upload-file-submission.json in Resources */ = {isa = PBXBuildFile; fileRef = B157F0BC1CED3D80004EB3AE /* upload-file-submission.json */; };
 		B11B53E71CA58C39008971D3 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490A86AB1C407D7000351185 /* ReactiveCocoa.framework */; };
 		B11B53E81CA58C40008971D3 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490A86AC1C407D7000351185 /* Result.framework */; };
 		B1310A371CA1983D005BFC20 /* PickerCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1310A361CA1983D005BFC20 /* PickerCellViewModel.swift */; };
 		B131B7B71DAD446700B10936 /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B131B7B61DAD446700B10936 /* SpecHelper.swift */; };
 		B131B7BB1DAD4A9D00B10936 /* AssignmentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B131B7BA1DAD4A9D00B10936 /* AssignmentSpec.swift */; };
 		B131B7BD1DAD4ABA00B10936 /* RubricSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B131B7BC1DAD4ABA00B10936 /* RubricSpec.swift */; };
-		B131B7BF1DAD555100B10936 /* assignment.json in Resources */ = {isa = PBXBuildFile; fileRef = B131B7BE1DAD555100B10936 /* assignment.json */; };
 		B13746861DB05D260048F7DD /* NewUpload+Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13746851DB05D260048F7DD /* NewUpload+Attachment.swift */; };
 		B13746871DB077DB0048F7DD /* NSItemProvider+Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13746831DB050A60048F7DD /* NSItemProvider+Attachment.swift */; };
 		B13A392C1CBED0C400CBD98B /* Assignment+Uploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13A392B1CBED0C400CBD98B /* Assignment+Uploads.swift */; };
@@ -95,11 +92,6 @@
 		B14BFC641CA452F1007C3735 /* Keymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1409A7F1CA34D3400E88AE5 /* Keymaster.framework */; };
 		B153C62E1CE0DFDF0017F0CF /* testfile.txt in Resources */ = {isa = PBXBuildFile; fileRef = B153C62D1CE0DFDF0017F0CF /* testfile.txt */; };
 		B157F0AA1CED2FD2004EB3AE /* hubble-large.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B157F0A91CED2FD2004EB3AE /* hubble-large.jpg */; };
-		B157F0B51CED3AF3004EB3AE /* assignment-group.json in Resources */ = {isa = PBXBuildFile; fileRef = B157F0B41CED3AF3004EB3AE /* assignment-group.json */; };
-		B157F0B71CED3B32004EB3AE /* assignment-grades.json in Resources */ = {isa = PBXBuildFile; fileRef = B157F0B61CED3B32004EB3AE /* assignment-grades.json */; };
-		B157F0B91CED3BCA004EB3AE /* assignment-grades-mgp.json in Resources */ = {isa = PBXBuildFile; fileRef = B157F0B81CED3BCA004EB3AE /* assignment-grades-mgp.json */; };
-		B157F0BF1CED3DAD004EB3AE /* upload-text-submission.json in Resources */ = {isa = PBXBuildFile; fileRef = B157F0BE1CED3DAD004EB3AE /* upload-text-submission.json */; };
-		B157F0C11CED3DCF004EB3AE /* upload-url-submission.json in Resources */ = {isa = PBXBuildFile; fileRef = B157F0C01CED3DCF004EB3AE /* upload-url-submission.json */; };
 		B181C3181CA43A5000277440 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3161CA43A5000277440 /* EnrollmentKit.framework */; };
 		B181C31A1CA43A6200277440 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3161CA43A5000277440 /* EnrollmentKit.framework */; };
 		B181C31B1CA43A6200277440 /* EnrollmentKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3161CA43A5000277440 /* EnrollmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -136,10 +128,7 @@
 		B5D9E1AB1C6E71E300C75DFB /* ScheduleItemDetails.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9E1A81C6E71E300C75DFB /* ScheduleItemDetails.js */; };
 		B5D9E1AD1C6E71EC00C75DFB /* AssignmentDetails.html in Resources */ = {isa = PBXBuildFile; fileRef = B5D9E1AC1C6E71EC00C75DFB /* AssignmentDetails.html */; };
 		B5D9E1AF1C6E71FD00C75DFB /* rewrite-api-links.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9E1AE1C6E71FD00C75DFB /* rewrite-api-links.js */; };
-		B5FB7F971D11B8A8003FEC60 /* get-assignments.json in Resources */ = {isa = PBXBuildFile; fileRef = B5FB7F961D11B8A8003FEC60 /* get-assignments.json */; };
 		B5FB7F9D1D11E260003FEC60 /* valid_assignment.json in Resources */ = {isa = PBXBuildFile; fileRef = B5FB7F9C1D11E260003FEC60 /* valid_assignment.json */; };
-		B5FB7FA31D11E2C8003FEC60 /* get-assignment.json in Resources */ = {isa = PBXBuildFile; fileRef = B5FB7FA21D11E2C8003FEC60 /* get-assignment.json */; };
-		B5FB7FA91D131571003FEC60 /* assignment-details.json in Resources */ = {isa = PBXBuildFile; fileRef = B5FB7FA81D131571003FEC60 /* assignment-details.json */; };
 		B5FE27901C90D76300D07C43 /* Assignment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B584701E1C4DAC1200F43C5A /* Assignment.storyboard */; };
 		B5FE27AB1C9749B700D07C43 /* CircularGradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FE27A51C9749B700D07C43 /* CircularGradeView.swift */; };
 		B5FE27AC1C9749B700D07C43 /* SubmissionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FE27A61C9749B700D07C43 /* SubmissionStatusView.swift */; };
@@ -271,13 +260,11 @@
 		B10713A71D7491160061E84A /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10713A81D7491160061E84A /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10713A91D7491160061E84A /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B10713AD1D7492B70061E84A /* refresh-submission.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "refresh-submission.json"; sourceTree = "<group>"; };
 		B1310A351CA0BA44005BFC20 /* AssignmentsShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AssignmentsShare.entitlements; sourceTree = "<group>"; };
 		B1310A361CA1983D005BFC20 /* PickerCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerCellViewModel.swift; sourceTree = "<group>"; };
 		B131B7B61DAD446700B10936 /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
 		B131B7BA1DAD4A9D00B10936 /* AssignmentSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentSpec.swift; sourceTree = "<group>"; };
 		B131B7BC1DAD4ABA00B10936 /* RubricSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RubricSpec.swift; sourceTree = "<group>"; };
-		B131B7BE1DAD555100B10936 /* assignment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = assignment.json; sourceTree = "<group>"; };
 		B13746831DB050A60048F7DD /* NSItemProvider+Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+Attachment.swift"; sourceTree = "<group>"; };
 		B13746851DB05D260048F7DD /* NewUpload+Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewUpload+Attachment.swift"; sourceTree = "<group>"; };
 		B13A392B1CBED0C400CBD98B /* Assignment+Uploads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+Uploads.swift"; sourceTree = "<group>"; };
@@ -287,12 +274,6 @@
 		B1409A7F1CA34D3400E88AE5 /* Keymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Keymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B153C62D1CE0DFDF0017F0CF /* testfile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testfile.txt; sourceTree = "<group>"; };
 		B157F0A91CED2FD2004EB3AE /* hubble-large.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hubble-large.jpg"; sourceTree = "<group>"; };
-		B157F0B41CED3AF3004EB3AE /* assignment-group.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "assignment-group.json"; sourceTree = "<group>"; };
-		B157F0B61CED3B32004EB3AE /* assignment-grades.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; lineEnding = 0; path = "assignment-grades.json"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
-		B157F0B81CED3BCA004EB3AE /* assignment-grades-mgp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "assignment-grades-mgp.json"; sourceTree = "<group>"; };
-		B157F0BC1CED3D80004EB3AE /* upload-file-submission.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "upload-file-submission.json"; sourceTree = "<group>"; };
-		B157F0BE1CED3DAD004EB3AE /* upload-text-submission.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "upload-text-submission.json"; sourceTree = "<group>"; };
-		B157F0C01CED3DCF004EB3AE /* upload-url-submission.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "upload-url-submission.json"; sourceTree = "<group>"; };
 		B181C3161CA43A5000277440 /* EnrollmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnrollmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19590831C9B180D00574968 /* Assignments.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Assignments.entitlements; sourceTree = "<group>"; };
 		B195909B1C9B307300574968 /* AssignmentsShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AssignmentsShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -346,10 +327,7 @@
 		B5E485551D8CBA820025CDCF /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "AssignmentKit/zh-HK.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		B5E485561D8CBA820025CDCF /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = AssignmentKit/zh.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B5E485571D8CBA820025CDCF /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = AssignmentKit/ar.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
-		B5FB7F961D11B8A8003FEC60 /* get-assignments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "get-assignments.json"; sourceTree = "<group>"; };
 		B5FB7F9C1D11E260003FEC60 /* valid_assignment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_assignment.json; sourceTree = "<group>"; };
-		B5FB7FA21D11E2C8003FEC60 /* get-assignment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "get-assignment.json"; sourceTree = "<group>"; };
-		B5FB7FA81D131571003FEC60 /* assignment-details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "assignment-details.json"; sourceTree = "<group>"; };
 		B5FE27A51C9749B700D07C43 /* CircularGradeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularGradeView.swift; sourceTree = "<group>"; };
 		B5FE27A61C9749B700D07C43 /* SubmissionStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionStatusView.swift; sourceTree = "<group>"; };
 		B5FE27A71C9749B700D07C43 /* SubmissionStatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubmissionStatusView.xib; sourceTree = "<group>"; };
@@ -621,17 +599,6 @@
 			path = "Assignment Group";
 			sourceTree = "<group>";
 		};
-		B157F0AD1CED393F004EB3AE /* Submissions */ = {
-			isa = PBXGroup;
-			children = (
-				B10713AD1D7492B70061E84A /* refresh-submission.json */,
-				B157F0BE1CED3DAD004EB3AE /* upload-text-submission.json */,
-				B157F0BC1CED3D80004EB3AE /* upload-file-submission.json */,
-				B157F0C01CED3DCF004EB3AE /* upload-url-submission.json */,
-			);
-			path = Submissions;
-			sourceTree = "<group>";
-		};
 		B195909C1C9B307300574968 /* AssignmentsShare */ = {
 			isa = PBXGroup;
 			children = (
@@ -649,9 +616,6 @@
 		B19D627B1CB1ED8C00E16D11 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				B5FB7F951D11A901003FEC60 /* Assignments */,
-				B157F0AD1CED393F004EB3AE /* Submissions */,
-				B1EB12801CCEB43300BE4280 /* Assignment Groups */,
 				B153C62D1CE0DFDF0017F0CF /* testfile.txt */,
 				B157F0A91CED2FD2004EB3AE /* hubble-large.jpg */,
 			);
@@ -681,16 +645,6 @@
 				B5FB7F9C1D11E260003FEC60 /* valid_assignment.json */,
 			);
 			path = Assignment;
-			sourceTree = "<group>";
-		};
-		B1EB12801CCEB43300BE4280 /* Assignment Groups */ = {
-			isa = PBXGroup;
-			children = (
-				B157F0B81CED3BCA004EB3AE /* assignment-grades-mgp.json */,
-				B157F0B61CED3B32004EB3AE /* assignment-grades.json */,
-				B157F0B41CED3AF3004EB3AE /* assignment-group.json */,
-			);
-			path = "Assignment Groups";
 			sourceTree = "<group>";
 		};
 		B5109D6C1CA30D4600A9AF5A /* Details */ = {
@@ -772,17 +726,6 @@
 				B5D9E1A81C6E71E300C75DFB /* ScheduleItemDetails.js */,
 			);
 			name = HTML;
-			sourceTree = "<group>";
-		};
-		B5FB7F951D11A901003FEC60 /* Assignments */ = {
-			isa = PBXGroup;
-			children = (
-				B131B7BE1DAD555100B10936 /* assignment.json */,
-				B5FB7FA81D131571003FEC60 /* assignment-details.json */,
-				B5FB7F961D11B8A8003FEC60 /* get-assignments.json */,
-				B5FB7FA21D11E2C8003FEC60 /* get-assignment.json */,
-			);
-			path = Assignments;
 			sourceTree = "<group>";
 		};
 		B5FE27A01C9749B700D07C43 /* Submission */ = {
@@ -1016,20 +959,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5FB7FA31D11E2C8003FEC60 /* get-assignment.json in Resources */,
 				B5FB7F9D1D11E260003FEC60 /* valid_assignment.json in Resources */,
-				B131B7BF1DAD555100B10936 /* assignment.json in Resources */,
-				B10713AE1D7492B70061E84A /* refresh-submission.json in Resources */,
-				B10AED771DAEE997001A9438 /* upload-file-submission.json in Resources */,
-				B5FB7FA91D131571003FEC60 /* assignment-details.json in Resources */,
-				B157F0B71CED3B32004EB3AE /* assignment-grades.json in Resources */,
-				B157F0C11CED3DCF004EB3AE /* upload-url-submission.json in Resources */,
 				B157F0AA1CED2FD2004EB3AE /* hubble-large.jpg in Resources */,
-				B157F0B91CED3BCA004EB3AE /* assignment-grades-mgp.json in Resources */,
-				B157F0B51CED3AF3004EB3AE /* assignment-group.json in Resources */,
-				B157F0BF1CED3DAD004EB3AE /* upload-text-submission.json in Resources */,
 				B153C62E1CE0DFDF0017F0CF /* testfile.txt in Resources */,
-				B5FB7F971D11B8A8003FEC60 /* get-assignments.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

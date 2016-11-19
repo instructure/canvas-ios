@@ -65,10 +65,7 @@
 		617BE8091CA48ED6008A6908 /* SoPersistent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 617BE7F61CA48E8E008A6908 /* SoPersistent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		617BE80C1CA48FBA008A6908 /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617BE80A1CA48FAB008A6908 /* DoNotShipThis.framework */; };
 		617BE80D1CA48FBA008A6908 /* DoNotShipThis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 617BE80A1CA48FAB008A6908 /* DoNotShipThis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B157F0A61CED2B72004EB3AE /* discussion_topic_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B157F0A51CED2B72004EB3AE /* discussion_topic_details.json */; };
-		B157F0A81CED2B95004EB3AE /* discussion_topics_list.json in Resources */ = {isa = PBXBuildFile; fileRef = B157F0A71CED2B95004EB3AE /* discussion_topics_list.json */; };
 		B1F820D61CEBC340006EC0BC /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820D51CEBC340006EC0BC /* Factories.swift */; };
-		B1F820DA1CEBCF15006EC0BC /* discussion_topic.json in Resources */ = {isa = PBXBuildFile; fileRef = B1F820D91CEBCF15006EC0BC /* discussion_topic.json */; };
 		B564DE1C1D8CB8F700E25BDA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B564DE181D8CB8F700E25BDA /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -172,10 +169,7 @@
 		617BE7F41CA48E85008A6908 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		617BE7F61CA48E8E008A6908 /* SoPersistent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPersistent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		617BE80A1CA48FAB008A6908 /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DoNotShipThis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B157F0A51CED2B72004EB3AE /* discussion_topic_details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = discussion_topic_details.json; sourceTree = "<group>"; };
-		B157F0A71CED2B95004EB3AE /* discussion_topics_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = discussion_topics_list.json; sourceTree = "<group>"; };
 		B1F820D51CEBC340006EC0BC /* Factories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
-		B1F820D91CEBCF15006EC0BC /* discussion_topic.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = discussion_topic.json; sourceTree = "<group>"; };
 		B51CEF8D1D8CB938000A6B11 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = DiscussionKit/fr.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B51CEF8E1D8CB938000A6B11 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = DiscussionKit/ht.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B51CEF8F1D8CB93D000A6B11 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = DiscussionKit/ja.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
@@ -266,16 +260,6 @@
 			path = DiscussionEntry;
 			sourceTree = "<group>";
 		};
-		5E2DE0DE1CC0180E00D76D35 /* Fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				B157F0A71CED2B95004EB3AE /* discussion_topics_list.json */,
-				B157F0A51CED2B72004EB3AE /* discussion_topic_details.json */,
-				B1F820D91CEBCF15006EC0BC /* discussion_topic.json */,
-			);
-			path = Fixtures;
-			sourceTree = "<group>";
-		};
 		5E2DE0DF1CC0180E00D76D35 /* DiscussionTopic */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,7 +340,6 @@
 		617BE78E1CA42D4C008A6908 /* DiscussionKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				5E2DE0DE1CC0180E00D76D35 /* Fixtures */,
 				5E2DE0E21CC0183B00D76D35 /* Dependencies */,
 				5E2DE0DF1CC0180E00D76D35 /* DiscussionTopic */,
 				617BE7911CA42D4C008A6908 /* Info.plist */,
@@ -601,9 +584,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B157F0A81CED2B95004EB3AE /* discussion_topics_list.json in Resources */,
-				B157F0A61CED2B72004EB3AE /* discussion_topic_details.json in Resources */,
-				B1F820DA1CEBCF15006EC0BC /* discussion_topic.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

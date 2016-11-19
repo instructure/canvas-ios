@@ -9,11 +9,8 @@
 /* Begin PBXBuildFile section */
 		2A37B85B1D25877500F18A26 /* Group+CollectionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37B85A1D25877500F18A26 /* Group+CollectionsTest.swift */; };
 		2A37B85F1D25A8A600F18A26 /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37B85E1D25A8A600F18A26 /* GroupTests.swift */; };
-		2A37B8631D25BE0A00F18A26 /* get-all-groups.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A37B8621D25BE0A00F18A26 /* get-all-groups.json */; };
-		2A37B8651D25BF4A00F18A26 /* refresh-all-groups.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A37B8641D25BF4A00F18A26 /* refresh-all-groups.json */; };
 		2A37B8681D25C23800F18A26 /* TabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37B8671D25C23800F18A26 /* TabTests.swift */; };
 		2A625C141D26DC5300ACDEBA /* Tab+CollectionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A625C131D26DC5300ACDEBA /* Tab+CollectionsTest.swift */; };
-		2A625C161D26E8AA00ACDEBA /* refresh-all-tabs.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A625C151D26E8AA00ACDEBA /* refresh-all-tabs.json */; };
 		2A625C1E1D270D3500ACDEBA /* Enrollment+FavoritesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A625C1C1D27094900ACDEBA /* Enrollment+FavoritesTests.swift */; };
 		490550221CAC897B009D4AD8 /* Group+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490550211CAC897B009D4AD8 /* Group+Collections.swift */; };
 		490550241CAC8990009D4AD8 /* Enrollment+Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490550231CAC8990009D4AD8 /* Enrollment+Favorites.swift */; };
@@ -83,31 +80,20 @@
 		B10A083B1CE3DBB100666CBF /* GradeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A083A1CE3DBB100666CBF /* GradeTests.swift */; };
 		B10BEA901CE53A3F0079C904 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10BEA8E1CE53A380079C904 /* Grade.swift */; };
 		B10BEA9C1CE66AF30079C904 /* Grade+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10BEA9A1CE66AC50079C904 /* Grade+Collections.swift */; };
-		B11544C01D467A710011E5DF /* CourseGetAllCourses.json in Resources */ = {isa = PBXBuildFile; fileRef = B11544BC1D42BEF10011E5DF /* CourseGetAllCourses.json */; };
 		B11544C41D467C790011E5DF /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11544C31D467C790011E5DF /* SpecHelper.swift */; };
 		B13402161D109E3F00BA28BE /* DescribeGradingPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13402111D109E3F00BA28BE /* DescribeGradingPeriod.swift */; };
 		B13402171D109E3F00BA28BE /* GradingPeriod+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13402121D109E3F00BA28BE /* GradingPeriod+Factory.swift */; };
 		B13402181D109E3F00BA28BE /* GradingPeriodCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13402131D109E3F00BA28BE /* GradingPeriodCollectionTests.swift */; };
 		B13402191D109E3F00BA28BE /* GradingPeriodDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13402141D109E3F00BA28BE /* GradingPeriodDetailsTests.swift */; };
-		B134021C1D10A6DB00BA28BE /* grading-periods.json in Resources */ = {isa = PBXBuildFile; fileRef = B134021B1D10A6DB00BA28BE /* grading-periods.json */; };
 		B149874E1D3E92AB00DE2F63 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B149874D1D3E92AB00DE2F63 /* Quick.framework */; };
 		B14987501D3E92B400DE2F63 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B149874F1D3E92B400DE2F63 /* Nimble.framework */; };
-		B1700FB21CFD1192008E7293 /* refresh-all-courses.json in Resources */ = {isa = PBXBuildFile; fileRef = B1700FB11CFD1192008E7293 /* refresh-all-courses.json */; };
-		B1700FB41CFD11BE008E7293 /* refresh-favorite-colors.json in Resources */ = {isa = PBXBuildFile; fileRef = B1700FB31CFD11BE008E7293 /* refresh-favorite-colors.json */; };
 		B181C3231CA43B7500277440 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3211CA43B7500277440 /* Cartography.framework */; };
 		B181C3241CA43B8400277440 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3211CA43B7500277440 /* Cartography.framework */; };
 		B181C3251CA43B8400277440 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3211CA43B7500277440 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B192BD201CEE3C36009BC521 /* grading-period-courses.json in Resources */ = {isa = PBXBuildFile; fileRef = B192BD1F1CEE3C36009BC521 /* grading-period-courses.json */; };
-		B192BD281CEE6EA6009BC521 /* grading-period-grades-list.json in Resources */ = {isa = PBXBuildFile; fileRef = B192BD271CEE6EA6009BC521 /* grading-period-grades-list.json */; };
 		B192BD2C1CEE73E7009BC521 /* Course+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B192BD2B1CEE73E7009BC521 /* Course+Details.swift */; };
 		B192BD301CEE7FE1009BC521 /* Grade+CollectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B192BD2F1CEE7FE1009BC521 /* Grade+CollectionsTests.swift */; };
-		B192BD321CEE86B6009BC521 /* grades-list.json in Resources */ = {isa = PBXBuildFile; fileRef = B192BD311CEE86B6009BC521 /* grades-list.json */; };
-		B19D4E421D355A03001D329D /* teacher-grades-list.json in Resources */ = {isa = PBXBuildFile; fileRef = B19D4E411D355A03001D329D /* teacher-grades-list.json */; };
 		B1BFE40B1D49046900ED3887 /* GradingPeriodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFE40A1D49046900ED3887 /* GradingPeriodSpec.swift */; };
 		B1C49DB61D46B47C0003F8EB /* GradingPeriodCollectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C49DB51D46B47C0003F8EB /* GradingPeriodCollectionSpec.swift */; };
-		B1EBEC371D4138F80021BC4F /* CourseMarkAsFavoriteAddsFavorite.json in Resources */ = {isa = PBXBuildFile; fileRef = B1EBEC361D4138F80021BC4F /* CourseMarkAsFavoriteAddsFavorite.json */; };
-		B1EBEC3E1D4139A20021BC4F /* CourseMarkAsFavoriteRemovesFavorite.json in Resources */ = {isa = PBXBuildFile; fileRef = B1EBEC381D4139390021BC4F /* CourseMarkAsFavoriteRemovesFavorite.json */; };
-		B1EBEC3F1D4139DA0021BC4F /* CourseMarkAsFavoriteSendsErrors.json in Resources */ = {isa = PBXBuildFile; fileRef = B1EBEC3A1D4139550021BC4F /* CourseMarkAsFavoriteSendsErrors.json */; };
 		B1EBEC401D413B6D0021BC4F /* CourseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149874B1D3E926D00DE2F63 /* CourseSpec.swift */; };
 		B1F9EB701CEF721E00551196 /* UIColorEnrollmentKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F9EB6F1CEF721E00551196 /* UIColorEnrollmentKitTests.swift */; };
 		B1F9EB731CEF734400551196 /* GradeAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F9EB721CEF734400551196 /* GradeAPITests.swift */; };
@@ -183,11 +169,8 @@
 /* Begin PBXFileReference section */
 		2A37B85A1D25877500F18A26 /* Group+CollectionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Group+CollectionsTest.swift"; sourceTree = "<group>"; };
 		2A37B85E1D25A8A600F18A26 /* GroupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTests.swift; sourceTree = "<group>"; };
-		2A37B8621D25BE0A00F18A26 /* get-all-groups.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "get-all-groups.json"; sourceTree = "<group>"; };
-		2A37B8641D25BF4A00F18A26 /* refresh-all-groups.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "refresh-all-groups.json"; sourceTree = "<group>"; };
 		2A37B8671D25C23800F18A26 /* TabTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabTests.swift; sourceTree = "<group>"; };
 		2A625C131D26DC5300ACDEBA /* Tab+CollectionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tab+CollectionsTest.swift"; sourceTree = "<group>"; };
-		2A625C151D26E8AA00ACDEBA /* refresh-all-tabs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "refresh-all-tabs.json"; sourceTree = "<group>"; };
 		2A625C1C1D27094900ACDEBA /* Enrollment+FavoritesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Enrollment+FavoritesTests.swift"; sourceTree = "<group>"; };
 		490550211CAC897B009D4AD8 /* Group+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Group+Collections.swift"; sourceTree = "<group>"; };
 		490550231CAC8990009D4AD8 /* Enrollment+Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Enrollment+Favorites.swift"; sourceTree = "<group>"; };
@@ -249,30 +232,19 @@
 		B10A083A1CE3DBB100666CBF /* GradeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradeTests.swift; path = ../Grade/GradeTests.swift; sourceTree = "<group>"; };
 		B10BEA8E1CE53A380079C904 /* Grade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
 		B10BEA9A1CE66AC50079C904 /* Grade+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Grade+Collections.swift"; sourceTree = "<group>"; };
-		B11544BC1D42BEF10011E5DF /* CourseGetAllCourses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CourseGetAllCourses.json; sourceTree = "<group>"; };
 		B11544C31D467C790011E5DF /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
 		B13402111D109E3F00BA28BE /* DescribeGradingPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescribeGradingPeriod.swift; sourceTree = "<group>"; };
 		B13402121D109E3F00BA28BE /* GradingPeriod+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GradingPeriod+Factory.swift"; sourceTree = "<group>"; };
 		B13402131D109E3F00BA28BE /* GradingPeriodCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodCollectionTests.swift; sourceTree = "<group>"; };
 		B13402141D109E3F00BA28BE /* GradingPeriodDetailsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodDetailsTests.swift; sourceTree = "<group>"; };
-		B134021B1D10A6DB00BA28BE /* grading-periods.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "grading-periods.json"; sourceTree = "<group>"; };
 		B149874B1D3E926D00DE2F63 /* CourseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSpec.swift; sourceTree = "<group>"; };
 		B149874D1D3E92AB00DE2F63 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B149874F1D3E92B400DE2F63 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1700FB11CFD1192008E7293 /* refresh-all-courses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "refresh-all-courses.json"; sourceTree = "<group>"; };
-		B1700FB31CFD11BE008E7293 /* refresh-favorite-colors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "refresh-favorite-colors.json"; sourceTree = "<group>"; };
 		B181C3211CA43B7500277440 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B192BD1F1CEE3C36009BC521 /* grading-period-courses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "grading-period-courses.json"; sourceTree = "<group>"; };
-		B192BD271CEE6EA6009BC521 /* grading-period-grades-list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "grading-period-grades-list.json"; sourceTree = "<group>"; };
 		B192BD2B1CEE73E7009BC521 /* Course+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+Details.swift"; sourceTree = "<group>"; };
 		B192BD2F1CEE7FE1009BC521 /* Grade+CollectionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Grade+CollectionsTests.swift"; sourceTree = "<group>"; };
-		B192BD311CEE86B6009BC521 /* grades-list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "grades-list.json"; sourceTree = "<group>"; };
-		B19D4E411D355A03001D329D /* teacher-grades-list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "teacher-grades-list.json"; sourceTree = "<group>"; };
 		B1BFE40A1D49046900ED3887 /* GradingPeriodSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodSpec.swift; sourceTree = "<group>"; };
 		B1C49DB51D46B47C0003F8EB /* GradingPeriodCollectionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodCollectionSpec.swift; sourceTree = "<group>"; };
-		B1EBEC361D4138F80021BC4F /* CourseMarkAsFavoriteAddsFavorite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CourseMarkAsFavoriteAddsFavorite.json; sourceTree = "<group>"; };
-		B1EBEC381D4139390021BC4F /* CourseMarkAsFavoriteRemovesFavorite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CourseMarkAsFavoriteRemovesFavorite.json; sourceTree = "<group>"; };
-		B1EBEC3A1D4139550021BC4F /* CourseMarkAsFavoriteSendsErrors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CourseMarkAsFavoriteSendsErrors.json; sourceTree = "<group>"; };
 		B1F9EB6F1CEF721E00551196 /* UIColorEnrollmentKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorEnrollmentKitTests.swift; sourceTree = "<group>"; };
 		B1F9EB721CEF734400551196 /* GradeAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeAPITests.swift; sourceTree = "<group>"; };
 		B1F9EB741CEF7AC300551196 /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -581,7 +553,6 @@
 				B13402061D109D8400BA28BE /* Grading Period */,
 				B1F9EB711CEF730400551196 /* Network */,
 				B1F9EB6A1CEF6F1800551196 /* Color */,
-				B192BD1E1CEE3BEE009BC521 /* Fixtures */,
 				B10BEA951CE62F020079C904 /* Course */,
 				2A37B8591D25871F00F18A26 /* Group */,
 				B10BEA911CE53C840079C904 /* Dependencies */,
@@ -652,27 +623,6 @@
 				B13402141D109E3F00BA28BE /* GradingPeriodDetailsTests.swift */,
 			);
 			path = "Grading Period";
-			sourceTree = "<group>";
-		};
-		B192BD1E1CEE3BEE009BC521 /* Fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				2A37B8621D25BE0A00F18A26 /* get-all-groups.json */,
-				B134021B1D10A6DB00BA28BE /* grading-periods.json */,
-				B192BD311CEE86B6009BC521 /* grades-list.json */,
-				B192BD271CEE6EA6009BC521 /* grading-period-grades-list.json */,
-				B192BD1F1CEE3C36009BC521 /* grading-period-courses.json */,
-				B1700FB11CFD1192008E7293 /* refresh-all-courses.json */,
-				2A37B8641D25BF4A00F18A26 /* refresh-all-groups.json */,
-				2A625C151D26E8AA00ACDEBA /* refresh-all-tabs.json */,
-				B1700FB31CFD11BE008E7293 /* refresh-favorite-colors.json */,
-				B19D4E411D355A03001D329D /* teacher-grades-list.json */,
-				B1EBEC361D4138F80021BC4F /* CourseMarkAsFavoriteAddsFavorite.json */,
-				B1EBEC381D4139390021BC4F /* CourseMarkAsFavoriteRemovesFavorite.json */,
-				B1EBEC3A1D4139550021BC4F /* CourseMarkAsFavoriteSendsErrors.json */,
-				B11544BC1D42BEF10011E5DF /* CourseGetAllCourses.json */,
-			);
-			path = Fixtures;
 			sourceTree = "<group>";
 		};
 		B1F9EB6A1CEF6F1800551196 /* Color */ = {
@@ -917,20 +867,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1EBEC371D4138F80021BC4F /* CourseMarkAsFavoriteAddsFavorite.json in Resources */,
-				B1EBEC3E1D4139A20021BC4F /* CourseMarkAsFavoriteRemovesFavorite.json in Resources */,
-				B134021C1D10A6DB00BA28BE /* grading-periods.json in Resources */,
-				B1EBEC3F1D4139DA0021BC4F /* CourseMarkAsFavoriteSendsErrors.json in Resources */,
-				B192BD201CEE3C36009BC521 /* grading-period-courses.json in Resources */,
-				B19D4E421D355A03001D329D /* teacher-grades-list.json in Resources */,
-				B192BD281CEE6EA6009BC521 /* grading-period-grades-list.json in Resources */,
-				2A37B8631D25BE0A00F18A26 /* get-all-groups.json in Resources */,
-				B1700FB21CFD1192008E7293 /* refresh-all-courses.json in Resources */,
-				B192BD321CEE86B6009BC521 /* grades-list.json in Resources */,
-				2A625C161D26E8AA00ACDEBA /* refresh-all-tabs.json in Resources */,
-				2A37B8651D25BF4A00F18A26 /* refresh-all-groups.json in Resources */,
-				B11544C01D467A710011E5DF /* CourseGetAllCourses.json in Resources */,
-				B1700FB41CFD11BE008E7293 /* refresh-favorite-colors.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

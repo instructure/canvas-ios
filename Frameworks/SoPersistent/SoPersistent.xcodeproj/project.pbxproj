@@ -73,8 +73,6 @@
 		B19810891C8F2A370075869B /* LockableModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19810881C8F2A370075869B /* LockableModelTests.swift */; };
 		B198108B1C8F2ACB0075869B /* FetchedCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B198108A1C8F2ACB0075869B /* FetchedCollectionTests.swift */; };
 		B19D625F1CAF087700E16D11 /* SWPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19D625E1CAF087700E16D11 /* SWPerson.swift */; };
-		B19D62611CAF12C200E16D11 /* people.json in Resources */ = {isa = PBXBuildFile; fileRef = B19D62601CAF12C200E16D11 /* people.json */; };
-		B19D62631CAF15B800E16D11 /* luke.json in Resources */ = {isa = PBXBuildFile; fileRef = B19D62621CAF15B800E16D11 /* luke.json */; };
 		B1AA93431D6BA02E004B3226 /* CollectionViewDataSourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AA93421D6BA02E004B3226 /* CollectionViewDataSourceSpec.swift */; };
 		B1AA93471D6BA0C7004B3226 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AA93441D6BA0C7004B3226 /* Nimble.framework */; };
 		B1AA93481D6BA0C7004B3226 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AA93451D6BA0C7004B3226 /* Quick.framework */; };
@@ -168,8 +166,6 @@
 		B19810881C8F2A370075869B /* LockableModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockableModelTests.swift; sourceTree = "<group>"; };
 		B198108A1C8F2ACB0075869B /* FetchedCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedCollectionTests.swift; sourceTree = "<group>"; };
 		B19D625E1CAF087700E16D11 /* SWPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWPerson.swift; sourceTree = "<group>"; };
-		B19D62601CAF12C200E16D11 /* people.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = people.json; sourceTree = "<group>"; };
-		B19D62621CAF15B800E16D11 /* luke.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = luke.json; sourceTree = "<group>"; };
 		B1AA93421D6BA02E004B3226 /* CollectionViewDataSourceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSourceSpec.swift; sourceTree = "<group>"; };
 		B1AA93441D6BA0C7004B3226 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1AA93451D6BA0C7004B3226 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -406,8 +402,6 @@
 		B1451F551C8F65C800E78FCE /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				B19D62621CAF15B800E16D11 /* luke.json */,
-				B19D62601CAF12C200E16D11 /* people.json */,
 				B1451F561C8F65EA00E78FCE /* panda-list.json */,
 				B1451F581C8F66AA00E78FCE /* panda-list-page-2.json */,
 			);
@@ -610,8 +604,6 @@
 			files = (
 				B1451F591C8F66AA00E78FCE /* panda-list-page-2.json in Resources */,
 				B1451F571C8F65EA00E78FCE /* panda-list.json in Resources */,
-				B19D62631CAF15B800E16D11 /* luke.json in Resources */,
-				B19D62611CAF12C200E16D11 /* people.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

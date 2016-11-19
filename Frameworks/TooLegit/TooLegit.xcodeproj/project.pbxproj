@@ -36,15 +36,10 @@
 		B1353E001C4DBBEA00E61057 /* NSURLRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490A86491C40793D00351185 /* NSURLRequestTests.swift */; };
 		B1353E031C4EC78C00E61057 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1353E021C4EC78C00E61057 /* UserTests.swift */; };
 		B156582D1D22C28100D68C1D /* ParameterEncodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B156582C1D22C28100D68C1D /* ParameterEncodingTests.swift */; };
-		B156582F1D22E1B200D68C1D /* get-paginated.json in Resources */ = {isa = PBXBuildFile; fileRef = B156582E1D22E1B200D68C1D /* get-paginated.json */; };
 		B16094241C4DB7EC0007C42C /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4990467A1BCEFC3E00A6ADA3 /* TooLegit.framework */; };
-		B19163951D21C3660096D708 /* put.json in Resources */ = {isa = PBXBuildFile; fileRef = B19163941D21C3660096D708 /* put.json */; };
-		B19163971D21C3ED0096D708 /* delete.json in Resources */ = {isa = PBXBuildFile; fileRef = B19163961D21C3ED0096D708 /* delete.json */; };
 		B19163991D21C77F0096D708 /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19163981D21C77F0096D708 /* DoNotShipThis.framework */; };
 		B191639B1D21DDD60096D708 /* hubble-large.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B191639A1D21DDD60096D708 /* hubble-large.jpg */; };
 		B191639D1D21DDEA0096D708 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191639C1D21DDEA0096D708 /* NSURL.swift */; };
-		B19D62561CADE73400E16D11 /* get.json in Resources */ = {isa = PBXBuildFile; fileRef = B19D62551CADE73400E16D11 /* get.json */; };
-		B19D62581CADE87900E16D11 /* post.json in Resources */ = {isa = PBXBuildFile; fileRef = B19D62571CADE87900E16D11 /* post.json */; };
 		B1ADC70D1C91335600E85895 /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC70C1C91335600E85895 /* SoAutomated.framework */; };
 /* End PBXBuildFile section */
 
@@ -144,17 +139,12 @@
 		B134021D1D10B75B00BA28BE /* NSDateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateTests.swift; sourceTree = "<group>"; };
 		B1353E021C4EC78C00E61057 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		B156582C1D22C28100D68C1D /* ParameterEncodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncodingTests.swift; sourceTree = "<group>"; };
-		B156582E1D22E1B200D68C1D /* get-paginated.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "get-paginated.json"; sourceTree = "<group>"; };
 		B16094191C4DB5810007C42C /* PathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathTests.swift; sourceTree = "<group>"; };
 		B160941F1C4DB7EC0007C42C /* TooLegitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TooLegitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B16094231C4DB7EC0007C42C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B19163941D21C3660096D708 /* put.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = put.json; sourceTree = "<group>"; };
-		B19163961D21C3ED0096D708 /* delete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = delete.json; sourceTree = "<group>"; };
 		B19163981D21C77F0096D708 /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DoNotShipThis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B191639A1D21DDD60096D708 /* hubble-large.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hubble-large.jpg"; sourceTree = "<group>"; };
 		B191639C1D21DDEA0096D708 /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
-		B19D62551CADE73400E16D11 /* get.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get.json; sourceTree = "<group>"; };
-		B19D62571CADE87900E16D11 /* post.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = post.json; sourceTree = "<group>"; };
 		B1ADC70C1C91335600E85895 /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -276,7 +266,6 @@
 			children = (
 				2CCDE35E1DABDF9E00B46D87 /* InfoPlist.strings */,
 				B10B71851D0F57B6006CBDC5 /* Factories */,
-				B19D624E1CADCEB400E16D11 /* Fixtures */,
 				B1AC25671C5546B700636DC3 /* Dependencies */,
 				490A86491C40793D00351185 /* NSURLRequestTests.swift */,
 				490A864A1C40793D00351185 /* SessionTests.swift */,
@@ -289,18 +278,6 @@
 				B156582C1D22C28100D68C1D /* ParameterEncodingTests.swift */,
 			);
 			path = TooLegitTests;
-			sourceTree = "<group>";
-		};
-		B19D624E1CADCEB400E16D11 /* Fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				B19D62571CADE87900E16D11 /* post.json */,
-				B19D62551CADE73400E16D11 /* get.json */,
-				B19163941D21C3660096D708 /* put.json */,
-				B19163961D21C3ED0096D708 /* delete.json */,
-				B156582E1D22E1B200D68C1D /* get-paginated.json */,
-			);
-			path = Fixtures;
 			sourceTree = "<group>";
 		};
 		B1AC25671C5546B700636DC3 /* Dependencies */ = {
@@ -414,11 +391,6 @@
 			files = (
 				B191639B1D21DDD60096D708 /* hubble-large.jpg in Resources */,
 				2CCDE35C1DABDF9E00B46D87 /* InfoPlist.strings in Resources */,
-				B19D62561CADE73400E16D11 /* get.json in Resources */,
-				B19D62581CADE87900E16D11 /* post.json in Resources */,
-				B19163971D21C3ED0096D708 /* delete.json in Resources */,
-				B156582F1D22E1B200D68C1D /* get-paginated.json in Resources */,
-				B19163951D21C3660096D708 /* put.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

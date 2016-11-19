@@ -26,7 +26,7 @@ import SoPersistent
 
 extension DiscussionTopic {
     static var validJSON: JSONObject {
-        let bundle = NSBundle(forClass: DiscussionTopicTests.self)
+        let bundle = NSBundle.soAutomated
         let data = NSData(contentsOfFile: bundle.pathForResource("discussion_topic", ofType: "json")!)!
         return try! JSONParser.JSONObjectWithData(data)
     }

@@ -35,7 +35,7 @@ class TodoTests: UnitTestCase {
 
     func testUpdateValues_itSetsTheObjectPropertiesTheCorrespondingJSONValues() {
         attempt {
-            let bundle = NSBundle(forClass: TodoTests.self)
+            let bundle = NSBundle.soAutomated
             let data = NSData(contentsOfFile: bundle.pathForResource("todo", ofType: "json")!)!
             let json = try JSONParser.JSONObjectWithData(data)
             let session = Session.inMemory
@@ -65,7 +65,7 @@ class TodoTests: UnitTestCase {
     
     func testUpdateValues_itSetsTheAssignmentHtmlURLToTheQuizURL() {
         attempt {
-            let bundle = NSBundle(forClass: TodoTests.self)
+            let bundle = NSBundle.soAutomated
             let data = NSData(contentsOfFile: bundle.pathForResource("todo", ofType: "json")!)!
             var json = try JSONParser.JSONObjectWithData(data)
             let session = Session.inMemory

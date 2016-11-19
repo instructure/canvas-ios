@@ -46,14 +46,19 @@ extension Refresher {
 }
 
 extension TooLegit.Session {
+    @available(*, deprecated, message="Use playback(name:block:) because all recordings should be in SoAutomated.")
     public func playback(name: String, in bundle: NSBundle, @noescape block: ()->Void) {
+        playback(name, block: block)
+    }
+
+    public func playback(name: String, @noescape block: ()->Void) {
         let URLSession = self.URLSession
 
         // remove User-Agent header temporarily because it varies from target to target
         let userAgent = URLSession.configuration.HTTPAdditionalHeaders?["User-Agent"]
         URLSession.configuration.HTTPAdditionalHeaders?.removeValueForKey("User-Agent")
 
-        let DVRSession = DVR.Session(outputDirectory: "~/Desktop/", cassetteName: name, testBundle: bundle, backingSession: URLSession)
+        let DVRSession = DVR.Session(outputDirectory: "~/Desktop/", cassetteName: name, testBundle: .soAutomated, backingSession: URLSession)
         self.URLSession = DVRSession
         DVRSession.beginRecording()
         block()

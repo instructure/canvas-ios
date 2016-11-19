@@ -25,13 +25,13 @@ import CoreData
 
 extension CalendarEvent {
     static var validJSON: JSONObject {
-        let bundle = NSBundle(forClass: CalendarEventTests.self)
+        let bundle = NSBundle.soAutomated
         let path = bundle.pathForResource("calendar_event", ofType: "json")!
         return try! JSONParser.JSONObjectWithData(NSData(contentsOfFile: path)!)
     }
 
     static var validAssignmentJSON: JSONObject {
-        let bundle = NSBundle(forClass: CalendarEventTests.self)
+        let bundle = NSBundle.soAutomated
         let path = bundle.pathForResource("calendar_event_assignment", ofType: "json")!
         return try! JSONParser.JSONObjectWithData(NSData(contentsOfFile: path)!)
     }

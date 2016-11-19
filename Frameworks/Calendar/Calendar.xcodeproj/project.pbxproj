@@ -21,7 +21,6 @@
 		5E55600D1C8EBF4500933E08 /* CalendarEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E55600C1C8EBF4500933E08 /* CalendarEventCell.xib */; };
 		5E55600F1C8EC45800933E08 /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E55600E1C8EC44F00933E08 /* DoNotShipThis.framework */; };
 		5E5560101C8EC45800933E08 /* DoNotShipThis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5E55600E1C8EC44F00933E08 /* DoNotShipThis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5E88AF721D46A5B4005878AE /* calendar_event_assignment.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E88AF711D46A5B4005878AE /* calendar_event_assignment.json */; };
 		5E8CC3DA1CC95E000013951C /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8CC3D81CC95DEB0013951C /* EnrollmentKit.framework */; };
 		5E8CC3DB1CC95E090013951C /* EnrollmentKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8CC3D81CC95DEB0013951C /* EnrollmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E8CC3DC1CC95E0D0013951C /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8CC3D81CC95DEB0013951C /* EnrollmentKit.framework */; };
@@ -55,15 +54,11 @@
 		B11273CC1C9234F200452060 /* WhizzyWig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11273CB1C9234F200452060 /* WhizzyWig.framework */; };
 		B11273CF1C92350D00452060 /* WhizzyWig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11273CB1C9234F200452060 /* WhizzyWig.framework */; };
 		B11273D21C9235DC00452060 /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11273D11C9235DC00452060 /* SoAutomated.framework */; };
-		B157F0A01CECF1FA004EB3AE /* calendar_events_list.json in Resources */ = {isa = PBXBuildFile; fileRef = B157F09F1CECF1FA004EB3AE /* calendar_events_list.json */; };
-		B157F0A21CECF22E004EB3AE /* observee_calendar_events_list.json in Resources */ = {isa = PBXBuildFile; fileRef = B157F0A11CECF22E004EB3AE /* observee_calendar_events_list.json */; };
-		B157F0A41CECF24D004EB3AE /* calendar_event_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B157F0A31CECF24D004EB3AE /* calendar_event_details.json */; };
 		B161070A1C930A230012F5E4 /* CalendarEventNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16107091C930A230012F5E4 /* CalendarEventNetworkTests.swift */; };
 		B161070C1C930A390012F5E4 /* CalendarEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161070B1C930A390012F5E4 /* CalendarEventTests.swift */; };
 		B161070E1C930A480012F5E4 /* CalendarEventCollectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161070D1C930A480012F5E4 /* CalendarEventCollectionsTests.swift */; };
 		B17891C71C9736CE00B00D8B /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17891C61C9736CE00B00D8B /* SessionTests.swift */; };
 		B1F820E81CEBE040006EC0BC /* CalendarEvent+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820E71CEBE040006EC0BC /* CalendarEvent+Factory.swift */; };
-		B1F820EE1CEC1DFB006EC0BC /* calendar_event.json in Resources */ = {isa = PBXBuildFile; fileRef = B1F820ED1CEC1DFB006EC0BC /* calendar_event.json */; };
 		B5BFC52D1D8CB9C60046D71D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5BFC5281D8CB9C60046D71D /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -133,7 +128,6 @@
 		5E55600A1C8EBB4200933E08 /* CalendarEventList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventList.swift; sourceTree = "<group>"; };
 		5E55600C1C8EBF4500933E08 /* CalendarEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarEventCell.xib; sourceTree = "<group>"; };
 		5E55600E1C8EC44F00933E08 /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DoNotShipThis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E88AF711D46A5B4005878AE /* calendar_event_assignment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendar_event_assignment.json; sourceTree = "<group>"; };
 		5E8CC3D81CC95DEB0013951C /* EnrollmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnrollmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ECEDDCC1C499FB400E59B53 /* Calendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ECEDDCF1C499FB400E59B53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -157,15 +151,11 @@
 		5ECEDE4C1C49A8E400E59B53 /* CalendarKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CalendarKit.xcdatamodel; sourceTree = "<group>"; };
 		B11273CB1C9234F200452060 /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhizzyWig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B11273D11C9235DC00452060 /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B157F09F1CECF1FA004EB3AE /* calendar_events_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; lineEnding = 0; path = calendar_events_list.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
-		B157F0A11CECF22E004EB3AE /* observee_calendar_events_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = observee_calendar_events_list.json; sourceTree = "<group>"; };
-		B157F0A31CECF24D004EB3AE /* calendar_event_details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; lineEnding = 0; path = calendar_event_details.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		B16107091C930A230012F5E4 /* CalendarEventNetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventNetworkTests.swift; sourceTree = "<group>"; };
 		B161070B1C930A390012F5E4 /* CalendarEventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventTests.swift; sourceTree = "<group>"; };
 		B161070D1C930A480012F5E4 /* CalendarEventCollectionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventCollectionsTests.swift; sourceTree = "<group>"; };
 		B17891C61C9736CE00B00D8B /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		B1F820E71CEBE040006EC0BC /* CalendarEvent+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CalendarEvent+Factory.swift"; sourceTree = "<group>"; };
-		B1F820ED1CEC1DFB006EC0BC /* calendar_event.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendar_event.json; sourceTree = "<group>"; };
 		B5BFC5291D8CB9C60046D71D /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = CalendarKit/da.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B5BFC52A1D8CB9C60046D71D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = CalendarKit/de.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B5BFC52B1D8CB9C60046D71D /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "CalendarKit/en-AU.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
@@ -324,7 +314,6 @@
 			isa = PBXGroup;
 			children = (
 				B16107081C9309D50012F5E4 /* CalendarEvent */,
-				B11273D51C92377600452060 /* Fixtures */,
 				B11273D01C9235B300452060 /* Dependencies */,
 				5ECEDE1E1C499FE200E59B53 /* CalendarKitTests.swift */,
 				5ECEDE201C499FE200E59B53 /* Info.plist */,
@@ -365,19 +354,6 @@
 				B11273D11C9235DC00452060 /* SoAutomated.framework */,
 			);
 			name = Dependencies;
-			sourceTree = "<group>";
-		};
-		B11273D51C92377600452060 /* Fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				B157F0A31CECF24D004EB3AE /* calendar_event_details.json */,
-				B157F0A11CECF22E004EB3AE /* observee_calendar_events_list.json */,
-				B157F09F1CECF1FA004EB3AE /* calendar_events_list.json */,
-				B1F820ED1CEC1DFB006EC0BC /* calendar_event.json */,
-				5E88AF711D46A5B4005878AE /* calendar_event_assignment.json */,
-			);
-			name = Fixtures;
-			path = CalendarEvent;
 			sourceTree = "<group>";
 		};
 		B16107081C9309D50012F5E4 /* CalendarEvent */ = {
@@ -577,11 +553,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E88AF721D46A5B4005878AE /* calendar_event_assignment.json in Resources */,
-				B157F0A01CECF1FA004EB3AE /* calendar_events_list.json in Resources */,
-				B157F0A21CECF22E004EB3AE /* observee_calendar_events_list.json in Resources */,
-				B1F820EE1CEC1DFB006EC0BC /* calendar_event.json in Resources */,
-				B157F0A41CECF24D004EB3AE /* calendar_event_details.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

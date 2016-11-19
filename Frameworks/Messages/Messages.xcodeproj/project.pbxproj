@@ -30,15 +30,12 @@
 		B1D7AAD41D18716100A848A1 /* Session+MessageKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D7AAD31D18716100A848A1 /* Session+MessageKit.swift */; };
 		B1D7AAD71D18727400A848A1 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D7AAD61D18727400A848A1 /* Conversation.swift */; };
 		B1E7B2C31D2D60FE0076F377 /* ConversationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13402521D12005000BA28BE /* ConversationTests.swift */; };
-		B1E7B2C41D2D61EA0076F377 /* conversations.json in Resources */ = {isa = PBXBuildFile; fileRef = B13439391D2C6A7F007EA849 /* conversations.json */; };
-		B1E7B2C81D2D7F850076F377 /* conversations-1.json in Resources */ = {isa = PBXBuildFile; fileRef = B1E7B2C51D2D74D90076F377 /* conversations-1.json */; };
 		B1E7B2CA1D2D854E0076F377 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B2C91D2D854E0076F377 /* Participant.swift */; };
 		B1E7B2D21D2D9F160076F377 /* MessageKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B2D11D2D9F160076F377 /* MessageKitTests.swift */; };
 		B1E7B2D41D2DABD10076F377 /* ConversationsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B2D31D2DABD10076F377 /* ConversationsTableViewControllerTests.swift */; };
 		B1E7B2DB1D2ED1140076F377 /* ConversationTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B2DA1D2ED1140076F377 /* ConversationTableViewCellTests.swift */; };
 		B1E7B2DD1D2F059F0076F377 /* ConversationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1E7B2DC1D2F059F0076F377 /* ConversationTableViewCell.xib */; };
 		B1E7B2DF1D2F05D80076F377 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B2DE1D2F05D80076F377 /* ConversationTableViewCell.swift */; };
-		B1E7B2E11D2F46D00076F377 /* conversations-2.json in Resources */ = {isa = PBXBuildFile; fileRef = B1E7B2E01D2F46D00076F377 /* conversations-2.json */; };
 		B1E7B2E31D2F502E0076F377 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E7B2E21D2F502E0076F377 /* SoLazy.framework */; };
 		B1E7B2E51D2F503B0076F377 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E7B2E41D2F503B0076F377 /* Kingfisher.framework */; };
 		B1E7B2E71D2F521C0076F377 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E7B2E61D2F521C0076F377 /* SoIconic.framework */; };
@@ -104,20 +101,17 @@
 		B13439251D2567C9007EA849 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B13439301D26B80D007EA849 /* MessagesUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesUser.swift; sourceTree = "<group>"; };
 		B13439341D2C25BF007EA849 /* Context+Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Context+Messages.swift"; sourceTree = "<group>"; };
-		B13439391D2C6A7F007EA849 /* conversations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conversations.json; sourceTree = "<group>"; };
 		B1BB8B711D185AA000E28BF3 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		B1BB8B751D185BC500E28BF3 /* MessageKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MessageKit.xcdatamodel; sourceTree = "<group>"; };
 		B1D7AAD11D18713000A848A1 /* Conversation+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Conversation+Collections.swift"; sourceTree = "<group>"; };
 		B1D7AAD31D18716100A848A1 /* Session+MessageKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+MessageKit.swift"; sourceTree = "<group>"; };
 		B1D7AAD61D18727400A848A1 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
-		B1E7B2C51D2D74D90076F377 /* conversations-1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "conversations-1.json"; sourceTree = "<group>"; };
 		B1E7B2C91D2D854E0076F377 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
 		B1E7B2D11D2D9F160076F377 /* MessageKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageKitTests.swift; sourceTree = "<group>"; };
 		B1E7B2D31D2DABD10076F377 /* ConversationsTableViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsTableViewControllerTests.swift; sourceTree = "<group>"; };
 		B1E7B2DA1D2ED1140076F377 /* ConversationTableViewCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCellTests.swift; sourceTree = "<group>"; };
 		B1E7B2DC1D2F059F0076F377 /* ConversationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationTableViewCell.xib; sourceTree = "<group>"; };
 		B1E7B2DE1D2F05D80076F377 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
-		B1E7B2E01D2F46D00076F377 /* conversations-2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "conversations-2.json"; sourceTree = "<group>"; };
 		B1E7B2E21D2F502E0076F377 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E7B2E41D2F503B0076F377 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E7B2E61D2F521C0076F377 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoIconic.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTehThings-fvqjdibwneitdpekcyfsviqwupkb/Build/Products/Debug-iphoneos/SoIconic.framework"; sourceTree = "<group>"; };
@@ -207,7 +201,6 @@
 		B13402511D12005000BA28BE /* MessageKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				B13439361D2C2DB4007EA849 /* Fixtures */,
 				B134392D1D26B776007EA849 /* Users */,
 				B1D7AAD51D18725B00A848A1 /* Factories */,
 				B13402631D1353B100BA28BE /* Dependencies */,
@@ -249,16 +242,6 @@
 				B13439301D26B80D007EA849 /* MessagesUser.swift */,
 			);
 			path = Users;
-			sourceTree = "<group>";
-		};
-		B13439361D2C2DB4007EA849 /* Fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				B13439391D2C6A7F007EA849 /* conversations.json */,
-				B1E7B2C51D2D74D90076F377 /* conversations-1.json */,
-				B1E7B2E01D2F46D00076F377 /* conversations-2.json */,
-			);
-			path = Fixtures;
 			sourceTree = "<group>";
 		};
 		B1BB8B701D185A8100E28BF3 /* Conversation */ = {
@@ -428,9 +411,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1E7B2C81D2D7F850076F377 /* conversations-1.json in Resources */,
-				B1E7B2E11D2F46D00076F377 /* conversations-2.json in Resources */,
-				B1E7B2C41D2D61EA0076F377 /* conversations.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
