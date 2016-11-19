@@ -85,7 +85,8 @@ public class SelectDomainViewController: UIViewController {
                     guard let me = self else { return }
                     me.searchTextField.resignFirstResponder()
                     if (me.useMobileVerify) {
-                        me.validateMobileVerify(domain.absoluteString!)
+                        let host = domain.host ?? domain.absoluteString!
+                        me.validateMobileVerify(host)
                     } else {
                         print(domain)
                         me.pickedDomainAction?(domain)
