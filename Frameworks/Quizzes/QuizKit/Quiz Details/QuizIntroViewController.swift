@@ -22,6 +22,7 @@ import SoPretty
 import TooLegit
 import SoLazy
 import SoProgressive
+import Result
 
 public class QuizIntroViewController: UIViewController {
     
@@ -51,17 +52,16 @@ public class QuizIntroViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.quizController.quizUpdated = { [weak self] result in
-            if let error = result.error {
-                let title = ""
-                let message = ""
-                let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "", style: .Cancel, handler: nil))
-                self?.presentViewController(alert, animated: true, completion: nil)
-            }
-            
             if let quiz = result.value?.content {
                 self?.takeabilityController = QuizTakeabilityController(quiz: quiz, service: quizController.service)
                 self?.takeabilityController?.refreshTakeability()
+            } else {
+                let title = NSLocalizedString("Error Loading Quiz", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Title for quiz loading error")
+                let message = NSLocalizedString("Please check your network connection and try again.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "")
+                let buttonTitle = NSLocalizedString("Dismiss", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Dismiss error dialog")
+                let alert = UIAlertController(title: title ?? "", message: message ?? "", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: buttonTitle ?? "", style: .Cancel, handler: nil))
+                self?.presentViewController(alert, animated: true, completion: nil)
             }
             
             self?.quizUpdated()

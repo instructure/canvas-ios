@@ -289,7 +289,7 @@ extension Quiz: JSONDecodable {
         if let json = json as? [String: AnyObject] {
             let id = idString(json["id"])
             let title = json["title"] as? String
-            let description = json["description"] as? String
+            let description = json["description"] as? String ?? ""
             let due = Quiz.Due.fromJSON(json["due_at"])
             let timeLimit = Quiz.TimeLimit.fromJSON(json["time_limit"])
             let scoring = Quiz.Scoring.fromJSON(json["points_possible"])
@@ -305,7 +305,7 @@ extension Quiz: JSONDecodable {
             let shuffleAnswers = json["shuffle_answers"] as? Bool
             let hasAccessCode = json["has_access_code"] as? Bool ?? true
             
-            if let id = id, title = title, description=description, due = due, timeLimit = timeLimit, scoring = scoring, questionCount = questionCount, allowedAttempts = allowedAttempts, oqqaat = oqqaat, cantGoBack = cantGoBack, hideResults=hideResults, lockedForUser = lockedForUser, mobileURL = mobileURL, shuffleAnswers = shuffleAnswers
+            if let id = id, title = title, due = due, timeLimit = timeLimit, scoring = scoring, questionCount = questionCount, allowedAttempts = allowedAttempts, oqqaat = oqqaat, cantGoBack = cantGoBack, hideResults=hideResults, lockedForUser = lockedForUser, mobileURL = mobileURL, shuffleAnswers = shuffleAnswers
             {
                 return Quiz(id: id, title: title, description: description, due: due, timeLimit: timeLimit, scoring: scoring, questionCount: questionCount, questionTypes: questionTypes, attemptLimit: allowedAttempts, oneQuestionAtATime: oqqaat, cantGoBack: cantGoBack, hideResults: hideResults, lockAt: NSDate.fromJSON(json["lock_at"]), lockedForUser: lockedForUser, lockExplanation: lockExplanation, ipFilter: json["ip_filter"] as? String, mobileURL: mobileURL, shuffleAnswers: shuffleAnswers, hasAccessCode: hasAccessCode)
             }

@@ -271,9 +271,9 @@ class GradesTableViewController: AssignmentsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        header.tableView.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(view.bounds), height: header.includeGradingPeriods ? 132 : 88)
+        header.tableView.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(view.bounds), height: header.includeGradingPeriods ? 88 : 44)
         tableView.tableHeaderView = header.tableView
-        configureSearchController(header.tableView)
+//        configureSearchController(header.tableView)
     }
 
     override func viewModelFactory(assignment: Assignment) -> ColorfulViewModel {
