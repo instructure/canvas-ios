@@ -205,6 +205,12 @@ Dobbelt tjek venligst domænet og prøv igen.";
 /* OK Button Title */
 "OK" = "OK";
 
+/* Canvas Observer Auth Failed Message */
+"Only Canvas observers can authenticate in Canvas Parent." = "Kun Canvas-observatører kan godkende i Canvas Parent.";
+
+/* Open Source Components Button */
+"Open Source Components" = "Open Source-komponenter";
+
 /* Open a url in the application Safari */
 "Open in Safari" = "Åbn i Safari";
 

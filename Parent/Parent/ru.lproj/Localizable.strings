@@ -205,6 +205,12 @@ Please double-check the domain and try again." = "Недопустимый до�
 /* OK Button Title */
 "OK" = "OK";
 
+/* Canvas Observer Auth Failed Message */
+"Only Canvas observers can authenticate in Canvas Parent." = "Только пользователи, имеющие статус Наблюдателей Canvas, могут аутентифицироваться в Canvas Parent.";
+
+/* Open Source Components Button */
+"Open Source Components" = "Открыть исходные компоненты";
+
 /* Open a url in the application Safari */
 "Open in Safari" = "Открыть в Safari";
 

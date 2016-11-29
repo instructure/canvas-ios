@@ -205,6 +205,12 @@ Tanpri byen verifye domèn nan epi eseye ankò.";
 /* OK Button Title */
 "OK" = "OK";
 
+/* Canvas Observer Auth Failed Message */
+"Only Canvas observers can authenticate in Canvas Parent." = "Sèlman obsèvatè Canvas ki ka otantifye nan Canvas Parent.";
+
+/* Open Source Components Button */
+"Open Source Components" = "Konpozan Open Source";
+
 /* Open a url in the application Safari */
 "Open in Safari" = "Ouvri nan Safari";
 

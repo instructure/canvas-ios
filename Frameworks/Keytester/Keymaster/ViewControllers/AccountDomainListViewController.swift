@@ -155,26 +155,6 @@ public class AccountDomainListViewController: UITableViewController {
     }
 
     private func handleUpdates(updates: [CollectionUpdate<AccountDomain>]) {
-        tableView.beginUpdates()
-        for update in updates {
-            switch update {
-            case .SectionInserted(let s):
-                tableView.insertSections(NSIndexSet(index: s), withRowAnimation: .Automatic)
-            case .SectionDeleted(let s):
-                tableView.deleteSections(NSIndexSet(index: s), withRowAnimation: .Automatic)
-
-            case .Inserted(let indexPath, _):
-                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            case .Updated(let indexPath, _):
-                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            case let .Moved(from, to, _):
-                tableView.moveRowAtIndexPath(from, toIndexPath: to)
-            case .Deleted(let indexPath, _):
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            case .Reload:
-                tableView.reloadData()
-            }
-        }
-        tableView.endUpdates()
+        tableView.reloadData()
     }
 }

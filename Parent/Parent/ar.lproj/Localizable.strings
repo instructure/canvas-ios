@@ -205,6 +205,12 @@ Please double-check the domain and try again." = "مجال طالب غير صا�
 /* OK Button Title */
 "OK" = "موافق";
 
+/* Canvas Observer Auth Failed Message */
+"Only Canvas observers can authenticate in Canvas Parent." = "بإمكان مراقبي Canvas وحدهم المصادقة في Canvas Parent.";
+
+/* Open Source Components Button */
+"Open Source Components" = "مكونات مفتوحة المصدر";
+
 /* Open a url in the application Safari */
 "Open in Safari" = "الفتح في Safari";
 

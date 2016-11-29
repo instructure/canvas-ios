@@ -1,1 +1,24 @@
-/* No Localized Strings */
+/* Class = "UIButton"; normalTitle = "Create Account"; ObjectID = "cBu-44-Ntj"; */
+"cBu-44-Ntj.normalTitle" = "Créer un compte";
+
+/* Class = "UIButton"; accessibilityLabel = "Login"; ObjectID = "dbH-uS-X2F"; */
+"dbH-uS-X2F.accessibilityLabel" = "Ouverture de session";
+
+/* Class = "UIButton"; normalTitle = "Next"; ObjectID = "dbH-uS-X2F"; */
+"dbH-uS-X2F.normalTitle" = "Suivant";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "g5q-Iz-QjI"; */
+"g5q-Iz-QjI.normalTitle" = "Annuler";
+
+/* Class = "UITextField"; accessibilityLabel = "Email Address"; ObjectID = "y1y-qJ-k36"; */
+"y1y-qJ-k36.accessibilityLabel" = "Adresse courriel";
+
+/* Class = "UITextField"; placeholder = "Email address"; ObjectID = "y1y-qJ-k36"; */
+"y1y-qJ-k36.placeholder" = "Adresse courriel";
+
+/* Class = "UITextField"; accessibilityLabel = "First Name"; ObjectID = "ygr-5L-pCJ"; */
+"ygr-5L-pCJ.accessibilityLabel" = "Prénom";
+
+/* Class = "UITextField"; placeholder = "First name"; ObjectID = "ygr-5L-pCJ"; */
+"ygr-5L-pCJ.placeholder" = "Prénom";
+

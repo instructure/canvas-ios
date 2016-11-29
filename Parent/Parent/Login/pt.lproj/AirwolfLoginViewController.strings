@@ -1,3 +1,6 @@
+/* Class = "UIButton"; accessibilityLabel = "Disable Beta"; ObjectID = "Aye-kE-zWM"; */
+"Aye-kE-zWM.accessibilityLabel" = "Desactivar Beta";
+
 /* Class = "UIButton"; normalTitle = "Log in with Canvas"; ObjectID = "NBN-Ir-Nor"; */
 "NBN-Ir-Nor.normalTitle" = "Iniciar sessão no Canvas";
 

@@ -205,6 +205,12 @@ Por favor revise otra vez el dominio e inténtelo de nuevo.";
 /* OK Button Title */
 "OK" = "OK";
 
+/* Canvas Observer Auth Failed Message */
+"Only Canvas observers can authenticate in Canvas Parent." = "Solamente los observadores de Canvas pueden autenticar en Canvas Parent.";
+
+/* Open Source Components Button */
+"Open Source Components" = "Componentes de código abierto";
+
 /* Open a url in the application Safari */
 "Open in Safari" = "Abrir en Safari";
 

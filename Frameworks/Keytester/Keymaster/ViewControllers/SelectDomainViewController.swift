@@ -507,11 +507,40 @@ extension SelectDomainViewController: UIGestureRecognizerDelegate {
 
     func selectDomain(response: MobileVerifyResponse) {
 
+        let showError = { (domain: NSURL?) in
+            let stringURL = domain?.absoluteString ?? ""
+            let title = NSLocalizedString("Error", comment: "Error alert when using mobile verify")
+            let message = NSLocalizedString("There was a problem verifying the following domain: \(stringURL)", comment: "Message for an error alert")
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            let actionTitle = NSLocalizedString("OK", comment: "")
+            let action = UIAlertAction(title: actionTitle, style: .Default, handler: nil)
+            alertController.addAction(action)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+        
         guard let navigationController = self.navigationController, baseURL = response.baseURL, clientID = response.clientID, clientSecret = response.clientSecret else {
+            showError(response.baseURL)
             return
         }
 
-        pickedDomainAction?(baseURL)
+        // HELLO!
+        // Most of the time, mobileverify returns the https scheme on this url
+        // However, there was a bug that was accidently released into production
+        // This bug forced us to change how mobile verify works temporarily, by removing the https on mobileverify
+        // This code below will ensure that the scheme is on the URL. It should work both ways now with the fix and without the fix on mobileverify
+        var URL = baseURL
+        let components = NSURLComponents(URL: URL, resolvingAgainstBaseURL: false)
+        if let comps = components, let stringURL = URL.absoluteString where comps.scheme == nil {
+            
+            if let url = NSURL(string: "https://\(stringURL)") {
+                URL = url
+            }
+            else {
+                return showError(baseURL)
+            }
+        }
+        
+        pickedDomainAction?(URL)
 
         if useKeymasterLogin {
             dispatch_async(dispatch_get_main_queue(), {

@@ -12,7 +12,24 @@ OptionParser.new do |opts|
   opts.on('-s', '--skipPull', 'Skips pulling from transifex') do |v|
     options[:skipPull] = v
   end
+
+  opts.on('-pPROJECT', '--project=PROJECT', 'Import only a specific project') do |p|
+    options[:project] = p
+  end
+
+  opts.on('-l', '--list', 'List projects that can be imported') do |l|
+    options[:list] = l
+  end
+
 end.parse!
+
+json = IO.read('translations/projects.json', encoding:'utf-8')
+projects = JSON.parse json
+
+if options[:list]
+    puts projects.map { |project| project.fetch('name') }
+    abort
+end
 
 # Gets everything that's translated from Transifex
 unless options[:skipPull]
@@ -21,8 +38,8 @@ unless options[:skipPull]
     raise 'tx pull -a failed because reasons' unless success
 end
 
-json = IO.read('translations/projects.json', encoding:'utf-8')
-projects = JSON.parse json
+projects = projects.select { |project| project.fetch('name') == options[:project] } if options[:project]
+raise 'no projects to import' unless projects.count > 0
 projects.each do |project|
 
     project_file = project.fetch('location')

@@ -329,6 +329,7 @@ class AirwolfLoginViewController: UIViewController {
         domainPicker.dataSource = ParentSelectDomainDataSource.instance
         domainPicker.pickedDomainAction = { [weak self] url in
             dispatch_async(dispatch_get_main_queue()) {
+                
                 guard let me = self, let host = NSURLComponents(URL: url, resolvingAgainstBaseURL: false)?.host else {
                     return
                 }

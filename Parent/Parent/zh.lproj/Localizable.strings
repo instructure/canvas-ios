@@ -205,6 +205,12 @@ Please double-check the domain and try again." = "无效学生域名。
 /* OK Button Title */
 "OK" = "OK";
 
+/* Canvas Observer Auth Failed Message */
+"Only Canvas observers can authenticate in Canvas Parent." = "仅 Canvas 观察者可在 Canvas Parent 中执行验证。";
+
+/* Open Source Components Button */
+"Open Source Components" = "打开源组件";
+
 /* Open a url in the application Safari */
 "Open in Safari" = "在Safari中打开";
 

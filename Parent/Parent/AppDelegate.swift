@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Fabric.with([Crashlytics.self])
+        BuddyBuildSDK.setup()
         
         Armchair.appID("1097996698")
         Armchair.shouldPromptIfRated(false)
@@ -51,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Armchair.daysUntilPrompt(5)
         Armchair.usesUntilPrompt(10)
         Armchair.useMainAppBundleForLocalizations(true)
-        
         
         let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)

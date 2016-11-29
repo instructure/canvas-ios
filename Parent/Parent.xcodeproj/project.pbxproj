@@ -35,6 +35,15 @@
 		2C61CD091D9311B400196C03 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD0B1D9311B400196C03 /* Localizable.strings */; };
 		2C61CD1F1D9311E800196C03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD211D9311E800196C03 /* InfoPlist.strings */; };
 		2C61CD301D9311EC00196C03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD321D9311EC00196C03 /* InfoPlist.strings */; };
+		2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75AB941DDF62CA00650856 /* AssetsLibrary.framework */; };
+		2C75AB971DDF62CF00650856 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75AB961DDF62CF00650856 /* CoreTelephony.framework */; };
+		2C75AB991DDF62D500650856 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75AB981DDF62D500650856 /* CoreText.framework */; };
+		2C75AB9B1DDF62DA00650856 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75AB9A1DDF62DA00650856 /* CoreMedia.framework */; };
+		2C75AB9D1DDF62E000650856 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75AB9C1DDF62E000650856 /* AVFoundation.framework */; };
+		2C75AB9F1DDF62E600650856 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75AB9E1DDF62E600650856 /* CoreVideo.framework */; };
+		2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75ABA01DDF62ED00650856 /* QuartzCore.framework */; };
+		2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75ABA21DDF62F200650856 /* SystemConfiguration.framework */; };
+		2C75ABA51DDF630700650856 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75ABA41DDF630700650856 /* BuddyBuildSDK.framework */; };
 		2CB69BA21D91CD060059C5A5 /* AirwolfLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BA41D91CD060059C5A5 /* AirwolfLoginViewController.xib */; };
 		2CB69BA81D91CDE00059C5A5 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BAA1D91CDE00059C5A5 /* CourseCell.xib */; };
 		2CB69BAB1D91CDE50059C5A5 /* EmptyCalendarEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BAD1D91CDE50059C5A5 /* EmptyCalendarEventCell.xib */; };
@@ -670,6 +679,15 @@
 		2C61CEF51D9314EF00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CEF61D9314F000196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/SettingsViewController.strings; sourceTree = "<group>"; };
 		2C61CEF71D9314F000196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/StudentSettingsHeaderView.strings; sourceTree = "<group>"; };
+		2C75AB941DDF62CA00650856 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		2C75AB961DDF62CF00650856 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		2C75AB981DDF62D500650856 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		2C75AB9A1DDF62DA00650856 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		2C75AB9C1DDF62E000650856 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2C75AB9E1DDF62E600650856 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		2C75ABA01DDF62ED00650856 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2C75ABA21DDF62F200650856 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2C75ABA41DDF630700650856 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2CB69BA31D91CD060059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AirwolfLoginViewController.xib; sourceTree = "<group>"; };
 		2CB69BA91D91CDE00059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CourseCell.xib; sourceTree = "<group>"; };
 		2CB69BAC1D91CDE50059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EmptyCalendarEventCell.xib; sourceTree = "<group>"; };
@@ -864,6 +882,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C75ABA51DDF630700650856 /* BuddyBuildSDK.framework in Frameworks */,
+				2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */,
+				2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */,
+				2C75AB9F1DDF62E600650856 /* CoreVideo.framework in Frameworks */,
+				2C75AB9D1DDF62E000650856 /* AVFoundation.framework in Frameworks */,
+				2C75AB9B1DDF62DA00650856 /* CoreMedia.framework in Frameworks */,
+				2C75AB991DDF62D500650856 /* CoreText.framework in Frameworks */,
+				2C75AB971DDF62CF00650856 /* CoreTelephony.framework in Frameworks */,
+				2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */,
 				2C47623B1DD0FFB40003BEAE /* SoThankful.framework in Frameworks */,
 				61DA38891D468DE6002FEE31 /* Fabric.framework in Frameworks */,
 				61DA388A1D468DE6002FEE31 /* Crashlytics.framework in Frameworks */,
@@ -1186,6 +1213,15 @@
 		5E7790AF1C46CBA100429BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C75ABA41DDF630700650856 /* BuddyBuildSDK.framework */,
+				2C75ABA21DDF62F200650856 /* SystemConfiguration.framework */,
+				2C75ABA01DDF62ED00650856 /* QuartzCore.framework */,
+				2C75AB9E1DDF62E600650856 /* CoreVideo.framework */,
+				2C75AB9C1DDF62E000650856 /* AVFoundation.framework */,
+				2C75AB9A1DDF62DA00650856 /* CoreMedia.framework */,
+				2C75AB981DDF62D500650856 /* CoreText.framework */,
+				2C75AB961DDF62CF00650856 /* CoreTelephony.framework */,
+				2C75AB941DDF62CA00650856 /* AssetsLibrary.framework */,
 				2C47623A1DD0FFB40003BEAE /* SoThankful.framework */,
 				B5CB1B5C1DC1433800FE9C93 /* Armchair.framework */,
 				4907F9171DA80936004AB1A3 /* SoIconic.framework */,
@@ -1364,7 +1400,7 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = B6333T4PXQ;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -2381,8 +2417,8 @@
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "23ea4685-1265-4598-a115-5cf6e3279b00";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.instructure.parentapp";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Parent/Parent-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2411,8 +2447,8 @@
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fcf27fce-f6a6-45ae-a978-89e16c5b525d";
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.instructure.parentapp";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Parent/Parent-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
