@@ -19,7 +19,7 @@
 import Nimble
 import DVR
 import TooLegit
-import SoPersistent
+@testable import SoPersistent
 import ReactiveCocoa
 import CoreData
 import Quick
@@ -66,6 +66,12 @@ extension TooLegit.Session {
         
         self.URLSession = URLSession
         self.URLSession.configuration.HTTPAdditionalHeaders?["User-Agent"] = userAgent
+    }
+
+    public func cacheInvalidated(key: String) -> Bool {
+        let refreshingMoc = try! managedObjectContext(SoRefreshingStoreID)
+        let refresh: Refresh? = try! refreshingMoc.findOne(withValue: key, forKey: "key")
+        return refresh != nil
     }
 }
 

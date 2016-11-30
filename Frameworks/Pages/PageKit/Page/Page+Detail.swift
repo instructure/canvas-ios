@@ -24,6 +24,15 @@ import ReactiveCocoa
 import Marshal
 
 extension Page {
+    public static func detailCacheKey(context: NSManagedObjectContext, contextID: ContextID, url: String) -> String {
+        return cacheKey(context, [contextID.canvasContextID, url])
+    }
+
+    public static func invalidateDetailCache(session: Session, contextID: ContextID, url: String) throws {
+        let context = try session.pagesManagedObjectContext()
+        let key = detailCacheKey(context, contextID: contextID, url: url)
+        session.refreshScope.invalidateCache(key)
+    }
 
     public static func predicate(contextID: ContextID, url: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@ && %K == %@", "contextID", contextID.canvasContextID, "url", url)
@@ -129,8 +138,6 @@ extension Page {
             configureObserver()
             configureRefresher()
 
-            refresher.refresh(false)
-
             self.view.addSubview(webView)
             webView.translatesAutoresizingMaskIntoConstraints = false
             view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[webView]-0-|", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: ["webView": webView]))
@@ -142,25 +149,27 @@ extension Page {
 
             if let page = observer.object {
                 renderBodyForPage(page)
-                alertIfLocked(page)
             }
+        }
+
+        public override func viewWillAppear(animated: Bool) {
+            super.viewWillAppear(animated)
+            refresher.refresh(false)
         }
 
         // MARK: - Helpers
 
-        func alertIfLocked(page: Page) {
-            if page.lockedForUser {
-                // Strip HTML tags from lock explanation
-                var explanation = NSLocalizedString("This page is currently locked and not viewable.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "The HTML page is currently not viewable by the user because it has been locked by the teacher.")
-                if let encodedData = page.lockExplanation?.dataUsingEncoding(NSUTF8StringEncoding) {
-                    do {
-                        explanation = try NSAttributedString(data: encodedData, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil).string
-                        explanation = explanation.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions(), range: nil)
-                    } catch { print("Error stripping HTML from lockedExplanation") }
-                }
-
-                UIAlertView(title: NSLocalizedString("Page Locked", comment: "The page is locked by the teacher"), message: explanation, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "OK Button Title")).show()
+        func showLockExplanation(lockExplanation: String?) {
+            // Strip HTML tags from lock explanation
+            var explanation = NSLocalizedString("This page is currently locked and not viewable.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "The HTML page is currently not viewable by the user because it has been locked by the teacher.")
+            if let encodedData = lockExplanation?.dataUsingEncoding(NSUTF8StringEncoding) {
+                do {
+                    explanation = try NSAttributedString(data: encodedData, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil).string
+                    explanation = explanation.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions(), range: nil)
+                } catch { print("Error stripping HTML from lockedExplanation") }
             }
+
+            webView.loadHTMLString("<i>\(explanation)</i>", baseURL: nil)
         }
 
         func configureObserver() {
@@ -187,6 +196,10 @@ extension Page {
         }
 
         func renderBodyForPage(page: Page) {
+            guard !page.lockedForUser else {
+                showLockExplanation(page.lockExplanation)
+                return
+            }
             webView.loadHTMLString(PageTemplateRenderer.htmlStringForPage(page), baseURL: session.baseURL)
         }
 

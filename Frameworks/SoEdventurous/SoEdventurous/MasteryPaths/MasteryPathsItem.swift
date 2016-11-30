@@ -19,7 +19,6 @@ import CoreData
 import SoPersistent
 
 public class MasteryPathsItem: ModuleItem {
-    @NSManaged internal (set) public var locked: Bool
     @NSManaged internal (set) public var moduleItemID: String
     @NSManaged internal (set) public var selectedSetID: String?
     @NSManaged internal (set) public var assignmentSets: NSSet

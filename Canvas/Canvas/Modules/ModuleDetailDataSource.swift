@@ -116,6 +116,8 @@ class ModuleDetailDataSource<ModuleVM: TableViewCellViewModel, ModuleItemVM: Tab
             return
         }
 
+        let selectedIndexPath = tableView.indexPathForSelectedRow
+
         tableView.beginUpdates()
         for update in updates {
             switch update {
@@ -149,6 +151,8 @@ class ModuleDetailDataSource<ModuleVM: TableViewCellViewModel, ModuleItemVM: Tab
             }
         }
         tableView.endUpdates()
+
+        tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .None)
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

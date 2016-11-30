@@ -91,7 +91,8 @@ class ModuleItemDetailViewController: UIViewController {
         toolbar.items = [previousButton, space, nextButton]
 
         /// embed item view controller
-        viewModel.embeddedViewController
+        combineLatest(viewModel.moduleItemID.producer, viewModel.markAsDoneAction.enabled.producer, viewModel.embeddedViewController)
+            .map { _, _, embeddedViewController in embeddedViewController }
             .combinePrevious(nil)
             .observeOn(UIScheduler())
             .startWithNext(embed)

@@ -760,7 +760,7 @@ NSIndexPath *rootEntryIndexPath() {
     _isShowingInputView = showsInputView;
     
     if (showsInputView) {
-        overlayView = [[UIView alloc] initWithFrame:self.tableView.bounds];
+        overlayView = [[UIView alloc] initWithFrame:self.tableView.frame];
         overlayView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         overlayView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
         UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissInputView)];

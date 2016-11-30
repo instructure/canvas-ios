@@ -52,7 +52,7 @@ extension ModuleItem {
                 }
 
                 let invalidateCache = attemptProducer {
-                    try ModuleItem.invalidateCache(session, courseID: moduleItem.courseID)
+                    try ModuleItem.invalidateCache(session, courseID: moduleItem.courseID, moduleID: moduleItem.moduleID)
                 }
 
                 let postModuleItemProgress = blockProducer {
@@ -73,9 +73,15 @@ extension ModuleItem {
             .start()
     }
 
-    private static func invalidateCache(session: Session, courseID: String) throws {
+    private static func invalidateCache(session: Session, courseID: String, moduleID: String) throws {
         let context = try session.soEdventurousManagedObjectContext()
         session.refreshScope.invalidateCache(Module.collectionCacheKey(context, courseID: courseID))
+        session.refreshScope.invalidateCache(Module.detailsCacheKey(context, courseID: courseID, moduleID: moduleID))
+        let dependentModules: [Module] = try context.findAll(matchingPredicate: Module.predicate(withPrerequisite: moduleID))
+        let dependentModuleIDs = Set(dependentModules.map { $0.id })
+        dependentModuleIDs.forEach {
+            session.refreshScope.invalidateCache(Module.detailsCacheKey(context, courseID: courseID, moduleID: $0))
+        }
     }
 
     public func postProgress(session: Session, kind: Progress.Kind) {
@@ -143,7 +149,7 @@ extension ModuleItem {
         case .File(let fileID):
             return fileID
         case .Page(let pageURL):
-            return pageURL.absoluteString
+            return pageURL
         case .Discussion(let discussionID):
             return discussionID
         case .Assignment(let assignmentID):

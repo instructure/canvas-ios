@@ -110,10 +110,7 @@ public class RefreshScope: NSObject {
     
     public func invalidateCache(key: String, refresh: Bool = true) {
         setCacheRefreshed(key, date: NSDate(timeIntervalSince1970: 0) - 100.yearsComponents) // old and crusty
-        
-        if let refresher = refreshers[key] where refresh {
-            refresher.refresh(false)
-        }
+        refreshers[key]?.refresh(refresh)
     }
     
     

@@ -50,7 +50,7 @@ public class ModuleItem: NSManagedObject, LockableModel {
 
     public enum Content {
         case File(id: String)
-        case Page(url: NSURL)
+        case Page(url: String)
         case Discussion(id: String)
         case Assignment(id: String)
         case Quiz(id: String)
@@ -97,7 +97,7 @@ public class ModuleItem: NSManagedObject, LockableModel {
                 guard let contentID = contentID else { return nil }
                 return .File(id: contentID)
             case .page:
-                guard let pageURLStr = pageURL, pageURL = NSURL(string: pageURLStr) else { return nil }
+                guard let pageURL = pageURL else { return nil }
                 return .Page(url: pageURL)
             case .discussion:
                 guard let contentID = contentID else { return nil }
@@ -130,7 +130,7 @@ public class ModuleItem: NSManagedObject, LockableModel {
                 case .File(let fileID):
                     contentID = fileID
                 case .Page(let pageURL):
-                    self.pageURL = pageURL.absoluteString
+                    self.pageURL = pageURL
                 case .Discussion(let discussionID):
                     contentID = discussionID
                 case .Assignment(let assignmentID):
@@ -183,7 +183,7 @@ import Marshal
 
 extension ModuleItem: SynchronizedModel {
     public static func parseCompletionRequirement(json: JSONObject) throws -> (completionRequirement: CompletionRequirement?, minScore: NSNumber?, completed: Bool) {
-        let completedDefault = false
+        let completedDefault = true
         guard let completionRequirementJSON: JSONObject = try json <| "completion_requirement" else {
             return (nil, nil, completedDefault)
         }
@@ -216,7 +216,7 @@ extension ModuleItem: SynchronizedModel {
 
         try updateCompletionRequirement(json)
         try updateMasteryPaths(json, inContext: context)
-        try updateLockStatus(json)
+        try updateLockStatus((try json <| "content_details") ?? [:])
     }
 
     func updateCompletionRequirement(json: JSONObject) throws {
@@ -243,12 +243,11 @@ extension ModuleItem: SynchronizedModel {
             masteryPathsItem.externalURL = nil
             masteryPathsItem.completionRequirement = .MustChoose
             masteryPathsItem.selectedSetID = try masteryPaths.stringID("selected_set_id")
-            masteryPathsItem.lockedForUser = false
             masteryPathsItem.lockExplanation = nil
-            masteryPathsItem.canView = true
 
             let locked: Bool = try masteryPaths <| "locked"
-            masteryPathsItem.locked = locked
+            masteryPathsItem.lockedForUser = locked
+            masteryPathsItem.canView = !locked
             masteryPathsItem.completed = !locked
 
             var existingAssignmentSets = masteryPathsItem.assignmentSets as! Set<MasteryPathAssignmentSet>

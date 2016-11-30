@@ -328,7 +328,23 @@ class CourseSpec: QuickSpec {
                     }
                 }
             }
-        }
 
+            describe("getAllCourses") {
+                it("should filter out pending enrollments") {
+                    let session = User(credentials: .user3).session
+                    var courses: [JSONObject]?
+                    session.playback("CoursesWithPendingEnrollments", in: currentBundle) {
+                        waitUntil { done in
+                            try! Course.getAllCourses(session)
+                                .take(1)
+                                .on(next: { courses = $0 })
+                                .startWithCompleted { done() }
+                        }
+                    }
+                    expect(courses).toNot(beNil())
+                    expect(courses).to(beEmpty())
+                }
+            }
+        }
     }
 }

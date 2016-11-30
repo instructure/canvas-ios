@@ -21,6 +21,10 @@ import SoPersistent
 import CoreData
 
 extension Module {
+    public static func detailsCacheKey(context: NSManagedObjectContext, courseID: String, moduleID: String) -> String {
+        return cacheKey(context, [courseID, moduleID])
+    }
+
     public static func observer(session: Session, moduleID: String) throws -> ManagedObjectObserver<Module> {
         let context = try session.soEdventurousManagedObjectContext()
         let predicate = NSPredicate(format: "%K == %@", "id", moduleID)
@@ -39,7 +43,7 @@ extension Module {
 
         let sync: SignalProducer<SignalProducer<Void, NSError>, NSError> = SignalProducer(values: [syncModules.map { _ in () }, syncModuleItems.map { _ in () }])
 
-        let key = cacheKey(context, [courseID, moduleID])
+        let key = detailsCacheKey(context, courseID: courseID, moduleID: moduleID)
 
         return SignalProducerRefresher(refreshSignalProducer: sync.flatten(.Merge), scope: session.refreshScope, cacheKey: key)
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16A323" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="MasteryPathAssignment" representedClassName="SoEdventurous.MasteryPathAssignment" syncable="YES">
         <attribute name="assignmentID" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="assignmentSetID" attributeType="String" indexed="YES" syncable="YES"/>
@@ -20,7 +20,6 @@
         <relationship name="masteryPathsItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPathsItem" inverseName="assignmentSets" inverseEntity="MasteryPathsItem" syncable="YES"/>
     </entity>
     <entity name="MasteryPathsItem" representedClassName="SoEdventurous.MasteryPathsItem" parentEntity="ModuleItem" syncable="YES">
-        <attribute name="locked" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="moduleItemID" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="selectedSetID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="assignmentSets" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MasteryPathAssignmentSet" inverseName="masteryPathsItem" inverseEntity="MasteryPathAssignmentSet" syncable="YES"/>
@@ -60,7 +59,7 @@
     <elements>
         <element name="MasteryPathAssignment" positionX="97" positionY="504" width="128" height="208"/>
         <element name="MasteryPathAssignmentSet" positionX="-252" positionY="525" width="128" height="103"/>
-        <element name="MasteryPathsItem" positionX="-56" positionY="378" width="128" height="103"/>
+        <element name="MasteryPathsItem" positionX="-56" positionY="378" width="128" height="90"/>
         <element name="Module" positionX="-308" positionY="69" width="128" height="210"/>
         <element name="ModuleItem" positionX="-54" positionY="72" width="128" height="300"/>
     </elements>

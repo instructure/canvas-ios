@@ -51,7 +51,7 @@ public struct Credentials {
     public static let user2 = Credentials(
         id: "7087269",
         domain: "mobiledev.instructure.com",
-        email: "",
+        email: "mobiledevinstruct+user2@gmail.com",
         password: "firewall-clement-jingle-largesse-lechery",
         token: "1~VbcPWlz04rwjhjkKleaTdclWm6lANCmatgDvpS4NDLtqBw957x1cOhyUt6INKmLi",
         name: "User 2"
@@ -60,7 +60,7 @@ public struct Credentials {
     public static let user3 = Credentials(
         id: "7087360",
         domain: "mobiledev.instructure.com",
-        email: "",
+        email: "mobiledevinstruct+user3@gmail.com",
         password: "freckle-cozy-water-bastion-behove",
         token: "1~Re7oAox3PlWgeVksgEirLFTQ8QOcRIK6gybqUpZAMjH9M9aDikXXcqnkr0jyp9Rm",
         name: "User 3"

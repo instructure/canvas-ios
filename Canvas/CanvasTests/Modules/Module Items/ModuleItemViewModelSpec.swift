@@ -23,6 +23,7 @@ import ReactiveCocoa
 import SoPersistent
 import TooLegit
 import TechDebt
+@testable import PageKit
 
 class ModuleItemViewModelSpec: QuickSpec {
     override func spec() {
@@ -48,6 +49,27 @@ class ModuleItemViewModelSpec: QuickSpec {
                 beforeEach {
                     ModuleItemViewModel.tableViewDidLoad(tableView)
                     cell = vm.cellForTableView(tableView, indexPath: NSIndexPath(forRow: 0, inSection: 0))
+                }
+
+                context("when the module item is locked") {
+                    beforeEach {
+                        item.lockedForUser = true
+                    }
+
+                    it("should disable selection") {
+                        expect(cell.userInteractionEnabled).toEventually(beFalse())
+                    }
+
+                    it("should lighten the title text color") {
+                        expect(cell.textLabel!.textColor).toEventually(equal(UIColor.lightGrayColor()))
+                    }
+
+                    it("should VO locked status") {
+                        item.title = "Assignment 1"
+                        item.completionRequirement = nil
+                        item.content = .Assignment(id: "1")
+                        expect(cell.accessibilityLabel).toEventually(equal("Assignment 1. Type: Assignment. Status: Locked"))
+                    }
                 }
 
                 context("when the module is locked") {
@@ -108,64 +130,6 @@ class ModuleItemViewModelSpec: QuickSpec {
                     item.lockedForUser = true
                     expect(cell.accessibilityLabel).toEventually(equal("Go here. Type: Link. Status: Locked"))
                 }
-
-                context("when sequential progress required") {
-                    beforeEach {
-                        module.requireSequentialProgress = true
-                    }
-
-                    var disabled: Bool {
-                        return cell.selectionStyle ==  .None &&
-                        !cell.userInteractionEnabled &&
-                        cell.textLabel!.textColor == UIColor.lightGrayColor()
-                    }
-                    var enabled: Bool {
-                        return cell.selectionStyle ==  .Default &&
-                        cell.userInteractionEnabled &&
-                        cell.textLabel!.textColor == UIColor.blackColor()
-                    }
-
-                    it("should be disabled if any previous items are incomplete") {
-                        item.completed = true
-                        item.position = 5
-                        expect(enabled).toEventually(beTrue())
-
-                        let one = ModuleItem.build {
-                            $0.moduleID = module.id
-                            $0.completed = false
-                            $0.position = 4
-                        }
-
-                        expect(disabled).toEventually(beTrue())
-
-                        one.completed = true
-                        expect(enabled).toEventually(beTrue())
-
-                        ModuleItem.build {
-                            $0.moduleID = module.id
-                            $0.completed = false
-                            $0.position = 3
-                        }
-
-                        expect(disabled).toEventually(beTrue())
-                    }
-
-                    it("should be disabled if any items in prerequisite modules are incomplete") {
-                        module.requireSequentialProgress = true
-                        let prerequisiteModule = Module.build {
-                            $0.id = "20"
-                            $0.requireSequentialProgress = true
-                        }
-                        module.prerequisiteModuleIDs = [prerequisiteModule.id]
-                        ModuleItem.build {
-                            $0.id = "30"
-                            $0.moduleID = prerequisiteModule.id
-                            $0.completed = false
-                        }
-
-                        expect(disabled).toEventually(beTrue())
-                    }
-                }
             }
 
             it("should track the module item title") {
@@ -217,6 +181,56 @@ class ModuleItemViewModelSpec: QuickSpec {
                 expect(embedded).to(beAnInstanceOf(WebBrowserViewController.self))
             }
 
+            it("should mark external urls as viewed with embedded web browser") {
+                login(.user1)
+                ModuleItem.beginObservingProgress(currentSession)
+                let url = NSURL(string: "https://google.com")!
+                let item = ModuleItem.build {
+                    $0.id = "25915393"
+                    $0.moduleID = "3001848"
+                    $0.courseID = "1867097"
+                    $0.content = .ExternalURL(url: url)
+                    $0.completionRequirement = .MustView
+                    $0.completed = false
+                }
+                let vm = try! ModuleItemViewModel(session: currentSession, moduleItem: item)
+                expect(vm.markAsViewedAction.enabled.value) == true
+                let browserStub = WebBrowserViewController(URL: url)
+                currentSession.playback("ModuleItemMarkRead", in: .soAutomated) {
+                    waitUntil(timeout: 5) { done in
+                        currentSession.progressDispatcher
+                            .onProgress
+                            .assumeNoErrors()
+                            .filter {
+                                $0.itemType == .ModuleItem
+                            }
+                            .observeNext {
+                                if $0.itemID == item.id {
+                                    done()
+                                }
+                            }
+                        vm.webBrowser(browserStub, didFinishLoadingWebView: UIWebView())
+                    }
+                }
+                expect(item.reload().completed) == true
+            }
+
+            it("should invalidate pages cache when a page becomes unlocked") {
+                item.lockedForUser = true
+                item.content = .Page(url: "page-1")
+
+                let contextID = ContextID(id: "1", context: .Course)
+                var pagesCacheInvalidated: Bool {
+                    let pagesMoc = try! currentSession.pagesManagedObjectContext()
+                    return currentSession.cacheInvalidated(Page.collectionCacheKey(pagesMoc, contextID: contextID)) &&
+                        currentSession.cacheInvalidated(Page.detailCacheKey(pagesMoc, contextID: contextID, url: "page-1"))
+                }
+
+                expect(pagesCacheInvalidated) == false
+                item.lockedForUser = false
+                expect(pagesCacheInvalidated).toEventually(beTrue())
+            }
+
             it("should embed a special mastery paths view controller for mastery paths items") {
                 let masteryPathsItem = MasteryPathsItem.factory(inSession: currentSession) {
                     $0.id = "mastery-paths-item"
@@ -246,6 +260,7 @@ class ModuleItemViewModelSpec: QuickSpec {
                         $0.id = "2"
                         $0.moduleID = item.moduleID
                         $0.position = 3
+                        $0.lockedForUser = false
                     }
 
                     expect(vm.nextAction.enabled.value).toEventually(equal(true))
@@ -259,17 +274,17 @@ class ModuleItemViewModelSpec: QuickSpec {
                     expect(vm.previousAction.enabled.value).toEventually(equal(true))
                 }
 
-                it("should disable next Action if the next item is locked by sequential progress") {
+                it("should disable next Action if the next item is locked for user") {
                     item.position = 1
                     item.completed = false
-                    ModuleItem.build {
+                    let nextItem = ModuleItem.build {
                         $0.id = "2"
                         $0.moduleID = item.moduleID
                         $0.position = 2
                     }
                     expect(vm.nextAction.enabled.value).toEventually(equal(true))
 
-                    module.requireSequentialProgress = true
+                    nextItem.lockedForUser = true
 
                     expect(vm.nextAction.enabled.value).toEventually(equal(false))
                 }

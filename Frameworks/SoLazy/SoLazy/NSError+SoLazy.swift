@@ -78,7 +78,7 @@ extension NSError {
         
         print(reportDescription)
      
-        if externally == true {
+        if externally {
             ErrorReporter.sharedErrorReporter.reportError(self)
         }
         
@@ -86,7 +86,7 @@ extension NSError {
         
         let alert: UIAlertController
         
-        if externally == true {
+        if externally {
             let title = NSLocalizedString("Error", bundle: .soLazy(), comment: "Title for an error alert")
             let messageTemplate = NSLocalizedString("An unexpected error occured. %@(%@)", bundle: .soLazy(), comment: "Message for an error alert")
             let message = String.localizedStringWithFormat(messageTemplate, self.domain, String(self.code))

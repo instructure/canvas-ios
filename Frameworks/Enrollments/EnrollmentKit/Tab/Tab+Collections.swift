@@ -19,8 +19,18 @@
 import Foundation
 import SoPersistent
 import TooLegit
+import CoreData
 
 extension Tab {
+    public static func collectionCacheKey(context: NSManagedObjectContext, contextID: ContextID) -> String {
+        return cacheKey(context, [contextID.description])
+    }
+
+    public static func invalidateCache(session: Session, contextID: ContextID) throws {
+        let context = try session.enrollmentManagedObjectContext()
+        let key = collectionCacheKey(context, contextID: contextID)
+        session.refreshScope.invalidateCache(key)
+    }
     
     public static func collection(session: Session, contextID: ContextID) throws -> FetchedCollection<Tab> {
         let predicate = NSPredicate(format: "%K == %@ AND %K == NO", "rawContextID", contextID.canvasContextID, "hidden")
@@ -45,7 +55,7 @@ extension Tab {
         let predicate = NSPredicate(format: "%K == %@", "rawContextID", contextID.canvasContextID)
         let sync = syncSignalProducer(predicate, inContext: context, fetchRemote: remote)
 
-        let key = cacheKey(context, [contextID.description])
+        let key = collectionCacheKey(context, contextID: contextID)
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 

@@ -45,8 +45,19 @@ extension ModuleItem {
             "id": 1,
             "course_id": 1,
             "module_id": 1,
-            "type": "SubHeader"
+            "type": "SubHeader",
+            "content_details": [
+                "locked_for_user": false
+            ]
         ]
+    }
+
+    static func jsonWithLockedForUser(lockedForUser: Bool = false) -> JSONObject {
+        var json = validJSON
+        json["content_details"] = [
+            "locked_for_user": lockedForUser
+        ]
+        return json
     }
 
     static func jsonWithMasteryPaths(locked locked: Bool = true) -> JSONObject {

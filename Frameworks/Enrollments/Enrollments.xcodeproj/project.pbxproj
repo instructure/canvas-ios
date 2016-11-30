@@ -549,6 +549,7 @@
 		5ECEDD9F1C49570E00E59B53 /* EnrollmentKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				B19273561DDE3104005BADA1 /* Stubs */,
 				2A625C171D2703DA00ACDEBA /* Enrollment */,
 				B13402061D109D8400BA28BE /* Grading Period */,
 				B1F9EB711CEF730400551196 /* Network */,

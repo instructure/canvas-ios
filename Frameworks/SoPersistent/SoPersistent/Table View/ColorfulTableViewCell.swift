@@ -62,6 +62,12 @@ public struct ColorfulViewModel: TableViewCellViewModel {
         cell.disposable += (cell.accessoryView?.rac_a11yIdentifier).map { $0 <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_accessory_image_\(indexPathIdentifier)" } }
         cell.disposable += (cell.imageView?.rac_a11yIdentifier).map { $0 <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_icon_\(indexPathIdentifier)" } }
 
+        cell.disposable += setSelected.producer.startWithNext { [weak tableView] setSelected in
+            if let selected = setSelected where selected {
+                tableView?.selectRowAtIndexPath(tableView?.indexPathForCell(cell), animated: true, scrollPosition: .None)
+            }
+        }
+
         return cell
     }
     
@@ -151,10 +157,7 @@ public class ColorfulTableViewCell: UITableViewCell {
         disposable += vm.titleTextColor.producer.startWithNext { [weak self] textColor in
             self?.textLabel?.textColor = textColor
         }
-        disposable += vm.setSelected.producer.ignoreNil().startWithNext { [weak self] selected in
-            self?.setSelected(selected, animated: true)
-        }
-        
+
         updateTitleConstraints()
     }
     

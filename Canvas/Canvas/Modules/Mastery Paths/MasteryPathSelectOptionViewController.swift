@@ -103,12 +103,6 @@ class MasteryPathSelectOptionViewController: UIViewController {
 
         navigationItem.title = NSLocalizedString("Select Option", comment: "")
 
-        masteryPathsItemObserver.signal.observeNext { [weak self] (change, obj) in
-            if change == .Delete {
-                self?.navigationController?.popViewControllerAnimated(true)
-            }
-        }
-
         let toolbar = UIToolbar()
         toolbar.barTintColor = Brand.current().navBarTintColor
         toolbar.tintColor = Brand.current().navForegroundColor
@@ -185,14 +179,17 @@ class MasteryPathSelectOptionViewController: UIViewController {
             try itemWithMasteryPaths.selectMasteryPath(session, assignmentSetID: assignmentSet.id).startWithResult { [weak self] result in
                 self?.selectOptionActivityIndicator.stopAnimating()
                 switch result {
-                case .Success: break
+                case .Success:
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self?.navigationController?.popViewControllerAnimated(true)
+                    }
                 case .Failure(let error):
                     self?.selectOptionButton.setTitle(String(format: NSLocalizedString("Select Option %d", comment: "Button title to select a certain assignment set option"), (self?.optionSegmentedControl.selectedSegmentIndex ?? 0)+1), forState: .Normal)
                     error.report(true, alertUserFrom: self, onDismiss: nil)
                 }
             }
-        } catch {
-            print("Couldn't select the mastery path option: \(error)")
+        } catch let error as NSError {
+            error.report(true, alertUserFrom: self, onDismiss: nil)
         }
     }
 }

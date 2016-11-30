@@ -23,6 +23,8 @@ import SoIconic
 import SoPretty
 import TechDebt
 import SoProgressive
+import PageKit
+import AssignmentKit
 
 let ModuleItemBecameActiveNotification = "ModuleItemBecameActiveNotification"
 
@@ -35,9 +37,10 @@ class ModuleItemViewModel: NSObject {
     let title: AnyProperty<String?>
     let completionRequirement: AnyProperty<ModuleItem.CompletionRequirement?>
     let errorSignal: Signal<NSError, NoError>
+    let moduleItemID: AnyProperty<String?>
     lazy var embeddedViewController: SignalProducer<UIViewController?, NoError> = {
         let content = self.moduleItem.producer.map { $0?.content }.skipRepeats(==)
-        let masteryPathsItemModuleItemID = self.moduleItem.producer.map { $0 as? MasteryPathsItem }.map { $0?.moduleItemID }
+        let masteryPathsItemModuleItemID = self.moduleItem.producer.map { $0 as? MasteryPathsItem }.map { $0?.moduleItemID }.skipRepeats(==)
         let url = self.url.producer.skipRepeats(==)
         return combineLatest(url, content, masteryPathsItemModuleItemID).map { url, content, moduleItemID in
             if let content = content {
@@ -77,8 +80,8 @@ class ModuleItemViewModel: NSObject {
     private let previousModuleItem: AnyProperty<ModuleItem?>
     private let nextModuleItemIsValid: AnyProperty<Bool>
     private let previousModuleItemIsValid: AnyProperty<Bool>
-    private let lockedForSequentialProgress: AnyProperty<Bool>
     private let selected = MutableProperty<Bool?>(nil)
+    private let locked: AnyProperty<Bool>
 
     // Actions
     lazy var markAsDoneAction: Action<Void, Void, NoError> = {
@@ -128,11 +131,7 @@ class ModuleItemViewModel: NSObject {
         vm.icon <~ self.moduleItem.producer.map { $0?.icon }
         vm.accessibilityIdentifier.value = "module_item"
 
-        let moduleLocked = self.module.producer.map { ($0?.state == .locked) ?? true }
-        let lockedForUser = self.moduleItem.producer.map { $0?.lockedForUser ?? true }
-        let locked = combineLatest(moduleLocked, lockedForUser, self.lockedForSequentialProgress.producer).map { $0 || $1 || $2 }
-
-        vm.accessoryView <~ combineLatest(self.completed.producer, locked).map { completed, locked in
+        vm.accessoryView <~ combineLatest(self.completed.producer, self.locked.producer).map { completed, locked in
             guard !locked else {
                 let imageView = UIImageView(image: .icon(.lock))
                 imageView.tintColor = .prettyGray()
@@ -161,28 +160,20 @@ class ModuleItemViewModel: NSObject {
                 let fontStyle: ColorfulViewModel.FontStyle
                 if let content = moduleItem?.content where content == .SubHeader {
                     fontStyle = .bold
-                } else if let masteryPathsItem = moduleItem as? MasteryPathsItem where masteryPathsItem.locked {
+                } else if let masteryPathsItem = moduleItem as? MasteryPathsItem where masteryPathsItem.lockedForUser {
                     fontStyle = .italic
                 } else {
                     fontStyle = .regular
                 }
                 return fontStyle
             }
-        vm.titleTextColor <~ locked.map { $0 ? .lightGrayColor() : .blackColor() }
+        vm.titleTextColor <~ self.locked.producer.map { $0 ? .lightGrayColor() : .blackColor() }
         vm.indentationLevel <~ self.moduleItem.producer.map { $0?.indent ?? 0 }
-        vm.selectionEnabled <~ combineLatest(self.moduleItem.producer, locked, moduleLocked)
-            .map { item, locked, moduleLocked in
-                guard !locked && !moduleLocked else { return false }
-                guard let content = item?.content else { return true }
-                if let masteryPathsItem = item as? MasteryPathsItem where content == .MasteryPaths && masteryPathsItem.locked {
-                    return false
-                }
-                return content != .SubHeader
-            }
+        vm.selectionEnabled <~ self.locked.producer.map { !$0 }
         vm.setSelected <~ self.selected
 
         let contentType = self.moduleItem.producer.map { $0?.contentType.accessibilityLabel }
-        vm.accessibilityLabel <~ combineLatest(vm.title.producer, vm.detail.producer, contentType, self.completed.producer, locked)
+        vm.accessibilityLabel <~ combineLatest(vm.title.producer, vm.detail.producer, contentType, self.completed.producer, self.locked.producer)
             .map { title, detail, content, completed, locked in
                 let completedStatus = NSLocalizedString("Status: Completed", comment: "Label read aloud when item status is completed.")
                 let incompleteStatus = NSLocalizedString("Status: Incomplete", comment: "Label read aloud when item status is incomplete.")
@@ -211,7 +202,7 @@ class ModuleItemViewModel: NSObject {
         title = moduleItem.map { item in
             if let masteryPathsItem = item as? MasteryPathsItem {
                 guard let moduleItemFRD: ModuleItem = try! masteryPathsItem.managedObjectContext?.findOne(withPredicate: NSPredicate(format: "%K == %@", "id", masteryPathsItem.moduleItemID)) else { return "" }
-                if masteryPathsItem.locked {
+                if masteryPathsItem.lockedForUser {
                     return String(format: NSLocalizedString("Locked until \"%@\" is graded", comment: "Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name."), moduleItemFRD.title)
                 } else {
                     return NSLocalizedString("Choose option", comment: "Text for button to allow user to choose a set of assignments to do")
@@ -222,6 +213,8 @@ class ModuleItemViewModel: NSObject {
         }
 
         completionRequirement = moduleItem.map { $0?.completionRequirement }
+
+        self.moduleItemID = AnyProperty(initialValue: nil, producer: moduleItem.producer.map { $0?.id }.skipRepeats(==))
 
         nextModuleItem = AnyProperty(initialValue: nil, producer: combineLatest(moduleItem.producer, siblingsUpdates.producer)
             .map { moduleItem, _ in moduleItem }
@@ -245,26 +238,8 @@ class ModuleItemViewModel: NSObject {
             .flatMapError { _ in SignalProducer(value: nil) }
         )
 
-        lockedForSequentialProgress = AnyProperty(initialValue: true, producer:
-            combineLatest(module.producer, moduleItem.producer, siblingsUpdates.producer)
-            .map { _, moduleItem, _ in
-                guard let moduleItem = moduleItem else {
-                    return true
-                }
-                return (try? moduleItem.lockedBySequentialProgress(session)) ?? true
-            }
-        )
+        nextModuleItemIsValid = nextModuleItem.map { $0 != nil }
 
-        let nextItemLockedForSequentialProgress = AnyProperty(initialValue: true, producer: combineLatest(module.producer, nextModuleItem.producer)
-            .map { _, moduleItem in
-                guard let moduleItem = moduleItem else {
-                    return true
-                }
-                return (try? moduleItem.lockedBySequentialProgress(session)) ?? true
-            }
-        )
-
-        nextModuleItemIsValid = nextItemLockedForSequentialProgress.map { !$0 }
         previousModuleItemIsValid = previousModuleItem.map { $0 != nil }
 
         (errorSignal, errorObserver) = Signal.pipe()
@@ -282,9 +257,14 @@ class ModuleItemViewModel: NSObject {
             return moduleItem.completed ?? false
         }
 
+        let lockedForUser = self.moduleItem.producer.map { $0?.lockedForUser ?? true }
+        let moduleLocked = self.module.producer.map { $0?.state == .locked }
+        locked = AnyProperty(initialValue: true, producer: combineLatest(lockedForUser, moduleLocked).map { $0 || $1 })
+
         super.init()
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(moduleItemBecameActive(_:)), name: ModuleItemBecameActiveNotification, object: nil)
+        beginObservingLockedStatus()
     }
 
     convenience init(session: Session, moduleItem: ModuleItem) throws {
@@ -296,12 +276,10 @@ class ModuleItemViewModel: NSObject {
     }
 
     private func canFulfill(completionRequirement: ModuleItem.CompletionRequirement) -> AnyProperty<Bool> {
-        return moduleItem.map { moduleItem in
-            guard let moduleItem = moduleItem, requirement = moduleItem.completionRequirement else {
-                return false
-            }
-            return requirement == completionRequirement && !moduleItem.completed
-        }
+        let sameCompletionRequirement = moduleItem.producer.map { $0?.completionRequirement == completionRequirement }.skipRepeats(==)
+        let completed = moduleItem.producer.map { $0?.completed ?? false }.skipRepeats(==)
+        let canFulfill = combineLatest(sameCompletionRequirement, completed).map { $0 && !$1 }
+        return AnyProperty(initialValue: false, producer: canFulfill)
     }
 
     func moduleItemBecameActive(notification: NSNotification) {
@@ -315,14 +293,49 @@ class ModuleItemViewModel: NSObject {
             NSNotificationCenter.defaultCenter().postNotificationName(ModuleItemBecameActiveNotification, object: nil, userInfo: ["moduleItemID": id])
         }
     }
+
+    private func beginObservingLockedStatus() {
+        locked.signal
+            .combinePrevious(true)
+            .observeNext { [weak self] previous, current in
+                if previous && !current {
+                    _ = try? self?.invalidateCaches()
+                }
+            }
+    }
+
+    private func invalidateCaches() throws {
+        guard let content = moduleItem.value?.content, courseID = moduleItem.value?.courseID else {
+            return
+        }
+        switch content {
+        case let .Page(url: url):
+            let contextID = ContextID(id: courseID, context: .Course)
+            try Page.invalidateCache(session, contextID: contextID)
+            try Page.invalidateDetailCache(session, contextID: contextID, url: url)
+        case let .Assignment(id: id):
+            try Assignment.invalidateCache(session, courseID: courseID)
+            try Assignment.invalidateDetailsCache(session, courseID: courseID, id: id)
+        default:
+            break
+        }
+    }
 }
 
 
 // MARK: - WebBrowserViewControllerDelegate
 extension ModuleItemViewModel: WebBrowserViewControllerDelegate {
     func webBrowser(webBrowser: WebBrowserViewController!, didFinishLoadingWebView webView: UIWebView!) {
-        if webBrowser.url == url.value {
+        if moduleItemMatches(webBrowser.url) {
             markAsViewedAction.apply(()).start()
+        }
+    }
+
+    private func moduleItemMatches(externalURL: NSURL) -> Bool {
+        switch self.moduleItem.value?.content {
+        case let .Some(.ExternalURL(url)):
+            return externalURL == url
+        default: return false
         }
     }
 }

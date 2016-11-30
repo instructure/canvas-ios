@@ -23,6 +23,7 @@ import Marshal
 import AssignmentKit
 import EnrollmentKit
 import SoProgressive
+import PageKit
 
 extension ModuleItem {
     public func markDone(session: Session) throws -> SignalProducer<Void, NSError> {
@@ -67,28 +68,28 @@ extension ModuleItem {
         }
         
         let remote = try ModuleItem.selectMasteryPath(session, courseID: courseID, moduleID: moduleID, moduleItemID: id, assignmentSetID: assignmentSetID)
-        return remote.on(
-            next: { [weak self] json in
+        let local: (JSONObject) -> SignalProducer<Void, NSError> = { [weak self] json in
+            return attemptProducer {
                 guard let me = self else { return }
-                do {
-                    let newItems: [JSONObject] = try json <| "items"
-                    let models: [ModuleItem] = try newItems.map { (var json) in
-                        json["course_id"] = me.courseID
-                        let item = ModuleItem(inContext: context)
-                        try item.updateValues(json, inContext: context)
-                        return item
-                    }
-
-                    masteryPathsItem.delete(inContext: context)
-
-                    try context.saveFRD()
-
-                    // More assignments have been conditionally released, so let's invalidate the assignments cache
-                    try Assignment.invalidateCache(session, courseID: me.courseID)
-                } catch {
-                    print("Error reading new items from json when selecting mastery path: \(error)")
+                let newItems: [JSONObject] = try json <| "items"
+                let models: [ModuleItem] = try newItems.map { (var json) in
+                    json["course_id"] = me.courseID
+                    let item = ModuleItem(inContext: context)
+                    try item.updateValues(json, inContext: context)
+                    return item
                 }
+
+                masteryPathsItem.delete(inContext: context)
+
+                try context.saveFRD()
+
+                // invalidate all the caches that we can to show freed items
+                let contextID = ContextID(id: me.courseID, context: .Course)
+                try Tab.invalidateCache(session, contextID: contextID)
+                try Page.invalidateCache(session, contextID: contextID)
+                try Assignment.invalidateCache(session, courseID: me.courseID)
             }
-        ).flatMap(.Concat, transform: { _ in SignalProducer<(), NSError>.empty })
+        }
+        return remote.flatMap(.Concat, transform: local)
     }
 }

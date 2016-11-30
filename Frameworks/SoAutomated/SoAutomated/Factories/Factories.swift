@@ -178,7 +178,6 @@ extension MasteryPathsItem {
         let object: MasteryPathsItem = create(inContext: context)
         ModuleItem.define(object)
         object.moduleItemID = "1"
-        object.locked = true
         object.defineLockedStatus()
         return object
     }

@@ -33,12 +33,30 @@ extension Course {
         let request = try session.GET(api/v1/"courses", parameters: getCoursesParameters)
         return session.paginatedJSONSignalProducer(request)
             
-            // filter out restricted courses because their json is too sparse and will cause parsing issues
             .map { coursesJSON in
-                return coursesJSON.filter { json in
-                    let restricted: Bool = (try? json <| "access_restricted_by_date") ?? false
-                    return !restricted
-                }
+                return coursesJSON
+                    // filter out restricted courses because their json is too sparse and will cause parsing issues
+                    .filter { json in
+                        let restricted: Bool = (try? json <| "access_restricted_by_date") ?? false
+                        return !restricted
+                    }
+
+                    // remove pending enrollments because their json is also too sparse
+                    .map { json in
+                        var json = json
+                        let enrollments: [JSONObject] = (try? json <| "enrollments") ?? []
+                        json["enrollments"] = enrollments.filter { json in
+                            let enrollmentState: String = (try? json <| "enrollment_state") ?? ""
+                            return enrollmentState != "invited"
+                        }
+                        return json
+                    }
+
+                    // filter out courses without any enrollments
+                    .filter { json in
+                        let enrollments: [JSONObject] = (try? json <| "enrollments") ?? []
+                        return enrollments.any()
+                    }
             }
     }
 }

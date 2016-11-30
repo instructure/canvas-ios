@@ -158,5 +158,37 @@ class ModuleSpec: QuickSpec {
                 }
             }
         }
+
+        describe("predicate(withPrerequisite:)") {
+            it("should include modules with the prerequisite module id") {
+                let session = Session.user1
+                let moc = try! session.soEdventurousManagedObjectContext()
+
+                let one = Module(inContext: moc)
+                one.prerequisiteModuleIDs = ["1", "2", "10", "120"]
+
+                let two = Module(inContext: moc)
+                two.prerequisiteModuleIDs = ["12"]
+
+                let three = Module(inContext: moc)
+                three.prerequisiteModuleIDs = []
+
+                let all = [one, two, three]
+
+                var predicate = Module.predicate(withPrerequisite: "1")
+                var results = all.filter(predicate.evaluateWithObject)
+
+                expect(results.contains(one)) == true
+                expect(results.contains(two)) == false
+                expect(results.contains(three)) == false
+
+                predicate = Module.predicate(withPrerequisite: "12")
+                results = all.filter(predicate.evaluateWithObject)
+
+                expect(results.contains(one)) == false
+                expect(results.contains(two)) == true
+                expect(results.contains(three)) == false
+            }
+        }
     }
 }

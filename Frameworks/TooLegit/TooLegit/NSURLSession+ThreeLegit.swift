@@ -113,7 +113,7 @@ public enum JSONObjectResponse {
 extension Session {
     public func rac_dataWithRequest(request: NSURLRequest) -> SignalProducer<(NSData, NSURLResponse), NSError> {
         return blockProducer { self.URLSession.dataTaskWithRequest(request) }
-            .flatMapError { _ in .empty }
+            .promoteErrors(NSError)
             .flatMap(.Concat, transform: resumeTask)
     }
 

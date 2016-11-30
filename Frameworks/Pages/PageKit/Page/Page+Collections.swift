@@ -24,6 +24,15 @@ import SoLazy
 import Marshal
 
 extension Page {
+    public static func collectionCacheKey(context: NSManagedObjectContext, contextID: ContextID) -> String {
+        return cacheKey(context, [contextID.canvasContextID, "collection"])
+    }
+
+    public static func invalidateCache(session: Session, contextID: ContextID) throws {
+        let context = try session.pagesManagedObjectContext()
+        let key = collectionCacheKey(context, contextID: contextID)
+        session.refreshScope.invalidateCache(key)
+    }
 
     var routingUrl: NSURL {
         let path = contextID.apiPath + "/pages/" + url
@@ -48,11 +57,10 @@ extension Page {
 
         let pages = try Page.getPages(session, contextID: contextID)
         let predicate = Page.predicate(contextID)
-        let sync = Page.syncSignalProducer(predicate, inContext: context, fetchRemote: pages) {
-            page, _ in
+        let sync = Page.syncSignalProducer(predicate, inContext: context, fetchRemote: pages) { page, _ in
             page.contextID = contextID
         }
-        let key = cacheKey(context, [contextID.canvasContextID, "collection"])
+        let key = collectionCacheKey(context, contextID: contextID)
 
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
@@ -82,11 +90,6 @@ extension Page {
             let page = collection[indexPath]
 
             route(self, page.routingUrl)
-        }
-
-        override public func viewDidLoad() {
-            super.viewDidLoad()
-            refresher!.refresh(false)
         }
 
     }

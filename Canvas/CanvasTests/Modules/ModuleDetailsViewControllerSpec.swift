@@ -50,22 +50,25 @@ class ModuleDetailsViewControllerSpec: QuickSpec {
                 let vc = try! ModuleDetailsViewController(session: currentSession, courseID: module.courseID, moduleID: module.id, route: ignoreRouteAction)
                 _ = vc.view
 
-                expect(vc.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))!.textLabel!.text).toEventually(equal(one.title))
-                expect(vc.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1))!.textLabel!.text).toEventually(equal(two.title))
+                let row0 = NSIndexPath(forRow: 0, inSection: 1)
+                let row1 = NSIndexPath(forRow: 1, inSection: 1)
+
+                expect(vc.tableView.cellForRowAtIndexPath(row0)!.textLabel!.text).toEventually(equal(one.title))
+                expect(vc.tableView.cellForRowAtIndexPath(row1)!.textLabel!.text).toEventually(equal(two.title))
                 expect(vc.tableView.indexPathsForSelectedRows).to(beNil())
 
                 let detail = try! ModuleItemDetailViewController(session: currentSession, courseID: module.courseID, moduleID: module.id, moduleItemID: one.id, route: ignoreRouteAction)
                 _ = detail.view
 
-                expect(vc.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))!.selected).toEventually(beTrue())
+                expect(vc.tableView.indexPathForSelectedRow).toEventually(equal(row0))
 
                 detail.next()
-                expect(vc.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1))!.selected).toEventually(beTrue())
-                expect(vc.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))!.selected).toEventually(beFalse())
+                expect(vc.tableView.indexPathForSelectedRow).toEventually(equal(row1))
+                expect(vc.tableView.indexPathsForSelectedRows).toNot(contain(row0))
 
                 detail.previous()
-                expect(vc.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))!.selected).toEventually(beTrue())
-                expect(vc.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1))!.selected).toEventually(beFalse())
+                expect(vc.tableView.indexPathForSelectedRow).toEventually(equal(row0))
+                expect(vc.tableView.indexPathsForSelectedRows).toNot(contain(row1))
 
                 Router.sharedRouter().removeRoute(route.path!)
             }
@@ -92,7 +95,7 @@ class ModuleDetailsViewControllerSpec: QuickSpec {
                 masteryPathsItem.id = "123-456"
                 masteryPathsItem.moduleItemID = item.id
                 masteryPathsItem.moduleID = item.moduleID
-                masteryPathsItem.locked = false
+                masteryPathsItem.lockedForUser = false
                 masteryPathsItem.courseID = item.courseID
                 masteryPathsItem.position = 1.5
 
