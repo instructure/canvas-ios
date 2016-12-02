@@ -1,271 +1,263 @@
-/* Description for rubric criterion rating object */
-"Rating for %1$@, Score: %2$g" = "Pwen pou %1$@, Nòt: %2$g";
-
-/* when locked item will become unlocked */
-"until %@" = "jiska %@";
-
-/* explanation for locked module item */
-"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; bloke kòm yon pati de &quot;%2$@&quot;";
-
-/* Gigabytes */
+/* (No Commment) */
 "%0.2f GB" = "%0.2f GB";
 
-/* Kilobytes */
+/* (No Commment) */
 "%0.2f KB" = "%0.2f KB";
 
-/* Megabytes */
+/* (No Commment) */
 "%0.2f MB" = "%0.2f MB";
 
-/* Button to submit files to an assignment */
+/* (No Commment) */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
+/* (No Commment) */
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g de %3$@)";
 
-/* something at something */
+/* (No Commment) */
 "%1$@ at %2$@" = "%1$@ a %2$@";
 
-/* Message for unsupported tab coming soon */
-"%@ is coming soon!" = "%@ ap vini byento!";
-
-/* local notification countdown alert */
+/* (No Commment) */
 "%1$@ is due in %2$@" = "%1$@ dwe disponib %2$@";
 
-/* explanation for locked item */
+/* (No Commment) */
+"%1$@ out of %2$@" = "%1$@ de %2$@";
+
+/* (No Commment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g de %3$@)";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Tip: %3$@.";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Tip: %3$@. Estati: %4$@";
+
+/* (No Commment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Commment) */
+"%1$g out of %2$@" = "%1$g de %2$@";
+
+/* (No Commment) */
+"%@ is coming soon!" = "%@ ap vini byento!";
+
+/* (No Commment) */
 "%@ is locked" = "%@ bloke";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "%@ is not a valid URL" = "%@ pa yon URL valid";
 
-/* %@ is the token where the host name goes. Error message that the host doesn't exist. */
+/* (No Commment) */
 "%@ is not a valid host" = "%@ pa yon hôte valab";
 
-/* Message for unsupported tab */
+/* (No Commment) */
 "%@ is not currently supported." = "%@ pa gen sipò pou kounye a.";
 
-/* Description for how many times a specific discussion has been liked by other users */
+/* (No Commment) */
 "%@ likes" = "%@ jèm";
 
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ bezwen klasman";
 
-/* 88 out of 100 points */
-"%1$@ out of %2$@" = "%1$@ de %2$@";
-
-/* 83% (83 out of 100 points */
-"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g de %3$@)";
-
-/* String to be read for the blind users. Name of item in module, then type of thing. */
-"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Tip: %3$@.";
-
-/* String to be read for the blind users. Name of item in module, then type of thing, then status. */
-"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Tip: %3$@. Estati: %4$@";
-
-/* Word and ellipses */
+/* (No Commment) */
 "%@..." = "%@...";
 
-/* A number and a collective noun, like '5 pigs' */
-"%1$d %2$@" = "%1$d %2$@";
-
-/* time since creation (2 or more days) */
+/* (No Commment) */
 "%d days ago" = "%d jou de sa";
 
-/* time since creation (2 or more hours) */
+/* (No Commment) */
 "%d hours ago" = "%d èdtan de sa";
 
-/* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
+/* (No Commment) */
 "%d items" = "%d atik";
 
-/* time since creation (2 or more minutes) */
+/* (No Commment) */
 "%d minutes ago" = "%d minit de sa";
 
-/* time since creation (2 or more months) */
+/* (No Commment) */
 "%d months ago" = "%d mwa de sa";
 
-/* In the context 'Joe, Fred, ((25 more))' */
+/* (No Commment) */
 "%d more" = "%d plis";
 
-/* Something like '5 replies' */
+/* (No Commment) */
 "%d replies" = "%d repons";
 
-/* Something like '3 unread'. Refers to unread replies in a discsusion. */
+/* (No Commment) */
 "%d unread" = "%d san li";
 
-/* time since creation (2 or more years) */
+/* (No Commment) */
 "%d years ago" = "%d ane de sa";
 
-/* 88 out of 100 points */
-"%1$g out of %2$@" = "%1$g de %2$@";
-
-/* As in, '15 bytes' */
+/* (No Commment) */
 "%qu bytes" = "%qu bytes";
 
-/* offset for one day */
+/* (No Commment) */
 "%tu day" = "%tu jou";
 
-/* offset for number of days */
+/* (No Commment) */
 "%tu days" = "%tu jou";
 
-/* offset for an hour */
+/* (No Commment) */
 "%tu hour" = "%tu èdtan";
 
-/* offset for number of hours */
+/* (No Commment) */
 "%tu hours" = "%tu èdtan";
 
-/* offset for less than one minute */
+/* (No Commment) */
 "%tu minute" = "%tu minit";
 
-/* offset for under an hour */
+/* (No Commment) */
 "%tu minutes" = "%tu minit";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "%u Attachments" = "%u Atachman";
 
-/* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
+/* (No Commment) */
 "%u files" = "%u fichye";
 
-/* %@ will be replaced by the filename */
+/* (No Commment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; bloke kòm li fè pati &quot;%2$@&quot;";
+
+/* (No Commment) */
 "'%@' is now ready to submit to assignments" = "'%@' prè pou soumèt sesyon yo kounye a";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "1 Attachment" = "1 Atachman";
 
-/* one day */
+/* (No Commment) */
 "1 day" = "1 jou";
 
-/* time since creation */
+/* (No Commment) */
 "1 day ago" = "1 jou de sa";
 
-/* one hour */
+/* (No Commment) */
 "1 hour" = "1 èdtan";
 
-/* time since creation */
+/* (No Commment) */
 "1 hour ago" = "1 èdtan de sa";
 
-/* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
+/* (No Commment) */
 "1 item" = "1 atik";
 
-/* Description for a post that has been liked once */
+/* (No Commment) */
 "1 like" = "1 jèm";
 
-/* time since creation */
+/* (No Commment) */
 "1 minute ago" = "1 minit de sa";
 
-/* time since creation */
+/* (No Commment) */
 "1 month ago" = "1 mwa de sa";
 
 /* Label indicating a submission need grading */
 "1 needs grading" = "1 bezwen klasman";
 
-/* time since creation */
+/* (No Commment) */
 "1 year ago" = "1 an de sa";
 
-/* three days */
+/* (No Commment) */
 "3 days" = "3 jou";
 
-/* five minutes */
+/* (No Commment) */
 "5 minutes" = "5 minit";
 
-/* Name of a tab displaying Canvas Info including legal info */
+/* Settings entry title for About */
 "About" = "Apwopo";
 
 /* Access Denied from the server */
 "Access Denied" = "Aksè Refize";
 
-/* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
-"Access denied. Please check your permissions for the action you're trying to complete." = "Aksè refize. Tanpri verifye pèmisyon pou aksyon ou t ap eseye fè a.";
+/* (No Commment) */
+"Access denied. Please check your permissions for the action you're trying to complete." = "Aksè refize. Tanpri verifye pèmisyon pou aksyon ou t ap eseye fè a. ";
 
-/* title for Messages attachment action sheet */
+/* (No Commment) */
 "Add Attachment" = "Ajoute Atachman";
 
-/* add comment button */
+/* (No Commment) */
 "Add Comment" = "Ajoute Kòmantè";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Add Cover Photo" = "Ajoute Foto Kouvèti";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Add a folder" = "Ajoute yon dosye";
 
-/* Title for attachment action sheet from rich text view */
+/* (No Commment) */
 "Add attachment" = "Ajoute atachman";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Add comment" = "Ajoute komantè";
 
-/* Button title for adding a folder to a folder */
+/* (No Commment) */
 "Add folder" = "Ajoute dosye";
 
-/* Title for the add-inline-media sheet
-   Title on the add-inline-media sheet */
-"Add inline media" = "ajoute medya an liy";
+/* (No Commment) */
+"Add inline media" = "Ajoute medya an liy";
 
-/* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
+/* (No Commment) */
 "Add recipients" = "Ajoute Destinatè";
 
-/* Button to select all members of a group */
+/* (No Commment) */
 "All members" = "Tout manm";
 
-/* Error message text */
+/* (No Commment) */
 "An unknown error occurred" = "Gen yon erè enkoni ki fèt";
 
-/* Title of the new announcement view */
+/* (No Commment) */
 "Announcement" = "Anons";
 
-/* Announcements title
-   Title for the announcements view controller */
+/* (No Commment) */
 "Announcements" = "Anons";
 
-/* Archive selected messages button
-   mark a message as archived */
+/* (No Commment) */
 "Archive" = "Achiv";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Bouton Stokaj Mesaj Seleksyone";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Stoke tout mesaj seleksyone yo";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Archived" = "Stoke";
 
-/* Action sheet title verifying that a user wants to logout. */
+/* (No Commment) */
 "Are you ready to logout?" = "Èske w prè pou dekonekte?";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Ask me later" = "Mande mwen pita";
 
-/* Label for an assignment */
+/* Assignment icon a11y label
+   Assignment module item type */
 "Assignment" = "Sesyon";
 
 /* Title for Assignments view controller */
 "Assignments" = "Sesyon";
 
-/* An item for attaching to a discussion */
+/* (No Commment) */
 "Attachment" = "Atachman";
 
-/* label for an attachment */
+/* (No Commment) */
 "Attachment %d" = "1 Atachman %d";
 
-/* An item for attaching to a conversation */
+/* (No Commment) */
 "Attachment %i" = "Atachman %i";
 
-/* Table View Controller for Attachments */
+/* (No Commment) */
 "Attachments" = "Atachman";
 
-/* Label for a discussion */
+/* (No Commment) */
 "Attendance" = "Prezans";
 
-/* Media type is audio */
+/* (No Commment) */
 "Audio" = "Odyo";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Audio input hardware not available" = "Hardware antre odyo pa disponib";
 
-/* Title of alert box */
+/* (No Commment) */
 "Authentication error" = "Erè otantifikasyon";
 
-/* Link to building panda avatar */
+/* (No Commment) */
 "Build Avatar" = "Kreye Avata";
 
 /* No comment provided by engineer. */
@@ -274,37 +266,25 @@
 /* Calendar page title */
 "Calendar" = "Kalandriye";
 
-/* Invalid LTI tool error title */
+/* (No Commment) */
 "Can't load tool" = "Enposib pou chaje enstriman";
 
-/* Setup only allows media but no Kaltura instance error title */
+/* (No Commment) */
 "Can't submit media" = "Enposib pou soumèt medya";
 
-/* Button title for canceling download of a file
-   Button title for cancelling the selection of a quiz. This will appear in the alert view notifying the user of the mobile quiz limitations.
-   Cancel
-   cancel add file/folder
-   Cancel add option
-   Cancel button for removing a file
-   Cancel deletion of discussion entry
-   cancel folder creation
-   Cancel folder name change
-   cancel masquerade
-   cancel message creation
-   cancel reminder notification
-   cancel view help options */
+/* (No Commment) */
 "Cancel" = "Anile";
 
-/* Cancel adding a comment button */
+/* (No Commment) */
 "Cancel Message" = "Anile Mesaj";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Canvas appears to be unavailable. Please try again later." = "Canvas sanble pa disponib. Tanpri eseye ankò";
 
-/* detail text for recipient fetch error message */
+/* (No Commment) */
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas pa rive jwenn destinatè pou rechèch ou a. Tanpri eseye ankò.";
 
-/* mobile quze warning info */
+/* (No Commment) */
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
 
 Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
@@ -315,357 +295,346 @@ Tip kesyon yo pa pran an chaj se tankou kesyon ki gen kontni, fichye transfere a
 
 Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp. SI w konnen quiz la gen kontni aparèy mobil yo sipòte, ou pa bezwen ezite pran li sou aparèy mobil ou.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Change User" = "Chanje Itilizatè";
 
-/* Button label for choosing a photo */
+/* (No Commment) */
 "Choose Photo" = "Chwazi Foto";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Choose Profile Picture" = "Chwazi Foto Pwofil";
 
-/* Choose a video to send as a comment */
+/* (No Commment) */
 "Choose Video" = "Chwazi Videyo";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Choose a name for the new folder" = "Chwazi yon non pou nouvo dosye a";
 
-/* Content of an alert popup */
+/* (No Commment) */
 "Choose a name for the new folder." = "Chwazi yon non pou nouvo dosye a.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Choose a submission type" = "Chwazi yon tip soumisyon";
 
-/* Choose an existing picture or video to use in a comment. */
+/* (No Commment) */
 "Choose from Library..." = "Chwazi nan Bibliyotèk...";
 
-/* action sheet text for picking video from library */
+/* (No Commment) */
 "Choose video" = "Chwazi videyo";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Close" = "Fèmen";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Closed for Comments" = "Fèmen pou Kòmantè";
 
-/* Title for Collaborations tab */
+/* (No Commment) */
 "Collaborations" = "Kolaborasyon";
 
-/* Add message button for teacher or ta */
+/* (No Commment) */
 "Comment" = "Kòmantè";
 
-/* title for media comment upload failure */
+/* (No Commment) */
 "Comment Error" = "Erè Kòmantè";
 
-/* View comments */
+/* (No Commment) */
 "Comments" = "Komantè";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Comments are disabled" = "Kòmantè yo dezaktive";
 
-/* Assignment grade: Complete
-   Pass/fail assignment is complete */
+/* (No Commment) */
 "Complete" = "Konplete";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Completed" = "Fini";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Bouton Konpozisyon Mesaj";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Konpoze yon mesaj";
 
-/* Title for Conferences tab */
+/* (No Commment) */
 "Conferences" = "Konferans";
 
-/* Alert title */
+/* (No Commment) */
 "Confirm deletion" = "Konfime sipresyon";
 
-/* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
+/* (No Commment) */
 "Continue" = "Kontinye";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Could not authenticate with server" = "Enposib pou otantifye avèk sèvè a";
 
-/* error title for failure to load a file submission */
+/* (No Commment) */
 "Couldn't Load Submission" = "Enposib pou Chaje Soumisyon";
 
-/* title for alert displayed when iCanvas can't fetch recipients */
+/* (No Commment) */
 "Couldn't find recipients" = "Enposib pou jwenn destinatè";
 
-/* Title for Course Syllabus view controller */
+/* (No Commment) */
 "Course Syllabus" = "Pwogram Kou a";
 
 /* Courses page title */
 "Courses" = "Kou";
 
-/* cancel folder creation */
+/* (No Commment) */
 "Create Folder" = "Kreye Dosye";
 
-/* Header for a section showing submitted filenames */
+/* (No Commment) */
 "Current Submission" = "Soumisyon Aktyèl";
 
-/* Message telling users that quiz support on mobile is limited */
+/* (No Commment) */
 "Currently there is limited quiz support on mobile" = "Pou kounye a, gen yon sipò limite pou quiz sou pòtab";
 
-/* A custom grade not specified by the rubric. */
+/* (No Commment) */
 "Custom Grade" = "Klas Pèsonalize";
 
-/* label for customizing a course */
+/* (No Commment) */
 "Customize" = "Pèsonalize";
 
-/* Button to confirm deleting folders
-   Button to delete a discussion entry
-   Confirm deletion of discussion entry */
+/* (No Commment) */
 "Delete" = "Efase";
 
-/* Button for deleting files or folders. %d will be the number of selected items */
+/* (No Commment) */
 "Delete (%d)" = "Efase (%d)";
 
-/* Alert message */
+/* (No Commment) */
 "Delete this reply?" = "Efase repons sa a?";
 
-/* delete file confirmation alert */
+/* (No Commment) */
 "Deleted file: &quot;%@&quot;" = "Fichye efase: &quot;%@&quot;";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Detail" = "Detay";
 
-/* Placeholder text for discussion details field */
+/* No comment provided by engineer. */
 "Details" = "Detay";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Discard" = "Abandone";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Discard this entry?" = "Abandone antre sa a?";
 
-/* Title of the new discussion view */
+/* Discussion module item type */
 "Discussion" = "Diskisyon";
 
-/* Title for discussion entry submission */
+/* (No Commment) */
 "Discussion Entry" = "Diskisyon";
 
-/* Title for Discussion Topics view controller */
+/* (No Commment) */
 "Discussion Topics" = "Sijè Diskisyon";
 
-/* Discussions title
-   Title for Discussions view controller */
+/* (No Commment) */
 "Discussions" = "Diskisyon";
 
-/* Dismiss an error button
-   dismiss button
-   Dismiss button for an error dialoue
-   Dismiss error alert button
-   dismiss the alert button */
+/* Dismiss an alert dialog */
 "Dismiss" = "Rejte";
 
-/* Alert title asking if you want to masquerade */
+/* (No Commment) */
 "Do you want to masquerade as this user?" = "Èske w vle pase pou itilizatè sa a?";
 
-/* The domain for the institution/school that the user is currently using */
+/* (No Commment) */
 "Domain" = "Domèn";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Don't ask me again" = "Pa mande m ankò";
 
-/* Button to cancel deleting folders */
+/* (No Commment) */
 "Don't delete" = "Pa efase";
 
-/* No comment provided by engineer. */
+/* Button title to mark a to do item as done */
 "Done" = "Fini";
 
-/* Shown when we cancel a file download */
+/* (No Commment) */
 "Download Canceled" = "Telechajman Anile";
 
-/* Shown while downloading a file */
+/* (No Commment) */
 "Downloading..." = "Telechajman an kou...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "Delè:";
 
-/* Due date label for to do items, first placeholder is date, second is time */
+/* (No Commment) */
 "Due: %1$@ at %2$@" = "Delè: %1$@ a %2$@";
 
-/* Link to the End User License Agreement document */
+/* Due date label for to do items, first placeholder is date, second is time */
+"Due: %@ at %@" = "Delè: %1$@ a %2$@";
+
+/* (No Commment) */
 "EULA" = "EULA";
 
-/* Button to edit a discussion entry */
+/* (No Commment) */
 "Edit" = "Modifye";
 
-/* Edit course list title
-   Edit the items in the course list */
+/* Edit course list title */
 "Edit Course List" = "Modifye Lis Kou";
 
-/* Edit group list title
-   Edit the items in the group list */
+/* Edit group list title */
 "Edit Group List" = "Modifye Lis Gwoup";
 
-/* Button title for deleting items in a folder */
+/* (No Commment) */
 "Edit items" = "Modifye atik";
 
-/* Header when editing a discussion entry with name and timestamp */
+/* (No Commment) */
 "Editing reply by %1$@, %2$@" = "Modifye repons pa %1$@, %2$@";
 
-/* the users email */
+/* (No Commment) */
 "Email" = "Imèl";
 
 /* Prompt asking user to enable push notifications */
 "Enable Push Notifications" = "Aktive Notifikasyon Push";
 
-/* masquerade prompt */
+/* (No Commment) */
 "Enter User ID and Domain." = "Antre ID itilizatè e Domèn.";
 
-/* Submission input view placeholder text */
+/* (No Commment) */
 "Enter submission" = "Antre soumisyon";
 
-/* Confirmation message after posting a discussion entry */
+/* (No Commment) */
 "Entry posted" = "Antre poste";
 
-/* Title of alert box */
+/* (No Commment) */
 "Error" = "Erè";
 
-/* Title of an alert popup */
+/* (No Commment) */
 "Error adding recipeints" = "Erè nan ajoute destinatè";
 
-/* Error deleting file alert view title */
-"Error deleting file &quot;%@&quot;" = "Erè nan eliminasyon fichye &quot;%@&quot;";
+/* (No Commment) */
+"Error deleting file &quot;%@&quot;" = "Erè pou efase fichye &quot;%@&quot;";
 
-/* Error deleting folder alert view title */
+/* (No Commment) */
 "Error deleting folder" = "Erè nan eliminasyon dosye";
 
-/* Label for a calendar event */
+/* (No Commment) */
 "Event" = "Evènman";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Existing Attachments..." = "Atachman ki Deja Egziste";
 
-/* Title for an external tool submission */
+/* (No Commment) */
 "External Tool" = "Zouti Eksteryè";
 
-/* No comment provided by engineer. */
+/* External URL module item type */
 "External URL" = "URL ekstèn";
 
-/* No comment provided by engineer. */
+/* File module item type */
 "File" = "Fichye";
 
-/* The file extension for a submission is not acceptable */
+/* (No Commment) */
 "File extension not allowed: %@" = "Ekstansyon fichye pa otorize: %@";
 
-/* Comes before a list of file extensions allowed for an assinment submission */
+/* (No Commment) */
 "File extension(s) permitted for this assignment:" = "Ekstansyon fichye ki otorize pou sesyon sa a:";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "File received" = "Fichye resevwa";
 
-/* Title for an alert popup */
+/* (No Commment) */
 "File unavailable" = "Fichye pa disponib";
 
-/* File upload submission type */
+/* (No Commment) */
 "File upload" = "Fichye transfere";
 
-/* File upload failed. */
+/* (No Commment) */
 "File upload failed." = "Transfè fichye echwe";
 
-/* Files view
-   Name of a tab displaying files in a course
-   title for files view
-   Title for the Files View Controller */
+/* (No Commment) */
 "Files" = "Fichye";
 
-/* Shown when we finish downloading a file */
+/* (No Commment) */
 "Finished downloading" = "Fen Telechajman";
 
 /* badge indicating front page */
 "Front Page" = "Kouvèti";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Future" = "Fiti";
 
-/* title for discussion assignment submission button */
+/* (No Commment) */
 "Go To Discussion" = "Ale nan Diskisyon";
 
-/* Action on an alert */
+/* (No Commment) */
 "Go to App Store" = "Ale nan App Store";
 
-/* text for the \"go to quiz\" button */
+/* (No Commment) */
 "Go to Quiz" = "Ale nan Quiz";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Go to discussion" = "Ale nan diskisyon";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Grade" = "Klas";
 
-/* Tells the user to grade an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Grade %@" = "Klas %@";
 
-/* Launch the SpeedGrader app */
+/* (No Commment) */
 "Grade in SpeedGrader" = "Klas nan SpeedGrader";
 
-/* No comment provided by engineer. */
-"Grade: %@" = "Klas: %@";
-
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Grade: %1$i / %2$g" = "Klas: %1$i / %2$g";
 
-/* Label for a discussion */
+/* (No Commment) */
+"Grade: %@" = "Klas: %@";
+
+/* (No Commment) */
 "Graded Discussion" = "Diskisyon Klase";
 
-/* Lets user know discussion is graded */
+/* (No Commment) */
 "Graded discussion." = "Diskisyon klase.";
 
-/* Graded discussion. 25 points possible */
+/* (No Commment) */
 "Graded discussion. %g points possible." = "Diskisyon klase. %g pwen posib";
 
 /* Title for Grades view controller */
 "Grades" = "Klas";
 
-/* Button title for starting a group conversation */
+/* (No Commment) */
 "Group conversation" = "konvèsasyon an gwoup";
 
 /* Groups page title */
 "Groups" = "Gwoup";
 
-/* help button */
+/* (No Commment) */
 "Help" = "Èd";
 
 /* Accessibility label for toggling grades to hidden */
 "Hide Grades" = "Kache Klas";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "How do you like Canvas?" = "Èske w renmen Canvas anpil?";
 
 /* I give you back your time, use it wisely. */
 "I give you back your time, use it wisely." = "Mwen remèt ou tan ou, byen itilize li.";
 
-/* Image file type */
+/* (No Commment) */
 "Image" = "Imaj";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Import from Dropbox" = "Enpòte depi Dropbox";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Import from camera" = "Enpòte depi Kamera";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Inbox" = "Bwat Resepsyon";
 
-/* Assignment grade: Incomplete
-   Pass/fail assignment is incomplete */
+/* (No Commment) */
 "Incomplete" = "Enkonplè";
 
-/* Button title for sending a direct message; a private conversation */
+/* (No Commment) */
 "Individual messages" = "Mesaj pèsonèl";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Invalid URL" = "URL envalid";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "It has problems" = "Li gen pwoblèm";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Item %1$d of %2$d" = "Atik %1$d de %2$d";
 
 /* It’s empty, what are you still doing here. */
@@ -674,96 +643,91 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* No comment provided by engineer. */
 "Jumps to current day on calendar" = "Ale an jounen jodi a nan kalandriye a";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Keep" = "Kenbe";
 
 /* Settings entry title for Choosing a Landing Page */
 "Landing Page" = "Paj Dakèy";
 
-/* Title for an alert popup */
+/* (No Commment) */
 "Large file" = "Gwo fichye";
 
-/* Button in an alert */
+/* No comment provided by engineer. */
 "Later" = "Pita";
 
-/* title for submission button */
+/* (No Commment) */
 "Launch External Tool" = "Lanse Zouti eksteryè";
 
-/* Title for legal section on the about page */
+/* (No Commment) */
 "Legal" = "Legal";
 
-/* Generic loading title with ellipses
-   Generic loading title with ellipsis */
+/* (No Commment) */
 "Loading..." = "Chajman";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked" = "Bloke";
 
-/* No comment provided by engineer. */
+/* locked date */
 "Locked until %@" = "Bloke jiska %@";
 
-/* Typically the email address correlated to the user */
+/* (No Commment) */
 "Login ID" = "Non Itilizatè";
 
-/* Error message title */
+/* (No Commment) */
 "Login Problem" = "Pwoblèm Koneksyon";
 
-/* logout action sheet logout button title
-   logout button */
+/* (No Commment) */
 "Logout" = "Dekoneksyon";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Love it!" = "Mwen renmen li!";
 
-/* Button title for mark as done */
+/* Button title for mark as done. */
 "Mark as Done" = "Make kòm Fini";
 
-/* Button title for beginning masquerading
-   try masquerading */
+/* (No Commment) */
 "Masquerade" = "Degizman";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Me" = "Mwen";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Media Comment" = "Kòmantè Medya";
 
-/* Title for a media submission */
+/* (No Commment) */
 "Media Submission" = "Soumisyon Medya";
 
-/* The name for a video or audio response to something */
+/* (No Commment) */
 "Media comment" = "Kòmantè medya";
 
-/* Media recording submission type */
+/* (No Commment) */
 "Media recording" = "Anrejistreman medya";
 
-/* A slider to choose between media types */
+/* (No Commment) */
 "Media type selector. %@" = "Selektè tip medya. %@";
 
-/* Add message button */
+/* (No Commment) */
 "Message Instructor" = "Enstriktè Mesaj";
 
-/* notification that a message has been sent succesfully */
+/* (No Commment) */
 "Message Sent." = "Mesaj Ale";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Ekri chak moun apa, oswa ajoute chak moun nan yon konvèsasyon an gwoup?";
 
-/* Messages tab title
-   messages title
-   The name of the messages tab */
+/* (No Commment) */
 "Messages" = "Mesaj";
 
-/* Warnging for taking quizzes on a mobile device */
+/* (No Commment) */
 "Mobile Quiz Warning" = "Avètisman Quiz Pòtab";
 
-/* title for the modules tab */
+/* Modules title */
 "Modules" = "Modil";
 
-/* Button title for selecting to view more info about the limitations of mobile quizzes */
+/* (No Commment) */
 "More Info" = "Plis Enfòmasyon";
 
-/* Title of a link to show additional due dates customized for sections or groups. */
+/* (No Commment) */
 "Multiple Due Dates" = "Plizyè Delè";
 
 /* user must contribute to complete requirement */
@@ -775,85 +739,85 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* format string saying what the minimum score must be */
 "Must score %@ or higher" = "Dwe fè pou pi piti %@";
 
-/* user must submit something to complete requirement */
+/* user must submit something to complete */
 "Must submit" = "Dwe soumèt";
 
 /* user must view item to complete requirement */
 "Must view" = "Dwe gade";
 
-/* files button */
+/* (No Commment) */
 "My Files" = "Fichye Mwen";
 
-/* the users name */
+/* (No Commment) */
 "Name" = "Non";
 
-/* Title notifying user that SpeedGrader is available for iPad */
-"Need SpeedGrader for iPad" = "SpeedGrader pou iPad nesesè";
+/* (No Commment) */
+"Need SpeedGrader for iPad" = "SpeedGrader pou iPad Nesesè";
 
-/* Network error title */
+/* (No Commment) */
 "Network Error" = "Erè Rezo";
 
-/* Title for an alert popup, where the user will be asked to provide a name for the new folder */
+/* (No Commment) */
 "New Folder" = "Nouvo Dosye";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Next 7 Days" = "7 Pwochen Jou";
 
-/* No comment provided by engineer. */
-"Next item" = "Prochen Atik";
+/* (No Commment) */
+"Next item" = "Pwochen atik";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "No" = "Non";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "No Date" = "San Dat";
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "San Delè";
 
-/* Title for attempting submission without a comment */
-"No Recorded Audio" = "Pa gen Son Anrejistre";
+/* (No Commment) */
+"No Recorded Audio" = "Pa gen Odyo Anrejistre";
 
-/* No Submission groupong */
+/* (No Commment) */
 "No Submission" = "Pa gen Soumisyon";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "No Thanks" = "Non Mèsi";
 
-/* Text of alert when attempting to select a file that can't be printed or passed to any other app */
+/* (No Commment) */
 "No actions available for this file" = "Pa gen aksyon disponib pou fichye sa a";
 
-/* Message for attempting submission without a comment */
-"No audio was recorded." = "Pa t gen son anrejistre";
+/* (No Commment) */
+"No audio was recorded." = "Pa gen odyo ki anrejistre";
 
-/* String for when assignment has no due date */
-"No due date" = "pa gen delè";
+/* (No Commment) */
+"No due date" = "San del";
 
-/* Error message */
-"No installed apps support opening this file" = "Pa gen app ki enstale ki sipòte ouvèti fichye sa a";
+/* (No Commment) */
+"No installed apps support opening this file" = "Pa gen app instale ki sipòte ouvèti fichye sa a";
 
-/* No comment provided by engineer. */
-"No recipients" = "Okenn destinatè";
+/* (No Commment) */
+"No recipients" = "Pa gen destinat";
 
-/* Indicates a search found no results */
-"No results found" = "Pa jwenn rezilta";
+/* (No Commment) */
+"No results found" = "Pa gen rezilta";
 
-/* error message for a 401 response. */
+/* (No Commment) */
 "Not Authorized" = "Pa Otorize";
 
-/* Pass/fail assignment is not complete */
+/* (No Commment) */
 "Not Complete" = "Pa Konplè";
 
-/* Accessibility label for points out of points possible label when points are not availiable. */
+/* (No Commment) */
 "Not available" = "Pa disponib";
 
-/* not graded string. */
+/* (No Commment) */
 "Not graded" = "Pa klase";
 
-/* not graded with points possible */
+/* (No Commment) */
 "Not graded (0 out of %@)" = "Pa klase (0 sou %@)";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Fichye medya yo pa disponib pou jwe nan moman y ap transfere sou sèvè a.";
 
 /* Nothing to do, go play outside! */
@@ -871,119 +835,118 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* Notifications tab title */
 "Notifications" = "Notifikasyon";
 
-/* No comment provided by engineer. */
+/* OK Button Title */
 "OK" = "OK";
 
-/* Short name for observer enrollment */
+/* (No Commment) */
 "Observer" = "Obsèvatè";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Ok" = "Ok";
 
-/* Online URL submission type */
+/* (No Commment) */
 "Online URL" = "URL an liy";
 
-/* Error message title
-   Error title
-   Masquerade error title */
+/* (No Commment) */
 "Oops!" = "Oops!";
 
-/* Open a document in the application Safari */
+/* (No Commment) */
 "Open in Safari" = "Ouvri nan Safari";
 
-/* Link to open assignment in SpeedGrader */
+/* (No Commment) */
 "Open in SpeedGrader" = "Ouvri nan SpeedGrader";
 
-/* Open file in another application */
+/* (No Commment) */
 "Open in..." = "Ouvri nan...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Other" = "Lòt";
 
-/* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
+/* (No Commment) */
 "Other replies hidden until you reply" = "Lòt repons kache jiskaske w reponn";
 
-/* Title for Outcomes tab */
+/* (No Commment) */
 "Outcomes" = "Rezilta";
 
-/* No comment provided by engineer. */
+/* Page module item type */
 "Page" = "Paj";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Past" = "Pase";
 
-/* People list title
-   Title for People view controller */
+/* (No Commment) */
 "People" = "Moun";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Pinned Discussions" = "Diskisyon Epengle";
 
-/* A button that plays */
+/* (No Commment) */
 "Play" = "Jwe";
 
-/* Network error message */
+/* (No Commment) */
 "Please check your network connection and try again." = "Tanpri verifye koneksyon entènèt ou a epi eseye ankò.";
 
-/* Button to post new discussion topic */
+/* (No Commment) */
 "Post" = "Poste";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Post Comment" = "Poste Kòmantè";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Post comment" = "Poste kòmantè";
 
-/* Message shown while posting a discussion entry */
+/* (No Commment) */
 "Posting…" = "Poste";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Posts your comment" = "Poste Kòmantè ou a";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Previous item" = "Atik pase";
 
-/* Link to the privacy policy */
+/* (No Commment) */
 "Privacy Policy" = "Politik Konfidansyalite";
 
-/* Title for profile screen */
+/* (No Commment) */
 "Profile" = "Pwofil";
 
-/* Label for a quiz
-   Title for a quiz submission cell */
+/* Quiz module item type */
 "Quiz" = "Quiz";
 
-/* Title for alert notifying users that support for quizzes on mobile is limited. */
+/* (No Commment) */
 "Quiz Alert" = "Avètisman Quiz";
 
-/* The title for the list of quizzes for a course */
+/* (No Commment) */
 "Quizzes" = "Quiz";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Rate on App Store" = "Evalye nan App Store";
 
-/* Title for a button allowing user to re-submit files for an assignment */
+/* (No Commment) */
+"Rating for %1$@, Score: %2$g" = "Evalyasyon pou %1$@, Nòt: %2$g";
+
+/* (No Commment) */
 "Re-submit Assignment" = "Re Soumèt Sesyon";
 
-/* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
+/* (No Commment) */
 "Recipients" = "Destinatè";
 
-/* A button that records */
+/* (No Commment) */
 "Record" = "Anrejistre";
 
-/* Record audio submission comment */
+/* (No Commment) */
 "Record Audio" = "Anrejistre Son";
 
-/* Record audio to use in a comment. */
+/* (No Commment) */
 "Record Audio..." = "Anrejistre Son...";
 
-/* Record video submission comment option */
+/* (No Commment) */
 "Record Video" = "Anrejistre Videyo";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Record audio" = "Anrejistre son";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Record video" = "Anrejistre videyo";
 
 /* No comment provided by engineer. */
@@ -995,290 +958,290 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* Refreshing Calendar Events */
 "Refreshing Calendar Events" = "Aktyalize Evènman Kalandriye yo";
 
-/* Confirmation for removing a file */
+/* (No Commment) */
 "Remove" = "Elimine";
 
-/* Button title for confirming a file deletion */
+/* (No Commment) */
 "Remove this file?" = "Elimine fichye sa a?";
 
-/* option to report a problem */
+/* (No Commment) */
 "Report a problem" = "Rapòte yon pwoblèm";
 
-/* option to request a feature */
+/* (No Commment) */
 "Request a feature" = "Mande yon opsyon";
 
-/* View grading rubric */
+/* (No Commment) */
 "Rubric" = "Ribrik";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Save" = "Anrejiste";
 
-/* Title for Assignment Notifications Sheet */
+/* (No Commment) */
 "Schedule Notification" = "Pwograme Notifikasyon";
 
-/* Placeholder text in a search bar used to find conversation recipients */
+/* (No Commment) */
 "Search for recipients" = "Chèche destinatè";
 
-/* Title for a file picker window */
+/* Placeholder text for search bar on assignments page */
+"Search here..." = "Chèche la...";
+
+/* (No Commment) */
 "Select file(s)" = "Seleksyone fichye";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Select or deselect" = "Seleksyone oswa deseleksyone";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Selected" = "Chwazi";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Send" = "Voye";
 
-/* Action sheet button title for sending a new message to a user. %@ will be replaced with the user's name */
+/* (No Commment) */
 "Send %@ a message" = "Voye %@ yon mesaj";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Send Message" = "Voye Mesaj";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Sent" = "Voye";
 
-/* settings button
-   Title for Settings tab */
+/* (No Commment) */
 "Settings" = "Reglaj";
 
 /* Accessibility label for toggling grades to visible */
 "Show Grades" = "Afiche Klas";
 
-/* title for quiz assignment submission button */
+/* (No Commment) */
 "Show Quiz" = "Afiche Quiz";
 
-/* Title for button confirming showing a file */
+/* (No Commment) */
 "Show file" = "Afiche fichye";
 
-/* VoiceOver text for a button that lets you show recipients */
+/* (No Commment) */
 "Show recipients" = "Afiche destinatè";
 
-/* Message for an error popup */
+/* (No Commment) */
 "Some items could not be deleted" = "Kèk atik pa kapab efase";
 
-/* Message for a warning popup */
+/* (No Commment) */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Kèk nan dosye ki seleksyone yo pa vid. Ou kwè vrèman ou vle efase yo?";
 
-/* 404 Error for missing assignment */
+/* (No Commment) */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Nou regrèt, nou paka jwenn sesyon an. Petèt ke sesyon sa a te efase.";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Starts playing your recording" = "Komanse jwe anrejistreman ou an";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Starts recording a media comment" = "Kòmanse anrejistre yon kòmantè medya";
 
-/* button title for cancelling a logout. */
+/* (No Commment) */
 "Stay Logged In" = "Rete Konekte";
 
-/* A button that stops */
+/* (No Commment) */
 "Stop" = "Kanpe";
 
-/* Button title for stopping masquerading; when a privileged user becomes another user in the system */
+/* (No Commment) */
 "Stop Masquerading" = "Kanpe Degizman";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Stops playing your recording" = "Kanpe anrejistreman ou an k ap jwe a";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Stops recording a media comment" = "Kanpe anrejistreman yon kòmantè medya";
 
-/* Short name for student enrollment */
+/* (No Commment) */
 "Student" = "Elèv";
 
-/* No comment provided by engineer. */
+/* Header item label */
 "Sub Header" = "Sou Antèt";
 
-/* View previously submitted assignment */
+/* (No Commment) */
 "Submission" = "Soumisyon";
 
-/* Title for file submission error */
+/* (No Commment) */
 "Submission Error" = "Erè Soumisyon";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Submission complete" = "Soumisyon fini";
 
-/* Submit an assignment */
+/* (No Commment) */
 "Submit" = "Soumèt";
 
-/* Submitted grouping */
+/* (No Commment) */
 "Submitted" = "Soumèt";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Submitting..." = "Soumisyon...";
 
-/* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
+/* (No Commment) */
 "Subscribe to calendar feed" = "Abòne a feed kalandriye";
 
-/* Masquerade success title */
+/* (No Commment) */
 "Success!" = "Reyisi!";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Sure!" = "Tout bon!";
 
-/* Hint about media input selection */
+/* (No Commment) */
 "Switches media input between audio and video. Currently set to %@" = "Entèriptè antre medya ant odyo ak videyo. Kounye a sou %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to media comment mode" = "Chanje sou mòd kòmantè medya";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to text comment mode" = "Chanje sou mòd kòmantè tèks";
 
-/* Syllabus screen name
-   Title for Syllabus view controller */
+/* (No Commment) */
 "Syllabus" = "Pwogram";
 
-/* Short name for TA enrollment */
+/* (No Commment) */
 "TA" = "TA";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "TAs" = "TAs";
 
-/* Button label for taking a photo */
+/* (No Commment) */
 "Take Photo" = "Fè Foto";
 
-/* Take a picture or video to use in a comment. */
+/* (No Commment) */
 "Take Photo or Video..." = "Fè Foto oswa Videyo";
 
-/* Take a picture to use in a comment. */
+/* (No Commment) */
 "Take a Photo..." = "Fè yon Foto...";
 
-/* Take a video to use in a comment. */
-"Take a Video..." = "Fè yon Videyo";
+/* (No Commment) */
+"Take a Video..." = "Fè yon Videyo...";
 
-/* Displayed in a row when an error occurs loading more items */
+/* (No Commment) */
 "Tap to try again" = "Tape pou eseye ankò";
 
-/* Short name for teacher enrollment */
+/* (No Commment) */
 "Teacher" = "Pwofesè";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Teachers" = "Pwofesè";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Tell us what's wrong" = "Di nou kisa ki mal";
 
-/* Link to the Terms of Use */
+/* (No Commment) */
 "Terms of Use" = "Kondisyon Itilizasyon";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Text Comment" = "Kòmantè Tèks";
 
-/* Generic name for a submission entered online. */
+/* (No Commment) */
 "Text Submission" = "Soumisyon Tèks";
 
-/* Text entry submission type */
+/* (No Commment) */
 "Text entry" = "Antre Tèks";
 
-/* Text explaining the error */
+/* (No Commment) */
 "The recipients could not be added. Please try again. (%@)" = "Destinatè a pa kapab ajoute. Tanpri eseye ankò. (%@)";
 
-/* Explanation for while a file is unavailable */
+/* (No Commment) */
 "The server could not be reached" = "Nou paka konekte a sèvè a";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The server you entered is not authorized for this app." = "Sèvè ou antre a pa otorize pou app sa a.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The user agent for this app is unauthorized." = "Ajan itilizatè app sa a pa otorize.";
 
-/* Error message */
+/* (No Commment) */
 "There are no actions for this item" = "Pa gen aksyon pou atik sa a";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "There are no items to display" = "Pa gen atik pou afiche";
 
-/* message for media comment upload failure */
+/* (No Commment) */
 "There was a network error posting your comment." = "Te gen yon erè rezo lè w ap poste kòmantè ou a.";
 
-/* message for failed submission upload */
+/* (No Commment) */
 "There was a network problem while attempting to upload your submission" = "Te gen yon erè rezo lè ou t ap eseye chaje soumisyon ou an.";
 
-/* Error message when fetching a file fails */
+/* (No Commment) */
 "There was a problem accessing the requested file.
 
 Error: %@" = "Te gen yon pwoblèm aksè a fichye ou te mande a.
 
 Erè: %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "There was a problem launching Safari" = "Te gen yon pwoblèm nan lansman Safari a";
 
-/* Web browser error handling message */
+/* (No Commment) */
 "There was an error loading the document." = "Te gen yon erè nan chajman dokiman an.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Te gen yon erè nan chajman kontni ou an. Si se yon odyo oswa videyo li kapab ap chaje toujou.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This app is not authorized for use." = "Pa gen otorizasyon pou itilize app sa a.";
 
-/* Invalid LTI tool error message */
+/* (No Commment) */
 "This assignment doesn't appear to be a valid external tool or is misconfigured." = "Sesyon sa a pa sanble yon zouti extèn valid oswa li mal konfigire.";
 
-/* message displayed in the details section if there is no comment. */
+/* (No Commment) */
 "This assignment has no details." = "Sesyon sa a pa gen detay.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This entry has been deleted" = "Antre sa a te efase";
 
-/* Text indicating a file cannot be previewed */
-"This file cannot be displayed on this device." = "Fichye sa a pa ka afiche nan aparèy sa a.";
+/* (No Commment) */
+"This file cannot be displayed on this device." = "Fichye sa a pa ka afiche sou aparèy sa a.";
 
-/* Text indicating that a file cannot be opened */
+/* (No Commment) */
 "This file is locked" = "Fichye sa a bloke";
 
-/* Text indicating that a folder cannot be opened */
+/* (No Commment) */
 "This folder is locked" = "Dosye sa a bloke";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This is a media message." = "Sa se yon mesaj medya.";
 
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Sa ta dwe pi bon moman pou fè kèk kredi siplemantè.";
 
-/* Title of to do screen
-   To Do page title */
+/* Title of the Todo screen */
 "To Do" = "Pou Fè";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "To:" = "A:";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Today" = "Jodi a";
 
 /* No comment provided by engineer. */
 "Today Button" = "Bouton Jodi a";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Toggles selection of current item" = "Chanje seleksyon atik aktyèl la";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Toggles selection of item" = "Chanje seleksyon atik";
 
-/* title for assignment submission button */
+/* (No Commment) */
 "Turn In" = "Soumèt";
 
-/* title for re-submitting an assignment */
+/* (No Commment) */
 "Turn In Again" = "Soumèt Ankò";
 
-/* Tells the user to turn in an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Turn in %@" = "Soumèt %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Uh-oh! Pa Gen Koneksyon Entènèt";
 
-/* Error title */
+/* (No Commment) */
 "Unable to load" = "Pa kapab chaje";
 
-/* Error message */
+/* (No Commment) */
 "Unable to post. Please try again later" = "Pa kapab poste. Tanpri eseye ankò pita";
 
-/* message saying that avatar couldn't be loaded to server */
+/* (No Commment) */
 "Unable to upload to server" = "Enposib pou transfere sou sèvè a";
 
 /* Grade unavailable */
@@ -1287,135 +1250,138 @@ Erè: %@";
 /* Title for grade button when no grade is present */
 "Ungraded" = "San klasifye";
 
-/* Unknown file type */
+/* (No Commment) */
 "Unknown" = "Enkoni";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Unread" = "San li";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Unsaved Reply" = "Repons san Anrejistre";
 
-/* Button title for uploading a file */
+/* (No Commment) */
 "Upload" = "Chaje";
 
-/* title for upload error alert */
+/* (No Commment) */
 "Upload Error" = "Erè Chajman";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Upload a file" = "Chaje yon fichye";
 
-/* explanation of upload failure */
+/* (No Commment) */
 "Upload failed. Reason: (%@)" = "Chajman echwe. Rezon: (%@)";
 
-/* Button title for adding a file to a folder */
+/* (No Commment) */
 "Upload file" = "Chaje fichye";
 
-/* Error message */
-"Upload to assignment &quot;%@&quot; failed" = "Chajman a sesyon &quot;%@&quot; echwe";
+/* (No Commment) */
+"Upload to assignment &quot;%@&quot; failed" = "Transfere nan sesyon &quot;%@&quot; echèk";
 
-/* Error message */
-"Upload to folder &quot;%@&quot; failed" = "Chajman a dosye &quot;%@&quot; echwe";
+/* (No Commment) */
+"Upload to folder &quot;%@&quot; failed" = "Transfere nan dosye &quot;%@&quot; echèk";
 
-/* button for using the recorded audio */
+/* (No Commment) */
 "Use" = "Itilize";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "User ID" = "Non Itilizatè";
 
-/* Title for User Info section on the about page */
+/* (No Commment) */
 "User Info" = "Enfo Itilizatè";
 
-/* Media type is video */
+/* (No Commment) */
 "Video" = "Videyo";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Video error" = "Erè Videyo";
 
 /* No comment provided by engineer. */
 "View" = "Gade";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Warning" = "Avètisman";
 
-/* error message for failure to load a file submission */
+/* (No Commment) */
 "We had a problem loading the submission. Please try again later." = "Te gen yon pwoblèm nan chajman soumisyon an. Tanpri eseye ankò.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "We were unable to verify the server for use with this app." = "Nou pa t kapab verifye sèvè ki pou itilize ak app sa a.";
 
-/* Error Title */
+/* (No Commment) */
 "Whoops!" = "Whoops!";
 
-/* unlock date for discussion/announcement */
+/* (No Commment) */
 "Will unlock %@." = "Ap debloke %@.";
 
-/* Title for action sheet giving the user an option to create a new message for a user. */
+/* (No Commment) */
 "Would you like to create a new message?" = "Èske w ta renmen kreye yon nouvo mesaj?";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Would you mind giving us a rating on the app store?" = "Sa pa p deranje w pou w evalye nou nan app store la?";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Would you mind letting us know the problems you have been having with the app?" = "Sa pa p deranje w pou fè nou konnen ki pwoblèm ou genyen ak app sa a?";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Yes" = "Wi";
 
-/* Masquerade title telling who you are masquerading as */
+/* (No Commment) */
 "You are now masquerading as %@" = "Kounye a ou parèt tankou %@";
 
-/* Masquerade success message */
-"You are now masquerading as %@. To Stop Masquerading go to your Profile." = "Kounye a ou parèt tankou %@. Pou Kanpe Degismnan an ale nan Pwofil ou.";
+/* (No Commment) */
+"You are now masquerading as %@. To Stop Masquerading go to your Profile." = "Kounye a ou parèt tankou %@. Pou Kanpe Degizmnan an ale nan Pwofil ou.";
 
-/* Message in an alert */
+/* (No Commment) */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Ou pa genyen SpeedGrader pou iPad. Ou ka telechaje li gratis nan App Store la.";
 
 /* Error message for an unauthorized course or group. */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Ou pa gen aksè a kontni sa a. Kou oswa Gwoup la gendwa poko kòmanse, oswa li fini deja.";
 
-/* Error message */
-"You do not have permission to delete this reply" = "Ou pa gen pèmisyon pou efase repons sa a.";
+/* (No Commment) */
+"You do not have permission to delete this reply" = "Ou pa gen pèmisyon pou efase repons sa a";
 
-/* Masquerade error message */
-"You don't have permission to masquerade as this user or there is no user with that ID" = "Ou pa gen pèmisyon pou parèt tankou itilizatè sa a oswa pa gen itilizatè ki gen idantifikasyon sa a.";
+/* (No Commment) */
+"You don't have permission to masquerade as this user or there is no user with that ID" = "Ou pa gen pèmisyon pou parèt tankou itilizatè sa a oswa pa gen itilizatè ki gen idantifikasyon sa a";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "You have an unsaved reply. Would you like to discard that reply?" = "Ou gen yon repons ki pa anrejistre. Èske ou ta renmen abandone repons sa a?";
 
-/* Error message */
+/* (No Commment) */
+"You must first complete:" = "Ou dwe toudabò ranpli:";
+
+/* (No Commment) */
 "You need a title and a description to post" = "Ou bezwen yon tit ak yon deskripsyon pou poste";
 
 /* You should go rate Canvas on the App Store! */
 "You should go rate Canvas on the App Store!" = "Ou dwe al evalye Canvas nan App Store la!";
 
-/* Error content */
-"Your files could not be found" = "Nou paka jwenn fichye ou yo.";
+/* (No Commment) */
+"Your files could not be found" = "Nou paka jwenn fichye ou yo";
 
-/* Media submission type selected with no Kaltura set up */
+/* (No Commment) */
 "Your school's configuration does not allow the type of submission selected for this assignment" = "Konfigirasyon lekòl ou a pa pèmèt tip soumisyon ou chwazi pou sesyon sa a";
 
-/* prerequisites for unlocking item */
-"You must first complete:" = "Dabò ou dwe ranpli:";
-
-/* Assignment is due on a date at a time */
+/* (No Commment) */
 "due on %1$@ at %2$@" = "delè %1$@ a %2$@";
 
-/* time since creation (less than 1 minute) */
+/* (No Commment) */
 "moments ago" = "yon ti moman de sa";
 
-/* Accessibility label for out or grading style */
+/* (No Commment) */
 "out of" = "sou";
 
-/* The assignment is out of 100 points */
+/* (No Commment) */
 "out of %@" = "sou %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "out of %@ points" = "sou %@ pwen";
 
-/* Name for a photo file, i.e. photo.png */
+/* (No Commment) */
 "photo" = "foto";
 
-/* When we don't know the name of a file, we display this */
+/* (No Commment) */
 "unknown" = "enkoni";
+
+/* (No Commment) */
+"until %@" = "jiska %@";
 

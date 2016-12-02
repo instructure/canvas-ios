@@ -1,0 +1,69 @@
+/* grade details for points based grade i.e. \"10 of 12\" */
+" of (formatter(possible))" = "de (formatter(possible))";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
+"(formatter(points)) of (formatter(possible))" = "(formatter(points)) de (formatter(possible))";
+
+/* Title for 1 day assignment reminder */
+"1 day" = "1 jou";
+
+/* Title for 1 hour assignment reminder */
+"1 hour" = "1 èdtan";
+
+/* Title for 3 days assignment reminder */
+"3 days" = "3 jou";
+
+/* Title for 5 minutes assignment reminder */
+"5 minutes" = "5 minit";
+
+/* Title for alert view for assignment reminders */
+"Assignment Reminder" = "Rapèl Sesyon";
+
+/* This assignment hasn't been graded yet but can be graded */
+"Awaiting Grade" = "Ap tann Klas";
+
+/* cancel button */
+"Cancel" = "Anile";
+
+/* Title for reminder options for an assignment */
+"Choose how long before the assignment due date to get a reminder:" = "Chwazi konbyen tan anvan dat limit sesyon an pou resevwa yon rapèl:";
+
+/* error displayed when submitting an assignment is unavailable */
+"Could not submit assignment. Invalid assignment or session." = "Pa kapab soumèt okenn sesyon. Sesyon envalid.";
+
+/* error displayed when submitting a submission is invalid. */
+"Could not submit assignment. Invalid submission." = "Pa kapab soumèt okenn sesyon. Soumisyon envalid";
+
+/* String telling the user that the date is the due date */
+"Due: " = "Delè:";
+
+/* This assignment is excused */
+"Excused" = "Eskize";
+
+/* This assignment is late */
+"Late" = "Ta";
+
+/* Default string for due date title */
+"No Due Date" = "San Delè";
+
+/* submission title for assignment waiting user submission */
+"Not Submitted" = "Pa Soumèt";
+
+/* title for submission button if student has submitted previously */
+"Re-submit Assignment" = "Re Soumèt Sesyon";
+
+/* submission title for assignment that doesn't support submissions */
+"Submissions N/A" = "Soumisyon N/A";
+
+/* title for submission button if student has never submitted */
+"Submit Assignment" = "Soumèt Sesyon";
+
+/* submission title for assignemnt that is submitted */
+"Turned in!" = "Soumèt!";
+
+/* This assignment is not graded */
+"Ungraded" = "San klasifye";
+
+/* Title for button to see rubric from assignment detail */
+"View Rubric" = "Afiche Ribrik";
+

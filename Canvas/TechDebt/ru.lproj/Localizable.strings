@@ -1,35 +1,69 @@
-/* Description for rubric criterion rating object */
-"Rating for %1$@, Score: %2$g" = "Рейтинг для %1$@, Оценка: %2$g";
+/* prerequisites for unlocking item */
+"
+
+You must first complete:" = "
+
+Вы должны сначала завершить:";
 
 /* when locked item will become unlocked */
-"until %@" = "до %@";
+" until %@" = " до %@";
 
 /* explanation for locked module item */
-"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; заблокировано как часть &quot;%2$@&quot;";
+"\"%@\" is locked as part of \"%@\"" = "\"%1$@\" заблокировано как часть \"%2$@\"";
 
-/* Gigabytes */
+/* (No Commment) */
 "%0.2f GB" = "%0.2f ГБ";
 
-/* Kilobytes */
+/* (No Commment) */
 "%0.2f KB" = "%0.2f КБ";
 
-/* Megabytes */
+/* (No Commment) */
 "%0.2f MB" = "%0.2f МБ";
 
-/* Button to submit files to an assignment */
+/* (No Commment) */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
+/* (No Commment) */
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g из %3$@)";
 
-/* something at something */
+/* (No Commment) */
 "%1$@ at %2$@" = "%1$@ в %2$@";
+
+/* (No Commment) */
+"%1$@ is due in %2$@" = "%1$@ будет выполнено в %2$@";
+
+/* (No Commment) */
+"%1$@ out of %2$@" = "%1$@ из %2$@";
+
+/* (No Commment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g из %3$@)";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Тип: %3$@.";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Тип: %3$@. Статус: %4$@";
+
+/* (No Commment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Commment) */
+"%1$g out of %2$@" = "%1$g из %2$@";
+
+/* Button to submit files to an assignment */
+"%@ (%d)" = "%1$@ (%2$d)";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g из %3$@)";
+
+/* Event happens on a date at a time */
+"%@ at %@" = "%1$@ в %2$@";
 
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ появится в скором времени!";
 
 /* local notification countdown alert */
-"%1$@ is due in %2$@" = "%1$@ будет выполнено в %2$@";
+"%@ is due in %@" = "%1$@ будет выполнено в %2$@";
 
 /* explanation for locked item */
 "%@ is locked" = "%@ заблокировано";
@@ -37,7 +71,7 @@
 /* No comment provided by engineer. */
 "%@ is not a valid URL" = "%@ не является допустимым URL";
 
-/* %@ is the token where the host name goes. Error message that the host doesn't exist. */
+/* (No Commment) */
 "%@ is not a valid host" = "%@ не является допустимым хостом";
 
 /* Message for unsupported tab */
@@ -46,40 +80,34 @@
 /* Description for how many times a specific discussion has been liked by other users */
 "%@ likes" = "%@ лайков";
 
-/* Label indicating multiple submissions need grading */
+/* (No Commment) */
 "%@ need grading" = "%@ требует оценки";
 
 /* 88 out of 100 points */
-"%1$@ out of %2$@" = "%1$@ из %2$@";
+"%@ out of %@" = "%1$@ из %2$@";
 
 /* 83% (83 out of 100 points */
-"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g из %3$@)";
+"%@%% (%g out of %@)" = "%1$@%% (%2$g из %3$@)";
 
-/* String to be read for the blind users. Name of item in module, then type of thing. */
-"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Тип: %3$@.";
-
-/* String to be read for the blind users. Name of item in module, then type of thing, then status. */
-"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Тип: %3$@. Статус: %4$@";
-
-/* Word and ellipses */
+/* (No Commment) */
 "%@..." = "%@...";
 
 /* A number and a collective noun, like '5 pigs' */
-"%1$d %2$@" = "%1$d %2$@";
+"%d %@" = "%1$d %2$@";
 
-/* time since creation (2 or more days) */
+/* (No Commment) */
 "%d days ago" = "%d дней назад";
 
-/* time since creation (2 or more hours) */
+/* (No Commment) */
 "%d hours ago" = "%d часов назад";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
 "%d items" = "%d элементов";
 
-/* time since creation (2 or more minutes) */
+/* (No Commment) */
 "%d minutes ago" = "%d минут назад";
 
-/* time since creation (2 or more months) */
+/* (No Commment) */
 "%d months ago" = "%d месяцев назад";
 
 /* In the context 'Joe, Fred, ((25 more))' */
@@ -91,13 +119,10 @@
 /* Something like '3 unread'. Refers to unread replies in a discsusion. */
 "%d unread" = "%d непрочитанных";
 
-/* time since creation (2 or more years) */
+/* (No Commment) */
 "%d years ago" = "%d лет назад";
 
-/* 88 out of 100 points */
-"%1$g out of %2$@" = "%1$g из %2$@";
-
-/* As in, '15 bytes' */
+/* (No Commment) */
 "%qu bytes" = "%qu байтов";
 
 /* offset for one day */
@@ -124,6 +149,9 @@
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
 "%u files" = "%u файлов";
 
+/* (No Commment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; заблокирован как часть &quot;%2$@&quot;";
+
 /* %@ will be replaced by the filename */
 "'%@' is now ready to submit to assignments" = "'%@' теперь готов предоставить задания";
 
@@ -133,13 +161,13 @@
 /* one day */
 "1 day" = "1 день";
 
-/* time since creation */
+/* (No Commment) */
 "1 day ago" = "1 день назад";
 
 /* one hour */
 "1 hour" = "1 час";
 
-/* time since creation */
+/* (No Commment) */
 "1 hour ago" = "1 час назад";
 
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
@@ -148,16 +176,16 @@
 /* Description for a post that has been liked once */
 "1 like" = "1 лайк";
 
-/* time since creation */
+/* (No Commment) */
 "1 minute ago" = "1 минуту назад";
 
-/* time since creation */
+/* (No Commment) */
 "1 month ago" = "1 месяц назад";
 
-/* Label indicating a submission need grading */
+/* (No Commment) */
 "1 needs grading" = "1 требует оценки";
 
-/* time since creation */
+/* (No Commment) */
 "1 year ago" = "1 год назад";
 
 /* three days */
@@ -169,7 +197,7 @@
 /* Name of a tab displaying Canvas Info including legal info */
 "About" = "Общая информация";
 
-/* Access Denied from the server */
+/* (No Commment) */
 "Access Denied" = "Доступ закрыт";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
@@ -196,8 +224,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "Добавить папку";
 
-/* Title for the add-inline-media sheet
-   Title on the add-inline-media sheet */
+/* Title on the add-inline-media sheet */
 "Add inline media" = "Добавить встроенные медиа";
 
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
@@ -206,22 +233,20 @@
 /* Button to select all members of a group */
 "All members" = "Все члены";
 
-/* Error message text */
+/* (No Commment) */
 "An unknown error occurred" = "Произошла неизвестная ошибка";
 
 /* Title of the new announcement view */
 "Announcement" = "Объявление";
 
-/* Announcements title
-   Title for the announcements view controller */
+/* Title for the announcements view controller */
 "Announcements" = "Объявления";
 
-/* Archive selected messages button
-   mark a message as archived */
+/* Archive selected messages button */
 "Archive" = "Архив";
 
 /* archive selected messages */
-"Archive Selected Messages Button" = "Кнопка архивации выбранных сообщений";
+"Archive Selected Messages Button" = "Кнопка архивации выбранных сообщений ";
 
 /* hint to archive selected messages */
 "Archive all selected messages" = "Архивировать все выбранные сообщения";
@@ -238,7 +263,7 @@
 /* Label for an assignment */
 "Assignment" = "Задание";
 
-/* Title for Assignments view controller */
+/* (No Commment) */
 "Assignments" = "Задания";
 
 /* An item for attaching to a discussion */
@@ -256,22 +281,22 @@
 /* Label for a discussion */
 "Attendance" = "Посещаемость";
 
-/* Media type is audio */
+/* Audio file type */
 "Audio" = "Аудио";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Audio input hardware not available" = "Аппаратное обеспечение для входного аудио сигнала  не доступно";
 
-/* Title of alert box */
+/* Title for an error popup */
 "Authentication error" = "Ошибка аутентификации";
 
 /* Link to building panda avatar */
 "Build Avatar" = "Создать Аватар";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Cache cleared" = "Данные кэша очищены";
 
-/* Calendar page title */
+/* (No Commment) */
 "Calendar" = "Календарь";
 
 /* Invalid LTI tool error title */
@@ -280,22 +305,10 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Не удается предоставить медиа";
 
-/* Button title for canceling download of a file
-   Button title for cancelling the selection of a quiz. This will appear in the alert view notifying the user of the mobile quiz limitations.
-   Cancel
-   cancel add file/folder
-   Cancel add option
-   Cancel button for removing a file
-   Cancel deletion of discussion entry
-   cancel folder creation
-   Cancel folder name change
-   cancel masquerade
-   cancel message creation
-   cancel reminder notification
-   cancel view help options */
+/* Cancel button title */
 "Cancel" = "Отменить";
 
-/* Cancel adding a comment button */
+/* Cancel button title */
 "Cancel Message" = "Отменить сообщение";
 
 /* No comment provided by engineer. */
@@ -342,7 +355,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* action sheet text for picking video from library */
 "Choose video" = "Выбрать видео";
 
-/* No comment provided by engineer. */
+/* Close the window */
 "Close" = "Закрыть";
 
 /* No comment provided by engineer. */
@@ -363,11 +376,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Comments are disabled" = "Комментарии отключены";
 
-/* Assignment grade: Complete
-   Pass/fail assignment is complete */
+/* (No Commment) */
 "Complete" = "Завершить";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Completed" = "Завершено";
 
 /* button to compose a message */
@@ -397,7 +409,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "Учебная программа";
 
-/* Courses page title */
+/* (No Commment) */
 "Courses" = "Курсы";
 
 /* cancel folder creation */
@@ -409,15 +421,13 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Message telling users that quiz support on mobile is limited */
 "Currently there is limited quiz support on mobile" = "В настоящее время существует ограниченная поддержка теста на мобильном телефоне";
 
-/* A custom grade not specified by the rubric. */
+/* (No Commment) */
 "Custom Grade" = "Настроить оценку";
 
-/* label for customizing a course */
+/* (No Commment) */
 "Customize" = "Настроить";
 
-/* Button to confirm deleting folders
-   Button to delete a discussion entry
-   Confirm deletion of discussion entry */
+/* Delete Button title */
 "Delete" = "Удалить";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -427,6 +437,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 "Delete this reply?" = "Удалить этот ответ?";
 
 /* delete file confirmation alert */
+"Deleted file: \"%@\"" = "Удаленный файл: \"%@\"";
+
+/* (No Commment) */
 "Deleted file: &quot;%@&quot;" = "Удаленный файл: &quot;%@&quot;";
 
 /* No comment provided by engineer. */
@@ -450,15 +463,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for Discussion Topics view controller */
 "Discussion Topics" = "Темы дискуссий";
 
-/* Discussions title
-   Title for Discussions view controller */
+/* Title for Discussions view controller */
 "Discussions" = "Дискуссии";
 
-/* Dismiss an error button
-   dismiss button
-   Dismiss button for an error dialoue
-   Dismiss error alert button
-   dismiss the alert button */
+/* Dismiss button title */
 "Dismiss" = "Отклонить";
 
 /* Alert title asking if you want to masquerade */
@@ -473,7 +481,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button to cancel deleting folders */
 "Don't delete" = "Не удалять";
 
-/* No comment provided by engineer. */
+/* Button to stop editing a list */
 "Done" = "Готово";
 
 /* Shown when we cancel a file download */
@@ -485,7 +493,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Срок:";
 
-/* Due date label for to do items, first placeholder is date, second is time */
+/* (No Commment) */
 "Due: %1$@ at %2$@" = "Срок: %1$@ в %2$@";
 
 /* Link to the End User License Agreement document */
@@ -494,24 +502,25 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button to edit a discussion entry */
 "Edit" = "Редактировать";
 
-/* Edit course list title
-   Edit the items in the course list */
+/* (No Commment) */
 "Edit Course List" = "Редактировать список курса";
 
-/* Edit group list title
-   Edit the items in the group list */
+/* (No Commment) */
 "Edit Group List" = "Редактировать список группы";
 
 /* Button title for deleting items in a folder */
 "Edit items" = "Редактировать элементы";
 
-/* Header when editing a discussion entry with name and timestamp */
+/* (No Commment) */
 "Editing reply by %1$@, %2$@" = "Редактировать ответ %1$@, %2$@";
+
+/* Header when editing a discussion entry with name and timestamp */
+"Editing reply by %@, %@" = "Редактировать ответ %1$@, %2$@";
 
 /* the users email */
 "Email" = "Email";
 
-/* Prompt asking user to enable push notifications */
+/* (No Commment) */
 "Enable Push Notifications" = "Включить Push-уведомления";
 
 /* masquerade prompt */
@@ -523,14 +532,20 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "Запись размещена";
 
-/* Title of alert box */
+/* Title for an error popup */
 "Error" = "Ошибка";
 
-/* Title of an alert popup */
+/* (No Commment) */
 "Error adding recipeints" = "Ошибка при добавлении получателей";
 
+/* Title of an alert popup */
+"Error adding recipients" = "Возникла ошибка при добавлении получателей";
+
 /* Error deleting file alert view title */
-"Error deleting file &quot;%@&quot;" = "Ошибка при удалении файла &quot;%@&quot;";
+"Error deleting file \"%@\"" = "Ошибка при удалении файла \"%@\"";
+
+/* (No Commment) */
+"Error deleting file &quot;%@&quot;" = "Возникла ошибка при удалении &quot;%@&quot;";
 
 /* Error deleting folder alert view title */
 "Error deleting folder" = "Ошибка при удалении папки";
@@ -544,16 +559,16 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for an external tool submission */
 "External Tool" = "Внешний инструмент";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "External URL" = "Внешний URL-адрес";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "File" = "Файл";
 
-/* The file extension for a submission is not acceptable */
+/* (No Commment) */
 "File extension not allowed: %@" = "Расширение файла не допускается: %@";
 
-/* Comes before a list of file extensions allowed for an assinment submission */
+/* (No Commment) */
 "File extension(s) permitted for this assignment:" = "Расширение (расширения) файла, разрешенные для данного задания:";
 
 /* No comment provided by engineer. */
@@ -565,19 +580,16 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* File upload submission type */
 "File upload" = "Загрузка файла";
 
-/* File upload failed. */
+/* (No Commment) */
 "File upload failed." = "Не удалось загрузить файл.";
 
-/* Files view
-   Name of a tab displaying files in a course
-   title for files view
-   Title for the Files View Controller */
+/* Title for the files screen */
 "Files" = "Файлы";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Загрузка завершена";
 
-/* badge indicating front page */
+/* (No Commment) */
 "Front Page" = "Первая страница";
 
 /* No comment provided by engineer. */
@@ -598,17 +610,20 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Grade" = "Оценка";
 
-/* Tells the user to grade an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Grade %@" = "Оценка %@";
 
 /* Launch the SpeedGrader app */
 "Grade in SpeedGrader" = "Оценка в SpeedGrader";
 
+/* (No Commment) */
+"Grade: %1$i / %2$g" = "Оценка: %1$i / %2$g";
+
 /* No comment provided by engineer. */
 "Grade: %@" = "Оценка: %@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "Оценка: %1$i / %2$g";
+"Grade: %i / %g" = "Оценка: %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "Оцениваемая дискуссия";
@@ -619,25 +634,25 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Оцениваемая дискуссия. %g возможных баллов.";
 
-/* Title for Grades view controller */
+/* (No Commment) */
 "Grades" = "Оценки";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "Разговор группы";
 
-/* Groups page title */
+/* (No Commment) */
 "Groups" = "Группы";
 
 /* help button */
 "Help" = "Справка";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Commment) */
 "Hide Grades" = "Скрыть Оценки";
 
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Как вам нравится Canvas?";
 
-/* I give you back your time, use it wisely. */
+/* (No Commment) */
 "I give you back your time, use it wisely." = "Я верну тебе твое время, используй его с умом.";
 
 /* Image file type */
@@ -652,8 +667,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Inbox" = "Входящие";
 
-/* Assignment grade: Incomplete
-   Pass/fail assignment is incomplete */
+/* (No Commment) */
 "Incomplete" = "Не завершено";
 
 /* Button title for sending a direct message; a private conversation */
@@ -665,19 +679,22 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "It has problems" = "Имеет проблемы";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Item %1$d of %2$d" = "Элемент %1$d из %2$d";
 
-/* It’s empty, what are you still doing here. */
+/* No comment provided by engineer. */
+"Item %d of %d" = "Элемент %1$d из %2$d";
+
+/* (No Commment) */
 "It’s empty, what are you still doing here." = "Там пусто, что ты до сих пор здесь делаешь.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Jumps to current day on calendar" = "Переход на текущий день в календаре";
 
 /* No comment provided by engineer. */
 "Keep" = "Оставить";
 
-/* Settings entry title for Choosing a Landing Page */
+/* (No Commment) */
 "Landing Page" = "Целевая страница";
 
 /* Title for an alert popup */
@@ -692,52 +709,49 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for legal section on the about page */
 "Legal" = "Легальный";
 
-/* Generic loading title with ellipses
-   Generic loading title with ellipsis */
+/* Generic loading title with ellipsis */
 "Loading..." = "Загрузка...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked" = "Заблокировано";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked until %@" = "Заблокировано до %@";
 
 /* Typically the email address correlated to the user */
 "Login ID" = "Логин ID";
 
-/* Error message title */
+/* (No Commment) */
 "Login Problem" = "Проблемы со входом в систему";
 
-/* logout action sheet logout button title
-   logout button */
+/* Title for a button to logout a user */
 "Logout" = "Выйти";
 
 /* No comment provided by engineer. */
 "Love it!" = "Я в восторге!";
 
-/* Button title for mark as done */
+/* (No Commment) */
 "Mark as Done" = "Отметить как выполненное";
 
-/* Button title for beginning masquerading
-   try masquerading */
+/* Button title for beginning masquerading */
 "Masquerade" = "Притвориться";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Me" = "Я";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Media Comment" = "Комментарий медиа";
 
 /* Title for a media submission */
 "Media Submission" = "Отправка медиа";
 
-/* The name for a video or audio response to something */
+/* (No Commment) */
 "Media comment" = "Комментарий медиа";
 
 /* Media recording submission type */
 "Media recording" = "Медиа запись";
 
-/* A slider to choose between media types */
+/* (No Commment) */
 "Media type selector. %@" = "Переключатель типа медиа. %@";
 
 /* Add message button */
@@ -749,15 +763,13 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Message everyone separately, or add everyone to a group conversation?" = "Отправить сообщение каждому по отдельности, или добавить всех в групповой чат?";
 
-/* Messages tab title
-   messages title
-   The name of the messages tab */
+/* Title for the messages screen */
 "Messages" = "Сообщения";
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "Мобильное предупреждение теста";
 
-/* title for the modules tab */
+/* (No Commment) */
 "Modules" = "Модули";
 
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
@@ -766,19 +778,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title of a link to show additional due dates customized for sections or groups. */
 "Multiple Due Dates" = "Множественные сроки выполнения";
 
-/* user must contribute to complete requirement */
+/* (No Commment) */
 "Must contribute" = "Должно способствовать";
 
-/* user must mark item as done to complete requirement */
+/* (No Commment) */
 "Must mark as done" = "Необходимо пометить, как выполненное";
 
-/* format string saying what the minimum score must be */
+/* (No Commment) */
 "Must score %@ or higher" = "Нужно получить %@ или выше";
 
-/* user must submit something to complete requirement */
+/* (No Commment) */
 "Must submit" = "Нужно отправить";
 
-/* user must view item to complete requirement */
+/* (No Commment) */
 "Must view" = "Нужно просмотреть";
 
 /* files button */
@@ -808,7 +820,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "No Date" = "Без даты";
 
-/* Label shown for a to do that doesn't have a due date */
+/* (No Commment) */
 "No Due Date" = "Без срока выполнения";
 
 /* Title for attempting submission without a comment */
@@ -838,54 +850,52 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Indicates a search found no results */
 "No results found" = "Результаты не найдены";
 
-/* error message for a 401 response. */
+/* (No Commment) */
 "Not Authorized" = "Не авторизовано";
 
-/* Pass/fail assignment is not complete */
+/* (No Commment) */
 "Not Complete" = "Не завершено";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
 "Not available" = "Недоступно";
 
-/* not graded string. */
+/* (No Commment) */
 "Not graded" = "Без оценки";
 
-/* not graded with points possible */
+/* (No Commment) */
 "Not graded (0 out of %@)" = "Без оценки (0 из %@)";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Примечание: Медиа-файлы не сразу доступны для воспроизведения в то время, как они обрабатываются на сервере.";
 
-/* Nothing to do, go play outside! */
+/* (No Commment) */
 "Nothing to do, go play outside!" = "Нечего делать, пойди поиграй на улице!";
 
-/* Nothing to see here. */
+/* (No Commment) */
 "Nothing to see here." = "Здесь нечего смотреть.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Notification" = "Уведомление";
 
-/* Settings entry title for Notification Preferences */
+/* (No Commment) */
 "Notification Preferences" = "Настройки уведомлений";
 
-/* Notifications tab title */
+/* (No Commment) */
 "Notifications" = "Уведомления";
 
-/* No comment provided by engineer. */
+/* OK Button Title */
 "OK" = "OK";
 
-/* Short name for observer enrollment */
+/* No comment provided by engineer. */
 "Observer" = "Наблюдатель";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Ok" = "Ok";
 
 /* Online URL submission type */
 "Online URL" = "Онлайн URL";
 
-/* Error message title
-   Error title
-   Masquerade error title */
+/* Title for an error alert */
 "Oops!" = "Ой!";
 
 /* Open a document in the application Safari */
@@ -906,21 +916,20 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for Outcomes tab */
 "Outcomes" = "Результаты";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Page" = "Страница";
 
 /* No comment provided by engineer. */
 "Past" = "Прошлое";
 
-/* People list title
-   Title for People view controller */
+/* Title for the people view */
 "People" = "Люди";
 
 /* No comment provided by engineer. */
 "Pinned Discussions" = "Закрепленные Дискуссии";
 
-/* A button that plays */
-"Play" = "Играть";
+/* (No Commment) */
+"Play" = "Воспроизвести";
 
 /* Network error message */
 "Please check your network connection and try again." = "Пожалуйста, проверьте подключение к сети и повторите попытку.";
@@ -928,7 +937,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button to post new discussion topic */
 "Post" = "Разместить";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Post Comment" = "Оставить комментарий";
 
 /* No comment provided by engineer. */
@@ -937,7 +946,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Message shown while posting a discussion entry */
 "Posting…" = "Отправление сообщений...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Posts your comment" = "Оставляет ваш комментарий";
 
 /* No comment provided by engineer. */
@@ -949,8 +958,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for profile screen */
 "Profile" = "Профиль";
 
-/* Label for a quiz
-   Title for a quiz submission cell */
+/* A short test taken by students */
 "Quiz" = "Тест";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -962,13 +970,16 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Rate on App Store" = "Оценить на App Store";
 
+/* (No Commment) */
+"Rating for %1$@, Score: %2$g" = "Рейтинг для %1$@в баллах: %2$g";
+
 /* Title for a button allowing user to re-submit files for an assignment */
 "Re-submit Assignment" = "Повторно отправить задание";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "Получатели";
 
-/* A button that records */
+/* (No Commment) */
 "Record" = "Записать";
 
 /* Record audio submission comment */
@@ -986,13 +997,13 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Record video" = "Записать видео";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refresh Button" = "Кнопка Обновить";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refreshes the calendar content" = "Обновляет контент календаря";
 
-/* Refreshing Calendar Events */
+/* (No Commment) */
 "Refreshing Calendar Events" = "Обновляет события календаря";
 
 /* Confirmation for removing a file */
@@ -1040,11 +1051,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Sent" = "Отправлено";
 
-/* settings button
-   Title for Settings tab */
+/* Title for Settings */
 "Settings" = "Настройки";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Commment) */
 "Show Grades" = "Показать оценки";
 
 /* title for quiz assignment submission button */
@@ -1065,31 +1075,31 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "К сожалению, мы не смогли найти задание. Это задание могло быть удалено.";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Starts playing your recording" = "Начинает воспроизведение Вашей записи";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Starts recording a media comment" = "Начало записи медиа-комментария";
 
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Оставаться в системе";
 
-/* A button that stops */
+/* Stop loading button for webview */
 "Stop" = "Остановить";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
 "Stop Masquerading" = "Остановить Маскарадинг";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Stops playing your recording" = "Останавливает воспроизведение Вашей записи";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Stops recording a media comment" = "Окончание записи медиа-комментария";
 
-/* Short name for student enrollment */
+/* No comment provided by engineer. */
 "Student" = "Студент";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Sub Header" = "Суб-заголовок";
 
 /* View previously submitted assignment */
@@ -1119,20 +1129,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Sure!" = "Конечно!";
 
-/* Hint about media input selection */
+/* (No Commment) */
 "Switches media input between audio and video. Currently set to %@" = "Переключение входного носителя между аудио и видео. В настоящее время установлено на %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to media comment mode" = "Переключение в режим медиа комментария";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to text comment mode" = "Переключение в режим текстового комментария";
 
-/* Syllabus screen name
-   Title for Syllabus view controller */
+/* Title for Syllabus screen */
 "Syllabus" = "Учебный план";
 
-/* Short name for TA enrollment */
+/* (No Commment) */
 "TA" = "Ассистент учителя";
 
 /* No comment provided by engineer. */
@@ -1153,7 +1162,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Displayed in a row when an error occurs loading more items */
 "Tap to try again" = "Нажмите, чтобы повторить попытку";
 
-/* Short name for teacher enrollment */
+/* (No Commment) */
 "Teacher" = "Учитель";
 
 /* No comment provided by engineer. */
@@ -1165,10 +1174,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Link to the Terms of Use */
 "Terms of Use" = "Условия использования";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Text Comment" = "Текстовый комментарий";
 
-/* Generic name for a submission entered online. */
+/* Title for a text submission cell */
 "Text Submission" = "Текстовая отправка";
 
 /* Text entry submission type */
@@ -1180,10 +1189,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "Сервера достичь не удалось";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The server you entered is not authorized for this app." = "Сервер, который вы ввели, не авторизован для этого приложения.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The user agent for this app is unauthorized." = "Агент пользователя для этого приложения является неправомочным.";
 
 /* Error message */
@@ -1214,7 +1223,7 @@ Error: %@" = "Возникла проблема при доступе к тре�
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Возникла ошибка при загрузке контента. Если это загрузка аудио или видео, она все еще может быть в обработке.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This app is not authorized for use." = "Это приложение не авторизовано для использования.";
 
 /* Invalid LTI tool error message */
@@ -1235,14 +1244,13 @@ Error: %@" = "Возникла проблема при доступе к тре�
 /* Text indicating that a folder cannot be opened */
 "This folder is locked" = "Эта папка заблокирована";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This is a media message." = "Это сообщение медиа.";
 
-/* This would be a great time to do some extra credit. */
+/* (No Commment) */
 "This would be a great time to do some extra credit." = "Это было бы прекрасное время, чтобы заработать дополнительные кредиты.";
 
-/* Title of to do screen
-   To Do page title */
+/* (No Commment) */
 "To Do" = "Для выполнения";
 
 /* No comment provided by engineer. */
@@ -1251,7 +1259,7 @@ Error: %@" = "Возникла проблема при доступе к тре�
 /* No comment provided by engineer. */
 "Today" = "Сегодня";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Today Button" = "Кнопка Сегодня";
 
 /* No comment provided by engineer. */
@@ -1266,10 +1274,10 @@ Error: %@" = "Возникла проблема при доступе к тре�
 /* title for re-submitting an assignment */
 "Turn In Again" = "Сдать снова";
 
-/* Tells the user to turn in an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Turn in %@" = "Сдать %@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Commment) */
 "Uh-oh! No Internet Connection" = "Ой-ой! Нет соединения с интернетом";
 
 /* Error title */
@@ -1281,10 +1289,10 @@ Error: %@" = "Возникла проблема при доступе к тре�
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Невозможно загрузить на сервер";
 
-/* Grade unavailable */
+/* (No Commment) */
 "Unavailable" = "Недоступно";
 
-/* Title for grade button when no grade is present */
+/* (No Commment) */
 "Ungraded" = "Без оценки";
 
 /* Unknown file type */
@@ -1312,10 +1320,16 @@ Error: %@" = "Возникла проблема при доступе к тре�
 "Upload file" = "Загрузить файл";
 
 /* Error message */
-"Upload to assignment &quot;%@&quot; failed" = "Загрузка задания &quot;%@&quot; не удалась";
+"Upload to assignment \"%@\" failed" = "Загрузка задания \"%@\" не удалась";
+
+/* (No Commment) */
+"Upload to assignment &quot;%@&quot; failed" = "Не удалось отправить в задание &quot;%@&quot;";
 
 /* Error message */
-"Upload to folder &quot;%@&quot; failed" = "Загрузка в папку &quot;%@&quot; не удалась";
+"Upload to folder \"%@\" failed" = "Загрузка в папку \"%@\" не удалась";
+
+/* (No Commment) */
+"Upload to folder &quot;%@&quot; failed" = "Не удалось отправить в задание &quot;%@&quot;";
 
 /* button for using the recorded audio */
 "Use" = "Использовать";
@@ -1326,22 +1340,22 @@ Error: %@" = "Возникла проблема при доступе к тре�
 /* Title for User Info section on the about page */
 "User Info" = "Информация о пользователе";
 
-/* Media type is video */
+/* Video file type */
 "Video" = "Видео";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Video error" = "Ошибка видео";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "View" = "Просмотр";
 
-/* No comment provided by engineer. */
-"Warning" = "Предупреждение";
+/* Title for a warning popup */
+"Warning" = "Warning";
 
 /* error message for failure to load a file submission */
 "We had a problem loading the submission. Please try again later." = "У нас возникли проблемы при загрузке отправки. Пожалуйста, повторите попытку позже.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "We were unable to verify the server for use with this app." = "Нам не удалось проверить сервер на использование с этим приложением.";
 
 /* Error Title */
@@ -1371,7 +1385,7 @@ Error: %@" = "Возникла проблема при доступе к тре�
 /* Message in an alert */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "У вас нет SpeedGrader для iPad. Вы можете скачать его бесплатно из App Store.";
 
-/* Error message for an unauthorized course or group. */
+/* (No Commment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "У вас нет доступа к этому контенту. Может быть курс или группа еще не началась или уже завершилась.";
 
 /* Error message */
@@ -1383,10 +1397,16 @@ Error: %@" = "Возникла проблема при доступе к тре�
 /* No comment provided by engineer. */
 "You have an unsaved reply. Would you like to discard that reply?" = "У вас есть не сохраненный ответ. Вы хотите удалить этот ответ?";
 
+/* An explanation of how to transfer files to the Canvas app. */
+"You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas." = "У вас нет файлов для отправки. Чтобы добавить файлы из других приложений, найдите нужный файл в другом приложении, а затем воспользуйтесь кнопкой \"Открыть в\", чтобы открыть его в Canvas. Вы также можете открывать в Canvas вложения электронных писем. Для этого необходимо нажать на соответствующее вложение и удерживать его в почтовом приложении.";
+
+/* (No Commment) */
+"You must first complete:" = "Вы должны сначала завершить:";
+
 /* Error message */
 "You need a title and a description to post" = "Вам нужно название и описание к сообщению";
 
-/* You should go rate Canvas on the App Store! */
+/* (No Commment) */
 "You should go rate Canvas on the App Store!" = "Вы должны пойти и оценить Canvas на App Store!";
 
 /* Error content */
@@ -1395,27 +1415,30 @@ Error: %@" = "Возникла проблема при доступе к тре�
 /* Media submission type selected with no Kaltura set up */
 "Your school's configuration does not allow the type of submission selected for this assignment" = "Конфигурация вашей школы не позволяет выбирать тип отправки, выбранной для данного задания";
 
-/* prerequisites for unlocking item */
-"You must first complete:" = "Вы должны сначала завершить:";
-
-/* Assignment is due on a date at a time */
+/* (No Commment) */
 "due on %1$@ at %2$@" = "срок выполнения %1$@ в %2$@";
 
-/* time since creation (less than 1 minute) */
+/* Assignment is due on a date at a time */
+"due on %@ at %@" = "срок выполнения %1$@ в %2$@";
+
+/* (No Commment) */
 "moments ago" = "секунд назад";
 
-/* Accessibility label for out or grading style */
+/* Accessibility label modifier for point out of point possible */
 "out of" = "из";
 
 /* The assignment is out of 100 points */
 "out of %@" = "из %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "out of %@ points" = "из %@ баллов";
 
-/* Name for a photo file, i.e. photo.png */
+/* (No Commment) */
 "photo" = "фото";
 
-/* When we don't know the name of a file, we display this */
+/* (No Commment) */
 "unknown" = "неизвестно";
+
+/* (No Commment) */
+"until %@" = "до тех пор %@";
 

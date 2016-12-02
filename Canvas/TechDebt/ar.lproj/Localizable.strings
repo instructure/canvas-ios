@@ -1,35 +1,69 @@
-/* Description for rubric criterion rating object */
-"Rating for %1$@, Score: %2$g" = "تقييم %1$@، الدرجة: %2$g";
+/* prerequisites for unlocking item */
+"
+
+You must first complete:" = "
+
+يجب أن تُكمل أولاً:";
 
 /* when locked item will become unlocked */
-"until %@" = "حتى %@";
+" until %@" = "حتى %@";
 
 /* explanation for locked module item */
-"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; مؤمّن كجزء من &quot;%2$@&quot;";
+"\"%@\" is locked as part of \"%@\"" = "\"%1$@\" مؤمّن كجزء من \"%2$@\"";
 
-/* Gigabytes */
+/* (No Commment) */
 "%0.2f GB" = "%0.2f جيجابايت";
 
-/* Kilobytes */
+/* (No Commment) */
 "%0.2f KB" = "%0.2f كيلوبايت";
 
-/* Megabytes */
+/* (No Commment) */
 "%0.2f MB" = "%0.2f ميجابايت";
 
-/* Button to submit files to an assignment */
+/* (No Commment) */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
+/* (No Commment) */
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g من بين %3$@)";
 
-/* something at something */
+/* (No Commment) */
 "%1$@ at %2$@" = "%1$@ على %2$@";
+
+/* (No Commment) */
+"%1$@ is due in %2$@" = "موعد استحقاق %1$@ هو %2$@";
+
+/* (No Commment) */
+"%1$@ out of %2$@" = "%1$@ من بين %2$@";
+
+/* (No Commment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g من بين %3$@)";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. النوع: %3$@.";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. النوع: %3$@. الحالة: %4$@";
+
+/* (No Commment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Commment) */
+"%1$g out of %2$@" = "%1$g من بين %2$@";
+
+/* Button to submit files to an assignment */
+"%@ (%d)" = "%1$@ (%2$d)";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g من بين %3$@)";
+
+/* Event happens on a date at a time */
+"%@ at %@" = "%1$@ على %2$@";
 
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ قريبًا!";
 
 /* local notification countdown alert */
-"%1$@ is due in %2$@" = "موعد استحقاق %1$@ هو %2$@";
+"%@ is due in %@" = "موعد استحقاق %1$@ هو %2$@";
 
 /* explanation for locked item */
 "%@ is locked" = "%@ مؤمّن";
@@ -37,7 +71,7 @@
 /* No comment provided by engineer. */
 "%@ is not a valid URL" = "%@ ليس عنوان URL صالح";
 
-/* %@ is the token where the host name goes. Error message that the host doesn't exist. */
+/* (No Commment) */
 "%@ is not a valid host" = "%@ ليس مضيف صالح";
 
 /* Message for unsupported tab */
@@ -46,40 +80,34 @@
 /* Description for how many times a specific discussion has been liked by other users */
 "%@ likes" = "%@ إعجاب/إعجابات";
 
-/* Label indicating multiple submissions need grading */
+/* (No Commment) */
 "%@ need grading" = "%@ تقييم مطلوب";
 
 /* 88 out of 100 points */
-"%1$@ out of %2$@" = "%1$@ من بين %2$@";
+"%@ out of %@" = "%1$@ من بين %2$@";
 
 /* 83% (83 out of 100 points */
-"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g من بين %3$@)";
+"%@%% (%g out of %@)" = "%1$@%% (%2$g من بين %3$@)";
 
-/* String to be read for the blind users. Name of item in module, then type of thing. */
-"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. النوع: %3$@.";
-
-/* String to be read for the blind users. Name of item in module, then type of thing, then status. */
-"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. النوع: %3$@. الحالة: %4$@";
-
-/* Word and ellipses */
+/* (No Commment) */
 "%@..." = "%@...";
 
 /* A number and a collective noun, like '5 pigs' */
-"%1$d %2$@" = "%1$d %2$@";
+"%d %@" = "%1$d %2$@";
 
-/* time since creation (2 or more days) */
+/* (No Commment) */
 "%d days ago" = "منذ %d يوم/أيام";
 
-/* time since creation (2 or more hours) */
+/* (No Commment) */
 "%d hours ago" = "منذ %d ساعة/ساعات";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
 "%d items" = "%d عنصر/عناصر";
 
-/* time since creation (2 or more minutes) */
+/* (No Commment) */
 "%d minutes ago" = "منذ %d دقيقة/دقائق";
 
-/* time since creation (2 or more months) */
+/* (No Commment) */
 "%d months ago" = "منذ %d شهر/أشهر";
 
 /* In the context 'Joe, Fred, ((25 more))' */
@@ -91,13 +119,10 @@
 /* Something like '3 unread'. Refers to unread replies in a discsusion. */
 "%d unread" = "%d غير مقروءة";
 
-/* time since creation (2 or more years) */
+/* (No Commment) */
 "%d years ago" = "منذ %d سنة/سنوات";
 
-/* 88 out of 100 points */
-"%1$g out of %2$@" = "%1$g من بين %2$@";
-
-/* As in, '15 bytes' */
+/* (No Commment) */
 "%qu bytes" = "%qu بايت";
 
 /* offset for one day */
@@ -124,6 +149,9 @@
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
 "%u files" = "%u ملف/ملفات";
 
+/* (No Commment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "تم تأمين &quot;%1$@&quot; كجزء من &quot;%2$@&quot;";
+
 /* %@ will be replaced by the filename */
 "'%@' is now ready to submit to assignments" = "'%@' جاهز الآن للإرسال إلى المهام";
 
@@ -133,13 +161,13 @@
 /* one day */
 "1 day" = "يوم واحد";
 
-/* time since creation */
+/* (No Commment) */
 "1 day ago" = "منذ يوم واحد";
 
 /* one hour */
 "1 hour" = "ساعة واحدة";
 
-/* time since creation */
+/* (No Commment) */
 "1 hour ago" = "منذ ساعة واحدة";
 
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
@@ -148,16 +176,16 @@
 /* Description for a post that has been liked once */
 "1 like" = "إعجاب واحد";
 
-/* time since creation */
+/* (No Commment) */
 "1 minute ago" = "منذ دقيقة واحدة";
 
-/* time since creation */
+/* (No Commment) */
 "1 month ago" = "منذ شهر واحد";
 
-/* Label indicating a submission need grading */
+/* (No Commment) */
 "1 needs grading" = "1 يتطلب تقييم";
 
-/* time since creation */
+/* (No Commment) */
 "1 year ago" = "منذ سنة واحدة";
 
 /* three days */
@@ -169,8 +197,8 @@
 /* Name of a tab displaying Canvas Info including legal info */
 "About" = "نبذة عن";
 
-/* Access Denied from the server */
-"Access Denied" = "تم رفض الوصول";
+/* (No Commment) */
+"Access Denied" = "الوصول مرفوض";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
 "Access denied. Please check your permissions for the action you're trying to complete." = "تم رفض الوصول. يرجى التحقق من أذونات العملية التي تحاول القيام بها.";
@@ -196,8 +224,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "إضافة مجلد";
 
-/* Title for the add-inline-media sheet
-   Title on the add-inline-media sheet */
+/* Title on the add-inline-media sheet */
 "Add inline media" = "إضافة وسط مضمن";
 
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
@@ -206,18 +233,16 @@
 /* Button to select all members of a group */
 "All members" = "كل الأعضاء";
 
-/* Error message text */
+/* (No Commment) */
 "An unknown error occurred" = "حدث خطأ غير معروف";
 
 /* Title of the new announcement view */
 "Announcement" = "إعلان";
 
-/* Announcements title
-   Title for the announcements view controller */
+/* Title for the announcements view controller */
 "Announcements" = "إعلانات";
 
-/* Archive selected messages button
-   mark a message as archived */
+/* Archive selected messages button */
 "Archive" = "أرشفة";
 
 /* archive selected messages */
@@ -238,7 +263,7 @@
 /* Label for an assignment */
 "Assignment" = "المهمة";
 
-/* Title for Assignments view controller */
+/* (No Commment) */
 "Assignments" = "المهام";
 
 /* An item for attaching to a discussion */
@@ -256,22 +281,22 @@
 /* Label for a discussion */
 "Attendance" = "الحضور";
 
-/* Media type is audio */
+/* Audio file type */
 "Audio" = "الصوت";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Audio input hardware not available" = "جهاز إدخال الصوت غير متوفر";
 
-/* Title of alert box */
+/* Title for an error popup */
 "Authentication error" = "خطأ في المصادقة";
 
 /* Link to building panda avatar */
 "Build Avatar" = "إنشاء أفاتار";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Cache cleared" = "مُسحت ذاكرة التخزين المؤقت";
 
-/* Calendar page title */
+/* (No Commment) */
 "Calendar" = "التقويم";
 
 /* Invalid LTI tool error title */
@@ -280,22 +305,10 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "لا يمكن إرسال الوسط";
 
-/* Button title for canceling download of a file
-   Button title for cancelling the selection of a quiz. This will appear in the alert view notifying the user of the mobile quiz limitations.
-   Cancel
-   cancel add file/folder
-   Cancel add option
-   Cancel button for removing a file
-   Cancel deletion of discussion entry
-   cancel folder creation
-   Cancel folder name change
-   cancel masquerade
-   cancel message creation
-   cancel reminder notification
-   cancel view help options */
+/* Cancel button title */
 "Cancel" = "إلغاء";
 
-/* Cancel adding a comment button */
+/* Cancel button title */
 "Cancel Message" = "إلغاء رسالة";
 
 /* No comment provided by engineer. */
@@ -342,7 +355,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* action sheet text for picking video from library */
 "Choose video" = "اختيار فيديو";
 
-/* No comment provided by engineer. */
+/* Close the window */
 "Close" = "إغلاق";
 
 /* No comment provided by engineer. */
@@ -363,11 +376,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Comments are disabled" = "التعليقات معطلة";
 
-/* Assignment grade: Complete
-   Pass/fail assignment is complete */
+/* (No Commment) */
 "Complete" = "إكمال";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Completed" = "مكتمل";
 
 /* button to compose a message */
@@ -397,7 +409,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "مناهج المساق";
 
-/* Courses page title */
+/* (No Commment) */
 "Courses" = "المساقات";
 
 /* cancel folder creation */
@@ -409,15 +421,13 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Message telling users that quiz support on mobile is limited */
 "Currently there is limited quiz support on mobile" = "دعم الاختبارات محدود حاليًا على الأجهزة المحمولة";
 
-/* A custom grade not specified by the rubric. */
+/* (No Commment) */
 "Custom Grade" = "درجة مخصصة";
 
-/* label for customizing a course */
+/* (No Commment) */
 "Customize" = "تخصيص";
 
-/* Button to confirm deleting folders
-   Button to delete a discussion entry
-   Confirm deletion of discussion entry */
+/* Delete Button title */
 "Delete" = "حذف";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -427,7 +437,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 "Delete this reply?" = "حذف هذه الإجابة؟";
 
 /* delete file confirmation alert */
-"Deleted file: &quot;%@&quot;" = "ملف محذوف: &quot;%@&quot;";
+"Deleted file: \"%@\"" = "ملف محذوف: \"%@\"";
+
+/* (No Commment) */
+"Deleted file: &quot;%@&quot;" = "الملف المحذوف: &quot;%@&quot;";
 
 /* No comment provided by engineer. */
 "Detail" = "تفصيل";
@@ -450,15 +463,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for Discussion Topics view controller */
 "Discussion Topics" = "مواضيع المناقشة";
 
-/* Discussions title
-   Title for Discussions view controller */
+/* Title for Discussions view controller */
 "Discussions" = "مناقشات";
 
-/* Dismiss an error button
-   dismiss button
-   Dismiss button for an error dialoue
-   Dismiss error alert button
-   dismiss the alert button */
+/* Dismiss button title */
 "Dismiss" = "رفض";
 
 /* Alert title asking if you want to masquerade */
@@ -473,7 +481,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button to cancel deleting folders */
 "Don't delete" = "عدم الحذف";
 
-/* No comment provided by engineer. */
+/* Button to stop editing a list */
 "Done" = "تم";
 
 /* Shown when we cancel a file download */
@@ -485,7 +493,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* This string is prepended to the due date for an assignment */
 "Due:" = "موعد الاستحقاق:";
 
-/* Due date label for to do items, first placeholder is date, second is time */
+/* (No Commment) */
 "Due: %1$@ at %2$@" = "موعد الاستحقاق: %1$@ على الساعة %2$@";
 
 /* Link to the End User License Agreement document */
@@ -494,24 +502,25 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button to edit a discussion entry */
 "Edit" = "تحرير";
 
-/* Edit course list title
-   Edit the items in the course list */
+/* (No Commment) */
 "Edit Course List" = "تحرير قائمة المساق";
 
-/* Edit group list title
-   Edit the items in the group list */
+/* (No Commment) */
 "Edit Group List" = "تحرير قائمة المجموعة";
 
 /* Button title for deleting items in a folder */
 "Edit items" = "تحرير العناصر";
 
-/* Header when editing a discussion entry with name and timestamp */
+/* (No Commment) */
 "Editing reply by %1$@, %2$@" = "تحرير الأجوبة حسب %1$@ و%2$@";
+
+/* Header when editing a discussion entry with name and timestamp */
+"Editing reply by %@, %@" = "تحرير الأجوبة حسب %1$@ و%2$@";
 
 /* the users email */
 "Email" = "البريد الإلكتروني";
 
-/* Prompt asking user to enable push notifications */
+/* (No Commment) */
 "Enable Push Notifications" = "تمكين إرسال الإخطارات";
 
 /* masquerade prompt */
@@ -523,14 +532,20 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "تم نشر الإدخال";
 
-/* Title of alert box */
+/* Title for an error popup */
 "Error" = "خطأ";
 
-/* Title of an alert popup */
+/* (No Commment) */
 "Error adding recipeints" = "حدث خطأ أثناء إضافة المستلمين";
 
+/* Title of an alert popup */
+"Error adding recipients" = "خطأ أثناء إضافة مستلمين";
+
 /* Error deleting file alert view title */
-"Error deleting file &quot;%@&quot;" = "حدث خطأ أثناء حذف الملف &quot;%@&quot;";
+"Error deleting file \"%@\"" = "حدث خطأ أثناء حذف الملف \"%@\"";
+
+/* (No Commment) */
+"Error deleting file &quot;%@&quot;" = "خطأ أثناء حذف الملف &quot;%@&quot;";
 
 /* Error deleting folder alert view title */
 "Error deleting folder" = "حدث خطأ أثناء حذف المجلد";
@@ -544,16 +559,16 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for an external tool submission */
 "External Tool" = "أداة خارجية";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "External URL" = "عنوان URL خارجي";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "File" = "ملف";
 
-/* The file extension for a submission is not acceptable */
+/* (No Commment) */
 "File extension not allowed: %@" = "ملحق الملف غير مسموح به: %@";
 
-/* Comes before a list of file extensions allowed for an assinment submission */
+/* (No Commment) */
 "File extension(s) permitted for this assignment:" = "ملحق(ملحقات) الملف مسموح به لهذه المهمة:";
 
 /* No comment provided by engineer. */
@@ -565,19 +580,16 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* File upload submission type */
 "File upload" = "تحميل الملف";
 
-/* File upload failed. */
+/* (No Commment) */
 "File upload failed." = "فشل تحميل الملف.";
 
-/* Files view
-   Name of a tab displaying files in a course
-   title for files view
-   Title for the Files View Controller */
+/* Title for the files screen */
 "Files" = "ملفات";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "انتهى التنزيل";
 
-/* badge indicating front page */
+/* (No Commment) */
 "Front Page" = "الصفحة الأمامية";
 
 /* No comment provided by engineer. */
@@ -598,17 +610,20 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Grade" = "الدرجة";
 
-/* Tells the user to grade an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Grade %@" = "تقييم %@";
 
 /* Launch the SpeedGrader app */
 "Grade in SpeedGrader" = "التقييم في SpeedGrader";
 
+/* (No Commment) */
+"Grade: %1$i / %2$g" = "الدرجة: %1$i / %2$g";
+
 /* No comment provided by engineer. */
 "Grade: %@" = "الدرجة: %@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "الدرجة: %1$i / %2$g";
+"Grade: %i / %g" = "الدرجة: %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "مناقشة مقيمة";
@@ -619,25 +634,25 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "مناقشة مقيمة. %g نقطة ممكنة.";
 
-/* Title for Grades view controller */
+/* (No Commment) */
 "Grades" = "الدرجات";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "محادثة مجموعة";
 
-/* Groups page title */
-"Groups" = "مجموعات";
+/* (No Commment) */
+"Groups" = "المجموعات";
 
 /* help button */
 "Help" = "مساعدة";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Commment) */
 "Hide Grades" = "إخفاء الدرجات";
 
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "ما رأيك في Canvas؟";
 
-/* I give you back your time, use it wisely. */
+/* (No Commment) */
 "I give you back your time, use it wisely." = "أعيد لك وقتك، استخدمه بحكمة.";
 
 /* Image file type */
@@ -652,8 +667,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Inbox" = "صندوق الوارد";
 
-/* Assignment grade: Incomplete
-   Pass/fail assignment is incomplete */
+/* (No Commment) */
 "Incomplete" = "غير مكتمل";
 
 /* Button title for sending a direct message; a private conversation */
@@ -665,19 +679,22 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "It has problems" = "هناك مشاكل";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Item %1$d of %2$d" = "العنصر %1$d من %2$d";
 
-/* It’s empty, what are you still doing here. */
+/* No comment provided by engineer. */
+"Item %d of %d" = "العنصر %1$d من %2$d";
+
+/* (No Commment) */
 "It’s empty, what are you still doing here." = "هذا فارغ، ماذا تفعل هنا؟";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Jumps to current day on calendar" = "المرور إلى اليوم الحالي على التقويم";
 
 /* No comment provided by engineer. */
 "Keep" = "الإبقاء";
 
-/* Settings entry title for Choosing a Landing Page */
+/* (No Commment) */
 "Landing Page" = "الصفحة المقصودة";
 
 /* Title for an alert popup */
@@ -692,52 +709,49 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for legal section on the about page */
 "Legal" = "قانونية";
 
-/* Generic loading title with ellipses
-   Generic loading title with ellipsis */
+/* Generic loading title with ellipsis */
 "Loading..." = "جارٍ التحميل...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked" = "مؤمّن";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked until %@" = "مؤمّن إلى غاية %@";
 
 /* Typically the email address correlated to the user */
 "Login ID" = "معرف تسجيل الدخول";
 
-/* Error message title */
+/* (No Commment) */
 "Login Problem" = "مشكلة في تسجيل الدخول";
 
-/* logout action sheet logout button title
-   logout button */
+/* Title for a button to logout a user */
 "Logout" = "تسجيل الخروج";
 
 /* No comment provided by engineer. */
 "Love it!" = "أحب ذلك!";
 
-/* Button title for mark as done */
+/* (No Commment) */
 "Mark as Done" = "وضع علامة تم";
 
-/* Button title for beginning masquerading
-   try masquerading */
+/* Button title for beginning masquerading */
 "Masquerade" = "تخفي";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Me" = "أنا";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Media Comment" = "تعليق الوسط";
 
 /* Title for a media submission */
 "Media Submission" = "إرسال الوسط";
 
-/* The name for a video or audio response to something */
+/* (No Commment) */
 "Media comment" = "تعليق الوسط";
 
 /* Media recording submission type */
 "Media recording" = "تسجيل الوسط";
 
-/* A slider to choose between media types */
+/* (No Commment) */
 "Media type selector. %@" = "محدد نوع الوسط. %@";
 
 /* Add message button */
@@ -749,15 +763,13 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Message everyone separately, or add everyone to a group conversation?" = "إرسال الرسائل بشكل منفرد إلى كل شخص أو إضافة الجميع إلى محادثة جماعية؟";
 
-/* Messages tab title
-   messages title
-   The name of the messages tab */
+/* Title for the messages screen */
 "Messages" = "الرسائل";
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "تحذير الاختبار على جهاز محمول";
 
-/* title for the modules tab */
+/* (No Commment) */
 "Modules" = "الوحدات";
 
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
@@ -766,19 +778,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title of a link to show additional due dates customized for sections or groups. */
 "Multiple Due Dates" = "مواعيد استحقاق متعددة";
 
-/* user must contribute to complete requirement */
+/* (No Commment) */
 "Must contribute" = "يجب المساهمة";
 
-/* user must mark item as done to complete requirement */
+/* (No Commment) */
 "Must mark as done" = "يجب وضع علامة تم";
 
-/* format string saying what the minimum score must be */
+/* (No Commment) */
 "Must score %@ or higher" = "يجب الحصول على %@ أو أكثر";
 
-/* user must submit something to complete requirement */
+/* (No Commment) */
 "Must submit" = "يجب الإرسال";
 
-/* user must view item to complete requirement */
+/* (No Commment) */
 "Must view" = "يجب العرض";
 
 /* files button */
@@ -808,7 +820,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "No Date" = "لا يوجد أي تاريخ";
 
-/* Label shown for a to do that doesn't have a due date */
+/* (No Commment) */
 "No Due Date" = "لا يوجد موعد استحقاق";
 
 /* Title for attempting submission without a comment */
@@ -838,54 +850,52 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Indicates a search found no results */
 "No results found" = "لم يتم العثور على أي نتيجة";
 
-/* error message for a 401 response. */
+/* (No Commment) */
 "Not Authorized" = "غير مخوّل";
 
-/* Pass/fail assignment is not complete */
+/* (No Commment) */
 "Not Complete" = "غير مكتمل";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
 "Not available" = "غير متوفر";
 
-/* not graded string. */
+/* (No Commment) */
 "Not graded" = "لم يتم التقييم";
 
-/* not graded with points possible */
+/* (No Commment) */
 "Not graded (0 out of %@)" = "لم يتم التقييم (0 من بين %@)";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "ملاحظة: لا يمكن قراءة ملفات الوسائط بشكل فوري أثناء معالجتها على الخادم.";
 
-/* Nothing to do, go play outside! */
+/* (No Commment) */
 "Nothing to do, go play outside!" = "لا يمكن فعل أي شيء، إذهب للعب في الخارج!";
 
-/* Nothing to see here. */
+/* (No Commment) */
 "Nothing to see here." = "لا شيء لرؤيته هنا.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Notification" = "الإخطار";
 
-/* Settings entry title for Notification Preferences */
+/* (No Commment) */
 "Notification Preferences" = "تفضيلات الإخطار";
 
-/* Notifications tab title */
+/* (No Commment) */
 "Notifications" = "الإخطارات";
 
-/* No comment provided by engineer. */
+/* OK Button Title */
 "OK" = "موافق";
 
-/* Short name for observer enrollment */
+/* No comment provided by engineer. */
 "Observer" = "ملاحظ";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Ok" = "موافق";
 
 /* Online URL submission type */
 "Online URL" = "عنوان URL عبر الإنترنت";
 
-/* Error message title
-   Error title
-   Masquerade error title */
+/* Title for an error alert */
 "Oops!" = "عذراً!";
 
 /* Open a document in the application Safari */
@@ -906,20 +916,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for Outcomes tab */
 "Outcomes" = "النتائج";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Page" = "الصفحة";
 
 /* No comment provided by engineer. */
 "Past" = "سابقة";
 
-/* People list title
-   Title for People view controller */
+/* Title for the people view */
 "People" = "الأشخاص";
 
 /* No comment provided by engineer. */
 "Pinned Discussions" = "مناقشات مثبّتة";
 
-/* A button that plays */
+/* (No Commment) */
 "Play" = "تشغيل";
 
 /* Network error message */
@@ -928,7 +937,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button to post new discussion topic */
 "Post" = "نشر";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Post Comment" = "نشر تعليق";
 
 /* No comment provided by engineer. */
@@ -937,7 +946,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Message shown while posting a discussion entry */
 "Posting…" = "جارٍ النشر...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Posts your comment" = "انشر تعليقك";
 
 /* No comment provided by engineer. */
@@ -949,18 +958,20 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for profile screen */
 "Profile" = "ملف التعريف";
 
-/* Label for a quiz
-   Title for a quiz submission cell */
+/* A short test taken by students */
 "Quiz" = "الاختبار";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "تنبيه الاختبار";
 
 /* The title for the list of quizzes for a course */
-"Quizzes" = "الاختبارات";
+"Quizzes" = "اختبارات";
 
 /* No comment provided by engineer. */
 "Rate on App Store" = "التقييم على App Store";
+
+/* (No Commment) */
+"Rating for %1$@, Score: %2$g" = "تصنيف %1$@، الدرجة: %2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
 "Re-submit Assignment" = "إعادة إرسال المهمة";
@@ -968,7 +979,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "المستلمين";
 
-/* A button that records */
+/* (No Commment) */
 "Record" = "تسجيل";
 
 /* Record audio submission comment */
@@ -986,13 +997,13 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Record video" = "تسجيل الفيديو";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refresh Button" = "زر التحديث";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refreshes the calendar content" = "تحديث محتوى التقويم";
 
-/* Refreshing Calendar Events */
+/* (No Commment) */
 "Refreshing Calendar Events" = "جارٍ تحديث أحداث التقويم";
 
 /* Confirmation for removing a file */
@@ -1040,11 +1051,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Sent" = "تم الإرسال";
 
-/* settings button
-   Title for Settings tab */
+/* Title for Settings */
 "Settings" = "الإعدادات";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Commment) */
 "Show Grades" = "عرض الدرجات";
 
 /* title for quiz assignment submission button */
@@ -1065,31 +1075,31 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "عذرًا، لم نتمكن من العثور على المهمة. ربما تم حذف هذه المهمة.";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Starts playing your recording" = "بدء تشغيل تسجيلك";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Starts recording a media comment" = "بدء تسجيل تعليق الوسط";
 
 /* button title for cancelling a logout. */
 "Stay Logged In" = "الاستمرار في الجلسة";
 
-/* A button that stops */
+/* Stop loading button for webview */
 "Stop" = "إيقاف";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
 "Stop Masquerading" = "إيقاف التخفي";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Stops playing your recording" = "إيقاف تشغيل تسجيلك";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Stops recording a media comment" = "إيقاف تسجيل تعليق الوسط";
 
-/* Short name for student enrollment */
+/* No comment provided by engineer. */
 "Student" = "طالب";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Sub Header" = "رأس فرعي";
 
 /* View previously submitted assignment */
@@ -1119,20 +1129,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Sure!" = "بالتأكيد!";
 
-/* Hint about media input selection */
+/* (No Commment) */
 "Switches media input between audio and video. Currently set to %@" = "تغيير إدخال الوسط بين الصوت والفيديو. موجود حاليًا في الوضع %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to media comment mode" = "التغيير إلى وضع تعليق الوسط";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to text comment mode" = "التغيير إلى وضع تعليق النص";
 
-/* Syllabus screen name
-   Title for Syllabus view controller */
+/* Title for Syllabus screen */
 "Syllabus" = "المناهج";
 
-/* Short name for TA enrollment */
+/* (No Commment) */
 "TA" = "مساعد المعلم";
 
 /* No comment provided by engineer. */
@@ -1153,7 +1162,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Displayed in a row when an error occurs loading more items */
 "Tap to try again" = "اضغط لإعادة المحاولة";
 
-/* Short name for teacher enrollment */
+/* (No Commment) */
 "Teacher" = "المعلم";
 
 /* No comment provided by engineer. */
@@ -1165,10 +1174,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Link to the Terms of Use */
 "Terms of Use" = "شروط الاستخدام";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Text Comment" = "تعليق النص";
 
-/* Generic name for a submission entered online. */
+/* Title for a text submission cell */
 "Text Submission" = "إرسال النص";
 
 /* Text entry submission type */
@@ -1180,10 +1189,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "تعذر الوصول إلى الخادم";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The server you entered is not authorized for this app." = "الخادم الذي أدخلته غير مخول لهذا التطبيق.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The user agent for this app is unauthorized." = "عميل المستخدم لهذا التطبيق غير مخول.";
 
 /* Error message */
@@ -1214,7 +1223,7 @@ Error: %@" = "حدث خطأ أثناء الوصول إلى الملف المطل
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "حدث خطأ أثناء تحميل محتوياتك. إذا كان ملف صوت أو فيديو فقد يزال قيد المعالجة.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This app is not authorized for use." = "هذا التطبيق غير مخول للاستخدام.";
 
 /* Invalid LTI tool error message */
@@ -1235,14 +1244,13 @@ Error: %@" = "حدث خطأ أثناء الوصول إلى الملف المطل
 /* Text indicating that a folder cannot be opened */
 "This folder is locked" = "هذا المجلد مؤمّن";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This is a media message." = "هذه رسالة وسائط";
 
-/* This would be a great time to do some extra credit. */
+/* (No Commment) */
 "This would be a great time to do some extra credit." = "قد يكون الوقت مناسبًا للقيام بأعمال إضافية.";
 
-/* Title of to do screen
-   To Do page title */
+/* (No Commment) */
 "To Do" = "ما يجب القيام به";
 
 /* No comment provided by engineer. */
@@ -1251,7 +1259,7 @@ Error: %@" = "حدث خطأ أثناء الوصول إلى الملف المطل
 /* No comment provided by engineer. */
 "Today" = "اليوم";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Today Button" = "زر اليوم";
 
 /* No comment provided by engineer. */
@@ -1266,10 +1274,10 @@ Error: %@" = "حدث خطأ أثناء الوصول إلى الملف المطل
 /* title for re-submitting an assignment */
 "Turn In Again" = "التسليم من جديد";
 
-/* Tells the user to turn in an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Turn in %@" = "تسليم %@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Commment) */
 "Uh-oh! No Internet Connection" = "أوه! لا يوجد اتصال بالإنترنت";
 
 /* Error title */
@@ -1281,10 +1289,10 @@ Error: %@" = "حدث خطأ أثناء الوصول إلى الملف المطل
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "التحميل على الخادم غير ممكن";
 
-/* Grade unavailable */
+/* (No Commment) */
 "Unavailable" = "غير متوفر";
 
-/* Title for grade button when no grade is present */
+/* (No Commment) */
 "Ungraded" = "دون تقييم";
 
 /* Unknown file type */
@@ -1312,10 +1320,16 @@ Error: %@" = "حدث خطأ أثناء الوصول إلى الملف المطل
 "Upload file" = "تحميل ملف";
 
 /* Error message */
-"Upload to assignment &quot;%@&quot; failed" = "فشل التحميل إلى المهمة &quot;%@&quot;";
+"Upload to assignment \"%@\" failed" = "فشل التحميل إلى المهمة \"%@\"";
+
+/* (No Commment) */
+"Upload to assignment &quot;%@&quot; failed" = "تعذر التحميل إلى المهمة &quot;%@&quot;";
 
 /* Error message */
-"Upload to folder &quot;%@&quot; failed" = "فشل التحميل إلى المجلد &quot;%@&quot;";
+"Upload to folder \"%@\" failed" = "فشل التحميل إلى المجلد \"%@\"";
+
+/* (No Commment) */
+"Upload to folder &quot;%@&quot; failed" = "تعذر التحميل إلى المجلد &quot;%@&quot;";
 
 /* button for using the recorded audio */
 "Use" = "استخدام";
@@ -1326,22 +1340,22 @@ Error: %@" = "حدث خطأ أثناء الوصول إلى الملف المطل
 /* Title for User Info section on the about page */
 "User Info" = "معلومات المستخدم";
 
-/* Media type is video */
+/* Video file type */
 "Video" = "فيديو";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Video error" = "خطأ في الفيديو";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "View" = "عرض";
 
-/* No comment provided by engineer. */
+/* Title for a warning popup */
 "Warning" = "تحذير";
 
 /* error message for failure to load a file submission */
 "We had a problem loading the submission. Please try again later." = "لدينا مشكلة في تحميل الإرسال. يرجى إعادة المحاولة لاحقاً.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "We were unable to verify the server for use with this app." = "لم نتمكن من التحقق من الخادم لاستخدامه مع هذا التطبيق.";
 
 /* Error Title */
@@ -1371,8 +1385,8 @@ Error: %@" = "حدث خطأ أثناء الوصول إلى الملف المطل
 /* Message in an alert */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "ليس لديك SpeedGrader لجهاز iPad. يمكنك تنزيله مجاناً من App Store.";
 
-/* Error message for an unauthorized course or group. */
-"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "لا يمكنك الوصول إلى هذا المحتوى. من الممكن أن هذا المساق أو المجموعة لم يبدأ بعد أو انتهى.";
+/* (No Commment) */
+"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "لا يمكنك الوصول إلى هذا المحتوى. من الممكن أن هذا المساق أو المجموعة لم يبدأ بعد أو انتهى. ";
 
 /* Error message */
 "You do not have permission to delete this reply" = "غير مسموح لك بحذف هذا الملف";
@@ -1383,10 +1397,16 @@ Error: %@" = "حدث خطأ أثناء الوصول إلى الملف المطل
 /* No comment provided by engineer. */
 "You have an unsaved reply. Would you like to discard that reply?" = "لديك جواب غير محفوظ. هل تريد تجاهل هذا الجواب؟";
 
+/* An explanation of how to transfer files to the Canvas app. */
+"You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas." = "لا توجد لديك ملفات متاحة للتحميل. لإضافة ملفات من تطبيقات أخرى، ابحث عن ملف في تطبيق آخر، ثم ابحث عن زر \"Open In\" لفتحه في Canvas. كما يمكنك أن تضغط مع الاستمرار على المرفقات في تطبيق البريد لفتحها في Canvas.";
+
+/* (No Commment) */
+"You must first complete:" = "يجب أن تكمل أولاً:";
+
 /* Error message */
 "You need a title and a description to post" = "تحتاج لعنوان ووصف للنشر";
 
-/* You should go rate Canvas on the App Store! */
+/* (No Commment) */
 "You should go rate Canvas on the App Store!" = "يجب أن تقيّم Canvas على App Store!";
 
 /* Error content */
@@ -1395,27 +1415,30 @@ Error: %@" = "حدث خطأ أثناء الوصول إلى الملف المطل
 /* Media submission type selected with no Kaltura set up */
 "Your school's configuration does not allow the type of submission selected for this assignment" = "تكوين مدرستك لا يسمح بنوع الإرسال المحدد لهذه المهمة";
 
-/* prerequisites for unlocking item */
-"You must first complete:" = "يجب أن تُكمل أولاً:";
-
-/* Assignment is due on a date at a time */
+/* (No Commment) */
 "due on %1$@ at %2$@" = "موعد الاستحقاق يوم  %1$@ على الساعة %2$@";
 
-/* time since creation (less than 1 minute) */
+/* Assignment is due on a date at a time */
+"due on %@ at %@" = "موعد الاستحقاق يوم  %1$@ على الساعة %2$@";
+
+/* (No Commment) */
 "moments ago" = "منذ لحظة";
 
-/* Accessibility label for out or grading style */
+/* Accessibility label modifier for point out of point possible */
 "out of" = "من بين";
 
 /* The assignment is out of 100 points */
 "out of %@" = "من بين %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "out of %@ points" = "من بين %@ نقطة";
 
-/* Name for a photo file, i.e. photo.png */
+/* (No Commment) */
 "photo" = "صورة";
 
-/* When we don't know the name of a file, we display this */
+/* (No Commment) */
 "unknown" = "غير معروف";
+
+/* (No Commment) */
+"until %@" = "حتى %@";
 

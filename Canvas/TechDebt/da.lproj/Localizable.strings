@@ -1,35 +1,69 @@
-/* Description for rubric criterion rating object */
-"Rating for %1$@, Score: %2$g" = "Bedømmelse for %1$@, Score: %2$g";
+/* prerequisites for unlocking item */
+"
+
+You must first complete:" = "
+
+Du skal først fuldføre:";
 
 /* when locked item will become unlocked */
-"until %@" = "indtil %@";
+" until %@" = "indtil %@";
 
 /* explanation for locked module item */
-"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; er låst som del af &quot;%2$@&quot;";
+"\"%@\" is locked as part of \"%@\"" = "\"%1$@\" er låst som del af \"%2$@\"";
 
-/* Gigabytes */
+/* (No Commment) */
 "%0.2f GB" = "%0.2f GB";
 
-/* Kilobytes */
+/* (No Commment) */
 "%0.2f KB" = "%0.2f KB";
 
-/* Megabytes */
+/* (No Commment) */
 "%0.2f MB" = "%0.2f MB";
 
-/* Button to submit files to an assignment */
+/* (No Commment) */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
+/* (No Commment) */
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g ud af %3$@)";
 
-/* something at something */
+/* (No Commment) */
 "%1$@ at %2$@" = "%1$@ at %2$@";
+
+/* (No Commment) */
+"%1$@ is due in %2$@" = "%1$@ er forfalden den %2$@";
+
+/* (No Commment) */
+"%1$@ out of %2$@" = "%1$@ ud af %2$@";
+
+/* (No Commment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g ud af %3$@)";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Type: %3$@.";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Type: %3$@. Status: %4$@";
+
+/* (No Commment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Commment) */
+"%1$g out of %2$@" = "%1$g ud af %2$@";
+
+/* Button to submit files to an assignment */
+"%@ (%d)" = "%1$@ (%2$d)";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g ud af %3$@)";
+
+/* Event happens on a date at a time */
+"%@ at %@" = "%1$@ at %2$@";
 
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ kommer snart!";
 
 /* local notification countdown alert */
-"%1$@ is due in %2$@" = "%1$@ er forfalden den %2$@";
+"%@ is due in %@" = "%1$@ er forfalden den %2$@";
 
 /* explanation for locked item */
 "%@ is locked" = "%@ er låst";
@@ -37,7 +71,7 @@
 /* No comment provided by engineer. */
 "%@ is not a valid URL" = "%@ er ikke et gyldigt URL";
 
-/* %@ is the token where the host name goes. Error message that the host doesn't exist. */
+/* (No Commment) */
 "%@ is not a valid host" = "%@ er ikke en gyldig host";
 
 /* Message for unsupported tab */
@@ -46,40 +80,34 @@
 /* Description for how many times a specific discussion has been liked by other users */
 "%@ likes" = "%@ likes";
 
-/* Label indicating multiple submissions need grading */
+/* (No Commment) */
 "%@ need grading" = "%@ behøver bedømmelse";
 
 /* 88 out of 100 points */
-"%1$@ out of %2$@" = "%1$@ ud af %2$@";
+"%@ out of %@" = "%1$@ ud af %2$@";
 
 /* 83% (83 out of 100 points */
-"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g ud af %3$@)";
+"%@%% (%g out of %@)" = "%1$@%% (%2$g ud af %3$@)";
 
-/* String to be read for the blind users. Name of item in module, then type of thing. */
-"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Type: %3$@.";
-
-/* String to be read for the blind users. Name of item in module, then type of thing, then status. */
-"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Type: %3$@. Status: %4$@";
-
-/* Word and ellipses */
+/* (No Commment) */
 "%@..." = "%@...";
 
 /* A number and a collective noun, like '5 pigs' */
-"%1$d %2$@" = "%1$d %2$@";
+"%d %@" = "%1$d %2$@";
 
-/* time since creation (2 or more days) */
+/* (No Commment) */
 "%d days ago" = "%d dage siden";
 
-/* time since creation (2 or more hours) */
+/* (No Commment) */
 "%d hours ago" = "%d timer siden";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
 "%d items" = "%d elementer";
 
-/* time since creation (2 or more minutes) */
+/* (No Commment) */
 "%d minutes ago" = "%d minutter siden";
 
-/* time since creation (2 or more months) */
+/* (No Commment) */
 "%d months ago" = "%d måneder siden";
 
 /* In the context 'Joe, Fred, ((25 more))' */
@@ -91,13 +119,10 @@
 /* Something like '3 unread'. Refers to unread replies in a discsusion. */
 "%d unread" = "%d ulæst";
 
-/* time since creation (2 or more years) */
+/* (No Commment) */
 "%d years ago" = "%d år siden";
 
-/* 88 out of 100 points */
-"%1$g out of %2$@" = "%1$g ud af %2$@";
-
-/* As in, '15 bytes' */
+/* (No Commment) */
 "%qu bytes" = "%qu bytes";
 
 /* offset for one day */
@@ -124,6 +149,9 @@
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
 "%u files" = "%u filer";
 
+/* (No Commment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; er låst som del af &quot;%2$@&quot;";
+
 /* %@ will be replaced by the filename */
 "'%@' is now ready to submit to assignments" = "'%@' er nu parat til at indsende til opgaver";
 
@@ -133,13 +161,13 @@
 /* one day */
 "1 day" = "1 dag";
 
-/* time since creation */
+/* (No Commment) */
 "1 day ago" = "1 dag siden";
 
 /* one hour */
 "1 hour" = "1 time";
 
-/* time since creation */
+/* (No Commment) */
 "1 hour ago" = "1 time siden";
 
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
@@ -148,16 +176,16 @@
 /* Description for a post that has been liked once */
 "1 like" = "1 like";
 
-/* time since creation */
+/* (No Commment) */
 "1 minute ago" = "1 minut siden";
 
-/* time since creation */
+/* (No Commment) */
 "1 month ago" = "1 måned siden";
 
-/* Label indicating a submission need grading */
+/* (No Commment) */
 "1 needs grading" = "1 behøver bedømmelse";
 
-/* time since creation */
+/* (No Commment) */
 "1 year ago" = "1 år siden";
 
 /* three days */
@@ -169,7 +197,7 @@
 /* Name of a tab displaying Canvas Info including legal info */
 "About" = "Om";
 
-/* Access Denied from the server */
+/* (No Commment) */
 "Access Denied" = "Adgang nægtet";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
@@ -196,8 +224,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "Tilføj mappe";
 
-/* Title for the add-inline-media sheet
-   Title on the add-inline-media sheet */
+/* Title on the add-inline-media sheet */
 "Add inline media" = "Tilføj inline medie";
 
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
@@ -206,18 +233,16 @@
 /* Button to select all members of a group */
 "All members" = "Alle medlemmer";
 
-/* Error message text */
+/* (No Commment) */
 "An unknown error occurred" = "En ukendt fjel opstod";
 
 /* Title of the new announcement view */
 "Announcement" = "Bekendtgørelse";
 
-/* Announcements title
-   Title for the announcements view controller */
+/* Title for the announcements view controller */
 "Announcements" = "Bekendtgørelser";
 
-/* Archive selected messages button
-   mark a message as archived */
+/* Archive selected messages button */
 "Archive" = "Arkiv";
 
 /* archive selected messages */
@@ -238,7 +263,7 @@
 /* Label for an assignment */
 "Assignment" = "Opgave";
 
-/* Title for Assignments view controller */
+/* (No Commment) */
 "Assignments" = "Opgaver";
 
 /* An item for attaching to a discussion */
@@ -256,22 +281,22 @@
 /* Label for a discussion */
 "Attendance" = "Fremmøde";
 
-/* Media type is audio */
+/* Audio file type */
 "Audio" = "Audio";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Audio input hardware not available" = "Audio input hardware ikke tilgængelig";
 
-/* Title of alert box */
+/* Title for an error popup */
 "Authentication error" = "Autorisationsfejl";
 
 /* Link to building panda avatar */
 "Build Avatar" = "Opbyg Avatar";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Cache cleared" = "Cache slettet";
 
-/* Calendar page title */
+/* (No Commment) */
 "Calendar" = "Kalender";
 
 /* Invalid LTI tool error title */
@@ -280,22 +305,10 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kan ikke indsende medie";
 
-/* Button title for canceling download of a file
-   Button title for cancelling the selection of a quiz. This will appear in the alert view notifying the user of the mobile quiz limitations.
-   Cancel
-   cancel add file/folder
-   Cancel add option
-   Cancel button for removing a file
-   Cancel deletion of discussion entry
-   cancel folder creation
-   Cancel folder name change
-   cancel masquerade
-   cancel message creation
-   cancel reminder notification
-   cancel view help options */
+/* Cancel button title */
 "Cancel" = "Annuller";
 
-/* Cancel adding a comment button */
+/* Cancel button title */
 "Cancel Message" = "Annuller besked";
 
 /* No comment provided by engineer. */
@@ -342,7 +355,7 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* action sheet text for picking video from library */
 "Choose video" = "Vælg video";
 
-/* No comment provided by engineer. */
+/* Close the window */
 "Close" = "Luk";
 
 /* No comment provided by engineer. */
@@ -363,11 +376,10 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* No comment provided by engineer. */
 "Comments are disabled" = "Kommentarer er deaktiveret";
 
-/* Assignment grade: Complete
-   Pass/fail assignment is complete */
+/* (No Commment) */
 "Complete" = "Fuldført";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Completed" = "Fuldført";
 
 /* button to compose a message */
@@ -397,7 +409,7 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "Kursuspensum";
 
-/* Courses page title */
+/* (No Commment) */
 "Courses" = "Kurser";
 
 /* cancel folder creation */
@@ -409,15 +421,13 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Message telling users that quiz support on mobile is limited */
 "Currently there is limited quiz support on mobile" = "For øjeblikket er der begrænset understøttelse af quiz for mobil";
 
-/* A custom grade not specified by the rubric. */
+/* (No Commment) */
 "Custom Grade" = "Brugertilpasset karakter";
 
-/* label for customizing a course */
+/* (No Commment) */
 "Customize" = "Brugertilpasset";
 
-/* Button to confirm deleting folders
-   Button to delete a discussion entry
-   Confirm deletion of discussion entry */
+/* Delete Button title */
 "Delete" = "Slet";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -427,7 +437,10 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 "Delete this reply?" = "Slet dette svar?";
 
 /* delete file confirmation alert */
-"Deleted file: &quot;%@&quot;" = "Slet fil: &quot;%@&quot;";
+"Deleted file: \"%@\"" = "Slet fil: \"%@\"";
+
+/* (No Commment) */
+"Deleted file: &quot;%@&quot;" = "Slettet fil: &quot;%@&quot;";
 
 /* No comment provided by engineer. */
 "Detail" = "Detalje";
@@ -450,15 +463,10 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Title for Discussion Topics view controller */
 "Discussion Topics" = "Diskussionemner";
 
-/* Discussions title
-   Title for Discussions view controller */
+/* Title for Discussions view controller */
 "Discussions" = "Diskussioner";
 
-/* Dismiss an error button
-   dismiss button
-   Dismiss button for an error dialoue
-   Dismiss error alert button
-   dismiss the alert button */
+/* Dismiss button title */
 "Dismiss" = "Afvis";
 
 /* Alert title asking if you want to masquerade */
@@ -473,7 +481,7 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Button to cancel deleting folders */
 "Don't delete" = "Slet ikke";
 
-/* No comment provided by engineer. */
+/* Button to stop editing a list */
 "Done" = "Udført";
 
 /* Shown when we cancel a file download */
@@ -485,7 +493,7 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Forfald:";
 
-/* Due date label for to do items, first placeholder is date, second is time */
+/* (No Commment) */
 "Due: %1$@ at %2$@" = "Forfald: %1$@ den %2$@";
 
 /* Link to the End User License Agreement document */
@@ -494,24 +502,25 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Button to edit a discussion entry */
 "Edit" = "Rediger";
 
-/* Edit course list title
-   Edit the items in the course list */
+/* (No Commment) */
 "Edit Course List" = "Rediger kursusliste";
 
-/* Edit group list title
-   Edit the items in the group list */
+/* (No Commment) */
 "Edit Group List" = "Rediger gruppeliste";
 
 /* Button title for deleting items in a folder */
 "Edit items" = "Rediger elementer";
 
-/* Header when editing a discussion entry with name and timestamp */
+/* (No Commment) */
 "Editing reply by %1$@, %2$@" = "Rediger svar den %1$@, %2$@";
+
+/* Header when editing a discussion entry with name and timestamp */
+"Editing reply by %@, %@" = "Rediger svar den %1$@, %2$@";
 
 /* the users email */
 "Email" = "E-mail";
 
-/* Prompt asking user to enable push notifications */
+/* (No Commment) */
 "Enable Push Notifications" = "Aktiver push beskeder";
 
 /* masquerade prompt */
@@ -523,13 +532,19 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "Indtastning posteret";
 
-/* Title of alert box */
+/* Title for an error popup */
 "Error" = "Fejl";
 
-/* Title of an alert popup */
+/* (No Commment) */
 "Error adding recipeints" = "Fejl ved tilføjelse af modtagere";
 
+/* Title of an alert popup */
+"Error adding recipients" = "Fejl ved tilføjelse af modtagere";
+
 /* Error deleting file alert view title */
+"Error deleting file \"%@\"" = "Fejl ved sletning af fil \"%@\"";
+
+/* (No Commment) */
 "Error deleting file &quot;%@&quot;" = "Fejl ved sletning af fil &quot;%@&quot;";
 
 /* Error deleting folder alert view title */
@@ -544,16 +559,16 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Title for an external tool submission */
 "External Tool" = "Eksternt værktøj";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "External URL" = "Ekstern URL";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "File" = "Fil";
 
-/* The file extension for a submission is not acceptable */
+/* (No Commment) */
 "File extension not allowed: %@" = "Fil-endelse er ikke tilladt: %@";
 
-/* Comes before a list of file extensions allowed for an assinment submission */
+/* (No Commment) */
 "File extension(s) permitted for this assignment:" = "Fil-endelse(r) tilladt for denne opgave:";
 
 /* No comment provided by engineer. */
@@ -565,19 +580,16 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* File upload submission type */
 "File upload" = "Fil upload";
 
-/* File upload failed. */
+/* (No Commment) */
 "File upload failed." = "Fil upload mislykkedes.";
 
-/* Files view
-   Name of a tab displaying files in a course
-   title for files view
-   Title for the Files View Controller */
+/* Title for the files screen */
 "Files" = "Filer";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Downloading fuldført";
 
-/* badge indicating front page */
+/* (No Commment) */
 "Front Page" = "Forside";
 
 /* No comment provided by engineer. */
@@ -598,17 +610,20 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* No comment provided by engineer. */
 "Grade" = "Karakter";
 
-/* Tells the user to grade an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Grade %@" = "Karakter %@";
 
 /* Launch the SpeedGrader app */
 "Grade in SpeedGrader" = "Karakter i SpeedGrader";
 
+/* (No Commment) */
+"Grade: %1$i / %2$g" = "Karakter: %1$i / %2$g";
+
 /* No comment provided by engineer. */
 "Grade: %@" = "Karakter: %@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "Karakter: %1$i / %2$g";
+"Grade: %i / %g" = "Karakter: %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "Bedømt diskussion";
@@ -619,25 +634,25 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Bedømt diskussion. %g mulige points.";
 
-/* Title for Grades view controller */
+/* (No Commment) */
 "Grades" = "Karakterer";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "Gruppe konversation";
 
-/* Groups page title */
+/* (No Commment) */
 "Groups" = "Grupper";
 
 /* help button */
 "Help" = "Hjælp";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Commment) */
 "Hide Grades" = "Skjul karakterer";
 
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Hvad synes du om Canvas?";
 
-/* I give you back your time, use it wisely. */
+/* (No Commment) */
 "I give you back your time, use it wisely." = "Jeg giver dig din tid tilbage, brug den klogt.";
 
 /* Image file type */
@@ -652,8 +667,7 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* No comment provided by engineer. */
 "Inbox" = "Indboks";
 
-/* Assignment grade: Incomplete
-   Pass/fail assignment is incomplete */
+/* (No Commment) */
 "Incomplete" = "Ufuldstændig";
 
 /* Button title for sending a direct message; a private conversation */
@@ -665,19 +679,22 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* No comment provided by engineer. */
 "It has problems" = "Det har problemer";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Item %1$d of %2$d" = "Element %1$d af %2$d";
 
-/* It’s empty, what are you still doing here. */
+/* No comment provided by engineer. */
+"Item %d of %d" = "Element %1$d af %2$d";
+
+/* (No Commment) */
 "It’s empty, what are you still doing here." = "Det er tomt, hvad gør du stadig her?";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Jumps to current day on calendar" = "Springer til nuværende dag i kalenderen";
 
 /* No comment provided by engineer. */
 "Keep" = "Behold";
 
-/* Settings entry title for Choosing a Landing Page */
+/* (No Commment) */
 "Landing Page" = "Landingsside";
 
 /* Title for an alert popup */
@@ -692,52 +709,49 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Title for legal section on the about page */
 "Legal" = "Juridisk";
 
-/* Generic loading title with ellipses
-   Generic loading title with ellipsis */
+/* Generic loading title with ellipsis */
 "Loading..." = "Indlæser...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked" = "Låst";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked until %@" = "Låst indtil %@";
 
 /* Typically the email address correlated to the user */
 "Login ID" = "Login Id";
 
-/* Error message title */
+/* (No Commment) */
 "Login Problem" = "Login problem";
 
-/* logout action sheet logout button title
-   logout button */
-"Logout" = "Log ud";
+/* Title for a button to logout a user */
+"Logout" = "Logud";
 
 /* No comment provided by engineer. */
 "Love it!" = "Elsker det!";
 
-/* Button title for mark as done */
+/* (No Commment) */
 "Mark as Done" = "Marker som gjort";
 
-/* Button title for beginning masquerading
-   try masquerading */
+/* Button title for beginning masquerading */
 "Masquerade" = "Forklæd";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Me" = "Mig";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Media Comment" = "Medie kommentar";
 
 /* Title for a media submission */
 "Media Submission" = "Medie indsendelse";
 
-/* The name for a video or audio response to something */
+/* (No Commment) */
 "Media comment" = "Medie kommentar";
 
 /* Media recording submission type */
 "Media recording" = "Medie optagelse";
 
-/* A slider to choose between media types */
+/* (No Commment) */
 "Media type selector. %@" = "Medietype vælger. %@";
 
 /* Add message button */
@@ -749,15 +763,13 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* No comment provided by engineer. */
 "Message everyone separately, or add everyone to a group conversation?" = "Send besked til alle separat, eller tilføj alle til en gruppe konversation?";
 
-/* Messages tab title
-   messages title
-   The name of the messages tab */
+/* Title for the messages screen */
 "Messages" = "Beskeder";
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "Mobil Quiz advarsel";
 
-/* title for the modules tab */
+/* (No Commment) */
 "Modules" = "Moduler";
 
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
@@ -766,19 +778,19 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Title of a link to show additional due dates customized for sections or groups. */
 "Multiple Due Dates" = "Flere forfaldsdatoer";
 
-/* user must contribute to complete requirement */
+/* (No Commment) */
 "Must contribute" = "Skal bidrage";
 
-/* user must mark item as done to complete requirement */
+/* (No Commment) */
 "Must mark as done" = "Skal markeres som udført";
 
-/* format string saying what the minimum score must be */
+/* (No Commment) */
 "Must score %@ or higher" = "Skal score %@ eller højere";
 
-/* user must submit something to complete requirement */
+/* (No Commment) */
 "Must submit" = "Skal indsende";
 
-/* user must view item to complete requirement */
+/* (No Commment) */
 "Must view" = "Skal ses";
 
 /* files button */
@@ -788,7 +800,7 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 "Name" = "Navn";
 
 /* Title notifying user that SpeedGrader is available for iPad */
-"Need SpeedGrader for iPad" = "Behøver SpeedGrader for iPad";
+"Need SpeedGrader for iPad" = " Behøver SpeedGrader for iPad";
 
 /* Network error title */
 "Network Error" = "Netværk fejl";
@@ -808,7 +820,7 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* No comment provided by engineer. */
 "No Date" = "Ingen dato";
 
-/* Label shown for a to do that doesn't have a due date */
+/* (No Commment) */
 "No Due Date" = "Ingen forfaldsdato";
 
 /* Title for attempting submission without a comment */
@@ -838,54 +850,52 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Indicates a search found no results */
 "No results found" = "Ingen resultater fundet";
 
-/* error message for a 401 response. */
+/* (No Commment) */
 "Not Authorized" = "Ikke autoriseret";
 
-/* Pass/fail assignment is not complete */
+/* (No Commment) */
 "Not Complete" = "Ikke fuldført";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
 "Not available" = "Ikke tilgængelig";
 
-/* not graded string. */
+/* (No Commment) */
 "Not graded" = "Ikke bedømt";
 
-/* not graded with points possible */
+/* (No Commment) */
 "Not graded (0 out of %@)" = "Ikke bedømt (0 ud af %@)";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Bemærk: Medie filer er ikke umiddelbart tilgængelige for afsplining mens de behandles på serveren.";
 
-/* Nothing to do, go play outside! */
+/* (No Commment) */
 "Nothing to do, go play outside!" = "Intet at gøre, gå ud at lege udenfor!";
 
-/* Nothing to see here. */
+/* (No Commment) */
 "Nothing to see here." = "Intet at se her.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Notification" = "Notifikation";
 
-/* Settings entry title for Notification Preferences */
+/* (No Commment) */
 "Notification Preferences" = "Notifikationsindstillinger";
 
-/* Notifications tab title */
+/* (No Commment) */
 "Notifications" = "Notifikationer";
 
-/* No comment provided by engineer. */
+/* OK Button Title */
 "OK" = "OK";
 
-/* Short name for observer enrollment */
+/* No comment provided by engineer. */
 "Observer" = "Observatør";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Ok" = "Ok";
 
 /* Online URL submission type */
 "Online URL" = "Online URL";
 
-/* Error message title
-   Error title
-   Masquerade error title */
+/* Title for an error alert */
 "Oops!" = "Ups!";
 
 /* Open a document in the application Safari */
@@ -906,20 +916,19 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Title for Outcomes tab */
 "Outcomes" = "Resultater";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Page" = "Side";
 
 /* No comment provided by engineer. */
 "Past" = "Fortid";
 
-/* People list title
-   Title for People view controller */
+/* Title for the people view */
 "People" = "Personer";
 
 /* No comment provided by engineer. */
 "Pinned Discussions" = "Fastgjorte diskussioner";
 
-/* A button that plays */
+/* (No Commment) */
 "Play" = "Afspil";
 
 /* Network error message */
@@ -928,7 +937,7 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Button to post new discussion topic */
 "Post" = "Poster";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Post Comment" = "Poster kommentar";
 
 /* No comment provided by engineer. */
@@ -937,7 +946,7 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Message shown while posting a discussion entry */
 "Posting…" = "Posterer...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Posts your comment" = "Poster din komentar";
 
 /* No comment provided by engineer. */
@@ -949,8 +958,7 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Title for profile screen */
 "Profile" = "Profil";
 
-/* Label for a quiz
-   Title for a quiz submission cell */
+/* A short test taken by students */
 "Quiz" = "Quiz";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -962,13 +970,16 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* No comment provided by engineer. */
 "Rate on App Store" = "Bedøm i App Store";
 
+/* (No Commment) */
+"Rating for %1$@, Score: %2$g" = "Bedømmelse for %1$@, Resultat: %2$g";
+
 /* Title for a button allowing user to re-submit files for an assignment */
 "Re-submit Assignment" = "Gen-indsend opgave";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "Modtagere";
 
-/* A button that records */
+/* (No Commment) */
 "Record" = "Opotag";
 
 /* Record audio submission comment */
@@ -986,13 +997,13 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* No comment provided by engineer. */
 "Record video" = "Optag video";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refresh Button" = "Genopfrisk knap";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refreshes the calendar content" = "Genopfrisker kalenderindhold";
 
-/* Refreshing Calendar Events */
+/* (No Commment) */
 "Refreshing Calendar Events" = "Genopfrisk kalenderbegivenheder";
 
 /* Confirmation for removing a file */
@@ -1040,11 +1051,10 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* No comment provided by engineer. */
 "Sent" = "Sendt";
 
-/* settings button
-   Title for Settings tab */
+/* Title for Settings */
 "Settings" = "Indstillinger";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Commment) */
 "Show Grades" = "Vis karakterer";
 
 /* title for quiz assignment submission button */
@@ -1065,31 +1075,31 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Beklager, vi kunne ikke finde opgaven. Denne opgave er måske blevet slettet.";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Starts playing your recording" = "Start afspilning af din optagelse";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Starts recording a media comment" = "Start optagelse af en mediekommentar";
 
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Forbliv logget ind";
 
-/* A button that stops */
+/* Stop loading button for webview */
 "Stop" = "Stop";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
 "Stop Masquerading" = "Stop forklædning";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Stops playing your recording" = "Stopper afspilning af din optagelse";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Stops recording a media comment" = "Stop optagelse af mediekommentar";
 
-/* Short name for student enrollment */
+/* No comment provided by engineer. */
 "Student" = "Studerende";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Sub Header" = "Under overskrift";
 
 /* View previously submitted assignment */
@@ -1119,20 +1129,19 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* No comment provided by engineer. */
 "Sure!" = "Ok!";
 
-/* Hint about media input selection */
+/* (No Commment) */
 "Switches media input between audio and video. Currently set to %@" = "Skift medie input mellem audio  og video. For øjeblikket indstillet til  %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to media comment mode" = "Skift til mediekommentar tilstand";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to text comment mode" = "Skift til tekstkommentar tilstand";
 
-/* Syllabus screen name
-   Title for Syllabus view controller */
+/* Title for Syllabus screen */
 "Syllabus" = "Pensum";
 
-/* Short name for TA enrollment */
+/* (No Commment) */
 "TA" = "TA";
 
 /* No comment provided by engineer. */
@@ -1153,7 +1162,7 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Displayed in a row when an error occurs loading more items */
 "Tap to try again" = "Tap for at prøve igen";
 
-/* Short name for teacher enrollment */
+/* (No Commment) */
 "Teacher" = "Lærer";
 
 /* No comment provided by engineer. */
@@ -1165,10 +1174,10 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Link to the Terms of Use */
 "Terms of Use" = "Betingelser for brug";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Text Comment" = "Tekst kommentar";
 
-/* Generic name for a submission entered online. */
+/* Title for a text submission cell */
 "Text Submission" = "Tekst indsendelse";
 
 /* Text entry submission type */
@@ -1180,10 +1189,10 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "Serveren kunne ikke nås";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The server you entered is not authorized for this app." = "Serveren du indtastede er ikke autoriseret for denne app.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The user agent for this app is unauthorized." = "Brugeragent for denne app er ikke autoriseret.";
 
 /* Error message */
@@ -1214,7 +1223,7 @@ Fejlr: %@";
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Der var en fejl under indlæsningen af dit indhold. Hvis det er en audio eller video fil, behandles den muligvis stadig.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This app is not authorized for use." = "Denne app er ikke autoriseret for brug.";
 
 /* Invalid LTI tool error message */
@@ -1235,14 +1244,13 @@ Fejlr: %@";
 /* Text indicating that a folder cannot be opened */
 "This folder is locked" = "Denne mappe er låst";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This is a media message." = "Dette er en mediebesked.";
 
-/* This would be a great time to do some extra credit. */
+/* (No Commment) */
 "This would be a great time to do some extra credit." = "Dette ville være en fantastisk tid for nogle ekstra points";
 
-/* Title of to do screen
-   To Do page title */
+/* (No Commment) */
 "To Do" = "To Do";
 
 /* No comment provided by engineer. */
@@ -1251,7 +1259,7 @@ Fejlr: %@";
 /* No comment provided by engineer. */
 "Today" = "I dag";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Today Button" = "I dag knap";
 
 /* No comment provided by engineer. */
@@ -1266,10 +1274,10 @@ Fejlr: %@";
 /* title for re-submitting an assignment */
 "Turn In Again" = "Aflever igen";
 
-/* Tells the user to turn in an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Turn in %@" = "TAflever %@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Commment) */
 "Uh-oh! No Internet Connection" = "Åh nej! Ingen internetforbindelse";
 
 /* Error title */
@@ -1281,10 +1289,10 @@ Fejlr: %@";
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Ikke i stand til at uploade til server";
 
-/* Grade unavailable */
+/* (No Commment) */
 "Unavailable" = "Ikke tilgængelig";
 
-/* Title for grade button when no grade is present */
+/* (No Commment) */
 "Ungraded" = "ikke bedømt";
 
 /* Unknown file type */
@@ -1312,10 +1320,16 @@ Fejlr: %@";
 "Upload file" = "Upload fil";
 
 /* Error message */
-"Upload to assignment &quot;%@&quot; failed" = "Upload til opgave &quot;%@&quot; mislykkedes";
+"Upload to assignment \"%@\" failed" = "Upload til opgave \"%@\" mislykkedes";
+
+/* (No Commment) */
+"Upload to assignment &quot;%@&quot; failed" = "Overførsel til opgave &quot;%@&quot; mislykkedes";
 
 /* Error message */
-"Upload to folder &quot;%@&quot; failed" = "Upload tii mappe &quot;%@&quot; mislykkedes";
+"Upload to folder \"%@\" failed" = "Upload tii mappe \"%@\" mislykkedes";
+
+/* (No Commment) */
+"Upload to folder &quot;%@&quot; failed" = "Overførsel til folder &quot;%@&quot; mislykkedes";
 
 /* button for using the recorded audio */
 "Use" = "Brug";
@@ -1326,22 +1340,22 @@ Fejlr: %@";
 /* Title for User Info section on the about page */
 "User Info" = "Bruger Info";
 
-/* Media type is video */
+/* Video file type */
 "Video" = "Video";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Video error" = "Video fejl";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "View" = "Se";
 
-/* No comment provided by engineer. */
+/* Title for a warning popup */
 "Warning" = "Advarsel";
 
 /* error message for failure to load a file submission */
 "We had a problem loading the submission. Please try again later." = "Vi havde et problem med indlæsningen af indsendelsen. Prøv venligst igen senere.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "We were unable to verify the server for use with this app." = "Vi var ikke i stand til at bekræfte serveren for brug med denne app.";
 
 /* Error Title */
@@ -1371,7 +1385,7 @@ Fejlr: %@";
 /* Message in an alert */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Du har ikke SpeedGrader for iPad. Du kan downloade den gratis fra App Store.";
 
-/* Error message for an unauthorized course or group. */
+/* (No Commment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Du har ikke adgang til dette indhold. Kursus eller gruppe har muligvis ikke startet, eller måske afsluttet.";
 
 /* Error message */
@@ -1383,10 +1397,16 @@ Fejlr: %@";
 /* No comment provided by engineer. */
 "You have an unsaved reply. Would you like to discard that reply?" = "Du har et svar, der ikke er gemt. Ønsker du at slette dette svar?";
 
+/* An explanation of how to transfer files to the Canvas app. */
+"You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas." = "Du har ingen fil til overførsel. For at tilføje filer fra andre apps: find en fil i en anden app og find derefter knappen \"Åbn i\" for at åbne det i Canvas. Du kan også trykke og holde på vedhæftede filer i Mail-app'en for at åbne dem i Canvas.";
+
+/* (No Commment) */
+"You must first complete:" = "Du skal først fuldføre:";
+
 /* Error message */
 "You need a title and a description to post" = "Du skal indsætte en titelog en beskrivels for at postere";
 
-/* You should go rate Canvas on the App Store! */
+/* (No Commment) */
 "You should go rate Canvas on the App Store!" = "Du bør bedømme Canvas i App Store!";
 
 /* Error content */
@@ -1395,27 +1415,30 @@ Fejlr: %@";
 /* Media submission type selected with no Kaltura set up */
 "Your school's configuration does not allow the type of submission selected for this assignment" = "Din skoles konfiguration tillader ikke den valgte indsendelsestype for denne opgave";
 
-/* prerequisites for unlocking item */
-"You must first complete:" = "Du skal først fuldføre:";
-
-/* Assignment is due on a date at a time */
+/* (No Commment) */
 "due on %1$@ at %2$@" = "forfalden %1$@ den %2$@";
 
-/* time since creation (less than 1 minute) */
+/* Assignment is due on a date at a time */
+"due on %@ at %@" = "forfalden %1$@ den %2$@";
+
+/* (No Commment) */
 "moments ago" = "øjeblikke siden";
 
-/* Accessibility label for out or grading style */
+/* Accessibility label modifier for point out of point possible */
 "out of" = "ud af";
 
 /* The assignment is out of 100 points */
 "out of %@" = "ud af %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "out of %@ points" = "ud af %@ points";
 
-/* Name for a photo file, i.e. photo.png */
+/* (No Commment) */
 "photo" = "foto";
 
-/* When we don't know the name of a file, we display this */
+/* (No Commment) */
 "unknown" = "ukendt";
+
+/* (No Commment) */
+"until %@" = "indtil %@";
 

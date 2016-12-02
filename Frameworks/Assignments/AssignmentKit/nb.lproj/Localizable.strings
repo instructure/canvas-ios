@@ -1,76 +1,76 @@
-/* grade details for points based grade i.e. \"10 of 12\" */
-"of (formatter(possible))" = "av (formatter(possible))";
-
-/* grade details for points based grade i.e. \"10 of 12\" */
+/* (No Commment) */
 "(formatter(points)) of (formatter(possible))" = "(formatter(points)) av (formatter(possible))";
 
-/* Title for 1 day assignment reminder */
+/* (No Commment) */
 "1 day" = "1 dag";
 
-/* Title for 1 hour assignment reminder */
+/* (No Commment) */
 "1 hour" = "1 time";
 
-/* Title for 3 days assignment reminder */
+/* (No Commment) */
 "3 days" = "3 dager";
 
-/* Title for 5 minutes assignment reminder */
+/* (No Commment) */
 "5 minutes" = "5 minutter";
 
-/* Assignment label */
+/* (No Commment) */
 "Assignment" = "Oppgave";
 
-/* Title for alert view for assignment reminders */
+/* (No Commment) */
 "Assignment Reminder" = "Oppgavepåminnelse";
 
-/* Message indicating that an assignment is currently be submitted */
+/* (No Commment) */
 "Assignment is currently being submitted" = "Oppgaven sendes in";
 
-/* This assignment hasn't been graded yet but can be graded */
+/* (No Commment) */
 "Awaiting Grade" = "Avventer vurdering";
 
-/* cancel button */
+/* (No Commment) */
 "Cancel" = "Avbryt";
 
-/* Title for reminder options for an assignment */
+/* (No Commment) */
 "Choose how long before the assignment due date to get a reminder:" = "Velg hvor lenge før innleveringsfristen påminnelse skal mottas:";
 
-/* Title for a rating that hasn't been graded but has a comment */
-"Comment" = "Kommentar";
+/* (No Commment) */
+"Comment" = "Kommentere";
 
-/* Assignment submission comment placeholder text */
+/* (No Commment) */
 "Comment.." = "Kommentar..";
 
-/* error displayed when submitting an assignment is unavailable */
+/* (No Commment) */
 "Could not submit assignment. Invalid assignment or session." = "Kunne ikke innlevere oppgaven. Ugyldig oppgave eller økt.";
 
-/* error displayed when submitting a submission is invalid. */
+/* (No Commment) */
 "Could not submit assignment. Invalid submission." = "Kunne ikke levere oppgave. Ugyldig innlevering.";
 
-/* String telling the user that the date is the due date */
+/* (No Commment) */
 "Due:" = "Frist:";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Feil ved oppdatering av oppgaven";
 
-/* This assignment is excused */
+/* (No Commment) */
 "Excused" = "Unnskyldt";
 
-/* Error when an upload failed to resume. */
+/* Error message when submission attachment fails to load. */
+"Failed to load item. Check the allowed assignment submission types." = "Kunne ikke laste element. Sjekk tillatte typer oppgaveinnleveringer.";
+
+/* (No Commment) */
 "Failed to resume upload." = "Kunne ikke gjenoppta opplasting.";
 
-/* This assignment is late */
+/* (No Commment) */
 "Late" = "Seint";
 
-/* Title for a rating that has custom graded but has no comment */
+/* (No Commment) */
 "No Comment" = "Ingen kommentar";
 
-/* Default string for due date title */
+/* (No Commment) */
 "No Due Date" = "Ingen innleveringsfrist";
 
 /* Section header for assignments without an assignment group */
 "None" = "Ingen";
 
-/* submission title for assignment waiting user submission */
+/* (No Commment) */
 "Not Submitted" = "Ikke levert";
 
 /* Overdue assignmnets (not turned in) */
@@ -79,19 +79,19 @@
 /* Assignments that have been turned in and are past */
 "Past" = "Tidligere";
 
-/* Rubric Points Possible Title */
+/* (No Commment) */
 "Points Possible" = "Mulige poeng";
 
-/* title for submission button if student has submitted previously */
+/* (No Commment) */
 "Re-submit Assignment" = "Innlever oppgaven på nytt";
 
-/* Message indicating that a submission type is not supported for this assignment. */
+/* (No Commment) */
 "Submission type not allowed" = "Innleveringstype ikke tillatt";
 
-/* submission title for assignment that doesn't support submissions */
+/* (No Commment) */
 "Submissions N/A" = "Innleveringer ikke tilgjengelig";
 
-/* title for submission button if student has never submitted */
+/* (No Commment) */
 "Submit Assignment" = "Innlever oppgave";
 
 /* AssignmentKit database load failure message */
@@ -100,27 +100,30 @@
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "Det oppsto et problem med oppdatering av test-URL";
 
-/* submission title for assignemnt that is submitted */
+/* (No Commment) */
 "Turned in!" = "Leverte!";
 
-/* Error message when a course could not be selected */
+/* (No Commment) */
 "Unable to select a course." = "Kan ikke velge et kurs.";
 
-/* Error message when an assignment could not be selected */
+/* (No Commment) */
 "Unable to select an assignment." = "Kan ikke velge en oppgave.";
 
-/* Error message when unable to submit assignment. */
+/* (No Commment) */
 "Unable to submit assignment." = "Kan ikke levere oppgave.";
 
 /* Assignments with no dates */
 "Undated" = "Udatert";
 
-/* This assignment is not graded */
+/* (No Commment) */
 "Ungraded" = "Ikke vurdert";
 
 /* Upcoming assignments */
 "Upcoming" = "Kommende";
 
-/* Title for button to see rubric from assignment detail */
+/* (No Commment) */
 "View Rubric" = "Se rubrikk";
+
+/* (No Commment) */
+"of (formatter(possible))" = "av (formatter(possible))";
 

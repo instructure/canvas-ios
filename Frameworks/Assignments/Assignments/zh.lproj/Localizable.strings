@@ -1,0 +1,69 @@
+/* grade details for points based grade i.e. \"10 of 12\" */
+" of (formatter(possible))" = "(格式(可能))的";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
+"(formatter(points)) of (formatter(possible))" = "(格式(可能))的(格式(点)) ";
+
+/* Title for 1 day assignment reminder */
+"1 day" = "1天";
+
+/* Title for 1 hour assignment reminder */
+"1 hour" = "1小时";
+
+/* Title for 3 days assignment reminder */
+"3 days" = "3天";
+
+/* Title for 5 minutes assignment reminder */
+"5 minutes" = "5分钟";
+
+/* Title for alert view for assignment reminders */
+"Assignment Reminder" = "作业提示";
+
+/* This assignment hasn't been graded yet but can be graded */
+"Awaiting Grade" = "等待成绩";
+
+/* cancel button */
+"Cancel" = "取消";
+
+/* Title for reminder options for an assignment */
+"Choose how long before the assignment due date to get a reminder:" = "选择在作业截止日期之前多久收到提示：";
+
+/* error displayed when submitting an assignment is unavailable */
+"Could not submit assignment. Invalid assignment or session." = "无法提交作业。无效作业或会话。";
+
+/* error displayed when submitting a submission is invalid. */
+"Could not submit assignment. Invalid submission." = "无法提交作业。无效提交。";
+
+/* String telling the user that the date is the due date */
+"Due: " = "截止：";
+
+/* This assignment is excused */
+"Excused" = "免除";
+
+/* This assignment is late */
+"Late" = "迟到";
+
+/* Default string for due date title */
+"No Due Date" = "没有截止日期";
+
+/* submission title for assignment waiting user submission */
+"Not Submitted" = "未提交";
+
+/* title for submission button if student has submitted previously */
+"Re-submit Assignment" = "重新提交作业";
+
+/* submission title for assignment that doesn't support submissions */
+"Submissions N/A" = "提交不适用";
+
+/* title for submission button if student has never submitted */
+"Submit Assignment" = "提交作业";
+
+/* submission title for assignemnt that is submitted */
+"Turned in!" = "提交！";
+
+/* This assignment is not graded */
+"Ungraded" = "未评分";
+
+/* Title for button to see rubric from assignment detail */
+"View Rubric" = "查看评分细则";
+

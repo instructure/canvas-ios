@@ -1,0 +1,171 @@
+/* Description for rubric criterion rating object */
+" Rating for %@, Score: %g" = "تقييم %1$@، الدرجة: %2$g";
+
+/* Gigabytes */
+"%0.2f GB" = "%0.2f جيجابايت";
+
+/* Kilobytes */
+"%0.2f KB" = "%0.2f كيلوبايت";
+
+/* Megabytes */
+"%0.2f MB" = "%0.2f ميجابايت";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g من بين %3$@)";
+
+/* something at something */
+"%@ at %@" = "%1$@ على %2$@";
+
+/* 88 out of 100 points */
+"%@ out of %@" = "%1$@ من بين %2$@";
+
+/* 83% (83 out of 100 points */
+"%@%% (%g out of %@)" = "%1$@%% (%2$g من بين %3$@)";
+
+/* Word and ellipses */
+"%@..." = "%@...";
+
+/* 88 out of 100 points */
+"%g out of %@" = "%1$g من بين %2$@";
+
+/* As in, '15 bytes' */
+"%qu bytes" = "%qu بايت";
+
+/* Media type is audio */
+"Audio" = "الصوت";
+
+/* No comment provided by engineer. */
+"Audio input hardware not available" = "جهاز إدخال الصوت غير متوفر";
+
+/* Assignment grade: Complete */
+"Complete" = "إكمال";
+
+/* A custom grade not specified by the rubric. */
+"Custom Grade" = "درجة مخصصة";
+
+/* No comment provided by engineer. */
+"Done" = "تم";
+
+/* The file extension for a submission is not acceptable */
+"File extension not allowed: %@" = "ملحق الملف غير مسموح به: %@";
+
+/* Comes before a list of file extensions allowed for an assinment submission */
+"File extension(s) permitted for this assignment: " = "ملحق(ملحقات) الملف مسموح به لهذه المهمة:";
+
+/* File upload failed. */
+"File upload failed." = "فشل تحميل الملف.";
+
+/* Assignment grade: Incomplete */
+"Incomplete" = "غير مكتمل";
+
+/* No comment provided by engineer. */
+"Me" = "أنا";
+
+/* No comment provided by engineer. */
+"Media Comment" = "تعليق الوسط";
+
+/* The name for a video or audio response to something */
+"Media comment" = "تعليق الوسط";
+
+/* A slider to choose between media types */
+"Media type selector. %@" = "محدد نوع الوسط. %@";
+
+/* Pass/fail assignment is not complete */
+"Not Complete" = "غير مكتمل";
+
+/* not graded string. */
+"Not graded" = "لم يتم التقييم";
+
+/* not graded with points possible */
+"Not graded (0 out of %@)" = "لم يتم التقييم (0 من بين %@)";
+
+/* No comment provided by engineer. */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "ملاحظة: لا يمكن قراءة ملفات الوسائط بشكل فوري أثناء معالجتها على الخادم.";
+
+/* No comment provided by engineer. */
+"OK" = "موافق";
+
+/* Short name for observer enrollment */
+"Observer" = "ملاحظ";
+
+/* A button that plays */
+"Play" = "تشغيل";
+
+/* No comment provided by engineer. */
+"Post Comment" = "نشر تعليق";
+
+/* No comment provided by engineer. */
+"Posts your comment" = "انشر تعليقك";
+
+/* A button that records */
+"Record" = "تسجيل";
+
+/* Hint about the play button */
+"Starts playing your recording" = "بدء تشغيل تسجيلك";
+
+/* Hint about the record button */
+"Starts recording a media comment" = "بدء تسجيل تعليق الوسط";
+
+/* A button that stops */
+"Stop" = "إيقاف";
+
+/* Hint about the play button */
+"Stops playing your recording" = "إيقاف تشغيل تسجيلك";
+
+/* Hint about the record button */
+"Stops recording a media comment" = "إيقاف تسجيل تعليق الوسط";
+
+/* Short name for student enrollment */
+"Student" = "طالب";
+
+/* Hint about media input selection */
+"Switches media input between audio and video. Currently set to %@" = "تغيير إدخال الوسط بين الصوت والفيديو. موجود حاليًا في الوضع %@";
+
+/* No comment provided by engineer. */
+"Switches to media comment mode" = "التغيير إلى وضع تعليق الوسط";
+
+/* No comment provided by engineer. */
+"Switches to text comment mode" = "التغيير إلى وضع تعليق النص";
+
+/* Short name for TA enrollment */
+"TA" = "مساعد المعلم";
+
+/* Short name for teacher enrollment */
+"Teacher" = "المعلم";
+
+/* No comment provided by engineer. */
+"Text Comment" = "تعليق النص";
+
+/* Generic name for a submission entered online. */
+"Text Submission" = "إرسال النص";
+
+/* Error description when a user tries to upload a file that's too big */
+"The file you are trying to uploading is %@, but the maximum size is %@." = "الملف الذي تحاول تحميله هو %1$@، لكن أقصى حجم هو %2$@.";
+
+/* No comment provided by engineer. */
+"This is a media message." = "هذه رسالة وسائط";
+
+/* Media type is video */
+"Video" = "فيديو";
+
+/* No comment provided by engineer. */
+"Video error" = "خطأ في الفيديو";
+
+/* No comment provided by engineer. */
+"Warning" = "تحذير";
+
+/* Accessibility label for out or grading style */
+"out of" = "من بين";
+
+/* The assignment is out of 100 points */
+"out of %@" = "من بين %@";
+
+/* No comment provided by engineer. */
+"out of %@ points" = "من بين %@ نقطة";
+
+/* Name for a photo file, i.e. photo.png */
+"photo" = "صورة";
+
+/* When we don't know the name of a file, we display this */
+"unknown" = "غير معروف";
+

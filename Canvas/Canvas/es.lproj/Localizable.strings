@@ -1,0 +1,1387 @@
+/* (No Commment) */
+"%0.2f GB" = "%0.2f GB";
+
+/* (No Commment) */
+"%0.2f KB" = "%0.2f KB";
+
+/* (No Commment) */
+"%0.2f MB" = "%0.2f MB";
+
+/* (No Commment) */
+"%1$@ (%2$d)" = "%1$@ (%2$d)";
+
+/* (No Commment) */
+"%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g de %3$@)";
+
+/* (No Commment) */
+"%1$@ at %2$@" = "%1$@ a %2$@";
+
+/* (No Commment) */
+"%1$@ is due in %2$@" = "%1$@ se debe entregar el %2$@";
+
+/* (No Commment) */
+"%1$@ out of %2$@" = "%1$@ de los %2$@";
+
+/* (No Commment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g de los %3$@)";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Tipo: %3$@.";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Tipo: %3$@. Estado: %4$@";
+
+/* (No Commment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Commment) */
+"%1$g out of %2$@" = "%1$g de %2$@";
+
+/* (No Commment) */
+"%@ is coming soon!" = "¡%@ proximamente!";
+
+/* (No Commment) */
+"%@ is locked" = "%@ está bloqueado";
+
+/* (No Commment) */
+"%@ is not a valid URL" = "%@ no es una URL válida";
+
+/* (No Commment) */
+"%@ is not a valid host" = "%@ no es un servidor válido";
+
+/* (No Commment) */
+"%@ is not currently supported." = "%@ no es compatible actualmente.";
+
+/* (No Commment) */
+"%@ likes" = "%@ me gusta";
+
+/* Label indicating multiple submissions need grading */
+"%@ need grading" = "%@ necesitan ser calificados";
+
+/* (No Commment) */
+"%@..." = "%@...";
+
+/* (No Commment) */
+"%d days ago" = "hace %d días ";
+
+/* (No Commment) */
+"%d hours ago" = "Hace %d horas";
+
+/* (No Commment) */
+"%d items" = "%d elementos";
+
+/* (No Commment) */
+"%d minutes ago" = "Hace %d minutos";
+
+/* (No Commment) */
+"%d months ago" = "Hace %d meses";
+
+/* (No Commment) */
+"%d more" = "%d más";
+
+/* (No Commment) */
+"%d replies" = "%d respuestas";
+
+/* (No Commment) */
+"%d unread" = "%d no leídos";
+
+/* (No Commment) */
+"%d years ago" = "hace %d años";
+
+/* (No Commment) */
+"%qu bytes" = "%qu bytes";
+
+/* (No Commment) */
+"%tu day" = "%tu día";
+
+/* (No Commment) */
+"%tu days" = "%tu días";
+
+/* (No Commment) */
+"%tu hour" = "%tu hora";
+
+/* (No Commment) */
+"%tu hours" = "%tu horas";
+
+/* (No Commment) */
+"%tu minute" = "%tu minuto";
+
+/* (No Commment) */
+"%tu minutes" = "%tu minutos";
+
+/* (No Commment) */
+"%u Attachments" = "%u Archivos adjuntos";
+
+/* (No Commment) */
+"%u files" = "%u archivos";
+
+/* (No Commment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; está bloqueado como parte de &quot;%2$@&quot;";
+
+/* (No Commment) */
+"'%@' is now ready to submit to assignments" = "'%@' está listo ahora para enviar a tareas";
+
+/* (No Commment) */
+"1 Attachment" = "1 Archivo adjunto";
+
+/* (No Commment) */
+"1 day" = "1 día";
+
+/* (No Commment) */
+"1 day ago" = "hace 1 día";
+
+/* (No Commment) */
+"1 hour" = "1 hora";
+
+/* (No Commment) */
+"1 hour ago" = "Hace 1 hora";
+
+/* (No Commment) */
+"1 item" = "1 elemento";
+
+/* (No Commment) */
+"1 like" = "1 me gusta";
+
+/* (No Commment) */
+"1 minute ago" = "Hace 1 minuto";
+
+/* (No Commment) */
+"1 month ago" = "Hace 1 mes";
+
+/* Label indicating a submission need grading */
+"1 needs grading" = "1 necesita ser calificado";
+
+/* (No Commment) */
+"1 year ago" = "hace 1 año";
+
+/* (No Commment) */
+"3 days" = "3 días";
+
+/* (No Commment) */
+"5 minutes" = "5 minutos";
+
+/* Settings entry title for About */
+"About" = "Acerca";
+
+/* Access Denied from the server */
+"Access Denied" = "Acceso denegado";
+
+/* (No Commment) */
+"Access denied. Please check your permissions for the action you're trying to complete." = "Acceso denegado. Por favor, compruebe sus permisos para la acción que esté tratando de completar.";
+
+/* (No Commment) */
+"Add Attachment" = "Agregar archivo adjunto";
+
+/* (No Commment) */
+"Add Comment" = "Agregar comentario";
+
+/* (No Commment) */
+"Add Cover Photo" = "Añadir la foto de portada";
+
+/* (No Commment) */
+"Add a folder" = "Agregar una carpeta";
+
+/* (No Commment) */
+"Add attachment" = "Agregar archivo adjunto";
+
+/* (No Commment) */
+"Add comment" = "Agregar comentario";
+
+/* (No Commment) */
+"Add folder" = "Agregar carpeta";
+
+/* (No Commment) */
+"Add inline media" = "Agregar medios de comunicación en línea";
+
+/* (No Commment) */
+"Add recipients" = "Agregar destinatarios";
+
+/* (No Commment) */
+"All members" = "Todos los miembros";
+
+/* (No Commment) */
+"An unknown error occurred" = "Ha ocurrido un error desconocido";
+
+/* (No Commment) */
+"Announcement" = "Anuncio";
+
+/* (No Commment) */
+"Announcements" = "Anuncios";
+
+/* (No Commment) */
+"Archive" = "Archivar";
+
+/* (No Commment) */
+"Archive Selected Messages Button" = "Botón para archivar mensajes seleccionados";
+
+/* (No Commment) */
+"Archive all selected messages" = "Archivar todos los mensajes seleccionados";
+
+/* (No Commment) */
+"Archived" = "Archivado";
+
+/* (No Commment) */
+"Are you ready to logout?" = "¿Está listo para salir?";
+
+/* (No Commment) */
+"Ask me later" = "Pregúnteme más tarde";
+
+/* Assignment icon a11y label
+   Assignment module item type */
+"Assignment" = "Tarea";
+
+/* Title for Assignments view controller */
+"Assignments" = "Tareas";
+
+/* (No Commment) */
+"Attachment" = "Archivo adjunto";
+
+/* (No Commment) */
+"Attachment %d" = "Archivo adjunto %d";
+
+/* (No Commment) */
+"Attachment %i" = "Archivo adjunto %i";
+
+/* (No Commment) */
+"Attachments" = "Archivos adjuntos";
+
+/* (No Commment) */
+"Attendance" = "Asistencia";
+
+/* (No Commment) */
+"Audio" = "Audio";
+
+/* (No Commment) */
+"Audio input hardware not available" = "Hardware de entrada de audio no disponible";
+
+/* (No Commment) */
+"Authentication error" = "Error de autenticación";
+
+/* (No Commment) */
+"Build Avatar" = "Construir Avatar";
+
+/* No comment provided by engineer. */
+"Cache cleared" = "Caché despejado";
+
+/* Calendar page title */
+"Calendar" = "Calendario";
+
+/* (No Commment) */
+"Can't load tool" = "No se puede cargar la herramienta";
+
+/* (No Commment) */
+"Can't submit media" = "No puede enviar archivos multimedia";
+
+/* (No Commment) */
+"Cancel" = "Cancelar";
+
+/* (No Commment) */
+"Cancel Message" = "Cancelar el mensaje";
+
+/* (No Commment) */
+"Canvas appears to be unavailable. Please try again later." = "Al parecer Canvas no está disponible. Por favor, inténtelo de nuevo más tarde.";
+
+/* (No Commment) */
+"Canvas failed to find recipients for your current search. Please try again later." = "Canvas no logró encontrar destinatarios para su búsqueda actual. Por favor, inténtelo de nuevo más tarde.";
+
+/* (No Commment) */
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
+
+Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
+
+If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Las evaluaciones de Canvas son compatibles con diversos estilos de evaluación. La mayoría de estos estilos son compatibles con dispositivos móviles; Sin embargo, algunos no lo son. Si intenta tomar una de estas evaluaciones que no son compatibles desde su teléfono, es posible que no pueda completar la evaluación, dejándole en desventaja.
+
+Los tipos de preguntas no compatibles incluyen preguntas con contenido de Flash™, carga de archivos, y otros.
+
+Si usted cree que una evaluación incluye contenido no compatible, por favor tome la evaluación en su computador o portátil. Si sabe que la evaluación contiene solo contenido compatible, no dude en tomarla en su dispositivo móvil.";
+
+/* (No Commment) */
+"Change User" = "Cambiar usuario";
+
+/* (No Commment) */
+"Choose Photo" = "Elegir foto";
+
+/* (No Commment) */
+"Choose Profile Picture" = "Elegir imagen de perfil";
+
+/* (No Commment) */
+"Choose Video" = "Escoger video";
+
+/* (No Commment) */
+"Choose a name for the new folder" = "Elegir un nombre para la nueva carpeta";
+
+/* (No Commment) */
+"Choose a name for the new folder." = "Elegir un nombre para la nueva carpeta.";
+
+/* (No Commment) */
+"Choose a submission type" = "Escoger un tipo de envío";
+
+/* (No Commment) */
+"Choose from Library..." = "Elegir desde la biblioteca...";
+
+/* (No Commment) */
+"Choose video" = "Escoger video";
+
+/* (No Commment) */
+"Close" = "Cerrar";
+
+/* (No Commment) */
+"Closed for Comments" = "Cerrado para Comentarios";
+
+/* (No Commment) */
+"Collaborations" = "Colaboraciones";
+
+/* (No Commment) */
+"Comment" = "Comentario";
+
+/* (No Commment) */
+"Comment Error" = "Error de comentario";
+
+/* (No Commment) */
+"Comments" = "Comentarios";
+
+/* (No Commment) */
+"Comments are disabled" = "Los comentarios están deshabilitados";
+
+/* (No Commment) */
+"Complete" = "Completar";
+
+/* (No Commment) */
+"Completed" = "Completado";
+
+/* (No Commment) */
+"Compose Message Button" = " Botón para credactar mensaje";
+
+/* (No Commment) */
+"Compose a message" = "Redactar un mensaje";
+
+/* (No Commment) */
+"Conferences" = "Conferencias";
+
+/* (No Commment) */
+"Confirm deletion" = "Confirmar eliminación";
+
+/* (No Commment) */
+"Continue" = "Continuar";
+
+/* (No Commment) */
+"Could not authenticate with server" = "No se pudo autenticar con el servidor";
+
+/* (No Commment) */
+"Couldn't Load Submission" = "No se pudo cargar el envío";
+
+/* (No Commment) */
+"Couldn't find recipients" = "No se pudo encontrar destinatarios";
+
+/* (No Commment) */
+"Course Syllabus" = "Plan de estudio del curso";
+
+/* Courses page title */
+"Courses" = "Cursos";
+
+/* (No Commment) */
+"Create Folder" = "Crear carpeta";
+
+/* (No Commment) */
+"Current Submission" = "Presentación actual";
+
+/* (No Commment) */
+"Currently there is limited quiz support on mobile" = "Actualmente existe soporte limitado para la evaluación en el celular";
+
+/* (No Commment) */
+"Custom Grade" = "Calificación personalizada";
+
+/* (No Commment) */
+"Customize" = "Personalizar";
+
+/* (No Commment) */
+"Delete" = "Borrar";
+
+/* (No Commment) */
+"Delete (%d)" = "Borrar (%d)";
+
+/* (No Commment) */
+"Delete this reply?" = "¿Borrar esta respuesta?";
+
+/* (No Commment) */
+"Deleted file: &quot;%@&quot;" = "Archivo borrado: &quot;%@&quot;";
+
+/* (No Commment) */
+"Detail" = "Detalle";
+
+/* No comment provided by engineer. */
+"Details" = "Detalles";
+
+/* (No Commment) */
+"Discard" = "Deshechar";
+
+/* (No Commment) */
+"Discard this entry?" = "¿Deshechar esta entrada?";
+
+/* Discussion module item type */
+"Discussion" = "Discusión";
+
+/* (No Commment) */
+"Discussion Entry" = "Entrada de la discusión";
+
+/* (No Commment) */
+"Discussion Topics" = "Temas de discusión";
+
+/* (No Commment) */
+"Discussions" = "Discusiones";
+
+/* Dismiss an alert dialog */
+"Dismiss" = "Descartar";
+
+/* (No Commment) */
+"Do you want to masquerade as this user?" = "¿Quiere hacerse pasar por este usuario?";
+
+/* (No Commment) */
+"Domain" = "Dominio";
+
+/* (No Commment) */
+"Don't ask me again" = "No me pregunte de nuevo";
+
+/* (No Commment) */
+"Don't delete" = "No lo borre";
+
+/* Button title to mark a to do item as done */
+"Done" = "Hecho";
+
+/* (No Commment) */
+"Download Canceled" = "Descarga cancelada";
+
+/* (No Commment) */
+"Downloading..." = "Descargando...";
+
+/* (No Commment) */
+"Due:" = "Fecha de entrega:";
+
+/* (No Commment) */
+"Due: %1$@ at %2$@" = "Fecha de entrega: %1$@ a las %2$@";
+
+/* Due date label for to do items, first placeholder is date, second is time */
+"Due: %@ at %@" = "Fecha de entrega: %1$@ a las %2$@";
+
+/* (No Commment) */
+"EULA" = "EULA";
+
+/* (No Commment) */
+"Edit" = "Editar";
+
+/* Edit course list title */
+"Edit Course List" = "Editar la lista del curso";
+
+/* Edit group list title */
+"Edit Group List" = "Editar la lista del grupo";
+
+/* (No Commment) */
+"Edit items" = "Editar los elementos";
+
+/* (No Commment) */
+"Editing reply by %1$@, %2$@" = "Editar respuesta al %1$@, %2$@";
+
+/* (No Commment) */
+"Email" = "Correo electrónico";
+
+/* Prompt asking user to enable push notifications */
+"Enable Push Notifications" = "Habilitar notificaciones automáticas";
+
+/* (No Commment) */
+"Enter User ID and Domain." = "Ingresar ID y dominio del usuario.";
+
+/* (No Commment) */
+"Enter submission" = "Ingresar la presentación";
+
+/* (No Commment) */
+"Entry posted" = "Entrada publicada";
+
+/* (No Commment) */
+"Error" = "Error";
+
+/* (No Commment) */
+"Error adding recipeints" = "Error al añadir destinatarios";
+
+/* (No Commment) */
+"Error deleting file &quot;%@&quot;" = "Hubo un error al eliminar el archivo &quot;%@&quot;";
+
+/* (No Commment) */
+"Error deleting folder" = "Error al borrar la carpeta";
+
+/* (No Commment) */
+"Event" = "Evento";
+
+/* (No Commment) */
+"Existing Attachments..." = "Archivos adjuntos existentes...";
+
+/* (No Commment) */
+"External Tool" = "Herramienta externa";
+
+/* External URL module item type */
+"External URL" = "URL externa";
+
+/* File module item type */
+"File" = "Archivo";
+
+/* (No Commment) */
+"File extension not allowed: %@" = "Extensión del archivo no permitida: %@";
+
+/* (No Commment) */
+"File extension(s) permitted for this assignment:" = "Extensión(es) del archivo permitida(s) para esta tarea:";
+
+/* (No Commment) */
+"File received" = "Archivo recibido";
+
+/* (No Commment) */
+"File unavailable" = "Archivo no disponible";
+
+/* (No Commment) */
+"File upload" = "Carga del archivo";
+
+/* (No Commment) */
+"File upload failed." = "Falló la carga del archivo.";
+
+/* (No Commment) */
+"Files" = "Archivos";
+
+/* (No Commment) */
+"Finished downloading" = "Descarga terminada";
+
+/* badge indicating front page */
+"Front Page" = "Portada";
+
+/* (No Commment) */
+"Future" = "Futuro";
+
+/* (No Commment) */
+"Go To Discussion" = "Ir a la discusión";
+
+/* (No Commment) */
+"Go to App Store" = "Ir a la Tienda de aplicaciones";
+
+/* (No Commment) */
+"Go to Quiz" = "Ir a Evaluaciones";
+
+/* (No Commment) */
+"Go to discussion" = "Ir a la discusión";
+
+/* (No Commment) */
+"Grade" = "Calificación";
+
+/* (No Commment) */
+"Grade %@" = "Calificar %@";
+
+/* (No Commment) */
+"Grade in SpeedGrader" = "Calificar en SpeedGrader";
+
+/* (No Commment) */
+"Grade: %1$i / %2$g" = "Calificar: %1$i / %2$g";
+
+/* (No Commment) */
+"Grade: %@" = "Calificar: %@";
+
+/* (No Commment) */
+"Graded Discussion" = "Discusión calificada";
+
+/* (No Commment) */
+"Graded discussion." = "Discusión calificada.";
+
+/* (No Commment) */
+"Graded discussion. %g points possible." = "Discusión calificada. %g puntos posibles.";
+
+/* Title for Grades view controller */
+"Grades" = "Calificaciones";
+
+/* (No Commment) */
+"Group conversation" = "Conversación del grupo";
+
+/* Groups page title */
+"Groups" = "Grupos";
+
+/* (No Commment) */
+"Help" = "Ayuda";
+
+/* Accessibility label for toggling grades to hidden */
+"Hide Grades" = "Esconder calificaciones";
+
+/* (No Commment) */
+"How do you like Canvas?" = "¿Qué le parece Canvas?";
+
+/* I give you back your time, use it wisely. */
+"I give you back your time, use it wisely." = "Le devuelvo su tiempo, úselo sabiamente.";
+
+/* (No Commment) */
+"Image" = "Imagen";
+
+/* (No Commment) */
+"Import from Dropbox" = "Importar desde Dropbox";
+
+/* (No Commment) */
+"Import from camera" = "Importar desde la cámara";
+
+/* (No Commment) */
+"Inbox" = "Bandeja de entrada";
+
+/* (No Commment) */
+"Incomplete" = "Incompleta";
+
+/* (No Commment) */
+"Individual messages" = "Mensajes individuales";
+
+/* (No Commment) */
+"Invalid URL" = "URL inválida";
+
+/* (No Commment) */
+"It has problems" = "Tiene problemas";
+
+/* (No Commment) */
+"Item %1$d of %2$d" = "Elemento %1$d de %2$d";
+
+/* It’s empty, what are you still doing here. */
+"It’s empty, what are you still doing here." = "Está vacía, qué sigue haciendo aquí.";
+
+/* No comment provided by engineer. */
+"Jumps to current day on calendar" = "Salta al día de hoy en el calendario";
+
+/* (No Commment) */
+"Keep" = "Mantener";
+
+/* Settings entry title for Choosing a Landing Page */
+"Landing Page" = "Página de destino";
+
+/* (No Commment) */
+"Large file" = "Archivo grande";
+
+/* No comment provided by engineer. */
+"Later" = "Más tarde";
+
+/* (No Commment) */
+"Launch External Tool" = "Lanzar la herramienta externa";
+
+/* (No Commment) */
+"Legal" = "Legal";
+
+/* (No Commment) */
+"Loading..." = "Cargando...";
+
+/* (No Commment) */
+"Locked" = "Bloqueada";
+
+/* locked date */
+"Locked until %@" = "Bloqueado hasta %@";
+
+/* (No Commment) */
+"Login ID" = "ID de inicio de sesión";
+
+/* (No Commment) */
+"Login Problem" = "Problema para iniciar sesión";
+
+/* (No Commment) */
+"Logout" = "Cerrar sesión";
+
+/* (No Commment) */
+"Love it!" = "¡Me encanta!";
+
+/* Button title for mark as done. */
+"Mark as Done" = "Marcar como hecho";
+
+/* (No Commment) */
+"Masquerade" = "Hacerse pasar";
+
+/* (No Commment) */
+"Me" = "Yo";
+
+/* (No Commment) */
+"Media Comment" = "Comentario multimedia";
+
+/* (No Commment) */
+"Media Submission" = "Presentación multimedia";
+
+/* (No Commment) */
+"Media comment" = "Comentario multimedia";
+
+/* (No Commment) */
+"Media recording" = "Grabando multimedia";
+
+/* (No Commment) */
+"Media type selector. %@" = "Selector del tipo de multimedia. %@";
+
+/* (No Commment) */
+"Message Instructor" = "Enviar un mensaje al instructor";
+
+/* (No Commment) */
+"Message Sent." = "Mensaje enviado.";
+
+/* (No Commment) */
+"Message everyone separately, or add everyone to a group conversation?" = "Mandar mensaje a todos por separado, o agregar a todos a una conversación de grupo?";
+
+/* (No Commment) */
+"Messages" = "Mensajes";
+
+/* (No Commment) */
+"Mobile Quiz Warning" = "Advertencia móvil de la evaluación";
+
+/* Modules title */
+"Modules" = "Módulos";
+
+/* (No Commment) */
+"More Info" = "Más información";
+
+/* (No Commment) */
+"Multiple Due Dates" = "Múltiples fechas límites de entrega";
+
+/* user must contribute to complete requirement */
+"Must contribute" = "Debe contribuir";
+
+/* user must mark item as done to complete requirement */
+"Must mark as done" = "Debe marcar como hecho";
+
+/* format string saying what the minimum score must be */
+"Must score %@ or higher" = "Debe obtener como puntaje %@ o más alto";
+
+/* user must submit something to complete */
+"Must submit" = "Debe enviar";
+
+/* user must view item to complete requirement */
+"Must view" = "Debe ver";
+
+/* (No Commment) */
+"My Files" = "Mis archivos";
+
+/* (No Commment) */
+"Name" = "Nombre";
+
+/* (No Commment) */
+"Need SpeedGrader for iPad" = "Necesita SpeedGrader para iPad";
+
+/* (No Commment) */
+"Network Error" = "Error de la red";
+
+/* (No Commment) */
+"New Folder" = "Nueva carpeta";
+
+/* (No Commment) */
+"Next 7 Days" = "Próximos 7 días";
+
+/* (No Commment) */
+"Next item" = "Siguiente elemento";
+
+/* (No Commment) */
+"No" = "No";
+
+/* (No Commment) */
+"No Date" = "Sin fecha";
+
+/* Label shown for a to do that doesn't have a due date */
+"No Due Date" = "Sin fecha de entrega";
+
+/* (No Commment) */
+"No Recorded Audio" = "Sin audio grabado";
+
+/* (No Commment) */
+"No Submission" = "Sin presentación";
+
+/* (No Commment) */
+"No Thanks" = "No gracias";
+
+/* (No Commment) */
+"No actions available for this file" = "No hay acciones disponibles para este archivo";
+
+/* (No Commment) */
+"No audio was recorded." = "No se grabó audio.";
+
+/* (No Commment) */
+"No due date" = "Sin fecha límite de entrega";
+
+/* (No Commment) */
+"No installed apps support opening this file" = "Ninguna aplicación instalada es compatible para abrir este archivo";
+
+/* (No Commment) */
+"No recipients" = "Sin destinatarios";
+
+/* (No Commment) */
+"No results found" = "No se encontraron resultados";
+
+/* (No Commment) */
+"Not Authorized" = "No autorizada";
+
+/* (No Commment) */
+"Not Complete" = "No está completa";
+
+/* (No Commment) */
+"Not available" = "No está disponible";
+
+/* (No Commment) */
+"Not graded" = "No está calificada";
+
+/* (No Commment) */
+"Not graded (0 out of %@)" = "No está calificada (0 de %@)";
+
+/* (No Commment) */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Nota: Los archivos multimedia no están disponibles de inmediato para la reproducción mientras están siendo procesados en el servidor.";
+
+/* Nothing to do, go play outside! */
+"Nothing to do, go play outside!" = "No tiene nada que hacer, ¡salga a jugar!";
+
+/* Nothing to see here. */
+"Nothing to see here." = "No hay nada que ver aquí.";
+
+/* No comment provided by engineer. */
+"Notification" = "Notificación";
+
+/* Settings entry title for Notification Preferences */
+"Notification Preferences" = "Preferencias de notificación";
+
+/* Notifications tab title */
+"Notifications" = "Notificaciones";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* (No Commment) */
+"Observer" = "Observador";
+
+/* (No Commment) */
+"Ok" = "Ok";
+
+/* (No Commment) */
+"Online URL" = "URL en línea";
+
+/* (No Commment) */
+"Oops!" = "¡Ups!";
+
+/* (No Commment) */
+"Open in Safari" = "Abrir en Safari";
+
+/* (No Commment) */
+"Open in SpeedGrader" = "Abrir en SpeedGrader";
+
+/* (No Commment) */
+"Open in..." = "Abrir en...";
+
+/* (No Commment) */
+"Other" = "Otro";
+
+/* (No Commment) */
+"Other replies hidden until you reply" = "Otras respuestas están ocultas hasta que usted responda";
+
+/* (No Commment) */
+"Outcomes" = "Resultados";
+
+/* Page module item type */
+"Page" = "Página";
+
+/* (No Commment) */
+"Past" = "Pasado";
+
+/* (No Commment) */
+"People" = "Personas";
+
+/* (No Commment) */
+"Pinned Discussions" = "Discusiones marcadas";
+
+/* (No Commment) */
+"Play" = "Reproducir";
+
+/* (No Commment) */
+"Please check your network connection and try again." = "Por favor, compruebe la conexión de la red y vuelva a intentarlo.";
+
+/* (No Commment) */
+"Post" = "Publicar";
+
+/* (No Commment) */
+"Post Comment" = "Publicar comentario";
+
+/* (No Commment) */
+"Post comment" = "Publicar comentario";
+
+/* (No Commment) */
+"Posting…" = "Publicando...";
+
+/* (No Commment) */
+"Posts your comment" = "Publicar su comentario";
+
+/* (No Commment) */
+"Previous item" = "Elemento anterior";
+
+/* (No Commment) */
+"Privacy Policy" = "Política de privacidad";
+
+/* (No Commment) */
+"Profile" = "Perfil";
+
+/* Quiz module item type */
+"Quiz" = "Evaluación";
+
+/* (No Commment) */
+"Quiz Alert" = "Alerta de la evaluación";
+
+/* (No Commment) */
+"Quizzes" = "Evaluaciones";
+
+/* (No Commment) */
+"Rate on App Store" = "Clasificar en la Tienda de aplicaciones";
+
+/* (No Commment) */
+"Rating for %1$@, Score: %2$g" = "Clasificación para %1$@, puntaje: %2$g";
+
+/* (No Commment) */
+"Re-submit Assignment" = "Reenviar la tarea";
+
+/* (No Commment) */
+"Recipients" = "Destinatarios";
+
+/* (No Commment) */
+"Record" = "Grabar";
+
+/* (No Commment) */
+"Record Audio" = "Grabar audio";
+
+/* (No Commment) */
+"Record Audio..." = "Grabar audio...";
+
+/* (No Commment) */
+"Record Video" = "Grabar video";
+
+/* (No Commment) */
+"Record audio" = "Grabar audio";
+
+/* (No Commment) */
+"Record video" = "Grabar video";
+
+/* No comment provided by engineer. */
+"Refresh Button" = "Botón de actualizar";
+
+/* No comment provided by engineer. */
+"Refreshes the calendar content" = "Actualizar el contenido del calendario";
+
+/* Refreshing Calendar Events */
+"Refreshing Calendar Events" = "Actualizando los eventos del calendario";
+
+/* (No Commment) */
+"Remove" = "Remover";
+
+/* (No Commment) */
+"Remove this file?" = "¿Remover este archivo?";
+
+/* (No Commment) */
+"Report a problem" = "Reportar un problema";
+
+/* (No Commment) */
+"Request a feature" = "Solicitar una función";
+
+/* (No Commment) */
+"Rubric" = "Rúbrica";
+
+/* (No Commment) */
+"Save" = "Guardar";
+
+/* (No Commment) */
+"Schedule Notification" = "Notificación del horario";
+
+/* (No Commment) */
+"Search for recipients" = "Buscar destinatarios";
+
+/* Placeholder text for search bar on assignments page */
+"Search here..." = "Comience la búsqueda aquí...";
+
+/* (No Commment) */
+"Select file(s)" = "Seleccionar archivo(s)";
+
+/* (No Commment) */
+"Select or deselect" = "Seleccionar o deseleccionar";
+
+/* (No Commment) */
+"Selected" = "Seleccionado";
+
+/* (No Commment) */
+"Send" = "Enviar";
+
+/* (No Commment) */
+"Send %@ a message" = "Enviar %@ un mensaje";
+
+/* (No Commment) */
+"Send Message" = "Enviar mensaje";
+
+/* (No Commment) */
+"Sent" = "Enviado";
+
+/* (No Commment) */
+"Settings" = "Configuraciones";
+
+/* Accessibility label for toggling grades to visible */
+"Show Grades" = "Mostrar calificaciones";
+
+/* (No Commment) */
+"Show Quiz" = "Mostrar la evaluación";
+
+/* (No Commment) */
+"Show file" = "Mostrar archivo";
+
+/* (No Commment) */
+"Show recipients" = "Mostrar destinatarios";
+
+/* (No Commment) */
+"Some items could not be deleted" = "No se pudieron borrar algunos elementos";
+
+/* (No Commment) */
+"Some selected folders are not empty. Are you sure you want to delete them?" = "Algunas carpetas seleccionadas no están vacías. ¿Está seguro que desea eliminarlas?";
+
+/* (No Commment) */
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Lo sentimos, no pudimos encontrar la tarea. Puede que esta tarea haya sido borrada.";
+
+/* (No Commment) */
+"Starts playing your recording" = "Inicia la reproducción de su grabación";
+
+/* (No Commment) */
+"Starts recording a media comment" = "Empieza a grabar un comentario multimedia";
+
+/* (No Commment) */
+"Stay Logged In" = "Permanecer conectado";
+
+/* (No Commment) */
+"Stop" = "Parar";
+
+/* (No Commment) */
+"Stop Masquerading" = "Dejar de hacerse pasar";
+
+/* (No Commment) */
+"Stops playing your recording" = "Deja de reproducir su grabación";
+
+/* (No Commment) */
+"Stops recording a media comment" = "Para de grabar su comentario multimedia";
+
+/* (No Commment) */
+"Student" = "Estudiante";
+
+/* Header item label */
+"Sub Header" = "Subcabecera";
+
+/* (No Commment) */
+"Submission" = "Presentación";
+
+/* (No Commment) */
+"Submission Error" = "Error de envío";
+
+/* (No Commment) */
+"Submission complete" = "Envío completo";
+
+/* (No Commment) */
+"Submit" = "Enviar";
+
+/* (No Commment) */
+"Submitted" = "Enviado";
+
+/* (No Commment) */
+"Submitting..." = "Enviando...";
+
+/* (No Commment) */
+"Subscribe to calendar feed" = "Suscribirse a la fuente del calendario ";
+
+/* (No Commment) */
+"Success!" = "¡Éxito!";
+
+/* (No Commment) */
+"Sure!" = "¡Seguro!";
+
+/* (No Commment) */
+"Switches media input between audio and video. Currently set to %@" = "Cambia la entrada multimedia entre audio y vídeo. Actuamente está establecido como a% @";
+
+/* (No Commment) */
+"Switches to media comment mode" = "Cambia al modo de comentarios de multimedia";
+
+/* (No Commment) */
+"Switches to text comment mode" = "Cambia al modo de comentarios de texto";
+
+/* (No Commment) */
+"Syllabus" = "Plan de estudio ";
+
+/* (No Commment) */
+"TA" = "MA";
+
+/* (No Commment) */
+"TAs" = "MAs";
+
+/* (No Commment) */
+"Take Photo" = "Tomar foto";
+
+/* (No Commment) */
+"Take Photo or Video..." = "Tomar foto o video...";
+
+/* (No Commment) */
+"Take a Photo..." = "Tomar una foto...";
+
+/* (No Commment) */
+"Take a Video..." = "Tomar un video...";
+
+/* (No Commment) */
+"Tap to try again" = "Pulsar para volver a intentarlo";
+
+/* (No Commment) */
+"Teacher" = "Maestro";
+
+/* (No Commment) */
+"Teachers" = "Maestros";
+
+/* (No Commment) */
+"Tell us what's wrong" = "Díganos que está mal";
+
+/* (No Commment) */
+"Terms of Use" = "Términos de uso";
+
+/* (No Commment) */
+"Text Comment" = "Comentario de texto";
+
+/* (No Commment) */
+"Text Submission" = "Envío del texto";
+
+/* (No Commment) */
+"Text entry" = "Entrada del texto";
+
+/* (No Commment) */
+"The recipients could not be added. Please try again. (%@)" = "No se pudo agregar a los destinatarios. Por favor, inténtelo de nuevo. (%@)";
+
+/* (No Commment) */
+"The server could not be reached" = "El servidor no pudo ser localizado";
+
+/* (No Commment) */
+"The server you entered is not authorized for this app." = "El servidor que usted ingresó no está autorizado para esta aplicación.";
+
+/* (No Commment) */
+"The user agent for this app is unauthorized." = "El agente de usuario para esta aplicación no está autorizado.";
+
+/* (No Commment) */
+"There are no actions for this item" = "No hay acciones para este elemento";
+
+/* (No Commment) */
+"There are no items to display" = "No hay elementos para mostrar";
+
+/* (No Commment) */
+"There was a network error posting your comment." = "Hubo un error en la red al publicar su comentario.";
+
+/* (No Commment) */
+"There was a network problem while attempting to upload your submission" = "Hubo un problema en la red al intentar subir su presentación";
+
+/* (No Commment) */
+"There was a problem accessing the requested file.
+
+Error: %@" = "Hubo un problema al acceder al archivo solicitado.
+
+Error: %@";
+
+/* (No Commment) */
+"There was a problem launching Safari" = "Hubo un problema al lanzar Safari";
+
+/* (No Commment) */
+"There was an error loading the document." = "Hubo un error al cargar el documento.";
+
+/* (No Commment) */
+"There was an error loading your content. If it is an audio or video upload it may still be processing." = "Hubo un error al cargar su contenido. Si se trata de un proceso de carga de audio o video puede que aún se esté procesando.";
+
+/* (No Commment) */
+"This app is not authorized for use." = "Esta aplicación no está autorizada para usarse";
+
+/* (No Commment) */
+"This assignment doesn't appear to be a valid external tool or is misconfigured." = "Esta tarea no parece ser una herramienta externa válida o está mal configurada.";
+
+/* (No Commment) */
+"This assignment has no details." = "Esta tarea no tiene detalles.";
+
+/* (No Commment) */
+"This entry has been deleted" = "Esta entrada ha sido borrada";
+
+/* (No Commment) */
+"This file cannot be displayed on this device." = "Este archivo no se puede mostrar en este dispositivo.";
+
+/* (No Commment) */
+"This file is locked" = "Este archivo está bloqueado";
+
+/* (No Commment) */
+"This folder is locked" = "Esta carpeta está bloqueada";
+
+/* (No Commment) */
+"This is a media message." = "Este es un mensaje multimedia.";
+
+/* This would be a great time to do some extra credit. */
+"This would be a great time to do some extra credit." = "Este sería un buen momento para hacer un poco de crédito adicional.";
+
+/* Title of the Todo screen */
+"To Do" = "Que hacer";
+
+/* (No Commment) */
+"To:" = "Para:";
+
+/* (No Commment) */
+"Today" = "Hoy";
+
+/* No comment provided by engineer. */
+"Today Button" = "Botón de hoy";
+
+/* (No Commment) */
+"Toggles selection of current item" = "Alterna la selección del elemento actual";
+
+/* (No Commment) */
+"Toggles selection of item" = "Alterna la selección del elemento";
+
+/* (No Commment) */
+"Turn In" = "Entregar";
+
+/* (No Commment) */
+"Turn In Again" = "Entregar de nuevo";
+
+/* (No Commment) */
+"Turn in %@" = "Entregar %@";
+
+/* Notification over status bar that displays when not connected to the internet. */
+"Uh-oh! No Internet Connection" = "¡Ay no! No hay conexión de internet";
+
+/* (No Commment) */
+"Unable to load" = "No se puede cargar";
+
+/* (No Commment) */
+"Unable to post. Please try again later" = "No se puede publicar. Por favor, inténtelo de nuevo más tarde";
+
+/* (No Commment) */
+"Unable to upload to server" = "No se puede subir al servidor";
+
+/* Grade unavailable */
+"Unavailable" = "No disponible";
+
+/* Title for grade button when no grade is present */
+"Ungraded" = "Sin calificación";
+
+/* (No Commment) */
+"Unknown" = "Desconocido";
+
+/* (No Commment) */
+"Unread" = "No leído";
+
+/* (No Commment) */
+"Unsaved Reply" = "Respuesta no guardada";
+
+/* (No Commment) */
+"Upload" = "Subir";
+
+/* (No Commment) */
+"Upload Error" = "Error al subir";
+
+/* (No Commment) */
+"Upload a file" = "Subir un archivo";
+
+/* (No Commment) */
+"Upload failed. Reason: (%@)" = "No se pudo subir. Razón: (%@)";
+
+/* (No Commment) */
+"Upload file" = "Subir archivo";
+
+/* (No Commment) */
+"Upload to assignment &quot;%@&quot; failed" = "No se pudo subir a la tarea &quot;%@&quot;";
+
+/* (No Commment) */
+"Upload to folder &quot;%@&quot; failed" = "No se pudo subir a la carpeta &quot;%@&quot;";
+
+/* (No Commment) */
+"Use" = "Usar";
+
+/* (No Commment) */
+"User ID" = "ID del usuario";
+
+/* (No Commment) */
+"User Info" = "Información del usuario";
+
+/* (No Commment) */
+"Video" = "Video";
+
+/* (No Commment) */
+"Video error" = "Error de video";
+
+/* No comment provided by engineer. */
+"View" = "Ver";
+
+/* (No Commment) */
+"Warning" = "Advertencia";
+
+/* (No Commment) */
+"We had a problem loading the submission. Please try again later." = "Tuvimos un problema al cargar la presentación. Por favor, inténtelo de nuevo más tarde.";
+
+/* (No Commment) */
+"We were unable to verify the server for use with this app." = "No pudimos verificar el servidor para su uso con esta aplicación.";
+
+/* (No Commment) */
+"Whoops!" = "¡Ups!";
+
+/* (No Commment) */
+"Will unlock %@." = "Desbloqueará  %@.";
+
+/* (No Commment) */
+"Would you like to create a new message?" = "¿Le gustaría crear un nuevo mensaje?";
+
+/* (No Commment) */
+"Would you mind giving us a rating on the app store?" = "¿Le importaría clasificarnos en la Tienda de aplicaciones?";
+
+/* (No Commment) */
+"Would you mind letting us know the problems you have been having with the app?" = "¿Le importaría dejarnos saber los problemas que ha tenido con la aplicación?";
+
+/* (No Commment) */
+"Yes" = "Sí";
+
+/* (No Commment) */
+"You are now masquerading as %@" = "Ahora se está haciendo pasar por %@";
+
+/* (No Commment) */
+"You are now masquerading as %@. To Stop Masquerading go to your Profile." = "Ahora se está haciendo pasar por %@. Para dejar de hacerlo vaya a su perfil.";
+
+/* (No Commment) */
+"You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Usted no tiene Speedgrader para el iPad. Puede descargarlo de forma gratuita desde la Tienda de aplicaciones.";
+
+/* Error message for an unauthorized course or group. */
+"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Usted no tiene acceso a este contenido. Puede que el curso o grupo no haya comenzado, o  que haya concluido.";
+
+/* (No Commment) */
+"You do not have permission to delete this reply" = "No tiene permiso para eliminar esta respuesta";
+
+/* (No Commment) */
+"You don't have permission to masquerade as this user or there is no user with that ID" = "Usted no tiene permiso para hacerse pasar por este usuario o no hay ningún usuario con ese ID";
+
+/* (No Commment) */
+"You have an unsaved reply. Would you like to discard that reply?" = "Tiene una respuesta no guardada. ¿Le gustaría descartar esta respuesta?";
+
+/* (No Commment) */
+"You must first complete:" = "Primero debe completar:";
+
+/* (No Commment) */
+"You need a title and a description to post" = "Necesita un título y una descripción para publicar";
+
+/* You should go rate Canvas on the App Store! */
+"You should go rate Canvas on the App Store!" = "¡Debería calificar Canvas en la Tienda de aplicaciones!";
+
+/* (No Commment) */
+"Your files could not be found" = "No se pudo encontrar sus archivos";
+
+/* (No Commment) */
+"Your school's configuration does not allow the type of submission selected for this assignment" = "La configuración de su escuela no permite al tipo de envío seleccionado para esta tarea";
+
+/* (No Commment) */
+"due on %1$@ at %2$@" = "fecha de entrega el %1$@ a las %2$@";
+
+/* (No Commment) */
+"moments ago" = "momentos atrás";
+
+/* (No Commment) */
+"out of" = "de";
+
+/* (No Commment) */
+"out of %@" = "de los %@";
+
+/* (No Commment) */
+"out of %@ points" = "de los %@ puntos";
+
+/* (No Commment) */
+"photo" = "foto";
+
+/* (No Commment) */
+"unknown" = "desconocido";
+
+/* (No Commment) */
+"until %@" = "hasta %@";
+

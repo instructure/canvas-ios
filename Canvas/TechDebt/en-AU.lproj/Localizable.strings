@@ -1,35 +1,69 @@
-/* Description for rubric criterion rating object */
-"Rating for %1$@, Score: %2$g" = "Rating for %1$@, Score: %2$g";
+/* prerequisites for unlocking item */
+"
+
+You must first complete:" = "
+
+You must first complete:";
 
 /* when locked item will become unlocked */
-"until %@" = "until %@";
+" until %@" = " until %@";
 
 /* explanation for locked module item */
-"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;";
+"\"%@\" is locked as part of \"%@\"" = "\"%1$@\" is locked as part of \"%2$@\"";
 
-/* Gigabytes */
+/* (No Commment) */
 "%0.2f GB" = "%0.2f GB";
 
-/* Kilobytes */
+/* (No Commment) */
 "%0.2f KB" = "%0.2f KB";
 
-/* Megabytes */
+/* (No Commment) */
 "%0.2f MB" = "%0.2f MB";
 
-/* Button to submit files to an assignment */
+/* (No Commment) */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
+/* (No Commment) */
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g out of %3$@)";
 
-/* something at something */
+/* (No Commment) */
 "%1$@ at %2$@" = "%1$@ at %2$@";
+
+/* (No Commment) */
+"%1$@ is due in %2$@" = "%1$@ is due in %2$@";
+
+/* (No Commment) */
+"%1$@ out of %2$@" = "%1$@ out of %2$@";
+
+/* (No Commment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g out of %3$@)";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Type: %3$@.";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Type: %3$@. Status: %4$@";
+
+/* (No Commment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Commment) */
+"%1$g out of %2$@" = "%1$g out of %2$@";
+
+/* Button to submit files to an assignment */
+"%@ (%d)" = "%1$@ (%2$d)";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g out of %3$@)";
+
+/* Event happens on a date at a time */
+"%@ at %@" = "%1$@ at %2$@";
 
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ is coming soon!";
 
 /* local notification countdown alert */
-"%1$@ is due in %2$@" = "%1$@ is due in %2$@";
+"%@ is due in %@" = "%1$@ is due in %2$@";
 
 /* explanation for locked item */
 "%@ is locked" = "%@ is locked.";
@@ -37,7 +71,7 @@
 /* No comment provided by engineer. */
 "%@ is not a valid URL" = "%@ is not a valid URL.";
 
-/* %@ is the token where the host name goes. Error message that the host doesn't exist. */
+/* (No Commment) */
 "%@ is not a valid host" = "%@ is not a valid host.";
 
 /* Message for unsupported tab */
@@ -46,40 +80,34 @@
 /* Description for how many times a specific discussion has been liked by other users */
 "%@ likes" = "%@ likes";
 
-/* Label indicating multiple submissions need grading */
+/* (No Commment) */
 "%@ need grading" = "%@ need grading.";
 
 /* 88 out of 100 points */
-"%1$@ out of %2$@" = "%1$@ out of %2$@";
+"%@ out of %@" = "%1$@ out of %2$@";
 
 /* 83% (83 out of 100 points */
-"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g out of %3$@)";
+"%@%% (%g out of %@)" = "%1$@%% (%2$g out of %3$@)";
 
-/* String to be read for the blind users. Name of item in module, then type of thing. */
-"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Type: %3$@.";
-
-/* String to be read for the blind users. Name of item in module, then type of thing, then status. */
-"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Type: %3$@. Status: %4$@";
-
-/* Word and ellipses */
+/* (No Commment) */
 "%@..." = "%@...";
 
 /* A number and a collective noun, like '5 pigs' */
-"%1$d %2$@" = "%1$d %2$@";
+"%d %@" = "%1$d %2$@";
 
-/* time since creation (2 or more days) */
+/* (No Commment) */
 "%d days ago" = "%d days ago";
 
-/* time since creation (2 or more hours) */
+/* (No Commment) */
 "%d hours ago" = "%d hours ago";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
 "%d items" = "%d items";
 
-/* time since creation (2 or more minutes) */
+/* (No Commment) */
 "%d minutes ago" = "%d minutes ago";
 
-/* time since creation (2 or more months) */
+/* (No Commment) */
 "%d months ago" = "%d months ago";
 
 /* In the context 'Joe, Fred, ((25 more))' */
@@ -91,13 +119,10 @@
 /* Something like '3 unread'. Refers to unread replies in a discsusion. */
 "%d unread" = "%d unread";
 
-/* time since creation (2 or more years) */
+/* (No Commment) */
 "%d years ago" = "%d years ago";
 
-/* 88 out of 100 points */
-"%1$g out of %2$@" = "%1$g out of %2$@";
-
-/* As in, '15 bytes' */
+/* (No Commment) */
 "%qu bytes" = "%qu bytes";
 
 /* offset for one day */
@@ -124,6 +149,9 @@
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
 "%u files" = "%u files";
 
+/* (No Commment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;";
+
 /* %@ will be replaced by the filename */
 "'%@' is now ready to submit to assignments" = "'%@' is now ready to submit to assignments.";
 
@@ -133,13 +161,13 @@
 /* one day */
 "1 day" = "1 day";
 
-/* time since creation */
+/* (No Commment) */
 "1 day ago" = "1 day ago";
 
 /* one hour */
 "1 hour" = "1 hour";
 
-/* time since creation */
+/* (No Commment) */
 "1 hour ago" = "1 hour ago";
 
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
@@ -148,16 +176,16 @@
 /* Description for a post that has been liked once */
 "1 like" = "1 like";
 
-/* time since creation */
+/* (No Commment) */
 "1 minute ago" = "1 minute ago";
 
-/* time since creation */
+/* (No Commment) */
 "1 month ago" = "1 month ago";
 
-/* Label indicating a submission need grading */
+/* (No Commment) */
 "1 needs grading" = "1 needs grading";
 
-/* time since creation */
+/* (No Commment) */
 "1 year ago" = "1 year ago";
 
 /* three days */
@@ -169,7 +197,7 @@
 /* Name of a tab displaying Canvas Info including legal info */
 "About" = "About";
 
-/* Access Denied from the server */
+/* (No Commment) */
 "Access Denied" = "Access Denied";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
@@ -196,8 +224,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "Add folder";
 
-/* Title for the add-inline-media sheet
-   Title on the add-inline-media sheet */
+/* Title on the add-inline-media sheet */
 "Add inline media" = "Add inline media";
 
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
@@ -206,18 +233,16 @@
 /* Button to select all members of a group */
 "All members" = "All members";
 
-/* Error message text */
+/* (No Commment) */
 "An unknown error occurred" = "An unknown error occurred.";
 
 /* Title of the new announcement view */
 "Announcement" = "Announcement";
 
-/* Announcements title
-   Title for the announcements view controller */
+/* Title for the announcements view controller */
 "Announcements" = "Announcements";
 
-/* Archive selected messages button
-   mark a message as archived */
+/* Archive selected messages button */
 "Archive" = "Archive";
 
 /* archive selected messages */
@@ -238,7 +263,7 @@
 /* Label for an assignment */
 "Assignment" = "Assignment";
 
-/* Title for Assignments view controller */
+/* (No Commment) */
 "Assignments" = "Assignments";
 
 /* An item for attaching to a discussion */
@@ -256,22 +281,22 @@
 /* Label for a discussion */
 "Attendance" = "Attendance";
 
-/* Media type is audio */
+/* Audio file type */
 "Audio" = "Audio";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Audio input hardware not available" = "Audio input hardware not available";
 
-/* Title of alert box */
+/* Title for an error popup */
 "Authentication error" = "Authentication error";
 
 /* Link to building panda avatar */
 "Build Avatar" = "Build Avatar";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Cache cleared" = "Cache cleared";
 
-/* Calendar page title */
+/* (No Commment) */
 "Calendar" = "Calendar";
 
 /* Invalid LTI tool error title */
@@ -280,22 +305,10 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Can't submit media";
 
-/* Button title for canceling download of a file
-   Button title for cancelling the selection of a quiz. This will appear in the alert view notifying the user of the mobile quiz limitations.
-   Cancel
-   cancel add file/folder
-   Cancel add option
-   Cancel button for removing a file
-   Cancel deletion of discussion entry
-   cancel folder creation
-   Cancel folder name change
-   cancel masquerade
-   cancel message creation
-   cancel reminder notification
-   cancel view help options */
+/* Cancel button title */
 "Cancel" = "Cancel";
 
-/* Cancel adding a comment button */
+/* Cancel button title */
 "Cancel Message" = "Cancel Message";
 
 /* No comment provided by engineer. */
@@ -342,7 +355,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* action sheet text for picking video from library */
 "Choose video" = "Choose video";
 
-/* No comment provided by engineer. */
+/* Close the window */
 "Close" = "Close";
 
 /* No comment provided by engineer. */
@@ -363,11 +376,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Comments are disabled" = "Comments are disabled.";
 
-/* Assignment grade: Complete
-   Pass/fail assignment is complete */
+/* (No Commment) */
 "Complete" = "Complete";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Completed" = "Completed";
 
 /* button to compose a message */
@@ -397,7 +409,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "Course Syllabus";
 
-/* Courses page title */
+/* (No Commment) */
 "Courses" = "Courses";
 
 /* cancel folder creation */
@@ -409,15 +421,13 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Message telling users that quiz support on mobile is limited */
 "Currently there is limited quiz support on mobile" = "Currently there is limited quiz support on mobile";
 
-/* A custom grade not specified by the rubric. */
+/* (No Commment) */
 "Custom Grade" = "Custom Grade";
 
-/* label for customizing a course */
+/* (No Commment) */
 "Customize" = "Customise";
 
-/* Button to confirm deleting folders
-   Button to delete a discussion entry
-   Confirm deletion of discussion entry */
+/* Delete Button title */
 "Delete" = "Delete";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -427,6 +437,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 "Delete this reply?" = "Delete this reply?";
 
 /* delete file confirmation alert */
+"Deleted file: \"%@\"" = "Deleted file: \"%@\"";
+
+/* (No Commment) */
 "Deleted file: &quot;%@&quot;" = "Deleted file: &quot;%@&quot;";
 
 /* No comment provided by engineer. */
@@ -450,15 +463,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for Discussion Topics view controller */
 "Discussion Topics" = "Discussion Topics";
 
-/* Discussions title
-   Title for Discussions view controller */
+/* Title for Discussions view controller */
 "Discussions" = "Discussions";
 
-/* Dismiss an error button
-   dismiss button
-   Dismiss button for an error dialoue
-   Dismiss error alert button
-   dismiss the alert button */
+/* Dismiss button title */
 "Dismiss" = "Dismiss";
 
 /* Alert title asking if you want to masquerade */
@@ -473,7 +481,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button to cancel deleting folders */
 "Don't delete" = "Don't delete";
 
-/* No comment provided by engineer. */
+/* Button to stop editing a list */
 "Done" = "Done";
 
 /* Shown when we cancel a file download */
@@ -485,7 +493,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Due:";
 
-/* Due date label for to do items, first placeholder is date, second is time */
+/* (No Commment) */
 "Due: %1$@ at %2$@" = "Due: %1$@ at %2$@";
 
 /* Link to the End User License Agreement document */
@@ -494,24 +502,25 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button to edit a discussion entry */
 "Edit" = "Edit";
 
-/* Edit course list title
-   Edit the items in the course list */
+/* (No Commment) */
 "Edit Course List" = "Edit Course List";
 
-/* Edit group list title
-   Edit the items in the group list */
+/* (No Commment) */
 "Edit Group List" = "Edit Group List";
 
 /* Button title for deleting items in a folder */
 "Edit items" = "Edit items";
 
-/* Header when editing a discussion entry with name and timestamp */
+/* (No Commment) */
 "Editing reply by %1$@, %2$@" = "Editing reply by %1$@, %2$@";
+
+/* Header when editing a discussion entry with name and timestamp */
+"Editing reply by %@, %@" = "Editing reply by %1$@, %2$@";
 
 /* the users email */
 "Email" = "Email";
 
-/* Prompt asking user to enable push notifications */
+/* (No Commment) */
 "Enable Push Notifications" = "Enable Push Notifications";
 
 /* masquerade prompt */
@@ -523,13 +532,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "Entry posted";
 
-/* Title of alert box */
+/* Title for an error popup */
 "Error" = "Error";
 
-/* Title of an alert popup */
+/* (No Commment) */
 "Error adding recipeints" = "Error adding recipeints";
 
+/* Title of an alert popup */
+"Error adding recipients" = "Error adding recipients";
+
 /* Error deleting file alert view title */
+"Error deleting file \"%@\"" = "Error deleting file \"%@\"";
+
+/* (No Commment) */
 "Error deleting file &quot;%@&quot;" = "Error deleting file &quot;%@&quot;";
 
 /* Error deleting folder alert view title */
@@ -544,16 +559,16 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for an external tool submission */
 "External Tool" = "External Tool";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "External URL" = "External URL";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "File" = "File";
 
-/* The file extension for a submission is not acceptable */
+/* (No Commment) */
 "File extension not allowed: %@" = "File extension not allowed: %@";
 
-/* Comes before a list of file extensions allowed for an assinment submission */
+/* (No Commment) */
 "File extension(s) permitted for this assignment:" = "File extension(s) permitted for this assignment:";
 
 /* No comment provided by engineer. */
@@ -565,19 +580,16 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* File upload submission type */
 "File upload" = "File upload";
 
-/* File upload failed. */
+/* (No Commment) */
 "File upload failed." = "File upload failed";
 
-/* Files view
-   Name of a tab displaying files in a course
-   title for files view
-   Title for the Files View Controller */
+/* Title for the files screen */
 "Files" = "Files";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Finished downloading";
 
-/* badge indicating front page */
+/* (No Commment) */
 "Front Page" = "Front Page";
 
 /* No comment provided by engineer. */
@@ -598,17 +610,20 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Grade" = "Grade";
 
-/* Tells the user to grade an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Grade %@" = "Grade %@";
 
 /* Launch the SpeedGrader app */
 "Grade in SpeedGrader" = "Grade in SpeedGrader";
 
+/* (No Commment) */
+"Grade: %1$i / %2$g" = "Grade: %1$i / %2$g";
+
 /* No comment provided by engineer. */
 "Grade: %@" = "Grade: %@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "Grade: %1$i / %2$g";
+"Grade: %i / %g" = "Grade: %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "Graded Discussion";
@@ -619,25 +634,25 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Graded discussion. %g points possible.";
 
-/* Title for Grades view controller */
+/* (No Commment) */
 "Grades" = "Grades";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "Group conversation";
 
-/* Groups page title */
+/* (No Commment) */
 "Groups" = "Groups";
 
 /* help button */
 "Help" = "Help";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Commment) */
 "Hide Grades" = "Hide Grades";
 
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "How do you like Canvas?";
 
-/* I give you back your time, use it wisely. */
+/* (No Commment) */
 "I give you back your time, use it wisely." = "I give you back your time; use it wisely.";
 
 /* Image file type */
@@ -652,8 +667,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Inbox" = "Inbox";
 
-/* Assignment grade: Incomplete
-   Pass/fail assignment is incomplete */
+/* (No Commment) */
 "Incomplete" = "Incomplete";
 
 /* Button title for sending a direct message; a private conversation */
@@ -665,19 +679,22 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "It has problems" = "It has problems";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Item %1$d of %2$d" = "Item %1$d of %2$d";
 
-/* It’s empty, what are you still doing here. */
+/* No comment provided by engineer. */
+"Item %d of %d" = "Item %1$d of %2$d";
+
+/* (No Commment) */
 "It’s empty, what are you still doing here." = "It’s empty; what are you still doing here?";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Jumps to current day on calendar" = "Jumps to current day on calendar";
 
 /* No comment provided by engineer. */
 "Keep" = "Keep";
 
-/* Settings entry title for Choosing a Landing Page */
+/* (No Commment) */
 "Landing Page" = "Landing Page";
 
 /* Title for an alert popup */
@@ -692,52 +709,49 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for legal section on the about page */
 "Legal" = "Legal";
 
-/* Generic loading title with ellipses
-   Generic loading title with ellipsis */
+/* Generic loading title with ellipsis */
 "Loading..." = "Loading...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked" = "Locked";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked until %@" = "Locked until %@";
 
 /* Typically the email address correlated to the user */
 "Login ID" = "Login ID";
 
-/* Error message title */
+/* (No Commment) */
 "Login Problem" = "Login Problem";
 
-/* logout action sheet logout button title
-   logout button */
+/* Title for a button to logout a user */
 "Logout" = "Logout";
 
 /* No comment provided by engineer. */
 "Love it!" = "Love it!";
 
-/* Button title for mark as done */
+/* (No Commment) */
 "Mark as Done" = "Mark as Done";
 
-/* Button title for beginning masquerading
-   try masquerading */
+/* Button title for beginning masquerading */
 "Masquerade" = "Masquerade";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Me" = "Me";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Media Comment" = "Media Comment";
 
 /* Title for a media submission */
 "Media Submission" = "Media Submission";
 
-/* The name for a video or audio response to something */
+/* (No Commment) */
 "Media comment" = "Media comment";
 
 /* Media recording submission type */
 "Media recording" = "Media recording";
 
-/* A slider to choose between media types */
+/* (No Commment) */
 "Media type selector. %@" = "Media type selector. %@";
 
 /* Add message button */
@@ -749,15 +763,13 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Message everyone separately, or add everyone to a group conversation?" = "Message everyone separately or add everyone to a group conversation?";
 
-/* Messages tab title
-   messages title
-   The name of the messages tab */
+/* Title for the messages screen */
 "Messages" = "Messages";
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "Mobile Quiz Warning";
 
-/* title for the modules tab */
+/* (No Commment) */
 "Modules" = "Modules";
 
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
@@ -766,19 +778,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title of a link to show additional due dates customized for sections or groups. */
 "Multiple Due Dates" = "Multiple Due Dates";
 
-/* user must contribute to complete requirement */
+/* (No Commment) */
 "Must contribute" = "Must contribute";
 
-/* user must mark item as done to complete requirement */
+/* (No Commment) */
 "Must mark as done" = "Must mark as done";
 
-/* format string saying what the minimum score must be */
+/* (No Commment) */
 "Must score %@ or higher" = "Must score %@ or higher";
 
-/* user must submit something to complete requirement */
+/* (No Commment) */
 "Must submit" = "Must submit";
 
-/* user must view item to complete requirement */
+/* (No Commment) */
 "Must view" = "Must view";
 
 /* files button */
@@ -808,7 +820,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "No Date" = "No Date";
 
-/* Label shown for a to do that doesn't have a due date */
+/* (No Commment) */
 "No Due Date" = "No Due Date";
 
 /* Title for attempting submission without a comment */
@@ -838,54 +850,52 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Indicates a search found no results */
 "No results found" = "No results found";
 
-/* error message for a 401 response. */
+/* (No Commment) */
 "Not Authorized" = "Not Authorised";
 
-/* Pass/fail assignment is not complete */
+/* (No Commment) */
 "Not Complete" = "Not Complete";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
 "Not available" = "Not available";
 
-/* not graded string. */
+/* (No Commment) */
 "Not graded" = "Not graded";
 
-/* not graded with points possible */
+/* (No Commment) */
 "Not graded (0 out of %@)" = "Not graded (0 out of %@)";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Note: Media files are not immediately available for playback while they are processed on the server.";
 
-/* Nothing to do, go play outside! */
+/* (No Commment) */
 "Nothing to do, go play outside!" = "There's nothing to do. Go play outside!";
 
-/* Nothing to see here. */
+/* (No Commment) */
 "Nothing to see here." = "There's nothing to see here.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Notification" = "Notification";
 
-/* Settings entry title for Notification Preferences */
+/* (No Commment) */
 "Notification Preferences" = "Notification Preferences";
 
-/* Notifications tab title */
+/* (No Commment) */
 "Notifications" = "Notifications";
 
-/* No comment provided by engineer. */
+/* OK Button Title */
 "OK" = "OK";
 
-/* Short name for observer enrollment */
+/* No comment provided by engineer. */
 "Observer" = "Observer";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Ok" = "Ok";
 
 /* Online URL submission type */
 "Online URL" = "Online URL";
 
-/* Error message title
-   Error title
-   Masquerade error title */
+/* Title for an error alert */
 "Oops!" = "Oops!";
 
 /* Open a document in the application Safari */
@@ -906,20 +916,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for Outcomes tab */
 "Outcomes" = "Outcomes";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Page" = "Page";
 
 /* No comment provided by engineer. */
 "Past" = "Past";
 
-/* People list title
-   Title for People view controller */
+/* Title for the people view */
 "People" = "People";
 
 /* No comment provided by engineer. */
 "Pinned Discussions" = "Pinned Discussions";
 
-/* A button that plays */
+/* (No Commment) */
 "Play" = "Play";
 
 /* Network error message */
@@ -928,7 +937,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button to post new discussion topic */
 "Post" = "Post";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Post Comment" = "Post Comment";
 
 /* No comment provided by engineer. */
@@ -937,7 +946,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Message shown while posting a discussion entry */
 "Posting…" = "Posting…";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Posts your comment" = "Posts your comment";
 
 /* No comment provided by engineer. */
@@ -949,8 +958,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for profile screen */
 "Profile" = "Profile";
 
-/* Label for a quiz
-   Title for a quiz submission cell */
+/* A short test taken by students */
 "Quiz" = "Quiz";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -962,13 +970,16 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Rate on App Store" = "Rate on App Store";
 
+/* (No Commment) */
+"Rating for %1$@, Score: %2$g" = "Rating for %1$@, Score: %2$g";
+
 /* Title for a button allowing user to re-submit files for an assignment */
 "Re-submit Assignment" = "Re-submit Assignment";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "Recipients";
 
-/* A button that records */
+/* (No Commment) */
 "Record" = "Record";
 
 /* Record audio submission comment */
@@ -986,13 +997,13 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Record video" = "Record video";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refresh Button" = "Refresh Button";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refreshes the calendar content" = "Refreshes the calendar content";
 
-/* Refreshing Calendar Events */
+/* (No Commment) */
 "Refreshing Calendar Events" = "Refreshing Calendar Events";
 
 /* Confirmation for removing a file */
@@ -1040,11 +1051,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Sent" = "Sent";
 
-/* settings button
-   Title for Settings tab */
+/* Title for Settings */
 "Settings" = "Settings";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Commment) */
 "Show Grades" = "Show Grades";
 
 /* title for quiz assignment submission button */
@@ -1065,31 +1075,31 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Sorry, we couldn't find the assignment. This assignment may have been deleted.";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Starts playing your recording" = "Starts playing your recording";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Starts recording a media comment" = "Starts recording a media comment";
 
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Stay Logged In";
 
-/* A button that stops */
+/* Stop loading button for webview */
 "Stop" = "Stop";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
 "Stop Masquerading" = "Stop Masquerading";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Stops playing your recording" = "Stops playing your recording";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Stops recording a media comment" = "Stops recording a media comment";
 
-/* Short name for student enrollment */
+/* No comment provided by engineer. */
 "Student" = "Student";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Sub Header" = "Sub Header";
 
 /* View previously submitted assignment */
@@ -1119,20 +1129,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Sure!" = "Sure!";
 
-/* Hint about media input selection */
+/* (No Commment) */
 "Switches media input between audio and video. Currently set to %@" = "Switches media input between audio and video. Currently set to %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to media comment mode" = "Switches to media comment mode";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to text comment mode" = "Switches to text comment mode";
 
-/* Syllabus screen name
-   Title for Syllabus view controller */
+/* Title for Syllabus screen */
 "Syllabus" = "Syllabus";
 
-/* Short name for TA enrollment */
+/* (No Commment) */
 "TA" = "TA";
 
 /* No comment provided by engineer. */
@@ -1153,7 +1162,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Displayed in a row when an error occurs loading more items */
 "Tap to try again" = "Tap to try again.";
 
-/* Short name for teacher enrollment */
+/* (No Commment) */
 "Teacher" = "Teacher";
 
 /* No comment provided by engineer. */
@@ -1165,10 +1174,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Link to the Terms of Use */
 "Terms of Use" = "Terms of Use";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Text Comment" = "Text Comment";
 
-/* Generic name for a submission entered online. */
+/* Title for a text submission cell */
 "Text Submission" = "Text Submission";
 
 /* Text entry submission type */
@@ -1180,10 +1189,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "The server could not be reached.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The server you entered is not authorized for this app." = "The server you entered is not authorised for this app.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The user agent for this app is unauthorized." = "The user agent for this app is unauthorised.";
 
 /* Error message */
@@ -1214,7 +1223,7 @@ Error: %@";
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "There was an error loading your content. If it is an audio or video upload, it may still be processing.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This app is not authorized for use." = "This app is not authorised for use.";
 
 /* Invalid LTI tool error message */
@@ -1235,14 +1244,13 @@ Error: %@";
 /* Text indicating that a folder cannot be opened */
 "This folder is locked" = "This folder is locked.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This is a media message." = "This is a media message.";
 
-/* This would be a great time to do some extra credit. */
+/* (No Commment) */
 "This would be a great time to do some extra credit." = "This would be a great time to do some extra credit.";
 
-/* Title of to do screen
-   To Do page title */
+/* (No Commment) */
 "To Do" = "To Do";
 
 /* No comment provided by engineer. */
@@ -1251,7 +1259,7 @@ Error: %@";
 /* No comment provided by engineer. */
 "Today" = "Today";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Today Button" = "Today Button";
 
 /* No comment provided by engineer. */
@@ -1266,10 +1274,10 @@ Error: %@";
 /* title for re-submitting an assignment */
 "Turn In Again" = "Turn In Again";
 
-/* Tells the user to turn in an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Turn in %@" = "Turn in %@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Commment) */
 "Uh-oh! No Internet Connection" = "Uh-oh! No Internet Connection";
 
 /* Error title */
@@ -1281,10 +1289,10 @@ Error: %@";
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Unable to upload to server";
 
-/* Grade unavailable */
+/* (No Commment) */
 "Unavailable" = "Unavailable";
 
-/* Title for grade button when no grade is present */
+/* (No Commment) */
 "Ungraded" = "Ungraded";
 
 /* Unknown file type */
@@ -1312,10 +1320,16 @@ Error: %@";
 "Upload file" = "Upload file";
 
 /* Error message */
-"Upload to assignment &quot;%@&quot; failed" = "Upload to assignment &quot;%@&quot; failed.";
+"Upload to assignment \"%@\" failed" = "Upload to assignment \"%@\" failed.";
+
+/* (No Commment) */
+"Upload to assignment &quot;%@&quot; failed" = "Upload to assignment &quot;%@&quot; failed";
 
 /* Error message */
-"Upload to folder &quot;%@&quot; failed" = "Upload to folder &quot;%@&quot; failed.";
+"Upload to folder \"%@\" failed" = "Upload to folder \"%@\" failed.";
+
+/* (No Commment) */
+"Upload to folder &quot;%@&quot; failed" = "Upload to folder &quot;%@&quot; failed";
 
 /* button for using the recorded audio */
 "Use" = "Use";
@@ -1326,22 +1340,22 @@ Error: %@";
 /* Title for User Info section on the about page */
 "User Info" = "User Info";
 
-/* Media type is video */
+/* Video file type */
 "Video" = "Video";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Video error" = "Video error";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "View" = "View";
 
-/* No comment provided by engineer. */
+/* Title for a warning popup */
 "Warning" = "Warning";
 
 /* error message for failure to load a file submission */
 "We had a problem loading the submission. Please try again later." = "We had a problem loading the submission. Please try again later.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "We were unable to verify the server for use with this app." = "We were unable to verify the server for use with this app.";
 
 /* Error Title */
@@ -1371,7 +1385,7 @@ Error: %@";
 /* Message in an alert */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "You do not have SpeedGrader for iPad. You can download it for free from the App Store.";
 
-/* Error message for an unauthorized course or group. */
+/* (No Commment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "You do not have access to this content. The Course or Group may not have started, or may have been concluded.";
 
 /* Error message */
@@ -1383,10 +1397,16 @@ Error: %@";
 /* No comment provided by engineer. */
 "You have an unsaved reply. Would you like to discard that reply?" = "You have an unsaved reply. Would you like to discard that reply?";
 
+/* An explanation of how to transfer files to the Canvas app. */
+"You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas." = "You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas.";
+
+/* (No Commment) */
+"You must first complete:" = "You must first complete:";
+
 /* Error message */
 "You need a title and a description to post" = "You need a title and a description to post.";
 
-/* You should go rate Canvas on the App Store! */
+/* (No Commment) */
 "You should go rate Canvas on the App Store!" = "You should go rate Canvas on the App Store!";
 
 /* Error content */
@@ -1395,27 +1415,30 @@ Error: %@";
 /* Media submission type selected with no Kaltura set up */
 "Your school's configuration does not allow the type of submission selected for this assignment" = "Your school's configuration does not allow the type of submission selected for this assignment.";
 
-/* prerequisites for unlocking item */
-"You must first complete:" = "You must first complete:";
-
-/* Assignment is due on a date at a time */
+/* (No Commment) */
 "due on %1$@ at %2$@" = "due on %1$@ at %2$@";
 
-/* time since creation (less than 1 minute) */
+/* Assignment is due on a date at a time */
+"due on %@ at %@" = "due on %1$@ at %2$@";
+
+/* (No Commment) */
 "moments ago" = "moments ago";
 
-/* Accessibility label for out or grading style */
+/* Accessibility label modifier for point out of point possible */
 "out of" = "out of";
 
 /* The assignment is out of 100 points */
 "out of %@" = "out of %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "out of %@ points" = "out of %@ points";
 
-/* Name for a photo file, i.e. photo.png */
+/* (No Commment) */
 "photo" = "photo";
 
-/* When we don't know the name of a file, we display this */
+/* (No Commment) */
 "unknown" = "unknown";
+
+/* (No Commment) */
+"until %@" = "until %@";
 

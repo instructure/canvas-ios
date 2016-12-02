@@ -1,271 +1,264 @@
-/* Description for rubric criterion rating object */
-"Rating for %1$@, Score: %2$g" = "%1$@ の評価、スコア： %2$g";
-
-/* when locked item will become unlocked */
-"until %@" = "%@まで";
-
-/* explanation for locked module item */
-"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; は&quot;%2$@&quot;の一部としてロックされています";
-
-/* Gigabytes */
+/* (No Commment) */
 "%0.2f GB" = "%0.2f GB";
 
-/* Kilobytes */
+/* (No Commment) */
 "%0.2f KB" = "%0.2f KB";
 
-/* Megabytes */
+/* (No Commment) */
 "%0.2f MB" = "%0.2f MB";
 
-/* Button to submit files to an assignment */
+/* (No Commment) */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
+/* (No Commment) */
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%3$@中%2$g)";
 
-/* something at something */
-"%1$@ at %2$@" = "%2$@の%1$@";
+/* (No Commment) */
+"%1$@ at %2$@" = " %2$@の%1$@";
 
-/* Message for unsupported tab coming soon */
-"%@ is coming soon!" = "%@は近日公開！";
-
-/* local notification countdown alert */
+/* (No Commment) */
 "%1$@ is due in %2$@" = "%1$@ の期限は %2$@ です";
 
-/* explanation for locked item */
+/* (No Commment) */
+"%1$@ out of %2$@" = "%2$@ 中 %1$@ ";
+
+/* (No Commment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%3$@ 中 %2$g)";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@。 %2$@。 タイプ： %3$@。";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@。 %2$@。 タイプ： %3$@。ステータス： %4$@";
+
+/* (No Commment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Commment) */
+"%1$g out of %2$@" = "%2$@ 中 %1$g ";
+
+/* (No Commment) */
+"%@ is coming soon!" = "%@は近日公開！
+ ";
+
+/* (No Commment) */
 "%@ is locked" = "%@ はロックされています";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "%@ is not a valid URL" = "%@ は有効なURLではありません";
 
-/* %@ is the token where the host name goes. Error message that the host doesn't exist. */
+/* (No Commment) */
 "%@ is not a valid host" = "%@ は有効なホストではありません";
 
-/* Message for unsupported tab */
+/* (No Commment) */
 "%@ is not currently supported." = "%@ は現在サポートされていません。";
 
-/* Description for how many times a specific discussion has been liked by other users */
+/* (No Commment) */
 "%@ likes" = "%@ いいね";
 
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ は採点が必要です";
 
-/* 88 out of 100 points */
-"%1$@ out of %2$@" = "%2$@ 中 %1$@";
-
-/* 83% (83 out of 100 points */
-"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%3$@ 中 %2$g)";
-
-/* String to be read for the blind users. Name of item in module, then type of thing. */
-"%1$@. %2$@. Type: %3$@." = "%1$@。 %2$@。 タイプ： %3$@。";
-
-/* String to be read for the blind users. Name of item in module, then type of thing, then status. */
-"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@。 %2$@。 タイプ： %3$@。ステータス： %4$@";
-
-/* Word and ellipses */
+/* (No Commment) */
 "%@..." = "%@...";
 
-/* A number and a collective noun, like '5 pigs' */
-"%1$d %2$@" = "%1$d %2$@";
-
-/* time since creation (2 or more days) */
+/* (No Commment) */
 "%d days ago" = "%d 日前";
 
-/* time since creation (2 or more hours) */
+/* (No Commment) */
 "%d hours ago" = "%d 時間前";
 
-/* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
+/* (No Commment) */
 "%d items" = "%d アイテム";
 
-/* time since creation (2 or more minutes) */
+/* (No Commment) */
 "%d minutes ago" = "%d 分前";
 
-/* time since creation (2 or more months) */
+/* (No Commment) */
 "%d months ago" = "%d カ月前";
 
-/* In the context 'Joe, Fred, ((25 more))' */
+/* (No Commment) */
 "%d more" = "%d 以上";
 
-/* Something like '5 replies' */
+/* (No Commment) */
 "%d replies" = "%d 返信";
 
-/* Something like '3 unread'. Refers to unread replies in a discsusion. */
+/* (No Commment) */
 "%d unread" = "%d 未読";
 
-/* time since creation (2 or more years) */
+/* (No Commment) */
 "%d years ago" = "%d 年前";
 
-/* 88 out of 100 points */
-"%1$g out of %2$@" = "%2$@ 中 %1$g";
-
-/* As in, '15 bytes' */
+/* (No Commment) */
 "%qu bytes" = "%qu バイト";
 
-/* offset for one day */
+/* (No Commment) */
 "%tu day" = "%tu 日";
 
-/* offset for number of days */
+/* (No Commment) */
 "%tu days" = "%tu 日";
 
-/* offset for an hour */
+/* (No Commment) */
 "%tu hour" = "%tu 時間";
 
-/* offset for number of hours */
+/* (No Commment) */
 "%tu hours" = "%tu 時間";
 
-/* offset for less than one minute */
+/* (No Commment) */
 "%tu minute" = "%tu 分";
 
-/* offset for under an hour */
+/* (No Commment) */
 "%tu minutes" = "%tu 分";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "%u Attachments" = "%uの添付ファイル";
 
-/* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
+/* (No Commment) */
 "%u files" = "%u ファイル";
 
-/* %@ will be replaced by the filename */
+/* (No Commment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot;は &quot;%2$@&quot;の一部としてロックされています";
+
+/* (No Commment) */
 "'%@' is now ready to submit to assignments" = "'%@' は、課題を提出する準備ができています";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "1 Attachment" = "1 つの添付ファイル";
 
-/* one day */
+/* (No Commment) */
 "1 day" = "1 日";
 
-/* time since creation */
+/* (No Commment) */
 "1 day ago" = "1 日前";
 
-/* one hour */
+/* (No Commment) */
 "1 hour" = "1 時間";
 
-/* time since creation */
+/* (No Commment) */
 "1 hour ago" = "1 時間前";
 
-/* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
+/* (No Commment) */
 "1 item" = "1 アイテム";
 
-/* Description for a post that has been liked once */
+/* (No Commment) */
 "1 like" = "1 いいね";
 
-/* time since creation */
+/* (No Commment) */
 "1 minute ago" = "1 分前";
 
-/* time since creation */
+/* (No Commment) */
 "1 month ago" = "1 カ月前";
 
 /* Label indicating a submission need grading */
 "1 needs grading" = "1 つ採点が必要です";
 
-/* time since creation */
+/* (No Commment) */
 "1 year ago" = "1 年前";
 
-/* three days */
+/* (No Commment) */
 "3 days" = "3 日";
 
-/* five minutes */
+/* (No Commment) */
 "5 minutes" = "5 分";
 
-/* Name of a tab displaying Canvas Info including legal info */
+/* Settings entry title for About */
 "About" = "約";
 
 /* Access Denied from the server */
 "Access Denied" = "アクセスが拒否されました";
 
-/* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
+/* (No Commment) */
 "Access denied. Please check your permissions for the action you're trying to complete." = "アクセスが拒否されました。完了しようとしているアクションに対するあなたの承認を確認してください。";
 
-/* title for Messages attachment action sheet */
+/* (No Commment) */
 "Add Attachment" = "添付ファイルを追加";
 
-/* add comment button */
+/* (No Commment) */
 "Add Comment" = "コメントを追加";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Add Cover Photo" = "カバー写真を追加";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Add a folder" = "フォルダーを追加";
 
-/* Title for attachment action sheet from rich text view */
+/* (No Commment) */
 "Add attachment" = "添付ファイルを追加";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Add comment" = "コメントを追加";
 
-/* Button title for adding a folder to a folder */
+/* (No Commment) */
 "Add folder" = "フォルダーを追加";
 
-/* Title for the add-inline-media sheet
-   Title on the add-inline-media sheet */
+/* (No Commment) */
 "Add inline media" = "インラインメディアを追加";
 
-/* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
+/* (No Commment) */
 "Add recipients" = "受信者を追加";
 
-/* Button to select all members of a group */
+/* (No Commment) */
 "All members" = "すべてのメンバー";
 
-/* Error message text */
+/* (No Commment) */
 "An unknown error occurred" = "不明なエラーが発生しました";
 
-/* Title of the new announcement view */
+/* (No Commment) */
 "Announcement" = "アナウンスメント";
 
-/* Announcements title
-   Title for the announcements view controller */
+/* (No Commment) */
 "Announcements" = "アナウンスメント";
 
-/* Archive selected messages button
-   mark a message as archived */
+/* (No Commment) */
 "Archive" = "アーカイブ";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "選択されたメッセージボタンをアーカイブに保存";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "すべての選択されたメッセージをアーカイブに保存";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Archived" = "アーカイブに保存されました";
 
-/* Action sheet title verifying that a user wants to logout. */
+/* (No Commment) */
 "Are you ready to logout?" = "ログアウトしますか？";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Ask me later" = "後ほど聞いてください";
 
-/* Label for an assignment */
+/* Assignment icon a11y label
+   Assignment module item type */
 "Assignment" = "課題";
 
 /* Title for Assignments view controller */
 "Assignments" = "課題";
 
-/* An item for attaching to a discussion */
+/* (No Commment) */
 "Attachment" = "添付ファイル";
 
-/* label for an attachment */
-"Attachment %d" = "%dの添付ファイル";
+/* (No Commment) */
+"Attachment %d" = "%dの添付ファイル ";
 
-/* An item for attaching to a conversation */
+/* (No Commment) */
 "Attachment %i" = "%iの添付ファイル";
 
-/* Table View Controller for Attachments */
+/* (No Commment) */
 "Attachments" = "添付ファイル";
 
-/* Label for a discussion */
+/* (No Commment) */
 "Attendance" = "出席";
 
-/* Media type is audio */
+/* (No Commment) */
 "Audio" = "オーディオ";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Audio input hardware not available" = "オーディオのインプットハードウェアがありません";
 
-/* Title of alert box */
+/* (No Commment) */
 "Authentication error" = "認証エラー";
 
-/* Link to building panda avatar */
+/* (No Commment) */
 "Build Avatar" = "アバターを作る";
 
 /* No comment provided by engineer. */
@@ -274,37 +267,25 @@
 /* Calendar page title */
 "Calendar" = "カレンダー";
 
-/* Invalid LTI tool error title */
+/* (No Commment) */
 "Can't load tool" = "ツールの読み込みができません";
 
-/* Setup only allows media but no Kaltura instance error title */
+/* (No Commment) */
 "Can't submit media" = "メディアを提出できません";
 
-/* Button title for canceling download of a file
-   Button title for cancelling the selection of a quiz. This will appear in the alert view notifying the user of the mobile quiz limitations.
-   Cancel
-   cancel add file/folder
-   Cancel add option
-   Cancel button for removing a file
-   Cancel deletion of discussion entry
-   cancel folder creation
-   Cancel folder name change
-   cancel masquerade
-   cancel message creation
-   cancel reminder notification
-   cancel view help options */
-"Cancel" = "取り消し";
+/* (No Commment) */
+"Cancel" = "キャンセル";
 
-/* Cancel adding a comment button */
+/* (No Commment) */
 "Cancel Message" = "メッセージを取り消し";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Canvas appears to be unavailable. Please try again later." = "Canvasが利用できないようです。時間をおいて再度お試しください。";
 
-/* detail text for recipient fetch error message */
+/* (No Commment) */
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvasは、現在の検索で受信者を見つけることができませんでした。時間をおいて再度お試しください。";
 
-/* mobile quze warning info */
+/* (No Commment) */
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
 
 Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
@@ -315,357 +296,346 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 クイズにサポートされていない内容がある場合には、デスクトップやノートパソコンをご使用ください。クイズのコンテンツがすべてサポートされていることが分かっている場合には、ご自由に携帯端末を使用してください。";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Change User" = "ユーザーを変更する";
 
-/* Button label for choosing a photo */
+/* (No Commment) */
 "Choose Photo" = "写真を選択する";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Choose Profile Picture" = "プロフィール写真を選択する";
 
-/* Choose a video to send as a comment */
+/* (No Commment) */
 "Choose Video" = "動画を選択する";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Choose a name for the new folder" = "新しいフォルダ名を選択する";
 
-/* Content of an alert popup */
+/* (No Commment) */
 "Choose a name for the new folder." = "新しいフォルダ名を選択する。";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Choose a submission type" = "提出の形式を選択する";
 
-/* Choose an existing picture or video to use in a comment. */
+/* (No Commment) */
 "Choose from Library..." = "ライブラリから選択...";
 
-/* action sheet text for picking video from library */
+/* (No Commment) */
 "Choose video" = "動画を選択する";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Close" = "閉じる";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Closed for Comments" = "コメント締切";
 
-/* Title for Collaborations tab */
+/* (No Commment) */
 "Collaborations" = "コラボレーション";
 
-/* Add message button for teacher or ta */
+/* (No Commment) */
 "Comment" = "コメント";
 
-/* title for media comment upload failure */
+/* (No Commment) */
 "Comment Error" = "コメントエラー";
 
-/* View comments */
+/* (No Commment) */
 "Comments" = "コメント";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Comments are disabled" = "コメントは無効です";
 
-/* Assignment grade: Complete
-   Pass/fail assignment is complete */
+/* (No Commment) */
 "Complete" = "完了";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Completed" = "完了済み";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "メッセージボタンを作成する";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "メッセージを作成する";
 
-/* Title for Conferences tab */
+/* (No Commment) */
 "Conferences" = "カンファレンス";
 
-/* Alert title */
+/* (No Commment) */
 "Confirm deletion" = "削除を確認する";
 
-/* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
+/* (No Commment) */
 "Continue" = "続ける";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Could not authenticate with server" = "サーバーで認証できませんでした。";
 
-/* error title for failure to load a file submission */
+/* (No Commment) */
 "Couldn't Load Submission" = "提出の読み込みができませんでした";
 
-/* title for alert displayed when iCanvas can't fetch recipients */
+/* (No Commment) */
 "Couldn't find recipients" = "受信者を見つけることができませんでした";
 
-/* Title for Course Syllabus view controller */
+/* (No Commment) */
 "Course Syllabus" = "コースシラバス";
 
 /* Courses page title */
 "Courses" = "コース";
 
-/* cancel folder creation */
+/* (No Commment) */
 "Create Folder" = "フォルダを作成する";
 
-/* Header for a section showing submitted filenames */
+/* (No Commment) */
 "Current Submission" = "現在の提出";
 
-/* Message telling users that quiz support on mobile is limited */
+/* (No Commment) */
 "Currently there is limited quiz support on mobile" = "現在、携帯端末を使用してのクイズのサポートには制限があります";
 
-/* A custom grade not specified by the rubric. */
+/* (No Commment) */
 "Custom Grade" = "成績をカスタムする";
 
-/* label for customizing a course */
+/* (No Commment) */
 "Customize" = "カスタマイズする";
 
-/* Button to confirm deleting folders
-   Button to delete a discussion entry
-   Confirm deletion of discussion entry */
+/* (No Commment) */
 "Delete" = "消去する";
 
-/* Button for deleting files or folders. %d will be the number of selected items */
+/* (No Commment) */
 "Delete (%d)" = "消去 (%d)";
 
-/* Alert message */
+/* (No Commment) */
 "Delete this reply?" = "この返信を消去しますか？";
 
-/* delete file confirmation alert */
-"Deleted file: &quot;%@&quot;" = "&quot;%@&quot;ファイルを消去する";
+/* (No Commment) */
+"Deleted file: &quot;%@&quot;" = "削除されたファイル：&quot;%@&quot;";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Detail" = "詳細";
 
-/* Placeholder text for discussion details field */
+/* No comment provided by engineer. */
 "Details" = "詳細";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Discard" = "破棄する";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Discard this entry?" = "このエントリを破棄しますか？";
 
-/* Title of the new discussion view */
+/* Discussion module item type */
 "Discussion" = "ディスカッション";
 
-/* Title for discussion entry submission */
+/* (No Commment) */
 "Discussion Entry" = "ディスカッションエントリ";
 
-/* Title for Discussion Topics view controller */
+/* (No Commment) */
 "Discussion Topics" = "ディスカッションのトピック";
 
-/* Discussions title
-   Title for Discussions view controller */
+/* (No Commment) */
 "Discussions" = "ディスカッション";
 
-/* Dismiss an error button
-   dismiss button
-   Dismiss button for an error dialoue
-   Dismiss error alert button
-   dismiss the alert button */
+/* Dismiss an alert dialog */
 "Dismiss" = "棄却する";
 
-/* Alert title asking if you want to masquerade */
+/* (No Commment) */
 "Do you want to masquerade as this user?" = "このユーザーとしてマスカレードしますか？";
 
-/* The domain for the institution/school that the user is currently using */
+/* (No Commment) */
 "Domain" = "ドメイン";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Don't ask me again" = "二度と聞かないでください";
 
-/* Button to cancel deleting folders */
+/* (No Commment) */
 "Don't delete" = "消去しないでください";
 
-/* No comment provided by engineer. */
+/* Button title to mark a to do item as done */
 "Done" = "完了";
 
-/* Shown when we cancel a file download */
+/* (No Commment) */
 "Download Canceled" = "ダウンロードはキャンセルされました";
 
-/* Shown while downloading a file */
+/* (No Commment) */
 "Downloading..." = "ダウンロード中...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "期限：";
 
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %1$@ at %2$@" = "期限: %2$@の%1$@";
+/* (No Commment) */
+"Due: %1$@ at %2$@" = "期限: %2$@の%1$@ ";
 
-/* Link to the End User License Agreement document */
+/* Due date label for to do items, first placeholder is date, second is time */
+"Due: %@ at %@" = "期限: %2$@の%1$@ ";
+
+/* (No Commment) */
 "EULA" = "EULA";
 
-/* Button to edit a discussion entry */
+/* (No Commment) */
 "Edit" = "編集する";
 
-/* Edit course list title
-   Edit the items in the course list */
+/* Edit course list title */
 "Edit Course List" = "コースリストを編集する";
 
-/* Edit group list title
-   Edit the items in the group list */
+/* Edit group list title */
 "Edit Group List" = "グループリストを編集する";
 
-/* Button title for deleting items in a folder */
+/* (No Commment) */
 "Edit items" = "アイテムを編集する";
 
-/* Header when editing a discussion entry with name and timestamp */
+/* (No Commment) */
 "Editing reply by %1$@, %2$@" = "%1$@, %2$@で編集返信する";
 
-/* the users email */
+/* (No Commment) */
 "Email" = "Eメール";
 
 /* Prompt asking user to enable push notifications */
 "Enable Push Notifications" = "プッシュ通知を有効にする";
 
-/* masquerade prompt */
+/* (No Commment) */
 "Enter User ID and Domain." = "ユーザーIDとドメインを入力する。";
 
-/* Submission input view placeholder text */
+/* (No Commment) */
 "Enter submission" = "提出を入力する";
 
-/* Confirmation message after posting a discussion entry */
+/* (No Commment) */
 "Entry posted" = "エントリがポストされました";
 
-/* Title of alert box */
+/* (No Commment) */
 "Error" = "エラー";
 
-/* Title of an alert popup */
+/* (No Commment) */
 "Error adding recipeints" = "受信者の追加中にエラーが発生しました";
 
-/* Error deleting file alert view title */
-"Error deleting file &quot;%@&quot;" = "&quot;%@&quot;ファイルの消去中にエラーが発生しました";
+/* (No Commment) */
+"Error deleting file &quot;%@&quot;" = "ファイル &quot;%@&quot;削除中にエラーが起こりました";
 
-/* Error deleting folder alert view title */
+/* (No Commment) */
 "Error deleting folder" = "フォルダの消去中にエラーが発生しました";
 
-/* Label for a calendar event */
+/* (No Commment) */
 "Event" = "イベント";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Existing Attachments..." = "既存の添付ファイル...";
 
-/* Title for an external tool submission */
+/* (No Commment) */
 "External Tool" = "外部ツール";
 
-/* No comment provided by engineer. */
+/* External URL module item type */
 "External URL" = "外部URL";
 
-/* No comment provided by engineer. */
+/* File module item type */
 "File" = "ファイル";
 
-/* The file extension for a submission is not acceptable */
+/* (No Commment) */
 "File extension not allowed: %@" = "使用が許可されていないファイル拡張子: %@";
 
-/* Comes before a list of file extensions allowed for an assinment submission */
+/* (No Commment) */
 "File extension(s) permitted for this assignment:" = "この課題に使用が許可されているファイル拡張子：";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "File received" = "受信したファイル";
 
-/* Title for an alert popup */
+/* (No Commment) */
 "File unavailable" = "ファイルが利用出来ません";
 
-/* File upload submission type */
+/* (No Commment) */
 "File upload" = "ファイルのアップロード";
 
-/* File upload failed. */
+/* (No Commment) */
 "File upload failed." = "ファイルのアップロードに失敗しました。";
 
-/* Files view
-   Name of a tab displaying files in a course
-   title for files view
-   Title for the Files View Controller */
+/* (No Commment) */
 "Files" = "ファイル";
 
-/* Shown when we finish downloading a file */
+/* (No Commment) */
 "Finished downloading" = "ダウンロードが終了しました";
 
 /* badge indicating front page */
 "Front Page" = "フロントページ";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Future" = "未来";
 
-/* title for discussion assignment submission button */
+/* (No Commment) */
 "Go To Discussion" = "ディスカッションへ移動";
 
-/* Action on an alert */
+/* (No Commment) */
 "Go to App Store" = "アプリストアへ移動";
 
-/* text for the \"go to quiz\" button */
+/* (No Commment) */
 "Go to Quiz" = "クイズへ移動";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Go to discussion" = "ディスカッションへ移動";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Grade" = "成績";
 
-/* Tells the user to grade an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Grade %@" = "成績 %@";
 
-/* Launch the SpeedGrader app */
+/* (No Commment) */
 "Grade in SpeedGrader" = "SpeedGraderで採点する";
 
-/* No comment provided by engineer. */
-"Grade: %@" = "成績: %@";
-
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Grade: %1$i / %2$g" = "成績: %1$i / %2$g";
 
-/* Label for a discussion */
+/* (No Commment) */
+"Grade: %@" = "成績: %@";
+
+/* (No Commment) */
 "Graded Discussion" = "採点されたディスカッション";
 
-/* Lets user know discussion is graded */
+/* (No Commment) */
 "Graded discussion." = "採点されたディスカッション。";
 
-/* Graded discussion. 25 points possible */
+/* (No Commment) */
 "Graded discussion. %g points possible." = "採点されたディスカッション。 %g ポイントが可能です。";
 
 /* Title for Grades view controller */
 "Grades" = "成績";
 
-/* Button title for starting a group conversation */
+/* (No Commment) */
 "Group conversation" = "グループでの会話";
 
 /* Groups page title */
 "Groups" = "グループ";
 
-/* help button */
+/* (No Commment) */
 "Help" = "ヘルプ";
 
 /* Accessibility label for toggling grades to hidden */
 "Hide Grades" = "成績を非表示にする";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "How do you like Canvas?" = "Canvasがどのくらい好きですか？";
 
 /* I give you back your time, use it wisely. */
 "I give you back your time, use it wisely." = "時間をお返ししますので、有効にお使いください。";
 
-/* Image file type */
+/* (No Commment) */
 "Image" = "画像";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Import from Dropbox" = "Dropboxからインポートする";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Import from camera" = "カメラからインポートする";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Inbox" = "インボックス";
 
-/* Assignment grade: Incomplete
-   Pass/fail assignment is incomplete */
+/* (No Commment) */
 "Incomplete" = "不完全";
 
-/* Button title for sending a direct message; a private conversation */
+/* (No Commment) */
 "Individual messages" = "個人メッセージ";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Invalid URL" = "無効なURL";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "It has problems" = "問題があります";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Item %1$d of %2$d" = "%2$dの%1$dアイテム";
 
 /* It’s empty, what are you still doing here. */
@@ -674,96 +644,91 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Jumps to current day on calendar" = "カレンダーの現在の日付まで移動する";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Keep" = "保存する";
 
 /* Settings entry title for Choosing a Landing Page */
 "Landing Page" = "ランディングページ";
 
-/* Title for an alert popup */
+/* (No Commment) */
 "Large file" = "大きなファイル";
 
-/* Button in an alert */
+/* No comment provided by engineer. */
 "Later" = "後で";
 
-/* title for submission button */
+/* (No Commment) */
 "Launch External Tool" = "外部ツールを起動する";
 
-/* Title for legal section on the about page */
+/* (No Commment) */
 "Legal" = "法的な";
 
-/* Generic loading title with ellipses
-   Generic loading title with ellipsis */
+/* (No Commment) */
 "Loading..." = "ロード中...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked" = "ロックされています";
 
-/* No comment provided by engineer. */
+/* locked date */
 "Locked until %@" = "%@までロック";
 
-/* Typically the email address correlated to the user */
+/* (No Commment) */
 "Login ID" = "ログイン ID";
 
-/* Error message title */
+/* (No Commment) */
 "Login Problem" = "ログインでの問題";
 
-/* logout action sheet logout button title
-   logout button */
+/* (No Commment) */
 "Logout" = "ログアウト";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Love it!" = "大好きです！";
 
-/* Button title for mark as done */
+/* Button title for mark as done. */
 "Mark as Done" = "完了としてマークする";
 
-/* Button title for beginning masquerading
-   try masquerading */
+/* (No Commment) */
 "Masquerade" = "マスカレード";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Me" = "私";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Media Comment" = "メディアのコメント";
 
-/* Title for a media submission */
+/* (No Commment) */
 "Media Submission" = "メディアの提出";
 
-/* The name for a video or audio response to something */
+/* (No Commment) */
 "Media comment" = "メディアのコメント";
 
-/* Media recording submission type */
+/* (No Commment) */
 "Media recording" = "メディアの記録";
 
-/* A slider to choose between media types */
+/* (No Commment) */
 "Media type selector. %@" = "メディアタイプセレクター。%@";
 
-/* Add message button */
+/* (No Commment) */
 "Message Instructor" = "メッセージインストラクター";
 
-/* notification that a message has been sent succesfully */
+/* (No Commment) */
 "Message Sent." = "メッセージが送信されました。";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "メッセージをそれぞれ別々に送りますか、または全員をグループカンバセイションに追加しますか？";
 
-/* Messages tab title
-   messages title
-   The name of the messages tab */
+/* (No Commment) */
 "Messages" = "メッセージ";
 
-/* Warnging for taking quizzes on a mobile device */
+/* (No Commment) */
 "Mobile Quiz Warning" = "モバイルクイズの注意";
 
-/* title for the modules tab */
+/* Modules title */
 "Modules" = "モジュール";
 
-/* Button title for selecting to view more info about the limitations of mobile quizzes */
+/* (No Commment) */
 "More Info" = "詳細な情報";
 
-/* Title of a link to show additional due dates customized for sections or groups. */
+/* (No Commment) */
 "Multiple Due Dates" = "複数の期限日";
 
 /* user must contribute to complete requirement */
@@ -773,87 +738,87 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 "Must mark as done" = "必ず完了としてマークしなければならない";
 
 /* format string saying what the minimum score must be */
-"Must score %@ or higher" = "必ず%@、またはそれ以上得点しなければならない";
+"Must score %@ or higher" = "必ず%@、またはそれ以上得点しなければならない ";
 
-/* user must submit something to complete requirement */
+/* user must submit something to complete */
 "Must submit" = "必ず提出しなければならない";
 
 /* user must view item to complete requirement */
 "Must view" = "必ず閲覧しなければならない";
 
-/* files button */
+/* (No Commment) */
 "My Files" = "マイファイル";
 
-/* the users name */
+/* (No Commment) */
 "Name" = "名前";
 
-/* Title notifying user that SpeedGrader is available for iPad */
+/* (No Commment) */
 "Need SpeedGrader for iPad" = "iPadにSpeedGraderが必要です";
 
-/* Network error title */
+/* (No Commment) */
 "Network Error" = "ネットワークエラー";
 
-/* Title for an alert popup, where the user will be asked to provide a name for the new folder */
+/* (No Commment) */
 "New Folder" = "新しいフォルダ";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Next 7 Days" = "次の7日間";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Next item" = "次のアイテム";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "No" = "いいえ";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "No Date" = "日付なし";
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "期限日なし";
 
-/* Title for attempting submission without a comment */
+/* (No Commment) */
 "No Recorded Audio" = "録音された音声はありません";
 
-/* No Submission groupong */
+/* (No Commment) */
 "No Submission" = "提出はありません";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "No Thanks" = "結構です";
 
-/* Text of alert when attempting to select a file that can't be printed or passed to any other app */
+/* (No Commment) */
 "No actions available for this file" = "このファイルに利用できるアクションがありません";
 
-/* Message for attempting submission without a comment */
+/* (No Commment) */
 "No audio was recorded." = "音声は録音されていません。";
 
-/* String for when assignment has no due date */
+/* (No Commment) */
 "No due date" = "期限日なし";
 
-/* Error message */
+/* (No Commment) */
 "No installed apps support opening this file" = "このファイルを開くことができるアプリがインストールされていません";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "No recipients" = "受信者がいません";
 
-/* Indicates a search found no results */
+/* (No Commment) */
 "No results found" = "結果が見つかりませんでした";
 
-/* error message for a 401 response. */
+/* (No Commment) */
 "Not Authorized" = "承認されていません";
 
-/* Pass/fail assignment is not complete */
+/* (No Commment) */
 "Not Complete" = "未完了";
 
-/* Accessibility label for points out of points possible label when points are not availiable. */
+/* (No Commment) */
 "Not available" = "利用できません";
 
-/* not graded string. */
+/* (No Commment) */
 "Not graded" = "採点されていません";
 
-/* not graded with points possible */
+/* (No Commment) */
 "Not graded (0 out of %@)" = "採点されていません ( %@ 中 0)";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "注意： メディアファイルはサーバー上で処理されるため、すぐに再生することはできません。";
 
 /* Nothing to do, go play outside! */
@@ -871,119 +836,118 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Notifications tab title */
 "Notifications" = "通知";
 
-/* No comment provided by engineer. */
+/* OK Button Title */
 "OK" = "OK";
 
-/* Short name for observer enrollment */
+/* (No Commment) */
 "Observer" = "評者";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Ok" = "Ok";
 
-/* Online URL submission type */
+/* (No Commment) */
 "Online URL" = "オンラインURL";
 
-/* Error message title
-   Error title
-   Masquerade error title */
+/* (No Commment) */
 "Oops!" = "しまった！";
 
-/* Open a document in the application Safari */
+/* (No Commment) */
 "Open in Safari" = "Safariで開く";
 
-/* Link to open assignment in SpeedGrader */
+/* (No Commment) */
 "Open in SpeedGrader" = "SpeedGraderで開く";
 
-/* Open file in another application */
+/* (No Commment) */
 "Open in..." = "...で開く";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Other" = "その他";
 
-/* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
+/* (No Commment) */
 "Other replies hidden until you reply" = "返信するまで非表示になっている他の返信";
 
-/* Title for Outcomes tab */
+/* (No Commment) */
 "Outcomes" = "結果";
 
-/* No comment provided by engineer. */
+/* Page module item type */
 "Page" = "ページ";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Past" = "過去";
 
-/* People list title
-   Title for People view controller */
+/* (No Commment) */
 "People" = "人";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Pinned Discussions" = "ピン留めされたディスカッション";
 
-/* A button that plays */
+/* (No Commment) */
 "Play" = "再生";
 
-/* Network error message */
+/* (No Commment) */
 "Please check your network connection and try again." = "ネットワークの接続を確認して再度お試しください。";
 
-/* Button to post new discussion topic */
+/* (No Commment) */
 "Post" = "ポスト";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Post Comment" = "コメントをポストする";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Post comment" = "コメントをポストする";
 
-/* Message shown while posting a discussion entry */
+/* (No Commment) */
 "Posting…" = "ポストしています…";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Posts your comment" = "コメントをポストする";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Previous item" = "前のアイテム";
 
-/* Link to the privacy policy */
+/* (No Commment) */
 "Privacy Policy" = "個人情報保護方針";
 
-/* Title for profile screen */
-"Profile" = "プロフィール";
+/* (No Commment) */
+"Profile" = "プロファイル";
 
-/* Label for a quiz
-   Title for a quiz submission cell */
+/* Quiz module item type */
 "Quiz" = "クイズ";
 
-/* Title for alert notifying users that support for quizzes on mobile is limited. */
+/* (No Commment) */
 "Quiz Alert" = "クイズのアラート";
 
-/* The title for the list of quizzes for a course */
+/* (No Commment) */
 "Quizzes" = "クイズ";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Rate on App Store" = "アプリストアを評価する";
 
-/* Title for a button allowing user to re-submit files for an assignment */
+/* (No Commment) */
+"Rating for %1$@, Score: %2$g" = "%1$@の評価、スコア:%2$g";
+
+/* (No Commment) */
 "Re-submit Assignment" = "課題の再提出";
 
-/* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
+/* (No Commment) */
 "Recipients" = "受信者";
 
-/* A button that records */
+/* (No Commment) */
 "Record" = "録音";
 
-/* Record audio submission comment */
+/* (No Commment) */
 "Record Audio" = "オーディオを録音する";
 
-/* Record audio to use in a comment. */
+/* (No Commment) */
 "Record Audio..." = "オーディオを録音しています...";
 
-/* Record video submission comment option */
+/* (No Commment) */
 "Record Video" = "動画を録画する";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Record audio" = "オーディオを録音する";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Record video" = "動画を録画する";
 
 /* No comment provided by engineer. */
@@ -995,427 +959,430 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Refreshing Calendar Events */
 "Refreshing Calendar Events" = "カレンダーの内容をリフレッシュしています";
 
-/* Confirmation for removing a file */
+/* (No Commment) */
 "Remove" = "削除する";
 
-/* Button title for confirming a file deletion */
+/* (No Commment) */
 "Remove this file?" = "このファイルを削除しますか？";
 
-/* option to report a problem */
+/* (No Commment) */
 "Report a problem" = "問題を報告する";
 
-/* option to request a feature */
+/* (No Commment) */
 "Request a feature" = "機能をリクエストする";
 
-/* View grading rubric */
+/* (No Commment) */
 "Rubric" = "解説";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Save" = "保存する";
 
-/* Title for Assignment Notifications Sheet */
+/* (No Commment) */
 "Schedule Notification" = "通知を設定する";
 
-/* Placeholder text in a search bar used to find conversation recipients */
+/* (No Commment) */
 "Search for recipients" = "受信者を検索する";
 
-/* Title for a file picker window */
+/* Placeholder text for search bar on assignments page */
+"Search here..." = "ここを検索する...";
+
+/* (No Commment) */
 "Select file(s)" = "ファイルを選択する";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Select or deselect" = "選択または非選択にする";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Selected" = "選択された";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Send" = "送信";
 
-/* Action sheet button title for sending a new message to a user. %@ will be replaced with the user's name */
+/* (No Commment) */
 "Send %@ a message" = "メッセージを%@に送信する";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Send Message" = "メッセージを送信 する";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Sent" = "送信しました";
 
-/* settings button
-   Title for Settings tab */
+/* (No Commment) */
 "Settings" = "設定";
 
 /* Accessibility label for toggling grades to visible */
 "Show Grades" = "成績を表示する";
 
-/* title for quiz assignment submission button */
+/* (No Commment) */
 "Show Quiz" = "クイズを表示する";
 
-/* Title for button confirming showing a file */
+/* (No Commment) */
 "Show file" = "ファイルを表示する";
 
-/* VoiceOver text for a button that lets you show recipients */
+/* (No Commment) */
 "Show recipients" = "受信者を表示する";
 
-/* Message for an error popup */
+/* (No Commment) */
 "Some items could not be deleted" = "いくつかのアイテムは、消去することができませんでした";
 
-/* Message for a warning popup */
+/* (No Commment) */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "いくつかの選択されたフォルダは空ではありません。消去しますか？";
 
-/* 404 Error for missing assignment */
+/* (No Commment) */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "申し訳ありませんが、課題が見つかりません。この課題は消去された可能性があります。";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Starts playing your recording" = "録音を再生する";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Starts recording a media comment" = "メディアコメントの録音を開始する";
 
-/* button title for cancelling a logout. */
+/* (No Commment) */
 "Stay Logged In" = "ログイン状態にしておく";
 
-/* A button that stops */
+/* (No Commment) */
 "Stop" = "中止する";
 
-/* Button title for stopping masquerading; when a privileged user becomes another user in the system */
+/* (No Commment) */
 "Stop Masquerading" = "マスカレードを中止する";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Stops playing your recording" = "録音の再生を停止する";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Stops recording a media comment" = "メディアコメントの録音を停止する";
 
-/* Short name for student enrollment */
+/* (No Commment) */
 "Student" = "受講生";
 
-/* No comment provided by engineer. */
+/* Header item label */
 "Sub Header" = "サブヘッダー";
 
-/* View previously submitted assignment */
+/* (No Commment) */
 "Submission" = "提出";
 
-/* Title for file submission error */
+/* (No Commment) */
 "Submission Error" = "提出エラー";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Submission complete" = "提出完了";
 
-/* Submit an assignment */
+/* (No Commment) */
 "Submit" = "提出する";
 
-/* Submitted grouping */
+/* (No Commment) */
 "Submitted" = "提出済み";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Submitting..." = "提出しています...";
 
-/* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
+/* (No Commment) */
 "Subscribe to calendar feed" = "カレンダーフィードに登録する";
 
-/* Masquerade success title */
+/* (No Commment) */
 "Success!" = "成功です！";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Sure!" = "もちろん！";
 
-/* Hint about media input selection */
+/* (No Commment) */
 "Switches media input between audio and video. Currently set to %@" = "メディアインプットをオーディオと動画のどちらかに切り替える。現在は%@に設定されています";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to media comment mode" = "メディアコメントモードに切り替える";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to text comment mode" = "テキストコメントモードに切り替える";
 
-/* Syllabus screen name
-   Title for Syllabus view controller */
+/* (No Commment) */
 "Syllabus" = "シラバス";
 
-/* Short name for TA enrollment */
+/* (No Commment) */
 "TA" = "TA";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "TAs" = "TA";
 
-/* Button label for taking a photo */
+/* (No Commment) */
 "Take Photo" = "写真を撮る";
 
-/* Take a picture or video to use in a comment. */
+/* (No Commment) */
 "Take Photo or Video..." = "写真または動画を撮影...";
 
-/* Take a picture to use in a comment. */
+/* (No Commment) */
 "Take a Photo..." = "写真を撮る...";
 
-/* Take a video to use in a comment. */
+/* (No Commment) */
 "Take a Video..." = "動画を撮影...";
 
-/* Displayed in a row when an error occurs loading more items */
+/* (No Commment) */
 "Tap to try again" = "タップして、再度試してください";
 
-/* Short name for teacher enrollment */
+/* (No Commment) */
 "Teacher" = "講師";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Teachers" = "講師";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Tell us what's wrong" = "何が問題なのかを教えてください";
 
-/* Link to the Terms of Use */
+/* (No Commment) */
 "Terms of Use" = "利用規約";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Text Comment" = "テキストコメント";
 
-/* Generic name for a submission entered online. */
+/* (No Commment) */
 "Text Submission" = "テキストの提出";
 
-/* Text entry submission type */
+/* (No Commment) */
 "Text entry" = "テキストの入力";
 
-/* Text explaining the error */
+/* (No Commment) */
 "The recipients could not be added. Please try again. (%@)" = "受信者を追加することができませんでした。時間をおいて再度お試しください。(%@)";
 
-/* Explanation for while a file is unavailable */
+/* (No Commment) */
 "The server could not be reached" = "サーバーに到達できませんでした";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The server you entered is not authorized for this app." = "入力したサーバーはこのアプリでは承認されていません。";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The user agent for this app is unauthorized." = "ユーザーの代理人はこのアプリで承認されていません。";
 
-/* Error message */
+/* (No Commment) */
 "There are no actions for this item" = "このアイテムへのアクションはありません";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "There are no items to display" = "表示するアイテムはりません";
 
-/* message for media comment upload failure */
+/* (No Commment) */
 "There was a network error posting your comment." = "コメントのポスト中にネットワークエラーが発生しました。";
 
-/* message for failed submission upload */
+/* (No Commment) */
 "There was a network problem while attempting to upload your submission" = "提出をアップロード中にネットワーク上の問題が発生しました";
 
-/* Error message when fetching a file fails */
+/* (No Commment) */
 "There was a problem accessing the requested file.
 
 Error: %@" = "リクエストされたファイルへのアクセス中に問題が発生しました。
 
 エラー: %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "There was a problem launching Safari" = "サファリの起動中に問題が発生しました";
 
-/* Web browser error handling message */
+/* (No Commment) */
 "There was an error loading the document." = "ドキュメントのロード中にエラーが発生しました。";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "コンテンツのロード中にエラーが発生しました。コンテンツがオーディオまたは動画のアップロードである場合、処理が継続中の可能性があります。";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This app is not authorized for use." = "このアプリは使用を許可されていません。";
 
-/* Invalid LTI tool error message */
+/* (No Commment) */
 "This assignment doesn't appear to be a valid external tool or is misconfigured." = "この課題は有効な外部ツールではないか、設定が正しくない可能性があります。";
 
-/* message displayed in the details section if there is no comment. */
+/* (No Commment) */
 "This assignment has no details." = "この課題には詳細説明がありません。";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This entry has been deleted" = "このエントリは消去されています";
 
-/* Text indicating a file cannot be previewed */
+/* (No Commment) */
 "This file cannot be displayed on this device." = "このファイルは、このデバイス上には表示できません。";
 
-/* Text indicating that a file cannot be opened */
+/* (No Commment) */
 "This file is locked" = "このファイルはロックされています";
 
-/* Text indicating that a folder cannot be opened */
+/* (No Commment) */
 "This folder is locked" = "このフォルダはロックされています";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This is a media message." = "これはメディアメッセージです。";
 
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "追加の単位のために時間を費やすのなら今が最適です。";
 
-/* Title of to do screen
-   To Do page title */
+/* Title of the Todo screen */
 "To Do" = "するべきこと";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "To:" = "以下へ:";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Today" = "今日";
 
 /* No comment provided by engineer. */
 "Today Button" = "今日のボタン";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Toggles selection of current item" = "現在のアイテムのトグル選択";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Toggles selection of item" = "アイテムのトグル選択";
 
-/* title for assignment submission button */
+/* (No Commment) */
 "Turn In" = "提出";
 
-/* title for re-submitting an assignment */
+/* (No Commment) */
 "Turn In Again" = "再提出";
 
-/* Tells the user to turn in an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Turn in %@" = "%@を提出";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "おっと！インターネットが接続されていません";
 
-/* Error title */
+/* (No Commment) */
 "Unable to load" = "ロードできません";
 
-/* Error message */
+/* (No Commment) */
 "Unable to post. Please try again later" = "ポストできません。時間をおいて再度お試しください";
 
-/* message saying that avatar couldn't be loaded to server */
+/* (No Commment) */
 "Unable to upload to server" = "サーバーにアップロードすることができません";
 
 /* Grade unavailable */
 "Unavailable" = "利用不可";
 
 /* Title for grade button when no grade is present */
-"Ungraded" = "採点されていません";
+"Ungraded" = "未採点";
 
-/* Unknown file type */
+/* (No Commment) */
 "Unknown" = "未知の";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Unread" = "未読";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Unsaved Reply" = "未保存の返信";
 
-/* Button title for uploading a file */
+/* (No Commment) */
 "Upload" = "アップロード";
 
-/* title for upload error alert */
+/* (No Commment) */
 "Upload Error" = "アップロードエラー";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Upload a file" = "ファイルをアップロード";
 
-/* explanation of upload failure */
+/* (No Commment) */
 "Upload failed. Reason: (%@)" = "アップロードに失敗しました。理由: (%@)";
 
-/* Button title for adding a file to a folder */
+/* (No Commment) */
 "Upload file" = "ファイルをアップロード";
 
-/* Error message */
-"Upload to assignment &quot;%@&quot; failed" = "&quot;%@&quot; の課題へのアップロードに失敗しました";
+/* (No Commment) */
+"Upload to assignment &quot;%@&quot; failed" = "課題&quot;%@&quot;へアップロードできませんでした";
 
-/* Error message */
-"Upload to folder &quot;%@&quot; failed" = "&quot;%@&quot;フォルダへのアップロードに失敗しました";
+/* (No Commment) */
+"Upload to folder &quot;%@&quot; failed" = "フォルダ&quot;%@&quot;へアップロードできませんでした";
 
-/* button for using the recorded audio */
+/* (No Commment) */
 "Use" = "使用";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "User ID" = "ユーザーID";
 
-/* Title for User Info section on the about page */
+/* (No Commment) */
 "User Info" = "ユーザー情報";
 
-/* Media type is video */
+/* (No Commment) */
 "Video" = "動画";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Video error" = "動画のエラー";
 
 /* No comment provided by engineer. */
 "View" = "表示";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Warning" = "警告";
 
-/* error message for failure to load a file submission */
+/* (No Commment) */
 "We had a problem loading the submission. Please try again later." = "提出の読み込み中に問題が発生しました。時間をおいて再度お試しください。";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "We were unable to verify the server for use with this app." = "このアプリでサーバーを使用するための確認ができませんでした。";
 
-/* Error Title */
+/* (No Commment) */
 "Whoops!" = "しまった！";
 
-/* unlock date for discussion/announcement */
+/* (No Commment) */
 "Will unlock %@." = "%@のロックが解除されます";
 
-/* Title for action sheet giving the user an option to create a new message for a user. */
+/* (No Commment) */
 "Would you like to create a new message?" = "新しいメッセージを作成しますか？";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Would you mind giving us a rating on the app store?" = "アプリストアの評価をしていただけますか？";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Would you mind letting us know the problems you have been having with the app?" = "このアプリの使用に関する問題を教えていただけますか？";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Yes" = "はい";
 
-/* Masquerade title telling who you are masquerading as */
+/* (No Commment) */
 "You are now masquerading as %@" = "現在 %@としてマスカレードしています";
 
-/* Masquerade success message */
+/* (No Commment) */
 "You are now masquerading as %@. To Stop Masquerading go to your Profile." = "現在 %@としてマスカレードしています。マスカレードを中止するには、プロフィールへ移動してください。";
 
-/* Message in an alert */
+/* (No Commment) */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "iPadにSpeedGraderがありません。アプリストアから無料でダウンロードすることができます。";
 
 /* Error message for an unauthorized course or group. */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "このコンテンツへアクセスできません。コースまたはグループが開始していないか、完了している可能性があります。";
 
-/* Error message */
+/* (No Commment) */
 "You do not have permission to delete this reply" = "この返信を消去することを許可されていません";
 
-/* Masquerade error message */
+/* (No Commment) */
 "You don't have permission to masquerade as this user or there is no user with that ID" = "このユーザーとしてマスカレードすることを許可されていないか、ユーザーとそのIDが存在しません";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "You have an unsaved reply. Would you like to discard that reply?" = "未保存の返信があります。その返信を破棄しますか？";
 
-/* Error message */
+/* (No Commment) */
+"You must first complete:" = "まずは終了してください:";
+
+/* (No Commment) */
 "You need a title and a description to post" = "ポストするタイトルと説明が必要です";
 
 /* You should go rate Canvas on the App Store! */
 "You should go rate Canvas on the App Store!" = "アプリストアでCanvasを評価してください！";
 
-/* Error content */
+/* (No Commment) */
 "Your files could not be found" = "ファイルが見つかりませんでした";
 
-/* Media submission type selected with no Kaltura set up */
+/* (No Commment) */
 "Your school's configuration does not allow the type of submission selected for this assignment" = "あなたの学校の設定は、この課題用に選択された提出の形式を許可していません";
 
-/* prerequisites for unlocking item */
-"You must first complete:" = "最初に完了する必要があります:";
-
-/* Assignment is due on a date at a time */
+/* (No Commment) */
 "due on %1$@ at %2$@" = "%2$@の%1$@ が期限です";
 
-/* time since creation (less than 1 minute) */
+/* (No Commment) */
 "moments ago" = "数秒前";
 
-/* Accessibility label for out or grading style */
+/* (No Commment) */
 "out of" = "中";
 
-/* The assignment is out of 100 points */
+/* (No Commment) */
 "out of %@" = "%@中";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "out of %@ points" = "%@ポイント中";
 
-/* Name for a photo file, i.e. photo.png */
+/* (No Commment) */
 "photo" = "写真";
 
-/* When we don't know the name of a file, we display this */
+/* (No Commment) */
 "unknown" = "未知の";
+
+/* (No Commment) */
+"until %@" = "まで%@";
 

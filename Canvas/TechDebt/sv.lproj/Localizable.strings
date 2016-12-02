@@ -1,35 +1,69 @@
-/* Description for rubric criterion rating object */
-"Rating for %1$@, Score: %2$g" = "Bedömning för %1$@, Poäng: %2$g";
+/* prerequisites for unlocking item */
+"
+
+You must first complete:" = "
+
+Du måste först göra färdigt:";
 
 /* when locked item will become unlocked */
-"until %@" = "tills %@";
+" until %@" = " tills %@";
 
 /* explanation for locked module item */
-"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; är låst som en del av &quot;%2$@&quot;";
+"\"%@\" is locked as part of \"%@\"" = "\"%1$@\" är låst som en del av \"%2$@\"";
 
-/* Gigabytes */
+/* (No Commment) */
 "%0.2f GB" = "%0.2f Gb";
 
-/* Kilobytes */
+/* (No Commment) */
 "%0.2f KB" = "%0.2f Kb";
 
-/* Megabytes */
+/* (No Commment) */
 "%0.2f MB" = "%0.2f Mb";
 
-/* Button to submit files to an assignment */
+/* (No Commment) */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
+/* (No Commment) */
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g av %3$@)";
 
-/* something at something */
+/* (No Commment) */
 "%1$@ at %2$@" = "%1$@ vid %2$@";
+
+/* (No Commment) */
+"%1$@ is due in %2$@" = "%1$@ ska vara färdig om %2$@";
+
+/* (No Commment) */
+"%1$@ out of %2$@" = "%1$@ av %2$@";
+
+/* (No Commment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g av %3$@)";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Typ: %3$@.";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Typ: %3$@. Status: %4$@";
+
+/* (No Commment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Commment) */
+"%1$g out of %2$@" = "%1$g av %2$@";
+
+/* Button to submit files to an assignment */
+"%@ (%d)" = "%1$@ (%2$d)";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g av %3$@)";
+
+/* Event happens on a date at a time */
+"%@ at %@" = "%1$@ vid %2$@";
 
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ kommer snart!";
 
 /* local notification countdown alert */
-"%1$@ is due in %2$@" = "%1$@ ska vara färdig om %2$@";
+"%@ is due in %@" = "%1$@ ska vara färdig om %2$@";
 
 /* explanation for locked item */
 "%@ is locked" = "%@ är låst";
@@ -37,7 +71,7 @@
 /* No comment provided by engineer. */
 "%@ is not a valid URL" = "%@ är inte en giltig URL";
 
-/* %@ is the token where the host name goes. Error message that the host doesn't exist. */
+/* (No Commment) */
 "%@ is not a valid host" = "%@ är inte en giltig värd";
 
 /* Message for unsupported tab */
@@ -46,40 +80,34 @@
 /* Description for how many times a specific discussion has been liked by other users */
 "%@ likes" = "%@ gillar";
 
-/* Label indicating multiple submissions need grading */
+/* (No Commment) */
 "%@ need grading" = "%@ behöver bedömning";
 
 /* 88 out of 100 points */
-"%1$@ out of %2$@" = "%1$@ av %2$@";
+"%@ out of %@" = "%1$@ av %2$@";
 
 /* 83% (83 out of 100 points */
-"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g av %3$@)";
+"%@%% (%g out of %@)" = "%1$@%% (%2$g av %3$@)";
 
-/* String to be read for the blind users. Name of item in module, then type of thing. */
-"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Typ: %3$@.";
-
-/* String to be read for the blind users. Name of item in module, then type of thing, then status. */
-"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Typ: %3$@. Status: %4$@";
-
-/* Word and ellipses */
+/* (No Commment) */
 "%@..." = "%@...";
 
 /* A number and a collective noun, like '5 pigs' */
-"%1$d %2$@" = "%1$d %2$@";
+"%d %@" = "%1$d %2$@";
 
-/* time since creation (2 or more days) */
+/* (No Commment) */
 "%d days ago" = "%d dagar sedan";
 
-/* time since creation (2 or more hours) */
+/* (No Commment) */
 "%d hours ago" = "%d timmar sedan";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
 "%d items" = "%d objekt";
 
-/* time since creation (2 or more minutes) */
+/* (No Commment) */
 "%d minutes ago" = "%d minuter sedan";
 
-/* time since creation (2 or more months) */
+/* (No Commment) */
 "%d months ago" = "%d månader sedan";
 
 /* In the context 'Joe, Fred, ((25 more))' */
@@ -91,13 +119,10 @@
 /* Something like '3 unread'. Refers to unread replies in a discsusion. */
 "%d unread" = "%d olästa";
 
-/* time since creation (2 or more years) */
+/* (No Commment) */
 "%d years ago" = "%d år sedan";
 
-/* 88 out of 100 points */
-"%1$g out of %2$@" = "%1$g av %2$@";
-
-/* As in, '15 bytes' */
+/* (No Commment) */
 "%qu bytes" = "%qu byte";
 
 /* offset for one day */
@@ -124,6 +149,9 @@
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
 "%u files" = "%u filer";
 
+/* (No Commment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; är låst som en del av &quot;%2$@&quot;";
+
 /* %@ will be replaced by the filename */
 "'%@' is now ready to submit to assignments" = "'%@' är nu redo att läggas in i uppgifter";
 
@@ -133,13 +161,13 @@
 /* one day */
 "1 day" = "1 dag";
 
-/* time since creation */
+/* (No Commment) */
 "1 day ago" = "1 dag sedan";
 
 /* one hour */
 "1 hour" = "1 timme";
 
-/* time since creation */
+/* (No Commment) */
 "1 hour ago" = "1 timme sedan";
 
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
@@ -148,16 +176,16 @@
 /* Description for a post that has been liked once */
 "1 like" = "1 gillar";
 
-/* time since creation */
+/* (No Commment) */
 "1 minute ago" = "1 minut sedan";
 
-/* time since creation */
+/* (No Commment) */
 "1 month ago" = "1 månad sedan";
 
-/* Label indicating a submission need grading */
+/* (No Commment) */
 "1 needs grading" = "1 behöver betygsättning";
 
-/* time since creation */
+/* (No Commment) */
 "1 year ago" = "1 år sedan";
 
 /* three days */
@@ -169,7 +197,7 @@
 /* Name of a tab displaying Canvas Info including legal info */
 "About" = "Om";
 
-/* Access Denied from the server */
+/* (No Commment) */
 "Access Denied" = "Åtkomst nekad";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
@@ -196,8 +224,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "Lägg till mapp";
 
-/* Title for the add-inline-media sheet
-   Title on the add-inline-media sheet */
+/* Title on the add-inline-media sheet */
 "Add inline media" = "Lägg till inbäddad media";
 
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
@@ -206,18 +233,16 @@
 /* Button to select all members of a group */
 "All members" = "Alla medlemmar";
 
-/* Error message text */
+/* (No Commment) */
 "An unknown error occurred" = "Ett okänt fel har inträffat.";
 
 /* Title of the new announcement view */
 "Announcement" = "Meddelanden";
 
-/* Announcements title
-   Title for the announcements view controller */
+/* Title for the announcements view controller */
 "Announcements" = "Meddelanden";
 
-/* Archive selected messages button
-   mark a message as archived */
+/* Archive selected messages button */
 "Archive" = "Arkiv";
 
 /* archive selected messages */
@@ -238,7 +263,7 @@
 /* Label for an assignment */
 "Assignment" = "Uppgift";
 
-/* Title for Assignments view controller */
+/* (No Commment) */
 "Assignments" = "Uppgifter";
 
 /* An item for attaching to a discussion */
@@ -256,22 +281,22 @@
 /* Label for a discussion */
 "Attendance" = "Närvaro";
 
-/* Media type is audio */
+/* Audio file type */
 "Audio" = "Ljud";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Audio input hardware not available" = "Ljudingång på hårdvaran är inte tillgänglig";
 
-/* Title of alert box */
-"Authentication error" = "Autentiseringsfel";
+/* Title for an error popup */
+"Authentication error" = "Autentiseringsfel ";
 
 /* Link to building panda avatar */
 "Build Avatar" = "Skapa avatar";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Cache cleared" = "Cache tömd";
 
-/* Calendar page title */
+/* (No Commment) */
 "Calendar" = "Kalender";
 
 /* Invalid LTI tool error title */
@@ -280,22 +305,10 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kan inte skicka in media";
 
-/* Button title for canceling download of a file
-   Button title for cancelling the selection of a quiz. This will appear in the alert view notifying the user of the mobile quiz limitations.
-   Cancel
-   cancel add file/folder
-   Cancel add option
-   Cancel button for removing a file
-   Cancel deletion of discussion entry
-   cancel folder creation
-   Cancel folder name change
-   cancel masquerade
-   cancel message creation
-   cancel reminder notification
-   cancel view help options */
+/* Cancel button title */
 "Cancel" = "Avbryt";
 
-/* Cancel adding a comment button */
+/* Cancel button title */
 "Cancel Message" = "Ta bort meddelande";
 
 /* No comment provided by engineer. */
@@ -342,7 +355,7 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* action sheet text for picking video from library */
 "Choose video" = "Välj video";
 
-/* No comment provided by engineer. */
+/* Close the window */
 "Close" = "Stäng";
 
 /* No comment provided by engineer. */
@@ -363,11 +376,10 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* No comment provided by engineer. */
 "Comments are disabled" = "Kommentarer är avstängda";
 
-/* Assignment grade: Complete
-   Pass/fail assignment is complete */
+/* (No Commment) */
 "Complete" = "Färdig";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Completed" = "Färdig";
 
 /* button to compose a message */
@@ -397,7 +409,7 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "Antura tidsplan";
 
-/* Courses page title */
+/* (No Commment) */
 "Courses" = "Kurser";
 
 /* cancel folder creation */
@@ -409,15 +421,13 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Message telling users that quiz support on mobile is limited */
 "Currently there is limited quiz support on mobile" = "För närvarande är stödet för quiz för mobiler begränsat";
 
-/* A custom grade not specified by the rubric. */
+/* (No Commment) */
 "Custom Grade" = "Anpassat betyg";
 
-/* label for customizing a course */
+/* (No Commment) */
 "Customize" = "Anpassa";
 
-/* Button to confirm deleting folders
-   Button to delete a discussion entry
-   Confirm deletion of discussion entry */
+/* Delete Button title */
 "Delete" = "Ta bort";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -427,7 +437,10 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 "Delete this reply?" = "Ta bort det här svaret?";
 
 /* delete file confirmation alert */
-"Deleted file: &quot;%@&quot;" = "Tog bort filen: &quot;%@&quot;";
+"Deleted file: \"%@\"" = "Tog bort filen: \"%@\"";
+
+/* (No Commment) */
+"Deleted file: &quot;%@&quot;" = "Raderad fil: &quot;%@&quot;";
 
 /* No comment provided by engineer. */
 "Detail" = "Detalj";
@@ -450,15 +463,10 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Title for Discussion Topics view controller */
 "Discussion Topics" = "Diskussionsämne";
 
-/* Discussions title
-   Title for Discussions view controller */
+/* Title for Discussions view controller */
 "Discussions" = "Diskussioner";
 
-/* Dismiss an error button
-   dismiss button
-   Dismiss button for an error dialoue
-   Dismiss error alert button
-   dismiss the alert button */
+/* Dismiss button title */
 "Dismiss" = "Avfärda";
 
 /* Alert title asking if you want to masquerade */
@@ -473,7 +481,7 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Button to cancel deleting folders */
 "Don't delete" = "Ta inte bort";
 
-/* No comment provided by engineer. */
+/* Button to stop editing a list */
 "Done" = "Klart";
 
 /* Shown when we cancel a file download */
@@ -485,7 +493,7 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Förfallodatum:";
 
-/* Due date label for to do items, first placeholder is date, second is time */
+/* (No Commment) */
 "Due: %1$@ at %2$@" = "Färdig den: %1$@ vid %2$@";
 
 /* Link to the End User License Agreement document */
@@ -494,24 +502,25 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Button to edit a discussion entry */
 "Edit" = "Ändra";
 
-/* Edit course list title
-   Edit the items in the course list */
+/* (No Commment) */
 "Edit Course List" = "Ändra kurslista";
 
-/* Edit group list title
-   Edit the items in the group list */
+/* (No Commment) */
 "Edit Group List" = "Ändra grupplista";
 
 /* Button title for deleting items in a folder */
 "Edit items" = "Ändra objekt";
 
-/* Header when editing a discussion entry with name and timestamp */
+/* (No Commment) */
 "Editing reply by %1$@, %2$@" = "Ändrar svar från %1$@, %2$@";
+
+/* Header when editing a discussion entry with name and timestamp */
+"Editing reply by %@, %@" = "Ändrar svar från %1$@, %2$@";
 
 /* the users email */
 "Email" = "E-post";
 
-/* Prompt asking user to enable push notifications */
+/* (No Commment) */
 "Enable Push Notifications" = "Aktivera pushmeddelanden";
 
 /* masquerade prompt */
@@ -523,14 +532,20 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "Inlägget postades";
 
-/* Title of alert box */
+/* Title for an error popup */
 "Error" = "Fel";
 
-/* Title of an alert popup */
+/* (No Commment) */
 "Error adding recipeints" = "Fel när mottagare lades till";
 
+/* Title of an alert popup */
+"Error adding recipients" = "Fel när mottagare lades till";
+
 /* Error deleting file alert view title */
-"Error deleting file &quot;%@&quot;" = "Fel inträffade när &quot;%@&quot; togs bort";
+"Error deleting file \"%@\"" = "Fel inträffade när \"%@\" togs bort";
+
+/* (No Commment) */
+"Error deleting file &quot;%@&quot;" = "Fel vid radering av fil &quot;%@&quot;";
 
 /* Error deleting folder alert view title */
 "Error deleting folder" = "Fel när mappen togs bort";
@@ -544,18 +559,17 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Title for an external tool submission */
 "External Tool" = "Externt verktyg";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "External URL" = "Extern URL";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "File" = "Fil";
 
-/* The file extension for a submission is not acceptable */
+/* (No Commment) */
 "File extension not allowed: %@" = "Filtillägg ej tillåtet: %@";
 
-/* Comes before a list of file extensions allowed for an assinment submission */
-"File extension(s) permitted for this assignment:" = "Tillåtna filtillägg för den här uppgiften:
-()";
+/* (No Commment) */
+"File extension(s) permitted for this assignment:" = "Tillåtna filtillägg för den här uppgiften:";
 
 /* No comment provided by engineer. */
 "File received" = "Filen mottagen";
@@ -566,19 +580,16 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* File upload submission type */
 "File upload" = "Filuppladdning";
 
-/* File upload failed. */
+/* (No Commment) */
 "File upload failed." = "Filuppladdning misslyckades.";
 
-/* Files view
-   Name of a tab displaying files in a course
-   title for files view
-   Title for the Files View Controller */
+/* Title for the files screen */
 "Files" = "Filer";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Nedladdning slutförd";
 
-/* badge indicating front page */
+/* (No Commment) */
 "Front Page" = "Framsida";
 
 /* No comment provided by engineer. */
@@ -599,17 +610,20 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* No comment provided by engineer. */
 "Grade" = "Betyg";
 
-/* Tells the user to grade an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Grade %@" = "Betyg %@";
 
 /* Launch the SpeedGrader app */
 "Grade in SpeedGrader" = "Betygsätt med SpeedGrader";
 
+/* (No Commment) */
+"Grade: %1$i / %2$g" = "Betyg: %1$i / %2$g";
+
 /* No comment provided by engineer. */
 "Grade: %@" = "Betyg: %@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "Betyg: %1$i / %2$g";
+"Grade: %i / %g" = "Betyg: %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "Betygsatt diskussion";
@@ -620,25 +634,25 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Betygsatt diskussion. %g poäng möjliga.";
 
-/* Title for Grades view controller */
+/* (No Commment) */
 "Grades" = "Betyg";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "Gruppkonversation";
 
-/* Groups page title */
+/* (No Commment) */
 "Groups" = "Grupper";
 
 /* help button */
 "Help" = "Hjälp";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Commment) */
 "Hide Grades" = "Dölj betyg";
 
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Vad tycker du om Canvas?";
 
-/* I give you back your time, use it wisely. */
+/* (No Commment) */
 "I give you back your time, use it wisely." = "Jag ger dig tid, använd den klokt.";
 
 /* Image file type */
@@ -653,8 +667,7 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* No comment provided by engineer. */
 "Inbox" = "Inkorg";
 
-/* Assignment grade: Incomplete
-   Pass/fail assignment is incomplete */
+/* (No Commment) */
 "Incomplete" = "Ofullständig";
 
 /* Button title for sending a direct message; a private conversation */
@@ -666,19 +679,22 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* No comment provided by engineer. */
 "It has problems" = "Har problem";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Item %1$d of %2$d" = "Objekt %1$d av %2$d";
 
-/* It’s empty, what are you still doing here. */
+/* No comment provided by engineer. */
+"Item %d of %d" = "Objekt %1$d av %2$d";
+
+/* (No Commment) */
 "It’s empty, what are you still doing here." = "Det är tomt, vad gör du här.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Jumps to current day on calendar" = "Hoppar till dagens datum i kalendern";
 
 /* No comment provided by engineer. */
 "Keep" = "Behåll";
 
-/* Settings entry title for Choosing a Landing Page */
+/* (No Commment) */
 "Landing Page" = "Landningssida";
 
 /* Title for an alert popup */
@@ -693,52 +709,49 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Title for legal section on the about page */
 "Legal" = "Juridik";
 
-/* Generic loading title with ellipses
-   Generic loading title with ellipsis */
+/* Generic loading title with ellipsis */
 "Loading..." = "Laddar...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked" = "Låst";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked until %@" = "Låst till %@";
 
 /* Typically the email address correlated to the user */
 "Login ID" = "Inloggnings-ID";
 
-/* Error message title */
+/* (No Commment) */
 "Login Problem" = "inloggningsproblem";
 
-/* logout action sheet logout button title
-   logout button */
+/* Title for a button to logout a user */
 "Logout" = "Logga ut";
 
 /* No comment provided by engineer. */
 "Love it!" = "Älskar det!";
 
-/* Button title for mark as done */
+/* (No Commment) */
 "Mark as Done" = "Markera som färdig";
 
-/* Button title for beginning masquerading
-   try masquerading */
+/* Button title for beginning masquerading */
 "Masquerade" = "Maskera";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Me" = "Jag";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Media Comment" = "Mediakommentar";
 
 /* Title for a media submission */
 "Media Submission" = "Mediainlämning";
 
-/* The name for a video or audio response to something */
+/* (No Commment) */
 "Media comment" = "Mediakommentar";
 
 /* Media recording submission type */
 "Media recording" = "Mediainspelning";
 
-/* A slider to choose between media types */
+/* (No Commment) */
 "Media type selector. %@" = "Väljare av mediatyp. %@";
 
 /* Add message button */
@@ -750,15 +763,13 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* No comment provided by engineer. */
 "Message everyone separately, or add everyone to a group conversation?" = "Skicka meddelanden separat, eller lägg till alla i en gruppkonversation?";
 
-/* Messages tab title
-   messages title
-   The name of the messages tab */
+/* Title for the messages screen */
 "Messages" = "Meddelanden";
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "Varning för mobil-quiz";
 
-/* title for the modules tab */
+/* (No Commment) */
 "Modules" = "Moduler";
 
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
@@ -767,19 +778,19 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Title of a link to show additional due dates customized for sections or groups. */
 "Multiple Due Dates" = "Flera förfallodatum";
 
-/* user must contribute to complete requirement */
+/* (No Commment) */
 "Must contribute" = "Måste bidra";
 
-/* user must mark item as done to complete requirement */
+/* (No Commment) */
 "Must mark as done" = "Markera som färdig";
 
-/* format string saying what the minimum score must be */
+/* (No Commment) */
 "Must score %@ or higher" = "Måste få %@ eller högre";
 
-/* user must submit something to complete requirement */
+/* (No Commment) */
 "Must submit" = "Måste skickas in";
 
-/* user must view item to complete requirement */
+/* (No Commment) */
 "Must view" = "Måste visas";
 
 /* files button */
@@ -809,7 +820,7 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* No comment provided by engineer. */
 "No Date" = "Inget datum";
 
-/* Label shown for a to do that doesn't have a due date */
+/* (No Commment) */
 "No Due Date" = "Inget förfallodatum";
 
 /* Title for attempting submission without a comment */
@@ -839,54 +850,52 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Indicates a search found no results */
 "No results found" = "Inga resultat hittades";
 
-/* error message for a 401 response. */
+/* (No Commment) */
 "Not Authorized" = "Inte behörig";
 
-/* Pass/fail assignment is not complete */
+/* (No Commment) */
 "Not Complete" = "Ej färdig";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
 "Not available" = "Inte tillgänglig";
 
-/* not graded string. */
+/* (No Commment) */
 "Not graded" = "Ej betygsatt";
 
-/* not graded with points possible */
+/* (No Commment) */
 "Not graded (0 out of %@)" = "Ej betygsatt (0 av %@)";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Observera: mediafiler är inte tillgängliga för uppspelning omedelbart medan de bearbetas på servern.";
 
-/* Nothing to do, go play outside! */
+/* (No Commment) */
 "Nothing to do, go play outside!" = "inget att göra, gå ut och lek!";
 
-/* Nothing to see here. */
+/* (No Commment) */
 "Nothing to see here." = "Finns inget att se här.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Notification" = "Avisering";
 
-/* Settings entry title for Notification Preferences */
+/* (No Commment) */
 "Notification Preferences" = "Aviseringsinställningar";
 
-/* Notifications tab title */
+/* (No Commment) */
 "Notifications" = "Aviseringar";
 
-/* No comment provided by engineer. */
+/* OK Button Title */
 "OK" = "OK";
 
-/* Short name for observer enrollment */
+/* No comment provided by engineer. */
 "Observer" = "Observatör";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Ok" = "Ok";
 
 /* Online URL submission type */
 "Online URL" = "Online URL";
 
-/* Error message title
-   Error title
-   Masquerade error title */
+/* Title for an error alert */
 "Oops!" = "Oooj!";
 
 /* Open a document in the application Safari */
@@ -907,20 +916,19 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Title for Outcomes tab */
 "Outcomes" = "Resultat";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Page" = "Sida";
 
 /* No comment provided by engineer. */
 "Past" = "Tidigare";
 
-/* People list title
-   Title for People view controller */
+/* Title for the people view */
 "People" = "Personer";
 
 /* No comment provided by engineer. */
 "Pinned Discussions" = "Fastsatta diskussioner";
 
-/* A button that plays */
+/* (No Commment) */
 "Play" = "Spela upp";
 
 /* Network error message */
@@ -929,7 +937,7 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Button to post new discussion topic */
 "Post" = "Posta";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Post Comment" = "Posta kommentar";
 
 /* No comment provided by engineer. */
@@ -938,7 +946,7 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Message shown while posting a discussion entry */
 "Posting…" = "Postar...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Posts your comment" = "Posta din kommentar";
 
 /* No comment provided by engineer. */
@@ -950,8 +958,7 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Title for profile screen */
 "Profile" = "Profil";
 
-/* Label for a quiz
-   Title for a quiz submission cell */
+/* A short test taken by students */
 "Quiz" = "Quiz";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -963,13 +970,16 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* No comment provided by engineer. */
 "Rate on App Store" = "Betygsätt i App Store";
 
+/* (No Commment) */
+"Rating for %1$@, Score: %2$g" = "Värdering för %1$@, Poäng: %2$g";
+
 /* Title for a button allowing user to re-submit files for an assignment */
 "Re-submit Assignment" = "Skicka in uppgift igen";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "Mottagare";
 
-/* A button that records */
+/* (No Commment) */
 "Record" = "Spela in";
 
 /* Record audio submission comment */
@@ -987,13 +997,13 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* No comment provided by engineer. */
 "Record video" = "Spela in video";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refresh Button" = "Uppdateringsknapp";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refreshes the calendar content" = "Uppdatera kalenderinnehåll";
 
-/* Refreshing Calendar Events */
+/* (No Commment) */
 "Refreshing Calendar Events" = "Uppdatera kalenderhändelser";
 
 /* Confirmation for removing a file */
@@ -1041,11 +1051,10 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* No comment provided by engineer. */
 "Sent" = "Skickat";
 
-/* settings button
-   Title for Settings tab */
+/* Title for Settings */
 "Settings" = "Inställningar";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Commment) */
 "Show Grades" = "Visa betyg";
 
 /* title for quiz assignment submission button */
@@ -1066,31 +1075,31 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Ledsen vi kunde inte hitta uppgiften. Den här uppgiften kan ha tagits bort.";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Starts playing your recording" = "Spelar upp din inspelning";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Starts recording a media comment" = "Spelar in en mediakommentar";
 
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Fortsätt vara inloggad";
 
-/* A button that stops */
+/* Stop loading button for webview */
 "Stop" = "Stopp";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
 "Stop Masquerading" = "Soppa maskering";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Stops playing your recording" = "Avslutar din inspelning";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Stops recording a media comment" = "Avslutar inspelningen av en mediakommentar";
 
-/* Short name for student enrollment */
+/* No comment provided by engineer. */
 "Student" = "Student";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Sub Header" = "Underrubrik";
 
 /* View previously submitted assignment */
@@ -1120,20 +1129,19 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* No comment provided by engineer. */
 "Sure!" = "Absolut!";
 
-/* Hint about media input selection */
+/* (No Commment) */
 "Switches media input between audio and video. Currently set to %@" = "Växlar mediainmatning mellan ljud och video. För närvarande inställd på %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to media comment mode" = "Växlar till läge för mediakommentar";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to text comment mode" = "Växlar till läge för textkommentar";
 
-/* Syllabus screen name
-   Title for Syllabus view controller */
+/* Title for Syllabus screen */
 "Syllabus" = "Antura tidsplan";
 
-/* Short name for TA enrollment */
+/* (No Commment) */
 "TA" = "Lärarassistenter";
 
 /* No comment provided by engineer. */
@@ -1154,7 +1162,7 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Displayed in a row when an error occurs loading more items */
 "Tap to try again" = "Peka för att försöka igen";
 
-/* Short name for teacher enrollment */
+/* (No Commment) */
 "Teacher" = "Lärare";
 
 /* No comment provided by engineer. */
@@ -1166,10 +1174,10 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Link to the Terms of Use */
 "Terms of Use" = "Användarvillkor";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Text Comment" = "Textkommentar";
 
-/* Generic name for a submission entered online. */
+/* Title for a text submission cell */
 "Text Submission" = "Textinlämning";
 
 /* Text entry submission type */
@@ -1181,14 +1189,14 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "Servern kunde inte nås";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The server you entered is not authorized for this app." = "Servern som du fyllt i är inte behörig för den här appen.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The user agent for this app is unauthorized." = "Användarprogrammet för den här appen är obehörig.";
 
 /* Error message */
-"There are no actions for this item" = "Det finns ingen åtgärd för det här objektet";
+"There are no actions for this item" = "Det finns inga åtgärder för det här objektet";
 
 /* No comment provided by engineer. */
 "There are no items to display" = "Det finns inga objekt att visa";
@@ -1215,7 +1223,7 @@ Fel: %@";
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Ett fel inträffade när innehållet laddades. Om det var en video kanske den fortfarande bearbetas.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This app is not authorized for use." = "Den här appen är inte tillåten att användas.";
 
 /* Invalid LTI tool error message */
@@ -1236,14 +1244,13 @@ Fel: %@";
 /* Text indicating that a folder cannot be opened */
 "This folder is locked" = "Den här mappen är låst";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This is a media message." = "Det här är ett mediameddelande";
 
-/* This would be a great time to do some extra credit. */
+/* (No Commment) */
 "This would be a great time to do some extra credit." = "Det här vore ett bra tillfälle att skapa lite extra kredit.";
 
-/* Title of to do screen
-   To Do page title */
+/* (No Commment) */
 "To Do" = "Att göra";
 
 /* No comment provided by engineer. */
@@ -1252,7 +1259,7 @@ Fel: %@";
 /* No comment provided by engineer. */
 "Today" = "Idag";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Today Button" = "Idag-knapp";
 
 /* No comment provided by engineer. */
@@ -1267,10 +1274,10 @@ Fel: %@";
 /* title for re-submitting an assignment */
 "Turn In Again" = "Lämna in igen";
 
-/* Tells the user to turn in an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Turn in %@" = "Lämna in %@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Commment) */
 "Uh-oh! No Internet Connection" = "Oj då! Ingen internetuppkoppling";
 
 /* Error title */
@@ -1282,10 +1289,10 @@ Fel: %@";
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Kunde inte ladda upp till server";
 
-/* Grade unavailable */
+/* (No Commment) */
 "Unavailable" = "Otillgänglig";
 
-/* Title for grade button when no grade is present */
+/* (No Commment) */
 "Ungraded" = "Ej betygsatt";
 
 /* Unknown file type */
@@ -1313,10 +1320,16 @@ Fel: %@";
 "Upload file" = "Ladda upp fil";
 
 /* Error message */
-"Upload to assignment &quot;%@&quot; failed" = "Uppladdningen till uppgift &quot;%@&quot; misslyckades";
+"Upload to assignment \"%@\" failed" = "Uppladdningen till uppgift \"%@\" misslyckades";
+
+/* (No Commment) */
+"Upload to assignment &quot;%@&quot; failed" = "Uppladdning till uppgift &quot;%@&quot; misslyckades";
 
 /* Error message */
-"Upload to folder &quot;%@&quot; failed" = "Uppladdningen till mappen &quot;%@&quot; misslyckades";
+"Upload to folder \"%@\" failed" = "Uppladdningen till mappen \"%@\" misslyckades";
+
+/* (No Commment) */
+"Upload to folder &quot;%@&quot; failed" = "Uppladdning till mapp &quot;%@&quot; misslyckades";
 
 /* button for using the recorded audio */
 "Use" = "Använd";
@@ -1327,22 +1340,22 @@ Fel: %@";
 /* Title for User Info section on the about page */
 "User Info" = "Användarinformation";
 
-/* Media type is video */
+/* Video file type */
 "Video" = "Video";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Video error" = "Video-fel";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "View" = "Visa";
 
-/* No comment provided by engineer. */
+/* Title for a warning popup */
 "Warning" = "Varning";
 
 /* error message for failure to load a file submission */
 "We had a problem loading the submission. Please try again later." = "Det uppstod ett problem när inlämningen laddades. Försök igen senare.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "We were unable to verify the server for use with this app." = "Vi kunde inte verifiera servern för användning av den här appen.";
 
 /* Error Title */
@@ -1372,7 +1385,7 @@ Fel: %@";
 /* Message in an alert */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Du har inte SpeedGrader för iPad. Du kan ladda ner den gratis från App Store.";
 
-/* Error message for an unauthorized course or group. */
+/* (No Commment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Du har inte behörighet att komma åt det här innehållet. Kursen eller gruppen kanske inte har startat, eller så har du avslutat den.";
 
 /* Error message */
@@ -1384,10 +1397,16 @@ Fel: %@";
 /* No comment provided by engineer. */
 "You have an unsaved reply. Would you like to discard that reply?" = "Du har ett svar som inte sparats. Vill du kasta det svaret?";
 
+/* An explanation of how to transfer files to the Canvas app. */
+"You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas." = "Du har inga filer tillgängliga för uppladdning. För att lägga till filer från andra appar, leta reda på en fil i annan app, använd knappen ”Open In” för att öppna i Canvas. Du kan också klicka på och hålla kvar på bilagor i e-postappen för att öppna dem i Canvas.";
+
+/* (No Commment) */
+"You must first complete:" = "Du måste först göra färdigt:";
+
 /* Error message */
 "You need a title and a description to post" = "Du behöver en titel och en beskrivning för att posta";
 
-/* You should go rate Canvas on the App Store! */
+/* (No Commment) */
 "You should go rate Canvas on the App Store!" = "Du borde ge Canvas ett omdöme i App Store!";
 
 /* Error content */
@@ -1396,27 +1415,30 @@ Fel: %@";
 /* Media submission type selected with no Kaltura set up */
 "Your school's configuration does not allow the type of submission selected for this assignment" = "Din skolas inställningar tillåter inte den här typen av inlämningar som valts för den här uppgiften.";
 
-/* prerequisites for unlocking item */
-"You must first complete:" = "Du måste först göra färdigt:";
-
-/* Assignment is due on a date at a time */
+/* (No Commment) */
 "due on %1$@ at %2$@" = "Färdig den %1$@ vid %2$@";
 
-/* time since creation (less than 1 minute) */
+/* Assignment is due on a date at a time */
+"due on %@ at %@" = "Färdig den %1$@ vid %2$@";
+
+/* (No Commment) */
 "moments ago" = "nyss";
 
-/* Accessibility label for out or grading style */
+/* Accessibility label modifier for point out of point possible */
 "out of" = "av";
 
 /* The assignment is out of 100 points */
 "out of %@" = "av %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "out of %@ points" = "av %@ poäng";
 
-/* Name for a photo file, i.e. photo.png */
+/* (No Commment) */
 "photo" = "foto";
 
-/* When we don't know the name of a file, we display this */
+/* (No Commment) */
 "unknown" = "Okänt";
+
+/* (No Commment) */
+"until %@" = "tills %@";
 

@@ -1,76 +1,76 @@
-/* grade details for points based grade i.e. \"10 of 12\" */
-"of (formatter(possible))" = "(格式(可能))的";
+/* (No Commment) */
+"(formatter(points)) of (formatter(possible))" = "(格式(可能))的(格式(点)) ";
 
-/* grade details for points based grade i.e. \"10 of 12\" */
-"(formatter(points)) of (formatter(possible))" = "(格式(可能))的(格式(点))";
+/* (No Commment) */
+"1 day" = "1 天";
 
-/* Title for 1 day assignment reminder */
-"1 day" = "1天";
+/* (No Commment) */
+"1 hour" = "1 小时";
 
-/* Title for 1 hour assignment reminder */
-"1 hour" = "1小时";
+/* (No Commment) */
+"3 days" = "3 天";
 
-/* Title for 3 days assignment reminder */
-"3 days" = "3天";
+/* (No Commment) */
+"5 minutes" = "5 分钟";
 
-/* Title for 5 minutes assignment reminder */
-"5 minutes" = "5分钟";
-
-/* Assignment label */
+/* (No Commment) */
 "Assignment" = "作业";
 
-/* Title for alert view for assignment reminders */
+/* (No Commment) */
 "Assignment Reminder" = "作业提示";
 
-/* Message indicating that an assignment is currently be submitted */
+/* (No Commment) */
 "Assignment is currently being submitted" = "作业目前正在提交";
 
-/* This assignment hasn't been graded yet but can be graded */
+/* (No Commment) */
 "Awaiting Grade" = "等待成绩";
 
-/* cancel button */
+/* (No Commment) */
 "Cancel" = "取消";
 
-/* Title for reminder options for an assignment */
+/* (No Commment) */
 "Choose how long before the assignment due date to get a reminder:" = "选择在作业截止日期之前多久收到提示：";
 
-/* Title for a rating that hasn't been graded but has a comment */
+/* (No Commment) */
 "Comment" = "评论";
 
-/* Assignment submission comment placeholder text */
+/* (No Commment) */
 "Comment.." = "评论..";
 
-/* error displayed when submitting an assignment is unavailable */
+/* (No Commment) */
 "Could not submit assignment. Invalid assignment or session." = "无法提交作业。无效作业或会话。";
 
-/* error displayed when submitting a submission is invalid. */
+/* (No Commment) */
 "Could not submit assignment. Invalid submission." = "无法提交作业。无效提交。";
 
-/* String telling the user that the date is the due date */
+/* (No Commment) */
 "Due:" = "截止：";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "更新作业错误";
 
-/* This assignment is excused */
+/* (No Commment) */
 "Excused" = "免除";
 
-/* Error when an upload failed to resume. */
+/* Error message when submission attachment fails to load. */
+"Failed to load item. Check the allowed assignment submission types." = "无法加载项目。请检查允许的作业提交项类型。";
+
+/* (No Commment) */
 "Failed to resume upload." = "继续上传失败。";
 
-/* This assignment is late */
-"Late" = "迟到";
+/* (No Commment) */
+"Late" = "迟到、迟交";
 
-/* Title for a rating that has custom graded but has no comment */
+/* (No Commment) */
 "No Comment" = "没有评论";
 
-/* Default string for due date title */
-"No Due Date" = "没有截止日期";
+/* (No Commment) */
+"No Due Date" = "无截止日期";
 
 /* Section header for assignments without an assignment group */
 "None" = "没有";
 
-/* submission title for assignment waiting user submission */
+/* (No Commment) */
 "Not Submitted" = "未提交";
 
 /* Overdue assignmnets (not turned in) */
@@ -79,19 +79,19 @@
 /* Assignments that have been turned in and are past */
 "Past" = "过去";
 
-/* Rubric Points Possible Title */
+/* (No Commment) */
 "Points Possible" = "点可能";
 
-/* title for submission button if student has submitted previously */
+/* (No Commment) */
 "Re-submit Assignment" = "重新提交作业";
 
-/* Message indicating that a submission type is not supported for this assignment. */
+/* (No Commment) */
 "Submission type not allowed" = "不允许提交类型";
 
-/* submission title for assignment that doesn't support submissions */
+/* (No Commment) */
 "Submissions N/A" = "提交不适用";
 
-/* title for submission button if student has never submitted */
+/* (No Commment) */
 "Submit Assignment" = "提交作业";
 
 /* AssignmentKit database load failure message */
@@ -100,27 +100,30 @@
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "更新测验URL时出现问题";
 
-/* submission title for assignemnt that is submitted */
+/* (No Commment) */
 "Turned in!" = "提交！";
 
-/* Error message when a course could not be selected */
+/* (No Commment) */
 "Unable to select a course." = "无法选择课程。";
 
-/* Error message when an assignment could not be selected */
+/* (No Commment) */
 "Unable to select an assignment." = "无法选择作业。";
 
-/* Error message when unable to submit assignment. */
+/* (No Commment) */
 "Unable to submit assignment." = "无法提交作业。";
 
 /* Assignments with no dates */
 "Undated" = "未定期";
 
-/* This assignment is not graded */
+/* (No Commment) */
 "Ungraded" = "未评分";
 
 /* Upcoming assignments */
 "Upcoming" = "未来";
 
-/* Title for button to see rubric from assignment detail */
+/* (No Commment) */
 "View Rubric" = "查看评分细则";
+
+/* (No Commment) */
+"of (formatter(possible))" = "(格式(可能))的";
 

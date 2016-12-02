@@ -1,0 +1,171 @@
+/* Description for rubric criterion rating object */
+" Rating for %@, Score: %g" = "對於 %1$@ 的評級， 得分： %2$g";
+
+/* Gigabytes */
+"%0.2f GB" = "%0.2f GB";
+
+/* Kilobytes */
+"%0.2f KB" = "%0.2f KB";
+
+/* Megabytes */
+"%0.2f MB" = "%0.2f MB";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g 出自 %3$@)";
+
+/* something at something */
+"%@ at %@" = "%1$@ 位於 %2$@";
+
+/* 88 out of 100 points */
+"%@ out of %@" = "%1$@ 出自 %2$@";
+
+/* 83% (83 out of 100 points */
+"%@%% (%g out of %@)" = "%1$@%% (%2$g 出自 %3$@)";
+
+/* Word and ellipses */
+"%@..." = "%@...";
+
+/* 88 out of 100 points */
+"%g out of %@" = "%1$g 出自 %2$@";
+
+/* As in, '15 bytes' */
+"%qu bytes" = "%qu 比特";
+
+/* Media type is audio */
+"Audio" = "音頻";
+
+/* No comment provided by engineer. */
+"Audio input hardware not available" = "音頻輸入硬體不可用";
+
+/* Assignment grade: Complete */
+"Complete" = "完成";
+
+/* A custom grade not specified by the rubric. */
+"Custom Grade" = "自定義評分";
+
+/* No comment provided by engineer. */
+"Done" = "完成";
+
+/* The file extension for a submission is not acceptable */
+"File extension not allowed: %@" = "資料夾擴展名不受許可：%@";
+
+/* Comes before a list of file extensions allowed for an assinment submission */
+"File extension(s) permitted for this assignment: " = "資料夾擴展名(s) 可用於該任務：";
+
+/* File upload failed. */
+"File upload failed." = "資料夾上載失敗。";
+
+/* Assignment grade: Incomplete */
+"Incomplete" = "未完成";
+
+/* No comment provided by engineer. */
+"Me" = "我";
+
+/* No comment provided by engineer. */
+"Media Comment" = "媒體評論";
+
+/* The name for a video or audio response to something */
+"Media comment" = "媒體評論";
+
+/* A slider to choose between media types */
+"Media type selector. %@" = "媒體類型選擇。%@";
+
+/* Pass/fail assignment is not complete */
+"Not Complete" = "未完成";
+
+/* not graded string. */
+"Not graded" = "未評級";
+
+/* not graded with points possible */
+"Not graded (0 out of %@)" = "未評級的比例 (0 出於 %@)";
+
+/* No comment provided by engineer. */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "注意：媒體資料夾當前正在伺服器端進行處理中，暫時無法提供播放。";
+
+/* No comment provided by engineer. */
+"OK" = "是";
+
+/* Short name for observer enrollment */
+"Observer" = "觀察者";
+
+/* A button that plays */
+"Play" = "播放";
+
+/* No comment provided by engineer. */
+"Post Comment" = "發布評論";
+
+/* No comment provided by engineer. */
+"Posts your comment" = "發布您的評論";
+
+/* A button that records */
+"Record" = "錄製";
+
+/* Hint about the play button */
+"Starts playing your recording" = "開始播放您錄製的內容";
+
+/* Hint about the record button */
+"Starts recording a media comment" = "開始錄製媒體評論";
+
+/* A button that stops */
+"Stop" = "停止";
+
+/* Hint about the play button */
+"Stops playing your recording" = "停止播放您錄製的內容";
+
+/* Hint about the record button */
+"Stops recording a media comment" = "停止錄製媒體評論";
+
+/* Short name for student enrollment */
+"Student" = "學生";
+
+/* Hint about media input selection */
+"Switches media input between audio and video. Currently set to %@" = "在音頻和視頻之間切換媒體輸入源。目前設定為 %@";
+
+/* No comment provided by engineer. */
+"Switches to media comment mode" = "切換到媒體評論模式";
+
+/* No comment provided by engineer. */
+"Switches to text comment mode" = "切換到文本評論模式";
+
+/* Short name for TA enrollment */
+"TA" = "助教";
+
+/* Short name for teacher enrollment */
+"Teacher" = "老師";
+
+/* No comment provided by engineer. */
+"Text Comment" = "文字評論";
+
+/* Generic name for a submission entered online. */
+"Text Submission" = "文字提交件";
+
+/* Error description when a user tries to upload a file that's too big */
+"The file you are trying to uploading is %@, but the maximum size is %@." = "您正嘗試上載的檔案大小為 %1$@，但最大大小為 %2$@。";
+
+/* No comment provided by engineer. */
+"This is a media message." = "這是一條媒體郵件。";
+
+/* Media type is video */
+"Video" = "視頻";
+
+/* No comment provided by engineer. */
+"Video error" = "視頻錯誤";
+
+/* No comment provided by engineer. */
+"Warning" = "警告";
+
+/* Accessibility label for out or grading style */
+"out of" = "出自";
+
+/* The assignment is out of 100 points */
+"out of %@" = "出自 %@";
+
+/* No comment provided by engineer. */
+"out of %@ points" = "出自 %@ 點數";
+
+/* Name for a photo file, i.e. photo.png */
+"photo" = "照片";
+
+/* When we don't know the name of a file, we display this */
+"unknown" = "未知";
+

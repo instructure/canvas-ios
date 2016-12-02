@@ -1,35 +1,69 @@
-/* Description for rubric criterion rating object */
-"Rating for %1$@, Score: %2$g" = "Classificação para %1$@, Pontos: %2$g";
+/* prerequisites for unlocking item */
+"
+
+You must first complete:" = "
+
+Primeiro precisa de completar:";
 
 /* when locked item will become unlocked */
-"until %@" = "até %@";
+" until %@" = " até %@";
 
 /* explanation for locked module item */
-"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; está bloqueado como parte de &quot;%2$@&quot;";
+"\"%@\" is locked as part of \"%@\"" = "\"%1$@\" está bloqueado como parte de \"%2$@\"";
 
-/* Gigabytes */
+/* (No Commment) */
 "%0.2f GB" = "%0.2f GB";
 
-/* Kilobytes */
+/* (No Commment) */
 "%0.2f KB" = "%0.2f KB";
 
-/* Megabytes */
+/* (No Commment) */
 "%0.2f MB" = "%0.2f MB";
 
-/* Button to submit files to an assignment */
+/* (No Commment) */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
+/* (No Commment) */
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g de %3$@)";
 
-/* something at something */
+/* (No Commment) */
 "%1$@ at %2$@" = "%1$@ em %2$@";
+
+/* (No Commment) */
+"%1$@ is due in %2$@" = "%1$@ termina em %2$@";
+
+/* (No Commment) */
+"%1$@ out of %2$@" = "%1$@ de %2$@";
+
+/* (No Commment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g de %3$@)";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Tipo: %3$@.";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Tipo: %3$@. Estado: %4$@";
+
+/* (No Commment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Commment) */
+"%1$g out of %2$@" = "%1$g de %2$@";
+
+/* Button to submit files to an assignment */
+"%@ (%d)" = "%1$@ (%2$d)";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g de %3$@)";
+
+/* Event happens on a date at a time */
+"%@ at %@" = "%1$@ em %2$@";
 
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ disponível em breve!";
 
 /* local notification countdown alert */
-"%1$@ is due in %2$@" = "%1$@ termina em %2$@";
+"%@ is due in %@" = "%1$@ termina em %2$@";
 
 /* explanation for locked item */
 "%@ is locked" = "%@ está bloqueado";
@@ -37,7 +71,7 @@
 /* No comment provided by engineer. */
 "%@ is not a valid URL" = "%@ não é um URL válido";
 
-/* %@ is the token where the host name goes. Error message that the host doesn't exist. */
+/* (No Commment) */
 "%@ is not a valid host" = "%@ não é um anfitrião válido";
 
 /* Message for unsupported tab */
@@ -46,40 +80,34 @@
 /* Description for how many times a specific discussion has been liked by other users */
 "%@ likes" = "%@ gostos";
 
-/* Label indicating multiple submissions need grading */
+/* (No Commment) */
 "%@ need grading" = "%@ precisa de classificação";
 
 /* 88 out of 100 points */
-"%1$@ out of %2$@" = "%1$@ de %2$@";
+"%@ out of %@" = "%1$@ de %2$@";
 
 /* 83% (83 out of 100 points */
-"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g de %3$@)";
+"%@%% (%g out of %@)" = "%1$@%% (%2$g de %3$@)";
 
-/* String to be read for the blind users. Name of item in module, then type of thing. */
-"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Tipo: %3$@.";
-
-/* String to be read for the blind users. Name of item in module, then type of thing, then status. */
-"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Tipo: %3$@. Estado: %4$@";
-
-/* Word and ellipses */
+/* (No Commment) */
 "%@..." = "%@...";
 
 /* A number and a collective noun, like '5 pigs' */
-"%1$d %2$@" = "%1$d %2$@";
+"%d %@" = "%1$d %2$@";
 
-/* time since creation (2 or more days) */
+/* (No Commment) */
 "%d days ago" = "%d dias";
 
-/* time since creation (2 or more hours) */
+/* (No Commment) */
 "%d hours ago" = "%d horas";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
 "%d items" = "%d itens";
 
-/* time since creation (2 or more minutes) */
+/* (No Commment) */
 "%d minutes ago" = "%d minutos";
 
-/* time since creation (2 or more months) */
+/* (No Commment) */
 "%d months ago" = "%d meses";
 
 /* In the context 'Joe, Fred, ((25 more))' */
@@ -91,13 +119,10 @@
 /* Something like '3 unread'. Refers to unread replies in a discsusion. */
 "%d unread" = "%d não lidas";
 
-/* time since creation (2 or more years) */
+/* (No Commment) */
 "%d years ago" = "%d anos";
 
-/* 88 out of 100 points */
-"%1$g out of %2$@" = "%1$g de %2$@";
-
-/* As in, '15 bytes' */
+/* (No Commment) */
 "%qu bytes" = "%qu bytes";
 
 /* offset for one day */
@@ -124,6 +149,9 @@
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
 "%u files" = "%u ficheiros";
 
+/* (No Commment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; está bloqueado como parte de &quot;%2$@&quot;";
+
 /* %@ will be replaced by the filename */
 "'%@' is now ready to submit to assignments" = "'%@' está preparado para entregar as tarefas";
 
@@ -133,13 +161,13 @@
 /* one day */
 "1 day" = "1 dia";
 
-/* time since creation */
+/* (No Commment) */
 "1 day ago" = "1 dia";
 
 /* one hour */
 "1 hour" = "1 hora";
 
-/* time since creation */
+/* (No Commment) */
 "1 hour ago" = "1 hora";
 
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
@@ -148,16 +176,16 @@
 /* Description for a post that has been liked once */
 "1 like" = "1 gosto";
 
-/* time since creation */
+/* (No Commment) */
 "1 minute ago" = "1 minuto";
 
-/* time since creation */
+/* (No Commment) */
 "1 month ago" = "1 mês";
 
-/* Label indicating a submission need grading */
+/* (No Commment) */
 "1 needs grading" = "1 precisa de classificação";
 
-/* time since creation */
+/* (No Commment) */
 "1 year ago" = "1 ano";
 
 /* three days */
@@ -169,7 +197,7 @@
 /* Name of a tab displaying Canvas Info including legal info */
 "About" = "Acerca";
 
-/* Access Denied from the server */
+/* (No Commment) */
 "Access Denied" = "Acesso Recusado";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
@@ -196,8 +224,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "Adicionar pasta";
 
-/* Title for the add-inline-media sheet
-   Title on the add-inline-media sheet */
+/* Title on the add-inline-media sheet */
 "Add inline media" = "Adicionar conteúdos multimédia";
 
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
@@ -206,18 +233,16 @@
 /* Button to select all members of a group */
 "All members" = "Todos os membros";
 
-/* Error message text */
+/* (No Commment) */
 "An unknown error occurred" = "Ocorreu um erro desconhecido";
 
 /* Title of the new announcement view */
 "Announcement" = "Anúncio";
 
-/* Announcements title
-   Title for the announcements view controller */
+/* Title for the announcements view controller */
 "Announcements" = "Anúncios";
 
-/* Archive selected messages button
-   mark a message as archived */
+/* Archive selected messages button */
 "Archive" = "Arquivo";
 
 /* archive selected messages */
@@ -238,7 +263,7 @@
 /* Label for an assignment */
 "Assignment" = "Tarefa";
 
-/* Title for Assignments view controller */
+/* (No Commment) */
 "Assignments" = "Tarefas";
 
 /* An item for attaching to a discussion */
@@ -256,22 +281,22 @@
 /* Label for a discussion */
 "Attendance" = "Presença";
 
-/* Media type is audio */
+/* Audio file type */
 "Audio" = "Audio";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Audio input hardware not available" = "Equipamento de entrada de som não disponível";
 
-/* Title of alert box */
+/* Title for an error popup */
 "Authentication error" = "Erro de Autenticação";
 
 /* Link to building panda avatar */
 "Build Avatar" = "Criar Avatar";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Cache cleared" = "Cache Limpo";
 
-/* Calendar page title */
+/* (No Commment) */
 "Calendar" = "Calendário";
 
 /* Invalid LTI tool error title */
@@ -280,22 +305,10 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Não é possível entregar multimédia";
 
-/* Button title for canceling download of a file
-   Button title for cancelling the selection of a quiz. This will appear in the alert view notifying the user of the mobile quiz limitations.
-   Cancel
-   cancel add file/folder
-   Cancel add option
-   Cancel button for removing a file
-   Cancel deletion of discussion entry
-   cancel folder creation
-   Cancel folder name change
-   cancel masquerade
-   cancel message creation
-   cancel reminder notification
-   cancel view help options */
+/* Cancel button title */
 "Cancel" = "Cancelar";
 
-/* Cancel adding a comment button */
+/* Cancel button title */
 "Cancel Message" = "Cancelar Mensagem";
 
 /* No comment provided by engineer. */
@@ -342,7 +355,7 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* action sheet text for picking video from library */
 "Choose video" = "Escolher vídeo";
 
-/* No comment provided by engineer. */
+/* Close the window */
 "Close" = "Fechar";
 
 /* No comment provided by engineer. */
@@ -363,11 +376,10 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* No comment provided by engineer. */
 "Comments are disabled" = "Comentários desligados";
 
-/* Assignment grade: Complete
-   Pass/fail assignment is complete */
+/* (No Commment) */
 "Complete" = "Completar";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Completed" = "Terminado";
 
 /* button to compose a message */
@@ -397,7 +409,7 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "Apontamentos da Disciplina";
 
-/* Courses page title */
+/* (No Commment) */
 "Courses" = "Disciplinas";
 
 /* cancel folder creation */
@@ -409,15 +421,13 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Message telling users that quiz support on mobile is limited */
 "Currently there is limited quiz support on mobile" = "Atualmente o suporte para teste no dispositivo móvel é limitado";
 
-/* A custom grade not specified by the rubric. */
+/* (No Commment) */
 "Custom Grade" = "Personalizar Nota";
 
-/* label for customizing a course */
+/* (No Commment) */
 "Customize" = "Personalizar";
 
-/* Button to confirm deleting folders
-   Button to delete a discussion entry
-   Confirm deletion of discussion entry */
+/* Delete Button title */
 "Delete" = "Apagar";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -427,7 +437,10 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 "Delete this reply?" = "Apagar esta resposta?";
 
 /* delete file confirmation alert */
-"Deleted file: &quot;%@&quot;" = "Ficheiro apagado: &quot;%@&quot;";
+"Deleted file: \"%@\"" = "Ficheiro apagado: \"%@\"";
+
+/* (No Commment) */
+"Deleted file: &quot;%@&quot;" = "Eliminar ficheiro: &quot;%@&quot;";
 
 /* No comment provided by engineer. */
 "Detail" = "Detalhe";
@@ -450,15 +463,10 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Title for Discussion Topics view controller */
 "Discussion Topics" = "Tópicos de Debate";
 
-/* Discussions title
-   Title for Discussions view controller */
+/* Title for Discussions view controller */
 "Discussions" = "Debates";
 
-/* Dismiss an error button
-   dismiss button
-   Dismiss button for an error dialoue
-   Dismiss error alert button
-   dismiss the alert button */
+/* Dismiss button title */
 "Dismiss" = "Dispensar";
 
 /* Alert title asking if you want to masquerade */
@@ -473,7 +481,7 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Button to cancel deleting folders */
 "Don't delete" = "Não apagar";
 
-/* No comment provided by engineer. */
+/* Button to stop editing a list */
 "Done" = "Feito";
 
 /* Shown when we cancel a file download */
@@ -485,7 +493,7 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Data final:";
 
-/* Due date label for to do items, first placeholder is date, second is time */
+/* (No Commment) */
 "Due: %1$@ at %2$@" = "Termina: %1$@ a %2$@";
 
 /* Link to the End User License Agreement document */
@@ -494,24 +502,25 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Button to edit a discussion entry */
 "Edit" = "Editar";
 
-/* Edit course list title
-   Edit the items in the course list */
+/* (No Commment) */
 "Edit Course List" = "Editar Lista de Disciplinas";
 
-/* Edit group list title
-   Edit the items in the group list */
+/* (No Commment) */
 "Edit Group List" = "Editar Lista de Grupos";
 
 /* Button title for deleting items in a folder */
 "Edit items" = "Editar Itens";
 
-/* Header when editing a discussion entry with name and timestamp */
+/* (No Commment) */
 "Editing reply by %1$@, %2$@" = "Editar resposta por %1$@, %2$@";
+
+/* Header when editing a discussion entry with name and timestamp */
+"Editing reply by %@, %@" = "Editar resposta por %1$@, %2$@";
 
 /* the users email */
 "Email" = "Email";
 
-/* Prompt asking user to enable push notifications */
+/* (No Commment) */
 "Enable Push Notifications" = "Permitir Notificações Push";
 
 /* masquerade prompt */
@@ -523,14 +532,20 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "Entrada publicada";
 
-/* Title of alert box */
+/* Title for an error popup */
 "Error" = "Erro";
 
-/* Title of an alert popup */
+/* (No Commment) */
 "Error adding recipeints" = "Erro ao adicionar destinatários";
 
+/* Title of an alert popup */
+"Error adding recipients" = "Erro ao adicionar destinatários";
+
 /* Error deleting file alert view title */
-"Error deleting file &quot;%@&quot;" = "Erro ao apagar ficheiro &quot;%@&quot;";
+"Error deleting file \"%@\"" = "Erro ao apagar ficheiro \"%@\"";
+
+/* (No Commment) */
+"Error deleting file &quot;%@&quot;" = "Erro ao eliminar ficheiro &quot;%@&quot;";
 
 /* Error deleting folder alert view title */
 "Error deleting folder" = "Erro ao apagar a pasta";
@@ -544,17 +559,17 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Title for an external tool submission */
 "External Tool" = "Ferramenta Externa";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "External URL" = "URL Externo";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "File" = "Ficheiro";
 
-/* The file extension for a submission is not acceptable */
+/* (No Commment) */
 "File extension not allowed: %@" = "Extensão de ficheiro não permitida: %@";
 
-/* Comes before a list of file extensions allowed for an assinment submission */
-"File extension(s) permitted for this assignment:" = "Extensões de ficheiro(s) permitidos para esta tarefa:";
+/* (No Commment) */
+"File extension(s) permitted for this assignment:" = "Extensões de ficheiro permitida(s) para este trabalho:";
 
 /* No comment provided by engineer. */
 "File received" = "Ficheiro recebido";
@@ -565,19 +580,16 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* File upload submission type */
 "File upload" = "Carregamento de ficheiro";
 
-/* File upload failed. */
+/* (No Commment) */
 "File upload failed." = "Falhou o carregamento de ficheiro.";
 
-/* Files view
-   Name of a tab displaying files in a course
-   title for files view
-   Title for the Files View Controller */
+/* Title for the files screen */
 "Files" = "Ficheiros";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Terminou descarga";
 
-/* badge indicating front page */
+/* (No Commment) */
 "Front Page" = "Primeira Página";
 
 /* No comment provided by engineer. */
@@ -598,17 +610,20 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* No comment provided by engineer. */
 "Grade" = "Nota";
 
-/* Tells the user to grade an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Grade %@" = "Nota %@";
 
 /* Launch the SpeedGrader app */
 "Grade in SpeedGrader" = "Classificar no SpeedGrader";
 
+/* (No Commment) */
+"Grade: %1$i / %2$g" = "Classificar: %1$i / %2$g";
+
 /* No comment provided by engineer. */
 "Grade: %@" = "Nota: %@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "Classificar: %1$i / %2$g";
+"Grade: %i / %g" = "Classificar: %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "Debate classificado";
@@ -619,25 +634,25 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Debate classificado. %g pontos possíveis.";
 
-/* Title for Grades view controller */
+/* (No Commment) */
 "Grades" = "Notas";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "Conversação de grupo";
 
-/* Groups page title */
+/* (No Commment) */
 "Groups" = "Grupos";
 
 /* help button */
 "Help" = "Ajuda";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Commment) */
 "Hide Grades" = "Esconder Classificações";
 
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Gosta do Canvas?";
 
-/* I give you back your time, use it wisely. */
+/* (No Commment) */
 "I give you back your time, use it wisely." = "Devolvo-lhe o seu tempo, use-o bem.";
 
 /* Image file type */
@@ -652,8 +667,7 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* No comment provided by engineer. */
 "Inbox" = "Caixa de Entrada";
 
-/* Assignment grade: Incomplete
-   Pass/fail assignment is incomplete */
+/* (No Commment) */
 "Incomplete" = "Incompleto";
 
 /* Button title for sending a direct message; a private conversation */
@@ -665,19 +679,22 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* No comment provided by engineer. */
 "It has problems" = "Tem problemas";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Item %1$d of %2$d" = "Item %1$d de %2$d";
 
-/* It’s empty, what are you still doing here. */
+/* No comment provided by engineer. */
+"Item %d of %d" = "Item %1$d de %2$d";
+
+/* (No Commment) */
 "It’s empty, what are you still doing here." = "Está vazio, o que faz aqui.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Jumps to current day on calendar" = "Saltar para o dia de hoje no calendário";
 
 /* No comment provided by engineer. */
 "Keep" = "Manter";
 
-/* Settings entry title for Choosing a Landing Page */
+/* (No Commment) */
 "Landing Page" = "Página Inicial";
 
 /* Title for an alert popup */
@@ -692,52 +709,49 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Title for legal section on the about page */
 "Legal" = "Legal";
 
-/* Generic loading title with ellipses
-   Generic loading title with ellipsis */
+/* Generic loading title with ellipsis */
 "Loading..." = "Carregando...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked" = "Bloqueado";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked until %@" = "Bloqueado até %@";
 
 /* Typically the email address correlated to the user */
 "Login ID" = "ID de Entrada";
 
-/* Error message title */
+/* (No Commment) */
 "Login Problem" = "Problema de Entrada";
 
-/* logout action sheet logout button title
-   logout button */
+/* Title for a button to logout a user */
 "Logout" = "Saída";
 
 /* No comment provided by engineer. */
 "Love it!" = "Adoro!";
 
-/* Button title for mark as done */
+/* (No Commment) */
 "Mark as Done" = "Marcar como Terminado";
 
-/* Button title for beginning masquerading
-   try masquerading */
+/* Button title for beginning masquerading */
 "Masquerade" = "Disfarçar";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Me" = "Eu";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Media Comment" = "Comentário Multimédia";
 
 /* Title for a media submission */
 "Media Submission" = "Entregar Multimédia";
 
-/* The name for a video or audio response to something */
+/* (No Commment) */
 "Media comment" = "Comentário Multimédia";
 
 /* Media recording submission type */
 "Media recording" = "Gravação Multimédia";
 
-/* A slider to choose between media types */
+/* (No Commment) */
 "Media type selector. %@" = "Tipo de Seletor Multimédia. %@";
 
 /* Add message button */
@@ -749,15 +763,13 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* No comment provided by engineer. */
 "Message everyone separately, or add everyone to a group conversation?" = "Enviar mensagem para todos em separado, ou adicionar todos a um grupo de conversação?";
 
-/* Messages tab title
-   messages title
-   The name of the messages tab */
+/* Title for the messages screen */
 "Messages" = "Mensagens";
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "Aviso Móvel de Teste";
 
-/* title for the modules tab */
+/* (No Commment) */
 "Modules" = "Módulos";
 
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
@@ -766,19 +778,19 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Title of a link to show additional due dates customized for sections or groups. */
 "Multiple Due Dates" = "Várias Datas Finais";
 
-/* user must contribute to complete requirement */
+/* (No Commment) */
 "Must contribute" = "Tem de contribuir";
 
-/* user must mark item as done to complete requirement */
+/* (No Commment) */
 "Must mark as done" = "Tem de marcar como terminado";
 
-/* format string saying what the minimum score must be */
+/* (No Commment) */
 "Must score %@ or higher" = "Tem de obter %@ ou superior";
 
-/* user must submit something to complete requirement */
+/* (No Commment) */
 "Must submit" = "Tem de entregar";
 
-/* user must view item to complete requirement */
+/* (No Commment) */
 "Must view" = "Tem de ver";
 
 /* files button */
@@ -808,7 +820,7 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* No comment provided by engineer. */
 "No Date" = "Sem Data";
 
-/* Label shown for a to do that doesn't have a due date */
+/* (No Commment) */
 "No Due Date" = "Sem Data Final";
 
 /* Title for attempting submission without a comment */
@@ -838,54 +850,52 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Indicates a search found no results */
 "No results found" = "Sem resultados";
 
-/* error message for a 401 response. */
+/* (No Commment) */
 "Not Authorized" = "Não Autorizado";
 
-/* Pass/fail assignment is not complete */
+/* (No Commment) */
 "Not Complete" = "Incompleto";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
 "Not available" = "Não Disponível";
 
-/* not graded string. */
+/* (No Commment) */
 "Not graded" = "Sem nota";
 
-/* not graded with points possible */
+/* (No Commment) */
 "Not graded (0 out of %@)" = "Sem nota (0 de %@)";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Nota: Os ficheiros multimédia não estão disponíveis imediatamente para reprodução enquanto estão a ser processados no servidor.";
 
-/* Nothing to do, go play outside! */
+/* (No Commment) */
 "Nothing to do, go play outside!" = "Nada para fazer, vai brincar lá fora!";
 
-/* Nothing to see here. */
+/* (No Commment) */
 "Nothing to see here." = "Nada para ver aqui.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Notification" = "Notificação";
 
-/* Settings entry title for Notification Preferences */
-"Notification Preferences" = "Preferencias de Notificação";
+/* (No Commment) */
+"Notification Preferences" = "Preferências de Notificação";
 
-/* Notifications tab title */
+/* (No Commment) */
 "Notifications" = "Notificações";
 
-/* No comment provided by engineer. */
+/* OK Button Title */
 "OK" = "OK";
 
-/* Short name for observer enrollment */
+/* No comment provided by engineer. */
 "Observer" = "Observador";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Ok" = "OK";
 
 /* Online URL submission type */
 "Online URL" = "URL Online";
 
-/* Error message title
-   Error title
-   Masquerade error title */
+/* Title for an error alert */
 "Oops!" = "Oops!";
 
 /* Open a document in the application Safari */
@@ -906,20 +916,19 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Title for Outcomes tab */
 "Outcomes" = "Resultados";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Page" = "Página";
 
 /* No comment provided by engineer. */
 "Past" = "Passado";
 
-/* People list title
-   Title for People view controller */
+/* Title for the people view */
 "People" = "Pessoas";
 
 /* No comment provided by engineer. */
 "Pinned Discussions" = "Discussões escolhidas";
 
-/* A button that plays */
+/* (No Commment) */
 "Play" = "Reproduzir";
 
 /* Network error message */
@@ -928,7 +937,7 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Button to post new discussion topic */
 "Post" = "Publicar";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Post Comment" = "Publicar Comentário";
 
 /* No comment provided by engineer. */
@@ -937,7 +946,7 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Message shown while posting a discussion entry */
 "Posting…" = "Publicando...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Posts your comment" = "Publica o seu comentário";
 
 /* No comment provided by engineer. */
@@ -949,8 +958,7 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Title for profile screen */
 "Profile" = "Perfil";
 
-/* Label for a quiz
-   Title for a quiz submission cell */
+/* A short test taken by students */
 "Quiz" = "Questionário";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -962,13 +970,16 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* No comment provided by engineer. */
 "Rate on App Store" = "Classificar na Loja App";
 
+/* (No Commment) */
+"Rating for %1$@, Score: %2$g" = "Classificação para %1$@, Pontuação: %2$g";
+
 /* Title for a button allowing user to re-submit files for an assignment */
 "Re-submit Assignment" = "Voltar a Entregar Tarefa";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "Destinatários";
 
-/* A button that records */
+/* (No Commment) */
 "Record" = "Gravar";
 
 /* Record audio submission comment */
@@ -986,13 +997,13 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* No comment provided by engineer. */
 "Record video" = "Gravar vídeo";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refresh Button" = "Botão de atualizar";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refreshes the calendar content" = "Atualiza o conteúdo do calendário";
 
-/* Refreshing Calendar Events */
+/* (No Commment) */
 "Refreshing Calendar Events" = "Atualizar Eventos do Calendário";
 
 /* Confirmation for removing a file */
@@ -1040,11 +1051,10 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* No comment provided by engineer. */
 "Sent" = "Enviada";
 
-/* settings button
-   Title for Settings tab */
+/* Title for Settings */
 "Settings" = "Definições";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Commment) */
 "Show Grades" = "Mostrar Classificações";
 
 /* title for quiz assignment submission button */
@@ -1065,31 +1075,31 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Desculpe, não conseguimos encontrar a tarefa. Esta tarefa pode ter sido apagada.";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Starts playing your recording" = "Inicia a reprodução das suas gravações";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Starts recording a media comment" = "Inicia a gravação de um comentário multimédia";
 
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Manter registado";
 
-/* A button that stops */
+/* Stop loading button for webview */
 "Stop" = "Parar";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
 "Stop Masquerading" = "Parar disfarce";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Stops playing your recording" = "Para a reprodução das suas gravações";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Stops recording a media comment" = "Para a gravação de um comentário multimédia";
 
-/* Short name for student enrollment */
+/* No comment provided by engineer. */
 "Student" = "Aluno";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Sub Header" = "Sub Título";
 
 /* View previously submitted assignment */
@@ -1119,20 +1129,19 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* No comment provided by engineer. */
 "Sure!" = "Claro!";
 
-/* Hint about media input selection */
+/* (No Commment) */
 "Switches media input between audio and video. Currently set to %@" = "Altera a entrada multimédia entre audio e vídeo. Agora definido para %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to media comment mode" = "Altera para o modo de comentário multimédia";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to text comment mode" = "Altera para o modo de comentário de texto";
 
-/* Syllabus screen name
-   Title for Syllabus view controller */
+/* Title for Syllabus screen */
 "Syllabus" = "Apontamentos";
 
-/* Short name for TA enrollment */
+/* (No Commment) */
 "TA" = "TA";
 
 /* No comment provided by engineer. */
@@ -1153,7 +1162,7 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Displayed in a row when an error occurs loading more items */
 "Tap to try again" = "Clique para tentar novamente";
 
-/* Short name for teacher enrollment */
+/* (No Commment) */
 "Teacher" = "Professor";
 
 /* No comment provided by engineer. */
@@ -1165,10 +1174,10 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Link to the Terms of Use */
 "Terms of Use" = "Termos de Utilização";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Text Comment" = "Comentário de Texto";
 
-/* Generic name for a submission entered online. */
+/* Title for a text submission cell */
 "Text Submission" = "Entrega de Texto";
 
 /* Text entry submission type */
@@ -1180,10 +1189,10 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "Não foi possível contatar o servidor";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The server you entered is not authorized for this app." = "O servidor que inseriu não está autorizado para esta app.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The user agent for this app is unauthorized." = "O agente utilizador para esta app não está autorizada.";
 
 /* Error message */
@@ -1214,7 +1223,7 @@ Erro: %@";
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Ocorreu um erro ao carregar o seu conteúdo. Se for um carregamento audio ou vídeo pode ainda estar a processar.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This app is not authorized for use." = "Esta app não está autorizada para utilização.";
 
 /* Invalid LTI tool error message */
@@ -1235,14 +1244,13 @@ Erro: %@";
 /* Text indicating that a folder cannot be opened */
 "This folder is locked" = "Esta pasta esta bloqueada";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This is a media message." = "Esta é uma mensagem multimédia.";
 
-/* This would be a great time to do some extra credit. */
+/* (No Commment) */
 "This would be a great time to do some extra credit." = "Esta seria uma boa altura para alguns créditos extra.";
 
-/* Title of to do screen
-   To Do page title */
+/* (No Commment) */
 "To Do" = "A Fazer";
 
 /* No comment provided by engineer. */
@@ -1251,7 +1259,7 @@ Erro: %@";
 /* No comment provided by engineer. */
 "Today" = "Hoje";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Today Button" = "Botão Hoje";
 
 /* No comment provided by engineer. */
@@ -1266,10 +1274,10 @@ Erro: %@";
 /* title for re-submitting an assignment */
 "Turn In Again" = "Entregar Novamente";
 
-/* Tells the user to turn in an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Turn in %@" = "Entregue %@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Commment) */
 "Uh-oh! No Internet Connection" = "Uh-oh! Sem ligação à Internet";
 
 /* Error title */
@@ -1281,10 +1289,10 @@ Erro: %@";
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Impossível carregar no servidor";
 
-/* Grade unavailable */
+/* (No Commment) */
 "Unavailable" = "Indisponível";
 
-/* Title for grade button when no grade is present */
+/* (No Commment) */
 "Ungraded" = "Não classificado";
 
 /* Unknown file type */
@@ -1312,10 +1320,16 @@ Erro: %@";
 "Upload file" = "Carregar ficheiro";
 
 /* Error message */
-"Upload to assignment &quot;%@&quot; failed" = "Carregar para tarefa &quot;%@&quot; falhou";
+"Upload to assignment \"%@\" failed" = "Carregar para tarefa \"%@\" falhou";
+
+/* (No Commment) */
+"Upload to assignment &quot;%@&quot; failed" = "Falha ao carregar para trabalho &quot;%@&quot; ";
 
 /* Error message */
-"Upload to folder &quot;%@&quot; failed" = "Carregar para pasta &quot;%@&quot; falhou";
+"Upload to folder \"%@\" failed" = "Carregar para pasta \"%@\" falhou";
+
+/* (No Commment) */
+"Upload to folder &quot;%@&quot; failed" = "Falha ao carregar para a pasta &quot;%@&quot; ";
 
 /* button for using the recorded audio */
 "Use" = "Utilizar";
@@ -1326,22 +1340,22 @@ Erro: %@";
 /* Title for User Info section on the about page */
 "User Info" = "Info do Utilizador";
 
-/* Media type is video */
+/* Video file type */
 "Video" = "Video";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Video error" = "Erro de vídeo";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "View" = "Ver";
 
-/* No comment provided by engineer. */
+/* Title for a warning popup */
 "Warning" = "Aviso";
 
 /* error message for failure to load a file submission */
 "We had a problem loading the submission. Please try again later." = "Tivemos um erro ao carregar a sua entrega. Por favor tente novamente mais tarde.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "We were unable to verify the server for use with this app." = "Não conseguimos verificar o servidor para utilização com esta app.";
 
 /* Error Title */
@@ -1371,7 +1385,7 @@ Erro: %@";
 /* Message in an alert */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Não tem SppedGrader para iPad. Pode descarregar gratuitamente na Loja App.";
 
-/* Error message for an unauthorized course or group. */
+/* (No Commment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Não tem acesso a este conteúdo. A Disciplina ou Grupo podem não ter começado, ou podem estar concluídos.";
 
 /* Error message */
@@ -1383,10 +1397,16 @@ Erro: %@";
 /* No comment provided by engineer. */
 "You have an unsaved reply. Would you like to discard that reply?" = "Tem uma cópia não guardada. Gostaria de ignorar esta resposta?";
 
+/* An explanation of how to transfer files to the Canvas app. */
+"You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas." = "Não possui ficheiros disponíveis para carregamento. Para adicionar ficheiros de outras aplicações, encontre um ficheiro em outra aplicação, depois encontre o botão “Abrir em” para o abrir no Canvas. Também pode tocar e reter anexos na aplicação Mail para os abrir no Canvas.";
+
+/* (No Commment) */
+"You must first complete:" = "Primeiro tem de concluir:";
+
 /* Error message */
 "You need a title and a description to post" = "Precisa de um título e uma descrição para publicar";
 
-/* You should go rate Canvas on the App Store! */
+/* (No Commment) */
 "You should go rate Canvas on the App Store!" = "Devia classificar Canvas na App Store!";
 
 /* Error content */
@@ -1395,27 +1415,30 @@ Erro: %@";
 /* Media submission type selected with no Kaltura set up */
 "Your school's configuration does not allow the type of submission selected for this assignment" = "A configuração da sua escola não permite o tipo de entrega selecionado para esta tarefa.";
 
-/* prerequisites for unlocking item */
-"You must first complete:" = "Primeiro precisa de completar:";
-
-/* Assignment is due on a date at a time */
+/* (No Commment) */
 "due on %1$@ at %2$@" = "termina a %1$@ às %2$@";
 
-/* time since creation (less than 1 minute) */
+/* Assignment is due on a date at a time */
+"due on %@ at %@" = "termina a %1$@ às %2$@";
+
+/* (No Commment) */
 "moments ago" = "há alguns momentos";
 
-/* Accessibility label for out or grading style */
+/* Accessibility label modifier for point out of point possible */
 "out of" = "de";
 
 /* The assignment is out of 100 points */
 "out of %@" = "de %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "out of %@ points" = "de %@ pontos";
 
-/* Name for a photo file, i.e. photo.png */
+/* (No Commment) */
 "photo" = "fotografia";
 
-/* When we don't know the name of a file, we display this */
+/* (No Commment) */
 "unknown" = "desconhecido";
+
+/* (No Commment) */
+"until %@" = "até %@";
 

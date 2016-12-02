@@ -1,35 +1,69 @@
-/* Description for rubric criterion rating object */
-"Rating for %1$@, Score: %2$g" = "Whakatauranga mō %1$@, Score: %2$g";
+/* prerequisites for unlocking item */
+"
+
+You must first complete:" = "
+
+Me tuatahi whakaoti koe:";
 
 /* when locked item will become unlocked */
-"until %@" = "tae noa ki %@";
+" until %@" = "tae noa ki %@";
 
 /* explanation for locked module item */
-"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "kiia &quot;%1$@&quot; te hei wāhanga o &quot;%2$@&quot;";
+"\"%@\" is locked as part of \"%@\"" = "kiia \"%1$@\" te hei wāhanga o \"%2$@\"";
 
-/* Gigabytes */
+/* (No Commment) */
 "%0.2f GB" = "%0.2f GB";
 
-/* Kilobytes */
+/* (No Commment) */
 "%0.2f KB" = "%0.2f KB";
 
-/* Megabytes */
+/* (No Commment) */
 "%0.2f MB" = "%0.2f MP";
 
-/* Button to submit files to an assignment */
+/* (No Commment) */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
+/* (No Commment) */
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g i roto i te %3$@)";
 
-/* something at something */
+/* (No Commment) */
 "%1$@ at %2$@" = "%1$@ i %2$@";
+
+/* (No Commment) */
+"%1$@ is due in %2$@" = "He tika i roto i te %2$@ %1$@ ";
+
+/* (No Commment) */
+"%1$@ out of %2$@" = "%1$@ i roto i te %2$@";
+
+/* (No Commment) */
+"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g i roto i te %3$@)";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Momo: %3$@.";
+
+/* (No Commment) */
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Momo: %3$@. Tūnga: %4$@";
+
+/* (No Commment) */
+"%1$d %2$@" = "%1$d %2$@";
+
+/* (No Commment) */
+"%1$g out of %2$@" = "%1$g i roto i te %2$@";
+
+/* Button to submit files to an assignment */
+"%@ (%d)" = "%1$@ (%2$d)";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g i roto i te %3$@)";
+
+/* Event happens on a date at a time */
+"%@ at %@" = "%1$@ i %2$@";
 
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "Kei te haere mai hohoro %@!";
 
 /* local notification countdown alert */
-"%1$@ is due in %2$@" = "He tika i roto i te %2$@ %1$@";
+"%@ is due in %@" = "He tika i roto i te %2$@ %1$@ ";
 
 /* explanation for locked item */
 "%@ is locked" = "kiia %@ te";
@@ -37,7 +71,7 @@
 /* No comment provided by engineer. */
 "%@ is not a valid URL" = "e kore he %@ he URL whaimana";
 
-/* %@ is the token where the host name goes. Error message that the host doesn't exist. */
+/* (No Commment) */
 "%@ is not a valid host" = "e kore he %@ he ope whaimana";
 
 /* Message for unsupported tab */
@@ -46,40 +80,34 @@
 /* Description for how many times a specific discussion has been liked by other users */
 "%@ likes" = "momo %@";
 
-/* Label indicating multiple submissions need grading */
+/* (No Commment) */
 "%@ need grading" = "%@ Māka  matea";
 
 /* 88 out of 100 points */
-"%1$@ out of %2$@" = "%1$@ i roto i te %2$@";
+"%@ out of %@" = "%1$@ i roto i te %2$@";
 
 /* 83% (83 out of 100 points */
-"%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g i roto i te %3$@)";
+"%@%% (%g out of %@)" = "%1$@%% (%2$g i roto i te %3$@)";
 
-/* String to be read for the blind users. Name of item in module, then type of thing. */
-"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Momo: %3$@.";
-
-/* String to be read for the blind users. Name of item in module, then type of thing, then status. */
-"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Momo: %3$@. Tūnga: %4$@";
-
-/* Word and ellipses */
+/* (No Commment) */
 "%@..." = "%@...";
 
 /* A number and a collective noun, like '5 pigs' */
-"%1$d %2$@" = "%1$d %2$@";
+"%d %@" = "%1$d %2$@";
 
-/* time since creation (2 or more days) */
+/* (No Commment) */
 "%d days ago" = "%d ra i mua";
 
-/* time since creation (2 or more hours) */
+/* (No Commment) */
 "%d hours ago" = "%d haora  mua";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
 "%d items" = "%d ngā tūemi";
 
-/* time since creation (2 or more minutes) */
+/* (No Commment) */
 "%d minutes ago" = "%d meneti  mua";
 
-/* time since creation (2 or more months) */
+/* (No Commment) */
 "%d months ago" = "%d marama  mua";
 
 /* In the context 'Joe, Fred, ((25 more))' */
@@ -91,38 +119,38 @@
 /* Something like '3 unread'. Refers to unread replies in a discsusion. */
 "%d unread" = "%d pānuihia";
 
-/* time since creation (2 or more years) */
+/* (No Commment) */
 "%d years ago" = "%d tau  mua";
 
-/* 88 out of 100 points */
-"%1$g out of %2$@" = "%1$g i roto i te %2$@";
-
-/* As in, '15 bytes' */
+/* (No Commment) */
 "%qu bytes" = "%qu paita";
 
 /* offset for one day */
-"%tu day" = "%tu ra";
+"%tu day" = "%tu ra ";
 
 /* offset for number of days */
-"%tu days" = "%tu rua";
+"%tu days" = "%tu rua ";
 
 /* offset for an hour */
-"%tu hour" = "%tu haora";
+"%tu hour" = "%tu haora ";
 
 /* offset for number of hours */
-"%tu hours" = "%tu haora";
+"%tu hours" = "%tu haora ";
 
 /* offset for less than one minute */
-"%tu minute" = "%tu meneti";
+"%tu minute" = "%tu meneti ";
 
 /* offset for under an hour */
-"%tu minutes" = "%tu meneti";
+"%tu minutes" = "%tu meneti ";
 
 /* No comment provided by engineer. */
 "%u Attachments" = "Āpitihanga %u";
 
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
 "%u files" = "kōnae %u";
+
+/* (No Commment) */
+"&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; kei te raka i te wāhanga o &quot;%2$@&quot;";
 
 /* %@ will be replaced by the filename */
 "'%@' is now ready to submit to assignments" = "'%@' He inaianei rite ki te tuku ki ohipa";
@@ -133,13 +161,13 @@
 /* one day */
 "1 day" = "1 ra";
 
-/* time since creation */
+/* (No Commment) */
 "1 day ago" = "1 ra i mua";
 
 /* one hour */
 "1 hour" = "1 haora";
 
-/* time since creation */
+/* (No Commment) */
 "1 hour ago" = "1 haora i mua";
 
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
@@ -148,16 +176,16 @@
 /* Description for a post that has been liked once */
 "1 like" = "1 rite";
 
-/* time since creation */
+/* (No Commment) */
 "1 minute ago" = "1 meneti i mua";
 
-/* time since creation */
+/* (No Commment) */
 "1 month ago" = "1 marama i mua";
 
-/* Label indicating a submission need grading */
+/* (No Commment) */
 "1 needs grading" = "1 hiahia māka";
 
-/* time since creation */
+/* (No Commment) */
 "1 year ago" = "1 tau i mua";
 
 /* three days */
@@ -169,7 +197,7 @@
 /* Name of a tab displaying Canvas Info including legal info */
 "About" = "Mō";
 
-/* Access Denied from the server */
+/* (No Commment) */
 "Access Denied" = "Aukatia te Uru";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
@@ -196,8 +224,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "Tāpiri kōpaki";
 
-/* Title for the add-inline-media sheet
-   Title on the add-inline-media sheet */
+/* Title on the add-inline-media sheet */
 "Add inline media" = "Tāpiri pāpāho rōraina";
 
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
@@ -206,18 +233,16 @@
 /* Button to select all members of a group */
 "All members" = "te mau melo katoa";
 
-/* Error message text */
+/* (No Commment) */
 "An unknown error occurred" = "He hapa tē mōhiotia puta";
 
 /* Title of the new announcement view */
 "Announcement" = "Pānuitanga";
 
-/* Announcements title
-   Title for the announcements view controller */
+/* Title for the announcements view controller */
 "Announcements" = "Fanongonongó";
 
-/* Archive selected messages button
-   mark a message as archived */
+/* Archive selected messages button */
 "Archive" = "Pūranga";
 
 /* archive selected messages */
@@ -238,7 +263,7 @@
 /* Label for an assignment */
 "Assignment" = "Taumahi";
 
-/* Title for Assignments view controller */
+/* (No Commment) */
 "Assignments" = "Taumahi";
 
 /* An item for attaching to a discussion */
@@ -256,22 +281,22 @@
 /* Label for a discussion */
 "Attendance" = "Te haereraa i";
 
-/* Media type is audio */
+/* Audio file type */
 "Audio" = "Ororongo";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Audio input hardware not available" = "pūmārō tāuru ororongo kore e wātea ana";
 
-/* Title of alert box */
+/* Title for an error popup */
 "Authentication error" = "hapa motuhēhēnga";
 
 /* Link to building panda avatar */
 "Build Avatar" = "Hanga Avatar";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Cache cleared" = "whakawāteatia Keteroki";
 
-/* Calendar page title */
+/* (No Commment) */
 "Calendar" = "Maramataka";
 
 /* Invalid LTI tool error title */
@@ -280,22 +305,10 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kāore e taea te tuku pāpāho";
 
-/* Button title for canceling download of a file
-   Button title for cancelling the selection of a quiz. This will appear in the alert view notifying the user of the mobile quiz limitations.
-   Cancel
-   cancel add file/folder
-   Cancel add option
-   Cancel button for removing a file
-   Cancel deletion of discussion entry
-   cancel folder creation
-   Cancel folder name change
-   cancel masquerade
-   cancel message creation
-   cancel reminder notification
-   cancel view help options */
+/* Cancel button title */
 "Cancel" = "Whakakore";
 
-/* Cancel adding a comment button */
+/* Cancel button title */
 "Cancel Message" = "Whakakore Karere";
 
 /* No comment provided by engineer. */
@@ -342,7 +355,7 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* action sheet text for picking video from library */
 "Choose video" = "Kōwhiri ataata";
 
-/* No comment provided by engineer. */
+/* Close the window */
 "Close" = "Katia";
 
 /* No comment provided by engineer. */
@@ -363,11 +376,10 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* No comment provided by engineer. */
 "Comments are disabled" = "He monokia Tākupu";
 
-/* Assignment grade: Complete
-   Pass/fail assignment is complete */
+/* (No Commment) */
 "Complete" = "Whakaotia";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Completed" = "Oti";
 
 /* button to compose a message */
@@ -397,7 +409,7 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "Marautanga Akoranga";
 
-/* Courses page title */
+/* (No Commment) */
 "Courses" = "Kōhi";
 
 /* cancel folder creation */
@@ -409,15 +421,13 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Message telling users that quiz support on mobile is limited */
 "Currently there is limited quiz support on mobile" = "I tēnei wā i reira he iti tautoko pātaitai i runga i pūkoro";
 
-/* A custom grade not specified by the rubric. */
+/* (No Commment) */
 "Custom Grade" = "Kōeke Ritenga";
 
-/* label for customizing a course */
+/* (No Commment) */
 "Customize" = "Whakaritea";
 
-/* Button to confirm deleting folders
-   Button to delete a discussion entry
-   Confirm deletion of discussion entry */
+/* Delete Button title */
 "Delete" = "Mukua";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -427,7 +437,10 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 "Delete this reply?" = "Mukua tenei whakautu?";
 
 /* delete file confirmation alert */
-"Deleted file: &quot;%@&quot;" = "kōnae Mukua: &quot;%@&quot;";
+"Deleted file: \"%@\"" = "kōnae Mukua: \"%@\"";
+
+/* (No Commment) */
+"Deleted file: &quot;%@&quot;" = "Mukua te kōnae &quot;%@&quot;";
 
 /* No comment provided by engineer. */
 "Detail" = "Taipitopito";
@@ -450,15 +463,10 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Title for Discussion Topics view controller */
 "Discussion Topics" = "kaupapa Aparauraa";
 
-/* Discussions title
-   Title for Discussions view controller */
+/* Title for Discussions view controller */
 "Discussions" = "Kōrero";
 
-/* Dismiss an error button
-   dismiss button
-   Dismiss button for an error dialoue
-   Dismiss error alert button
-   dismiss the alert button */
+/* Dismiss button title */
 "Dismiss" = "Tonoa";
 
 /* Alert title asking if you want to masquerade */
@@ -473,7 +481,7 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Button to cancel deleting folders */
 "Don't delete" = "Kaua e muku";
 
-/* No comment provided by engineer. */
+/* Button to stop editing a list */
 "Done" = "Mahia";
 
 /* Shown when we cancel a file download */
@@ -485,7 +493,7 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Nā:";
 
-/* Due date label for to do items, first placeholder is date, second is time */
+/* (No Commment) */
 "Due: %1$@ at %2$@" = "Nā: %1$@ i %2$@";
 
 /* Link to the End User License Agreement document */
@@ -494,24 +502,25 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Button to edit a discussion entry */
 "Edit" = "Whakatika";
 
-/* Edit course list title
-   Edit the items in the course list */
+/* (No Commment) */
 "Edit Course List" = "Whakatika Rārangi Akoranga";
 
-/* Edit group list title
-   Edit the items in the group list */
+/* (No Commment) */
 "Edit Group List" = "Rārangi Whakatika Rōpū";
 
 /* Button title for deleting items in a folder */
 "Edit items" = "Whakatika tūemi";
 
-/* Header when editing a discussion entry with name and timestamp */
+/* (No Commment) */
 "Editing reply by %1$@, %2$@" = "Whakarerekē whakautu e %1$@, %2$@";
+
+/* Header when editing a discussion entry with name and timestamp */
+"Editing reply by %@, %@" = "Whakarerekē whakautu e %1$@, %2$@";
 
 /* the users email */
 "Email" = "Īmēra";
 
-/* Prompt asking user to enable push notifications */
+/* (No Commment) */
 "Enable Push Notifications" = "Whakahohea Whakamōhiotanga Pana";
 
 /* masquerade prompt */
@@ -523,14 +532,20 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "whakairi tāurunga";
 
-/* Title of alert box */
+/* Title for an error popup */
 "Error" = "Hapa";
 
-/* Title of an alert popup */
+/* (No Commment) */
 "Error adding recipeints" = "Hapa tāpiri kaiwhiwhi";
 
+/* Title of an alert popup */
+"Error adding recipients" = "He hapa i te wā e tāpiri ana i ngā kaiwhiwhi";
+
 /* Error deleting file alert view title */
-"Error deleting file &quot;%@&quot;" = "kōnae te muku Hapa &quot;%@&quot;";
+"Error deleting file \"%@\"" = "kōnae te muku Hapa \"%@\"";
+
+/* (No Commment) */
+"Error deleting file &quot;%@&quot;" = "I hapa te mukuna i te kōnae &quot;%@&quot;";
 
 /* Error deleting folder alert view title */
 "Error deleting folder" = "kōpaki te muku Hapa";
@@ -544,17 +559,17 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Title for an external tool submission */
 "External Tool" = "Taputapu Waho";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "External URL" = "URL Waho";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "File" = "Kōnae";
 
-/* The file extension for a submission is not acceptable */
+/* (No Commment) */
 "File extension not allowed: %@" = "toronga Kōnae kore whakaaetia: %@";
 
-/* Comes before a list of file extensions allowed for an assinment submission */
-"File extension(s) permitted for this assignment:" = "toronga Kōnae (he) tukua hoki tenei taumahi:";
+/* (No Commment) */
+"File extension(s) permitted for this assignment:" = "Ka whakaaetia he toronga kōnae (ngā) mō tēnei taumahi";
 
 /* No comment provided by engineer. */
 "File received" = "riro Kōnae";
@@ -565,19 +580,16 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* File upload submission type */
 "File upload" = "tukunga Kōnae";
 
-/* File upload failed. */
+/* (No Commment) */
 "File upload failed." = "I rahua te tukunga Kōnae.";
 
-/* Files view
-   Name of a tab displaying files in a course
-   title for files view
-   Title for the Files View Controller */
+/* Title for the files screen */
 "Files" = "Kōnae";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "tikiake oti";
 
-/* badge indicating front page */
+/* (No Commment) */
 "Front Page" = "Whārangi Mua";
 
 /* No comment provided by engineer. */
@@ -598,17 +610,20 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* No comment provided by engineer. */
 "Grade" = "Kōeke";
 
-/* Tells the user to grade an assignment called something like 'Biology Assignment' */
-"Grade %@" = "Kōeke %@";
+/* (No Commment) */
+"Grade %@" = "Kōeke %@ ";
 
 /* Launch the SpeedGrader app */
 "Grade in SpeedGrader" = "Kōeke i SpeedGrade";
+
+/* (No Commment) */
+"Grade: %1$i / %2$g" = "Kōeke: %1$i / %2$g";
 
 /* No comment provided by engineer. */
 "Grade: %@" = "Kōeke: %@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "Kōeke: %1$i / %2$g";
+"Grade: %i / %g" = "Kōeke: %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "Aparauraa Mākahia";
@@ -619,25 +634,25 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "kōrero Mākahia. tohu taea %g.";
 
-/* Title for Grades view controller */
+/* (No Commment) */
 "Grades" = "Kōeke";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "whakahaere rōpū";
 
-/* Groups page title */
+/* (No Commment) */
 "Groups" = "Rōpū";
 
 /* help button */
 "Help" = "Āwhina";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Commment) */
 "Hide Grades" = "Huna Kōeke";
 
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Kia pehea te mahi koe rite Kanaweti?";
 
-/* I give you back your time, use it wisely. */
+/* (No Commment) */
 "I give you back your time, use it wisely." = "hoatu e ahau ki te hoki koe tou wa, te whakamahi i te reira te paari.";
 
 /* Image file type */
@@ -652,8 +667,7 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* No comment provided by engineer. */
 "Inbox" = "Pouakauru";
 
-/* Assignment grade: Incomplete
-   Pass/fail assignment is incomplete */
+/* (No Commment) */
 "Incomplete" = "Pahara";
 
 /* Button title for sending a direct message; a private conversation */
@@ -665,19 +679,22 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* No comment provided by engineer. */
 "It has problems" = "He raruraru";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Item %1$d of %2$d" = "Te nama take %1$d o %2$d";
 
-/* It’s empty, what are you still doing here. */
+/* No comment provided by engineer. */
+"Item %d of %d" = "Te nama take %1$d o %2$d";
+
+/* (No Commment) */
 "It’s empty, what are you still doing here." = "te reira kau, he aha kei te mahi tonu koutou i konei.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Jumps to current day on calendar" = "Hūpeke ki te ra o nāianei i runga i te maramataka";
 
 /* No comment provided by engineer. */
 "Keep" = "Kia mau ki";
 
-/* Settings entry title for Choosing a Landing Page */
+/* (No Commment) */
 "Landing Page" = "Whārangi Tauranga";
 
 /* Title for an alert popup */
@@ -692,52 +709,49 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Title for legal section on the about page */
 "Legal" = "Ture";
 
-/* Generic loading title with ellipses
-   Generic loading title with ellipsis */
+/* Generic loading title with ellipsis */
 "Loading..." = "Utanga ...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked" = "Maukatia";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Locked until %@" = "Maukatia noa %@";
 
 /* Typically the email address correlated to the user */
 "Login ID" = "Takiuru ID";
 
-/* Error message title */
+/* (No Commment) */
 "Login Problem" = "Takiuru Raru";
 
-/* logout action sheet logout button title
-   logout button */
+/* Title for a button to logout a user */
 "Logout" = "Takiuru Out";
 
 /* No comment provided by engineer. */
 "Love it!" = "Aroha te reira!";
 
-/* Button title for mark as done */
+/* (No Commment) */
 "Mark as Done" = "Mark rite Oti";
 
-/* Button title for beginning masquerading
-   try masquerading */
+/* Button title for beginning masquerading */
 "Masquerade" = "poupou pakoko";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Me" = "Ahau";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Media Comment" = "Tākupu Pāpāho";
 
 /* Title for a media submission */
 "Media Submission" = "Tukunga Pāpāho";
 
-/* The name for a video or audio response to something */
+/* (No Commment) */
 "Media comment" = "kōrero Pāpāho";
 
 /* Media recording submission type */
 "Media recording" = "tuhi Pāpāho";
 
-/* A slider to choose between media types */
+/* (No Commment) */
 "Media type selector. %@" = "momo kaikōwhiri Pāpāho. %@";
 
 /* Add message button */
@@ -749,15 +763,13 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* No comment provided by engineer. */
 "Message everyone separately, or add everyone to a group conversation?" = "Karere katoa wehe, tāpiri katoa ranei ki te aparauraa rōpū?";
 
-/* Messages tab title
-   messages title
-   The name of the messages tab */
+/* Title for the messages screen */
 "Messages" = "Karere";
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "Whakatūpato Pātaitai Pūkoro";
 
-/* title for the modules tab */
+/* (No Commment) */
 "Modules" = "Kōwae";
 
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
@@ -766,19 +778,19 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Title of a link to show additional due dates customized for sections or groups. */
 "Multiple Due Dates" = "Rā Nā Maha";
 
-/* user must contribute to complete requirement */
+/* (No Commment) */
 "Must contribute" = "Me whai wāhi";
 
-/* user must mark item as done to complete requirement */
+/* (No Commment) */
 "Must mark as done" = "Me Tohua i rite ki ta";
 
-/* format string saying what the minimum score must be */
+/* (No Commment) */
 "Must score %@ or higher" = "Me piro %@ teitei ranei";
 
-/* user must submit something to complete requirement */
+/* (No Commment) */
 "Must submit" = "Me tuku";
 
-/* user must view item to complete requirement */
+/* (No Commment) */
 "Must view" = "Me tiro";
 
 /* files button */
@@ -808,7 +820,7 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* No comment provided by engineer. */
 "No Date" = "Kāore he Rā";
 
-/* Label shown for a to do that doesn't have a due date */
+/* (No Commment) */
 "No Due Date" = "Kāore he Rā whakaoti";
 
 /* Title for attempting submission without a comment */
@@ -838,54 +850,52 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Indicates a search found no results */
 "No results found" = "kitea he hua";
 
-/* error message for a 401 response. */
+/* (No Commment) */
 "Not Authorized" = "E kore e Faati'ahia te";
 
-/* Pass/fail assignment is not complete */
+/* (No Commment) */
 "Not Complete" = "Kāore i te oti";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
 "Not available" = "Kāore i te wātea";
 
-/* not graded string. */
+/* (No Commment) */
 "Not graded" = "E kore e mākahia";
 
-/* not graded with points possible */
+/* (No Commment) */
 "Not graded (0 out of %@)" = "E kore e mākahia (0 i roto i te %@)";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Mōhio: e kore e tonu e wātea ana ngā kōnae pāpāho mō te purei ia e tukatuka ratou i runga i te tūmau.";
 
-/* Nothing to do, go play outside! */
+/* (No Commment) */
 "Nothing to do, go play outside!" = "Kahore ki te mahi, haere tākaro ki waho!";
 
-/* Nothing to see here. */
+/* (No Commment) */
 "Nothing to see here." = "Kahore ki te kite i konei.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Notification" = "Whakamōhiotanga";
 
-/* Settings entry title for Notification Preferences */
+/* (No Commment) */
 "Notification Preferences" = "Manakohanga Whakamōhiotanga";
 
-/* Notifications tab title */
+/* (No Commment) */
 "Notifications" = "Whakamōhiotanga";
 
-/* No comment provided by engineer. */
+/* OK Button Title */
 "OK" = "OK";
 
-/* Short name for observer enrollment */
+/* No comment provided by engineer. */
 "Observer" = "Kaimātakitaki";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Ok" = "Ok";
 
 /* Online URL submission type */
 "Online URL" = "URL Ipurangi";
 
-/* Error message title
-   Error title
-   Masquerade error title */
+/* Title for an error alert */
 "Oops!" = "Oops!";
 
 /* Open a document in the application Safari */
@@ -906,20 +916,19 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Title for Outcomes tab */
 "Outcomes" = "Putanga";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Page" = "Whārangi";
 
 /* No comment provided by engineer. */
 "Past" = "Mua";
 
-/* People list title
-   Title for People view controller */
+/* Title for the people view */
 "People" = "Iwi";
 
 /* No comment provided by engineer. */
 "Pinned Discussions" = "Matapaki Pinea";
 
-/* A button that plays */
+/* (No Commment) */
 "Play" = "Tākaro";
 
 /* Network error message */
@@ -928,7 +937,7 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Button to post new discussion topic */
 "Post" = "Pou";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Post Comment" = "Pou Tākupu";
 
 /* No comment provided by engineer. */
@@ -937,7 +946,7 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Message shown while posting a discussion entry */
 "Posting…" = "Posting ...";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Posts your comment" = "Pou koutou kōrero";
 
 /* No comment provided by engineer. */
@@ -949,8 +958,7 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Title for profile screen */
 "Profile" = "Kōtaha";
 
-/* Label for a quiz
-   Title for a quiz submission cell */
+/* A short test taken by students */
 "Quiz" = "Pātaitai";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -962,13 +970,16 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* No comment provided by engineer. */
 "Rate on App Store" = "Auau i runga i Toa Taupānga";
 
+/* (No Commment) */
+"Rating for %1$@, Score: %2$g" = "Whakatauranga mō %1$@, Piro: %2$g";
+
 /* Title for a button allowing user to re-submit files for an assignment */
 "Re-submit Assignment" = "Re-tuku Taumahi";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "Kaiwhiwhi";
 
-/* A button that records */
+/* (No Commment) */
 "Record" = "Record";
 
 /* Record audio submission comment */
@@ -986,13 +997,13 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* No comment provided by engineer. */
 "Record video" = "Record ataata";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refresh Button" = "Pātene Tāmata";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Refreshes the calendar content" = "Ka ora hoki te ihirangi maramataka";
 
-/* Refreshing Calendar Events */
+/* (No Commment) */
 "Refreshing Calendar Events" = "Takahanga Maramataka Tāmata";
 
 /* Confirmation for removing a file */
@@ -1040,11 +1051,10 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* No comment provided by engineer. */
 "Sent" = "Tonoa";
 
-/* settings button
-   Title for Settings tab */
+/* Title for Settings */
 "Settings" = "Tautuhinga";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Commment) */
 "Show Grades" = "Whakaatu Ngā Kōeke";
 
 /* title for quiz assignment submission button */
@@ -1065,31 +1075,31 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Aroha mai, kihai i kitea e tatou i te ohipa. kia Kua mukua tēnei taumahi.";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Starts playing your recording" = "Tīmata te tākaro koutou tuhi";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Starts recording a media comment" = "Tīmata tuhi he kōrero pāpāho";
 
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Noho takiuru";
 
-/* A button that stops */
+/* Stop loading button for webview */
 "Stop" = "Kāti";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
 "Stop Masquerading" = "Kāti e whakaahua ana";
 
-/* Hint about the play button */
+/* (No Commment) */
 "Stops playing your recording" = "Mutu tākaro koutou tuhi";
 
-/* Hint about the record button */
+/* (No Commment) */
 "Stops recording a media comment" = "Mutu tuhi he kōrero pāpāho";
 
-/* Short name for student enrollment */
+/* No comment provided by engineer. */
 "Student" = "Ākonga";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Sub Header" = "Subheader";
 
 /* View previously submitted assignment */
@@ -1119,20 +1129,19 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* No comment provided by engineer. */
 "Sure!" = "Papau!";
 
-/* Hint about media input selection */
+/* (No Commment) */
 "Switches media input between audio and video. Currently set to %@" = "Huri tāuru pāpāho i waenganui i oro me te ataata. I tēnei wā whakaturia ki te %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to media comment mode" = "Whakakā ki aratau kōrero pāpāho";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Switches to text comment mode" = "Whakakā ki aratau kōrero kuputuhi";
 
-/* Syllabus screen name
-   Title for Syllabus view controller */
+/* Title for Syllabus screen */
 "Syllabus" = "Marautanga";
 
-/* Short name for TA enrollment */
+/* (No Commment) */
 "TA" = "TA";
 
 /* No comment provided by engineer. */
@@ -1153,7 +1162,7 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Displayed in a row when an error occurs loading more items */
 "Tap to try again" = "Pato ki ngana anō";
 
-/* Short name for teacher enrollment */
+/* (No Commment) */
 "Teacher" = "Kaiako";
 
 /* No comment provided by engineer. */
@@ -1165,10 +1174,10 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Link to the Terms of Use */
 "Terms of Use" = "Ngā Ture Whakamahi";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Text Comment" = "Tākupu kuputuhi";
 
-/* Generic name for a submission entered online. */
+/* Title for a text submission cell */
 "Text Submission" = "Tāpaetanga Kuputuhi";
 
 /* Text entry submission type */
@@ -1180,10 +1189,10 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "e kore i taea te tae te tūmau";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The server you entered is not authorized for this app." = "E kore te tūmau tomo koutou te mana mo tenei taupānga.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "The user agent for this app is unauthorized." = "Te kaihoko kaiwhakamahi mo tenei taupānga he kāore.";
 
 /* Error message */
@@ -1214,7 +1223,7 @@ Hapa:% @";
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "He ko he hapa uta koutou ihirangi. Ki te mea he ororongo ataata ranei tukuake ai tonu te tukatuka i te reira.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This app is not authorized for use." = "e kore te tēnei taupānga mana hoki te whakamahi.";
 
 /* Invalid LTI tool error message */
@@ -1235,14 +1244,13 @@ Hapa:% @";
 /* Text indicating that a folder cannot be opened */
 "This folder is locked" = "kiia ana tēnei kōpaki te";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "This is a media message." = "Ko te karere pāpāho tenei.";
 
-/* This would be a great time to do some extra credit. */
+/* (No Commment) */
 "This would be a great time to do some extra credit." = "e riro i te wa nui ki te mahi i te tahi mau nama anō tēnei.";
 
-/* Title of to do screen
-   To Do page title */
+/* (No Commment) */
 "To Do" = "ki te E";
 
 /* No comment provided by engineer. */
@@ -1251,7 +1259,7 @@ Hapa:% @";
 /* No comment provided by engineer. */
 "Today" = "Teie mahana";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Today Button" = "Pātene Teie mahana";
 
 /* No comment provided by engineer. */
@@ -1266,10 +1274,10 @@ Hapa:% @";
 /* title for re-submitting an assignment */
 "Turn In Again" = "Tahuri I roto i ano";
 
-/* Tells the user to turn in an assignment called something like 'Biology Assignment' */
+/* (No Commment) */
 "Turn in %@" = "Tahuri i roto i te %@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Commment) */
 "Uh-oh! No Internet Connection" = "Uh-oh! Kahore Hononga Ipurangi";
 
 /* Error title */
@@ -1281,14 +1289,14 @@ Hapa:% @";
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Kāore e taea te tukuatu ki tūmau";
 
-/* Grade unavailable */
+/* (No Commment) */
 "Unavailable" = "Wātea";
 
-/* Title for grade button when no grade is present */
+/* (No Commment) */
 "Ungraded" = "Tē Mākahia";
 
 /* Unknown file type */
-"Unknown" = "Unknown";
+"Unknown" = "unknown";
 
 /* No comment provided by engineer. */
 "Unread" = "Pānuihia";
@@ -1312,10 +1320,16 @@ Hapa:% @";
 "Upload file" = "kōnae Tukuake";
 
 /* Error message */
-"Upload to assignment &quot;%@&quot; failed" = "Tukuatu ki ngāue &quot;%@&quot; rahua";
+"Upload to assignment \"%@\" failed" = "Tukuatu ki ngāue \"%@\" rahua";
+
+/* (No Commment) */
+"Upload to assignment &quot;%@&quot; failed" = "Tukuatu ki te taumahi &quot;%@&quot; rahua";
 
 /* Error message */
-"Upload to folder &quot;%@&quot; failed" = "Tukuatu ki kōpaki &quot;%@&quot; rahua";
+"Upload to folder \"%@\" failed" = "Tukuatu ki kōpaki \"%@\" rahua";
+
+/* (No Commment) */
+"Upload to folder &quot;%@&quot; failed" = "Tukuatu ki te kōnae&quot;%@&quot; rahua";
 
 /* button for using the recorded audio */
 "Use" = "Whakamahi";
@@ -1326,22 +1340,22 @@ Hapa:% @";
 /* Title for User Info section on the about page */
 "User Info" = "Info Kaiwhakamahi";
 
-/* Media type is video */
+/* Video file type */
 "Video" = "Ataata";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "Video error" = "hapa ataata";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "View" = "Tirohia";
 
-/* No comment provided by engineer. */
+/* Title for a warning popup */
 "Warning" = "Whakatūpato";
 
 /* error message for failure to load a file submission */
 "We had a problem loading the submission. Please try again later." = "i matou i te raruraru te uta i te tāpaetanga. Koa ngana anō i muri mai.";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "We were unable to verify the server for use with this app." = "i taea ki te manatoko i te tūmau mō te whakamahi ki tenei taupānga matou.";
 
 /* Error Title */
@@ -1371,7 +1385,7 @@ Hapa:% @";
 /* Message in an alert */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "e kore koe e whai SpeedGrader mo iPad. Ka taea e koe te tiki i te reira no te kore utu i te store taupānga.";
 
-/* Error message for an unauthorized course or group. */
+/* (No Commment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "e kore koe e whai wāhi ki tenei ihirangi. kore ai i tīmata te Akoranga Rōpū ranei, kua mutu ai ranei.";
 
 /* Error message */
@@ -1383,10 +1397,16 @@ Hapa:% @";
 /* No comment provided by engineer. */
 "You have an unsaved reply. Would you like to discard that reply?" = "E koe te whakautu i tiakina. E rite koe ki te tūraki i te whakautu?";
 
+/* An explanation of how to transfer files to the Canvas app. */
+"You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas." = "Kaore he kōnae mau hei tukuatu. Hei tāpiri ngā kōnae mai i tētahi atu taupanga, kitea he kōnae i roto i tētahi atu taupanga, ā kitea te “ Whakatuwhera i roto” pātene ki te whakatuwhera i roto i Canvas. Ka taea hoki e koe ki te pato me te mau i runga i ngā āpitihanga i roto i te Mēra taupanga ki te whakatuwhera ia rātou i roto i Canvas.";
+
+/* (No Commment) */
+"You must first complete:" = "Me whakaoti koe i te tuatahi:";
+
 /* Error message */
 "You need a title and a description to post" = "Me koe te taitara me te whakamārama ki te tuku";
 
-/* You should go rate Canvas on the App Store! */
+/* (No Commment) */
 "You should go rate Canvas on the App Store!" = "Kia haere koe auau Kanaweti i runga i te toa taupānga!";
 
 /* Error content */
@@ -1395,27 +1415,30 @@ Hapa:% @";
 /* Media submission type selected with no Kaltura set up */
 "Your school's configuration does not allow the type of submission selected for this assignment" = "e kore e whirihoranga o tou kura tukua te momo o te tāpaetanga tīpakohia mō tenei taumahi";
 
-/* prerequisites for unlocking item */
-"You must first complete:" = "Me tuatahi whakaoti koe:";
-
-/* Assignment is due on a date at a time */
+/* (No Commment) */
 "due on %1$@ at %2$@" = "e tika ana i runga i %1$@ i %2$@";
 
-/* time since creation (less than 1 minute) */
+/* Assignment is due on a date at a time */
+"due on %@ at %@" = "e tika ana i runga i %1$@ i %2$@";
+
+/* (No Commment) */
 "moments ago" = "taime i ma'iri a'e";
 
-/* Accessibility label for out or grading style */
+/* Accessibility label modifier for point out of point possible */
 "out of" = "i roto i te";
 
 /* The assignment is out of 100 points */
 "out of %@" = "i roto i te %@";
 
-/* No comment provided by engineer. */
+/* (No Commment) */
 "out of %@ points" = "i roto i te ngā %@";
 
-/* Name for a photo file, i.e. photo.png */
+/* (No Commment) */
 "photo" = "photo";
 
-/* When we don't know the name of a file, we display this */
+/* (No Commment) */
 "unknown" = "unknown";
+
+/* (No Commment) */
+"until %@" = " Tae noa ki %@";
 

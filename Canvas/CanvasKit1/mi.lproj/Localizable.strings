@@ -1,0 +1,171 @@
+/* Description for rubric criterion rating object */
+" Rating for %@, Score: %g" = "Whakatauranga mō %1$@, Score: %2$g";
+
+/* Gigabytes */
+"%0.2f GB" = "%0.2f GB";
+
+/* Kilobytes */
+"%0.2f KB" = "%0.2f KB";
+
+/* Megabytes */
+"%0.2f MB" = "%0.2f MP";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g i roto i te %3$@)";
+
+/* something at something */
+"%@ at %@" = "%1$@ i %2$@";
+
+/* 88 out of 100 points */
+"%@ out of %@" = "%1$@ i roto i te %2$@";
+
+/* 83% (83 out of 100 points */
+"%@%% (%g out of %@)" = "%1$@%% (%2$g i roto i te %3$@)";
+
+/* Word and ellipses */
+"%@..." = "%@...";
+
+/* 88 out of 100 points */
+"%g out of %@" = "%1$g i roto i te %2$@";
+
+/* As in, '15 bytes' */
+"%qu bytes" = "%qu paita";
+
+/* Media type is audio */
+"Audio" = "Ororongo";
+
+/* No comment provided by engineer. */
+"Audio input hardware not available" = "pūmārō tāuru ororongo kore e wātea ana";
+
+/* Assignment grade: Complete */
+"Complete" = "Whakaotia";
+
+/* A custom grade not specified by the rubric. */
+"Custom Grade" = "Kōeke Ritenga";
+
+/* No comment provided by engineer. */
+"Done" = "Mahia";
+
+/* The file extension for a submission is not acceptable */
+"File extension not allowed: %@" = "toronga Kōnae kore whakaaetia: %@";
+
+/* Comes before a list of file extensions allowed for an assinment submission */
+"File extension(s) permitted for this assignment: " = "toronga Kōnae (he) tukua hoki tenei taumahi:";
+
+/* File upload failed. */
+"File upload failed." = "I rahua te tukunga Kōnae.";
+
+/* Assignment grade: Incomplete */
+"Incomplete" = "Pahara";
+
+/* No comment provided by engineer. */
+"Me" = "Ahau";
+
+/* No comment provided by engineer. */
+"Media Comment" = "Tākupu Pāpāho";
+
+/* The name for a video or audio response to something */
+"Media comment" = "kōrero Pāpāho";
+
+/* A slider to choose between media types */
+"Media type selector. %@" = "momo kaikōwhiri Pāpāho. %@";
+
+/* Pass/fail assignment is not complete */
+"Not Complete" = "Kāore i te oti";
+
+/* not graded string. */
+"Not graded" = "E kore e mākahia";
+
+/* not graded with points possible */
+"Not graded (0 out of %@)" = "E kore e mākahia (0 i roto i te %@)";
+
+/* No comment provided by engineer. */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Mōhio: e kore e tonu e wātea ana ngā kōnae pāpāho mō te purei ia e tukatuka ratou i runga i te tūmau.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* Short name for observer enrollment */
+"Observer" = "Kaimātakitaki";
+
+/* A button that plays */
+"Play" = "Tākaro";
+
+/* No comment provided by engineer. */
+"Post Comment" = "Pou Tākupu";
+
+/* No comment provided by engineer. */
+"Posts your comment" = "Pou koutou kōrero";
+
+/* A button that records */
+"Record" = "Record";
+
+/* Hint about the play button */
+"Starts playing your recording" = "Tīmata te tākaro koutou tuhi";
+
+/* Hint about the record button */
+"Starts recording a media comment" = "Tīmata tuhi he kōrero pāpāho";
+
+/* A button that stops */
+"Stop" = "Kāti";
+
+/* Hint about the play button */
+"Stops playing your recording" = "Mutu tākaro koutou tuhi";
+
+/* Hint about the record button */
+"Stops recording a media comment" = "Mutu tuhi he kōrero pāpāho";
+
+/* Short name for student enrollment */
+"Student" = "Ākonga";
+
+/* Hint about media input selection */
+"Switches media input between audio and video. Currently set to %@" = "Huri tāuru pāpāho i waenganui i oro me te ataata. I tēnei wā whakaturia ki te %@";
+
+/* No comment provided by engineer. */
+"Switches to media comment mode" = "Whakakā ki aratau kōrero pāpāho";
+
+/* No comment provided by engineer. */
+"Switches to text comment mode" = "Whakakā ki aratau kōrero kuputuhi";
+
+/* Short name for TA enrollment */
+"TA" = "TA";
+
+/* Short name for teacher enrollment */
+"Teacher" = "Kaiako";
+
+/* No comment provided by engineer. */
+"Text Comment" = "Tākupu kuputuhi";
+
+/* Generic name for a submission entered online. */
+"Text Submission" = "Tāpaetanga Kuputuhi";
+
+/* Error description when a user tries to upload a file that's too big */
+"The file you are trying to uploading is %@, but the maximum size is %@." = "Te kōnae e tarai ana koe ki te tukuake ko %1$@engari ko te rahi mōrahi ko %2$@.";
+
+/* No comment provided by engineer. */
+"This is a media message." = "Ko te karere pāpāho tenei.";
+
+/* Media type is video */
+"Video" = "Ataata";
+
+/* No comment provided by engineer. */
+"Video error" = "hapa ataata";
+
+/* No comment provided by engineer. */
+"Warning" = "Whakatūpato";
+
+/* Accessibility label for out or grading style */
+"out of" = "i roto i te";
+
+/* The assignment is out of 100 points */
+"out of %@" = "i roto i te %@";
+
+/* No comment provided by engineer. */
+"out of %@ points" = "i roto i te ngā %@";
+
+/* Name for a photo file, i.e. photo.png */
+"photo" = "photo";
+
+/* When we don't know the name of a file, we display this */
+"unknown" = "unknown";
+

@@ -1,76 +1,76 @@
-/* grade details for points based grade i.e. \"10 of 12\" */
-"of (formatter(possible))" = "من (formatter(possible))";
-
-/* grade details for points based grade i.e. \"10 of 12\" */
+/* (No Commment) */
 "(formatter(points)) of (formatter(possible))" = "(formatter(points)) من (formatter(possible))";
 
-/* Title for 1 day assignment reminder */
+/* (No Commment) */
 "1 day" = "يوم واحد";
 
-/* Title for 1 hour assignment reminder */
+/* (No Commment) */
 "1 hour" = "ساعة واحدة";
 
-/* Title for 3 days assignment reminder */
+/* (No Commment) */
 "3 days" = "3 أيام";
 
-/* Title for 5 minutes assignment reminder */
+/* (No Commment) */
 "5 minutes" = "5 دقائق";
 
-/* Assignment label */
+/* (No Commment) */
 "Assignment" = "المهمة";
 
-/* Title for alert view for assignment reminders */
+/* (No Commment) */
 "Assignment Reminder" = "تذكير بالمهمة";
 
-/* Message indicating that an assignment is currently be submitted */
+/* (No Commment) */
 "Assignment is currently being submitted" = "يتم حاليًا إرسال المهمة";
 
-/* This assignment hasn't been graded yet but can be graded */
+/* (No Commment) */
 "Awaiting Grade" = "في انتظار الدرجة";
 
-/* cancel button */
+/* (No Commment) */
 "Cancel" = "إلغاء";
 
-/* Title for reminder options for an assignment */
+/* (No Commment) */
 "Choose how long before the assignment due date to get a reminder:" = "اختر الفترة الزمنية التي ستتلقى فيها تذكيرًا قبل موعد استحقاق المهمة:";
 
-/* Title for a rating that hasn't been graded but has a comment */
+/* (No Commment) */
 "Comment" = "تعليق";
 
-/* Assignment submission comment placeholder text */
+/* (No Commment) */
 "Comment.." = "تعليق...";
 
-/* error displayed when submitting an assignment is unavailable */
+/* (No Commment) */
 "Could not submit assignment. Invalid assignment or session." = "تعذر إرسال المهمة. مهمة أو جلسة غير صالحة.";
 
-/* error displayed when submitting a submission is invalid. */
+/* (No Commment) */
 "Could not submit assignment. Invalid submission." = "تعذر إرسال المهمة. إرسال غير صالح.";
 
-/* String telling the user that the date is the due date */
+/* (No Commment) */
 "Due:" = "موعد الاستحقاق:";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "حدث خطأ أثناء تحديث المهمة";
 
-/* This assignment is excused */
-"Excused" = "غير إجبارية";
+/* (No Commment) */
+"Excused" = "غير إجباري";
 
-/* Error when an upload failed to resume. */
+/* Error message when submission attachment fails to load. */
+"Failed to load item. Check the allowed assignment submission types." = "تعذر تحميل العنصر. تفقد أنواع إرسال المهمات المسموح بها.";
+
+/* (No Commment) */
 "Failed to resume upload." = "فشل استئناف التحميل.";
 
-/* This assignment is late */
-"Late" = "متأخرة";
+/* (No Commment) */
+"Late" = "متأخر";
 
-/* Title for a rating that has custom graded but has no comment */
+/* (No Commment) */
 "No Comment" = "لا يوجد أي تعليق";
 
-/* Default string for due date title */
+/* (No Commment) */
 "No Due Date" = "لا يوجد موعد استحقاق";
 
 /* Section header for assignments without an assignment group */
 "None" = "لا شيء";
 
-/* submission title for assignment waiting user submission */
+/* (No Commment) */
 "Not Submitted" = "لم يتم إرسالها";
 
 /* Overdue assignmnets (not turned in) */
@@ -79,19 +79,19 @@
 /* Assignments that have been turned in and are past */
 "Past" = "سابقة";
 
-/* Rubric Points Possible Title */
+/* (No Commment) */
 "Points Possible" = "النقاط الممكنة";
 
-/* title for submission button if student has submitted previously */
+/* (No Commment) */
 "Re-submit Assignment" = "إعادة إرسال المهمة";
 
-/* Message indicating that a submission type is not supported for this assignment. */
+/* (No Commment) */
 "Submission type not allowed" = "نوع الإرسال غير مسموح به";
 
-/* submission title for assignment that doesn't support submissions */
+/* (No Commment) */
 "Submissions N/A" = "الإرسالات غير مدعومة";
 
-/* title for submission button if student has never submitted */
+/* (No Commment) */
 "Submit Assignment" = "إرسال المهمة";
 
 /* AssignmentKit database load failure message */
@@ -100,27 +100,30 @@
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "حدثت مشكلة أثناء تحديث عنوان URL الاختبار";
 
-/* submission title for assignemnt that is submitted */
+/* (No Commment) */
 "Turned in!" = "تم تسليمها!";
 
-/* Error message when a course could not be selected */
+/* (No Commment) */
 "Unable to select a course." = "تعذر اختيار مساق.";
 
-/* Error message when an assignment could not be selected */
+/* (No Commment) */
 "Unable to select an assignment." = "تعذر اختيار مهمة.";
 
-/* Error message when unable to submit assignment. */
+/* (No Commment) */
 "Unable to submit assignment." = "تعذر إرسال مهمة.";
 
 /* Assignments with no dates */
 "Undated" = "غير مؤرخة";
 
-/* This assignment is not graded */
-"Ungraded" = "غير مقيّمة";
+/* (No Commment) */
+"Ungraded" = "دون تقييم";
 
 /* Upcoming assignments */
 "Upcoming" = "القادمة";
 
-/* Title for button to see rubric from assignment detail */
+/* (No Commment) */
 "View Rubric" = "عرض العنوان";
+
+/* (No Commment) */
+"of (formatter(possible))" = "من (formatter(possible))";
 

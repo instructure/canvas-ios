@@ -1,0 +1,171 @@
+/* Description for rubric criterion rating object */
+" Rating for %@, Score: %g" = "%1$@ の評価、スコア： %2$g";
+
+/* Gigabytes */
+"%0.2f GB" = "%0.2f GB";
+
+/* Kilobytes */
+"%0.2f KB" = "%0.2f KB";
+
+/* Megabytes */
+"%0.2f MB" = "%0.2f MB";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%3$@中%2$g)";
+
+/* something at something */
+"%@ at %@" = " %2$@の%1$@";
+
+/* 88 out of 100 points */
+"%@ out of %@" = "%2$@ 中 %1$@ ";
+
+/* 83% (83 out of 100 points */
+"%@%% (%g out of %@)" = "%1$@%% (%3$@ 中 %2$g)";
+
+/* Word and ellipses */
+"%@..." = "%@...";
+
+/* 88 out of 100 points */
+"%g out of %@" = "%2$@ 中 %1$g ";
+
+/* As in, '15 bytes' */
+"%qu bytes" = "%qu バイト";
+
+/* Media type is audio */
+"Audio" = "オーディオ";
+
+/* No comment provided by engineer. */
+"Audio input hardware not available" = "オーディオのインプットハードウェアがありません";
+
+/* Assignment grade: Complete */
+"Complete" = "完了";
+
+/* A custom grade not specified by the rubric. */
+"Custom Grade" = "成績をカスタムする";
+
+/* No comment provided by engineer. */
+"Done" = "完了";
+
+/* The file extension for a submission is not acceptable */
+"File extension not allowed: %@" = "使用が許可されていないファイル拡張子: %@";
+
+/* Comes before a list of file extensions allowed for an assinment submission */
+"File extension(s) permitted for this assignment: " = "この課題に使用が許可されているファイル拡張子：";
+
+/* File upload failed. */
+"File upload failed." = "ファイルのアップロードに失敗しました。";
+
+/* Assignment grade: Incomplete */
+"Incomplete" = "不完全";
+
+/* No comment provided by engineer. */
+"Me" = "私";
+
+/* No comment provided by engineer. */
+"Media Comment" = "メディアのコメント";
+
+/* The name for a video or audio response to something */
+"Media comment" = "メディアのコメント";
+
+/* A slider to choose between media types */
+"Media type selector. %@" = "メディアタイプセレクター。%@";
+
+/* Pass/fail assignment is not complete */
+"Not Complete" = "未完了";
+
+/* not graded string. */
+"Not graded" = "採点されていません";
+
+/* not graded with points possible */
+"Not graded (0 out of %@)" = "採点されていません ( %@ 中 0)";
+
+/* No comment provided by engineer. */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "注意： メディアファイルはサーバー上で処理されるため、すぐに再生することはできません。";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* Short name for observer enrollment */
+"Observer" = "評者";
+
+/* A button that plays */
+"Play" = "再生";
+
+/* No comment provided by engineer. */
+"Post Comment" = "コメントをポストする";
+
+/* No comment provided by engineer. */
+"Posts your comment" = "コメントをポストする";
+
+/* A button that records */
+"Record" = "録音";
+
+/* Hint about the play button */
+"Starts playing your recording" = "録音を再生する";
+
+/* Hint about the record button */
+"Starts recording a media comment" = "メディアコメントの録音を開始する";
+
+/* A button that stops */
+"Stop" = "中止する";
+
+/* Hint about the play button */
+"Stops playing your recording" = "録音の再生を停止する";
+
+/* Hint about the record button */
+"Stops recording a media comment" = "メディアコメントの録音を停止する";
+
+/* Short name for student enrollment */
+"Student" = "受講生";
+
+/* Hint about media input selection */
+"Switches media input between audio and video. Currently set to %@" = "メディアインプットをオーディオと動画のどちらかに切り替える。現在は%@に設定されています";
+
+/* No comment provided by engineer. */
+"Switches to media comment mode" = "メディアコメントモードに切り替える";
+
+/* No comment provided by engineer. */
+"Switches to text comment mode" = "テキストコメントモードに切り替える";
+
+/* Short name for TA enrollment */
+"TA" = "TA";
+
+/* Short name for teacher enrollment */
+"Teacher" = "講師";
+
+/* No comment provided by engineer. */
+"Text Comment" = "テキストコメント";
+
+/* Generic name for a submission entered online. */
+"Text Submission" = "テキストの提出";
+
+/* Error description when a user tries to upload a file that's too big */
+"The file you are trying to uploading is %@, but the maximum size is %@." = "読み込もうとしているファイルは %1$@ ですが、最大サイズは %2$@ です。";
+
+/* No comment provided by engineer. */
+"This is a media message." = "これはメディアメッセージです。";
+
+/* Media type is video */
+"Video" = "動画";
+
+/* No comment provided by engineer. */
+"Video error" = "動画のエラー";
+
+/* No comment provided by engineer. */
+"Warning" = "警告";
+
+/* Accessibility label for out or grading style */
+"out of" = "中";
+
+/* The assignment is out of 100 points */
+"out of %@" = "%@中";
+
+/* No comment provided by engineer. */
+"out of %@ points" = "%@ポイント中";
+
+/* Name for a photo file, i.e. photo.png */
+"photo" = "写真";
+
+/* When we don't know the name of a file, we display this */
+"unknown" = "未知の";
+

@@ -30,6 +30,7 @@
 		0AF959D01DD511090096104D /* ParentDomainPickerPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959B31DD511080096104D /* ParentDomainPickerPageTests.swift */; };
 		0AF959D11DD511090096104D /* SettingsPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959B41DD511080096104D /* SettingsPageTests.swift */; };
 		0E586CE804E516C885D23FEE /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7D72F0B9B76A0A4384E49C /* Enrollment.swift */; };
+		2C0CAD871DEF6EA0008D90FA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD891DEF6EA0008D90FA /* Localizable.strings */; };
 		2C47623B1DD0FFB40003BEAE /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47623A1DD0FFB40003BEAE /* SoThankful.framework */; };
 		2C47623C1DD0FFB40003BEAE /* SoThankful.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47623A1DD0FFB40003BEAE /* SoThankful.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C61CD091D9311B400196C03 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD0B1D9311B400196C03 /* Localizable.strings */; };
@@ -278,6 +279,32 @@
 		0AF959B31DD511080096104D /* ParentDomainPickerPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentDomainPickerPageTests.swift; sourceTree = "<group>"; };
 		0AF959B41DD511080096104D /* SettingsPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPageTests.swift; sourceTree = "<group>"; };
 		24B1A39A8CA98A1A398F08E0 /* Alert.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		2C0CAD881DEF6EA0008D90FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2C0CAD8A1DEF6EC0008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CourseCell.strings"; sourceTree = "<group>"; };
+		2C0CAD8B1DEF6EC1008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CalendarEventCell.strings"; sourceTree = "<group>"; };
+		2C0CAD8C1DEF6EC2008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		2C0CAD8D1DEF6EC2008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/SettingsObserveeCell.strings"; sourceTree = "<group>"; };
+		2C0CAD8E1DEF6EC3008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/UserCell.strings"; sourceTree = "<group>"; };
+		2C0CAD8F1DEF6EC3008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
+		2C0CAD901DEF6EC4008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
+		2C0CAD911DEF6EC4008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
+		2C0CAD921DEF6EC5008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
+		2C0CAD931DEF6EC5008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
+		2C0CAD941DEF6EC6008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		2C0CAD951DEF6EC7008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/AlertCell.strings"; sourceTree = "<group>"; };
+		2C0CAD961DEF6EC7008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2C0CAD971DEF6EC8008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CalendarEventWeekPageViewController.strings"; sourceTree = "<group>"; };
+		2C0CAD981DEF6EC8008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2C0CAD991DEF6EC9008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		2C0CAD9A1DEF6ECA008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
+		2C0CAD9B1DEF6ECA008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Main.strings"; sourceTree = "<group>"; };
+		2C0CAD9C1DEF6ECB008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/NoStudentsViewController.strings"; sourceTree = "<group>"; };
+		2C0CAD9D1DEF6ECC008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/AirwolfLoginViewController.strings"; sourceTree = "<group>"; };
+		2C0CAD9E1DEF6ECD008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
+		2C0CAD9F1DEF6ECD008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2C0CADA01DEF6ECE008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/SettingsViewController.strings"; sourceTree = "<group>"; };
+		2C0CADA11DEF6ECE008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
+		2C0CADA21DEF6EEF008D90FA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C47623A1DD0FFB40003BEAE /* SoThankful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SoThankful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C61CD0A1D9311B400196C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CD0C1D9311E300196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -1317,6 +1344,7 @@
 		F96C7E6B1D108AEB008935F3 /* ParentEarlGreyTests */ = {
 			isa = PBXGroup;
 			children = (
+				2C0CAD891DEF6EA0008D90FA /* Localizable.strings */,
 				0AF959941DD511080096104D /* EarlGreyHelpers */,
 				0AF959981DD511080096104D /* EarlGreyModels */,
 				0AF9599D1DD511080096104D /* EarlGreyPages */,
@@ -1504,6 +1532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C61CD1F1D9311E800196C03 /* InfoPlist.strings in Resources */,
+				2C0CAD871DEF6EA0008D90FA /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1651,6 +1680,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		2C0CAD891DEF6EA0008D90FA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C0CAD881DEF6EA0008D90FA /* ar */,
+				2C0CAD941DEF6EC6008D90FA /* fr-CA */,
+				2C0CADA21DEF6EEF008D90FA /* en-GB */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		2C61CD0B1D9311B400196C03 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1674,6 +1713,7 @@
 				2C61CEBE1D9314AD00196C03 /* sv */,
 				2C61CED71D9314CC00196C03 /* zh-HK */,
 				2C61CEF01D9314EE00196C03 /* zh */,
+				2C0CAD991DEF6EC9008D90FA /* fr-CA */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1700,6 +1740,7 @@
 				2C61CEBA1D9314AB00196C03 /* sv */,
 				2C61CED31D9314CA00196C03 /* zh-HK */,
 				2C61CEEC1D9314EC00196C03 /* zh */,
+				2C0CAD961DEF6EC7008D90FA /* fr-CA */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1726,6 +1767,7 @@
 				2C61CEC31D9314AF00196C03 /* sv */,
 				2C61CEDC1D9314D100196C03 /* zh-HK */,
 				2C61CEF51D9314EF00196C03 /* zh */,
+				2C0CAD9F1DEF6ECD008D90FA /* fr-CA */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1753,6 +1795,7 @@
 				2C61CEC11D9314AE00196C03 /* sv */,
 				2C61CEDA1D9314CF00196C03 /* zh-HK */,
 				2C61CEF31D9314EF00196C03 /* zh */,
+				2C0CAD9D1DEF6ECC008D90FA /* fr-CA */,
 			);
 			name = AirwolfLoginViewController.xib;
 			sourceTree = "<group>";
@@ -1780,6 +1823,7 @@
 				2C61CEAE1D9314A700196C03 /* sv */,
 				2C61CEC71D9314C600196C03 /* zh-HK */,
 				2C61CEE01D9314E800196C03 /* zh */,
+				2C0CAD8A1DEF6EC0008D90FA /* fr-CA */,
 			);
 			name = CourseCell.xib;
 			sourceTree = "<group>";
@@ -1807,6 +1851,7 @@
 				2C61CEB91D9314AB00196C03 /* sv */,
 				2C61CED21D9314CA00196C03 /* zh-HK */,
 				2C61CEEB1D9314EC00196C03 /* zh */,
+				2C0CAD931DEF6EC5008D90FA /* fr-CA */,
 			);
 			name = EmptyCalendarEventCell.xib;
 			sourceTree = "<group>";
@@ -1834,6 +1879,7 @@
 				2C61CEAF1D9314A800196C03 /* sv */,
 				2C61CEC81D9314C700196C03 /* zh-HK */,
 				2C61CEE11D9314E800196C03 /* zh */,
+				2C0CAD8B1DEF6EC1008D90FA /* fr-CA */,
 			);
 			name = CalendarEventCell.xib;
 			sourceTree = "<group>";
@@ -1861,6 +1907,7 @@
 				2C61CEB81D9314AB00196C03 /* sv */,
 				2C61CED11D9314CA00196C03 /* zh-HK */,
 				2C61CEEA1D9314EB00196C03 /* zh */,
+				2C0CAD951DEF6EC7008D90FA /* fr-CA */,
 			);
 			name = AlertCell.xib;
 			sourceTree = "<group>";
@@ -1888,6 +1935,7 @@
 				2C61CEB61D9314AA00196C03 /* sv */,
 				2C61CECF1D9314C900196C03 /* zh-HK */,
 				2C61CEE81D9314EB00196C03 /* zh */,
+				2C0CAD921DEF6EC5008D90FA /* fr-CA */,
 			);
 			name = DetailsInfoCell.xib;
 			sourceTree = "<group>";
@@ -1915,6 +1963,7 @@
 				2C61CEB21D9314A900196C03 /* sv */,
 				2C61CECB1D9314C800196C03 /* zh-HK */,
 				2C61CEE41D9314E900196C03 /* zh */,
+				2C0CAD8F1DEF6EC3008D90FA /* fr-CA */,
 			);
 			name = DetailsReminderCell.xib;
 			sourceTree = "<group>";
@@ -1942,6 +1991,7 @@
 				2C61CEC21D9314AE00196C03 /* sv */,
 				2C61CEDB1D9314D000196C03 /* zh-HK */,
 				2C61CEF41D9314EF00196C03 /* zh */,
+				2C0CAD9E1DEF6ECD008D90FA /* fr-CA */,
 			);
 			name = DetailsDateCell.xib;
 			sourceTree = "<group>";
@@ -1969,6 +2019,7 @@
 				2C61CEB41D9314A900196C03 /* sv */,
 				2C61CECD1D9314C800196C03 /* zh-HK */,
 				2C61CEE61D9314EA00196C03 /* zh */,
+				2C0CAD901DEF6EC4008D90FA /* fr-CA */,
 			);
 			name = DetailsLocationCell.xib;
 			sourceTree = "<group>";
@@ -1996,6 +2047,7 @@
 				2C61CEB01D9314A800196C03 /* sv */,
 				2C61CEC91D9314C700196C03 /* zh-HK */,
 				2C61CEE21D9314E800196C03 /* zh */,
+				2C0CAD8D1DEF6EC2008D90FA /* fr-CA */,
 			);
 			name = SettingsObserveeCell.xib;
 			sourceTree = "<group>";
@@ -2023,6 +2075,7 @@
 				2C61CEB11D9314A800196C03 /* sv */,
 				2C61CECA1D9314C700196C03 /* zh-HK */,
 				2C61CEE31D9314E900196C03 /* zh */,
+				2C0CAD8E1DEF6EC3008D90FA /* fr-CA */,
 			);
 			name = UserCell.xib;
 			sourceTree = "<group>";
@@ -2050,6 +2103,7 @@
 				2C61CEC51D9314AF00196C03 /* sv */,
 				2C61CEDE1D9314D200196C03 /* zh-HK */,
 				2C61CEF71D9314F000196C03 /* zh */,
+				2C0CADA11DEF6ECE008D90FA /* fr-CA */,
 			);
 			name = StudentSettingsHeaderView.xib;
 			sourceTree = "<group>";
@@ -2085,6 +2139,7 @@
 				2C61CEC41D9314AF00196C03 /* sv */,
 				2C61CEDD1D9314D200196C03 /* zh-HK */,
 				2C61CEF61D9314F000196C03 /* zh */,
+				2C0CADA01DEF6ECE008D90FA /* fr-CA */,
 			);
 			name = SettingsViewController.storyboard;
 			sourceTree = "<group>";
@@ -2112,6 +2167,7 @@
 				2C61CEBD1D9314AD00196C03 /* sv */,
 				2C61CED61D9314CC00196C03 /* zh-HK */,
 				2C61CEEF1D9314ED00196C03 /* zh */,
+				2C0CAD9A1DEF6ECA008D90FA /* fr-CA */,
 			);
 			name = DashboardViewController.storyboard;
 			sourceTree = "<group>";
@@ -2139,6 +2195,7 @@
 				2C61CEBC1D9314AC00196C03 /* sv */,
 				2C61CED51D9314CB00196C03 /* zh-HK */,
 				2C61CEEE1D9314ED00196C03 /* zh */,
+				2C0CAD971DEF6EC8008D90FA /* fr-CA */,
 			);
 			name = CalendarEventWeekPageViewController.storyboard;
 			sourceTree = "<group>";
@@ -2166,6 +2223,7 @@
 				2C61CEB31D9314A900196C03 /* sv */,
 				2C61CECC1D9314C800196C03 /* zh-HK */,
 				2C61CEE51D9314EA00196C03 /* zh */,
+				2C0CAD911DEF6EC4008D90FA /* fr-CA */,
 			);
 			name = DetailsAttachmentCell.xib;
 			sourceTree = "<group>";
@@ -2193,6 +2251,7 @@
 				2CCDE2A81DA7E5BC00B46D87 /* zh-HK */,
 				2CCDE2A91DA7E5D000B46D87 /* zh */,
 				49ED5A4C1DBFD02E009E2896 /* Base */,
+				2C0CAD981DEF6EC8008D90FA /* fr-CA */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2220,6 +2279,7 @@
 				49ED5A491DBFC95C009E2896 /* sv */,
 				49ED5A4A1DBFC95D009E2896 /* zh-HK */,
 				49ED5A4B1DBFC95F009E2896 /* zh */,
+				2C0CAD9C1DEF6ECB008D90FA /* fr-CA */,
 			);
 			name = NoStudentsViewController.xib;
 			sourceTree = "<group>";
@@ -2247,6 +2307,7 @@
 				2C61CEBF1D9314AD00196C03 /* sv */,
 				2C61CED81D9314CC00196C03 /* zh-HK */,
 				2C61CEF11D9314EE00196C03 /* zh */,
+				2C0CAD9B1DEF6ECA008D90FA /* fr-CA */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -2274,6 +2335,7 @@
 				2C61CEAD1D9314A700196C03 /* sv */,
 				2C61CEC61D9314C600196C03 /* zh-HK */,
 				2C61CEDF1D9314E700196C03 /* zh */,
+				2C0CAD8C1DEF6EC2008D90FA /* fr-CA */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

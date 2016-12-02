@@ -1,0 +1,171 @@
+/* Description for rubric criterion rating object */
+" Rating for %@, Score: %g" = "Pwen pou %1$@, Nòt: %2$g";
+
+/* Gigabytes */
+"%0.2f GB" = "%0.2f GB";
+
+/* Kilobytes */
+"%0.2f KB" = "%0.2f KB";
+
+/* Megabytes */
+"%0.2f MB" = "%0.2f MB";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g de %3$@)";
+
+/* something at something */
+"%@ at %@" = "%1$@ a %2$@";
+
+/* 88 out of 100 points */
+"%@ out of %@" = "%1$@ de %2$@";
+
+/* 83% (83 out of 100 points */
+"%@%% (%g out of %@)" = "%1$@%% (%2$g de %3$@)";
+
+/* Word and ellipses */
+"%@..." = "%@...";
+
+/* 88 out of 100 points */
+"%g out of %@" = "%1$g de %2$@";
+
+/* As in, '15 bytes' */
+"%qu bytes" = "%qu bytes";
+
+/* Media type is audio */
+"Audio" = "Odyo";
+
+/* No comment provided by engineer. */
+"Audio input hardware not available" = "Hardware antre odyo pa disponib";
+
+/* Assignment grade: Complete */
+"Complete" = "Konplete";
+
+/* A custom grade not specified by the rubric. */
+"Custom Grade" = "Klas Pèsonalize";
+
+/* No comment provided by engineer. */
+"Done" = "Fini";
+
+/* The file extension for a submission is not acceptable */
+"File extension not allowed: %@" = "Ekstansyon fichye pa otorize: %@";
+
+/* Comes before a list of file extensions allowed for an assinment submission */
+"File extension(s) permitted for this assignment: " = "Ekstansyon fichye ki otorize pou sesyon sa a:";
+
+/* File upload failed. */
+"File upload failed." = "Transfè fichye echwe";
+
+/* Assignment grade: Incomplete */
+"Incomplete" = "Enkonplè";
+
+/* No comment provided by engineer. */
+"Me" = "Mwen";
+
+/* No comment provided by engineer. */
+"Media Comment" = "Kòmantè Medya";
+
+/* The name for a video or audio response to something */
+"Media comment" = "Kòmantè medya";
+
+/* A slider to choose between media types */
+"Media type selector. %@" = "Selektè tip medya. %@";
+
+/* Pass/fail assignment is not complete */
+"Not Complete" = "Pa Konplè";
+
+/* not graded string. */
+"Not graded" = "Pa klase";
+
+/* not graded with points possible */
+"Not graded (0 out of %@)" = "Pa klase (0 sou %@)";
+
+/* No comment provided by engineer. */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Fichye medya yo pa disponib pou jwe nan moman y ap transfere sou sèvè a.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* Short name for observer enrollment */
+"Observer" = "Obsèvatè";
+
+/* A button that plays */
+"Play" = "Jwe";
+
+/* No comment provided by engineer. */
+"Post Comment" = "Poste Kòmantè";
+
+/* No comment provided by engineer. */
+"Posts your comment" = "Poste Kòmantè ou a";
+
+/* A button that records */
+"Record" = "Anrejistre";
+
+/* Hint about the play button */
+"Starts playing your recording" = "Komanse jwe anrejistreman ou an";
+
+/* Hint about the record button */
+"Starts recording a media comment" = "Kòmanse anrejistre yon kòmantè medya";
+
+/* A button that stops */
+"Stop" = "Kanpe";
+
+/* Hint about the play button */
+"Stops playing your recording" = "Kanpe anrejistreman ou an k ap jwe a";
+
+/* Hint about the record button */
+"Stops recording a media comment" = "Kanpe anrejistreman yon kòmantè medya";
+
+/* Short name for student enrollment */
+"Student" = "Elèv";
+
+/* Hint about media input selection */
+"Switches media input between audio and video. Currently set to %@" = "Entèriptè antre medya ant odyo ak videyo. Kounye a sou %@";
+
+/* No comment provided by engineer. */
+"Switches to media comment mode" = "Chanje sou mòd kòmantè medya";
+
+/* No comment provided by engineer. */
+"Switches to text comment mode" = "Chanje sou mòd kòmantè tèks";
+
+/* Short name for TA enrollment */
+"TA" = "TA";
+
+/* Short name for teacher enrollment */
+"Teacher" = "Pwofesè";
+
+/* No comment provided by engineer. */
+"Text Comment" = "Kòmantè Tèks";
+
+/* Generic name for a submission entered online. */
+"Text Submission" = "Soumisyon Tèks";
+
+/* Error description when a user tries to upload a file that's too big */
+"The file you are trying to uploading is %@, but the maximum size is %@." = "Fichye w ap eseye transfere a se %1$@, men gwosè maksimòm nan se %2$@.";
+
+/* No comment provided by engineer. */
+"This is a media message." = "Sa se yon mesaj medya.";
+
+/* Media type is video */
+"Video" = "Videyo";
+
+/* No comment provided by engineer. */
+"Video error" = "Erè Videyo";
+
+/* No comment provided by engineer. */
+"Warning" = "Avètisman";
+
+/* Accessibility label for out or grading style */
+"out of" = "sou";
+
+/* The assignment is out of 100 points */
+"out of %@" = "sou %@";
+
+/* No comment provided by engineer. */
+"out of %@ points" = "sou %@ pwen";
+
+/* Name for a photo file, i.e. photo.png */
+"photo" = "foto";
+
+/* When we don't know the name of a file, we display this */
+"unknown" = "enkoni";
+

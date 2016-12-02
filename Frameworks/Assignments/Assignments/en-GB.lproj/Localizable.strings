@@ -1,0 +1,69 @@
+/* grade details for points based grade i.e. \"10 of 12\" */
+" of (formatter(possible))" = "of (formatter(possible))";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
+"(formatter(points)) of (formatter(possible))" = "(formatter(points)) of (formatter(possible))";
+
+/* Title for 1 day assignment reminder */
+"1 day" = "1 day";
+
+/* Title for 1 hour assignment reminder */
+"1 hour" = "1 hour";
+
+/* Title for 3 days assignment reminder */
+"3 days" = "3 days";
+
+/* Title for 5 minutes assignment reminder */
+"5 minutes" = "5 minutes";
+
+/* Title for alert view for assignment reminders */
+"Assignment Reminder" = "Assignment reminder";
+
+/* This assignment hasn't been graded yet but can be graded */
+"Awaiting Grade" = "Awaiting mark";
+
+/* cancel button */
+"Cancel" = "Cancel";
+
+/* Title for reminder options for an assignment */
+"Choose how long before the assignment due date to get a reminder:" = "To get a reminder, choose length of time before assignment due date:";
+
+/* error displayed when submitting an assignment is unavailable */
+"Could not submit assignment. Invalid assignment or session." = "Could not submit assignment. Invalid assignment or session.";
+
+/* error displayed when submitting a submission is invalid. */
+"Could not submit assignment. Invalid submission." = "Could not submit assignment. Invalid submission.";
+
+/* String telling the user that the date is the due date */
+"Due: " = "Due:";
+
+/* This assignment is excused */
+"Excused" = "Excused";
+
+/* This assignment is late */
+"Late" = "Late";
+
+/* Default string for due date title */
+"No Due Date" = "No due date";
+
+/* submission title for assignment waiting user submission */
+"Not Submitted" = "Not submitted";
+
+/* title for submission button if student has submitted previously */
+"Re-submit Assignment" = "Re-submit assignment";
+
+/* submission title for assignment that doesn't support submissions */
+"Submissions N/A" = "Submissions N/A";
+
+/* title for submission button if student has never submitted */
+"Submit Assignment" = "Submit assignment";
+
+/* submission title for assignemnt that is submitted */
+"Turned in!" = "Turned in!";
+
+/* This assignment is not graded */
+"Ungraded" = "Unmarked";
+
+/* Title for button to see rubric from assignment detail */
+"View Rubric" = "View rubric";
+

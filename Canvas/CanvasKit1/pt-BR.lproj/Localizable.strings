@@ -1,0 +1,171 @@
+/* Description for rubric criterion rating object */
+" Rating for %@, Score: %g" = "Classificação para %1$@, Pontuação: %2$g";
+
+/* Gigabytes */
+"%0.2f GB" = "%0.2f GB";
+
+/* Kilobytes */
+"%0.2f KB" = "%0.2f KB";
+
+/* Megabytes */
+"%0.2f MB" = "%0.2f MB";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g fora de %3$@)";
+
+/* something at something */
+"%@ at %@" = "%1$@ em %2$@";
+
+/* 88 out of 100 points */
+"%@ out of %@" = "%1$@ fora de %2$@";
+
+/* 83% (83 out of 100 points */
+"%@%% (%g out of %@)" = "%1$@%% (%2$g fora de %3$@)";
+
+/* Word and ellipses */
+"%@..." = "%@...";
+
+/* 88 out of 100 points */
+"%g out of %@" = "%1$g fora de %2$@";
+
+/* As in, '15 bytes' */
+"%qu bytes" = "%qu bytes";
+
+/* Media type is audio */
+"Audio" = "Áudio";
+
+/* No comment provided by engineer. */
+"Audio input hardware not available" = "Hardware de entrada de áudio não disponível";
+
+/* Assignment grade: Complete */
+"Complete" = "Completar";
+
+/* A custom grade not specified by the rubric. */
+"Custom Grade" = "Customizar Nota";
+
+/* No comment provided by engineer. */
+"Done" = "Feito";
+
+/* The file extension for a submission is not acceptable */
+"File extension not allowed: %@" = "Extensão de arquivo não permitida: %@";
+
+/* Comes before a list of file extensions allowed for an assinment submission */
+"File extension(s) permitted for this assignment: " = "Extensões de arquivo permitida(s) para esta tarefa:";
+
+/* File upload failed. */
+"File upload failed." = "O upload de arquivo falhou.";
+
+/* Assignment grade: Incomplete */
+"Incomplete" = "Incompleto";
+
+/* No comment provided by engineer. */
+"Me" = "Comigo";
+
+/* No comment provided by engineer. */
+"Media Comment" = "Comentário de Mídia ";
+
+/* The name for a video or audio response to something */
+"Media comment" = "Comentário de mídia ";
+
+/* A slider to choose between media types */
+"Media type selector. %@" = "Selecionar tipo de mídia: %@";
+
+/* Pass/fail assignment is not complete */
+"Not Complete" = "Não Concluído";
+
+/* not graded string. */
+"Not graded" = "Não avaliado";
+
+/* not graded with points possible */
+"Not graded (0 out of %@)" = "Não classificado (0 de %@)";
+
+/* No comment provided by engineer. */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Nota: Arquivos de mídia não estão imediatamente disponíveis para reprodução enquanto são processados no servidor.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* Short name for observer enrollment */
+"Observer" = "Observador";
+
+/* A button that plays */
+"Play" = "Reproduzir";
+
+/* No comment provided by engineer. */
+"Post Comment" = "Postar Comentário";
+
+/* No comment provided by engineer. */
+"Posts your comment" = "Envia seu comentário";
+
+/* A button that records */
+"Record" = "Gravar";
+
+/* Hint about the play button */
+"Starts playing your recording" = "Começa a tocar sua gravação";
+
+/* Hint about the record button */
+"Starts recording a media comment" = "Começa a gravar um comentário de mídia";
+
+/* A button that stops */
+"Stop" = "Parar";
+
+/* Hint about the play button */
+"Stops playing your recording" = "Para de tocar sua gravação";
+
+/* Hint about the record button */
+"Stops recording a media comment" = "Para de gravar um comentário de mídia";
+
+/* Short name for student enrollment */
+"Student" = "Estudante";
+
+/* Hint about media input selection */
+"Switches media input between audio and video. Currently set to %@" = "Alterna a entrada de mídia entre áudio e vídeo. Atualmente definido como %@";
+
+/* No comment provided by engineer. */
+"Switches to media comment mode" = "Alterna para o modo de comentário de mídia";
+
+/* No comment provided by engineer. */
+"Switches to text comment mode" = "Alterna para o modo de comentário de texto";
+
+/* Short name for TA enrollment */
+"TA" = "TA";
+
+/* Short name for teacher enrollment */
+"Teacher" = "Professor";
+
+/* No comment provided by engineer. */
+"Text Comment" = "Comentário de Texto";
+
+/* Generic name for a submission entered online. */
+"Text Submission" = "Envio de Texto";
+
+/* Error description when a user tries to upload a file that's too big */
+"The file you are trying to uploading is %@, but the maximum size is %@." = "O arquivo que você está tentando carregar é %1$@, mas o tamanho máximo é %2$@.";
+
+/* No comment provided by engineer. */
+"This is a media message." = "Esta é uma mensagem de mídia.";
+
+/* Media type is video */
+"Video" = "Vídeo";
+
+/* No comment provided by engineer. */
+"Video error" = "Erro de vídeo";
+
+/* No comment provided by engineer. */
+"Warning" = "Aviso";
+
+/* Accessibility label for out or grading style */
+"out of" = "fora de";
+
+/* The assignment is out of 100 points */
+"out of %@" = "fora de %@";
+
+/* No comment provided by engineer. */
+"out of %@ points" = "fora de %@ pontos";
+
+/* Name for a photo file, i.e. photo.png */
+"photo" = "Foto";
+
+/* When we don't know the name of a file, we display this */
+"unknown" = "desconhecido";
+

@@ -1,76 +1,76 @@
-/* grade details for points based grade i.e. \"10 of 12\" */
-"of (formatter(possible))" = "de (formatter(possible))";
-
-/* grade details for points based grade i.e. \"10 of 12\" */
+/* (No Commment) */
 "(formatter(points)) of (formatter(possible))" = "(formatter(points)) de (formatter(possible))";
 
-/* Title for 1 day assignment reminder */
+/* (No Commment) */
 "1 day" = "1 día";
 
-/* Title for 1 hour assignment reminder */
+/* (No Commment) */
 "1 hour" = "1 hora";
 
-/* Title for 3 days assignment reminder */
+/* (No Commment) */
 "3 days" = "3 días";
 
-/* Title for 5 minutes assignment reminder */
+/* (No Commment) */
 "5 minutes" = "5 minutos";
 
-/* Assignment label */
+/* (No Commment) */
 "Assignment" = "Tarea";
 
-/* Title for alert view for assignment reminders */
+/* (No Commment) */
 "Assignment Reminder" = "Recordatorio de la tarea";
 
-/* Message indicating that an assignment is currently be submitted */
+/* (No Commment) */
 "Assignment is currently being submitted" = "La tarea está siendo enviaa en este momento";
 
-/* This assignment hasn't been graded yet but can be graded */
+/* (No Commment) */
 "Awaiting Grade" = "En espera de la calificación";
 
-/* cancel button */
+/* (No Commment) */
 "Cancel" = "Cancelar";
 
-/* Title for reminder options for an assignment */
+/* (No Commment) */
 "Choose how long before the assignment due date to get a reminder:" = "Escoja con cuanta anicipación a la fecha de entrega de la tarea quiere recibir un recordatorio:";
 
-/* Title for a rating that hasn't been graded but has a comment */
+/* (No Commment) */
 "Comment" = "Comentario";
 
-/* Assignment submission comment placeholder text */
+/* (No Commment) */
 "Comment.." = "Comentario..";
 
-/* error displayed when submitting an assignment is unavailable */
+/* (No Commment) */
 "Could not submit assignment. Invalid assignment or session." = "No se pudo enviar la tarea. Tarea o sesión inválida.";
 
-/* error displayed when submitting a submission is invalid. */
+/* (No Commment) */
 "Could not submit assignment. Invalid submission." = "No se pudo enviar la tarea. Envío inválido.";
 
-/* String telling the user that the date is the due date */
+/* (No Commment) */
 "Due:" = "Fecha de entrega:";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Error al subir la tarea";
 
-/* This assignment is excused */
+/* (No Commment) */
 "Excused" = "Excusado";
 
-/* Error when an upload failed to resume. */
+/* Error message when submission attachment fails to load. */
+"Failed to load item. Check the allowed assignment submission types." = "No se pudo cargar el elemento. Verifique los tipos de entrega de tareas permitidos.";
+
+/* (No Commment) */
 "Failed to resume upload." = "No se ha podido reanudar la carga.";
 
-/* This assignment is late */
+/* (No Commment) */
 "Late" = "Atrasado";
 
-/* Title for a rating that has custom graded but has no comment */
+/* (No Commment) */
 "No Comment" = "Sin comentario";
 
-/* Default string for due date title */
-"No Due Date" = "Sin fecha límite de entrega";
+/* (No Commment) */
+"No Due Date" = "Sin fecha de entrega";
 
 /* Section header for assignments without an assignment group */
 "None" = "Ninguno";
 
-/* submission title for assignment waiting user submission */
+/* (No Commment) */
 "Not Submitted" = "No enviado";
 
 /* Overdue assignmnets (not turned in) */
@@ -79,19 +79,19 @@
 /* Assignments that have been turned in and are past */
 "Past" = "Pasado";
 
-/* Rubric Points Possible Title */
+/* (No Commment) */
 "Points Possible" = "Puntos posibles";
 
-/* title for submission button if student has submitted previously */
-"Re-submit Assignment" = "Reenviar tarea";
+/* (No Commment) */
+"Re-submit Assignment" = "Reenviar la tarea";
 
-/* Message indicating that a submission type is not supported for this assignment. */
+/* (No Commment) */
 "Submission type not allowed" = "Tipo de envío no permitido";
 
-/* submission title for assignment that doesn't support submissions */
+/* (No Commment) */
 "Submissions N/A" = "Presentaciones N/A";
 
-/* title for submission button if student has never submitted */
+/* (No Commment) */
 "Submit Assignment" = "Enviar tarea";
 
 /* AssignmentKit database load failure message */
@@ -100,27 +100,30 @@
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "Hubo un problema al subir la URL de la evaluación";
 
-/* submission title for assignemnt that is submitted */
+/* (No Commment) */
 "Turned in!" = "Entregado!";
 
-/* Error message when a course could not be selected */
+/* (No Commment) */
 "Unable to select a course." = "No se pudo seleccionar un curso.";
 
-/* Error message when an assignment could not be selected */
+/* (No Commment) */
 "Unable to select an assignment." = "No se pudo seleccionar una tarea.";
 
-/* Error message when unable to submit assignment. */
+/* (No Commment) */
 "Unable to submit assignment." = "No se pudo enviar una tarea.";
 
 /* Assignments with no dates */
 "Undated" = "Sin fecha";
 
-/* This assignment is not graded */
+/* (No Commment) */
 "Ungraded" = "Sin calificación";
 
 /* Upcoming assignments */
 "Upcoming" = "Próximo";
 
-/* Title for button to see rubric from assignment detail */
+/* (No Commment) */
 "View Rubric" = "Ver rúbrica";
+
+/* (No Commment) */
+"of (formatter(possible))" = "de (formatter(possible))";
 

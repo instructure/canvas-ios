@@ -1,97 +1,97 @@
-/* grade details for points based grade i.e. \"10 of 12\" */
-"of (formatter(possible))" = "av (formatter(possible))";
-
-/* grade details for points based grade i.e. \"10 of 12\" */
+/* (No Commment) */
 "(formatter(points)) of (formatter(possible))" = "(formatter(points)) av (formatter(possible))";
 
-/* Title for 1 day assignment reminder */
+/* (No Commment) */
 "1 day" = "1 dag";
 
-/* Title for 1 hour assignment reminder */
+/* (No Commment) */
 "1 hour" = "1 timme";
 
-/* Title for 3 days assignment reminder */
+/* (No Commment) */
 "3 days" = "3 dagar";
 
-/* Title for 5 minutes assignment reminder */
+/* (No Commment) */
 "5 minutes" = "5 minuter";
 
-/* Assignment label */
+/* (No Commment) */
 "Assignment" = "Uppgift";
 
-/* Title for alert view for assignment reminders */
+/* (No Commment) */
 "Assignment Reminder" = "Uppgiftspåminnelse";
 
-/* Message indicating that an assignment is currently be submitted */
+/* (No Commment) */
 "Assignment is currently being submitted" = "Uppgiften skickas in";
 
-/* This assignment hasn't been graded yet but can be graded */
+/* (No Commment) */
 "Awaiting Grade" = "Väntar betyg";
 
-/* cancel button */
+/* (No Commment) */
 "Cancel" = "Avbryt";
 
-/* Title for reminder options for an assignment */
+/* (No Commment) */
 "Choose how long before the assignment due date to get a reminder:" = "Välj hur långt innan förfallodagen för uppgiften du ska få påminnelsen:";
 
-/* Title for a rating that hasn't been graded but has a comment */
+/* (No Commment) */
 "Comment" = "Kommentera";
 
-/* Assignment submission comment placeholder text */
+/* (No Commment) */
 "Comment.." = "Kommentera...";
 
-/* error displayed when submitting an assignment is unavailable */
+/* (No Commment) */
 "Could not submit assignment. Invalid assignment or session." = "Kunde inte skicka in uppgiften. Ogiltig uppgift eller session.";
 
-/* error displayed when submitting a submission is invalid. */
+/* (No Commment) */
 "Could not submit assignment. Invalid submission." = "Kunde inte skicka in uppgiften. Ogiltig inlämning.";
 
-/* String telling the user that the date is the due date */
+/* (No Commment) */
 "Due:" = "Förfallodatum:";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Fel när uppgiften laddades upp";
 
-/* This assignment is excused */
+/* (No Commment) */
 "Excused" = "Befriad";
 
-/* Error when an upload failed to resume. */
+/* Error message when submission attachment fails to load. */
+"Failed to load item. Check the allowed assignment submission types." = "Misslyckades att ladda post. Markera de tillåtna typerna av inlämningsuppgifter.";
+
+/* (No Commment) */
 "Failed to resume upload." = "Kunde inte återuppta uppladdning.";
 
-/* This assignment is late */
+/* (No Commment) */
 "Late" = "Sen";
 
-/* Title for a rating that has custom graded but has no comment */
+/* (No Commment) */
 "No Comment" = "Inga kommentarer";
 
-/* Default string for due date title */
+/* (No Commment) */
 "No Due Date" = "Inget förfallodatum";
 
 /* Section header for assignments without an assignment group */
 "None" = "Ingen";
 
-/* submission title for assignment waiting user submission */
+/* (No Commment) */
 "Not Submitted" = "Inte inskickad";
 
 /* Overdue assignmnets (not turned in) */
 "Overdue" = "Försenad";
 
 /* Assignments that have been turned in and are past */
-"Past" = "Förbi";
+"Past" = "Tidigare";
 
-/* Rubric Points Possible Title */
+/* (No Commment) */
 "Points Possible" = "Poäng möjliga";
 
-/* title for submission button if student has submitted previously */
+/* (No Commment) */
 "Re-submit Assignment" = "Skicka in uppgift igen";
 
-/* Message indicating that a submission type is not supported for this assignment. */
+/* (No Commment) */
 "Submission type not allowed" = "Inlämningstyp inte tillåten";
 
-/* submission title for assignment that doesn't support submissions */
+/* (No Commment) */
 "Submissions N/A" = "inlämningar ej tillgängliga";
 
-/* title for submission button if student has never submitted */
+/* (No Commment) */
 "Submit Assignment" = "Skicka in uppgift";
 
 /* AssignmentKit database load failure message */
@@ -100,27 +100,30 @@
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "Det uppstod ett fel när Quiz-URL:en uppdaterades";
 
-/* submission title for assignemnt that is submitted */
+/* (No Commment) */
 "Turned in!" = "inlämnad!";
 
-/* Error message when a course could not be selected */
+/* (No Commment) */
 "Unable to select a course." = "Kunde inte välja kurs";
 
-/* Error message when an assignment could not be selected */
+/* (No Commment) */
 "Unable to select an assignment." = "Kunde inte välja uppgift.";
 
-/* Error message when unable to submit assignment. */
+/* (No Commment) */
 "Unable to submit assignment." = "Kunde inte skicka in uppgift.";
 
 /* Assignments with no dates */
 "Undated" = "Odaterad";
 
-/* This assignment is not graded */
+/* (No Commment) */
 "Ungraded" = "Ej betygsatt";
 
 /* Upcoming assignments */
 "Upcoming" = "Kommande";
 
-/* Title for button to see rubric from assignment detail */
+/* (No Commment) */
 "View Rubric" = "Se rubrik";
+
+/* (No Commment) */
+"of (formatter(possible))" = "av (formatter(possible))";
 

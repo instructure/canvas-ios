@@ -1,0 +1,171 @@
+/* Description for rubric criterion rating object */
+" Rating for %@, Score: %g" = "Рейтинг для %1$@, Оценка: %2$g";
+
+/* Gigabytes */
+"%0.2f GB" = "%0.2f ГБ";
+
+/* Kilobytes */
+"%0.2f KB" = "%0.2f КБ";
+
+/* Megabytes */
+"%0.2f MB" = "%0.2f МБ";
+
+/* B- (83 out of 100 points */
+"%@ (%g out of %@)" = "%1$@ (%2$g из %3$@)";
+
+/* something at something */
+"%@ at %@" = "%1$@ в %2$@";
+
+/* 88 out of 100 points */
+"%@ out of %@" = "%1$@ из %2$@";
+
+/* 83% (83 out of 100 points */
+"%@%% (%g out of %@)" = "%1$@%% (%2$g из %3$@)";
+
+/* Word and ellipses */
+"%@..." = "%@...";
+
+/* 88 out of 100 points */
+"%g out of %@" = "%1$g из %2$@";
+
+/* As in, '15 bytes' */
+"%qu bytes" = "%qu байтов";
+
+/* Media type is audio */
+"Audio" = "Аудио";
+
+/* No comment provided by engineer. */
+"Audio input hardware not available" = "Аппаратное обеспечение для входного аудио сигнала  не доступно";
+
+/* Assignment grade: Complete */
+"Complete" = "Завершить";
+
+/* A custom grade not specified by the rubric. */
+"Custom Grade" = "Настроить оценку";
+
+/* No comment provided by engineer. */
+"Done" = "Готово";
+
+/* The file extension for a submission is not acceptable */
+"File extension not allowed: %@" = "Расширение файла не допускается: %@";
+
+/* Comes before a list of file extensions allowed for an assinment submission */
+"File extension(s) permitted for this assignment: " = "Расширение (расширения) файла, разрешенные для данного задания:";
+
+/* File upload failed. */
+"File upload failed." = "Не удалось загрузить файл.";
+
+/* Assignment grade: Incomplete */
+"Incomplete" = "Не завершено";
+
+/* No comment provided by engineer. */
+"Me" = "Я";
+
+/* No comment provided by engineer. */
+"Media Comment" = "Комментарий медиа";
+
+/* The name for a video or audio response to something */
+"Media comment" = "Комментарий медиа";
+
+/* A slider to choose between media types */
+"Media type selector. %@" = "Переключатель типа медиа. %@";
+
+/* Pass/fail assignment is not complete */
+"Not Complete" = "Не завершено";
+
+/* not graded string. */
+"Not graded" = "Без оценки";
+
+/* not graded with points possible */
+"Not graded (0 out of %@)" = "Без оценки (0 из %@)";
+
+/* No comment provided by engineer. */
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Примечание: Медиа-файлы не сразу доступны для воспроизведения в то время, как они обрабатываются на сервере.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* Short name for observer enrollment */
+"Observer" = "Наблюдатель";
+
+/* A button that plays */
+"Play" = "Воспроизвести";
+
+/* No comment provided by engineer. */
+"Post Comment" = "Оставить комментарий";
+
+/* No comment provided by engineer. */
+"Posts your comment" = "Оставляет ваш комментарий";
+
+/* A button that records */
+"Record" = "Записать";
+
+/* Hint about the play button */
+"Starts playing your recording" = "Начинает воспроизведение Вашей записи";
+
+/* Hint about the record button */
+"Starts recording a media comment" = "Начало записи медиа-комментария";
+
+/* A button that stops */
+"Stop" = "Остановить";
+
+/* Hint about the play button */
+"Stops playing your recording" = "Останавливает воспроизведение Вашей записи";
+
+/* Hint about the record button */
+"Stops recording a media comment" = "Окончание записи медиа-комментария";
+
+/* Short name for student enrollment */
+"Student" = "Студент";
+
+/* Hint about media input selection */
+"Switches media input between audio and video. Currently set to %@" = "Переключение входного носителя между аудио и видео. В настоящее время установлено на %@";
+
+/* No comment provided by engineer. */
+"Switches to media comment mode" = "Переключение в режим медиа комментария";
+
+/* No comment provided by engineer. */
+"Switches to text comment mode" = "Переключение в режим текстового комментария";
+
+/* Short name for TA enrollment */
+"TA" = "Ассистент учителя";
+
+/* Short name for teacher enrollment */
+"Teacher" = "Учитель";
+
+/* No comment provided by engineer. */
+"Text Comment" = "Текстовый комментарий";
+
+/* Generic name for a submission entered online. */
+"Text Submission" = "Текстовая отправка";
+
+/* Error description when a user tries to upload a file that's too big */
+"The file you are trying to uploading is %@, but the maximum size is %@." = "Файл, который вы пытаетесь отправить, имеет размер %1$@, в то время как максимально допустимый размер равен %2$@.";
+
+/* No comment provided by engineer. */
+"This is a media message." = "Это сообщение медиа.";
+
+/* Media type is video */
+"Video" = "Видео";
+
+/* No comment provided by engineer. */
+"Video error" = "Ошибка видео";
+
+/* No comment provided by engineer. */
+"Warning" = "Warning";
+
+/* Accessibility label for out or grading style */
+"out of" = "из";
+
+/* The assignment is out of 100 points */
+"out of %@" = "из %@";
+
+/* No comment provided by engineer. */
+"out of %@ points" = "из %@ баллов";
+
+/* Name for a photo file, i.e. photo.png */
+"photo" = "фото";
+
+/* When we don't know the name of a file, we display this */
+"unknown" = "неизвестно";
+
