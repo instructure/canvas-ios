@@ -36,7 +36,8 @@ extension Module {
 
         // Refresh all modules because prerequisite modules.
         let modules = try Module.getModules(session, courseID: courseID)
-        let syncModules = Module.syncSignalProducer(inContext: context, fetchRemote: modules)
+        let localModules = Module.predicate(forModulesIn: courseID)
+        let syncModules = Module.syncSignalProducer(localModules, inContext: context, fetchRemote: modules)
 
         let moduleItems = try ModuleItem.getModuleItems(session, courseID: courseID, moduleID: moduleID)
         let syncModuleItems = ModuleItem.syncSignalProducer(ModuleItem.predicate(forItemsIn: moduleID), includeSubentities: false, inContext: context, fetchRemote: moduleItems)

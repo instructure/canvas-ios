@@ -39,6 +39,7 @@
 		B141390D1DBE4C89007537DD /* ModuleItem+Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = B141390C1DBE4C89007537DD /* ModuleItem+Progress.swift */; };
 		B141390F1DBE4CAD007537DD /* SoProgressive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B141390E1DBE4CAD007537DD /* SoProgressive.framework */; };
 		B15738021D94C41600ADBB85 /* ModuleItem+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15738011D94C41600ADBB85 /* ModuleItem+Details.swift */; };
+		B191A8E41DF0DF86001A4263 /* PageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B191A8E31DF0DF86001A4263 /* PageKit.framework */; };
 		B1ABA8381DC3F03E0021021C /* ModuleItem+Progression.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABA8371DC3F03E0021021C /* ModuleItem+Progression.swift */; };
 		B1E0C7A01DB6C89B0086B0A2 /* ModuleItem+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E0C79F1DB6C89B0086B0A2 /* ModuleItem+Edits.swift */; };
 		B1EE2EE81D899033007A9B4B /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EE2EE71D899033007A9B4B /* SoIconic.framework */; };
@@ -96,6 +97,7 @@
 		B141390C1DBE4C89007537DD /* ModuleItem+Progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModuleItem+Progress.swift"; sourceTree = "<group>"; };
 		B141390E1DBE4CAD007537DD /* SoProgressive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoProgressive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15738011D94C41600ADBB85 /* ModuleItem+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModuleItem+Details.swift"; sourceTree = "<group>"; };
+		B191A8E31DF0DF86001A4263 /* PageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PageKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1ABA8371DC3F03E0021021C /* ModuleItem+Progression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModuleItem+Progression.swift"; sourceTree = "<group>"; };
 		B1E0C79F1DB6C89B0086B0A2 /* ModuleItem+Edits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModuleItem+Edits.swift"; sourceTree = "<group>"; };
 		B1EE2EE71D899033007A9B4B /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,7 @@
 				610AF3031D79E89700386E81 /* TooLegit.framework in Frameworks */,
 				610AF3051D79E8D600386E81 /* SoPersistent.framework in Frameworks */,
 				B1EE2EE81D899033007A9B4B /* SoIconic.framework in Frameworks */,
+				B191A8E41DF0DF86001A4263 /* PageKit.framework in Frameworks */,
 				B141390F1DBE4CAD007537DD /* SoProgressive.framework in Frameworks */,
 				610AF3071D79E8F400386E81 /* SoLazy.framework in Frameworks */,
 				6132D7471D7F37230001FADA /* ReactiveCocoa.framework in Frameworks */,
@@ -214,6 +217,7 @@
 		610AF3011D79E7B900386E81 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				B191A8E31DF0DF86001A4263 /* PageKit.framework */,
 				B141390E1DBE4CAD007537DD /* SoProgressive.framework */,
 				6181F24A1DBA890500812E95 /* AssignmentKit.framework */,
 				615839191DA56BB5000ACD1D /* EnrollmentKit.framework */,

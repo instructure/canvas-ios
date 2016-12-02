@@ -38,8 +38,13 @@ extension Refresher {
         }
     }
 
+    @available(*, deprecated, message="Use playback(name:with:timeout:) because all recordings should be in SoAutomated.")
     public func playback(name: String, in bundle: NSBundle, with session: TooLegit.Session, timeout: NSTimeInterval = 1) {
-        session.playback(name, in: bundle) {
+        playback(name, with: session, timeout: timeout)
+    }
+
+    public func playback(name: String, with session: TooLegit.Session, timeout: NSTimeInterval = 1) {
+        session.playback(name) {
             refreshAndWait(timeout)
         }
     }

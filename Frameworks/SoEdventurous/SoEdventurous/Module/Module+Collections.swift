@@ -49,7 +49,8 @@ extension Module {
     public static func refresher(session: Session, courseID: String) throws -> Refresher {
         let context = try session.soEdventurousManagedObjectContext()
         let remote = try Module.getModules(session, courseID: courseID)
-        let sync = Module.syncSignalProducer(inContext: context, fetchRemote: remote)
+        let local = Module.predicate(forModulesIn: courseID)
+        let sync = Module.syncSignalProducer(local, inContext: context, fetchRemote: remote)
         let key = collectionCacheKey(context, courseID: courseID)
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }

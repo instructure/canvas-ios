@@ -127,14 +127,27 @@ class ModuleSpec: QuickSpec {
 
         describe("refreshers") {
             describe("collection refresher") {
-                it("syncs modules") {
-                    let session = User(credentials: .user1).session
-                    let count = Module.observeCount(inSession: session)
+                let courseID = "1867097"
+                var session: Session!
+                var refresher: Refresher!
+                beforeEach {
+                    session = User(credentials: .user1).session
+                    refresher = try! Module.refresher(session, courseID: courseID)
+                }
 
-                    let refresher = try! Module.refresher(session, courseID: "1867097")
+                it("syncs modules") {
+                    let count = Module.observeCount(inSession: session)
                     expect {
-                        refresher.playback("RefreshModules", in: .soAutomated, with: session)
+                        refresher.playback("RefreshModules", with: session)
                     }.to(change({ count.currentCount }, from: 0, to: 2))
+                }
+
+                it("should not delete modules in other courses") {
+                    let otherModule = Module.build(inSession: session) {
+                        $0.courseID = "200"
+                    }
+                    refresher.playback("RefreshModules", with: session)
+                    expect(otherModule.deleted) == false
                 }
             }
 
@@ -152,7 +165,7 @@ class ModuleSpec: QuickSpec {
 
                     let refresher = try! Module.refresher(session, courseID: courseID, moduleID: moduleID)
 
-                    refresher.playback("RefreshModule", in: .soAutomated, with: session)
+                    refresher.playback("RefreshModule", with: session)
 
                     expect(module.reload().state) == .completed
                 }
