@@ -59,11 +59,12 @@ class ModuleViewModel {
         return formatter
     }()
     lazy var colorfulViewModel: ColorfulViewModel = {
-        let vm = ColorfulViewModel(style: .Subtitle)
+        var vm = ColorfulViewModel(style: .Subtitle)
         vm.title <~ self.module.producer.map { $0?.name ?? "" }
         vm.detail <~ self.unlockDate.producer.map { $0 ?? "" }
         vm.icon <~ self.prerequisite.producer.map { $0 ? .icon(.prerequisite) : nil }
         vm.accessibilityIdentifier.value = "module"
+        vm.titleLineBreakMode = .ByWordWrapping
 
         let enrollmentDataSource = self.session.enrollmentsDataSource.producer(ContextID(id: self.courseID, context: .Course))
         vm.color <~ enrollmentDataSource.map { $0?.color ?? .prettyGray() }

@@ -37,6 +37,7 @@ public struct ColorfulViewModel: TableViewCellViewModel {
     public let setSelected = MutableProperty<Bool?>(nil)
     public let accessibilityIdentifier = MutableProperty<String?>(nil)
     public let accessibilityLabel = MutableProperty<String?>(nil)
+    public var titleLineBreakMode = NSLineBreakMode.ByTruncatingTail
 
     public let style: ColorfulTableViewCell.Style
 
@@ -159,6 +160,16 @@ public class ColorfulTableViewCell: UITableViewCell {
         }
 
         updateTitleConstraints()
+
+        (tokenCellTitleLabel ?? textLabel)?.lineBreakMode = vm.titleLineBreakMode
+        let numberOfLines: Int
+        switch vm.titleLineBreakMode {
+        case .ByWordWrapping, .ByCharWrapping:
+            numberOfLines = 0
+        default:
+            numberOfLines = 1
+        }
+        (tokenCellTitleLabel ?? textLabel)?.numberOfLines = numberOfLines
     }
     
     public var viewModel: ColorfulViewModel? {

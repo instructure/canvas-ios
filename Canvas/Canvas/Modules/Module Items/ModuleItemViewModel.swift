@@ -125,11 +125,12 @@ class ModuleItemViewModel: NSObject {
     lazy var previousCocoaAction: CocoaAction = { CocoaAction(self.previousAction, input: ()) }()
 
     private lazy var colorfulViewModel: ColorfulViewModel = {
-        let vm = ColorfulViewModel(style: .Subtitle)
+        var vm = ColorfulViewModel(style: .Subtitle)
         vm.title <~ self.title.producer.map { $0 ?? "" }
         vm.detail <~ self.moduleItem.producer.map { $0?.detailText ?? "" }
         vm.icon <~ self.moduleItem.producer.map { $0?.icon }
         vm.accessibilityIdentifier.value = "module_item"
+        vm.titleLineBreakMode = .ByWordWrapping
 
         vm.accessoryView <~ combineLatest(self.completed.producer, self.locked.producer).map { completed, locked in
             guard !locked else {
