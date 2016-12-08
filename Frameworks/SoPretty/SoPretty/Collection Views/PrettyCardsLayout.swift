@@ -86,6 +86,22 @@ public class PrettyCardsLayout: UICollectionViewFlowLayout {
         
         return super.shouldInvalidateLayoutForBoundsChange(newBounds)
     }
+
+    public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        guard let collectionView = collectionView else {
+            return nil
+        }
+        var attributes: [UICollectionViewLayoutAttributes] = []
+        for section in 0..<collectionView.numberOfSections() {
+            for item in 0..<collectionView.numberOfItemsInSection(section) {
+                let indexPath = NSIndexPath(forItem: item, inSection: section)
+                if let attribute = layoutAttributesForItemAtIndexPath(indexPath) {
+                    attributes.append(attribute)
+                }
+            }
+        }
+        return attributes
+    }
 }
 
 

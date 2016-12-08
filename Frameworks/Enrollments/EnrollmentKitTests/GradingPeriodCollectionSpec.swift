@@ -178,9 +178,19 @@ class GradingPeriodCollectionSpec: QuickSpec {
                             }
 
                             it("offsets updates") {
-                                expectUpdate(.Updated(NSIndexPath(forRow: 0, inSection: 1), .Some(gradingPeriod))) {
+                                var updates: [CollectionUpdate<GradingPeriodItem>] = []
+                                waitUntil { done in
+                                    collection.collectionUpdates.observeNext {
+                                        updates = $0
+                                        done()
+                                    }
                                     gradingPeriod.title = "Updated title"
                                 }
+
+                                // RADAR (rdar://279557917): Sends an `update` with two index paths so we treat it as a move.
+                                let deleted = CollectionUpdate<GradingPeriodItem>.Deleted(NSIndexPath(forRow: 0, inSection: 1), .Some(gradingPeriod))
+                                let inserted = CollectionUpdate<GradingPeriodItem>.Inserted(NSIndexPath(forRow: 0, inSection: 1), .Some(gradingPeriod))
+                                expect(updates) == [deleted, inserted]
                             }
 
                             it("offsets deletes") {

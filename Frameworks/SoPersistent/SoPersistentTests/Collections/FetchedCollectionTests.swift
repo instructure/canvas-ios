@@ -223,19 +223,20 @@ class FetchedCollectionTests: XCTestCase {
                     beforeEach()
                     let updatedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
                     let expectation = self.expectationWithDescription("object was updated")
-                    collection.collectionUpdates.observeNext { updates in
-                        for update in updates {
-                            if case .Updated(let ip, let m) = update {
-                                if ip == updatedIndexPath &&  m.name == "Another 'A' name" {
-                                    expectation.fulfill()
-                                }
-                            }
-                        }
+                    var updates: [CollectionUpdate<Panda>] = []
+                    collection.collectionUpdates.observeNext {
+                        updates = $0
+                        expectation.fulfill()
                     }
 
                     one.name = "Another 'A' name"
 
                     self.waitForExpectationsWithTimeout(1, handler: nil)
+
+                    // RADAR (rdar://279557917): Sends an `update` with two index paths so we treat it as a move.
+                    let deleted = CollectionUpdate<Panda>.Deleted(updatedIndexPath, four)
+                    let inserted = CollectionUpdate<Panda>.Inserted(updatedIndexPath, four)
+                    XCTAssertEqual(updates, [deleted, inserted])
                 }
             }
 
@@ -245,19 +246,20 @@ class FetchedCollectionTests: XCTestCase {
                     let originalIndexPath = NSIndexPath(forRow: 1, inSection: 2)
                     let updatedIndexPath = NSIndexPath(forRow: 1, inSection: 0)
                     let expectation = self.expectationWithDescription("object was moved")
-                    collection.collectionUpdates.observeNext { updates in
-                        for update in updates {
-                            if case .Moved(let i, let ii, let m) = update {
-                                if i == originalIndexPath && ii == updatedIndexPath && m.name == "Aapple" {
-                                    expectation.fulfill()
-                                }
-                            }
-                        }
+                    var updates: [CollectionUpdate<Panda>] = []
+                    collection.collectionUpdates.observeNext {
+                        updates = $0
+                        expectation.fulfill()
                     }
 
                     four.name = "Aapple"
 
                     self.waitForExpectationsWithTimeout(1, handler: nil)
+
+                    // RADAR (rdar://279557917): Sends an `update` with two index paths so we treat it as a move.
+                    let deleted = CollectionUpdate<Panda>.Deleted(originalIndexPath, four)
+                    let inserted = CollectionUpdate<Panda>.Inserted(updatedIndexPath, four)
+                    XCTAssertEqual(updates, [deleted, inserted])
                 }
             }
 

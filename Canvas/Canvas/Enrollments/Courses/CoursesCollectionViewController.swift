@@ -179,14 +179,6 @@ public class CoursesCollectionViewController: Course.CollectionViewController {
         route(enrollmentsVC, tabsURL)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if let cell = collectionView.cellForItemAtIndexPath(indexPath) {
-            let size = cell.contentView.systemLayoutSizeFittingSize(collectionView.bounds.size)
-            return size
-        }
-        return CGSizeZero
-    }
-
     public override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         (cell as? EnrollmentCardCell)?.updateA11y()
     }

@@ -94,12 +94,4 @@ class GroupsCollectionViewController: Group.CollectionViewController {
         
         route(enrollmentsVC, tabsURL)
     }
-
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if let cell = collectionView.cellForItemAtIndexPath(indexPath) {
-            let size = cell.contentView.systemLayoutSizeFittingSize(collectionView.bounds.size)
-            return size
-        }
-        return CGSizeZero
-    }
 }

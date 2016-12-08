@@ -43,7 +43,6 @@ public class FetchedCollection<Model where Model: NSManagedObject>: NSObject, Co
     let titleForSectionTitle: String?->String?
 
     private var updateBatch: [CollectionUpdate<Object>] = []
-    private var insertedSections = NSMutableIndexSet()
     
     public let collectionUpdates: Signal<[CollectionUpdate<Model>], NoError>
     internal let updatesObserver: Observer<[CollectionUpdate<Model>], NoError>
@@ -102,14 +101,12 @@ public class FetchedCollection<Model where Model: NSManagedObject>: NSObject, Co
     
     public func controllerWillChangeContent(controller: NSFetchedResultsController) {
         updateBatch = []
-        insertedSections.removeAllIndexes()
     }
     
     public func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         switch type {
         case .Insert:
             updateBatch.append(.SectionInserted(sectionIndex))
-            insertedSections.addIndex(sectionIndex)
         case .Delete:
             updateBatch.append(.SectionDeleted(sectionIndex))
         default:
@@ -125,18 +122,13 @@ public class FetchedCollection<Model where Model: NSManagedObject>: NSObject, Co
         case .Insert:
             updateBatch.append(.Inserted(newIndexPath!.safeCopy, m))
         case .Update:
-            // tl;dr is this is terrible, NSFetchedResultsController is terrible, Apple is terrible
-            // Occassionaly NSFRC reports an Update instead of a Move, as mentioned here: https://developer.apple.com/library/content/releasenotes/iPhone/NSFetchedResultsChangeMoveReportedAsNSFetchedResultsChangeUpdate/index.html
-            // Instead of doing that terrible workaround, someone on SO found that `indexPathForObject` 
-            // reports the new correct location for the object, if it changed sections. So if this were
-            // *really* an update, the sections should be the same. In the case of NSFRC reporting an update
-            // it still passes in a newIndexPath, so you can key off that, and do the right thing (maybe)
-            if let section = fetchedResultsController.indexPathForObject(m)?.section where section == indexPath!.section && !insertedSections.contains(indexPath!.section) {
-                updateBatch.append(.Updated(indexPath!.safeCopy, m))
-            } else if let newIndexPath = newIndexPath where newIndexPath.section != indexPath!.section {
-                updateBatch.append(.Moved(indexPath!.safeCopy, newIndexPath.safeCopy, m))
+            if let newIndexPath = newIndexPath {
+                // RADAR (rdar://279557917): Sends an `update` with two index paths so it's actually a move.
+                updateBatch.append(.Deleted(indexPath!.safeCopy, m))
+                updateBatch.append(.Inserted(newIndexPath.safeCopy, m))
+                return
             }
-
+            updateBatch.append(.Updated(indexPath!.safeCopy, m))
         case .Move:
             let from = indexPath!.safeCopy
             let to = newIndexPath!.safeCopy

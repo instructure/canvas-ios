@@ -86,6 +86,7 @@ public class CollectionCollectionViewDataSource<C: Collection, VM: CollectionVie
         guard let c = collectionView else { return }
 
         if updates == [.Reload] || c.window == nil  {
+            c.collectionViewLayout.invalidateLayout()
             c.reloadData()
             return
         }
