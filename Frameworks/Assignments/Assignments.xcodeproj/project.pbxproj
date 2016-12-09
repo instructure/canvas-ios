@@ -98,6 +98,7 @@
 		B14BFC641CA452F1007C3735 /* Keymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1409A7F1CA34D3400E88AE5 /* Keymaster.framework */; };
 		B153C62E1CE0DFDF0017F0CF /* testfile.txt in Resources */ = {isa = PBXBuildFile; fileRef = B153C62D1CE0DFDF0017F0CF /* testfile.txt */; };
 		B157F0AA1CED2FD2004EB3AE /* hubble-large.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B157F0A91CED2FD2004EB3AE /* hubble-large.jpg */; };
+		B16735ED1DFB65D5000CD436 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5BFC5421D8CBA5C0046D71D /* Localizable.strings */; };
 		B181C3181CA43A5000277440 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3161CA43A5000277440 /* EnrollmentKit.framework */; };
 		B181C31A1CA43A6200277440 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3161CA43A5000277440 /* EnrollmentKit.framework */; };
 		B181C31B1CA43A6200277440 /* EnrollmentKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3161CA43A5000277440 /* EnrollmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -964,6 +965,7 @@
 				2C01B07A1DEF7C7D00BC47B0 /* Localizable.strings in Resources */,
 				B5FE27AD1C9749B700D07C43 /* SubmissionStatusView.xib in Resources */,
 				491B3DF91C41D3E00094575A /* AssignmentCell.xib in Resources */,
+				B16735ED1DFB65D5000CD436 /* Localizable.strings in Resources */,
 				B5FE27901C90D76300D07C43 /* Assignment.storyboard in Resources */,
 				B5109D831CA337AB00A9AF5A /* Rubric.storyboard in Resources */,
 			);
