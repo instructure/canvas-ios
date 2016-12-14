@@ -148,10 +148,6 @@ public final class Assignment: NSManagedObject, LockableModel {
         return status.contains(.Graded)
     }
 
-    var assignmentGroupName: String {
-        return assignmentGroup?.name ?? NSLocalizedString("None", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Section header for assignments without an assignment group")
-    }
-    
     public func getUploadTypesFromSubmissionTypes() -> UploadTypes {
         var uploadTypes: UploadTypes = []
         if self.submissionTypes.contains(.Text) {

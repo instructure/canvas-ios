@@ -73,7 +73,7 @@ extension Assignment {
         } else {
             predicateFRD = predicate
         }
-        let frc = Assignment.fetchedResults(predicateFRD, sortDescriptors: ["assignmentGroup.position".ascending, "due".ascending, "name".ascending, "id".ascending], sectionNameKeypath: "assignmentGroupName", inContext: try session.assignmentsManagedObjectContext())
+        let frc = Assignment.fetchedResults(predicateFRD, sortDescriptors: ["assignmentGroup.position".ascending, "due".ascending, "name".ascending, "id".ascending], sectionNameKeypath: "assignmentGroup.name", inContext: try session.assignmentsManagedObjectContext())
         return try FetchedCollection(frc: frc)
     }
 
