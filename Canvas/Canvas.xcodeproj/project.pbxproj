@@ -484,6 +484,7 @@
 		4950687A1D414DC00030A9D5 /* unlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 495068681D414DC00030A9D5 /* unlock.png */; };
 		4950687B1D414DC00030A9D5 /* unlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 495068691D414DC00030A9D5 /* unlock@2x.png */; };
 		495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */; };
+		496157601DD6299A001578B1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4961575F1DD6299A001578B1 /* AVFoundation.framework */; };
 		496157631DD66410001578B1 /* MessagesTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496157621DD66410001578B1 /* MessagesTab.swift */; };
 		49642BC01CF4C44A00238B3F /* EXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 49642BBE1CF4C44A00238B3F /* EXTScope.h */; };
 		49642BC11CF4C44A00238B3F /* metamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 49642BBF1CF4C44A00238B3F /* metamacros.h */; };
@@ -1436,6 +1437,7 @@
 		495068681D414DC00030A9D5 /* unlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlock.png; sourceTree = "<group>"; };
 		495068691D414DC00030A9D5 /* unlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unlock@2x.png"; sourceTree = "<group>"; };
 		495D8BBA1CFE17D700D41098 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4961575F1DD6299A001578B1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		496157621DD66410001578B1 /* MessagesTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTab.swift; sourceTree = "<group>"; };
 		49642BBE1CF4C44A00238B3F /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		49642BBF1CF4C44A00238B3F /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };

@@ -25,6 +25,13 @@ import CoreData
 import Quick
 import Result
 
+class SpecHelperConfiguration: QuickConfiguration {
+    override class func configure(configuration: Configuration) {
+        // increase default poll interval because Core Data change notifications are slow.
+        Nimble.AsyncDefaults.PollInterval = 0.5
+    }
+}
+
 public let DefaultNetworkTimeout: NSTimeInterval = 5
 
 extension Refresher {

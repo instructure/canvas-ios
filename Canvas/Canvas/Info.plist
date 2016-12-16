@@ -31,7 +31,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.15.3</string>
+	<string>3.16.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -54,7 +54,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2014</string>
+	<string>2019</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -117,6 +117,6 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>VersionName</key>
-	<string>Hungry Panda</string>
+	<string>Innovative Panda</string>
 </dict>
 </plist>

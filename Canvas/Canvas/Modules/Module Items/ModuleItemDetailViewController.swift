@@ -128,11 +128,11 @@ class ModuleItemDetailViewController: UIViewController {
 
     func updateNavigationBarButtonItems(embeddedViewController: UIViewController) {
         var items = embeddedViewController.navigationItem.rightBarButtonItems ?? []
-
+        
         if viewModel.completionRequirement.value == .MarkDone {
             items = items + [markDoneButton]
         }
-
+        
         navigationItem.rightBarButtonItems = items
     }
 }
