@@ -234,9 +234,8 @@ class FetchedCollectionTests: XCTestCase {
                     self.waitForExpectationsWithTimeout(1, handler: nil)
 
                     // RADAR (rdar://279557917): Sends an `update` with two index paths so we treat it as a move.
-                    let deleted = CollectionUpdate<Panda>.Deleted(updatedIndexPath, four)
-                    let inserted = CollectionUpdate<Panda>.Inserted(updatedIndexPath, four)
-                    XCTAssertEqual(updates, [deleted, inserted])
+                    let updated = CollectionUpdate<Panda>.Updated(updatedIndexPath, four)
+                    XCTAssertEqual(updates, [updated])
                 }
             }
 
@@ -257,9 +256,8 @@ class FetchedCollectionTests: XCTestCase {
                     self.waitForExpectationsWithTimeout(1, handler: nil)
 
                     // RADAR (rdar://279557917): Sends an `update` with two index paths so we treat it as a move.
-                    let deleted = CollectionUpdate<Panda>.Deleted(originalIndexPath, four)
-                    let inserted = CollectionUpdate<Panda>.Inserted(updatedIndexPath, four)
-                    XCTAssertEqual(updates, [deleted, inserted])
+                    let moved = CollectionUpdate<Panda>.Moved(originalIndexPath, updatedIndexPath, four)
+                    XCTAssertEqual(updates, [moved])
                 }
             }
 
