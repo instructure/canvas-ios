@@ -36,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
 
+        BuddyBuildSDK.setup()
+        
         makeAWindow()
         postLaunchSetup()
         prepareTheKeymaster()

@@ -14,6 +14,15 @@
 		2C4762331DD0D2FB0003BEAE /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4762321DD0D2FB0003BEAE /* SoThankful.framework */; };
 		2C4762341DD0D2FB0003BEAE /* SoThankful.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4762321DD0D2FB0003BEAE /* SoThankful.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C47623D1DD1184B0003BEAE /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4762321DD0D2FB0003BEAE /* SoThankful.framework */; };
+		2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */; };
+		2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0C71E01F05F00DDD191 /* CoreTelephony.framework */; };
+		2C67B0CA1E01F06300DDD191 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0C91E01F06300DDD191 /* CoreText.framework */; };
+		2C67B0CC1E01F06800DDD191 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0CB1E01F06800DDD191 /* CoreMedia.framework */; };
+		2C67B0CE1E01F07200DDD191 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0CD1E01F07200DDD191 /* CoreVideo.framework */; };
+		2C67B0D01E01F07800DDD191 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0CF1E01F07800DDD191 /* QuartzCore.framework */; };
+		2C67B0D21E01F07C00DDD191 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D11E01F07C00DDD191 /* SystemConfiguration.framework */; };
+		2C67B0D41E01F08A00DDD191 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */; };
+		2C67B0D91E01F25800DDD191 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D81E01F25800DDD191 /* BuddyBuildSDK.framework */; };
 		2C6DC3DA1DC39FDF00F3E8C2 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */; };
 		2C6DC3DB1DC39FDF00F3E8C2 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C7205341DC8F1940095FA0A /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4985D3BC1CFE354D00BA3685 /* AFNetworking.framework */; };
@@ -484,7 +493,6 @@
 		4950687A1D414DC00030A9D5 /* unlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 495068681D414DC00030A9D5 /* unlock.png */; };
 		4950687B1D414DC00030A9D5 /* unlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 495068691D414DC00030A9D5 /* unlock@2x.png */; };
 		495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */; };
-		496157601DD6299A001578B1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4961575F1DD6299A001578B1 /* AVFoundation.framework */; };
 		496157631DD66410001578B1 /* MessagesTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496157621DD66410001578B1 /* MessagesTab.swift */; };
 		49642BC01CF4C44A00238B3F /* EXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 49642BBE1CF4C44A00238B3F /* EXTScope.h */; };
 		49642BC11CF4C44A00238B3F /* metamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 49642BBF1CF4C44A00238B3F /* metamacros.h */; };
@@ -1014,6 +1022,16 @@
 		2C0CAD831DEF6E5D008D90FA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		2C0CAD841DEF6E5F008D90FA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C4762321DD0D2FB0003BEAE /* SoThankful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SoThankful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		2C67B0C71E01F05F00DDD191 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		2C67B0C91E01F06300DDD191 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		2C67B0CB1E01F06800DDD191 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		2C67B0CD1E01F07200DDD191 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		2C67B0CF1E01F07800DDD191 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2C67B0D11E01F07C00DDD191 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
+		2C67B0D51E01F11A00DDD191 /* Canvas-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Canvas-Bridging-Header.h"; sourceTree = "<group>"; };
+		2C67B0D81E01F25800DDD191 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		396B37BFEED26519D8237DA7 /* Pods_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E3C1D72C08DB705A5532B30 /* Pods-Canvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.release.xcconfig"; sourceTree = "<group>"; };
@@ -1437,7 +1455,6 @@
 		495068681D414DC00030A9D5 /* unlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlock.png; sourceTree = "<group>"; };
 		495068691D414DC00030A9D5 /* unlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unlock@2x.png"; sourceTree = "<group>"; };
 		495D8BBA1CFE17D700D41098 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4961575F1DD6299A001578B1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		496157621DD66410001578B1 /* MessagesTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTab.swift; sourceTree = "<group>"; };
 		49642BBE1CF4C44A00238B3F /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		49642BBF1CF4C44A00238B3F /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
@@ -1898,7 +1915,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C67B0D41E01F08A00DDD191 /* BuddyBuildSDK.framework in Frameworks */,
+				2C67B0D21E01F07C00DDD191 /* SystemConfiguration.framework in Frameworks */,
+				2C67B0D01E01F07800DDD191 /* QuartzCore.framework in Frameworks */,
+				2C67B0CE1E01F07200DDD191 /* CoreVideo.framework in Frameworks */,
 				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
+				2C67B0CC1E01F06800DDD191 /* CoreMedia.framework in Frameworks */,
+				2C67B0CA1E01F06300DDD191 /* CoreText.framework in Frameworks */,
+				2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */,
+				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
 				49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */,
 				492708821CF4C38100C631C6 /* Kingfisher.framework in Frameworks */,
 				2C4762331DD0D2FB0003BEAE /* SoThankful.framework in Frameworks */,
@@ -1910,6 +1935,7 @@
 				49A04E591CF64CCF0051E1E7 /* NotificationKit.framework in Frameworks */,
 				4927088A1CF4C38100C631C6 /* Peeps.framework in Frameworks */,
 				492708981CF4C38100C631C6 /* SoProgressive.framework in Frameworks */,
+				2C67B0D91E01F25800DDD191 /* BuddyBuildSDK.framework in Frameworks */,
 				4985D3C31CFE35E100BA3685 /* FXKeychain.framework in Frameworks */,
 				49AA290F1CF4CD320055862D /* Fabric.framework in Frameworks */,
 				491A66081D9057530092CDE9 /* TBBModal.framework in Frameworks */,
@@ -2046,6 +2072,7 @@
 				492704741CF4AF7100C631C6 /* Products */,
 				5B0FCCDFB07A88D993D5871D /* Frameworks */,
 				3BFCA4310566C5CB96383521 /* Pods */,
+				2C67B0D51E01F11A00DDD191 /* Canvas-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2842,6 +2869,7 @@
 		4927085D1CF4C33700C631C6 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				2C67B0D81E01F25800DDD191 /* BuddyBuildSDK.framework */,
 				2C4762321DD0D2FB0003BEAE /* SoThankful.framework */,
 				2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */,
 				61F8ED851D999EFD00DFAC6E /* SoIconic.framework */,
@@ -3513,6 +3541,14 @@
 		5B0FCCDFB07A88D993D5871D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */,
+				2C67B0D11E01F07C00DDD191 /* SystemConfiguration.framework */,
+				2C67B0CF1E01F07800DDD191 /* QuartzCore.framework */,
+				2C67B0CD1E01F07200DDD191 /* CoreVideo.framework */,
+				2C67B0CB1E01F06800DDD191 /* CoreMedia.framework */,
+				2C67B0C91E01F06300DDD191 /* CoreText.framework */,
+				2C67B0C71E01F05F00DDD191 /* CoreTelephony.framework */,
+				2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */,
 				61F438E21DD4E60B00552D14 /* AVFoundation.framework */,
 				49A04E7C1CF653050051E1E7 /* libc++.tbd */,
 				49A04DAC1CF4F65D0051E1E7 /* libxml2.tbd */,
@@ -4076,7 +4112,7 @@
 					492704721CF4AF7100C631C6 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = B6333T4PXQ;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -5068,6 +5104,7 @@
 			baseConfigurationReference = F7E3E8394F9CF33081E5BAFC /* Pods-Canvas.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Canvas/Canvas.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
@@ -5081,6 +5118,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Canvas-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -5091,6 +5130,7 @@
 			baseConfigurationReference = 3E3C1D72C08DB705A5532B30 /* Pods-Canvas.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Canvas/Canvas.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
@@ -5104,6 +5144,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Canvas-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

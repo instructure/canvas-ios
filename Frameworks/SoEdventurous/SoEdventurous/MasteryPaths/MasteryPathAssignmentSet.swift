@@ -20,7 +20,7 @@ import SoPersistent
 
 public final class MasteryPathAssignmentSet: NSManagedObject {
     @NSManaged internal (set) public var id: String
-    @NSManaged internal (set) public var position: Int
+    @NSManaged internal (set) public var position: Int64
     @NSManaged internal (set) public var masteryPathsItem: MasteryPathsItem
     @NSManaged internal (set) public var assignments: NSSet
 }

@@ -169,7 +169,7 @@ class ModuleItemViewModel: NSObject {
                 return fontStyle
             }
         vm.titleTextColor <~ self.locked.producer.map { $0 ? .lightGrayColor() : .blackColor() }
-        vm.indentationLevel <~ self.moduleItem.producer.map { $0?.indent ?? 0 }
+        vm.indentationLevel <~ self.moduleItem.producer.map { $0?.indent ?? 0 }.map { Int($0) }
         vm.selectionEnabled <~ self.locked.producer.map { !$0 }
         vm.setSelected <~ self.selected
 
@@ -277,9 +277,9 @@ class ModuleItemViewModel: NSObject {
     }
 
     private func canFulfill(completionRequirement: ModuleItem.CompletionRequirement) -> AnyProperty<Bool> {
-        let sameCompletionRequirement = moduleItem.producer.map { $0?.completionRequirement == completionRequirement }.skipRepeats(==)
-        let completed = moduleItem.producer.map { $0?.completed ?? false }.skipRepeats(==)
-        let canFulfill = combineLatest(sameCompletionRequirement, completed).map { $0 && !$1 }
+        let sameCompletionRequirement = moduleItem.producer.map { $0?.completionRequirement == completionRequirement }
+        let completed = moduleItem.producer.map { $0?.completed ?? false }
+        let canFulfill = combineLatest(sameCompletionRequirement.skipRepeats(==), completed.skipRepeats(==)).map { $0 && !$1 }
         return AnyProperty(initialValue: false, producer: canFulfill)
     }
 

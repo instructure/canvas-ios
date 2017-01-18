@@ -25,9 +25,9 @@ public class Module: NSManagedObject {
     @NSManaged internal (set) public var id: String
     @NSManaged internal (set) public var courseID: String // This is not in the json, but set in the refresher
     @NSManaged internal (set) public var name: String
-    @NSManaged internal (set) public var position: Int
+    @NSManaged internal (set) public var position: Int64
     @NSManaged internal (set) public var requireSequentialProgress: Bool
-    @NSManaged internal (set) public var itemCount: Int
+    @NSManaged internal (set) public var itemCount: Int64
     @NSManaged internal (set) public var unlockDate: NSDate?
     @NSManaged internal (set) public var completionDate: NSDate?
 

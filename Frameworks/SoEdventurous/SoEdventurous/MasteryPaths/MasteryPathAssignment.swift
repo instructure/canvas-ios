@@ -39,7 +39,7 @@ public final class MasteryPathAssignment: NSManagedObject {
     @NSManaged internal (set) public var assignmentID: String
     @NSManaged internal (set) public var assignmentSetID: String
     @NSManaged internal (set) public var overrideID: String?
-    @NSManaged internal (set) public var position: Int
+    @NSManaged internal (set) public var position: Int64
     @NSManaged internal (set) public var name: String
     @NSManaged internal (set) public var details: String
     @NSManaged internal (set) public var pointsPossible: Double

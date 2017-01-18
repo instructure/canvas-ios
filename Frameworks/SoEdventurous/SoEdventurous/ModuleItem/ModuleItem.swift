@@ -28,7 +28,7 @@ public class ModuleItem: NSManagedObject, LockableModel {
     @NSManaged internal (set) public var courseID: String // This is not in the json, but set in the refresher
     @NSManaged internal (set) public var position: Float
     @NSManaged internal (set) public var title: String
-    @NSManaged internal (set) public var indent: Int
+    @NSManaged internal (set) public var indent: Int64
     @NSManaged internal (set) public var url: String?
 
     // LockableModel
