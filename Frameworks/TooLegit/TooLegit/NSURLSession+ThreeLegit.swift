@@ -18,65 +18,69 @@
 
 import Foundation
 import Result
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 import SoLazy
 
-private let networkErrorTitle = NSLocalizedString("Network Error", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Title for network errors")
+private let networkErrorTitle = NSLocalizedString("Network Error", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Title for network errors")
 
 
 extension NSError {
-    public static func invalidResponseError(url: NSURL?, _ file: String = #file, _ line: UInt = #line) -> NSError {
-        let desc = NSLocalizedString("Unexpected response type", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Unexpected response type")
+    public static func invalidResponseError(_ url: URL?, _ file: String = #file, _ line: UInt = #line) -> NSError {
+        let desc = NSLocalizedString("Unexpected response type", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Unexpected response type")
         return NSError(subdomain: "TooLegit", apiURL: url, title: networkErrorTitle, description: desc, file: file, line: line)
     }
 
-    private static func invalidResponse(response: NSHTTPURLResponse, data: NSData, _ file: String = #file, _ line: UInt = #line) -> NSError {
+    fileprivate static func invalidResponse(_ response: HTTPURLResponse, data: Data, _ file: String = #file, _ line: UInt = #line) -> NSError {
 
-        let desc = NSLocalizedString("There was an error while communicating with the server.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Error message for a network fail")
-        let reasonTemplate = NSLocalizedString("Expected a response in the 200-299 range. Got %@", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Error message when the server returns a invalid response")
+        let desc = NSLocalizedString("There was an error while communicating with the server.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Error message for a network fail")
+        let reasonTemplate = NSLocalizedString("Expected a response in the 200-299 range. Got %@", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Error message when the server returns a invalid response")
         
         let reason = String.localizedStringWithFormat(reasonTemplate, String(response.statusCode))
         
-        return NSError(subdomain: "TooLegit", code: response.statusCode, apiURL: response.URL, title: networkErrorTitle, description: desc, failureReason: reason, data: data, file: file, line: line)
+        return NSError(subdomain: "TooLegit", code: response.statusCode, apiURL: response.url, title: networkErrorTitle, description: desc, failureReason: reason, data: data, file: file, line: line)
     }
 }
 
-extension NSJSONSerialization {
-    public static func parseData(data: NSData, response: NSHTTPURLResponse) -> Result<(AnyObject, NSHTTPURLResponse), NSError> {
-        return Result() { try JSONObjectWithData(data, options: .AllowFragments) }
-            .map { ($0, response) }
+extension JSONSerialization {
+    public static func parseData(_ data: Data, response: HTTPURLResponse) -> Result<(Any, HTTPURLResponse), NSError> {
+        do {
+            let json = try jsonObject(with: data, options: .allowFragments)
+            return .success((json, response))
+        } catch let e as NSError {
+            return .failure(e)
+        }
     }
 }
 
-private func parseNextPageLinkHeader(headers: [NSObject: AnyObject]?) -> NSURL? {
+private func parseNextPageLinkHeader(_ headers: [AnyHashable: Any]?) -> URL? {
 
     // Link headers look like this:
     // Link: <https://api.github.com/search/code?q=addClass+user%3Amozilla&page=2>; rel="next", <https://api.github.com/search/code?q=addClass+user%3Amozilla&page=34>; rel="last"
 
     if let linkValue = headers?["Link"] as? String {
-        let links = linkValue.componentsSeparatedByString(",")
+        let links = linkValue.components(separatedBy: ",")
 
         for link in links {
-            let scanner = NSScanner(string: link)
+            let scanner = Scanner(string: link)
 
             // ignore everything up to and including the first <
-            scanner.scanString("<", intoString: nil)
+            scanner.scanString("<", into: nil)
 
             // grab the URL
             var value: NSString?
-            scanner.scanUpToString(">", intoString: &value)
+            scanner.scanUpTo(">", into: &value)
 
             // ignore the trailing >; rel="
-            scanner.scanString(">; rel=\"", intoString: nil)
+            scanner.scanString(">; rel=\"", into: nil)
 
             // now grab the key
             var key: NSString?
-            scanner.scanUpToString("\"", intoString: &key)
+            scanner.scanUpTo("\"", into: &key)
 
             if key == "next" {
                 if let value = value {
-                    return NSURL(string: value as String)
+                    return URL(string: value as String)
                 }
             }
         }
@@ -85,50 +89,48 @@ private func parseNextPageLinkHeader(headers: [NSObject: AnyObject]?) -> NSURL? 
     return nil
 }
 
-private func parseNextPageFromJSONAPI(JSON: AnyObject, keypath: String? = nil) -> NSURL? {
+private func parseNextPageFromJSONAPI(_ JSON: Any, keypath: String? = nil) -> URL? {
     let JSONObject = JSON as? NSDictionary
-    let atKeyPath: NSObject? = (keypath.map { JSONObject?.valueForKeyPath($0) }) as? NSObject ?? JSONObject
-    let stringURL = atKeyPath?.valueForKeyPath("meta.pagination.next") as? String
+    let atKeyPath: NSObject? = (keypath.map { JSONObject?.value(forKeyPath: $0) }) as? NSObject ?? JSONObject
+    let stringURL = atKeyPath?.value(forKeyPath: "meta.pagination.next") as? String
 
     return stringURL.flatMap {
-        return NSURL(string: $0)
+        return URL(string: $0)
     }
 }
 
-internal func paginateRequest(keypath: String? = nil) -> (AnyObject, NSHTTPURLResponse) -> (AnyObject, NSURL?) {
-    return { JSON, response in
-        return (JSON,
-                parseNextPageLinkHeader(response.allHeaderFields) ??
-                    parseNextPageFromJSONAPI(JSON, keypath: keypath)
-        )
-    }
+internal func paginateRequest(_ keypath: String? = nil, json: Any, response: HTTPURLResponse) -> (Any, URL?) {
+    return (json,
+            parseNextPageLinkHeader(response.allHeaderFields) ??
+                parseNextPageFromJSONAPI(json, keypath: keypath)
+    )
 }
 
 public enum JSONObjectResponse {
-    case JSON(JSONObject)
-    case Error(NSError)
-    case Interrupted
+    case json(JSONObject)
+    case error(NSError)
+    case interrupted
 }
 
 extension Session {
-    public func rac_dataWithRequest(request: NSURLRequest) -> SignalProducer<(NSData, NSURLResponse), NSError> {
-        return blockProducer { self.URLSession.dataTaskWithRequest(request) }
-            .promoteErrors(NSError)
-            .flatMap(.Concat, transform: resumeTask)
+    public func rac_dataWithRequest(_ request: URLRequest) -> SignalProducer<(Data, URLResponse), NSError> {
+        return blockProducer { self.URLSession.dataTask(with: request) }
+            .promoteErrors(NSError.self)
+            .flatMap(.concat, transform: resumeTask)
     }
 
-    public func resumeTask(task: NSURLSessionTask) -> SignalProducer<(NSData, NSURLResponse), NSError> {
+    public func resumeTask(_ task: URLSessionTask) -> SignalProducer<(Data, URLResponse), NSError> {
         return SignalProducer { observer, disposable in
             self.completionHandlerByTask[task] = { [weak self] task, error in
-                if let data = self?.responseDataByTask[task], response = task.response {
-                    observer.sendNext((data, response))
+                if let data = self?.responseDataByTask[task], let response = task.response {
+                    observer.send(value: (data, response))
                     observer.sendCompleted()
                 } else {
-                    observer.sendFailed(error ?? NSError.invalidResponseError(task.response?.URL))
+                    observer.send(error: error ?? NSError.invalidResponseError(task.response?.url))
                 }
             }
 
-            disposable.addDisposable {
+            disposable.add {
                 task.cancel()
             }
 
@@ -136,84 +138,82 @@ extension Session {
         }
     }
 
-    private static func validateResponse(data: NSData, response: NSURLResponse) -> Result<(NSData, NSHTTPURLResponse), NSError> {
-        guard let httpResponse = response as? NSHTTPURLResponse else { return Result(error:.invalidResponseError(response.URL)) }
+    fileprivate static func validateResponse(_ data: Data, response: URLResponse) -> Result<(Data, HTTPURLResponse), NSError> {
+        guard let httpResponse = response as? HTTPURLResponse else { return Result(error:.invalidResponseError(response.url)) }
         guard (200..<300).contains(httpResponse.statusCode) else { return Result(error:.invalidResponse(httpResponse, data: data)) }
 
         return Result(value: (data, httpResponse))
     }
 
-    public func emptyResponseSignalProducer(request: NSURLRequest) -> SignalProducer<(), NSError> {
+    public func emptyResponseSignalProducer(_ request: URLRequest) -> SignalProducer<(), NSError> {
         return rac_dataWithRequest(request)
-            .attemptMap(Session.validateResponse)
-            .flatMap(.Concat, transform: { _ in SignalProducer<(), NSError>.empty })
+            .attemptMap { Session.validateResponse($0.0, response: $0.1) }
+            .flatMap(.concat, transform: { _ in SignalProducer<(), NSError>.empty })
     }
 
-    private func JSONAndPaginationSignalProducer(request: NSURLRequest, keypath: String? = nil) -> SignalProducer<(AnyObject, NSURL?), NSError> {
+    fileprivate func JSONAndPaginationSignalProducer(_ request: URLRequest, keypath: String? = nil) -> SignalProducer<(Any, URL?), NSError> {
         return rac_dataWithRequest(request)
             .attemptMap(Session.validateResponse)
-            .attemptMap(NSJSONSerialization.parseData)
-            .map(paginateRequest(keypath))
+            .attemptMap(JSONSerialization.parseData)
+            .map { paginateRequest(json: $0.0, response: $0.1) }
     }
 
-    private static func asJSONObject(object: AnyObject) -> SignalProducer<JSONObject, NSError> {
-        guard let json = object as? JSONObject else { return SignalProducer(error: Error.TypeMismatch(expected: JSONObject.self, actual: object.dynamicType) as NSError) }
+    fileprivate static func asJSONObject(_ object: Any) -> SignalProducer<JSONObject, NSError> {
+        guard let json = object as? JSONObject else { return SignalProducer(error: MarshalError.typeMismatch(expected: JSONObject.self, actual: type(of: object)) as NSError) }
 
         return SignalProducer(value: json)
     }
 
-    public func JSONSignalProducer(request: NSURLRequest) -> SignalProducer<JSONObject, NSError> {
+    public func JSONSignalProducer(_ request: URLRequest) -> SignalProducer<JSONObject, NSError> {
         return JSONAndPaginationSignalProducer(request)
             .map { $0.0 }
-            .flatMap(.Concat, transform: Session.asJSONObject)
+            .flatMap(.concat, transform: Session.asJSONObject)
     }
 
-    public func JSONSignalProducer(task: NSURLSessionTask) -> SignalProducer<JSONObject, NSError> {
+    public func JSONSignalProducer(_ task: URLSessionTask) -> SignalProducer<JSONObject, NSError> {
         return resumeTask(task)
-            .flatMap(.Concat, transform: responseJSONSignalProducer)
+            .flatMap(.concat, transform: responseJSONSignalProducer)
     }
 
-    public func responseJSONSignalProducer(data: NSData, response: NSURLResponse) -> SignalProducer<JSONObject, NSError> {
+    public func responseJSONSignalProducer(_ data: Data, response: URLResponse) -> SignalProducer<JSONObject, NSError> {
         return SignalProducer(value: (data, response))
             .attemptMap(Session.validateResponse)
-            .attemptMap(NSJSONSerialization.parseData)
+            .attemptMap(JSONSerialization.parseData)
             .map { $0.0 }
-            .flatMap(.Concat, transform: Session.asJSONObject)
+            .flatMap(.concat, transform: Session.asJSONObject)
     }
 
-    private func appendNextPage(request: NSURLRequest) -> (JSON: AnyObject, nextPageURL: NSURL?) -> SignalProducer<AnyObject, NSError> {
-        return { (JSON: AnyObject, nextPageURL: NSURL?) -> SignalProducer<AnyObject, NSError> in
-            let nextPage: SignalProducer<AnyObject, NSError> = nextPageURL.map { nextPage in
-                guard let nextPageRequest = request.mutableCopy() as? NSMutableURLRequest else { ❨╯°□°❩╯⌢"Wut? this is a thing?" }
-                nextPageRequest.URL = nextPage
+    fileprivate func appendNextPage(_ request: URLRequest, json: Any, nextPageURL: URL?) -> SignalProducer<Any, NSError> {
+        let nextPage: SignalProducer<Any, NSError> = nextPageURL.map { nextPage in
+            var nextPageRequest = request
+            nextPageRequest.url = nextPage
 
-                return self.paginatedJSONSignalProducerAnyObject(nextPageRequest)
-                } ?? SignalProducer.empty
+            return self.paginatedJSONSignalProducerAnyObject(nextPageRequest)
+        } ?? SignalProducer.empty
 
-            let currentPage = SignalProducer<AnyObject, NSError>(value: JSON)
+        let currentPage = SignalProducer<Any, NSError>(value: json)
 
-            return currentPage.concat(nextPage)
-        }
+        return currentPage.concat(nextPage)
     }
 
-    private func paginatedJSONSignalProducerAnyObject(request: NSURLRequest, keypath: String? = nil) -> SignalProducer<AnyObject, NSError> {
+    fileprivate func paginatedJSONSignalProducerAnyObject(_ request: URLRequest, keypath: String? = nil) -> SignalProducer<Any, NSError> {
         return JSONAndPaginationSignalProducer(request, keypath: keypath)
-            .flatMap(.Merge, transform: appendNextPage(request))
+            .flatMap(.merge) { self.appendNextPage(request, json: $0.0, nextPageURL: $0.1) }
     }
 
-    private func asArray(keypath: String?) -> AnyObject -> SignalProducer<[JSONObject], NSError> {
+    fileprivate func asArray(_ keypath: String?) -> (Any) -> SignalProducer<[JSONObject], NSError> {
         return { any in
-            guard let ns = any as? NSObject else { return SignalProducer(error: Error.TypeMismatch(expected: NSObject.self, actual: any.dynamicType) as NSError) }
+            guard let ns = any as? NSObject else { return SignalProducer(error: NSError(jsonError: MarshalError.typeMismatch(expected: NSObject.self, actual: type(of: any)))) }
 
-            let atKeyPath: NSObject = (keypath.map { ns.valueForKeyPath($0) }) as? NSObject ?? ns
-            guard let array = atKeyPath as? [JSONObject] else { return SignalProducer(error: Error.TypeMismatchWithKey(key: keypath ?? "", expected: [JSONObject].self, actual: atKeyPath.dynamicType) as NSError) }
+            let atKeyPath: NSObject = (keypath.map { ns.value(forKeyPath: $0) }) as? NSObject ?? ns
+            guard let array = atKeyPath as? [JSONObject] else { return SignalProducer(error: NSError(jsonError: MarshalError.typeMismatchWithKey(key: keypath ?? "", expected: [JSONObject].self, actual: type(of: atKeyPath)))) }
 
             return SignalProducer(value: array)
         }
     }
 
-    public func paginatedJSONSignalProducer(request: NSURLRequest, keypath: String? = nil) -> SignalProducer<[JSONObject], NSError> {
+    public func paginatedJSONSignalProducer(_ request: URLRequest, keypath: String? = nil) -> SignalProducer<[JSONObject], NSError> {
         return paginatedJSONSignalProducerAnyObject(request, keypath: keypath)
-            .flatMap(.Concat, transform: asArray(keypath))
+            .flatMap(.concat, transform: asArray(keypath))
     }
 }

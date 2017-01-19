@@ -35,7 +35,7 @@ class ManagedObjectCountObserverTests: XCTestCase {
     func testItWorks() {
         var expectedCount: Int = 0
 
-        let expectation = expectationWithDescription("callback called")
+        let expectation = self.expectation(description: "callback called")
         let countObserver = ManagedObjectCountObserver<Panda>(predicate: NSPredicate(format: "TRUEPREDICATE"), inContext: context) { count in
             print(count)
             XCTAssertEqual(expectedCount, count, "count in callback should equal expected count")
@@ -51,7 +51,7 @@ class ManagedObjectCountObserverTests: XCTestCase {
         expectedCount = 2
         Panda.build(context, name: "B")
 
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
 
         XCTAssertEqual(2, countObserver.currentCount, "currentCount should match the amount of objects in the store")
     }

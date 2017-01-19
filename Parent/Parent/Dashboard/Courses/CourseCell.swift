@@ -24,24 +24,24 @@ class CourseCell: UITableViewCell {
     @IBOutlet weak var codeLabel: UILabel!
     @IBOutlet weak var gradeLabel: UILabel!
 
-    var highlightColor = UIColor.whiteColor()
+    var highlightColor = UIColor.white
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        selectionStyle = .None
+        selectionStyle = .none
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        contentView.backgroundColor = selected ? highlightColor : UIColor.whiteColor()
+        contentView.backgroundColor = selected ? highlightColor : UIColor.white
     }
 
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
 
-        contentView.backgroundColor = highlighted ? highlightColor : UIColor.whiteColor()
+        contentView.backgroundColor = highlighted ? highlightColor : UIColor.white
     }
     
 }

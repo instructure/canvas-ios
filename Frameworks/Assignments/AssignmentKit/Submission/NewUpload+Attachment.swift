@@ -20,26 +20,26 @@ import FileKit
 import MobileCoreServices
 
 extension NewUpload {
-    static func from(uti: String, item: AnyObject) -> NewUpload? {
+    static func from(_ uti: String, item: Any) -> NewUpload? {
         switch uti {
         case String(kUTTypeText):
             if let text = item as? String {
-                return .Text(text)
+                return .text(text)
             }
         case String(kUTTypeFileURL), String(kUTTypeURL):
-            if let url = item as? NSURL {
-                if url.fileURL {
-                    return .FileUpload([.FileURL(url)])
+            if let url = item as? URL {
+                if url.isFileURL {
+                    return .fileUpload([.fileURL(url)])
                 }
-                return .URL(url)
+                return .url(url)
             }
         case String(kUTTypeImage):
             if let image = item as? UIImage {
-                return .FileUpload([.Photo(image)])
+                return .fileUpload([.photo(image)])
             }
         case String(kUTTypeMovie), String(kUTTypeAudio):
-            if let data = item as? NSData {
-                return .FileUpload([.Data(data)])
+            if let data = item as? Data {
+                return .fileUpload([.data(data)])
             }
         case String(kUTTypeItem):
             return from(String(kUTTypeText), item: item) ??
@@ -48,7 +48,7 @@ extension NewUpload {
                 from(String(kUTTypeImage), item: item) ??
                 from(String(kUTTypeMovie), item: item) ??
                 from(String(kUTTypeAudio), item: item) ??
-                (item as? NSData).flatMap({ NewUpload.FileUpload([NewUploadFile.Data($0)]) })
+                (item as? Data).flatMap({ NewUpload.fileUpload([NewUploadFile.data($0)]) })
         default: break
         }
 

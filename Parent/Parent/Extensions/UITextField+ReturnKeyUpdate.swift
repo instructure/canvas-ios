@@ -21,7 +21,7 @@ import UIKit
 extension UITextField {
     func updateReturnKey(toType type: UIReturnKeyType) {
         self.returnKeyType = type
-        if self.isFirstResponder() {
+        if self.isFirstResponder {
             self.resignFirstResponder()
             self.becomeFirstResponder()
         }

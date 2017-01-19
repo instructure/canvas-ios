@@ -19,63 +19,63 @@
 import Foundation
 
 enum CommunicationChannelType: String, CustomStringConvertible {
-    case Email = "email"
-    case SMS = "sms"
-    case Chat = "chat"
-    case Twitter = "twitter"
-    case Yo = "yo"
-    case Push = "push"
+    case email = "email"
+    case sms = "sms"
+    case chat = "chat"
+    case twitter = "twitter"
+    case yo = "yo"
+    case push = "push"
     
     var description: String {
         switch self {
-        case .Email:
-            return NSLocalizedString("Email", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for email communication channel")
-        case .SMS:
-            return NSLocalizedString("SMS", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for SMS communication channel")
-        case .Chat:
-            return NSLocalizedString("Chat", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for Chat communication channel")
-        case .Twitter:
-            return NSLocalizedString("Twitter", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for Twitter communication channel")
-        case .Yo:
-            return NSLocalizedString("Yo", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for Yo communication channel")
-        case .Push:
-            return NSLocalizedString("Push Notifications", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for Push Notification channel")
+        case .email:
+            return NSLocalizedString("Email", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for email communication channel")
+        case .sms:
+            return NSLocalizedString("SMS", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for SMS communication channel")
+        case .chat:
+            return NSLocalizedString("Chat", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for Chat communication channel")
+        case .twitter:
+            return NSLocalizedString("Twitter", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for Twitter communication channel")
+        case .yo:
+            return NSLocalizedString("Yo", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for Yo communication channel")
+        case .push:
+            return NSLocalizedString("Push Notifications", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Description for Push Notification channel")
         }
     }
 }
 
 enum CommunicationChannelWorkflowState: String {
-    case Active = "active"
-    case Unconfirmed = "unconfirmed"
+    case active = "active"
+    case unconfirmed = "unconfirmed"
 }
 
 
 public enum DisplayGroup: String, CustomStringConvertible {
-    case CourseActivities = "Course Activities"
-    case Discussions = "Discussions"
-    case Conversations = "Conversations"
-    case Scheduling = "Scheduling"
-    case Groups = "Groups"
+    case courseActivities = "Course Activities"
+    case discussions = "Discussions"
+    case conversations = "Conversations"
+    case scheduling = "Scheduling"
+    case groups = "Groups"
     
     public var description: String {
         switch self {
-        case CourseActivities:
-            return NSLocalizedString("Course Activities", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for course activities group")
-        case Discussions:
-            return NSLocalizedString("Discussions", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for discussions group")
-        case Conversations:
-            return NSLocalizedString("Conversations", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for conversations group")
-        case Scheduling:
-            return NSLocalizedString("Scheduling", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for scheduling group")
-        case Groups:
-            return NSLocalizedString("Groups", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for groups group")
+        case .courseActivities:
+            return NSLocalizedString("Course Activities", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for course activities group")
+        case .discussions:
+            return NSLocalizedString("Discussions", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for discussions group")
+        case .conversations:
+            return NSLocalizedString("Conversations", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for conversations group")
+        case .scheduling:
+            return NSLocalizedString("Scheduling", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for scheduling group")
+        case .groups:
+            return NSLocalizedString("Groups", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Notification display name for groups group")
         }
     }
 }
 
 public typealias GroupItem = (name: String, items: [NotificationPreference])
 
-public class CommunicationChannel {
+open class CommunicationChannel {
     var address: String
     var id: String
     var position: String
@@ -85,7 +85,7 @@ public class CommunicationChannel {
     
     var preferencesDataSource = Array<(displayGroup: DisplayGroup, groupItems: Array<GroupItem>?)>()
     
-    public class func create(dictionary: [String: AnyObject]) -> CommunicationChannel? {
+    open class func create(_ dictionary: [String: Any]) -> CommunicationChannel? {
         if  let address         = dictionary["address"] as? String,
             let id              = dictionary["id"] as? Int,
             let position        = dictionary["position"] as? Int,
@@ -98,7 +98,7 @@ public class CommunicationChannel {
         }
     }
     
-    private init(address: String, id: String, position: String, type: CommunicationChannelType, userID: String, workflowState: CommunicationChannelWorkflowState) {
+    fileprivate init(address: String, id: String, position: String, type: CommunicationChannelType, userID: String, workflowState: CommunicationChannelWorkflowState) {
         
         self.address = address
         self.id = id
@@ -108,7 +108,7 @@ public class CommunicationChannel {
         self.workflowState = workflowState
     }
     
-    func createNotificationPreferencesGroups(notificationPreferences: Array<NotificationPreference>) {
+    func createNotificationPreferencesGroups(_ notificationPreferences: Array<NotificationPreference>) {
 
         // Not currently mapping the following
         // ADMIN:           registration, summaries, other, migration, alert
@@ -119,36 +119,36 @@ public class CommunicationChannel {
         // NOT SUPPORTED:   recording_ready
         let pairingMap: Dictionary<String, (itemName: String, groupName: DisplayGroup)> = [
             // Course Activities
-            "course_content":               ("Course Content", .CourseActivities),
-            "files":                        ("Files", .CourseActivities),
-            "all_submissions":              ("All Submissions", .CourseActivities),
-            "submission_comment":           ("Submission Comment", .CourseActivities),
-            "announcement":                 ("Announcement", .CourseActivities),
-            "announcement_created_by_you":  ("Announcement Created By You", .CourseActivities),
-            "grading":                      ("Grading", .CourseActivities),
-            "due_date":                     ("Due Date", .CourseActivities),
-            "late_grading":                 ("Late Grading", .CourseActivities),
-            "invitation":                   ("Invitation", .CourseActivities),
-            "grading_policies":             ("Grading Policies", .CourseActivities),
+            "course_content":               ("Course Content", .courseActivities),
+            "files":                        ("Files", .courseActivities),
+            "all_submissions":              ("All Submissions", .courseActivities),
+            "submission_comment":           ("Submission Comment", .courseActivities),
+            "announcement":                 ("Announcement", .courseActivities),
+            "announcement_created_by_you":  ("Announcement Created By You", .courseActivities),
+            "grading":                      ("Grading", .courseActivities),
+            "due_date":                     ("Due Date", .courseActivities),
+            "late_grading":                 ("Late Grading", .courseActivities),
+            "invitation":                   ("Invitation", .courseActivities),
+            "grading_policies":             ("Grading Policies", .courseActivities),
             // Discussions
-            "discussion_entry":             ("Discussion Post", .Discussions),
-            "discussion":                   ("Discussion", .Discussions),
+            "discussion_entry":             ("Discussion Post", .discussions),
+            "discussion":                   ("Discussion", .discussions),
             // Conversations
-            "added_to_conversation":        ("Added To Conversation", .Conversations),
-            "conversation_message":         ("Conversation Message", .Conversations),
-            "conversation_created":         ("Conversation Created By Me", .Conversations),
+            "added_to_conversation":        ("Added To Conversation", .conversations),
+            "conversation_message":         ("Conversation Message", .conversations),
+            "conversation_created":         ("Conversation Created By Me", .conversations),
             // Scheduling
-            "appointment_availability":     ("Appointment Availability", .Scheduling),
-            "appointment_signups":          ("Appointment Signups", .Scheduling),
+            "appointment_availability":     ("Appointment Availability", .scheduling),
+            "appointment_signups":          ("Appointment Signups", .scheduling),
             // DEPENDENCY: Complete the bottom two items after this web ticket has been completed
             // https://instructure.atlassian.net/browse/CNVS-3369
             // TODO: Update "appointment_cancelations" -> "appointment_cancellations"
             // TODO: Update "Appointment Cancelations" -> "Appointment Cancellations"
-            "appointment_cancelations":     ("Appointment Cancellations", .Scheduling),
-            "student_appointment_signups":  ("Student Appointment Signups", .Scheduling),
-            "calendar":                     ("Calendar", .Scheduling),
+            "appointment_cancelations":     ("Appointment Cancellations", .scheduling),
+            "student_appointment_signups":  ("Student Appointment Signups", .scheduling),
+            "calendar":                     ("Calendar", .scheduling),
             // Groups
-            "membership_update":            ("Membership Update", .Groups)
+            "membership_update":            ("Membership Update", .groups)
         ]
         
         
@@ -183,11 +183,11 @@ public class CommunicationChannel {
         // Each of those items in that group have subitems.
         
         preferencesDataSource = [
-            (.CourseActivities, displayMapping[DisplayGroup.CourseActivities.rawValue]),
-            (.Discussions,      displayMapping[DisplayGroup.Discussions.rawValue]),
-            (.Conversations,    displayMapping[DisplayGroup.Conversations.rawValue]),
-            (.Scheduling,       displayMapping[DisplayGroup.Scheduling.rawValue]),
-            (.Groups,           displayMapping[DisplayGroup.Groups.rawValue]),
+            (.courseActivities, displayMapping[DisplayGroup.courseActivities.rawValue]),
+            (.discussions,      displayMapping[DisplayGroup.discussions.rawValue]),
+            (.conversations,    displayMapping[DisplayGroup.conversations.rawValue]),
+            (.scheduling,       displayMapping[DisplayGroup.scheduling.rawValue]),
+            (.groups,           displayMapping[DisplayGroup.groups.rawValue]),
         ]
     }
 }

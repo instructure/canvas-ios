@@ -1,0 +1,11 @@
+{
+    "id": "42",
+    "passed": "true",
+    "assessed_at": "2014-05-13T00:01:57-06:00",
+    "links": {
+        "user": "42",
+        "assessor": "23",
+        "assessment": "5",
+        "outcome": "10"
+    }
+}

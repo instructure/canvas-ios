@@ -1,0 +1,24 @@
+{
+    "id": 768,
+    "position": 1,
+    "title": "Square Roots: Irrational numbers or boxy vegetables?",
+    "indent": 0,
+    "type": "Assignment",
+    "content_id": 1337,
+    "html_url": "https://canvas.example.edu/courses/222/modules/items/768",
+    "url": "https://canvas.example.edu/api/v1/courses/222/assignments/1337",
+    "page_url": "my-page-title",
+    "external_url": "https://www.example.com/externalurl",
+    "new_tab": false,
+    "completion_requirement": {
+        "type": "min_score",
+        "min_score": 10,
+        "completed": true
+    },
+    "content_details": {
+        "points_possible": 20,
+        "due_at": "2012-12-31T06:00:00-06:00",
+        "unlock_at": "2012-12-31T06:00:00-06:00",
+        "lock_at": "2012-12-31T06:00:00-06:00"
+    }
+}

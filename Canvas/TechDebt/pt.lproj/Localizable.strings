@@ -245,10 +245,10 @@ Primeiro precisa de completar:";
 /* Archive selected messages button */
 "Archive" = "Arquivo";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Arquivo Selecionado no Botão de Mensagens";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Arquivar todas as mensagens selecionadas";
 
 /* No comment provided by engineer. */
@@ -382,10 +382,10 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* (No Commment) */
 "Completed" = "Terminado";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Compor Botão de Mensagem";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Compor uma mensagem";
 
 /* Title for Conferences tab */

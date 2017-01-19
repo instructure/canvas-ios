@@ -19,10 +19,10 @@
 import XCTest
 
 extension XCTestCase {
-    func waitForElement(element: XCUIElement, timeout: NSTimeInterval = 5) -> XCUIElement {
+    func waitForElement(_ element: XCUIElement, timeout: TimeInterval = 5) -> XCUIElement {
         let exists = NSPredicate(format: "exists == true")
-        expectationForPredicate(exists, evaluatedWithObject: element, handler: nil)
-        waitForExpectationsWithTimeout(timeout, handler: nil)
+        expectation(for: exists, evaluatedWith: element, handler: nil)
+        waitForExpectations(timeout: timeout, handler: nil)
         
         return element
     }
@@ -30,8 +30,8 @@ extension XCTestCase {
 }
 
 extension XCUIElement /*TapAtPosition*/ {
-    func tapAtPosition(let position: CGPoint) {
-        let cooridnate = self.coordinateWithNormalizedOffset(CGVector(dx: 0, dy: 0)).coordinateWithOffset(CGVector(dx: position.x, dy: position.y))
+    func tapAtPosition(_ position: CGPoint) {
+        let cooridnate = self.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0)).withOffset(CGVector(dx: position.x, dy: position.y))
         cooridnate.tap()
     }
 }
@@ -64,7 +64,7 @@ class AudioRecorderUITests: XCTestCase {
         record.tap()
         
         // do a 2 second recording
-        NSRunLoop.mainRunLoop().runUntilDate(NSDate().dateByAddingTimeInterval(2))
+        RunLoop.main.run(until: Date().addingTimeInterval(2))
         
         let stop = waitForElement(app.buttons["Stop"])
         stop.tap()
@@ -79,7 +79,7 @@ class AudioRecorderUITests: XCTestCase {
         trash.tap()
         
         let sheet = app.sheets["Delete recording?"]
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+        if UIDevice.current.userInterfaceIdiom == .pad {
             sheet.tapAtPosition(CGPoint(x: 0.0, y: -100.0))
         } else {
             let cancelDelete = waitForElement(sheet.buttons["Cancel"])
@@ -93,12 +93,12 @@ class AudioRecorderUITests: XCTestCase {
         let deleteButton = waitForElement(sheet.buttons["Delete"])
         deleteButton.tap()
         
-        waitForElement(app.buttons["Record"])
+        let _ = waitForElement(app.buttons["Record"])
         
         let cancelRecording = waitForElement(app.buttons["Cancel"])
         cancelRecording.tap()
         
-        waitForElement(app.staticTexts["No worries, Mate."])
+        let _ = waitForElement(app.staticTexts["No worries, Mate."])
         let rightOh = waitForElement(app.buttons["Crikey!"])
         rightOh.tap()
     }
@@ -110,7 +110,7 @@ class AudioRecorderUITests: XCTestCase {
         let record = waitForElement(app.buttons["Record"])
         record.tap()
         
-        NSRunLoop.mainRunLoop().runUntilDate(NSDate().dateByAddingTimeInterval(2))
+        RunLoop.main.run(until: Date().addingTimeInterval(2))
 
         let stop = waitForElement(app.buttons["Stop"])
         stop.tap()
@@ -118,7 +118,7 @@ class AudioRecorderUITests: XCTestCase {
         let done = waitForElement(app.buttons["So Done!"])
         done.tap()
         
-        waitForElement(app.staticTexts["Good on ya, Mate!"])
+        let _ = waitForElement(app.staticTexts["Good on ya, Mate!"])
         let right = waitForElement(app.buttons["Right!"])
         right.tap()
     }
@@ -132,7 +132,7 @@ class AudioRecorderUITests: XCTestCase {
         record.tap()
         
         // do a 2 second recording
-        NSRunLoop.mainRunLoop().runUntilDate(NSDate().dateByAddingTimeInterval(2))
+        RunLoop.main.run(until: Date().addingTimeInterval(2))
         
         let cancel = waitForElement(app.buttons["Cancel"])
         cancel.tap()
@@ -140,7 +140,7 @@ class AudioRecorderUITests: XCTestCase {
         
         let sheet = waitForElement(app.sheets["Delete recording?"])
         
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+        if UIDevice.current.userInterfaceIdiom == .pad {
             sheet.tapAtPosition(CGPoint(x: 0.0, y: -100.0))
         } else {
             let cancelDelete = waitForElement(sheet.buttons["Cancel"])
@@ -151,7 +151,7 @@ class AudioRecorderUITests: XCTestCase {
         let delete = waitForElement(sheet.buttons["Delete"])
         delete.tap()
         
-        waitForElement(app.staticTexts["No worries, Mate."])
+        let _ = waitForElement(app.staticTexts["No worries, Mate."])
     }
     
     // MARK: Denied!
@@ -174,7 +174,7 @@ class AudioRecorderUITests: XCTestCase {
         waitForElement(app.tables.staticTexts["Request Recording Permission"]).tap()
         waitForElement(app.buttons["Request Audio Recording Permission"]).tap()
         waitForElement(app.buttons["Record"]).tap()
-        NSRunLoop.mainRunLoop().runUntilDate(NSDate().dateByAddingTimeInterval(2))
+        RunLoop.main.run(until: Date().addingTimeInterval(2))
         waitForElement(app.buttons["Stop"]).tap()
         waitForElement(app.buttons["So Done!"]).tap()
         waitForElement(app.alerts["Good on ya, Mate!"].buttons["Right!"]).tap()

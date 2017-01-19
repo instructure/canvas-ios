@@ -18,30 +18,31 @@
 
 import TooLegit
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import CoreData
 
 extension Conversation {
-    public static func collection(session: Session) throws -> FetchedCollection<Conversation> {
+    public static func collection(_ session: Session) throws -> FetchedCollection<Conversation> {
         let context = try session.messagesManagedObjectContext()
-        let frc = fetchedResults(nil, sortDescriptors: ["workflowState".descending, "date".descending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection(frc: frc)
+        return try FetchedCollection(frc:
+            context.fetchedResults(nil, sortDescriptors: ["workflowState".descending, "date".descending])
+        )
     }
 
-    public static func syncSignalProducer(session: Session) throws -> SignalProducer<Void, NSError> {
+    public static func syncSignalProducer(_ session: Session) throws -> SignalProducer<Void, NSError> {
         let context = try session.messagesManagedObjectContext()
         let remote = try getConversations(session)
         return syncSignalProducer(inContext: context, fetchRemote: remote).map { _ in () }
     }
 
-    public static func refresher(session: Session) throws -> Refresher {
+    public static func refresher(_ session: Session) throws -> Refresher {
         let context = try session.messagesManagedObjectContext()
         let sync = try syncSignalProducer(session)
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: cacheKey(context))
     }
 
-    public class TableViewController: FetchedTableViewController<Conversation> {
-        public override func viewDidLoad() {
+    open class TableViewController: FetchedTableViewController<Conversation> {
+        open override func viewDidLoad() {
             super.viewDidLoad()
             tableView.estimatedRowHeight = 44
         }

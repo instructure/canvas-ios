@@ -19,7 +19,7 @@
 import Foundation
 
 extension NSError {
-    class func calendarEventErrorWithMessage(message: String) -> NSError {
+    class func calendarEventErrorWithMessage(_ message: String) -> NSError {
         return NSError(domain: "com.instructure.calendarkit", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
     }
 }

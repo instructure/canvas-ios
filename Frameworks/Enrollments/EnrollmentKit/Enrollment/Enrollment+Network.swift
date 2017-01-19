@@ -18,15 +18,15 @@
 
 import Foundation
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import SoPretty
 import Marshal
 
 extension Enrollment {
-    public static func put(session:Session, color: UIColor, forContextID: ContextID) -> SignalProducer<(), NSError> {
+    public static func put(_ session:Session, color: UIColor, forContextID: ContextID) -> SignalProducer<(), NSError> {
         let path = "/api/v1/users/self/colors" / forContextID.canvasContextID
-        let params: [String: AnyObject] = ["hexcode": color.hex]
+        let params: [String: Any] = ["hexcode": color.hex]
         return attemptProducer { try session.PUT(path, parameters: params) }
-            .flatMap(.Merge, transform: session.emptyResponseSignalProducer)
+            .flatMap(.merge, transform: session.emptyResponseSignalProducer)
     }
 }

@@ -4,6 +4,27 @@
 /* Button for creating a note from text selection */
 "Create Note" = "ノートを作成する";
 
+/* Error when submitting an assignment */
+"Failed to Submit" = "提出できませんでした";
+
 /* No comment provided by engineer. */
 "Note..." = "ノート...";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Submit" = "提出する";
+
+/* Title for button to submit assignment */
+"Submit Assignment" = "課題の提出";
+
+/* No comment provided by engineer. */
+"Submitted!" = "提出しました！";
+
+/* No comment provided by engineer. */
+"Submitting" = "提出しています";
+
+/* Message when fails to submit an assignment */
+"There was a problem submitting your assignment. Please try again later." = "課題提出の際に問題がありました。後ほどもういちど試してください。";
 

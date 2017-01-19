@@ -20,12 +20,12 @@ import Foundation
 
 
 enum ChangeNotificationPreferenceResult {
-    case Success()
-    case Error(NSError)
+    case success()
+    case error(NSError)
 }
 
 protocol ChangeNotificationPreferenceProtocol {
-    func changeNotificationPreference(indexPath: NSIndexPath, value: Bool, completion: (value: Bool, result: ChangeNotificationPreferenceResult) -> ())
+    func changeNotificationPreference(_ indexPath: IndexPath, value: Bool, completion: @escaping (_ value: Bool, _ result: ChangeNotificationPreferenceResult) -> ())
 }
 
 class NotificationPreferencesTableViewCell: UITableViewCell {
@@ -34,11 +34,11 @@ class NotificationPreferencesTableViewCell: UITableViewCell {
     @IBOutlet weak var notificationLabel: UILabel!
     
     var item: GroupItem?
-    var indexPath: NSIndexPath?
+    var indexPath: IndexPath?
 
     var protocolHandler: ChangeNotificationPreferenceProtocol?
     
-    func setupCellFor<T where T:ChangeNotificationPreferenceProtocol>(item: GroupItem, indexPath: NSIndexPath, protocolHandler: T) {
+    func setupCellFor<T>(_ item: GroupItem, indexPath: IndexPath, protocolHandler: T) where T:ChangeNotificationPreferenceProtocol {
         self.item = item
         self.indexPath = indexPath
         self.protocolHandler = protocolHandler
@@ -46,25 +46,25 @@ class NotificationPreferencesTableViewCell: UITableViewCell {
         // for now we're assuming that all of the preferences are the same
         // that's how were' setting them when we first set it up
         // Also if it's not set to immediately then we're setting it to never
-        self.notificationSwitch.on = item.items.first?.frequency == NotificationPreference.Frequency.Immediately
+        self.notificationSwitch.isOn = item.items.first?.frequency == NotificationPreference.Frequency.Immediately
         self.notificationLabel.text = item.name
     }
     
     override func prepareForReuse() {
         self.notificationLabel.text = ""
-        self.notificationSwitch.on = false
+        self.notificationSwitch.isOn = false
     }
     
-    @IBAction func changeNotificationPreference(sender: AnyObject) {
+    @IBAction func changeNotificationPreference(_ sender: AnyObject) {
         // Update value wherever necessary
-        protocolHandler?.changeNotificationPreference(indexPath!, value: self.notificationSwitch.on, completion: { (value, result) -> () in
+        protocolHandler?.changeNotificationPreference(indexPath!, value: self.notificationSwitch.isOn, completion: { (value, result) -> () in
             switch result {
-            case .Success:
+            case .success:
                 // Nothing to do in the success case
                 print("Successfully changed push notification preference")
-            case .Error(_):
+            case .error(_):
                 // In the error case switch the value back to what it was
-                self.notificationSwitch.on = !value
+                self.notificationSwitch.isOn = !value
             }
         })
         

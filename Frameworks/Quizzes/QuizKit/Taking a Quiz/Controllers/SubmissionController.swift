@@ -28,11 +28,11 @@ class SubmissionController {
     let quiz: Quiz
     let service: QuizService
     
-    private (set) var submission: Submission?
-    private var submissionService: QuizSubmissionService?
-    private var auditLoggingService: SubmissionAuditLoggingService?
+    fileprivate (set) var submission: Submission?
+    fileprivate var submissionService: QuizSubmissionService?
+    fileprivate var auditLoggingService: SubmissionAuditLoggingService?
     
-    var submissionDidChange: QuizSubmissionResult->() = {_ in } {
+    var submissionDidChange: (QuizSubmissionResult)->() = {_ in } {
         didSet {
             if let submission = self.submission {
                 submissionDidChange(Result(value: Page(content: submission)))
@@ -66,8 +66,8 @@ class SubmissionController {
                     
                     // help them out so they aren't slackers and submit things late
                     switch self!.quiz.due {
-                    case .Date(let dueDate):
-                        let warnDate = dueDate - 1.minutesComponents // 1 minute to give them ample time to read the warning and make a decision
+                    case .date(let dueDate):
+                        let warnDate = (dueDate as Date) - 1.minutesComponents // 1 minute to give them ample time to read the warning and make a decision
                         let triggerTime = warnDate.timeIntervalSinceNow
                         if triggerTime > 0 {
                             delay(triggerTime) { [weak self] in
@@ -77,13 +77,13 @@ class SubmissionController {
                             }
                         }
                         
-                    case .NoDueDate:
+                    case .noDueDate:
                         break
                     }
                     
                     // auto submit when approaching the lock date
                     if let lockDate = self?.quiz.lockAt {
-                        let autoSubmitDate = lockDate - 30.secondsComponents // 10 seconds was to little - maybe do something else? This will depend on the user's connection
+                        let autoSubmitDate = (lockDate as Date) - 30.secondsComponents // 10 seconds was to little - maybe do something else? This will depend on the user's connection
                         delay(autoSubmitDate.timeIntervalSinceNow) { [weak self] in
                             if self?.submission?.dateFinished == nil { // if it's now 30 seconds prior to the lock date and they haven't submitted yet
                                 self?.lockQuiz()
@@ -101,7 +101,7 @@ class SubmissionController {
         UIAccessibilityRequestGuidedAccessSession(true) { _ in }
     }
 
-    func submit(completed: QuizSubmissionResult->()) {
+    func submit(_ completed: @escaping (QuizSubmissionResult)->()) {
         if let sub = submission {
             // For folks who are running under an MDM or a configurator and want to unlock the device now...
             // This is a fire and forget cuz well, some folks care, others don't

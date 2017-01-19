@@ -1,18 +1,1 @@
-/* Back Button Title */
-"Back" = "Back";
-
-/* Error alert message */
-"Could not create domain.  Please check your school's domain and try again." = "Could not create domain.  Please check your school's domain and try again.";
-
-/* Error Alert Title */
-"Error" = "Error";
-
-/* Domain Picker Search Placeholder */
-"Find your school or district" = "Find your school or district";
-
-/* OK */
-"OK" = "OK";
-
-/* AccountDomain Database Load Failure Message */
-"There was a problem loading the AccountDomain database file." = "There was a problem loading AccountDomain database file.";
-
+/* No Localized Strings */

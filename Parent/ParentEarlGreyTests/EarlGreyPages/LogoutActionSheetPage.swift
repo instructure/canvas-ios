@@ -22,19 +22,19 @@ class LogoutActionSheetPage: PageObject {
   // Mark: - Page Objects
 
   private static var youSureLabel: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityLabel(NSLocalizedString("Are you sure you want to logout?", comment: "Logout Confirmation")))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityLabel(NSLocalizedString("Are you sure you want to logout?", comment: "Logout Confirmation")))
   }
 
   private static var logoutButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_allOfMatchers(
+    return EarlGrey.select(elementWithMatcher: grey_allOfMatchers([
       grey_accessibilityLabel(NSLocalizedString("Logout", comment: "Logout Confirm Button")),
-      grey_kindOfClass(Class.UIAlertControllerActionView)))
+      grey_kindOfClass(Class.UIAlertControllerActionView)]))
   }
 
   private static var cancelButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_allOfMatchers(
+    return EarlGrey.select(elementWithMatcher: grey_allOfMatchers([
       grey_accessibilityLabel(NSLocalizedString("Cancel", comment: "Logout Cancel Button")),
-      grey_kindOfClass(Class.UIAlertControllerActionView)))
+      grey_kindOfClass(Class.UIAlertControllerActionView)]))
   }
 
   static func uniquePageElement() -> GREYElementInteraction {
@@ -43,25 +43,25 @@ class LogoutActionSheetPage: PageObject {
 
   // Mark: - Assertion Helpers
 
-  static func assertPageObjects(file: String = #file, _ line: UInt = #line) {
+  static func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    youSureLabel.assertWithMatcher(grey_sufficientlyVisible())
-    logoutButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    cancelButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
+    youSureLabel.assert(with: grey_sufficientlyVisible())
+    logoutButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    cancelButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
   }
 
   // Mark: - UI Action Helpers
 
-  static func tapLogoutButton(file: String = #file, _ line: UInt = #line) {
+  static func tapLogoutButton(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    logoutButton.performAction(grey_tap())
+    logoutButton.perform(grey_tap())
   }
 
-  static func tapCancelButton(file: String = #file, _ line: UInt = #line) {
+  static func tapCancelButton(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    cancelButton.performAction(grey_tap())
+    cancelButton.perform(grey_tap())
   }
 }

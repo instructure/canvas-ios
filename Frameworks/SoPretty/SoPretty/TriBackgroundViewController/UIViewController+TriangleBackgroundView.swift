@@ -19,13 +19,13 @@
 import Foundation
 
 public extension UIViewController {
-    public func insertTriangleBackgroundView() -> TriangleBackgroundGradientView {
-        let backgroundView = TriangleBackgroundGradientView(frame: CGRectZero)
+    open func insertTriangleBackgroundView() -> TriangleBackgroundGradientView {
+        let backgroundView = TriangleBackgroundGradientView(frame: CGRect.zero)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.insertSubview(backgroundView, atIndex: 0)
+        self.view.insertSubview(backgroundView, at: 0)
         backgroundView.clipsToBounds = true
-        let horizontalAccountsConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: ["subview": backgroundView])
-        let verticalAccountsConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: ["subview": backgroundView])
+        let horizontalAccountsConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[subview]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": backgroundView])
+        let verticalAccountsConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[subview]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": backgroundView])
         self.view.addConstraints(horizontalAccountsConstraints)
         self.view.addConstraints(verticalAccountsConstraints)
         return backgroundView

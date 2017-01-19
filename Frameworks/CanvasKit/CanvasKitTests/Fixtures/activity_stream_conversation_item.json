@@ -1,0 +1,16 @@
+{
+    "created_at": "2011-07-13T09:12:00Z",
+    "updated_at": "2011-07-25T08:52:41Z",
+    "id": 1234,
+    "title": "Stream Item Subject",
+    "message": "This is the body text of the activity stream item. It is plain-text, and can be multiple paragraphs.",
+    "read_state": false,
+    "context_type": "course",
+    "course_id": 1,
+    "group_id": 1,
+    "html_url": "http://canvas.instructure.com/api/v1/foo",
+    "type": "Conversation",
+    "conversation_id": 1234,
+    "private": true,
+    "participant_count": 3,
+}

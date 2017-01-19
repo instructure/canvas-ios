@@ -30,15 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if unitTesting {
             return true
         }
 
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         application.registerUserNotificationSettings(settings)
         
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
         
         let courseID = "968776" // String Tricks for Dummies
 //        let courseID: String = "24219" // Beginning iOS
@@ -59,18 +59,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         print("received local notification. Probably an assignment reminder. You can handle this later once you have a router")
         
         let alert = UIAlertView()
         alert.title = "Alert"
         alert.message = notification.alertBody
-        alert.addButtonWithTitle("Dismiss")
+        alert.addButton(withTitle: "Dismiss")
         
         alert.show()
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         let session = Session.nas // TODO: get real session
         do {
             let uploads = try Upload.inProgress(session)
@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func addUploadCompletionHandlers(session: Session, uploads: [Upload]) throws {
+    func addUploadCompletionHandlers(_ session: Session, uploads: [Upload]) throws {
         for upload in uploads {
             if let fileUpload = upload as? SubmissionFileUpload {
                 let backgroundSession = session.copyToBackgroundSessionWithIdentifier(upload.backgroundSessionID, sharedContainerIdentifier: nil)

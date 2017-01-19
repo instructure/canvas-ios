@@ -24,7 +24,7 @@ import SoPretty
 import MobileCoreServices
 
 // 😁
-public class UploadBuilder: NSObject {
+open class UploadBuilder: NSObject {
     weak var viewController: UIViewController?
     let barButtonItem: UIBarButtonItem?
     let submissionTypes: UploadTypes?
@@ -34,10 +34,10 @@ public class UploadBuilder: NSObject {
     let allowedUploadUTIs: [String]
     let allowedImagePickerControllerMediaTypes: [String]
 
-    public var uploadSelected: NewUpload->() = { _ in }
-    public var uploadCanceled: ()->() = { }
+    open var uploadSelected: (NewUpload)->() = { _ in }
+    open var uploadCanceled: ()->() = { }
 
-    var currentUpload: NewUpload = .None
+    var currentUpload: NewUpload = .none
     
     var currentAction: UploadAction?
 
@@ -52,7 +52,7 @@ public class UploadBuilder: NSObject {
         self.allowedImagePickerControllerMediaTypes = allowedImagePickerControllerMediaTypes
     }
     
-    public func beginUpload() {
+    open func beginUpload() {
         let action = actionForCurrentUpload()
         action.initiate()
         currentAction = action
@@ -60,7 +60,7 @@ public class UploadBuilder: NSObject {
     
     func actionForCurrentUpload() -> UploadAction {
         var dependentActions: [UploadAction] = []
-        if case .None = currentUpload {
+        if case .none = currentUpload {
             if let submissionTypes = submissionTypes {
                 if submissionTypes.contains(.Text) {
                     dependentActions.append(TextSubmissionAction(currentSubmission: currentUpload, delegate: self))
@@ -72,7 +72,7 @@ public class UploadBuilder: NSObject {
         }
       
         let photoOrVideoActions = PhotoOrVideoUploadAction.actionsForUpload(viewController, delegate: self, allowedImagePickerControllerMediaTypes: allowedImagePickerControllerMediaTypes, allowsPhotos: allowsPhotos, allowsVideo: allowsVideo)
-        dependentActions.appendContentsOf(photoOrVideoActions)
+        dependentActions.append(contentsOf: photoOrVideoActions)
         
         if allowsAudio {
             dependentActions.append(RecordAudioSubmissionAction(viewController: viewController, delegate: self))
@@ -93,7 +93,7 @@ public class UploadBuilder: NSObject {
 
 extension UploadBuilder: UploadActionDelegate {
     func actionCancelled() {
-        if case .None = currentUpload {
+        if case .none = currentUpload {
             currentAction = nil
             return
         }
@@ -101,21 +101,21 @@ extension UploadBuilder: UploadActionDelegate {
         presentNewUploadViewController()
     }
     
-    func chooseUpload(newUpload: NewUpload) {
+    func chooseUpload(_ newUpload: NewUpload) {
         
         switch newUpload {
-        case .URL(_):
+        case .url(_):
             currentUpload = newUpload
             turnInUpload()
             
-        case let .FileUpload(newFiles):
+        case let .fileUpload(newFiles):
             for file in newFiles {
                 currentUpload = currentUpload.uploadByAppendingFile(file)
             }
             presentNewUploadViewController()
 
             
-        case let .MediaComment(mediaFile):
+        case let .mediaComment(mediaFile):
             currentUpload = currentUpload.uploadByAppendingFile(mediaFile)
             presentNewUploadViewController()
             
@@ -154,12 +154,12 @@ extension UploadBuilder: NewUploadViewControllerDelegate {
         beginUpload()
     }
     
-    func newUploadModified(upload: NewUpload) {
+    func newUploadModified(_ upload: NewUpload) {
         currentUpload = upload
     }
 }
 
-public struct UploadTypes: OptionSetType {
+public struct UploadTypes: OptionSet {
     public let rawValue: Int
     public init(rawValue: Int) { self.rawValue = rawValue }
     

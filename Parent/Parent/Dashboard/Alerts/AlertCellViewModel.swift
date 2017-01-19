@@ -28,10 +28,10 @@ struct AlertCellViewModel: TableViewCellViewModel {
     let highlightColor: UIColor
     let session: Session
 
-    private static var dateFormatter: NSDateFormatter = {
-        let formatter = NSDateFormatter()
-        formatter.dateStyle = .MediumStyle
-        formatter.timeStyle = .ShortStyle
+    fileprivate static var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
         return formatter
     }()
 
@@ -41,20 +41,20 @@ struct AlertCellViewModel: TableViewCellViewModel {
         self.session = session
     }
 
-    static func tableViewDidLoad(tableView: UITableView) {
+    static func tableViewDidLoad(_ tableView: UITableView) {
         tableView.estimatedRowHeight = 60.0
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.registerNib(UINib(nibName: "AlertCell", bundle: NSBundle(forClass: AlertCell.self)), forCellReuseIdentifier: "AlertCell")
+        tableView.register(UINib(nibName: "AlertCell", bundle: Bundle(for: AlertCell.self)), forCellReuseIdentifier: "AlertCell")
     }
 
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("AlertCell", forIndexPath: indexPath) as? AlertCell else {
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AlertCell", for: indexPath) as? AlertCell else {
             fatalError("Incorrect cell type found. Expected: AlertCell")
         }
 
         cell.highlightColor = highlightColor
         cell.titleLabel.text = alert.title
-        cell.dateLabel.text = AlertCellViewModel.dateFormatter.stringFromDate(alert.actionDate)
+        cell.dateLabel.text = AlertCellViewModel.dateFormatter.string(from: alert.actionDate)
         cell.alert = alert
         cell.session = session
 
@@ -62,7 +62,7 @@ struct AlertCellViewModel: TableViewCellViewModel {
             cell.titleLabel.textColor = UIColor.prettyGray()
             cell.dateLabel.textColor = UIColor.prettyGray()
         } else {
-            cell.titleLabel.textColor = UIColor.blackColor()
+            cell.titleLabel.textColor = UIColor.black
             cell.dateLabel.textColor = UIColor.prettyGray()
         }
 
@@ -70,32 +70,32 @@ struct AlertCellViewModel: TableViewCellViewModel {
         let color: UIColor
 
         switch alert.type {
-        case .InstitutionAnnouncement, .CourseAnnouncement:
+        case .institutionAnnouncement, .courseAnnouncement:
             imageName = "icon_announcements_fill"
             color = UIColor.parentBlueColor()
-        case .AssignmentMissing, .AssignmentGradeLow, .CourseGradeLow:
+        case .assignmentMissing, .assignmentGradeLow, .courseGradeLow:
             imageName = "icon_alert_fill"
             color = UIColor.parentRedColor()
-        case .AssignmentGradeHigh, .CourseGradeHigh:
+        case .assignmentGradeHigh, .courseGradeHigh:
             imageName = "icon_favorite_fill"
             color = UIColor.parentBlueColor()
-        case .Unknown:
+        case .unknown:
             imageName = ""
-            color = UIColor.clearColor()
+            color = UIColor.clear
         }
 
         switch alert.type {
-        case .CourseGradeLow, .CourseGradeHigh:
-            cell.selectionStyle = .None // lets not show anything in this case
+        case .courseGradeLow, .courseGradeHigh:
+            cell.selectionStyle = .none // lets not show anything in this case
         default:
-            cell.selectionStyle = .Default
+            cell.selectionStyle = .default
         }
 
-        let image = UIImage(named: imageName, inBundle: NSBundle(forClass: AlertCell.self), compatibleWithTraitCollection: nil)
-        cell.iconImageView.image = image?.imageScaledToSize(CGSize(width: AlertCell.iconImageDiameter-15, height: AlertCell.iconImageDiameter-15)).imageWithRenderingMode(.AlwaysTemplate)
+        let image = UIImage(named: imageName, in: Bundle(for: AlertCell.self), compatibleWith: nil)
+        cell.iconImageView.image = image?.imageScaledToSize(CGSize(width: AlertCell.iconImageDiameter-15, height: AlertCell.iconImageDiameter-15)).withRenderingMode(.alwaysTemplate)
         cell.iconImageView.backgroundColor = color
-        cell.iconImageView.tintColor = UIColor.whiteColor()
-        cell.iconImageView.contentMode = .Center
+        cell.iconImageView.tintColor = UIColor.white
+        cell.iconImageView.contentMode = .center
         cell.iconImageView.layer.cornerRadius = AlertCell.iconImageDiameter / 2
 
         cell.titleLabel.accessibilityIdentifier = "alert_cell_title_\(indexPath.row)"

@@ -17,11 +17,11 @@
     
 
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 
 extension Conversation {
-    public static func getConversations(session: Session) throws -> SignalProducer<[JSONObject], NSError> {
+    public static func getConversations(_ session: Session) throws -> SignalProducer<[JSONObject], NSError> {
         let parameters = ["include": ["participant_avatars"]]
         let request = try session.GET(api/v1/"conversations", parameters: parameters)
         return session.paginatedJSONSignalProducer(request)

@@ -85,7 +85,7 @@ class EnrollmentFavoritesTests: UnitTestCase {
         }
         let vm = colorfulFavoriteViewModel(enrollment)
         XCTAssertEqual(enrollment.name, vm.title.value)
-        XCTAssertEqual(enrollment.shortName, vm.detail.value)
-        XCTAssertEqual(enrollment.color, vm.color.value)
+        XCTAssertEqual(enrollment.shortName, vm.subtitle.value)
+        XCTAssertEqual(enrollment.color.value, vm.color.value)
     }
 }

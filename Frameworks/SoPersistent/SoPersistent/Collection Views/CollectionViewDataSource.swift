@@ -18,20 +18,21 @@
 
 import UIKit
 import SoPretty
-import ReactiveCocoa
+import SoLazy
+import ReactiveSwift
 
 @objc
 public protocol CollectionViewDataSource: NSObjectProtocol, UICollectionViewDataSource {
-    func viewDidLoad(controller: UICollectionViewController)
+    func viewDidLoad(_ controller: UICollectionViewController)
     
     var layout: UICollectionViewLayout { get }
 }
 
-public class CollectionCollectionViewDataSource<C: Collection, VM: CollectionViewCellViewModel>: NSObject, CollectionViewDataSource {
+open class CollectionCollectionViewDataSource<C: Collection, VM: CollectionViewCellViewModel>: NSObject, CollectionViewDataSource {
     
-    public let collection: C
-    public let viewModelFactory: C.Object->VM
-    private var disposable: Disposable?
+    open let collection: C
+    open let viewModelFactory: (C.Object)->VM
+    fileprivate var disposable: Disposable?
     
     weak var collectionView: UICollectionView? {
         didSet {
@@ -41,78 +42,78 @@ public class CollectionCollectionViewDataSource<C: Collection, VM: CollectionVie
         }
     }
     
-    public init(collection: C, viewModelFactory: C.Object -> VM) {
+    public init(collection: C, viewModelFactory: @escaping (C.Object) -> VM) {
         self.collection = collection
         self.viewModelFactory = viewModelFactory
         super.init()
         
-        disposable = collection.collectionUpdates.observeOn(UIScheduler()).observeNext { [weak self] updates in
+        disposable = collection.collectionUpdates.observe(on: UIScheduler()).observeValues { [weak self] updates in
             self?.processUpdates(updates)
         }.map(ScopedDisposable.init)
     }
     
     
-    public func viewDidLoad(controller: UICollectionViewController) {
+    open func viewDidLoad(_ controller: UICollectionViewController) {
         collectionView = controller.collectionView
         VM.viewDidLoad(collectionView!)
     }
     
-    public var layout: UICollectionViewLayout {
+    open var layout: UICollectionViewLayout {
         return VM.layout
     }
     
     // MARK: UICollectionViewDataSource
     
-    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return collection.numberOfSections()
     }
     
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collection.numberOfItemsInSection(section)
     }
     
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let vm = viewModelFactory(collection[indexPath])
         let cell = vm.cellForCollectionView(collectionView, indexPath: indexPath)
         
-        if let cardCell = cell as? PrettyCardsCell, layout = collectionView.collectionViewLayout as? PrettyCardsLayout {
+        if let cardCell = cell as? PrettyCardsCell, let layout = collectionView.collectionViewLayout as? PrettyCardsLayout {
             cardCell.widthConstraint.constant = layout.estimatedItemSize.width
         }
         return cell
     }
     
     // MARK: CollectionUpdates
-    func processUpdates(updates: [CollectionUpdate<C.Object>]) {
+    func processUpdates(_ updates: [CollectionUpdate<C.Object>]) {
         guard let c = collectionView else { return }
 
-        if updates == [.Reload] || c.window == nil  {
-            c.collectionViewLayout.invalidateLayout()
+        if updates == [.reload] || c.window == nil  {
             c.reloadData()
+            c.collectionViewLayout.invalidateLayout()
             return
         }
 
         c.performBatchUpdates({
             for update in updates {
                 switch update {
-                case .SectionDeleted(let s):
-                    c.deleteSections(NSIndexSet(index: s))
-                case .SectionInserted(let s):
-                    c.insertSections(NSIndexSet(index: s))
+                case .sectionDeleted(let s):
+                    c.deleteSections(IndexSet(integer: s))
+                case .sectionInserted(let s):
+                    c.insertSections(IndexSet(integer: s))
                     
-                case .Inserted(let indexPath, _):
-                    c.insertItemsAtIndexPaths([indexPath])
-                case .Updated(let indexPath, _):
-                    c.reloadItemsAtIndexPaths([indexPath])
-                case let .Moved(from, to, _):
-                    c.moveItemAtIndexPath(from, toIndexPath: to)
-                case .Deleted(let indexPath, _):
-                    c.deleteItemsAtIndexPaths([indexPath])
+                case .inserted(let indexPath, _, _):
+                    c.insertItems(at: [indexPath])
+                case .updated(let indexPath, _, _):
+                    c.reloadItems(at: [indexPath])
+                case let .moved(from, to, _, _):
+                    c.moveItem(at: from, to: to)
+                case .deleted(let indexPath, _, _):
+                    c.deleteItems(at: [indexPath])
                     
-                case .Reload:
+                case .reload:
                     c.reloadData()
                 }
             }
-            }, completion: nil)
+        }, completion: nil)
     }
 }
 

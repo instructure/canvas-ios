@@ -18,7 +18,7 @@
 
 #import "MLVCCollectionController.h"
 #import <UIKit/UIKit.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
+@import ReactiveObjC;
 #import "NSObject+RACCollectionChanges.h"
 #import "EXTScope.h"
 
@@ -97,7 +97,7 @@
         return groups;
     }];
     
-    return [[[RACSignal return:self.groups] concat:newGroups] flattenMap:^RACStream *(NSArray *groups) {
+    return [[[RACSignal return:self.groups] concat:newGroups] flattenMap:^__kindof RACStream *(NSArray *groups) {
         @strongify(self);
         
         NSArray *insertionSignalsForGroups = [[groups.rac_sequence map:^id(MLVCCollectionControllerGroup *group) {

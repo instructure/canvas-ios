@@ -22,7 +22,7 @@ import TooLegit
 
 extension Group {
     
-    public static func refresher(session: Session) throws -> Refresher {
+    public static func refresher(_ session: Session) throws -> Refresher {
         let remote = try getAllGroups(session)
         let context = try session.enrollmentManagedObjectContext()
         let sync = syncSignalProducer(inContext: context, fetchRemote: remote)
@@ -32,10 +32,12 @@ extension Group {
         return SignalProducerRefresher(refreshSignalProducer: sync.concat(colors), scope: session.refreshScope, cacheKey: key)
     }
     
-    public static func favoritesCollection(session: Session) throws -> FetchedCollection<Group> {
+    public static func favoritesCollection(_ session: Session) throws -> FetchedCollection<Group> {
         let favorites = NSPredicate(format: "%K == YES", "isFavorite")
-        let frc = try Group.fetchedResults(favorites, sortDescriptors: ["name".ascending, "id".ascending], sectionNameKeypath: nil, inContext: session.enrollmentManagedObjectContext())
-        return try FetchedCollection(frc: frc)
+        let context = try session.enrollmentManagedObjectContext()
+        return try FetchedCollection(frc:
+            context.fetchedResults(favorites, sortDescriptors: ["name".ascending, "id".ascending])
+        )
     }
     
     public typealias CollectionViewController = FetchedCollectionViewController<Group>

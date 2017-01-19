@@ -19,5 +19,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIViewController (CBIMessagesTab)
-+ (UIViewController *)messagesTab;
++ (nonnull UIViewController *)messagesTab;
 @end

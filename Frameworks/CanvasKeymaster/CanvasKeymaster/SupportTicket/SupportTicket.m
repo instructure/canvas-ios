@@ -1,0 +1,192 @@
+//
+//  SupportTicket.m
+//  iCanvas
+//
+//  Created by Rick Roberts on 8/21/14.
+//  Copyright (c) 2014 Instructure. All rights reserved.
+//
+
+#import "SupportTicket.h"
+#import <CocoaLumberjack/DDFileLogger.h>
+#import "UIDevice+CKMHardware.h"
+#import "CanvasKeymaster.h"
+
+static NSString * const JustACommentValue = @"just_a_comment";
+static NSString * const NotUrgentValue = @"not_urgent";
+static NSString * const WorkaroundPossibleValue = @"workaround_possible";
+static NSString * const BlocksWhatINeedToDoValue = @"blocks_what_i_need_to_do";
+static NSString * const ExtremeCriticalEmergencyValue = @"extreme_critical_emergency";
+
+@implementation SupportTicket
+
+- (NSDictionary *)dictionaryValue
+{
+    [self validateFields];
+    self.subject = [self.subject stringByAppendingString:[NSString stringWithFormat:@" [%@]", TheKeymaster.currentClient.baseURL]];
+    
+    NSMutableArray *tags = [NSMutableArray arrayWithArray:@[@"iOS", @"Mobile", @"iCanvas"]];
+    
+    if (self.ticketType == SupportTicketTypeFeatureRequest) {
+        [tags addObject:@"MobileFeatureRequest"];
+    }
+    
+    CKIClient *client = TheKeymaster.currentClient;
+    NSDictionary *ticketDictionary =    @{@"error":
+                                            @{@"subject": self.subject,
+                                              @"url": [client.baseURL absoluteString] ? [client.baseURL absoluteString] : @"https://canvas.instructure.com",
+                                              @"email": client.currentUser.email ? client.currentUser.email : @"unknown_user@test.com",
+                                              @"comments": [self.commentBody stringByAppendingString:[self commentAdditions]],
+                                              @"user_percieved_severity": [self impactFieldValue],
+                                              @"http_env": [self environmentBody]
+                                              }
+                                          };
+
+    return ticketDictionary;
+}
+
+- (NSDictionary *)environmentBody {
+    NSMutableDictionary *environmentBody = [NSMutableDictionary new];
+    
+    CKIClient *client = TheKeymaster.currentClient;
+    NSString *baseURLString = [client.baseURL absoluteString] ? [client.baseURL absoluteString] : @"https://canvas.instructure.com";
+
+    if (![baseURLString hasSuffix:@"sfu.ca"]) {
+        environmentBody[@"User"] = client.currentUser.id ? client.currentUser.id : @"Unknown User";
+        environmentBody[@"Email"] = client.currentUser.email ? client.currentUser.email : @"unknown_user@test.com";
+    }
+    
+    environmentBody[@"Hostname"] = baseURLString;
+    environmentBody[@"App Version"] = [self appVersionString];
+    environmentBody[@"Platform"] = [[UIDevice currentDevice] ckm_platformString];
+    environmentBody[@"OS Version"] = [[UIDevice currentDevice] systemVersion];
+    environmentBody[@"user_log"] = [self logFileData];
+    
+    return environmentBody;
+}
+
+- (NSString *)commentAdditions {
+    NSMutableString *commentAdditions = [[NSMutableString alloc] initWithString:@"\n\n\n"];
+    CKIClient *client = TheKeymaster.currentClient;
+    NSString *baseURLString = [client.baseURL absoluteString];
+    
+    // We cannot save user data from Simon Fraser University in Canada.
+    // Make sure that we are not adding user data to crash reports
+    [commentAdditions appendString:@"-----------------------------------"];
+    if (![baseURLString hasSuffix:@"sfu.ca"]) {
+        [commentAdditions appendString:[NSString stringWithFormat:@"\nUser: %@", client.currentUser.id]];
+        [commentAdditions appendString:[NSString stringWithFormat:@"\nEmail: %@", client.currentUser.email]];
+    }
+    
+    
+    [commentAdditions appendString:[NSString stringWithFormat:@"\nHostname: %@", baseURLString]];
+    [commentAdditions appendString:[NSString stringWithFormat:@"\nApp Version: %@", [self appVersionString]]];
+    [commentAdditions appendString:[NSString stringWithFormat:@"\nPlatform: %@", [[UIDevice currentDevice] ckm_platformString]]];
+    [commentAdditions appendString:[NSString stringWithFormat:@"\nOS Version: %@", [[UIDevice currentDevice] systemVersion]]];
+    [commentAdditions appendString:@"\n-----------------------------------"];
+    
+    return commentAdditions;
+    
+}
+
+- (NSString *)appVersionString
+{
+    return [NSString stringWithFormat:@"%@ (%@)",
+            [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
+            [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
+}
+
+- (void)validateFields
+{
+    if (! self.requesterName) {
+        self.requesterName = @"Unknown";
+    }
+    if (!self.requesterEmail) {
+        self.requesterEmail = @"Unknown";
+    }
+    if (!self.subject) {
+        self.subject = @"N/A";
+    }
+    if (!self.commentBody) {
+        self.commentBody = @"N/A";
+    }
+}
+
+- (NSString *)impactString
+{
+    switch (self.impactValue) {
+        case SupportTicketImpactLevelNone:
+            return @"Choose One";
+            break;
+        case SupportTicketImpactLevelComment:
+            return @"Casual question or suggestion";
+            break;
+        case SupportTicketImpactLevelNotUrgent:
+            return @"I need help but it's not urgent";
+            break;
+        case SupportTicketImpactLevelWorkaroundPossible:
+            return @"Something is broken but I can work around it";
+            break;
+        case SupportTicketImpactLevelBlocking:
+            return @"I can't get things done until I hear back from you";
+            break;
+        case SupportTicketImpactLevelEmergency:
+            return @"Extremely critical emergency";
+            break;
+        default:
+            break;
+    }
+}
+
+- (NSString *)impactFieldValue
+{
+    switch (self.impactValue) {
+        case SupportTicketImpactLevelNone:
+            return @"";
+            break;
+        case SupportTicketImpactLevelComment:
+            return @"just_a_comment";
+            break;
+        case SupportTicketImpactLevelNotUrgent:
+            return @"not_urgent";
+            break;
+        case SupportTicketImpactLevelWorkaroundPossible:
+            return @"workaround_possible";
+            break;
+        case SupportTicketImpactLevelBlocking:
+            return @"blocks_what_i_need_to_do";
+            break;
+        case SupportTicketImpactLevelEmergency:
+            return @"extreme_critical_emergency";
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - Logs Collection
+
+- (NSString *)logFileData {
+    NSString *filePath = TheKeymaster.logFilePath;
+    NSMutableString *fileData = [[NSMutableString alloc] init];
+    if (filePath) {
+        NSString *logData = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:filePath] encoding:NSUTF8StringEncoding];
+        NSArray *stringsByLine = [logData componentsSeparatedByCharactersInSet:
+                                  [NSCharacterSet newlineCharacterSet]];
+        
+        [fileData appendString:[NSString stringWithFormat:@"\nLog\n\n:"]];
+        NSInteger totalLinesToAdd = 150;
+        if (stringsByLine.count < totalLinesToAdd) {
+            [fileData appendString:[[NSString alloc] initWithData:[NSData dataWithContentsOfFile:filePath] encoding:NSUTF8StringEncoding]];
+        } else {
+            for (NSInteger i = stringsByLine.count - totalLinesToAdd; i < stringsByLine.count; i++) {
+                [fileData appendString:stringsByLine[i]];
+                [fileData appendString:@"\n"];
+            }
+        }
+    }
+    
+    return fileData;
+}
+
+
+@end

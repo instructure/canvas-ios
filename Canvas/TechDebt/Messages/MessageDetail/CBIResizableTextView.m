@@ -17,7 +17,7 @@
     
 
 #import "CBIResizableTextView.h"
-@import ReactiveCocoa;
+@import ReactiveObjC;
 @import SoPretty;
 
 

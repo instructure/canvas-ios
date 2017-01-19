@@ -25,8 +25,8 @@ public final class Page: NSManagedObject, LockableModel {
     
     @NSManaged internal (set) public var url: String // Unique locator for the page
     @NSManaged internal (set) public var title: String
-    @NSManaged internal (set) public var createdAt: NSDate
-    @NSManaged internal (set) public var updatedAt: NSDate // Date the page was last updated
+    @NSManaged internal (set) public var createdAt: Date
+    @NSManaged internal (set) public var updatedAt: Date // Date the page was last updated
     @NSManaged internal (set) public var editingRoles: String // Roles allowed to edit page
     @NSManaged internal (set) public var body: String? // HTML body of page
     @NSManaged internal (set) public var published: Bool // Page published (true) or in draft state (false)
@@ -46,7 +46,7 @@ public final class Page: NSManagedObject, LockableModel {
     // MARK: - Last Editor
     
     @NSManaged internal (set) public var lastEditedByName: String? // Display Name of last editor
-    @NSManaged internal (set) public var lastEditedByAvatarUrl: NSURL? // Avatar URL of last editor
+    @NSManaged internal (set) public var lastEditedByAvatarUrl: URL? // Avatar URL of last editor
     
     // MARK: - Locking
     
@@ -60,17 +60,17 @@ import SoLazy
 
 extension Page: SynchronizedModel {
     
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let url: String = try json <| "url"
         return NSPredicate(format: "%K == %@", "url", url)
     }
 
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         url             = try json <| "url"
         title           = try json <| "title"
         createdAt       = try json <| "created_at"
-        updatedAt       = try json <| "updated_at" ?? createdAt
-        editingRoles    = try json <| "editing_roles" ?? ""
+        updatedAt       = (try json <| "updated_at") ?? createdAt
+        editingRoles    = (try json <| "editing_roles") ?? ""
         
         // MARK: - Break down last editor information
         
@@ -79,7 +79,7 @@ extension Page: SynchronizedModel {
             lastEditedByAvatarUrl = try lastEditedJson <| "avatar_image_url"
         }
 
-        body            = try json <| "body" ?? body // body value when calling table view
+        body            = (try json <| "body") ?? body // body value when calling table view
         published       = try json <| "published"
         frontPage       = try json <| "front_page"
         

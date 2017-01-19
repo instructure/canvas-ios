@@ -1,8 +1,7 @@
-/* record button a11y hint
-   stop record button a11y hint */
+/* stop record button a11y hint */
 "Begin recording" = "开始录制";
 
-/* Cancel button */
+/* Cancel button title */
 "Cancel" = "取消";
 
 /* Delete button */
@@ -12,7 +11,7 @@
 "Delete recording?" = "删除录制？";
 
 /* Dismiss an error dialog */
-"Dismiss" = "解雇";
+"Dismiss" = "解散";
 
 /* can't record because request for mic access was denied title */
 "Not Permitted" = "不允许";
@@ -44,7 +43,7 @@
 /* Record button a11y label */
 "Request Audio Recording Permission" = "请求音频录制权限";
 
-/* record button a11y hint */
+/* stop record button a11y hint */
 "Request Permission to record audio" = "请求权限录制音频";
 
 /* stop recording button a11y label */

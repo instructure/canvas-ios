@@ -28,37 +28,37 @@ class CollectionUpdateTests: XCTestCase {
     func testDescribeMap() {
         context("when it is a section") {
             it("returns a copy of itself") {
-                let insert = CUP.SectionInserted(0).map({ $0 })
-                let delete = CUP.SectionDeleted(0).map({ $0 })
-                XCTAssert(insert == .SectionInserted(0))
-                XCTAssert(delete == .SectionDeleted(0))
+                let insert = CUP.sectionInserted(0).map({ $0 })
+                let delete = CUP.sectionDeleted(0).map({ $0 })
+                XCTAssert(insert == .sectionInserted(0))
+                XCTAssert(delete == .sectionDeleted(0))
             }
         }
 
         context("when it is not a section") {
-            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+            let indexPath = IndexPath(row: 0, section: 0)
             let session = Session.inMemory
             let context = try! session.soPersistentTestsManagedObjectContext()
             let panda = Panda.build(context)
 
             it("maps Inserted") {
-                let insert = CUP.Inserted(indexPath, panda).map({ $0.name })
-                XCTAssert(insert == .Inserted(indexPath, panda.name))
+                let insert = CUP.inserted(indexPath, panda, animated: false).map({ $0.name })
+                XCTAssert(insert == CollectionUpdate.inserted(indexPath, panda.name, animated: false))
             }
 
             it("maps Updated") {
-                let update = CUP.Updated(indexPath, panda).map({ $0.name })
-                XCTAssert(update == .Updated(indexPath, panda.name))
+                let update = CUP.updated(indexPath, panda, animated: false).map({ $0.name })
+                XCTAssert(update == .updated(indexPath, panda.name, animated: false))
             }
 
             it("maps Moved") {
-                let moved = CUP.Moved(indexPath, indexPath, panda).map({ $0.name })
-                XCTAssert(moved == .Moved(indexPath, indexPath, panda.name))
+                let moved = CUP.moved(indexPath, indexPath, panda, animated: false).map({ $0.name })
+                XCTAssert(moved == .moved(indexPath, indexPath, panda.name, animated: false))
             }
 
             it("maps Deleted") {
-                let deleted = CUP.Deleted(indexPath, panda).map({ $0.name })
-                XCTAssert(deleted == .Deleted(indexPath, panda.name))
+                let deleted = CUP.deleted(indexPath, panda, animated: false).map({ $0.name })
+                XCTAssert(deleted == .deleted(indexPath, panda.name, animated: false))
             }
         }
     }

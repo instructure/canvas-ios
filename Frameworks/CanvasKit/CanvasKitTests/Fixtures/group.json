@@ -1,0 +1,15 @@
+{
+    "id": 17,
+    "name": "Math Group 1",
+    "description": "An awesome group about math",
+    "is_public": true,
+    "followed_by_user": true,
+    "join_level": "invitation_only",
+    "members_count": 7,
+    "avatar_url": "https://instructure.com/files/avatar_image.png",
+    "context_type": "Course",
+    "course_id": 3,
+    "role": null,
+    "group_category_id": 4,
+    "storage_quota_mb": 50
+}

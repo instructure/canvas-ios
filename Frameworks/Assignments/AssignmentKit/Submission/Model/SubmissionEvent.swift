@@ -19,8 +19,8 @@
 import CoreData
 import SoPersistent
 
-public class SubmissionEvent: NSManagedObject {
-    @NSManaged var date: NSDate
+open class SubmissionEvent: NSManagedObject {
+    @NSManaged var date: Date
 
     @NSManaged var assignment: Assignment?
 }

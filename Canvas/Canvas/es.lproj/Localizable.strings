@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ necesitan ser calificados";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ pts";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Tipo: %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Caché despejado";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Calendario";
 
 /* (No Commment) */
@@ -318,6 +325,9 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 
 /* (No Commment) */
 "Choose from Library..." = "Elegir desde la biblioteca...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Elegir opción";
 
 /* (No Commment) */
 "Choose video" = "Escoger video";
@@ -376,7 +386,8 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* (No Commment) */
 "Course Syllabus" = "Plan de estudio del curso";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "Cursos";
 
 /* (No Commment) */
@@ -453,6 +464,9 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 
 /* (No Commment) */
 "Downloading..." = "Descargando...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Hora límite %@";
 
 /* (No Commment) */
 "Due:" = "Fecha de entrega:";
@@ -637,6 +651,9 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* (No Commment) */
 "Item %1$d of %2$d" = "Elemento %1$d de %2$d";
 
+/* table header for module items */
+"Items" = "Artículos";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Está vacía, qué sigue haciendo aquí.";
 
@@ -661,11 +678,17 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* (No Commment) */
 "Legal" = "Legal";
 
+/* Web URL link item label */
+"Link" = "Enlace";
+
 /* (No Commment) */
 "Loading..." = "Cargando...";
 
 /* (No Commment) */
 "Locked" = "Bloqueada";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Bloqueado hasta que \"%@\" sea calificado";
 
 /* locked date */
 "Locked until %@" = "Bloqueado hasta %@";
@@ -687,6 +710,9 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 
 /* (No Commment) */
 "Masquerade" = "Hacerse pasar";
+
+/* Master Path module item type */
+"Mastery Path" = "Trayectoria de maestría";
 
 /* (No Commment) */
 "Me" = "Yo";
@@ -715,7 +741,7 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Mandar mensaje a todos por separado, o agregar a todos a una conversación de grupo?";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Mensajes";
 
 /* (No Commment) */
@@ -760,6 +786,9 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* (No Commment) */
 "New Folder" = "Nueva carpeta";
 
+/* Button title for next module item. */
+"Next" = "Siguiente";
+
 /* (No Commment) */
 "Next 7 Days" = "Próximos 7 días";
 
@@ -774,6 +803,9 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "Sin fecha de entrega";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "No se encuentran trayectorias de maestría";
 
 /* (No Commment) */
 "No Recorded Audio" = "Sin audio grabado";
@@ -832,7 +864,8 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Preferencias de notificación";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Notificaciones";
 
 /* OK Button Title */
@@ -858,6 +891,9 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 
 /* (No Commment) */
 "Open in..." = "Abrir en...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Opción %d";
 
 /* (No Commment) */
 "Other" = "Otro";
@@ -900,6 +936,12 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 
 /* (No Commment) */
 "Posts your comment" = "Publicar su comentario";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Módulos de requisitos previos";
+
+/* Button title for previous module item. */
+"Previous" = "Anterior";
 
 /* (No Commment) */
 "Previous item" = "Elemento anterior";
@@ -985,6 +1027,12 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Comience la búsqueda aquí...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Seleccionar opción";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Seleccionar opción %d";
+
 /* (No Commment) */
 "Select file(s)" = "Seleccionar archivo(s)";
 
@@ -1035,6 +1083,20 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 
 /* (No Commment) */
 "Starts recording a media comment" = "Empieza a grabar un comentario multimedia";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Estado: Completado";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Estado: Incompleto";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Estado: Bloqueado";
+
+/* Module status label when started */
+"Status: Started" = "Estado: Comenzado";
 
 /* (No Commment) */
 "Stay Logged In" = "Permanecer conectado";
@@ -1202,16 +1264,22 @@ Error: %@";
 /* (No Commment) */
 "This is a media message." = "Este es un mensaje multimedia.";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Este elemento del módulo no tiene trayectorias de maestría configuradas.";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Este sería un buen momento para hacer un poco de crédito adicional.";
 
 /* Title of the Todo screen */
 "To Do" = "Que hacer";
 
+/* To-Do List landing page title */
+"To-Do List" = "Lista de cosas que hacer";
+
 /* (No Commment) */
 "To:" = "Para:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "Hoy";
 
 /* No comment provided by engineer. */
@@ -1231,6 +1299,9 @@ Error: %@";
 
 /* (No Commment) */
 "Turn in %@" = "Entregar %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Tipo: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "¡Ay no! No hay conexión de internet";

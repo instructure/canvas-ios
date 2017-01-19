@@ -19,22 +19,22 @@
 import Foundation
 import TooLegit
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 import CalendarKit
 
 extension CalendarEvent {
     
     // MARK: - Collection
-    public static func getCalendarEventsFromAirwolf(session: Session, studentID: String, startDate: NSDate, endDate: NSDate, contextCodes: [String]) throws -> SignalProducer<[JSONObject], NSError> {
+    public static func getCalendarEventsFromAirwolf(_ session: Session, studentID: String, startDate: Date, endDate: Date, contextCodes: [String]) throws -> SignalProducer<[JSONObject], NSError> {
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
-        dateFormatter.locale = NSLocale(localeIdentifier: "en")
+        dateFormatter.locale = NSLocale(localeIdentifier: "en") as Locale!
         
-        let nillableParams: [String: AnyObject?] = [
-            "start_date": dateFormatter.stringFromDate(startDate),
-            "end_date": dateFormatter.stringFromDate(endDate),
+        let nillableParams: [String: Any?] = [
+            "start_date": dateFormatter.string(from: startDate),
+            "end_date": dateFormatter.string(from: endDate),
             "context_codes": contextCodes,
             "include": ["submission"]
         ]
@@ -45,23 +45,23 @@ extension CalendarEvent {
         return session.paginatedJSONSignalProducer(request)
     }
 
-    public static func calendarEventsAirwolfCollectionRefresher(session: Session, studentID: String, startDate: NSDate, endDate: NSDate, contextCodes: [String]) throws -> Refresher {
+    public static func calendarEventsAirwolfCollectionRefresher(_ session: Session, studentID: String, startDate: Date, endDate: Date, contextCodes: [String]) throws -> Refresher {
         let predicate = CalendarEvent.predicate(startDate, endDate: endDate, contextCodes: contextCodes)
         let remote = try CalendarEvent.getCalendarEventsFromAirwolf(session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
         let context = try session.calendarEventsManagedObjectContext(studentID)
         let sync = CalendarEvent.syncSignalProducer(predicate, inContext: context, fetchRemote: remote)
 
-        let key = cacheKey(context, [studentID, startDate.yyyyMMdd, endDate.yyyyMMdd] + contextCodes.sort())
+        let key = cacheKey(context, [studentID, startDate.yyyyMMdd, endDate.yyyyMMdd] + contextCodes.sorted())
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
     // MARK: - Details
-    public static func getCourseCalendarEventFromAirwolf(session: Session, studentID: String, calendarEventID: String) throws -> SignalProducer<JSONObject, NSError> {
+    public static func getCourseCalendarEventFromAirwolf(_ session: Session, studentID: String, calendarEventID: String) throws -> SignalProducer<JSONObject, NSError> {
         let request = try session.GET("/canvas/\(session.user.id)/\(studentID)/calendar_events/\(calendarEventID)")
         return session.JSONSignalProducer(request)
     }
 
-    public static func refresher(session: Session, studentID: String, calendarEventID: String) throws -> Refresher {
+    public static func refresher(_ session: Session, studentID: String, calendarEventID: String) throws -> Refresher {
         let predicate = CalendarEvent.predicate(calendarEventID)
         let remote = try CalendarEvent.getCourseCalendarEventFromAirwolf(session, studentID: studentID, calendarEventID: calendarEventID).map { [$0] }
         let context = try session.calendarEventsManagedObjectContext(studentID)
@@ -71,7 +71,7 @@ extension CalendarEvent {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public static func observer(session: Session, studentID: String, calendarEventID: String) throws -> ManagedObjectObserver<CalendarEvent> {
+    public static func observer(_ session: Session, studentID: String, calendarEventID: String) throws -> ManagedObjectObserver<CalendarEvent> {
         let pred = predicate(calendarEventID)
         let context = try session.calendarEventsManagedObjectContext(studentID)
         return try ManagedObjectObserver<CalendarEvent>(predicate: pred, inContext: context)

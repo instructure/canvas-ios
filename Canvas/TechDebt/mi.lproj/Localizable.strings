@@ -245,10 +245,10 @@ Me tuatahi whakaoti koe:";
 /* Archive selected messages button */
 "Archive" = "Pūranga";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Pātene Pūranga Tīpakohia Karere";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Pūranga ngā karere katoa i tīpakohia";
 
 /* No comment provided by engineer. */
@@ -382,10 +382,10 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* (No Commment) */
 "Completed" = "Oti";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Titoa Pātene Karere";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Tuhia he";
 
 /* Title for Conferences tab */

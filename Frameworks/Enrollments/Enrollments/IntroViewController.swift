@@ -22,33 +22,33 @@ import EnrollmentKit
 import SoPretty
 import DoNotShipThis
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 
 class EnrollmentCollectionViewModel: Enrollment.ViewModel, CollectionViewCellViewModel {
     
     var customize: ()->()
     
-    init(enrollment: Enrollment?, customize: ()->()) {
+    init(enrollment: Enrollment?, customize: @escaping ()->()) {
         self.customize = customize
         super.init(enrollment: enrollment)
     }
     
-    static func viewDidLoad(collectionView: UICollectionView) {
-        collectionView.registerNib(UINib(nibName: "EnrollmentCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EnrollmentCell")
+    static func viewDidLoad(_ collectionView: UICollectionView) {
+        collectionView.register(UINib(nibName: "EnrollmentCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EnrollmentCell")
     }
     
     static var layout: UICollectionViewLayout {
         return PrettyCardsLayout()
     }
     
-    func cellForCollectionView(collectionView: UICollectionView, indexPath: NSIndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EnrollmentCell", forIndexPath: indexPath) as? EnrollmentCollectionViewCell else { ❨╯°□°❩╯⌢"Get your cells straightened out, everyone" }
+    func cellForCollectionView(_ collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EnrollmentCell", for: indexPath) as? EnrollmentCollectionViewCell else { ❨╯°□°❩╯⌢"Get your cells straightened out, everyone" }
 
         cell.titleLabel.text = enrollment.value?.name
         cell.gradeLabel.text = [enrollment.value?.visibleGrade, enrollment.value?.visibleScore]
             .flatMap { $0 }
-            .joinWithSeparator("  ")
+            .joined(separator: "  ")
         
         
         cell.enrollment <~ enrollment.producer
@@ -62,7 +62,7 @@ class EnrollmentCollectionViewModel: Enrollment.ViewModel, CollectionViewCellVie
             
             let picker = CustomizeEnrollmentViewController(session: session, context: enrollment.contextID)
             
-            viewController?.presentViewController(UINavigationController(rootViewController: picker), animated: true, completion: nil)
+            viewController?.present(UINavigationController(rootViewController: picker), animated: true, completion: nil)
         }
     }
 }
@@ -74,19 +74,19 @@ class CoursesCollectionViewController: Course.CollectionViewController {
         self.session = session
         super.init()
         
-        try prepare(Course.favoritesCollection(session), refresher: Course.refresher(session)) { [unowned self]enrollment in
+        try prepare(Course.favoritesCollection(session), refresher: Course.refresher(session)) { [unowned self] enrollment in
             return EnrollmentCollectionViewModel(enrollment: enrollment, session: session, viewController: self)
         }
         
-        let editFaves = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(editFaves(_:)))
+        let editFaves = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editFaves(_:)))
         navigationItem.rightBarButtonItem = editFaves
     }
     
-    func editFaves(button: AnyObject?) {
+    func editFaves(_ button: AnyObject?) {
         do {
             let edit = try EditFavoriteEnrollmentsViewController(session: session, collection: try Enrollment.allCourses(session), refresher: try Course.refresher(session))
             let nav = UINavigationController(rootViewController: edit)
-            presentViewController(nav, animated: true, completion: nil)
+            present(nav, animated: true, completion: nil)
         } catch let e as NSError {
             e.presentAlertFromViewController(self)
         }
@@ -97,7 +97,7 @@ class CoursesCollectionViewController: Course.CollectionViewController {
         fatalError()
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let c = collection[indexPath]
         
         do {
@@ -122,15 +122,15 @@ class GroupsCollectionViewController: Group.CollectionViewController {
         }
         
         
-        let editFaves = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(editFaves(_:)))
+        let editFaves = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editFaves(_:)))
         navigationItem.rightBarButtonItem = editFaves
     }
     
-    func editFaves(button: AnyObject?) {
+    func editFaves(_ button: AnyObject?) {
         do {
             let edit = try EditFavoriteEnrollmentsViewController(session: session, collection: try Enrollment.allGroups(session), refresher: try Group.refresher(session))
             let nav = UINavigationController(rootViewController: edit)
-            presentViewController(nav, animated: true, completion: nil)
+            present(nav, animated: true, completion: nil)
         } catch let e as NSError {
             e.presentAlertFromViewController(self)
         }
@@ -140,7 +140,7 @@ class GroupsCollectionViewController: Group.CollectionViewController {
         fatalError()
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let g = collection[indexPath]
         
         do {
@@ -180,20 +180,20 @@ class IntroViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return choices.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = choices[indexPath.row].name
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigationController?.pushViewController(choices[indexPath.row].viewControllerPlz(), animated: true)
     }
 }

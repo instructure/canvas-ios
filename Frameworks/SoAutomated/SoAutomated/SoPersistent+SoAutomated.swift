@@ -18,41 +18,41 @@
 
 @testable import SoPersistent
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 import Nimble
 
-public class ViewModelFactory<T>: TableViewCellViewModel {
-    public typealias View = T->UITableViewCell
+open class ViewModelFactory<T>: TableViewCellViewModel {
+    public typealias View = (T)->UITableViewCell
 
     let view: View
     let model: T
 
-    public static func new(view: View) -> T -> ViewModelFactory<T> {
+    open static func new(_ view: @escaping View) -> (T) -> ViewModelFactory<T> {
         return { model in
             return ViewModelFactory(model: model, view: view)
         }
     }
 
-    public static var empty: T->ViewModelFactory<T> {
-        let view: View = { _ in UITableViewCell(style: .Default, reuseIdentifier: nil) }
+    open static var empty: (T)->ViewModelFactory<T> {
+        let view: View = { _ in UITableViewCell(style: .default, reuseIdentifier: nil) }
         return { ViewModelFactory(model: $0, view: view) }
     }
 
-    init(model: T, view: View) {
+    init(model: T, view: @escaping View) {
         self.model = model
         self.view = view
     }
 
-    public static func tableViewDidLoad(tableView: UITableView) {}
+    open static func tableViewDidLoad(_ tableView: UITableView) {}
 
-    public func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+    open func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         return view(model)
     }
 }
 
-public class CollectionViewCellViewModelFactory<T>: CollectionViewCellViewModel {
-    public typealias View = (UICollectionView, NSIndexPath, T)->UICollectionViewCell
+open class CollectionViewCellViewModelFactory<T>: CollectionViewCellViewModel {
+    public typealias View = (UICollectionView, IndexPath, T)->UICollectionViewCell
 
     static var identifier: String {
         return "CollectionViewCell"
@@ -60,71 +60,71 @@ public class CollectionViewCellViewModelFactory<T>: CollectionViewCellViewModel 
 
     let view: View
     let model: T
-    public static var layout: UICollectionViewLayout {
+    open static var layout: UICollectionViewLayout {
         return UICollectionViewFlowLayout()
     }
 
-    public static func new(view: View) -> T -> CollectionViewCellViewModelFactory<T> {
+    open static func new(_ view: @escaping View) -> (T) -> CollectionViewCellViewModelFactory<T> {
         return { model in
             return CollectionViewCellViewModelFactory(model: model, view: view)
         }
     }
 
-    public static var empty: T->CollectionViewCellViewModelFactory<T> {
+    open static var empty: (T)->CollectionViewCellViewModelFactory<T> {
         let view: View = { collectionView, indexPath, _ in
-            collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) 
+            collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) 
         }
         return { CollectionViewCellViewModelFactory(model: $0, view: view) }
     }
 
-    init(model: T, view: View) {
+    init(model: T, view: @escaping View) {
         self.model = model
         self.view = view
     }
 
-    public static func viewDidLoad(collectionView: UICollectionView) {
-        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: identifier)
+    open static func viewDidLoad(_ collectionView: UICollectionView) {
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: identifier)
     }
 
-    public func cellForCollectionView(collectionView: UICollectionView, indexPath: NSIndexPath) -> UICollectionViewCell {
+    open func cellForCollectionView(_ collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         return view(collectionView, indexPath, model)
     }
 }
 
-public class EmptyRefresher: Refresher {
-    public let cacheKey: String
-    public let isRefreshing: Bool = false
-    public let refreshControl = UIRefreshControl()
+open class EmptyRefresher: Refresher {
+    open let cacheKey: String
+    open let isRefreshing: Bool = false
+    open let refreshControl = UIRefreshControl()
 
-    public var refreshingBegan: Signal<(), NoError>
+    open var refreshingBegan: Signal<(), NoError>
     var refreshingBeganObserver: Observer<(), NoError>
-    public var refreshingCompleted: Signal<NSError?, NoError>
+    open var refreshingCompleted: Signal<NSError?, NoError>
     var refreshingCompletedObserver: Observer<NSError?, NoError>
 
     public init(cacheKey: String = "empty") {
         self.cacheKey = cacheKey
         let (beganSignal, beganObserver) = Signal<(), NoError>.pipe()
-        self.refreshingBegan = beganSignal.observeOn(UIScheduler())
+        self.refreshingBegan = beganSignal.observe(on: UIScheduler())
         self.refreshingBeganObserver = beganObserver
 
         let (completedSignal, completedObserver) = Signal<NSError?, NoError>.pipe()
-        self.refreshingCompleted = completedSignal.observeOn(UIScheduler())
+        self.refreshingCompleted = completedSignal.observe(on: UIScheduler())
         self.refreshingCompletedObserver = completedObserver
     }
 
-    public func makeRefreshable(viewController: UIViewController) {
+    open func makeRefreshable(_ viewController: UIViewController) {
         // no-op
     }
 
-    public func refresh(forced: Bool) {
-        refreshingCompletedObserver.sendNext(nil)
+    open func refresh(_ forced: Bool) {
+        refreshingCompletedObserver.send(value: nil)
     }
 
-    public func cancel() {
+    open func cancel() {
         // no-op
     }
 
-    public func safeCopy() -> Refresher? {
+    open func safeCopy() -> Refresher? {
         return EmptyRefresher()
     }
 }

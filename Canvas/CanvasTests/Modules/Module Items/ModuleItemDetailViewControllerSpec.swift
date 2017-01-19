@@ -41,18 +41,18 @@ class ModuleItemDetailViewControllerSpec: QuickSpec {
             describe("embed") {
                 var item: ModuleItem!
                 var vc: ModuleItemDetailViewController!
-                var route: NSURL!
+                var route: URL!
                 beforeEach {
                     class Embedded: UIViewController {
                         override func viewDidLoad() {
                             super.viewDidLoad()
-                            navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Foo", style: .Plain, target: nil, action: nil)]
+                            navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Foo", style: .plain, target: nil, action: nil)]
                         }
                     }
-                    login()
+                    _ = login()
 
                     route = currentSession.baseURL / "unit-test/module-item-detail-vc-embedded-vc"
-                    Router.sharedRouter().addRoute(route.path!) { _ in Embedded() }
+                    Router.shared().addRoute(route.path) { _ in Embedded() }
                     
                     item = ModuleItem.build {
                         $0.url = route.absoluteString
@@ -61,12 +61,12 @@ class ModuleItemDetailViewControllerSpec: QuickSpec {
                     vc = try! ModuleItemDetailViewController(session: currentSession, courseID: item.courseID, moduleID: item.moduleID, moduleItemID: item.id, route: ignoreRouteAction)
                     _ = vc.view
                     waitUntil { done in
-                        if vc.isViewLoaded() { done() }
+                        if vc.isViewLoaded { done() }
                     }
                 }
 
                 afterEach {
-                    Router.sharedRouter().removeRoute(route.path!)
+                    Router.shared().removeRoute(route.path)
                 }
 
                 it("should display the module item view controller") {
@@ -76,7 +76,7 @@ class ModuleItemDetailViewControllerSpec: QuickSpec {
                 }
 
                 it("should append mark done button") {
-                    item.completionRequirement = .MarkDone
+                    item.completionRequirement = .markDone
                     item.completed = false
                     expect(vc.navigationItem.rightBarButtonItems?.count).toEventually(equal(2))
                     expect(vc.navigationItem.rightBarButtonItems![0].title) == "Foo"

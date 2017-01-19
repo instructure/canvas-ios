@@ -21,15 +21,15 @@ import SoPersistent
 
 class ModulesTableViewController: Module.TableViewController {
     let courseID: String
-    let route: (UIViewController, NSURL) -> Void
+    let route: (UIViewController, URL) -> Void
 
-    init(session: Session, courseID: String, route: (UIViewController, NSURL) -> Void) throws {
+    init(session: Session, courseID: String, route: @escaping (UIViewController, URL) -> Void) throws {
         self.courseID = courseID
         self.route = route
         super.init()
 
-        let collection: FetchedCollection<Module> = try Module.collection(session, courseID: courseID)
-        let refresher = try Module.refresher(session, courseID: courseID)
+        let collection: FetchedCollection<Module> = try Module.collection(session: session, courseID: courseID)
+        let refresher = try Module.refresher(session: session, courseID: courseID)
         prepare(collection, refresher: refresher) { try! ModuleViewModel(session: session, module: $0) }
 
         title = NSLocalizedString("Modules", comment: "Modules title")
@@ -45,9 +45,9 @@ class ModulesTableViewController: Module.TableViewController {
         tableView.estimatedRowHeight = 44
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let module = collection[indexPath]
-        let url = NSURL(string: ContextID(id: courseID, context: .Course).htmlPath / "modules" / module.id)!
+        let url = URL(string: ContextID(id: courseID, context: .course).htmlPath / "modules" / module.id)!
         route(self, url)
     }
 }

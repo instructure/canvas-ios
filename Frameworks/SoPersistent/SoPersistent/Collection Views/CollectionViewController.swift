@@ -18,35 +18,35 @@
 
 import UIKit
 import SoPretty
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 
 public protocol CollectionViewCellViewModel {
-    static func viewDidLoad(collectionView: UICollectionView)
+    static func viewDidLoad(_ collectionView: UICollectionView)
     static var layout: UICollectionViewLayout { get }
 
-    func cellForCollectionView(collectionView: UICollectionView, indexPath: NSIndexPath) -> UICollectionViewCell
+    func cellForCollectionView(_ collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell
 }
 
-public class CollectionViewController: UICollectionViewController {
+open class CollectionViewController: UICollectionViewController {
 
-    public static var defaultErrorHandler: (UIViewController, NSError) -> () = { vc, error in
+    open static var defaultErrorHandler: (UIViewController, NSError) -> () = { vc, error in
         error.presentAlertFromViewController(vc)
     }
 
-    public func handleError(error: NSError) {
+    open func handleError(_ error: NSError) {
         CollectionViewController.defaultErrorHandler(self, error)
     }
 
-    public var dataSource: CollectionViewDataSource! {
+    open var dataSource: CollectionViewDataSource! {
         didSet {
-            if isViewLoaded() {
+            if isViewLoaded {
                 dataSource?.viewDidLoad(self)
             }
         }
     }
 
-    public var refresher: Refresher? {
+    open var refresher: Refresher? {
         didSet {
             oldValue?.refreshControl.endRefreshing()
             oldValue?.refreshControl.removeFromSuperview()
@@ -54,10 +54,12 @@ public class CollectionViewController: UICollectionViewController {
             setupRefreshingObservation()
         }
     }
+    
+    private var refreshDisposable: Disposable? = nil
 
-    public var didSelectItemAtIndexPath: (NSIndexPath->())? = nil
+    open var didSelectItemAtIndexPath: ((IndexPath)->())? = nil
 
-    public var emptyView: UIView? {
+    open var emptyView: UIView? {
         didSet {
             self.updateEmptyView()
         }
@@ -65,6 +67,10 @@ public class CollectionViewController: UICollectionViewController {
 
     public init() {
         super.init(collectionViewLayout: PrettyCardsLayout())
+    }
+    
+    deinit {
+        refreshDisposable?.dispose()
     }
 
     public init(dataSource: CollectionViewDataSource, refresher: Refresher? = nil) {
@@ -78,11 +84,15 @@ public class CollectionViewController: UICollectionViewController {
         super.init(coder: aDecoder)
     }
 
-    private func setupRefreshingObservation() {
-        refresher?.refreshingBegan.observeNext { [weak self] in
+    fileprivate func setupRefreshingObservation() {
+        let composite = CompositeDisposable()
+        refreshDisposable?.dispose()
+        refreshDisposable = composite
+        
+        composite += refresher?.refreshingBegan.observeValues { [weak self] in
             self?.updateEmptyView()
         }
-        refresher?.refreshingCompleted.observeNext { [weak self] error in
+        composite += refresher?.refreshingCompleted.observeValues { [weak self] error in
             self?.updateEmptyView()
             if let error = error {
                 self?.handleError(error)
@@ -90,32 +100,32 @@ public class CollectionViewController: UICollectionViewController {
         }
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.backgroundColor = UIColor.whiteColor()
+        collectionView?.backgroundColor = UIColor.white
         dataSource?.viewDidLoad(self)
         refresher?.makeRefreshable(self)
         updateEmptyView()
     }
 
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refresher?.refresh(false)
     }
 
     // MARK: delegate
-    public override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    open override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         didSelectItemAtIndexPath?(indexPath)
     }
 
     // MARK: Empty View Handling
-    private func updateEmptyView() {
-        guard let emptyView = emptyView, collectionView = collectionView else {
+    fileprivate func updateEmptyView() {
+        guard let emptyView = emptyView, let collectionView = collectionView else {
             return
         }
 
         let isRefreshing = refresher?.isRefreshing ?? false
-        let emptyVisible = collectionView.numberOfSections() == 0 && !isRefreshing
+        let emptyVisible = collectionView.numberOfSections == 0 && !isRefreshing
         if emptyVisible {
             collectionView.backgroundView = emptyView
         } else {

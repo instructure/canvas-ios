@@ -20,10 +20,10 @@ import Foundation
 
 class TokenLabelView: UIView {
     
-    private var horizontalConstraints: [NSLayoutConstraint] = []
-    private var verticalConstraints: [NSLayoutConstraint] = []
+    fileprivate var horizontalConstraints: [NSLayoutConstraint] = []
+    fileprivate var verticalConstraints: [NSLayoutConstraint] = []
 
-    private let label = UILabel()
+    fileprivate let label = UILabel()
 
     var text = ""  {
         didSet {
@@ -64,14 +64,14 @@ class TokenLabelView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        layer.cornerRadius = CGRectGetHeight(frame)/2
+        layer.cornerRadius = frame.height/2
     }
 
     func setup() {
         clipsToBounds = true
 
-        label.font = UIFont.systemFontOfSize(13.0)
-        label.textColor = UIColor.whiteColor()
+        label.font = UIFont.systemFont(ofSize: 13.0)
+        label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
 
@@ -82,8 +82,8 @@ class TokenLabelView: UIView {
         removeConstraints(horizontalConstraints)
         removeConstraints(verticalConstraints)
 
-        horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-leftMargin-[subview]-rightMargin-|", options: .DirectionLeadingToTrailing, metrics: ["leftMargin": insets.left, "rightMargin": insets.right], views: ["subview": label])
-        verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-topMargin-[subview]-bottomMargin-|", options: .DirectionLeadingToTrailing, metrics: ["topMargin": insets.top, "bottomMargin": insets.bottom], views: ["subview": label])
+        horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-leftMargin-[subview]-rightMargin-|", options: NSLayoutFormatOptions(), metrics: ["leftMargin": insets.left, "rightMargin": insets.right], views: ["subview": label])
+        verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-topMargin-[subview]-bottomMargin-|", options: NSLayoutFormatOptions(), metrics: ["topMargin": insets.top, "bottomMargin": insets.bottom], views: ["subview": label])
 
         addConstraints(horizontalConstraints)
         addConstraints(verticalConstraints)

@@ -20,14 +20,14 @@ import UIKit
 import TooLegit
 import SoPersistent
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 
 extension CalendarEvent {
-    public static func predicate(calendarEventID: String) -> NSPredicate {
+    public static func predicate(_ calendarEventID: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@", "id", calendarEventID)
     }
 
-    public static func refresher(session: Session, calendarEventID: String) throws -> Refresher {
+    public static func refresher(_ session: Session, calendarEventID: String) throws -> Refresher {
         let context = try session.calendarEventsManagedObjectContext()
         let remote = try CalendarEvent.getCalendarEvent(session, calendarEventID: calendarEventID).map { [$0] }
         let pred = predicate(calendarEventID)
@@ -36,22 +36,22 @@ extension CalendarEvent {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public static func observer(session: Session, calendarEventID: String) throws -> ManagedObjectObserver<CalendarEvent> {
+    public static func observer(_ session: Session, calendarEventID: String) throws -> ManagedObjectObserver<CalendarEvent> {
         let pred = predicate(calendarEventID)
         let context = try session.calendarEventsManagedObjectContext()
         return try ManagedObjectObserver<CalendarEvent>(predicate: pred, inContext: context)
     }
 
-    public static func detailsTableViewDataSource<DVM: TableViewCellViewModel where DVM: Equatable>(session: Session, calendarEventID: String, detailsFactory: CalendarEvent->[DVM]) throws -> TableViewDataSource {
+    public static func detailsTableViewDataSource<DVM: TableViewCellViewModel>(_ session: Session, calendarEventID: String, detailsFactory: @escaping (CalendarEvent)->[DVM]) throws -> TableViewDataSource where DVM: Equatable {
         let obs = try observer(session, calendarEventID: calendarEventID)
         let collection = FetchedDetailsCollection<CalendarEvent, DVM>(observer: obs, detailsFactory: detailsFactory)
         return CollectionTableViewDataSource(collection: collection, viewModelFactory: { $0 })
     }
 
-    public class DetailViewController: SoPersistent.TableViewController {
-        private (set) public var observer: ManagedObjectObserver<CalendarEvent>!
+    open class DetailViewController: SoPersistent.TableViewController {
+        fileprivate (set) open var observer: ManagedObjectObserver<CalendarEvent>!
 
-        public func prepare<DVM: TableViewCellViewModel where DVM: Equatable>(observer: ManagedObjectObserver<CalendarEvent>, refresher: Refresher? = nil, detailsFactory: CalendarEvent->[DVM]) {
+        open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<CalendarEvent>, refresher: Refresher? = nil, detailsFactory: @escaping (CalendarEvent)->[DVM]) where DVM: Equatable {
             self.observer = observer
             let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
             self.refresher = refresher

@@ -16,7 +16,7 @@
 
 import SoPersistent
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import SoPersistent
 import CoreData
 
@@ -42,10 +42,10 @@ extension Module {
         let moduleItems = try ModuleItem.getModuleItems(session, courseID: courseID, moduleID: moduleID)
         let syncModuleItems = ModuleItem.syncSignalProducer(ModuleItem.predicate(forItemsIn: moduleID), includeSubentities: false, inContext: context, fetchRemote: moduleItems)
 
-        let sync: SignalProducer<SignalProducer<Void, NSError>, NSError> = SignalProducer(values: [syncModules.map { _ in () }, syncModuleItems.map { _ in () }])
+        let sync: SignalProducer<SignalProducer<Void, NSError>, NSError> = SignalProducer([syncModules.map { _ in () }, syncModuleItems.map { _ in () }])
 
-        let key = detailsCacheKey(context, courseID: courseID, moduleID: moduleID)
+        let key = detailsCacheKey(context: context, courseID: courseID, moduleID: moduleID)
 
-        return SignalProducerRefresher(refreshSignalProducer: sync.flatten(.Merge), scope: session.refreshScope, cacheKey: key)
+        return SignalProducerRefresher(refreshSignalProducer: sync.flatten(.merge), scope: session.refreshScope, cacheKey: key)
     }
 }

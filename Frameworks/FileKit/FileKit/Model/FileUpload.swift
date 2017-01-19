@@ -19,19 +19,19 @@
 import CoreData
 import SoPersistent
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 import SoLazy
 
-public class FileUpload: Upload {
-    @NSManaged public private(set) var data: NSData
-    @NSManaged public private(set) var name: String
-    @NSManaged public private(set) var contentType: String?
-    @NSManaged public private(set) var path: String
-    @NSManaged public var isInRootFolder: Bool
-    @NSManaged public private(set) var parentFolderID: String?
-    @NSManaged public var rawContextID: String
-    internal (set) public var contextID: ContextID {
+open class FileUpload: Upload {
+    @NSManaged open fileprivate(set) var data: Data
+    @NSManaged open fileprivate(set) var name: String
+    @NSManaged open fileprivate(set) var contentType: String?
+    @NSManaged open fileprivate(set) var path: String
+    @NSManaged open var isInRootFolder: Bool
+    @NSManaged open fileprivate(set) var parentFolderID: String?
+    @NSManaged open var rawContextID: String
+    internal (set) open var contextID: ContextID {
         get {
             return ContextID(canvasContext: rawContextID)!
         } set {
@@ -39,26 +39,26 @@ public class FileUpload: Upload {
         }
     }
 
-    @NSManaged private var targetURL: String?
-    @NSManaged private var targetParameters: [String: String]?
+    @NSManaged fileprivate var targetURL: String?
+    @NSManaged fileprivate var targetParameters: [String: String]?
 
-    @NSManaged public private(set) var file: File?
+    @NSManaged open fileprivate(set) var file: File?
 
-    public var disposable = CompositeDisposable()
+    open var disposable = CompositeDisposable()
 
-    public override func cancel() {
+    open override func cancel() {
         super.cancel()
         disposable.dispose()
     }
 
-    public static func createInContext(context: NSManagedObjectContext) -> FileUpload {
-        guard let upload = NSEntityDescription.insertNewObjectForEntityForName(entityName(context), inManagedObjectContext: context) as? FileUpload else {
+    open static func createInContext(_ context: NSManagedObjectContext) -> FileUpload {
+        guard let upload = NSEntityDescription.insertNewObject(forEntityName: entityName(context), into: context) as? FileUpload else {
             ❨╯°□°❩╯⌢"FileUpload not found in data model!"
         }
         return upload
     }
     
-    public func prepare(backgroundSessionID: String, path: String, data: NSData, name: String, contentType: String?, parentFolderID: String?, contextID: ContextID) {
+    open func prepare(_ backgroundSessionID: String, path: String, data: Data, name: String, contentType: String?, parentFolderID: String?, contextID: ContextID) {
         self.backgroundSessionID = backgroundSessionID
         self.path = path
         self.data = data
@@ -69,21 +69,21 @@ public class FileUpload: Upload {
         self.contextID = contextID
     }
 
-    public func begin(inSession session: Session, inContext context: NSManagedObjectContext) {
+    open func begin(inSession session: Session, inContext context: NSManagedObjectContext) {
         disposable += attemptProducer {
-            let request = try session.requestPostUploadTarget(path, fileName: name, size: data.length, contentType: contentType, folderPath: nil, overwrite: false)
-            let task = session.URLSession.dataTaskWithRequest(request)
+            let request = try session.requestPostUploadTarget(path: path, fileName: name, size: data.count, contentType: contentType, folderPath: nil, overwrite: false)
+            let task = session.URLSession.dataTask(with: request)
             self.startWithTask(task)
             try context.save()
             self.addTaskCompletionHandler(task, inSession: session, inContext: context)
             task.resume()
         }
-        .observeOn(ManagedObjectContextScheduler(context: context))
+        .observe(on: ManagedObjectContextScheduler(context: context))
         .flatMapError(saveError(context))
         .start()
     }
 
-    private func saveUploadTargetInContext(context: NSManagedObjectContext) -> (target: UploadTarget) -> SignalProducer<UploadTarget, NSError> {
+    fileprivate func saveUploadTargetInContext(_ context: NSManagedObjectContext) -> (_ target: UploadTarget) -> SignalProducer<UploadTarget, NSError> {
         return { target in
             return attemptProducer {
                 guard let parameters = target.parameters as? [String: String] else {
@@ -97,15 +97,15 @@ public class FileUpload: Upload {
         }
     }
 
-    private func uploadFile(inSession session: Session, inContext context: NSManagedObjectContext) -> (request: NSMutableURLRequest, fileURL: NSURL) -> SignalProducer<Void, NSError> {
+    fileprivate func uploadFile(inSession session: Session, inContext context: NSManagedObjectContext) -> (URLRequest, URL) -> SignalProducer<Void, NSError> {
         return { request, fileURL in
             return attemptProducer {
-                let task = session.URLSession.uploadTaskWithRequest(request, fromFile: fileURL)
+                let task = session.URLSession.uploadTask(with: request as URLRequest, fromFile: fileURL)
                 self.startWithTask(task)
                 try context.save()
                 self.addTaskCompletionHandler(task, inSession: session, inContext: context)
                 session.progressUpdateByTask[task] = { [weak self] bytesSent, totalBytes in
-                    context.performBlock({
+                    context.perform({
                         self?.sent = bytesSent
                         self?.total = totalBytes
                     })
@@ -115,24 +115,25 @@ public class FileUpload: Upload {
         }
     }
 
-    public func session(session: Session, didFinishTask task: NSURLSessionTask, withResponse json: JSONObject, inContext context: NSManagedObjectContext) {
+    open func session(_ session: Session, didFinishTask task: URLSessionTask, withResponse json: JSONObject, inContext context: NSManagedObjectContext) {
         guard targetURL != nil && targetParameters != nil else {
+            
             // json should be the upload target
-            disposable += UploadTarget.parse(json)
-                .flatMap(.Concat, transform: saveUploadTargetInContext(context))
-                .flatMap(.Concat, transform: session.requestUploadFile(self.data))
-                .flatMap(.Concat, transform: self.uploadFile(inSession: session, inContext: context))
-                .observeOn(ManagedObjectContextScheduler(context: context))
+            disposable += UploadTarget.parse(json: json)
+                .flatMap(.concat, transform: saveUploadTargetInContext(context))
+                .flatMap(.concat, transform: session.requestUploadFile(data: self.data))
+                .flatMap(.concat, transform: self.uploadFile(inSession: session, inContext: context))
+                .observe(on: ManagedObjectContextScheduler(context: context))
                 .flatMapError(saveError(context))
                 .start()
             return
         }
 
         // json should be the file
-        self.disposable += File.upsert(inContext: context)(jsonArray: [json])
-            .flatMap(.Concat) { files in
-                SignalProducer(values: files)
-                    .flatMap(.Concat) { file in
+        self.disposable += File.upsert(inContext: context, jsonArray: [json])
+            .flatMap(.concat) { files in
+                SignalProducer(files)
+                    .flatMap(.concat) { file in
                         return attemptProducer {
                             self.file = file
                             self.file?.parentFolderID = self.parentFolderID
@@ -143,40 +144,40 @@ public class FileUpload: Upload {
                         }
                     }
             }
-            .observeOn(ManagedObjectContextScheduler(context: context))
+            .observe(on: ManagedObjectContextScheduler(context: context))
             .flatMapError(saveError(context))
             .start()
     }
 
-    public func session(session: Session, didFinishTask task: NSURLSessionTask, withError error: NSError, inContext context: NSManagedObjectContext) {
+    open func session(_ session: Session, didFinishTask task: URLSessionTask, withError error: NSError, inContext context: NSManagedObjectContext) {
         context.performChanges {
             self.failWithError(error)
         }
     }
 
-    public func addTaskCompletionHandler(task: NSURLSessionTask, inSession session: Session, inContext context: NSManagedObjectContext) {
+    open func addTaskCompletionHandler(_ task: URLSessionTask, inSession session: Session, inContext context: NSManagedObjectContext) {
         session.completionHandlerByTask[task] = { [weak self] task, error in
-            if let data = session.responseDataByTask[task], response = task.response {
+            if let data = session.responseDataByTask[task], let response = task.response {
                 if let result = session.responseJSONSignalProducer(data, response: response).first() {
                     if let json = result.value {
                         self?.session(session, didFinishTask: task, withResponse: json, inContext: context)
 
                     } else {
-                        let error = result.error ?? NSError.invalidResponseError(task.response?.URL)
+                        let error = result.error ?? NSError.invalidResponseError(task.response?.url)
                         self?.failWithError(error)
                     }
                 } else {
-                    let error = NSError.invalidResponseError(task.response?.URL)
+                    let error = NSError.invalidResponseError(task.response?.url)
                     self?.failWithError(error)
                 }
             } else {
-                let e = error ?? NSError.invalidResponseError(task.response?.URL)
+                let e = error ?? NSError.invalidResponseError(task.response?.url)
                 self?.failWithError(e)
             }
         }
     }
 
-    public func complete(inSession session: Session, inContext context: NSManagedObjectContext) {
+    open func complete(inSession session: Session, inContext context: NSManagedObjectContext) {
         self.complete()
     }
 

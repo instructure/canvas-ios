@@ -22,36 +22,33 @@ import TooLegit
 import SoAutomated
 import PageKit
 import TooLegit
-import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import EnrollmentKit
+import SoPersistent
 
 extension Page {
-
-    static func colorfulPageViewModel(session session: Session, page: Page) -> ColorfulViewModel {
-        let vm = ColorfulViewModel(style: .Token)
+    static func colorfulPageViewModel(session: Session, page: Page) -> ColorfulViewModel {
+        let vm = ColorfulViewModel(features: page.frontPage ? [.token] : [])
         vm.title.value = page.title
         if page.frontPage {
-            vm.tokenViewText.value = NSLocalizedString("Front Page", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "badge indicating front page")
+            vm.tokenViewText.value = NSLocalizedString("Front Page", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.PageKit")!, value: "", comment: "badge indicating front page")
         }
-        vm.color <~ session.enrollmentsDataSource.producer(page.contextID)
-            .map { $0?.color ?? .prettyGray() }
+        vm.color <~ session.enrollmentsDataSource.color(for: page.contextID)
 
         return vm
     }
-
 }
 
 extension Page {
-    static func build(context: NSManagedObjectContext,
+    static func build(_ context: NSManagedObjectContext,
                       url: String = "page",
                       title: String = "Page",
-                      createdAt: NSDate = NSDate(),
-                      updatedAt: NSDate = NSDate(),
+                      createdAt: Date = Date(),
+                      updatedAt: Date = Date(),
                       editingRoles: String = "Teachers",
                       published: Bool = true,
                       frontPage: Bool = false,
-                      contextID: ContextID = ContextID(id: "24601", context: .Course),
+                      contextID: ContextID = .course(withID: "24601"),
                       lockedForUser: Bool = false ) -> Page {
         let page = Page(inContext: context)
         page.url = url
@@ -70,9 +67,9 @@ extension Page {
 
 extension PagesHomeViewController {
 
-    static func build(session: Session = Session.ivy,
-                      contextID: ContextID = ContextID(id: "24601", context: .Course),
-                      route: (UIViewController, NSURL) -> () = { _,_ in } ) throws -> PagesHomeViewController {
+    static func build(_ session: Session = Session.ivy,
+                      contextID: ContextID = ContextID(id: "24601", context: .course),
+                      route: @escaping (UIViewController, URL) -> () = { _,_ in } ) throws -> PagesHomeViewController {
         return try PagesHomeViewController(session: session, contextID: contextID, listViewModelFactory: { session, page in return Page.colorfulPageViewModel(session: session, page: page) }, route: route)
     }
 
@@ -80,20 +77,20 @@ extension PagesHomeViewController {
 
 extension Page.TableViewController {
 
-    static func build(session: Session = Session.ivy,
+    static func build(_ session: Session = Session.ivy,
                       contextID: ContextID = ContextID(canvasContext: "course_24601")!,
-                      route: (UIViewController, NSURL) -> () = { _,_ in } ) throws -> Page.TableViewController {
-        return try Page.TableViewController(session: session, contextID: contextID, viewModelFactory: { session, page in return Page.colorfulPageViewModel(session: session, page: page) }, route: route)
+                      route: @escaping (UIViewController, URL) -> () = { _,_ in } ) throws -> Page.TableViewController {
+        return try Page.TableViewController(session: session, contextID: contextID, viewModelFactory: Page.colorfulPageViewModel, route: route)
     }
 
 }
 
 extension Page.DetailViewController {
 
-    static func build(session: Session = Session.ivy,
-                      contextID: ContextID = ContextID(id: "24601", context: .Course),
+    static func build(_ session: Session = Session.ivy,
+                      contextID: ContextID = ContextID(id: "24601", context: .course),
                       url: String = "test-page",
-                      route: (UIViewController, NSURL) -> () = {_, _ in } ) throws -> Page.DetailViewController {
+                      route: @escaping (UIViewController, URL) -> () = {_, _ in } ) throws -> Page.DetailViewController {
         return try Page.DetailViewController(session: session, contextID: contextID, url: url, route: route)
     }
 

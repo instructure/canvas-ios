@@ -22,11 +22,11 @@ import AVFoundation
 
 class RecordButton: UIButton {
     enum State {
-        case Denied(AVAudioSessionRecordPermission)
-        case Record, Stop, Play, Pause
+        case denied(AVAudioSessionRecordPermission)
+        case record, stop, play, pause
     }
     
-    var recordButtonState = State.Record {
+    var recordButtonState = State.record {
         didSet {
             updateRecordShape()
         }
@@ -34,7 +34,7 @@ class RecordButton: UIButton {
     
     lazy var recordShape: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.fillColor = UIColor.redColor().colorWithAlphaComponent(0.65).CGColor
+        layer.fillColor = UIColor.red.withAlphaComponent(0.65).cgColor
         layer.borderWidth = 0.0
         layer.position = CGPoint(x: 33.0, y: 33.0)
         
@@ -42,14 +42,14 @@ class RecordButton: UIButton {
         return layer
     }()
     
-    private func addRecordRing() {
-        let effect = UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Dark))
+    fileprivate func addRecordRing() {
+        let effect = UIVibrancyEffect(blurEffect: UIBlurEffect(style: .dark))
         let vibrancy = UIVisualEffectView(effect: effect)
         vibrancy.frame = self.bounds
-        vibrancy.userInteractionEnabled = false
+        vibrancy.isUserInteractionEnabled = false
         addSubview(vibrancy)
         
-        let ring = UIImage(named: "record_ring", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: nil)
+        let ring = UIImage(named: "record_ring", in: Bundle(for: self.classForCoder), compatibleWith: nil)
         vibrancy.contentView.addSubview(UIImageView(image: ring))
     }
     
@@ -58,21 +58,21 @@ class RecordButton: UIButton {
         addRecordRing()
         updateRecordShape()
         let bg = UIColor(red: 57.0/255.0, green: 57.0/255.0, blue: 56.0/255.0, alpha: 1.0)
-        titleLabel?.font = UIFont.boldSystemFontOfSize(24)
-        setTitleColor(bg, forState: .Normal)
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        setTitleColor(bg, for: UIControlState())
     }
     
     override var tintColor: UIColor! {
         set {
             super.tintColor = newValue
-            recordShape.fillColor = newValue.CGColor
+            recordShape.fillColor = newValue.cgColor
         } get {
             return super.tintColor
         }
         
     }
     
-    private func updateRecordShape() {
+    fileprivate func updateRecordShape() {
         let path: UIBezierPath
         var color: UIColor = self.tintColor
         var title = ""
@@ -81,58 +81,58 @@ class RecordButton: UIButton {
         
         
         switch recordButtonState {
-        case .Record:
-            path = UIBezierPath(roundedRect: CGRectMake(-25, -25, 50, 50), cornerRadius: 25)
-            color = UIColor.redColor()
-            a11y = NSLocalizedString("Record", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Record button a11y label")
-            a11yHint = NSLocalizedString("Begin recording", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "stop record button a11y hint")
-        case .Stop:
-            path = UIBezierPath(rect: CGRectMake(-12, -12, 24, 24))
-            a11y = NSLocalizedString("Stop", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "stop recording button a11y label")
-            a11yHint = NSLocalizedString("Begin recording", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "stop record button a11y hint")
+        case .record:
+            path = UIBezierPath(roundedRect: CGRect(x: -25, y: -25, width: 50, height: 50), cornerRadius: 25)
+            color = UIColor.red
+            a11y = NSLocalizedString("Record", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Record button a11y label")
+            a11yHint = NSLocalizedString("Begin recording", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "stop record button a11y hint")
+        case .stop:
+            path = UIBezierPath(rect: CGRect(x: -12, y: -12, width: 24, height: 24))
+            a11y = NSLocalizedString("Stop", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "stop recording button a11y label")
+            a11yHint = NSLocalizedString("Begin recording", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "stop record button a11y hint")
 
-        case .Play:
+        case .play:
             path = UIBezierPath()
-            path.moveToPoint(CGPoint(x: -12, y: -15))
-            path.addLineToPoint(CGPoint(x: 18, y: 0))
-            path.addLineToPoint(CGPoint(x: -12, y: 15))
-            path.addLineToPoint(CGPoint(x: -12, y: -15))
-            a11y = NSLocalizedString("Play", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Playback button")
-            a11yHint = NSLocalizedString("Play back recording", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "play button a11y hint")
+            path.move(to: CGPoint(x: -12, y: -15))
+            path.addLine(to: CGPoint(x: 18, y: 0))
+            path.addLine(to: CGPoint(x: -12, y: 15))
+            path.addLine(to: CGPoint(x: -12, y: -15))
+            a11y = NSLocalizedString("Play", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Playback button")
+            a11yHint = NSLocalizedString("Play back recording", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "play button a11y hint")
             
-        case .Denied(let permission):
+        case .denied(let permission):
             path = UIBezierPath()
-            path.moveToPoint(CGPoint(x: 0, y: -25))
+            path.move(to: CGPoint(x: 0, y: -25))
             
             let x = CGFloat(25.0 * abs(cos(M_PI/6.0)))
             let y = CGFloat(25.0 * abs(sin(M_PI/6.0)))
 
-            path.addLineToPoint(CGPoint(x: x, y: y))
-            path.addLineToPoint(CGPoint(x: -x, y: y))
-            path.addLineToPoint(CGPoint(x: 0, y: -25))
-            color = UIColor.yellowColor()
+            path.addLine(to: CGPoint(x: x, y: y))
+            path.addLine(to: CGPoint(x: -x, y: y))
+            path.addLine(to: CGPoint(x: 0, y: -25))
+            color = UIColor.yellow
             
-            if permission == .Denied {
+            if permission == .denied {
                 title = "!"
-                a11y = NSLocalizedString("Record Permission Help", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "permission denied button a11y label")
-                a11yHint = NSLocalizedString("User has denied record permission", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "permission denied button a11y hint")
+                a11y = NSLocalizedString("Record Permission Help", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "permission denied button a11y label")
+                a11yHint = NSLocalizedString("User has denied record permission", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "permission denied button a11y hint")
             } else {
                 title = "?"
-                a11y = NSLocalizedString("Request Audio Recording Permission", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Record button a11y label")
-                a11yHint = NSLocalizedString("Request Permission to record audio", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "stop record button a11y hint")
+                a11y = NSLocalizedString("Request Audio Recording Permission", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Record button a11y label")
+                a11yHint = NSLocalizedString("Request Permission to record audio", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "stop record button a11y hint")
             }
             
-        case .Pause:
+        case .pause:
             path = UIBezierPath()
-            path.appendPath(UIBezierPath(rect: CGRect(x: -12, y: -12, width: 8, height: 24)))
-            path.appendPath(UIBezierPath(rect: CGRect(x: 4, y: -12, width: 8, height: 24)))
-            a11y = NSLocalizedString("Pause", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Pause recording/playback")
-            a11yHint = NSLocalizedString("Pause playback", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "record button a11y hint")
+            path.append(UIBezierPath(rect: CGRect(x: -12, y: -12, width: 8, height: 24)))
+            path.append(UIBezierPath(rect: CGRect(x: 4, y: -12, width: 8, height: 24)))
+            a11y = NSLocalizedString("Pause", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Pause recording/playback")
+            a11yHint = NSLocalizedString("Pause playback", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "record button a11y hint")
         }
         
-        recordShape.path = path.CGPath
-        recordShape.fillColor = color.CGColor
-        setTitle(title, forState: .Normal)
+        recordShape.path = path.cgPath
+        recordShape.fillColor = color.cgColor
+        setTitle(title, for: UIControlState())
         accessibilityIdentifier = a11y
         accessibilityLabel = a11y
         accessibilityHint = a11yHint

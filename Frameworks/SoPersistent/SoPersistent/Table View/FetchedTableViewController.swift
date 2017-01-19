@@ -19,9 +19,9 @@
 import Foundation
 import CoreData
 
-public class FetchedTableViewController<M: NSManagedObject>: SoPersistent.TableViewController {
+open class FetchedTableViewController<M: NSManagedObject>: SoPersistent.TableViewController {
     
-    private (set) public var collection: FetchedCollection<M>!
+    fileprivate (set) open var collection: FetchedCollection<M>!
     
     public override init() {
         super.init()
@@ -30,10 +30,20 @@ public class FetchedTableViewController<M: NSManagedObject>: SoPersistent.TableV
     public override init(style: UITableViewStyle) {
         super.init(style: style)
     }
+
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
-    public func prepare<VM: TableViewCellViewModel>(collection: FetchedCollection<M>, refresher: Refresher? = nil, viewModelFactory: M->VM) {
+    open func prepare<VM: TableViewCellViewModel>(_ collection: FetchedCollection<M>, refresher: Refresher? = nil, viewModelFactory: @escaping (M)->VM) {
         self.collection = collection
         self.refresher = refresher
         self.dataSource = CollectionTableViewDataSource(collection: collection, viewModelFactory: viewModelFactory)
+    }
+    
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44.0
     }
 }

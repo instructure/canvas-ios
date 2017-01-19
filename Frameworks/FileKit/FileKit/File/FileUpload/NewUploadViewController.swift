@@ -25,32 +25,32 @@ protocol NewUploadViewControllerDelegate: class {
     func newUploadCancelled()
     func turnInUpload()
     func addFileToNewUpload()
-    func newUploadModified(upload: NewUpload)
+    func newUploadModified(_ upload: NewUpload)
 }
 
 class NewUploadViewController: UITableViewController {
     
-    var newUpload: NewUpload = .None {
+    var newUpload: NewUpload = .none {
         didSet {
-            if isViewLoaded() {
+            if isViewLoaded {
                 tableView.reloadData()
             }
         }
     }
     
-    private var textCellHeight: CGFloat = 100.0
+    fileprivate var textCellHeight: CGFloat = 100.0
     
     weak var delegate: NewUploadViewControllerDelegate?
     
     
-    class func presentFromViewController(viewController: UIViewController) -> NewUploadViewController {
-        let bundle = NSBundle(forClass: self.classForCoder())
+    class func presentFromViewController(_ viewController: UIViewController) -> NewUploadViewController {
+        let bundle = Bundle(for: self.classForCoder())
         let storyboard = UIStoryboard(name: "NewUpload", bundle: bundle)
         
         let nav = storyboard.instantiateInitialViewController() as! UINavigationController
         let me = nav.viewControllers[0] as! NewUploadViewController
         
-        viewController.presentViewController(nav, animated: true, completion: nil)
+        viewController.present(nav, animated: true, completion: nil)
         
         return me
     }
@@ -59,40 +59,40 @@ class NewUploadViewController: UITableViewController {
         super.viewDidLoad()
         
         if !UIAccessibilityIsReduceTransparencyEnabled() {
-            tableView.backgroundColor = UIColor.clearColor()
-            let blurEffect = UIBlurEffect(style: .ExtraLight)
+            tableView.backgroundColor = UIColor.clear
+            let blurEffect = UIBlurEffect(style: .extraLight)
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
             tableView.backgroundView = blurEffectView
             
             //if inside a popover
             if let popover = navigationController?.popoverPresentationController {
-                popover.backgroundColor = UIColor.clearColor()
+                popover.backgroundColor = UIColor.clear
             }
             
             //if you want translucent vibrant table view separator lines
-            tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
-            tableView.separatorInset = UIEdgeInsetsZero
+            tableView.separatorEffect = UIVibrancyEffect(blurEffect: blurEffect)
+            tableView.separatorInset = UIEdgeInsets.zero
         }
         
-        tableView.registerClass(NewUploadTextCell.classForCoder(), forCellReuseIdentifier: "TextCell")
+        tableView.register(NewUploadTextCell.classForCoder(), forCellReuseIdentifier: "TextCell")
         tableView.tableFooterView = UIView()
     }
     
-    @IBAction func submit(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true) {
+    @IBAction func submit(_ sender: AnyObject) {
+        self.dismiss(animated: true) {
             self.delegate?.turnInUpload()
         }
 
-        if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as? NewUploadTextCell {
+        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? NewUploadTextCell {
             cell.textView.resignFirstResponder()
         }
     }
-    @IBAction func cancel(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true) {
+    @IBAction func cancel(_ sender: AnyObject) {
+        self.dismiss(animated: true) {
             self.delegate?.newUploadCancelled()
         }
         
-        if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as? NewUploadTextCell {
+        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? NewUploadTextCell {
             cell.textView.resignFirstResponder()
         }
     }
@@ -101,25 +101,25 @@ class NewUploadViewController: UITableViewController {
 extension NewUpload {
     var numberOfRows: Int {
         switch self {
-        case .None: return 0
-        case .FileUpload(let urls): return urls.count + 1
-        case .MediaComment(_): return 2
+        case .none: return 0
+        case .fileUpload(let urls): return urls.count + 1
+        case .mediaComment(_): return 2
         default: return 1
         }
     }
     
-    func cellHeightInController(controller: NewUploadViewController, atIndex index: Int) -> CGFloat {
+    func cellHeightInController(_ controller: NewUploadViewController, atIndex index: Int) -> CGFloat {
         switch self {
-        case .Text:
+        case .text:
             return controller.textCellHeight
         default:
             return 44.0;
         }
     }
     
-    func isRowEditable(row: Int) -> Bool {
+    func isRowEditable(_ row: Int) -> Bool {
         switch self {
-        case .FileUpload(let urls):
+        case .fileUpload(let urls):
             return row < urls.count
         default:
             return false
@@ -131,32 +131,32 @@ extension NewUpload {
 // MARK: tableView data source/delegate
 
 extension NewUploadViewController {
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return newUpload.cellHeightInController(self, atIndex: indexPath.row)
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newUpload.numberOfRows
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        func cellForNewFileUploads(newUploadFiles: [NewUploadFile]) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        func cellForNewFileUploads(_ newUploadFiles: [NewUploadFile]) -> UITableViewCell {
             if indexPath.row >= newUploadFiles.count {
-                let cell = tableView.dequeueReusableCellWithIdentifier("AddAFileCell") as! AddAFileNewUploadCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "AddAFileCell") as! AddAFileNewUploadCell
                 cell.addFileTapped = { [weak self] in
-                    if let me = self, delegate = me.delegate {
-                        me.dismissViewControllerAnimated(true) {
+                    if let me = self, let delegate = me.delegate {
+                        me.dismiss(animated: true) {
                             delegate.addFileToNewUpload()
                         }
                     }
                 }
                 return cell
             } else {
-                guard let cell = tableView.dequeueReusableCellWithIdentifier("FileCell") else { ❨╯°□°❩╯⌢"No FileCell registered" }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell") else { ❨╯°□°❩╯⌢"No FileCell registered" }
                 let uploadFile = newUploadFiles[indexPath.row]
                 cell.textLabel?.text = uploadFile.name
                 cell.imageView?.image = uploadFile.image
@@ -164,14 +164,14 @@ extension NewUploadViewController {
             }
         }
         switch newUpload {
-        case .None: ❨╯°□°❩╯⌢"There are 0 rows for .None"
-        case .FileUpload(let newUploadFiles):
+        case .none: ❨╯°□°❩╯⌢"There are 0 rows for .None"
+        case .fileUpload(let newUploadFiles):
             return cellForNewFileUploads(newUploadFiles)
-        case .MediaComment(let newUploadFile):
+        case .mediaComment(let newUploadFile):
             return cellForNewFileUploads([newUploadFile])
-        case .Text(let text):
-            let cell = tableView.dequeueReusableCellWithIdentifier("TextCell") as! NewUploadTextCell
-            cell.placeholder.text = NSLocalizedString("Enter your upload...", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Prompt for text upload")
+        case .text(let text):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell") as! NewUploadTextCell
+            cell.placeholder.text = NSLocalizedString("Enter your upload...", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Prompt for text upload")
             cell.textView.text = text
             cell.heightDidChange = { [weak self] height in
                 self?.textCellHeight = height
@@ -180,34 +180,34 @@ extension NewUploadViewController {
             }
             cell.textDidChange = { [weak self] text in
                 if let me = self {
-                    me.newUpload = .Text(text)
+                    me.newUpload = .text(text)
                     me.delegate?.newUploadModified(me.newUpload)
                 }
             }
             return cell
         default:
-            guard let add = tableView.dequeueReusableCellWithIdentifier("AddAFileCell") else { ❨╯°□°❩╯⌢"No AddAFileCell registered" }
+            guard let add = tableView.dequeueReusableCell(withIdentifier: "AddAFileCell") else { ❨╯°□°❩╯⌢"No AddAFileCell registered" }
             return add
         }
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let textCell = cell as? NewUploadTextCell {
             textCell.textView.becomeFirstResponder()
         }
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return newUpload.isRowEditable(indexPath.row)
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         // Ignore this... but don't delete it
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if newUpload.isRowEditable(indexPath.row) {
-            return [UITableViewRowAction(style: .Default, title: NSLocalizedString("Delete", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Delete button for file upload")) { [weak self] action, indexPath in
+            return [UITableViewRowAction(style: .default, title: NSLocalizedString("Delete", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Delete button for file upload")) { [weak self] action, indexPath in
                 
                 if let me = self {
                     me.newUpload = me.newUpload.uploadByDeletingFileAtIndex(indexPath.row)
@@ -225,8 +225,8 @@ extension NewUploadViewController {
 
 class NewUploadClearCell: UITableViewCell {
     override func awakeFromNib() {
-        backgroundColor = UIColor.clearColor()
-        contentView.backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
+        contentView.backgroundColor = UIColor.clear
         
         let selectedView = UIView()
         selectedView.backgroundColor = UIColor(white: 0.85, alpha: 1.0)
@@ -237,7 +237,7 @@ class NewUploadClearCell: UITableViewCell {
 class AddAFileNewUploadCell: NewUploadClearCell {
     var addFileTapped: ()->() = {}
     
-    @IBAction func addFileButtonTapped(sender: AnyObject) {
+    @IBAction func addFileButtonTapped(_ sender: AnyObject) {
         addFileTapped()
     }
 }
@@ -248,10 +248,10 @@ class NewUploadTextCell: WhizzyTextInputCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         
-        backgroundColor = UIColor.clearColor()
-        contentView.backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
+        contentView.backgroundColor = UIColor.clear
         
-        textView.backgroundColor = UIColor.clearColor()
+        textView.backgroundColor = UIColor.clear
         
         separatorInset = UIEdgeInsets(top: 0, left: 2000, bottom: 0, right: 0)
     }

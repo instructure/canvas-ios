@@ -18,8 +18,8 @@
 
 import Foundation
 
-extension NSBundle {
-    static func assignments() -> NSBundle {
-        return NSBundle(identifier: "com.instructure.AssignmentKit")!
+extension Bundle {
+    static func assignments() -> Bundle {
+        return Bundle(identifier: "com.instructure.AssignmentKit")!
     }
 }

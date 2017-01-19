@@ -19,9 +19,9 @@
 import Foundation
 
 public extension UIFont {
-    public func sizeOfString (string: String, constrainedToWidth width: CGFloat) -> CGSize {
-        return (string as NSString).boundingRectWithSize(CGSize(width: width, height: CGFloat.max),
-            options: unsafeBitCast(NSStringDrawingOptions.UsesLineFragmentOrigin.rawValue | NSStringDrawingOptions.UsesFontLeading.rawValue, NSStringDrawingOptions.self),
+    public func sizeOfString (_ string: String, constrainedToWidth width: CGFloat) -> CGSize {
+        return (string as NSString).boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude),
+            options: unsafeBitCast(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue, to: NSStringDrawingOptions.self),
             attributes: [NSFontAttributeName: self],
             context: nil).size
     }

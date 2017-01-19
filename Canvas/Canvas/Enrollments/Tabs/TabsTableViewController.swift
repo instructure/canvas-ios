@@ -21,19 +21,19 @@ import EnrollmentKit
 import TooLegit
 import SoPretty
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 import TechDebt
 
 extension Tab {
-    func routingURL(session: Session) -> NSURL? {
+    func routingURL(_ session: Session) -> URL? {
         if isPages {
             let path = contextID.apiPath + "/pages_home"
-            return NSURL(string: path)
+            return URL(string: path)
         }
         if isHome {
             guard let enrollment = session.enrollmentsDataSource[contextID] else { return url }
-            return NSURL(string: enrollment.defaultViewPath)
+            return URL(string: enrollment.defaultViewPath)
         }
         return url
     }
@@ -41,69 +41,60 @@ extension Tab {
 
 extension ColorfulViewModel {
     init(session: Session, tab: Tab) {
-        self.init(style: .Basic)
+        self.init(features: [.icon])
         
         title.value = tab.label
         icon.value = tab.icon
-        color <~ session.enrollmentsDataSource.producer(tab.contextID)
-            .map { $0?.color ?? .prettyGray() }
+        color <~ session.enrollmentsDataSource.color(for: tab.contextID)
     }
 }
 
 class TabsTableViewController: Tab.TableViewController {
     
-    let route: (UIViewController, NSURL)->()
+    let route: (UIViewController, URL)->()
     let session: Session
     let contextID: ContextID
+
+    var selectedTabURL: URL?
     
-    var alreadyRoutedToTheHomeTab = false
-    
-    init(session: Session, contextID: ContextID, route: (UIViewController, NSURL)->()) throws {
+    init(session: Session, contextID: ContextID, route: @escaping (UIViewController, URL)->()) throws {
         self.session = session
         self.route = route
         self.contextID = contextID
         super.init()
         
         prepare(try Tab.collection(session, contextID: contextID), refresher: try Tab.refresher(session, contextID: contextID)) { tab in ColorfulViewModel(session: session, tab: tab) }
-        
+
         rac_title <~ session.enrollmentsDataSource.producer(contextID).map { $0?.name }
-        
-        cbi_canBecomeMaster = true
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let routingURL = collection[indexPath].routingURL(session) {
             route(self, routingURL)
         }
     }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        if !alreadyRoutedToTheHomeTab
-            && UIDevice.currentDevice().userInterfaceIdiom == .Pad
-            && tableView.numberOfSections > 0 && tableView.numberOfRowsInSection(0) > 0 {
-            tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: .Top)
-            if let routingURL = collection.filter({ $0.isHome }).first?.routingURL(session) {
-                route(self, routingURL)
-            }
-            alreadyRoutedToTheHomeTab = true
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let selectedTabURL = selectedTabURL, let tab = collection.filter({ $0.routingURL(session) == selectedTabURL }).first, let indexPath = collection.indexPath(forObject: tab), self.splitViewController?.isCollapsed == false {
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
         }
     }
     
-    override func handleError(error: NSError) {
+    override func handleError(_ error: NSError) {
         guard error.code == 401 else { super.handleError(error); return }
         
         let title = NSLocalizedString("Access Denied", comment: "Access Denied from the server")
         let message = NSLocalizedString("You do not have access to this content. The Course or Group may not have started, or may have been concluded.", comment: "Error message for an unauthorized course or group.")
         let dismiss = NSLocalizedString("Dismiss", comment: "Dismiss an alert dialog")
         
-        let accessDenied = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        accessDenied.addAction(UIAlertAction(title: dismiss, style: .Cancel, handler: nil))
-        presentViewController(accessDenied, animated: true, completion: nil)
+        let accessDenied = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        accessDenied.addAction(UIAlertAction(title: dismiss, style: .cancel, handler: nil))
+        present(accessDenied, animated: true, completion: nil)
     }
 }
 

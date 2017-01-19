@@ -27,13 +27,15 @@ import SoLazy
 // ---------------------------------------------
 extension Todo {
 
-    public static func allTodos(session: Session) throws -> FetchedCollection<Todo> {
+    public static func allTodos(_ session: Session) throws -> FetchedCollection<Todo> {
         let predicate = NSPredicate(format: "%K == false", "done")
-        let frc = Todo.fetchedResults(predicate, sortDescriptors: ["assignmentDueDate".ascending, "assignmentName".ascending], sectionNameKeypath: nil, inContext: try session.todosManagedObjectContext())
-        return try FetchedCollection(frc: frc)
+        let moc = try session.todosManagedObjectContext()
+        return try FetchedCollection(frc:
+            moc.fetchedResults(predicate, sortDescriptors: ["assignmentDueDate".ascending, "assignmentName".ascending])
+        )
     }
 
-    public static func refresher(session: Session) throws -> Refresher {
+    public static func refresher(_ session: Session) throws -> Refresher {
         let remote = try Todo.getTodos(session)
         let context = try session.todosManagedObjectContext()
         let sync = Todo.syncSignalProducer(inContext: context, fetchRemote: remote)

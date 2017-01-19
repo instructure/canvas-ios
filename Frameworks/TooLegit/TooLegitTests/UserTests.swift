@@ -33,7 +33,7 @@ class SessionUserTests: XCTestCase {
     }
 
     func testCreateUserWithAvatarLoginIDAndEmail() {
-        let avatarURL = NSURL(string: "http://ibm.com")!
+        let avatarURL = URL(string: "http://ibm.com")!
         let user = SessionUser(id: "2", name: "Jane", loginID: "user", sortableName: "jane", email: "jane@user.com", avatarURL: avatarURL)
 
         XCTAssertEqual("2", user.id)
@@ -64,10 +64,10 @@ class SessionUserTests: XCTestCase {
 
         if let
             id = json["id"] as? String,
-            loginID = json["login_id"] as? String,
-            name = json["name"] as? String,
-            sortableName = json["sortable_name"] as? String,
-            email = json["primary_email"] as? String
+            let loginID = json["login_id"] as? String,
+            let name = json["name"] as? String,
+            let sortableName = json["sortable_name"] as? String,
+            let email = json["primary_email"] as? String
         {
             XCTAssertEqual("2", id)
             XCTAssertEqual("askywalker", loginID)
@@ -82,24 +82,24 @@ class SessionUserTests: XCTestCase {
 
     func testSessionUser_getAvatarImage_whenAvatarURLIsNil_completesWithError() {
         let user = SessionUser(id: "1", name: "John", loginID: nil, sortableName: nil, email: nil, avatarURL: nil)
-        let expectation = expectationWithDescription("get avatar image")
+        let expectation = self.expectation(description: "get avatar image")
         user.getAvatarImage { image, error in
             XCTAssertNil(image)
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
     }
 
     func testSessionUser_getAvatarImage_whenAvatarURLIsNotNil_completesWithImage() {
-        let user = SessionUser(id: "1", name: "John", loginID: nil, sortableName: nil, email: nil, avatarURL: NSURL.image)
-        let expectation = expectationWithDescription("get avatar image")
+        let user = SessionUser(id: "1", name: "John", loginID: nil, sortableName: nil, email: nil, avatarURL: URL.image)
+        let expectation = self.expectation(description: "get avatar image")
         user.getAvatarImage { image, error in
             XCTAssertNotNil(image)
             XCTAssertNil(error)
             expectation.fulfill()
         }
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
     }
 
 }

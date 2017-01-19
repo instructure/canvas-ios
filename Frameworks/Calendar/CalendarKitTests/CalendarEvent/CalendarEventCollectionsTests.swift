@@ -36,23 +36,23 @@ class DescribeCollectionsPredicate: CalendarKitTests {
     }
 
     func test_itFiltersByDateRange() {
-        let start = self.dayDateFormatter.dateFromString("2016-01-01")!
-        let end = self.dayDateFormatter.dateFromString("2016-06-30")!
+        let start = self.dayDateFormatter.date(from: "2016-01-01")!
+        let end = self.dayDateFormatter.date(from: "2016-06-30")!
         let codes = ["code_get_the_car", "code_feb"]
         let predicate = CalendarEvent.predicate(start, endDate: end, contextCodes: codes)
 
-        let results = data.filter(predicate.evaluateWithObject)
+        let results = data.filter(predicate.evaluate)
 
         XCTAssertEqual(3, results.count)
     }
 
     func test_itFiltersByContextCode() {
-        let start = self.dayDateFormatter.dateFromString("2016-01-01")!
-        let end = self.dayDateFormatter.dateFromString("2016-12-30")!
+        let start = self.dayDateFormatter.date(from: "2016-01-01")!
+        let end = self.dayDateFormatter.date(from: "2016-12-30")!
         let code = "code_get_the_car"
         let allOf2016 = CalendarEvent.predicate(start, endDate: end, contextCodes: [code])
 
-        let results = data.filter(allOf2016.evaluateWithObject)
+        let results = data.filter(allOf2016.evaluate)
 
         XCTAssertEqual(3, results.count)
     }

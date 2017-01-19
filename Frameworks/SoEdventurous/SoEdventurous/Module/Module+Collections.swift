@@ -39,11 +39,10 @@ extension Module {
         return cacheKey(context, [courseID])
     }
 
-    public static func collection<T>(session: Session, courseID: String, moduleIDs: [String]? = nil, titleForSectionTitle: String? -> String? = { _ in nil }) throws -> FetchedCollection<T> {
+    public static func collection<T>(session: Session, courseID: String, moduleIDs: [String]? = nil, titleForSectionTitle: @escaping (String?) -> String? = { _ in nil }) throws -> FetchedCollection<T> {
         let context = try session.soEdventurousManagedObjectContext()
         let pred = moduleIDs.flatMap { NSCompoundPredicate(andPredicateWithSubpredicates: [predicate(forModulesIn: courseID), predicate(withIDs: $0)]) } ?? predicate(forModulesIn: courseID)
-        let frc = Module.fetchedResults(pred, sortDescriptors: ["position".ascending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection(frc: frc, titleForSectionTitle: titleForSectionTitle)
+        return try FetchedCollection(frc: context.fetchedResults(pred, sortDescriptors: ["position".ascending]), titleForSectionTitle: titleForSectionTitle)
     }
 
     public static func refresher(session: Session, courseID: String) throws -> Refresher {
@@ -51,7 +50,7 @@ extension Module {
         let remote = try Module.getModules(session, courseID: courseID)
         let local = Module.predicate(forModulesIn: courseID)
         let sync = Module.syncSignalProducer(local, inContext: context, fetchRemote: remote)
-        let key = collectionCacheKey(context, courseID: courseID)
+        let key = collectionCacheKey(context: context, courseID: courseID)
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 

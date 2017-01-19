@@ -1,13 +1,13 @@
 /* all pages segmented control title */
 "All Pages" = "Todas las páginas";
 
-/* badge indicating front page */
+/* front page segmented control title */
 "Front Page" = "Portada";
 
-/* Generic button to dismiss the popup message */
+/* (No Commment) */
 "Okay" = "Está bien";
 
-/* The page is locked by the teacher */
+/* (No Commment) */
 "Page Locked" = "Página bloqueada";
 
 /* Page list fails */

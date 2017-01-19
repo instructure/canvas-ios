@@ -19,7 +19,7 @@
 import Foundation
 import SoPretty
 import SoLazy
-import ReactiveCocoa
+import ReactiveSwift
 import Airwolf
 import TooLegit
 import Marshal
@@ -27,7 +27,7 @@ import Marshal
 class CanvasObserverLoginViewController: WebLoginViewController, UIWebViewDelegate {
     let loginSuccess: (Session)->()
     
-    init(domain: String, loginSuccess: (Session)->()) {
+    init(domain: String, loginSuccess: @escaping (Session)->()) {
         self.loginSuccess = loginSuccess
         super.init(request: AirwolfAPI.authenticateAsCanvasObserver(domain), useBackButton: true, loginFailureMessage: NSLocalizedString("Only Canvas observers can authenticate in Canvas Parent.", comment: "Canvas Observer Auth Failed Message"))
     }
@@ -42,14 +42,14 @@ class CanvasObserverLoginViewController: WebLoginViewController, UIWebViewDelega
         webView.delegate = self
     }
     
-    var jsonBodyData: NSData? {
-        return webView.stringByEvaluatingJavaScriptFromString("document.getElementsByTagName('pre')[0].innerHTML")?.dataUsingEncoding(NSUTF8StringEncoding)
+    var jsonBodyData: Data? {
+        return webView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('pre')[0].innerHTML")?.data(using: String.Encoding.utf8)
     }
     
     // MARK: UIWebViewDelegate
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
-        guard let url = request.URL else { return true }
+        guard let url = request.url else { return true }
         
         
         let commonResponses = handleCommonResponses(url)
@@ -58,13 +58,13 @@ class CanvasObserverLoginViewController: WebLoginViewController, UIWebViewDelega
         }
         
         guard url.path == "/canvas/tokenReady" else { return true }
-        guard let host = request.URL?.host, let baseURL = NSURL(string: "https://\(host)") else { return true }
+        guard let host = request.url?.host, let baseURL = URL(string: "https://\(host)") else { return true }
         guard let token = url.queryItemForKey("token")?.value else { return true }
         guard let parentID = url.queryItemForKey("parent_id")?.value else { return true }
         
         let sessionUser = SessionUser(id: parentID, name: "")
         let session = Session(baseURL: baseURL, user: sessionUser, token: token)
-        webView.hidden = true
+        webView.isHidden = true
         loginSuccess(session)
         
         return true

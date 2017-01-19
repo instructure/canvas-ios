@@ -245,10 +245,10 @@ Du måste först göra färdigt:";
 /* Archive selected messages button */
 "Archive" = "Arkiv";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Knapp för att arkivera meddelanden";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Arkivera alla valda meddelanden";
 
 /* No comment provided by engineer. */
@@ -382,10 +382,10 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* (No Commment) */
 "Completed" = "Färdig";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Knapp för att skapa meddelande";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Skapa meddelande";
 
 /* Title for Conferences tab */

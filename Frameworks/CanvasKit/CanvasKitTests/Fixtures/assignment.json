@@ -1,0 +1,102 @@
+{
+    "id": 4,
+    "name": "some assignment",
+    "description": "<p>Do the following:</p>...",
+    "due_at": "2012-07-01T23:59:00-06:00",
+    "lock_at": "2012-07-01T23:59:00-06:00",
+    "unlock_at": "2012-07-01T23:59:00-06:00",
+    "course_id": 123,
+    "html_url": "http://canvas.example.com/courses/123/assignments/4",
+    "assignment_group_id": 2,
+    "allowed_extensions": [ "docx", "ppt" ],
+    "turnitin_enabled": true,
+    "turnitin_settings": {
+        "originality_report_visibility": "after_grading",
+        "s_paper_check": false,
+        "internet_check": false,
+        "journal_check": false,
+        "exclude_biblio": false,
+        "exclude_quoted": false,
+        "exclude_small_matches_type": "percent",
+        "exclude_small_matches_value": 50
+    },
+    "grade_group_students_individually": true,
+    "external_tool_tag_attributes": {
+        "url": "http://instructure.com",
+        "new_tab": false,
+        "resource_link_id": "ab81173af98b8c33e66a"
+    },
+    "peer_reviews": true,
+    "automatic_peer_reviews": true,
+    "peer_review_count": 2,
+    "peer_reviews_assign_at": "2012-07-01T23:59:00-06:00",
+    "group_category_id": 1,
+    "needs_grading_count": 17,
+    "position": 1,
+    "muted": true,
+    "points_possible": 12,
+    "submission_types": ["online_text_entry"],
+    "grading_type": "points",
+    "grading_standard_id": null,
+    "published": true,
+    "locked_for_user": true,
+    "lock_info": {
+        "asset_string": "assignment_4",
+        "unlock_at": "2013-01-01T00:00:00-06:00",
+        "lock_at": "2013-02-01T00:00:00-06:00",
+        "context_module": {}
+    },
+    "lock_explanation": "This assignment is locked until September 1 at 12:00am",
+    "quiz_id": 620,
+    "anonymous_submissions": false,
+    "discussion_topic": {},
+    "freeze_on_copy": false,
+    "frozen": false,
+    "frozen_attributes": [ "title" ],
+    "submission": {},
+    "use_rubric_for_grading": true,
+    "rubric_settings": {
+        "points_possible": 12
+    },
+    "rubric": [
+               {
+               "points": 10,
+               "id": "crit1",
+               "description": "Criterion 1",
+               "ratings": [
+                           {
+                           "points": 10,
+                           "id": "rat1",
+                           "description": "Full marks"
+                           },
+                           {
+                           "points": 7,
+                           "id": "rat2",
+                           "description": "Partial answer"
+                           },
+                           {
+                           "points": 0,
+                           "id": "rat3",
+                           "description": "No marks"
+                           }
+                           ]
+               },
+               {
+               "points": 2,
+               "id": "crit2",
+               "description": "Criterion 2",
+               "ratings": [
+                           {
+                           "points": 2,
+                           "id": "rat1",
+                           "description": "Pass"
+                           },
+                           {
+                           "points": 0,
+                           "id": "rat2",
+                           "description": "Fail"
+                           }
+                           ]
+               }
+               ]
+}

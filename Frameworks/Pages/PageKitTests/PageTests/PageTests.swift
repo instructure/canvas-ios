@@ -64,7 +64,7 @@ class PageTests: XCTestCase {
             
             XCTAssertEqual(page.title, "Test Page")
             XCTAssertEqual(page.url, "test-page")
-            XCTAssertTrue(NSDate(year: 2011, month: 01, day: 10).isTheSameDayAsDate(page.createdAt))
+            XCTAssertTrue(Date(year: 2011, month: 01, day: 10).isTheSameDayAsDate(page.createdAt))
             XCTAssertTrue(page.published)
             XCTAssertFalse(page.frontPage)
             XCTAssertEqual(page.contextID.canvasContextID, "course_24601")
@@ -75,7 +75,7 @@ class PageTests: XCTestCase {
             // Test defaults for missing required values
 
             XCTAssertEqual(page.editingRoles, "", "should default to empty string when value not found")
-            XCTAssertTrue(page.updatedAt.isEqualToDate(page.createdAt), "should default to creation date when last updated not found")
+            XCTAssertEqual(page.updatedAt, page.createdAt, "should default to creation date when last updated not found")
             
             XCTAssertNil(page.body)
             XCTAssertNil(page.lockExplanation)
@@ -87,7 +87,7 @@ class PageTests: XCTestCase {
             
             try page.updateValues(json, inContext: context)
             
-            XCTAssertTrue(NSDate(year: 2016, month: 05, day: 25).isTheSameDayAsDate(page.updatedAt))
+            XCTAssertTrue(Date(year: 2016, month: 05, day: 25).isTheSameDayAsDate(page.updatedAt))
             XCTAssertEqual(page.editingRoles, "teachers")
         }
     }

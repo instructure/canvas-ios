@@ -1,8 +1,17 @@
+/* Message for an error alert */
+"An unexpected error occured. %@(%@)" = "An unexpected error occured. %1$@(%2$@)";
+
 /* Dismiss an error dialog */
 "Dismiss" = "Dismiss";
 
 /* Data encoding error title */
 "Encoding Error" = "Encoding Error";
+
+/* Title for an error alert */
+"Error" = "Error";
+
+/* attached to error explanation in dialog */
+"Explanation:" = "Explanation:";
 
 /* Option to report an error */
 "Report" = "Report";
@@ -10,12 +19,9 @@
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "There was a problem encoding UTF8 Data.";
 
-/* JSON Parsing error description */
+/* (No Commment) */
 "There was a problem interpreting a response from the server." = "There was a problem interpreting a response from the server.";
 
 /* SoLazy's fallback title for an unknown error */
 "Unknown Error" = "Unknown Error";
-
-/* attached to error explanation in dialog */
-"Explanation:" = "Explanation:";
 

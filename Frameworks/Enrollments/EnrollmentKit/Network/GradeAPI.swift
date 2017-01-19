@@ -18,8 +18,8 @@
 
 import TooLegit
 
-public class GradeAPI {
-    public class func getGrades(session: Session, courseID: String, gradingPeriodID: String?) throws -> NSURLRequest {
+open class GradeAPI {
+    open class func getGrades(_ session: Session, courseID: String, gradingPeriodID: String?) throws -> URLRequest {
         let path = api/v1/"courses/\(courseID)/enrollments"
         let parameters = Session.rejectNilParameters([
             "user_id": "self",

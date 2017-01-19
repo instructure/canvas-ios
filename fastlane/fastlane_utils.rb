@@ -31,12 +31,21 @@ def retry_cmd cmd_name, limit = 3, &block
   end
 end
 
+def ui_error msg
+  FastlaneCore::UI.error "ERROR: #{msg}"
+  abort
+end
+
+def ui_important msg
+  FastlaneCore::UI.important msg
+end
+
 def get_simulator opts={}
   ios_version = opts.fetch(:ios_version)
   name = opts.fetch(:name)
 
   all_devices = FastlaneCore::Simulator.all
-  device = FastlaneCore::Simulator.all.detect do |device|
+  device = all_devices.detect do |device|
     # ios version is the same as os version.
     device.is_simulator == true &&
         device.ios_version == ios_version &&
@@ -45,11 +54,11 @@ def get_simulator opts={}
   end
 
   unless device
-    puts "Available devices: #{all_devices.map { |d| d.name + ' ' + d.ios_version }}"
-    abort("No device found for #{name} #{ios_version}")
+    ui_important "Available devices: #{all_devices.map { |d| d.name + ' ' + d.ios_version }}"
+    ui_error "No device found for #{name} #{ios_version}"
   end
 
   device
 end
 
-TEST_SIMULATOR = get_simulator(name: 'iPhone 7 Plus', ios_version: '10.1')
+TEST_SIMULATOR = get_simulator(name: 'iPhone 7 Plus', ios_version: '10.2')

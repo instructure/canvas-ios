@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ need grading.";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ pts";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Type: %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache cleared";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Calendar";
 
 /* (No Commment) */
@@ -318,6 +325,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Choose from Library..." = "Choose from Library...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Choose option";
 
 /* (No Commment) */
 "Choose video" = "Choose video";
@@ -376,7 +386,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Course Syllabus" = "Course Syllabus";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "Courses";
 
 /* (No Commment) */
@@ -453,6 +464,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Downloading..." = "Downloading...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Due %@";
 
 /* (No Commment) */
 "Due:" = "Due:";
@@ -637,6 +651,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Item %1$d of %2$d" = "Item %1$d of %2$d";
 
+/* table header for module items */
+"Items" = "Items";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "It’s empty; what are you still doing here?";
 
@@ -661,11 +678,17 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Legal" = "Legal";
 
+/* Web URL link item label */
+"Link" = "Link";
+
 /* (No Commment) */
 "Loading..." = "Loading...";
 
 /* (No Commment) */
 "Locked" = "Locked";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Locked until \"%@\" is graded";
 
 /* locked date */
 "Locked until %@" = "Locked until %@";
@@ -687,6 +710,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Masquerade" = "Masquerade";
+
+/* Master Path module item type */
+"Mastery Path" = "Mastery Path";
 
 /* (No Commment) */
 "Me" = "Me";
@@ -715,7 +741,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Message everyone separately or add everyone to a group conversation?";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Messages";
 
 /* (No Commment) */
@@ -760,6 +786,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "New Folder" = "New Folder";
 
+/* Button title for next module item. */
+"Next" = "Next";
+
 /* (No Commment) */
 "Next 7 Days" = "Next 7 Days";
 
@@ -774,6 +803,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "No Due Date";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "No Mastery Paths";
 
 /* (No Commment) */
 "No Recorded Audio" = "No Recorded Audio";
@@ -832,7 +864,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Notification Preferences";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Notifications";
 
 /* OK Button Title */
@@ -858,6 +891,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Open in..." = "Open in...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Option %d";
 
 /* (No Commment) */
 "Other" = "Other";
@@ -900,6 +936,12 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Posts your comment" = "Posts your comment";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Prerequisite Modules";
+
+/* Button title for previous module item. */
+"Previous" = "Previous";
 
 /* (No Commment) */
 "Previous item" = "Previous item";
@@ -985,6 +1027,12 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Search here...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Select Option";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Select Option %d";
+
 /* (No Commment) */
 "Select file(s)" = "Select file(s)";
 
@@ -1035,6 +1083,20 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Starts recording a media comment" = "Starts recording a media comment";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Status: Completed";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Status: Incomplete";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Status: Locked";
+
+/* Module status label when started */
+"Status: Started" = "Status: Started";
 
 /* (No Commment) */
 "Stay Logged In" = "Stay Logged In";
@@ -1202,16 +1264,22 @@ Error: %@";
 /* (No Commment) */
 "This is a media message." = "This is a media message.";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "This module item doesn't have mastery paths set up.";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "This would be a great time to do some extra credit.";
 
 /* Title of the Todo screen */
 "To Do" = "To Do";
 
+/* To-Do List landing page title */
+"To-Do List" = "To-Do List";
+
 /* (No Commment) */
 "To:" = "To:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "Today";
 
 /* No comment provided by engineer. */
@@ -1231,6 +1299,9 @@ Error: %@";
 
 /* (No Commment) */
 "Turn in %@" = "Turn in %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Type: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Uh-oh! No Internet Connection";

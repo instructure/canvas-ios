@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ 需要評分";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ 點";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@.類型：%2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "緩存已清空";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "月曆";
 
 /* (No Commment) */
@@ -318,6 +325,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Choose from Library..." = "從庫中選擇...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "選擇選項";
 
 /* (No Commment) */
 "Choose video" = "選擇視頻";
@@ -376,7 +386,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Course Syllabus" = "課程大綱";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "課程";
 
 /* (No Commment) */
@@ -453,6 +464,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Downloading..." = "正在下載...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "截止日期%@";
 
 /* (No Commment) */
 "Due:" = "到期日：";
@@ -637,6 +651,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Item %1$d of %2$d" = "項目 %1$d 來自 %2$d";
 
+/* table header for module items */
+"Items" = "項目";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "這裡是空的，你還在這裡做什麼呢？";
 
@@ -661,11 +678,17 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Legal" = "法律事務";
 
+/* Web URL link item label */
+"Link" = "連結";
+
 /* (No Commment) */
 "Loading..." = "正在載入...";
 
 /* (No Commment) */
 "Locked" = "已鎖定";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "鎖定直至 \"%@\" 被評分";
 
 /* locked date */
 "Locked until %@" = "已鎖定直至 %@";
@@ -687,6 +710,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Masquerade" = "偽裝身份";
+
+/* Master Path module item type */
+"Mastery Path" = "掌握歷程";
 
 /* (No Commment) */
 "Me" = "我";
@@ -715,7 +741,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "分別給所有人發郵件，或者將所有人加入一個群組討論中？";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "郵件";
 
 /* (No Commment) */
@@ -760,6 +786,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "New Folder" = "新建資料夾";
 
+/* Button title for next module item. */
+"Next" = "下一個";
+
 /* (No Commment) */
 "Next 7 Days" = "隨後7天";
 
@@ -774,6 +803,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "無截止日期";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "沒有掌握歷程";
 
 /* (No Commment) */
 "No Recorded Audio" = "無已錄製音頻";
@@ -832,7 +864,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "通知偏好設定";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "通知";
 
 /* OK Button Title */
@@ -858,6 +891,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Open in..." = "打開方式...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "選項%d";
 
 /* (No Commment) */
 "Other" = "其他";
@@ -900,6 +936,12 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Posts your comment" = "發布您的評論";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "先決條件單元";
+
+/* Button title for previous module item. */
+"Previous" = "上一個";
 
 /* (No Commment) */
 "Previous item" = "上一個項目";
@@ -985,6 +1027,12 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "在此搜尋...";
 
+/* No comment provided by engineer. */
+"Select Option" = "選擇選項";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "選擇選項%d";
+
 /* (No Commment) */
 "Select file(s)" = "選擇文檔(s)";
 
@@ -1035,6 +1083,20 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Starts recording a media comment" = "開始錄製媒體評論";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "狀態：已完成";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "狀態：未完成";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "狀態：已鎖定";
+
+/* Module status label when started */
+"Status: Started" = "狀態：已開始";
 
 /* (No Commment) */
 "Stay Logged In" = "保持登入狀態";
@@ -1202,16 +1264,22 @@ Error: %@" = "在存取所需要的文檔時出現錯誤。
 /* (No Commment) */
 "This is a media message." = "這是一條媒體郵件。";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "本單元尚未設立掌握歷程。";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "現在很適合再修幾個學分。";
 
 /* Title of the Todo screen */
 "To Do" = "待辦";
 
+/* To-Do List landing page title */
+"To-Do List" = "待辦事項清單";
+
 /* (No Commment) */
 "To:" = "發送給：";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "今天";
 
 /* No comment provided by engineer. */
@@ -1231,6 +1299,9 @@ Error: %@" = "在存取所需要的文檔時出現錯誤。
 
 /* (No Commment) */
 "Turn in %@" = "提交 %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "類型：%@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "抱歉！沒有網際網路連結";

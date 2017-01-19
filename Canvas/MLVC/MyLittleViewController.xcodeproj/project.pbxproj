@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49369ECD1DF60C09006C644F /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369ECC1DF60B52006C644F /* ReactiveObjC.framework */; };
 		4969BD9B1C879CC10058EED2 /* NSObject+RACCollectionChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A53A9B18105B7E0070AA01 /* NSObject+RACCollectionChanges.m */; };
 		4969BD9C1C879CC10058EED2 /* MLVCCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4991C07B17FC5C420059DDA3 /* MLVCCollectionController.m */; };
 		4969BD9D1C879CC10058EED2 /* MLVCCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490BF5941811BE95000AC62D /* MLVCCollectionViewController.m */; };
@@ -16,8 +17,6 @@
 		4969BDA31C879D8D0058EED2 /* EXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 4969BDA21C879D8D0058EED2 /* EXTScope.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		4969BDA51C879DA40058EED2 /* metamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 4969BDA41C879DA40058EED2 /* metamacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		4969BDA81C879F020058EED2 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4969BDA71C879F020058EED2 /* CocoaLumberjack.framework */; };
-		4969BDAD1C879FA60058EED2 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4969BDAC1C879FA60058EED2 /* ReactiveCocoa.framework */; };
-		4969BDAF1C879FB00058EED2 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4969BDAE1C879FB00058EED2 /* Result.framework */; };
 		4969BDB01C87A16A0058EED2 /* MLVCViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 496E25CD1836AAD90008A0B4 /* MLVCViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4969BDB11C87A16A0058EED2 /* MLVCViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 496E25D01836ABC90008A0B4 /* MLVCViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4969BDB21C87A1B00058EED2 /* MLVCCollectionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4991C07917FC5B590059DDA3 /* MLVCCollectionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,13 +38,12 @@
 		4926A48F17FF7344000CDBCD /* MLVCTableViewCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLVCTableViewCellViewModel.h; sourceTree = "<group>"; };
 		4926D7DF1866B24F003A394F /* UICollectionView+MyLittleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+MyLittleViewController.h"; sourceTree = "<group>"; };
 		4926D7E01866B24F003A394F /* UICollectionView+MyLittleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+MyLittleViewController.m"; sourceTree = "<group>"; };
+		49369ECC1DF60B52006C644F /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4969BD931C879BF10058EED2 /* MyLittleViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MyLittleViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4969BD971C879BF10058EED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4969BDA21C879D8D0058EED2 /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		4969BDA41C879DA40058EED2 /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
 		4969BDA71C879F020058EED2 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4969BDAC1C879FA60058EED2 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4969BDAE1C879FB00058EED2 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		496E25BE18343DB10008A0B4 /* MLVCCollectionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLVCCollectionViewModel.h; sourceTree = "<group>"; };
 		496E25BF18343DF30008A0B4 /* MLVCTableViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLVCTableViewModel.h; sourceTree = "<group>"; };
 		496E25CD1836AAD90008A0B4 /* MLVCViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLVCViewModel.h; sourceTree = "<group>"; };
@@ -63,9 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4969BDAF1C879FB00058EED2 /* Result.framework in Frameworks */,
 				4969BDA81C879F020058EED2 /* CocoaLumberjack.framework in Frameworks */,
-				4969BDAD1C879FA60058EED2 /* ReactiveCocoa.framework in Frameworks */,
+				49369ECD1DF60C09006C644F /* ReactiveObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,8 +116,7 @@
 		4969BDA61C879EF60058EED2 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				4969BDAE1C879FB00058EED2 /* Result.framework */,
-				4969BDAC1C879FA60058EED2 /* ReactiveCocoa.framework */,
+				49369ECC1DF60B52006C644F /* ReactiveObjC.framework */,
 				4969BDA71C879F020058EED2 /* CocoaLumberjack.framework */,
 			);
 			name = Dependencies;

@@ -19,10 +19,10 @@
 import Foundation
 
 class TableSectionHeaderView: UIView {
-    private let label = UILabel()
+    fileprivate let label = UILabel()
 
-    private var horizontalConstraints: [NSLayoutConstraint] = []
-    private var verticalConstraints: [NSLayoutConstraint] = []
+    fileprivate var horizontalConstraints: [NSLayoutConstraint] = []
+    fileprivate var verticalConstraints: [NSLayoutConstraint] = []
 
     var text = "" {
         didSet {
@@ -49,7 +49,7 @@ class TableSectionHeaderView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
 
-        label.font = UIFont.systemFontOfSize(13.0)
+        label.font = UIFont.systemFont(ofSize: 13.0)
         updateViewConstraints()
 
         isAccessibilityElement = true
@@ -59,8 +59,8 @@ class TableSectionHeaderView: UIView {
         removeConstraints(horizontalConstraints)
         removeConstraints(verticalConstraints)
 
-        horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[subview]-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": label])
-        verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[subview]-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": label])
+        horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[subview]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": label])
+        verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[subview]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": label])
 
         addConstraints(horizontalConstraints)
         addConstraints(verticalConstraints)

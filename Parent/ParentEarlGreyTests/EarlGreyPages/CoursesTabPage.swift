@@ -22,11 +22,11 @@ class CoursesTabPage: PageObject {
   // Mark: - Page Objects
 
   private static var emptyListView: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("courses_empty_view"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("courses_empty_view"))
   }
 
-  private static func courseCell(atRow: Int) -> GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("course_cell_\(atRow)"))
+  private static func courseCell(_ atRow: Int) -> GREYElementInteraction {
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("course_cell_\(atRow)"))
   }
 
   static func uniquePageElement() -> GREYElementInteraction {
@@ -35,17 +35,17 @@ class CoursesTabPage: PageObject {
 
   // Mark: - Assertion Helpers
 
-  static func assertPageObjects(file: String = #file, _ line: UInt = #line) {
+  static func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    emptyListView.assertWithMatcher(grey_sufficientlyVisible())
+    emptyListView.assert(with: grey_sufficientlyVisible())
   }
 
   // Mark: - UI Action Helpers
 
-  static func tapCourseCell(row: Int = 0, file: String = #file, _ line: UInt = #line) {
+  static func tapCourseCell(_ row: Int = 0, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    courseCell(row).performAction(grey_tap())
+    courseCell(row).perform(grey_tap())
   }
 }

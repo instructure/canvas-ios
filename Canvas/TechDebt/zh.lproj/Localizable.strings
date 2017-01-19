@@ -245,10 +245,10 @@ You must first complete:" = "
 /* Archive selected messages button */
 "Archive" = "存档";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "存档选择信息按钮";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "存档所有选择的信息";
 
 /* No comment provided by engineer. */
@@ -382,10 +382,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Completed" = "完成";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "撰写信息按钮";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "撰写信息";
 
 /* Title for Conferences tab */

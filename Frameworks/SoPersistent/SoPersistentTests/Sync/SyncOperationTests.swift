@@ -21,10 +21,10 @@ import SoAutomated
 import CoreData
 import TooLegit
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import Nimble
 
-let currentBundle = NSBundle(forClass: SyncSignalProducerTests.self)
+let currentBundle = Bundle(for: SyncSignalProducerTests.self)
 
 class SyncSignalProducerTests: XCTestCase {
     let session = Session.starWarsAPI
@@ -79,6 +79,6 @@ class SyncSignalProducerTests: XCTestCase {
             }
         }
 
-        XCTAssert(aragorn.deleted)
+        XCTAssert(aragorn.isDeleted)
     }
 }

@@ -24,9 +24,10 @@ extension MasteryPathAssignment {
         return NSPredicate(format: "%K == %@", "assignmentSetID", assignmentSetID)
     }
 
-    public static func allAssignmentsInSet(session: Session, assignmentSetID: String) throws -> FetchedCollection<MasteryPathAssignment> {
+    public static func allAssignmentsInSet(_ session: Session, assignmentSetID: String) throws -> FetchedCollection<MasteryPathAssignment> {
         let context = try session.soEdventurousManagedObjectContext()
-        let frc = fetchedResults(predicate(forAssignmentsInSet: assignmentSetID), sortDescriptors: ["position".ascending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection(frc: frc)
+        return try FetchedCollection(frc:
+            context.fetchedResults(predicate(forAssignmentsInSet: assignmentSetID), sortDescriptors: ["position".ascending])
+        )
     }
 }

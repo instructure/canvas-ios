@@ -153,7 +153,7 @@ Vous devez d’abord compléter :";
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; est verrouillé dans le cadre de &quot;%2$@&quot;";
 
 /* %@ will be replaced by the filename */
-"'%@' is now ready to submit to assignments" = "« %@ » est maintenant prêt à se soumettre aux travaux attribués";
+"'%@' is now ready to submit to assignments" = "« %@ » est maintenant prêt à se soumettre aux tâches";
 
 /* No comment provided by engineer. */
 "1 Attachment" = "1 pièce jointe";
@@ -245,10 +245,10 @@ Vous devez d’abord compléter :";
 /* Archive selected messages button */
 "Archive" = "Archiver";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Bouton d'archivage des messages sélectionnés";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Archiver tous les messages sélectionnés";
 
 /* No comment provided by engineer. */
@@ -261,10 +261,10 @@ Vous devez d’abord compléter :";
 "Ask me later" = "Me le demander plus tard";
 
 /* Label for an assignment */
-"Assignment" = "Travail assigné";
+"Assignment" = "Tâche";
 
 /* (No Commment) */
-"Assignments" = "Travaux assignés";
+"Assignments" = "Tâches";
 
 /* An item for attaching to a discussion */
 "Attachment" = "Pièce jointe";
@@ -303,7 +303,7 @@ Vous devez d’abord compléter :";
 "Can't load tool" = "Chargement de l'outil impossible";
 
 /* Setup only allows media but no Kaltura instance error title */
-"Can't submit media" = "Soumission du média impossible";
+"Can't submit media" = "Envoi du média impossible";
 
 /* Cancel button title */
 "Cancel" = "Annuler";
@@ -347,7 +347,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Choose a name for the new folder." = "Choisir un nom pour le nouveau dossier.";
 
 /* No comment provided by engineer. */
-"Choose a submission type" = "Choisir un type de soumission";
+"Choose a submission type" = "Choisir un type de envoi";
 
 /* Choose an existing picture or video to use in a comment. */
 "Choose from Library..." = "Choisir depuis la bibliothèque...";
@@ -382,10 +382,10 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Completed" = "Terminé";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Bouton de composition de message";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Composer un message";
 
 /* Title for Conferences tab */
@@ -401,7 +401,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Could not authenticate with server" = "Impossible d’authentifier avec le serveur";
 
 /* error title for failure to load a file submission */
-"Couldn't Load Submission" = "Impossible de charger la soumission";
+"Couldn't Load Submission" = "Impossible de charger l'envoi";
 
 /* title for alert displayed when iCanvas can't fetch recipients */
 "Couldn't find recipients" = "Impossible de trouver des destinataires";
@@ -416,7 +416,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Create Folder" = "Créer un dossier";
 
 /* Header for a section showing submitted filenames */
-"Current Submission" = "Soumission actuelle";
+"Current Submission" = "Envoi actuelle";
 
 /* Message telling users that quiz support on mobile is limited */
 "Currently there is limited quiz support on mobile" = "L'aide aux questionnaires est actuellement limitée sur plateforme mobile";
@@ -527,7 +527,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Enter User ID and Domain." = "Saisir l'identifiant utilisateur et le domaine.";
 
 /* Submission input view placeholder text */
-"Enter submission" = "Saisir la soumission";
+"Enter submission" = "Saisir l'envoi";
 
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "Saisie publiée";
@@ -569,7 +569,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "File extension not allowed: %@" = "Extension de fichier non autorisée : %@";
 
 /* (No Commment) */
-"File extension(s) permitted for this assignment:" = "Extensions de fichier permises pour ce travail assigné :";
+"File extension(s) permitted for this assignment:" = "Extensions de fichier permises pour cette tâche () :";
 
 /* No comment provided by engineer. */
 "File received" = "Fichier reçu";
@@ -743,7 +743,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Media Comment" = "Commentaire du média";
 
 /* Title for a media submission */
-"Media Submission" = "Soumission du média";
+"Media Submission" = "Envoi du média";
 
 /* (No Commment) */
 "Media comment" = "Commentaire du média";
@@ -827,7 +827,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "No Recorded Audio" = "Pas d'enregistrement audio";
 
 /* No Submission groupong */
-"No Submission" = "Aucune soumission";
+"No Submission" = "Aucune envoi";
 
 /* No comment provided by engineer. */
 "No Thanks" = "Non merci";
@@ -914,7 +914,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Other replies hidden until you reply" = "Les autres réponses sont masquées jusqu'à ce que vous répondiez";
 
 /* Title for Outcomes tab */
-"Outcomes" = "Résultats";
+"Outcomes" = "Acquis";
 
 /* (No Commment) */
 "Page" = "Page";
@@ -974,7 +974,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Rating for %1$@, Score: %2$g" = "Évaluation pour %1$@, Score : %2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
-"Re-submit Assignment" = "Re-soumettre le travail assigné";
+"Re-submit Assignment" = "Re-soumettre le tâche";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "Destinataires";
@@ -1073,7 +1073,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Certains des dossiers sélectionnés ne sont pas vides. Êtes-vous certain de vouloir quand même les supprimer?";
 
 /* 404 Error for missing assignment */
-"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Désolé, nous n'avons pa trouvé ce travail assigné. Il se pourrait qu'il ait été supprimé.";
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Désolé, nous n'avons pa trouvé cette tâche. Il se pourrait qu'il ait été supprimé.";
 
 /* (No Commment) */
 "Starts playing your recording" = "Commencer la lecture de votre enregistrement";
@@ -1103,13 +1103,13 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Sub Header" = "Sous-en-tête";
 
 /* View previously submitted assignment */
-"Submission" = "Soumission";
+"Submission" = "Envoi";
 
 /* Title for file submission error */
-"Submission Error" = "Erreur de soumission";
+"Submission Error" = "Erreur de envoi";
 
 /* No comment provided by engineer. */
-"Submission complete" = "Soumission terminée";
+"Submission complete" = "Envoi terminée";
 
 /* Submit an assignment */
 "Submit" = "Soumettre";
@@ -1118,7 +1118,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Submitted" = "Soumis";
 
 /* No comment provided by engineer. */
-"Submitting..." = "Soumission en cours...";
+"Submitting..." = "Envoi en cours...";
 
 /* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
 "Subscribe to calendar feed" = "Souscrire au flux du calendrier";
@@ -1178,7 +1178,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Text Comment" = "Commentaire de texte";
 
 /* Title for a text submission cell */
-"Text Submission" = "Soumission de texte";
+"Text Submission" = "Envoi de texte";
 
 /* Text entry submission type */
 "Text entry" = "Saisie de texte";
@@ -1205,7 +1205,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "There was a network error posting your comment." = "Une erreur de réseau est survenue lors de la publication de votre commentaire.";
 
 /* message for failed submission upload */
-"There was a network problem while attempting to upload your submission" = "Un problème de réseau est survenu lors de la tentative de téléversement de votre soumission";
+"There was a network problem while attempting to upload your submission" = "Un problème de réseau est survenu lors de la tentative de téléversement de votre envoi";
 
 /* Error message when fetching a file fails */
 "There was a problem accessing the requested file.
@@ -1227,10 +1227,10 @@ Erreur : %@";
 "This app is not authorized for use." = "Cette application n'est pas autorisée à l'utilisation.";
 
 /* Invalid LTI tool error message */
-"This assignment doesn't appear to be a valid external tool or is misconfigured." = "Ce travail assigné ne semble pas être un outil externe valide ou est mal configuré.";
+"This assignment doesn't appear to be a valid external tool or is misconfigured." = "Cette tâche ne semble pas être un outil externe valide ou est mal configuré.";
 
 /* message displayed in the details section if there is no comment. */
-"This assignment has no details." = "Ce travail assigné ne possède aucun détail.";
+"This assignment has no details." = "Cette tâche ne possède aucun détail.";
 
 /* No comment provided by engineer. */
 "This entry has been deleted" = "Cette saisie a été supprimée";
@@ -1248,7 +1248,7 @@ Erreur : %@";
 "This is a media message." = "Ceci est un message de média.";
 
 /* (No Commment) */
-"This would be a great time to do some extra credit." = "C'est un moment opportun pour effectuer des travaux optionnels.";
+"This would be a great time to do some extra credit." = "C'est un moment opportun pour effectuer des tâches optionnels.";
 
 /* (No Commment) */
 "To Do" = "À faire";
@@ -1320,10 +1320,10 @@ Erreur : %@";
 "Upload file" = "Téléverser un fichier";
 
 /* Error message */
-"Upload to assignment \"%@\" failed" = "Le téléversement au travail assigné « %@ » a échoué ";
+"Upload to assignment \"%@\" failed" = "Le téléversement au tâche « %@ » a échoué ";
 
 /* (No Commment) */
-"Upload to assignment &quot;%@&quot; failed" = "Le téléversement au travail assigné &quot;%@&quot; a échoué";
+"Upload to assignment &quot;%@&quot; failed" = "Le téléversement au tâche &quot;%@&quot; a échoué";
 
 /* Error message */
 "Upload to folder \"%@\" failed" = "Le téléversement au dossier « %@ » a échoué";
@@ -1353,7 +1353,7 @@ Erreur : %@";
 "Warning" = "Avertissement";
 
 /* error message for failure to load a file submission */
-"We had a problem loading the submission. Please try again later." = "Nous avons rencontré un problème pendant le chargement de la soumission. Veuillez réessayer plus tard.";
+"We had a problem loading the submission. Please try again later." = "Nous avons rencontré un problème pendant le chargement de l'envoi. Veuillez réessayer plus tard.";
 
 /* (No Commment) */
 "We were unable to verify the server for use with this app." = "Nous n'avons pas pu vérifier le serveur pour son utilisation avec cette application.";
@@ -1413,7 +1413,7 @@ Erreur : %@";
 "Your files could not be found" = "Vos fichiers n'ont pu être trouvés";
 
 /* Media submission type selected with no Kaltura set up */
-"Your school's configuration does not allow the type of submission selected for this assignment" = "La configuration de votre école ne permet pas le type de soumission sélectionné pour ce travail assigné";
+"Your school's configuration does not allow the type of submission selected for this assignment" = "La configuration de votre école ne permet pas le type de envoi sélectionné pour cette tâche";
 
 /* (No Commment) */
 "due on %1$@ at %2$@" = "Dû le %1$@ à %2$@";

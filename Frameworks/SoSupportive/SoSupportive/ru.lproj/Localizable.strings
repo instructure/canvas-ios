@@ -31,6 +31,9 @@
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Что-то сломалось, но я могу работать и без этого";
 
+/* Title for the subject field */
+"Subject" = "Тема";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Спасибо, ваш запрос был получен!";
 
@@ -46,4 +49,3 @@
 /* Title for the email field */
 "Your Email" = "Ваш адрес электронной почты";
 
-"Subject" = "Предмет";

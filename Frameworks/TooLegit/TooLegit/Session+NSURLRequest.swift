@@ -18,20 +18,22 @@
 
 import Foundation
 
-public extension NSURLRequest {
-    public static func requestWithDefaultHTTPHeaders(url: NSURL) -> NSURLRequest {
-        let request = NSMutableURLRequest(URL: url)
+public extension URLRequest {
+    public static func requestWithDefaultHTTPHeaders(_ url: URL) -> URLRequest {
+        var request = URLRequest(url: url)
         request.addDefaultHTTPHeaders()
-        return request
+        return request as URLRequest
     }
 }
 
-extension NSMutableURLRequest {
-    public convenience init(method: Method, URL: NSURL, parameters: [String: AnyObject], encoding: ParameterEncoding) throws {
+extension URLRequest {
+    public init(method: Method, URL: URL, parameters: [String: Any], encoding: ParameterEncoding?) throws {
+        
+        let encoding = encoding ?? method.defaultEncoding
         
         let url = encoding.URLWithURL(URL, method: method, encodingParameters: parameters)
         
-        self.init(URL: url)
+        self.init(url: url)
         
         addDefaultHTTPHeaders()
         
@@ -39,63 +41,65 @@ extension NSMutableURLRequest {
             setValue(contentType, forHTTPHeaderField: "Content-Type")
         }
 
-        HTTPBody = try encoding.body(method, encodingParameters: parameters)
-        HTTPMethod = method.rawValue
+        httpBody = try encoding.body(method, encodingParameters: parameters)
+        httpMethod = method.rawValue
     }
 
-    private func authorizeIf(authorize: Bool, withToken token: String?, masqueradeAsUserID: String?) -> NSMutableURLRequest {
-        guard let token = token where authorize else { return self }
-        setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+    public func authorized(_ authorized: Bool = true, with session: Session) -> URLRequest {
+        guard let token = session.token, authorized else { return self }
         
-        guard let masqID = masqueradeAsUserID, url = URL else { return self }
+        var authed = self
+        authed.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        guard let masqID = session.masqueradeAsUserID, let url = url else { return authed }
         let stringURL = url.absoluteString
-        let separator = stringURL!.rangeOfString("?") == nil ? "?" : "&"
-        self.URL = NSURL(string:stringURL! + separator + "as_user_id=\(masqID)")
+        let separator = stringURL.range(of: "?") == nil ? "?" : "&"
+        authed.url = URL(string:stringURL + separator + "as_user_id=\(masqID)")
         
-        return self
+        return authed
     }
 }
 
 
 extension Session {
-    private func pathByRemovingDuplicateSlash(path: String) -> String {
+    fileprivate func pathByRemovingDuplicateSlash(_ path: String) -> String {
         if path.hasPrefix("/") {
-            return path.stringByReplacingCharactersInRange(path.startIndex..<path.startIndex.advancedBy(1), withString: "")
+            return path.replacingCharacters(in: path.startIndex..<path.characters.index(path.startIndex, offsetBy: 1), with: "")
         } else {
             return path
         }
     }
 
-    public func GET(path: String, parameters: [String: AnyObject] = [:], encoding: ParameterEncoding = .URLEncodedInURL, authorized: Bool = true) throws -> NSURLRequest {
+    public func GET(_ path: String, parameters: [String: Any] = [:], encoding: ParameterEncoding = .urlEncodedInURL, authorized: Bool = true) throws -> URLRequest {
 
-        let url = baseURL.URLByAppendingPathComponent(pathByRemovingDuplicateSlash(path))
+        let url = baseURL.appendingPathComponent(pathByRemovingDuplicateSlash(path))
         
         var paramsPlusPagination = parameters
         paramsPlusPagination["per_page"] = (parameters["per_page"] as? Int) ?? 99
         
-        return try NSMutableURLRequest(method: .GET, URL: url!, parameters: paramsPlusPagination, encoding: encoding)
-            .authorizeIf(authorized, withToken: token, masqueradeAsUserID: masqueradeAsUserID)
+        return try URLRequest(method: .GET, URL: url, parameters: paramsPlusPagination, encoding: encoding)
+            .authorized(authorized, with: self)
     }
     
-    public func POST(path: String, parameters: [String: AnyObject] = [:], encoding: ParameterEncoding = .JSON, authorized: Bool = true, headers: [String: String] = [:]) throws -> NSURLRequest {
+    public func POST(_ path: String, parameters: [String: Any] = [:], encoding: ParameterEncoding = .json, authorized: Bool = true, headers: [String: String] = [:]) throws -> URLRequest {
 
-        let url = baseURL.URLByAppendingPathComponent(pathByRemovingDuplicateSlash(path))
+        let url = baseURL.appendingPathComponent(pathByRemovingDuplicateSlash(path))
         
-        return try NSMutableURLRequest(method: .POST, URL: url!, parameters: parameters, encoding: encoding)
-            .authorizeIf(authorized, withToken: token, masqueradeAsUserID: masqueradeAsUserID)
+        return try URLRequest(method: .POST, URL: url, parameters: parameters, encoding: encoding)
+            .authorized(authorized, with: self)
     }
 
-    public func PUT(path: String, parameters: [String: AnyObject] = [:], encoding: ParameterEncoding = .JSON, authorized: Bool = true) throws -> NSURLRequest {
-        let url = baseURL.URLByAppendingPathComponent(pathByRemovingDuplicateSlash(path))
+    public func PUT(_ path: String, parameters: [String: Any] = [:], encoding: ParameterEncoding = .json, authorized: Bool = true) throws -> URLRequest {
+        let url = baseURL.appendingPathComponent(pathByRemovingDuplicateSlash(path))
 
-        return try NSMutableURLRequest(method: .PUT, URL: url!, parameters: parameters, encoding: encoding)
-            .authorizeIf(authorized, withToken: token, masqueradeAsUserID: masqueradeAsUserID)
+        return try URLRequest(method: .PUT, URL: url, parameters: parameters, encoding: encoding)
+            .authorized(authorized, with: self)
     }
 
-    public func DELETE(path: String, parameters: [String: AnyObject] = [:], encoding: ParameterEncoding = .URLEncodedInURL, authorized: Bool = true) throws -> NSURLRequest {
-        let url = baseURL.URLByAppendingPathComponent(pathByRemovingDuplicateSlash(path))
+    public func DELETE(_ path: String, parameters: [String: Any] = [:], encoding: ParameterEncoding = .urlEncodedInURL, authorized: Bool = true) throws -> URLRequest {
+        let url = baseURL.appendingPathComponent(pathByRemovingDuplicateSlash(path))
 
-        return try NSMutableURLRequest(method: .DELETE, URL: url!, parameters: parameters, encoding: encoding)
-            .authorizeIf(authorized, withToken: token, masqueradeAsUserID: masqueradeAsUserID)
+        return try URLRequest(method: .DELETE, URL: url, parameters: parameters, encoding: encoding)
+            .authorized(authorized, with: self)
     }
 }

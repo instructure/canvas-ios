@@ -18,37 +18,37 @@
 
 import Foundation
 import SystemConfiguration
-import ReactiveCocoa
+import ReactiveSwift
 
 
-public class RegionPicker: NSObject {
+open class RegionPicker: NSObject {
     
-    public static let betaURL = NSURL(string: "https://airwolf-iad-gamma.inscloudgate.net/")!
+    open static let betaURL = URL(string: "https://airwolf-iad-gamma.inscloudgate.net/")!
     
-    private static let prodRegions = [
-        NSURL(string: "https://airwolf-iad-prod.instructure.com")!,
-        NSURL(string: "https://airwolf-dub-prod.instructure.com")!,
-        NSURL(string: "https://airwolf-syd-prod.instructure.com")!,
-        NSURL(string: "https://airwolf-sin-prod.instructure.com")!,
-        NSURL(string: "https://airwolf-fra-prod.instructure.com")!
+    fileprivate static let prodRegions = [
+        URL(string: "https://airwolf-iad-prod.instructure.com")!,
+        URL(string: "https://airwolf-dub-prod.instructure.com")!,
+        URL(string: "https://airwolf-syd-prod.instructure.com")!,
+        URL(string: "https://airwolf-sin-prod.instructure.com")!,
+        URL(string: "https://airwolf-fra-prod.instructure.com")!
     ]
     
-    public var defaultURL: NSURL {
+    open var defaultURL: URL {
         return RegionPicker.prodRegions[0]
     }
     
-    public let beta = MutableProperty<Bool>(false)
+    open let beta = MutableProperty<Bool>(false)
 
-    public static let defaultPicker = RegionPicker()
+    open static let defaultPicker = RegionPicker()
 
-    private (set) internal var completion: (NSURL?)->Void = { _ in }
+    fileprivate (set) internal var completion: (URL?)->Void = { _ in }
 
-    private var pingers: [String: SimplePing] = [:]
+    fileprivate var pingers: [String: SimplePing] = [:]
 
-    private var responseTimes: [String: [Double]] = [:]
-    private var averageResponseTimes: [String: Double] = [:]
-    private var pingStartTimes: [String: NSDate] = [:]
-    private var pingerTimeoutTimers: [String: NSTimer] = [:]
+    fileprivate var responseTimes: [String: [Double]] = [:]
+    fileprivate var averageResponseTimes: [String: Double] = [:]
+    fileprivate var pingStartTimes: [String: Date] = [:]
+    fileprivate var pingerTimeoutTimers: [String: Timer] = [:]
 
     override public init() {
         super.init()
@@ -64,10 +64,12 @@ public class RegionPicker: NSObject {
 
     func isConnectedToNetwork() -> Bool {
         var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)
-        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) { zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
         }
         var flags = SCNetworkReachabilityFlags()
         if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
@@ -78,24 +80,24 @@ public class RegionPicker: NSObject {
         return (isReachable && !needsConnection)
     }
     
-    internal(set) public var pickedRegionURL: NSURL? {
+    internal(set) open var pickedRegionURL: URL? {
         set {
             if beta.value { return } // don't alter the picked region when using beta
-            NSUserDefaults.standardUserDefaults().setURL(newValue, forKey: "picked-region")
+            UserDefaults.standard.set(newValue, forKey: "picked-region")
         } get {
             if beta.value { return RegionPicker.betaURL } // only ever use beta when its turned on
-            return NSUserDefaults.standardUserDefaults().URLForKey("picked-region")
+            return UserDefaults.standard.url(forKey: "picked-region")
         }
     }
 
-    public func setRegionToDefault() {
+    open func setRegionToDefault() {
         pickedRegionURL = RegionPicker.prodRegions[0]
     }
 
-    public func pickBestRegion(completion: (NSURL?)->Void) {
+    open func pickBestRegion(_ completion: @escaping (URL?)->Void) {
         self.completion = completion
         if isConnectedToNetwork() {
-            for (_, pinger) in pingers.enumerate() {
+            for (_, pinger) in pingers.enumerated() {
                 // Stop it if it's going and restart it
                 pinger.1.stop()
                 pinger.1.start()
@@ -105,7 +107,7 @@ public class RegionPicker: NSObject {
         }
     }
 
-    private func record(responseTime responseTime: Double, forHost host: String) {
+    fileprivate func record(responseTime: Double, forHost host: String) {
         guard var hostResponseTimes = responseTimes[host] else { return }
         hostResponseTimes.append(responseTime)
         responseTimes[host] = hostResponseTimes
@@ -118,28 +120,28 @@ public class RegionPicker: NSObject {
 
         if hostResponseTimes.count >= 5 {
             pingers[host]?.stop()
-            let average = (hostResponseTimes as NSArray).valueForKeyPath("@avg.self") as! NSNumber
+            let average = (hostResponseTimes as NSArray).value(forKeyPath: "@avg.self") as! NSNumber
             averageResponseTimes[host] = average.doubleValue
 
             print("5 or more recorded response times for host: \(host) with average of: \(average)")
 
             if averageResponseTimes.keys.count == RegionPicker.prodRegions.count {
                 // We have averages for each - time to make a decision!
-                for (_, pinger) in pingers.enumerate() {
+                for (_, pinger) in pingers.enumerated() {
                     // Stop it if it's going
                     pinger.1.stop()
 
                 }
 
-                for (host, timer) in pingerTimeoutTimers {
+                for (_, timer) in pingerTimeoutTimers {
                     timer.invalidate()
                 }
                 pingerTimeoutTimers.removeAll()
 
-                let smallestResponseTime = ((averageResponseTimes as NSDictionary).allValues as NSArray).valueForKeyPath("@min.self") as! NSNumber
-                let key = (averageResponseTimes as NSDictionary).allKeysForObject(smallestResponseTime.doubleValue).first! as! String
+                let smallestResponseTime = ((averageResponseTimes as NSDictionary).allValues as NSArray).value(forKeyPath: "@min.self") as! NSNumber
+                let key = (averageResponseTimes as NSDictionary).allKeys(for: smallestResponseTime.doubleValue).first! as! String
 
-                let url = NSURL(string: "https://\(key)")!
+                let url = URL(string: "https://\(key)")!
                 print("\(url) region picked with lowest latency: \(smallestResponseTime)")
 
                 pickedRegionURL = url
@@ -147,38 +149,38 @@ public class RegionPicker: NSObject {
             }
         } else {
             // If we don't have 3 yet, send another
-            pingers[host]?.sendPingWithData(nil)
+            pingers[host]?.send(with: nil)
         }
     }
 }
 
 extension RegionPicker: SimplePingDelegate {
-    public func simplePing(pinger: SimplePing, didStartWithAddress address: NSData) {
+    public func simplePing(_ pinger: SimplePing, didStartWithAddress address: Data) {
         // Start the ping immediately
-        pinger.sendPingWithData(nil)
+        pinger.send(with: nil)
     }
 
-    public func simplePing(pinger: SimplePing, didSendPacket packet: NSData, sequenceNumber: UInt16) {
-        pingStartTimes[pinger.hostName] = NSDate()
-        pingerTimeoutTimers[pinger.hostName] = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(timeoutTriggered(_:)), userInfo: ["host": pinger.hostName], repeats: false)
+    public func simplePing(_ pinger: SimplePing, didSendPacket packet: Data, sequenceNumber: UInt16) {
+        pingStartTimes[pinger.hostName] = Date()
+        pingerTimeoutTimers[pinger.hostName] = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(timeoutTriggered(_:)), userInfo: ["host": pinger.hostName], repeats: false)
     }
 
-    public func simplePing(pinger: SimplePing, didFailWithError error: NSError) {
+    public func simplePing(_ pinger: SimplePing, didFailWithError error: Error) {
         record(responseTime: 1000, forHost: pinger.hostName)
     }
 
-    public func simplePing(pinger: SimplePing, didFailToSendPacket packet: NSData, sequenceNumber: UInt16, error: NSError) {
+    public func simplePing(_ pinger: SimplePing, didFailToSendPacket packet: Data, sequenceNumber: UInt16, error: Error) {
         record(responseTime: 1000, forHost: pinger.hostName)
     }
 
-    public func simplePing(pinger: SimplePing, didReceivePingResponsePacket packet: NSData, sequenceNumber: UInt16) {
+    public func simplePing(_ pinger: SimplePing, didReceivePingResponsePacket packet: Data, sequenceNumber: UInt16) {
         guard let startTime = pingStartTimes[pinger.hostName] else { return }
-        let responseTime = NSDate().timeIntervalSinceDate(startTime) * 1000
+        let responseTime = Date().timeIntervalSince(startTime) * 1000
         record(responseTime: responseTime, forHost: pinger.hostName)
     }
 
-    func timeoutTriggered(timer: NSTimer) {
-        guard let host = (timer.userInfo as! [String: AnyObject])["host"] as? String else { return }
+    func timeoutTriggered(_ timer: Timer) {
+        guard let host = (timer.userInfo as! [String: Any])["host"] as? String else { return }
         guard let _ = pingerTimeoutTimers[host] else { return }
         print("\(host) timed out")
         self.record(responseTime: 1000, forHost: host)

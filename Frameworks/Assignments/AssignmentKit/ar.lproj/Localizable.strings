@@ -1,46 +1,46 @@
-/* (No Commment) */
+/* grade details for points based grade i.e. \"10 of 12\" */
 "(formatter(points)) of (formatter(possible))" = "(formatter(points)) من (formatter(possible))";
 
-/* (No Commment) */
+/* Title for 1 day assignment reminder */
 "1 day" = "يوم واحد";
 
-/* (No Commment) */
+/* Title for 1 hour assignment reminder */
 "1 hour" = "ساعة واحدة";
 
-/* (No Commment) */
+/* Title for 3 days assignment reminder */
 "3 days" = "3 أيام";
 
-/* (No Commment) */
+/* Title for 5 minutes assignment reminder */
 "5 minutes" = "5 دقائق";
 
 /* (No Commment) */
 "Assignment" = "المهمة";
 
-/* (No Commment) */
+/* Title for alert view for assignment reminders */
 "Assignment Reminder" = "تذكير بالمهمة";
 
 /* (No Commment) */
 "Assignment is currently being submitted" = "يتم حاليًا إرسال المهمة";
 
-/* (No Commment) */
+/* This assignment hasn't been graded yet but can be graded */
 "Awaiting Grade" = "في انتظار الدرجة";
 
-/* (No Commment) */
+/* cancel button */
 "Cancel" = "إلغاء";
 
-/* (No Commment) */
+/* Title for reminder options for an assignment */
 "Choose how long before the assignment due date to get a reminder:" = "اختر الفترة الزمنية التي ستتلقى فيها تذكيرًا قبل موعد استحقاق المهمة:";
 
-/* (No Commment) */
+/* Title for a rating that hasn't been graded but has a comment */
 "Comment" = "تعليق";
 
 /* (No Commment) */
 "Comment.." = "تعليق...";
 
-/* (No Commment) */
+/* error displayed when submitting an assignment is unavailable */
 "Could not submit assignment. Invalid assignment or session." = "تعذر إرسال المهمة. مهمة أو جلسة غير صالحة.";
 
-/* (No Commment) */
+/* error displayed when submitting a submission is invalid. */
 "Could not submit assignment. Invalid submission." = "تعذر إرسال المهمة. إرسال غير صالح.";
 
 /* (No Commment) */
@@ -49,7 +49,7 @@
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "حدث خطأ أثناء تحديث المهمة";
 
-/* (No Commment) */
+/* This assignment is excused */
 "Excused" = "غير إجباري";
 
 /* Error message when submission attachment fails to load. */
@@ -58,19 +58,19 @@
 /* (No Commment) */
 "Failed to resume upload." = "فشل استئناف التحميل.";
 
-/* (No Commment) */
+/* This assignment is late */
 "Late" = "متأخر";
 
-/* (No Commment) */
+/* Title for a rating that has custom graded but has no comment */
 "No Comment" = "لا يوجد أي تعليق";
 
-/* (No Commment) */
+/* Default string for due date title */
 "No Due Date" = "لا يوجد موعد استحقاق";
 
 /* Section header for assignments without an assignment group */
 "None" = "لا شيء";
 
-/* (No Commment) */
+/* submission title for assignment waiting user submission */
 "Not Submitted" = "لم يتم إرسالها";
 
 /* Overdue assignmnets (not turned in) */
@@ -79,19 +79,19 @@
 /* Assignments that have been turned in and are past */
 "Past" = "سابقة";
 
-/* (No Commment) */
+/* Rubric Points Possible Title */
 "Points Possible" = "النقاط الممكنة";
 
-/* (No Commment) */
+/* title for submission button if student has submitted previously */
 "Re-submit Assignment" = "إعادة إرسال المهمة";
 
 /* (No Commment) */
 "Submission type not allowed" = "نوع الإرسال غير مسموح به";
 
-/* (No Commment) */
+/* submission title for assignment that doesn't support submissions */
 "Submissions N/A" = "الإرسالات غير مدعومة";
 
-/* (No Commment) */
+/* title for submission button if student has never submitted */
 "Submit Assignment" = "إرسال المهمة";
 
 /* AssignmentKit database load failure message */
@@ -100,7 +100,7 @@
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "حدثت مشكلة أثناء تحديث عنوان URL الاختبار";
 
-/* (No Commment) */
+/* submission title for assignemnt that is submitted */
 "Turned in!" = "تم تسليمها!";
 
 /* (No Commment) */
@@ -115,13 +115,13 @@
 /* Assignments with no dates */
 "Undated" = "غير مؤرخة";
 
-/* (No Commment) */
+/* This assignment is not graded */
 "Ungraded" = "دون تقييم";
 
 /* Upcoming assignments */
 "Upcoming" = "القادمة";
 
-/* (No Commment) */
+/* Title for button to see rubric from assignment detail */
 "View Rubric" = "عرض العنوان";
 
 /* (No Commment) */

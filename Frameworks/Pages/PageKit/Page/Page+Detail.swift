@@ -20,7 +20,7 @@ import UIKit
 import TooLegit
 import SoPersistent
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 
 extension Page {
@@ -30,19 +30,19 @@ extension Page {
 
     public static func invalidateDetailCache(session: Session, contextID: ContextID, url: String) throws {
         let context = try session.pagesManagedObjectContext()
-        let key = detailCacheKey(context, contextID: contextID, url: url)
+        let key = detailCacheKey(context: context, contextID: contextID, url: url)
         session.refreshScope.invalidateCache(key)
     }
 
-    public static func predicate(contextID: ContextID, url: String) -> NSPredicate {
+    public static func predicate(_ contextID: ContextID, url: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@ && %K == %@", "contextID", contextID.canvasContextID, "url", url)
     }
 
-    public static func frontPagePredicate(contextID: ContextID) -> NSPredicate {
-        return NSPredicate(format: "%K == %@ && %K == %@", "contextID", contextID.canvasContextID, "frontPage", true)
+    public static func frontPagePredicate(_ contextID: ContextID) -> NSPredicate {
+        return NSPredicate(format: "%K == %@ && %K == %@", "contextID", contextID.canvasContextID, "frontPage", NSNumber(value: true))
     }
 
-    public static func frontPageRefresher(session: Session, contextID: ContextID) throws -> Refresher {
+    public static func frontPageRefresher(_ session: Session, contextID: ContextID) throws -> Refresher {
         let context = try session.pagesManagedObjectContext()
         let remote = try Page.getFrontPage(session, contextID: contextID).map { [$0] }
         let pred = frontPagePredicate(contextID)
@@ -55,7 +55,7 @@ extension Page {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public static func refresher(session: Session, contextID: ContextID, url: String) throws -> Refresher {
+    public static func refresher(_ session: Session, contextID: ContextID, url: String) throws -> Refresher {
         let context = try session.pagesManagedObjectContext()
         let remote = try Page.getPage(session, contextID: contextID, url: url).map { [$0] }
         let pred = predicate(contextID, url: url)
@@ -68,22 +68,22 @@ extension Page {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public static func frontPageObserver(session: Session, contextID: ContextID) throws -> ManagedObjectObserver <Page> {
+    public static func frontPageObserver(_ session: Session, contextID: ContextID) throws -> ManagedObjectObserver <Page> {
         let pred = Page.frontPagePredicate(contextID)
         let context = try session.pagesManagedObjectContext()
         return try ManagedObjectObserver<Page>(predicate: pred, inContext: context)
     }
 
-    public static func observer(session: Session, contextID: ContextID, url: String) throws -> ManagedObjectObserver<Page> {
+    public static func observer(_ session: Session, contextID: ContextID, url: String) throws -> ManagedObjectObserver<Page> {
         let pred = Page.predicate(contextID, url: url)
         let context = try session.pagesManagedObjectContext()
         return try ManagedObjectObserver<Page>(predicate: pred, inContext: context)
     }
 
 
-    public class FrontPageDetailViewController: DetailViewController {
+    open class FrontPageDetailViewController: DetailViewController {
 
-        public init(session: Session, contextID: ContextID, route: (UIViewController, NSURL) -> ()) throws {
+        public init(session: Session, contextID: ContextID, route: @escaping (UIViewController, URL) -> ()) throws {
             try super.init(session: session, contextID: contextID, url: "", route: route)
 
             self.observer = try Page.frontPageObserver(session, contextID: contextID)
@@ -96,22 +96,22 @@ extension Page {
 
     }
 
-    public class DetailViewController: UIViewController, UIWebViewDelegate {
+    open class DetailViewController: UIViewController, UIWebViewDelegate {
 
         // MARK: - Properties
 
-        public let webView = UIWebView(frame: CGRectZero)
+        open let webView = UIWebView(frame: CGRect.zero)
 
-        public var refresher: Refresher
-        public var observer: ManagedObjectObserver<Page>
-        public let route: (UIViewController, NSURL) -> Void
-        public let url: String
-        public let contextID: ContextID
-        public let session: Session
+        open var refresher: Refresher
+        open var observer: ManagedObjectObserver<Page>
+        open let route: (UIViewController, URL) -> Void
+        open let url: String
+        open let contextID: ContextID
+        open let session: Session
 
         // MARK: - Initializers
 
-        public init(session: Session, contextID: ContextID, url: String, route: (UIViewController, NSURL) -> Void) throws {
+        public init(session: Session, contextID: ContextID, url: String, route: @escaping (UIViewController, URL) -> Void) throws {
             self.refresher = try Page.refresher(session, contextID: contextID, url: url)
             self.observer = try Page.observer(session, contextID: contextID, url: url)
             self.url = url
@@ -129,30 +129,30 @@ extension Page {
 
         // MARK: - Lifecycle
 
-        override public func viewDidLoad() {
+        override open func viewDidLoad() {
             super.viewDidLoad()
             webView.delegate = self
 
-            view.backgroundColor = .whiteColor()
+            view.backgroundColor = .white
 
             configureObserver()
             configureRefresher()
 
             self.view.addSubview(webView)
             webView.translatesAutoresizingMaskIntoConstraints = false
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[webView]-0-|", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: ["webView": webView]))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[webView]-0-|", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: ["webView": webView]))
+            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[webView]-0-|", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: ["webView": webView]))
+            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[webView]-0-|", options: NSLayoutFormatOptions(rawValue:0), metrics: nil, views: ["webView": webView]))
 
             // Ensure that view doesn't hider under navbar
             self.automaticallyAdjustsScrollViewInsets = false
-            self.edgesForExtendedLayout = .None
+            self.edgesForExtendedLayout = UIRectEdge()
 
             if let page = observer.object {
-                renderBodyForPage(page)
+                renderBodyForPage(page: page)
             }
         }
 
-        public override func viewWillAppear(animated: Bool) {
+        open override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             refresher.refresh(false)
         }
@@ -161,11 +161,11 @@ extension Page {
 
         func showLockExplanation(lockExplanation: String?) {
             // Strip HTML tags from lock explanation
-            var explanation = NSLocalizedString("This page is currently locked and not viewable.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "The HTML page is currently not viewable by the user because it has been locked by the teacher.")
-            if let encodedData = lockExplanation?.dataUsingEncoding(NSUTF8StringEncoding) {
+            var explanation = NSLocalizedString("This page is currently locked and not viewable.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.PageKit")!, value: "", comment: "The HTML page is currently not viewable by the user because it has been locked by the teacher.")
+            if let encodedData = lockExplanation?.data(using: .utf8) {
                 do {
-                    explanation = try NSAttributedString(data: encodedData, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil).string
-                    explanation = explanation.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions(), range: nil)
+                    explanation = try NSAttributedString(data: encodedData, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:String.Encoding.utf8], documentAttributes: nil).string
+                    explanation = explanation.replacingOccurrences(of: "\n", with: "")
                 } catch { print("Error stripping HTML from lockedExplanation") }
             }
 
@@ -173,22 +173,22 @@ extension Page {
         }
 
         func configureObserver() {
-            observer.signal.observeOn(UIScheduler()).observeNext { [weak self] change, page in
+            observer.signal.observe(on: UIScheduler()).observeValues { [weak self] change, page in
                 switch change {
-                case .Insert, .Update:
+                case .insert, .update:
                     if let page = page, let me = self {
-                        me.renderBodyForPage(page)
+                        me.renderBodyForPage(page: page)
                     }
-                case .Delete: break
+                case .delete: break
                 }
             }
         }
 
         func configureRefresher() {
-            refresher.refreshControl.addTarget(self, action: #selector(DetailViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
+            refresher.refreshControl.addTarget(self, action: #selector(DetailViewController.refresh), for: UIControlEvents.valueChanged)
             webView.scrollView.addSubview(refresher.refreshControl)
 
-            refresher.refreshingCompleted.observeNext { [weak self] error in
+            refresher.refreshingCompleted.observeValues { [weak self] error in
                 if let me = self, let error = error {
                     error.presentAlertFromViewController(me)
                 }
@@ -197,25 +197,25 @@ extension Page {
 
         func renderBodyForPage(page: Page) {
             guard !page.lockedForUser else {
-                showLockExplanation(page.lockExplanation)
+                showLockExplanation(lockExplanation: page.lockExplanation)
                 return
             }
             webView.loadHTMLString(PageTemplateRenderer.htmlStringForPage(page), baseURL: session.baseURL)
         }
 
-        public func refresh() {
+        open func refresh() {
             refresher.refresh(true)
         }
 
         // MARK: - Web View Delegate
 
-        public func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-            guard let requestURL = request.URL else {
+        open func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+            guard let requestURL = request.url else {
                 print("No url provided in request")
                 return false
             }
             
-            if navigationType != .LinkClicked {
+            if navigationType != .linkClicked {
                 return true
             }
 
@@ -223,42 +223,45 @@ extension Page {
                 return true
             }
             
-            if requestURL.absoluteString!.localizedCaseInsensitiveContainsString("slideshare.net") {
-                let requestWithReferer = request.mutableCopy() as! NSMutableURLRequest
-                requestWithReferer.URL = requestURL
+            if requestURL.absoluteString.localizedCaseInsensitiveContains("slideshare.net") {
+                var requestWithReferer = request
+                requestWithReferer.url = requestURL
                 requestWithReferer.setValue(session.baseURL.description, forHTTPHeaderField: "Referer")
+                requestWithReferer.cachePolicy = .useProtocolCachePolicy
                 self.relaunchRequest(requestWithReferer, webView: self.webView)
                 return false
             }
             
-            if requestURL.absoluteString!.containsString("external_tools/retrieve?") {
+            if requestURL.absoluteString.contains("external_tools/retrieve?") {
                 return true
             }
             
-            if let components = requestURL.pathComponents, let component = components.last, fragment = requestURL.fragment where components.count > 0 {
-                let selfReferencingFragment = String(format: "%@#%@", session.baseURL.absoluteString!, fragment)
+            let components = requestURL.pathComponents
+            if let component = components.last, let fragment = requestURL.fragment, components.count > 0 {
+                let selfReferencingFragment = String(format: "%@#%@", session.baseURL.absoluteString, fragment)
                 let jsScrollToAnchor = jsScrollToHashTag(fragment)
                 
                 if requestURL.absoluteString == selfReferencingFragment {
-                    self.webView.stringByEvaluatingJavaScriptFromString(jsScrollToAnchor)
+                    self.webView.stringByEvaluatingJavaScript(from: jsScrollToAnchor)
                     return false
                 }
                 
-                if let requestBaseURL = requestURL.URLByDeletingPathExtension?.absoluteString,
-                    let currentBaseURL = NSURL(string: session.baseURL.absoluteString! + self.contextID.htmlPath)?.absoluteString,
-                    let currentAPIBaseURL = NSURL(string: session.baseURL.absoluteString! + self.contextID.apiPath)?.absoluteString {
+                let requestBaseURL = requestURL.deletingPathExtension().absoluteString
+                if let currentBaseURL = URL(string: session.baseURL.absoluteString + self.contextID.htmlPath)?.absoluteString,
+                    let currentAPIBaseURL = URL(string: session.baseURL.absoluteString + self.contextID.apiPath)?.absoluteString {
                     
-                    if requestBaseURL.localizedCaseInsensitiveContainsString(currentBaseURL) || requestBaseURL.localizedCaseInsensitiveContainsString(currentAPIBaseURL) {
-                        let pageIdentifierWithFragmentSymbol = self.url.stringByAppendingString("#")
-                        if component.caseInsensitiveCompare(self.url) == .OrderedSame || component.localizedCaseInsensitiveContainsString(pageIdentifierWithFragmentSymbol) {
-                            webView.stringByEvaluatingJavaScriptFromString(jsScrollToAnchor)
+                    if requestBaseURL.localizedCaseInsensitiveContains(currentBaseURL) || requestBaseURL.localizedCaseInsensitiveContains(currentAPIBaseURL) {
+                        let pageIdentifierWithFragmentSymbol = self.url + "#"
+                        if component.caseInsensitiveCompare(self.url) == .orderedSame || component.localizedCaseInsensitiveContains(pageIdentifierWithFragmentSymbol) {
+                            webView.stringByEvaluatingJavaScript(from: jsScrollToAnchor)
                             return false
                         }
                     }
                 }
-            } else if let fragment = requestURL.fragment, let components = requestURL.pathComponents {
+            } else if let fragment = requestURL.fragment {
+                let components = requestURL.pathComponents
                 if (components.count == 0 && requestURL.scheme == "applewebdata") {
-                    self.webView.stringByEvaluatingJavaScriptFromString(jsScrollToHashTag(fragment))
+                    self.webView.stringByEvaluatingJavaScript(from: jsScrollToHashTag(fragment))
                     return false
                 }
             }
@@ -267,15 +270,14 @@ extension Page {
             return false
         }
         
-        func jsScrollToHashTag(fragment: String) -> String {
+        func jsScrollToHashTag(_ fragment: String) -> String {
             return String(format: "window.location.href='#%@';", fragment)
         }
 
-        func relaunchRequest(request: NSMutableURLRequest, webView: UIWebView) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                dispatch_async(dispatch_get_main_queue()) {
-                    request.cachePolicy = .UseProtocolCachePolicy
-                    self.webView.loadRequest(request)
+        func relaunchRequest(_ request: URLRequest, webView: UIWebView) {
+            DispatchQueue.global(qos: .default).async {
+                DispatchQueue.main.async {
+                    self.webView.loadRequest(request as URLRequest)
                 }
             }
         }

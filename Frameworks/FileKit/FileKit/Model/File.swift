@@ -20,48 +20,48 @@ import UIKit
 import TooLegit
 import SoLazy
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 import AVFoundation
 
 public final class File: FileNode {
     @NSManaged public var contentType: String?
     @NSManaged public var size: Int64 //in bytes
-    @NSManaged public var url: NSURL
-    @NSManaged public var thumbnailURL: NSURL?
+    @NSManaged public var url: URL
+    @NSManaged public var thumbnailURL: URL?
     
     override public var icon: UIImage {
         iconName = "icon_document"
         if lockedForUser {
             iconName = "icon_locked"
-        } else if contentType?.rangeOfString("image") != nil {
+        } else if contentType?.range(of: "image") != nil {
             iconName = "icon_image"
-        } else if contentType?.rangeOfString("video") != nil {
+        } else if contentType?.range(of: "video") != nil {
             iconName = "icon_video_clip"
-        } else if contentType?.rangeOfString("text") != nil {
+        } else if contentType?.range(of: "text") != nil {
             iconName = "icon_page"
-        } else if contentType?.rangeOfString("application") != nil {
-            if contentType?.rangeOfString("pdf") != nil {
+        } else if contentType?.range(of: "application") != nil {
+            if contentType?.range(of: "pdf") != nil {
                 iconName = "icon_pdf"
-            } else if name.rangeOfString(".doc") != nil && contentType?.rangeOfString(".doc") != nil {
+            } else if name.range(of: ".doc") != nil && contentType?.range(of: ".doc") != nil {
                 iconName = "icon_page"
             }
         }
-        let bundle = NSBundle(forClass: File.self)
-        return UIImage(named: iconName, inBundle: bundle, compatibleWithTraitCollection: nil)!
+        let bundle = Bundle(for: File.self)
+        return UIImage(named: iconName, in: bundle, compatibleWith: nil)!
     }
     
-    override public func deleteFileNode(session: Session, shouldForce: Bool) throws -> SignalProducer<Void, NSError> {
+    override public func deleteFileNode(_ session: Session, shouldForce: Bool) throws -> SignalProducer<Void, NSError> {
         let context = try session.filesManagedObjectContext()
         
         let network: SignalProducer<JSONObject, NSError> = attemptProducer {
             return try File.deleteFile(session, fileID: self.id)
-        }.flatten(.Merge)
+        }.flatten(.merge)
         
         let local: SignalProducer<Void, NSError> = attemptProducer {
-            context.deleteObject(self)
-            try context.save()
-        }
-        .startOn(ManagedObjectContextScheduler(context: context))
+                context.delete(self)
+                try context.save()
+            }
+            .start(on: ManagedObjectContextScheduler(context: context))
         return network.map({ _ in () }).concat(local)
     }
     
@@ -77,7 +77,7 @@ public final class File: FileNode {
         for newUploadFile in newUploadFiles {
             let name = newUploadFile.name
             let contentType = newUploadFile.contentType
-            newUploadFile.extractDataProducer.on(next: { data in
+            newUploadFile.extractDataProducer.on(value: { data in
                 if let data = data {
                     let fileUpload = FileUpload.createInContext(context)
                     fileUpload.prepare(backgroundSession.sessionID, path: path, data: data, name: name, contentType: contentType, parentFolderID: folderID, contextID: contextID)
@@ -87,7 +87,7 @@ public final class File: FileNode {
         }
     }
     
-    public static func uploadIdentifier (folderID: String?) -> String {
+    public static func uploadIdentifier (_ folderID: String?) -> String {
         if let folderID = folderID {
             return "file-upload-\(folderID)"
         } else {
@@ -101,16 +101,16 @@ import Marshal
 
 extension File: SynchronizedModel {
     
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
     
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         isFolder = false
         id = try json.stringID("id")
         try name = json <| "display_name"
-        try hiddenForUser = json <| "hidden_for_user" ?? false
+        try hiddenForUser = (json <| "hidden_for_user") ?? false
         try contentType = json <| "content-type"
         try thumbnailURL = json <| "thumbnail_url"
         try url = json <| "url"

@@ -1,13 +1,13 @@
 /* all pages segmented control title */
 "All Pages" = "جميع الصفحات";
 
-/* badge indicating front page */
+/* front page segmented control title */
 "Front Page" = "الصفحة الأمامية";
 
-/* Generic button to dismiss the popup message */
+/* (No Commment) */
 "Okay" = "موافق";
 
-/* The page is locked by the teacher */
+/* (No Commment) */
 "Page Locked" = "صفحة مؤمّنة";
 
 /* Page list fails */

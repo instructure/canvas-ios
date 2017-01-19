@@ -20,8 +20,8 @@ import Foundation
 
 
 class PlaybackScrubber: UIControl {
-    private var duration: NSTimeInterval = 1.0
-    var currentTime: NSTimeInterval = 0.0001
+    fileprivate var duration: TimeInterval = 1.0
+    var currentTime: TimeInterval = 0.0001
     
     @IBOutlet var trackView: UIView!
     @IBOutlet var currentTimeLabel: UILabel!
@@ -30,13 +30,13 @@ class PlaybackScrubber: UIControl {
     lazy var scrubber: CALayer = {
         let layer = CALayer()
         layer.frame = CGRect(x: 0, y: 0, width: 2, height: 15)
-        layer.backgroundColor = self.tintColor.CGColor
+        layer.backgroundColor = self.tintColor.cgColor
         layer.cornerRadius = 1.0
         self.layer.addSublayer(layer)
         return layer
     }()
     
-    func update(duration: NSTimeInterval, currentTime: NSTimeInterval) {
+    func update(_ duration: TimeInterval, currentTime: TimeInterval) {
         if scrubbingTime != nil {
             return
         }
@@ -56,28 +56,28 @@ class PlaybackScrubber: UIControl {
     }
     
     
-    var scrubbingTime: NSTimeInterval?
-    func scrubGesture(gesture: UILongPressGestureRecognizer) {
+    var scrubbingTime: TimeInterval?
+    func scrubGesture(_ gesture: UILongPressGestureRecognizer) {
         switch gesture.state {
-        case .Began:
-            let touchPoint = gesture.locationInView(self)
+        case .began:
+            let touchPoint = gesture.location(in: self)
             
             if abs(touchPoint.x - scrubberPosition.x) < 24 {
-                let x = gesture.locationInView(trackView).x
+                let x = gesture.location(in: trackView).x
                 scrubbingTime = Double(x / trackView.bounds.width) * duration
                 updateUI()
             }
-        case .Changed:
+        case .changed:
             if scrubbingTime != nil {
-                let x = gesture.locationInView(trackView).x
+                let x = gesture.location(in: trackView).x
                 let normalized = max(0.0, min(1.0, Double(x / trackView.bounds.width)))
                 scrubbingTime = normalized * duration
                 updateUI()
             }
-        case .Ended:
+        case .ended:
             if let scrubbingTime = scrubbingTime {
                 currentTime = scrubbingTime
-                sendActionsForControlEvents(.ValueChanged)
+                sendActions(for: .valueChanged)
             }
             fallthrough
         default:
@@ -86,7 +86,7 @@ class PlaybackScrubber: UIControl {
     }
     
     var scrubberPosition: CGPoint {
-        var track = convertRect(trackView.frame, fromView: trackView.superview)
+        var track = convert(trackView.frame, from: trackView.superview)
         let scrub = scrubber.frame
         track.size.width -= scrub.size.width
         track.origin.x += scrub.size.width/2.0

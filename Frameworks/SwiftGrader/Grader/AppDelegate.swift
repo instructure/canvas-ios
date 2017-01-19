@@ -25,9 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
         
         let vc = try! AssignmentsTableViewController(session: Session.ivy, courseID: "968776")
         let nav = UINavigationController(rootViewController: vc)
@@ -50,8 +50,8 @@ let prettyBlue = Brand(
     tintColor: tintColor,
     secondaryTintColor: tintColor,
     navBarTintColor: tintColor,
-    navForegroundColor: .whiteColor(),
-    tabBarTintColor: .whiteColor(),
+    navForegroundColor: .white,
+    tabBarTintColor: .white,
     tabsForegroundColor: tintColor,
     logo: .icon(.course, filled: true)
 )

@@ -29,7 +29,7 @@ struct CourseCellViewModel: TableViewCellViewModel {
     var gradeLabelText: String {
         let grades: String = [course.visibleGrade, course.visibleScore]
             .flatMap( { $0 } )
-            .joinWithSeparator("   ")
+            .joined(separator: "   ")
 
         if grades != "" {
             return grades
@@ -43,14 +43,14 @@ struct CourseCellViewModel: TableViewCellViewModel {
         self.highlightColor = highlightColor
     }
     
-    static func tableViewDidLoad(tableView: UITableView) {
+    static func tableViewDidLoad(_ tableView: UITableView) {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 107
-        tableView.registerNib(UINib(nibName: "CourseCell", bundle: NSBundle(forClass: AppDelegate.self)), forCellReuseIdentifier: "CourseCell")
+        tableView.register(UINib(nibName: "CourseCell", bundle: Bundle(for: AppDelegate.self)), forCellReuseIdentifier: "CourseCell")
     }
     
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("CourseCell", forIndexPath: indexPath) as? CourseCell else {
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CourseCell", for: indexPath) as? CourseCell else {
             fatalError("Incorrect Cell Type Found Expected: CourseCell")
         }
 

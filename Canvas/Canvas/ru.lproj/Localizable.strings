@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ требует оценки";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ баллы";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Тип: %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Данные кэша очищены";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Календарь";
 
 /* (No Commment) */
@@ -318,6 +325,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Choose from Library..." = "Выбрать из библиотеки...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Выберите опцию";
 
 /* (No Commment) */
 "Choose video" = "Выбрать видео";
@@ -376,7 +386,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Course Syllabus" = "Учебная программа";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "Курсы";
 
 /* (No Commment) */
@@ -453,6 +464,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Downloading..." = "Загрузка...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Срок %@";
 
 /* (No Commment) */
 "Due:" = "Срок:";
@@ -637,6 +651,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Item %1$d of %2$d" = "Элемент %1$d из %2$d";
 
+/* table header for module items */
+"Items" = "Элементы";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Там пусто, что ты до сих пор здесь делаешь.";
 
@@ -661,11 +678,17 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Legal" = "Легальный";
 
+/* Web URL link item label */
+"Link" = "Ссылка";
+
 /* (No Commment) */
 "Loading..." = "Загрузка...";
 
 /* (No Commment) */
 "Locked" = "Заблокировано";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Заблокировано до получения оценки \"%@\"";
 
 /* locked date */
 "Locked until %@" = "Заблокировано до %@";
@@ -687,6 +710,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Masquerade" = "Притвориться";
+
+/* Master Path module item type */
+"Mastery Path" = "Путь достижения владения";
 
 /* (No Commment) */
 "Me" = "Я";
@@ -715,7 +741,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Отправить сообщение каждому по отдельности, или добавить всех в групповой чат?";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Сообщения";
 
 /* (No Commment) */
@@ -760,6 +786,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "New Folder" = "Новая папка";
 
+/* Button title for next module item. */
+"Next" = "Далее";
+
 /* (No Commment) */
 "Next 7 Days" = "Следующие 7 дней";
 
@@ -774,6 +803,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "Без срока выполнения";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "Пути достижения владения отсутствуют";
 
 /* (No Commment) */
 "No Recorded Audio" = "Нет записанного аудио";
@@ -832,7 +864,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Настройки уведомлений";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Уведомления";
 
 /* OK Button Title */
@@ -858,6 +891,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Open in..." = "Открыть в...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Опция %d";
 
 /* (No Commment) */
 "Other" = "Другое";
@@ -900,6 +936,12 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Posts your comment" = "Оставляет ваш комментарий";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Необходимые модули";
+
+/* Button title for previous module item. */
+"Previous" = "Предыдущий";
 
 /* (No Commment) */
 "Previous item" = "Предыдущий элемент";
@@ -985,6 +1027,12 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Искать здесь...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Выберите опцию";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Выберите опцию %d";
+
 /* (No Commment) */
 "Select file(s)" = "Выбрать файл (файлы)";
 
@@ -1035,6 +1083,20 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Starts recording a media comment" = "Начало записи медиа-комментария";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Статус: Завершено";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Статус: Не завершено";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Статус: Заблокировано";
+
+/* Module status label when started */
+"Status: Started" = "Статус: Начато";
 
 /* (No Commment) */
 "Stay Logged In" = "Оставаться в системе";
@@ -1202,16 +1264,22 @@ Error: %@" = "Возникла проблема при доступе к тре�
 /* (No Commment) */
 "This is a media message." = "Это сообщение медиа.";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Для этого элемента модуля не заданы пути достижения владения.";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Это было бы прекрасное время, чтобы заработать дополнительные кредиты.";
 
 /* Title of the Todo screen */
 "To Do" = "Для выполнения";
 
+/* To-Do List landing page title */
+"To-Do List" = "Список дел";
+
 /* (No Commment) */
 "To:" = "Для:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "Сегодня";
 
 /* No comment provided by engineer. */
@@ -1231,6 +1299,9 @@ Error: %@" = "Возникла проблема при доступе к тре�
 
 /* (No Commment) */
 "Turn in %@" = "Сдать %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Тип: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Ой-ой! Нет соединения с интернетом";

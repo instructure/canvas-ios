@@ -19,7 +19,7 @@ import Quick
 import Nimble
 import SoAutomated
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 
 import AVFoundation
 import WebKit
@@ -66,8 +66,8 @@ class DispatcherSpec: QuickSpec {
 					}
                 }
 
-				dispatcher.values.observeNext { values.append($0) }
-				dispatcher.errors.observeNext { errors.append($0) }
+				dispatcher.values.observeValues { values.append($0) }
+				dispatcher.errors.observeValues { errors.append($0) }
             }
 
             it("should dispatch input") {
@@ -109,7 +109,7 @@ class DispatcherSpec: QuickSpec {
 
                 dispatcher.events
                     .assumeNoErrors()
-                    .observeNext {
+                    .observeValues {
                         if case .Completed = $0 {
                             completedEvent = $0
                         }

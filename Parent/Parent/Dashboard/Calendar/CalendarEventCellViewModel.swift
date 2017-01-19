@@ -22,9 +22,9 @@ import SoPersistent
 import CalendarKit
 
 struct CalendarEventCellViewModel: TableViewCellViewModel {
-    static var subtitleDateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .MediumStyle
+    static var subtitleDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
         return dateFormatter
     }()
 
@@ -52,28 +52,28 @@ struct CalendarEventCellViewModel: TableViewCellViewModel {
         self.highlightColor = highlightColor
     }
     
-    static func tableViewDidLoad(tableView: UITableView) {
+    static func tableViewDidLoad(_ tableView: UITableView) {
         tableView.estimatedRowHeight = 76
-        tableView.registerNib(UINib(nibName: "CalendarEventCell", bundle: NSBundle(forClass: AppDelegate.self)), forCellReuseIdentifier: "CalendarEventCellViewModel")
+        tableView.register(UINib(nibName: "CalendarEventCell", bundle: Bundle(for: AppDelegate.self)), forCellReuseIdentifier: "CalendarEventCellViewModel")
     }
     
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("CalendarEventCellViewModel", forIndexPath: indexPath) as? CalendarEventCell else {
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CalendarEventCellViewModel", for: indexPath) as? CalendarEventCell else {
             fatalError("Incorrect Cell Type Found Expected: CalendarEventTableViewCell")
         }
 
         cell.highlightColor = highlightColor
         cell.titleLabel.text = name
         cell.courseNameLabel.text = subtitle
-        cell.typeImageView.tintColor = UIColor.whiteColor()
+        cell.typeImageView.tintColor = UIColor.white
         cell.typeImageView.backgroundColor = submittedColor
         cell.statusLabel.text = submittedText
         cell.statusLabel.backgroundColor = submittedColor
 
         let imageSize = CGSize(width: CalendarEventCell.iconImageDiameter-CalendarEventCell.iconSubtrator, height: CalendarEventCell.iconImageDiameter-CalendarEventCell.iconSubtrator)
         let smallImage = submittedImage?.imageScaledToSize(imageSize) ?? image?.imageScaledToSize(imageSize)
-        cell.typeImageView.contentMode = .Center
-        cell.typeImageView.image = smallImage?.imageWithRenderingMode(.AlwaysTemplate)
+        cell.typeImageView.contentMode = .center
+        cell.typeImageView.image = smallImage?.withRenderingMode(.alwaysTemplate)
 
         cell.titleLabel.accessibilityIdentifier = "event_title_\(indexPath.section)_\(indexPath.row)"
         cell.courseNameLabel.accessibilityIdentifier = "event_course_\(indexPath.section)_\(indexPath.row)"
@@ -88,15 +88,15 @@ struct CalendarEventCellViewModel: TableViewCellViewModel {
 extension EventType {
     func image()->UIImage? {
         switch(self) {
-        case .Assignment:
+        case .assignment:
             return UIImage(named: "icon_assignment_fill")
-        case .Quiz:
+        case .quiz:
             return UIImage(named: "icon_quiz_fill")
-        case .Discussion:
+        case .discussion:
             return UIImage(named: "icon_discussion_fill")
-        case .CalendarEvent:
+        case .calendarEvent:
             return UIImage(named: "icon_calendar_event_fill")
-        case .Error:
+        case .error:
             return UIImage(named: "icon_assignment_fill")
         }
     }

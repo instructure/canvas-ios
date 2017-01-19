@@ -31,22 +31,22 @@ public final class DiscussionTopic: NSManagedObject, LockableModel {
     @NSManaged internal (set) public var title: String       // The topic title
     @NSManaged internal (set) public var message: String     // The HTML content of the message body
     @NSManaged internal (set) public var username: String    // The username of the topic creator
-    @NSManaged internal (set) public var htmlURL: NSURL      // The URL to the discussion topic in canvas
-    @NSManaged internal (set) public var postedAt: NSDate?   // The datetime if the topic was posted.
+    @NSManaged internal (set) public var htmlURL: URL      // The URL to the discussion topic in canvas
+    @NSManaged internal (set) public var postedAt: Date?   // The datetime if the topic was posted.
     @NSManaged internal (set) public var isAnnouncement: Bool   // Announcements are just discussions in disguise
 
-    @NSManaged private var primitiveType: String
+    @NSManaged fileprivate var primitiveType: String
     internal (set) public var type: DiscussionTopicType {
         get {
-            willAccessValueForKey("type")
+            willAccessValue(forKey: "type")
             let value = DiscussionTopicType(rawValue: primitiveType) ?? .SideComment
-            didAccessValueForKey("type")
+            didAccessValue(forKey: "type")
             return value
         }
         set {
-            willChangeValueForKey("type")
+            willChangeValue(forKey: "type")
             primitiveType = newValue.rawValue
-            didChangeValueForKey("type")
+            didChangeValue(forKey: "type")
         }
     }
 
@@ -62,18 +62,18 @@ public final class DiscussionTopic: NSManagedObject, LockableModel {
 
     internal (set) public var attachmentIDs: [String] {
         get {
-            willAccessValueForKey("attachmentIDs")
-            let value = primitiveAttachmentIDs.componentsSeparatedByString(",")
-            didAccessValueForKey("attachmentIDs")
+            willAccessValue(forKey: "attachmentIDs")
+            let value = primitiveAttachmentIDs.components(separatedBy: ",")
+            didAccessValue(forKey: "attachmentIDs")
             return value
         }
         set {
-            willChangeValueForKey("attachmentIDs")
-            primitiveAttachmentIDs = newValue.joinWithSeparator(",")
-            didChangeValueForKey("attachmentIDs")
+            willChangeValue(forKey: "attachmentIDs")
+            primitiveAttachmentIDs = newValue.joined(separator: ",")
+            didChangeValue(forKey: "attachmentIDs")
         }
     }
-    @NSManaged private var primitiveAttachmentIDs: String
+    @NSManaged fileprivate var primitiveAttachmentIDs: String
 
     /// MARK: Locking
     @NSManaged public var lockedForUser: Bool
@@ -85,12 +85,12 @@ import Marshal
 import SoLazy
 
 extension DiscussionTopic: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
 
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id              = try json.stringID("id")
         title           = try json <| "title"
         message         = try json <| "message"
@@ -98,11 +98,11 @@ extension DiscussionTopic: SynchronizedModel {
         htmlURL         = try json <| "url"
         postedAt        = try json <| "posted_at"
 
-        willChangeValueForKey("type")
+        willChangeValue(forKey: "type")
         primitiveType = try json <| "discussion_type"
-        didChangeValueForKey("type")
+        didChangeValue(forKey: "type")
 
-        requiresInitialPost = try json <| "require_initial_post" ?? false
+        requiresInitialPost = (try json <| "require_initial_post") ?? false
 
         let readState: String   = try json <| "read_state"
         isRead                  = readState == "read"
@@ -115,7 +115,7 @@ extension DiscussionTopic: SynchronizedModel {
 
         try updateLockStatus(json)
 
-        let attachmentsJSON: [JSONObject] = try json <| "attachments" ?? []
+        let attachmentsJSON: [JSONObject] = (try json <| "attachments") ?? []
         let attachments: [File] = try attachmentsJSON.map { json in
             let file: File = (try context.findOne(withPredicate: File.uniquePredicateForObject(json)) as? File) ?? File(inContext: context)
             try file.updateValues(json, inContext: context)

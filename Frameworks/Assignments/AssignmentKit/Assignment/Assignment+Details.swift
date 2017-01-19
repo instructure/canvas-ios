@@ -20,12 +20,12 @@ import UIKit
 import TooLegit
 import SoPersistent
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 
 
 extension Assignment {
     
-    public static func detailsCacheKey(context: NSManagedObjectContext, courseID: String, id: String) -> String {
+    public static func detailsCacheKey(_ context: NSManagedObjectContext, courseID: String, id: String) -> String {
         return cacheKey(context, [courseID, id])
     }
 
@@ -35,11 +35,11 @@ extension Assignment {
         session.refreshScope.invalidateCache(key)
     }
     
-    public static func predicate(courseID: String, assignmentID: String) -> NSPredicate {
+    public static func predicate(_ courseID: String, assignmentID: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@ && %K == %@", "courseID", courseID, "id", assignmentID)
     }
     
-    public static func refresher(session: Session, courseID: String, assignmentID: String) throws -> Refresher {
+    public static func refresher(_ session: Session, courseID: String, assignmentID: String) throws -> Refresher {
         let context = try session.assignmentsManagedObjectContext()
         let remote = try Assignment.getAssignment(session, courseID: courseID, assignmentID: assignmentID).map { [$0] }
         let pred = predicate(courseID, assignmentID: assignmentID)
@@ -48,29 +48,29 @@ extension Assignment {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public static func observer(session: Session, courseID: String, assignmentID: String) throws -> ManagedObjectObserver<Assignment> {
+    public static func observer(_ session: Session, courseID: String, assignmentID: String) throws -> ManagedObjectObserver<Assignment> {
         let pred = predicate(courseID, assignmentID: assignmentID)
         let context = try session.assignmentsManagedObjectContext()
         return try ManagedObjectObserver<Assignment>(predicate: pred, inContext: context)
     }
     
-    public static func refreshDetailsSignalProducer(session: Session, courseID: String, assignmentID: String) throws -> SignalProducer<[Assignment], NSError> {
+    public static func refreshDetailsSignalProducer(_ session: Session, courseID: String, assignmentID: String) throws -> SignalProducer<[Assignment], NSError> {
         let context = try session.assignmentsManagedObjectContext()
         let remote = try Assignment.getAssignment(session, courseID: courseID, assignmentID: assignmentID).map { [$0] }
         let pred = predicate(courseID, assignmentID: assignmentID)
         
         return Assignment.syncSignalProducer(pred, inContext: context, fetchRemote: remote)     }
     
-    public static func detailsTableViewDataSource<DVM: TableViewCellViewModel where DVM: Equatable>(session: Session, courseID: String, assignmentID: String, detailsFactory: Assignment->[DVM]) throws -> TableViewDataSource {
+    public static func detailsTableViewDataSource<DVM: TableViewCellViewModel>(_ session: Session, courseID: String, assignmentID: String, detailsFactory: @escaping (Assignment)->[DVM]) throws -> TableViewDataSource where DVM: Equatable {
         let obs = try observer(session, courseID: courseID, assignmentID: assignmentID)
         let collection = FetchedDetailsCollection<Assignment, DVM>(observer: obs, detailsFactory: detailsFactory)
         return CollectionTableViewDataSource(collection: collection, viewModelFactory: { $0 })
     }
     
-    public class DetailViewController: SoPersistent.TableViewController {
-        private (set) public var observer: ManagedObjectObserver<Assignment>!
+    open class DetailViewController: SoPersistent.TableViewController {
+        fileprivate (set) open var observer: ManagedObjectObserver<Assignment>!
         
-        public func prepare<DVM: TableViewCellViewModel where DVM: Equatable>(observer: ManagedObjectObserver<Assignment>, refresher: Refresher? = nil, detailsFactory: Assignment->[DVM]) {
+        open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<Assignment>, refresher: Refresher? = nil, detailsFactory: @escaping (Assignment)->[DVM]) where DVM: Equatable {
             self.observer = observer
             let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
             self.refresher = refresher

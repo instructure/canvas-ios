@@ -26,18 +26,18 @@ import SoPersistent
 
 extension DiscussionTopic {
     static var validJSON: JSONObject {
-        let bundle = NSBundle.soAutomated
-        let data = NSData(contentsOfFile: bundle.pathForResource("discussion_topic", ofType: "json")!)!
+        let bundle = Bundle.soAutomated
+        let data = try! Data(contentsOf: bundle.url(forResource: "discussion_topic", withExtension: "json")!)
         return try! JSONParser.JSONObjectWithData(data)
     }
 
-    static func build(context: NSManagedObjectContext,
+    static func build(_ context: NSManagedObjectContext,
                       id: String = "11719055",
                       title: String = "Simple Discussion",
                       message: String = "Hello",
                       username: String = "John Doe",
-                      htmlURL: NSURL = NSURL(string: "https://mobiledev.instructure.com/courses/1861019/discussion_topics/11719055")!,
-                      postedAt: NSDate? = nil,
+                      htmlURL: URL = URL(string: "https://mobiledev.instructure.com/courses/1861019/discussion_topics/11719055")!,
+                      postedAt: Date? = nil,
                       type: DiscussionTopicType = .SideComment,
                       requiresInitialPost: Bool = false,
                       isRead: Bool = false,

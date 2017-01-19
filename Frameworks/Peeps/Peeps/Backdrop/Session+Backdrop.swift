@@ -18,10 +18,10 @@
 
 import TooLegit
 import Result
-import ReactiveCocoa
+import ReactiveSwift
 
 extension Session {
-    private enum Associated {
+    fileprivate enum Associated {
         static var backdrop: Int = 0
     }
     
@@ -31,14 +31,14 @@ extension Session {
     
     var backdropFile: BackdropFile? {
         get {
-            if let hash = NSUserDefaults.standardUserDefaults().objectForKey(backdropKey) as? NSNumber, backdrop = BackdropFile.fromHash(hash.integerValue) {
+            if let hash = UserDefaults.standard.object(forKey: backdropKey) as? NSNumber, let backdrop = BackdropFile.fromHash(hash.intValue) {
                 self.backdropFile = backdrop
                 return backdrop
             }
             
             return nil
         } set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue.map { NSNumber(integer: $0.hashValue) }, forKey: backdropKey)
+            UserDefaults.standard.set(newValue.map { NSNumber(value: $0.hashValue) }, forKey: backdropKey)
         }
     }
     
@@ -55,15 +55,15 @@ extension Session {
             .map { $0 } // map it 2 optional
     }
 
-    public func backdropPhoto(completion: (UIImage?) -> ()) {
+    public func backdropPhoto(_ completion: @escaping (UIImage?) -> ()) {
         backdropPhoto
-            .observeOn(UIScheduler())
+            .observe(on: UIScheduler())
             .startWithResult { completion($0.value!) }
     }
     
-    public func updateBackdropFileFromServer(completed: Bool->()) {
+    public func updateBackdropFileFromServer(_ completed: @escaping (Bool)->()) {
         getBackdropOnServer(self)
-            .observeOn(UIScheduler())
+            .observe(on: UIScheduler())
             .on(failed: { err in print(err.debugDescription); completed(false) })
             .startWithResult { [weak self] result in
                 self?.backdropFile = result.value!

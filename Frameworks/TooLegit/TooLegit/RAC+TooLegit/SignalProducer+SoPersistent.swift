@@ -17,20 +17,20 @@
     
 
 import Foundation
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 import Result
 
-public func attemptProducer<Value>(file: String = #file, line: UInt = #line, @noescape f: () throws -> Value) -> SignalProducer<Value, NSError> {
+public func attemptProducer<Value>(_ file: String = #file, line: UInt = #line, f: () throws -> Value) -> SignalProducer<Value, NSError> {
     do {
         return SignalProducer(value: try f())
-    } catch let e as Marshal.Error {
+    } catch let e as MarshalError {
         return SignalProducer(error: NSError(jsonError: e, file: file, line: line))
     } catch let e as NSError {
         return SignalProducer(error: e.addingInfo(file, line: line))
     }
 }
 
-public func blockProducer<Value>(f: () -> Value) -> SignalProducer<Value, NoError> {
+public func blockProducer<Value>(_ f: @escaping () -> Value) -> SignalProducer<Value, NoError> {
     return SignalProducer<()->Value, NoError>(value: f).map { $0() }
 }

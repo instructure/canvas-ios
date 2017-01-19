@@ -21,17 +21,17 @@ import SoLazy
 
 
 enum SubmissionAnswer: Equatable {
-    case NA
-    case Unanswered
+    case na
+    case unanswered
     case Matches([String: String]) // answerID: matchID
-    case ID(String)
-    case IDs([String])
-    case Text(String)
+    case id(String)
+    case ids([String])
+    case text(String)
     
     
     var answerText: String? {
         switch self {
-        case .Text(let answerText):
+        case .text(let answerText):
             return answerText
         default:
             return nil
@@ -40,7 +40,7 @@ enum SubmissionAnswer: Equatable {
     
     var answerID: String? {
         switch self {
-        case .ID(let answerID):
+        case .id(let answerID):
             return answerID
         default:
             return nil
@@ -49,7 +49,7 @@ enum SubmissionAnswer: Equatable {
     
     var answerIDs: [String]? {
         switch self {
-        case .IDs(let answerIDs):
+        case .ids(let answerIDs):
             return answerIDs
         default:
             return nil
@@ -65,32 +65,32 @@ enum SubmissionAnswer: Equatable {
         }
     }
     
-    func toggleAnswerID(id: String) -> SubmissionAnswer {
+    func toggleAnswerID(_ id: String) -> SubmissionAnswer {
         switch self {
-        case .IDs(let answerIDs):
+        case .ids(let answerIDs):
             if answerIDs.contains(id) {
                 // deselect
                 var newAnswerIDs = answerIDs
-                if let index = newAnswerIDs.indexOf(id) {
-                    newAnswerIDs.removeAtIndex(index)
+                if let index = newAnswerIDs.index(of: id) {
+                    newAnswerIDs.remove(at: index)
                 }
-                return .IDs(newAnswerIDs)
+                return .ids(newAnswerIDs)
             } else {
                 // select
-                return .IDs(answerIDs+[id])
+                return .ids(answerIDs+[id])
             }
         default:
             return self
         }
     }
     
-    func setMatch(answerID: String, matchID: String?) -> SubmissionAnswer {
+    func setMatch(_ answerID: String, matchID: String?) -> SubmissionAnswer {
         switch self {
         case .Matches(let matches):
             var newMatches = matches
             newMatches[answerID] = matchID
             return .Matches(newMatches)
-        case .Unanswered:
+        case .unanswered:
             if let matchID = matchID {
                 return .Matches([answerID: matchID])
             } else {
@@ -105,16 +105,16 @@ enum SubmissionAnswer: Equatable {
 func ==(lhs: SubmissionAnswer, rhs: SubmissionAnswer) -> Bool {
     switch (lhs, rhs) {
         
-    case (.NA, .NA), (.Unanswered, .Unanswered):
+    case (.na, .na), (.unanswered, .unanswered):
         return true
         
-    case let (.ID(leftID), .ID(rightID)):
+    case let (.id(leftID), .id(rightID)):
         return leftID == rightID
         
-    case let (.IDs(leftIDs), .IDs(rightIDs)):
+    case let (.ids(leftIDs), .ids(rightIDs)):
         return leftIDs == rightIDs
         
-    case let (.Text(leftText), .Text(rightText)):
+    case let (.text(leftText), .text(rightText)):
         return leftText == rightText
         
     case let (.Matches(leftMatches), .Matches(rightMatches)):
@@ -130,16 +130,16 @@ func ==(lhs: SubmissionAnswer, rhs: SubmissionAnswer) -> Bool {
 
 // TODO: JSONEncodable type?
 extension SubmissionAnswer {
-    var apiAnswer: AnyObject {
+    var apiAnswer: Any {
         switch self {
-        case .Text(let answer):
+        case .text(let answer):
             return answer
-        case .ID(let id):
+        case .id(let id):
             return id.toNSNumberWrappingInt64()
-        case .IDs(let ids):
+        case .ids(let ids):
             return ids.map { $0.toNSNumberWrappingInt64() }
         case .Matches(let matches):
-            var arr: [AnyObject] = []
+            var arr: [Any] = []
             for key in matches.keys {
                 let dict = [ "answer_id": key.toNSNumberWrappingInt64(), "match_id": matches[key]!.toNSNumberWrappingInt64() ]
                 arr.append(dict)

@@ -31,6 +31,9 @@
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Gen yon bagay ki kase mwen mwen ka jere sa";
 
+/* Title for the subject field */
+"Subject" = "Sijè";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Mèsi, nou resevwa demann ou an!";
 
@@ -46,4 +49,3 @@
 /* Title for the email field */
 "Your Email" = "Imèl Ou";
 
-"Subject" = "Sijè";

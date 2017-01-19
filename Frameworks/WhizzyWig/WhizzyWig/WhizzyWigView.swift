@@ -18,43 +18,43 @@
 
 import UIKit
 
-public typealias URLHandler = (NSURL)->()
+public typealias URLHandler = (URL)->()
 var WhizzyWigOpenURLHandler: URLHandler?
 
-private func renderHTML(html: String, width: Float, fontColor: UIColor, backgroundColor: UIColor, padding: UIEdgeInsets) -> String {
-    let bundle = NSBundle(forClass: WhizzyWigView.classForCoder())
-    let templateURL = bundle.URLForResource("WhizzyWigTemplate", withExtension: "html")
-    var template = try! String(contentsOfURL: templateURL!, encoding: NSUTF8StringEncoding)
+private func renderHTML(_ html: String, width: Float, fontColor: UIColor, backgroundColor: UIColor, padding: UIEdgeInsets) -> String {
+    let bundle = Bundle(for: WhizzyWigView.classForCoder())
+    let templateURL = bundle.url(forResource: "WhizzyWigTemplate", withExtension: "html")
+    var template = try! String(contentsOf: templateURL!, encoding: String.Encoding.utf8)
 
-    template = template.stringByReplacingOccurrencesOfString("{{content-width}}", withString: "\(width)")
-    func colorString(color: UIColor) -> String {
+    template = template.replacingOccurrences(of: "{{content-width}}", with: "\(width)")
+    func colorString(_ color: UIColor) -> String {
         var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 1
         color.getRed(&r, green: &g, blue: &b, alpha: &a)
         r = r * 255; g = g * 255; b = b * 255
         return "rgb(\(Int(r)),\(Int(g)),\(Int(b)))"
     }
-    template = template.stringByReplacingOccurrencesOfString("{{font-color}}", withString: colorString(fontColor))
-    template = template.stringByReplacingOccurrencesOfString("{{background-color}}", withString: colorString(backgroundColor))
+    template = template.replacingOccurrences(of: "{{font-color}}", with: colorString(fontColor))
+    template = template.replacingOccurrences(of: "{{background-color}}", with: colorString(backgroundColor))
     let paddingString: String = {
         return "\(Int(padding.top))px \(Int(padding.right))px \(Int(padding.bottom))px \(Int(padding.left))px;"
     }()
-    template = template.stringByReplacingOccurrencesOfString("{{padding}}", withString: paddingString)
-    return template.stringByReplacingOccurrencesOfString("{{content}}", withString: html)
+    template = template.replacingOccurrences(of: "{{padding}}", with: paddingString)
+    return template.replacingOccurrences(of: "{{content}}", with: html)
 }
 
-public class WhizzyWigView: UIWebView, UIWebViewDelegate {
-    public var contentFinishedLoading: ()->() = {}
-    public var contentHeight: CGFloat {
-        let heightString = stringByEvaluatingJavaScriptFromString("document.getElementById('whizzy_content').scrollHeight") ?? "43.0"
+open class WhizzyWigView: UIWebView, UIWebViewDelegate {
+    open var contentFinishedLoading: ()->() = {}
+    open var contentHeight: CGFloat {
+        let heightString = stringByEvaluatingJavaScript(from: "document.getElementById('whizzy_content').scrollHeight") ?? "43.0"
         return CGFloat((heightString as NSString).doubleValue)
     }
-    public var contentFontColor = UIColor.blackColor()
-    public var contentBackgroundColor = UIColor.whiteColor()
-    public var contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-    public var useAPISafeLinks: Bool = true
-    public var allowLinks: Bool = true {
+    open var contentFontColor = UIColor.black
+    open var contentBackgroundColor = UIColor.white
+    open var contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+    open var useAPISafeLinks: Bool = true
+    open var allowLinks: Bool = true {
         didSet {
-            userInteractionEnabled = allowLinks
+            isUserInteractionEnabled = allowLinks
         }
     }
     
@@ -62,31 +62,31 @@ public class WhizzyWigView: UIWebView, UIWebViewDelegate {
         super.init(frame: frame)
         delegate = self
         translatesAutoresizingMaskIntoConstraints = false
-        scrollView.scrollEnabled = false
+        scrollView.isScrollEnabled = false
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         delegate = self
-        scrollView.scrollEnabled = false
+        scrollView.isScrollEnabled = false
     }
     
-    public override func loadHTMLString(string: String, baseURL: NSURL?) {
+    open override func loadHTMLString(_ string: String, baseURL: URL?) {
         super.loadHTMLString(renderHTML(string, width: Float(frame.size.width), fontColor: contentFontColor, backgroundColor: contentBackgroundColor, padding: contentInsets), baseURL: baseURL)
     }
     
-    public func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    open func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
-        if !allowLinks && navigationType == .LinkClicked {
+        if !allowLinks && navigationType == .linkClicked {
             return false
-        } else if allowLinks && navigationType == .LinkClicked && request.URL != nil && request.URL?.host != nil {
-            if let requestURL = request.URL {
+        } else if allowLinks && navigationType == .linkClicked && request.url != nil && request.url?.host != nil {
+            if let requestURL = request.url {
                 WhizzyWigOpenURLHandler?(requestURL)
             }
             return false
         }
         
-        if request.URL?.scheme == "whizzywig" {
+        if request.url?.scheme == "whizzywig" {
             contentFinishedLoading()
             return false
         }
@@ -94,13 +94,13 @@ public class WhizzyWigView: UIWebView, UIWebViewDelegate {
         return true
     }
     
-    public func webViewDidFinishLoad(webView: UIWebView) {
+    open func webViewDidFinishLoad(_ webView: UIWebView) {
         if useAPISafeLinks {
             webView.replaceHREFsWithAPISafeURLs()
         }
     }
     
-    public static func setOpenURLHandler(urlHandler: URLHandler) {
+    open static func setOpenURLHandler(_ urlHandler: @escaping URLHandler) {
         WhizzyWigOpenURLHandler = urlHandler
     }
 }

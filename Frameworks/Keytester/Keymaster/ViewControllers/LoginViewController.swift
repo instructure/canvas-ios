@@ -25,17 +25,17 @@ import SoLazy
 import Marshal
 
 public typealias UIButtonAction = (UIButton) -> ()
-public typealias ChallengeHandler = (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> ()
+public typealias ChallengeHandler = (URLSession.AuthChallengeDisposition, URLCredential?) -> ()
 
 public enum AuthenticationMethod: Int {
-    case Default
-    case Forced
-    case SiteAdmin
+    case `default`
+    case forced
+    case siteAdmin
 
     func nextMethod() -> AuthenticationMethod {
         let newRaw = self.rawValue + 1
         guard let auth = AuthenticationMethod(rawValue: newRaw) else {
-            return .Default
+            return .default
         }
 
         return auth
@@ -43,11 +43,11 @@ public enum AuthenticationMethod: Int {
 
     func displayText() -> String {
         switch(self) {
-        case .Default:
+        case .default:
             return " "
-        case .Forced:
+        case .forced:
             return "Canvas Login"
-        case .SiteAdmin:
+        case .siteAdmin:
             return "Site Admin"
         }
     }
@@ -55,23 +55,23 @@ public enum AuthenticationMethod: Int {
 
 
 public enum AuthenticationErrorCode: Int {
-    case Cancelled = 1000
-    case AccessDenied = 1001
-    case IncorrectJSON = 1002
+    case cancelled = 1000
+    case accessDenied = 1001
+    case incorrectJSON = 1002
 
     func error() -> NSError {
         switch (self) {
-        case .Cancelled:
-            return NSError(domain: "com.instructure.login", code: AuthenticationErrorCode.Cancelled.rawValue, userInfo: [NSLocalizedDescriptionKey: "Authentication failed. User cancelled authentication."])
-        case .AccessDenied:
-            return NSError(domain: "com.instructure.login", code: AuthenticationErrorCode.AccessDenied.rawValue, userInfo: [NSLocalizedDescriptionKey: "Authentication failed. User denied the request for access."])
-        case .IncorrectJSON:
-            return NSError(domain: "com.instructure.login", code: AuthenticationErrorCode.IncorrectJSON.rawValue, userInfo: [NSLocalizedDescriptionKey: "OAuthJSON Incorrect. Check the server response"])
+        case .cancelled:
+            return NSError(domain: "com.instructure.login", code: AuthenticationErrorCode.cancelled.rawValue, userInfo: [NSLocalizedDescriptionKey: "Authentication failed. User cancelled authentication."])
+        case .accessDenied:
+            return NSError(domain: "com.instructure.login", code: AuthenticationErrorCode.accessDenied.rawValue, userInfo: [NSLocalizedDescriptionKey: "Authentication failed. User denied the request for access."])
+        case .incorrectJSON:
+            return NSError(domain: "com.instructure.login", code: AuthenticationErrorCode.incorrectJSON.rawValue, userInfo: [NSLocalizedDescriptionKey: "OAuthJSON Incorrect. Check the server response"])
         }
     }
 }
 
-public class LoginViewController: UIViewController {
+open class LoginViewController: UIViewController {
 
     public typealias LoginResult = (Result<Session, NSError>) -> ()
 
@@ -82,29 +82,29 @@ public class LoginViewController: UIViewController {
     var backButton: UIButton!
 
     // privates
-    private let authMethod = AuthenticationMethod.Default
-    private var challengeHandler: ChallengeHandler?
-    private var clientID: String?
-    private var clientSecret: String?
-    private var baseURL: NSURL?
-    private var loginOAuthURL: NSURL?
+    fileprivate let authMethod = AuthenticationMethod.default
+    fileprivate var challengeHandler: ChallengeHandler?
+    fileprivate var clientID: String?
+    fileprivate var clientSecret: String?
+    fileprivate var baseURL: URL?
+    fileprivate var loginOAuthURL: URL?
 
-    private var session: NSURLSession?
+    fileprivate var session: Foundation.URLSession?
 
     // ---------------------------------------------
     // MARK: - External Actions
     // ---------------------------------------------
-    public var result: LoginResult?
-    public var createAccountAction: UIButtonAction?
-    public var forgotPasswordAction: UIButtonAction?
-    public var useBackButton = false
+    open var result: LoginResult?
+    open var createAccountAction: UIButtonAction?
+    open var forgotPasswordAction: UIButtonAction?
+    open var useBackButton = false
 
     // ---------------------------------------------
     // MARK: - Initializers
     // ---------------------------------------------
-    private static let defaultStoryboardName = "LoginViewController"
-    public static func new(baseURL: NSURL, clientID: String, clientSecret: String) -> LoginViewController {
-        guard let controller = UIStoryboard(name: defaultStoryboardName, bundle: NSBundle(forClass: self)).instantiateInitialViewController() as? LoginViewController else {
+    fileprivate static let defaultStoryboardName = "LoginViewController"
+    open static func new(_ baseURL: URL, clientID: String, clientSecret: String) -> LoginViewController {
+        guard let controller = UIStoryboard(name: defaultStoryboardName, bundle: Bundle(for: self)).instantiateInitialViewController() as? LoginViewController else {
             ❨╯°□°❩╯⌢"Initial ViewController is not of type LoginViewController"
         }
 
@@ -113,8 +113,8 @@ public class LoginViewController: UIViewController {
         controller.baseURL = baseURL
         controller.loginOAuthURL = controller.canvasLoginOAuthURL(baseURL, clientID: clientID)
 
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        controller.session = NSURLSession(configuration: config, delegate: controller, delegateQueue: nil)
+        let config = URLSessionConfiguration.default
+        controller.session = Foundation.URLSession(configuration: config, delegate: controller, delegateQueue: nil)
 
         return controller
     }
@@ -122,7 +122,7 @@ public class LoginViewController: UIViewController {
     // ---------------------------------------------
     // MARK: - UIViewController Lifecycle
     // ---------------------------------------------
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         // remove existing cookies
@@ -133,7 +133,7 @@ public class LoginViewController: UIViewController {
         setupBackButton()
     }
 
-    public override func didReceiveMemoryWarning() {
+    open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -142,25 +142,25 @@ public class LoginViewController: UIViewController {
     // MARK: - View Setup
     // --------------------------------------------
     func setupBackButton() {
-        if let navController = self.navigationController where !navController.navigationBarHidden {
+        if let navController = self.navigationController, !navController.isNavigationBarHidden {
             return
         }
 
-        let backImage = UIImage(named: "icon_back")?.imageWithRenderingMode(.AlwaysTemplate)
-        backButton = UIButton(type: .Custom)
+        let backImage = UIImage(named: "icon_back")?.withRenderingMode(.alwaysTemplate)
+        backButton = UIButton(type: .custom)
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.setBackgroundImage(backImage, forState: .Normal)
-        backButton.setBackgroundImage(backImage, forState: .Selected)
-        backButton.tintColor = UIColor.whiteColor()
+        backButton.setBackgroundImage(backImage, for: UIControlState())
+        backButton.setBackgroundImage(backImage, for: .selected)
+        backButton.tintColor = UIColor.white
 
         self.view.addSubview(backButton)
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[subview]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": backButton]))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-30-[subview]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": backButton]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[subview]", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": backButton]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[subview]", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": backButton]))
 
-        backButton.addConstraint(NSLayoutConstraint(item: backButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 40.0))
-        backButton.addConstraint(NSLayoutConstraint(item: backButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 40.0))
+        backButton.addConstraint(NSLayoutConstraint(item: backButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 40.0))
+        backButton.addConstraint(NSLayoutConstraint(item: backButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 40.0))
 
-        backButton.addTarget(self, action: #selector(LoginViewController.backButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        backButton.addTarget(self, action: #selector(LoginViewController.backButtonPressed(_:)), for: .touchUpInside)
 
         updateBackButton()
     }
@@ -168,11 +168,11 @@ public class LoginViewController: UIViewController {
     // ---------------------------------------------
     // MARK: - UI Methods
     // ---------------------------------------------
-    private func showUserPasswordAlert() {
+    fileprivate func showUserPasswordAlert() {
 
-        let alertController = UIAlertController(title: "Login", message: "Please login using your site admin credentials", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Login", message: "Please login using your site admin credentials", preferredStyle: .alert)
 
-        let loginAction = UIAlertAction(title: "Login", style: .Default) { _ in
+        let loginAction = UIAlertAction(title: "Login", style: .default) { _ in
             let loginTextField = alertController.textFields![0] as UITextField
             let passwordTextField = alertController.textFields![1] as UITextField
 
@@ -180,55 +180,55 @@ public class LoginViewController: UIViewController {
                 self.login(username, password: password)
             }
         }
-        loginAction.enabled = false
+        loginAction.isEnabled = false
 
-        alertController.addTextFieldWithConfigurationHandler { (textField) in
+        alertController.addTextField { (textField) in
             textField.placeholder = "Username"
 
-            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
-                loginAction.enabled = textField.text != ""
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { (notification) in
+                loginAction.isEnabled = textField.text != ""
             }
         }
 
-        alertController.addTextFieldWithConfigurationHandler { (textField) in
+        alertController.addTextField { (textField) in
             textField.placeholder = "Password"
-            textField.secureTextEntry = true
+            textField.isSecureTextEntry = true
         }
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { action in
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { action in
             self.cancelOAuth()
         }
 
         alertController.addAction(loginAction)
         alertController.addAction(cancelAction)
 
-        presentViewController(alertController, animated: true) { }
+        present(alertController, animated: true) { }
     }
 
     // ---------------------------------------------
     // MARK: - IBActions
     // ---------------------------------------------
-    @IBAction private func createAccountButtonPressed(sender: UIButton) {
+    @IBAction fileprivate func createAccountButtonPressed(_ sender: UIButton) {
         createAccountAction?(sender)
     }
 
-    @IBAction private func forgotPasswordButtonPressed(sender: UIButton) {
+    @IBAction fileprivate func forgotPasswordButtonPressed(_ sender: UIButton) {
         forgotPasswordAction?(sender)
     }
 
-    func backButtonPressed(sender: UIButton) {
-        self.navigationController?.popViewControllerAnimated(true)
+    func backButtonPressed(_ sender: UIButton) {
+        let _ = self.navigationController?.popViewController(animated: true)
     }
 
     func updateBackButton() {
-        backButton.hidden = !useBackButton
+        backButton.isHidden = !useBackButton
     }
 
     // ---------------------------------------------
     // MARK: - Private Methods
     // ---------------------------------------------
-    private func clearExistingCookiess() {
-        let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+    fileprivate func clearExistingCookiess() {
+        let storage = HTTPCookieStorage.shared
         if let cookies = storage.cookies {
             for cookie in cookies {
                 storage.deleteCookie(cookie)
@@ -236,95 +236,95 @@ public class LoginViewController: UIViewController {
         }
     }
 
-    private func startLoginRequest() {
+    fileprivate func startLoginRequest() {
 
         guard let url = loginOAuthURL else {
             ❨╯°□°❩╯⌢"Request cannot be created from the baseURL and client_id provided"
         }
 
-        let request = NSURLRequest(URL: url)
+        let request = URLRequest(url: url)
         webview.loadRequest(request)
 
-        session?.dataTaskWithRequest(request) { (data, response, error) in
-            dispatch_async(dispatch_get_main_queue(), {
+        session?.dataTask(with: request, completionHandler: { (data, response, error) in
+            DispatchQueue.main.async(execute: {
                 self.loadLoginRequest()
             })
-        }.resume()
+        }) .resume()
     }
 
-    private func loadLoginRequest() {
+    fileprivate func loadLoginRequest() {
         guard let url = loginOAuthURL else {
             ❨╯°□°❩╯⌢"Request cannot be created from the baseURL and client_id provided"
         }
 
-        if let request = NSURLRequest(URL: url).mutableCopy() as? NSMutableURLRequest {
-            if authMethod == .SiteAdmin {
-                request.HTTPShouldHandleCookies = true
+        if let request = (URLRequest(url: url) as NSURLRequest).mutableCopy() as? NSMutableURLRequest {
+            if authMethod == .siteAdmin {
+                request.httpShouldHandleCookies = true
                 let cookieProperties = [
-                    NSHTTPCookieValue: "1",
-                    NSHTTPCookieDomain: request.URL!.host!,
-                    NSHTTPCookieName: "canvas_sa_delegated",
-                    NSHTTPCookiePath: "/"
+                    HTTPCookiePropertyKey.value: "1",
+                    HTTPCookiePropertyKey.domain: request.url!.host!,
+                    HTTPCookiePropertyKey.name: "canvas_sa_delegated",
+                    HTTPCookiePropertyKey.path: "/"
                 ]
 
-                let cookie = NSHTTPCookie(properties: cookieProperties)!
-                NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookie)
-                self.webview.loadRequest(request)
+                let cookie = HTTPCookie(properties: cookieProperties)!
+                HTTPCookieStorage.shared.setCookie(cookie)
+                self.webview.loadRequest(request as URLRequest)
             }
         }
     }
 
-    private func login(username: String, password: String) {
-        let secretHandshake = NSURLCredential(user: username, password: password, persistence: .ForSession)
-        challengeHandler?(.UseCredential, secretHandshake)
+    fileprivate func login(_ username: String, password: String) {
+        let secretHandshake = URLCredential(user: username, password: password, persistence: .forSession)
+        challengeHandler?(.useCredential, secretHandshake)
     }
 
-    func canvasLoginOAuthURL(baseURL: NSURL?, clientID: String?) -> NSURL? {
+    func canvasLoginOAuthURL(_ baseURL: URL?, clientID: String?) -> URL? {
         guard let baseURL = baseURL, let clientID = clientID else {
             return nil
         }
 
 
-        let urlComponents = NSURLComponents()
+        var urlComponents = URLComponents()
         urlComponents.scheme = baseURL.scheme
         urlComponents.host = baseURL.host
         urlComponents.path = "/login/oauth2/auth"
         urlComponents.queryItems = [
-            NSURLQueryItem(name: "client_id", value: clientID),
-            NSURLQueryItem(name: "response_type", value: "code"),
-            NSURLQueryItem(name: "redirect_uri", value: "urn:ietf:wg:oauth:2.0:oob"),
-            NSURLQueryItem(name: "mobile", value: "1")
+            URLQueryItem(name: "client_id", value: clientID),
+            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "redirect_uri", value: "urn:ietf:wg:oauth:2.0:oob"),
+            URLQueryItem(name: "mobile", value: "1")
         ]
 
-        return urlComponents.URL
+        return urlComponents.url
     }
 
     // ---------------------------------------------
     // MARK: - Public Methods
     // ---------------------------------------------
-    public func cancelOAuth() {
-        self.result?(Result(error: AuthenticationErrorCode.Cancelled.error()))
+    open func cancelOAuth() {
+        self.result?(Result(error: AuthenticationErrorCode.cancelled.error()))
     }
 
-    private func getOAuthTokenFromCode(code: String) {
+    fileprivate func getOAuthTokenFromCode(_ code: String) {
         guard let baseURL = baseURL, let clientID = clientID, let clientSecret = clientSecret else {
             return
         }
 
-        let url = baseURL.URLByAppendingPathComponent("login/oauth2/token")
+        let url = baseURL.appendingPathComponent("login/oauth2/token")
 
         let parameters = [
             "client_id" : clientID,
             "client_secret" : clientSecret,
             "code" : code
         ]
-        let request = try! NSMutableURLRequest(method: .POST, URL: url!, parameters: parameters, encoding: .JSON)
+        var request = try! URLRequest(method: .POST, URL: url, parameters: parameters as [String : AnyObject], encoding: .json)
         request.setValue("close", forHTTPHeaderField: "Connection:")
         Session.unauthenticated.JSONSignalProducer(request).start { event in
             switch event {
-            case .Next(let json):
+            case .value(let json):
                 guard let authToken = OAuthToken.fromJSON(json), let baseURL = self.baseURL else {
-                    self.result?(Result(error: AuthenticationErrorCode.IncorrectJSON.error()))
+                    self.result?(Result(error: AuthenticationErrorCode.incorrectJSON.error()))
                     break
                 }
 
@@ -342,23 +342,23 @@ public class LoginViewController: UIViewController {
 // ---------------------------------------------
 // MARK: - NSURLSessionDelegate
 // ---------------------------------------------
-extension LoginViewController : NSURLSessionDelegate {
-    public func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
-        dispatch_async(dispatch_get_main_queue(), {
+extension LoginViewController : URLSessionDelegate {
+    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        DispatchQueue.main.async(execute: {
             self.challengeHandler = completionHandler
 
             if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodNTLM || challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodHTTPBasic {
                 // Show alert View
                 self.showUserPasswordAlert()
             } else if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-                var credential: NSURLCredential? = nil
+                var credential: URLCredential? = nil
                 if let trust = challenge.protectionSpace.serverTrust {
-                    credential = NSURLCredential(trust: trust)
+                    credential = URLCredential(trust: trust)
                 }
 
-                self.challengeHandler?(.UseCredential, credential)
+                self.challengeHandler?(.useCredential, credential)
             } else {
-                self.challengeHandler?(.PerformDefaultHandling, nil)
+                self.challengeHandler?(.performDefaultHandling, nil)
             }
         })
     }
@@ -368,20 +368,20 @@ extension LoginViewController : NSURLSessionDelegate {
 // MARK: - UIWebViewDelegate
 // ---------------------------------------------
 extension LoginViewController : UIWebViewDelegate {
-    public func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if let url = request.URL {
+    public func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if let url = request.url {
             if url.description == "about.blank" {
                 return false
             }
 
             // We have to wait for the code to be the first param cuz it can keep changing as we follow redirects
-            if url.absoluteString!.containsString("/login/oauth2/auth?code=") {
-                if let code = request.URL?.queryItemForKey("code")?.value {
+            if url.absoluteString.contains("/login/oauth2/auth?code=") {
+                if let code = request.url?.queryItemForKey("code")?.value {
                     getOAuthTokenFromCode(code)
                     return false
                 }
-            } else if request.URL?.queryItemForKey("error") != nil {
-                self.result?(Result(error: AuthenticationErrorCode.AccessDenied.error()))
+            } else if request.url?.queryItemForKey("error") != nil {
+                self.result?(Result(error: AuthenticationErrorCode.accessDenied.error()))
                 return false
             }
 
@@ -390,22 +390,22 @@ extension LoginViewController : UIWebViewDelegate {
     }
 }
 
-public extension NSURL {
+public extension URL {
 
-    var allQueryItems: [NSURLQueryItem] {
+    var allQueryItems: [URLQueryItem] {
         get {
-            let components = NSURLComponents(URL: self, resolvingAgainstBaseURL: false)!
+            let components = URLComponents(url: self, resolvingAgainstBaseURL: false)!
             if let allQueryItems = components.queryItems {
-                return allQueryItems as [NSURLQueryItem]
+                return allQueryItems as [URLQueryItem]
             } else {
-                return [NSURLQueryItem]()
+                return [URLQueryItem]()
             }
         }
     }
     
-    func queryItemForKey(key: String) -> NSURLQueryItem? {
+    func queryItemForKey(_ key: String) -> URLQueryItem? {
         let predicate = NSPredicate(format: "name=%@", key)
-        return (allQueryItems as NSArray).filteredArrayUsingPredicate(predicate).first as? NSURLQueryItem
+        return (allQueryItems as NSArray).filtered(using: predicate).first as? URLQueryItem
         
     }
 }

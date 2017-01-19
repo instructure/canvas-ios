@@ -19,64 +19,76 @@
 import UIKit
 
 enum CalendarDayCellState {
-    case Normal
-    case Selected
-    case Today
-    case TodaySelected
-    case Off
-    case OffSelected
-    case NotMonth
+    case normal
+    case selected
+    case today
+    case todaySelected
+    case off
+    case offSelected
+    case notMonth
 }
 
-public class CalendarDayCell: UICollectionViewCell {
-    var dateLabel = UILabel()
+open class CalendarDayCell: UICollectionViewCell {
+    static let dayOfTheMonthA11yFormatter: (Int)->String = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .ordinal
+        return { i in formatter.string(from: NSNumber(value: i))! }
+    }()
+
+    var day: Int = 1 {
+        didSet {
+            dateLabel.text = "\(day)"
+            updateA11y()
+        }
+    }
+    private var dateLabel = UILabel()
     var dateCircleImageView = UIImageView()
     var notThisMonth = true
     
     var date: CalendarDate?
-    var cellState: CalendarDayCellState = CalendarDayCellState.Normal {
+    var cellState: CalendarDayCellState = .normal {
         didSet {
             updateCellState()
         }
     }
     
-    var cellBackgroundColor = UIColor.whiteColor()
+    var cellBackgroundColor = UIColor.white
 
     // MARK: Style colors
     // Normal Case
-    var normalLabelFont = UIFont.systemFontOfSize(18.0)
-    var normalLabelTextColor = UIColor.blackColor()
-    var normalCircleColor = UIColor.whiteColor()
+    var normalLabelFont = UIFont.systemFont(ofSize: 18.0)
+    var normalLabelTextColor = UIColor.black
+    var normalCircleColor = UIColor.white
     
     // Selected Case
-    var selectedLabelFont = UIFont.systemFontOfSize(18.0)
-    var selectedLabelTextColor = UIColor.whiteColor()
+    var selectedLabelFont = UIFont.systemFont(ofSize: 18.0)
+    var selectedLabelTextColor = UIColor.white
     var selectedCircleColor = UIColor.calendarHighlightTintColor
     
     // Today Case
-    var todayLabelFont = UIFont.systemFontOfSize(18.0)
+    var todayLabelFont = UIFont.systemFont(ofSize: 18.0)
     var todayLabelTextColor = UIColor.calendarTintColor
-    var todayCircleColor = UIColor.whiteColor()
+    var todayCircleColor = UIColor.white
     
     // Today Selected Case
-    var todaySelectedLabelFont = UIFont.systemFontOfSize(18.0)
-    var todaySelectedLabelTextColor = UIColor.whiteColor()
+    var todaySelectedLabelFont = UIFont.systemFont(ofSize: 18.0)
+    var todaySelectedLabelTextColor = UIColor.white
     var todaySelectedCircleColor = UIColor.calendarHighlightTintColor
     
     // Off Case
-    var offLabelFont = UIFont.systemFontOfSize(18.0)
-    var offLabelTextColor = UIColor.lightGrayColor()
-    var offCircleColor = UIColor.whiteColor()
+    var offLabelFont = UIFont.systemFont(ofSize: 18.0)
+    var offLabelTextColor = UIColor.lightGray
+    var offCircleColor = UIColor.white
     
     // Off Selected Case
-    var offSelectedLabelFont = UIFont.systemFontOfSize(18.0)
-    var offSelectedLabelTextColor = UIColor.whiteColor()
+    var offSelectedLabelFont = UIFont.systemFont(ofSize: 18.0)
+    var offSelectedLabelTextColor = UIColor.white
     var offSelectedCircleColor = UIColor.calendarHighlightTintColor
     
     // Not Month Case
-    var notMonthLabelFont = UIFont.systemFontOfSize(18.0)
-    var notMonthLabelTextColor = UIColor.clearColor()
-    var notMonthCircleColor = UIColor.clearColor()
+    var notMonthLabelFont = UIFont.systemFont(ofSize: 18.0)
+    var notMonthLabelTextColor = UIColor.clear
+    var notMonthCircleColor = UIColor.clear
     
     var colorsToIndicate: [UIColor]? {
         didSet {
@@ -87,16 +99,16 @@ public class CalendarDayCell: UICollectionViewCell {
     var circleBorderColor = UIColor.calendarDayCircleColor
     var circleBorderWidth: CGFloat = 2.0
     var circleRadius: CGFloat = 18.0
-    var circleBorderAnimationDuration: NSTimeInterval = 0.5
+    var circleBorderAnimationDuration: TimeInterval = 0.5
     
     
-    var smallCirclePopAnimationDuration: NSTimeInterval = 0.5
-    var smallCirclePopAnimationDelay: NSTimeInterval = 0.25
+    var smallCirclePopAnimationDuration: TimeInterval = 0.5
+    var smallCirclePopAnimationDelay: TimeInterval = 0.25
     var maximumSmallCircles = 10
     var smallCircleDiameter: CGFloat = 7.0
     
-    private var circleViews: [UIView] = [UIView]()
-    private var circleBorderView = UIView()
+    fileprivate var circleViews: [UIView] = [UIView]()
+    fileprivate var circleBorderView = UIView()
     
     // MARK: init
     required public init?(coder aDecoder: NSCoder) {
@@ -119,45 +131,58 @@ public class CalendarDayCell: UICollectionViewCell {
         self.initializeCircleViews()
     }
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         
         dateLabel.frame = self.bounds
-        dateLabel.textAlignment = NSTextAlignment.Center
+        dateLabel.textAlignment = NSTextAlignment.center
         updateCircleViews()
         updateCellState()
     }
     
+    func updateA11y() {
+        dateLabel.accessibilityLabel = dateLabel.text
+            .flatMap { Int($0) }
+            .map(CalendarDayCell.dayOfTheMonthA11yFormatter)
+    }
+    
     func updateCellState() {
         switch self.cellState {
-        case CalendarDayCellState.Normal:
+        case .normal:
             self.dateLabel.font = self.normalLabelFont
             self.dateLabel.textColor = self.normalLabelTextColor
             self.dateCircleImageView.image = self.circleImageWithColor(self.normalCircleColor, diameter: 60.0)
-        case CalendarDayCellState.Selected:
+        case .selected:
             self.dateLabel.font = self.selectedLabelFont
             self.dateLabel.textColor = self.selectedLabelTextColor
             self.dateCircleImageView.image = self.circleImageWithColor(self.selectedCircleColor, diameter: 60.0)
-        case CalendarDayCellState.Today:
+        case .today:
             self.dateLabel.font = self.todayLabelFont
             self.dateLabel.textColor = self.todayLabelTextColor
             self.dateCircleImageView.image = self.circleImageWithColor(self.todayCircleColor, diameter: 60.0)
-        case CalendarDayCellState.TodaySelected:
+        case .todaySelected:
             self.dateLabel.font = self.todaySelectedLabelFont
             self.dateLabel.textColor = self.todaySelectedLabelTextColor
             self.dateCircleImageView.image = self.circleImageWithColor(self.todaySelectedCircleColor, diameter: 60.0)
-        case CalendarDayCellState.Off:
+        case .off:
             self.dateLabel.font = self.offLabelFont
             self.dateLabel.textColor = self.offLabelTextColor
             self.dateCircleImageView.image = self.circleImageWithColor(self.offCircleColor, diameter: 60.0)
-        case CalendarDayCellState.OffSelected:
+        case .offSelected:
             self.dateLabel.font = self.offSelectedLabelFont
             self.dateLabel.textColor = self.offSelectedLabelTextColor
             self.dateCircleImageView.image = self.circleImageWithColor(self.offSelectedCircleColor, diameter: 60.0)
-        case CalendarDayCellState.NotMonth:
+        case .notMonth:
             self.dateLabel.font = self.notMonthLabelFont
             self.dateLabel.textColor = self.notMonthLabelTextColor
             self.dateCircleImageView.image = self.circleImageWithColor(self.notMonthCircleColor, diameter: 60.0)
+        }
+        
+        // turn it off as an a11y element
+        if case .notMonth = cellState {
+            self.dateLabel.isHidden = true
+        } else {
+            self.dateLabel.isHidden = false
         }
     }
     
@@ -166,16 +191,16 @@ public class CalendarDayCell: UICollectionViewCell {
             view.removeFromSuperview()
         }
         
-        circleViews.removeAll(keepCapacity: false)
+        circleViews.removeAll(keepingCapacity: false)
         
         if let _ = circleBorderView.superview {
             circleBorderView.removeFromSuperview()
         }
         // add one to the radius to make the border hit the middle of the circle
         let circleViewRadius = circleRadius + 1
-        circleBorderView.frame = CGRectMake(0, 0, circleViewRadius * 2, circleViewRadius * 2)
+        circleBorderView.frame = CGRect(x: 0, y: 0, width: circleViewRadius * 2, height: circleViewRadius * 2)
         circleBorderView.layer.cornerRadius = circleViewRadius
-        circleBorderView.layer.borderColor = circleBorderColor.CGColor
+        circleBorderView.layer.borderColor = circleBorderColor.cgColor
         circleBorderView.layer.borderWidth = circleBorderWidth
         circleBorderView.alpha = 0.0
         circleBorderView.center = dateLabel.center
@@ -183,16 +208,16 @@ public class CalendarDayCell: UICollectionViewCell {
         
         dateCircleImageView.frame = circleBorderView.frame
         
-        let size = CGSizeMake(smallCircleDiameter, smallCircleDiameter)
+        let size = CGSize(width: smallCircleDiameter, height: smallCircleDiameter)
         for index in 1...10 {
-            let circleView = UIView(frame: CGRectMake(0, 0, size.width/2, size.height/2))
+            let circleView = UIView(frame: CGRect(x: 0, y: 0, width: size.width/2, height: size.height/2))
             circleView.layer.cornerRadius = size.width/2
             let percentage = Double(index) * M_PI/Double(maximumSmallCircles)
             let theta: Double = Double(2 * percentage)
             let xDelta: CGFloat = circleRadius * CGFloat(cos(theta))
             let yDelta: CGFloat = circleRadius * CGFloat(sin(theta))
-            circleView.center = CGPointMake(dateLabel.center.x + xDelta, dateLabel.center.y + yDelta)
-            circleView.backgroundColor = UIColor.lightGrayColor()
+            circleView.center = CGPoint(x: dateLabel.center.x + xDelta, y: dateLabel.center.y + yDelta)
+            circleView.backgroundColor = UIColor.lightGray
             circleView.alpha = 0.0
             addSubview(circleView)
             circleViews.append(circleView)
@@ -212,32 +237,32 @@ public class CalendarDayCell: UICollectionViewCell {
         }
         
         let colors = colorsToIndicate!
-        UIView.animateWithDuration(circleBorderAnimationDuration, animations: {
+        UIView.animate(withDuration: circleBorderAnimationDuration, animations: {
             self.circleBorderView.alpha = 1.0;
         })
 
-        let size = CGSizeMake(smallCircleDiameter, smallCircleDiameter)
-        for (index, circleView) in circleViews.enumerate() {
+        let size = CGSize(width: smallCircleDiameter, height: smallCircleDiameter)
+        for (index, circleView) in circleViews.enumerated() {
             let percentage = Double(index) * M_PI/Double(maximumSmallCircles)
             let theta: Double = Double(2 * percentage)
             let xDelta: CGFloat = circleRadius * CGFloat(cos(theta))
             let yDelta: CGFloat = circleRadius * CGFloat(sin(theta))
-            circleView.center = CGPointMake(dateLabel.center.x + xDelta, dateLabel.center.y + yDelta)
+            circleView.center = CGPoint(x: dateLabel.center.x + xDelta, y: dateLabel.center.y + yDelta)
             circleView.alpha = 0.0
             
             if index < colors.count {
                 circleView.backgroundColor = colors[index]
 //                UIView.animateWithDuration(smallCirclePopAnimationDuration, delay: (smallCirclePopAnimationDelay + (0.1 * Double(index))), usingSpringWithDamping: 0.3, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
                     circleView.alpha = 1.0
-                    circleView.frame = CGRectMake(circleView.frame.origin.x, circleView.frame.origin.y, size.width, size.height)
-                    circleView.center = CGPointMake(self.dateLabel.center.x + xDelta, self.dateLabel.center.y + yDelta)
+                    circleView.frame = CGRect(x: circleView.frame.origin.x, y: circleView.frame.origin.y, width: size.width, height: size.height)
+                    circleView.center = CGPoint(x: self.dateLabel.center.x + xDelta, y: self.dateLabel.center.y + yDelta)
 //                    }, completion:nil);
             }
         }
     }
     
-    func circleImageWithColor(color: UIColor, diameter: CGFloat) -> UIImage {
-        let size = CGSizeMake(diameter, diameter)
-        return UIImage.circleImage(frame: CGRectMake(0, 0, size.width, size.height), color: color, scale:2.0)
+    func circleImageWithColor(_ color: UIColor, diameter: CGFloat) -> UIImage {
+        let size = CGSize(width: diameter, height: diameter)
+        return UIImage.circleImage(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height), color: color, scale:2.0)
     }
 }

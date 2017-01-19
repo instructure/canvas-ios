@@ -19,11 +19,11 @@
 public typealias JSONShape = [JSONKeyType]
 
 public enum JSONKey: JSONKeyType {
-    case Value(String)
-    case Values([String])
-    case NotValue(String)
-    case Object(String, JSONShape)
-    case Objects(String, JSONShape)
+    case value(String)
+    case values([String])
+    case notValue(String)
+    case object(String, JSONShape)
+    case objects(String, JSONShape)
 
     public var jsonKeyValue: JSONKey { return self }
 }
@@ -34,27 +34,27 @@ public protocol JSONKeyType {
 
 extension String: JSONKeyType {
     public var jsonKeyValue: JSONKey {
-        return .Value(self)
+        return .value(self)
     }
 }
 
-public func object(name: String, _ keys: JSONShape) -> JSONKeyType {
-    return JSONKey.Object(name, keys)
+public func object(_ name: String, _ keys: JSONShape) -> JSONKeyType {
+    return JSONKey.object(name, keys)
 }
 
-public func objects(name: String, _ keys: JSONShape) -> JSONKeyType {
-    return JSONKey.Objects(name, keys)
+public func objects(_ name: String, _ keys: JSONShape) -> JSONKeyType {
+    return JSONKey.objects(name, keys)
 }
 
-public func jsonShape(shape: JSONShape, matchesObject object: [String: AnyObject]) -> (Bool, String?) {
+public func jsonShape(_ shape: JSONShape, matchesObject object: [String: Any]) -> (Bool, String?) {
     for key in shape {
         switch key.jsonKeyValue {
-        case .Value(let name):
+        case .value(let name):
             if !object.keys.contains(name) {
                 return (false, name)
             }
-        case .Objects(let name, let shape):
-            guard let arrayOfObjects = object[name] as? [[String: AnyObject]] else {
+        case .objects(let name, let shape):
+            guard let arrayOfObjects = object[name] as? [[String: Any]] else {
                 return (false, name)
             }
             for innerObject in arrayOfObjects {
@@ -63,18 +63,18 @@ public func jsonShape(shape: JSONShape, matchesObject object: [String: AnyObject
                     return (false, key)
                 }
             }
-        case .Object(let name, let shape):
-            guard let innerObject = object[name] as? [String: AnyObject] else {
+        case .object(let name, let shape):
+            guard let innerObject = object[name] as? [String: Any] else {
                 return (false, name)
             }
             return jsonShape(shape, matchesObject: innerObject)
-        case .Values(let names):
+        case .values(let names):
             for innerName in names {
                 if !object.keys.contains(innerName) {
                     return (false, innerName)
                 }
             }
-        case .NotValue(let name):
+        case .notValue(let name):
             if object.keys.contains(name) {
                 return (false, "!\(name)")
             }
@@ -83,14 +83,14 @@ public func jsonShape(shape: JSONShape, matchesObject object: [String: AnyObject
     return (true, nil)
 }
 
-public func jsonShape(shape: JSONShape, matchesObject object: [[String: AnyObject]]) -> (Bool, String?) {
-    return jsonShape([objects("root", shape)], matchesObject: ["root": object])
+public func jsonShape(_ shape: JSONShape, matchesObject object: [[String: Any]]) -> (Bool, String?) {
+    return jsonShape([JSONKey.objects("root", shape)], matchesObject: ["root": object])
 }
 
 prefix public func !(jsonKeyType: JSONKeyType) -> JSONKeyType {
     switch jsonKeyType.jsonKeyValue {
-    case .Value(let v):
-        return JSONKey.NotValue(v)
+    case .value(let v):
+        return JSONKey.notValue(v)
     default:
         fatalError("! operator only applicable to Value types")
     }

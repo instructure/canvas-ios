@@ -23,19 +23,19 @@ import SoPretty
 class QuizIntroFooterView: UIView {
     let pageControl = UIPageControl()
     let takeButton = UIButton()
-    private let takeabilityActivityIndicator = UIActivityIndicatorView()
+    fileprivate let takeabilityActivityIndicator = UIActivityIndicatorView()
     
-    private var pageControlConstraintGroup = ConstraintGroup()
-    private var takeButtonConstraintGroup = ConstraintGroup()
+    fileprivate var pageControlConstraintGroup = ConstraintGroup()
+    fileprivate var takeButtonConstraintGroup = ConstraintGroup()
 
-    private let visualEffectContainer = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight))
+    fileprivate let visualEffectContainer = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        opaque = false
-        backgroundColor = UIColor.clearColor()
+        isOpaque = false
+        backgroundColor = UIColor.clear
         
         prepareBackgroundView()
         preparePageControl()
@@ -51,7 +51,7 @@ class QuizIntroFooterView: UIView {
 // MARK: Layout
 
 extension QuizIntroFooterView {
-    func setTakeButtonOnscreen(onscreen: Bool, animated: Bool) {
+    func setTakeButtonOnscreen(_ onscreen: Bool, animated: Bool) {
         if onscreen {
             constrain(pageControl, visualEffectContainer.contentView, replace: pageControlConstraintGroup) { pageControl, contentView in
                 pageControl.centerY == contentView.bottom + 60
@@ -69,7 +69,7 @@ extension QuizIntroFooterView {
         }
         
         if animated {
-            UIView.animateWithDuration(0.2, animations: visualEffectContainer.layoutIfNeeded)
+            UIView.animate(withDuration: 0.2, animations: visualEffectContainer.layoutIfNeeded)
         } else {
             visualEffectContainer.layoutIfNeeded()
         }
@@ -105,39 +105,39 @@ extension QuizIntroFooterView {
 // MARK: Take Button
 
 extension QuizIntroFooterView {
-    func takeabilityUpdated(takeability: Takeability) {
+    func takeabilityUpdated(_ takeability: Takeability) {
         // get the last page, set it to show the big blue button
         switch takeability {
-        case .NotTakeable(let reason):
-            if reason == .Undecided {
-                takeButton.setImage(nil, forState: .Normal)
-                takeButton.setTitle("", forState: .Normal)
+        case .notTakeable(let reason):
+            if reason == .undecided {
+                takeButton.setImage(nil, for: UIControlState())
+                takeButton.setTitle("", for: UIControlState())
                 
-                takeabilityActivityIndicator.hidden = false
+                takeabilityActivityIndicator.isHidden = false
                 takeabilityActivityIndicator.startAnimating()
             } else {
-                let lockImage = UIImage(named: "lock", inBundle: NSBundle(forClass: QuizIntroViewController.self), compatibleWithTraitCollection: nil)?.imageWithRenderingMode(.AlwaysTemplate)
-                takeButton.imageView?.tintColor = UIColor.whiteColor()
-                takeButton.setImage(lockImage, forState: .Normal)
-                takeButton.setTitle(nil, forState: .Normal)
+                let lockImage = UIImage(named: "lock", in: Bundle(for: QuizIntroViewController.self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+                takeButton.imageView?.tintColor = UIColor.white
+                takeButton.setImage(lockImage, for: UIControlState())
+                takeButton.setTitle(nil, for: UIControlState())
                 
                 takeabilityActivityIndicator.stopAnimating()
-                takeabilityActivityIndicator.hidden = true
+                takeabilityActivityIndicator.isHidden = true
             }
             
         default:
-            takeButton.setImage(nil, forState: .Normal)
-            takeButton.setTitle(takeability.label, forState: .Normal)
+            takeButton.setImage(nil, for: UIControlState())
+            takeButton.setTitle(takeability.label, for: UIControlState())
             
             takeabilityActivityIndicator.stopAnimating()
-            takeabilityActivityIndicator.hidden = true
+            takeabilityActivityIndicator.isHidden = true
         }
     }
     
-    private func prepareTakeButton() {
+    fileprivate func prepareTakeButton() {
         takeButton.backgroundColor = Brand.current().tintColor
         takeButton.layer.cornerRadius = 5.0
-        takeButton.enabled = false
+        takeButton.isEnabled = false
         
         visualEffectContainer.contentView.addSubview(takeButton)
         
@@ -147,7 +147,7 @@ extension QuizIntroFooterView {
             takeButton.height   == 44.0
         }
         
-        takeabilityActivityIndicator.hidden = true
+        takeabilityActivityIndicator.isHidden = true
         takeButton.addSubview(takeabilityActivityIndicator)
         constrain(takeabilityActivityIndicator, takeButton) { takeabilityActivityIndicator, takeButton in
             takeabilityActivityIndicator.center == takeButton.center
@@ -162,10 +162,10 @@ extension QuizIntroFooterView {
 // MARK: Page Control
 
 extension QuizIntroFooterView {
-    private func preparePageControl() {
+    fileprivate func preparePageControl() {
         pageControl.pageIndicatorTintColor = Brand.current().tintColor
         pageControl.currentPageIndicatorTintColor = Brand.current().secondaryTintColor
-        pageControl.hidden = true
+        pageControl.isHidden = true
         visualEffectContainer.contentView.addSubview(pageControl)
         constrain(pageControl, visualEffectContainer) { pageControl, container in
             pageControl.centerX == container.centerX

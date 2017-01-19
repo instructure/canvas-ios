@@ -23,7 +23,7 @@ import SoAutomated
 import CoreData
 import Marshal
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 
 extension CourseSpec {
     var validCourseJSON: JSONObject {

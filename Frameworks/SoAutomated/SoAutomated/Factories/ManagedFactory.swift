@@ -21,31 +21,34 @@ import TooLegit
 import Marshal
 import SoPersistent
 @testable import FileKit
+@testable import SuchActivity
 
-public typealias FactoryOptions = [String: AnyObject]
+public typealias FactoryOptions = [String: Any]
 
 public enum ManagedObjectContext {
-    case EnrollmentKit, AssignmentKit, FileKit, SoEdventurous
+    case enrollmentKit, assignmentKit, fileKit, soEdventurous, suchActivity
 
-    public func value(session: Session, options: FactoryOptions = [:]) -> NSManagedObjectContext {
+    public func value(_ session: Session, options: FactoryOptions = [:]) -> NSManagedObjectContext {
         let scope: String? = try? options <| "scope"
 
         switch self {
-        case .EnrollmentKit:
+        case .enrollmentKit:
             return try! session.enrollmentManagedObjectContext(scope)
-        case .AssignmentKit:
+        case .assignmentKit:
             return try! session.assignmentsManagedObjectContext(scope)
-        case .FileKit:
+        case .fileKit:
             return try! session.filesManagedObjectContext()
-        case .SoEdventurous:
+        case .soEdventurous:
             return try! session.soEdventurousManagedObjectContext()
+        case .suchActivity:
+            return session.suchActivityManagedObjectContext
         }
     }
 }
 
 public protocol ManagedFactory {
     static var auto_managedObjectContext: ManagedObjectContext { get }
-    static func define(object: Self)
+    static func define(_ object: Self)
 }
 
 extension LockableModel {
@@ -57,11 +60,13 @@ extension LockableModel {
 }
 
 extension ManagedFactory where Self: NSManagedObject {
+    @discardableResult
     public static func build(inSession session: Session, options: FactoryOptions = [:], customize: (Self) -> Void = { _ in }) -> Self {
         let context = auto_managedObjectContext.value(session, options: options)
         return build(inContext: context, customize: customize)
     }
     
+    @discardableResult
     public static func build(inContext context: NSManagedObjectContext, customize: (Self) -> Void = { _ in }) -> Self {
         let f: Self = create(inContext: context)
         if let lockable = f as? LockableModel {
@@ -80,7 +85,7 @@ extension ManagedFactory where Self: NSManagedObject {
 }
 
 extension Session {
-    public func managedObjectContext<T: ManagedFactory>(factoryType: T.Type, options: FactoryOptions = [:]) -> NSManagedObjectContext {
+    public func managedObjectContext<T: ManagedFactory>(_ factoryType: T.Type, options: FactoryOptions = [:]) -> NSManagedObjectContext {
         return factoryType.auto_managedObjectContext.value(self)
     }
 }

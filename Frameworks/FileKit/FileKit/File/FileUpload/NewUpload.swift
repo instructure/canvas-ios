@@ -18,18 +18,18 @@
 
 import Foundation
 import Photos
-import ReactiveCocoa
+import ReactiveSwift
 import MobileCoreServices
 
-let dateFormatter: NSDateFormatter = {
-    let df = NSDateFormatter()
-    df.dateStyle = .MediumStyle
+let dateFormatter: DateFormatter = {
+    let df = DateFormatter()
+    df.dateStyle = .medium
     return df
 }()
 
-private func MIMEType(fileExtension: String) -> String? {
+private func MIMEType(_ fileExtension: String) -> String? {
     if !fileExtension.isEmpty {
-        guard let UTIRef = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, nil) else {
+        guard let UTIRef = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension as CFString, nil) else {
             return nil
         }
 
@@ -48,52 +48,52 @@ private func MIMEType(fileExtension: String) -> String? {
 }
 
 public enum NewUploadFile {
-    case AudioFile(NSURL)
-    case FileURL(NSURL)
-    case CameraRollAsset(PHAsset)
-    case VideoURL(NSURL)
-    case Photo(UIImage)
-    case Data(NSData)
+    case audioFile(URL)
+    case fileURL(URL)
+    case cameraRollAsset(PHAsset)
+    case videoURL(URL)
+    case photo(UIImage)
+    case data(Data)
     
     public var name: String {
         switch self {
-        case .FileURL(let url):
-            return url.lastPathComponent ?? ""
-        case .CameraRollAsset(let asset):
+        case .fileURL(let url):
+            return url.lastPathComponent
+        case .cameraRollAsset(let asset):
             let type: String
             switch asset.mediaType {
-            case .Video:
+            case .video:
                 type = "Video"
             default:
                 type = "Photo"
             }
 
-            let formattedDate = dateFormatter.stringFromDate(asset.modificationDate ?? NSDate())
+            let formattedDate = dateFormatter.string(from: asset.modificationDate ?? Date())
             return "\(type) \(formattedDate)"
-        case .AudioFile(let url):
-            return url.lastPathComponent ?? ""
-        case .Photo(_):
-            return NSLocalizedString("Photo", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "name for a photo just taken")
-        case .VideoURL(_):
-            return NSLocalizedString("Video", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "name for a video just taken for upload")
-        case .Data(_):
-            return NSLocalizedString("Data", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "name for upload data")
+        case .audioFile(let url):
+            return url.lastPathComponent
+        case .photo(_):
+            return NSLocalizedString("Photo", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "name for a photo just taken")
+        case .videoURL(_):
+            return NSLocalizedString("Video", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "name for a video just taken for upload")
+        case .data(_):
+            return NSLocalizedString("Data", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "name for upload data")
         }
     }
 
     public var contentType: String? {
         switch self {
-            case .FileURL(let url): return url.pathExtension.flatMap({ MIMEType($0) }) ?? nil
-        case .AudioFile(_):
+            case .fileURL(let url): return MIMEType(url.pathExtension)
+        case .audioFile(_):
             return "audio/mp4"
-        case .CameraRollAsset(let asset):
+        case .cameraRollAsset(let asset):
             switch asset.mediaType {
-            case .Video: return "video/mpeg"
+            case .video: return "video/mpeg"
             default: return "image/jpeg"
             }
-        case .Photo(_): return "image/jpeg"
-        case .VideoURL(_): return "video/mpeg"
-        case .Data(_): return "text/plain"
+        case .photo(_): return "image/jpeg"
+        case .videoURL(_): return "video/mpeg"
+        case .data(_): return "text/plain"
         }
     }
     
@@ -101,99 +101,103 @@ public enum NewUploadFile {
         let size = CGSize(width: 34, height: 34)
         
         switch self {
-        case .CameraRollAsset(let asset):
+        case .cameraRollAsset(let asset):
             let options = PHImageRequestOptions()
-            options.synchronous = true
+            options.isSynchronous = true
             
             var thumb: UIImage = UIImage()
-            PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: size, contentMode: PHImageContentMode.AspectFill, options: options) { image, info in
+            PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: PHImageContentMode.aspectFill, options: options) { image, info in
                 if let image = image {
                     thumb = image
                 }
             }
             
             return thumb
-        case .AudioFile(_):
-            return UIImage(named: "icon_audio", inBundle: NSBundle(forClass: UploadBuilder.classForCoder()), compatibleWithTraitCollection: nil)!
-        case .Photo(let image):
+        case .audioFile(_):
+            return UIImage(named: "icon_audio", in: Bundle(for: UploadBuilder.classForCoder()), compatibleWith: nil)!
+        case .photo(let image):
             return image
         default:
-            return UIImage(named: "icon_document", inBundle: NSBundle(forClass: UploadBuilder.classForCoder()), compatibleWithTraitCollection: nil)!
+            return UIImage(named: "icon_document", in: Bundle(for: UploadBuilder.classForCoder()), compatibleWith: nil)!
         }
     }
 
-    public var extractDataProducer: SignalProducer<NSData?, NSError> {
+    public var extractDataProducer: SignalProducer<Data?, NSError> {
         return SignalProducer() { observer, disposable in
-            switch self {
-            case .FileURL(let url):
-                observer.sendNext(NSData(contentsOfURL: url))
-            case .AudioFile(let url):
-                observer.sendNext(NSData(contentsOfURL: url))
-            case .VideoURL(let url):
-                observer.sendNext(NSData(contentsOfURL: url))
-            case .Photo(let image):
-                observer.sendNext(UIImagePNGRepresentation(image))
-            case .CameraRollAsset(let asset):
-                let manager = PHCachingImageManager()
-                switch asset.mediaType {
-                case .Image:
-                    manager.requestImageDataForAsset(asset, options: nil) { (data, _, _, _) in
-                        observer.sendNext(data)
-                    }
-                case .Video:
-                    manager.requestAVAssetForVideo(asset, options: nil) { asset, audioMix, info in
-                        if let asset = asset as? AVURLAsset, data = NSData(contentsOfURL: asset.URL) {
-                            observer.sendNext(data)
+            do {
+                switch self {
+                case .fileURL(let url):
+                    observer.send(value: try Data(contentsOf: url))
+                case .audioFile(let url):
+                    observer.send(value: try Data(contentsOf: url))
+                case .videoURL(let url):
+                    observer.send(value: try Data(contentsOf: url))
+                case .photo(let image):
+                    observer.send(value: UIImagePNGRepresentation(image))
+                case .cameraRollAsset(let asset):
+                    let manager = PHCachingImageManager()
+                    switch asset.mediaType {
+                    case .image:
+                        manager.requestImageData(for: asset, options: nil) { (data, _, _, _) in
+                            observer.send(value: data)
                         }
+                    case .video:
+                        manager.requestAVAsset(forVideo: asset, options: nil) { asset, audioMix, info in
+                            if let asset = asset as? AVURLAsset, let data = try? Data(contentsOf: asset.url) {
+                                observer.send(value: data)
+                            }
+                        }
+                    default: observer.send(value: nil)
                     }
-                default: observer.sendNext(nil)
+                case .data(let data):
+                    observer.send(value: data)
                 }
-            case .Data(let data):
-                observer.sendNext(data)
+            } catch let e as NSError {
+                observer.send(error: e)
             }
         }
     }
 }
 
 public enum NewUpload {
-    case None
-    case Text(String)
-    case URL(NSURL)
-    case MediaComment(NewUploadFile)
-    case FileUpload([NewUploadFile])
+    case none
+    case text(String)
+    case url(Foundation.URL)
+    case mediaComment(NewUploadFile)
+    case fileUpload([NewUploadFile])
 
     var fileCount: Int {
         switch self {
-        case .FileUpload(let urls):
+        case .fileUpload(let urls):
             return urls.count
-        case .MediaComment(_):
+        case .mediaComment(_):
             return 1
         default:
             return 0
         }
     }
 
-    func uploadByDeletingFileAtIndex(row: Int) -> NewUpload {
+    func uploadByDeletingFileAtIndex(_ row: Int) -> NewUpload {
         switch self {
-        case .FileUpload(var urls) where row < urls.count:
-            urls.removeAtIndex(row)
-            return .FileUpload(urls)
+        case .fileUpload(var urls) where row < urls.count:
+            urls.remove(at: row)
+            return .fileUpload(urls)
         default:
             return self
         }
     }
 
-    func uploadByAppendingFile(file: NewUploadFile) -> NewUpload {
+    func uploadByAppendingFile(_ file: NewUploadFile) -> NewUpload {
         switch (self, file) {
-        case (.FileUpload(var files), _):
+        case (.fileUpload(var files), _):
             files.append(file)
-            return .FileUpload(files)
-        case (.MediaComment(let mediaCommentFile), _):
-            return .FileUpload([mediaCommentFile, file])
-        case (.None, .VideoURL), (.None, .AudioFile):
-            return .MediaComment(file)
-        case (.None, _):
-            return .FileUpload([file])
+            return .fileUpload(files)
+        case (.mediaComment(let mediaCommentFile), _):
+            return .fileUpload([mediaCommentFile, file])
+        case (.none, .videoURL), (.none, .audioFile):
+            return .mediaComment(file)
+        case (.none, _):
+            return .fileUpload([file])
         default:
             return self
         }

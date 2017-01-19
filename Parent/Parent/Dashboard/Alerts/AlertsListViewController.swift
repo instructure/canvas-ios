@@ -22,7 +22,7 @@ import TooLegit
 import CoreData
 import SoPersistent
 import SoLazy
-import ReactiveCocoa
+import ReactiveSwift
 import Armchair
 
 class AlertsListViewController: Alert.TableViewController {
@@ -63,8 +63,8 @@ class AlertsListViewController: Alert.TableViewController {
         tableView.backgroundColor = UIColor.defaultTableViewBackgroundColor()
     }
 
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let action = UITableViewRowAction(style: .Default, title: NSLocalizedString("Dismiss", comment: "")) { [unowned self] action, indexPath in
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let action = UITableViewRowAction(style: .default, title: NSLocalizedString("Dismiss", comment: "")) { [unowned self] action, indexPath in
             tableView.setEditing(false, animated: true)
             let alert = self.collection[indexPath]
             alert.dismiss(self.session)
@@ -72,13 +72,13 @@ class AlertsListViewController: Alert.TableViewController {
         return [action]
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        super.tableView(tableView, didSelectRowAt: indexPath)
 
         let alert = self.collection[indexPath]
         alert.markAsRead(session)
         Armchair.userDidSignificantEvent(true)
-        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
 
         if let routeURL = Router.sharedInstance.alertRoute(studentID: observeeID, alertAssetPath: alert.assetPath) {
             Router.sharedInstance.route(self, toURL: routeURL, modal: true)

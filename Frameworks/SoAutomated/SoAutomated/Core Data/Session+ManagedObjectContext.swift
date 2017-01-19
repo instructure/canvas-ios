@@ -22,10 +22,10 @@ import CoreData
 @testable import EnrollmentKit
 
 extension Session {
-    public func managedObjectContext<T: NSManagedObject>(type: T.Type, options: [String: AnyObject] = [:]) -> NSManagedObjectContext {
+    public func managedObjectContext<T: NSManagedObject>(_ type: T.Type, options: [String: Any] = [:]) -> NSManagedObjectContext {
         let scope: String? = try? options <| "scope"
         let className = NSStringFromClass(object_getClass(T))
-        let frameworkName = className.componentsSeparatedByString(".").first!
+        let frameworkName = className.components(separatedBy: ".").first!
 
         let context: NSManagedObjectContext
         switch frameworkName {

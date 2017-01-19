@@ -17,8 +17,8 @@
 import Foundation
 
 
-extension NSBundle {
-    static var swiftGrader: NSBundle {
-        return NSBundle(identifier: "com.instructure.SwiftGrader")!
+extension Bundle {
+    static var swiftGrader: Bundle {
+        return Bundle(identifier: "com.instructure.SwiftGrader")!
     }
 }

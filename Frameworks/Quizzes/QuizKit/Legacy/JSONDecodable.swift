@@ -19,15 +19,15 @@
 import Foundation
 
 protocol JSONDecodable {
-    typealias DecodedType = Self
-    static func fromJSON(json: AnyObject?) -> DecodedType?
+    associatedtype DecodedType = Self
+    static func fromJSON(_ json: Any?) -> DecodedType?
 }
 
-func idString(json: AnyObject?) -> String? {
-    return (json as? String) ?? (json as? NSNumber).map { String($0.integerValue) }
+func idString(_ json: Any?) -> String? {
+    return (json as? String) ?? (json as? NSNumber).map { String($0.intValue) }
 }
 
-func decodeArray<A where A: JSONDecodable, A == A.DecodedType>(jsonObjects: [AnyObject]) -> [A] {
+func decodeArray<A>(_ jsonObjects: [Any]) -> [A] where A: JSONDecodable, A == A.DecodedType {
     return jsonObjects.reduce([]) { soFar, any in
         if let t = A.fromJSON(any) {
             return soFar + [t]
@@ -36,23 +36,23 @@ func decodeArray<A where A: JSONDecodable, A == A.DecodedType>(jsonObjects: [Any
     }
 }
 
-extension NSDate: JSONDecodable {
-    static func fromJSON(json: AnyObject?) -> NSDate? {
+extension Date: JSONDecodable {
+    static func fromJSON(_ json: Any?) -> Date? {
         if let dateString = json as? String {
             // TODO: We should probably be using a real ISO 8601 date formatter
-            let formatter = NSDateFormatter()
+            let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
-            return formatter.dateFromString(dateString)
+            return formatter.date(from: dateString)
         }
         
         return nil
     }
 }
 
-extension NSURL: JSONDecodable {
-    static func fromJSON(json: AnyObject?) -> NSURL? {
+extension URL: JSONDecodable {
+    static func fromJSON(_ json: Any?) -> URL? {
         if let urlString = json as? String {
-            return NSURL(string: urlString)
+            return URL(string: urlString)
         }
         
         return nil
@@ -60,7 +60,7 @@ extension NSURL: JSONDecodable {
 }
 
 extension String: JSONDecodable {
-    static func fromJSON(json: AnyObject?) -> String? {
+    static func fromJSON(_ json: Any?) -> String? {
         if let string = json as? String {
             return string
         }

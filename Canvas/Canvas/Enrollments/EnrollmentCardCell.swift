@@ -18,16 +18,22 @@
 
 import UIKit
 import EnrollmentKit
+import Result
+import ReactiveSwift
 import ReactiveCocoa
 import SoLazy
 import SoPersistent
 import TooLegit
 
+class CustomA11yActionBarButton: UIBarButtonItem {
+    var customAction: CocoaAction<UIAccessibilityCustomAction>?
+}
+
 extension Enrollment {
     var gradeButtonTitle: String {
         let grades: String = [visibleGrade, visibleScore]
             .flatMap( { $0 } )
-            .joinWithSeparator("   ")
+            .joined(separator: "   ")
 
         if grades != "" {
             return grades
@@ -41,27 +47,27 @@ class EnrollmentCardCell: EnrollmentCollectionViewCell {
     
     var customize: ()->() = {}
     var showGrades: ()->() = {}
-    var takeShortcut: NSURL->() = { _ in }
-    var handleError: NSError->() = { _ in }
+    var takeShortcut: (URL)->() = { _ in }
+    var handleError: (NSError)->() = { _ in }
 
     var disposable: CompositeDisposable?
     var toolbarButtons: [UIBarButtonItem]?
     
     var refresher: Refresher? {
         didSet {
-            refresher?.refreshingCompleted.observeNext { [weak self] error in
+            refresher?.refreshingCompleted.observeValues { [weak self] error in
                 guard let e = error else { return }
                 self?.handleError(e)
             }
             refresher?.refresh(false)
         }
     }
-    private var shortcutsDisposable: Disposable?
+    fileprivate var shortcutsDisposable: Disposable?
     var shortcutsCollection: FetchedCollection<Tab>? {
         didSet {
             shortcutsDisposable = shortcutsCollection?.collectionUpdates
-                .observeOn(UIScheduler())
-                .observeNext { [weak self] _ in
+                .observe(on: UIScheduler())
+                .observeValues { [weak self] _ in
                     if let me = self {
                         me.updateShortcuts()
                     }
@@ -70,24 +76,29 @@ class EnrollmentCardCell: EnrollmentCollectionViewCell {
         }
     }
     
+    lazy var shortcutAction: Action<URL, Void, NoError> = { url in
+        return Action() { [weak self] url in
+            self?.takeShortcut(url)
+            return .empty
+        }
+    }()
+    
     func updateShortcuts() {
-        let leadingSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let leadingSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbarButtons = shortcutsCollection?.map { tab in
             
-            let button = UIBarButtonItem(image: tab.shortcutIcon, landscapeImagePhone: nil, style: .Plain, target: nil, action: nil)
+            let button = CustomA11yActionBarButton(image: tab.shortcutIcon, landscapeImagePhone: nil, style: .plain, target: nil, action: nil)
             button.accessibilityLabel = tab.label
             
-            button.rac_command = RACCommand() { [weak self] _ in
-                self?.takeShortcut(tab.url)
-                return RACSignal.empty()
-            }
+            button.reactive.pressed = CocoaAction(shortcutAction, input: tab.url)
+            button.customAction = CocoaAction(shortcutAction, input: tab.url)
 
             return button
         }
         toolbar?.items = toolbarButtons?.reduce([leadingSpace]) { items, button in
             return (items ?? []) + [
                 button,
-                UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+                UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             ]
         }
 
@@ -111,18 +122,22 @@ class EnrollmentCardCell: EnrollmentCollectionViewCell {
                 if let d = disposable {
                     let producer = vm.enrollment.producer
                     let gradebuttonTitle = producer.map { $0?.gradeButtonTitle }
-                    let a11yGradeButtonTitle = gradebuttonTitle.map { $0?.stringByReplacingOccurrencesOfString("-", withString: " minus") }
+                    let a11yGradeButtonTitle = gradebuttonTitle.map { $0?.replacingOccurrences(of: "-", with: " minus") }
                     d += enrollment <~ vm.enrollment
                     d += titleLabel.rac_text <~ producer.map { $0?.name ?? "" }
-                    d += (shortNameLabel?.rac_text).map { $0 <~ producer.map { $0?.shortName ?? "" } }
-                    d += (gradeButton?.rac_title).map { $0 <~ gradebuttonTitle }
+                    if let shortNameLabel = shortNameLabel {
+                        d += shortNameLabel.rac_text <~ producer.map { $0?.shortName ?? ""}
+                    }
+                    if let gradeButton = gradeButton {
+                        d += gradeButton.rac_title <~ gradebuttonTitle
+                        d += gradeButton.rac_a11yLabel <~ a11yGradeButtonTitle
+                        d += gradeButton.rac_hidden <~ vm.showingGrades.producer.map(!)
+                    }
                     d += self.rac_a11yHint <~ gradebuttonTitle
-                    d += (gradeButton?.rac_a11yLabel).map { $0 <~ a11yGradeButtonTitle }
-                    d += (gradeButton?.rac_hidden).map { $0 <~ vm.showingGrades.producer.map(!) }
                 }
                 
                 do {
-                    if let contextID = vm.enrollment.value?.contextID, case .Course = contextID.context {
+                    if let contextID = vm.enrollment.value?.contextID, case .course = contextID.context {
                         refresher = try Tab.refresher(vm.session, contextID: contextID)
                         shortcutsCollection = try Tab.shortcuts(vm.session, contextID: contextID)
                     }
@@ -141,8 +156,8 @@ class EnrollmentCardCell: EnrollmentCollectionViewCell {
         self.accessibilityCustomActions = [UIAccessibilityCustomAction(name: "Grades", target: self, selector: #selector(showGrades(_:)))]
         if let shortcuts = toolbarButtons {
             for shortcut in shortcuts {
-                if let shortcutLabel = shortcut.accessibilityLabel {
-                    accessibilityCustomActions?.append(UIAccessibilityCustomAction(name: shortcutLabel, target: shortcut, selector: shortcut.action))
+                if let shortcutLabel = shortcut.accessibilityLabel, let customActionButton = shortcut as? CustomA11yActionBarButton {
+                    accessibilityCustomActions?.append(UIAccessibilityCustomAction(name: shortcutLabel, target: customActionButton.customAction, selector: CocoaAction<UIAccessibilityCustomAction>.selector))
                 }
             }
         }
@@ -161,7 +176,7 @@ class EnrollmentCardCell: EnrollmentCollectionViewCell {
         makeEvenMoreBeautiful()
         
         enrollment.producer
-            .startWithNext { [weak self] enrollment in
+            .startWithValues { [weak self] enrollment in
                 self?.refresh(enrollment)
         }
 
@@ -171,31 +186,31 @@ class EnrollmentCardCell: EnrollmentCollectionViewCell {
     func makeEvenMoreBeautiful() {
         layer.borderWidth = 1
         
-        toolbar?.backgroundColor = .whiteColor()
+        toolbar?.backgroundColor = .white
         toolbar?.clipsToBounds = true
         
-        customizeButton.tintColor = .whiteColor()
+        customizeButton.tintColor = .white
         
         gradeButton?.layer.cornerRadius = 8
     }
     
-    func refresh(enrollment: Enrollment?) {
+    func refresh(_ enrollment: Enrollment?) {
         titleLabel.text = enrollment?.name
         
         shortNameLabel?.text = enrollment?.shortName
         
         let grade = [enrollment?.visibleGrade, enrollment?.visibleScore]
             .flatMap { $0 }
-            .joinWithSeparator("  ")
+            .joined(separator: "  ")
         
         let title = (grade == "") ? NSLocalizedString("Unavailable", comment: "Grade unavailable") : grade
         
-        gradeButton?.setTitle(title, forState: .Normal)
+        gradeButton?.setTitle(title, for: .normal)
     }
     
-    override func colorUpdated(color: UIColor) {
+    override func colorUpdated(_ color: UIColor) {
         super.colorUpdated(color)
-        layer.borderColor = color.CGColor
+        layer.borderColor = color.cgColor
         gradeButton?.tintColor = color
         toolbar?.tintColor = color
     }
@@ -203,11 +218,11 @@ class EnrollmentCardCell: EnrollmentCollectionViewCell {
 
 extension EnrollmentCardCell {
     
-    @IBAction func customizedTapped(sender: AnyObject) {
+    @IBAction func customizedTapped(_ sender: Any) {
         customize()
     }
     
-    @IBAction func showGrades(sender: AnyObject) {
+    @IBAction func showGrades(_ sender: Any) {
         showGrades()
     }
 }

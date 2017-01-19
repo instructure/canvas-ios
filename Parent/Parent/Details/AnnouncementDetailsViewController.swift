@@ -19,7 +19,7 @@
 import Foundation
 import DiscussionKit
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 import SoPersistent
 import WhizzyWig
@@ -34,32 +34,32 @@ private let AttachmentCellReuseIdentifier = "AttachmentCell"
 private let MessageBodyCellReuseIdentifier = "MessageBodyCell"
 
 enum AnnouncementDetailsCellViewModel: TableViewCellViewModel {
-    case Title(String)
-    case Attachment(String)
-    case Message(NSURL, String)
+    case title(String)
+    case attachment(String)
+    case message(URL, String)
 
-    static func tableViewDidLoad(tableView: UITableView) {
-        tableView.separatorStyle = .None
+    static func tableViewDidLoad(_ tableView: UITableView) {
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
-        tableView.registerNib(UINib(nibName: "DetailsInfoCell", bundle: nil), forCellReuseIdentifier: TitleCellReuseIdentifier)
-        tableView.registerNib(UINib(nibName: "DetailsAttachmentCell", bundle: nil), forCellReuseIdentifier: AttachmentCellReuseIdentifier)
-        tableView.registerClass(WhizzyWigTableViewCell.self, forCellReuseIdentifier: MessageBodyCellReuseIdentifier)
+        tableView.register(UINib(nibName: "DetailsInfoCell", bundle: nil), forCellReuseIdentifier: TitleCellReuseIdentifier)
+        tableView.register(UINib(nibName: "DetailsAttachmentCell", bundle: nil), forCellReuseIdentifier: AttachmentCellReuseIdentifier)
+        tableView.register(WhizzyWigTableViewCell.self, forCellReuseIdentifier: MessageBodyCellReuseIdentifier)
     }
 
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch self {
-        case .Title(let title):
-            guard let cell = tableView.dequeueReusableCellWithIdentifier(TitleCellReuseIdentifier) as? DetailsInfoCell else { ❨╯°□°❩╯⌢"Dude, you have the wrong type for this cell" }
+        case .title(let title):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleCellReuseIdentifier) as? DetailsInfoCell else { ❨╯°□°❩╯⌢"Dude, you have the wrong type for this cell" }
             cell.titleLabel.text = title
             cell.setShowsSubmissionInfo(false)
             return cell
-        case .Attachment(let filename):
-            guard let cell = tableView.dequeueReusableCellWithIdentifier(AttachmentCellReuseIdentifier) as? DetailsAttachmentCell else { ❨╯°□°❩╯⌢"Dude, you have the wrong type for this cell" }
+        case .attachment(let filename):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AttachmentCellReuseIdentifier) as? DetailsAttachmentCell else { ❨╯°□°❩╯⌢"Dude, you have the wrong type for this cell" }
             cell.filenameLabel.text = filename
             return cell
-        case .Message(let baseURL, let message):
-            let cell = tableView.dequeueReusableCellWithIdentifier(MessageBodyCellReuseIdentifier) as! WhizzyWigTableViewCell
+        case .message(let baseURL, let message):
+            let cell = tableView.dequeueReusableCell(withIdentifier: MessageBodyCellReuseIdentifier) as! WhizzyWigTableViewCell
             cell.cellSizeUpdated = { _ in
                 tableView.beginUpdates()
                 tableView.endUpdates()
@@ -70,33 +70,31 @@ enum AnnouncementDetailsCellViewModel: TableViewCellViewModel {
         }
     }
 
-    static func detailsForDiscussionTopic(baseURL: NSURL) -> (discussionTopic: DiscussionTopic) -> [AnnouncementDetailsCellViewModel] {
-        return { discussionTopic in
-            var attachmentInfo: AnnouncementDetailsCellViewModel? = nil
-            if let attachmentID = discussionTopic.attachmentIDs.first {
-                do {
-                    if let file: File = try discussionTopic.managedObjectContext?.findOne(withPredicate: NSPredicate(format: "%K == %@", "id", attachmentID)) {
-                        attachmentInfo = .Attachment(file.name)
-                    }
-                } catch {
-                    print("error fetching file: \(error)")
+    static func detailsForDiscussionTopic(_ baseURL: URL, discussionTopic: DiscussionTopic) -> [AnnouncementDetailsCellViewModel] {
+        var attachmentInfo: AnnouncementDetailsCellViewModel? = nil
+        if let attachmentID = discussionTopic.attachmentIDs.first {
+            do {
+                if let file: File = try discussionTopic.managedObjectContext?.findOne(withPredicate: NSPredicate(format: "%K == %@", "id", attachmentID)) {
+                    attachmentInfo = .attachment(file.name)
                 }
+            } catch {
+                print("error fetching file: \(error)")
             }
-            return [
-                .Title(discussionTopic.title),
-                attachmentInfo,
-                .Message(baseURL, discussionTopic.message)
-            ].flatMap { $0 }
         }
+        return [
+            .title(discussionTopic.title),
+            attachmentInfo,
+            .message(baseURL, discussionTopic.message)
+        ].flatMap { $0 }
     }
 }
 
 extension AnnouncementDetailsCellViewModel: Equatable {}
 func ==(lhs: AnnouncementDetailsCellViewModel, rhs: AnnouncementDetailsCellViewModel) -> Bool {
     switch (lhs, rhs) {
-    case let (.Title(leftTitle), .Title(rightTitle)):
+    case let (.title(leftTitle), .title(rightTitle)):
         return leftTitle == rightTitle
-    case let (.Message(leftURL, leftMessage), .Message(rightURL, rightMessage)):
+    case let (.message(leftURL, leftMessage), .message(rightURL, rightMessage)):
         return leftURL == rightURL && leftMessage == rightMessage
     default:
         return false
@@ -111,13 +109,13 @@ class AnnouncementDetailsViewController: Announcement.DetailViewController {
         let observer = try Announcement.observer(session, studentID: studentID, courseID: courseID, discussionTopicID: announcementID)
         let refresher = try DiscussionTopic.refresher(session, studentID: studentID, courseID: courseID, discussionTopicID: announcementID)
 
-        prepare(observer, refresher: refresher, detailsFactory: AnnouncementDetailsCellViewModel.detailsForDiscussionTopic(session.baseURL))
+        prepare(observer, refresher: refresher) { AnnouncementDetailsCellViewModel.detailsForDiscussionTopic(session.baseURL, discussionTopic: $0) }
         disposable = observer.signal.map { $0.1 }
-            .observeOn(UIScheduler())
-            .observeNext { _ in
+            .observe(on: UIScheduler())
+            .observeValues { _ in
         }
 
-        session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .Course)).observeOn(UIScheduler()).startWithNext { next in
+        session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .course)).observe(on: UIScheduler()).startWithValues { next in
             guard let course = next as? Course else { return }
             self.title = course.name
         }

@@ -20,22 +20,19 @@ import UIKit
 import PageKit
 import TooLegit
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import EnrollmentKit
 
 extension Page {
-
-    static func colorfulPageViewModel(session session: Session, page: Page) -> ColorfulViewModel {
-        let vm = ColorfulViewModel(style: .Token)
+    static func colorfulPageViewModel(session: Session, page: Page) -> ColorfulViewModel {
+        let vm = ColorfulViewModel(features: .token)
         vm.title.value = page.title
         if page.frontPage {
-            vm.tokenViewText.value = NSLocalizedString("Front Page", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "badge indicating front page")
+            vm.tokenViewText.value = NSLocalizedString("Front Page", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.PageKit")!, value: "", comment: "badge indicating front page")
         }
-        vm.color <~ session.enrollmentsDataSource.producer(page.contextID)
-            .map { $0?.color ?? .prettyGray() }
+        vm.color <~ session.enrollmentsDataSource.color(for: page.contextID)
 
         return vm
     }
-
 }
 

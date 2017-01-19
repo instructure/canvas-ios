@@ -26,14 +26,14 @@ let accountDomainModelName = "Keymaster"
 let accountDomainSubdomain = "Keymaster"
 let accountDomainFailedToLoadErrorCode = 10001
 let accountDomainFailedToLoadErrorDescription = "Failed to load \(accountDomainModelName) NSManagedObjectModel"
-let accountDomainDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the AccountDomain database file.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "AccountDomain Database Load Failure Message")
+let accountDomainDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the AccountDomain database file.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "AccountDomain Database Load Failure Message")
 
 // ---------------------------------------------
 // MARK: - Session for current user Calendar Events
 // ---------------------------------------------
 extension Session {
     func accountDomainsManagedObjectContext() throws -> NSManagedObjectContext {
-        guard let model = NSManagedObjectModel(named: accountDomainModelName, inBundle: NSBundle(forClass: AccountDomain.self))?.mutableCopy() as? NSManagedObjectModel else {
+        guard let model = NSManagedObjectModel(named: accountDomainModelName, inBundle: Bundle(for: AccountDomain.self))?.mutableCopy() as? NSManagedObjectModel else {
             throw NSError(subdomain: accountDomainSubdomain, code: accountDomainFailedToLoadErrorCode, title: accountDomainFailedToLoadErrorDescription, description: accountDomainFailedToLoadErrorDescription)
         }
 

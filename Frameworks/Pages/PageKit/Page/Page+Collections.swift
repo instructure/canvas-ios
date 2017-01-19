@@ -30,29 +30,30 @@ extension Page {
 
     public static func invalidateCache(session: Session, contextID: ContextID) throws {
         let context = try session.pagesManagedObjectContext()
-        let key = collectionCacheKey(context, contextID: contextID)
+        let key = collectionCacheKey(context: context, contextID: contextID)
         session.refreshScope.invalidateCache(key)
     }
 
-    var routingUrl: NSURL {
+    var routingUrl: URL {
         let path = contextID.apiPath + "/pages/" + url
-        return NSURL(fileURLWithPath: path)
+        return URL(fileURLWithPath: path)
     }
 
-    public static func predicate(contextID: ContextID) -> NSPredicate {
-        return NSPredicate(format: "%K == %@ && %K = %@", "contextID", contextID.canvasContextID, "published", true)
+    public static func predicate(_ contextID: ContextID) -> NSPredicate {
+        return NSPredicate(format: "%K == %@ && %K == true", "contextID", contextID.canvasContextID, "published")
     }
 
-    public static func collectionAlphabetical(session: Session, contextID: ContextID) throws -> FetchedCollection<Page> {
+    public static func collectionAlphabetical(_ session: Session, contextID: ContextID) throws -> FetchedCollection<Page> {
         let predicate = Page.predicate(contextID)
         let descriptors = [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))]
         let context = try session.pagesManagedObjectContext()
-        let frc = Page.fetchedResults(predicate, sortDescriptors: descriptors, sectionNameKeypath: nil, inContext: context)
 
-        return try FetchedCollection(frc: frc)
+        return try FetchedCollection(frc:
+            context.fetchedResults(predicate, sortDescriptors: descriptors)
+        )
     }
 
-    public static func refresher(session: Session, contextID: ContextID) throws -> Refresher {
+    public static func refresher(_ session: Session, contextID: ContextID) throws -> Refresher {
         let context = try session.pagesManagedObjectContext()
 
         let pages = try Page.getPages(session, contextID: contextID)
@@ -60,23 +61,26 @@ extension Page {
         let sync = Page.syncSignalProducer(predicate, inContext: context, fetchRemote: pages) { page, _ in
             page.contextID = contextID
         }
-        let key = collectionCacheKey(context, contextID: contextID)
+        let key = collectionCacheKey(context: context, contextID: contextID)
 
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
     // MARK: - Table View Controller
 
-    public class TableViewController: SoPersistent.TableViewController {
+    open class TableViewController: SoPersistent.TableViewController {
 
-        private (set) public var collection: FetchedCollection<Page>
-        var route: (UIViewController, NSURL)->()
+        fileprivate (set) open var collection: FetchedCollection<Page>
+        var route: (UIViewController, URL)->()
 
-        public init(session: Session, contextID: ContextID, viewModelFactory: (Session, Page) -> ColorfulViewModel, route: (UIViewController, NSURL) -> ()) throws {
+        public init(session: Session, contextID: ContextID, viewModelFactory: @escaping (Session, Page) -> ColorfulViewModel, route: @escaping (UIViewController, URL) -> ()) throws {
             self.route = route
             self.collection = try Page.collectionAlphabetical(session, contextID: contextID)
 
             super.init()
+
+            tableView.rowHeight = UITableViewAutomaticDimension
+            tableView.estimatedRowHeight = 44.0
 
             self.refresher = try Page.refresher(session, contextID: contextID)
             self.dataSource = CollectionTableViewDataSource(collection: collection) { page in viewModelFactory(session, page) }
@@ -86,7 +90,7 @@ extension Page {
             fatalError("init(coder:) has not been implemented")
         }
 
-        override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let page = collection[indexPath]
 
             route(self, page.routingUrl)

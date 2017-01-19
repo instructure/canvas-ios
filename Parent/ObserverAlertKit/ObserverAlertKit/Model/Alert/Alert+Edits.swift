@@ -19,16 +19,16 @@
 import Foundation
 import SoPersistent
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 extension Alert {
-    public func dismiss(session: Session, completion: (Result<Bool, NSError>->())? = nil) {
+    public func dismiss(_ session: Session, completion: ((Result<Bool, NSError>)->())? = nil) {
         guard let context = managedObjectContext else {
             fatalError("Every Object should have a context or we're already screwed")
         }
 
-        context.performBlock {
+        context.perform {
             self.dismissed = true
             let _ = try? context.save()
         }
@@ -36,30 +36,26 @@ extension Alert {
         do {
             let producer = try markDismissed(true, session: session)
             producer.startWithSignal { signal, disposable in
-                signal.observeOn(ManagedObjectContextScheduler(context: context)).observe { event in
-                    switch event {
-                    case .Completed:
-                        completion?(.Success(true))
-                    case .Failed(let error):
+                signal.observe(on: ManagedObjectContextScheduler(context: context)).observeResult { result in
+                    if case .failure(_) = result {
                         self.dismissed = false
                         let _ = try? context.save()
-                        completion?(.Failure(error))
-                    default:
-                        break
                     }
+                    
+                    completion?(result.map { _ in true })
                 }
             }
         } catch let e as NSError {
-            completion?(.Failure(e))
+            completion?(.failure(e))
         }
     }
 
-    public func markAsRead(session: Session, completion: (Result<Bool, NSError>->())? = nil) {
+    public func markAsRead(_ session: Session, completion: ((Result<Bool, NSError>)->())? = nil) {
         guard let context = managedObjectContext else {
             fatalError("Every Object should have a context or we're already screwed")
         }
 
-        context.performBlock {
+        context.perform {
             self.read = true
             let _ = try? context.save()
         }
@@ -67,21 +63,17 @@ extension Alert {
         do {
             let producer = try markAsRead(true, session: session)
             producer.startWithSignal { signal, disposable in
-                signal.observeOn(ManagedObjectContextScheduler(context: context)).observe { event in
-                    switch event {
-                    case .Completed:
-                        completion?(.Success(true))
-                    case .Failed(let error):
+                signal.observe(on: ManagedObjectContextScheduler(context: context)).observeResult { result in
+                    if case .failure(_) = result {
                         self.read = false
                         let _ = try? context.save()
-                        completion?(.Failure(error))
-                    default:
-                        break
                     }
+                    
+                    completion?(result.map { _ in true })
                 }
             }
         } catch let e as NSError {
-            completion?(.Failure(e))
+            completion?(.failure(e))
         }
     }
 }

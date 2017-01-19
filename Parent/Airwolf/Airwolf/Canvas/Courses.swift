@@ -19,16 +19,16 @@
 import Foundation
 import TooLegit
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 import EnrollmentKit
 
 extension Course {
-    public static func predicate(courseID: String) -> NSPredicate {
+    public static func predicate(_ courseID: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@", "id", courseID)
     }
     
-    public static func getCoursesFromAirwolf(session: Session, studentID: String) throws -> SignalProducer<[JSONObject], NSError> {
+    public static func getCoursesFromAirwolf(_ session: Session, studentID: String) throws -> SignalProducer<[JSONObject], NSError> {
         
         var coursesParams = getCoursesParameters
         coursesParams["enrollment_state"] = "active"
@@ -45,12 +45,12 @@ extension Course {
         }
     }
     
-    public static func getCourseFromAirwolf(session: Session, studentID: String, courseID: String) throws -> SignalProducer<JSONObject, NSError> {
+    public static func getCourseFromAirwolf(_ session: Session, studentID: String, courseID: String) throws -> SignalProducer<JSONObject, NSError> {
         let request = try session.GET("/canvas/\(session.user.id)/\(studentID)/courses/\(courseID)", parameters: Course.getCourseParameters)
         return session.JSONSignalProducer(request)
     }
     
-    public static func airwolfCollectionRefresher(session: Session, studentID: String) throws -> Refresher {
+    public static func airwolfCollectionRefresher(_ session: Session, studentID: String) throws -> Refresher {
         let remote = try Course.getCoursesFromAirwolf(session, studentID: studentID)
         let context = try session.enrollmentManagedObjectContext(studentID)
         
@@ -60,7 +60,7 @@ extension Course {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
     
-    public static func airwolfRefresher(session: Session, studentID: String, courseID: String) throws -> Refresher {
+    public static func airwolfRefresher(_ session: Session, studentID: String, courseID: String) throws -> Refresher {
         let remote = try Course.getCourseFromAirwolf(session, studentID: studentID, courseID: courseID).map { [$0] }
         let context = try session.enrollmentManagedObjectContext(studentID)
         let predicate = Course.predicate(courseID)

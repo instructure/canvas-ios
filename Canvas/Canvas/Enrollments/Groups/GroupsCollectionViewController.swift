@@ -24,27 +24,27 @@ import SoLazy
 
 class GroupsCollectionViewController: Group.CollectionViewController {
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     let session: Session
-    let route: (UIViewController, NSURL)->()
+    let route: (UIViewController, URL)->()
  
-    init(session: Session, route: (UIViewController, NSURL)->()) throws {
+    init(session: Session, route: @escaping (UIViewController, URL)->()) throws {
         self.session = session
         self.route = route
         super.init()
         
-        let customize: Enrollment->() = { [weak self] enrollment in
+        let customize: (Enrollment)->() = { [weak self] enrollment in
             let picker = CustomizeEnrollmentViewController(session: session, context: enrollment.contextID)
             let nav = UINavigationController(rootViewController: picker)
-            nav.modalPresentationStyle = .Popover
+            nav.modalPresentationStyle = .popover
  
-            self?.presentViewController(nav, animated: true, completion: nil)
+            self?.present(nav, animated: true, completion: nil)
         }
         
-        prepare(try Group.favoritesCollection(session), refresher: try Group.refresher(session)) { enrollment in
+        prepare(try Group.favoritesCollection(session), refresher: try Group.refresher(session)) { [weak self] enrollment in
             return EnrollmentCardViewModel(
                 session: session,
                 enrollment: enrollment,
@@ -60,23 +60,23 @@ class GroupsCollectionViewController: Group.CollectionViewController {
         ]
     }
     
-    private lazy var editButton: UIBarButtonItem = {
-        let image = UIImage(named: "icon_cog_small", inBundle: NSBundle(forClass: GroupsCollectionViewController.self), compatibleWithTraitCollection: nil)
-        let edit = UIBarButtonItem(image: image, landscapeImagePhone: nil, style: .Plain, target: self, action: #selector(editFavorites(_:)))
+    fileprivate lazy var editButton: UIBarButtonItem = {
+        let image = UIImage(named: "icon_cog_small", in: Bundle(for: GroupsCollectionViewController.self), compatibleWith: nil)
+        let edit = UIBarButtonItem(image: image, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(editFavorites(_:)))
         edit.accessibilityLabel = NSLocalizedString("Edit Group List", comment: "Edit group list title")
         edit.accessibilityIdentifier = "editGroupListButton"
         
         return edit
     }()
     
-    func editFavorites(button: AnyObject?) {
+    func editFavorites(_ button: Any?) {
         do {
-            let edit = try EditFavoriteEnrollmentsViewController(session: session, collection: try Enrollment.allGroups(session), refresher: try Group.refresher(session))
+            let edit = try EditFavoriteEnrollmentsViewController<Group>(session: session, collection: try Enrollment.allGroups(session), refresher: try Group.refresher(session))
             edit.title = NSLocalizedString("Edit Group List", comment: "Edit group list title")
             let nav = UINavigationController(rootViewController: edit)
-            nav.modalPresentationStyle = .Popover
+            nav.modalPresentationStyle = .popover
             nav.popoverPresentationController?.barButtonItem = editButton
-            presentViewController(nav, animated: true, completion: nil)
+            present(nav, animated: true, completion: nil)
         } catch let e as NSError {
             e.report(alertUserFrom: self)
         }
@@ -86,11 +86,11 @@ class GroupsCollectionViewController: Group.CollectionViewController {
         fatalError()
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let enrollment = collection[indexPath]
         
-        guard let tabsURL = NSURL(string: enrollment.contextID.apiPath/"tabs") else { return print("¯\\_(ツ)_/¯") }
-        guard let enrollmentsVC = self.parentViewController else { return print("¯\\_(ツ)_/¯") }
+        guard let tabsURL = URL(string: enrollment.contextID.apiPath/"tabs") else { return print("¯\\_(ツ)_/¯") }
+        guard let enrollmentsVC = self.parent else { return print("¯\\_(ツ)_/¯") }
         
         route(enrollmentsVC, tabsURL)
     }

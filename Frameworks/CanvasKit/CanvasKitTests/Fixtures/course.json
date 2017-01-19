@@ -1,0 +1,33 @@
+{
+    "sis_course_id": "2",
+    "workflow_state": "available",
+    "account_id": "1",
+    "root_account_id": "1",
+    "course_code": "iOS_101",
+    "default_view": "wiki",
+    "id": 1,
+    "name": "Beginning iOS Development",
+    "start_at": "2010-12-02T00:00:00-07:00",
+    "end_at": "2010-14-02T00:00:00-07:00",
+    "public_syllabus": true,
+    "default_view": "feed",
+    "syllabus_body": "<p>syllabus html goes here</p>",
+    "needs_grading_count": 17,
+    "storage_quota_mb": 500,
+    "apply_assignment_group_weights": true,
+    "permissions": {"create_discussion_topic": true},
+    "calendar": {
+    "ics": "https://mobiledev.instructure.com/feeds/calendars/course_56093f00-e060-012d-6ee9-4040654c8f83.ics"
+    },
+    "is_public": true,
+    "public_description": "Come one, come all to InstructureCon 2012!",
+    "storage_quota_mb": 5,
+    "hide_final_grades": false,
+    "license": "Creative Commons",
+    "allow_student_assignment_edits": false,
+    "allow_wiki_comments": false,
+    "allow_student_forum_attachments": false,
+    "open_enrollment": true,
+    "self_enrollment": false,
+    "restrict_enrollments_to_course_dates": false
+}

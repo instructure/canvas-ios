@@ -20,7 +20,7 @@ import Foundation
 
 extension UIWebView {
     func scalePageToFit() {
-        let docWidth = Int(self.stringByEvaluatingJavaScriptFromString("$(document).width()") ?? String(UIScreen.mainScreen().bounds.size.width))
+        let docWidth = Int(self.stringByEvaluatingJavaScript(from: "$(document).width()") ?? String(describing: UIScreen.main.bounds.size.width))
         
         if docWidth == nil || docWidth == 0 {
             return
@@ -29,7 +29,7 @@ extension UIWebView {
         let scale = self.bounds.size.width / CGFloat(docWidth!)
         
         // fix scale
-        stringByEvaluatingJavaScriptFromString(String(format:
+        stringByEvaluatingJavaScript(from: String(format:
             "metaElement = document.querySelector('meta[name=viewport]');" +
             "if (metaElement == null) { metaElement = document.createElement('meta'); }" +
             "metaElement.name = \"viewport\";" +

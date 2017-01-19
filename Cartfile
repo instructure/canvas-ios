@@ -1,28 +1,31 @@
 
 # Frameworks
-github "robb/Cartography" ~> 0.7.0
-github "antitypical/Result" ~> 2.1.0
-github "ReactiveCocoa/ReactiveCocoa" ~> 4.2.2
-github "onevcat/Kingfisher" ~> 2.5.0
-github "derrh/CWStatusBarNotification" "swift23"
-github "utahiosmac/Marshal" "swift2_3"
-github "n8armstrong/DVR" "develop"
+github "robb/Cartography" ~> 1.0
+github "antitypical/Result" ~> 3.0
+github "ReactiveCocoa/ReactiveCocoa" "5.0.0-rc.1"
+github "onevcat/Kingfisher" ~> 3.2
+github "utahiosmac/Marshal" == 1.1
+github "n8armstrong/DVR" "swift3"
 github "google/EarlGrey" "master"
-github "xmartlabs/Eureka" "29e73c3a2196732de0acac136e911143290390cf"
-github "dennisweissmann/DeviceKit" == 0.3.5
+github "xmartlabs/Eureka" ~> 2.0
+github "dennisweissmann/DeviceKit" ~> 1.0
+github "nicklockwood/FXKeychain" ~> 1.5.3
+github "tonymillion/Reachability" "master"
+github "derrh/CWStatusBarNotification" "framework"
 
 # Parent
 github "michaeltyson/TPKeyboardAvoiding" == 1.3
-github "UrbanApps/Armchair" "master"
+github "UrbanApps/Armchair" "swift3"
 
 # Canvas
-github "instructure/canvaskeymaster-ios" "master"
-github "instructure/CanvasKit" "master"
 github "CocoaLumberjack/CocoaLumberjack" == 2.4.0
 github "SnapKit/Masonry" ~> 1.0
 github "SVProgressHUD/SVProgressHUD" ~> 2.0
 github "thebestbits/TBBModal" "master"
 
-# Teacher
-github "kylef/URITemplate.swift" ~> 1.4
+# Legacy CanvasKit & CanvasKeymaster
+github "Mantle/Mantle" == 1.5.5
+github "ReactiveCocoa/ReactiveObjC" ~> 2.1.1
+github "ReactiveCocoa/ReactiveObjCBridge" "master"
+github "AFNetworking/AFNetworking" ~> 3.0.0
 

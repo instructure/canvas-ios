@@ -20,23 +20,23 @@ import UIKit
 import TooLegit
 import SoLazy
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 import SoPersistent
 
-public class FileNode: NSManagedObject, LockableModel {
-    @NSManaged public var id: String
-    @NSManaged public var name: String
-    @NSManaged public var hiddenForUser: Bool
-    @NSManaged public var isFolder: Bool
-    @NSManaged public var rawContextID: String
+open class FileNode: NSManagedObject, LockableModel {
+    @NSManaged open var id: String
+    @NSManaged open var name: String
+    @NSManaged open var hiddenForUser: Bool
+    @NSManaged open var isFolder: Bool
+    @NSManaged open var rawContextID: String
     
     /// MARK: Locking
-    @NSManaged public var lockedForUser: Bool
-    @NSManaged public var lockExplanation: String?
-    @NSManaged public var canView: Bool
+    @NSManaged open var lockedForUser: Bool
+    @NSManaged open var lockExplanation: String?
+    @NSManaged open var canView: Bool
     
-    internal (set) public var contextID: ContextID {
+    internal (set) open var contextID: ContextID {
         get {
             return ContextID(canvasContext: rawContextID)!
         } set {
@@ -44,17 +44,17 @@ public class FileNode: NSManagedObject, LockableModel {
         }
     }
     
-    @NSManaged public var isInRootFolder: Bool
-    @NSManaged public var parentFolderID: String?
-    public var iconName: String!
+    @NSManaged open var isInRootFolder: Bool
+    @NSManaged open var parentFolderID: String?
+    open var iconName: String!
     
-    public var icon: UIImage {
+    open var icon: UIImage {
         let iconName: String = "icon_document"
-        let bundle = NSBundle(forClass: File.self)
-        return UIImage(named: iconName, inBundle: bundle, compatibleWithTraitCollection: nil)!
+        let bundle = Bundle(for: File.self)
+        return UIImage(named: iconName, in: bundle, compatibleWith: nil)!
     }
     
-    public func deleteFileNode(session: Session, shouldForce: Bool) throws -> SignalProducer<Void, NSError> {
+    open func deleteFileNode(_ session: Session, shouldForce: Bool) throws -> SignalProducer<Void, NSError> {
         fatalError("Subclass must override")
     }
 }

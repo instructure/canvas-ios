@@ -1,1 +1,9 @@
-/* No Localized Strings */
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "هل تريد حقاً تسجيل الخروج؟";
+
+/* Logout Cancel Button */
+"Cancel" = "إلغاء";
+
+/* Logout Confirm Button */
+"Logout" = "تسجيل الخروج";
+

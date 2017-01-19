@@ -29,7 +29,7 @@ extension Alert {
     public static func undismissedPredicate() -> NSPredicate {
         return NSPredicate(format: "%K == false", "dismissed")
     }
-    public static func observeePredicate(observeeID: String) -> NSPredicate {
+    public static func observeePredicate(_ observeeID: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@", "studentID", observeeID)
     }
 }
@@ -38,14 +38,16 @@ extension Alert {
 // MARK: - Alerts collection for current observee
 // ---------------------------------------------
 extension Alert {
-    public static func collectionOfObserveeAlerts(session: Session, observeeID: String) throws -> FetchedCollection<Alert> {
+    public static func collectionOfObserveeAlerts(_ session: Session, observeeID: String) throws -> FetchedCollection<Alert> {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [Alert.undismissedPredicate(), Alert.observeePredicate(observeeID)])
-        let frc = Alert.fetchedResults(predicate, sortDescriptors: ["actionDate".descending, "title".ascending], sectionNameKeypath: nil, inContext: try session.alertsManagedObjectContext())
+        let context = try session.alertsManagedObjectContext()
 
-        return try FetchedCollection<Alert>(frc: frc)
+        return try FetchedCollection<Alert>(frc:
+            context.fetchedResults(predicate, sortDescriptors: ["actionDate".descending, "title".ascending])
+        )
     }
 
-    public static func refresher(session: Session, observeeID: String) throws -> Refresher {
+    public static func refresher(_ session: Session, observeeID: String) throws -> Refresher {
         let predicate = Alert.observeePredicate(observeeID)
         let remote = try Alert.getObserveeAlerts(session, observeeID: observeeID)
         let context = try session.alertsManagedObjectContext()

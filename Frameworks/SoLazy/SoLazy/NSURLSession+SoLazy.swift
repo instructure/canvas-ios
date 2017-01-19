@@ -18,14 +18,14 @@
 
 import Foundation
 
-extension NSURLSession {
-    public func getAllTheTasksWithCompletionHandler(completionHandler: [NSURLSessionTask]->Void) {
+extension URLSession {
+    public func getAllTheTasksWithCompletionHandler(_ completionHandler: @escaping ([URLSessionTask])->Void) {
         if #available(iOS 9, *) {
-            getAllTasksWithCompletionHandler(completionHandler)
+            getAllTasks(completionHandler: completionHandler)
             return
         }
         getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in
-            let tasks = (dataTasks as [NSURLSessionTask]) + (uploadTasks as [NSURLSessionTask]) + (downloadTasks as [NSURLSessionTask])
+            let tasks = (dataTasks as [URLSessionTask]) + (uploadTasks as [URLSessionTask]) + (downloadTasks as [URLSessionTask])
             completionHandler(tasks)
         }
     }

@@ -25,23 +25,23 @@ import CoreData
 
 extension CalendarEvent {
     static var validJSON: JSONObject {
-        let bundle = NSBundle.soAutomated
-        let path = bundle.pathForResource("calendar_event", ofType: "json")!
-        return try! JSONParser.JSONObjectWithData(NSData(contentsOfFile: path)!)
+        let bundle = Bundle.soAutomated
+        let path = bundle.path(forResource: "calendar_event", ofType: "json")!
+        return try! JSONParser.JSONObjectWithData(try! Data(contentsOf: URL(fileURLWithPath: path)))
     }
 
     static var validAssignmentJSON: JSONObject {
-        let bundle = NSBundle.soAutomated
-        let path = bundle.pathForResource("calendar_event_assignment", ofType: "json")!
-        return try! JSONParser.JSONObjectWithData(NSData(contentsOfFile: path)!)
+        let bundle = Bundle.soAutomated
+        let path = bundle.path(forResource: "calendar_event_assignment", ofType: "json")!
+        return try! JSONParser.JSONObjectWithData(Data(contentsOf: URL(fileURLWithPath: path)))
     }
 
     static func build(
-        context: NSManagedObjectContext,
+        _ context: NSManagedObjectContext,
         id: String = "1",
         title: String? = nil,
-        startAt: NSDate? = nil,
-        endAt: NSDate? = nil,
+        startAt: Date? = nil,
+        endAt: Date? = nil,
         htmlDescription: String? = nil,
         locationName: String? = nil,
         locationAddress: String? = nil,
@@ -49,12 +49,12 @@ extension CalendarEvent {
         effectiveContextCode: String? = nil,
         rawWorkflowState: String = "active",
         hidden: Bool = false,
-        url: NSURL = NSURL(string: "https://mobiledev.instructure.com/api/v1/calendar_events/2724235")!,
-        htmlURL: NSURL = NSURL(string: "https://mobiledev.instructure.com/calendar?event_id=2724235&include_contexts=user_6782429")!,
+        url: URL = URL(string: "https://mobiledev.instructure.com/api/v1/calendar_events/2724235")!,
+        htmlURL: URL = URL(string: "https://mobiledev.instructure.com/calendar?event_id=2724235&include_contexts=user_6782429")!,
         allDayDate: String = "2016-01-11",
         allDay: Bool = true,
-        createdAt: NSDate = NSDate(),
-        updatedAt: NSDate = NSDate(),
+        createdAt: Date = Date(),
+        updatedAt: Date = Date(),
         rawType: String = "event",
         hasSubmitted: Bool = false,
         rawSubmissionTypes: Int32 = 0,
@@ -66,9 +66,9 @@ extension CalendarEvent {
         currentScore: NSNumber? = nil,
         pointsPossible: NSNumber? = nil,
         submissionLate: Bool = false,
-        submittedAt: NSDate? = nil,
+        submittedAt: Date? = nil,
         submissionExcused: Bool = false,
-        gradedAt: NSDate? = nil,
+        gradedAt: Date? = nil,
         rawStatus: Int64 = 0
     ) -> CalendarEvent {
         let calendarEvent = CalendarEvent(inContext: context)

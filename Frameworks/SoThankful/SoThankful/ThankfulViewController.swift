@@ -16,14 +16,14 @@
 
 import UIKit
 
-public class ThankfulViewController: UITableViewController {
+open class ThankfulViewController: UITableViewController {
     
     lazy var components: [(name: String, url: String?)] = {
-        guard let url = NSBundle.soThankfulBundle().URLForResource("components", withExtension: "plist") else {
+        guard let url = Bundle.soThankfulBundle().url(forResource: "components", withExtension: "plist") else {
             fatalError("components.plist is missing")
         }
         
-        guard let components = NSArray(contentsOfURL: url) as? [[String: String]] else {
+        guard let components = NSArray(contentsOf: url) as? [[String: String]] else {
             fatalError("components.plist is missing")
         }
         
@@ -33,42 +33,42 @@ public class ThankfulViewController: UITableViewController {
             }
             
             return (name, $0["url"])
-        }.sort {
-            return $0.name.lowercaseString < $1.name.lowercaseString
+        }.sorted {
+            return $0.name.lowercased() < $1.name.lowercased()
         }
     }()
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
         self.title = NSLocalizedString("Components", comment: "Title of a screen that shows all of our open source components")
     }
     
-    override public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return components.count
     }
     
-    override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: nil)
+    override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         let component = components[indexPath.row]
         
         cell.textLabel?.text = component.name
         
         if let subtitle = component.url {
             cell.detailTextLabel?.text = subtitle
-            cell.accessoryType = .DisclosureIndicator
+            cell.accessoryType = .disclosureIndicator
         }
         
         return cell
     }
     
-    public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         let component = components[indexPath.row]
         if let stringURL = component.url,
-            let url = NSURL(string: stringURL) {
-            UIApplication.sharedApplication().openURL(url)
+            let url = URL(string: stringURL) {
+            UIApplication.shared.openURL(url)
         }
     }
 }

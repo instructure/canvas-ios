@@ -32,19 +32,21 @@
 "Groups" = "Gruppen";
 
 /* Title for no button for push notification pre-authorization alert */
-"No" = "Nein";
+"No" = "Kein";
 
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "Keine Kommunikationskanäle gefunden";
 
-/* Title for the notification preferences page */
-"Notification Preferences" = "Benachrichtigungslieblingseinstellungen";
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "Kein Push-Kanal gefunden";
 
-/* Action title for being unable to update a push notification preference
-   Alert action button text when unable to load communication channels
-   Alert action button text when unable to load notification preferences
-   Alert action button text when unable to parse JSON for communication channels
-   Alert action button text when unable to parse JSON for notification preferences */
+/* Title for the notification preferences page */
+"Notification Preferences" = "Benachrichtigung - Lieblingseinstellungen";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* (No Commment) */
 "Ok" = "OK";
 
 /* Description for Push Notification channel */
@@ -70,6 +72,12 @@
 
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Benachrichtigungslieblingseinstellungen können momentan nicht geladen werden. Fehler: (result.error?.localizedDescription)";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "Kann JSON nicht für Kommunikationskanäle analysieren";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "Kann JSON nicht für Benachrichtigungseinstellungen analysieren";
 
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "Wir waren nicht in der Lage, diesen Wert mit dem Server zu aktualisieren";

@@ -21,23 +21,23 @@ import TooLegit
 
 public struct Progress: Equatable, Hashable {
     public enum Kind: String {
-        case Viewed
-        case Submitted
-        case Contributed
-        case MarkedDone
-        case MinimumScore
+        case viewed
+        case submitted
+        case contributed
+        case markedDone
+        case minimumScore
     }
     
     public enum ItemType: String {
-        case File
-        case Page
-        case Discussion
-        case Assignment
-        case Quiz
-        case URL
-        case ExternalTool
-        case LegacyModuleProgressShim
-        case ModuleItem
+        case file
+        case page
+        case discussion
+        case assignment
+        case quiz
+        case url
+        case externalTool
+        case legacyModuleProgressShim
+        case moduleItem
     }
     
     public init(kind: Kind, contextID: ContextID, itemType: ItemType, itemID: String) {

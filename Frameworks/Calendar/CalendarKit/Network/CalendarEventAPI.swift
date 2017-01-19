@@ -19,19 +19,19 @@
 import TooLegit
 import SoLazy
 
-public class CalendarEventAPI {
+open class CalendarEventAPI {
 
     public enum RequestType: String {
-        case Event = "event"
-        case Assignment = "assignment"
+        case event = "event"
+        case assignment = "assignment"
     }
 
-    public class func getCalendarEvents(session: Session, type: RequestType, startDate: NSDate, endDate: NSDate, contextCodes: [String]?) throws -> NSURLRequest {
+    open class func getCalendarEvents(_ session: Session, type: RequestType, startDate: Date, endDate: Date, contextCodes: [String]?) throws -> URLRequest {
         let path = "/api/v1/calendar_events"
-        let nillableParams: [String: AnyObject?] = [
+        let nillableParams: [String: Any?] = [
             "type": type.rawValue,
-            "start_date": CalendarEvent.dayDateFormatter.stringFromDate(startDate),
-            "end_date": CalendarEvent.dayDateFormatter.stringFromDate(endDate),
+            "start_date": CalendarEvent.dayDateFormatter.string(from: startDate),
+            "end_date": CalendarEvent.dayDateFormatter.string(from: endDate),
             "context_codes": contextCodes,
             "include": ["submission"]
         ]
@@ -41,7 +41,7 @@ public class CalendarEventAPI {
         return try session.GET(path, parameters: parameters)
     }
 
-    public class func getCalendarEvent(session: Session, calendarEventID: String) throws -> NSURLRequest {
+    open class func getCalendarEvent(_ session: Session, calendarEventID: String) throws -> URLRequest {
         return try session.GET("/api/v1/calendar_events/\(calendarEventID)")
     }
     

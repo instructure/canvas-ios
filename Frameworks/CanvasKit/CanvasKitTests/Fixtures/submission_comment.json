@@ -1,0 +1,14 @@
+{
+    "id": 37,
+    "author_id": 134,
+    "author_name": "Toph Beifong",
+    "comment": "Well here's the thing...",
+    "created_at": "2012-01-01T01:00:00Z",
+    "media_comment": {
+        "content-type": "audio/mp4",
+        "display_name": "something",
+        "media_id": "3232",
+        "media_type": "audio",
+        "url": "http://example.com/media_url"
+    }
+}

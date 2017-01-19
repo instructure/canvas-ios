@@ -39,7 +39,7 @@ class SelectSessionTableViewCell: UITableViewCell {
                 
                 self.avatarImageView.image = nil
                 if let avatarURL = session.user.avatarURL {
-                    self.avatarImageView.downloadedFrom(avatarURL, contentMode: .ScaleAspectFit)
+                    self.avatarImageView.downloadedFrom(avatarURL, contentMode: .scaleAspectFit)
                 }
             }
         }
@@ -48,14 +48,14 @@ class SelectSessionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.avatarImageView.layer.cornerRadius = CGRectGetHeight(self.avatarImageView.bounds)/2
+        self.avatarImageView.layer.cornerRadius = self.avatarImageView.bounds.height/2
         self.avatarImageView.clipsToBounds = true
         
-        self.nameLabel.textColor = UIColor.darkTextColor()
-        self.domainLabel.textColor = UIColor.lightGrayColor()
+        self.nameLabel.textColor = UIColor.darkText
+        self.domainLabel.textColor = UIColor.lightGray
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         if selected {

@@ -40,32 +40,32 @@ class FileUploadAction: NSObject, UploadAction {
     }
     
     func initiate() {
-        let docsMenu = UIDocumentMenuViewController(documentTypes: allowedUploadUTIs, inMode: .Import)
+        let docsMenu = UIDocumentMenuViewController(documentTypes: allowedUploadUTIs, in: .import)
         docsMenu.delegate = self
         
-        for action in otherActions.reverse() {
-            docsMenu.addOptionWithTitle(action.title, image: action.icon, order: UIDocumentMenuOrder.First, handler: action.initiate)
+        for action in otherActions.reversed() {
+            docsMenu.addOption(withTitle: action.title, image: action.icon, order: UIDocumentMenuOrder.first, handler: action.initiate)
         }
         
-        if let popover = docsMenu.popoverPresentationController, presentFromBarButtonItem = presentFromBarButtonItem {
+        if let popover = docsMenu.popoverPresentationController, let presentFromBarButtonItem = presentFromBarButtonItem {
             popover.barButtonItem = presentFromBarButtonItem
         }
         
-        viewController?.presentViewController(docsMenu, animated: true, completion: nil)
+        viewController?.present(docsMenu, animated: true, completion: nil)
     }
 }
 
 // MARK: UIDocumentMenuDelegate
 
 extension FileUploadAction: UIDocumentMenuDelegate {
-    func documentMenu(documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+    func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
         
         documentPicker.delegate = self
         
-        viewController?.presentViewController(documentPicker, animated: true, completion: nil)
+        viewController?.present(documentPicker, animated: true, completion: nil)
     }
     
-    func documentPickerWasCancelled(controller: UIDocumentPickerViewController) {
+    func documentMenuWasCancelled(_ documentMenu: UIDocumentMenuViewController) {
         delegate?.actionCancelled()
     }
 }
@@ -74,11 +74,11 @@ extension FileUploadAction: UIDocumentMenuDelegate {
 
 extension FileUploadAction: UIDocumentPickerDelegate {
     
-    func documentPicker(controller: UIDocumentPickerViewController, didPickDocumentAtURL url: NSURL) {
-        delegate?.chooseUpload(.FileUpload([.FileURL(url)]))
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        delegate?.chooseUpload(.fileUpload([.fileURL(url)]))
     }
     
-    func documentMenuWasCancelled(documentMenu: UIDocumentMenuViewController) {
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         delegate?.actionCancelled()
     }
 }

@@ -59,6 +59,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ は採点が必要です";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ 点";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@.タイプ:%2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -264,7 +270,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "キャッシュがクリアされました";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "カレンダー";
 
 /* (No Commment) */
@@ -319,6 +326,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Choose from Library..." = "ライブラリから選択...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "オプションを選択する";
 
 /* (No Commment) */
 "Choose video" = "動画を選択する";
@@ -377,7 +387,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Course Syllabus" = "コースシラバス";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "コース";
 
 /* (No Commment) */
@@ -454,6 +465,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Downloading..." = "ダウンロード中...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "期限%@";
 
 /* (No Commment) */
 "Due:" = "期限：";
@@ -638,6 +652,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Item %1$d of %2$d" = "%2$dの%1$dアイテム";
 
+/* table header for module items */
+"Items" = "アイテム";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "空白です。まだここで何をしているのですか。";
 
@@ -662,11 +679,17 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Legal" = "法的な";
 
+/* Web URL link item label */
+"Link" = "リンク";
+
 /* (No Commment) */
 "Loading..." = "ロード中...";
 
 /* (No Commment) */
 "Locked" = "ロックされています";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "\"%@\" が採点されるまで、ロックされています";
 
 /* locked date */
 "Locked until %@" = "%@までロック";
@@ -688,6 +711,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Masquerade" = "マスカレード";
+
+/* Master Path module item type */
+"Mastery Path" = "達成パス";
 
 /* (No Commment) */
 "Me" = "私";
@@ -716,7 +742,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "メッセージをそれぞれ別々に送りますか、または全員をグループカンバセイションに追加しますか？";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "メッセージ";
 
 /* (No Commment) */
@@ -761,6 +787,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "New Folder" = "新しいフォルダ";
 
+/* Button title for next module item. */
+"Next" = "次へ";
+
 /* (No Commment) */
 "Next 7 Days" = "次の7日間";
 
@@ -775,6 +804,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "期限日なし";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "達成パスなし";
 
 /* (No Commment) */
 "No Recorded Audio" = "録音された音声はありません";
@@ -833,7 +865,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "通知の設定";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "通知";
 
 /* OK Button Title */
@@ -859,6 +892,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Open in..." = "...で開く";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "オプション%d";
 
 /* (No Commment) */
 "Other" = "その他";
@@ -901,6 +937,12 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Posts your comment" = "コメントをポストする";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "前提条件モジュール";
+
+/* Button title for previous module item. */
+"Previous" = "前";
 
 /* (No Commment) */
 "Previous item" = "前のアイテム";
@@ -986,6 +1028,12 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "ここを検索する...";
 
+/* No comment provided by engineer. */
+"Select Option" = "オプションを選択";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "オプションを選択%d";
+
 /* (No Commment) */
 "Select file(s)" = "ファイルを選択する";
 
@@ -1036,6 +1084,20 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Starts recording a media comment" = "メディアコメントの録音を開始する";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "ステータス：完了";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "ステータス：不完全";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "ステータス：ロックされています";
+
+/* Module status label when started */
+"Status: Started" = "ステータス：開始しました";
 
 /* (No Commment) */
 "Stay Logged In" = "ログイン状態にしておく";
@@ -1203,16 +1265,22 @@ Error: %@" = "リクエストされたファイルへのアクセス中に問題
 /* (No Commment) */
 "This is a media message." = "これはメディアメッセージです。";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "このモジュール項目には達成パスは設定されていません。";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "追加の単位のために時間を費やすのなら今が最適です。";
 
 /* Title of the Todo screen */
 "To Do" = "するべきこと";
 
+/* To-Do List landing page title */
+"To-Do List" = "するべきことのリスト";
+
 /* (No Commment) */
 "To:" = "以下へ:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "今日";
 
 /* No comment provided by engineer. */
@@ -1232,6 +1300,9 @@ Error: %@" = "リクエストされたファイルへのアクセス中に問題
 
 /* (No Commment) */
 "Turn in %@" = "%@を提出";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "タイプ:%@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "おっと！インターネットが接続されていません";

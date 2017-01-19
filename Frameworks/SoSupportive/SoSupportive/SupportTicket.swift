@@ -29,7 +29,7 @@ public enum ImpactLevel: String {
         return [Comment, NotUrgent, WorkaroundPossible, Blocking, Emergency]
     }
 
-    public static func impactFromDescription(description: String) -> ImpactLevel? {
+    public static func impactFromDescription(_ description: String) -> ImpactLevel? {
         return impacts().filter {
             return $0.description() == description
             }.first
@@ -38,17 +38,17 @@ public enum ImpactLevel: String {
     public func description() -> String {
         switch self {
         case .Comment:
-            return NSLocalizedString("Casual question or suggestion", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Cancel the question/suggestion form")
+            return NSLocalizedString("Casual question or suggestion", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Cancel the question/suggestion form")
         case .NotUrgent:
-            return NSLocalizedString("I need help but it's not urgent", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Status level for issue being reported")
+            return NSLocalizedString("I need help but it's not urgent", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Status level for issue being reported")
         case .WorkaroundPossible:
-            return NSLocalizedString("Something is broken but I can work around it", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Status level for issue being reported")
+            return NSLocalizedString("Something is broken but I can work around it", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Status level for issue being reported")
         case .Blocking:
-            return NSLocalizedString("I can't get things done until fixed", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Status level for issue being reported")
+            return NSLocalizedString("I can't get things done until fixed", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Status level for issue being reported")
         case .Emergency:
-            return NSLocalizedString("Extremely critical emergency", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Status level for issue being reported")
+            return NSLocalizedString("Extremely critical emergency", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Status level for issue being reported")
         case .None:
-            return NSLocalizedString("Choose One", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "title for status selection field")
+            return NSLocalizedString("Choose One", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "title for status selection field")
         }
     }
 
@@ -71,36 +71,36 @@ public enum ImpactLevel: String {
 }
 
 public enum SupportTicketType {
-    case Problem, FeatureRequest
+    case problem, featureRequest
 
     public func description() -> String {
         switch self {
-        case .Problem:
-            return NSLocalizedString("Describe your problem", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Title for field")
-        case .FeatureRequest:
-            return NSLocalizedString("What can we do better?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Title for field")
+        case .problem:
+            return NSLocalizedString("Describe your problem", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Title for field")
+        case .featureRequest:
+            return NSLocalizedString("What can we do better?", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Title for field")
         }
     }
 
 }
 
-public class SupportTicket {
+open class SupportTicket {
 
-    public let requesterName: String
-    public let requesterUsername: String
-    public let requesterEmail: String
-    public let requesterDomain: NSURL
-    public let subject: String
-    public let body: String
+    open let requesterName: String
+    open let requesterUsername: String
+    open let requesterEmail: String
+    open let requesterDomain: URL
+    open let subject: String
+    open let body: String
 
-    public let impact: ImpactLevel
-    public let type: SupportTicketType
-    public let logFilePath: String?
+    open let impact: ImpactLevel
+    open let type: SupportTicketType
+    open let logFilePath: String?
 
     //intentionally not localizing this area since this is what support will see and our support staff is only expected to read English
-    init(requesterName: String = "Unknown User", requesterUsername: String = "Unknown User", requesterEmail: String = "unknown_user@test.com", requesterDomain: NSURL = NSURL(string: "https://canvas.instructure.com")!, subject: String = "N/A", body: String = "N/A", impact: ImpactLevel = .None, type: SupportTicketType = .FeatureRequest, logFilePath: String? = nil) {
-        self.requesterName = requesterName ?? "Unknown User"
-        self.requesterUsername = requesterUsername ?? "Unknown User Name"
+    init(requesterName: String = "Unknown User", requesterUsername: String = "Unknown User", requesterEmail: String = "unknown_user@test.com", requesterDomain: URL = URL(string: "https://canvas.instructure.com")!, subject: String = "N/A", body: String = "N/A", impact: ImpactLevel = .None, type: SupportTicketType = .featureRequest, logFilePath: String? = nil) {
+        self.requesterName = requesterName
+        self.requesterUsername = requesterUsername
         self.requesterEmail = requesterEmail
         self.requesterDomain = requesterDomain
         self.subject = subject
@@ -111,7 +111,7 @@ public class SupportTicket {
         self.logFilePath = logFilePath
     }
 
-    init(session: Session, subject: String = "N/A", body: String = "N/A", impact: ImpactLevel = .None, type: SupportTicketType = .FeatureRequest) {
+    init(session: Session, subject: String = "N/A", body: String = "N/A", impact: ImpactLevel = .None, type: SupportTicketType = .featureRequest) {
         self.requesterName = session.user.sortableName ?? "Unknown User"
         self.requesterUsername = session.user.loginID ?? "Unknown User Name"
         self.requesterEmail = session.user.email ?? "unknown_user@test.com"
@@ -124,11 +124,11 @@ public class SupportTicket {
         self.logFilePath = session.logFilePath()?.absoluteString
     }
 
-    func dictionaryValue() -> Dictionary<String, AnyObject> {
+    func dictionaryValue() -> [String: Any] {
         return [
             "error": [
                 "subject"                   : subject,
-                "url"                       : requesterDomain.absoluteString!,
+                "url"                       : requesterDomain.absoluteString,
                 "email"                     : requesterEmail,
                 "comments"                  : body,
                 "user_percieved_severity"   : self.impact.fieldValue(),
@@ -137,11 +137,11 @@ public class SupportTicket {
         ]
     }
 
-    private func environmentBody() -> Dictionary<String, AnyObject> {
-        var dictionary = Dictionary<String, AnyObject>()
+    fileprivate func environmentBody() -> Dictionary<String, Any> {
+        var dictionary = Dictionary<String, Any>()
         let domainString = requesterDomain.absoluteString
 
-        if Secrets.featureEnabled(.ProtectedUserInformation, domain: domainString) == false {
+        if Secrets.featureEnabled(.protectedUserInformation, domain: domainString) == false {
             dictionary["User"] = requesterUsername
             dictionary["Email"] = requesterEmail
         }
@@ -150,31 +150,31 @@ public class SupportTicket {
         dictionary["Hostname"] = domainString
         dictionary["App Version"] = appVersionString()
         dictionary["Platform"] = device.description
-        dictionary["OS Version"] = UIDevice.currentDevice().systemVersion
+        dictionary["OS Version"] = UIDevice.current.systemVersion
         dictionary["user_log"] = log()
 
         return dictionary
     }
 
-    private func appVersionString() -> String {
-        guard let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String, appBundle = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String else {
+    fileprivate func appVersionString() -> String {
+        guard let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String, let appBundle = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else {
             fatalError("")
         }
         return "\(version) (\(appBundle))"
     }
 
-    private func log() -> String {
+    fileprivate func log() -> String {
         let emptyLogString = "EMPTY LOG"
-        guard let filePath = logFilePath, data = NSData(contentsOfFile: filePath) else { return emptyLogString }
+        guard let filePath = logFilePath, let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)) else { return emptyLogString }
 
-        let logData = String(data: data, encoding: NSUTF8StringEncoding)
-        guard let stringsByLine = logData?.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet()) else { return emptyLogString }
+        let logData = String(data: data, encoding: String.Encoding.utf8)
+        guard let stringsByLine = logData?.components(separatedBy: CharacterSet.newlines) else { return emptyLogString }
 
         var logString = "------------\nLog\n------------\n\n:"
         for lineNum in 0..<stringsByLine.count {
             if lineNum > 150 { break }
 
-            logString.appendContentsOf(stringsByLine[lineNum])
+            logString.append(stringsByLine[lineNum])
         }
 
         return logString

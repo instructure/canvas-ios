@@ -27,11 +27,11 @@ public final class Tab: NSManagedObject {
     @NSManaged internal (set) public var id: String
     @NSManaged internal (set) public var label: String
     @NSManaged internal (set) public var position: Int32
-    @NSManaged internal (set) public var url: NSURL
+    @NSManaged internal (set) public var url: URL
     @NSManaged internal (set) public var hidden: Bool
 
     @NSManaged var rawContextID: String
-    private (set) public var contextID: ContextID {
+    fileprivate (set) public var contextID: ContextID {
         get {
             return ContextID(canvasContext: rawContextID)!
         } set {
@@ -66,12 +66,18 @@ public final class Tab: NSManagedObject {
 
     public var shortcutIcon: UIImage {
         guard ShortcutTabIDs.contains(id) else { ❨╯°□°❩╯⌢"Not a valid shortcut!" }
-        let bundle = NSBundle(forClass: Tab.self)
-        let name = "icon_\(id)_fill_small"
-        guard let icon = UIImage(named: name, inBundle: bundle, compatibleWithTraitCollection: nil) else {
-            fatalError("Expected icon named: \(name)")
+        let bundle = Bundle(for: Tab.self)
+        // don't add new shortcuts without telling me
+        assert(ShortcutTabIDs.count == 4)
+        let shortcut: Icon
+        switch id {
+        case "discussions":     shortcut = .discussion
+        case "announcements":   shortcut = .announcement
+        case "files":           shortcut = .file
+        case "assignments":     shortcut = .assignment
+        default: ❨╯°□°❩╯⌢"Not a valid shortcut"
         }
-        return icon
+        return .icon(shortcut, filled: true)
     }
 
     public var isPages: Bool {
@@ -92,14 +98,14 @@ public final class Tab: NSManagedObject {
 import SoPersistent
 import Marshal
 
-private let contextIDErrorMessage = NSLocalizedString("There was an error associating a tab with a course or group.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Error message when parsing contextID for a course or group tab")
+private let contextIDErrorMessage = NSLocalizedString("There was an error associating a tab with a course or group.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Error message when parsing contextID for a course or group tab")
 private let contextIDFailureReason = "Could not parse context id from URL"
 
 extension Tab: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
-        let url: NSURL = try json <| "full_url"
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
+        let url: URL = try json <| "full_url"
         guard let context = ContextID(url: url) else {
-            throw NSError(subdomain: "Enrollments", code: 0, sessionID: nil, apiURL: NSURL(string: "/api/v1/context/tabs"), title: nil, description: contextIDErrorMessage, failureReason: contextIDFailureReason)
+            throw NSError(subdomain: "Enrollments", code: 0, sessionID: nil, apiURL: URL(string: "/api/v1/context/tabs"), title: nil, description: contextIDErrorMessage, failureReason: contextIDFailureReason)
         }
 
         let id: String = try json <| "id"
@@ -107,13 +113,13 @@ extension Tab: SynchronizedModel {
         return NSPredicate(format: "%K == %@ && %K == %@", "id", id, "rawContextID", context.canvasContextID)
     }
 
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
 
         url         = try (try json <| "url")
             ?? (try json <| "full_url")
 
         guard let context = ContextID(url: url) else {
-            throw NSError(subdomain: "Enrollments", code: 0, sessionID: nil, apiURL: NSURL(string: "/api/v1/context/tabs"), title: nil, description: contextIDErrorMessage, failureReason: contextIDFailureReason)
+            throw NSError(subdomain: "Enrollments", code: 0, sessionID: nil, apiURL: URL(string: "/api/v1/context/tabs"), title: nil, description: contextIDErrorMessage, failureReason: contextIDFailureReason)
         }
 
 
@@ -122,6 +128,6 @@ extension Tab: SynchronizedModel {
         id          = try json <| "id"
         position    = try json <| "position"
         label       = try json <| "label"
-        hidden      = try json <| "hidden" ?? false
+        hidden      = (try json <| "hidden") ?? false
     }
 }

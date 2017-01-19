@@ -17,7 +17,6 @@
     
 
 import TooLegit
-import URITemplate
 import Quick
 import Nimble
 
@@ -42,15 +41,15 @@ class RouteSpec: QuickSpec {
             describe(".constructViewController") {
                 context("when parameters are wrong") {
                     it("returns nil") {
-                        var url = NSURL(string: "https://instructure.com")!
+                        var url = URL(string: "https://instructure.com")!
                         var vc = try! route.constructViewController({_ in }, session: Session.unauthenticated, url: url)
                         expect(vc).to(beNil())
 
-                        url = NSURL(string: "http://instructure.com/foo")!
+                        url = URL(string: "http://instructure.com/foo")!
                         vc = try! route.constructViewController({_ in }, session: Session.unauthenticated, url: url)
                         expect(vc).to(beNil())
 
-                        url = NSURL(string: "https://instructure.com/whatever/4125")!
+                        url = URL(string: "https://instructure.com/whatever/4125")!
                         vc = try! route.constructViewController({_ in }, session: Session.unauthenticated, url: url)
                         expect(vc).to(beNil())
                     }
@@ -59,7 +58,7 @@ class RouteSpec: QuickSpec {
                 context("when parameters are correct") {
                     var vc: TwoPropertyViewController?
                     beforeEach {
-                        let url = NSURL(string: "https://instructure.com/whatever/32/something/cats")!
+                        let url = URL(string: "https://instructure.com/whatever/32/something/cats")!
                         vc = try! route.constructViewController({_ in }, session: Session.unauthenticated, url: url) as? TwoPropertyViewController
                     }
 

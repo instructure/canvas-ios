@@ -18,16 +18,16 @@
 
 import Foundation
 
-public class NotificationPreferencesViewController: UITableViewController {
+open class NotificationPreferencesViewController: UITableViewController {
     var channel: CommunicationChannel!
     var dataController: NotificationKitController!
-    private var datasource: [(displayGroup: DisplayGroup, groupItems: [GroupItem]?)] = []
+    fileprivate var datasource: [(displayGroup: DisplayGroup, groupItems: [GroupItem]?)] = []
     
-    private static let storyboardName = "Main"
-    private static let viewControllerName = "NotificationPreferencesViewController"
-    public class func new(channel: CommunicationChannel, dataController: NotificationKitController) -> NotificationPreferencesViewController {
-        let storyboard = UIStoryboard(name: NotificationPreferencesViewController.storyboardName, bundle: NSBundle(forClass: NotificationPreferencesViewController.classForCoder()))
-        let controller = storyboard.instantiateViewControllerWithIdentifier(NotificationPreferencesViewController.viewControllerName) as! NotificationPreferencesViewController
+    fileprivate static let storyboardName = "Main"
+    fileprivate static let viewControllerName = "NotificationPreferencesViewController"
+    open class func new(_ channel: CommunicationChannel, dataController: NotificationKitController) -> NotificationPreferencesViewController {
+        let storyboard = UIStoryboard(name: NotificationPreferencesViewController.storyboardName, bundle: Bundle(for: NotificationPreferencesViewController.classForCoder()))
+        let controller = storyboard.instantiateViewController(withIdentifier: NotificationPreferencesViewController.viewControllerName) as! NotificationPreferencesViewController
         
         controller.channel = channel
         controller.dataController = dataController
@@ -36,7 +36,7 @@ public class NotificationPreferencesViewController: UITableViewController {
     }
     
     // Don't allow people to create using init, would be great to prevent other ways in
-    private override init(style: UITableViewStyle) {
+    fileprivate override init(style: UITableViewStyle) {
         super.init(style: style)
     }
     
@@ -44,26 +44,26 @@ public class NotificationPreferencesViewController: UITableViewController {
         super.init(coder: aDecoder)
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         refreshControl = UIRefreshControl()
-        refreshControl!.addTarget(self, action: #selector(NotificationPreferencesViewController.refreshDataSource(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl!.addTarget(self, action: #selector(NotificationPreferencesViewController.refreshDataSource(_:)), for: UIControlEvents.valueChanged)
         
         refreshControl!.beginRefreshing()
         self.refreshDataSource(refreshControl!)
     }
     
-    func refreshDataSource(sender: AnyObject) {
+    func refreshDataSource(_ sender: AnyObject) {
         self.dataController.getNotificationPreferences(channel, completion: { (result) -> () in
             
             if let _ = result.error {
                 
-                let title = NSLocalizedString("Could not load notification preferences", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to load notification preferences")
-                let message = NSLocalizedString("Unable to load any notification preferences at this time.  Error: \(result.error?.localizedDescription)", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to load notification preferences")
-                let actionText = NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title")
+                let title = NSLocalizedString("Could not load notification preferences", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to load notification preferences")
+                let message = NSLocalizedString("Unable to load any notification preferences at this time.  Error: \(result.error?.localizedDescription)", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to load notification preferences")
+                let actionText = NSLocalizedString("OK", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title")
                 
                 self.showSimpleAlert(title, message: message, actionText: actionText)
 
@@ -76,9 +76,9 @@ public class NotificationPreferencesViewController: UITableViewController {
                 
                 self.tableView.reloadData()
             } else {
-                let title = NSLocalizedString("Can't Display Notification Preferences", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to parse JSON for notification preferences")
-                let message = NSLocalizedString("Unable to display any notification preferences returned from the server at this time.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to parse JSON for notification preferences")
-                let actionText = NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title")
+                let title = NSLocalizedString("Can't Display Notification Preferences", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to parse JSON for notification preferences")
+                let message = NSLocalizedString("Unable to display any notification preferences returned from the server at this time.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to parse JSON for notification preferences")
+                let actionText = NSLocalizedString("OK", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title")
                 
                 self.showSimpleAlert(title, message: message, actionText: actionText)
             }
@@ -91,11 +91,11 @@ public class NotificationPreferencesViewController: UITableViewController {
 extension NotificationPreferencesViewController {
     
     // MARK: UITableView Datasource methods
-    override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override open func numberOfSections(in tableView: UITableView) -> Int {
         return datasource.count
     }
     
-    override public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let items = datasource[section].groupItems {
             return items.count
         } else {
@@ -103,10 +103,10 @@ extension NotificationPreferencesViewController {
         }
     }
     
-    private static let cellReuseIdentifier = "NotificationPreferencesTableViewCell"
-    override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    fileprivate static let cellReuseIdentifier = "NotificationPreferencesTableViewCell"
+    override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(NotificationPreferencesViewController.cellReuseIdentifier, forIndexPath: indexPath) as! NotificationPreferencesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: NotificationPreferencesViewController.cellReuseIdentifier, for: indexPath) as! NotificationPreferencesTableViewCell
         
         if let groupItems = datasource[indexPath.section].groupItems {
             let groupItem = groupItems[indexPath.row]
@@ -119,14 +119,14 @@ extension NotificationPreferencesViewController {
         return cell
     }
     
-    public override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    open override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let item = datasource[section]
         return item.displayGroup.rawValue
     }
 }
 
 extension NotificationPreferencesViewController: ChangeNotificationPreferenceProtocol {
-    func changeNotificationPreference(indexPath: NSIndexPath, value: Bool, completion: (value: Bool, result: ChangeNotificationPreferenceResult) -> ()) {
+    func changeNotificationPreference(_ indexPath: IndexPath, value: Bool, completion: @escaping (_ value: Bool, _ result: ChangeNotificationPreferenceResult) -> ()) {
         
         let groupItems = datasource[indexPath.section].groupItems!
         let item = groupItems[indexPath.row]
@@ -141,19 +141,19 @@ extension NotificationPreferencesViewController: ChangeNotificationPreferencePro
                     item.frequency = item.frequency.opposite
                 }
                 self?.showCouldNotUpdatePushNotificationAlert()
-                completion(value: value, result: ChangeNotificationPreferenceResult.Error(setPreferenceResult.error!))
+                completion(value, .error(setPreferenceResult.error!))
             } else if setPreferenceResult.value != nil {
-                completion(value: value, result: ChangeNotificationPreferenceResult.Success())
+                completion(value, .success())
             }
         }
     }
     
     func showCouldNotUpdatePushNotificationAlert() {
-        let alert = UIAlertController(title: NSLocalizedString("Could not update", comment: "Error title for being unable to update a push notification preference"), message: NSLocalizedString("We were not able to update this value with the server", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Error message for being unable to update a push notification preference"), preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Could not update", comment: "Error title for being unable to update a push notification preference"), message: NSLocalizedString("We were not able to update this value with the server", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Error message for being unable to update a push notification preference"), preferredStyle: UIAlertControllerStyle.alert)
         
-        let alertAction = UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title"), style: UIAlertActionStyle.Default, handler: nil)
+        let alertAction = UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title"), style: UIAlertActionStyle.default, handler: nil)
         alert.addAction(alertAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

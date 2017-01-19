@@ -26,16 +26,16 @@ class DetailsReminderCell: UITableViewCell {
     @IBOutlet var dateLabel: UILabel!
 
     @IBOutlet var bottomLabelConstraint: NSLayoutConstraint!
-    private let expandedBottomConstraintValue: CGFloat = 46.0
-    private let contractedBottomConstraintValue: CGFloat = 14.0
+    fileprivate let expandedBottomConstraintValue: CGFloat = 46.0
+    fileprivate let contractedBottomConstraintValue: CGFloat = 14.0
 
     var cellSizeUpdated: ()->() = { }
-    var toggleAction: (on: Bool)->() = { _ in }
+    var toggleAction: (_ on: Bool)->() = { _ in }
 
-    static var dateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .MediumStyle
-        dateFormatter.timeStyle = .ShortStyle
+    static var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
         return dateFormatter
     }()
 
@@ -50,15 +50,15 @@ class DetailsReminderCell: UITableViewCell {
         toggle.accessibilityIdentifier = "reminder_toggle"
     }
 
-    @IBAction func toggledReminder(sender: UISwitch) {
-        toggleAction(on: sender.on)
+    @IBAction func toggledReminder(_ sender: UISwitch) {
+        toggleAction(sender.isOn)
     }
 
     override func prepareForReuse() {
         cellSizeUpdated = { }
     }
 
-    func setExpanded(expanded: Bool) {
+    func setExpanded(_ expanded: Bool) {
         if expanded {
             bottomLabelConstraint.constant = expandedBottomConstraintValue
         } else {

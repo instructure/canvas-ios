@@ -22,8 +22,8 @@ import CoreData
 import SoPersistent
 
 extension Session {
-    private convenience init(baseURL: NSURL, user: SessionUser, token: String?, unitTesting: Bool) {
-        self.init(baseURL: baseURL, user: user, token: token)
+    fileprivate convenience init(baseURL: NSURL, user: SessionUser, token: String?, unitTesting: Bool) {
+        self.init(baseURL: baseURL as URL, user: user, token: token)
         if unitTesting {
             storeType = NSInMemoryStoreType
         }
@@ -38,7 +38,7 @@ let _ivy: ()->Session = {
         loginID: "ivy",
         sortableName: "Iverson, Ivy",
         email: "derrick+ivy@instructure.com",
-        avatarURL: NSURL(string: "https://mobiledev.instructure.com/images/thumbnails/56640046/jdWmlUJ45fnORk7lKkc7Z44t4dgLmIIooFSHXneW"))
+        avatarURL: NSURL(string: "https://mobiledev.instructure.com/images/thumbnails/56640046/jdWmlUJ45fnORk7lKkc7Z44t4dgLmIIooFSHXneW") as URL?)
     
     return Session(
         baseURL: NSURL(string: "https://mobiledev.instructure.com/")!,
@@ -54,12 +54,12 @@ let _art: ()->Session = {
         loginID: "art",
         sortableName: "Artimus, Art",
         email: "derrick+art@instructure.com",
-        avatarURL: NSURL(string: "https://mobiledev.instructure.com/files/77785899/download?download_frd=1&verifier=72mditce94HTUmzKJuqKsz3vJ441KmTp4N1tVhFR"))
+        avatarURL: NSURL(string: "https://mobiledev.instructure.com/files/77785899/download?download_frd=1&verifier=72mditce94HTUmzKJuqKsz3vJ441KmTp4N1tVhFR") as URL?)
     
     return Session(
         baseURL: NSURL(string: "https://mobiledev.instructure.com/")!,
         user: user,
-        token: "1~pwtrtRZk3N1VN3GcojSe0AFGgO14kDybKD1KVdFgHSIBbWgcDoqDsYttaDtpsrCd",
+        token: "1~lajza2GqEAbIVdseRwyzlcDQcDTeXeM6aVfVdeSPcPsd1VX95BxIhnllTj8N147k",
         unitTesting: unitTesting)
 }
 
@@ -70,7 +70,7 @@ let _ns: ()->Session = {
         loginID: "nlambson",
         sortableName: "Lambson, Nathan",
         email: "nlambson+s@instructure.com",
-        avatarURL: NSURL(string: "https://mobiledev.instructure.com/files/77785899/download?download_frd=1&verifier=72mditce94HTUmzKJuqKsz3vJ441KmTp4N1tVhFR"))
+        avatarURL: NSURL(string: "https://mobiledev.instructure.com/files/77785899/download?download_frd=1&verifier=72mditce94HTUmzKJuqKsz3vJ441KmTp4N1tVhFR") as URL?)
     
     return Session(
         baseURL: NSURL(string: "https://mobiledev.instructure.com/")!,
@@ -86,7 +86,7 @@ let _nt: ()->Session = {
         loginID: "nlambson",
         sortableName: "Lambson, Nathan",
         email: "nlambson+t@instructure.com",
-        avatarURL: NSURL(string: "https://mobiledev.instructure.com/files/77785899/download?download_frd=1&verifier=72mditce94HTUmzKJuqKsz3vJ441KmTp4N1tVhFR"))
+        avatarURL: NSURL(string: "https://mobiledev.instructure.com/files/77785899/download?download_frd=1&verifier=72mditce94HTUmzKJuqKsz3vJ441KmTp4N1tVhFR") as URL?)
     
     return Session(
         baseURL: NSURL(string: "https://mobiledev.instructure.com/")!,
@@ -102,7 +102,7 @@ let _nas: ()->Session = {
         loginID: "narmstrong+s@instructure.com",
         sortableName: "Armstrong, Nathan",
         email: "narmstrong+s@instructure.com",
-        avatarURL: NSURL(string: "https://mobiledev.instructure.com/files/77785899/download?download_frd=1&verifier=72mditce94HTUmzKJuqKsz3vJ441KmTp4N1tVhFR"))
+        avatarURL: NSURL(string: "https://mobiledev.instructure.com/files/77785899/download?download_frd=1&verifier=72mditce94HTUmzKJuqKsz3vJ441KmTp4N1tVhFR") as URL?)
     
     return Session(
         baseURL: NSURL(string: "https://mobiledev.instructure.com/")!,
@@ -118,7 +118,7 @@ let _na_mgp: ()->Session = {
         loginID: "narmstrong+s@instructure.com",
         sortableName: "narmstrong+s@instructure.com",
         email: "narmstrong+s@instructure.com",
-        avatarURL: NSURL(string: ""))
+        avatarURL: NSURL(string: "") as URL?)
 
     return Session(
         baseURL: NSURL(string: "https://narmstrong.instructure.com/")!,
@@ -134,7 +134,7 @@ let _drip: ()->Session = {
         loginID: "drip",
         sortableName: "Dersky, Drip",
         email: "derrick+drip@instructure.com",
-        avatarURL: NSURL(string: "https://mobiledev.instructure.com/files/47408175/download?download_frd=1&verifier=aUgcpn1Aa4xMxT78ofiaEJNtTdi2UlgMSNkJktrK"))
+        avatarURL: NSURL(string: "https://mobiledev.instructure.com/files/47408175/download?download_frd=1&verifier=aUgcpn1Aa4xMxT78ofiaEJNtTdi2UlgMSNkJktrK") as URL?)
     
     return Session(
         baseURL: NSURL(string: "https://mobiledev.instructure.com/")!,
@@ -149,7 +149,7 @@ let _parentTest: ()->Session = {
         loginID: "test",
         sortableName: "test",
         email: "test@test.com",
-        avatarURL: NSURL(string: "https://secure.gravatar.com/avatar/098f6bcd4621d373cade4e832627b4f6?s=50&d=https%3A%2F%2Fmobile-1-canvas.portal2.canvaslms.com%2Fimages%2Fmessages%2Favatar-50.png")!)
+        avatarURL: NSURL(string: "https://secure.gravatar.com/avatar/098f6bcd4621d373cade4e832627b4f6?s=50&d=https%3A%2F%2Fmobile-1-canvas.portal2.canvaslms.com%2Fimages%2Fmessages%2Favatar-50.png")! as URL)
     return Session(baseURL: NSURL(string: "https://mobile-1-canvas.portal2.canvaslms.com")!,
         user: user,
         token: "default~Sa3ThFR0ny6zu7knlUdObgp7RDN9wcoir2A9fL0sy0UfrsdbxTaJk5MHaUoiNEQM",
@@ -162,7 +162,7 @@ let _bt: ()->Session = {
                            loginID: "bt",
                            sortableName: "Pluim, Brandon",
                            email: "test@test.com",
-                           avatarURL: NSURL(string: "https://secure.gravatar.com/avatar/098f6bcd4621d373cade4e832627b4f6?s=50&d=https%3A%2F%2Fmobile-1-canvas.portal2.canvaslms.com%2Fimages%2Fmessages%2Favatar-50.png")!)
+                           avatarURL: NSURL(string: "https://secure.gravatar.com/avatar/098f6bcd4621d373cade4e832627b4f6?s=50&d=https%3A%2F%2Fmobile-1-canvas.portal2.canvaslms.com%2Fimages%2Fmessages%2Favatar-50.png")! as URL)
     return Session(baseURL: NSURL(string: "https://mobiledev.instructure.com")!,
                    user: user,
                    token: "1~JC6sxZ9lNeVJloM6TOhW3pKZUsHIVTA8qwyC3wFNs67ZFsKeaYnkOTtNfdpAeuWN",
@@ -175,7 +175,7 @@ let _observer: ()->Session = {
                            loginID: "narmstrong+observer@instructure.com",
                            sortableName: "Observer",
                            email: "test@test.com",
-                           avatarURL: NSURL(string: "https://secure.gravatar.com/avatar/098f6bcd4621d373cade4e832627b4f6?s=50&d=https%3A%2F%2Fmobile-1-canvas.portal2.canvaslms.com%2Fimages%2Fmessages%2Favatar-50.png")!)
+                           avatarURL: NSURL(string: "https://secure.gravatar.com/avatar/098f6bcd4621d373cade4e832627b4f6?s=50&d=https%3A%2F%2Fmobile-1-canvas.portal2.canvaslms.com%2Fimages%2Fmessages%2Favatar-50.png")! as URL)
     return Session(baseURL: NSURL(string: "https://mobiledev.instructure.com")!,
                    user: user,
                    token: "1~QOd45db8aiNWaecBXzN1c5Xx4uFBMthk3z5jD5p32Qu5tqLtJzWMpXFaqOyjz0ff",
@@ -188,7 +188,7 @@ let _teacher: ()->Session = {
                            loginID: "mobiledevinstruct+teacher1@gmail.com",
                            sortableName: "Teacher 1",
                            email: "mobiledevinstruct+teacher1@gmail.com",
-                           avatarURL: NSURL(string: "https://secure.gravatar.com/avatar/098f6bcd4621d373cade4e832627b4f6?s=50&d=https%3A%2F%2Fmobile-1-canvas.portal2.canvaslms.com%2Fimages%2Fmessages%2Favatar-50.png")!)
+                           avatarURL: NSURL(string: "https://secure.gravatar.com/avatar/098f6bcd4621d373cade4e832627b4f6?s=50&d=https%3A%2F%2Fmobile-1-canvas.portal2.canvaslms.com%2Fimages%2Fmessages%2Favatar-50.png")! as URL)
     return Session(baseURL: NSURL(string: "https://mobiledev.instructure.com")!,
                    user: user,
                    token: "1~26aSyGFzmqM8ocsSuAhoiwcln3O3KqWSrtHTUgvuOzpvLIMHMsduGXKFGjF8Guo3",
@@ -213,9 +213,9 @@ let _eg: Session = {
                            
                            email: "p.egan.anderson@gmail.com",
                            
-                           avatarURL: NSURL(string: "https://secure.gravatar.com/avatar/098f6bcd4621d373cade4e832627b4f6?s=50&d=https%3A%2F%2Fmobile-1-canvas.portal2.canvaslms.com%2Fimages%2Fmessages%2Favatar-50.png")!)
+                           avatarURL: NSURL(string: "https://secure.gravatar.com/avatar/098f6bcd4621d373cade4e832627b4f6?s=50&d=https%3A%2F%2Fmobile-1-canvas.portal2.canvaslms.com%2Fimages%2Fmessages%2Favatar-50.png")! as URL)
     
-    return Session(baseURL: NSURL(string: "https://utah.instructure.com")!,
+    return Session(baseURL: NSURL(string: "https://utah.instructure.com")! as URL,
                    
                    user: user,
                    
@@ -235,9 +235,9 @@ let _twilsonStudent2: Session = {
                            
                            email: "whoknows@somedomain.whatevs",
                            
-                           avatarURL: NSURL(string: "https://twilson.instructure.com/files/375/download?download_frd=1&verifier=YUK83UfpkaN815lL5nnl986DIOYjfgIHlfUBCcIz")!)
+                           avatarURL: NSURL(string: "https://twilson.instructure.com/files/375/download?download_frd=1&verifier=YUK83UfpkaN815lL5nnl986DIOYjfgIHlfUBCcIz")! as URL)
     
-    return Session(baseURL: NSURL(string: "https://twilson.instructure.com")!,
+    return Session(baseURL: NSURL(string: "https://twilson.instructure.com")! as URL,
                    
                    user: user,
                    

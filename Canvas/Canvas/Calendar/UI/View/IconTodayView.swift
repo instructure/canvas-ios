@@ -24,18 +24,22 @@ class IconTodayView : UIView {
     @IBOutlet weak var imgIconBackground: UIImageView!
     
     
-    class func instantiateFromNib(date: NSDate, tintColor: UIColor?, target: AnyObject, action: Selector) -> IconTodayView? {
+    class func instantiateFromNib(_ date: Date, tintColor: UIColor?, target: Any, action: Selector) -> IconTodayView? {
         if let todayView = IconTodayView.loadFromNibNamed("IconTodayView", bundle: IconTodayView.bundle) as? IconTodayView {
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "d"
-            todayView.lblDayOfMonth.text = dateFormatter.stringFromDate(date)
+            todayView.lblDayOfMonth.text = dateFormatter.string(from: date)
             
-            let calendarImage = UIImage(named: "icon_today", inBundle: IconTodayView.bundle, compatibleWithTraitCollection: nil)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            let calendarImage = UIImage(named: "icon_today", in: IconTodayView.bundle, compatibleWith: nil)?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
             todayView.imgIconBackground.image = calendarImage
             todayView.imgIconBackground.tintColor = tintColor
             
             todayView.lblDayOfMonth.textColor = tintColor
             todayView.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
+
+            todayView.isAccessibilityElement = true
+            todayView.accessibilityTraits = UIAccessibilityTraitButton
+            todayView.accessibilityLabel = NSLocalizedString("Today", comment: "Button to scroll to 'today' on the calendar")
             
             return todayView
         }

@@ -22,13 +22,13 @@ import AssignmentKit
 
 private struct Submission {
 
-    private static var percentFormatter: NSNumberFormatter = {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .PercentStyle
+    fileprivate static var percentFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
         return formatter
     }()
 
-    struct Status: OptionSetType {
+    struct Status: OptionSet {
         let rawValue: Int64
         init(rawValue: Int64) { self.rawValue = rawValue}
 
@@ -63,7 +63,7 @@ private struct Submission {
             }
             let score = currentScore.doubleValue
             let pointsPossible = self.pointsPossible?.doubleValue ?? 0.0
-            var grade = Submission.percentFormatter.stringFromNumber(score / pointsPossible)
+            var grade = Submission.percentFormatter.string(from: NSNumber(value: score / pointsPossible))
             if (score != 0 && pointsPossible == 0) {
                 grade = String(format: "(%g/%g)", score, pointsPossible)
             } else if (score == 0 && pointsPossible == 0) {
@@ -94,8 +94,8 @@ private struct Submission {
 
     var displayVerboseText: String {
         if status.contains(.Graded) && !muted {
-            guard let pointsPossible = pointsPossible, score = currentScore else { return self.displayText }
-            let percentage = pointsPossible != 0 ? Submission.percentFormatter.stringFromNumber(score.doubleValue/pointsPossible.doubleValue) : ""
+            guard let pointsPossible = pointsPossible, let score = currentScore else { return self.displayText }
+            let percentage = pointsPossible != 0 ? Submission.percentFormatter.string(from: NSNumber(value: score.doubleValue/pointsPossible.doubleValue)) : ""
             
             if status.contains(.Late) {
                 return String(format: NSLocalizedString("Late: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
@@ -155,9 +155,9 @@ private struct Submission {
 
 extension CalendarEvent {
 
-    private var submission: Submission? {
-        guard type != .CalendarEvent else { return nil }
-        return Submission(status: Submission.Status(rawValue: rawStatus), currentGrade: currentGrade, currentScore: currentScore, pointsPossible: pointsPossible, pastEndDate: pastEndDate, onPaper: submissionTypes.contains(.OnPaper), muted: muted)
+    fileprivate var submission: Submission? {
+        guard type != .calendarEvent else { return nil }
+        return Submission(status: Submission.Status(rawValue: rawStatus), currentGrade: currentGrade, currentScore: currentScore, pointsPossible: pointsPossible, pastEndDate: pastEndDate, onPaper: submissionTypes.contains(.onPaper), muted: muted)
     }
 
     var submittedText: String {
@@ -179,16 +179,16 @@ extension CalendarEvent {
 
 extension Assignment {
 
-    private var overdue: Bool {
+    fileprivate var overdue: Bool {
         if let dueDate = due {
-            return NSDate().compare(dueDate) == NSComparisonResult.OrderedDescending
+            return Date().compare(dueDate) == ComparisonResult.orderedDescending
         } else {
             return false
         }
     }
 
-    private var submission: Submission {
-        return Submission(status: Submission.Status(rawValue: rawStatus), currentGrade: currentGrade, currentScore: currentScore, pointsPossible: NSNumber(double: pointsPossible), pastEndDate: overdue, onPaper: submissionTypes.contains(.OnPaper), muted: muted)
+    fileprivate var submission: Submission {
+        return Submission(status: Submission.Status(rawValue: rawStatus), currentGrade: currentGrade, currentScore: currentScore, pointsPossible: NSNumber(value: pointsPossible), pastEndDate: overdue, onPaper: submissionTypes.contains(.onPaper), muted: muted)
     }
 
     var submittedText: String {

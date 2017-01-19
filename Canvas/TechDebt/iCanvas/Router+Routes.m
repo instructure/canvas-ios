@@ -30,7 +30,6 @@
 #import "CBISyllabusTabViewModel.h"
 #import "CBISyllabusViewModel.h"
 #import "CBICalendarEventViewModel.h"
-#import "CBINotificationTableViewModel.h"
 
 #import "ScheduleItem.h"
 #import "WebBrowserViewController.h"
@@ -87,7 +86,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     MLVCTableViewController *tableViewController = [[MLVCTableViewController alloc] initWithStyle:style];
     [tableViewController trackScreenViewWithScreenName:name];
     tableViewController.viewModel = viewModel;
-    tableViewController.cbi_canBecomeMaster = canBecomeMaster;
     return tableViewController;
 }
 
@@ -123,21 +121,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         ((CBIColorfulViewModel *)viewModel).tintColor = [self tintColorForContextID:params[@"contextID"] contextClass:type];
 
         return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Folder List Screen" canBeMaster:YES style:UITableViewStylePlain];
-    };
-}
-
-- (id(^)(NSDictionary *params, id viewModel)) courseGroupActivityStreamBlockForClass:(Class)type
-{
-    return ^ (NSDictionary *params, id viewModel) {
-        if(viewModel == nil){
-            CKIModel *context = [type modelWithID:[params[@"contextID"] description]];
-            CKITab *notificationsTab = [CKITab modelWithID:@"activity_stream" context:context];
-            viewModel = [CBINotificationTableViewModel viewModelForModel:notificationsTab];
-        }
-
-        ((CBIColorfulViewModel *)viewModel).tintColor = [self tintColorForContextID:params[@"contextID"] contextClass:type];
-        
-        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Home Tab Screen" canBeMaster:YES style:UITableViewStylePlain];
     };
 }
 
@@ -258,7 +241,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         [detailViewController trackScreenViewWithScreenName:@"People Detail Screen"];
 
         detailViewController.viewModel = viewModel;
-        detailViewController.cbi_canBecomeMaster = NO;
 
         return detailViewController;
     };
@@ -328,8 +310,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     [self addRoutesWithDictionary:@{
         @"/courses/:contextID/announcements" : [self courseGroupAnnouncementsBlockForClass:[CKICourse class]],
         @"/groups/:contextID/announcements" : [self courseGroupAnnouncementsBlockForClass:[CKIGroup class]],
-        @"/courses/:contextID/activity_stream" : [self courseGroupActivityStreamBlockForClass:[CKICourse class]],
-        @"/groups/:contextID/activity_stream" : [self courseGroupActivityStreamBlockForClass:[CKIGroup class]],
         @"/courses/:contextID/discussions" : [self courseGroupDiscussionsBlockForClass:[CKICourse class]],
         @"/groups/:contextID/discussions" : [self courseGroupDiscussionsBlockForClass:[CKIGroup class]],
         //This is identical to @"/courses/:courseID/discussions" but both routes are needed
@@ -354,7 +334,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             UIViewController *viewController = [CBIAssignmentDetailViewController new];
             [viewController trackScreenViewWithScreenName:@"Assignment Detail Screen"];
             ((CBIAssignmentDetailViewController *)viewController).viewModel = viewModel;
-            viewController.cbi_canBecomeMaster = NO;
         
             return viewController;
         },
@@ -372,7 +351,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             [assignmentDetailViewController trackScreenViewWithScreenName:@"Assignment Detail Screen"];
 
             assignmentDetailViewController.viewModel = viewModel;
-            assignmentDetailViewController.cbi_canBecomeMaster = NO;
         
             return assignmentDetailViewController;
         },
@@ -415,7 +393,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             [syllabusViewController trackScreenViewWithScreenName:@"Syllabus Detail Screen"];
 
             syllabusViewController.viewModel = viewModel;
-            syllabusViewController.cbi_canBecomeMaster = NO;
             
             return syllabusViewController;
         },
@@ -426,7 +403,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             }
         ScheduleItemController *calendarEventViewController = [ScheduleItemController new];
         [calendarEventViewController trackScreenViewWithScreenName:@"Calendar Event Screen"];
-        calendarEventViewController.cbi_canBecomeMaster = NO;
 
         [[TheKeymaster.currentClient refreshModel:viewModel.model parameters:nil] subscribeCompleted:^{
             CKICalendarEvent *calendarEvent = ((CBICalendarEventViewModel *)viewModel).model;

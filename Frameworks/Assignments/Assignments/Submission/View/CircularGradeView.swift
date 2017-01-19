@@ -20,11 +20,11 @@ import UIKit
 import SoPretty
 import AssignmentKit
 
-public class CircularGradeView: UIView {
-    public var viewRubricButtonPressedHandler: (() -> Void)!
+open class CircularGradeView: UIView {
+    open var viewRubricButtonPressedHandler: (() -> Void)!
     
-    static let numberFormatter: NSNumberFormatter = {
-        let formatter = NSNumberFormatter()
+    static let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 1
         formatter.minimumFractionDigits = 0
         return formatter
@@ -33,7 +33,7 @@ public class CircularGradeView: UIView {
     internal let gradeLayer = CAShapeLayer.layerForCircleView(color: Brand.current().secondaryTintColor)
     
     internal lazy var gradeLabelOffsetConstraint: NSLayoutConstraint = {
-        let constraint = NSLayoutConstraint(item: self.gradeLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: -10)
+        let constraint = NSLayoutConstraint(item: self.gradeLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: -10)
         self.addConstraint(constraint)
         
         return constraint
@@ -41,84 +41,84 @@ public class CircularGradeView: UIView {
     internal lazy var gradeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline).fontWithSize(36)
-        label.textColor = UIColor.darkTextColor()
-        label.textAlignment = .Center
+        label.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline).withSize(36)
+        label.textColor = UIColor.darkText
+        label.textAlignment = .center
         label.text = ""
         label.sizeToFit()
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.333
         
         self.addSubview(label)
-        self.addConstraint(NSLayoutConstraint(item: label, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
-        label.addConstraint(NSLayoutConstraint(item: label, attribute: .Width, relatedBy: .LessThanOrEqual, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 90))
+        self.addConstraint(NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0))
+        label.addConstraint(NSLayoutConstraint(item: label, attribute: .width, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 90))
 
         return label
     }()
     internal lazy var gradeDetailLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1).fontWithSize(20)
-        label.textColor = UIColor.darkGrayColor()
+        label.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1).withSize(20)
+        label.textColor = UIColor.darkGray
         label.sizeToFit()
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.333
         
         self.addSubview(label)
-        self.addConstraint(NSLayoutConstraint(item: label, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
-        self.addConstraint(NSLayoutConstraint(item: label, attribute: .Top, relatedBy: .Equal, toItem: self.gradeLabel, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-        label.addConstraint(NSLayoutConstraint(item: label, attribute: .Width, relatedBy: .LessThanOrEqual, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100))
+        self.addConstraint(NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0))
+        self.addConstraint(NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: self.gradeLabel, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+        label.addConstraint(NSLayoutConstraint(item: label, attribute: .width, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100))
         
         return label
     }()
     
-    private (set) public var grade = GradeViewModel.None
+    fileprivate (set) open var grade = GradeViewModel.none
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
         setupCircleLayers()
         
-        setGrade(.None, animated: false)
+        setGrade(.none, animated: false)
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    private func setupView() {
+    fileprivate func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func setupCircleLayers() {
+    fileprivate func setupCircleLayers() {
         layer.addSublayer(grayBackground)
         layer.addSublayer(gradeLayer)
     }
     
-    func viewRubricButtonPressed(sender: UIButton!) {
+    func viewRubricButtonPressed(_ sender: UIButton!) {
         guard viewRubricButtonPressedHandler != nil else { return }
         
         viewRubricButtonPressedHandler()
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         
         CATransaction.begin()
         CATransaction.setDisableActions(true)
-        let center = CGPoint(x:CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
+        let center = CGPoint(x:bounds.midX, y: bounds.midY)
         grayBackground.position = center
         gradeLayer.position = center
         CATransaction.commit()
     }
     
-    public func setGrade(grade: GradeViewModel, animated: Bool) {
+    open func setGrade(_ grade: GradeViewModel, animated: Bool) {
         self.grade = grade
         
         grade.updateGradeView(self, animated: animated)
     }
     
-    public func setupRubricButton(hasRubric: Bool, buttonPressHandler: () -> Void) {
+    open func setupRubricButton(_ hasRubric: Bool, buttonPressHandler: @escaping () -> Void) {
         viewRubricButtonPressedHandler = buttonPressHandler
         
         if hasRubric {
@@ -126,18 +126,18 @@ public class CircularGradeView: UIView {
         }
     }
     
-    public func showRubricButton() {
-        let viewRubricButton = UIButton(type: UIButtonType.System) as UIButton
+    open func showRubricButton() {
+        let viewRubricButton = UIButton(type: UIButtonType.system) as UIButton
         viewRubricButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let localizedTitle = NSLocalizedString("View Rubric", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for button to see rubric from assignment detail")
+        let localizedTitle = NSLocalizedString("View Rubric", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Title for button to see rubric from assignment detail")
         
-        viewRubricButton.setTitle(localizedTitle, forState: .Normal)
-        viewRubricButton.addTarget(self, action: #selector(CircularGradeView.viewRubricButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        viewRubricButton.setTitle(localizedTitle, for: UIControlState())
+        viewRubricButton.addTarget(self, action: #selector(CircularGradeView.viewRubricButtonPressed(_:)), for: .touchUpInside)
         
         addSubview(viewRubricButton)
-        addConstraint(NSLayoutConstraint(item: viewRubricButton, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-        addConstraint(NSLayoutConstraint(item: viewRubricButton, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: viewRubricButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: viewRubricButton, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0))
     }
 }
 

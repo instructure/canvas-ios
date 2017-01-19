@@ -17,18 +17,23 @@
     
 
 import Foundation
+import Pathetic
+
+let apiV1 = /?"api"/"v1"
+let courses = apiV1/?"courses"
+let course = courses/string
+let assignments = course/"assignments"
+let assignment = assignments/string
 
 
 let TeachRoutes = [
     
-    Route(.Master, path: "/courses/{courseID}") { route, session, parameters in
-        guard let courseID = parameters["courseID"] else { return nil }
-        return try AssignmentsTableViewController(session: session, courseID: courseID, route: route)
+    Route(presentation: .master, path: course) { courseID, session, navigator in
+        return try AssignmentsTableViewController(session: session, courseID: courseID, route: navigator.routeAction)
     },
     
-    Route(.Detail, path: "/courses/{courseID}/assignments/{assignmentID}") { route, session, parameters in
-        guard let courseID = parameters["courseID"],
-            assignmentID = parameters["assignmentID"] else { return nil }
-        return try AssignmentsPagedViewController(route, session: session, courseID: courseID, assignmentID: assignmentID)
+    Route(presentation: .detail, path: assignment) { parameters, route, session in
+        let (courseID, assignmentID) = parameters
+        return UIViewController() // TODO: new assignment detail vc
     }
 ]

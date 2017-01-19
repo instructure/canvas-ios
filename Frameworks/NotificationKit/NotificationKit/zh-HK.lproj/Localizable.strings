@@ -37,14 +37,16 @@
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "無法找到通訊頻道";
 
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "未能找到推播頻道";
+
 /* Title for the notification preferences page */
 "Notification Preferences" = "通知偏好設定";
 
-/* Action title for being unable to update a push notification preference
-   Alert action button text when unable to load communication channels
-   Alert action button text when unable to load notification preferences
-   Alert action button text when unable to parse JSON for communication channels
-   Alert action button text when unable to parse JSON for notification preferences */
+/* OK Button Title */
+"OK" = "是";
+
+/* (No Commment) */
 "Ok" = "是";
 
 /* Description for Push Notification channel */
@@ -70,6 +72,12 @@
 
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "目前無法載入任何通知偏好設定。錯誤類型：(result.error?.localizedDescription)";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "未能解析通信頻道的 JSON";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "未能解析通知偏好的 JSON";
 
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "無法在伺服器上更新這個數值";

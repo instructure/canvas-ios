@@ -26,12 +26,12 @@
 /**
 * Creates a copy of the client that can be used for fetching images.
 */
-- (CKIClient *)imageClient;
+- (nonnull CKIClient *)imageClient;
 
-@property (nonatomic, readonly) Session *authSession;
+@property (nonatomic, readonly, nonnull) Session *authSession;
 
 @end
 
-extern NSString * const CBICourseColorUpdatedNotification;
-extern NSString * const CBICourseColorUpdatedCourseIDKey;
-extern NSString * const CBICourseColorUpdatedValue;
+extern NSString * _Nonnull const CBICourseColorUpdatedNotification;
+extern NSString * _Nonnull const CBICourseColorUpdatedCourseIDKey;
+extern NSString * _Nonnull const CBICourseColorUpdatedValue;

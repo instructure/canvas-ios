@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ Māka  matea";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ pts";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. momo: %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "whakawāteatia Keteroki";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Maramataka";
 
 /* (No Commment) */
@@ -318,6 +325,9 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 
 /* (No Commment) */
 "Choose from Library..." = "Kōwhiri i Puna ...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Whirwhiri kōwhiringa";
 
 /* (No Commment) */
 "Choose video" = "Kōwhiri ataata";
@@ -376,7 +386,8 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* (No Commment) */
 "Course Syllabus" = "Marautanga Akoranga";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "Kōhi";
 
 /* (No Commment) */
@@ -453,6 +464,9 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 
 /* (No Commment) */
 "Downloading..." = "Tikiake ana ...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "e tika ana %@";
 
 /* (No Commment) */
 "Due:" = "Nā:";
@@ -637,6 +651,9 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* (No Commment) */
 "Item %1$d of %2$d" = "Te nama take %1$d o %2$d";
 
+/* table header for module items */
+"Items" = "Ngā Tūemi";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "te reira kau, he aha kei te mahi tonu koutou i konei.";
 
@@ -661,11 +678,17 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* (No Commment) */
 "Legal" = "Ture";
 
+/* Web URL link item label */
+"Link" = "Hono";
+
 /* (No Commment) */
 "Loading..." = "Utanga ...";
 
 /* (No Commment) */
 "Locked" = "Maukatia";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Ka rakaina kī \"%@\" i mākahia";
 
 /* locked date */
 "Locked until %@" = "Maukatia noa %@";
@@ -687,6 +710,9 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 
 /* (No Commment) */
 "Masquerade" = "poupou pakoko";
+
+/* Master Path module item type */
+"Mastery Path" = "Ara Hinganga";
 
 /* (No Commment) */
 "Me" = "Ahau";
@@ -715,7 +741,7 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Karere katoa wehe, tāpiri katoa ranei ki te aparauraa rōpū?";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Karere";
 
 /* (No Commment) */
@@ -760,6 +786,9 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* (No Commment) */
 "New Folder" = "Kōpaki Hou";
 
+/* Button title for next module item. */
+"Next" = "Muri";
+
 /* (No Commment) */
 "Next 7 Days" = "Panuku 7 ra";
 
@@ -774,6 +803,9 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "Kāore he Rā whakaoti";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "Kaore ngā ara hinganga";
 
 /* (No Commment) */
 "No Recorded Audio" = "Kahore Papa'ihia i Ororongo";
@@ -832,7 +864,8 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Manakohanga Whakamōhiotanga";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Whakamōhiotanga";
 
 /* OK Button Title */
@@ -858,6 +891,9 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 
 /* (No Commment) */
 "Open in..." = "Tuwhera i roto i ...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Kōwhiringa %d";
 
 /* (No Commment) */
 "Other" = "Ētahi atu";
@@ -900,6 +936,12 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 
 /* (No Commment) */
 "Posts your comment" = "Pou koutou kōrero";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Kōwae tītauhia";
+
+/* Button title for previous module item. */
+"Previous" = "ō mua";
 
 /* (No Commment) */
 "Previous item" = "tūemi o mua";
@@ -985,6 +1027,12 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Rapu i konei ...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Tīpako kōwhiringa";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Tīpako kōwhiringa %d";
+
 /* (No Commment) */
 "Select file(s)" = "Tīpako kōnae(s)";
 
@@ -1035,6 +1083,20 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 
 /* (No Commment) */
 "Starts recording a media comment" = "Tīmata tuhi he kōrero pāpāho";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Tūnga: Kua oti";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Tūnga: Kaore i te oti";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Tūnga: Kua rakaina";
+
+/* Module status label when started */
+"Status: Started" = "Tūnga: Kua tīmatatia";
 
 /* (No Commment) */
 "Stay Logged In" = "Noho takiuru";
@@ -1202,16 +1264,22 @@ Hapa:% @";
 /* (No Commment) */
 "This is a media message." = "Ko te karere pāpāho tenei.";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Kaore i whakatautia he ara hinganga mo tēnei kōwae tūemi .";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "e riro i te wa nui ki te mahi i te tahi mau nama anō tēnei.";
 
 /* Title of the Todo screen */
 "To Do" = "ki te E";
 
+/* To-Do List landing page title */
+"To-Do List" = "Ki-Do Rārangi";
+
 /* (No Commment) */
 "To:" = "Ki:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "Teie mahana";
 
 /* No comment provided by engineer. */
@@ -1231,6 +1299,9 @@ Hapa:% @";
 
 /* (No Commment) */
 "Turn in %@" = "Tahuri i roto i te %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "momo: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Uh-oh! Kahore Hononga Ipurangi";

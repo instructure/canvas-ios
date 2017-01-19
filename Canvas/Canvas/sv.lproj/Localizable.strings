@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ behöver bedömning";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ poäng";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Typ: %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache tömd";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Kalender";
 
 /* (No Commment) */
@@ -318,6 +325,9 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 
 /* (No Commment) */
 "Choose from Library..." = "Välj från bibliotek...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Välj alternativ";
 
 /* (No Commment) */
 "Choose video" = "Välj video";
@@ -376,7 +386,8 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* (No Commment) */
 "Course Syllabus" = "Antura tidsplan";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "Kurser";
 
 /* (No Commment) */
@@ -453,6 +464,9 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 
 /* (No Commment) */
 "Downloading..." = "Laddar ner...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Färdig %@";
 
 /* (No Commment) */
 "Due:" = "Förfallodatum:";
@@ -637,6 +651,9 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* (No Commment) */
 "Item %1$d of %2$d" = "Objekt %1$d av %2$d";
 
+/* table header for module items */
+"Items" = "Objekt";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Det är tomt, vad gör du här.";
 
@@ -661,11 +678,17 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* (No Commment) */
 "Legal" = "Juridik";
 
+/* Web URL link item label */
+"Link" = "Länk";
+
 /* (No Commment) */
 "Loading..." = "Laddar...";
 
 /* (No Commment) */
 "Locked" = "Låst";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Låst tills \"%@\" är graderad";
 
 /* locked date */
 "Locked until %@" = "Låst till %@";
@@ -687,6 +710,9 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 
 /* (No Commment) */
 "Masquerade" = "Maskera";
+
+/* Master Path module item type */
+"Mastery Path" = "Målväg";
 
 /* (No Commment) */
 "Me" = "Jag";
@@ -715,7 +741,7 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Skicka meddelanden separat, eller lägg till alla i en gruppkonversation?";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Meddelanden";
 
 /* (No Commment) */
@@ -760,6 +786,9 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* (No Commment) */
 "New Folder" = "Ny mapp";
 
+/* Button title for next module item. */
+"Next" = "Nästa";
+
 /* (No Commment) */
 "Next 7 Days" = "Kommande 7 dagarna";
 
@@ -774,6 +803,9 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "Inget förfallodatum";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "Ingen målväg";
 
 /* (No Commment) */
 "No Recorded Audio" = "Inget inspelat ljud";
@@ -832,7 +864,8 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Aviseringsinställningar";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Aviseringar";
 
 /* OK Button Title */
@@ -858,6 +891,9 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 
 /* (No Commment) */
 "Open in..." = "Öppna i...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Alternativ %d";
 
 /* (No Commment) */
 "Other" = "Annan";
@@ -900,6 +936,12 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 
 /* (No Commment) */
 "Posts your comment" = "Posta din kommentar";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Förutsättningsmoduler";
+
+/* Button title for previous module item. */
+"Previous" = "Föregående";
 
 /* (No Commment) */
 "Previous item" = "Föregående objekt";
@@ -985,6 +1027,12 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Sök här...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Välj alternativ";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Välj alternativ %d";
+
 /* (No Commment) */
 "Select file(s)" = "Välj fil(er)";
 
@@ -1035,6 +1083,20 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 
 /* (No Commment) */
 "Starts recording a media comment" = "Spelar in en mediakommentar";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Status: Färdig";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Status: Ofärdig";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Status: Låst";
+
+/* Module status label when started */
+"Status: Started" = "Status: Startad";
 
 /* (No Commment) */
 "Stay Logged In" = "Fortsätt vara inloggad";
@@ -1202,16 +1264,22 @@ Fel: %@";
 /* (No Commment) */
 "This is a media message." = "Det här är ett mediameddelande";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Det här föremålet har inte ställt in inställningarna för målväg.";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Det här vore ett bra tillfälle att skapa lite extra kredit.";
 
 /* Title of the Todo screen */
 "To Do" = "Att göra";
 
+/* To-Do List landing page title */
+"To-Do List" = "Att göra lista";
+
 /* (No Commment) */
 "To:" = "Till:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "Idag";
 
 /* No comment provided by engineer. */
@@ -1231,6 +1299,9 @@ Fel: %@";
 
 /* (No Commment) */
 "Turn in %@" = "Lämna in %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Typ: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Oj då! Ingen internetuppkoppling";

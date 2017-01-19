@@ -41,11 +41,11 @@ enum UserPreferences {
         }
     }
     
-    private static let LandingPageKey = "landingPageSettings"
+    fileprivate static let LandingPageKey = "landingPageSettings"
     
-    static func landingPage(userID: String) -> UserPreferences.LandingPage {
-        guard let landingPagePreferencesByUser: [String: String] = NSUserDefaults.standardUserDefaults()
-            .objectForKey(UserPreferences.LandingPageKey) as? [String: String] else {
+    static func landingPage(_ userID: String) -> UserPreferences.LandingPage {
+        guard let landingPagePreferencesByUser: [String: String] = UserDefaults.standard
+            .object(forKey: UserPreferences.LandingPageKey) as? [String: String] else {
                 return .Courses
         }
         

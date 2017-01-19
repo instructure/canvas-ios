@@ -22,44 +22,44 @@ import SoLazy
 
 
 final class Refresh: NSManagedObject {
-    @NSManaged private var key: String
-    @NSManaged private var date: NSDate
+    @NSManaged fileprivate var key: String
+    @NSManaged fileprivate var date: Date
 }
 
 
-public class RefreshScope: NSObject {
-    private let context: NSManagedObjectContext
-    private var refreshers: [String: Refresher] = [:]
+open class RefreshScope: NSObject {
+    fileprivate let context: NSManagedObjectContext
+    fileprivate var refreshers: [String: Refresher] = [:]
     
     init(context: NSManagedObjectContext) {
         self.context = context
     }
     
     internal override init() {
-        guard let model = NSManagedObjectModel(named: "SoRefreshing", inBundle: NSBundle(forClass: RefreshScope.self)) else {
+        guard let model = NSManagedObjectModel(named: "SoRefreshing", inBundle: Bundle(for: RefreshScope.self)) else {
             ❨╯°□°❩╯⌢"Can't load the global refresh cache model"
         }
         
-        guard let libURL = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true).first.map(NSURL.init(fileURLWithPath:)) else { ❨╯°□°❩╯⌢"GASP! There were no user library search paths" }
-        let storeURL = libURL.URLByAppendingPathComponent("GlobalSoRefreshing.sqlite")
+        guard let libURL = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first.map(URL.init(fileURLWithPath:)) else { ❨╯°□°❩╯⌢"GASP! There were no user library search paths" }
+        let storeURL = libURL.appendingPathComponent("GlobalSoRefreshing.sqlite")
         
         do {
-            context = try NSManagedObjectContext(storeURL: storeURL!, model: model, concurrencyType: .MainQueueConcurrencyType, cacheReset: {})
+            context = try NSManagedObjectContext(storeURL: storeURL, model: model, concurrencyType: .mainQueueConcurrencyType, cacheReset: {})
         } catch let e as NSError {
             ❨╯°□°❩╯⌢"Couldn't create global refresh scope.\n\(e.reportDescription)"
         }
     }
     
-    public static var global = RefreshScope()
+    open static var global = RefreshScope()
 
-    private enum Associated {
+    fileprivate enum Associated {
         static var lastRefresh = "SoRefreshingLastRefresh"
     }
     
-    private func synchronized<T>(doSomeWork: (NSManagedObjectContext) throws -> T) -> T {
+    fileprivate func synchronized<T>(_ doSomeWork: @escaping (NSManagedObjectContext) throws -> T) -> T {
         var result: T? = nil
         
-        context.performBlockAndWait {
+        context.performAndWait {
             do {
                 result = try doSomeWork(self.context)
             } catch let e as NSError {
@@ -70,7 +70,7 @@ public class RefreshScope: NSObject {
         return t
     }
     
-    private var refreshesByKey: NSMutableDictionary {
+    fileprivate var refreshesByKey: NSMutableDictionary {
         if let lasts: NSMutableDictionary = getAssociatedObject(&Associated.lastRefresh) {
             return lasts
         }
@@ -85,19 +85,19 @@ public class RefreshScope: NSObject {
         }
     }
     
-    internal func shouldRefreshCache(key: String, ttl: NSTimeInterval) -> Bool {
+    internal func shouldRefreshCache(_ key: String, ttl: TimeInterval) -> Bool {
         return synchronized { _ in
-            return (self.lastCacheRefresh(key) + ttl) < NSDate()
+            return (self.lastCacheRefresh(key) + ttl) < Date()
         }
     }
     
-    internal func lastCacheRefresh(key: String) -> NSDate {
+    internal func lastCacheRefresh(_ key: String) -> Date {
         return synchronized { _ in
-            return (self.refreshesByKey[key] as? Refresh)?.date ?? NSDate(timeIntervalSince1970: 0)
+            return (self.refreshesByKey[key] as? Refresh)?.date ?? Date(timeIntervalSince1970: 0)
         }
     }
     
-    internal func setCacheRefreshed(key: String, date: NSDate = NSDate()) {
+    internal func setCacheRefreshed(_ key: String, date: Date = Date()) {
         synchronized { context in
             let refresh = (self.refreshesByKey[key] as? Refresh)
                 ?? Refresh(inContext: context)
@@ -108,30 +108,30 @@ public class RefreshScope: NSObject {
         }
     }
     
-    public func invalidateCache(key: String, refresh: Bool = true) {
-        setCacheRefreshed(key, date: NSDate(timeIntervalSince1970: 0) - 100.yearsComponents) // old and crusty
+    open func invalidateCache(_ key: String, refresh: Bool = true) {
+        setCacheRefreshed(key, date: Date(timeIntervalSince1970: 0) - 100.yearsComponents) // old and crusty
         refreshers[key]?.refresh(refresh)
     }
     
     
-    public func register(refresher: Refresher) {
+    open func register(_ refresher: Refresher) {
         refreshers[refresher.cacheKey] = refresher
     }
     
-    public func unregister(refresher: Refresher) {
+    open func unregister(_ refresher: Refresher) {
         refreshers[refresher.cacheKey] = nil
     }
     
     internal func invalidateAllCaches() {
-        let allRefreshes = NSFetchRequest(entityName: "Refresh")
+        let allRefreshes = NSFetchRequest<NSFetchRequestResult>(entityName: "Refresh")
         if #available(iOSApplicationExtension 9.0, *) {
             let batchDelete = NSBatchDeleteRequest(fetchRequest: allRefreshes)
-            try? context.persistentStoreCoordinator?.executeRequest(batchDelete, withContext: context)
+            _ = try? context.persistentStoreCoordinator?.execute(batchDelete, with: context)
         } else {
             // Fallback on earlier versions
             for (_, refresh) in refreshesByKey {
                 guard let refresh = refresh as? NSManagedObject else { continue }
-                context.deleteObject(refresh)
+                context.delete(refresh)
                 try? context.saveFRD()
             }
         }

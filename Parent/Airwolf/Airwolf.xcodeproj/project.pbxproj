@@ -14,8 +14,6 @@
 		615AE6FA1D5B7D3300EBAE12 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 615AE6F81D5B7D3300EBAE12 /* SimplePing.m */; };
 		615AE6FC1D5B7D4800EBAE12 /* RegionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615AE6FB1D5B7D4800EBAE12 /* RegionPicker.swift */; };
 		617A675D1CE3757F0065E487 /* Airwolf.h in Headers */ = {isa = PBXBuildFile; fileRef = 617A675C1CE3757F0065E487 /* Airwolf.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		617A67641CE3757F0065E487 /* Airwolf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617A67591CE3757F0065E487 /* Airwolf.framework */; };
-		617A67691CE3757F0065E487 /* AirwolfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A67681CE3757F0065E487 /* AirwolfTests.swift */; };
 		617A67761CE375F40065E487 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617A67741CE375EA0065E487 /* TooLegit.framework */; };
 		617A67781CE3760A0065E487 /* Airwolf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A67771CE3760A0065E487 /* Airwolf.swift */; };
 		617A677D1CE382430065E487 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617A677C1CE382330065E487 /* ReactiveCocoa.framework */; };
@@ -37,29 +35,17 @@
 		61EB8D561CF36D5800E794A4 /* DiscussionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EB8D551CF36D5800E794A4 /* DiscussionKit.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		617A67651CE3757F0065E487 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 617A67501CE3757F0065E487 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 617A67581CE3757F0065E487;
-			remoteInfo = Airwolf;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		49F0888C1DF0CEB7008BB8DA /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6133D9151CEDFF76004B241B /* Assignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignments.swift; sourceTree = "<group>"; };
 		6133D9171CEDFF9E004B241B /* AssignmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AssignmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		614BAAB81CEA156600BAF7D6 /* AirwolfAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirwolfAPI.swift; sourceTree = "<group>"; };
 		615AE6F71D5B7D3300EBAE12 /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
 		615AE6F81D5B7D3300EBAE12 /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
-		615AE6FB1D5B7D4800EBAE12 /* RegionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionPicker.swift; sourceTree = "<group>"; };
+		615AE6FB1D5B7D4800EBAE12 /* RegionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RegionPicker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		617A67591CE3757F0065E487 /* Airwolf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Airwolf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		617A675C1CE3757F0065E487 /* Airwolf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Airwolf.h; sourceTree = "<group>"; };
 		617A675E1CE3757F0065E487 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		617A67631CE3757F0065E487 /* AirwolfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirwolfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		617A67681CE3757F0065E487 /* AirwolfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirwolfTests.swift; sourceTree = "<group>"; };
-		617A676A1CE3757F0065E487 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		617A67741CE375EA0065E487 /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		617A67771CE3760A0065E487 /* Airwolf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Airwolf.swift; sourceTree = "<group>"; };
 		617A677C1CE382330065E487 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,14 +84,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		617A67601CE3757F0065E487 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				617A67641CE3757F0065E487 /* Airwolf.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -123,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				617A675B1CE3757F0065E487 /* Airwolf */,
-				617A67671CE3757F0065E487 /* AirwolfTests */,
 				617A67731CE375AD0065E487 /* Dependencies */,
 				617A675A1CE3757F0065E487 /* Products */,
 			);
@@ -133,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				617A67591CE3757F0065E487 /* Airwolf.framework */,
-				617A67631CE3757F0065E487 /* AirwolfTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,18 +129,10 @@
 			path = Airwolf;
 			sourceTree = "<group>";
 		};
-		617A67671CE3757F0065E487 /* AirwolfTests */ = {
-			isa = PBXGroup;
-			children = (
-				617A67681CE3757F0065E487 /* AirwolfTests.swift */,
-				617A676A1CE3757F0065E487 /* Info.plist */,
-			);
-			path = AirwolfTests;
-			sourceTree = "<group>";
-		};
 		617A67731CE375AD0065E487 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				49F0888C1DF0CEB7008BB8DA /* ReactiveSwift.framework */,
 				61EB8D551CF36D5800E794A4 /* DiscussionKit.framework */,
 				61E1A7F41CEFA1DB00728D95 /* CalendarKit.framework */,
 				6133D9171CEDFF9E004B241B /* AssignmentKit.framework */,
@@ -243,24 +211,6 @@
 			productReference = 617A67591CE3757F0065E487 /* Airwolf.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		617A67621CE3757F0065E487 /* AirwolfTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 617A67701CE3757F0065E487 /* Build configuration list for PBXNativeTarget "AirwolfTests" */;
-			buildPhases = (
-				617A675F1CE3757F0065E487 /* Sources */,
-				617A67601CE3757F0065E487 /* Frameworks */,
-				617A67611CE3757F0065E487 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				617A67661CE3757F0065E487 /* PBXTargetDependency */,
-			);
-			name = AirwolfTests;
-			productName = AirwolfTests;
-			productReference = 617A67631CE3757F0065E487 /* AirwolfTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -273,11 +223,7 @@
 				TargetAttributes = {
 					617A67581CE3757F0065E487 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
-					};
-					617A67621CE3757F0065E487 = {
-						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -294,20 +240,12 @@
 			projectRoot = "";
 			targets = (
 				617A67581CE3757F0065E487 /* Airwolf */,
-				617A67621CE3757F0065E487 /* AirwolfTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		617A67571CE3757F0065E487 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		617A67611CE3757F0065E487 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -339,23 +277,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		617A675F1CE3757F0065E487 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				617A67691CE3757F0065E487 /* AirwolfTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		617A67661CE3757F0065E487 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 617A67581CE3757F0065E487 /* Airwolf */;
-			targetProxy = 617A67651CE3757F0065E487 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		617A676B1CE3757F0065E487 /* Debug */ = {
@@ -398,7 +320,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -443,7 +365,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -465,13 +387,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Airwolf/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Airwolf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -486,34 +408,12 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Airwolf/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Airwolf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
-			};
-			name = Release;
-		};
-		617A67711CE3757F0065E487 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = AirwolfTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.AirwolfTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
-			};
-			name = Debug;
-		};
-		617A67721CE3757F0065E487 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = AirwolfTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.AirwolfTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -534,15 +434,6 @@
 			buildConfigurations = (
 				617A676E1CE3757F0065E487 /* Debug */,
 				617A676F1CE3757F0065E487 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		617A67701CE3757F0065E487 /* Build configuration list for PBXNativeTarget "AirwolfTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				617A67711CE3757F0065E487 /* Debug */,
-				617A67721CE3757F0065E487 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

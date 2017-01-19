@@ -17,7 +17,7 @@
     
 
 #import <UIKit/UIKit.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
+@import ReactiveObjC;
 
 @protocol MLVCViewModel <NSObject>
 @property (nonatomic) NSString *viewControllerTitle;

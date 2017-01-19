@@ -7,7 +7,7 @@
 /* tile for error reading cache */
 "Read Error" = "Fout lezen";
 
-/* SoPersistent Tests database fails */
+/* (No Commment) */
 "There was a problem loading the SoPersistentTests database file." = "Er was een probleem bij het laden van het SoPersistent gegevensbestand.";
 
 /* Persistence error message */

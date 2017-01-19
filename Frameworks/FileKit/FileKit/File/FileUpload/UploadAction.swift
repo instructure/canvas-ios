@@ -20,11 +20,11 @@ import Foundation
 //import MediaKit
 import SoLazy
 
-private let FileKitBundle = NSBundle(forClass: UploadBuilder.classForCoder())
+private let FileKitBundle = Bundle(for: UploadBuilder.classForCoder())
 
 extension UIImage {
-    static func FileKitImageNamed(name: String) -> UIImage {
-        guard let image = UIImage(named: name, inBundle: FileKitBundle, compatibleWithTraitCollection: nil) else { ❨╯°□°❩╯⌢"Cannot load image named \(name) from FileKit.framework" }
+    static func FileKitImageNamed(_ name: String) -> UIImage {
+        guard let image = UIImage(named: name, in: FileKitBundle, compatibleWith: nil) else { ❨╯°□°❩╯⌢"Cannot load image named \(name) from FileKit.framework" }
         
         return image
     }
@@ -32,7 +32,7 @@ extension UIImage {
 
 protocol UploadActionDelegate: class {
     func actionCancelled()
-    func chooseUpload(newUpload: NewUpload)
+    func chooseUpload(_ newUpload: NewUpload)
 }
 
 protocol UploadAction {

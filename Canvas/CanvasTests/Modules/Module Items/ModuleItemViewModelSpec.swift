@@ -32,7 +32,7 @@ class ModuleItemViewModelSpec: QuickSpec {
             var item: ModuleItem!
             var module: Module!
             beforeEach {
-                login()
+                _ = login()
                 module = Module.build(inSession: currentSession) {
                     $0.state = nil
                 }
@@ -45,10 +45,10 @@ class ModuleItemViewModelSpec: QuickSpec {
 
             describe("table view cell") {
                 let tableView = UITableView()
-                var cell: UITableViewCell!
+                var cell: ColorfulTableViewCell!
                 beforeEach {
                     ModuleItemViewModel.tableViewDidLoad(tableView)
-                    cell = vm.cellForTableView(tableView, indexPath: NSIndexPath(forRow: 0, inSection: 0))
+                    cell = vm.cellForTableView(tableView, indexPath: IndexPath(row: 0, section: 0)) as! ColorfulTableViewCell
                 }
 
                 context("when the module item is locked") {
@@ -57,17 +57,17 @@ class ModuleItemViewModelSpec: QuickSpec {
                     }
 
                     it("should disable selection") {
-                        expect(cell.userInteractionEnabled).toEventually(beFalse())
+                        expect(cell.isUserInteractionEnabled).toEventually(beFalse())
                     }
 
                     it("should lighten the title text color") {
-                        expect(cell.textLabel!.textColor).toEventually(equal(UIColor.lightGrayColor()))
+                        expect(cell.titleLabel.textColor).toEventually(equal(UIColor.lightGray))
                     }
 
                     it("should VO locked status") {
                         item.title = "Assignment 1"
                         item.completionRequirement = nil
-                        item.content = .Assignment(id: "1")
+                        item.content = .assignment(id: "1")
                         expect(cell.accessibilityLabel).toEventually(equal("Assignment 1. Type: Assignment. Status: Locked"))
                     }
                 }
@@ -78,17 +78,17 @@ class ModuleItemViewModelSpec: QuickSpec {
                     }
 
                     it("should disable selection") {
-                        expect(cell.userInteractionEnabled).toEventually(beFalse())
+                        expect(cell.isUserInteractionEnabled).toEventually(beFalse())
                     }
 
                     it("should lighten the title text color") {
-                        expect(cell.textLabel!.textColor).toEventually(equal(UIColor.lightGrayColor()))
+                        expect(cell.titleLabel.textColor).toEventually(equal(UIColor.lightGray))
                     }
 
                     it("should VO locked status") {
                         item.title = "Assignment 1"
                         item.completionRequirement = nil
-                        item.content = .Assignment(id: "1")
+                        item.content = .assignment(id: "1")
                         expect(cell.accessibilityLabel).toEventually(equal("Assignment 1. Type: Assignment. Status: Locked"))
                     }
                 }
@@ -96,34 +96,34 @@ class ModuleItemViewModelSpec: QuickSpec {
                 it("should have an accessoryView if the item has a completionRequirement other than MustChoose") {
                     item.completionRequirement = nil
                     expect(cell.accessoryView).toEventually(beNil())
-                    item.completionRequirement = .MustView
+                    item.completionRequirement = .mustView
                     expect(cell.accessoryView).toEventuallyNot(beNil())
-                    item.completionRequirement = .MustChoose
+                    item.completionRequirement = .mustChoose
                     expect(cell.accessoryView).toEventually(beNil())
                 }
 
                 it("should have an accessibility label") {
-                    Module.build { $0.id = item.moduleID }
+                    _ = Module.build { $0.id = item.moduleID }
                     item.title = "Assignment 1"
-                    item.completionRequirement = .MustView
-                    item.content = .Assignment(id: "1")
+                    item.completionRequirement = .mustView
+                    item.content = .assignment(id: "1")
                     item.completed = false
                     expect(cell.accessibilityLabel).toEventually(equal("Assignment 1. Must view. Type: Assignment. Status: Incomplete"))
 
                     item.completed = true
                     expect(cell.accessibilityLabel).toEventually(equal("Assignment 1. Must view. Type: Assignment. Status: Completed"))
 
-                    item.content = .MasteryPaths
-                    item.completionRequirement = .MustChoose
+                    item.content = .masteryPaths
+                    item.completionRequirement = .mustChoose
                     expect(cell.accessibilityLabel).toEventually(equal("Assignment 1. Type: Mastery Path"))
 
-                    item.completionRequirement = .MarkDone
-                    item.content = .Quiz(id: "1")
+                    item.completionRequirement = .markDone
+                    item.content = .quiz(id: "1")
                     expect(cell.accessibilityLabel).toEventually(equal("Assignment 1. Must mark as done. Type: Quiz. Status: Completed"))
 
                     item.completionRequirement = nil
                     item.completed = false
-                    item.content = .ExternalURL(url: NSURL(string: "")!)
+                    item.content = .externalURL(url: URL(string: "http://google.com")!)
                     item.title = "Go here"
                     expect(cell.accessibilityLabel).toEventually(equal("Go here. Type: Link"))
 
@@ -139,7 +139,7 @@ class ModuleItemViewModelSpec: QuickSpec {
                 item.title = "Venus"
                 expect(vm.title.value).toEventually(equal("Venus"))
 
-                Module.build {
+                _ = Module.build {
                     $0.id = item.moduleID
                 }
 
@@ -151,7 +151,7 @@ class ModuleItemViewModelSpec: QuickSpec {
                     $0.title = "Other"
                 }
 
-                expect(vm.nextAction.enabled.value).toEventually(beTrue())
+                expect(vm.nextAction.isEnabled.value).toEventually(beTrue())
                 vm.nextAction.apply(()).start()
                 expect(vm.title.value).toEventually(equal("Other"))
                 next.title = "Other Changed"
@@ -161,55 +161,55 @@ class ModuleItemViewModelSpec: QuickSpec {
             it("should provide the view controller to embed") {
                 class EmbeddedViewController: UIViewController {}
                 let route = currentSession.baseURL / "unit-test/module-item-detail-vm-embed-vc"
-                Router.sharedRouter().addRoute(route.path!) { _ in EmbeddedViewController() }
+                Router.shared().addRoute(route.path) { _ in EmbeddedViewController() }
 
                 item.url = route.absoluteString
 
                 var embedded: UIViewController?
-                vm.embeddedViewController.ignoreNil().take(1).startWithNext { embedded = $0 }
+                vm.embeddedViewController.skipNil().take(first: 1).startWithValues { embedded = $0 }
                 expect(embedded).toEventuallyNot(beNil())
                 expect(embedded).toEventually(beAnInstanceOf(EmbeddedViewController.self))
 
-                Router.sharedRouter().removeRoute(route.path!)
+                Router.shared().removeRoute(route.path)
             }
 
             it("should embed external urls in a web view controller") {
-                item.content = .ExternalURL(url: NSURL(string: "https://google.com")!)
+                item.content = .externalURL(url: URL(string: "https://google.com")!)
                 var embedded: UIViewController?
-                vm.embeddedViewController.take(1).startWithNext { embedded = $0 }
+                vm.embeddedViewController.take(first: 1).startWithValues { embedded = $0 }
                 expect(embedded).toNot(beNil())
                 expect(embedded).to(beAnInstanceOf(WebBrowserViewController.self))
             }
 
             it("should mark external urls as viewed with embedded web browser") {
-                login(.user1)
+                _ = login(.user1)
                 ModuleItem.beginObservingProgress(currentSession)
-                let url = NSURL(string: "https://google.com")!
+                let url = URL(string: "https://google.com")!
                 let item = ModuleItem.build {
                     $0.id = "25915393"
                     $0.moduleID = "3001848"
                     $0.courseID = "1867097"
-                    $0.content = .ExternalURL(url: url)
-                    $0.completionRequirement = .MustView
+                    $0.content = .externalURL(url: url)
+                    $0.completionRequirement = .mustView
                     $0.completed = false
                 }
                 let vm = try! ModuleItemViewModel(session: currentSession, moduleItem: item)
-                expect(vm.markAsViewedAction.enabled.value) == true
-                let browserStub = WebBrowserViewController(URL: url)
-                currentSession.playback("ModuleItemMarkRead", in: .soAutomated) {
+                expect(vm.markAsViewedAction.isEnabled.value) == true
+                let browserStub = WebBrowserViewController(url: url)
+                currentSession.playback("ModuleItemMarkRead") {
                     waitUntil(timeout: 5) { done in
                         currentSession.progressDispatcher
                             .onProgress
                             .assumeNoErrors()
                             .filter {
-                                $0.itemType == .ModuleItem
+                                $0.itemType == .moduleItem
                             }
-                            .observeNext {
+                            .observeValues {
                                 if $0.itemID == item.id {
                                     done()
                                 }
                             }
-                        vm.webBrowser(browserStub, didFinishLoadingWebView: UIWebView())
+                        vm.webBrowser(browserStub, didFinishLoading: UIWebView())
                     }
                 }
                 expect(item.reload().completed) == true
@@ -217,13 +217,13 @@ class ModuleItemViewModelSpec: QuickSpec {
 
             it("should invalidate pages cache when a page becomes unlocked") {
                 item.lockedForUser = true
-                item.content = .Page(url: "page-1")
+                item.content = .page(url: "page-1")
 
-                let contextID = ContextID(id: "1", context: .Course)
+                let contextID = ContextID(id: "1", context: .course)
                 var pagesCacheInvalidated: Bool {
                     let pagesMoc = try! currentSession.pagesManagedObjectContext()
-                    return currentSession.cacheInvalidated(Page.collectionCacheKey(pagesMoc, contextID: contextID)) &&
-                        currentSession.cacheInvalidated(Page.detailCacheKey(pagesMoc, contextID: contextID, url: "page-1"))
+                    return currentSession.cacheInvalidated(Page.collectionCacheKey(context: pagesMoc, contextID: contextID)) &&
+                        currentSession.cacheInvalidated(Page.detailCacheKey(context: pagesMoc, contextID: contextID, url: "page-1"))
                 }
 
                 expect(pagesCacheInvalidated) == false
@@ -236,11 +236,11 @@ class ModuleItemViewModelSpec: QuickSpec {
                     $0.id = "mastery-paths-item"
                     $0.moduleID = item.moduleID
                     $0.moduleItemID = item.id
-                    $0.content = .MasteryPaths
+                    $0.content = .masteryPaths
                 }
                 let masteryPathVM = try! ModuleItemViewModel(session: currentSession, moduleID: masteryPathsItem.moduleID, moduleItemID: masteryPathsItem.id)
                 var embedded: UIViewController?
-                masteryPathVM.embeddedViewController.take(1).startWithNext { embedded = $0 }
+                masteryPathVM.embeddedViewController.take(first: 1).startWithValues { embedded = $0 }
                 expect(embedded).toNot(beNil())
                 expect(embedded).to(beAnInstanceOf(MasteryPathSelectOptionViewController.self))
             }
@@ -250,28 +250,28 @@ class ModuleItemViewModelSpec: QuickSpec {
                     module.prerequisiteModuleIDs = []
                     module.requireSequentialProgress = false
 
-                    expect(vm.nextAction.enabled.value) == false
-                    expect(vm.previousAction.enabled.value) == false
+                    expect(vm.nextAction.isEnabled.value) == false
+                    expect(vm.previousAction.isEnabled.value) == false
                 }
 
                 it("should be enabled if there are next/previous items") {
                     item.position = 2
-                    ModuleItem.build {
+                    _ = ModuleItem.build {
                         $0.id = "2"
                         $0.moduleID = item.moduleID
                         $0.position = 3
                         $0.lockedForUser = false
                     }
 
-                    expect(vm.nextAction.enabled.value).toEventually(equal(true))
-                    expect(vm.previousAction.enabled.value) == false
+                    expect(vm.nextAction.isEnabled.value).toEventually(equal(true))
+                    expect(vm.previousAction.isEnabled.value) == false
 
-                    ModuleItem.build {
+                    _ = ModuleItem.build {
                         $0.id = "3"
                         $0.moduleID = item.moduleID
                         $0.position = 1
                     }
-                    expect(vm.previousAction.enabled.value).toEventually(equal(true))
+                    expect(vm.previousAction.isEnabled.value).toEventually(equal(true))
                 }
 
                 it("should disable next Action if the next item is locked for user") {
@@ -282,51 +282,51 @@ class ModuleItemViewModelSpec: QuickSpec {
                         $0.moduleID = item.moduleID
                         $0.position = 2
                     }
-                    expect(vm.nextAction.enabled.value).toEventually(equal(true))
+                    expect(vm.nextAction.isEnabled.value).toEventually(equal(true))
 
                     nextItem.lockedForUser = true
 
-                    expect(vm.nextAction.enabled.value).toEventually(equal(false))
+                    expect(vm.nextAction.isEnabled.value).toEventually(equal(false))
                 }
             }
 
             describe("markAsDoneAction") {
                 it("should require a MarkDone completionRequirement") {
                     item.completed = false
-                    item.completionRequirement = .MarkDone
-                    expect(vm.markAsDoneAction.enabled.value).toEventually(beTrue())
+                    item.completionRequirement = .markDone
+                    expect(vm.markAsDoneAction.isEnabled.value).toEventually(beTrue())
                     
                     item.completionRequirement = nil
-                    expect(vm.markAsDoneAction.enabled.value).toEventually(beFalse())
+                    expect(vm.markAsDoneAction.isEnabled.value).toEventually(beFalse())
                 }
 
                 it("should require that the item not be completed") {
                     item.completed = false
-                    item.completionRequirement = .MarkDone
-                    expect(vm.markAsDoneAction.enabled.value).toEventually(beTrue())
+                    item.completionRequirement = .markDone
+                    expect(vm.markAsDoneAction.isEnabled.value).toEventually(beTrue())
 
                     item.completed = true
-                    expect(vm.markAsDoneAction.enabled.value).toEventually(beFalse())
+                    expect(vm.markAsDoneAction.isEnabled.value).toEventually(beFalse())
                 }
             }
 
             describe("markAsViewedAction") {
                 it("should require a MustView completionRequirement") {
                     item.completed = false
-                    item.completionRequirement = .MustView
-                    expect(vm.markAsViewedAction.enabled.value).toEventually(beTrue())
+                    item.completionRequirement = .mustView
+                    expect(vm.markAsViewedAction.isEnabled.value).toEventually(beTrue())
                     
                     item.completionRequirement = nil
-                    expect(vm.markAsViewedAction.enabled.value).toEventually(beFalse())
+                    expect(vm.markAsViewedAction.isEnabled.value).toEventually(beFalse())
                 }
 
                 it("should require that the item not be completed") {
-                    item.completionRequirement = .MustView
+                    item.completionRequirement = .mustView
                     item.completed = false
-                    expect(vm.markAsViewedAction.enabled.value).toEventually(beTrue())
+                    expect(vm.markAsViewedAction.isEnabled.value).toEventually(beTrue())
 
                     item.completed = true
-                    expect(vm.markAsViewedAction.enabled.value).toEventually(beFalse())
+                    expect(vm.markAsViewedAction.isEnabled.value).toEventually(beFalse())
                 }
             }
         }

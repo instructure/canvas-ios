@@ -29,6 +29,6 @@ class DescribeSessionProgress: XCTestCase {
         XCTAssert(dispatcher === session.progressDispatcher)
         
         
-        dispatcher.onProgress.observeNext({ _ in })// avoid a warning of unused dispatcher
+        dispatcher.onProgress.observeValues({ _ in })// avoid a warning of unused dispatcher
     }
 }

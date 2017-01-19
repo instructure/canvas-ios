@@ -17,25 +17,25 @@
     
 
 import Marshal
-import ReactiveCocoa
+import ReactiveSwift
 import TooLegit
 
 extension CalendarEvent {
 
-    static func getCalendarEvent(session: Session, calendarEventID: String) throws -> SignalProducer<JSONObject, NSError> {
+    static func getCalendarEvent(_ session: Session, calendarEventID: String) throws -> SignalProducer<JSONObject, NSError> {
         let request = try CalendarEventAPI.getCalendarEvent(session, calendarEventID: calendarEventID)
         return session.JSONSignalProducer(request)
     }
 
-    static func getCalendarEvents(session: Session, type: CalendarEventAPI.RequestType, startDate: NSDate, endDate: NSDate, contextCodes: [String]? = nil) throws -> SignalProducer<[JSONObject], NSError> {
+    static func getCalendarEvents(_ session: Session, type: CalendarEventAPI.RequestType, startDate: Date, endDate: Date, contextCodes: [String]? = nil) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try CalendarEventAPI.getCalendarEvents(session, type: type, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
         return session.paginatedJSONSignalProducer(request)
     }
 
-    static func getAllCalendarEvents(session: Session, startDate: NSDate, endDate: NSDate, contextCodes: [String]) throws -> SignalProducer<[JSONObject], NSError> {
-        let getEvents = try getCalendarEvents(session, type: .Event, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
-        let getAssignments = try getCalendarEvents(session, type: .Assignment, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
-        let getPersonalAssignments = try getCalendarEvents(session, type: .Event, startDate: startDate, endDate: endDate)
+    static func getAllCalendarEvents(_ session: Session, startDate: Date, endDate: Date, contextCodes: [String]) throws -> SignalProducer<[JSONObject], NSError> {
+        let getEvents = try getCalendarEvents(session, type: .event, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
+        let getAssignments = try getCalendarEvents(session, type: .assignment, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
+        let getPersonalAssignments = try getCalendarEvents(session, type: .event, startDate: startDate, endDate: endDate)
 
         return getEvents.concat(getAssignments).concat(getPersonalAssignments)
     }

@@ -21,18 +21,18 @@ import SoAutomated
 @testable import SoPersistent
 import SoLazy
 
-@available(*, deprecated, message="bdd syntactic sugar is deprecated, use Quick instead")
-public func context(name: String, f: ()->Void) {
+@available(*, deprecated, message: "bdd syntactic sugar is deprecated, use Quick instead")
+public func context(_ name: String, f: ()->Void) {
     f()
 }
 
-@available(*, deprecated, message="bdd syntactic sugar is deprecated, use Quick instead")
-public func it(behavior: String, f: ()->Void) {
+@available(*, deprecated, message: "bdd syntactic sugar is deprecated, use Quick instead")
+public func it(_ behavior: String, f: ()->Void) {
     f()
 }
 
-@available(*, deprecated, message="bdd syntactic sugar is deprecated, use Quick instead")
-public func describe(description: String, f: ()->Void) {
+@available(*, deprecated, message: "bdd syntactic sugar is deprecated, use Quick instead")
+public func describe(_ description: String, f: ()->Void) {
     f()
 }
 
@@ -45,14 +45,16 @@ class CollectionViewControllerTests: XCTestCase {
 
         describe("selecting an item") {
             it("has a hook for when an item is selected") {
-                var indexPath: NSIndexPath?
+                var indexPath: IndexPath?
                 vc.didSelectItemAtIndexPath = { indexPath = $0 }
                 let collectionView = vc.collectionView!
 
-                vc.collectionView(collectionView, didSelectItemAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+                let delegate = vc as UICollectionViewDelegate
+
+                delegate.collectionView?(collectionView, didSelectItemAt: IndexPath(row: 0, section: 0))
 
                 XCTAssertNotNil(indexPath)
-                XCTAssertEqual(NSIndexPath(forRow: 0, inSection: 0), indexPath)
+                XCTAssertEqual(IndexPath(row: 0, section: 0), indexPath)
             }
         }
 
@@ -66,7 +68,7 @@ class CollectionViewControllerTests: XCTestCase {
             it("sets refreshCompleted to one that presents the error") {
                 class RefreshError: NSError {
                     var presented = false
-                    private override func presentAlertFromViewController(viewController: UIViewController, alertDismissed: (()->())? = nil, reportError: (()->())? = nil) {
+                    fileprivate override func presentAlertFromViewController(_ viewController: UIViewController, alertDismissed: (()->())? = nil, reportError: (()->())? = nil) {
                         presented = true
                     }
                 }
@@ -74,7 +76,7 @@ class CollectionViewControllerTests: XCTestCase {
 
                 let refresher = SimpleRefresher()
                 vc.refresher = refresher
-                refresher.refreshingCompletedObserver.sendNext(error)
+                refresher.refreshingCompletedObserver.send(value: error)
 
                 XCTAssert(error.presented)
             }
@@ -82,7 +84,7 @@ class CollectionViewControllerTests: XCTestCase {
             it("sets refreshCompleted to one that presents the error on init") {
                 class RefreshError: NSError {
                     var presented = false
-                    private override func presentAlertFromViewController(viewController: UIViewController, alertDismissed: (()->())? = nil, reportError: (()->())? = nil) {
+                    fileprivate override func presentAlertFromViewController(_ viewController: UIViewController, alertDismissed: (()->())? = nil, reportError: (()->())? = nil) {
                         presented = true
                     }
                 }
@@ -91,7 +93,7 @@ class CollectionViewControllerTests: XCTestCase {
                 let refresher = SimpleRefresher()
                 let vc = CollectionViewController(dataSource: dataSource, refresher: refresher)
                 vc.refresher = refresher
-                refresher.refreshingCompletedObserver.sendNext(error)
+                refresher.refreshingCompletedObserver.send(value: error)
 
                 XCTAssert(error.presented)
             }

@@ -32,14 +32,14 @@ public final class Grade: NSManagedObject {
 }
 
 extension Grade: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let gradingPeriodID: String? = try json.stringID("grading_period_id")
         let courseID: String = try json.stringID("course_id")
 
         return Grade.predicate(courseID, gradingPeriodID: gradingPeriodID)
     }
 
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         gradingPeriodID = try json.stringID("grading_period_id")
         if let gradesJSON: JSONObject = try json <| "grades" {
             currentGrade    = try gradesJSON <| "current_grade"

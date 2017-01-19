@@ -20,13 +20,13 @@ import UIKit
 
 import CalendarKit
 
-public typealias CalendarEventSelected = (calendarEvent: CalendarEvent) -> ()
+public typealias CalendarEventSelected = (CalendarEvent) -> ()
 
-public typealias DateSelected = (date: NSDate) -> ()
-public typealias ShouldOperateOnDate = (date: NSDate) -> Bool
+public typealias DateSelected = (Date) -> ()
+public typealias ShouldOperateOnDate = (Date) -> Bool
 
 // UIActions
-public typealias UIBarButtonItemAction = (sender: UIBarButtonItem) -> ()
+public typealias UIBarButtonItemAction = (UIBarButtonItem) -> ()
 
-public typealias ColorForContextID = (contextID: String) -> UIColor
-public typealias RouteToURL = (url: NSURL) -> Void
+public typealias ColorForContextID = (String) -> UIColor
+public typealias RouteToURL = (URL) -> Void

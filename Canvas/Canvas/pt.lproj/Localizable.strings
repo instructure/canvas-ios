@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ precisa de classificação";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ pts";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Tipo: %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache Limpo";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Calendário";
 
 /* (No Commment) */
@@ -318,6 +325,9 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 
 /* (No Commment) */
 "Choose from Library..." = "Escolher pela Livraria";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Escolher opção";
 
 /* (No Commment) */
 "Choose video" = "Escolher vídeo";
@@ -376,7 +386,8 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* (No Commment) */
 "Course Syllabus" = "Apontamentos da Disciplina";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "Disciplinas";
 
 /* (No Commment) */
@@ -453,6 +464,9 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 
 /* (No Commment) */
 "Downloading..." = "Descarregando...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Vencido %@";
 
 /* (No Commment) */
 "Due:" = "Data final:";
@@ -637,6 +651,9 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* (No Commment) */
 "Item %1$d of %2$d" = "Item %1$d de %2$d";
 
+/* table header for module items */
+"Items" = "Itens";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Está vazio, o que faz aqui.";
 
@@ -661,11 +678,17 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* (No Commment) */
 "Legal" = "Legal";
 
+/* Web URL link item label */
+"Link" = "Ligação";
+
 /* (No Commment) */
 "Loading..." = "Carregando...";
 
 /* (No Commment) */
 "Locked" = "Bloqueado";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Bloqueado até que \"%@\" seja classificado";
 
 /* locked date */
 "Locked until %@" = "Bloqueado até %@";
@@ -687,6 +710,9 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 
 /* (No Commment) */
 "Masquerade" = "Disfarçar";
+
+/* Master Path module item type */
+"Mastery Path" = "Caminho de domínio";
 
 /* (No Commment) */
 "Me" = "Eu";
@@ -715,7 +741,7 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Enviar mensagem para todos em separado, ou adicionar todos a um grupo de conversação?";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Mensagens";
 
 /* (No Commment) */
@@ -760,6 +786,9 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* (No Commment) */
 "New Folder" = "Nova Pasta";
 
+/* Button title for next module item. */
+"Next" = "Próximo";
+
 /* (No Commment) */
 "Next 7 Days" = "Próximos 7 Dias";
 
@@ -774,6 +803,9 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "Sem Data Final";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "Nenhum caminho de domínio";
 
 /* (No Commment) */
 "No Recorded Audio" = "Sem Audio Gravado";
@@ -832,7 +864,8 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Preferências de Notificação";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Notificações";
 
 /* OK Button Title */
@@ -858,6 +891,9 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 
 /* (No Commment) */
 "Open in..." = "Abrir com...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Opção %d";
 
 /* (No Commment) */
 "Other" = "Outro";
@@ -900,6 +936,12 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 
 /* (No Commment) */
 "Posts your comment" = "Publica o seu comentário";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Módulos de pré-requisito";
+
+/* Button title for previous module item. */
+"Previous" = "Anterior";
 
 /* (No Commment) */
 "Previous item" = "Item anterior";
@@ -985,6 +1027,12 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Pesquisar aqui...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Selecionar Opção";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Selecionar Opção %d";
+
 /* (No Commment) */
 "Select file(s)" = "Selecionar Ficheiro(s)";
 
@@ -1035,6 +1083,20 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 
 /* (No Commment) */
 "Starts recording a media comment" = "Inicia a gravação de um comentário multimédia";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Status: Concluído";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Status: Incompleto";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Status: Bloqueado";
+
+/* Module status label when started */
+"Status: Started" = "Status: Iniciado";
 
 /* (No Commment) */
 "Stay Logged In" = "Manter registado";
@@ -1202,16 +1264,22 @@ Erro: %@";
 /* (No Commment) */
 "This is a media message." = "Esta é uma mensagem multimédia.";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Este item de módulo não tem caminhos de domínio configurados.";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Esta seria uma boa altura para alguns créditos extra.";
 
 /* Title of the Todo screen */
 "To Do" = "A Fazer";
 
+/* To-Do List landing page title */
+"To-Do List" = "Lista A Fazer";
+
 /* (No Commment) */
 "To:" = "Para:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "Hoje";
 
 /* No comment provided by engineer. */
@@ -1231,6 +1299,9 @@ Erro: %@";
 
 /* (No Commment) */
 "Turn in %@" = "Entregue %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Tipo: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Uh-oh! Sem ligação à Internet";

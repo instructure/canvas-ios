@@ -18,12 +18,12 @@
 
 import UIKit
 
-public class FlyingPandaTableViewController: UITableViewController {
+open class FlyingPandaTableViewController: UITableViewController {
     
-    public private(set) var flyingPandaRefreshControl: CSGFlyingPandaRefreshControl?
-    private var loadedViewInitially: Bool = false
+    open fileprivate(set) var flyingPandaRefreshControl: CSGFlyingPandaRefreshControl?
+    fileprivate var loadedViewInitially: Bool = false
     
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -35,14 +35,14 @@ public class FlyingPandaTableViewController: UITableViewController {
         super.init(style: style)
     }
         
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         flyingPandaRefreshControl = CSGFlyingPandaRefreshControl(scrollView: self.tableView)
         flyingPandaRefreshControl?.setToIdle()
         self.tableView.addSubview(flyingPandaRefreshControl!)
     }
     
-    public override func viewWillLayoutSubviews() {
+    open override func viewWillLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         if !loadedViewInitially {
@@ -55,17 +55,17 @@ public class FlyingPandaTableViewController: UITableViewController {
         tableView.scrollIndicatorInsets = insets
     }
     
-    public override func viewDidLayoutSubviews() {
+    open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         flyingPandaRefreshControl!.updateFrame()
     }
 
-    public override func scrollViewDidScroll(scrollView: UIScrollView) {
+    open override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         flyingPandaRefreshControl!.scrollViewDidScroll()
     }
     
-    public override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    open override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         flyingPandaRefreshControl!.scrollViewDidEndDragging()
     }
 }

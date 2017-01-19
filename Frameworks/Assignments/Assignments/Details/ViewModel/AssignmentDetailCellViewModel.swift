@@ -30,21 +30,21 @@ enum AssignmentDetailCellViewModel: TableViewCellViewModel {
     
     typealias RoutingHandler = ()->Void
     
-    case GradeAndSubmission(GradeViewModel, SubmissionStatusViewModel, Bool, Bool, RoutingHandler, RoutingHandler)
-    case Title(Assignment)
-    case Details(NSURL, String)
-    case Padding(Bool)
+    case gradeAndSubmission(GradeViewModel, SubmissionStatusViewModel, Bool, Bool, RoutingHandler, RoutingHandler)
+    case title(Assignment)
+    case details(URL, String)
+    case padding(Bool)
     
-    static func tableViewDidLoad(tableView: UITableView) {
-        tableView.separatorStyle = .None
+    static func tableViewDidLoad(_ tableView: UITableView) {
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 40
     }
     
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch self {
-        case .GradeAndSubmission(let gradeViewModel, let submissionViewModel, let showRubric, let showSubmissionHistory, let rubricHandler, let submissionHandler):
-            let cell = tableView.dequeueReusableCellWithIdentifier("gradeSubmissionsTableViewCell") as! AssignmentGradeSubmissionTableViewCell
+        case .gradeAndSubmission(let gradeViewModel, let submissionViewModel, let showRubric, let showSubmissionHistory, let rubricHandler, let submissionHandler):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "gradeSubmissionsTableViewCell") as! AssignmentGradeSubmissionTableViewCell
             
             let gradeView = CircularGradeView(frame: CGRect(x: 0, y: 0, width: 160, height: 160))
             gradeView.setGrade(gradeViewModel, animated: true)
@@ -53,83 +53,83 @@ enum AssignmentDetailCellViewModel: TableViewCellViewModel {
             let submissionStatusView = SubmissionStatusView(frame: CGRect(x: 0, y: 0, width: 160, height: 160), viewModel: submissionViewModel, showSubmissionHistory: showSubmissionHistory)
             submissionStatusView.viewSubmissionDetailsPressedHandler = submissionHandler
             
-            cell.leftView.backgroundColor = UIColor.clearColor()
-            cell.rightView.backgroundColor = UIColor.clearColor()
+            cell.leftView.backgroundColor = UIColor.clear
+            cell.rightView.backgroundColor = UIColor.clear
             
             cell.leftView.addSubview(gradeView)
             cell.rightView.addSubview(submissionStatusView)
             
-            cell.verticalLineWidth.constant = 1/UIScreen.mainScreen().scale
+            cell.verticalLineWidth.constant = 1/UIScreen.main.scale
             
             var viewBindingsDict = [String: AnyObject]()
             viewBindingsDict["gradeView"] = gradeView
             
-            cell.leftView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[gradeView(==160)]|", options: [], metrics: nil, views: viewBindingsDict))
-            cell.leftView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[gradeView(==160)]|", options: [], metrics: nil, views: viewBindingsDict))
+            cell.leftView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[gradeView(==160)]|", options: [], metrics: nil, views: viewBindingsDict))
+            cell.leftView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[gradeView(==160)]|", options: [], metrics: nil, views: viewBindingsDict))
             
             return cell
-        case .Title(let assignment):
-            guard let cell = tableView.dequeueReusableCellWithIdentifier("assignmentInfoCell") else { ❨╯°□°❩╯⌢"expected assignmentInfoCell" }
+        case .title(let assignment):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "assignmentInfoCell") else { ❨╯°□°❩╯⌢"expected assignmentInfoCell" }
             allowMultipleLines(cell)
             
-            let due = NSLocalizedString("Due: ", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "String telling the user that the date is the due date")
+            let due = NSLocalizedString("Due: ", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "String telling the user that the date is the due date")
             
-            let dueDateFormatter = NSDateFormatter()
-            dueDateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-            dueDateFormatter.timeStyle = .ShortStyle
+            let dueDateFormatter = DateFormatter()
+            dueDateFormatter.dateStyle = DateFormatter.Style.medium
+            dueDateFormatter.timeStyle = .short
             
-            let dueDate = (assignment.due != nil) ? due + dueDateFormatter.stringFromDate(assignment.due!) : NSLocalizedString("No Due Date", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Default string for due date title")
+            let dueDate = (assignment.due != nil) ? due + dueDateFormatter.string(from: assignment.due!) : NSLocalizedString("No Due Date", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Default string for due date title")
             
             cell.textLabel?.text = assignment.name
             cell.detailTextLabel?.text = assignment.lockedForUser == true ? assignment.lockExplanation : dueDate
             
             
             return cell
-        case .Details(let baseURL, let deets):
-            let cell = WhizzyWigTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "theWhizz")
+        case .details(let baseURL, let deets):
+            let cell = WhizzyWigTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "theWhizz")
             cell.whizzyWigView.loadHTMLString(deets, baseURL: baseURL)
             cell.cellSizeUpdated = { [weak tableView] _ in
                 tableView?.beginUpdates()
                 UIView.setAnimationsEnabled(false)
-                tableView?.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .None)
+                tableView?.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .none)
                 UIView.setAnimationsEnabled(true)
                 tableView?.endUpdates()
             }
-            cell.selectionStyle = .None
+            cell.selectionStyle = .none
             
             return cell
-        case .Padding(let hidden):
-            let cell = tableView.dequeueReusableCellWithIdentifier("paddingCell") as! AssignmentPaddingCell
-            cell.horizontalLineView.hidden = hidden
-            cell.horizontalLineHeight.constant = 1/UIScreen.mainScreen().scale
+        case .padding(let hidden):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "paddingCell") as! AssignmentPaddingCell
+            cell.horizontalLineView.isHidden = hidden
+            cell.horizontalLineHeight.constant = 1/UIScreen.main.scale
             return cell
         }
     }
     
-    private func allowMultipleLines(tableViewCell:UITableViewCell) {
+    fileprivate func allowMultipleLines(_ tableViewCell:UITableViewCell) {
         tableViewCell.textLabel?.numberOfLines = 0
-        tableViewCell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        tableViewCell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         tableViewCell.detailTextLabel?.numberOfLines = 0
-        tableViewCell.detailTextLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        tableViewCell.detailTextLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
     }
     
-    static func detailsForAssignment(session: Session, viewRubricHandler: RoutingHandler, viewSubmissionsHandler: RoutingHandler) -> (assignment: Assignment) -> [AssignmentDetailCellViewModel] {
+    static func detailsForAssignment(_ session: Session, viewRubricHandler: @escaping RoutingHandler, viewSubmissionsHandler: @escaping RoutingHandler) -> (_ assignment: Assignment) -> [AssignmentDetailCellViewModel] {
         return { assignment in
             
-            let enrollmentDataSource = session.enrollmentsDataSource[ContextID(id:assignment.courseID, context: .Course)]
+            let enrollmentDataSource = session.enrollmentsDataSource[ContextID(id:assignment.courseID, context: .course)]
             let isTeacher = enrollmentDataSource?.roles?.contains(EnrollmentRoles.Teacher) ?? false
             
             var cells : [AssignmentDetailCellViewModel] = [
-                .GradeAndSubmission(GradeViewModel.gradeViewModelForAssignment(assignment), SubmissionStatusViewModel(assignment: assignment), assignment.rubric != nil, !isTeacher && assignment.hasSubmitted && assignment.allowsSubmissions, viewRubricHandler, viewSubmissionsHandler),
-                .Padding(false),
-                .Title(assignment),
-                .Padding(true)
+                .gradeAndSubmission(GradeViewModel.gradeViewModelForAssignment(assignment), SubmissionStatusViewModel(assignment: assignment), assignment.rubric != nil, !isTeacher && assignment.hasSubmitted && assignment.allowsSubmissions, viewRubricHandler, viewSubmissionsHandler),
+                .padding(false),
+                .title(assignment),
+                .padding(true)
             ]
             
             if assignment.lockedForUser == true && assignment.canView == false {
-                cells += [.Padding(true)]
+                cells += [.padding(true)]
             } else {
-                cells += [.Details(session.baseURL, assignment.details)]
+                cells += [.details(session.baseURL, assignment.details)]
             }
             
             return cells
@@ -142,13 +142,13 @@ enum AssignmentDetailCellViewModel: TableViewCellViewModel {
 extension AssignmentDetailCellViewModel: Equatable {}
 func ==(lhs: AssignmentDetailCellViewModel, rhs: AssignmentDetailCellViewModel) -> Bool {
     switch (lhs, rhs) {
-    case (.GradeAndSubmission(let gradeViewModel1, let submissionViewModel1, let showRubric1, let showSubmissionHistory1, _, _),  .GradeAndSubmission(let gradeViewModel2, let submissionViewModel2, let showRubric2, let showSubmissionHistory2, _, _)):
+    case (.gradeAndSubmission(let gradeViewModel1, let submissionViewModel1, let showRubric1, let showSubmissionHistory1, _, _),  .gradeAndSubmission(let gradeViewModel2, let submissionViewModel2, let showRubric2, let showSubmissionHistory2, _, _)):
         return gradeViewModel1 == gradeViewModel2 && submissionViewModel1 == submissionViewModel2 && showRubric1 == showRubric2 && showSubmissionHistory1 == showSubmissionHistory2
-    case let (.Title(title1), .Title(title2)):
+    case let (.title(title1), .title(title2)):
         return title1 == title2
-    case let (.Details(url1, details1), .Details(url2, details2)):
+    case let (.details(url1, details1), .details(url2, details2)):
         return url1 == url2 && details1 == details2
-    case let (.Padding(hidden1), .Padding(hidden2)):
+    case let (.padding(hidden1), .padding(hidden2)):
         return hidden1 == hidden2
     default: return false
     }

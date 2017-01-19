@@ -22,23 +22,23 @@ import SoLazy
 // I wish that I could make this a string enum, but to keep compatible with obj-c it's not. 
 // It has a toString() function instead
 @objc public enum SecretKey: Int {
-    case CanvasPSPDFKit
-    case SpeedGraderPSPDFKit
-    case CanvasGoogleAnalytics
-    case SpeedGraderGoogleAnalytics
-    case CanvasAppStore
+    case canvasPSPDFKit
+    case speedGraderPSPDFKit
+    case canvasGoogleAnalytics
+    case speedGraderGoogleAnalytics
+    case canvasAppStore
     
     func toString() -> String {
         switch self {
-        case .CanvasPSPDFKit:
+        case .canvasPSPDFKit:
             return "CanvasPSPDFKitLicenseKey"
-        case .SpeedGraderPSPDFKit:
+        case .speedGraderPSPDFKit:
             return "SpeedGraderPSPDFKitLicenseKey"
-        case .CanvasGoogleAnalytics:
+        case .canvasGoogleAnalytics:
             return "CanvasGoogleAnalyticsKey"
-        case .SpeedGraderGoogleAnalytics:
+        case .speedGraderGoogleAnalytics:
             return "SpeedGraderGoogleAnalyticsKey"
-        case .CanvasAppStore:
+        case .canvasAppStore:
             return "CanvasAppStoreLinkKey"
         }
     }
@@ -46,34 +46,34 @@ import SoLazy
 
 // Toggle features based on the school/institution
 @objc public enum FeatureToggleKey: Int {
-    case ProtectedUserInformation
+    case protectedUserInformation
     
     func toString() -> String {
         switch self {
-        case ProtectedUserInformation:
+        case .protectedUserInformation:
             return "ProtectedUserInformation"
         }
     }
 }
 
-public class Secrets: NSObject {
+open class Secrets: NSObject {
 
-    private static let _shared = Secrets()
+    fileprivate static let _shared = Secrets()
     
-    private lazy var keys: [String: String] = {
+    fileprivate lazy var keys: [String: String] = {
         
-        guard let path = NSBundle.secrets().URLForResource("secrets", withExtension: "plist") else {
+        guard let path = Bundle.secrets.url(forResource: "secrets", withExtension: "plist") else {
             fatalError("keys.plist not found")
         }
         
-        guard let keys = NSDictionary(contentsOfURL: path) as? [String: String] else {
+        guard let keys = NSDictionary(contentsOf: path) as? [String: String] else {
             fatalError("keys.plist couldn't be created and used. :(:(:(")
         }
         
         return keys
     }()
 
-    private func internalFetch(key: SecretKey) -> String? {
+    fileprivate func internalFetch(_ key: SecretKey) -> String? {
         
         let stringKey = key.toString()
         
@@ -84,23 +84,23 @@ public class Secrets: NSObject {
         return value
     }
     
-    public static func fetch(key: SecretKey) -> String? {
+    open static func fetch(_ key: SecretKey) -> String? {
         return Secrets._shared.internalFetch(key)
     }
     
     // Support for feature toggles that are based on a domain
-    private lazy var toggles: [String: [String]]? = {
+    fileprivate lazy var toggles: [String: [String]]? = {
         
-        guard let path = NSBundle.secrets().URLForResource("feature_toggles", withExtension: "plist") else {
+        guard let path = Bundle.secrets.url(forResource: "feature_toggles", withExtension: "plist") else {
             return nil
         }
         
-        return NSDictionary(contentsOfURL: path) as? [String: [String]]
+        return NSDictionary(contentsOf: path) as? [String: [String]]
     }()
     
     // domain is an optional to handle cases where the user isn't logged in yet
     // While that may not be important, I did it so that this function is easier to use
-    private func internalFeatureEnabled(toggle: FeatureToggleKey, domain: String?) -> Bool {
+    fileprivate func internalFeatureEnabled(_ toggle: FeatureToggleKey, domain: String?) -> Bool {
         guard let domain = domain else { return false }
         guard let toggles = toggles else { return false }
         
@@ -108,10 +108,10 @@ public class Secrets: NSObject {
             return false
         }
         
-        return toggleValues.findFirst { domain.containsString($0) || $0.containsString(domain) } != nil
+        return toggleValues.findFirst { domain.contains($0) || $0.contains(domain) } != nil
     }
     
-    public static func featureEnabled(toggle: FeatureToggleKey, domain: String?) -> Bool {
+    open static func featureEnabled(_ toggle: FeatureToggleKey, domain: String?) -> Bool {
         return Secrets._shared.internalFeatureEnabled(toggle, domain: domain)
     }
 }

@@ -21,7 +21,7 @@ import TooLegit
 
 private let weeksTitle = NSLocalizedString("Weeks", comment: "Title for the weeks calendar view")
 class WeekViewController: UIViewController {
-    static func tab(session: Session, route: RouteAction) throws -> UIViewController {
+    static func tab(_ session: Session, route: RouteAction) throws -> UIViewController {
         let nav = UINavigationController(rootViewController: WeekViewController())
         nav.tabBarItem.title = weeksTitle
         nav.tabBarItem.image = .icon(.calendar)

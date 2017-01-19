@@ -1,8 +1,7 @@
-/* record button a11y hint
-   stop record button a11y hint */
+/* stop record button a11y hint */
 "Begin recording" = "Begynd optagelse";
 
-/* Cancel button */
+/* Cancel button title */
 "Cancel" = "Annuller";
 
 /* Delete button */
@@ -24,7 +23,7 @@
 "Pause playback" = "Afbryd afspilning";
 
 /* Playback button */
-"Play" = "Spil";
+"Play" = "Afspil";
 
 /* play button a11y hint */
 "Play back recording" = "Afspil optagelse";
@@ -33,7 +32,7 @@
 "Playback Error" = "Afspliningsfejl";
 
 /* Record button a11y label */
-"Record" = "Optag";
+"Record" = "Opotag";
 
 /* permission denied button a11y label */
 "Record Permission Help" = "Hjæp til optagelsestilladelse";
@@ -44,7 +43,7 @@
 /* Record button a11y label */
 "Request Audio Recording Permission" = "Anmod om audio optagelsestilladelse";
 
-/* record button a11y hint */
+/* stop record button a11y hint */
 "Request Permission to record audio" = "Anmod om tilladelse til at optage audio";
 
 /* stop recording button a11y label */

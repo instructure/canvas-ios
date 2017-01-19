@@ -21,13 +21,13 @@ import SoIconic
 
 class SoIconicTests: XCTestCase {
     
-    private func imageExists(image: UIImage) {
+    fileprivate func imageExists(_ image: UIImage) {
         // who cares
     }
     
     func testIcons() {
-        imageExists(.icon(.courses))
-        imageExists(.icon(.courses, filled: true))
+        imageExists(.icon(.course))
+        imageExists(.icon(.course, filled: true))
         
         imageExists(.icon(.calendar))
         imageExists(.icon(.calendar, filled: true))
@@ -36,7 +36,7 @@ class SoIconicTests: XCTestCase {
         imageExists(.icon(.inbox, filled: true))
         
         
-        imageExists(.icon(.announcements))
+        imageExists(.icon(.announcement))
         
         imageExists(.icon(.edit, filled: true))
         

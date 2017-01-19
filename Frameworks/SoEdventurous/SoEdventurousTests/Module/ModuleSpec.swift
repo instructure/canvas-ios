@@ -27,7 +27,11 @@ import WebKit
 import TooLegit
 import Result
 import Marshal
-import ReactiveCocoa
+import ReactiveSwift
+import CoreLocation
+import Photos
+import MapKit
+
 
 class ModuleSpec: QuickSpec {
     override func spec() {
@@ -132,7 +136,7 @@ class ModuleSpec: QuickSpec {
                 var refresher: Refresher!
                 beforeEach {
                     session = User(credentials: .user1).session
-                    refresher = try! Module.refresher(session, courseID: courseID)
+                    refresher = try! Module.refresher(session: session, courseID: courseID)
                 }
 
                 it("syncs modules") {
@@ -147,7 +151,7 @@ class ModuleSpec: QuickSpec {
                         $0.courseID = "200"
                     }
                     refresher.playback("RefreshModules", with: session)
-                    expect(otherModule.deleted) == false
+                    expect(otherModule.isDeleted) == false
                 }
             }
 
@@ -163,7 +167,7 @@ class ModuleSpec: QuickSpec {
                         $0.state = .completed
                     }
 
-                    let refresher = try! Module.refresher(session, courseID: courseID, moduleID: moduleID)
+                    let refresher = try! Module.refresher(session: session, courseID: courseID, moduleID: moduleID)
 
                     refresher.playback("RefreshModule", with: session)
 
@@ -189,14 +193,14 @@ class ModuleSpec: QuickSpec {
                 let all = [one, two, three]
 
                 var predicate = Module.predicate(withPrerequisite: "1")
-                var results = all.filter(predicate.evaluateWithObject)
+                var results = all.filter(predicate.evaluate)
 
                 expect(results.contains(one)) == true
                 expect(results.contains(two)) == false
                 expect(results.contains(three)) == false
 
                 predicate = Module.predicate(withPrerequisite: "12")
-                results = all.filter(predicate.evaluateWithObject)
+                results = all.filter(predicate.evaluate)
 
                 expect(results.contains(one)) == false
                 expect(results.contains(two)) == true

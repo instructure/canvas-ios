@@ -21,35 +21,28 @@ import AssignmentKit
 import TooLegit
 import EnrollmentKit
 import SoLazy
-import ReactiveCocoa
+import ReactiveSwift
 import SoPersistent
 
 
 class AssignmentsTableViewController: Assignment.TableViewController {
     let route: RouteAction
     
-    init(session: Session, courseID: String, route: RouteAction) throws {
+    init(session: Session, courseID: String, route: @escaping RouteAction) throws {
         self.route = route
         super.init()
         let dataSource = session.enrollmentsDataSource
-        title = dataSource[ContextID(id: courseID, context: .Course)]?.name
+        title = dataSource[ContextID(id: courseID, context: .course)]?.name
         prepare(try Assignment.collectionByDueDate(session, courseID: courseID), refresher: try Assignment.refresher(session, courseID: courseID)) { assignment in
-            return AssignmentViewModel(assignment: assignment, session: session)
+            return viewModel(for: assignment, in: session)
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 70
     }
     
     required init?(coder aDecoder: NSCoder) {
         ❨╯°□°❩╯⌢"no storyboard support today... sorry"
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let assignment = collection[indexPath]
         
         do {

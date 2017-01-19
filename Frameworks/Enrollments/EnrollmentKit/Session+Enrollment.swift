@@ -26,11 +26,11 @@ let enrollmentKitModelName = "EnrollmentKit"
 let enrollmentKitSubdomain = "EnrollmentKit"
 let enrollmentKitFailedToLoadErrorCode = 10001
 let enrollmentKitFailedToLoadErrorDescription = "Failed to load \(enrollmentKitModelName) NSManagedObjectModel"
-let enrollmentKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the EnrollmentKit database file.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "EnrollmentKit Database Load Failure Message")
+let enrollmentKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the EnrollmentKit database file.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "EnrollmentKit Database Load Failure Message")
 
 extension Session {
-    public func enrollmentManagedObjectContext(scope: String? = nil) throws -> NSManagedObjectContext {
-        let model = NSManagedObjectModel(named: enrollmentKitModelName, inBundle: NSBundle(forClass: Course.self))?.mutableCopy() as! NSManagedObjectModel
+    public func enrollmentManagedObjectContext(_ scope: String? = nil) throws -> NSManagedObjectContext {
+        let model = NSManagedObjectModel(named: enrollmentKitModelName, inBundle: Bundle(for: Course.self))?.mutableCopy() as! NSManagedObjectModel
         let storeName = scope == nil ? enrollmentKitModelName : "\(enrollmentKitModelName)_\(scope!)"
         let storeID = StoreID(storeName: storeName, model: model,
             localizedErrorDescription: enrollmentKitDBFailedToLoadErrorDescription)
@@ -39,30 +39,32 @@ extension Session {
     }
 }
 
-
 // MARK: Colorful
 
 extension Session {
-    public func colorForCourse(courseID: String) -> UIColor {
-        let context = ContextID(id: courseID, context: .Course)
-        let color = enrollmentsDataSource[context]?.color ?? .prettyGray()
-        print("colorForCourse = \(color)")
+    private func color(for contextID: ContextID) -> UIColor {
+        let enrollment = enrollmentsDataSource[contextID]
+        let color = enrollment?.color.value ?? .prettyGray()
         return color
     }
     
-    public func colorForGroup(groupID: String) -> UIColor {
-        let context = ContextID(id: groupID, context: .Group)
-        let color = enrollmentsDataSource[context]?.color ?? .prettyGray()
-        print("colorForGroup = \(color)")
-        return color
+    // for objc compatability
+    public func colorForCourse(_ courseID: String) -> UIColor {
+        return color(for: .course(withID: courseID))
     }
     
-    
-    public func courseWithID(courseID: String) -> Course? {
-        return enrollmentsDataSource[ContextID(id: courseID, context: .Course)] as? Course
+    // for objc compatability
+    public func colorForGroup(_ groupID: String) -> UIColor {
+        return color(for: .group(withID: groupID))
     }
     
-    public func groupWithID(groupID: String) -> Group? {
-        return enrollmentsDataSource[ContextID(id: groupID, context: .Group)] as? Group
+    public func course(id courseID: String) -> Course? {
+        return enrollmentsDataSource[.course(withID: courseID)] as? Course
     }
+    
+    public func group(id groupID: String) -> Group? {
+        return enrollmentsDataSource[.group(withID: groupID)] as? Group
+    }
+
 }
+

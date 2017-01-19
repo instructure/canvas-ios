@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ تقييم مطلوب";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ نقاط";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. النوع: %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "مُسحت ذاكرة التخزين المؤقت";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "التقويم";
 
 /* (No Commment) */
@@ -318,6 +325,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Choose from Library..." = "الاختيار من المكتبة...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "اختر خيارًا";
 
 /* (No Commment) */
 "Choose video" = "اختيار فيديو";
@@ -376,7 +386,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Course Syllabus" = "مناهج المساق";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "المساقات";
 
 /* (No Commment) */
@@ -453,6 +464,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Downloading..." = "جارٍ التنزيل...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "تاريخ الاستحقاق %@";
 
 /* (No Commment) */
 "Due:" = "موعد الاستحقاق:";
@@ -637,6 +651,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Item %1$d of %2$d" = "العنصر %1$d من %2$d";
 
+/* table header for module items */
+"Items" = "العناصر";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "هذا فارغ، ماذا تفعل هنا؟";
 
@@ -661,11 +678,17 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Legal" = "قانونية";
 
+/* Web URL link item label */
+"Link" = "ارتباط";
+
 /* (No Commment) */
 "Loading..." = "جارٍ التحميل...";
 
 /* (No Commment) */
 "Locked" = "مؤمّن";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "مؤمَّن حتى منح درجة لـ \"%@\"";
 
 /* locked date */
 "Locked until %@" = "مؤمّن إلى غاية %@";
@@ -687,6 +710,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Masquerade" = "تخفي";
+
+/* Master Path module item type */
+"Mastery Path" = "مسار الإجادة";
 
 /* (No Commment) */
 "Me" = "أنا";
@@ -715,7 +741,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "إرسال الرسائل بشكل منفرد إلى كل شخص أو إضافة الجميع إلى محادثة جماعية؟";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "الرسائل";
 
 /* (No Commment) */
@@ -760,6 +786,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "New Folder" = "مجلد جديد";
 
+/* Button title for next module item. */
+"Next" = "التالي";
+
 /* (No Commment) */
 "Next 7 Days" = "الأيام السبع القادمة";
 
@@ -774,6 +803,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "لا يوجد موعد استحقاق";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "لا توجد مسارات إجادة";
 
 /* (No Commment) */
 "No Recorded Audio" = "لا يوجد أي تسجيل صوتي";
@@ -832,7 +864,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "تفضيلات الإخطار";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "الإخطارات";
 
 /* OK Button Title */
@@ -858,6 +891,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Open in..." = "الفتح في...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "خيارات %d";
 
 /* (No Commment) */
 "Other" = "أخرى";
@@ -900,6 +936,12 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Posts your comment" = "انشر تعليقك";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "الوحدات النمطية الأساسية";
+
+/* Button title for previous module item. */
+"Previous" = "السابق";
 
 /* (No Commment) */
 "Previous item" = "العنصر السابق";
@@ -985,6 +1027,12 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "ابحث هنا...";
 
+/* No comment provided by engineer. */
+"Select Option" = "حدد خيارًا";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "حدد خيارًا %d";
+
 /* (No Commment) */
 "Select file(s)" = "تحديد ملف(ملفات)";
 
@@ -1035,6 +1083,20 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Starts recording a media comment" = "بدء تسجيل تعليق الوسط";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "الحالة: تم الإكمال";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "الحالة: غير مكتمل";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "الحالة: مؤمّن";
+
+/* Module status label when started */
+"Status: Started" = "الحالة: تم البدء";
 
 /* (No Commment) */
 "Stay Logged In" = "الاستمرار في الجلسة";
@@ -1202,16 +1264,22 @@ Error: %@" = "حدث خطأ أثناء الوصول إلى الملف المطل
 /* (No Commment) */
 "This is a media message." = "هذه رسالة وسائط";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "لا يوجد مسارات إجادة تم إعدادها لعنصر الوحدة النمطية هذا.";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "قد يكون الوقت مناسبًا للقيام بأعمال إضافية.";
 
 /* Title of the Todo screen */
 "To Do" = "ما يجب القيام به";
 
+/* To-Do List landing page title */
+"To-Do List" = "قائمة ما يجب القيام به";
+
 /* (No Commment) */
 "To:" = "إلى:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "اليوم";
 
 /* No comment provided by engineer. */
@@ -1231,6 +1299,9 @@ Error: %@" = "حدث خطأ أثناء الوصول إلى الملف المطل
 
 /* (No Commment) */
 "Turn in %@" = "تسليم %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "النوع: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "أوه! لا يوجد اتصال بالإنترنت";

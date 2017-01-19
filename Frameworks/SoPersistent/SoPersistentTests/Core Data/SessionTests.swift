@@ -29,7 +29,7 @@ class SessionTests: XCTestCase {
         let storeID = StoreID(
             storeName: "PandaKit",
             modelFileName: "DataModel",
-            modelFileBundle: NSBundle(forClass: Panda.self),
+            modelFileBundle: Bundle(for: Panda.self),
             localizedErrorDescription: "Uh oh")
 
         it("finds or creates a managed object context") {
@@ -46,7 +46,7 @@ class StoreIDTests: XCTestCase {
 
     func testDescribeInit() {
         let storeName = "PandaKit"
-        let bundle = NSBundle(forClass: Panda.self)
+        let bundle = Bundle(for: Panda.self)
         let errorDescription = "Uh oh"
 
         it("can be initialized with a model file") {

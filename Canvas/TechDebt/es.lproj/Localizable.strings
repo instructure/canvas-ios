@@ -245,10 +245,10 @@ Primero debe completar:";
 /* Archive selected messages button */
 "Archive" = "Archivar";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Botón para archivar mensajes seleccionados";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Archivar todos los mensajes seleccionados";
 
 /* No comment provided by engineer. */
@@ -382,10 +382,10 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* (No Commment) */
 "Completed" = "Completado";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = " Botón para credactar mensaje";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Redactar un mensaje";
 
 /* Title for Conferences tab */

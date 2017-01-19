@@ -645,7 +645,7 @@ NSString *const CSGStudentSubmissionSectionNoSubmission = @"CSGStudentSubmission
     RACSignal *fetchCourse = [[TheKeymaster currentClient] fetchCourseWithCourseID:[course id]];
     RACSignal *fetchAssignments = [[TheKeymaster currentClient] fetchAssignmentsForContext:course includeSubmissions:YES];
     
-    RACSignal *fetchSelectedAssignment = [fetchAssignments flattenMap:^RACStream *(NSArray *assignments) {
+    RACSignal *fetchSelectedAssignment = [fetchAssignments flattenMap:^RACSignal *(NSArray *assignments) {
         __block CKIAssignment *selectedAssignment;
         [assignments enumerateObjectsUsingBlock:^(CKIAssignment *nextAssignment, NSUInteger idx, BOOL *stop) {
             if ([assignment.id isEqualToString:nextAssignment.id]) {

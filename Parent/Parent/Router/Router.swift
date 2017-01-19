@@ -20,8 +20,8 @@ import UIKit
 
 import TooLegit
 
-typealias RouteHandler = (params: [String : AnyObject]?) -> UIViewController
-typealias FallbackHandler = (url: NSURL?) -> UIViewController?
+typealias RouteHandler = (_ params: [String : Any]?) -> UIViewController
+typealias FallbackHandler = (_ url: URL?) -> UIViewController?
 
 class Router {
     
@@ -30,7 +30,7 @@ class Router {
     
     static let sharedInstance = Router()
     
-    private var fallbackHandler : FallbackHandler = { url in    // Private for now.  No need to open this up until it's needed
+    fileprivate var fallbackHandler : FallbackHandler = { url in    // Private for now.  No need to open this up until it's needed
         guard let url = url else {
             return UIViewController()
         }
@@ -43,8 +43,8 @@ class Router {
         return UIViewController()
     }
     
-    private var routes = [String : RouteHandler]()
-    private var numberFormatter = NSNumberFormatter()
+    fileprivate var routes = [String : RouteHandler]()
+    fileprivate var numberFormatter = NumberFormatter()
     
     // ---------------------------------------------
     // MARK: - Adding Routes
@@ -61,7 +61,7 @@ class Router {
         - route: URL Path Template for this handler
         - handler: completion block returning a view controller created from parameters in the URL Path Template
     */
-    func addRoute(route: String, handler: RouteHandler) {
+    func addRoute(_ route: String, handler: @escaping RouteHandler) {
         routes[route] = handler
     }
     
@@ -73,7 +73,7 @@ class Router {
      - Parameters
         - newRoutes: mapping similar to our map that key a Route Handler to a Route Template
     */
-    func addRoutesWithDictionary(newRoutes: [String : RouteHandler]) {
+    func addRoutesWithDictionary(_ newRoutes: [String : RouteHandler]) {
         for route in newRoutes.keys {
             routes[route] = newRoutes[route]
         }
@@ -89,7 +89,7 @@ class Router {
     
      - Returns: UIViewController if we have a mapping that matches the URL provided.  Returns nil if no mapping is available.
     */
-    func viewControllerForURL(url: NSURL) -> UIViewController? {
+    func viewControllerForURL(_ url: URL) -> UIViewController? {
         return matchURL(url)
     }
     
@@ -105,7 +105,8 @@ class Router {
      
      - Returns: The view controller that was routed to
      */
-    func route(fromController: UIViewController, toURL: NSURL, animated: Bool = true, modal: Bool = false) -> UIViewController {
+    @discardableResult
+    func route(_ fromController: UIViewController, toURL: URL, animated: Bool = true, modal: Bool = false) -> UIViewController {
         guard let viewController = matchURL(toURL) else {
             // Fallback view controller here
             // Return Fallback View Controller
@@ -124,11 +125,11 @@ class Router {
      - toRootViewController: ViewController to route to
      - animated: Should the transition be animated?
      */
-    func route(window: UIWindow, toRootViewController viewController: UIViewController, animated: Bool = true) {
+    func route(_ window: UIWindow, toRootViewController viewController: UIViewController, animated: Bool = true) {
         let navController = UINavigationController(rootViewController: viewController)
-        navController.navigationBarHidden = true
+        navController.isNavigationBarHidden = true
         let animationDuration = animated ? 0.5 : 0.0
-        UIView.transitionWithView(window, duration: animationDuration, options: UIViewAnimationOptions.TransitionNone, animations: { _ in
+        UIView.transition(with: window, duration: animationDuration, options: UIViewAnimationOptions(), animations: { _ in
             window.rootViewController = navController
             }, completion: nil)
     }
@@ -144,22 +145,20 @@ class Router {
     
      Returns: A View Controller created from the handler if possible, if not it returns nil
     */
-    private func matchURL(matchURL: NSURL) -> UIViewController? {
+    fileprivate func matchURL(_ matchURL: URL) -> UIViewController? {
         
         // Without a path, how can we route anywhere
         var urlComponents: [String] = []
-        if let path = matchURL.path as NSString? {
-            let realPath: NSString = path.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "/")).stringByReplacingOccurrencesOfString("api/v1/", withString: "")
-            urlComponents = realPath.pathComponents
-        }
+        let realPath = matchURL.path.replacingOccurrences(of: "api/v1/", with: "")
+        urlComponents = URL(fileURLWithPath: realPath).pathComponents.filter { $0 != "/" }
 
         guard urlComponents.count > 0 else { return nil }
         
         var matchingRoute : String? = nil
-        var params = [String: AnyObject]()
+        var params = [String: Any]()
         for route in routes.keys {
             // Verify that an invalid route wasn't passed in
-            guard let url = NSURL(string: route), routePathComponents = url.pathComponents where routePathComponents.count > 0 else {
+            guard let routePathComponents = URL(string: route)?.pathComponents, routePathComponents.count > 0 else {
                 continue
             }
             
@@ -169,12 +168,12 @@ class Router {
             }
             
             var componentsMatch = true
-            for (index, component) in routePathComponents.enumerate() {
+            for (index, component) in routePathComponents.enumerated() {
                 if component.hasPrefix(":") {
                     // remove the ":" from the path
-                    let parameterKey = component.substringFromIndex(component.startIndex.advancedBy(1))
+                    let parameterKey = component.substring(from: component.index(component.startIndex, offsetBy: 1))
                     let parameter = urlComponents[index]
-                    if let number = self.numberFormatter.numberFromString(parameter) {
+                    if let number = self.numberFormatter.number(from: parameter) {
                         params[parameterKey] = number
                     } else {
                         params[parameterKey] = parameter
@@ -201,8 +200,8 @@ class Router {
             }
         }
         
-        if let route = matchingRoute, handler = routes[route] {
-            return handler(params: params)
+        if let route = matchingRoute, let handler = routes[route] {
+            return handler(params)
         }
         
         return nil
@@ -223,13 +222,13 @@ extension UIViewController {
         - modal: do you want the view to be specifically presented as a modal
      
     */
-    func transitionToViewController(viewController: UIViewController, animated: Bool, modal: Bool) {
+    func transitionToViewController(_ viewController: UIViewController, animated: Bool, modal: Bool) {
         // for now we're just going to route using a navigationController or Modal
         if modal {
-            presentViewController(viewController, animated: animated, completion: { })
+            present(viewController, animated: animated, completion: { })
         } else {
             guard let navigationController = navigationController else {
-                presentViewController(viewController, animated: animated, completion: { })
+                present(viewController, animated: animated, completion: { })
                 return
             }
 

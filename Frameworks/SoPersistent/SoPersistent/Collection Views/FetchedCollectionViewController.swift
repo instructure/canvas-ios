@@ -20,15 +20,19 @@ import Foundation
 import CoreData
 
 
-public class FetchedCollectionViewController<M: NSManagedObject>: CollectionViewController {
+open class FetchedCollectionViewController<M: NSManagedObject>: CollectionViewController {
     
-    private (set) public var collection: FetchedCollection<M>!
+    fileprivate (set) open var collection: FetchedCollection<M>!
     
     public override init() {
         super.init()
     }
+
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
-    public func prepare<VM: CollectionViewCellViewModel>(collection: FetchedCollection<M>, refresher: Refresher? = nil, viewModelFactory: M->VM) {
+    open func prepare<VM: CollectionViewCellViewModel>(_ collection: FetchedCollection<M>, refresher: Refresher? = nil, viewModelFactory: @escaping (M)->VM) {
         self.collection = collection
         self.refresher = refresher
         dataSource = CollectionCollectionViewDataSource(collection: collection, viewModelFactory: viewModelFactory)

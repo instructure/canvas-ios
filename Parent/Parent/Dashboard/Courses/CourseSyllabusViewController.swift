@@ -21,7 +21,7 @@ import WhizzyWig
 import EnrollmentKit
 import TooLegit
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 import Armchair
 
@@ -33,14 +33,14 @@ class CourseSyllabusViewController: UIViewController {
     let whizzyWigView: WhizzyWigView
     internal var refresher: Refresher?
     
-    private var course: Course?
+    fileprivate var course: Course?
 
     init(courseID: String, studentID: String, session: Session) {
         self.courseID = courseID
         self.studentID = studentID
         self.session = session
-        whizzyWigView = WhizzyWigView(frame: CGRectZero)
-        whizzyWigView.scrollView.scrollEnabled = true
+        whizzyWigView = WhizzyWigView(frame: .zero)
+        whizzyWigView.scrollView.isScrollEnabled = true
         
         do {
             self.refresher = try Course.airwolfRefresher(session, studentID: studentID, courseID: courseID)
@@ -54,7 +54,7 @@ class CourseSyllabusViewController: UIViewController {
         whizzyWigView.contentInsets = UIEdgeInsets(top: 5.0, left: 15.0, bottom: 5.0, right: 15.0)
         whizzyWigView.useAPISafeLinks = false
 
-        session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .Course)).observeOn(UIScheduler()).startWithNext { next in
+        session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .course)).observe(on: UIScheduler()).startWithValues { next in
             guard let course = next as? Course else { return }
             self.whizzyWigView.loadHTMLString(course.syllabusBody ?? "", baseURL: session.baseURL)
             Armchair.userDidSignificantEvent(true)
@@ -70,8 +70,8 @@ class CourseSyllabusViewController: UIViewController {
 
         whizzyWigView.frame = view.bounds
         view.addSubview(whizzyWigView)
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[whizzy]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["whizzy": whizzyWigView]))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[whizzy]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["whizzy": whizzyWigView]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[whizzy]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["whizzy": whizzyWigView]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[whizzy]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["whizzy": whizzyWigView]))
         
         configureRefresher()
         
@@ -81,11 +81,11 @@ class CourseSyllabusViewController: UIViewController {
     func configureRefresher() {
         guard let r = refresher else { return }
         
-        r.refreshControl.addTarget(self, action: #selector(CourseSyllabusViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
+        r.refreshControl.addTarget(self, action: #selector(CourseSyllabusViewController.refresh), for: UIControlEvents.valueChanged)
         
         whizzyWigView.scrollView.addSubview(r.refreshControl)
         
-        r.refreshingCompleted.observeNext { [weak self] error in
+        r.refreshingCompleted.observeValues { [weak self] error in
             if let me = self, let error = error {
                 error.presentAlertFromViewController(me)
             }

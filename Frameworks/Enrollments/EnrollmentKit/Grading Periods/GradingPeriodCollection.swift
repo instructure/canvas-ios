@@ -19,21 +19,21 @@
 import SoPersistent
 
 public enum GradingPeriodItem: Equatable {
-    case All
-    case Some(GradingPeriod)
+    case all
+    case some(GradingPeriod)
 
     public var title: String {
         switch self {
-        case .All:
-            return NSLocalizedString("All Grading Periods", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "option to view results for all grading periods")
-        case .Some(let gp):
+        case .all:
+            return NSLocalizedString("All Grading Periods", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "option to view results for all grading periods")
+        case .some(let gp):
             return gp.title
         }
     }
 
     public var gradingPeriodID: String? {
         var gradingPeriodID: String?
-        if case .Some(let gp) = self {
+        if case .some(let gp) = self {
             gradingPeriodID = gp.id
         }
         return gradingPeriodID
@@ -42,52 +42,52 @@ public enum GradingPeriodItem: Equatable {
 
 public func ==(lhs: GradingPeriodItem, rhs: GradingPeriodItem) -> Bool {
     switch (lhs, rhs) {
-    case (.All, .All): return true
-    case (.Some(let l), .Some(let r)):
+    case (.all, .all): return true
+    case (.some(let l), .some(let r)):
         return l.id == r.id
     default: return false
     }
 }
 
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 /**
  A collection of GradingPeriodItems where the first row in the first section is 'All'.
  */
-public class GradingPeriodCollection: Collection {
-    public let selectedGradingPeriod: MutableProperty<GradingPeriodItem?> = MutableProperty(nil)
+open class GradingPeriodCollection: SoPersistent.Collection {
+    open let selectedGradingPeriod: MutableProperty<GradingPeriodItem?> = MutableProperty(nil)
 
-    public let collectionUpdates: Signal<[CollectionUpdate<GradingPeriodItem>], NoError>
+    open let collectionUpdates: Signal<[CollectionUpdate<GradingPeriodItem>], NoError>
     let updatesObserver: Observer<[CollectionUpdate<GradingPeriodItem>], NoError>
 
-    private let gradingPeriods: FetchedCollection<GradingPeriod>
-    private let allSection = 0
-    private var disposable: Disposable?
+    fileprivate let gradingPeriods: FetchedCollection<GradingPeriod>
+    fileprivate let allSection = 0
+    fileprivate var disposable: Disposable?
 
     public init(course: Course, gradingPeriods: FetchedCollection<GradingPeriod>) {
         self.gradingPeriods = gradingPeriods
         (collectionUpdates, updatesObserver) = Signal.pipe()
-        disposable = gradingPeriods.collectionUpdates.observeOn(UIScheduler()).observeNext { [weak self] updates in
+        disposable = gradingPeriods.collectionUpdates.observe(on: UIScheduler()).observeValues { [weak self] updates in
             guard let me = self else { return }
-            me.updatesObserver.sendNext(updates.map(me.offsetUpdate))
+            me.updatesObserver.send(value: updates.map(me.offsetUpdate))
             
             self?.selectInitialGradingPeriod(course)
         }.map(ScopedDisposable.init)
         selectInitialGradingPeriod(course)
     }
     
-    private func selectInitialGradingPeriod(course: Course) {
+    fileprivate func selectInitialGradingPeriod(_ course: Course) {
         if selectedGradingPeriod.value != nil { return }
         
-        selectedGradingPeriod.value = gradingPeriods.filter({ $0.id == course.currentGradingPeriodID }).first.map(GradingPeriodItem.Some) ?? .All
+        selectedGradingPeriod.value = gradingPeriods.filter({ $0.id == course.currentGradingPeriodID }).first.map(GradingPeriodItem.some) ?? .all
     }
 
-    public func numberOfSections() -> Int {
+    open func numberOfSections() -> Int {
         return gradingPeriods.numberOfSections() + 1
     }
 
-    public func numberOfItemsInSection(section: Int) -> Int {
+    open func numberOfItemsInSection(_ section: Int) -> Int {
         if section == allSection {
             return 1
         }
@@ -95,41 +95,41 @@ public class GradingPeriodCollection: Collection {
         return gradingPeriods.numberOfItemsInSection(section - 1)
     }
 
-    public func titleForSection(section: Int) -> String? {
+    open func titleForSection(_ section: Int) -> String? {
         if section == allSection {
             return nil
         }
         return gradingPeriods.titleForSection(section - 1)
     }
 
-    public subscript(indexPath: NSIndexPath) -> GradingPeriodItem {
+    open subscript(indexPath: IndexPath) -> GradingPeriodItem {
         if indexPath.section == allSection {
-            return .All
+            return .all
         }
 
         let gradingPeriod = gradingPeriods[indexPath.incrementSection(by: -1)]
-        return .Some(gradingPeriod)
+        return .some(gradingPeriod)
     }
 
-    func offsetUpdate(update: CollectionUpdate<GradingPeriod>) -> CollectionUpdate<GradingPeriodItem> {
+    func offsetUpdate(_ update: CollectionUpdate<GradingPeriod>) -> CollectionUpdate<GradingPeriodItem> {
         switch update {
-        case .Reload:
-            return .Reload
-        case .Inserted(let indexPath, let m):
-            return .Inserted(indexPath.incrementSection(), .Some(m))
-        case .Updated(let indexPath, let m):
-            return .Updated(indexPath.incrementSection(), .Some(m))
-        case .Moved(let to, let from, let m):
-            return .Moved(to.incrementSection(), from.incrementSection(), .Some(m))
-        case .Deleted(let indexPath, let m):
-            return .Deleted(indexPath.incrementSection(), .Some(m))
-        case .SectionInserted, .SectionDeleted: fatalError("there should _always_ be 2 sections")
+        case .reload:
+            return .reload
+        case .inserted(let indexPath, let m, let animated):
+            return .inserted(indexPath.incrementSection(), .some(m), animated: animated)
+        case .updated(let indexPath, let m, let animated):
+            return .updated(indexPath.incrementSection(), .some(m), animated: animated)
+        case .moved(let from, let to, let m, let animated):
+            return .moved(from.incrementSection(), to.incrementSection(), .some(m), animated: animated)
+        case .deleted(let indexPath, let m, let animated):
+            return .deleted(indexPath.incrementSection(), .some(m), animated: animated)
+        case .sectionInserted, .sectionDeleted: fatalError("there should _always_ be 2 sections")
         }
     }
 }
 
-extension NSIndexPath {
-    func incrementSection(by n: Int = 1) -> NSIndexPath {
-        return NSIndexPath(forRow: row, inSection: section + n)
+extension IndexPath {
+    func incrementSection(by n: Int = 1) -> IndexPath {
+        return IndexPath(row: row, section: section + n)
     }
 }

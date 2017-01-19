@@ -32,31 +32,31 @@ class AlertCell: UITableViewCell {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var iconImageView: UIImageView!
 
-    var highlightColor = UIColor.whiteColor()
+    var highlightColor = UIColor.white
     var alert: Alert? = nil
     var session : Session? = nil
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        selectionStyle = .None
+        selectionStyle = .none
         self.accessibilityCustomActions = [UIAccessibilityCustomAction(name: "Dismiss", target: self, selector: #selector(AlertCell.dismiss(_:)))]
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        contentView.backgroundColor = selected ? highlightColor : UIColor.whiteColor()
+        contentView.backgroundColor = selected ? highlightColor : UIColor.white
     }
 
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
 
-        contentView.backgroundColor = highlighted ? highlightColor : UIColor.whiteColor()
+        contentView.backgroundColor = highlighted ? highlightColor : UIColor.white
     }
 
-    func dismiss(obj: AnyObject?) {
-        guard let _alert = alert, _session = session else { return }
+    func dismiss(_ obj: Any?) {
+        guard let _alert = alert, let _session = session else { return }
 
         _alert.dismiss(_session)
     }

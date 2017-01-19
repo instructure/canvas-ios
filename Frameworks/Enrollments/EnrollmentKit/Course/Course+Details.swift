@@ -20,7 +20,7 @@ import SoPersistent
 import TooLegit
 
 extension Course {
-    public static func observer(session: Session, courseID: String) throws -> ManagedObjectObserver<Course> {
+    public static func observer(_ session: Session, courseID: String) throws -> ManagedObjectObserver<Course> {
         let context = try session.enrollmentManagedObjectContext()
         let predicate = NSPredicate(format: "%K == %@", "id", courseID)
         return try ManagedObjectObserver(predicate: predicate, inContext: context)

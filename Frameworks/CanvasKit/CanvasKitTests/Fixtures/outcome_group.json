@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "url": "/api/v1/accounts/1/outcome_groups/1",
+    "parent_outcome_group": "",
+    "context_id": 1,
+    "context_type": "Account",
+    "title": "Outcome group title",
+    "description": "Outcome group description",
+    "vendor_guid": "customid9000",
+    "subgroups_url": "/api/v1/accounts/1/outcome_groups/1/subgroups",
+    "outcomes_url": "/api/v1/accounts/1/outcome_groups/1/outcomes",
+    "import_url": "/api/v1/accounts/1/outcome_groups/1/import",
+    "can_edit": "true"
+}

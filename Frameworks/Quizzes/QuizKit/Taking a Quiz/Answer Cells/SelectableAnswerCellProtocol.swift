@@ -19,5 +19,5 @@
 import UIKit
 
 @objc protocol SelectableAnswerCell {
-    func configureForState(selected selected: Bool)
+    func configureForState(selected: Bool)
 }

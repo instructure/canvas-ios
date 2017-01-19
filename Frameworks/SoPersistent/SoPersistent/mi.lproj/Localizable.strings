@@ -7,7 +7,7 @@
 /* tile for error reading cache */
 "Read Error" = "Hapa A tai'oi";
 
-/* SoPersistent Tests database fails */
+/* (No Commment) */
 "There was a problem loading the SoPersistentTests database file." = "He ko he raru uta i te kōnae pātengi raraunga Whakamātautau Persistent.";
 
 /* Persistence error message */

@@ -19,39 +19,37 @@
 import UIKit
 import CalendarKit
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import SoPersistent
 import EnrollmentKit
 
 extension EventDetailsViewModel {
-    static func detailsForCalendarEvent(baseURL: NSURL, studentID: String, context: UIViewController) -> (calendarEvent: CalendarEvent) -> [EventDetailsViewModel] {
-        return { calendarEvent in
-            var actionURL: NSURL = Router.sharedInstance.dashboardRoute()
-            if let courseID = ContextID(canvasContext: calendarEvent.contextCode)?.id {
-                actionURL = Router.sharedInstance.calendarEventDetailsRoute(studentID: studentID, courseID: courseID, calendarEventID: calendarEvent.id)
-            }
-
-            var vms: [EventDetailsViewModel] = [
-                .Info(name: calendarEvent.title ?? "", submissionInfo: calendarEvent.submittedVerboseText, submissionColor: calendarEvent.submittedColor),
-                .Reminder(date: calendarEvent.scheduledReminder()?.fireDate, remindable: calendarEvent, actionURL: actionURL, context: context),
-            ]
-
-            if let startAt = calendarEvent.startAt, endAt = calendarEvent.endAt {
-                let dateVM: EventDetailsViewModel = .Date(start: startAt, end: endAt)
-                vms.insert(dateVM, atIndex: 1)
-            }
-
-            if calendarEvent.locationName != nil || calendarEvent.locationAddress != nil {
-                let locationVM: EventDetailsViewModel = .Location(locationName: calendarEvent.locationName, address: calendarEvent.locationAddress)
-                vms.append(locationVM)
-            }
-
-            if let htmlDescription = calendarEvent.htmlDescription {
-                vms.append(.Details(baseURL: baseURL, deets: htmlDescription))
-            }
-
-            return vms
+    static func detailsForCalendarEvent(_ baseURL: URL, studentID: String, context: UIViewController, calendarEvent: CalendarEvent) -> [EventDetailsViewModel] {
+        var actionURL: URL = Router.sharedInstance.dashboardRoute()
+        if let courseID = ContextID(canvasContext: calendarEvent.contextCode)?.id {
+            actionURL = Router.sharedInstance.calendarEventDetailsRoute(studentID: studentID, courseID: courseID, calendarEventID: calendarEvent.id)
         }
+
+        var vms: [EventDetailsViewModel] = [
+            .info(name: calendarEvent.title ?? "", submissionInfo: calendarEvent.submittedVerboseText, submissionColor: calendarEvent.submittedColor),
+            .reminder(date: calendarEvent.scheduledReminder()?.fireDate, remindable: calendarEvent, actionURL: actionURL, context: context),
+        ]
+
+        if let startAt = calendarEvent.startAt, let endAt = calendarEvent.endAt {
+            let dateVM: EventDetailsViewModel = .date(start: startAt, end: endAt)
+            vms.insert(dateVM, at: 1)
+        }
+
+        if calendarEvent.locationName != nil || calendarEvent.locationAddress != nil {
+            let locationVM: EventDetailsViewModel = .location(locationName: calendarEvent.locationName, address: calendarEvent.locationAddress)
+            vms.append(locationVM)
+        }
+
+        if let htmlDescription = calendarEvent.htmlDescription {
+            vms.append(.details(baseURL: baseURL, deets: htmlDescription))
+        }
+
+        return vms
     }
 }
 
@@ -64,14 +62,18 @@ class CalendarEventDetailsViewController: CalendarEvent.DetailViewController {
         super.init()
         let observer = try CalendarEvent.observer(session, studentID: studentID, calendarEventID: calendarEventID)
         let refresher = try CalendarEvent.refresher(session, studentID: studentID, calendarEventID: calendarEventID)
-
-        prepare(observer, refresher: refresher, detailsFactory: EventDetailsViewModel.detailsForCalendarEvent(session.baseURL, studentID: studentID, context: self))
-
-        disposable = observer.signal.map { $0.1 }
-            .observeNext { _ in
+        
+        let deets: (CalendarEvent) -> [EventDetailsViewModel] = { [weak self] event in
+            guard let me = self else { return [] }
+            return EventDetailsViewModel.detailsForCalendarEvent(session.baseURL, studentID: studentID, context: me, calendarEvent: event)
         }
 
-        session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .Course)).observeOn(UIScheduler()).startWithNext { next in
+        prepare(observer, refresher: refresher, detailsFactory: deets)
+        disposable = observer.signal.map { $0.1 }
+            .observeValues { _ in
+        }
+
+        session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .course)).observe(on: UIScheduler()).startWithValues { next in
             guard let course = next as? Course else { return }
             self.title = course.name
         }

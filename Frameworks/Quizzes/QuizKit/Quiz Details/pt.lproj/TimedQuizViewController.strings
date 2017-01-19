@@ -1,0 +1,9 @@
+/* Class = "UILabel"; text = "You have 5 minutes."; ObjectID = "KWG-Lz-03A"; */
+"KWG-Lz-03A.text" = "Você tem 5 minutos.";
+
+/* Class = "UILabel"; text = "Hide/show timer by pressing the timer."; ObjectID = "VPh-7F-wIC"; */
+"VPh-7F-wIC.text" = "Ocultar/mostrar temporizador ao premir o temporizador.";
+
+/* Class = "UILabel"; text = "Timed Quiz"; ObjectID = "aPJ-b1-PDA"; */
+"aPJ-b1-PDA.text" = "Questionário programado";
+

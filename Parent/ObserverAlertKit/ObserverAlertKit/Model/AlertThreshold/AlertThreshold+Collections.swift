@@ -23,7 +23,7 @@ import SoPersistent
 import SoLazy
 
 extension AlertThreshold {
-    static func studentPredicate(studentID: String) -> NSPredicate {
+    static func studentPredicate(_ studentID: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@", "studentID", studentID)
     }
 }
@@ -32,14 +32,16 @@ extension AlertThreshold {
 // MARK: - Alerts collection for current observee
 // ---------------------------------------------
 extension AlertThreshold {
-    public static func collectionOfAlertThresholds(session: Session, studentID: String) throws -> FetchedCollection<AlertThreshold> {
+    public static func collectionOfAlertThresholds(_ session: Session, studentID: String) throws -> FetchedCollection<AlertThreshold> {
         let predicate = studentPredicate(studentID)
-        let frc = AlertThreshold.fetchedResults(predicate, sortDescriptors: ["type".ascending], sectionNameKeypath: nil, inContext: try session.alertsManagedObjectContext())
+        let context = try session.alertsManagedObjectContext()
 
-        return try FetchedCollection<AlertThreshold>(frc: frc)
+        return try FetchedCollection<AlertThreshold>(frc:
+            context.fetchedResults(predicate, sortDescriptors: ["type".ascending])
+        )
     }
 
-    public static func refresher(session: Session) throws -> Refresher {
+    public static func refresher(_ session: Session) throws -> Refresher {
         let remote = try AlertThreshold.getAllAlertThresholds(session)
         let context = try session.alertsManagedObjectContext()
         let sync = AlertThreshold.syncSignalProducer(inContext: context, fetchRemote: remote)

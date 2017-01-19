@@ -245,10 +245,10 @@ Você primeiro precisa concluir:";
 /* Archive selected messages button */
 "Archive" = "Arquivo";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Botão Arquivar Mensagens Selecionadas";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Arquivar todas as mensagens selecionadas";
 
 /* No comment provided by engineer. */
@@ -382,10 +382,10 @@ Se você acredita que um questionário contém conteúdo sem suporte, por favor,
 /* (No Commment) */
 "Completed" = "Completado";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Botão Compor Mensagem";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Compor uma mensagem";
 
 /* Title for Conferences tab */

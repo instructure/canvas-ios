@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "name": "Sheldon Cooper",
+    "sortable_name": "Cooper, Sheldon",
+    "short_name": "Shelly",
+    "sis_user_id": "scooper",
+    "login_id": "sheldon@caltech.example.com",
+    "avatar_url": "http://instructure.com/sheldon.png",
+    "enrollments": [],
+    "primary_email": "sheldon@caltech.example.com",
+    "locale": "tlh",
+    "last_login": "2012-05-30T17:45:25Z",
+    "time_zone": "America/Denver"
+}

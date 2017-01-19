@@ -37,18 +37,18 @@ class CourseDetailsTests: UnitTestCase {
     func testCourse_observer_observesCourse() {
         attempt {
             let observer = try Course.observer(session, courseID: "1")
-            let expectation = expectationWithDescription("it observes course matching id")
+            let e = expectation(description: "it observes course matching id")
             observer.signal.observeResult { result in
                 switch result {
-                case .Success(let value):
-                    if value.0 == .Insert {
-                        expectation.fulfill()
+                case .success(let value):
+                    if value.0 == .insert {
+                        e.fulfill()
                     }
                 default: break
                 }
             }
             Course.build(inSession: session) { $0.id = "1" }
-            waitForExpectationsWithTimeout(1, handler: nil)
+            waitForExpectations(timeout: 1, handler: nil)
         }
     }
 }

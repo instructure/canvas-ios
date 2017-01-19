@@ -17,12 +17,12 @@
     
 
 import UIKit
-import ReactiveCocoa
+import ReactiveSwift
 import AssignmentKit
 import WhizzyWig
 import SoLazy
 
-public class SubmissionStatusView: UIView {
+open class SubmissionStatusView: UIView {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var turnedInLabel: UILabel!
@@ -32,7 +32,7 @@ public class SubmissionStatusView: UIView {
     
     var viewModel: SubmissionStatusViewModel!
     var showSubmissionHistoryButton: Bool = true
-    public var viewSubmissionDetailsPressedHandler: (() -> Void)?
+    open var viewSubmissionDetailsPressedHandler: (() -> Void)?
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -46,49 +46,49 @@ public class SubmissionStatusView: UIView {
         bindViewModel()
     }
     
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         bindViewModel()
     }
     
     func bindViewModel() {
         viewModel.hasSubmitted.producer
-            .observeOn(UIScheduler())
-            .startWithNext { submitted in
-                self.titleLabel.hidden = submitted
-                self.submittedImageView.hidden = !submitted
-                self.turnedInLabel.hidden = !submitted
-                self.submissionDetailsButton.hidden = !self.showSubmissionHistoryButton
+            .observe(on: UIScheduler())
+            .startWithValues { submitted in
+                self.titleLabel.isHidden = submitted
+                self.submittedImageView.isHidden = !submitted
+                self.turnedInLabel.isHidden = !submitted
+                self.submissionDetailsButton.isHidden = !self.showSubmissionHistoryButton
         }
         
         self.titleLabel.rac_text <~ viewModel.submittedStatus.producer
             .map { $0.description }
         self.submittedDateLabel.rac_text <~ viewModel.submittedDate
         
-        viewModel.submittedStatus.producer.observeOn(UIScheduler()).startWithNext { status in
+        viewModel.submittedStatus.producer.observe(on: UIScheduler()).startWithValues { status in
             let textColor: UIColor
             switch status {
-            case .Submitted(.Excused):
+            case .submitted(.excused):
                 textColor = UIColor(red:0.28, green:0.69, blue:0.29, alpha:1)
-            case .Submitted(.Late):
+            case .submitted(.late):
                 textColor = UIColor(red:0.99, green:0.52, blue:0.41, alpha:1)
-            default: textColor = UIColor.darkGrayColor()
+            default: textColor = .darkGray
             }
             self.submittedDateLabel.textColor = textColor
         }
         
         
         //submission details button
-        submissionDetailsButton.addTarget(self, action:#selector(SubmissionStatusView.viewSubmissionDetailsPressed(_:)), forControlEvents: .TouchUpInside)
+        submissionDetailsButton.addTarget(self, action:#selector(SubmissionStatusView.viewSubmissionDetailsPressed(_:)), for: .touchUpInside)
     }
     
     func setupView() {
-        let view = NSBundle(forClass: SubmissionStatusView.self).loadNibNamed("SubmissionStatusView", owner: self, options: nil)!.first as! UIView
+        let view = Bundle(for: SubmissionStatusView.self).loadNibNamed("SubmissionStatusView", owner: self, options: nil)!.first as! UIView
         view.frame = self.bounds
         self.addSubview(view)
     }
 
-    public func viewSubmissionDetailsPressed(sender: UIButton!) {
+    open func viewSubmissionDetailsPressed(_ sender: UIButton!) {
         viewSubmissionDetailsPressedHandler?()
     }
 }

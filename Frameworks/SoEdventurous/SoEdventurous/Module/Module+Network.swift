@@ -19,11 +19,11 @@
 import Foundation
 import TooLegit
 import Marshal
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 
 extension Module {
-    public static func getModules(session: Session, courseID: String) throws -> SignalProducer<[JSONObject], NSError> {
+    public static func getModules(_ session: Session, courseID: String) throws -> SignalProducer<[JSONObject], NSError> {
         let params = ["include": ["items"]]
         let request = try session.GET(api/v1/"courses"/courseID/"modules", parameters: params)
         return session.paginatedJSONSignalProducer(request).map(insert(courseID, forKey: "course_id"))

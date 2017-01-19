@@ -20,7 +20,7 @@ import AssignmentKit
 import EnrollmentKit
 import SoPretty
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import SwiftGrader
 import SoLazy
 
@@ -32,7 +32,7 @@ class AssignmentsTableViewController: Assignment.TableViewController {
     
     init(session: Session, courseID: String) throws {
         self.session = session
-        self.context = ContextID(id: courseID, context: .Course)
+        self.context = .course(withID: courseID)
         self.courseRefresher = try Course.refresher(session)
         super.init()
         
@@ -40,10 +40,10 @@ class AssignmentsTableViewController: Assignment.TableViewController {
         let dataSource = session.enrollmentsDataSource
         
         prepare(try Assignment.collectionByAssignmentGroup(session, courseID: courseID), refresher: try Assignment.refresher(session, courseID: courseID)) { (assignment: Assignment)->ColorfulViewModel in
-            let colorful = ColorfulViewModel(style: .Basic)
+            let colorful = ColorfulViewModel(features: [.icon])
             
             colorful.title.value = assignment.name
-            colorful.color <~ dataSource.producer(ContextID(id: courseID, context: .Course)).map { $0?.color ?? .prettyGray() }
+            colorful.color <~ dataSource.color(for: .course(withID: courseID))
             
             return colorful
         }
@@ -53,7 +53,7 @@ class AssignmentsTableViewController: Assignment.TableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let assignment = collection[indexPath]
         
         do {

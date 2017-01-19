@@ -30,7 +30,7 @@ class PathTests: XCTestCase {
     }
 
     func testBuildingPathsFromURL() {
-        let baseURL = NSURL(string: "http://api.com")!
+        let baseURL = URL(string: "http://api.com")!
         XCTAssertEqual("http://api.com/users", (baseURL/"users").absoluteString)
     }
 

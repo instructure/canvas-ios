@@ -23,6 +23,7 @@ import TechDebt
 import CanvasKit
 import SoProgressive
 import ReactiveCocoa
+import ReactiveSwift
 
 class LegacyModuleProgressShimSpec: QuickSpec {
     override func spec() {
@@ -33,8 +34,8 @@ class LegacyModuleProgressShimSpec: QuickSpec {
                 var disposable: Disposable?
 
                 waitUntil { done in
-                    disposable = session.progressDispatcher.onProgress.observeNext { progress in
-                        if progress.itemID == "1" && progress.kind == .Viewed && progress.itemType == .LegacyModuleProgressShim {
+                    disposable = session.progressDispatcher.onProgress.observeValues { progress in
+                        if progress.itemID == "1" && progress.kind == .viewed && progress.itemType == .legacyModuleProgressShim {
                             done()
                         }
                     }

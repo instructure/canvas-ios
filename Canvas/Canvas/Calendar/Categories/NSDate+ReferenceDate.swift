@@ -19,12 +19,12 @@
 import Foundation
 
 
-public extension NSDate {
+public extension Date {
     
-    func daysSince1970(calendar: NSCalendar)-> Int{
-        let originationDate = NSDate(timeIntervalSince1970: 0).startOfDay(calendar)
+    func daysSince1970(_ calendar: Calendar)-> Int{
+        let originationDate = Date(timeIntervalSince1970: 0).startOfDay(calendar)
 
-        let components = calendar.components(.Day, fromDate: originationDate, toDate: self, options: NSCalendarOptions())
-        return components.day
+        let components = calendar.dateComponents([.day], from: originationDate, to: self)
+        return components.day!
     }
 }

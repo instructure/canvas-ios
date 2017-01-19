@@ -31,13 +31,13 @@ public final class RubricCriterionRating: NSManagedObject {
 }
 
 extension RubricCriterionRating {
-    public static func uniquePredicateForObject(criterionID: String, assignmentID: String, json: JSONObject) throws -> NSPredicate {
-        let id : String = try json <| "id" ?? ""
+    public static func uniquePredicateForObject(_ criterionID: String, assignmentID: String, json: JSONObject) throws -> NSPredicate {
+        let id : String = (try json <| "id") ?? ""
         return NSPredicate(format: "%K == %@ && %K == %@ && %K.%K == %@", "id", id, "assignmentID", assignmentID, "criterion", "id", criterionID)
     }
     
-    public func updateValues(json: JSONObject, assignmentID: String, inContext context: NSManagedObjectContext) throws {
-            id = try json <| "id" ?? ""
+    public func updateValues(_ json: JSONObject, assignmentID: String, inContext context: NSManagedObjectContext) throws {
+            id = (try json <| "id") ?? ""
             points = try json <| "points"
             ratingDescription = try json <| "description"
             self.assignmentID = assignmentID

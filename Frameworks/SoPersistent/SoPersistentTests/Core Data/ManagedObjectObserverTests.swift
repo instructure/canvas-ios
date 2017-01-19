@@ -21,7 +21,7 @@ import SoPersistent
 import SoAutomated
 import CoreData
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 
 class ManagedObjectObserverChangeTests: XCTestCase {
     let session = Session.inMemory
@@ -43,45 +43,30 @@ class ManagedObjectObserverChangeTests: XCTestCase {
     }
 
     func testInsert() {
-        guard let observer = observer, managedObjectContext = managedObjectContext else { return }
-        let expectation = expectationWithDescription("object was inserted")
-        observer.signal.assumeNoErrors().observeNext { change, _ in
-            if case .Insert = change {
+        guard let observer = observer, let managedObjectContext = managedObjectContext else { return }
+        let expectation = self.expectation(description: "object was inserted")
+        observer.signal.assumeNoErrors().observeValues { change, _ in
+            if case .insert = change {
                 expectation.fulfill()
             }
         }
         Panda.build(managedObjectContext)
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
     }
 
     func testUpdate() {
-        guard let observer = observer, object = object else { return }
-        let expectation = expectationWithDescription("object was updated")
-        observer.observe(object, change: .Update, withExpectation: expectation)
+        guard let observer = observer, let object = object else { return }
+        let expectation = self.expectation(description: "object was updated")
+        observer.observe(object, change: .update, withExpectation: expectation)
         object.name = "test update"
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
     }
 
     func testDelete() {
-        guard let observer = observer, object = object else { return }
-        let expectation = expectationWithDescription("object was deleted")
-        observer.observe(object, change: .Delete, withExpectation: expectation)
-        managedObjectContext?.deleteObject(object)
-        waitForExpectationsWithTimeout(1, handler: nil)
-    }
-}
-
-class ManagedObjectObserverTests: XCTestCase {
-    func testInitThrows() {
-        attempt {
-            let session = Session.inMemory
-            let predicate = NSPredicate(value: true)
-            guard let model = try session.soPersistentTestsManagedObjectContext().persistentStoreCoordinator?.managedObjectModel else {
-                XCTFail("expected a managedObjectModel")
-                return
-            }
-            let errorContext = NSManagedObjectContext.errorProneContext(model)
-            XCTAssertThrowsError(try ManagedObjectObserver<Panda>(predicate: predicate, inContext: errorContext))
-        }
+        guard let observer = observer, let object = object else { return }
+        let expectation = self.expectation(description: "object was deleted")
+        observer.observe(object, change: .delete, withExpectation: expectation)
+        managedObjectContext?.delete(object)
+        waitForExpectations(timeout: 1, handler: nil)
     }
 }

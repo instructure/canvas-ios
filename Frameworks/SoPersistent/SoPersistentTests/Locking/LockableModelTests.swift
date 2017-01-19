@@ -24,7 +24,7 @@ class LockableModelTests: XCTestCase {
     func testUpdateLockStatus() {
         attempt {
             let lockable = MyLockable(lockedForUser: false, lockExplanation: nil, canView: true)
-            let json = ["locked_for_user": true, "lock_explanation": "Something here", "lock_info" : ["can_view": false]]
+            let json: [String: Any] = ["locked_for_user": true, "lock_explanation": "Something here", "lock_info" : ["can_view": false]]
             try lockable.updateLockStatus(json)
             XCTAssert(lockable.lockedForUser, "it updates lockedForUser")
             XCTAssertFalse(lockable.canView, "it updates canView")

@@ -1,8 +1,7 @@
-/* record button a11y hint
-   stop record button a11y hint */
+/* stop record button a11y hint */
 "Begin recording" = "Begynn opptak";
 
-/* Cancel button */
+/* Cancel button title */
 "Cancel" = "Avbryt";
 
 /* Delete button */
@@ -30,7 +29,7 @@
 "Play back recording" = "Avspill opptak";
 
 /* Title for playback error messages */
-"Playback Error" = "Avspillingsfeil";
+"Playback Error" = "Avspillingsfeil ";
 
 /* Record button a11y label */
 "Record" = "Opptak";
@@ -44,7 +43,7 @@
 /* Record button a11y label */
 "Request Audio Recording Permission" = "Forespørsel om tillatelse til lydopptak";
 
-/* record button a11y hint */
+/* stop record button a11y hint */
 "Request Permission to record audio" = "Be om tillatelse til å foreta lydopptak";
 
 /* stop recording button a11y label */

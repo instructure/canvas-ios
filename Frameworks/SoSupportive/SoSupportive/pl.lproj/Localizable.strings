@@ -31,6 +31,9 @@
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "Coś się zepsuło ale poradzę sobie bez tego";
 
+/* Title for the subject field */
+"Subject" = "Temat";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Dziękujemy, twoja prośba została odebrana!";
 
@@ -46,4 +49,3 @@
 /* Title for the email field */
 "Your Email" = "Twój adres email";
 
-"Subject" = "Temat";

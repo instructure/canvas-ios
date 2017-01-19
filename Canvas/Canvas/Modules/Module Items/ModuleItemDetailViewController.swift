@@ -17,6 +17,7 @@
 import SoEdventurous
 import SoPersistent
 import TooLegit
+import ReactiveSwift
 import ReactiveCocoa
 import Result
 import Cartography
@@ -29,43 +30,55 @@ class ModuleItemDetailViewController: UIViewController {
     let courseID: String
     let viewModel: ModuleItemViewModel
     let refresher: Refresher
-    let route: (UIViewController, NSURL) -> Void
+    let route: (UIViewController, URL) -> Void
 
     lazy var toolbar: UIToolbar = {
         let toolbar = UIToolbar()
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(toolbar)
-        self.view.addConstraint(NSLayoutConstraint(item: toolbar, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Top, multiplier: 1, constant: 0))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[toolbar]|", options: [], metrics: nil, views: ["toolbar": toolbar]))
+        self.view.addConstraint(NSLayoutConstraint(item: toolbar, attribute: .bottom, relatedBy: .equal, toItem: self.bottomLayoutGuide, attribute: .top, multiplier: 1, constant: 0))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[toolbar]|", options: [], metrics: nil, views: ["toolbar": toolbar]))
         return toolbar
     }()
     lazy var nextButton: UIBarButtonItem = {
         let title = NSLocalizedString("Next", comment: "Button title for next module item.")
-        let btn = UIBarButtonItem(title: title, style: .Plain, target: self.viewModel.nextCocoaAction, action: CocoaAction.selector)
+        let btn = UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
         btn.accessibilityIdentifier = "next_module_item_button"
-        btn.rac_enabled <~ self.viewModel.nextAction.enabled
+
+        let nextAction = self.viewModel.nextAction
+        btn.reactive.pressed = CocoaAction(nextAction)
+        btn.reactive.isEnabled <~ nextAction.isEnabled
+        
         return btn
     }()
     lazy var previousButton: UIBarButtonItem = {
         let title = NSLocalizedString("Previous", comment: "Button title for previous module item.")
-        let btn = UIBarButtonItem(title: title, style: .Plain, target: self.viewModel.previousCocoaAction, action: CocoaAction.selector)
+        let btn = UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
         btn.accessibilityIdentifier = "previous_module_item_button"
-        btn.rac_enabled <~ self.viewModel.previousAction.enabled
+        
+        let previousAction = self.viewModel.previousAction
+        btn.reactive.pressed = CocoaAction(previousAction)
+        btn.reactive.isEnabled <~ previousAction.isEnabled
+        
         return btn
     }()
     lazy var markDoneButton: UIBarButtonItem = {
         let title = NSLocalizedString("Mark as Done", comment: "Button title for mark as done.")
-        let btn = UIBarButtonItem(title: title, style: .Plain, target: self.viewModel.markAsDoneCocoaAction, action: CocoaAction.selector)
+        let btn = UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
         btn.accessibilityIdentifier = "mark_module_item_done_button"
-        btn.rac_enabled <~ self.viewModel.markAsDoneAction.enabled
+        
+        let markAsDone = self.viewModel.markAsDoneAction
+        btn.reactive.pressed = CocoaAction(markAsDone)
+        btn.reactive.isEnabled <~ markAsDone.isEnabled
+        
         return btn
     }()
 
 
-    init(session: Session, courseID: String, moduleID: String, moduleItemID: String, route: (UIViewController, NSURL) -> Void) throws {
+    init(session: Session, courseID: String, moduleID: String, moduleItemID: String, route: @escaping (UIViewController, URL) -> Void) throws {
         self.session = session
         viewModel = try ModuleItemViewModel(session: session, moduleID: moduleID, moduleItemID: moduleItemID)
-        refresher = try Module.refresher(session, courseID: courseID)
+        refresher = try Module.refresher(session: session, courseID: courseID)
         self.route = route
         self.courseID = courseID
         super.init(nibName: nil, bundle: nil)
@@ -75,7 +88,7 @@ class ModuleItemDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         refresher.refresh(false)
@@ -83,53 +96,54 @@ class ModuleItemDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .whiteColor()
+        view.backgroundColor = .white
+        automaticallyAdjustsScrollViewInsets = false
         rac_title <~ viewModel.title
 
         /// toolbar
-        let space = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.items = [previousButton, space, nextButton]
 
         /// embed item view controller
-        combineLatest(viewModel.moduleItemID.producer, viewModel.markAsDoneAction.enabled.producer, viewModel.embeddedViewController)
+        SignalProducer.combineLatest(viewModel.moduleItemID.producer, viewModel.markAsDoneAction.isEnabled.producer, viewModel.embeddedViewController)
             .map { _, _, embeddedViewController in embeddedViewController }
             .combinePrevious(nil)
-            .observeOn(UIScheduler())
-            .startWithNext(embed)
+            .observe(on: UIScheduler())
+            .startWithValues(embed)
 
         /// handle errors
-        viewModel.errorSignal.observeNext {
+        viewModel.errorSignal.observeValues {
             $0.presentAlertFromViewController(self)
         }
     }
 
-    func embed(old: UIViewController?, _ new: UIViewController?) {
+    func embed(_ old: UIViewController?, _ new: UIViewController?) {
         if let current = old {
-            current.willMoveToParentViewController(nil)
+            current.willMove(toParentViewController: nil)
             current.view.removeFromSuperview()
             current.removeFromParentViewController()
         }
 
         if let vc = new {
-            vc.willMoveToParentViewController(self)
+            vc.willMove(toParentViewController: self)
             addChildViewController(vc)
             view.insertSubview(vc.view, belowSubview: toolbar)
-            vc.didMoveToParentViewController(self)
+            vc.didMove(toParentViewController: self)
 
             vc.view.translatesAutoresizingMaskIntoConstraints = false
-            view.addConstraint(NSLayoutConstraint(item: vc.view, attribute: .Top, relatedBy: .Equal, toItem: topLayoutGuide, attribute: .Bottom, multiplier: 1, constant: 0))
-            view.addConstraint(NSLayoutConstraint(item: vc.view, attribute: .Bottom, relatedBy: .Equal, toItem: toolbar, attribute: .Top, multiplier: 1, constant: 0))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[childView]|", options: [], metrics: nil, views: ["childView": vc.view]))
+            view.addConstraint(NSLayoutConstraint(item: vc.view, attribute: .top, relatedBy: .equal, toItem: topLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0))
+            view.addConstraint(NSLayoutConstraint(item: vc.view, attribute: .bottom, relatedBy: .equal, toItem: toolbar, attribute: .top, multiplier: 1, constant: 0))
+            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[childView]|", options: [], metrics: nil, views: ["childView": vc.view]))
 
             viewModel.moduleItemBecameActive()
             updateNavigationBarButtonItems(vc)
         }
     }
 
-    func updateNavigationBarButtonItems(embeddedViewController: UIViewController) {
+    func updateNavigationBarButtonItems(_ embeddedViewController: UIViewController) {
         var items = embeddedViewController.navigationItem.rightBarButtonItems ?? []
-        
-        if viewModel.completionRequirement.value == .MarkDone {
+
+        if viewModel.completionRequirement.value == .markDone {
             items = items + [markDoneButton]
         }
         

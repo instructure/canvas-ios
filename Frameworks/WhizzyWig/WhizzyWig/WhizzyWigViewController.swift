@@ -26,11 +26,11 @@
 
 import UIKit
 
-public class WhizzyWigViewController: UIViewController {
+open class WhizzyWigViewController: UIViewController {
 
-    public let whizzyWigView = WhizzyWigView(frame: CGRect(x: 0, y: 0, width: 320, height: 43))
+    open let whizzyWigView = WhizzyWigView(frame: CGRect(x: 0, y: 0, width: 320, height: 43))
 
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -38,30 +38,30 @@ public class WhizzyWigViewController: UIViewController {
         super.init(coder: aDecoder)
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
-        whizzyWigView.scrollView.scrollEnabled = true
+        whizzyWigView.scrollView.isScrollEnabled = true
         view.addSubview(whizzyWigView)
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(WhizzyWigViewController.done))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(WhizzyWigViewController.done))
 
         makeConstraints()
     }
 
     func makeConstraints() {
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "|[whizzy]|",
+        view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "|[whizzy]|",
             options: [],
             metrics: nil,
             views: ["whizzy": whizzyWigView]))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[whizzy]|",
+        view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|[whizzy]|",
             options: [],
             metrics: nil,
             views: ["whizzy": whizzyWigView]))
     }
 
     func done() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

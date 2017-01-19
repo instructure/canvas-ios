@@ -19,31 +19,31 @@
 import TooLegit
 import SoLazy
 
-public class FileNodeAPI{
+open class FileNodeAPI{
     
-    public class func getFiles(session: Session, folderID: String) throws -> NSURLRequest {
+    open class func getFiles(_ session: Session, folderID: String) throws -> URLRequest {
         let path = "/api/v1/folders/\(folderID)/files"
         return try session.GET(path)
     }
     
-    public class func deleteFile(session: Session, fileID: String) throws -> NSURLRequest {
+    open class func deleteFile(_ session: Session, fileID: String) throws -> URLRequest {
         let path = "/api/v1/files/\(fileID)"
         return try session.DELETE(path)
     }
     
-    public class func getRootFolder(session: Session, contextID: ContextID) throws -> NSURLRequest {
+    open class func getRootFolder(_ session: Session, contextID: ContextID) throws -> URLRequest {
         let path = contextID.apiPath/"folders/by_path"
         return try session.GET(path)
     }
     
-    public class func getFolders(session: Session, folderID: String) throws -> NSURLRequest {
+    open class func getFolders(_ session: Session, folderID: String) throws -> URLRequest {
         let path = "/api/v1/folders/\(folderID)/folders"
         return try session.GET(path)
     }
     
-    public class func deleteFolder(session: Session, folderID: String, shouldForce: Bool) throws -> NSURLRequest {
+    open class func deleteFolder(_ session: Session, folderID: String, shouldForce: Bool) throws -> URLRequest {
         let path = "/api/v1/folders/\(folderID)"
-        var nillableParams: [String: AnyObject?] = [ "force": nil ]
+        var nillableParams: [String: Any?] = [ "force": nil ]
         if shouldForce {
             nillableParams = [ "force": "true" ]
         }
@@ -51,9 +51,9 @@ public class FileNodeAPI{
         return try session.DELETE(path, parameters: parameters)
     }
     
-    public class func addFolder(session: Session, contextID: ContextID, folderID: String?, name: String) throws -> NSURLRequest {
+    open class func addFolder(_ session: Session, contextID: ContextID, folderID: String?, name: String) throws -> URLRequest {
         let path = contextID.apiPath/"folders"
-        let nillableParams: [String: AnyObject?] = [
+        let nillableParams: [String: Any?] = [
             "name": name,
             "parent_folder_id": folderID
         ]

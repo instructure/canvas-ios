@@ -22,15 +22,15 @@ class ForgotPasswordPage: PageObject {
   // Mark: - Page Objects
 
   private static var emailField: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("email_field"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("email_field"))
   }
 
   private static var submitButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("primary_action_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("primary_action_button"))
   }
 
   private static var cancelButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("cancel_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("cancel_button"))
   }
 
   static func uniquePageElement() -> GREYElementInteraction {
@@ -39,37 +39,37 @@ class ForgotPasswordPage: PageObject {
 
   // Mark: - Assertion Helpers
 
-  static func assertPageObjects(file: String = #file, _ line: UInt = #line) {
+  static func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    emailField.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    submitButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    cancelButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
+    emailField.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    submitButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    cancelButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
   }
 
-  static func assertSubmitButtonDisabled(file: String = #file, _ line: UInt = #line) {
+  static func assertSubmitButtonDisabled(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    submitButton.assertWithMatcher(grey_not(grey_enabled()))
+    submitButton.assert(with: grey_not(grey_enabled()))
   }
 
-  static func assertSubmitButtonEnabled(file: String = #file, _ line: UInt = #line) {
+  static func assertSubmitButtonEnabled(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    submitButton.assertWithMatcher(grey_enabled())
+    submitButton.assert(with: grey_enabled())
   }
 
   // Mark: - UI Action Helpers
 
-  static func tapCancel(file: String = #file, _ line: UInt = #line) {
+  static func tapCancel(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    cancelButton.performAction(grey_tap())
+    cancelButton.perform(grey_tap())
   }
 
-  static func enterEmail(parent: CanvasParent, file: String = #file, _ line: UInt = #line) {
+  static func enterEmail(_ parent: CanvasParent, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    emailField.performAction(grey_replaceText(parent.username))
+    emailField.perform(grey_replaceText(parent.username))
   }
 }

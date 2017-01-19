@@ -17,22 +17,22 @@
     
 
 import Foundation
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
-public class ProgressDispatcher: NSObject {
-    private let dispatcher: Dispatcher<Progress, Progress, NSError>
+open class ProgressDispatcher: NSObject {
+    fileprivate let dispatcher: Dispatcher<Progress, Progress, NSError>
 
     public override init() {
         dispatcher = Dispatcher { SignalProducer(value: $0) }
         super.init()
     }
 
-    public var onProgress: Signal<Progress, NoError> {
+    open var onProgress: Signal<Progress, NoError> {
         return dispatcher.values
     }
 
-    public func dispatch(progress: Progress) {
+    open func dispatch(_ progress: Progress) {
         dispatcher.apply(progress).start()
     }
 }

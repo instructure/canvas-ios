@@ -23,22 +23,22 @@ import Marshal
 import SoLazy
 
 public final class User: NSManagedObject {
-    @NSManaged private (set) public var id: String
-    @NSManaged private (set) public var loginID: String?
-    @NSManaged private (set) public var name: String
-    @NSManaged private (set) public var sortableName: String
-    @NSManaged private (set) public var email: String?
-    @NSManaged private (set) public var avatarURL: NSURL?
-    @NSManaged private (set) public var obverveeID: String?
+    @NSManaged fileprivate (set) public var id: String
+    @NSManaged fileprivate (set) public var loginID: String?
+    @NSManaged fileprivate (set) public var name: String
+    @NSManaged fileprivate (set) public var sortableName: String
+    @NSManaged fileprivate (set) public var email: String?
+    @NSManaged fileprivate (set) public var avatarURL: URL?
+    @NSManaged fileprivate (set) public var obverveeID: String?
 }
 
 extension User: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
 
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id              = try json.stringID("id")
         name            = try json <| "name"
         loginID         = try json <| "login_id"
@@ -47,7 +47,7 @@ extension User: SynchronizedModel {
 
         let avatarURLString: String? = try json <| "avatar_url"
         if let urlString = avatarURLString {
-            avatarURL   = NSURL(string: urlString)
+            avatarURL   = URL(string: urlString)
         }
     }
 }

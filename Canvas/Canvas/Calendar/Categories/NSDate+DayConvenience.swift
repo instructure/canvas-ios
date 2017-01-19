@@ -18,16 +18,16 @@
 
 import Foundation
 
-public extension NSDate {
-    func startOfDay(calendar: NSCalendar) -> NSDate {
-        let components = calendar.components([.Year, .Month, .Day], fromDate:self)
-        return calendar.dateFromComponents(components)!
+public extension Date {
+    func startOfDay(_ calendar: Calendar) -> Date {
+        let components = (calendar as NSCalendar).components([.year, .month, .day], from:self)
+        return calendar.date(from: components)!
     }
     
-    func endOfDay(calendar: NSCalendar) -> NSDate {
-        let components = NSDateComponents()
+    func endOfDay(_ calendar: Calendar) -> Date {
+        var components = DateComponents()
         components.day = 1
         components.nanosecond = -1
-        return calendar.dateByAddingComponents(components, toDate: startOfDay(calendar), options: NSCalendarOptions())!
+        return (calendar as NSCalendar).date(byAdding: components, to: startOfDay(calendar), options: NSCalendar.Options())!
     }
 }

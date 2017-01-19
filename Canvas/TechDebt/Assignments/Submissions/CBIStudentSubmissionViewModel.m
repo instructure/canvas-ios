@@ -62,7 +62,7 @@
         return value != nil;
     }] take:1];
     
-    RACSignal *submissionRecords = [nonNilStudentID flattenMap:^RACStream *(NSString *studentID) {
+    RACSignal *submissionRecords = [nonNilStudentID flattenMap:^__kindof RACStream *(NSString *studentID) {
         return [[[CKIClient currentClient] fetchSubmissionRecordForAssignment:self.model forStudentWithID:studentID] logError];
     }];
     

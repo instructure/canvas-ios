@@ -19,16 +19,16 @@
 import UIKit
 
 public protocol CalendarViewDelegate {
-    func calendarViewShouldHighlightDate(calendarView: CalendarView, date: NSDate) -> Bool
-    func calendarViewShouldSelectDate(calendarView: CalendarView, date: NSDate) -> Bool
-    func calendarViewDidSelectDate(calendarView: CalendarView, date: NSDate)
+    func calendarViewShouldHighlightDate(_ calendarView: CalendarView, date: Date) -> Bool
+    func calendarViewShouldSelectDate(_ calendarView: CalendarView, date: Date) -> Bool
+    func calendarViewDidSelectDate(_ calendarView: CalendarView, date: Date)
 }
 
 public protocol CalendarViewDataSource {
-    func calendarViewColorsForMarkingDate(calendarView: CalendarView, date: NSDate) -> [UIColor]
+    func calendarViewColorsForMarkingDate(_ calendarView: CalendarView, date: Date) -> [UIColor]
 }
 
-public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CalendarCollectionViewDelegate {
+open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CalendarCollectionViewDelegate {
     
     // ---------------------------------------------
     // MARK: - Constants
@@ -39,26 +39,26 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
     // ---------------------------------------------
     // MARK: - Public Variables
     // ---------------------------------------------
-    public var delegate: CalendarViewDelegate?
-    public var dataSource: CalendarViewDataSource?
+    open var delegate: CalendarViewDelegate?
+    open var dataSource: CalendarViewDataSource?
     
-    public lazy var calendar: NSCalendar = {
-        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        calendar.locale = NSLocale.currentLocale()
+    open lazy var calendar: Calendar = {
+        var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        calendar.locale = Locale.current
         return calendar
         }()
     
     internal var fromDate = CalendarDate()
     internal var toDate = CalendarDate()
-    internal var today: NSDate = NSDate()
+    internal var today: Date = Date()
     internal var selectedDate: CalendarDate?
     internal var daysInWeek: Int {
         get {
-            return self.calendar.maximumRangeOfUnit(.Weekday).length
+            return (self.calendar as NSCalendar).maximumRange(of: .weekday).length
         }
     }
     
-    internal var daysOfWeekView: CalendarDaysOfWeekView = CalendarDaysOfWeekView(frame: CGRectZero)
+    internal var daysOfWeekView: CalendarDaysOfWeekView = CalendarDaysOfWeekView(frame: CGRect.zero)
     
     internal var collectionView: CalendarCollectionView!
     
@@ -78,7 +78,7 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
         initialize()
     }
     
-    public init(frame: CGRect, calendar: NSCalendar, delegate: CalendarViewDelegate? = nil, dataSource: CalendarViewDataSource? = nil) {
+    public init(frame: CGRect, calendar: Calendar, delegate: CalendarViewDelegate? = nil, dataSource: CalendarViewDataSource? = nil) {
         super.init(frame: frame)
         
         self.calendar = calendar
@@ -90,20 +90,20 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
     // Initial time range is 12 months prior and 6 months past the current month
     func initialize () {
         // setup today
-        let todayDateComponents = calendar.components([.Year, .Month, .Day], fromDate: NSDate())
-        self.today = calendar.dateFromComponents(todayDateComponents)!
+        let todayDateComponents = (calendar as NSCalendar).components([.year, .month, .day], from: Date())
+        self.today = calendar.date(from: todayDateComponents)!
         
-        let nowYearMonthComponents = calendar.components([.Year, .Month], fromDate: NSDate())
-        let now = calendar.dateFromComponents(nowYearMonthComponents)!
+        let nowYearMonthComponents = (calendar as NSCalendar).components([.year, .month], from: Date())
+        let now = calendar.date(from: nowYearMonthComponents)!
         
         resetToDate(now)
         resetFromDate(now)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CalendarView.significantTimeChange(_:)), name: UIApplicationSignificantTimeChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CalendarView.significantTimeChange(_:)), name: NSNotification.Name.UIApplicationSignificantTimeChange, object: nil)
         
         collectionView = CalendarCollectionView(frame: self.collectionViewFrame(), collectionViewLayout: calCollectionViewLayout)
-        collectionView.registerClass(CalendarDayCell.self, forCellWithReuseIdentifier:CALENDAR_VIEW_DAY_CELL_IDENTIFIER)
-        collectionView.registerClass(CalendarMonthHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: CALENDAR_VIEW_MONTH_HEADER_IDENTIFIER)
+        collectionView.register(CalendarDayCell.self, forCellWithReuseIdentifier:CALENDAR_VIEW_DAY_CELL_IDENTIFIER)
+        collectionView.register(CalendarMonthHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: CALENDAR_VIEW_MONTH_HEADER_IDENTIFIER)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.calendarDelegate = self
@@ -113,7 +113,7 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
         
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         
         let beforeLayoutSubviewsContentOffset = collectionView!.contentOffset
         
@@ -132,7 +132,7 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
         calCollectionViewLayout.invalidateLayout()
         if let _ = collectionView!.superview {
             self.calCollectionViewLayout.invalidateLayout()
-            self.calCollectionViewLayout.prepareLayout()
+            self.calCollectionViewLayout.prepare()
             self.collectionView!.contentOffset = beforeLayoutSubviewsContentOffset
         } else {
             self.addSubview(collectionView!)
@@ -143,53 +143,53 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
     // ---------------------------------------------
     // MARK: - UICollectionViewDataSource
     // ---------------------------------------------
-    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        let fromNSDate = fromDate.date(calendar)
-        let toNSDate = toDate.date(calendar)
-        return calendar.components(.Month, fromDate: fromNSDate, toDate: toNSDate, options: []).month
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
+        let fromDate = self.fromDate.date(calendar)
+        let toDate = self.toDate.date(calendar)
+        return calendar.dateComponents([.month], from: fromDate, to: toDate).month!
     }
     
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let numberOfItemsInSection = daysInWeek * numberOfWeeksForMonthOfDate(dateForFirstDayInSection(section))
         return numberOfItemsInSection
     }
     
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CALENDAR_VIEW_DAY_CELL_IDENTIFIER, forIndexPath: indexPath) as! CalendarDayCell
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CALENDAR_VIEW_DAY_CELL_IDENTIFIER, for: indexPath) as! CalendarDayCell
         
         let firstDayInMonth = dateForFirstDayInSection(indexPath.section)
         var firstDayCalendarDate = CalendarDate()
         firstDayCalendarDate.populate(firstDayInMonth, calendar: calendar)
-        let weekday = reorderedWeekday(calendar.components(.Weekday, fromDate: firstDayInMonth).weekday)
+        let weekday = reorderedWeekday(calendar.dateComponents([.weekday], from: firstDayInMonth).weekday!)
         
-        let addDateComponents = NSDateComponents()
+        var addDateComponents = DateComponents()
         addDateComponents.day = indexPath.item - weekday
-        let cellDate = calendar.dateByAddingComponents(addDateComponents, toDate: firstDayInMonth, options: [])!
+        let cellDate = (calendar as NSCalendar).date(byAdding: addDateComponents, to: firstDayInMonth, options: [])!
         
         var cellCalDate = CalendarDate()
         cellCalDate.populate(cellDate, calendar: calendar)
         cell.date = cellCalDate
-        cell.dateLabel.text = "\(cellCalDate.day)"
+        cell.day = cellCalDate.day
         
         var todayCalDate = CalendarDate()
         todayCalDate.populate(today, calendar: calendar)
         
         if !(firstDayCalendarDate.year == cellCalDate.year && firstDayCalendarDate.month == cellCalDate.month) {
-            cell.cellState = .NotMonth
+            cell.cellState = .notMonth
             cell.colorsToIndicate = nil
             cell.setNeedsDisplay()
             return cell
         }
         
         if cellCalDate == selectedDate {
-            cell.cellState = .Selected
+            cell.cellState = .selected
         } else if cellCalDate == todayCalDate {
-            cell.cellState = .Today
+            cell.cellState = .today
         } else {
             if calendar.isDateInWeekend(cellDate) {
-                cell.cellState = .Off
+                cell.cellState = .off
             } else {
-                cell.cellState = .Normal
+                cell.cellState = .normal
             }
         }
         
@@ -202,19 +202,19 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
     
-    public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
-            if let monthHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: CALENDAR_VIEW_MONTH_HEADER_IDENTIFIER, forIndexPath: indexPath) as? CalendarMonthHeaderView {
+            if let monthHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CALENDAR_VIEW_MONTH_HEADER_IDENTIFIER, for: indexPath) as? CalendarMonthHeaderView {
                 
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = NSDateFormatter.dateFormatFromTemplate("MMMM YYYY", options: 0, locale: NSLocale.currentLocale())
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMM YYYY", options: 0, locale: Locale.current)
                 
                 let formattedDate = dateForFirstDayInSection(indexPath.section)
                 var date = CalendarDate()
                 date.populate(formattedDate, calendar: calendar)
                 
                 monthHeader.date = date
-                monthHeader.dateLabel.text = dateFormatter.stringFromDate(formattedDate).uppercaseString
+                monthHeader.dateLabel.text = dateFormatter.string(from: formattedDate).uppercased()
                 
                 var todayCalDate = CalendarDate()
                 todayCalDate.populate(today, calendar: calendar)
@@ -230,9 +230,9 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
     // ---------------------------------------------
     // MARK: - UICollectionViewDelegate
     // ---------------------------------------------
-    public func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if let cell = collectionView.cellForItemAtIndexPath(indexPath)! as? CalendarDayCell {
-            if cell.cellState == .NotMonth {
+    open func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        if let cell = collectionView.cellForItem(at: indexPath)! as? CalendarDayCell {
+            if cell.cellState == .notMonth {
                 return false
             }
             
@@ -245,19 +245,19 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
         return true
     }
     
-    public func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)!
+    open func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)!
         cell.setNeedsDisplay()
     }
     
-    public func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)!
+    open func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)!
         cell.setNeedsDisplay()
     }
     
-    public func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if let cell = collectionView.cellForItemAtIndexPath(indexPath)! as? CalendarDayCell {
-            if cell.cellState == .NotMonth {
+    open func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        if let cell = collectionView.cellForItem(at: indexPath)! as? CalendarDayCell {
+            if cell.cellState == .notMonth {
                 return false
             }
             
@@ -270,8 +270,8 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
         return true
     }
     
-    public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let cell = collectionView.cellForItemAtIndexPath(indexPath)! as? CalendarDayCell {
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath)! as? CalendarDayCell {
             if let date = cell.date?.date(calendar) {
                 selectDate(date)
                 
@@ -285,42 +285,42 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
     // ---------------------------------------------
     // MARK: - UICollectionViewDelegateFlowLayout
     // ---------------------------------------------
-    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return calCollectionViewLayout.itemSize
     }
     
-    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return calCollectionViewLayout.headerReferenceSize
     }
     
     // ---------------------------------------------
     // MARK: - CollectionView Helpers
     // ---------------------------------------------
-    func indexPathForDate(date: NSDate) -> NSIndexPath {
+    func indexPathForDate(_ date: Date) -> IndexPath {
         let monthSection = sectionForDate(date)
         let firstDayInMonth = dateForFirstDayInSection(monthSection)
-        let weekday = reorderedWeekday(calendar.components(.Weekday, fromDate: firstDayInMonth).weekday)
-        let dateItem = calendar.components(.Day, fromDate: firstDayInMonth, toDate: date, options: []).day + weekday
-        return NSIndexPath(forRow: dateItem, inSection: monthSection)
+        let weekday = reorderedWeekday((calendar as NSCalendar).components(.weekday, from: firstDayInMonth).weekday!)
+        let dateItem = (calendar as NSCalendar).components(.day, from: firstDayInMonth, to: date, options: []).day! + weekday
+        return IndexPath(row: dateItem, section: monthSection)
     }
     
-    func sectionForDate(date: NSDate) -> Int {
-        return calendar.components(.Month, fromDate: dateForFirstDayInSection(0), toDate:date, options: []).month
+    func sectionForDate(_ date: Date) -> Int {
+        return (calendar as NSCalendar).components(.month, from: dateForFirstDayInSection(0), to:date, options: []).month!
     }
     
-    func dateForFirstDayInSection(section: Int) -> NSDate {
-        let dateComponents = NSDateComponents()
+    func dateForFirstDayInSection(_ section: Int) -> Date {
+        var dateComponents = DateComponents()
         dateComponents.month = section
-        return calendar.dateByAddingComponents(dateComponents, toDate: fromDate.date(calendar), options: [])!
+        return (calendar as NSCalendar).date(byAdding: dateComponents, to: fromDate.date(calendar), options: [])!
     }
     
     // ---------------------------------------------
     // MARK: - CalendarCollectionViewDelegate
     // ---------------------------------------------
-    func collectionViewWillLayoutSubview(calendarCollectionView: CalendarCollectionView) {
+    func collectionViewWillLayoutSubview(_ calendarCollectionView: CalendarCollectionView) {
         if collectionView!.contentOffset.y < 0.0 {
             appendPastDates()
-        } else if (collectionView!.contentOffset.y > collectionView!.contentSize.height - CGRectGetHeight(collectionView!.bounds)) {
+        } else if (collectionView!.contentOffset.y > collectionView!.contentSize.height - collectionView!.bounds.height) {
             appendFutureDates()
         }
     }
@@ -328,20 +328,20 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
     // ---------------------------------------------
     // MARK: - Scrolling Methods
     // ---------------------------------------------
-    public func scrollToToday(animated: Bool) {
+    open func scrollToToday(_ animated: Bool) {
         self.scrollToDate(self.today, animated: animated)
     }
     
-    func scrollToDate(date: NSDate, animated: Bool) {
+    func scrollToDate(_ date: Date, animated: Bool) {
         
-        let dateYearMonthComponents = calendar.components([.Year, .Month], fromDate: date)
-        let month = calendar.dateFromComponents(dateYearMonthComponents)!
+        let dateYearMonthComponents = (calendar as NSCalendar).components([.year, .month], from: date)
+        let month = calendar.date(from: dateYearMonthComponents)!
         
         resetToDate(month)
         resetFromDate(month)
         collectionView!.reloadData()
         calCollectionViewLayout.invalidateLayout()
-        calCollectionViewLayout.prepareLayout()
+        calCollectionViewLayout.prepare()
         
         restoreSelection()
         
@@ -349,22 +349,22 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
         let monthSection = sectionForDate(date)
         let dateItemRect = frameForItemAtIndexPath(dateIndexPath)
         let monthSectionHeaderRect = frameForHeaderForSection(monthSection)
-        let delta = CGRectGetMaxY(dateItemRect) - CGRectGetMidY(monthSectionHeaderRect)
-        let actualViewHeight = CGRectGetHeight(collectionView!.frame) - collectionView!.contentInset.top - collectionView!.contentInset.bottom
+        let delta = dateItemRect.maxY - monthSectionHeaderRect.midY
+        let actualViewHeight = collectionView!.frame.height - collectionView!.contentInset.top - collectionView!.contentInset.bottom
         if delta <= actualViewHeight {
             self.scrollToTopOfSection(monthSection, animated:animated)
         } else {
-            collectionView!.scrollToItemAtIndexPath(dateIndexPath, atScrollPosition: UICollectionViewScrollPosition.Bottom, animated: animated)
+            collectionView!.scrollToItem(at: dateIndexPath, at: UICollectionViewScrollPosition.bottom, animated: animated)
         }
     }
     
-    func scrollToTopOfSection(section: Int, animated: Bool) {
+    func scrollToTopOfSection(_ section: Int, animated: Bool) {
         let headerRect = frameForHeaderForSection(section)
-        let topOfHeader = CGPointMake(0, headerRect.origin.y - collectionView!.contentInset.top)
+        let topOfHeader = CGPoint(x: 0, y: headerRect.origin.y - collectionView!.contentInset.top)
         collectionView.setContentOffset(topOfHeader, animated: animated)
     }
     
-    public func selectDate(date: NSDate?) {
+    open func selectDate(_ date: Date?) {
         if let _date = date {
             var calDate = CalendarDate()
             calDate.populate(_date, calendar: calendar)
@@ -382,7 +382,7 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
     // ---------------------------------------------
     // MARK: - Frame Helpers
     // ---------------------------------------------
-    private func daysOfWeekViewFrame() -> CGRect {
+    fileprivate func daysOfWeekViewFrame() -> CGRect {
         var returnRect = bounds
         if isPhone() {
             returnRect.size.height = isPortrait() ? 22.0 : 26.0
@@ -393,8 +393,8 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
         return returnRect
     }
     
-    private func collectionViewFrame() -> CGRect {
-        let daysOfWeekViewHeight = CGRectGetHeight(daysOfWeekViewFrame())
+    fileprivate func collectionViewFrame() -> CGRect {
+        let daysOfWeekViewHeight = daysOfWeekViewFrame().height
         
         var returnRect = self.bounds
         returnRect.origin.y += daysOfWeekViewHeight
@@ -402,83 +402,83 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
         return returnRect
     }
     
-    func frameForHeaderForSection(section: Int) -> CGRect {
-        let indexPath = NSIndexPath(forRow: 0, inSection: section)
-        let attrs = collectionView!.layoutAttributesForSupplementaryElementOfKind(UICollectionElementKindSectionHeader, atIndexPath: indexPath)!
+    func frameForHeaderForSection(_ section: Int) -> CGRect {
+        let indexPath = IndexPath(row: 0, section: section)
+        let attrs = collectionView!.layoutAttributesForSupplementaryElement(ofKind: UICollectionElementKindSectionHeader, at: indexPath)!
         return attrs.frame
     }
     
-    func frameForItemAtIndexPath(indexPath: NSIndexPath) -> CGRect {
-        let attrs = collectionView!.layoutAttributesForItemAtIndexPath(indexPath)!
+    func frameForItemAtIndexPath(_ indexPath: IndexPath) -> CGRect {
+        let attrs = collectionView!.layoutAttributesForItem(at: indexPath)!
         return attrs.frame
     }
     
     // ---------------------------------------------
     // MARK: - Date Helpers
     // ---------------------------------------------
-    func significantTimeChange(note: NSNotification) {
-        let todayYearMonthDayComponents = calendar.components([.Year, .Month, .Day], fromDate: NSDate())
-        today = calendar.dateFromComponents(todayYearMonthDayComponents)!
+    func significantTimeChange(_ note: Notification) {
+        let todayYearMonthDayComponents = (calendar as NSCalendar).components([.year, .month, .day], from: Date())
+        today = calendar.date(from: todayYearMonthDayComponents)!
         
         collectionView!.reloadData()
         restoreSelection()
     }
     
     func appendPastDates() {
-        let dateComponents = NSDateComponents()
+        var dateComponents = DateComponents()
         dateComponents.month = -12
         shiftDatesByComponents(dateComponents)
     }
     
     func appendFutureDates() {
-        let dateComponents = NSDateComponents()
+        var dateComponents = DateComponents()
         dateComponents.month = 12
         shiftDatesByComponents(dateComponents)
     }
     
-    func shiftDatesByComponents(components: NSDateComponents) {
-        if collectionView!.visibleCells().count == 0 {
+    func shiftDatesByComponents(_ components: DateComponents) {
+        if collectionView!.visibleCells.count == 0 {
             return
         }
         
-        let fromIndexPath = collectionView!.indexPathForCell(collectionView!.visibleCells()[0])!
+        let fromIndexPath = collectionView!.indexPath(for: collectionView!.visibleCells[0])!
         let fromSection = fromIndexPath.section
         let fromSectionOfDate = dateForFirstDayInSection(fromSection)
-        let fromAttrs = calCollectionViewLayout.layoutAttributesForItemAtIndexPath(NSIndexPath(forRow: 0, inSection: fromSection))!
-        let fromSectionOrigin = convertPoint(fromAttrs.frame.origin, fromView: collectionView)
+        let fromAttrs = calCollectionViewLayout.layoutAttributesForItem(at: IndexPath(row: 0, section: fromSection))!
+        let fromSectionOrigin = convert(fromAttrs.frame.origin, from: collectionView)
 
         var fromCalendarDate = CalendarDate()
-        let fromNSDate = calendar.dateByAddingComponents(components, toDate: fromDate.date(calendar), options: [])!
-        fromCalendarDate.populate(fromNSDate, calendar: calendar)
+        let fromDate = calendar.date(byAdding: components, to: self.fromDate.date(calendar))!
+        fromCalendarDate.populate(fromDate, calendar: calendar)
         var toCalendarDate = CalendarDate()
-        let toNSDate = calendar.dateByAddingComponents(components, toDate: toDate.date(calendar), options: [])!
-        toCalendarDate.populate(toNSDate, calendar: calendar)
+        let toDate = calendar.date(byAdding: components, to: self.toDate.date(calendar))!
+        toCalendarDate.populate(toDate, calendar: calendar)
         
-        fromDate = fromCalendarDate
-        toDate = toCalendarDate
+        self.fromDate = fromCalendarDate
+        self.toDate = toCalendarDate
         
         collectionView!.reloadData()
         calCollectionViewLayout.invalidateLayout()
-        calCollectionViewLayout.prepareLayout()
+        calCollectionViewLayout.prepare()
         restoreSelection()
         
         let toSection = sectionForDate(fromSectionOfDate)
-        let toAttrs = calCollectionViewLayout.layoutAttributesForItemAtIndexPath(NSIndexPath(forRow: 0, inSection: toSection))!
-        let toSectionOrigin = convertPoint(toAttrs.frame.origin, fromView: collectionView)
+        let toAttrs = calCollectionViewLayout.layoutAttributesForItem(at: IndexPath(row: 0, section: toSection))!
+        let toSectionOrigin = convert(toAttrs.frame.origin, from: collectionView)
 
         let yOffset = collectionView!.contentOffset.y + (toSectionOrigin.y - fromSectionOrigin.y)
-        collectionView!.contentOffset = CGPointMake(collectionView!.contentOffset.x, yOffset)
+        collectionView!.contentOffset = CGPoint(x: collectionView!.contentOffset.x, y: yOffset)
     }
     
-    func dateIsWithinCurrentDateBounds(date: CalendarDate) -> Bool {
+    func dateIsWithinCurrentDateBounds(_ date: CalendarDate) -> Bool {
         return date > fromDate && date < toDate
     }
     
-    func reorderedWeekday(weekday: Int) -> Int {
+    func reorderedWeekday(_ weekday: Int) -> Int {
         // This is a bit of a hack but it's because Apple has issues with calendars.
         // The actual variable should be
 //        var ordered = weekday - calendar.firstWeekday
-        // but we need to modify the weekview because NSDateFormatter always returns week symbols starting with Sunday in order to do this correctly
+        // but we need to modify the weekview because DateFormatter always returns week symbols starting with Sunday in order to do this correctly
         // This is good enough until we hear complaints about needing to support different firstWeekday for different countries
         var ordered = weekday - 1
         if ordered < 0 {
@@ -488,59 +488,59 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
         return ordered
     }
     
-    func numberOfWeeksForMonthOfDate(date: NSDate) -> Int {
-        let weekRange = calendar.rangeOfUnit(.WeekOfYear, inUnit: .Month, forDate: date)
+    func numberOfWeeksForMonthOfDate(_ date: Date) -> Int {
+        let weekRange = (calendar as NSCalendar).range(of: .weekOfYear, in: .month, for: date)
         let weeksCount = weekRange.length
         return weeksCount
     }
     
-    func resetToDate(referenceDate: NSDate) {
+    func resetToDate(_ referenceDate: Date) {
         // setup 12 months in the future
-        let toDateComponents = NSDateComponents()
+        var toDateComponents = DateComponents()
         toDateComponents.month = 12
-        let toNSDate = self.calendar.dateByAddingComponents(toDateComponents, toDate:referenceDate, options:NSCalendarOptions(rawValue: 0))!
-        toDate.populate(toNSDate, calendar: calendar)
+        let toDate = (self.calendar as NSCalendar).date(byAdding: toDateComponents, to:referenceDate, options:NSCalendar.Options(rawValue: 0))!
+        self.toDate.populate(toDate, calendar: calendar)
     }
     
-    func resetFromDate(referenceDate: NSDate) {
+    func resetFromDate(_ referenceDate: Date) {
         // setup 12 months prior to today
-        let fromDateComponents = NSDateComponents()
+        var fromDateComponents = DateComponents()
         fromDateComponents.month = -12
-        let fromNSDate = self.calendar.dateByAddingComponents(fromDateComponents, toDate:referenceDate, options:NSCalendarOptions(rawValue: 0))!
-        fromDate.populate(fromNSDate, calendar: calendar)
+        let fromDate = (self.calendar as NSCalendar).date(byAdding: fromDateComponents, to:referenceDate, options:NSCalendar.Options(rawValue: 0))!
+        self.fromDate.populate(fromDate, calendar: calendar)
     }
     
     func isPhone() -> Bool {
-        return UIDevice.currentDevice().userInterfaceIdiom == .Phone
+        return UIDevice.current.userInterfaceIdiom == .phone
     }
     
     func isPortrait() -> Bool {
-        return UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation)
+        return UIDeviceOrientationIsPortrait(UIDevice.current.orientation)
     }
     
     // ---------------------------------------------
     // MARK: - Data Methods
     // ---------------------------------------------
-    public func deselectSelection() {
+    open func deselectSelection() {
         if let selectedDate = selectedDate {
             if dateIsWithinCurrentDateBounds(selectedDate) {
                 
                 var todayCalDate = CalendarDate()
                 todayCalDate.populate(today, calendar: calendar)
                 
-                let selectedNSDate = selectedDate.date(calendar)
-                let selectedCellIndexPath = indexPathForDate(selectedNSDate)
-                collectionView!.deselectItemAtIndexPath(selectedCellIndexPath, animated: false)
-                if let selectedCell = collectionView!.cellForItemAtIndexPath(selectedCellIndexPath) as? CalendarDayCell {
+                let selectedDate = selectedDate.date(calendar)
+                let selectedCellIndexPath = indexPathForDate(selectedDate)
+                collectionView!.deselectItem(at: selectedCellIndexPath, animated: false)
+                if let selectedCell = collectionView!.cellForItem(at: selectedCellIndexPath) as? CalendarDayCell {
                     
-                    if (selectedDate == todayCalDate) {
-                        selectedCell.cellState = .Today
+                    if (self.selectedDate == todayCalDate) {
+                        selectedCell.cellState = .today
                     } else {
-                        let weekday = calendar.components(.Weekday, fromDate: selectedNSDate).weekday
+                        let weekday = (calendar as NSCalendar).components(.weekday, from: selectedDate).weekday
                         if (weekday == 1 || weekday == 7) {
-                            selectedCell.cellState = .Off
+                            selectedCell.cellState = .off
                         } else {
-                            selectedCell.cellState = .Normal
+                            selectedCell.cellState = .normal
                         }
                     }
                     
@@ -554,23 +554,23 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
         if let selectedDate = selectedDate {
             if dateIsWithinCurrentDateBounds(selectedDate) {
                 let selectedCellIndexPath = indexPathForDate(selectedDate.date(calendar))
-                collectionView!.selectItemAtIndexPath(selectedCellIndexPath, animated: true, scrollPosition: UICollectionViewScrollPosition.None)
-                if let selectedCell = collectionView!.cellForItemAtIndexPath(selectedCellIndexPath) as? CalendarDayCell {
-                    selectedCell.cellState = CalendarDayCellState.Selected
+                collectionView!.selectItem(at: selectedCellIndexPath, animated: true, scrollPosition: UICollectionViewScrollPosition())
+                if let selectedCell = collectionView!.cellForItem(at: selectedCellIndexPath) as? CalendarDayCell {
+                    selectedCell.cellState = CalendarDayCellState.selected
                     selectedCell.setNeedsLayout()
                 }
             }
         }
     }
     
-    public func reloadData() {
+    open func reloadData() {
         let contentOffset = collectionView.contentOffset
         collectionView!.reloadData()
         collectionView.setContentOffset(contentOffset, animated: false)
     }
     
-    public func reloadVisibleCells() {
-        collectionView!.reloadItemsAtIndexPaths(collectionView!.indexPathsForVisibleItems())
+    open func reloadVisibleCells() {
+        collectionView!.reloadItems(at: collectionView!.indexPathsForVisibleItems)
     }
     
 }

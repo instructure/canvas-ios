@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import ReactiveSwift
 import ReactiveCocoa
 import Result
 import SoPersistent
@@ -26,7 +27,9 @@ import SoProgressive
 import PageKit
 import AssignmentKit
 
-let ModuleItemBecameActiveNotification = "ModuleItemBecameActiveNotification"
+extension Notification.Name {
+    static let moduleItemBecameActive = Notification.Name(rawValue: "ModuleItemBecameActiveNotification")
+}
 
 class ModuleItemViewModel: NSObject {
     // Input
@@ -34,67 +37,69 @@ class ModuleItemViewModel: NSObject {
     let moduleID: String
 
     // Output
-    let title: AnyProperty<String?>
-    let completionRequirement: AnyProperty<ModuleItem.CompletionRequirement?>
+    let title: Property<String?>
+    let completionRequirement: Property<ModuleItem.CompletionRequirement?>
     let errorSignal: Signal<NSError, NoError>
-    let moduleItemID: AnyProperty<String?>
+    let moduleItemID: Property<String?>
     lazy var embeddedViewController: SignalProducer<UIViewController?, NoError> = {
         let content = self.moduleItem.producer.map { $0?.content }.skipRepeats(==)
         let masteryPathsItemModuleItemID = self.moduleItem.producer.map { $0 as? MasteryPathsItem }.map { $0?.moduleItemID }.skipRepeats(==)
         let url = self.url.producer.skipRepeats(==)
-        return combineLatest(url, content, masteryPathsItemModuleItemID).map { url, content, moduleItemID in
+        return SignalProducer.combineLatest(url, content, masteryPathsItemModuleItemID).map { url, content, moduleItemID in
             if let content = content {
                 switch content {
-                case .ExternalURL(url: let url):
-                    let browser = WebBrowserViewController(URL: url)
-                    browser.delegate = self
+                case .externalURL(url: let url):
+                    let browser = WebBrowserViewController(url: url)
+                    browser?.delegate = self
                     return browser
-                case .MasteryPaths:
+                case .masteryPaths:
                     if let moduleItemID = moduleItemID {
                         return try! MasteryPathSelectOptionViewController(session: self.session, moduleID: self.moduleID, itemIDWithMasteryPaths: moduleItemID)
                     }
                 default: break
                 }
             }
-            return url.flatMap(Router.sharedRouter().controllerForHandlingURL)
+            return url.flatMap(Router.shared().controller)
         }
     }()
 
     // Private
-    private let moduleItem: MutableProperty<ModuleItem?>
-    private var observer: ManagedObjectObserver<ModuleItem> {
+    fileprivate let moduleItem: MutableProperty<ModuleItem?>
+    fileprivate var observer: ManagedObjectObserver<ModuleItem> {
         didSet {
             moduleItem.value = observer.object
-            moduleItem <~ observer.signal.map { $0.1 }.filter { !($0?.deleted ?? false) }
+            moduleItem <~ observer.signal.map { $0.1 }.filter { !($0?.isDeleted ?? false) }
         }
     }
-    private let moduleObserver: ManagedObjectObserver<Module>
-    private let module: AnyProperty<Module?>
-    private let errorObserver: Observer<NSError, NoError>
-    private let disposable = CompositeDisposable()
-    private let siblingsCollection: FetchedCollection<ModuleItem>
-    private let siblingsUpdates: AnyProperty<[CollectionUpdate<ModuleItem>]>
-    private let url: AnyProperty<NSURL?>
-    private let completed: AnyProperty<Bool?>
-    private let nextModuleItem: AnyProperty<ModuleItem?>
-    private let previousModuleItem: AnyProperty<ModuleItem?>
-    private let nextModuleItemIsValid: AnyProperty<Bool>
-    private let previousModuleItemIsValid: AnyProperty<Bool>
-    private let selected = MutableProperty<Bool?>(nil)
-    private let locked: AnyProperty<Bool>
+    fileprivate let moduleObserver: ManagedObjectObserver<Module>
+    fileprivate let module: Property<Module?>
+    fileprivate let errorObserver: Observer<NSError, NoError>
+    fileprivate let disposable = CompositeDisposable()
+    fileprivate let siblingsCollection: FetchedCollection<ModuleItem>
+    fileprivate let siblingsUpdates: Property<[CollectionUpdate<ModuleItem>]>
+    fileprivate let url: Property<URL?>
+    fileprivate let completed: Property<Bool?>
+    fileprivate let nextModuleItem: Property<ModuleItem?>
+    fileprivate let previousModuleItem: Property<ModuleItem?>
+    fileprivate let nextModuleItemIsValid: Property<Bool>
+    fileprivate let previousModuleItemIsValid: Property<Bool>
+    fileprivate let selected = MutableProperty<Bool?>(nil)
+    fileprivate let locked: Property<Bool>
 
     // Actions
     lazy var markAsDoneAction: Action<Void, Void, NoError> = {
-        return Action(enabledIf: self.canFulfill(.MarkDone)) { _ in
+        return Action(enabledIf: self.canFulfill(.markDone)) { _ in
             blockProducer {
-                self.moduleItem.value?.postProgress(self.session, kind: .MarkedDone) ?? ()
+                self.moduleItem.value?.postProgress(self.session, kind: .markedDone)
+                return ()
             }
         }
     }()
     lazy var markAsViewedAction: Action<Void, Void, NoError> = {
-        return Action(enabledIf: self.canFulfill(.MustView)) { _ in
+        return Action(enabledIf: self.canFulfill(.mustView)) { _ in
             blockProducer {
-                self.moduleItem.value?.postProgress(self.session, kind: .Viewed) ?? ()
+                self.moduleItem.value?.postProgress(self.session, kind: .viewed)
+                return ()
             }
         }
     }()
@@ -119,20 +124,15 @@ class ModuleItemViewModel: NSObject {
         }
     }()
 
-    // Cocoa Actions
-    lazy var markAsDoneCocoaAction: CocoaAction = { CocoaAction(self.markAsDoneAction, input: ()) }()
-    lazy var nextCocoaAction: CocoaAction = { CocoaAction(self.nextAction, input: ()) }()
-    lazy var previousCocoaAction: CocoaAction = { CocoaAction(self.previousAction, input: ()) }()
-
-    private lazy var colorfulViewModel: ColorfulViewModel = {
-        var vm = ColorfulViewModel(style: .Subtitle)
+    fileprivate lazy var colorfulViewModel: ColorfulViewModel = {
+        var vm = ColorfulViewModel(features: [.icon, .subtitle])
         vm.title <~ self.title.producer.map { $0 ?? "" }
-        vm.detail <~ self.moduleItem.producer.map { $0?.detailText ?? "" }
+        vm.subtitle <~ self.moduleItem.producer.map { $0?.detailText ?? "" }
         vm.icon <~ self.moduleItem.producer.map { $0?.icon }
         vm.accessibilityIdentifier.value = "module_item"
-        vm.titleLineBreakMode = .ByWordWrapping
+        vm.titleLineBreakMode = .byWordWrapping
 
-        vm.accessoryView <~ combineLatest(self.completed.producer, self.locked.producer).map { completed, locked in
+        vm.accessoryView <~ SignalProducer.combineLatest(self.completed.producer, self.locked.producer).map { (completed, locked) -> UIView? in
             guard !locked else {
                 let imageView = UIImageView(image: .icon(.lock))
                 imageView.tintColor = .prettyGray()
@@ -152,35 +152,36 @@ class ModuleItemViewModel: NSObject {
         vm.color <~ self.moduleItem
             .producer
             .map { $0?.courseID }
-            .flatMap(.Latest) {
-                $0.flatMap { self.session.enrollmentsDataSource.producer(ContextID(id: $0, context: .Course)).map { $0?.color ?? .prettyGray() } } ?? SignalProducer(value: .prettyGray())
+            .flatMap(.latest) {
+                $0.flatMap { self.session.enrollmentsDataSource.color(for: .course(withID: $0)) }
+                    ?? SignalProducer(value: .prettyGray())
             }
         vm.titleFontStyle <~ self.moduleItem
             .producer
             .map { moduleItem in
                 let fontStyle: ColorfulViewModel.FontStyle
-                if let content = moduleItem?.content where content == .SubHeader {
+                if let content = moduleItem?.content, content == .subHeader {
                     fontStyle = .bold
-                } else if let masteryPathsItem = moduleItem as? MasteryPathsItem where masteryPathsItem.lockedForUser {
+                } else if let masteryPathsItem = moduleItem as? MasteryPathsItem, masteryPathsItem.lockedForUser {
                     fontStyle = .italic
                 } else {
                     fontStyle = .regular
                 }
                 return fontStyle
             }
-        vm.titleTextColor <~ self.locked.producer.map { $0 ? .lightGrayColor() : .blackColor() }
+        vm.titleTextColor <~ self.locked.producer.map { $0 ? .lightGray : .black }
         vm.indentationLevel <~ self.moduleItem.producer.map { $0?.indent ?? 0 }.map { Int($0) }
         vm.selectionEnabled <~ self.locked.producer.map { !$0 }
         vm.setSelected <~ self.selected
 
         let contentType = self.moduleItem.producer.map { $0?.contentType.accessibilityLabel }
-        vm.accessibilityLabel <~ combineLatest(vm.title.producer, vm.detail.producer, contentType, self.completed.producer, self.locked.producer)
+        vm.accessibilityLabel <~ SignalProducer.combineLatest(vm.title.producer, vm.subtitle.producer, contentType, self.completed.producer, self.locked.producer)
             .map { title, detail, content, completed, locked in
                 let completedStatus = NSLocalizedString("Status: Completed", comment: "Label read aloud when item status is completed.")
                 let incompleteStatus = NSLocalizedString("Status: Incomplete", comment: "Label read aloud when item status is incomplete.")
                 let lockedStatus = NSLocalizedString("Status: Locked", comment: "Label read aloud when item status is locked.")
                 let status = locked ? lockedStatus : completed.flatMap { $0 ? completedStatus : incompleteStatus }
-                return [title, detail, content, status].flatMap { $0 }.filter { !$0.isEmpty }.joinWithSeparator(". ")
+                return [title, detail, content, status].flatMap { $0 }.filter { !$0.isEmpty }.joined(separator: ". ")
             }
 
         return vm
@@ -192,13 +193,13 @@ class ModuleItemViewModel: NSObject {
 
         observer = try ModuleItem.observer(session, moduleItemID: moduleItemID)
         moduleItem = MutableProperty(observer.object)
-        moduleItem <~ observer.signal.map { $0.1 }.filter { !($0?.deleted ?? false) }
+        moduleItem <~ observer.signal.map { $0.1 }.filter { !($0?.isDeleted ?? false) }
 
-        moduleObserver = try Module.observer(session, moduleID: moduleID)
-        module = AnyProperty(initialValue: moduleObserver.object, signal: moduleObserver.signal.map { $0.1 })
+        moduleObserver = try Module.observer(session: session, moduleID: moduleID)
+        module = Property(initial: moduleObserver.object, then: moduleObserver.signal.map { $0.1 })
 
         siblingsCollection = try ModuleItem.allModuleItemsCollection(session, moduleID: moduleID)
-        siblingsUpdates = AnyProperty(initialValue: [], signal: siblingsCollection.collectionUpdates)
+        siblingsUpdates = Property(initial: [], then: siblingsCollection.collectionUpdates)
 
         title = moduleItem.map { item in
             if let masteryPathsItem = item as? MasteryPathsItem {
@@ -215,12 +216,12 @@ class ModuleItemViewModel: NSObject {
 
         completionRequirement = moduleItem.map { $0?.completionRequirement }
 
-        self.moduleItemID = AnyProperty(initialValue: nil, producer: moduleItem.producer.map { $0?.id }.skipRepeats(==))
+        self.moduleItemID = Property(initial: nil, then: moduleItem.producer.map { $0?.id }.skipRepeats(==))
 
-        nextModuleItem = AnyProperty(initialValue: nil, producer: combineLatest(moduleItem.producer, siblingsUpdates.producer)
+        nextModuleItem = Property(initial: nil, then: SignalProducer.combineLatest(moduleItem.producer, siblingsUpdates.producer)
             .map { moduleItem, _ in moduleItem }
-            .promoteErrors(NSError)
-            .flatMap(.Latest) { moduleItem in
+            .promoteErrors(NSError.self)
+            .flatMap(.latest) { moduleItem in
                 attemptProducer {
                     try moduleItem?.next(session)
                 }
@@ -228,10 +229,10 @@ class ModuleItemViewModel: NSObject {
             .flatMapError { _ in SignalProducer(value: nil) }
         )
 
-        previousModuleItem = AnyProperty(initialValue: nil, producer: combineLatest(moduleItem.producer, siblingsUpdates.producer)
+        previousModuleItem = Property(initial: nil, then: SignalProducer.combineLatest(moduleItem.producer, siblingsUpdates.producer)
             .map { moduleItem, _ in moduleItem }
-            .promoteErrors(NSError)
-            .flatMap(.Latest) { moduleItem in
+            .promoteErrors(NSError.self)
+            .flatMap(.latest) { moduleItem in
                 attemptProducer {
                     try moduleItem?.previous(session)
                 }
@@ -245,26 +246,25 @@ class ModuleItemViewModel: NSObject {
 
         (errorSignal, errorObserver) = Signal.pipe()
 
-        url = moduleItem.map { $0?.url.flatMap { NSURL(string: $0) } }
+        url = moduleItem.map { $0?.url.flatMap { URL(string: $0) } }
 
         completed = moduleItem.map { moduleItem in
             guard let
                 moduleItem = moduleItem,
-                completionRequirement = moduleItem.completionRequirement
-                where completionRequirement != .MustChoose
+                let completionRequirement = moduleItem.completionRequirement, completionRequirement != .mustChoose
             else {
                 return nil
             }
-            return moduleItem.completed ?? false
+            return moduleItem.completed
         }
 
         let lockedForUser = self.moduleItem.producer.map { $0?.lockedForUser ?? true }
         let moduleLocked = self.module.producer.map { $0?.state == .locked }
-        locked = AnyProperty(initialValue: true, producer: combineLatest(lockedForUser, moduleLocked).map { $0 || $1 })
+        locked = Property(initial: true, then: SignalProducer.combineLatest(lockedForUser, moduleLocked).map { $0 || $1 })
 
         super.init()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(moduleItemBecameActive(_:)), name: ModuleItemBecameActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(moduleItemBecameActive(_:)), name: .moduleItemBecameActive, object: nil)
         beginObservingLockedStatus()
     }
 
@@ -276,47 +276,47 @@ class ModuleItemViewModel: NSObject {
         disposable.dispose()
     }
 
-    private func canFulfill(completionRequirement: ModuleItem.CompletionRequirement) -> AnyProperty<Bool> {
+    fileprivate func canFulfill(_ completionRequirement: ModuleItem.CompletionRequirement) -> Property<Bool> {
         let sameCompletionRequirement = moduleItem.producer.map { $0?.completionRequirement == completionRequirement }
         let completed = moduleItem.producer.map { $0?.completed ?? false }
-        let canFulfill = combineLatest(sameCompletionRequirement.skipRepeats(==), completed.skipRepeats(==)).map { $0 && !$1 }
-        return AnyProperty(initialValue: false, producer: canFulfill)
+        let canFulfill = SignalProducer.combineLatest(sameCompletionRequirement.skipRepeats(==), completed.skipRepeats(==)).map { $0 && !$1 }
+        return Property(initial: false, then: canFulfill)
     }
 
-    func moduleItemBecameActive(notification: NSNotification) {
-        if let moduleItem = moduleItem.value, id = notification.userInfo?["moduleItemID"] as? String {
+    func moduleItemBecameActive(_ notification: NSNotification) {
+        if let moduleItem = moduleItem.value, let id = notification.userInfo?["moduleItemID"] as? String {
             selected.value = moduleItem.id == id
         }
     }
 
     func moduleItemBecameActive() {
         if let id = moduleItem.value?.id {
-            NSNotificationCenter.defaultCenter().postNotificationName(ModuleItemBecameActiveNotification, object: nil, userInfo: ["moduleItemID": id])
+            NotificationCenter.default.post(name: .moduleItemBecameActive, object: nil, userInfo: ["moduleItemID": id])
         }
     }
 
-    private func beginObservingLockedStatus() {
+    fileprivate func beginObservingLockedStatus() {
         locked.signal
             .combinePrevious(true)
-            .observeNext { [weak self] previous, current in
+            .observeValues { [weak self] previous, current in
                 if previous && !current {
                     _ = try? self?.invalidateCaches()
                 }
             }
     }
 
-    private func invalidateCaches() throws {
-        guard let content = moduleItem.value?.content, courseID = moduleItem.value?.courseID else {
+    fileprivate func invalidateCaches() throws {
+        guard let content = moduleItem.value?.content, let courseID = moduleItem.value?.courseID else {
             return
         }
         switch content {
-        case let .Page(url: url):
-            let contextID = ContextID(id: courseID, context: .Course)
-            try Page.invalidateCache(session, contextID: contextID)
-            try Page.invalidateDetailCache(session, contextID: contextID, url: url)
-        case let .Assignment(id: id):
+        case let .page(url: url):
+            let contextID = ContextID(id: courseID, context: .course)
+            try Page.invalidateCache(session: session, contextID: contextID)
+            try Page.invalidateDetailCache(session: session, contextID: contextID, url: url)
+        case let .assignment(id: id):
             try Assignment.invalidateCache(session, courseID: courseID)
-            try Assignment.invalidateDetailsCache(session, courseID: courseID, id: id)
+            try Assignment.invalidateDetailsCache(session: session, courseID: courseID, id: id)
         default:
             break
         }
@@ -326,15 +326,15 @@ class ModuleItemViewModel: NSObject {
 
 // MARK: - WebBrowserViewControllerDelegate
 extension ModuleItemViewModel: WebBrowserViewControllerDelegate {
-    func webBrowser(webBrowser: WebBrowserViewController!, didFinishLoadingWebView webView: UIWebView!) {
+    func webBrowser(_ webBrowser: WebBrowserViewController!, didFinishLoading webView: UIWebView!) {
         if moduleItemMatches(webBrowser.url) {
             markAsViewedAction.apply(()).start()
         }
     }
 
-    private func moduleItemMatches(externalURL: NSURL) -> Bool {
+    fileprivate func moduleItemMatches(_ externalURL: URL) -> Bool {
         switch self.moduleItem.value?.content {
-        case let .Some(.ExternalURL(url)):
+        case let .some(.externalURL(url)):
             return externalURL == url
         default: return false
         }
@@ -344,11 +344,11 @@ extension ModuleItemViewModel: WebBrowserViewControllerDelegate {
 
 // MARK: - TableViewCellViewModel
 extension ModuleItemViewModel: TableViewCellViewModel {
-    static func tableViewDidLoad(tableView: UITableView) {
+    static func tableViewDidLoad(_ tableView: UITableView) {
         ColorfulViewModel.tableViewDidLoad(tableView)
     }
 
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         return colorfulViewModel.cellForTableView(tableView, indexPath: indexPath)
     }
 }
@@ -358,27 +358,27 @@ extension ModuleItem {
     var icon: UIImage? {
         guard let content = content else { return nil }
         switch content {
-        case .Assignment:   return .icon(.assignment)
-        case .Quiz:         return .icon(.quiz)
-        case .Page:         return .icon(.page)
-        case .File:         return .icon(.file)
-        case .Discussion:   return .icon(.discussion)
-        case .ExternalURL:  return .icon(.link)
-        case .ExternalTool: return .icon(.lti)
-        case .SubHeader:    return nil
-        case .MasteryPaths: return .icon(.lock)
+        case .assignment:   return .icon(.assignment)
+        case .quiz:         return .icon(.quiz)
+        case .page:         return .icon(.page)
+        case .file:         return .icon(.file)
+        case .discussion:   return .icon(.discussion)
+        case .externalURL:  return .icon(.link)
+        case .externalTool: return .icon(.lti)
+        case .subHeader:    return nil
+        case .masteryPaths: return .icon(.lock)
         }
     }
 
     var detailText: String {
         guard let completionRequirement = completionRequirement else { return "" }
         switch completionRequirement {
-        case .MustView:         return NSLocalizedString("Must view", comment: "user must view item to complete requirement")
-        case .MustSubmit:       return NSLocalizedString("Must submit", comment: "user must submit something to complete")
-        case .MustContribute:   return NSLocalizedString("Must contribute", comment: "user must contribute to complete requirement")
-        case .MarkDone:         return NSLocalizedString("Must mark as done", comment: "user must mark item as done to complete requirement")
-        case .MustChoose:       return ""
-        case .MinScore:
+        case .mustView:         return NSLocalizedString("Must view", comment: "user must view item to complete requirement")
+        case .mustSubmit:       return NSLocalizedString("Must submit", comment: "user must submit something to complete")
+        case .mustContribute:   return NSLocalizedString("Must contribute", comment: "user must contribute to complete requirement")
+        case .markDone:         return NSLocalizedString("Must mark as done", comment: "user must mark item as done to complete requirement")
+        case .mustChoose:       return ""
+        case .minScore:
             guard let minScore = minScore else { return "" }
             return String(format: NSLocalizedString("Must score %@ or higher", comment: "format string saying what the minimum score must be"), minScore)
         }
@@ -406,7 +406,7 @@ extension ModuleItem.ContentType {
             type = NSLocalizedString("Link", comment: "Web URL link item label")
         case .externalTool:
             type = NSLocalizedString("External URL", comment: "External URL module item type")
-        case masteryPaths:
+        case .masteryPaths:
             type = NSLocalizedString("Mastery Path", comment: "Master Path module item type")
         }
 

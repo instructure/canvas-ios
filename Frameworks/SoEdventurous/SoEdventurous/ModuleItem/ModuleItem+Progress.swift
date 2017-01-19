@@ -15,26 +15,27 @@
 //
 
 import SoProgressive
-import ReactiveCocoa
+import ReactiveSwift
 import TooLegit
 import SoPersistent
 import Result
 import CoreData
 import SoProgressive
+import struct SoProgressive.Progress
 
 extension ModuleItem {
-    public static func beginObservingProgress(session: Session) {
+    public static func beginObservingProgress(_ session: Session) {
         guard let context = try? session.soEdventurousManagedObjectContext() else { return }
         session
             .progressDispatcher
             .onProgress
-            .observeOn(ManagedObjectContextScheduler(context: context))
-            .observeNext { progress in
+            .observe(on: ManagedObjectContextScheduler(context: context))
+            .observeValues { progress in
                 ModuleItem.apply(session, progress: progress)
             }
     }
 
-    static func apply(session: Session, progress: Progress) {
+    static func apply(_ session: Session, progress: Progress) {
         let moduleItems: SignalProducer<SignalProducer<Void, NSError>, NSError> = attemptProducer {
             let context = try session.soEdventurousManagedObjectContext()
 
@@ -44,10 +45,10 @@ extension ModuleItem {
                 let edit: SignalProducer<Void, NSError>
 
                 switch progress.kind {
-                case .Viewed:
-                    edit = try moduleItem.markRead(session)
-                case .MarkedDone:
-                    edit = try moduleItem.markDone(session)
+                case .viewed:
+                    edit = try moduleItem.markRead(session: session)
+                case .markedDone:
+                    edit = try moduleItem.markDone(session: session)
                 default: edit = .empty
                 }
 
@@ -56,71 +57,71 @@ extension ModuleItem {
                 }
 
                 let postModuleItemProgress = blockProducer {
-                    let progress = Progress(kind: progress.kind, contextID: progress.contextID, itemType: .ModuleItem, itemID: moduleItem.id)
+                    let progress = Progress(kind: progress.kind, contextID: progress.contextID, itemType: .moduleItem, itemID: moduleItem.id)
                     session.progressDispatcher.dispatch(progress)
                 }
 
                 return edit
                     .concat(invalidateCache)
-                    .concat(postModuleItemProgress.promoteErrors(NSError))
+                    .concat(postModuleItemProgress.promoteErrors(NSError.self))
             }
 
-            return SignalProducer<SignalProducer<Void, NSError>, NSError>(values: updates).flatten(.Merge)
+            return SignalProducer<SignalProducer<Void, NSError>, NSError>(updates).flatten(.merge)
         }
 
         moduleItems
-            .flatten(.Merge)
+            .flatten(.merge)
             .start()
     }
 
-    private static func invalidateCache(session: Session, courseID: String, moduleID: String) throws {
+    fileprivate static func invalidateCache(_ session: Session, courseID: String, moduleID: String) throws {
         let context = try session.soEdventurousManagedObjectContext()
-        session.refreshScope.invalidateCache(Module.collectionCacheKey(context, courseID: courseID))
-        session.refreshScope.invalidateCache(Module.detailsCacheKey(context, courseID: courseID, moduleID: moduleID))
+        session.refreshScope.invalidateCache(Module.collectionCacheKey(context: context, courseID: courseID))
+        session.refreshScope.invalidateCache(Module.detailsCacheKey(context: context, courseID: courseID, moduleID: moduleID))
         let dependentModules: [Module] = try context.findAll(matchingPredicate: Module.predicate(withPrerequisite: moduleID))
         let dependentModuleIDs = Set(dependentModules.map { $0.id })
         dependentModuleIDs.forEach {
-            session.refreshScope.invalidateCache(Module.detailsCacheKey(context, courseID: courseID, moduleID: $0))
+            session.refreshScope.invalidateCache(Module.detailsCacheKey(context: context, courseID: courseID, moduleID: $0))
         }
     }
 
-    public func postProgress(session: Session, kind: Progress.Kind) {
-        guard let itemType = progressItemType, itemID = progressItemID else {
+    public func postProgress(_ session: Session, kind: Progress.Kind) {
+        guard let itemType = progressItemType, let itemID = progressItemID else {
             return
         }
 
-        let contextID = ContextID(id: courseID, context: .Course)
+        let contextID = ContextID(id: courseID, context: .course)
         let progress = Progress(kind: kind, contextID: contextID, itemType: itemType, itemID: itemID)
 
         session.progressDispatcher.dispatch(progress)
     }
 
-    static func predicate(progress: Progress) -> NSPredicate {
+    static func predicate(_ progress: Progress) -> NSPredicate {
         let contentID = NSPredicate(format: "%K == %@", "contentID", progress.itemID)
         let pageURL = NSPredicate(format: "%K == %@", "pageURL", progress.itemID)
         let externalURL = NSPredicate(format: "%K == %@", "externalURL", progress.itemID)
         let type = contentType(progress).flatMap { NSPredicate(format: "%K == %@", "contentType", $0.rawValue) }
-        let course = progress.contextID.context == .Course ? NSPredicate(format: "%K == %@", "courseID", progress.contextID.id) : NSPredicate(value: false)
+        let course = progress.contextID.context == .course ? NSPredicate(format: "%K == %@", "courseID", progress.contextID.id) : NSPredicate(value: false)
         let requirement = NSPredicate(format: "%K == %@", "completionRequirement", completionRequirement(progress).rawValue)
-        let incomplete = NSPredicate(format: "%K == %@", "completed", NSNumber(bool: false))
-        let unlocked = NSPredicate(format: "%K == false", "lockedForUser", NSNumber(bool: false))
+        let incomplete = NSPredicate(format: "%K == %@", "completed", NSNumber(value: false as Bool))
+        let unlocked = NSPredicate(format: "%K == false", "lockedForUser", NSNumber(value: false as Bool))
 
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [type, course, requirement, incomplete, unlocked].flatMap { $0 })
 
         switch progress.itemType {
-        case .LegacyModuleProgressShim:
+        case .legacyModuleProgressShim:
             // The legacy module item progress (CBIPostModuleItemProgressUpdate) does not
             // include the course id or the item type so we find them the best we can
             // using only the `itemID` and the `completionRequirement`.
             let id = NSCompoundPredicate(orPredicateWithSubpredicates: [contentID, pageURL, externalURL])
             return NSCompoundPredicate(andPredicateWithSubpredicates: [id, requirement, incomplete, unlocked])
-        case .Assignment, .File, .Quiz, .Discussion:
+        case .assignment, .file, .quiz, .discussion:
             return NSCompoundPredicate(andPredicateWithSubpredicates: [contentID, predicate])
-        case .Page:
+        case .page:
             return NSCompoundPredicate(andPredicateWithSubpredicates: [pageURL, predicate])
-        case .URL, .ExternalTool:
+        case .url, .externalTool:
             return NSCompoundPredicate(andPredicateWithSubpredicates: [externalURL, predicate])
-        case .ModuleItem:
+        case .moduleItem:
             return NSPredicate(value: false)
         }
     }
@@ -130,13 +131,13 @@ extension ModuleItem {
 
     var progressItemType: Progress.ItemType? {
         switch contentType {
-        case .file: return .File
-        case .page: return .Page
-        case .discussion: return .Discussion
-        case .assignment: return .Assignment
-        case .quiz: return .Quiz
-        case .externalURL: return .URL
-        case .externalTool: return .ExternalTool
+        case .file: return .file
+        case .page: return .page
+        case .discussion: return .discussion
+        case .assignment: return .assignment
+        case .quiz: return .quiz
+        case .externalURL: return .url
+        case .externalTool: return .externalTool
         case .subHeader, .masteryPaths: return nil
         }
     }
@@ -146,46 +147,46 @@ extension ModuleItem {
             return nil
         }
         switch content {
-        case .File(let fileID):
+        case .file(let fileID):
             return fileID
-        case .Page(let pageURL):
+        case .page(let pageURL):
             return pageURL
-        case .Discussion(let discussionID):
+        case .discussion(let discussionID):
             return discussionID
-        case .Assignment(let assignmentID):
+        case .assignment(let assignmentID):
             return assignmentID
-        case .Quiz(let quizID):
+        case .quiz(let quizID):
             return quizID
-        case .SubHeader, .MasteryPaths:
+        case .subHeader, .masteryPaths:
             return nil
-        case .ExternalURL(let url):
+        case .externalURL(let url):
             return url.absoluteString
-        case .ExternalTool(_, let toolURL):
+        case .externalTool(_, let toolURL):
             return toolURL.absoluteString
         }
     }
 
-    public static func contentType(progress: Progress) -> ContentType? {
+    public static func contentType(_ progress: Progress) -> ContentType? {
         switch progress.itemType {
-        case .File: return .file
-        case .Page: return .page
-        case .Discussion: return .discussion
-        case .Assignment: return .assignment
-        case .Quiz: return .quiz
-        case .URL: return .externalURL
-        case .ExternalTool: return .externalTool
-        case .LegacyModuleProgressShim, .ModuleItem: return nil
+        case .file: return .file
+        case .page: return .page
+        case .discussion: return .discussion
+        case .assignment: return .assignment
+        case .quiz: return .quiz
+        case .url: return .externalURL
+        case .externalTool: return .externalTool
+        case .legacyModuleProgressShim, .moduleItem: return nil
         }
     }
 
-    public static func completionRequirement(progress: Progress) -> CompletionRequirement {
+    public static func completionRequirement(_ progress: Progress) -> CompletionRequirement {
         let completionRequirement: CompletionRequirement
         switch progress.kind {
-        case .Viewed: completionRequirement = .MustView
-        case .Contributed: completionRequirement = .MustContribute
-        case .MarkedDone: completionRequirement = .MarkDone
-        case .MinimumScore: completionRequirement = .MinScore
-        case .Submitted: completionRequirement = .MustSubmit
+        case .viewed: completionRequirement = .mustView
+        case .contributed: completionRequirement = .mustContribute
+        case .markedDone: completionRequirement = .markDone
+        case .minimumScore: completionRequirement = .minScore
+        case .submitted: completionRequirement = .mustSubmit
         }
         return completionRequirement
     }

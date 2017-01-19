@@ -18,7 +18,7 @@ import SoPersistent
 import TooLegit
 
 extension ModuleItem {
-    public static func observer(session: Session, moduleItemID: String) throws -> ManagedObjectObserver<ModuleItem> {
+    public static func observer(_ session: Session, moduleItemID: String) throws -> ManagedObjectObserver<ModuleItem> {
         let context = try session.soEdventurousManagedObjectContext()
         let predicate = NSPredicate(format: "%K == %@", "id", moduleItemID)
         return try ManagedObjectObserver(predicate: predicate, inContext: context)

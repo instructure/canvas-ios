@@ -25,10 +25,10 @@ class SubmitAssignmentActivity: UIActivity {
     let session: Session
     let defaultCourseID: String?
     let defaultAssignmentID: String?
-    var fileURL: NSURL?
+    var fileURL: URL?
     var didSubmitAssignment: (Void)->Void = { }
 
-    init(session: Session, defaultCourseID: String?, defaultAssignmentID: String?, assignmentSubmitted: (Void)->Void) {
+    init(session: Session, defaultCourseID: String?, defaultAssignmentID: String?, assignmentSubmitted: @escaping (Void)->Void) {
         self.session = session
         self.defaultCourseID = defaultCourseID
         self.defaultAssignmentID = defaultAssignmentID
@@ -36,35 +36,35 @@ class SubmitAssignmentActivity: UIActivity {
         super.init()
     }
 
-    override func activityType() -> String? {
-        return "submit-assignment-to-canvas"
+    override var activityType: UIActivityType? {
+        return UIActivityType(rawValue: "submit-assignment-to-canvas")
     }
 
-    override func activityTitle() -> String? {
+    override var activityTitle : String? {
         return NSLocalizedString("Submit Assignment", comment: "Title for button to submit assignment")
     }
 
-    override func activityImage() -> UIImage? {
-        return UIImage(named: "submit_activity", inBundle: NSBundle(forClass: SubmitAssignmentActivity.self), compatibleWithTraitCollection: nil)
+    override var activityImage : UIImage? {
+        return UIImage(named: "submit_activity", in: Bundle(for: SubmitAssignmentActivity.self), compatibleWith: nil)
     }
 
-    override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
+    override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
         for activityItem in activityItems {
-            if activityItem is NSURL { return true }
+            if activityItem is URL { return true }
         }
         return false
     }
 
-    override func prepareWithActivityItems(activityItems: [AnyObject]) {
+    override func prepare(withActivityItems activityItems: [Any]) {
         for activityItem in activityItems {
-            fileURL = activityItem as? NSURL // There should only ever be one file url
+            fileURL = activityItem as? URL // There should only ever be one file url
         }
     }
 
-    override func activityViewController() -> UIViewController? {
+    override var activityViewController : UIViewController? {
         guard let fileURL = fileURL else { return nil }
 
-        let modal = UIStoryboard(name: "SubmitAnnotatedAssignmentViewController", bundle: NSBundle(forClass: SubmitAssignmentActivity.self)).instantiateInitialViewController() as! SmallModalNavigationController
+        let modal = UIStoryboard(name: "SubmitAnnotatedAssignmentViewController", bundle: Bundle(for: SubmitAssignmentActivity.self)).instantiateInitialViewController() as! SmallModalNavigationController
         let vc = modal.viewControllers[0] as! SubmitAnnotatedAssignmentViewController
         vc.annotatedFileURL = fileURL
         vc.session = session

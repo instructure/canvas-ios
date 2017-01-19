@@ -18,10 +18,10 @@
 
 import Foundation
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
-class SimpleCollection: Collection {
+class SimpleCollection: SoPersistent.Collection {
     struct CollectionItem {}
 
     typealias Object = CollectionItem
@@ -34,15 +34,15 @@ class SimpleCollection: Collection {
         return 1
     }
 
-    func numberOfItemsInSection(section: Int) -> Int {
+    func numberOfItemsInSection(_ section: Int) -> Int {
         return 0
     }
 
-    func titleForSection(section: Int) -> String? {
+    func titleForSection(_ section: Int) -> String? {
         return nil
     }
 
-    subscript(indexPath: NSIndexPath) -> CollectionItem {
+    subscript(indexPath: IndexPath) -> CollectionItem {
         return CollectionItem()
     }
     

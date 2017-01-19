@@ -19,51 +19,51 @@
 import Foundation
 import TooLegit
 
-public class AirwolfAPI {
-    public static var baseURL = RegionPicker.defaultPicker.defaultURL
+open class AirwolfAPI {
+    open static var baseURL = RegionPicker.defaultPicker.defaultURL
 
     // MARK: Parent calls
-    public class func authenticateRequest(email email: String, password: String) throws -> NSURLRequest {
-        return try NSMutableURLRequest(method: .POST, URL: AirwolfAPI.baseURL.URLByAppendingPathComponent("authenticate")!, parameters: ["username": email, "password": password], encoding: .JSON)
+    open class func authenticateRequest(email: String, password: String) throws -> URLRequest {
+        return try URLRequest(method: .POST, URL: AirwolfAPI.baseURL.appendingPathComponent("authenticate"), parameters: ["username": email, "password": password], encoding: .json)
     }
     
-    public class func authenticateAsCanvasObserver(domain: String) -> NSURLRequest {
+    open class func authenticateAsCanvasObserver(_ domain: String) -> URLRequest {
         let url = AirwolfAPI.baseURL
-            .URLByAppendingPathComponent("canvas")!
-            .URLByAppendingPathComponent("authenticate")!
+            .appendingPathComponent("canvas")
+            .appendingPathComponent("authenticate")
         
-        return try! NSMutableURLRequest(method: .GET, URL: url, parameters: ["domain": domain], encoding: .URL)
+        return try! URLRequest(method: .GET, URL: url, parameters: ["domain": domain], encoding: .url)
     }
 
-    public class func createAccountRequest(email email: String, password: String, firstName: String, lastName: String) throws -> NSURLRequest {
-        return try NSMutableURLRequest(method: .PUT, URL: AirwolfAPI.baseURL.URLByAppendingPathComponent("newparent")!, parameters: ["parent": ["username": email, "password": password, "first_name": firstName, "last_name": lastName]], encoding: .JSON)
+    open class func createAccountRequest(email: String, password: String, firstName: String, lastName: String) throws -> URLRequest {
+        return try URLRequest(method: .PUT, URL: AirwolfAPI.baseURL.appendingPathComponent("newparent"), parameters: ["parent": ["username": email, "password": password, "first_name": firstName, "last_name": lastName]], encoding: .json)
     }
 
-    public class func sendPasswordResetEmailRequest(email email: String) throws -> NSURLRequest {
+    open class func sendPasswordResetEmailRequest(email: String) throws -> URLRequest {
         let path = "/send_password_reset/\(email)"
-        return try NSMutableURLRequest(method: .POST, URL: AirwolfAPI.baseURL.URLByAppendingPathComponent(path)!, parameters: [:], encoding: .URLEncodedInURL)
+        return try URLRequest(method: .POST, URL: AirwolfAPI.baseURL.appendingPathComponent(path), parameters: [:], encoding: .urlEncodedInURL)
     }
 
-    public class func resetPasswordRequest(email email: String, password: String, token: String) throws -> NSURLRequest {
-        let request = try NSMutableURLRequest(method: .POST, URL: AirwolfAPI.baseURL.URLByAppendingPathComponent("reset_password")!, parameters: ["username": email, "password": password], encoding: .JSON)
+    open class func resetPasswordRequest(email: String, password: String, token: String) throws -> URLRequest {
+        var request = try URLRequest(method: .POST, URL: AirwolfAPI.baseURL.appendingPathComponent("reset_password"), parameters: ["username": email, "password": password], encoding: .json)
         request.setValue(token, forHTTPHeaderField: "Authorization")
         return request
     }
 
     // MARK: Student calls
-    public class func getStudentsRequest(session: Session, parentID: String) throws -> NSURLRequest {
+    open class func getStudentsRequest(_ session: Session, parentID: String) throws -> URLRequest {
         return try session.GET("/students/\(parentID)")
     }
 
-    public class func addStudentRequest(session: Session, parentID: String, studentDomain: NSURL) throws -> NSURLRequest {
-        return try session.GET("/add_student/\(parentID)", parameters: ["student_domain": studentDomain.absoluteString!], encoding: .URLEncodedInURL, authorized: true)
+    open class func addStudentRequest(_ session: Session, parentID: String, studentDomain: URL) throws -> URLRequest {
+        return try session.GET("/add_student/\(parentID)", parameters: ["student_domain": studentDomain.absoluteString], encoding: .urlEncodedInURL, authorized: true)
     }
 
-    public class func checkDomainRequest(session: Session, parentID: String, studentDomain: NSURL) throws -> NSURLRequest {
-        return try session.GET("/check_domain/\(parentID)", parameters: ["student_domain": studentDomain.absoluteString!], encoding: .URLEncodedInURL, authorized: true)
+    open class func checkDomainRequest(_ session: Session, parentID: String, studentDomain: URL) throws -> URLRequest {
+        return try session.GET("/check_domain/\(parentID)", parameters: ["student_domain": studentDomain.absoluteString], encoding: .urlEncodedInURL, authorized: true)
     }
 
-    public class func deleteStudentRequest(session: Session, parentID: String, studentID: String) throws -> NSURLRequest {
+    open class func deleteStudentRequest(_ session: Session, parentID: String, studentID: String) throws -> URLRequest {
         return try session.DELETE("/student/\(parentID)/\(studentID)")
     }
 }

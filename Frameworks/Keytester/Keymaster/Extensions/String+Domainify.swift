@@ -33,21 +33,21 @@ extension String {
         let schemes = ["http://", "https://"]
         for scheme in schemes {
             if self.hasPrefix(scheme) {
-                self = (self as NSString).substringFromIndex(scheme.characters.count)
+                self = (self as NSString).substring(from: scheme.characters.count)
             }
         }
     }
     
     mutating func removeSlashes() {
-        self = self.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "/"))
+        self = self.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
     }
 
     mutating func removeWhitespace() {
-        self = self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        self = self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
     
     mutating func addInstructureDotComIfNeeded() {
-        if self.rangeOfString(":") == nil && self.rangeOfString(".") == nil {
+        if self.range(of: ":") == nil && self.range(of: ".") == nil {
             self += ".instructure.com"
         }
     }

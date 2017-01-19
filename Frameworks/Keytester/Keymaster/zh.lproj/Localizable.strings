@@ -1,18 +1,1 @@
-/* Back Button Title */
-"Back" = "返回";
-
-/* Error alert message */
-"Could not create domain.  Please check your school's domain and try again." = "无法创建域名。请检查您学校的域名，然后再试一次。";
-
-/* Error Alert Title */
-"Error" = "错误";
-
-/* Domain Picker Search Placeholder */
-"Find your school or district" = "查找您的学校或学区";
-
-/* OK */
-"OK" = "OK";
-
-/* AccountDomain Database Load Failure Message */
-"There was a problem loading the AccountDomain database file." = "加载 AccountDomain 数据文件时出现问题。";
-
+/* No Localized Strings */

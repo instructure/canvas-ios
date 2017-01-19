@@ -22,15 +22,15 @@ import TooLegit
 import SoLazy
 import EnrollmentKit
 import SoPretty
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 extension Assignment {
-    func gradeColorfulViewModel(dataSource: EnrollmentsDataSource) -> ColorfulViewModel {
-        let model = ColorfulViewModel(style: .RightDetail)
+    func gradeColorfulViewModel(_ dataSource: EnrollmentsDataSource) -> ColorfulViewModel {
+        let model = ColorfulViewModel(features: [.icon, .rightDetail])
         model.title.value = name
-        model.detail.value = grade
-        model.color <~ dataSource.producer(ContextID(id: courseID, context: .Course)).map { $0?.color ?? .prettyGray() }
+        model.rightDetail.value = grade
+        model.color <~ dataSource.color(for: .course(withID: courseID))
         model.icon.value = icon
         return model
     }

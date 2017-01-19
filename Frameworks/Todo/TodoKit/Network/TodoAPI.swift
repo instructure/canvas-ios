@@ -19,15 +19,15 @@
 import TooLegit
 import SoLazy
 
-public class TodoAPI {
-    public class func getTodos(session: Session) throws -> NSURLRequest {
+open class TodoAPI {
+    open class func getTodos(_ session: Session) throws -> URLRequest {
         let path = "/api/v1/users/self/todo"
         return try session.GET(path)
     }
 
-    public class func ignoreTodo(session: Session, todo: Todo) throws -> NSURLRequest {
-        let request = NSMutableURLRequest(URL: NSURL(string: todo.ignoreURL)!)
-        request.HTTPMethod = "DELETE"
+    open class func ignoreTodo(_ session: Session, todo: Todo) throws -> URLRequest {
+        var request = URLRequest(url: URL(string: todo.ignoreURL)!)
+        request.httpMethod = "DELETE"
         if let token = session.token {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }

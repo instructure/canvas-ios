@@ -23,9 +23,9 @@ import TooLegit
 class DescribeProgress: XCTestCase {
 
     func test_itHasSomeProperties() {
-        let progress = Progress(kind: .Submitted, contextID: ContextID(id: "3232", context: .Course), itemType: .Assignment, itemID: "155")
+        let progress = Progress(kind: .Submitted, contextID: ContextID(id: "3232", context: .course), itemType:.assignment, itemID: "155")
         
-        XCTAssertEqual(progress.contextID, ContextID(id: "3232", context: .Course))
+        XCTAssertEqual(progress.contextID, ContextID(id: "3232", context: .course))
         XCTAssertEqual(progress.kind, Progress.Kind.Submitted)
         XCTAssertEqual(progress.itemID, "155")
         XCTAssertEqual(progress.itemType, Progress.ItemType.Assignment)

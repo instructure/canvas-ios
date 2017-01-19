@@ -21,17 +21,17 @@ import PSPDFKit
 import TooLegit
 import AssignmentKit
 
-public class PreSubmissionPDFDocumentPresenter: NSObject {
+open class PreSubmissionPDFDocumentPresenter: NSObject {
     var pdfDocument: PSPDFDocument
     let session: Session?
     let defaultCourseID: String?
     let defaultAssignmentID: String?
-    public var didSaveAnnotations: (Void)->Void = { }
-    public var didSubmitAssignment: (Void)->Void = { }
+    open var didSaveAnnotations: (Void)->Void = { }
+    open var didSubmitAssignment: (Void)->Void = { }
 
-    public init(documentURL: NSURL, session: Session?, defaultCourseID: String? = nil, defaultAssignmentID: String? = nil) {
-        pdfDocument = PSPDFDocument(URL: documentURL)
-        pdfDocument.annotationSaveMode = .Embedded
+    public init(documentURL: URL, session: Session?, defaultCourseID: String? = nil, defaultAssignmentID: String? = nil) {
+        pdfDocument = PSPDFDocument(url: documentURL)
+        pdfDocument.annotationSaveMode = .embedded
         self.session = session
         self.defaultCourseID = defaultCourseID
         self.defaultAssignmentID = defaultAssignmentID
@@ -42,13 +42,13 @@ public class PreSubmissionPDFDocumentPresenter: NSObject {
     func configuration(forSession session: Session?, defaultCourseID: String? = nil, defaultAssignmentID: String? = nil) -> PSPDFConfiguration {
         return PSPDFConfiguration { (builder) -> Void in
             builder.shouldAskForAnnotationUsername = false
-            builder.pageTransition = PSPDFPageTransition.ScrollContinuous
-            builder.scrollDirection = PSPDFScrollDirection.Vertical
-            builder.thumbnailBarMode = PSPDFThumbnailBarMode.None
-            builder.fitToWidthEnabled = true
+            builder.pageTransition = PSPDFPageTransition.scrollContinuous
+            builder.scrollDirection = PSPDFScrollDirection.vertical
+            builder.thumbnailBarMode = PSPDFThumbnailBarMode.none
+            builder.isFitToWidthEnabled = true
             builder.pagePadding = 5.0
             builder.documentLabelEnabled = .NO
-            builder.renderAnimationEnabled = false
+            builder.isRenderAnimationEnabled = false
             builder.shouldHideNavigationBarWithHUD = false
             builder.shouldHideStatusBarWithHUD = false
             builder.applicationActivities = [PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage, PSPDFActivityTypeSearch]
@@ -78,11 +78,11 @@ public class PreSubmissionPDFDocumentPresenter: NSObject {
         styleManager.setupDefaultStylesIfNeeded()
     }
 
-    public func getPDFViewController() -> UIViewController {
+    open func getPDFViewController() -> UIViewController {
         stylePSPDFKit()
 
         let pdfViewController = PSPDFViewController(document: pdfDocument, configuration: configuration(forSession: session))
-        pdfViewController.annotationStateManager.addDelegate(self)
+        pdfViewController.annotationStateManager.add(self)
         pdfViewController.navigationItem.rightBarButtonItems = [pdfViewController.activityButtonItem, pdfViewController.annotationButtonItem]
         pdfViewController.delegate = self
 
@@ -91,7 +91,7 @@ public class PreSubmissionPDFDocumentPresenter: NSObject {
 }
 
 extension PreSubmissionPDFDocumentPresenter: PSPDFAnnotationStateManagerDelegate {
-    public func annotationStateManager(manager: PSPDFAnnotationStateManager, didChangeState state: String?, to newState: String?, variant: String?, to newVariant: String?) {
+    public func annotationStateManager(_ manager: PSPDFAnnotationStateManager, didChangeState state: String?, to newState: String?, variant: String?, to newVariant: String?) {
         if newState == PSPDFAnnotationStringInk && newVariant == PSPDFAnnotationStringInkVariantPen {
             for (_, drawView) in manager.drawViews {
                 drawView.combineInk = false
@@ -102,7 +102,7 @@ extension PreSubmissionPDFDocumentPresenter: PSPDFAnnotationStateManagerDelegate
 }
 
 extension PreSubmissionPDFDocumentPresenter: PSPDFViewControllerDelegate {
-    public func pdfViewController(pdfController: PSPDFViewController, shouldShowController controller: UIViewController, options: [String : AnyObject]?, animated: Bool) -> Bool {
+    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow controller: UIViewController, options: [String : Any]? = nil, animated: Bool) -> Bool {
         if controller is UIActivityViewController {
             // If presenting the share sheet, save the annotations!
             // PSPDFKit was not doing this @ version 5.5
@@ -111,7 +111,7 @@ extension PreSubmissionPDFDocumentPresenter: PSPDFViewControllerDelegate {
 
         // Intercept and customize the document sharing view controller.
         if let sharingController = controller as? PSPDFDocumentSharingViewController {
-            sharingController.selectedOptions = [.AllPages, .EmbedAnnotations]
+            sharingController.selectedOptions = [.allPages, .embedAnnotations]
         }
 
         return true
@@ -119,7 +119,7 @@ extension PreSubmissionPDFDocumentPresenter: PSPDFViewControllerDelegate {
 }
 
 extension PreSubmissionPDFDocumentPresenter: PSPDFDocumentDelegate {
-    public func pdfDocument(document: PSPDFDocument, didSaveAnnotations annotations: [PSPDFAnnotation]) {
+    public func pdfDocument(_ document: PSPDFDocument, didSave annotations: [PSPDFAnnotation]) {
         didSaveAnnotations()
     }
 }

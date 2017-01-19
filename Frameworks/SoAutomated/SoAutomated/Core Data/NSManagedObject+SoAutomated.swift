@@ -32,25 +32,25 @@ extension NSManagedObject {
         }
     }
 
-    public static func factory(session: Session, options: [String: AnyObject] = [:]) -> Self {
+    public static func factory(_ session: Session, options: [String: Any] = [:]) -> Self {
         let context = session.managedObjectContext(self, options: options)
         let entityName = self.entityName(context)
-        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context)!
-        let me = self.init(entity: entity, insertIntoManagedObjectContext: context)
+        let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)!
+        let me = self.init(entity: entity, insertInto: context)
         addDefaultValues(me, context: context)
         try! context.saveFRD()
         return me
     }
 
-    static func addDefaultValues(object: NSManagedObject, context: NSManagedObjectContext) {
+    static func addDefaultValues(_ object: NSManagedObject, context: NSManagedObjectContext) {
         let entities = [object.entity, object.entity.superentity].flatMap { $0 }
         for entity in entities {
             for property in entity.properties {
-                guard !property.optional else {
+                guard !property.isOptional else {
                     continue
                 }
 
-                guard let attribute = entity.attributesByName[property.name] where attribute.defaultValue == nil else {
+                guard let attribute = entity.attributesByName[property.name], attribute.defaultValue == nil else {
                     continue
                 }
 
@@ -63,20 +63,20 @@ extension NSManagedObject {
         }
     }
 
-    static func defaultValue(propertyName: String, attributeType: NSAttributeType, context: NSManagedObjectContext) -> AnyObject? {
+    static func defaultValue(_ propertyName: String, attributeType: NSAttributeType, context: NSManagedObjectContext) -> Any? {
         switch attributeType {
-        case .StringAttributeType:
+        case .stringAttributeType:
             return ""
-        case .BooleanAttributeType:
+        case .booleanAttributeType:
             return false
-        case .Integer16AttributeType, .Integer32AttributeType, .Integer64AttributeType:
+        case .integer16AttributeType, .integer32AttributeType, .integer64AttributeType:
             return 1
-        case .DateAttributeType:
-            return NSDate()
-        case .DoubleAttributeType, .DecimalAttributeType, .FloatAttributeType:
+        case .dateAttributeType:
+            return Date()
+        case .doubleAttributeType, .decimalAttributeType, .floatAttributeType:
             return 1.0
-        case .BinaryDataAttributeType:
-            return NSData()
+        case .binaryDataAttributeType:
+            return Data()
         default:
             return nil
         }
@@ -86,7 +86,7 @@ extension NSManagedObject {
 
 extension NSManagedObject {
     public static func count(inContext context: NSManagedObjectContext) -> Int {
-        let all = fetch(nil, sortDescriptors: nil, inContext: context)
-        return (try? context.countForFetchRequest(all)) ?? -1
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: entityName(context))
+        return (try? context.count(for: fetch)) ?? -1
     }
 }

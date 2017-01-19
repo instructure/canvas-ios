@@ -18,8 +18,8 @@
 
 import Foundation
 
-extension NSBundle {
-    static func notificationKit() -> NSBundle {
-        return NSBundle(identifier: "com.instructure.NotificationKit")!
+extension Bundle {
+    static func notificationKit() -> Bundle {
+        return Bundle(identifier: "com.instructure.NotificationKit")!
     }
 }

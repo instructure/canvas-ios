@@ -19,7 +19,7 @@
 import Foundation
 
 extension NSError {
-    public class func simpleError(localizedDescription: String, code: Int) -> NSError {
+    public class func simpleError(_ localizedDescription: String, code: Int) -> NSError {
         let userInfo = [NSLocalizedDescriptionKey: localizedDescription]
         let error = NSError(domain: "com.instructure.canvas", code: code, userInfo: userInfo)
         return error

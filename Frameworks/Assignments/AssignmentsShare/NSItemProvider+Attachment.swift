@@ -20,21 +20,21 @@ import MobileCoreServices
 import Result
 
 extension NSItemProvider: Attachment {
-    public func conforms(to uti: String) -> Bool {
+    public func conforms(toUTI uti: String) -> Bool {
         return hasItemConformingToTypeIdentifier(uti)
     }
     
-    public func load(uti: String, completion: (Result<AnyObject, NSError>) -> Void) {
+    public func load(uti: String, completion: @escaping (Result<Any, NSError>) -> Void) {
         let options = loadItemOptionsForTypeIdentifier(uti)
-        loadItemForTypeIdentifier(uti, options: options) { item, error in
-            completion(Result(item, failWith: error))
+        loadItem(forTypeIdentifier: uti, options: options) { object, error in
+            completion(Result(object, failWith: error as NSError))
         }
     }
 
-    func loadItemOptionsForTypeIdentifier(uti: String) -> [NSObject: AnyObject]? {
+    func loadItemOptionsForTypeIdentifier(_ uti: String) -> [AnyHashable: Any]? {
         switch uti {
         case String(kUTTypeImage):
-            return [NSItemProviderPreferredImageSizeKey: NSValue(CGSize: CGSize(width: 400, height: 400))]
+            return [NSItemProviderPreferredImageSizeKey: NSValue(cgSize: CGSize(width: 400, height: 400))]
         default: return nil
         }
     }

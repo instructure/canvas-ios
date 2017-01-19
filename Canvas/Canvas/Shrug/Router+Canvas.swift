@@ -25,19 +25,19 @@ import SoPersistent
 import PageKit
 
 var currentSession: Session {
-    return TheKeymaster.currentClient.authSession
+    return TheKeymaster!.currentClient.authSession
 }
 
 extension Router {
     
-    func addCanvasRoutes(handleError: (NSError)->()) {
-        func addContextRoute(contexts: [ContextID.Context], subPath: String, file: String = #file, line: UInt = #line, handler: (ContextID, [String: AnyObject]) throws -> UIViewController?) {
+    func addCanvasRoutes(_ handleError: @escaping (NSError)->()) {
+        func addContextRoute(_ contexts: [ContextID.Context], subPath: String, file: String = #file, line: UInt = #line, handler: @escaping (ContextID, [String: Any]) throws -> UIViewController?) {
             for context in contexts {
                 addRoute("/\(context.pathComponent)/:contextID"/subPath) { parameters, _ in
                     do {
-                        let contextID: String = try parameters.stringID("contextID")
-                        return try handler(ContextID(id: contextID, context: context), parameters)
-                    } catch let e as Error {
+                        let contextID: String = try parameters!.stringID("contextID")
+                        return try handler(ContextID(id: contextID, context: context), parameters!)
+                    } catch let e as MarshalError {
                         handleError(NSError(jsonError: e, file: file, line: line))
                     } catch let e as NSError {
                         handleError(e)
@@ -47,21 +47,26 @@ extension Router {
             }
         }
         
-        let route: (UIViewController, NSURL)->() = { [weak self] viewController, url in
-            self?.routeFromController(viewController, toURL: url)
+        let route: (UIViewController, URL)->() = { [weak self] viewController, url in
+            self?.route(from: viewController, to: url)
         }
         
 
-        addContextRoute([.Course, .Group], subPath: "tabs") { contextID, _ in
+        addContextRoute([.course, .group], subPath: "tabs") { contextID, _ in
             return try TabsTableViewController(session: currentSession, contextID: contextID, route: route)
         }
         
-        addContextRoute([.Course], subPath: "assignments") { contextID, _ in
+        addContextRoute([.course], subPath: "assignments") { contextID, _ in
             return try AssignmentsTableViewController(session: currentSession, courseID: contextID.id, route: route)
         }
         
-        addContextRoute([.Course], subPath: "grades") { contextID, _ in
+        addContextRoute([.course], subPath: "grades") { contextID, _ in
             return try GradesTableViewController(session: currentSession, courseID: contextID.id, route: route)
+        }
+
+        // Activity Stream
+        addContextRoute([.course, .group], subPath: "activity_stream") { contextID, _ in
+            return try ActivityStreamTableViewController(session: currentSession, context: contextID, route: route)
         }
 
         // Pages
@@ -69,39 +74,38 @@ extension Router {
             Page.colorfulPageViewModel(session: session, page: page)
         }
 
-        let pagesListFactory: (ContextID, [String: AnyObject]) throws -> UIViewController? = { contextID, _ in
+        let pagesListFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, _ in
             let controller = try Page.TableViewController(session: currentSession, contextID: contextID, viewModelFactory: pagesListViewModelFactory, route: route)
-            controller.cbi_canBecomeMaster = true
             return controller
         }
+        addContextRoute([.course, .group], subPath: "pages", handler: pagesListFactory)
+        addContextRoute([.course, .group], subPath: "wiki", handler: pagesListFactory)
 
-        addContextRoute([.Course, .Group], subPath: "pages", handler: pagesListFactory)
-        addContextRoute([.Course, .Group], subPath: "wiki", handler: pagesListFactory)
-        addContextRoute([.Course, .Group], subPath: "pages/:url") { contextID, parameters in
-            let url = parameters["url"] as! String
+        let pageDetailFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, params in
+            let url = params["url"] as! String
             return try Page.DetailViewController(session: currentSession, contextID: contextID, url: url, route: route)
         }
-        addContextRoute([.Course, .Group], subPath: "front_page") { contextID, _ in
+        addContextRoute([.course, .group], subPath: "pages/:url", handler: pageDetailFactory)
+        addContextRoute([.course, .group], subPath: "wiki/:url", handler: pageDetailFactory)
+        addContextRoute([.course, .group], subPath: "front_page") { contextID, _ in
             return try Page.FrontPageDetailViewController(session: currentSession, contextID: contextID, route: route)
         }
-        addContextRoute([.Course, .Group], subPath: "pages_home") { contextID, _ in
+        addContextRoute([.course, .group], subPath: "pages_home") { contextID, _ in
             return try PagesHomeViewController(session: currentSession, contextID: contextID, listViewModelFactory: pagesListViewModelFactory, route: route)
         }
 
         // Modules
-        addContextRoute([.Course], subPath: "modules") { contextID, _ in
+        addContextRoute([.course], subPath: "modules") { contextID, _ in
             let controller = try ModulesTableViewController(session: currentSession, courseID: contextID.id, route: route)
-            controller.cbi_canBecomeMaster = true
             return controller
         }
-        addContextRoute([.Course], subPath: "modules/:id") { contextID, parameters in
-            let id = String(parameters["id"] as! NSNumber)
+        addContextRoute([.course], subPath: "modules/:id") { contextID, parameters in
+            let id = (parameters["id"] as! CustomStringConvertible).description
             let controller = try ModuleDetailsViewController(session: currentSession, courseID: contextID.id, moduleID: id, route: route)
-            controller.cbi_canBecomeMaster = true
             return controller
         }
-        addContextRoute([.Course], subPath: "modules/:id/items/:itemID") { contextID, parameters in
-            let moduleID = String(parameters["id"] as! NSNumber)
+        addContextRoute([.course], subPath: "modules/:id/items/:itemID") { contextID, parameters in
+            let moduleID = (parameters["id"] as! CustomStringConvertible).description
             let itemID: String = try parameters.stringID("itemID")
             return try ModuleItemDetailViewController(session: currentSession, courseID: contextID.id, moduleID: moduleID, moduleItemID: itemID, route: route)
         }

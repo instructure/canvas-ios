@@ -20,9 +20,9 @@ import Foundation
 import Marshal
 
 extension NSNumber: ValueType {
-    public static func value(object: Any) throws -> NSNumber {
+    public static func value(_ object: Any) throws -> NSNumber {
         guard let n = object as? NSNumber else {
-            throw Error.TypeMismatch(expected: NSNumber.self, actual: object.dynamicType)
+            throw MarshalError.typeMismatch(expected: NSNumber.self, actual: type(of: object))
         }
         return n
     }

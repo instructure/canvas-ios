@@ -22,20 +22,17 @@ import TooLegit
 import CoreData
 
 extension Panda {
-    static func collectionByFirstLetterOfName<T>(session: Session, inContext context: NSManagedObjectContext) throws -> FetchedCollection<T> {
-        let frc = Panda.fetchedResults(nil, sortDescriptors: ["name".ascending], sectionNameKeypath: "firstLetterOfName", inContext: context)
-        let titleFunction: String?->String? = { $0.flatMap { "\($0.uppercaseString)" } }
-        return try FetchedCollection(frc: frc, titleForSectionTitle:titleFunction)
+    static func collectionByFirstLetterOfName<T>(_ session: Session, inContext context: NSManagedObjectContext) throws -> FetchedCollection<T> {
+        let titleFunction: (String?)->String? = { $0.flatMap { "\($0.uppercased())" } }
+        return try FetchedCollection(frc: context.fetchedResults(nil, sortDescriptors: ["name".ascending], sectionNameKeypath: "firstLetterOfName"), titleForSectionTitle:titleFunction)
     }
 
-    static func collection<T>(session: Session, inContext context: NSManagedObjectContext) throws -> FetchedCollection<T> {
-        let frc = Panda.fetchedResults(nil, sortDescriptors: ["name".ascending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection(frc: frc)
+    static func collection<T>(_ session: Session, inContext context: NSManagedObjectContext) throws -> FetchedCollection<T> {
+        return try FetchedCollection(frc: context.fetchedResults(nil, sortDescriptors: ["name".ascending]))
     }
 
-    static func pandasNamedPo(session: Session, inContext context: NSManagedObjectContext) throws -> FetchedCollection<Panda> {
+    static func pandasNamedPo(_ session: Session, inContext context: NSManagedObjectContext) throws -> FetchedCollection<Panda> {
         let predicate = NSPredicate(format: "%K == %@", "name", "Po")
-        let frc = Panda.fetchedResults(predicate, sortDescriptors: ["id".ascending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection(frc: frc)
+        return try FetchedCollection(frc: context.fetchedResults(predicate, sortDescriptors: ["id".ascending]))
     }
 }

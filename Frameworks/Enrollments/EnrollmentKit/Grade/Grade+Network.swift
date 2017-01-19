@@ -16,18 +16,18 @@
     
     
 
-import ReactiveCocoa
+import ReactiveSwift
 import TooLegit
 import Marshal
 
 extension Grade {
-    static func getGrades(session: Session, courseID: String, gradingPeriodID: String?) throws -> SignalProducer<[JSONObject], NSError> {
+    static func getGrades(_ session: Session, courseID: String, gradingPeriodID: String?) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try GradeAPI.getGrades(session, courseID: courseID, gradingPeriodID: gradingPeriodID)
         return session.paginatedJSONSignalProducer(request).map(insertGradingPeriodID(gradingPeriodID))
     }
 
-    private static func insertGradingPeriodID(gradingPeriodID: String?) -> (grades: [JSONObject]) -> [JSONObject] {
-        func insertGradingPeriodID(json: JSONObject) -> JSONObject {
+    fileprivate static func insertGradingPeriodID(_ gradingPeriodID: String?) -> (_ grades: [JSONObject]) -> [JSONObject] {
+        func insertGradingPeriodID(_ json: JSONObject) -> JSONObject {
             var json = json
             json["grading_period_id"] = gradingPeriodID
             return json

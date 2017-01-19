@@ -21,8 +21,8 @@ import SoPretty
 
 extension UIButton {
     func makeItBlue() {
-        titleLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        setTitleColor(UIColor.white, for: UIControlState())
         backgroundColor = Brand.current().tintColor
         layer.cornerRadius = 5.0
     }

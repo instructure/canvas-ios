@@ -21,22 +21,22 @@ import DVR
 // Ugh. Not sure why but occassionally we get 'unrecognized selector sent to DVR.Session'.
 // These patch those holes.
 extension DVR.Session {
-    public override func finishTasksAndInvalidate() {
+    open override func finishTasksAndInvalidate() {
         //  no-op
     }
 
-    public override func invalidateAndCancel() {
+    open override func invalidateAndCancel() {
         // no-op
     }
 
-    public var _local_immutable_configuration: NSURLSessionConfiguration {
-        return NSURLSessionConfiguration.defaultSessionConfiguration()
+    public var _local_immutable_configuration: URLSessionConfiguration {
+        return URLSessionConfiguration.default
     }
 
-    public var workQueue: Unmanaged<AnyObject> {
-        return backingSession.performSelector(Selector("workQueue"))
-    }
-
+//    public var workQueue: Unmanaged<Any> {
+//        return backingSession.performSelector(Selector("workQueue"))
+//    }
+//
     public func _onqueue_getTasksWithCompletionHandler(handler: Unmanaged<AnyObject>) {
         return
     }

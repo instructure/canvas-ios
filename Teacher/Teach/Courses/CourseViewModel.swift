@@ -22,10 +22,10 @@ import SoPretty
 import SoLazy
 
 class CourseViewModel: Course.ViewModel {
-    let customize: (source: UIButton)->()
+    let customize: (_ source: UIButton)->()
     let makeAnAnnouncement: ()->()
     
-    init(enrollment: Course, customize: (source: UIButton)->(), makeAnAnnouncement: ()->()) {
+    init(enrollment: Course, customize: @escaping (UIButton)->(), makeAnAnnouncement: @escaping ()->()) {
         self.customize = customize
         self.makeAnAnnouncement = makeAnAnnouncement
         super.init(enrollment: enrollment)
@@ -37,16 +37,16 @@ class CourseViewModel: Course.ViewModel {
 import SoPersistent
 
 extension CourseViewModel: CollectionViewCellViewModel {
-    static func viewDidLoad(collectionView: UICollectionView) {
-        collectionView.registerNib(UINib(nibName: "CourseCell", bundle: nil), forCellWithReuseIdentifier: "CourseCell")
+    static func viewDidLoad(_ collectionView: UICollectionView) {
+        collectionView.register(UINib(nibName: "CourseCell", bundle: nil), forCellWithReuseIdentifier: "CourseCell")
     }
     
     static var layout: UICollectionViewLayout {
         return PrettyCardsLayout()
     }
     
-    func cellForCollectionView(collectionView: UICollectionView, indexPath: NSIndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CourseCell", forIndexPath: indexPath) as? CourseCell else { ❨╯°□°❩╯⌢"Register your course cell!!!" }
+    func cellForCollectionView(_ collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCell", for: indexPath) as? CourseCell else { ❨╯°□°❩╯⌢"Register your course cell!!!" }
         cell.viewModel = self
         return cell
     }

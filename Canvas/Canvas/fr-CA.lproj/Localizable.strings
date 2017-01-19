@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ doit être noté";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ pts";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Type : %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -119,7 +125,7 @@
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; est verrouillé dans le cadre de &quot;%2$@&quot;";
 
 /* (No Commment) */
-"'%@' is now ready to submit to assignments" = "« %@ » est maintenant prêt à se soumettre aux travaux attribués";
+"'%@' is now ready to submit to assignments" = "« %@ » est maintenant prêt à se soumettre aux tâches";
 
 /* (No Commment) */
 "1 Attachment" = "1 pièce jointe";
@@ -228,10 +234,10 @@
 
 /* Assignment icon a11y label
    Assignment module item type */
-"Assignment" = "Travail assigné";
+"Assignment" = "Tâche";
 
 /* Title for Assignments view controller */
-"Assignments" = "Travaux assignés";
+"Assignments" = "Tâches";
 
 /* (No Commment) */
 "Attachment" = "Pièce jointe";
@@ -263,14 +269,15 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Mémoire cache vidée";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Calendrier";
 
 /* (No Commment) */
 "Can't load tool" = "Chargement de l'outil impossible";
 
 /* (No Commment) */
-"Can't submit media" = "Soumission du média impossible";
+"Can't submit media" = "Envoi du média impossible";
 
 /* (No Commment) */
 "Cancel" = "Annuler";
@@ -314,10 +321,13 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Choose a name for the new folder." = "Choisir un nom pour le nouveau dossier.";
 
 /* (No Commment) */
-"Choose a submission type" = "Choisir un type de soumission";
+"Choose a submission type" = "Choisir un type de envoi";
 
 /* (No Commment) */
 "Choose from Library..." = "Choisir depuis la bibliothèque...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Choisissez l'option";
 
 /* (No Commment) */
 "Choose video" = "Choisir une vidéo";
@@ -368,7 +378,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Could not authenticate with server" = "Impossible d’authentifier avec le serveur";
 
 /* (No Commment) */
-"Couldn't Load Submission" = "Impossible de charger la soumission";
+"Couldn't Load Submission" = "Impossible de charger l'envoi";
 
 /* (No Commment) */
 "Couldn't find recipients" = "Impossible de trouver des destinataires";
@@ -376,14 +386,15 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Course Syllabus" = "Programme du cours";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "Cours";
 
 /* (No Commment) */
 "Create Folder" = "Créer un dossier";
 
 /* (No Commment) */
-"Current Submission" = "Soumission actuelle";
+"Current Submission" = "Envoi actuelle";
 
 /* (No Commment) */
 "Currently there is limited quiz support on mobile" = "L'aide aux questionnaires est actuellement limitée sur plateforme mobile";
@@ -454,6 +465,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Downloading..." = "Téléchargement en cours...";
 
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Dû %@";
+
 /* (No Commment) */
 "Due:" = "Dû :";
 
@@ -491,7 +505,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Enter User ID and Domain." = "Saisir l'identifiant utilisateur et le domaine.";
 
 /* (No Commment) */
-"Enter submission" = "Saisir la soumission";
+"Enter submission" = "Saisir l'envoi";
 
 /* (No Commment) */
 "Entry posted" = "Saisie publiée";
@@ -527,7 +541,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "File extension not allowed: %@" = "Extension de fichier non autorisée : %@";
 
 /* (No Commment) */
-"File extension(s) permitted for this assignment:" = "Extensions de fichier permises pour ce travail assigné :";
+"File extension(s) permitted for this assignment:" = "Extensions de fichier permises pour cette tâche () :";
 
 /* (No Commment) */
 "File received" = "Fichier reçu";
@@ -637,6 +651,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Item %1$d of %2$d" = "Élément %1$d sur %2$d";
 
+/* table header for module items */
+"Items" = "Éléments";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "C'est vide, que faites-vous encore ici.";
 
@@ -661,11 +678,17 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Legal" = "Légal";
 
+/* Web URL link item label */
+"Link" = "Lien";
+
 /* (No Commment) */
 "Loading..." = "Chargement en cours...";
 
 /* (No Commment) */
 "Locked" = "Verrouillé";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Verrouillé jusqu'à ce que \"%@\" soit class";
 
 /* locked date */
 "Locked until %@" = "Verrouillé jusqu'à %@";
@@ -688,6 +711,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Masquerade" = "Se faire passer pour quelqu'un d'autre";
 
+/* Master Path module item type */
+"Mastery Path" = "Parcours de maîtrise";
+
 /* (No Commment) */
 "Me" = "Moi";
 
@@ -695,7 +721,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Media Comment" = "Commentaire du média";
 
 /* (No Commment) */
-"Media Submission" = "Soumission du média";
+"Media Submission" = "Envoi du média";
 
 /* (No Commment) */
 "Media comment" = "Commentaire du média";
@@ -715,7 +741,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Envoyer un message séparé à chacun, ou ajouter tout le monde à une discussion de groupe?";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Messages";
 
 /* (No Commment) */
@@ -760,6 +786,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "New Folder" = "Nouveau dossier";
 
+/* Button title for next module item. */
+"Next" = "Suivant";
+
 /* (No Commment) */
 "Next 7 Days" = "Les 7 prochains jours";
 
@@ -775,11 +804,14 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "Pas d'échéance";
 
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "Aucun parcours de maîtrise";
+
 /* (No Commment) */
 "No Recorded Audio" = "Pas d'enregistrement audio";
 
 /* (No Commment) */
-"No Submission" = "Aucune soumission";
+"No Submission" = "Aucune envoi";
 
 /* (No Commment) */
 "No Thanks" = "Non merci";
@@ -832,7 +864,8 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Préférences de notification";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Notifications";
 
 /* OK Button Title */
@@ -859,6 +892,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Open in..." = "Ouvrir avec...";
 
+/* Button title for selecting an option given a number */
+"Option %d" = "Option %d";
+
 /* (No Commment) */
 "Other" = "Autre";
 
@@ -866,7 +902,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Other replies hidden until you reply" = "Les autres réponses sont masquées jusqu'à ce que vous répondiez";
 
 /* (No Commment) */
-"Outcomes" = "Résultats";
+"Outcomes" = "Acquis";
 
 /* Page module item type */
 "Page" = "Page";
@@ -901,6 +937,12 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Posts your comment" = "Publie votre commentaire";
 
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Modules préalables";
+
+/* Button title for previous module item. */
+"Previous" = "Précédent";
+
 /* (No Commment) */
 "Previous item" = "Élément précédent";
 
@@ -926,7 +968,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Rating for %1$@, Score: %2$g" = "Évaluation pour %1$@, Score : %2$g";
 
 /* (No Commment) */
-"Re-submit Assignment" = "Re-soumettre le travail assigné";
+"Re-submit Assignment" = "Re-soumettre le tâche";
 
 /* (No Commment) */
 "Recipients" = "Destinataires";
@@ -985,6 +1027,12 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Rechercher ici...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Sélectionner une option";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Sélectionner une option %d";
+
 /* (No Commment) */
 "Select file(s)" = "Sélectionner un ou plusieurs fichier(s)";
 
@@ -1028,13 +1076,27 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Certains des dossiers sélectionnés ne sont pas vides. Êtes-vous certain de vouloir quand même les supprimer?";
 
 /* (No Commment) */
-"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Désolé, nous n'avons pa trouvé ce travail assigné. Il se pourrait qu'il ait été supprimé.";
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Désolé, nous n'avons pa trouvé cette tâche. Il se pourrait qu'il ait été supprimé.";
 
 /* (No Commment) */
 "Starts playing your recording" = "Commencer la lecture de votre enregistrement";
 
 /* (No Commment) */
 "Starts recording a media comment" = "Commencer l'enregistrement d'un commentaire de média";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Statut : Terminé";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Statut : Incomplet";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Statut : Verrouillé";
+
+/* Module status label when started */
+"Status: Started" = "Statut : Débuté";
 
 /* (No Commment) */
 "Stay Logged In" = "Rester connecté";
@@ -1058,13 +1120,13 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Sub Header" = "Sous-en-tête";
 
 /* (No Commment) */
-"Submission" = "Soumission";
+"Submission" = "Envoi";
 
 /* (No Commment) */
-"Submission Error" = "Erreur de soumission";
+"Submission Error" = "Erreur de envoi";
 
 /* (No Commment) */
-"Submission complete" = "Soumission terminée";
+"Submission complete" = "Envoi terminée";
 
 /* (No Commment) */
 "Submit" = "Soumettre";
@@ -1073,7 +1135,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Submitted" = "Soumis";
 
 /* (No Commment) */
-"Submitting..." = "Soumission en cours...";
+"Submitting..." = "Envoi en cours...";
 
 /* (No Commment) */
 "Subscribe to calendar feed" = "Souscrire au flux du calendrier";
@@ -1133,7 +1195,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "Text Comment" = "Commentaire de texte";
 
 /* (No Commment) */
-"Text Submission" = "Soumission de texte";
+"Text Submission" = "Envoi de texte";
 
 /* (No Commment) */
 "Text entry" = "Saisie de texte";
@@ -1160,7 +1222,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "There was a network error posting your comment." = "Une erreur de réseau est survenue lors de la publication de votre commentaire.";
 
 /* (No Commment) */
-"There was a network problem while attempting to upload your submission" = "Un problème de réseau est survenu lors de la tentative de téléversement de votre soumission";
+"There was a network problem while attempting to upload your submission" = "Un problème de réseau est survenu lors de la tentative de téléversement de votre envoi";
 
 /* (No Commment) */
 "There was a problem accessing the requested file.
@@ -1182,10 +1244,10 @@ Erreur : %@";
 "This app is not authorized for use." = "Cette application n'est pas autorisée à l'utilisation.";
 
 /* (No Commment) */
-"This assignment doesn't appear to be a valid external tool or is misconfigured." = "Ce travail assigné ne semble pas être un outil externe valide ou est mal configuré.";
+"This assignment doesn't appear to be a valid external tool or is misconfigured." = "Cette tâche ne semble pas être un outil externe valide ou est mal configuré.";
 
 /* (No Commment) */
-"This assignment has no details." = "Ce travail assigné ne possède aucun détail.";
+"This assignment has no details." = "Cette tâche assigné ne possède aucun détail.";
 
 /* (No Commment) */
 "This entry has been deleted" = "Cette saisie a été supprimée";
@@ -1202,16 +1264,22 @@ Erreur : %@";
 /* (No Commment) */
 "This is a media message." = "Ceci est un message de média.";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Cet élément de module ne dispose pas de parcours de maîtrise configurés.";
+
 /* This would be a great time to do some extra credit. */
-"This would be a great time to do some extra credit." = "C'est un moment opportun pour effectuer des travaux optionnels.";
+"This would be a great time to do some extra credit." = "C'est un moment opportun pour effectuer des tâches optionnels.";
 
 /* Title of the Todo screen */
 "To Do" = "À faire";
 
+/* To-Do List landing page title */
+"To-Do List" = "Liste de choses à faire";
+
 /* (No Commment) */
 "To:" = "À : ";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "Aujourd'hui";
 
 /* No comment provided by engineer. */
@@ -1231,6 +1299,9 @@ Erreur : %@";
 
 /* (No Commment) */
 "Turn in %@" = "Rendre %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Type : %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Oh oh! Aucune connexion à Internet";
@@ -1275,7 +1346,7 @@ Erreur : %@";
 "Upload file" = "Téléverser un fichier";
 
 /* (No Commment) */
-"Upload to assignment &quot;%@&quot; failed" = "Le téléversement au travail assigné &quot;%@&quot; a échoué";
+"Upload to assignment &quot;%@&quot; failed" = "Le téléversement au tâche &quot;%@&quot; a échoué";
 
 /* (No Commment) */
 "Upload to folder &quot;%@&quot; failed" = "Le téléversement au dossier &quot;%@&quot; a échoué";
@@ -1302,7 +1373,7 @@ Erreur : %@";
 "Warning" = "Avertissement";
 
 /* (No Commment) */
-"We had a problem loading the submission. Please try again later." = "Nous avons rencontré un problème pendant le chargement de la soumission. Veuillez réessayer plus tard.";
+"We had a problem loading the submission. Please try again later." = "Nous avons rencontré un problème pendant le chargement de l'envoi. Veuillez réessayer plus tard.";
 
 /* (No Commment) */
 "We were unable to verify the server for use with this app." = "Nous n'avons pas pu vérifier le serveur pour son utilisation avec cette application.";
@@ -1359,7 +1430,7 @@ Erreur : %@";
 "Your files could not be found" = "Vos fichiers n'ont pu être trouvés";
 
 /* (No Commment) */
-"Your school's configuration does not allow the type of submission selected for this assignment" = "La configuration de votre école ne permet pas le type de soumission sélectionné pour ce travail assigné";
+"Your school's configuration does not allow the type of submission selected for this assignment" = "La configuration de votre école ne permet pas le type de envoi sélectionné pour cette tâche";
 
 /* (No Commment) */
 "due on %1$@ at %2$@" = "Dû le %1$@ à %2$@";

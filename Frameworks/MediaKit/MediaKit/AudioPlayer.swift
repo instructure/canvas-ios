@@ -20,16 +20,16 @@ import Foundation
 import AVFoundation
 
 protocol AudioPlayerDelegate {
-    func player(player: AudioPlayer, finishedWithError: NSError?)
-    func player(player: AudioPlayer, progressUpdatedWithCurrentTime currentTime: NSTimeInterval, meter: Int)
+    func player(_ player: AudioPlayer, finishedWithError: NSError?)
+    func player(_ player: AudioPlayer, progressUpdatedWithCurrentTime currentTime: TimeInterval, meter: Int)
 }
 
 class AudioPlayer: NSObject {
-    let audioFileURL: NSURL
-    private let meterTable: MeterTable
-    private var player: AVAudioPlayer?
+    let audioFileURL: URL
+    fileprivate let meterTable: MeterTable
+    fileprivate var player: AVAudioPlayer?
     
-    private var timer: CADisplayLink?
+    fileprivate var timer: CADisplayLink?
     
     var delegate: AudioPlayerDelegate? {
         didSet {
@@ -37,7 +37,7 @@ class AudioPlayer: NSObject {
         }
     }
     
-    init(audioFileURL: NSURL, ticks: Int) throws {
+    init(audioFileURL: URL, ticks: Int) throws {
         self.audioFileURL = audioFileURL
         self.meterTable = MeterTable(meterTicks: ticks)
         
@@ -47,11 +47,11 @@ class AudioPlayer: NSObject {
         try AVAudioSession.sharedInstance().setActive(true)
         
         
-        let player = try AVAudioPlayer(contentsOfURL: audioFileURL)
+        let player = try AVAudioPlayer(contentsOf: audioFileURL)
         player.volume = 1.0
         player.numberOfLoops = 0
         player.delegate = self
-        player.meteringEnabled = true
+        player.isMeteringEnabled = true
         self.player = player
     }
     
@@ -71,7 +71,7 @@ class AudioPlayer: NSObject {
         player?.play()
         
         timer = CADisplayLink(target: self, selector: #selector(AudioPlayer.timerFired(_:)))
-        timer?.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+        timer?.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
     }
     
     func pause() {
@@ -85,7 +85,7 @@ class AudioPlayer: NSObject {
         timer = nil
     }
     
-    var currentTime: NSTimeInterval {
+    var currentTime: TimeInterval {
         get {
             return player?.currentTime ?? 0.0
         } set {
@@ -93,19 +93,19 @@ class AudioPlayer: NSObject {
         }
     }
     
-    var duration: NSTimeInterval {
+    var duration: TimeInterval {
         return player?.duration ?? 0.0
     }
 }
 
 extension AudioPlayer: AVAudioPlayerDelegate {
-    func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?) {
-        delegate?.player(self, finishedWithError: error)
+    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+        delegate?.player(self, finishedWithError: error as NSError?)
 
         ceaseUpdates()
     }
     
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         delegate?.player(self, finishedWithError: nil)
 
         ceaseUpdates()
@@ -113,11 +113,11 @@ extension AudioPlayer: AVAudioPlayerDelegate {
 }
 
 extension AudioPlayer {
-    private func sendUpdate() {
-        if let p = player, delegate = delegate {
+    fileprivate func sendUpdate() {
+        if let p = player, let delegate = delegate {
             p.updateMeters()
-            let peak0 = p.averagePowerForChannel(0)
-            let peak1 = p.averagePowerForChannel(1)
+            let peak0 = p.averagePower(forChannel: 0)
+            let peak1 = p.averagePower(forChannel: 1)
             let avgPeak = (peak0 + peak1) / 2.0
             let meter = meterTable[Double(avgPeak)]
             
@@ -125,7 +125,7 @@ extension AudioPlayer {
         }
     }
     
-    func timerFired(timer: CADisplayLink) {
+    func timerFired(_ timer: CADisplayLink) {
         sendUpdate()
     }
 }

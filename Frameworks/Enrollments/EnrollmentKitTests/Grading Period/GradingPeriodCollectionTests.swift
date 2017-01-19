@@ -26,10 +26,10 @@ class GradingPeriodItemTests: XCTestCase {
         let context = try! session.enrollmentManagedObjectContext()
         var item: GradingPeriodItem
 
-        item = .All
+        item = .all
         XCTAssertEqual("All Grading Periods", item.title)
 
-        item = .Some(GradingPeriod.build(context, title: "Quarter 1"))
+        item = .some(GradingPeriod.build(context, title: "Quarter 1"))
         XCTAssertEqual("Quarter 1", item.title)
     }
 }

@@ -1,0 +1,52 @@
+{
+    "id": 2,
+    "subject": "conversations api example",
+    "workflow_state": "unread",
+    "last_message": "sure thing, here's the file",
+    "last_message_at": "2011-09-02T12:00:00-06:00",
+    "message_count": 2,
+    "subscribed": true,
+    "private": true,
+    "starred": false,
+    "properties": ["attachments","last_author","media_object"],
+    "audience": [2],
+    "audience_contexts": {"courses": {"1": []}, "groups": {}},
+    "avatar_url": "https://canvas.instructure.com/images/messages/avatar-50.png",
+    "participants": [{"id": 1, "name": "Joe TA"}, {"id": 2, "name": "Jane Teacher"}, {"id": 3, "name": "Bob Student"}],
+    "messages":
+    [
+     {
+     "id": 3,
+     "created_at": "2011-09-02T12:00:00Z",
+     "body": "sure thing, here's the file",
+     "author_id": 2,
+     "generated": false,
+     "media_comment": null,
+     "forwarded_messages": [],
+     "attachments": [{"id": 1, "display_name": "notes.doc", "uuid": "abcdefabcdefabcdefabcdefabcdef"}]
+     },
+     {
+     "id": 2,
+     "created_at": "2011-09-02T11:00:00Z",
+     "body": "hey, bob didn't get the notes. do you have a copy i can give him?",
+     "author_id": 2,
+     "generated": false,
+     "media_comment": null,
+     "forwarded_messages":
+     [
+      {
+      "id": 1,
+      "created_at": "2011-09-02T10:00:00Z",
+      "body": "can i get a copy of the notes? i was out",
+      "author_id": 3,
+      "generated": false,
+      "media_comment": null,
+      "forwarded_messages": [],
+      "attachments": []
+      }
+      ],
+     "attachments": []
+     }
+     ],
+    "submissions": []
+}

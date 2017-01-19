@@ -16,30 +16,35 @@
     
     
 
-import Foundation
-import ReactiveCocoa
+import Result
+import UIKit
+import ReactiveSwift
 import Result
 import SoLazy
 import SoPretty
+import Cartography
 
 public struct ColorfulViewModel: TableViewCellViewModel {
     public let color = MutableProperty(UIColor.prettyGray())
     public let title = MutableProperty("")
     public let titleFontStyle = MutableProperty(FontStyle.regular)
-    public let titleTextColor = MutableProperty(UIColor.blackColor())
-    public let detail = MutableProperty("")
+    public let titleTextColor = MutableProperty(UIColor.black)
+    public let subtitle = MutableProperty("")
+    public let rightDetail = MutableProperty("")
     public let icon = MutableProperty<UIImage?>(nil)
     public let accessoryView = MutableProperty<UIView?>(nil)
-    public let accessoryType = MutableProperty<UITableViewCellAccessoryType>(.None)
+    public let accessoryType = MutableProperty<UITableViewCellAccessoryType>(.none)
     public let tokenViewText = MutableProperty("")
     public let indentationLevel = MutableProperty(0)
     public let selectionEnabled = MutableProperty(true)
     public let setSelected = MutableProperty<Bool?>(nil)
     public let accessibilityIdentifier = MutableProperty<String?>(nil)
     public let accessibilityLabel = MutableProperty<String?>(nil)
-    public var titleLineBreakMode = NSLineBreakMode.ByTruncatingTail
 
-    public let style: ColorfulTableViewCell.Style
+    public var iconSize: CGFloat = 24.0
+    public var titleLineBreakMode = NSLineBreakMode.byTruncatingTail
+    
+    public let features = MutableProperty<ColorfulTableViewCell.Features>([])
 
     public enum FontStyle {
         case regular
@@ -47,184 +52,308 @@ public struct ColorfulViewModel: TableViewCellViewModel {
         case italic
     }
     
-    public init(style: ColorfulTableViewCell.Style) {
-        self.style = style
+    public init(features: ColorfulTableViewCell.Features = []) {
+        self.features.value = features
     }
     
-    public func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier(style.rawValue) as? ColorfulTableViewCell else { ❨╯°□°❩╯⌢"be sure and call prepareTableView:" }
-        cell.viewModel = self
-
+    public func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ColorfulTableViewCell") as? ColorfulTableViewCell else { ❨╯°□°❩╯⌢"be sure and call prepareTableView:" }
+        
+        cell.viewModel.value = self
+        
         let indexPathIdentifier = "\(indexPath.section)_\(indexPath.row)"
-        cell.disposable += cell.rac_a11yIdentifier <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_cell_\(indexPathIdentifier)" }
-        cell.disposable += cell.rac_a11yLabel <~ accessibilityLabel
-        cell.disposable += ((cell.tokenCellTitleLabel ?? cell.textLabel)?.rac_a11yIdentifier).map { $0 <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_title_\(indexPathIdentifier)" } }
-        cell.disposable += (cell.detailTextLabel?.rac_a11yIdentifier).map { $0 <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_detail_\(indexPathIdentifier)" } }
-        cell.disposable += (cell.accessoryView?.rac_a11yIdentifier).map { $0 <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_accessory_image_\(indexPathIdentifier)" } }
-        cell.disposable += (cell.imageView?.rac_a11yIdentifier).map { $0 <~ accessibilityIdentifier.producer.ignoreNil().map { "\($0)_icon_\(indexPathIdentifier)" } }
+        let nonNilA11yID = accessibilityIdentifier.producer.skipNil()
+        
+        cell.disposable += cell.rac_a11yIdentifier <~ nonNilA11yID
+            .map { "\($0)_cell_\(indexPathIdentifier)" }
+        
+        cell.disposable += cell.titleLabel.rac_a11yIdentifier <~ nonNilA11yID
+            .map { "\($0)_title_\(indexPathIdentifier)" }
+        
+        if let subtitle = cell.subtitleLabel {
+            cell.disposable += subtitle.rac_a11yIdentifier <~ nonNilA11yID
+                .map { "\($0)_subtitle_\(indexPathIdentifier)" }
+        }
+        
+        if let accessory = cell.accessoryView {
+            cell.disposable += accessory.rac_a11yIdentifier <~ nonNilA11yID
+                .map { "\($0)_accessory_image_\(indexPathIdentifier)" }
+        }
+        
+        if let icon = cell.iconView {
+            cell.disposable += icon.rac_a11yIdentifier <~ nonNilA11yID
+                .map { "\($0)_icon_\(indexPathIdentifier)" }
+        }
 
-        cell.disposable += setSelected.producer.startWithNext { [weak tableView] setSelected in
-            if let selected = setSelected where selected {
-                tableView?.selectRowAtIndexPath(tableView?.indexPathForCell(cell), animated: true, scrollPosition: .None)
+        cell.disposable += setSelected.producer.startWithValues { [weak tableView, weak cell] setSelected in
+            if let selected = setSelected, selected, let cell = cell {
+                tableView?.selectRow(at: tableView?.indexPath(for: cell), animated: true, scrollPosition: .none)
             }
         }
 
         return cell
     }
-    
-    public static func tableViewDidLoad(tableView: UITableView) {
-        for style: ColorfulTableViewCell.Style in [.Basic, .Subtitle, .RightDetail, .Token] {
-            tableView.registerNib(style.nib, forCellReuseIdentifier: style.rawValue)
-        }
+
+    public static func tableViewDidLoad(_ tableView: UITableView) {
+        tableView.register(ColorfulTableViewCell.self, forCellReuseIdentifier: "ColorfulTableViewCell")
     }
 }
 
 public class ColorfulTableViewCell: UITableViewCell {
-    public enum Style: String {
-        case Basic = "ColorfulTableViewCellBasic"
-        case Subtitle = "ColorfulTableViewCellSubtitle"
-        case RightDetail = "ColorfulTableViewCellRightDetail"
-        case Token = "ColorfulTableViewCellBasicToken"
-        
-        var nib: UINib {
-            let bundle = NSBundle(forClass: ColorfulTableViewCell.self)
-            return UINib(nibName: rawValue, bundle: bundle)
-        }
+    let padding = CGFloat(12.0)
+
+    public struct Features: OptionSet {
+        public let rawValue: Int
+        public init(rawValue: Int) { self.rawValue = rawValue }
+
+        public static let icon          = Features(rawValue: 1)
+        public static let subtitle      = Features(rawValue: 2)
+        public static let rightDetail   = Features(rawValue: 4)
+        public static let token         = Features(rawValue: 8)
     }
     
-    @IBOutlet weak var tokenCellTitleLabelCenterConstraint: NSLayoutConstraint?
-    @IBOutlet weak var tokenView: TokenLabelView?
-    @IBOutlet weak var tokenCellTitleLabel: UILabel?
-    private var disposable = CompositeDisposable()
+    // MARK: views
+    private let stack = UIStackView()
     
-    func updateTitleConstraints() {
-        if tokenView?.text.value != nil && !tokenView!.text.value.isEmpty {
-            tokenCellTitleLabelCenterConstraint?.constant = -8.5
-        } else if tokenCellTitleLabelCenterConstraint?.constant == -8.5 {
-            tokenCellTitleLabelCenterConstraint?.constant = 0
-        }
-    }
+    public let titleLabel: UILabel = {
+        let title = UILabel()
+        title.font = UIFont.preferredFont(forTextStyle: .body)
+        title.numberOfLines = 0
+        return title
+    }()
+    
+    private(set) public weak var iconView: UIImageView?
+    private(set) public weak var subtitleLabel: UILabel?
+    private(set) public weak var rightDetailLabel: UILabel?
+    private(set) public weak var tokenView: TokenView?
+
+    fileprivate var disposable = CompositeDisposable()
     
     deinit {
         disposable.dispose()
     }
     
-    func beginObservingViewModel() {
+    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        stack.alignment = .center
+        stack.axis = .horizontal
+        stack.spacing = padding
+        stack.isLayoutMarginsRelativeArrangement = true
+
+        contentView.addSubview(stack)
+        constrain(stack, contentView) { stack, contentView in
+            stack.edges == contentView.edgesWithinMargins
+        }
+
+        imageView?.alpha = 0
+
+        viewModel.producer
+            .flatMap(.latest) { $0?.features.producer ?? .empty }
+            .observe(on: UIScheduler())
+            .startWithValues { [weak self] _ in
+                self?.updateFeatures()
+            }
+    }
+    
+    public override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        let tokenBGColor = tokenView?.backgroundColor
+        super.setHighlighted(highlighted, animated: animated)
+        tokenView?.backgroundColor = tokenBGColor
+    }
+    
+    public override func setSelected(_ selected: Bool, animated: Bool) {
+        let tokenBGColor = tokenView?.backgroundColor
+        super.setSelected(selected, animated: animated)
+        tokenView?.backgroundColor = tokenBGColor
+    }
+
+    private func updateFeatures() {
+        // Reset
         disposable.dispose()
         disposable = CompositeDisposable()
         
-        guard let vm = viewModel else { return }
+        for view in Array(stack.arrangedSubviews) {
+            stack.removeArrangedSubview(view)
+        }
+        for view in Array(stack.subviews) {
+            view.removeFromSuperview()
+        }
         
-        disposable += (tokenView?.text).map { $0 <~ vm.tokenViewText.producer }
-        disposable += ((tokenCellTitleLabel ?? textLabel)?.rac_text).map { $0 <~ vm.title.producer }
-        disposable += (detailTextLabel?.rac_text).map { $0 <~ vm.detail.producer }
-        disposable += (imageView?.rac_image).map { $0 <~ vm.icon.producer }
-        disposable += vm.color.producer.startWithNext { [weak self] color in
-            self?.updateColor(color)
+        guard let features = viewModel.value?.features.value else {
+            return
         }
-        disposable += vm.accessoryView.producer.observeOn(UIScheduler()).startWithNext { [weak self] accessory in
-            self?.accessoryView = accessory
-        }
-        disposable += vm.accessoryType.producer.startWithNext { [weak self] accessory in
-            self?.accessoryType = accessory
-        }
-        disposable += vm.titleFontStyle.producer.startWithNext { [weak self] style in
-            var fontDescriptor = UIFontDescriptor.preferredFontDescriptorWithTextStyle(UIFontTextStyleBody)
-            switch style {
-            case .italic:
-                guard let italicDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(.TraitItalic) else { break }
-                let font = UIFont(descriptor: italicDescriptor, size: 0)
-                self?.textLabel?.font = font
-                self?.tokenCellTitleLabel?.font = font
-            case .bold:
-                guard let boldDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(.TraitBold) else { break }
-                let font = UIFont(descriptor: boldDescriptor, size: 0)
-                self?.textLabel?.font = font
-                self?.tokenCellTitleLabel?.font = font
-            default:
-                let font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-                self?.textLabel?.font = font
-                self?.tokenCellTitleLabel?.font = font
+        
+        let vm = viewModel.producer.skipNil()
+        let tint = vm.flatMap(.latest) { $0.color.producer }
+        
+        disposable += self.rac_tintColor <~ tint
+        disposable += titleLabel.rac_text <~ vm
+            .flatMap(.latest) { $0.title.producer }
+            .map { $0 == "" ? " " : $0 }
+       
+        disposable += vm
+            .flatMap(.latest) { $0.accessoryType.producer }
+            .startWithValues { [weak self] in self?.accessoryType = $0 }
+        
+        disposable += vm
+            .flatMap(.latest) { $0.accessoryView.producer }
+            .startWithValues { [weak self] in self?.accessoryView = $0 }
+        
+        disposable += vm
+            .flatMap(.latest) { $0.titleTextColor.producer }
+            .startWithValues { [weak self] in self?.titleLabel.textColor = $0 }
+       
+        disposable += vm
+            .flatMap(.latest) { $0.titleFontStyle.producer }
+            .startWithValues { [weak self] style in
+                let fontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .body)
+                switch style {
+                case .italic:
+                    guard let italicDescriptor = fontDescriptor.withSymbolicTraits(.traitItalic) else { break }
+                    let font = UIFont(descriptor: italicDescriptor, size: 0)
+                    self?.titleLabel.font = font
+                case .bold:
+                    guard let boldDescriptor = fontDescriptor.withSymbolicTraits(.traitBold) else { break }
+                    let font = UIFont(descriptor: boldDescriptor, size: 0)
+                    self?.titleLabel.font = font
+                default:
+                    let font = UIFont.preferredFont(forTextStyle: .body)
+                    self?.titleLabel.font = font
+                }
             }
-        }
-        disposable += vm.indentationLevel.producer.startWithNext { [weak self] level in
+        
+        disposable += vm
+            .flatMap(.latest) { $0.indentationLevel.producer }
+            .startWithValues { [weak self] level in
             self?.indentationLevel = level
-        }
-        disposable += vm.selectionEnabled.producer.startWithNext { [weak self] selectionEnabled in
-            self?.selectionStyle = selectionEnabled ? .Default : .None
-            self?.userInteractionEnabled = selectionEnabled
-        }
-        disposable += vm.titleTextColor.producer.startWithNext { [weak self] textColor in
-            self?.textLabel?.textColor = textColor
-        }
 
-        updateTitleConstraints()
+            let indent = self?.indentationWidth ?? 10.0
+            self?.stack.layoutMargins = UIEdgeInsets(top: 0, left: CGFloat(level) * indent, bottom: 0, right: 0)
+        }
+        
+        disposable += rac_a11yLabel <~ vm
+            .flatMap(.latest) { $0.accessibilityLabel.producer }
+        
+        disposable += vm
+            .flatMap(.latest) { $0.selectionEnabled.producer }
+            .startWithValues { [weak self] selectionEnabled in
+                self?.selectionStyle = selectionEnabled ? .default : .none
+                self?.isUserInteractionEnabled = selectionEnabled
+            }
 
-        (tokenCellTitleLabel ?? textLabel)?.lineBreakMode = vm.titleLineBreakMode
+        titleLabel.lineBreakMode = viewModel.value?.titleLineBreakMode ?? .byTruncatingTail
         let numberOfLines: Int
-        switch vm.titleLineBreakMode {
-        case .ByWordWrapping, .ByCharWrapping:
+        switch titleLabel.lineBreakMode {
+        case .byWordWrapping, .byCharWrapping:
             numberOfLines = 0
         default:
             numberOfLines = 1
         }
-        (tokenCellTitleLabel ?? textLabel)?.numberOfLines = numberOfLines
-    }
-    
-    public var viewModel: ColorfulViewModel? {
-        didSet {
-            beginObservingViewModel()
-        }
-    }
+        titleLabel.numberOfLines = numberOfLines
 
-    override public func layoutSubviews() {
-        super.layoutSubviews()
-
-        // Indent the images like they should be
-        if let imageView = self.imageView where indentationLevel != 0 {
-            imageView.frame = CGRect(x: imageView.frame.origin.x + (CGFloat(indentationLevel) * indentationWidth), y: imageView.frame.origin.y, width: imageView.frame.size.width, height: imageView.frame.size.height)
-        }
-
-        if let title = self.textLabel, let detail = self.detailTextLabel where self.reuseIdentifier == Style.RightDetail.rawValue {
-            var minX: CGFloat = CGRectGetMinX(title.frame)
-            let width = (CGRectGetMinX(detail.frame) - minX) - 8.0
-            var frame = title.frame
-            frame.size.width = width
-            title.frame = frame
-        }
-    }
-
-    // Prevent token from changing background color on selection/highlight
-    
-    override public func setSelected(selected: Bool, animated: Bool) {
-        let color = tokenView?.backgroundColor
-        super.setSelected(selected, animated: animated)
         
-        if selected {
-            tokenView?.backgroundColor = color
+        let bg = UIView(frame: bounds)
+        disposable += bg.rac_backgroundColor <~ tint.map { $0.lighterShade() }
+        selectedBackgroundView = bg
+        
+        if features.contains(.icon) {
+            let iconSize = viewModel.value?.iconSize ?? 24.0
+            
+            let iconView = UIImageView()
+            iconView.contentMode = .center
+            let widthConstraint = iconView.widthAnchor.constraint(equalToConstant: iconSize)
+            widthConstraint.isActive = true
+            stack.addArrangedSubview(iconView)
+            self.iconView = iconView
+            
+            disposable += vm
+                .flatMap(.latest) { $0.icon.producer }
+                .startWithValues { [weak self] icon in
+                    self?.iconView?.image = icon
+                    self?.imageView?.image = icon
+                    widthConstraint.constant = icon == nil ? 0 : iconSize
+                    iconView.isHidden = icon == nil
+                }
+        }
+        
+        let vertStack = UIStackView()
+        vertStack.alignment = .leading
+        vertStack.axis = .vertical
+        vertStack.distribution = .fill
+        vertStack.spacing = 2.0
+        stack.addArrangedSubview(vertStack)
+
+        let titleContainer = UIView()
+        titleContainer.addSubview(titleLabel)
+        constrain(titleLabel, titleContainer) { label, container in
+            label.edges == container.edges
+        }
+        vertStack.addArrangedSubview(titleContainer)
+        
+        if features.contains(.subtitle) {
+            let sub = UILabel()
+            sub.font = UIFont.preferredFont(forTextStyle: .caption1)
+            sub.numberOfLines = 1
+
+            let subContainer = UIView()
+            subContainer.addSubview(sub)
+            constrain(sub, subContainer) { label, container in
+                label.edges == container.edges
+            }
+            vertStack.addArrangedSubview(subContainer)
+            self.subtitleLabel = sub
+
+            disposable += sub.rac_text <~ vm
+                .flatMap(.latest) { $0.subtitle.producer }
+                .map { $0 == "" ? " " : $0 }
+            disposable += subContainer.rac_hidden <~ vm
+                .flatMap(.latest) { $0.subtitle.producer }
+                .map { $0.characters.count == 0 }
+        }
+        
+        if features.contains(.token) {
+            let spacer = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 2))
+            constrain(spacer) { $0.height == 2 }
+            vertStack.addArrangedSubview(spacer)
+            
+            let token = TokenView()
+            token.rac_backgroundColor <~ tint
+                .map { $0 } // make it optional 😐
+            disposable += token.rac_text <~ vm
+                .flatMap(.latest) { $0.tokenViewText.producer }
+                .map { $0 == "" ? " " : $0 }
+            
+            vertStack.addArrangedSubview(token)
+            self.tokenView = token
+        }
+        
+        if features.contains(.rightDetail) {
+            let right = UILabel()
+            right.font = titleLabel.font
+            right.textColor = .prettyGray()
+            right.textAlignment = .right
+            stack.addArrangedSubview(right)
+            self.rightDetailLabel = right
+            
+            disposable += right.rac_text <~ vm
+                .flatMap(.latest) { $0.rightDetail.producer }
         }
     }
     
-    override public func setHighlighted(highlighted: Bool, animated: Bool) {
-        let color = tokenView?.backgroundColor
-        super.setHighlighted(highlighted, animated: animated)
-        
-        if highlighted {
-            tokenView?.backgroundColor = color
-        }
+    // MARK: ViewModel
+    internal let viewModel = MutableProperty<ColorfulViewModel?>(nil)
+    
+    // MARK: Misuse
+    public required init?(coder aDecoder: NSCoder) {
+        ❨╯°□°❩╯⌢"Sorry, no nib/storyboard support"
+    }
+
+    public override var textLabel: UILabel? {
+        ❨╯°□°❩╯⌢"Don't use this, use titleLabel"
     }
     
-    public override func prepareForReuse() {
-        viewModel = nil
-    }
-    
-    public func updateColor(color: UIColor) {
-        tintColor = color
-        let bg = UIView()
-        bg.backgroundColor = color.lighterShade()
-        self.selectedBackgroundView = bg
-        
-        tokenView?.backgroundColor = color
+    public override var detailTextLabel: UILabel? {
+        ❨╯°□°❩╯⌢"Don't use the detail text label"
     }
 }

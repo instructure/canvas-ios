@@ -25,53 +25,53 @@ class DatePickerViewController: UIViewController {
     let datePickerHeight: CGFloat = 216.0
 
     var cancelAction: ()->() = { }
-    var doneAction: (NSDate)->() = { _ in }
+    var doneAction: (Date)->() = { _ in }
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
 
-        let width: CGFloat = min(UIScreen.mainScreen().bounds.size.width - 30.0, 400.0)
+        let width: CGFloat = min(UIScreen.main.bounds.size.width - 30.0, 400.0)
         preferredContentSize = CGSize(width: width, height: datePickerHeight)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
 
-        datePicker.minimumDate = NSDate() + 1.minutesComponents
-        datePicker.maximumDate = NSDate() + 1.yearsComponents
-        datePicker.datePickerMode = UIDatePickerMode.DateAndTime
+        datePicker.minimumDate = Date() + 1.minutesComponents
+        datePicker.maximumDate = Date() + 1.yearsComponents
+        datePicker.datePickerMode = UIDatePickerMode.dateAndTime
         view.addSubview(datePicker)
 
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.accessibilityIdentifier = "assignment_date_picker"
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[picker]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["picker": datePicker]))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[top][picker(216)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["top": self.topLayoutGuide, "picker": datePicker]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[picker]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["picker": datePicker]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[top][picker(216)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["top": self.topLayoutGuide, "picker": datePicker]))
 
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(DatePickerViewController.cancel(_:)))
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(DatePickerViewController.cancel(_:)))
         cancelButton.accessibilityIdentifier = "date_picker_cancel_button"
 
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(DatePickerViewController.done(_:)))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(DatePickerViewController.done(_:)))
         doneButton.accessibilityIdentifier = "date_picker_done_button"
 
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = doneButton
     }
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 
-    func cancel(button: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: { [unowned self] _ in
+    func cancel(_ button: UIBarButtonItem) {
+        dismiss(animated: true, completion: { [unowned self] _ in
             self.cancelAction()
         })
     }
 
-    func done(button: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: { [unowned self] _ in
+    func done(_ button: UIBarButtonItem) {
+        dismiss(animated: true, completion: { [unowned self] _ in
             self.doneAction(self.datePicker.date)
         })
     }

@@ -22,15 +22,15 @@ class GettingStartedPage: PageObject {
   // Mark: - Page Objects
 
   private static var getStartedLabel: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("get_started_label"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("get_started_label"))
   }
 
   private static var addStudentButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("add_student_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("add_student_button"))
   }
 
   private static var logoutButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("logout_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("logout_button"))
   }
 
   static func uniquePageElement() -> GREYElementInteraction {
@@ -39,19 +39,20 @@ class GettingStartedPage: PageObject {
 
   // Mark: - Assertion Helpers
 
-  static func assertPageObjects(file: String = #file, _ line: UInt = #line) {
+  static func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    getStartedLabel.assertWithMatcher(grey_sufficientlyVisible())
-    addStudentButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    logoutButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
+
+    getStartedLabel.assert(with: grey_sufficientlyVisible())
+    addStudentButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    logoutButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
   }
 
   // Mark: - UI Action Helpers
 
-  static func tapLogoutButton(file: String = #file, _ line: UInt = #line) {
+  static func tapLogoutButton(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    logoutButton.performAction(grey_tap())
+    logoutButton.perform(grey_tap())
   }
 }

@@ -1,0 +1,12 @@
+/* Class = "UILabel"; text = "Grade"; ObjectID = "6u3-e7-LDl"; */
+"6u3-e7-LDl.text" = "Betyg";
+
+/* Class = "UILabel"; text = "-/-"; ObjectID = "32x-sq-GvB"; */
+"32x-sq-GvB.text" = "-/-";
+
+/* Class = "UILabel"; text = "Points"; ObjectID = "ZG6-S6-bGJ"; */
+"ZG6-S6-bGJ.text" = "Poäng";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "bZ9-5W-JUE"; */
+"bZ9-5W-JUE.text" = "-";
+

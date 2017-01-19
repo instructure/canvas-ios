@@ -35,8 +35,8 @@ class TodoTests: UnitTestCase {
 
     func testUpdateValues_itSetsTheObjectPropertiesTheCorrespondingJSONValues() {
         attempt {
-            let bundle = NSBundle.soAutomated
-            let data = NSData(contentsOfFile: bundle.pathForResource("todo", ofType: "json")!)!
+            let bundle = Bundle.soAutomated
+            let data = try! Data(contentsOf: bundle.url(forResource: "todo", withExtension: "json")!)
             let json = try JSONParser.JSONObjectWithData(data)
             let session = Session.inMemory
             let context = try session.todosManagedObjectContext()
@@ -54,19 +54,19 @@ class TodoTests: UnitTestCase {
             XCTAssertEqual("9536420", todo.assignmentID)
             XCTAssertEqual("Check WWDC Status : April 25, 2016", todo.assignmentName)
             XCTAssertNotNil(todo.assignmentDueDate)
-            let equal = NSDate.fromISO8601String("2016-04-26T05:59:00Z")!
-            XCTAssert(todo.assignmentDueDate?.isEqualToDate(equal) ?? false)
+            let equal = Date.fromISO8601String("2016-04-26T05:59:00Z")!
+            XCTAssert(todo.assignmentDueDate == equal)
             XCTAssertEqual("https://mobiledev.instructure.com/courses/1863668/assignments/9536420", todo.assignmentHtmlURL)
             
-            XCTAssertEqual([.Text], todo.submissionTypes)
+            XCTAssertEqual(.assignment, todo.todoType)
             XCTAssertEqual("1863668", todo.contextID.id)
         }
     }
     
     func testUpdateValues_itSetsTheAssignmentHtmlURLToTheQuizURL() {
         attempt {
-            let bundle = NSBundle.soAutomated
-            let data = NSData(contentsOfFile: bundle.pathForResource("todo", ofType: "json")!)!
+            let bundle = Bundle.soAutomated
+            let data = try! Data(contentsOf: bundle.url(forResource: "todo", withExtension: "json")!)
             var json = try JSONParser.JSONObjectWithData(data)
             let session = Session.inMemory
             let context = try session.todosManagedObjectContext()
@@ -90,15 +90,15 @@ class TodoTests: UnitTestCase {
             let todo = Todo.build(context, assignmentHtmlURL: "https://mob.instructure.com/courses/1/assignments/2")
             
             // quiz
-            todo.submissionTypes = [.Quiz]
+            todo.todoType = .quiz
             XCTAssertEqual("https://mob.instructure.com/courses/1/assignments/2", todo.routingURL)
             
             // discussion
-            todo.submissionTypes = [.DiscussionTopic]
+            todo.todoType = .discussion
             XCTAssertEqual("https://mob.instructure.com/courses/1/assignments/2", todo.routingURL)
             
             // everything else
-            todo.submissionTypes = .None
+            todo.todoType = .assignment
             XCTAssertEqual("https://mob.instructure.com/courses/1/assignments/2", todo.routingURL)
         }
     }

@@ -24,7 +24,7 @@ import TooLegit
 
 public final class Group: Enrollment {
     public override var contextID: ContextID {
-        return ContextID(id: id, context: .Group)
+        return ContextID(id: id, context: .group)
     }
 }
 
@@ -32,12 +32,12 @@ import Marshal
 import SoLazy
 
 extension Group: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
     
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id      = try json.stringID("id")
         name    = try json <| "name"
     }

@@ -19,30 +19,30 @@
 import UIKit
 import DiscussionKit
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 import SoPersistent
 import WhizzyWig
 
 enum DiscussionTopicDetailCellViewModel: TableViewCellViewModel {
-    case Title(String)
-    case Message(NSURL, String)
+    case title(String)
+    case message(URL, String)
 
-    static func tableViewDidLoad(tableView: UITableView) {
-        tableView.separatorStyle = .None
+    static func tableViewDidLoad(_ tableView: UITableView) {
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
-        tableView.registerClass(WhizzyWigTableViewCell.self, forCellReuseIdentifier: "MessageCell")
+        tableView.register(WhizzyWigTableViewCell.self, forCellReuseIdentifier: "MessageCell")
     }
 
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch self {
-        case .Title(let title):
-            let cell = tableView.dequeueReusableCellWithIdentifier("TitleCell")!
+        case .title(let title):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell")!
             cell.textLabel?.text = title
             return cell
-        case .Message(let baseURL, let message):
-            let cell = tableView.dequeueReusableCellWithIdentifier("MessageCell") as! WhizzyWigTableViewCell
+        case .message(let baseURL, let message):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! WhizzyWigTableViewCell
             cell.cellSizeUpdated = { _ in
                 tableView.beginUpdates()
                 tableView.endUpdates()
@@ -52,11 +52,11 @@ enum DiscussionTopicDetailCellViewModel: TableViewCellViewModel {
         }
     }
 
-    static func detailsForDiscussionTopic(baseURL: NSURL) -> (discussionTopic: DiscussionTopic) -> [DiscussionTopicDetailCellViewModel] {
+    static func detailsForDiscussionTopic(_ baseURL: URL) -> (_ discussionTopic: DiscussionTopic) -> [DiscussionTopicDetailCellViewModel] {
         return { discussionTopic in
             return [
-                .Title(discussionTopic.title),
-                .Message(baseURL, discussionTopic.message)
+                .title(discussionTopic.title),
+                .message(baseURL, discussionTopic.message)
             ]
         }
     }
@@ -65,9 +65,9 @@ enum DiscussionTopicDetailCellViewModel: TableViewCellViewModel {
 extension DiscussionTopicDetailCellViewModel: Equatable {}
 func ==(lhs: DiscussionTopicDetailCellViewModel, rhs: DiscussionTopicDetailCellViewModel) -> Bool {
     switch (lhs, rhs) {
-    case let (.Title(leftTitle), .Title(rightTitle)):
+    case let (.title(leftTitle), .title(rightTitle)):
         return leftTitle == rightTitle
-    case let (.Message(leftURL, leftMessage), .Message(rightURL, rightMessage)):
+    case let (.message(leftURL, leftMessage), .message(rightURL, rightMessage)):
         return leftURL == rightURL && leftMessage == rightMessage
     default:
         return false
@@ -81,16 +81,16 @@ class DiscussionTopicDetailViewController: DiscussionTopic.DetailViewController 
         super.init(coder: aDecoder)
     }
 
-    static func new(session: Session, courseID: String, discussionTopicID: String) throws -> DiscussionTopicDetailViewController {
-        guard let me = UIStoryboard(name: "Discussions", bundle: nil).instantiateViewControllerWithIdentifier("DiscussionTopicDetail") as? DiscussionTopicDetailViewController else { ❨╯°□°❩╯⌢"blah, I hate life" }
+    static func new(_ session: Session, courseID: String, discussionTopicID: String) throws -> DiscussionTopicDetailViewController {
+        guard let me = UIStoryboard(name: "Discussions", bundle: nil).instantiateViewController(withIdentifier: "DiscussionTopicDetail") as? DiscussionTopicDetailViewController else { ❨╯°□°❩╯⌢"blah, I hate life" }
 
         let observer = try DiscussionTopic.observer(session, courseID: courseID, discussionTopicID: discussionTopicID)
         let refresher = try DiscussionTopic.refresher(session, courseID: courseID, discussionTopicID: discussionTopicID)
 
         me.prepare(observer, refresher: refresher, detailsFactory: DiscussionTopicDetailCellViewModel.detailsForDiscussionTopic(session.baseURL))
         me.disposable = observer.signal.map { $0.1 }
-            .observeOn(UIScheduler())
-            .observeNext { discussionTopic in
+            .observe(on: UIScheduler())
+            .observeValues { discussionTopic in
 
         }
 

@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "url": "/api/v1/outcomes/1",
+    "context_id": 1,
+    "context_type": "Account",
+    "title": "Outcome title",
+    "display_name": "My Favorite Outocome",
+    "description": "Outcome description",
+    "vendor_guid": "customid9000",
+    "points_possible": 5,
+    "mastery_points": 3,
+    "ratings": "",
+    "can_edit": "true"
+}

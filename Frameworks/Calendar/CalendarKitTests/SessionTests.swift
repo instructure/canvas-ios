@@ -30,7 +30,7 @@ class DescribeSessionManagedObjectContexts: XCTestCase {
         let context = try! session.calendarEventsManagedObjectContext()
 
         XCTAssertEqual(1, session.contextsByStoreID.count)
-        XCTAssertEqual(NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType, context.concurrencyType)
+        XCTAssertEqual(NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType, context.concurrencyType)
         guard let psc = context.persistentStoreCoordinator else {
             XCTFail("no psc")
             return
@@ -42,7 +42,7 @@ class DescribeSessionManagedObjectContexts: XCTestCase {
         let context = try! session.calendarEventsManagedObjectContext("1")
 
         XCTAssertEqual(1, session.contextsByStoreID.count)
-        XCTAssertEqual(NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType, context.concurrencyType)
+        XCTAssertEqual(NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType, context.concurrencyType)
         guard let psc = context.persistentStoreCoordinator else {
             XCTFail("no psc")
             return

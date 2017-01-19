@@ -1,0 +1,33 @@
+{
+    "id": 5,
+    "title": "Hamlet Act 3 Quiz",
+    "html_url": "http://canvas.example.edu/courses/1/quizzes/2",
+    "mobile_url": "http://canvas.example.edu/courses/1/quizzes/2?persist_healdess=1&force_user=1",
+    "description": "This is a quiz on Act 3 of Hamlet",
+    "quiz_type": "assignment",
+    "assignment_group_id": 3,
+    "time_limit": 5,
+    "shuffle_answers": false,
+    "hide_results": "always",
+    "show_correct_answers": true,
+    "scoring_policy": "keep_highest",
+    "allowed_attempts": 3,
+    "one_question_at_a_time": false,
+    "question_count": 12,
+    "points_possible": 20,
+    "cant_go_back": false,
+    "access_code": "2beornot2be",
+    "ip_filter": "123.123.123.123",
+    "due_at": "2013-01-23T23:59:00-07:00",
+    "lock_at": null,
+    "unlock_at": "2013-01-21T23:59:00-07:00",
+    "published": true,
+    "locked_for_user": false,
+    "lock_info": {
+        "asset_string": "quiz_5",
+        "unlock_at": "2013-01-01T00:00:00-06:00",
+        "lock_at": "2013-02-01T00:00:00-06:00",
+        "context_module": {  }
+    },
+    "lock_explanation": "This quiz is locked until September 1 at 12:00am"
+}

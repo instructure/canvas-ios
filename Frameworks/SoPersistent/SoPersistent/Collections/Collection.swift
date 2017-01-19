@@ -17,45 +17,45 @@
     
 
 import Foundation
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 public enum CollectionUpdate<Model>: CustomStringConvertible, Equatable {
-    case SectionInserted(Int)
-    case SectionDeleted(Int)
+    case sectionInserted(Int)
+    case sectionDeleted(Int)
     
-    case Inserted(NSIndexPath, Model)
-    case Updated(NSIndexPath, Model)
-    case Moved(NSIndexPath, NSIndexPath, Model)
-    case Deleted(NSIndexPath, Model)
+    case inserted(IndexPath, Model, animated: Bool)
+    case updated(IndexPath, Model, animated: Bool)
+    case moved(IndexPath, IndexPath, Model, animated: Bool)
+    case deleted(IndexPath, Model, animated: Bool)
     
-    case Reload
+    case reload
     
-    func map<U>(f: Model throws -> U) rethrows -> CollectionUpdate<U> {
+    func map<U>(_ f: (Model) throws -> U) rethrows -> CollectionUpdate<U> {
         switch self {
-        case .SectionInserted(let s): return .SectionInserted(s)
-        case .SectionDeleted(let s): return .SectionDeleted(s)
+        case .sectionInserted(let s): return .sectionInserted(s)
+        case .sectionDeleted(let s): return .sectionDeleted(s)
             
-        case let .Inserted(ip, m): return .Inserted(ip, try f(m))
-        case let .Updated(ip, m): return .Updated(ip, try f(m))
-        case let .Moved(fromIP, toIP, m): return .Moved(fromIP, toIP, try f(m))
-        case let .Deleted(ip, m): return .Deleted(ip, try f(m))
+        case let .inserted(ip, m, animated): return .inserted(ip, try f(m), animated: animated)
+        case let .updated(ip, m, animated): return .updated(ip, try f(m), animated: animated)
+        case let .moved(fromIP, toIP, m, animated): return .moved(fromIP, toIP, try f(m), animated: animated)
+        case let .deleted(ip, m, animated): return .deleted(ip, try f(m), animated: animated)
             
-        case .Reload: return .Reload
+        case .reload: return .reload
         }
     }
     
     public var description: String {
         switch self {
-        case .SectionInserted(let i): return "CollectionUpdate: Section Inserted at Index \(i)"
-        case .SectionDeleted(let i): return "CollectionUpdate: Section Deleted at Index \(i)"
+        case .sectionInserted(let i): return "CollectionUpdate: Section Inserted at Index \(i)"
+        case .sectionDeleted(let i): return "CollectionUpdate: Section Deleted at Index \(i)"
 
-        case let .Inserted(path, model): return "CollectionUpdate: \(model.dynamicType) Inserted at {\(path.section), \(path.item)}"
-        case let .Updated(path, model): return "CollectionUpdate: \(model.dynamicType) Updated at {\(path.section), \(path.item)}"
-        case let .Moved(from, to, model): return "CollectionUpdate: \(model.dynamicType) Moved from {\(from.section), \(from.item)} to {\(to.section), \(to.item)}"
-        case let .Deleted(path, model): return "CollectionUpdate: \(model.dynamicType) Deleted from {\(path.section), \(path.item)}"
+        case let .inserted(path, model, _): return "CollectionUpdate: \(type(of: model)) Inserted at {\(path.section), \(path.item)}"
+        case let .updated(path, model, _): return "CollectionUpdate: \(type(of: model)) Updated at {\(path.section), \(path.item)}"
+        case let .moved(from, to, model, _): return "CollectionUpdate: \(type(of: model)) Moved from {\(from.section), \(from.item)} to {\(to.section), \(to.item)}"
+        case let .deleted(path, model, _): return "CollectionUpdate: \(type(of: model)) Deleted from {\(path.section), \(path.item)}"
             
-        case .Reload: return "CollectionUpdate: Reload"
+        case .reload: return "CollectionUpdate: Reload"
         }
     }
 }
@@ -63,37 +63,37 @@ public enum CollectionUpdate<Model>: CustomStringConvertible, Equatable {
 public func ==<M>(lhs: CollectionUpdate<M>, rhs: CollectionUpdate<M>) -> Bool {
 
     switch (lhs, rhs) {
-    case let (.SectionInserted(i0), .SectionInserted(i1)) where i0 == i1: return true
-    case let (.SectionDeleted(i0), .SectionDeleted(i1)) where i0 == i1: return true
+    case let (.sectionInserted(i0), .sectionInserted(i1)) where i0 == i1: return true
+    case let (.sectionDeleted(i0), .sectionDeleted(i1)) where i0 == i1: return true
         
-    case let (.Inserted(path0, _), .Inserted(path1, _)) where path0.section == path1.section && path0.item == path1.item: return true
+    case let (.inserted(path0, _, _), .inserted(path1, _, _)) where path0.section == path1.section && path0.item == path1.item: return true
         
-    case let (.Updated(path0, _), .Updated(path1, _)) where path0.section == path1.section && path0.item == path1.item: return true
+    case let (.updated(path0, _, _), .updated(path1, _, _)) where path0.section == path1.section && path0.item == path1.item: return true
         
-    case let (.Moved(from0, to0, _), .Moved(from1, to1, _))
+    case let (.moved(from0, to0, _, _), .moved(from1, to1, _, _))
         where from0.section == from1.section &&
                  from0.item == from1.item &&
                 to0.section == to1.section &&
                    to0.item == to1.item
         : return true
+
+    case let (.deleted(path0, _, _), .deleted(path1, _, _)) where path0.section == path1.section && path0.item == path1.item: return true
         
-    case let (.Deleted(path0, _), .Deleted(path1, _)) where path0.section == path1.section && path0.item == path1.item: return true
-        
-    case (.Reload, .Reload): return true
+    case (.reload, .reload): return true
         
     default: return false
     }
 }
 
 public protocol Collection: class {
-    typealias Object
+    associatedtype Object
     
     func numberOfSections() -> Int
-    func numberOfItemsInSection(section: Int) -> Int
+    func numberOfItemsInSection(_ section: Int) -> Int
     
-    func titleForSection(section: Int) -> String?
+    func titleForSection(_ section: Int) -> String?
 
-    subscript(indexPath: NSIndexPath) -> Object { get }
+    subscript(indexPath: IndexPath) -> Object { get }
     
     var collectionUpdates: Signal<[CollectionUpdate<Object>], NoError> { get }
 }

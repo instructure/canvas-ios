@@ -22,8 +22,8 @@ import SoPersistent
 
 extension AlertThreshold {
     static var validJSON: JSONObject {
-        let bundle = NSBundle(forClass: AlertTests.self)
-        let path = bundle.pathForResource("valid_alert_threshold", ofType: "json")!
+        let bundle = Bundle(for: AlertTests.self)
+        let path = bundle.path(forResource: "valid_alert_threshold", ofType: "json")!
         return try! JSONParser.JSONObjectWithData(NSData(contentsOfFile: path)!)
     }
 }

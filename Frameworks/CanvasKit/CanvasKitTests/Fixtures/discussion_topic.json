@@ -1,0 +1,46 @@
+{
+    "id":1,
+    "title":"Topic 1",
+    "message":"<p>content here</p>",
+    "html_url": "https://canvas.instructure.com/courses/1/discussion_topics/2",
+    "posted_at":"2037-07-21T13:29:31Z",
+    "last_reply_at":"2037-07-28T19:38:31Z",
+    "require_initial_post":false,
+    "user_can_see_posts":true,
+    "discussion_subentry_count":3,
+    "read_state":"read",
+    "unread_count":5,
+    "subscribed":true,
+    "subscription_hold":"initial_post_required",
+    "assignment_id": 847,
+    "delayed_post_at": "2037-07-21T13:29:31Z",
+    "published":true,
+    "lock_at": "2037-07-21T13:29:31Z",
+    "locked":false,
+    "pinned":false,
+    "locked_for_user":true,
+    "lock_info": {
+        "asset_string":"discussion_topic_1",
+        "unlock_at":"2013-01-01T00:00:00-06:00",
+        "lock_at":"2013-02-01T00:00:00-06:00",
+        "context_module":{ }
+    },
+    "lock_explanation":"This discussion is locked until September 1 at 12:00am",
+    "user_name":"User Name",
+    "topic_children":[5, 7, 10],
+    "root_topic_id": 1236,
+    "podcast_url":"/feeds/topics/1/enrollment_1XAcepje4u228rt4mi7Z1oFbRpn3RAkTzuXIGOPe.rss",
+    "discussion_type":"side_comment",
+    "attachments":[
+                   {
+                   "content-type":"unknown/unknown",
+                   "url":"http://www.example.com/courses/1/files/1/download",
+                   "filename":"content.txt",
+                   "display_name":"content.txt"
+                   }
+                   ],
+    "permissions":
+    {
+        "attach": true
+    }
+}

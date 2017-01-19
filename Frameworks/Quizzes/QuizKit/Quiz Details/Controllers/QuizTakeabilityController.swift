@@ -25,11 +25,11 @@ class QuizTakeabilityController {
     let quiz: Quiz
     let service: QuizService
     
-    private (set) var attempts: Int = 0 // NOTE: right now this is broken due to an api bug that is being worked on, so don't rely on this
+    fileprivate (set) var attempts: Int = 0 // NOTE: right now this is broken due to an api bug that is being worked on, so don't rely on this
     
     /// This is the list of question types that is supported natively. 
     /// This will change as we add support for more question types.
-    private var nativelySupportedQuestionTypes: [Question.Kind] {
+    fileprivate var nativelySupportedQuestionTypes: [Question.Kind] {
         return [ .TrueFalse, .MultipleChoice, .MultipleAnswers, .Matching, .Essay, .ShortAnswer, .TextOnly, .Numerical ]
     }
     
@@ -40,37 +40,37 @@ class QuizTakeabilityController {
         refreshTakeability()
     }
     
-    var takeabilityUpdated: QuizTakeabilityController->() = {_ in } {
+    var takeabilityUpdated: (QuizTakeabilityController)->() = {_ in } {
         didSet {
             takeabilityUpdated(self)
         }
     }
     
-    private (set) var takeability: Takeability = .NotTakeable(reason: .Undecided) {
+    fileprivate (set) var takeability: Takeability = .notTakeable(reason: .undecided) {
         didSet {
             takeabilityUpdated(self)
         }
     }
     
-    private func updateTakeability(submissions: [Submission]) {
-        if quiz.lockAt != nil && NSDate() >= quiz.lockAt! {
-            takeability = .NotTakeable(reason: .Locked)
+    fileprivate func updateTakeability(_ submissions: [Submission]) {
+        if quiz.lockAt != nil && Date() >= quiz.lockAt! as Date {
+            takeability = .notTakeable(reason: .locked)
             return
         }
         // TODO: passcode
         
         attempts = submissions.count
         if submissions.count == 0 && !quiz.lockedForUser {
-            takeability = .Take
+            takeability = .take
             return
         } else {
-            let sortedSubmissions = submissions.sort({ $0.attempt < $1.attempt })
+            let sortedSubmissions = submissions.sorted(by: { $0.attempt < $1.attempt })
             if let lastSubmission = sortedSubmissions.last {
                 switch quiz.attemptLimit {
-                case .Count(let limit):
+                case .count(let limit):
                     if lastSubmission.attempt >= limit && lastSubmission.workflowState != .Untaken && lastSubmission.attemptsLeft == 0 {
                         // You had your chance, and you probably ended up screwing up anyways :P 
-                        takeability = .NotTakeable(reason: .AttemptLimitReached)
+                        takeability = .notTakeable(reason: .attemptLimitReached)
                         return
                     }
                 default:
@@ -78,18 +78,18 @@ class QuizTakeabilityController {
                 }
                 
                 if lastSubmission.workflowState == .Untaken && !quiz.lockedForUser {
-                    let now = NSDate()
-                    if (lastSubmission.endAt != nil && now < lastSubmission.endAt! && lastSubmission.dateFinished == nil) || lastSubmission.endAt == nil  {
-                        takeability = .Resume
+                    let now = Date()
+                    if (lastSubmission.endAt != nil && now < lastSubmission.endAt! as Date && lastSubmission.dateFinished == nil) || lastSubmission.endAt == nil  {
+                        takeability = .resume
                         unfinishedSubmission = lastSubmission
                         return
-                    } else if lastSubmission.endAt != nil && now > lastSubmission.endAt! {
+                    } else if lastSubmission.endAt != nil && now > lastSubmission.endAt! as Date {
                         // This is the horrible hack where because the API never updated the workflow state, we have to manually complete the quiz before
                         // we can start another one
-                        takeability = .NotTakeable(reason: .Undecided)
+                        takeability = .notTakeable(reason: .undecided)
                         service.completeSubmission(lastSubmission) { [weak self] result in
                             if result.error != nil {
-                                self?.takeability = .Retake
+                                self?.takeability = .retake
                             }
                         }
                         return
@@ -98,9 +98,9 @@ class QuizTakeabilityController {
             }
             
             if quiz.lockedForUser {
-                takeability = .NotTakeable(reason: .Other(quiz.lockExplanation ?? "This quiz is locked."))
+                takeability = .notTakeable(reason: .other(quiz.lockExplanation ?? "This quiz is locked."))
             } else {
-                takeability = .Retake
+                takeability = .retake
             }
         }
     }
@@ -108,9 +108,9 @@ class QuizTakeabilityController {
     func refreshTakeability() {
         service.getSubmissions() { result in
             switch result {
-            case .Success(let submissionPage):
+            case .success(let submissionPage):
                 self.updateTakeability(submissionPage.content)
-            case .Failure(let error):
+            case .failure(let error):
                 print("error getting the submissions \(error)")
             }
         }
@@ -124,7 +124,7 @@ class QuizTakeabilityController {
         return takeability.takeable && !takeableNatively()
     }
     
-    private func quizQuestionsSupportedNatively(quiz: Quiz) -> Bool {
+    fileprivate func quizQuestionsSupportedNatively(_ quiz: Quiz) -> Bool {
         if quiz.questionTypes.count == 0 {
             return false
         }
@@ -141,9 +141,9 @@ class QuizTakeabilityController {
     
     
     // MARK: taking a quiz
-    private var unfinishedSubmission: Submission? = nil
+    fileprivate var unfinishedSubmission: Submission? = nil
 
-    func submissionControllerForTakingQuiz(quiz: Quiz) -> SubmissionController {
+    func submissionControllerForTakingQuiz(_ quiz: Quiz) -> SubmissionController {
         return SubmissionController(service: service, submission: unfinishedSubmission, quiz: quiz)
     }
 }

@@ -19,15 +19,30 @@
 import Foundation
 import CoreData
 import SoPersistent
-import AssignmentKit
 import ReactiveCocoa
 import TooLegit
 import Marshal
 import SoLazy
+import SoIconic
 
-private let contextIDErrorMessage = NSLocalizedString("There was an error associating a tab with a course or group.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TodoKit")!, value: "", comment: "Error message when parsing contextID for a course or group tab")
-private let contextIDFailureReason = NSLocalizedString("Could not parse context id from URL", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TodoKit")!, value: "", comment: "Failure reason for why it couldn't associate a tab with a context")
+private let contextIDErrorMessage = NSLocalizedString("There was an error associating a tab with a course or group.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.TodoKit")!, value: "", comment: "Error message when parsing contextID for a course or group tab")
+private let contextIDFailureReason = NSLocalizedString("Could not parse context id from URL", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.TodoKit")!, value: "", comment: "Failure reason for why it couldn't associate a tab with a context")
 
+public enum TodoType: String {
+    case discussion = "discussion_topic"
+    case quiz = "online_quiz"
+    case assignment = "assignment"
+    case lti = "external_tool"
+    
+    public var icon: UIImage {
+        switch self {
+        case .discussion: return .icon(.discussion)
+        case .quiz: return .icon(.quiz)
+        case .lti: return .icon(.lti)
+        case .assignment: return .icon(.assignment)
+        }
+    }
+}
 
 public final class Todo: NSManagedObject {
 
@@ -42,31 +57,35 @@ public final class Todo: NSManagedObject {
     @NSManaged internal (set) public var htmlURL: String
     @NSManaged internal (set) public var assignmentID: String
     @NSManaged internal (set) public var assignmentName: String
-    @NSManaged internal (set) public var assignmentDueDate: NSDate?
+    @NSManaged internal (set) public var assignmentDueDate: Date?
     @NSManaged internal (set) public var needsGradingCount: NSNumber?
     @NSManaged internal (set) public var assignmentHtmlURL: String
-    @NSManaged internal (set) public var rawSubmissionTypes: Int32
+    @NSManaged internal var primitiveTodoType: String
 
-    @NSManaged private var primitiveContextID: String
+    @NSManaged fileprivate var primitiveContextID: String
     internal (set) public var contextID: ContextID {
         get {
-            willAccessValueForKey("contextID")
+            willAccessValue(forKey: "contextID")
             let value = ContextID(canvasContext: primitiveContextID)!
-            didAccessValueForKey("contextID")
+            didAccessValue(forKey: "contextID")
             return value
         }
         set {
-            willChangeValueForKey("contextID")
+            willChangeValue(forKey: "contextID")
             primitiveContextID = newValue.canvasContextID
-            didChangeValueForKey("contextID")
+            didChangeValue(forKey: "contextID")
         }
     }
 
-    internal (set) public var submissionTypes: SubmissionTypes {
+    internal (set) public var todoType: TodoType {
         get {
-            return SubmissionTypes(rawValue: Int(rawSubmissionTypes))
+            willAccessValue(forKey: "todoType")
+            defer { didAccessValue(forKey: "todoType") }
+            return TodoType(rawValue: primitiveTodoType)!
         } set {
-            rawSubmissionTypes = Int32(newValue.rawValue)
+            willChangeValue(forKey: "todoType")
+            defer { didChangeValue(forKey: "todoType") }
+            primitiveTodoType = newValue.rawValue
         }
     }
 
@@ -75,12 +94,12 @@ public final class Todo: NSManagedObject {
 // MARK: - Core Data
 extension Todo: SynchronizedModel {
 
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let assignmentID: String = try json.stringID("assignment.id")
         return NSPredicate(format: "%K == %@", "assignmentID", assignmentID)
     }
 
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
 
         id                  = try json.stringID("assignment.id")
         type                = try json <| "type"
@@ -94,10 +113,19 @@ extension Todo: SynchronizedModel {
         assignmentDueDate   = try json <| "assignment.due_at"
         assignmentHtmlURL   = try json <| "assignment.html_url"
         let types: [String] = try json <| "assignment.submission_types"
-        submissionTypes = SubmissionTypes.fromStrings(types)
+        
+        if types.contains(TodoType.discussion.rawValue) {
+            todoType = .discussion
+        } else if types.contains(TodoType.lti.rawValue) {
+            todoType = .lti
+        } else if types.contains(TodoType.quiz.rawValue) {
+            todoType = .quiz
+        } else {
+            todoType = .assignment
+        }
 
-        guard let url: NSURL = try json <| "html_url", context = ContextID(url: url) else {
-            throw NSError(subdomain: "TodoKit", code: 0, sessionID: nil, apiURL: NSURL(string: "/api/v1/users/self/todo"), title: nil, description: contextIDErrorMessage, failureReason: contextIDFailureReason)
+        guard let url: URL = try json <| "html_url", let context = ContextID(url: url) else {
+            throw NSError(subdomain: "TodoKit", code: 0, sessionID: nil, apiURL: URL(string: "/api/v1/users/self/todo"), title: nil, description: contextIDErrorMessage, failureReason: contextIDFailureReason)
         }
 
         contextID = context

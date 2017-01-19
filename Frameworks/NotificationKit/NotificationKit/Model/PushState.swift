@@ -17,15 +17,15 @@
     
 
 public enum PushPreAuthStatus: Int {
-    case NeverShown = 0
-    case ShownAndAccepted
-    case ShownAndDeclined
+    case neverShown = 0
+    case shownAndAccepted
+    case shownAndDeclined
     
-    private static let pushPreAuthStatusKey = "com.instructure.canvas.pushPreAuthStatusKey"
+    fileprivate static let pushPreAuthStatusKey = "com.instructure.canvas.pushPreAuthStatusKey"
     
     public static func currentPushPreAuthStatus() -> PushPreAuthStatus {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let status = PushPreAuthStatus(rawValue: defaults.integerForKey(pushPreAuthStatusKey)) {
+        let defaults = UserDefaults.standard
+        if let status = PushPreAuthStatus(rawValue: defaults.integer(forKey: pushPreAuthStatusKey)) {
             return status
         } else {
             PushPreAuthStatus.registerDefaults()
@@ -33,15 +33,15 @@ public enum PushPreAuthStatus: Int {
         }
     }
     
-    public static func setCurrentPushPreAuthStatus(status: PushPreAuthStatus) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setInteger(status.rawValue, forKey: pushPreAuthStatusKey)
+    public static func setCurrentPushPreAuthStatus(_ status: PushPreAuthStatus) {
+        let defaults = UserDefaults.standard
+        defaults.set(status.rawValue, forKey: pushPreAuthStatusKey)
         defaults.synchronize()
     }
     
-    private static func registerDefaults() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.registerDefaults([pushPreAuthStatusKey: PushPreAuthStatus.NeverShown.rawValue])
+    fileprivate static func registerDefaults() {
+        let defaults = UserDefaults.standard
+        defaults.register(defaults: [pushPreAuthStatusKey: PushPreAuthStatus.neverShown.rawValue])
         defaults.synchronize()
     }
 }

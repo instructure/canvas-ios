@@ -20,81 +20,60 @@ import Foundation
 import SoPersistent
 
 class SimpleTransitionCoordinator: NSObject, UIViewControllerTransitionCoordinator, UIViewControllerTransitionCoordinatorContext {
+    public var targetTransform: CGAffineTransform = .identity
+
+    public var containerView: UIView = UIView()
+
+    public var completionCurve: UIViewAnimationCurve = .easeIn
+
+    public var completionVelocity: CGFloat = 1.0
+
+    public var percentComplete: CGFloat = 100.0
+
+    public var transitionDuration: TimeInterval = 1
+
+    public var isCancelled: Bool = false
+
+    public var isInteractive: Bool = false
+
+    public var initiallyInteractive: Bool = false
+
+    public var presentationStyle: UIModalPresentationStyle = .currentContext
+
+    public var isAnimated: Bool = false
+
     var animateAlongsideTransitionWasCalled = false
 
-    func viewControllerForKey(key: String) -> UIViewController? {
+    public func viewController(forKey key: UITransitionContextViewControllerKey) -> UIViewController? {
         return nil
     }
 
-    func viewForKey(key: String) -> UIView? {
+    public func view(forKey key: UITransitionContextViewKey) -> UIView? {
         return nil
     }
 
-    func containerView() -> UIView {
-        return UIView()
-    }
-
-    func presentationStyle() -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.CurrentContext
-    }
-
-    func transitionDuration() -> NSTimeInterval {
-        return 1
-    }
-
-    func completionCurve() -> UIViewAnimationCurve {
-        return UIViewAnimationCurve.EaseIn
-    }
-
-    func completionVelocity() -> CGFloat {
-        return 1.0
-    }
-
-    func percentComplete() -> CGFloat {
-        return 100.0
-    }
-
-    func initiallyInteractive() -> Bool {
-        return false
-    }
-    
     var isInterruptible: Bool {
         return true
     }
 
-    func isAnimated() -> Bool {
-        return false
-    }
-
-    func isCancelled() -> Bool {
-        return false
-    }
-
-    func isInteractive() -> Bool {
-        return false
-    }
-
-    func targetTransform() -> CGAffineTransform {
-        return CGAffineTransformIdentity
-    }
-
-    func animateAlongsideTransition(animation: ((UIViewControllerTransitionCoordinatorContext) -> Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Void)?) -> Bool {
+    public func animate(alongsideTransition animation: ((UIViewControllerTransitionCoordinatorContext) -> Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Void)? = nil) -> Bool {
         animateAlongsideTransitionWasCalled = true
         animation?(self)
         completion?(self)
         return true
     }
 
-    func animateAlongsideTransitionInView(view: UIView?, animation: ((UIViewControllerTransitionCoordinatorContext) -> Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Void)?) -> Bool {
+    func animateAlongsideTransition(in view: UIView?, animation: ((UIViewControllerTransitionCoordinatorContext) -> Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Void)?) -> Bool {
         animation?(self)
         completion?(self)
         return true
     }
 
-    func notifyWhenInteractionEndsUsingBlock(handler: (UIViewControllerTransitionCoordinatorContext) -> Void) {
+    public func notifyWhenInteractionEnds(_ handler: @escaping (UIViewControllerTransitionCoordinatorContext) -> Void) {
         return
     }
-    func notifyWhenInteractionChangesUsingBlock(handler: (UIViewControllerTransitionCoordinatorContext) -> Void) {
+
+    public func notifyWhenInteractionChanges(_ handler: @escaping (UIViewControllerTransitionCoordinatorContext) -> Void) {
         return
     }
 }

@@ -18,20 +18,20 @@
 
 import UIKit
 
-public class StudentSettingsHeaderView: UIView {
+open class StudentSettingsHeaderView: UIView {
 
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
 
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
 
-        imageView.layer.cornerRadius = CGRectGetHeight(imageView.frame)/2
-        imageView.layer.borderColor = UIColor.whiteColor().CGColor
+        imageView.layer.cornerRadius = imageView.frame.height/2
+        imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 2.0
         imageView.backgroundColor = UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 235.0/255.0, alpha: 1.0)
         imageView.clipsToBounds = true
-        imageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .scaleAspectFit
     }
     
 }

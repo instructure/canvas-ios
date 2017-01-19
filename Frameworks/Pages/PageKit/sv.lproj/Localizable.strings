@@ -1,13 +1,13 @@
 /* all pages segmented control title */
 "All Pages" = "Alla sidor";
 
-/* badge indicating front page */
+/* front page segmented control title */
 "Front Page" = "Framsida";
 
-/* Generic button to dismiss the popup message */
+/* (No Commment) */
 "Okay" = "Okej";
 
-/* The page is locked by the teacher */
+/* (No Commment) */
 "Page Locked" = "Sidan låst";
 
 /* Page list fails */

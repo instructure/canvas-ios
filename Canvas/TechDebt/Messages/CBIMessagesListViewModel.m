@@ -93,8 +93,7 @@
         
         return [RACSignal empty];
     }];
-    compose.accessibilityLabel = NSLocalizedString(@"Compose Message Button", @"button to compose a message");
-    compose.accessibilityHint = NSLocalizedString(@"Compose a message", @"hint for button to compose a message");
+    compose.accessibilityLabel = NSLocalizedString(@"Compose Message", @"button to compose a message");
     
     
     UIBarButtonItem *archiveAll = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Archive", @"Archive selected messages button") style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -105,8 +104,7 @@
         @strongify(self, tableViewController);
         return [self archiveItemsSelectedInViewController:tableViewController];
     }];
-    archiveAll.accessibilityLabel = NSLocalizedString(@"Archive Selected Messages Button", @"archive selected messages");
-    archiveAll.accessibilityHint = NSLocalizedString(@"Archive all selected messages", @"hint to archive selected messages");
+    archiveAll.accessibilityLabel = NSLocalizedString(@"Archive Selected Messages", @"archive selected messages");
     
     UINavigationItem *nav = tableViewController.navigationItem;
     RACSignal *editingSignal = [tableViewController rac_signalForSelector:@selector(setEditing:animated:)];

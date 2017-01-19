@@ -20,9 +20,9 @@ import UIKit
 import SoPretty
 
 enum QuestionCellState: Int {
-    case Flagged
-    case Answered
-    case Untouched
+    case flagged
+    case answered
+    case untouched
 }
 
 class QuestionDrawerCell: UITableViewCell {
@@ -35,7 +35,7 @@ class QuestionDrawerCell: UITableViewCell {
     }
     
     class var Nib: UINib {
-        return UINib(nibName: "QuestionDrawerCell", bundle: NSBundle(forClass: self.classForCoder()))
+        return UINib(nibName: "QuestionDrawerCell", bundle: Bundle(for: self.classForCoder()))
     }
     
     override func awakeFromNib() {
@@ -43,15 +43,15 @@ class QuestionDrawerCell: UITableViewCell {
         statusIconView.tintColor = Brand.current().secondaryTintColor
     }
     
-    func displayState(state: QuestionCellState) {
+    func displayState(_ state: QuestionCellState) {
         switch state {
-        case .Flagged:
-            let flagImage = UIImage(named: "flag_selected", inBundle: NSBundle(forClass: QuestionDrawerCell.self), compatibleWithTraitCollection: nil)
+        case .flagged:
+            let flagImage = UIImage(named: "flag_selected", in: Bundle(for: QuestionDrawerCell.self), compatibleWith: nil)
             statusIconView.image = flagImage
-        case .Answered:
-            let checkImage = UIImage(named: "check", inBundle: NSBundle(forClass: QuestionDrawerCell.self), compatibleWithTraitCollection: nil)
+        case .answered:
+            let checkImage = UIImage(named: "check", in: Bundle(for: QuestionDrawerCell.self), compatibleWith: nil)
             statusIconView.image = checkImage
-        case .Untouched:
+        case .untouched:
             statusIconView.image = nil
         }
     }

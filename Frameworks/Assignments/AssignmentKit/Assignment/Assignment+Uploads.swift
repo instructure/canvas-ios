@@ -20,13 +20,13 @@ import TooLegit
 import CoreData
 import SoLazy
 import FileKit
-import ReactiveCocoa
+import ReactiveSwift
 import SoPersistent
 import Marshal
 
 extension Assignment {
     
-    private func apiPathForSubmissionFileUpload(in session: Session) -> SignalProducer<String, NSError> {
+    fileprivate func apiPathForSubmissionFileUpload(in session: Session) -> SignalProducer<String, NSError> {
         let singleSubmissionPath = SignalProducer<String, NSError>(value: "/api/v1/courses/\(courseID)/assignments/\(id)/submissions/self/files")
         
         if groupSetID != nil {
@@ -45,43 +45,43 @@ extension Assignment {
             
             return session.paginatedJSONSignalProducer(request)
                 .map(firstGroupID)
-                .ignoreNil()
+                .skipNil()
                 .map { "/api/v1/groups/\($0)/files" }
                 .concat(singleSubmissionPath)
-                .take(1)
+                .take(first: 1)
         }
 
         return singleSubmissionPath
     }
 
-    public func uploadForNewSubmission(newSubmission: NewUpload, inSession session: Session, handler: SubmissionUpload?->Void) throws {
+    public func uploadForNewSubmission(_ newSubmission: NewUpload, inSession session: Session, handler: @escaping (SubmissionUpload?)->Void) throws {
         let identifier = submissionUploadIdentifier
         let context = try session.assignmentsManagedObjectContext()
-        func convertFile(file: NewUploadFile, toUpload fileUploadHandler: SubmissionFileUpload?->Void) {
+        func convertFile(_ file: NewUploadFile, toUpload fileUploadHandler: @escaping (SubmissionFileUpload?)->Void) {
             
             apiPathForSubmissionFileUpload(in: session)
-                .zipWith(file.extractDataProducer)
-                .observeOn(ManagedObjectContextScheduler(context: context))
+                .zip(with: file.extractDataProducer)
+                .observe(on: ManagedObjectContextScheduler(context: context))
                 .startWithResult
             { result in
-                guard let (apiPath, optionalData) = result.value, data = optionalData else {
+                guard let (apiPath, optionalData) = result.value, let data = optionalData else {
                     fileUploadHandler(nil)
                     return
                 }
                 let fileUpload = SubmissionFileUpload(inContext: context)
-                fileUpload.prepare(identifier, path: apiPath, data: data, name: file.name, contentType: file.contentType, parentFolderID: nil, contextID: ContextID(id: self.id, context: .Course))
+                fileUpload.prepare(identifier, path: apiPath, data: data, name: file.name, contentType: file.contentType, parentFolderID: nil, contextID: .course(withID: self.courseID))
                 fileUploadHandler(fileUpload)
             }
         }
 
         switch newSubmission {
-        case .Text(let text):
+        case .text(let text):
             let upload = TextSubmissionUpload.create(backgroundSessionID: identifier, assignment: self, text: text, inContext: context)
             handler(upload)
-        case .URL(let url):
-            let upload = URLSubmissionUpload.create(backgroundSessionID: identifier, assignment: self, url: url.absoluteString!, inContext: context)
+        case .url(let url):
+            let upload = URLSubmissionUpload.create(backgroundSessionID: identifier, assignment: self, url: url.absoluteString, inContext: context)
             handler(upload)
-        case .MediaComment(let file):
+        case .mediaComment(let file):
             var fileUploads = [SubmissionFileUpload]()
             convertFile(file) { submissionFileUpload in
                 guard let submissionFileUpload = submissionFileUpload else {
@@ -91,8 +91,8 @@ extension Assignment {
                 let upload = FileSubmissionUpload.create(backgroundSessionID: identifier, assignment: self, fileUploads: [submissionFileUpload], inContext: context)
                 handler(upload)
             }
-        case .FileUpload(let _files):
-            func buildFileUpload(files: [NewUploadFile], fileUploads: [SubmissionFileUpload]) {
+        case .fileUpload(let _files):
+            func buildFileUpload(_ files: [NewUploadFile], fileUploads: [SubmissionFileUpload]) {
                 if files.isEmpty {
                     // make sure all the files were converted
                     if fileUploads.count != _files.count {
@@ -122,7 +122,7 @@ extension Assignment {
             }
 
             buildFileUpload(_files, fileUploads: [])
-        case .None: handler(nil)
+        case .none: handler(nil)
         }
     }
 
@@ -130,7 +130,7 @@ extension Assignment {
         return "assignment-submission-upload-\(id)"
     }
 
-    public func uploadBackgroundSessionExists(session: Session) -> Bool {
+    public func uploadBackgroundSessionExists(_ session: Session) -> Bool {
         do {
             let context = try session.assignmentsManagedObjectContext()
             return try activeBackgroundSessionIDs(context).contains(submissionUploadIdentifier)
@@ -139,7 +139,7 @@ extension Assignment {
         }
     }
 
-    public func uploadSubmission(newSubmission: NewUpload, inSession session: Session, uploadHandler: (SubmissionUpload?->Void)? = nil) throws {
+    public func uploadSubmission(_ newSubmission: NewUpload, inSession session: Session, uploadHandler: ((SubmissionUpload?)->Void)? = nil) throws {
         let context = try session.assignmentsManagedObjectContext()
         try uploadForNewSubmission(newSubmission, inSession: session) { upload in
             guard let upload = upload else {
@@ -152,14 +152,15 @@ extension Assignment {
         }
     }
 
-    func activeBackgroundSessionIDs(context: NSManagedObjectContext) throws -> [String] {
+    func activeBackgroundSessionIDs(_ context: NSManagedObjectContext) throws -> [String] {
         let predicate = NSPredicate(format: "%K == %@ && %K != nil && %K == nil", "assignment", self, "startedAt", "terminatedAt")
-        let request = SubmissionUpload.fetch(predicate, sortDescriptors: nil, inContext: context)
-        request.entity = NSEntityDescription.entityForName(SubmissionUpload.entityName(context), inManagedObjectContext: context)
+        let request = NSFetchRequest<NSFetchRequestResult>()
+        request.predicate = predicate
+        request.entity = NSEntityDescription.entity(forEntityName: SubmissionUpload.entityName(context), in: context)
         request.propertiesToFetch = ["backgroundSessionID"]
-        request.resultType = .DictionaryResultType
+        request.resultType = .dictionaryResultType
         request.returnsDistinctResults = true
-        let results = try context.executeFetchRequest(request)
+        let results = try context.fetch(request)
         return results.map { ($0 as? [String: String])?["backgroundSessionID"] }.flatMap { $0 }
     }
 }

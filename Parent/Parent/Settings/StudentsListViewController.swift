@@ -22,11 +22,11 @@ import SoPersistent
 import TooLegit
 
 
-typealias StudentsListSelectStudentAction = (session: Session, student: Student)->Void
+typealias StudentsListSelectStudentAction = (_ session: Session, _ student: Student)->Void
 
 class StudentsListViewController: Student.TableViewController {
 
-    private let session: Session
+    fileprivate let session: Session
 
     var selectStudentAction: StudentsListSelectStudentAction? = nil
 
@@ -62,8 +62,8 @@ class StudentsListViewController: Student.TableViewController {
         tableView.backgroundColor = UIColor.defaultTableViewBackgroundColor()
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let student = collection[indexPath]
-        selectStudentAction?(session: session, student: student)
+        selectStudentAction?(session, student)
     }
 }

@@ -22,87 +22,87 @@ import UIKit
 import SoLazy
 
 public enum MobileVerifyResult: Int {
-    case Success = 0
-    case Other = 1
-    case BadSite = 2
-    case BadUserAgent = 3
-    case EmptyResponse = 4
-    case NoResult = 5
-    case JSONParseError = 6
+    case success = 0
+    case other = 1
+    case badSite = 2
+    case badUserAgent = 3
+    case emptyResponse = 4
+    case noResult = 5
+    case jsonParseError = 6
 
     static let mobileVerifyErrorDomain = "com.instructure.mobileverify"
     
-    static func errorForResult(result: MobileVerifyResult) -> NSError {
+    static func errorForResult(_ result: MobileVerifyResult) -> NSError {
         return NSError(domain: self.mobileVerifyErrorDomain, code: result.rawValue, userInfo: [ NSLocalizedDescriptionKey: errorMessageForResult(result) ])
     }
     
-    static func errorMessageForResult(result: MobileVerifyResult) -> String {
+    static func errorMessageForResult(_ result: MobileVerifyResult) -> String {
         switch result {
-        case .Success:
+        case .success:
             return ""
-        case Other:
-            return NSLocalizedString("Not authorized.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "Not authorized")
-        case BadSite:
-            return NSLocalizedString("Invalid Canvas URL.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "Invalid Canvas URL")
-        case BadUserAgent:
-            return NSLocalizedString("Invalid User Agent.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "Invalid User Agent")
-        case EmptyResponse:
-            return NSLocalizedString("Empty Response.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "Empty Response")
-        case NoResult:
-            return NSLocalizedString("No Result.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "No Result")
-        case JSONParseError:
-            return NSLocalizedString("JSON Parsing Error.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "JSON Parsing Error")
+        case other:
+            return NSLocalizedString("Not authorized.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "Not authorized")
+        case badSite:
+            return NSLocalizedString("Invalid Canvas URL.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "Invalid Canvas URL")
+        case badUserAgent:
+            return NSLocalizedString("Invalid User Agent.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "Invalid User Agent")
+        case emptyResponse:
+            return NSLocalizedString("Empty Response.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "Empty Response")
+        case noResult:
+            return NSLocalizedString("No Result.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "No Result")
+        case jsonParseError:
+            return NSLocalizedString("JSON Parsing Error.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.Keymaster")!, value: "", comment: "JSON Parsing Error")
         }
     }
 }
 
-public typealias MobileVerifySuccess = (response: MobileVerifyResponse) -> ()
-public typealias MobileVerifyFailure = (error: NSError) -> ()
+public typealias MobileVerifySuccess = (_ response: MobileVerifyResponse) -> ()
+public typealias MobileVerifyFailure = (_ error: NSError) -> ()
 
 /*
 * Responsible for checking the status of a given domain to verify they are paying customers.
 */
-public class MobileVerifier {
+open class MobileVerifier {
     
-    public var appName = "iCanvas"  // Let's keep one here that we know works so we can test
+    open var appName = "iCanvas"  // Let's keep one here that we know works so we can test
     public init() {}
     
     // ---------------------------------------------
     // MARK: - Public Methods
     // ---------------------------------------------
-    private let baseMobileVerifyURL = "https://canvas.instructure.com/api/v1/mobile_verify.json?domain="
-    public func mobileVerify(domain: String, success: MobileVerifySuccess, failure: MobileVerifyFailure) {
-        guard let mobileVerifyURL = NSURL(string: "\(baseMobileVerifyURL)\(domain)") else {
+    fileprivate let baseMobileVerifyURL = "https://canvas.instructure.com/api/v1/mobile_verify.json?domain="
+    open func mobileVerify(_ domain: String, success: @escaping MobileVerifySuccess, failure: @escaping MobileVerifyFailure) {
+        guard let mobileVerifyURL = URL(string: "\(baseMobileVerifyURL)\(domain)") else {
             return
         }
         
-        let request = NSMutableURLRequest(URL: mobileVerifyURL)
+        var request = URLRequest(url: mobileVerifyURL)
         request.addValue(userAgent(), forHTTPHeaderField: "User-Agent")
-        let session = NSURLSession.sharedSession()
+        let session = URLSession.shared
         
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
             // If there was a network error, pass it on up the chain
             if let error = error {
-                failure(error: error)
+                failure(error as NSError)
                 return
             }
             
             // If we have no data lets let someone know
             guard let data = data else {
-                let error = MobileVerifyResult.errorForResult(MobileVerifyResult.EmptyResponse)
-                failure(error: error)
+                let error = MobileVerifyResult.errorForResult(MobileVerifyResult.emptyResponse)
+                failure(error)
                 return
             }
             
             do {
                 // Create a response object
-                let responseJSON = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                let responseJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 if let mobileVerifyObject = MobileVerifyResponse.fromJSON(responseJSON) {
-                    success(response: mobileVerifyObject)
+                    success(mobileVerifyObject)
                 }
             } catch let error as NSError {
                 // Whoops.  Couldn't parse the JSON :-/
-                failure(error: error)
+                failure(error)
                 return
             }
         }
@@ -114,17 +114,17 @@ public class MobileVerifier {
     // MARK: - Private Methods
     // ---------------------------------------------
     // Format : "[App Name]/[App Version] ([App Build Number])   [Device Model]/[Device System Version]"
-    private func userAgent() -> String {
-        if let info = NSBundle.mainBundle().infoDictionary,
-            build = info[kCFBundleVersionKey as String] as? String,
-            version = info["CFBundleShortVersionString"] as? String  {
-                let deviceModel = UIDevice.currentDevice().modelName
-                let systemVersion = UIDevice.currentDevice().systemVersion
+    fileprivate func userAgent() -> String {
+        if let info = Bundle.main.infoDictionary,
+            let build = info[kCFBundleVersionKey as String] as? String,
+            let version = info["CFBundleShortVersionString"] as? String  {
+                let deviceModel = UIDevice.current.modelName
+                let systemVersion = UIDevice.current.systemVersion
                 let userAgent = "\(appName)/\(version) (\(build))   \(deviceModel)/iOS \(systemVersion)"
                 return userAgent
         }
         
-        return "\(appName)/1.0 (1)   \(UIDevice.currentDevice().modelName)/iOS \(UIDevice.currentDevice().systemVersion)"
+        return "\(appName)/1.0 (1)   \(UIDevice.current.modelName)/iOS \(UIDevice.current.systemVersion)"
     }
 
 }

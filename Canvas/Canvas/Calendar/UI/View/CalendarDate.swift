@@ -23,19 +23,19 @@ public struct CalendarDate: Equatable {
     var month = 0
     var day = 0
     
-    public mutating func populate(date: NSDate, calendar: NSCalendar) {
-        let components = calendar.components([.Year, .Month, .Day], fromDate: date)
-        year = components.year
-        month = components.month
-        day = components.day
+    public mutating func populate(_ date: Date, calendar: Calendar) {
+        let components = (calendar as NSCalendar).components([.year, .month, .day], from: date)
+        year = components.year!
+        month = components.month!
+        day = components.day!
     }
     
-    public func date(calendar: NSCalendar) -> NSDate {
-        let components = NSDateComponents()
+    public func date(_ calendar: Calendar) -> Date {
+        var components = DateComponents()
         components.day = day
         components.month = month
         components.year = year
-        return calendar.dateFromComponents(components)!
+        return calendar.date(from: components)!
     }
 }
 

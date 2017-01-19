@@ -31,22 +31,22 @@ final public class Conversation: NSManagedObject {
 
     // MARK: Properties
 
-    @NSManaged public private (set) var id: String
+    @NSManaged public fileprivate (set) var id: String
 
     /**
      The date that the most recent message was sent.
      */
-    @NSManaged public private (set) var date: NSDate
+    @NSManaged public fileprivate (set) var date: Date
 
     /**
      The subject of the conversation.
      */
-    @NSManaged public private (set) var subject: String
+    @NSManaged public fileprivate (set) var subject: String
 
     /**
      The content of the most recent message.
      */
-    @NSManaged public private (set) var mostRecentMessage: String
+    @NSManaged public fileprivate (set) var mostRecentMessage: String
 
     /**
      The participant that sent the most recent message not sent by the current user.
@@ -74,39 +74,39 @@ final public class Conversation: NSManagedObject {
      */
     public var workflowState: WorkflowState {
         get {
-            willAccessValueForKey("workflowState")
+            willAccessValue(forKey: "workflowState")
             let value = WorkflowState(rawValue: primitiveWorkflowState)!
-            didAccessValueForKey("workflowState")
+            didAccessValue(forKey: "workflowState")
             return value
         }
         set {
-            willChangeValueForKey("workflowState")
+            willChangeValue(forKey: "workflowState")
             primitiveWorkflowState = newValue.rawValue
-            didChangeValueForKey("workflowState")
+            didChangeValue(forKey: "workflowState")
         }
     }
 
     /**
      A Boolean indicating whether the conversation has attachments.
      */
-    @NSManaged public private (set) var hasAttachments: Bool
+    @NSManaged public fileprivate (set) var hasAttachments: Bool
 
     /**
      A Boolean indicating whether the conversation is starred.
      */
-    @NSManaged public private (set) var starred: Bool
+    @NSManaged public fileprivate (set) var starred: Bool
 
-    @NSManaged private var primitiveWorkflowState: String
-    @NSManaged private var audience: NSOrderedSet
+    @NSManaged fileprivate var primitiveWorkflowState: String
+    @NSManaged fileprivate var audience: NSOrderedSet
 }
 
 extension Conversation: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
 
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id = try json.stringID("id")
         date = try json <| "last_message_at"
         subject = try json <| "subject"

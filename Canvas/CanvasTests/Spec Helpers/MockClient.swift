@@ -27,14 +27,14 @@ class MockClient: CKIClient {
 
     override var currentUser: CKIUser {
         let user = CKIUser()
-        user.loginID = mockUser.id
-        return user
+        user?.loginID = mockUser.id
+        return user!
     }
 
 
     // MARK: Required Stuff
 
-    override init(baseURL url: NSURL?, sessionConfiguration configuration: NSURLSessionConfiguration?) {
+    override init(baseURL url: URL?, sessionConfiguration configuration: URLSessionConfiguration?) {
         super.init(baseURL: url, sessionConfiguration: configuration)
     }
     

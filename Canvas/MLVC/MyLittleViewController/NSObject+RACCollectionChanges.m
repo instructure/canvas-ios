@@ -17,7 +17,7 @@
     
 
 #import "NSObject+RACCollectionChanges.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
+@import ReactiveObjC;
 
 @implementation NSObject (RACCollectionChanges)
 - (RACSignal *)rac_filteredIndexSetsForChangeType:(NSKeyValueChange)type forCollectionForKeyPath:(NSString *)collectionKeyPath {

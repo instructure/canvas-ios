@@ -1,46 +1,46 @@
-/* (No Commment) */
+/* grade details for points based grade i.e. \"10 of 12\" */
 "(formatter(points)) of (formatter(possible))" = "(formatter(points)) из (formatter(possible))";
 
-/* (No Commment) */
+/* Title for 1 day assignment reminder */
 "1 day" = "1 день";
 
-/* (No Commment) */
+/* Title for 1 hour assignment reminder */
 "1 hour" = "1 час";
 
-/* (No Commment) */
+/* Title for 3 days assignment reminder */
 "3 days" = "3 дня";
 
-/* (No Commment) */
+/* Title for 5 minutes assignment reminder */
 "5 minutes" = "5 минут";
 
 /* (No Commment) */
 "Assignment" = "Задание";
 
-/* (No Commment) */
+/* Title for alert view for assignment reminders */
 "Assignment Reminder" = "Напоминание о задании";
 
 /* (No Commment) */
 "Assignment is currently being submitted" = "Задание в данный момент отправляется";
 
-/* (No Commment) */
+/* This assignment hasn't been graded yet but can be graded */
 "Awaiting Grade" = "Ожидает оценки";
 
-/* (No Commment) */
+/* cancel button */
 "Cancel" = "Отменить";
 
-/* (No Commment) */
+/* Title for reminder options for an assignment */
 "Choose how long before the assignment due date to get a reminder:" = "Выберите, как задолго до даты отправки задания вы желаете получить напоминание:";
 
-/* (No Commment) */
+/* Title for a rating that hasn't been graded but has a comment */
 "Comment" = "Комментарий";
 
 /* (No Commment) */
 "Comment.." = "Комментарий..";
 
-/* (No Commment) */
+/* error displayed when submitting an assignment is unavailable */
 "Could not submit assignment. Invalid assignment or session." = "Не удалось отправить задание. Неверное задание или сеанс.";
 
-/* (No Commment) */
+/* error displayed when submitting a submission is invalid. */
 "Could not submit assignment. Invalid submission." = "Не удалось отправить задание. Неверная отправка.";
 
 /* (No Commment) */
@@ -49,7 +49,7 @@
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Ошибка при обновлении задания";
 
-/* (No Commment) */
+/* This assignment is excused */
 "Excused" = "По уважительной причине";
 
 /* Error message when submission attachment fails to load. */
@@ -58,19 +58,19 @@
 /* (No Commment) */
 "Failed to resume upload." = "Не удалось возобновить загрузку.";
 
-/* (No Commment) */
+/* This assignment is late */
 "Late" = "Поздно";
 
-/* (No Commment) */
+/* Title for a rating that has custom graded but has no comment */
 "No Comment" = "Нет коментариев";
 
-/* (No Commment) */
+/* Default string for due date title */
 "No Due Date" = "Без срока выполнения";
 
 /* Section header for assignments without an assignment group */
 "None" = "Ничего";
 
-/* (No Commment) */
+/* submission title for assignment waiting user submission */
 "Not Submitted" = "Не отправлено";
 
 /* Overdue assignmnets (not turned in) */
@@ -79,19 +79,19 @@
 /* Assignments that have been turned in and are past */
 "Past" = "Прошлое";
 
-/* (No Commment) */
+/* Rubric Points Possible Title */
 "Points Possible" = "Возможные баллы";
 
-/* (No Commment) */
+/* title for submission button if student has submitted previously */
 "Re-submit Assignment" = "Повторно отправить задание";
 
 /* (No Commment) */
 "Submission type not allowed" = "Не разрешенный тип отправки";
 
-/* (No Commment) */
+/* submission title for assignment that doesn't support submissions */
 "Submissions N/A" = "Отправки недоступны";
 
-/* (No Commment) */
+/* title for submission button if student has never submitted */
 "Submit Assignment" = "Отправить задание";
 
 /* AssignmentKit database load failure message */
@@ -100,7 +100,7 @@
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "Возникла проблема при обновлении URL Теста";
 
-/* (No Commment) */
+/* submission title for assignemnt that is submitted */
 "Turned in!" = "Сдано!";
 
 /* (No Commment) */
@@ -115,13 +115,13 @@
 /* Assignments with no dates */
 "Undated" = "Без даты";
 
-/* (No Commment) */
+/* This assignment is not graded */
 "Ungraded" = "Без оценки";
 
 /* Upcoming assignments */
 "Upcoming" = "Предстоящий";
 
-/* (No Commment) */
+/* Title for button to see rubric from assignment detail */
 "View Rubric" = "Просмотр Рубрики";
 
 /* (No Commment) */

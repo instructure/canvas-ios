@@ -18,20 +18,20 @@
 
 import Foundation
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
-public class FetchedDetailsCollection<M, DVM where M: NSManagedObject, DVM: Equatable>: Collection {
+open class FetchedDetailsCollection<M, DVM>: Collection where M: NSManagedObject, DVM: Equatable {
     public typealias Object = DVM
 
     var disposable: Disposable?
     let observer: ManagedObjectObserver<M>
-    let detailsFactory: M->[DVM]
+    let detailsFactory: (M)->[DVM]
     var details: [DVM] = []
-    public let collectionUpdates: Signal<[CollectionUpdate<DVM>], NoError>
-    private let updatesObserver: Observer<[CollectionUpdate<DVM>], NoError>
+    open let collectionUpdates: Signal<[CollectionUpdate<DVM>], NoError>
+    fileprivate let updatesObserver: Observer<[CollectionUpdate<DVM>], NoError>
     
-    public init(observer: ManagedObjectObserver<M>, detailsFactory: M->[DVM]) {
+    public init(observer: ManagedObjectObserver<M>, detailsFactory: @escaping (M)->[DVM]) {
         self.observer = observer
         self.detailsFactory = detailsFactory
         
@@ -40,43 +40,43 @@ public class FetchedDetailsCollection<M, DVM where M: NSManagedObject, DVM: Equa
         details = self.observer.object.map(detailsFactory) ?? []
         disposable = observer.signal
             .map { $0.1 }
-            .observeOn(UIScheduler())
+            .observe(on: UIScheduler())
             .map { $0.map(detailsFactory) ?? [] }
-            .observeNext { [weak self] deets in
+            .observeValues { [weak self] deets in
                 if let me = self {
                     let edits = me.details.distanceTo(deets)
                     me.details = deets
                     let updates: [CollectionUpdate<DVM>] = edits.map { edit in
                         switch edit {
-                        case .Insert(let item, let index):
-                            return .Inserted(NSIndexPath(forRow: index, inSection: 0), item)
-                        case .Replace(let item, let index):
-                            return .Updated(NSIndexPath(forRow: index, inSection: 0), item)
-                        case .Delete(let item, let index):
-                            return .Deleted(NSIndexPath(forRow: index, inSection: 0), item)
-                        case .Move(let item, let fromIndex, let toIndex):
-                            return .Moved(NSIndexPath(forRow: fromIndex, inSection: 0), NSIndexPath(forRow: toIndex, inSection: 0), item)
+                        case .insert(let item, let index):
+                            return .inserted(IndexPath(row: index, section: 0), item, animated: true)
+                        case .replace(let item, let index):
+                            return .updated(IndexPath(row: index, section: 0), item, animated: true)
+                        case .delete(let item, let index):
+                            return .deleted(IndexPath(row: index, section: 0), item, animated: true)
+                        case .move(let item, let fromIndex, let toIndex):
+                            return .moved(IndexPath(row: fromIndex, section: 0), IndexPath(row: toIndex, section: 0), item, animated: true)
                         }
                     }
-                    me.updatesObserver.sendNext(updates)
+                    me.updatesObserver.send(value: updates)
                 }
             }
     }
     
     // keeping it simple... 1 section
-    public func numberOfSections() -> Int {
+    open func numberOfSections() -> Int {
         return 1
     }
     
-    public func titleForSection(section: Int) -> String? {
+    open func titleForSection(_ section: Int) -> String? {
         return nil
     }
     
-    public func numberOfItemsInSection(section: Int) -> Int {
+    open func numberOfItemsInSection(_ section: Int) -> Int {
         return details.count
     }
     
-    public subscript(indexPath: NSIndexPath) -> DVM {
+    open subscript(indexPath: IndexPath) -> DVM {
         return details[indexPath.row]
     }
 }

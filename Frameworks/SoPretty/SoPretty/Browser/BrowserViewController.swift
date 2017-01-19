@@ -21,36 +21,36 @@ import WebKit
 
 /** This was built specifically for choosing a URL for assignment submission, but could be general purpose with a little love.
  */
-public class BrowserViewController: UIViewController {
-    public static func presentFromViewController(viewController: UIViewController, completion: (()->())? = nil) -> BrowserViewController {
+open class BrowserViewController: UIViewController {
+    open static func presentFromViewController(_ viewController: UIViewController, completion: (()->())? = nil) -> BrowserViewController {
         let browser = BrowserViewController(nibName: nil, bundle: nil)
         let nav = UINavigationController(rootViewController: browser)
         
-        viewController.presentViewController(nav, animated: true, completion: completion)
+        viewController.present(nav, animated: true, completion: completion)
         return browser
     }
     
-    public var url: NSURL? {
+    open var url: URL? {
         didSet {
-            if isViewLoaded() {
+            if isViewLoaded {
                 if let url = url {
-                    webView.loadRequest(NSURLRequest(URL: url))
+                    webView.load(URLRequest(url: url))
                 }
             }
         }
     }
     
-    public var didSelectURLForSubmission: NSURL->() = { _ in }
-    public var didCancel: ()->() = { }
+    open var didSelectURLForSubmission: (URL)->() = { _ in }
+    open var didCancel: ()->() = { }
     
-    private var webView: WKWebView! {
+    fileprivate var webView: WKWebView! {
         get {
             return view as! WKWebView
         }
     }
     
-    private var tapoutView: UIView?
-    private var editingURL: Bool = false {
+    fileprivate var tapoutView: UIView?
+    fileprivate var editingURL: Bool = false {
         didSet {
             if editingURL {
                 beginEditing()
@@ -60,57 +60,57 @@ public class BrowserViewController: UIViewController {
         }
     }
     
-    private func endEditing() {
+    fileprivate func endEditing() {
         titleView.resignFirstResponder()
         tapoutView?.removeFromSuperview()
-        webView.scrollView.scrollEnabled = true
+        webView.scrollView.isScrollEnabled = true
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Turn In", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Turn in this url button"), style: .Done, target: self, action: #selector(BrowserViewController.submit(_:)))
-        navigationItem.rightBarButtonItem?.enabled = parseURLForInput(titleView.text) != nil
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(BrowserViewController.cancelTurnIn(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Turn In", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "Turn in this url button"), style: .done, target: self, action: #selector(BrowserViewController.submit(_:)))
+        navigationItem.rightBarButtonItem?.isEnabled = parseURLForInput(titleView.text) != nil
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(BrowserViewController.cancelTurnIn(_:)))
     }
     
-    private func beginEditing() {
+    fileprivate func beginEditing() {
         installTapoutView()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Go", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "navigate"), style: .Done, target: self, action: #selector(BrowserViewController.go(_:)))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(BrowserViewController.cancelEditingURL(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Go", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "navigate"), style: .done, target: self, action: #selector(BrowserViewController.go(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(BrowserViewController.cancelEditingURL(_:)))
     }
     
-    func go(sender: AnyObject?) {
-        if let url: NSURL = parseURLForInput(titleView.text) {
+    func go(_ sender: AnyObject?) {
+        if let url: URL = parseURLForInput(titleView.text) {
             self.url = url
             titleView.resignFirstResponder()
         } else {
-            let alert = UIAlertController(title: nil, message: NSLocalizedString("The text you entered is not a valid URL", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "bad url message"), preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "dismiss error dialog"), style: .Cancel, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: nil, message: NSLocalizedString("The text you entered is not a valid URL", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "bad url message"), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "Dismiss button for error alert"), style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
     }
     
-    func cancelEditingURL(sender: AnyObject?) {
+    func cancelEditingURL(_ sender: AnyObject?) {
         titleView.resignFirstResponder()
         titleView.text = currentWebviewURL?.absoluteString ?? url?.absoluteString ?? ""
     }
     
-    private var currentWebviewURL: NSURL? {
-        let url = webView.URL
-        if url == NSURL(string: "about:blank") {
+    fileprivate var currentWebviewURL: URL? {
+        let url = webView.url
+        if url == URL(string: "about:blank") {
             return nil
         }
         return url
     }
     
-    func submit(sender: AnyObject?) {
+    func submit(_ sender: AnyObject?) {
         let urlForSubmission = currentWebviewURL ?? parseURLForInput(titleView.text)
         if let url = urlForSubmission {
-            dismissViewControllerAnimated(true) {
+            dismiss(animated: true) {
                 self.didSelectURLForSubmission(url)
             }
         }
     }
     
-    func cancelTurnIn(sender: AnyObject?) {
-        dismissViewControllerAnimated(true) {
+    func cancelTurnIn(_ sender: AnyObject?) {
+        dismiss(animated: true) {
             self.didCancel()
         }
     }
@@ -120,10 +120,10 @@ public class BrowserViewController: UIViewController {
         
         // add a tap-out view
         let tapout = UIView()
-        tapout.backgroundColor = UIColor.clearColor()
+        tapout.backgroundColor = UIColor.clear
         tapout.frame = self.view.bounds
         
-        webView.scrollView.scrollEnabled = false
+        webView.scrollView.isScrollEnabled = false
         view.addSubview(tapout)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(BrowserViewController.cancelEditingURL(_:)))
@@ -132,30 +132,30 @@ public class BrowserViewController: UIViewController {
     }
 
     
-    private lazy var titleView: UITextField = {
+    fileprivate lazy var titleView: UITextField = {
         let titleView = UITextField()
-        titleView.borderStyle = .RoundedRect
-        titleView.bounds = CGRectMake(0, 0, 160, 32)
-        titleView.clearButtonMode = .Always
+        titleView.borderStyle = .roundedRect
+        titleView.bounds = CGRect(x: 0, y: 0, width: 160, height: 32)
+        titleView.clearButtonMode = .always
         // TODO: after merging into develop. white cursor is no bueno.
         // titleView.tintColor = Brand.current().tintColor
         titleView.tintColor = UIColor(red: 227/255.0, green:60/255.0, blue:41/255.0, alpha:1.0)
-        titleView.returnKeyType = .Go
+        titleView.returnKeyType = .go
         titleView.delegate = self
         titleView.keyboardType = .URL
-        titleView.autocapitalizationType = .None
-        titleView.autocorrectionType = .No
-        titleView.placeholder = NSLocalizedString("Enter URL...", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Placeholder for URL")
+        titleView.autocapitalizationType = .none
+        titleView.autocorrectionType = .no
+        titleView.placeholder = NSLocalizedString("Enter URL...", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "Placeholder for URL")
         
         return titleView
     }()
     
-    public override func loadView() {
+    open override func loadView() {
         let webView = WKWebView()
         webView.navigationDelegate = self
         
         if let url = url {
-            webView.loadRequest(NSURLRequest(URL: url))
+            webView.load(URLRequest(url: url))
         } else {
             webView.loadHTMLString("<html><body></body></html>", baseURL: nil) // go nowhere to start
         }
@@ -164,19 +164,19 @@ public class BrowserViewController: UIViewController {
         view = webView
     }
     
-    private func layoutNavBar(newViewWidth: CGFloat) {
+    fileprivate func layoutNavBar(_ newViewWidth: CGFloat) {
         let viewWidth = newViewWidth - 200
-        titleView.bounds = CGRectMake(0, 0, viewWidth, 32)
+        titleView.bounds = CGRect(x: 0, y: 0, width: viewWidth, height: 32)
     }
     
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         layoutNavBar(view.bounds.size.width)
         titleView.becomeFirstResponder()
     }
 
-    public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animateAlongsideTransition({ _ in
+    open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { _ in
             self.layoutNavBar(size.width)
         }, completion: nil)
     }
@@ -185,27 +185,27 @@ public class BrowserViewController: UIViewController {
 
 // MARK: text field delegate
 extension BrowserViewController: UITextFieldDelegate {
-    public func textFieldDidBeginEditing(textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         editingURL = true
     }
-    public func textFieldDidEndEditing(textField: UITextField) {
+    public func textFieldDidEndEditing(_ textField: UITextField) {
         editingURL = false
     }
     
-    private func parseURLForInput(input: String?) -> NSURL? {
-        guard let trimmed = input?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) else { return nil }
+    fileprivate func parseURLForInput(_ input: String?) -> URL? {
+        guard let trimmed = input?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) else { return nil }
         
-        if let components = NSURLComponents(string: trimmed) {
+        if var components = URLComponents(string: trimmed) {
             if components.scheme == nil {
                 components.scheme = "http"
             }
             
-            return components.URL
+            return components.url
         }
         return nil
     }
     
-    public func textFieldShouldReturn(textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         go(nil)
         return true
     }
@@ -215,7 +215,7 @@ extension BrowserViewController: UITextFieldDelegate {
 // MARK: webview delegate
 
 extension BrowserViewController: WKNavigationDelegate {
-    public func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         titleView.text = currentWebviewURL?.absoluteString ?? ""
     }
 }

@@ -7,10 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		496268F71DAC44EB00B45487 /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496268F61DAC44E400B45487 /* SoAutomated.framework */; };
+		49AFAB2F1E09C18400522289 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB2D1E09C17600522289 /* ReactiveCocoa.framework */; };
+		49AFAB301E09C18400522289 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB2D1E09C17600522289 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49AFAB311E09C18400522289 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB2E1E09C17600522289 /* ReactiveSwift.framework */; };
+		49AFAB321E09C18400522289 /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB2E1E09C17600522289 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49AFAB331E09C18400522289 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB2C1E09C16800522289 /* Marshal.framework */; };
+		49AFAB341E09C18400522289 /* Marshal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB2C1E09C16800522289 /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49AFAB381E09C1F900522289 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB371E09C1CD00522289 /* Result.framework */; };
+		49AFAB391E09C1F900522289 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB371E09C1CD00522289 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49AFAB3A1E09C1F900522289 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB361E09C1B300522289 /* Kingfisher.framework */; };
+		49AFAB3B1E09C1F900522289 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB361E09C1B300522289 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49AFAB3C1E09C1F900522289 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB351E09C19D00522289 /* SoLazy.framework */; };
+		49AFAB3D1E09C1F900522289 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB351E09C19D00522289 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49AFAB491E09EC1800522289 /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB481E09EC0E00522289 /* CWNotification.framework */; };
+		49AFAB4A1E09EC1800522289 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB471E09EC0300522289 /* Cartography.framework */; };
+		49AFAB4B1E09EC1800522289 /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB461E09EBF600522289 /* SoPretty.framework */; };
+		49AFAB5C1E0AE0C200522289 /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB481E09EC0E00522289 /* CWNotification.framework */; };
+		49AFAB5D1E0AE0C200522289 /* CWNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB481E09EC0E00522289 /* CWNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49AFAB5E1E0AE0F300522289 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB471E09EC0300522289 /* Cartography.framework */; };
+		49AFAB5F1E0AE0F300522289 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB471E09EC0300522289 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49AFAB601E0AE0F300522289 /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB461E09EBF600522289 /* SoPretty.framework */; };
+		49AFAB611E0AE0F300522289 /* SoPretty.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB461E09EBF600522289 /* SoPretty.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49AFAB631E0AE15C00522289 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB621E0AE12300522289 /* SoIconic.framework */; };
+		49AFAB641E0AE15C00522289 /* SoIconic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB621E0AE12300522289 /* SoIconic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49AFAB681E0AE1BD00522289 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB671E0AE1AC00522289 /* Secrets.framework */; };
+		49AFAB691E0AE1BD00522289 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB671E0AE1AC00522289 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49AFAB6A1E0AE1BD00522289 /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB661E0AE19700522289 /* SoThankful.framework */; };
+		49AFAB6B1E0AE1BD00522289 /* SoThankful.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB661E0AE19700522289 /* SoThankful.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49AFAB6C1E0AE1BD00522289 /* SoProgressive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB651E0AE19000522289 /* SoProgressive.framework */; };
+		49AFAB6D1E0AE1BD00522289 /* SoProgressive.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB651E0AE19000522289 /* SoProgressive.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49AFAB6F1E0AE1FF00522289 /* WhizzyWig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB6E1E0AE1F000522289 /* WhizzyWig.framework */; };
+		49AFAB701E0AE1FF00522289 /* WhizzyWig.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB6E1E0AE1F000522289 /* WhizzyWig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49C98DE31D922837006AF2FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C98DE21D922837006AF2FB /* AppDelegate.swift */; };
 		49C98DE51D922837006AF2FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C98DE41D922837006AF2FB /* ViewController.swift */; };
-		49C98DE81D922837006AF2FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49C98DE61D922837006AF2FB /* Main.storyboard */; };
 		49C98DEA1D922837006AF2FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49C98DE91D922837006AF2FB /* Assets.xcassets */; };
 		49C98DED1D922837006AF2FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49C98DEB1D922837006AF2FB /* LaunchScreen.storyboard */; };
 		49C98DF61D922CCF006AF2FB /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C98DF51D922CC3006AF2FB /* EnrollmentKit.framework */; };
@@ -33,7 +62,6 @@
 		49C98E111D9230FC006AF2FB /* TodoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49C98E0C1D9230AA006AF2FB /* TodoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49C98E121D9230FC006AF2FB /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C98E0B1D923096006AF2FB /* SoPersistent.framework */; };
 		49C98E131D9230FC006AF2FB /* SoPersistent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49C98E0B1D923096006AF2FB /* SoPersistent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B1254B0C1DCA710D00DCD110 /* SoEdventurous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1254B0A1DCA710300DCD110 /* SoEdventurous.framework */; };
 		B1254B0E1DCA712100DCD110 /* SoEdventurous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1254B0A1DCA710300DCD110 /* SoEdventurous.framework */; };
 		B1254B0F1DCA712100DCD110 /* SoEdventurous.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1254B0A1DCA710300DCD110 /* SoEdventurous.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -45,16 +73,30 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				49AFAB641E0AE15C00522289 /* SoIconic.framework in Embed Frameworks */,
+				49AFAB3D1E09C1F900522289 /* SoLazy.framework in Embed Frameworks */,
 				49C98E0A1D922EA0006AF2FB /* TooLegit.framework in Embed Frameworks */,
 				49C98E021D922EA0006AF2FB /* CalendarKit.framework in Embed Frameworks */,
 				49C98E041D922EA0006AF2FB /* FileKit.framework in Embed Frameworks */,
 				49C98E081D922EA0006AF2FB /* PageKit.framework in Embed Frameworks */,
+				49AFAB6D1E0AE1BD00522289 /* SoProgressive.framework in Embed Frameworks */,
 				49C98E001D922EA0006AF2FB /* AssignmentKit.framework in Embed Frameworks */,
+				49AFAB341E09C18400522289 /* Marshal.framework in Embed Frameworks */,
+				49AFAB321E09C18400522289 /* ReactiveSwift.framework in Embed Frameworks */,
 				49C98DF71D922CCF006AF2FB /* EnrollmentKit.framework in Embed Frameworks */,
+				49AFAB5D1E0AE0C200522289 /* CWNotification.framework in Embed Frameworks */,
 				49C98E061D922EA0006AF2FB /* MediaKit.framework in Embed Frameworks */,
+				49AFAB6B1E0AE1BD00522289 /* SoThankful.framework in Embed Frameworks */,
+				49AFAB301E09C18400522289 /* ReactiveCocoa.framework in Embed Frameworks */,
+				49AFAB3B1E09C1F900522289 /* Kingfisher.framework in Embed Frameworks */,
 				49C98E131D9230FC006AF2FB /* SoPersistent.framework in Embed Frameworks */,
+				49AFAB5F1E0AE0F300522289 /* Cartography.framework in Embed Frameworks */,
 				B1254B0F1DCA712100DCD110 /* SoEdventurous.framework in Embed Frameworks */,
+				49AFAB611E0AE0F300522289 /* SoPretty.framework in Embed Frameworks */,
+				49AFAB391E09C1F900522289 /* Result.framework in Embed Frameworks */,
 				49C98E0F1D9230FC006AF2FB /* DiscussionKit.framework in Embed Frameworks */,
+				49AFAB691E0AE1BD00522289 /* Secrets.framework in Embed Frameworks */,
+				49AFAB701E0AE1FF00522289 /* WhizzyWig.framework in Embed Frameworks */,
 				49C98E111D9230FC006AF2FB /* TodoKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -64,10 +106,23 @@
 
 /* Begin PBXFileReference section */
 		496268F61DAC44E400B45487 /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB2C1E09C16800522289 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB2D1E09C17600522289 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB2E1E09C17600522289 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB351E09C19D00522289 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB361E09C1B300522289 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB371E09C1CD00522289 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB461E09EBF600522289 /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB471E09EC0300522289 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB481E09EC0E00522289 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB621E0AE12300522289 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB651E0AE19000522289 /* SoProgressive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoProgressive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB661E0AE19700522289 /* SoThankful.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoThankful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB671E0AE1AC00522289 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AFAB6E1E0AE1F000522289 /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhizzyWig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C98DDF1D922837006AF2FB /* EverythingBagel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EverythingBagel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C98DE21D922837006AF2FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49C98DE41D922837006AF2FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		49C98DE71D922837006AF2FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		49C98DE91D922837006AF2FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49C98DEC1D922837006AF2FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49C98DEE1D922837006AF2FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,17 +144,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49AFAB3C1E09C1F900522289 /* SoLazy.framework in Frameworks */,
 				49C98E091D922EA0006AF2FB /* TooLegit.framework in Frameworks */,
+				49AFAB491E09EC1800522289 /* CWNotification.framework in Frameworks */,
+				49AFAB4A1E09EC1800522289 /* Cartography.framework in Frameworks */,
+				49AFAB4B1E09EC1800522289 /* SoPretty.framework in Frameworks */,
+				49AFAB6A1E0AE1BD00522289 /* SoThankful.framework in Frameworks */,
 				B1254B0E1DCA712100DCD110 /* SoEdventurous.framework in Frameworks */,
-				B1254B0C1DCA710D00DCD110 /* SoEdventurous.framework in Frameworks */,
+				49AFAB5C1E0AE0C200522289 /* CWNotification.framework in Frameworks */,
 				49C98E011D922EA0006AF2FB /* CalendarKit.framework in Frameworks */,
+				49AFAB681E0AE1BD00522289 /* Secrets.framework in Frameworks */,
 				49C98E031D922EA0006AF2FB /* FileKit.framework in Frameworks */,
 				49C98E071D922EA0006AF2FB /* PageKit.framework in Frameworks */,
+				49AFAB331E09C18400522289 /* Marshal.framework in Frameworks */,
+				49AFAB5E1E0AE0F300522289 /* Cartography.framework in Frameworks */,
+				49AFAB311E09C18400522289 /* ReactiveSwift.framework in Frameworks */,
+				49AFAB6C1E0AE1BD00522289 /* SoProgressive.framework in Frameworks */,
 				49C98DFF1D922EA0006AF2FB /* AssignmentKit.framework in Frameworks */,
-				496268F71DAC44EB00B45487 /* SoAutomated.framework in Frameworks */,
 				49C98DF61D922CCF006AF2FB /* EnrollmentKit.framework in Frameworks */,
+				49AFAB601E0AE0F300522289 /* SoPretty.framework in Frameworks */,
+				49AFAB2F1E09C18400522289 /* ReactiveCocoa.framework in Frameworks */,
+				49AFAB3A1E09C1F900522289 /* Kingfisher.framework in Frameworks */,
 				49C98E051D922EA0006AF2FB /* MediaKit.framework in Frameworks */,
 				49C98E121D9230FC006AF2FB /* SoPersistent.framework in Frameworks */,
+				49AFAB6F1E0AE1FF00522289 /* WhizzyWig.framework in Frameworks */,
+				49AFAB381E09C1F900522289 /* Result.framework in Frameworks */,
+				49AFAB631E0AE15C00522289 /* SoIconic.framework in Frameworks */,
 				49C98E0E1D9230FC006AF2FB /* DiscussionKit.framework in Frameworks */,
 				49C98E101D9230FC006AF2FB /* TodoKit.framework in Frameworks */,
 			);
@@ -130,7 +200,6 @@
 			children = (
 				49C98DE21D922837006AF2FB /* AppDelegate.swift */,
 				49C98DE41D922837006AF2FB /* ViewController.swift */,
-				49C98DE61D922837006AF2FB /* Main.storyboard */,
 				49C98DE91D922837006AF2FB /* Assets.xcassets */,
 				49C98DEB1D922837006AF2FB /* LaunchScreen.storyboard */,
 				49C98DEE1D922837006AF2FB /* Info.plist */,
@@ -141,6 +210,20 @@
 		49C98DF41D922853006AF2FB /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				49AFAB6E1E0AE1F000522289 /* WhizzyWig.framework */,
+				49AFAB671E0AE1AC00522289 /* Secrets.framework */,
+				49AFAB661E0AE19700522289 /* SoThankful.framework */,
+				49AFAB651E0AE19000522289 /* SoProgressive.framework */,
+				49AFAB621E0AE12300522289 /* SoIconic.framework */,
+				49AFAB481E09EC0E00522289 /* CWNotification.framework */,
+				49AFAB471E09EC0300522289 /* Cartography.framework */,
+				49AFAB461E09EBF600522289 /* SoPretty.framework */,
+				49AFAB371E09C1CD00522289 /* Result.framework */,
+				49AFAB361E09C1B300522289 /* Kingfisher.framework */,
+				49AFAB351E09C19D00522289 /* SoLazy.framework */,
+				49AFAB2D1E09C17600522289 /* ReactiveCocoa.framework */,
+				49AFAB2E1E09C17600522289 /* ReactiveSwift.framework */,
+				49AFAB2C1E09C16800522289 /* Marshal.framework */,
 				B1254B0A1DCA710300DCD110 /* SoEdventurous.framework */,
 				496268F61DAC44E400B45487 /* SoAutomated.framework */,
 				49C98E0D1D9230F3006AF2FB /* DiscussionKit.framework */,
@@ -184,13 +267,14 @@
 		49C98DD71D922837006AF2FB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					49C98DDE1D922837006AF2FB = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
+						DevelopmentTeam = B6333T4PXQ;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -219,7 +303,6 @@
 			files = (
 				49C98DED1D922837006AF2FB /* LaunchScreen.storyboard in Resources */,
 				49C98DEA1D922837006AF2FB /* Assets.xcassets in Resources */,
-				49C98DE81D922837006AF2FB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,14 +321,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		49C98DE61D922837006AF2FB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				49C98DE71D922837006AF2FB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		49C98DEB1D922837006AF2FB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -260,6 +335,7 @@
 		49C98DEF1D922837006AF2FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -309,6 +385,7 @@
 		49C98DF01D922837006AF2FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -353,11 +430,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = EverythingBagel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.EverythingBagel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -365,11 +444,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = EverythingBagel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.EverythingBagel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

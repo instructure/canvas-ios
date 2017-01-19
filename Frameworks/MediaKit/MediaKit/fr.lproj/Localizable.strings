@@ -1,8 +1,7 @@
-/* record button a11y hint
-   stop record button a11y hint */
+/* stop record button a11y hint */
 "Begin recording" = "Lancer l'enregistrement";
 
-/* Cancel button */
+/* Cancel button title */
 "Cancel" = "Annuler";
 
 /* Delete button */
@@ -44,17 +43,17 @@
 /* Record button a11y label */
 "Request Audio Recording Permission" = "Demander la permission d'enregistrer de l'audio";
 
-/* record button a11y hint */
+/* stop record button a11y hint */
 "Request Permission to record audio" = "Demander la permission d'enregistrer de l'audio";
 
 /* stop recording button a11y label */
-"Stop" = "Stopper";
+"Stop" = "Arrêter";
 
 /* Error message for a file missing */
 "The file does not exist." = "Le fichier n'existe pas.";
 
 /* permission denied button a11y hint */
-"User has denied record permission" = "L'utilisateur a rejeté la permission d'enregistrement";
+"User has denied record permission" = "L'utilisateur a rejeté la permission d'enregistrement ";
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Vous devez donner à (appName) l'accès à votre microphone dans l'application des Réglages pour pouvoir enregistrer de l'audio.";

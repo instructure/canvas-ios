@@ -19,22 +19,22 @@
 import EnrollmentKit
 import SoPersistent
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import Cartography
 
-func courseCardViewModel(enrollment: Enrollment, session: Session, viewController:
-    CoursesCollectionViewController?, routeGrades: (NSURL) -> ()) -> EnrollmentCardViewModel {
+func courseCardViewModel(_ enrollment: Enrollment, session: Session, viewController:
+    CoursesCollectionViewController?, routeGrades: @escaping (URL) -> ()) -> EnrollmentCardViewModel {
     
-    let gradesURL = NSURL(string: enrollment.contextID.htmlPath / "grades")!
+    let gradesURL = URL(string: enrollment.contextID.htmlPath / "grades")!
     
     let vm = EnrollmentCardViewModel(session: session, enrollment: enrollment, showGrades: {
         routeGrades(gradesURL)
     }, customize: { [weak viewController] in
         let picker = CustomizeEnrollmentViewController(session: session, context: enrollment.contextID)
         let nav = UINavigationController(rootViewController: picker)
-        nav.modalPresentationStyle = .FormSheet
+        nav.modalPresentationStyle = .formSheet
         
-        viewController?.presentViewController(nav, animated: true, completion: nil)
+        viewController?.present(nav, animated: true, completion: nil)
         },
        takeShortcut: { [weak viewController] url in if let me = viewController { me.route(me, url) } },
        handleError: { [weak viewController] error in if let me = viewController { error.presentAlertFromViewController(me, alertDismissed: nil) } })
@@ -46,20 +46,20 @@ func courseCardViewModel(enrollment: Enrollment, session: Session, viewControlle
     return vm
 }
 
-public class CoursesCollectionViewController: Course.CollectionViewController {
+open class CoursesCollectionViewController: Course.CollectionViewController {
     
-    public override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     let session: Session
-    let route: (UIViewController, NSURL)->()
+    let route: (UIViewController, URL)->()
     var favoritesCountObserver: ManagedObjectCountObserver<Course>?
     var currentFavoritesCount: Int?
     
     var showingGrades = MutableProperty<Bool>(false)
     
-    public init(session: Session, route: (UIViewController, NSURL)->()) throws {
+    public init(session: Session, route: @escaping (UIViewController, URL)->()) throws {
         self.session = session
         self.route = route
         super.init()
@@ -67,7 +67,7 @@ public class CoursesCollectionViewController: Course.CollectionViewController {
         let context = try session.enrollmentManagedObjectContext()
         
         let refresher = try Course.refresher(session)
-        refresher.refreshingBegan.observeNext {
+        refresher.refreshingBegan.observeValues {
             // Let's invalidate all the tabs so that they get refreshed too
             if let courses: [Course] = try? context.findAll() {
                 for course in courses {
@@ -113,45 +113,45 @@ public class CoursesCollectionViewController: Course.CollectionViewController {
         ]
     }
     
-    func editFavorites(button: AnyObject?) {
+    func editFavorites(_ button: Any?) {
         do {
-            let edit = try EditFavoriteEnrollmentsViewController(session: session, collection: try Enrollment.allCourses(session), refresher: try Course.refresher(session))
+            let edit = try EditFavoriteEnrollmentsViewController<Course>(session: session, collection: try Enrollment.allCourses(session), refresher: try Course.refresher(session))
             edit.title = NSLocalizedString("Edit Course List", comment: "Edit course list title")
             let nav = UINavigationController(rootViewController: edit)
-            nav.modalPresentationStyle = .Popover
+            nav.modalPresentationStyle = .popover
             nav.popoverPresentationController?.barButtonItem = editButton
-            presentViewController(nav, animated: true, completion: nil)
+            present(nav, animated: true, completion: nil)
         } catch let e as NSError {
             e.presentAlertFromViewController(self)
         }
     }
     
-    private lazy var editButton: UIBarButtonItem = {
-        let image = UIImage(named: "icon_cog_small", inBundle: NSBundle(forClass: GroupsCollectionViewController.self), compatibleWithTraitCollection: nil)
-        let edit = UIBarButtonItem(image: image, landscapeImagePhone: nil, style: .Plain, target: self, action: #selector(editFavorites(_:)))
+    fileprivate lazy var editButton: UIBarButtonItem = {
+        let image = UIImage(named: "icon_cog_small", in: Bundle(for: GroupsCollectionViewController.self), compatibleWith: nil)
+        let edit = UIBarButtonItem(image: image, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(editFavorites(_:)))
         edit.accessibilityLabel = NSLocalizedString("Edit Course List", comment: "Edit course list title")
         edit.accessibilityIdentifier = "editCourseListButton"
         return edit
     }()
     
-    private lazy var toggleGradesButton: UIBarButtonItem = {
-        let toggle = UIButton(type: .Custom)
+    fileprivate lazy var toggleGradesButton: UIBarButtonItem = {
+        let toggle = UIButton(type: .custom)
         toggle.accessibilityIdentifier = "toggleGrades"
         toggle.translatesAutoresizingMaskIntoConstraints = false
-        toggle.addTarget(self, action: #selector(toggleGrades(_:)), forControlEvents: .TouchUpInside)
+        toggle.addTarget(self, action: #selector(toggleGrades(_:)), for: .touchUpInside)
         toggle.bounds = CGRect(x: 0, y: 0, width: 32, height: 32)
         
         let GradesHiddenA11yLabel = NSLocalizedString("Show Grades", comment: "Accessibility label for toggling grades to visible")
         let GradesVisibleA11yLabel = NSLocalizedString("Hide Grades", comment: "Accessibility label for toggling grades to hidden")
         toggle.rac_a11yLabel <~ self.showingGrades.producer.map { $0 ? GradesVisibleA11yLabel : GradesHiddenA11yLabel }
 
-        let GradesHiddenIcon = UIImage(named: "icon_grades_small", inBundle: NSBundle(forClass: CoursesCollectionViewController.self), compatibleWithTraitCollection: nil)
-        let GradesVisibleIcon = UIImage(named: "icon_grades_fill_small", inBundle: NSBundle(forClass: CoursesCollectionViewController.self), compatibleWithTraitCollection: nil)
+        let GradesHiddenIcon = UIImage(named: "icon_grades_small", in: Bundle(for: CoursesCollectionViewController.self), compatibleWith: nil)
+        let GradesVisibleIcon = UIImage(named: "icon_grades_fill_small", in: Bundle(for: CoursesCollectionViewController.self), compatibleWith: nil)
         toggle.rac_image <~ self.showingGrades.producer.map { $0 ? GradesVisibleIcon : GradesHiddenIcon }
 
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         view.addSubview(toggle)
-        view.tintColor = .whiteColor()
+        view.tintColor = .white
         constrain(view, toggle) { view, toggle in
             toggle.width == 40
             toggle.height == 40
@@ -161,7 +161,7 @@ public class CoursesCollectionViewController: Course.CollectionViewController {
         return UIBarButtonItem(customView: view)
     }()
     
-    func toggleGrades(sender: AnyObject) {
+    func toggleGrades(_ sender: Any) {
         showingGrades.value = !showingGrades.value
     }
     
@@ -170,16 +170,16 @@ public class CoursesCollectionViewController: Course.CollectionViewController {
     }
     
     
-    public override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    open override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let enrollment = collection[indexPath]
         
-        guard let tabsURL = NSURL(string: enrollment.contextID.apiPath/"tabs") else { return print("¯\\_(ツ)_/¯") }
-        guard let enrollmentsVC = self.parentViewController else { return print("¯\\_(ツ)_/¯") }
+        guard let tabsURL = URL(string: enrollment.contextID.apiPath/"tabs") else { return print("¯\\_(ツ)_/¯") }
+        guard let enrollmentsVC = self.parent else { return print("¯\\_(ツ)_/¯") }
         
         route(enrollmentsVC, tabsURL)
     }
     
-    public override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+    open override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         (cell as? EnrollmentCardCell)?.updateA11y()
     }
 }

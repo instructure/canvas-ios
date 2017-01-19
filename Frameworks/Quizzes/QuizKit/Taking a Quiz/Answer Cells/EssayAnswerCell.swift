@@ -32,7 +32,7 @@ class EssayAnswerCell: WhizzyTextInputCell {
         
         placeholder.text = "Enter answer..."
         
-        textView.layer.borderColor = UIColor.prettyLightGray().CGColor
+        textView.layer.borderColor = UIColor.prettyLightGray().cgColor
         textView.layer.borderWidth = 2.0
         
         tintColor = Brand.current().tintColor

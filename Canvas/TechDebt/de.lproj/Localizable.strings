@@ -245,10 +245,10 @@ Sie müssen zunächst das Folgende vervollständigen";
 /* Archive selected messages button */
 "Archive" = "Archiv";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Ausgewählte-Nachrichten-archivieren-Taste";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Alle ausgewählten Nachrichten archivieren";
 
 /* No comment provided by engineer. */
@@ -382,10 +382,10 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* (No Commment) */
 "Completed" = "Abgeschlossen";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Nachricht-erstellen-Taste";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Eine Nachricht erstellen";
 
 /* Title for Conferences tab */

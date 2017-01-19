@@ -48,26 +48,26 @@ class NoStudentsViewController: UIViewController {
         triangleBackgroundGradientView.transitionToColors(colors.tintTopColor, tintBottomColor: colors.tintBottomColor) // Flip the colors the other way
     }
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
-    @IBAction func proceedButtonTapped(sender: UIButton) {
+    @IBAction func proceedButtonTapped(_ sender: UIButton) {
         proceedAction()
     }
 
-    @IBAction func logoutButtonTapped(sender: UIButton) {
-        let style = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? UIAlertControllerStyle.Alert : UIAlertControllerStyle.ActionSheet
+    @IBAction func logoutButtonTapped(_ sender: UIButton) {
+        let style = UIDevice.current.userInterfaceIdiom == .pad ? UIAlertControllerStyle.alert : UIAlertControllerStyle.actionSheet
         let alertController = UIAlertController(title: nil, message: NSLocalizedString("Are you sure you want to logout?", comment: "Logout Confirmation"), preferredStyle: style)
 
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: .Cancel) { _ in }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: .cancel) { _ in }
         alertController.addAction(cancelAction)
 
-        let destroyAction = UIAlertAction(title: NSLocalizedString("Logout", comment: "Logout Confirm Button"), style: .Destructive) { [unowned self] _ in
+        let destroyAction = UIAlertAction(title: NSLocalizedString("Logout", comment: "Logout Confirm Button"), style: .destructive) { [unowned self] _ in
             self.logoutAction()
         }
         alertController.addAction(destroyAction)
 
-        self.presentViewController(alertController, animated: true) { }
+        self.present(alertController, animated: true) { }
     }
 }

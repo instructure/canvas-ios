@@ -1,0 +1,9 @@
+/* Class = "UILabel"; text = "You have 5 minutes."; ObjectID = "KWG-Lz-03A"; */
+"KWG-Lz-03A.text" = "Du hast 5 Minuten.";
+
+/* Class = "UILabel"; text = "Hide/show timer by pressing the timer."; ObjectID = "VPh-7F-wIC"; */
+"VPh-7F-wIC.text" = "Timer aus-/einblenden durch Drücken des Timers.";
+
+/* Class = "UILabel"; text = "Timed Quiz"; ObjectID = "aPJ-b1-PDA"; */
+"aPJ-b1-PDA.text" = "Test mit Zeitbegrenzung";
+

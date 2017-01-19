@@ -30,7 +30,7 @@ class FetchedDetailsCollectionTest: XCTestCase {
         object.name = "ABCD"
         let predicate = NSPredicate(format: "%K == %@", "id", object.id)
         let observer = try! ManagedObjectObserver<Panda>(predicate: predicate, inContext: managedObjectContext)
-        let detailsFactory: Panda->[String] = { $0.name.characters.map { String($0) } }
+        let detailsFactory: (Panda)->[String] = { $0.name.characters.map { String($0) } }
 
         let fdc = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
 
@@ -40,20 +40,20 @@ class FetchedDetailsCollectionTest: XCTestCase {
             }
 
             it("maps updates the object to details") {
-                XCTAssertEqual("A", fdc[NSIndexPath(forRow: 0, inSection: 0)])
-                XCTAssertEqual("B", fdc[NSIndexPath(forRow: 1, inSection: 0)])
-                XCTAssertEqual("C", fdc[NSIndexPath(forRow: 2, inSection: 0)])
-                XCTAssertEqual("D", fdc[NSIndexPath(forRow: 3, inSection: 0)])
+                XCTAssertEqual("A", fdc[IndexPath(row: 0, section: 0)])
+                XCTAssertEqual("B", fdc[IndexPath(row: 1, section: 0)])
+                XCTAssertEqual("C", fdc[IndexPath(row: 2, section: 0)])
+                XCTAssertEqual("D", fdc[IndexPath(row: 3, section: 0)])
             }
 
             context("when the managed object changes") {
                 it("updates the details") {
                     object.name = "ZYXW"
                     managedObjectContext.processPendingChanges()
-                    XCTAssertEqual("Z", fdc[NSIndexPath(forRow: 0, inSection: 0)])
-                    XCTAssertEqual("Y", fdc[NSIndexPath(forRow: 1, inSection: 0)])
-                    XCTAssertEqual("X", fdc[NSIndexPath(forRow: 2, inSection: 0)])
-                    XCTAssertEqual("W", fdc[NSIndexPath(forRow: 3, inSection: 0)])
+                    XCTAssertEqual("Z", fdc[IndexPath(row: 0, section: 0)])
+                    XCTAssertEqual("Y", fdc[IndexPath(row: 1, section: 0)])
+                    XCTAssertEqual("X", fdc[IndexPath(row: 2, section: 0)])
+                    XCTAssertEqual("W", fdc[IndexPath(row: 3, section: 0)])
                 }
             }
         }

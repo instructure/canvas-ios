@@ -27,11 +27,11 @@ let pageKitStoreName = "PageKit"
 
 extension Session {
     func pagesManagedObjectContext() throws -> NSManagedObjectContext {
-        guard let model = NSManagedObjectModel(named: pageKitModelName, inBundle: NSBundle(forClass: Page.self))?.mutableCopy() as? NSManagedObjectModel else {
+        guard let model = NSManagedObjectModel(named: pageKitModelName, inBundle: Bundle(for: Page.self))?.mutableCopy() as? NSManagedObjectModel else {
             ❨╯°□°❩╯⌢"Could not load Page model in Session+Page extension"
         }
         
-        let storeID = StoreID(storeName: pageKitStoreName, model: model, localizedErrorDescription: NSLocalizedString("There was a problem loading the Pages database file.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "Page list fails"))
+        let storeID = StoreID(storeName: pageKitStoreName, model: model, localizedErrorDescription: NSLocalizedString("There was a problem loading the Pages database file.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.PageKit")!, value: "", comment: "Page list fails"))
         
         return try managedObjectContext(storeID)
     }

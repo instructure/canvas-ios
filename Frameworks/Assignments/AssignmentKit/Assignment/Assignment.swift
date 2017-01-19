@@ -21,7 +21,7 @@ import CoreData
 import FileKit
 import SoIconic
 
-public struct SubmissionStatus: OptionSetType {
+public struct SubmissionStatus: OptionSet {
     public let rawValue: Int64
     public init(rawValue: Int64) { self.rawValue = rawValue}
 
@@ -37,10 +37,10 @@ public final class Assignment: NSManagedObject, LockableModel {
     @NSManaged internal (set) public var id: String
     @NSManaged internal (set) public var courseID: String
     @NSManaged internal (set) public var name: String
-    @NSManaged internal (set) public var due: NSDate?
+    @NSManaged internal (set) public var due: Date?
     @NSManaged internal (set) public var details: String
-    @NSManaged internal (set) public var url: NSURL
-    @NSManaged internal (set) public var htmlURL: NSURL
+    @NSManaged internal (set) public var url: URL
+    @NSManaged internal (set) public var htmlURL: URL
     @NSManaged internal (set) public var rawSubmissionTypes: Int32
     @NSManaged internal (set) public var rawDueStatus: String
     @NSManaged internal (set) public var hasSubmitted: Bool
@@ -53,10 +53,10 @@ public final class Assignment: NSManagedObject, LockableModel {
     @NSManaged internal (set) public var currentGrade: String
     @NSManaged internal (set) public var currentScore: NSNumber?
     @NSManaged internal (set) public var submissionLate: Bool
-    @NSManaged internal (set) public var submittedAt: NSDate?
+    @NSManaged internal (set) public var submittedAt: Date?
     @NSManaged internal (set) public var submissionExcused: Bool
-    @NSManaged internal (set) public var gradedAt: NSDate?
-    @NSManaged private (set) public var rawStatus: Int64
+    @NSManaged internal (set) public var gradedAt: Date?
+    @NSManaged fileprivate (set) public var rawStatus: Int64
     @NSManaged internal (set) public var muted: Bool
     @NSManaged internal (set) public var groupSetID: String?
     
@@ -67,7 +67,7 @@ public final class Assignment: NSManagedObject, LockableModel {
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var lockExplanation: String?
     @NSManaged public var canView: Bool
-    @NSManaged internal (set) public var unlockAt: NSDate?
+    @NSManaged internal (set) public var unlockAt: Date?
     
     @NSManaged internal (set) public var discussionTopicID: String?
     @NSManaged internal (set) public var quizID: String?
@@ -98,7 +98,7 @@ public final class Assignment: NSManagedObject, LockableModel {
                 return gradingType
             }
 
-            return GradingType.Error
+            return .error
         } set {
             rawGradingType = String(newValue.rawValue)
         }
@@ -106,15 +106,15 @@ public final class Assignment: NSManagedObject, LockableModel {
     
     public var icon: UIImage {
         switch submissionTypes {
-        case [.Quiz]:               return .icon(.quiz)
-        case [.DiscussionTopic]:    return .icon(.discussion)
-        case [.ExternalTool]:       return .icon(.lti)
+        case [.quiz]:               return .icon(.quiz)
+        case [.discussionTopic]:    return .icon(.discussion)
+        case [.externalTool]:       return .icon(.lti)
         default:                    return .icon(.assignment)
         }
     }
 
-    static let gradeNumberFormatter: NSNumberFormatter = {
-        let formatter = NSNumberFormatter()
+    static let gradeNumberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 1
         formatter.minimumFractionDigits = 0
         return formatter
@@ -124,21 +124,21 @@ public final class Assignment: NSManagedObject, LockableModel {
         let formatter = Assignment.gradeNumberFormatter
         let grade: String
         switch gradingType {
-        case .NotGraded:
+        case .notGraded:
             grade = "n/a"
-        case .LetterGrade, .GPAScale, .PassFail, .Percent:
+        case .letterGrade, .gpaScale, .passFail, .percent:
             grade = currentGrade.isEmpty ? "-" : currentGrade
-        case .Points:
+        case .points:
             let points: String
-            if let d = Double(currentGrade) where !currentGrade.isEmpty {
-                points = formatter.stringFromNumber(NSNumber(double: d)) ?? "-"
+            if let d = Double(currentGrade), !currentGrade.isEmpty {
+                points = formatter.string(from: NSNumber(value: d as Double)) ?? "-"
             } else {
                 points = "-"
             }
-            let possible = formatter.stringFromNumber(NSNumber(double: pointsPossible)) ?? "-"
+            let possible = formatter.string(from: NSNumber(value: pointsPossible as Double)) ?? "-"
 
             grade = "\(points)/\(possible)"
-        case .Error:
+        case .error:
             grade = "-"
         }
         return grade
@@ -148,21 +148,25 @@ public final class Assignment: NSManagedObject, LockableModel {
         return status.contains(.Graded)
     }
 
+    var assignmentGroupName: String {
+        return assignmentGroup?.name ?? NSLocalizedString("None", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Section header for assignments without an assignment group")
+    }
+    
     public func getUploadTypesFromSubmissionTypes() -> UploadTypes {
         var uploadTypes: UploadTypes = []
-        if self.submissionTypes.contains(.Text) {
+        if self.submissionTypes.contains(.text) {
             uploadTypes.insert(.Text)
         }
-        if self.submissionTypes.contains(.URL) {
+        if self.submissionTypes.contains(.url) {
             uploadTypes.insert(.URL)
         }
-        if self.submissionTypes.contains(.Upload) {
+        if self.submissionTypes.contains(.upload) {
             uploadTypes.insert(.Upload)
         }
-        if self.submissionTypes.contains(.MediaRecording) {
+        if self.submissionTypes.contains(.mediaRecording) {
             uploadTypes.insert(.MediaRecording)
         }
-        if self.submissionTypes.contains(.None) {
+        if self.submissionTypes.contains(.none) {
             uploadTypes.insert(.None)
         }
         return uploadTypes
@@ -179,7 +183,7 @@ public enum DueStatus: String, CustomStringConvertible {
         guard let due = assignment.due else { self = .Undated; return }
 
         let now = Clock.currentTime()
-        if due.compare(now) == .OrderedDescending {
+        if due.compare(now) == .orderedDescending {
             self = .Upcoming
         } else {
             let types = assignment.submissionTypes
@@ -193,54 +197,60 @@ public enum DueStatus: String, CustomStringConvertible {
 
     public var description: String {
         switch self {
-        case .Overdue: return NSLocalizedString("Overdue", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Overdue assignmnets (not turned in)")
-        case .Upcoming: return NSLocalizedString("Upcoming", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Upcoming assignments")
-        case .Undated: return NSLocalizedString("Undated", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Assignments with no dates")
-        case .Past: return NSLocalizedString("Past", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Assignments that have been turned in and are past")
+        case .Overdue: return NSLocalizedString("Overdue", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Overdue assignmnets (not turned in)")
+        case .Upcoming: return NSLocalizedString("Upcoming", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Upcoming assignments")
+        case .Undated: return NSLocalizedString("Undated", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Assignments with no dates")
+        case .Past: return NSLocalizedString("Past", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Assignments that have been turned in and are past")
         }
     }
 }
 
 public enum GradingType: String {
-    case PassFail = "pass_fail", Percent = "percent", GPAScale = "gpa_scale", LetterGrade = "letter_grade", Points = "points", NotGraded = "not_graded", Error = "error"
+    case passFail = "pass_fail"
+    case percent = "percent"
+    case gpaScale = "gpa_scale"
+    case letterGrade = "letter_grade"
+    case points = "points"
+    case notGraded = "not_graded"
+    case error = "error"
 }
 
-public struct SubmissionTypes: OptionSetType {
+public struct SubmissionTypes: OptionSet {
     public let rawValue: Int
     public init(rawValue: Int) { self.rawValue = rawValue }
 
-    public static let OnPaper           = SubmissionTypes(rawValue: 1<<0)
-    public static let DiscussionTopic   = SubmissionTypes(rawValue: 1<<1)
-    public static let Quiz              = SubmissionTypes(rawValue: 1<<2)
-    public static let ExternalTool      = SubmissionTypes(rawValue: 1<<3)
-    public static let Text              = SubmissionTypes(rawValue: 1<<4)
-    public static let URL               = SubmissionTypes(rawValue: 1<<5)
-    public static let Upload            = SubmissionTypes(rawValue: 1<<6)
-    public static let MediaRecording    = SubmissionTypes(rawValue: 1<<7)
-    public static let None              = SubmissionTypes(rawValue: 1<<8)
+    public static let onPaper           = SubmissionTypes(rawValue: 1<<0)
+    public static let discussionTopic   = SubmissionTypes(rawValue: 1<<1)
+    public static let quiz              = SubmissionTypes(rawValue: 1<<2)
+    public static let externalTool      = SubmissionTypes(rawValue: 1<<3)
+    public static let text              = SubmissionTypes(rawValue: 1<<4)
+    public static let url               = SubmissionTypes(rawValue: 1<<5)
+    public static let upload            = SubmissionTypes(rawValue: 1<<6)
+    public static let mediaRecording    = SubmissionTypes(rawValue: 1<<7)
+    public static let none              = SubmissionTypes(rawValue: 1<<8)
 
-    public static func fromStrings(strings: [String]) -> SubmissionTypes {
+    public static func fromStrings(_ strings: [String]) -> SubmissionTypes {
         return strings.map(SubmissionTypes.typeForString).reduce([]) { $0.union($1) }
     }
 
-    private static func typeForString(typeString: String) -> SubmissionTypes {
-        switch typeString.lowercaseString ?? "" {
-        case "discussion_topic":    return .DiscussionTopic
-        case "online_quiz":         return .Quiz
-        case "on_paper":            return .OnPaper
-        case "external_tool":       return .ExternalTool
-        case "online_text_entry":   return .Text
-        case "online_url":          return .URL
-        case "online_upload":       return .Upload
-        case "media_recording":     return .MediaRecording
-        case "none":                return .None
+    fileprivate static func typeForString(_ typeString: String) -> SubmissionTypes {
+        switch typeString.lowercased() {
+        case "discussion_topic":    return .discussionTopic
+        case "online_quiz":         return .quiz
+        case "on_paper":            return .onPaper
+        case "external_tool":       return .externalTool
+        case "online_text_entry":   return .text
+        case "online_url":          return .url
+        case "online_upload":       return .upload
+        case "media_recording":     return .mediaRecording
+        case "none":                return .none
         default:                    return []
         }
     }
 
-    static let OnlineSubmissions: SubmissionTypes = [.DiscussionTopic, .Quiz, .Text, .URL, .Upload, .MediaRecording, .ExternalTool, .None]
+    static let onlineSubmissions: SubmissionTypes = [.discussionTopic, .quiz, .text, .url, .upload, .mediaRecording, .externalTool, .none]
     public var onlineSubmission: Bool {
-        return !intersect(.OnlineSubmissions).isEmpty
+        return !intersection(.onlineSubmissions).isEmpty
     }
 
     public var canSubmit: Bool {
@@ -255,14 +265,14 @@ import SoLazy
 
 extension Assignment {
     public var allowsSubmissions: Bool {
-        return !submissionTypes.contains(SubmissionTypes.None) && gradingType != GradingType.NotGraded && !lockedForUser
+        return !submissionTypes.contains(.none) && gradingType != .notGraded && !lockedForUser
     }
 }
 
 extension NSError {
-    private static func quizURLFail(url: NSURL, file: String = #file, line: UInt = #line) -> NSError {
-        let ErrorTitle = NSLocalizedString("Error Updating Assignment", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Error title for parsing assignment data from server")
-        let ErrorDescription = NSLocalizedString("There was a problem updating the Quiz URL", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Error description for failing to compute the URL to a quiz")
+    fileprivate static func quizURLFail(_ url: URL, file: String = #file, line: UInt = #line) -> NSError {
+        let ErrorTitle = NSLocalizedString("Error Updating Assignment", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Error title for parsing assignment data from server")
+        let ErrorDescription = NSLocalizedString("There was a problem updating the Quiz URL", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Error description for failing to compute the URL to a quiz")
         
         return NSError(subdomain: "AssignmentKit", code: 0, sessionID: nil, apiURL: url, title: ErrorTitle, description: ErrorDescription, failureReason: nil, file: file, line: line)
     }
@@ -270,13 +280,14 @@ extension NSError {
 
 extension Assignment: SynchronizedModel {
 
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
 
-    private func updateRubric(json: JSONObject, inContext context: NSManagedObjectContext) throws {
-        if let rubricCriterions: [JSONObject] = try json <| "rubric" ?? [], rubricSettings: JSONObject = try json <| "rubric_settings" {
+    fileprivate func updateRubric(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
+        let rubricCriterions: [JSONObject] = (try json <| "rubric") ?? []
+        if let rubricSettings: JSONObject = try json <| "rubric_settings" {
             if let rubric: Rubric = try context.findOne(withPredicate: try Rubric.uniquePredicateForObject(self.id)) {
                 try rubric.updateValues(rubricCriterions, rubricSettingsJSON: rubricSettings, assignmentID: self.id, inContext: context)
             } else {
@@ -295,19 +306,19 @@ extension Assignment: SynchronizedModel {
         }
     }
     
-    private func updateURL(json: JSONObject) throws {
+    fileprivate func updateURL(_ json: JSONObject) throws {
         switch submissionTypes {
-        case [.ExternalTool]: url = try (try json <| "url") ?? (try json <| "html_url")
-        case [.DiscussionTopic]: url = try (try json <| "discussion_topic.url") ?? (try json <| "html_url")
-        case [.Quiz]:
-            let htmlURL: NSURL = try json <| "html_url"
-            guard let components = NSURLComponents(URL: htmlURL, resolvingAgainstBaseURL: false) else {
+        case [.externalTool]: url = try (try json <| "url") ?? (try json <| "html_url")
+        case [.discussionTopic]: url = try (try json <| "discussion_topic.url") ?? (try json <| "html_url")
+        case [.quiz]:
+            let htmlURL: URL = try json <| "html_url"
+            guard var components = URLComponents(url: htmlURL, resolvingAgainstBaseURL: false) else {
                 throw NSError.quizURLFail(htmlURL)
             }
             components.path = "/courses/\(courseID)/quizzes/\(quizID ?? "0")"
             components.query = nil
             
-            guard let quizURL = components.URL else {
+            guard let quizURL = components.url else {
                 throw NSError.quizURLFail(htmlURL)
             }
             
@@ -316,7 +327,7 @@ extension Assignment: SynchronizedModel {
         }
     }
     
-    private func updateOverrides(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    fileprivate func updateOverrides(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         guard let oJSON: [JSONObject] = try json <| "overrides" else {
             for dateOverride in (dueDateOverrides ?? []) {
                 dateOverride.delete(inContext: context)
@@ -326,27 +337,27 @@ extension Assignment: SynchronizedModel {
         }
         
         // only care about due date overrides for now.
-        DueDateOverride.upsert(inContext: context)(jsonArray: oJSON.filter { $0["due_at"] != nil })
+        let _ = DueDateOverride.upsert(inContext: context, jsonArray: oJSON.filter { $0["due_at"] != nil })
     }
     
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id                  = try json.stringID("id")
         courseID            = try json.stringID("course_id")
         name                = try json <| "name"
         due                 = try json <| "due_at"
-        details             = try json <| "description" ?? ""
-        pointsPossible      = try json <| "points_possible" ?? 0
-        rawGradingType      = try json <| "grading_type" ?? ""
-        useRubricForGrading = try json <| "use_rubric_for_grading" ?? false
+        details             = (try json <| "description") ?? ""
+        pointsPossible      = (try json <| "points_possible") ?? 0
+        rawGradingType      = (try json <| "grading_type") ?? ""
+        useRubricForGrading = (try json <| "use_rubric_for_grading") ?? false
         let types: [String] = try json <| "submission_types"
         submissionTypes     = SubmissionTypes.fromStrings(types)
-        gradingType         = GradingType(rawValue: rawGradingType) ?? GradingType.Error
+        gradingType         = GradingType(rawValue: rawGradingType) ?? .error
         unlockAt            = try json <| "unlock_at"
         discussionTopicID   = try json.stringID("discussion_topic.id")
         quizID              = try json.stringID("quiz_id")
-        needsGradingCount   = try json <| "needs_grading_count" ?? 0
+        needsGradingCount   = (try json <| "needs_grading_count") ?? 0
         htmlURL             = try json <| "html_url"
-        muted               = try json <| "muted" ?? false
+        muted               = (try json <| "muted") ?? false
         assignmentGroupID   = try json.stringID("assignment_group_id")
         groupSetID          = try json.stringID("group_category_id")
         
@@ -359,7 +370,7 @@ extension Assignment: SynchronizedModel {
         try updateLockStatus(json)
     }
 
-    func updateSubmission(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    func updateSubmission(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         var status: SubmissionStatus = []
         var submissionState = ""
         if let submissionJSON: JSONObject = try json <| "submission" {
@@ -374,9 +385,9 @@ extension Assignment: SynchronizedModel {
 
             currentGrade        = (try submissionJSON <| "grade") ?? ""
             currentScore        = try submissionJSON <| "score"
-            submissionLate      = try submissionJSON <| "late" ?? false
+            submissionLate      = (try submissionJSON <| "late") ?? false
             submittedAt         = try submissionJSON <| "submitted_at"
-            submissionExcused   = try submissionJSON <| "excused" ?? false
+            submissionExcused   = (try submissionJSON <| "excused") ?? false
             gradedAt            = try submissionJSON <| "graded_at"
             submissionState     = try submissionJSON <| "workflow_state"
 
@@ -413,5 +424,5 @@ extension Assignment: SynchronizedModel {
     }
 
     // API parameters
-    public static var parameters: [String: AnyObject] { return ["include": ["assignment_visibility", "all_dates", "submission"]] }
+    public static var parameters: [String: Any] { return ["include": ["assignment_visibility", "all_dates", "submission"]] }
 }

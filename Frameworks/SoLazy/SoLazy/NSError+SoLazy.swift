@@ -20,9 +20,9 @@ import UIKit
 import Marshal
 
 extension NSError {
-    public convenience init(subdomain: String, code: Int = 0, sessionID: String? = nil, apiURL: NSURL? = nil, title: String? = nil, description: String, failureReason: String? = nil, data: NSData? = nil, file: String = #file, line: UInt = #line) {
+    public convenience init(subdomain: String, code: Int = 0, sessionID: String? = nil, apiURL: URL? = nil, title: String? = nil, description: String, failureReason: String? = nil, data: Data? = nil, file: String = #file, line: UInt = #line) {
 
-        var userInfo: [String: AnyObject] = [
+        var userInfo: [String: Any] = [
             NSLocalizedDescriptionKey: description,
             ErrorFileNameKey: file,
             ErrorLineNumberKey: line,
@@ -39,7 +39,7 @@ extension NSError {
     }
     
     public var title: String {
-        return (userInfo[ErrorTitleKey] as? String) ?? NSLocalizedString("Unknown Error", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.icanvas.SoLazy")!, value: "", comment: "SoLazy's fallback title for an unknown error")
+        return (userInfo[ErrorTitleKey] as? String) ?? NSLocalizedString("Unknown Error", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.icanvas.SoLazy")!, value: "", comment: "SoLazy's fallback title for an unknown error")
     }
     
     public var fileName: String {
@@ -58,12 +58,12 @@ extension NSError {
         return (userInfo[ErrorSessionIDKey] as? String) ?? "Unknown"
     }
 
-    public var data: NSData? {
-        return (userInfo[ErrorDataKey] as? NSData) ?? nil
+    public var data: Data? {
+        return (userInfo[ErrorDataKey] as? Data) ?? nil
     }
     
     public var url: String {
-        return (userInfo[ErrorURLKey] as? NSURL)
+        return (userInfo[ErrorURLKey] as? URL)
             .flatMap({ $0.absoluteString }) ?? ""
     }
 }
@@ -74,7 +74,7 @@ extension NSError {
 extension NSError {
     
     /// Reports an error either to the user, to the error reporter, or both
-    public func report(externally: Bool = true, alertUserFrom: UIViewController? = nil, onDismiss: (() -> ())? = nil) {
+    public func report(_ externally: Bool = true, alertUserFrom: UIViewController? = nil, onDismiss: (() -> ())? = nil) {
         
         print(reportDescription)
      
@@ -90,7 +90,7 @@ extension NSError {
             let title = NSLocalizedString("Error", bundle: .soLazy(), comment: "Title for an error alert")
             let messageTemplate = NSLocalizedString("An unexpected error occured. %@(%@)", bundle: .soLazy(), comment: "Message for an error alert")
             let message = String.localizedStringWithFormat(messageTemplate, self.domain, String(self.code))
-            alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         }
         else {
 
@@ -98,23 +98,23 @@ extension NSError {
             
             let description = "\(localizedDescription)\n\n\(reason)"
             
-            alert = UIAlertController(title: title, message: description, preferredStyle: .Alert)
+            alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
         }
         
         let dismissTitle = NSLocalizedString("Dismiss", bundle: .soLazy(), value: "Dismiss", comment: "Dismiss an error dialog")
-        let action = UIAlertAction(title: dismissTitle, style: .Default) { _ in
+        let action = UIAlertAction(title: dismissTitle, style: .default) { _ in
             onDismiss?()
         }
         alert.addAction(action)
         
-        viewController.presentViewController(alert, animated: true, completion: nil)
+        viewController.present(alert, animated: true, completion: nil)
     }
 }
 
 // MARK: Alert
 
 extension NSError {
-    public func presentAlertFromViewController(viewController: UIViewController, alertDismissed: (()->())? = nil, reportError: (()->())? = nil) {
+    open func presentAlertFromViewController(_ viewController: UIViewController, alertDismissed: (()->())? = nil, reportError: (()->())? = nil) {
         print(self.reportDescription)
         
         let reason = localizedFailureReason.map( { NSLocalizedString("Explanation:", bundle: .soLazy(), value: "Explanation:", comment: "attached to error explanation in dialog") + $0 } ) ?? ""
@@ -122,20 +122,20 @@ extension NSError {
         let description = "\(localizedDescription)\n\n\(reason)"
         
         
-        let alert = UIAlertController(title: title, message: description, preferredStyle: .Alert)
+        let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
         
         if let report = reportError {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Report", bundle: .soLazy(), value: "Report", comment: "Option to report an error"), style: .Default, handler: { _ in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Report", bundle: .soLazy(), value: "Report", comment: "Option to report an error"), style: .default, handler: { _ in
                 report()
             }))
         }
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", bundle: .soLazy(), value: "Dissmiss", comment: "Dismiss an error dialog"), style: .Cancel, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", bundle: .soLazy(), value: "Dismiss", comment: "Dismiss an error dialog"), style: .cancel, handler: { _ in
             alertDismissed?()
         }))
         
-        dispatch_async(dispatch_get_main_queue()) {
-            viewController.presentViewController(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            viewController.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -143,7 +143,7 @@ extension NSError {
         var report = "===== Error Report \(domain)–\(code) =====\n"
         
         for (key, value) in userInfo {
-            if key.isEqual(NSUnderlyingErrorKey) { continue } // handled separately
+            if (key as? String) == NSUnderlyingErrorKey { continue } // handled separately
             report += "🔑 \(key): \(value)\n"
         }
         
@@ -162,26 +162,27 @@ extension NSError {
         return report
     }
     
-    public convenience init(jsonError: Marshal.Error, file: String = #file, line: UInt = #line) {
+    public convenience init(jsonError: MarshalError, file: String = #file, line: UInt = #line) {
         let reason: String
         switch jsonError {
-        case let .TypeMismatch(expected: expected, actual: actual):
+        case let .typeMismatch(expected: expected, actual: actual):
             reason = "Expected \(expected) but found \(actual)"
-        case let .TypeMismatchWithKey(key: key, expected: expected, actual: actual):
+        case let .typeMismatchWithKey(key: key, expected: expected, actual: actual):
             reason = "Expected \(expected) but found \(actual) for key: \(key)"
-        case .KeyNotFound(key: let key):
+        case .keyNotFound(key: let key):
             reason = "Expected a value for \(key)"
-        case .NullValue(key: let key):
+        case .nullValue(key: let key):
             reason = "Unexpected null value for \(key)"
         }
-        
-        let key = "There was a problem interpreting a response from the server."
-        let errorDescription = NSLocalizedString(key, bundle: .soLazy(), value: key, comment: "JSON Parsing error description")
 
-        self.init(subdomain: "SoLazy", description: errorDescription, failureReason: reason)
+        let errorDescription = NSLocalizedString("There was a problem interpreting a response from the server.", bundle: .soLazy(), value: "There was a problem interpreting a response from the server.", comment: "JSON Parsing error description")
+
+
+
+        self.init(subdomain: "SoLazy", description: errorDescription, failureReason: reason, file: file, line: line)
     }
     
-    public func addingInfo(file: String = #file, line: UInt = #line) -> NSError {
+    public func addingInfo(_ file: String = #file, line: UInt = #line) -> NSError {
         guard userInfo[ErrorFileNameKey] == nil else { return self }
         
         var info = userInfo

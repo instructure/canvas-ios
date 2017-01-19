@@ -19,32 +19,36 @@
 import Foundation
 import TooLegit
 import Marshal
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 
 extension ModuleItem {
-    public static var getModuleItemsParameters: [String: AnyObject] {
+    public static var getModuleItemsParameters: [String: Any] {
         return ["include": ["content_details", "mastery_paths"]]
     }
 
-    public static func getModuleItems(session: Session, courseID: String, moduleID: String) throws -> SignalProducer<[JSONObject], NSError> {
-        let request = try session.GET(api/v1/"courses"/courseID/"modules"/moduleID/"items", parameters: getModuleItemsParameters)
+    public static func getModuleItems(_ session: Session, courseID: String, moduleID: String) throws -> SignalProducer<[JSONObject], NSError> {
+        let modulePath = api/v1/"courses"/courseID/"modules"/moduleID
+        let request = try session.GET(modulePath/"items", parameters: getModuleItemsParameters)
         return session.paginatedJSONSignalProducer(request).map(insert(courseID, forKey: "course_id"))
     }
 
-    static func markDone(session: Session, courseID: String, moduleID: String, moduleItemID: String) throws -> SignalProducer<(), NSError> {
-        let path: String = api/v1/"courses"/courseID/"modules"/moduleID/"items"/moduleItemID/"done"
+    static func markDone(_ session: Session, courseID: String, moduleID: String, moduleItemID: String) throws -> SignalProducer<(), NSError> {
+        let modulePath = api/v1/"courses"/courseID/"modules"/moduleID
+        let path: String = modulePath/"items"/moduleItemID/"done"
         let request = try session.PUT(path)
         return session.emptyResponseSignalProducer(request)
     }
 
-    static func markRead(session: Session, courseID: String, moduleID: String, moduleItemID: String) throws -> SignalProducer<(), NSError> {
-        let request = try session.POST(api/v1/"courses"/courseID/"modules"/moduleID/"items"/moduleItemID/"mark_read")
+    static func markRead(_ session: Session, courseID: String, moduleID: String, moduleItemID: String) throws -> SignalProducer<(), NSError> {
+        let modulePath = api/v1/"courses"/courseID/"modules"/moduleID
+        let request = try session.POST(modulePath/"items"/moduleItemID/"mark_read")
         return session.emptyResponseSignalProducer(request)
     }
 
-    public static func selectMasteryPath(session: Session, courseID: String, moduleID: String, moduleItemID: String, assignmentSetID: String) throws -> SignalProducer<JSONObject, NSError> {
-        let request = try session.POST(api/v1/"courses"/courseID/"modules"/moduleID/"items"/moduleItemID/"select_mastery_path", parameters: ["assignment_set_id": assignmentSetID], encoding: .URLEncodedInURL)
+    public static func selectMasteryPath(_ session: Session, courseID: String, moduleID: String, moduleItemID: String, assignmentSetID: String) throws -> SignalProducer<JSONObject, NSError> {
+        let modulePath = api/v1/"courses"/courseID/"modules"/moduleID
+        let request = try session.POST(modulePath/"items"/moduleItemID/"select_mastery_path", parameters: ["assignment_set_id": assignmentSetID], encoding: .urlEncodedInURL)
         return session.JSONSignalProducer(request)
     }
 }

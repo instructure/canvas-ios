@@ -24,21 +24,21 @@ public protocol PathComponent {
     var pathComponent: String { get }
 }
 
-public func /<T: PathComponent>(path: Path, @autoclosure component: ()->T) -> Path {
-    return (path as NSString).stringByAppendingPathComponent(component().pathComponent)
+public func /<T: PathComponent>(path: Path, component: @autoclosure ()->T) -> Path {
+    return (path as NSString).appendingPathComponent(component().pathComponent)
 }
 
-public func /<T: PathComponent>(url: NSURL, @autoclosure component: ()->T) -> NSURL {
-    return url.URLByAppendingPathComponent(component().pathComponent)!
+public func /<T: PathComponent>(url: URL, component: @autoclosure ()->T) -> URL {
+    return url.appendingPathComponent(component().pathComponent)
 }
 
-public extension NSURL {
-    func appending(queryItem: NSURLQueryItem) -> NSURL? {
-        let components = NSURLComponents(URL: self, resolvingAgainstBaseURL: false)
+public extension URL {
+    func appending(_ queryItem: URLQueryItem) -> URL? {
+        var components = URLComponents(url: self, resolvingAgainstBaseURL: false)
         var query = components?.queryItems ?? []
         query.append(queryItem)
         components?.queryItems = query
-        return components?.URL
+        return components?.url
     }
 }
 
@@ -48,7 +48,7 @@ extension String : PathComponent {
     }
 }
 
-extension IntegerType {
+extension Integer {
     public var pathComponent: String {
         return "\(self)"
     }

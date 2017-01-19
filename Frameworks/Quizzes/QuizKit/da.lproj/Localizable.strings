@@ -1,8 +1,8 @@
 /* Error message component with the report id */
-"Error report ID: (reportID)" = "Fejl rapport ID: (reportID)";
+" Error report ID: (reportID)" = "Fejl rapport ID: (reportID)";
 
 /* Failure reason from the JSON payload from canvas */
-"Failure reason: (reason)." = "Fejlårsag: (reason)";
+" Failure reason: (reason)." = "Fejlårsag: (reason)";
 
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d spørgsmål ikke besvaret";
@@ -34,19 +34,18 @@
 /* label for quiz availability date */
 "Available Until" = "Tilgængelig indtil";
 
-/* Cancel button
-   cancel button for submitting a quiz
-   Cancel removing the formatting */
+/* Cancel button title */
 "Cancel" = "Annuller";
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Fortsæt Quiz";
 
-/* Dismiss button for error alert */
+/* Dismiss button for error alert
+   Dismiss error dialog */
 "Dismiss" = "Afvis";
 
 /* Done button */
-"Done" = "Gjort";
+"Done" = "Udført";
 
 /* due date label for quiz due date */
 "Due Date" = "Forfaldsdato";
@@ -54,8 +53,17 @@
 /* Default text for essay cell */
 "Enter answer..." = "Indtast svar...";
 
+/* Title for quiz loading error */
+"Error Loading Quiz" = "Fejl ved indlæsning af quiz";
+
+/* (No Commment) */
+"Error report ID: (reportID)" = "Fejlrapport-ID: (reportID)";
+
 /* Exit button to leave the quiz */
 "Exit" = "Udgang";
+
+/* (No Commment) */
+"Failure reason: (reason)." = "Fejl grund: (grund).";
 
 /* State of the flagged question */
 "Flagged" = "Markeret";
@@ -83,8 +91,11 @@ Indsender";
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Kan ikke tages";
 
-/* OK */
+/* OK Button Title */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "Tjek venligst din netværk forbindelse og prøv igen.";
 
 /* label for number of points in a quiz */
 "Points" = "Points";
@@ -137,9 +148,7 @@ Indsender";
 /* Label for indication that the quiz submission failed */
 "Submission Failure" = "Indsendelse mislykkedes";
 
-/* Button for electing to not be late on a quiz
-   confirm submitting quiz
-   Submit button for completing a quiz */
+/* Submit button title */
 "Submit" = "Indsend";
 
 /* Label for indication of submitting quiz */
@@ -172,7 +181,7 @@ Indsender";
 /* Message when telling the user they can't take the quiz because the quiz is locked */
 "This quiz is locked." = "Denne quiz er låst.";
 
-/* Message when telling the user they can't take the quiz because the quiz is locked */
+/* (No Commment) */
 "This quiz is locked. Reason: (description)" = "Denne quiz er låst. Årsag: (beskrivelse)";
 
 /* label for the time limit */

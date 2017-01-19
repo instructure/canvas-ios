@@ -20,22 +20,22 @@ import UIKit
 import TooLegit
 import SoPersistent
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 
 extension File {
-    public static func observer(session: Session, backgroundSessionID: String) throws -> ManagedObjectObserver<FileUpload> {
+    public static func observer(_ session: Session, backgroundSessionID: String) throws -> ManagedObjectObserver<FileUpload> {
         let pred = NSPredicate(format: "%K == %@", "backgroundSessionID", backgroundSessionID)
         let context = try session.filesManagedObjectContext()
         return try ManagedObjectObserver<FileUpload>(predicate: pred, inContext: context)
     }
     
-    static func collectionCacheKey(context: NSManagedObjectContext, contextID: ContextID, folderID: String?) -> String {
+    static func collectionCacheKey(_ context: NSManagedObjectContext, contextID: ContextID, folderID: String?) -> String {
         return cacheKey(context, [contextID.canvasContextID, folderID].flatMap { $0 })
     }
     
-    public class DetailViewController: UIViewController {
-        private let session: Session
-        private let file: File
+    open class DetailViewController: UIViewController {
+        fileprivate let session: Session
+        fileprivate let file: File
         
         required public init?(coder aDecoder: NSCoder) {
             fatalError()
@@ -47,17 +47,17 @@ extension File {
             super.init(nibName: nil, bundle: nil)
        }
         
-        override public func viewDidLoad() {
+        override open func viewDidLoad() {
             super.viewDidLoad()
 
             let webView: UIWebView = UIWebView()
             webView.scalesPageToFit = true
-            let request: NSURLRequest = NSURLRequest(URL: self.file.url)
+            let request: URLRequest = URLRequest(url: self.file.url as URL)
             webView.loadRequest(request)
-            webView.backgroundColor = UIColor.whiteColor()
+            webView.backgroundColor = UIColor.white
             self.view = webView
             self.automaticallyAdjustsScrollViewInsets = false
-            self.edgesForExtendedLayout = UIRectEdge.None
+            self.edgesForExtendedLayout = UIRectEdge()
         }
     }
 }

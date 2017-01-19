@@ -18,7 +18,7 @@ import SoEdventurous
 import SoPersistent
 import TooLegit
 import SoPretty
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 import SoIconic
 import EnrollmentKit
@@ -33,12 +33,12 @@ class ModuleViewModel {
     let prerequisite = MutableProperty<Bool>(false)
 
     // Output
-    let name: AnyProperty<String?>
-    let prerequisiteModuleIDs: AnyProperty<[String]>
-    lazy var unlockDate: AnyProperty<String?> = {
+    let name: Property<String?>
+    let prerequisiteModuleIDs: Property<[String]>
+    lazy var unlockDate: Property<String?> = {
         return self.module
             .map { $0?.unlockDate }
-            .map { $0.flatMap(self.unlockDateFormatter.stringFromDate) }
+            .map { $0.flatMap(self.unlockDateFormatter.string) }
             .map {
                 $0.flatMap {
                     let template = NSLocalizedString("Locked until %@", comment: "locked date")
@@ -48,49 +48,49 @@ class ModuleViewModel {
     }()
 
     // Private
-    private let module: AnyProperty<Module?>
-    private let observer: ManagedObjectObserver<Module>
-    private let itemsCollection: FetchedCollection<ModuleItem>
-    private let itemsUpdated: AnyProperty<[CollectionUpdate<ModuleItem>]>
-    private let disposable = CompositeDisposable()
-    private lazy var unlockDateFormatter: NSDateFormatter = {
-        let formatter = NSDateFormatter()
-        formatter.dateStyle = .LongStyle
+    fileprivate let module: Property<Module?>
+    fileprivate let observer: ManagedObjectObserver<Module>
+    fileprivate let itemsCollection: FetchedCollection<ModuleItem>
+    fileprivate let itemsUpdated: Property<[CollectionUpdate<ModuleItem>]>
+    fileprivate let disposable = CompositeDisposable()
+    fileprivate lazy var unlockDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
         return formatter
     }()
     lazy var colorfulViewModel: ColorfulViewModel = {
-        var vm = ColorfulViewModel(style: .Subtitle)
+        var vm = ColorfulViewModel(features: [.subtitle])
         vm.title <~ self.module.producer.map { $0?.name ?? "" }
-        vm.detail <~ self.unlockDate.producer.map { $0 ?? "" }
+        vm.subtitle <~ self.unlockDate.producer.map { $0 ?? "" }
         vm.icon <~ self.prerequisite.producer.map { $0 ? .icon(.prerequisite) : nil }
+        vm.features <~ self.prerequisite.producer.map { $0 ? [.icon, .subtitle] : [.subtitle] }
         vm.accessibilityIdentifier.value = "module"
-        vm.titleLineBreakMode = .ByWordWrapping
+        vm.titleLineBreakMode = .byWordWrapping
 
-        let enrollmentDataSource = self.session.enrollmentsDataSource.producer(ContextID(id: self.courseID, context: .Course))
-        vm.color <~ enrollmentDataSource.map { $0?.color ?? .prettyGray() }
+        vm.color <~ self.session.enrollmentsDataSource.color(for: .course(withID: self.courseID))
 
         let state = self.module.producer.map { $0?.state }
-        vm.accessoryView <~ state.map { state in
+        vm.accessoryView <~ state.map { (state) -> UIView? in
             guard let state = state else { return nil }
             let imageView = UIImageView(image: state.image)
             let green = UIColor(red: 76.0/255.0, green: 174.0/255.0, blue: 78.0/255.0, alpha: 1.0)
             imageView.tintColor = state == .completed ? green : UIColor.prettyGray()
             return imageView
         }
-        vm.accessibilityLabel <~ combineLatest(vm.title.producer, vm.detail.producer, state)
+        vm.accessibilityLabel <~ SignalProducer.combineLatest(vm.title.producer, vm.subtitle.producer, state)
             .map { title, detail, state in
                 let status: String?
                 switch state {
-                case .Some(.locked):
+                case .some(.locked):
                     status = NSLocalizedString("Status: Locked", comment: "Module status label when locked")
-                case .Some(.started):
+                case .some(.started):
                     status = NSLocalizedString("Status: Started", comment: "Module status label when started")
-                case .Some(.completed):
+                case .some(.completed):
                     status = NSLocalizedString("Status: Completed", comment: "Module status label when completed")
                 default:
                     status = nil
                 }
-                return [title, detail, status].flatMap { $0 }.filter { !$0.isEmpty }.joinWithSeparator(". ")
+                return [title, detail, status].flatMap { $0 }.filter { !$0.isEmpty }.joined(separator: ". ")
             }
 
         return vm
@@ -101,11 +101,11 @@ class ModuleViewModel {
         self.courseID = courseID
         self.moduleID = moduleID
 
-        observer = try Module.observer(session, moduleID: moduleID)
-        module = AnyProperty(initialValue: observer.object, signal: observer.signal.map { $0.1 })
+        observer = try Module.observer(session: session, moduleID: moduleID)
+        module = Property(initial:  observer.object, then: observer.signal.map { $0.1 })
 
         itemsCollection = try ModuleItem.allModuleItemsCollection(session, moduleID: moduleID)
-        itemsUpdated = AnyProperty(initialValue: [], signal: itemsCollection.collectionUpdates)
+        itemsUpdated = Property(initial:  [], then: itemsCollection.collectionUpdates)
 
         name = module.map { $0?.name }
         prerequisiteModuleIDs = module.map { $0?.prerequisiteModuleIDs ?? [] }
@@ -118,11 +118,11 @@ class ModuleViewModel {
 }
 
 extension ModuleViewModel: TableViewCellViewModel {
-    static func tableViewDidLoad(tableView: UITableView) {
+    static func tableViewDidLoad(_ tableView: UITableView) {
         ColorfulViewModel.tableViewDidLoad(tableView)
     }
 
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         return colorfulViewModel.cellForTableView(tableView, indexPath: indexPath)
     }
 }

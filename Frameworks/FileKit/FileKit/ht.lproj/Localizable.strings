@@ -1,4 +1,4 @@
-/* nevermind */
+/* Cancel button title */
 "Cancel" = "Anile";
 
 /* Pick a photo from library */
@@ -25,14 +25,14 @@
 /* title for file upload errors */
 "File Upload Error" = "Erè Chajman Fichye";
 
-/* Title of files list */
+/* (No Commment) */
 "Files" = "Fichye";
 
 /* name for a photo just taken */
 "Photo" = "Foto";
 
 /* Choose record audio submission */
-"Record Audio" = "Anrejistre son";
+"Record Audio" = "Anrejistre Son";
 
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "Pran yon Foto oswa Videyo";
@@ -49,7 +49,7 @@
 /* FileKit Database Load Failure Message */
 "There was a problem loading the FileKit database file." = "Te gen yon pwoblèm nan chajman fichye FileKit baz de done a.";
 
-/* FileKit Tests database fails */
+/* (No Commment) */
 "There was a problem loading the FileKitTests database file." = "Te gen yon pwoblèm nan chajman fichye FileKitTests baz de done a.";
 
 /* File upload error message */

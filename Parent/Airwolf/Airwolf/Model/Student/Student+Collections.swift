@@ -23,31 +23,34 @@ import SoPersistent
 import SoLazy
 
 extension Student {
-    public static func countOfObservedStudents(session: Session) throws -> Int {
+    public static func countOfObservedStudents(_ session: Session) throws -> Int {
         let context = try session.airwolfManagedObjectContext()
-        let studentsFetch = Student.fetch(NSPredicate(format: "%K == %@", "parentID", session.user.id), sortDescriptors: nil, inContext: context)
-        let count = try context.countForFetchRequest(studentsFetch)
+        let studentsFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entityName(context))
+        studentsFetch.predicate = NSPredicate(format: "%K == %@", "parentID", session.user.id)
+        let count = try context.count(for: studentsFetch)
         return count
     }
 
-    public static func countOfObservedStudentsObserver(session: Session, countUpdated: (Int)->Void) throws -> ManagedObjectCountObserver<Student> {
+    public static func countOfObservedStudentsObserver(_ session: Session, countUpdated: @escaping (Int)->Void) throws -> ManagedObjectCountObserver<Student> {
         let observer = ManagedObjectCountObserver<Student>(predicate: NSPredicate(format: "%K == %@", "parentID", session.user.id), inContext: try session.airwolfManagedObjectContext(), objectCountUpdated: countUpdated)
         return observer
     }
 
-    public static func observedStudentsCollection(session: Session) throws -> FetchedCollection<Student> {
+    public static func observedStudentsCollection(_ session: Session) throws -> FetchedCollection<Student> {
         let predicate = NSPredicate(format: "%K == %@", "parentID", session.user.id)
-        let frc = Student.fetchedResults(predicate, sortDescriptors: ["sortableName".ascending], sectionNameKeypath: nil, inContext: try session.airwolfManagedObjectContext())
+        let context = try session.airwolfManagedObjectContext()
 
-        return try FetchedCollection<Student>(frc: frc)
+        return try FetchedCollection<Student>(frc:
+            context.fetchedResults(predicate, sortDescriptors: ["sortableName".ascending])
+        )
     }
 
-    public static func observedStudentsSyncProducer(session: Session) throws -> Student.ModelPageSignalProducer {
+    public static func observedStudentsSyncProducer(_ session: Session) throws -> Student.ModelPageSignalProducer {
         let remote = try Student.getStudents(session, parentID: session.user.id)
         return Student.syncSignalProducer(inContext: try session.airwolfManagedObjectContext(), fetchRemote: remote)
     }
 
-    public static func observedStudentsRefresher(session: Session) throws -> Refresher {
+    public static func observedStudentsRefresher(_ session: Session) throws -> Refresher {
         let sync = try observedStudentsSyncProducer(session)
         let context = try session.airwolfManagedObjectContext()
         let key = self.cacheKey(context)

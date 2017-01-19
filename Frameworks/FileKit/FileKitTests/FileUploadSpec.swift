@@ -19,7 +19,7 @@
 import SoAutomated
 @testable import FileKit
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 import TooLegit
 import AVFoundation
 import SoPersistent
@@ -32,20 +32,20 @@ class FileUploadSpec: QuickSpec {
             describe("begin") {
                 it("through a series of requests creates a file") {
                     let session = User(credentials: .user4).session
-                    let data = NSData(contentsOfURL: currentBundle.URLForResource("testfile", withExtension: "txt")!)!
+                    let data = try! Data(contentsOf: currentBundle.url(forResource: "testfile", withExtension: "txt")!)
                     let parentFolderID = "6782429"
                     let path = "/api/v1/users/\(parentFolderID)/files"
 
                     let context = try! session.filesManagedObjectContext()
                     let upload = FileUpload.createInContext(context)
-                    upload.prepare("unit test", path: path, data: data, name: "testfile.txt", contentType: nil, parentFolderID: parentFolderID, contextID: ContextID(id: parentFolderID, context: .User))
+                    upload.prepare("unit test", path: path, data: data, name: "testfile.txt", contentType: nil, parentFolderID: parentFolderID, contextID: ContextID(id: parentFolderID, context: .user))
                     
                     let predicate = NSPredicate(format: "%K == %@", "backgroundSessionID", "unit test")
                     let observer = try! ManagedObjectObserver<FileUpload>(predicate: predicate, inContext: context)
                     var disposable: Disposable?
 
-                    session.playback("upload-file", in: currentBundle) {
-                        waitUntil { done in
+                    session.playback("upload-file") {
+                        waitUntil(timeout: 5) { done in
                             disposable = observer.signal.observeResult { result in
                                 expect(result.error).to(beNil())
                                 if let upload = result.value?.1 {

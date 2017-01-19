@@ -245,10 +245,10 @@ You must first complete:" = "
 /* Archive selected messages button */
 "Archive" = "أرشفة";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "زر أرشفة الرسائل المحددة";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "أرشفة جميع الرسائل المحددة";
 
 /* No comment provided by engineer. */
@@ -382,10 +382,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Completed" = "مكتمل";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "زر إنشاء رسالة";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "إنشاء رسالة";
 
 /* Title for Conferences tab */

@@ -19,10 +19,10 @@
 import Foundation
 
 extension String {
-    public func UTF8Data() throws -> NSData {
-        guard let data = dataUsingEncoding(NSUTF8StringEncoding) else {
-            let title = NSLocalizedString("Encoding Error", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.icanvas.SoLazy")!, value: "", comment: "Data encoding error title")
-            let message = NSLocalizedString("There was a problem encoding UTF8 Data", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.icanvas.SoLazy")!, value: "", comment: "Data encoding error message")
+    public func UTF8Data() throws -> Data {
+        guard let data = data(using: String.Encoding.utf8) else {
+            let title = NSLocalizedString("Encoding Error", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.icanvas.SoLazy")!, value: "", comment: "Data encoding error title")
+            let message = NSLocalizedString("There was a problem encoding UTF8 Data", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.icanvas.SoLazy")!, value: "", comment: "Data encoding error message")
             throw NSError(subdomain: "SoLazy", code: 0, title: title, description: message)
         }
         
@@ -31,6 +31,6 @@ extension String {
 }
 
 
-public func +=(lhs: NSMutableData, rhs: NSData) {
-    lhs.appendData(rhs)
+public func +=(lhs: inout Data, rhs: Data) {
+    lhs.append(rhs)
 }

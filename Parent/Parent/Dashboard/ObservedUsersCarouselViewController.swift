@@ -22,7 +22,7 @@ import TooLegit
 import CoreData
 import SoPersistent
 import SoLazy
-import ReactiveCocoa
+import ReactiveSwift
 import Kingfisher
 import Airwolf
 
@@ -39,7 +39,7 @@ class ObserveesCarouselViewController: UIViewController {
             studentChanged(currentStudent)
         }
     }
-    let carousel: iCarousel = iCarousel(frame: CGRectZero)
+    let carousel: iCarousel = iCarousel(frame: CGRect.zero)
     
     var studentChanged: (Student?)->Void = { _ in }
 
@@ -58,7 +58,7 @@ class ObserveesCarouselViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var userUpdatesDisposable: Disposable?
+    fileprivate var userUpdatesDisposable: Disposable?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,14 +67,14 @@ class ObserveesCarouselViewController: UIViewController {
         carousel.translatesAutoresizingMaskIntoConstraints = false
         carousel.decelerationRate = 0.2
         self.view.addSubview(carousel)
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": carousel]))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": carousel]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[subview]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": carousel]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[subview]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": carousel]))
 
         reloadData()
         reloadCoverFlowType()
         userUpdatesDisposable = collection.collectionUpdates
-            .observeOn(UIScheduler())
-            .observeNext { [unowned self] updates in
+            .observe(on: UIScheduler())
+            .observeValues { [unowned self] updates in
                 self.reloadCoverFlowType()
                 self.carousel.reloadData()
 
@@ -83,13 +83,13 @@ class ObserveesCarouselViewController: UIViewController {
     }
 
     func reloadCoverFlowType() {
-        carousel.type = numberOfItemsInCarousel(carousel) > 2 ? .Rotary : .CoverFlow
+        carousel.type = numberOfItems(in: carousel) > 2 ? .rotary : .coverFlow
     }
     
     func reloadData() {
         disposable = syncProducer.start { [unowned self] event in
             switch event {
-            case .Completed, .Interrupted, .Failed:
+            case .completed, .interrupted, .failed:
                 self.reloadCoverFlowType()
                 self.carousel.reloadData()
             default: break
@@ -100,21 +100,21 @@ class ObserveesCarouselViewController: UIViewController {
 
 extension ObserveesCarouselViewController : iCarouselDataSource, iCarouselDelegate {
     
-    func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
+    func numberOfItems(in carousel: iCarousel) -> Int {
         return collection.numberOfItemsInSection(0)
     }
     
-    func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         var itemView: UIImageView
         // TODO: Portrait itemSize = 65
         // Landscape = 40
-        let itemSize: CGFloat = (UIDevice.currentDevice().orientation.isLandscape && UIDevice.currentDevice().userInterfaceIdiom == .Phone) ? 40 : 65
+        let itemSize: CGFloat = (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone) ? 40 : 65
         
         //create new view if no view is available for recycling
         if view == nil {
             itemView = UIImageView(frame:CGRect(x:0, y:0, width:itemSize, height:itemSize))
             itemView.layer.cornerRadius = itemSize/2
-            itemView.layer.borderColor = UIColor.whiteColor().CGColor
+            itemView.layer.borderColor = UIColor.white.cgColor
             itemView.layer.borderWidth = 2.0
             itemView.backgroundColor = UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 235.0/255.0, alpha: 1.0)
             itemView.clipsToBounds = true
@@ -126,24 +126,23 @@ extension ObserveesCarouselViewController : iCarouselDataSource, iCarouselDelega
         itemView.accessibilityIdentifier = "student_carousel_view_\(index)"
 
         let student = studentAtCarouselIndex(index)
-        if let student = student, url = student.avatarURL {
+        if let student = student, let url = student.avatarURL {
             itemView.accessibilityLabel = student.name
-            itemView.kf_setImageWithURL(url,
-                placeholderImage: DefaultAvatarCoordinator.defaultAvatarForStudent(student),
-                optionsInfo: [])
+            itemView.kf.setImage(with: url,
+                placeholder: DefaultAvatarCoordinator.defaultAvatarForStudent(student))
         }
 
         return itemView
     }
     
-    func carousel(carousel: iCarousel, valueForOption option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
+    func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
         switch(option) {
-        case .Spacing:
-            if numberOfItemsInCarousel(carousel) <= 2 {
+        case .spacing:
+            if self.numberOfItems(in: carousel) <= 2 {
                 return 1.0
             }
 
-            let numberOfItems = CGFloat(numberOfItemsInCarousel(carousel))
+            let numberOfItems = CGFloat(self.numberOfItems(in: carousel))
             let maxWidth: CGFloat = 1.75
             let minWidth: CGFloat = 1.0
             let variance = maxWidth - minWidth
@@ -151,22 +150,22 @@ extension ObserveesCarouselViewController : iCarouselDataSource, iCarouselDelega
             let maxPercentage: CGFloat = min((numberOfItems/maxBreakNumber), 1.0)
             let value: CGFloat = maxWidth - (variance * maxPercentage)
             return value
-        case .Wrap:
-            return numberOfItemsInCarousel(carousel) > 2 ? 1.0 : 0.0
-        case .Tilt:
+        case .wrap:
+            return numberOfItems(in: carousel) > 2 ? 1.0 : 0.0
+        case .tilt:
             return 0.2
-        case .FadeMin:
+        case .fadeMin:
             return 0.1
-        case .FadeMax:
+        case .fadeMax:
             return 0.1
-        case .FadeMinAlpha:
-            return numberOfItemsInCarousel(carousel) > 3 ? 0.1 : 0.5
+        case .fadeMinAlpha:
+            return numberOfItems(in: carousel) > 3 ? 0.1 : 0.5
         default:
             return value
         }
     }
     
-    func carouselDidEndScrollingAnimation(carousel: iCarousel) {
+    func carouselDidEndScrollingAnimation(_ carousel: iCarousel) {
         guard collection.numberOfItemsInSection(0) > 0 else {
             return
         }
@@ -174,25 +173,25 @@ extension ObserveesCarouselViewController : iCarouselDataSource, iCarouselDelega
         currentStudent = studentAtCarouselIndex(carousel.currentItemIndex)
     }
     
-    func studentAtCarouselIndex(index: Int) -> Student? {
+    func studentAtCarouselIndex(_ index: Int) -> Student? {
         guard index >= 0 else { return nil }
         guard collection.numberOfItemsInSection(0) > index else { return nil }
-        return collection[NSIndexPath(forRow: index, inSection: 0)]
+        return collection[IndexPath(row: index, section: 0)]
     }
 
     func updateCarouselAccessibility() {
-        var accessibilityElements: [AnyObject] = []
+        var accessibilityElements: [Any] = []
         for i in 0..<carousel.numberOfItems {
-            guard let item = carousel.itemViewAtIndex(i) else { continue }
+            guard let item = carousel.itemView(at: i) else { continue }
 
             if i < carousel.currentItemIndex {
                 accessibilityElements.append(item)
                 item.accessibilityTraits = UIAccessibilityTraitButton
             } else if i == carousel.currentItemIndex {
-                accessibilityElements.insert(item, atIndex: 0)
+                accessibilityElements.insert(item, at: 0)
                 item.accessibilityTraits = UIAccessibilityTraitButton | UIAccessibilityTraitSelected
             } else {
-                accessibilityElements.insert(item, atIndex: i - carousel.currentItemIndex)
+                accessibilityElements.insert(item, at: i - carousel.currentItemIndex)
                 item.accessibilityTraits = UIAccessibilityTraitButton
             }
         }

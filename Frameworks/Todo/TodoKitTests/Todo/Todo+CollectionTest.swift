@@ -22,7 +22,7 @@ import TooLegit
 @testable import SoPersistent
 import Result
 
-let currentBundle = NSBundle(forClass: TodoCollectionTest.self)
+let currentBundle = Bundle(for: TodoCollectionTest.self)
 
 class TodoCollectionTest: UnitTestCase {
 
@@ -44,9 +44,9 @@ class TodoCollectionTest: UnitTestCase {
     func testFetchAllTodos_itReturnsTheTodosInOrderOfTheAssignmentDueDate() {
         attempt{
             let context = try session.todosManagedObjectContext()
-            let todoWithLatestAssignmentDueDate = Todo.build(context, assignmentDueDate: NSDate(timeIntervalSinceNow:400))
-            let todoWithEarliestAssignmentDueDate = Todo.build(context, assignmentDueDate: NSDate(timeIntervalSinceNow:100))
-            let todoWithMiddleAssignmentDueDate = Todo.build(context, assignmentDueDate: NSDate(timeIntervalSinceNow:200))
+            let todoWithLatestAssignmentDueDate = Todo.build(context, assignmentDueDate: Date(timeIntervalSinceNow:400))
+            let todoWithEarliestAssignmentDueDate = Todo.build(context, assignmentDueDate: Date(timeIntervalSinceNow:100))
+            let todoWithMiddleAssignmentDueDate = Todo.build(context, assignmentDueDate: Date(timeIntervalSinceNow:200))
 
             let collection = try Todo.allTodos(session)
 
@@ -63,11 +63,11 @@ class TodoCollectionTest: UnitTestCase {
 
     func testFetchAllTodos_itReturnsTheTodosInOrderOfTheAssignmentNameIfDatesAreEqual() {
         attempt{
-            let date = NSDate(timeIntervalSinceNow:400)
+            let date = Date(timeIntervalSinceNow:400)
             let context = try session.todosManagedObjectContext()
-            let todoWithLatestAssignmentName = Todo.build(context, assignmentDueDate: date, assignmentName: "c")
-            let todoWithEarliestAssignmentName = Todo.build(context, assignmentDueDate: date, assignmentName: "a")
-            let todoWithMiddleAssignmentName = Todo.build(context, assignmentDueDate: date, assignmentName: "b")
+            let todoWithLatestAssignmentName = Todo.build(context, assignmentName: "c", assignmentDueDate: date)
+            let todoWithEarliestAssignmentName = Todo.build(context, assignmentName: "a", assignmentDueDate: date)
+            let todoWithMiddleAssignmentName = Todo.build(context, assignmentName: "b", assignmentDueDate: date)
 
             let collection = try Todo.allTodos(session)
 
@@ -82,8 +82,8 @@ class TodoCollectionTest: UnitTestCase {
         }
     }
 
-    func pathForRow(row: Int) -> NSIndexPath {
-        return NSIndexPath(forRow: row, inSection: 0)
+    func pathForRow(_ row: Int) -> IndexPath {
+        return IndexPath(row: row, section: 0)
     }
 
     func testRefresher_itSyncsAllTodos() {

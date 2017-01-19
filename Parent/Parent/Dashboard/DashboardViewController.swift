@@ -21,7 +21,7 @@ import UIKit
 import TooLegit
 import Result
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 import SoPersistent
 import EnrollmentKit
 import CalendarKit
@@ -31,14 +31,14 @@ import SoLazy
 import Airwolf
 import Armchair
 
-typealias DashboardSettingsAction = (session: Session)->Void
-typealias DashboardSelectCalendarEventAction = (session: Session, observeeID: String, calendarEvent: CalendarEvent)->Void
-typealias DashboardSelectCourseAction = (session: Session, observeeID: String, course: Course)->Void
-typealias DashboardSelectAlertAction = (session: Session, observeeID: String, alert: Alert)->Void
+typealias DashboardSettingsAction = (_ session: Session)->Void
+typealias DashboardSelectCalendarEventAction = (_ session: Session, _ observeeID: String, _ calendarEvent: CalendarEvent)->Void
+typealias DashboardSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: Course)->Void
+typealias DashboardSelectAlertAction = (_ session: Session, _ observeeID: String, _ alert: Alert)->Void
 
 class DashboardViewController: UIViewController {
     enum TabIndex: Int {
-        case Courses = 0, Calendar, Alerts
+        case courses = 0, calendar, alerts
     }
 
     // Views created from storyboard
@@ -78,7 +78,7 @@ class DashboardViewController: UIViewController {
                 backgroundView.transitionToColors(colorScheme.tintTopColor, tintBottomColor: colorScheme.tintBottomColor)
             }
 
-            observeeNameLabel.text = currentStudent?.name.uppercaseString ?? ""
+            observeeNameLabel.text = currentStudent?.name.uppercased() ?? ""
 
             if oldValue?.id != currentStudent?.id {
                 self.reloadObserveeData()
@@ -94,9 +94,9 @@ class DashboardViewController: UIViewController {
     // ---------------------------------------------
     // MARK: - Initializers
     // ---------------------------------------------
-    private static let defaultStoryboardName = "DashboardViewController"
-    static func new(storyboardName: String = defaultStoryboardName, session: Session) -> DashboardViewController {
-        guard let controller = UIStoryboard(name: storyboardName, bundle: NSBundle(forClass: self)).instantiateInitialViewController() as? DashboardViewController else {
+    fileprivate static let defaultStoryboardName = "DashboardViewController"
+    static func new(_ storyboardName: String = defaultStoryboardName, session: Session) -> DashboardViewController {
+        guard let controller = UIStoryboard(name: storyboardName, bundle: Bundle(for: self)).instantiateInitialViewController() as? DashboardViewController else {
             fatalError("Initial ViewController is not of type DashboardViewController")
         }
         controller.session = session
@@ -124,29 +124,29 @@ class DashboardViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         Armchair.showPromptIfNecessary()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embed_page_view_controller" {
-            guard let pageViewController = segue.destinationViewController as? UIPageViewController else {
+            guard let pageViewController = segue.destination as? UIPageViewController else {
                 fatalError("PageViewController is not of type UIPageViewController")
             }
             
             self.pageViewController = pageViewController
             self.pageViewController?.delegate = self
-            self.pageViewController?.setViewControllers([UIViewController()], direction: .Forward, animated: false, completion: nil)
+            self.pageViewController?.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
         }
     }
     
     // ---------------------------------------------
     // MARK: - View Setup
     // ---------------------------------------------
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 
     func setupCarousel() throws {
@@ -154,12 +154,12 @@ class DashboardViewController: UIViewController {
         observedUserCarousel.studentChanged = { [weak self] student in
             self?.currentStudent = student
         }
-        observedUserCarousel.willMoveToParentViewController(self)
+        observedUserCarousel.willMove(toParentViewController: self)
         addChildViewController(observedUserCarousel)
         carouselContainerView.addSubview(observedUserCarousel.view)
-        observedUserCarousel.didMoveToParentViewController(self)
-        carouselContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": observedUserCarousel.view]))
-        carouselContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": observedUserCarousel.view]))
+        observedUserCarousel.didMove(toParentViewController: self)
+        carouselContainerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[subview]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": observedUserCarousel.view]))
+        carouselContainerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[subview]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": observedUserCarousel.view]))
     }
     
     func setupTabs() {
@@ -168,8 +168,8 @@ class DashboardViewController: UIViewController {
         let coursesTitle = NSLocalizedString("COURSES", comment: "Courses Tab")
         let tabViewFormatString = NSLocalizedString("%@ %d of %d", comment: "<String> <Int> of <Int>")
         coursesTabView.title = coursesTitle
-        coursesTabView.normalImage = UIImage(named: "icon_courses")?.imageWithRenderingMode(.AlwaysTemplate)
-        coursesTabView.selectedImage = UIImage(named: "icon_courses_fill")?.imageWithRenderingMode(.AlwaysTemplate)
+        coursesTabView.normalImage = UIImage(named: "icon_courses")?.withRenderingMode(.alwaysTemplate)
+        coursesTabView.selectedImage = UIImage(named: "icon_courses_fill")?.withRenderingMode(.alwaysTemplate)
         coursesTabView.accessibilityLabel = "\(coursesTitle) 1 of 3"
         coursesTabView.accessibilityLabel = String.localizedStringWithFormat(tabViewFormatString, coursesTitle, 1, 3)
         
@@ -177,29 +177,29 @@ class DashboardViewController: UIViewController {
         calendarTabView.addGestureRecognizer(calendarTap)
         let calendarTitle = NSLocalizedString("WEEK", comment: "Calendar Tab")
         calendarTabView.title = calendarTitle
-        calendarTabView.normalImage = UIImage(named: "icon_calendar")?.imageWithRenderingMode(.AlwaysTemplate)
-        calendarTabView.selectedImage = UIImage(named: "icon_calendar_fill")?.imageWithRenderingMode(.AlwaysTemplate)
+        calendarTabView.normalImage = UIImage(named: "icon_calendar")?.withRenderingMode(.alwaysTemplate)
+        calendarTabView.selectedImage = UIImage(named: "icon_calendar_fill")?.withRenderingMode(.alwaysTemplate)
         calendarTabView.accessibilityLabel = String.localizedStringWithFormat(tabViewFormatString, calendarTitle, 2, 3)
         
         let alertsTap = UITapGestureRecognizer(target: self, action: #selector(DashboardViewController.alertsTabPressed(_:)))
         alertsTabView.addGestureRecognizer(alertsTap)
         let alertsTitle = NSLocalizedString("ALERTS", comment: "Alerts Tab")
         alertsTabView.title = alertsTitle
-        alertsTabView.normalImage = UIImage(named: "icon_notification")?.imageWithRenderingMode(.AlwaysTemplate)
-        alertsTabView.selectedImage = UIImage(named: "icon_notification_fill")?.imageWithRenderingMode(.AlwaysTemplate)
+        alertsTabView.normalImage = UIImage(named: "icon_notification")?.withRenderingMode(.alwaysTemplate)
+        alertsTabView.selectedImage = UIImage(named: "icon_notification_fill")?.withRenderingMode(.alwaysTemplate)
         alertsTabView.accessibilityLabel = String.localizedStringWithFormat(tabViewFormatString, alertsTitle, 3, 3)
         
         // TODO: Eventually we'll remember what tab the user was on.  Return that viewController here
         tabs = [coursesTabView, calendarTabView, alertsTabView]
-        selectTabAtIndex(.Courses)
+        selectTabAtIndex(.courses)
     }
     
     func setupSettingButton() {
-        settingsButton.setImage(UIImage(named: "icon_cog")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-        settingsButton.setImage(UIImage(named: "icon_cog_fill")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Selected)
+        settingsButton.setImage(UIImage(named: "icon_cog")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+        settingsButton.setImage(UIImage(named: "icon_cog_fill")?.withRenderingMode(.alwaysTemplate), for: .selected)
         settingsButton.accessibilityLabel = NSLocalizedString("Settings", comment: "Settings Button Title")
         settingsButton.accessibilityIdentifier = "settings_button"
-        settingsButton.tintColor = UIColor.whiteColor()
+        settingsButton.tintColor = UIColor.white
     }
 
     func setupNoStudentsViewController() throws {
@@ -207,18 +207,18 @@ class DashboardViewController: UIViewController {
         noStudentsViewController.logoutAction = { [weak self] in self?.logoutAction?() }
         noStudentsViewController.proceedAction = { [weak self] in self?.addStudentAction?() }
 
-        noStudentsViewController.willMoveToParentViewController(self)
+        noStudentsViewController.willMove(toParentViewController: self)
         addChildViewController(noStudentsViewController)
         view.addSubview(noStudentsViewController.view)
-        noStudentsViewController.didMoveToParentViewController(self)
+        noStudentsViewController.didMove(toParentViewController: self)
 
         noStudentsViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[noStudents]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["noStudents": noStudentsViewController.view]))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[noStudents]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["noStudents": noStudentsViewController.view]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[noStudents]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["noStudents": noStudentsViewController.view]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[noStudents]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["noStudents": noStudentsViewController.view]))
 
         studentCountObserver = try Student.countOfObservedStudentsObserver(session) { [weak self] count in
-            dispatch_async(dispatch_get_main_queue()) {
-                self?.noStudentsViewController.view.hidden = count > 0
+            DispatchQueue.main.async {
+                self?.noStudentsViewController.view.isHidden = count > 0
             }
         }
     }
@@ -231,7 +231,7 @@ class DashboardViewController: UIViewController {
         calendarViewController = calendarViewController(session)
         alertsViewController = alertsViewController(session)
         
-        guard let coursesViewController = coursesViewController, calendarViewController = calendarViewController, alertsViewController = alertsViewController else {
+        guard let coursesViewController = coursesViewController, let calendarViewController = calendarViewController, let alertsViewController = alertsViewController else {
             return
         }
         
@@ -259,33 +259,33 @@ class DashboardViewController: UIViewController {
         return coursesViewController
     }
     
-    func coursesViewController(session: Session) -> UIViewController? {
+    func coursesViewController(_ session: Session) -> UIViewController? {
         guard let currentStudent = currentStudent else {
             return nil
         }
 
         let coursesViewController = try! CourseListViewController(session: session, studentID: currentStudent.id)
         coursesViewController.selectCourseAction = { [weak self] in
-            self?.selectCourseAction?(session: $0, observeeID: $1, course: $2)
+            self?.selectCourseAction?($0, $1, $2)
         }
         return coursesViewController
     }
     
-    func calendarViewController(session: Session) -> UIViewController? {
+    func calendarViewController(_ session: Session) -> UIViewController? {
         guard let currentStudent = currentStudent else {
             return nil
         }
 
         let calendarWeekPageVC = CalendarEventWeekPageViewController.new(session: session, studentID: currentStudent.id)
-        calendarWeekPageVC.view.backgroundColor = UIColor.clearColor()
+        calendarWeekPageVC.view.backgroundColor = .clear
         calendarWeekPageVC.selectCalendarEventAction = { [weak self] in
-            self?.selectCalendarEventAction?(session: $0, observeeID: $1, calendarEvent: $2)
+            self?.selectCalendarEventAction?($0, $1, $2)
         }
 
         return calendarWeekPageVC
     }
 
-    func alertsViewController(session: Session) -> UIViewController? {
+    func alertsViewController(_ session: Session) -> UIViewController? {
         guard let currentStudent = currentStudent else { return nil }
         return try! AlertsListViewController(session: session, observeeID: currentStudent.id)
     }
@@ -293,18 +293,18 @@ class DashboardViewController: UIViewController {
     // ---------------------------------------------
     // MARK: - IBActions
     // ---------------------------------------------
-    @IBAction func coursesTabPressed(sender: UITapGestureRecognizer?) {
-        selectTabAtIndex(.Courses)
+    @IBAction func coursesTabPressed(_ sender: UITapGestureRecognizer?) {
+        selectTabAtIndex(.courses)
         
         guard let coursesViewController = coursesViewController else {
             return
         }
         
-        self.pageViewController?.setViewControllers([coursesViewController], direction: .Reverse, animated: true, completion: { _ in })
+        self.pageViewController?.setViewControllers([coursesViewController], direction: .reverse, animated: true, completion: { _ in })
     }
     
-    @IBAction func calendarTabPressed(sender: UITapGestureRecognizer?) {
-        selectTabAtIndex(.Calendar)
+    @IBAction func calendarTabPressed(_ sender: UITapGestureRecognizer?) {
+        selectTabAtIndex(.calendar)
         
         guard let calendarViewController = calendarViewController else {
             return
@@ -312,38 +312,38 @@ class DashboardViewController: UIViewController {
         
         // Because we're in the middle we have to figure out which direction to go
         let viewController = self.pageViewController?.viewControllers?[0]
-        var direction = UIPageViewControllerNavigationDirection.Forward
+        var direction = UIPageViewControllerNavigationDirection.forward
         if viewController == alertsViewController {
-            direction = UIPageViewControllerNavigationDirection.Reverse
+            direction = UIPageViewControllerNavigationDirection.reverse
         }
         self.pageViewController?.setViewControllers([calendarViewController], direction: direction, animated: true, completion: { _ in })
     }
     
-    @IBAction func alertsTabPressed(sender: UITapGestureRecognizer?) {
-        selectTabAtIndex(.Alerts)
+    @IBAction func alertsTabPressed(_ sender: UITapGestureRecognizer?) {
+        selectTabAtIndex(.alerts)
         
         guard let alertsViewController = alertsViewController else {
             return
         }
         
-        self.pageViewController?.setViewControllers([alertsViewController], direction: .Forward, animated: true, completion: { _ in })
+        self.pageViewController?.setViewControllers([alertsViewController], direction: .forward, animated: true, completion: { _ in })
     }
     
-    @IBAction func settingsButtonPressed(sender: UIButton) {
-        settingsButtonAction?(session: self.session)
+    @IBAction func settingsButtonPressed(_ sender: UIButton) {
+        settingsButtonAction?(self.session)
     }
     
     // ---------------------------------------------
     // MARK: - Tab Selection
     // ---------------------------------------------
-    func selectTabAtIndex(index: TabIndex) {
-        for (i, tab) in tabs.enumerate() {
+    func selectTabAtIndex(_ index: TabIndex) {
+        for (i, tab) in tabs.enumerated() {
             tab.setSelected(i == index.rawValue)
         }
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         observedUserCarousel.carousel.reloadData()
     }
     
@@ -351,15 +351,15 @@ class DashboardViewController: UIViewController {
 
 extension DashboardViewController : UIPageViewControllerDelegate {
     
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         let viewController = pageViewController.viewControllers?[0]
         
         if viewController == coursesViewController {
-            selectTabAtIndex(.Courses)
+            selectTabAtIndex(.courses)
         }else if viewController == calendarViewController {
-            selectTabAtIndex(.Calendar)
+            selectTabAtIndex(.calendar)
         }else if viewController == alertsViewController {
-            selectTabAtIndex(.Alerts)
+            selectTabAtIndex(.alerts)
         }
     }
     

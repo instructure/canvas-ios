@@ -18,9 +18,9 @@
 
 import Foundation
 
-extension NSBundle {
+extension Bundle {
     
-    static func soLazy() -> NSBundle {
-        return NSBundle(identifier: "com.instructure.icanvas.SoLazy")!
+    static func soLazy() -> Bundle {
+        return Bundle(identifier: "com.instructure.icanvas.SoLazy")!
     }
 }

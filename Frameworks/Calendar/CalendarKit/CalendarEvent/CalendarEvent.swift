@@ -23,55 +23,55 @@ import Marshal
 import SoLazy
 
 public enum EventWorkflowState: String {
-    case Active = "active"
-    case Locked = "locked"
-    case Deleted = "deleted"
+    case active = "active"
+    case locked = "locked"
+    case deleted = "deleted"
 }
 
 public enum EventType: String {
-    case Quiz = "quiz"
-    case Assignment = "assignment"
-    case Discussion = "discussion"
-    case CalendarEvent = "event"
-    case Error = "error"
+    case quiz = "quiz"
+    case assignment = "assignment"
+    case discussion = "discussion"
+    case calendarEvent = "event"
+    case error = "error"
 }
 
-public struct SubmissionTypes: OptionSetType {
+public struct SubmissionTypes: OptionSet {
     public let rawValue: Int
     public init(rawValue: Int) { self.rawValue = rawValue }
 
-    public static let OnPaper           = SubmissionTypes(rawValue: 1<<0)
-    public static let DiscussionTopic   = SubmissionTypes(rawValue: 1<<1)
-    public static let Quiz              = SubmissionTypes(rawValue: 1<<2)
-    public static let ExternalTool      = SubmissionTypes(rawValue: 1<<3)
-    public static let Text              = SubmissionTypes(rawValue: 1<<4)
-    public static let URL               = SubmissionTypes(rawValue: 1<<5)
-    public static let Upload            = SubmissionTypes(rawValue: 1<<6)
-    public static let MediaRecording    = SubmissionTypes(rawValue: 1<<7)
-    public static let None              = SubmissionTypes(rawValue: 1<<8)
+    public static let onPaper           = SubmissionTypes(rawValue: 1<<0)
+    public static let discussionTopic   = SubmissionTypes(rawValue: 1<<1)
+    public static let quiz              = SubmissionTypes(rawValue: 1<<2)
+    public static let externalTool      = SubmissionTypes(rawValue: 1<<3)
+    public static let text              = SubmissionTypes(rawValue: 1<<4)
+    public static let url               = SubmissionTypes(rawValue: 1<<5)
+    public static let upload            = SubmissionTypes(rawValue: 1<<6)
+    public static let mediaRecording    = SubmissionTypes(rawValue: 1<<7)
+    public static let none              = SubmissionTypes(rawValue: 1<<8)
 
-    public static func fromStrings(strings: [String]) -> SubmissionTypes {
+    public static func fromStrings(_ strings: [String]) -> SubmissionTypes {
         return strings.map(SubmissionTypes.typeForString).reduce([]) { $0.union($1) }
     }
 
-    private static func typeForString(typeString: String) -> SubmissionTypes {
-        switch typeString.lowercaseString {
-        case "discussion_topic":    return .DiscussionTopic
-        case "online_quiz":         return .Quiz
-        case "on_paper":            return .OnPaper
-        case "external_tool":       return .ExternalTool
-        case "online_text_entry":   return .Text
-        case "online_url":          return .URL
-        case "online_upload":       return .Upload
-        case "media_recording":     return .MediaRecording
-        case "none":                return .None
+    fileprivate static func typeForString(_ typeString: String) -> SubmissionTypes {
+        switch typeString.lowercased() {
+        case "discussion_topic":    return .discussionTopic
+        case "online_quiz":         return .quiz
+        case "on_paper":            return .onPaper
+        case "external_tool":       return .externalTool
+        case "online_text_entry":   return .text
+        case "online_url":          return .url
+        case "online_upload":       return .upload
+        case "media_recording":     return .mediaRecording
+        case "none":                return .none
         default:                    return []
         }
     }
 
-    static let OnlineSubmissions: SubmissionTypes = [.DiscussionTopic, .Quiz, .Text, .URL, .Upload, .MediaRecording, .ExternalTool, .None]
+    static let OnlineSubmissions: SubmissionTypes = [.discussionTopic, .quiz, .text, .url, .upload, .mediaRecording, .externalTool, .none]
     public var onlineSubmission: Bool {
-        return !intersect(.OnlineSubmissions).isEmpty
+        return !intersection(.OnlineSubmissions).isEmpty
     }
 
     public var canSubmit: Bool {
@@ -79,42 +79,42 @@ public struct SubmissionTypes: OptionSetType {
     }
 }
 
-public struct SubmissionStatus: OptionSetType {
+public struct SubmissionStatus: OptionSet {
     public let rawValue: Int64
     public init(rawValue: Int64) { self.rawValue = rawValue}
 
-    public static let Late      = SubmissionStatus(rawValue: 1)
-    public static let Excused   = SubmissionStatus(rawValue: 2)
-    public static let Submitted = SubmissionStatus(rawValue: 4)
-    public static let Graded    = SubmissionStatus(rawValue: 8)
-    public static let PendingReview = SubmissionStatus(rawValue: 16)
-    public static let Unsubmitted = SubmissionStatus(rawValue: 32)
+    public static let late      = SubmissionStatus(rawValue: 1)
+    public static let excused   = SubmissionStatus(rawValue: 2)
+    public static let submitted = SubmissionStatus(rawValue: 4)
+    public static let graded    = SubmissionStatus(rawValue: 8)
+    public static let pendingReview = SubmissionStatus(rawValue: 16)
+    public static let unsubmitted = SubmissionStatus(rawValue: 32)
 }
 
 public final class CalendarEvent: NSManagedObject {
 
-    public static var dayDateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
+    public static var dayDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
         return dateFormatter
     }()
 
-    public static var sectionTitleDateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .FullStyle
+    public static var sectionTitleDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
         return dateFormatter
     }()
 
-    public static var dueDateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .FullStyle
+    public static var dueDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
         return dateFormatter
     }()
 
     @NSManaged internal (set) public var id: String
     @NSManaged internal (set) public var title: String?
-    @NSManaged internal (set) public var startAt: NSDate?
-    @NSManaged internal (set) public var endAt: NSDate?
+    @NSManaged internal (set) public var startAt: Date?
+    @NSManaged internal (set) public var endAt: Date?
     @NSManaged internal (set) public var htmlDescription: String?
     @NSManaged internal (set) public var locationName: String?
     @NSManaged internal (set) public var locationAddress: String?
@@ -122,12 +122,12 @@ public final class CalendarEvent: NSManagedObject {
     @NSManaged internal (set) public var effectiveContextCode: String?
     @NSManaged internal var rawWorkflowState: String
     @NSManaged internal (set) public var hidden: Bool
-    @NSManaged internal (set) public var url: NSURL
-    @NSManaged internal (set) public var htmlURL: NSURL
+    @NSManaged internal (set) public var url: URL
+    @NSManaged internal (set) public var htmlURL: URL
     @NSManaged internal (set) public var allDayDate: String
     @NSManaged internal (set) public var allDay: Bool
-    @NSManaged internal (set) public var createdAt: NSDate
-    @NSManaged internal (set) public var updatedAt: NSDate
+    @NSManaged internal (set) public var createdAt: Date
+    @NSManaged internal (set) public var updatedAt: Date
     @NSManaged internal var rawType: String
     @NSManaged internal (set) public var hasSubmitted: Bool
 
@@ -140,9 +140,9 @@ public final class CalendarEvent: NSManagedObject {
     @NSManaged internal (set) public var currentScore: NSNumber?
     @NSManaged internal (set) public var pointsPossible: NSNumber?
     @NSManaged internal (set) public var submissionLate: Bool
-    @NSManaged internal (set) public var submittedAt: NSDate?
+    @NSManaged internal (set) public var submittedAt: Date?
     @NSManaged internal (set) public var submissionExcused: Bool
-    @NSManaged internal (set) public var gradedAt: NSDate?
+    @NSManaged internal (set) public var gradedAt: Date?
     @NSManaged internal (set) public var rawStatus: Int64
     @NSManaged internal (set) public var muted: Bool
 
@@ -168,14 +168,14 @@ public final class CalendarEvent: NSManagedObject {
 
     public var type: EventType {
         if let type = EventType(rawValue: rawType) {
-            if let _ = quizID where type == .Assignment {
-                return .Quiz
+            if let _ = quizID, type == .assignment {
+                return .quiz
             }
 
             return type
         }
 
-        return EventType.Error
+        return EventType.error
     }
 
     public var pastStartDate: Bool {
@@ -183,7 +183,7 @@ public final class CalendarEvent: NSManagedObject {
             return false
         }
 
-        return NSDate().compare(startAt) == NSComparisonResult.OrderedDescending
+        return Date().compare(startAt) == ComparisonResult.orderedDescending
     }
 
     public var pastEndDate: Bool {
@@ -191,27 +191,27 @@ public final class CalendarEvent: NSManagedObject {
             return false
         }
 
-        return NSDate().compare(endAt) == NSComparisonResult.OrderedDescending
+        return Date().compare(endAt) == ComparisonResult.orderedDescending
     }
 
-    public var routingURL: NSURL? {
+    public var routingURL: URL? {
         switch type {
-        case .CalendarEvent:
-            return NSURL(string: "/calendar_events/" + id)
-        case .Assignment:
-            if submissionTypes.contains(.DiscussionTopic) {
-                guard let discussionTopicID = discussionTopicID, courseID = courseID else { ❨╯°□°❩╯⌢"Cannot create routingID without discussionTopicID" }
-                return NSURL(string: "/courses/" + courseID + "/discussion_topics/" + discussionTopicID)
-            } else if submissionTypes.contains(.Quiz) {
-                guard let quizID = quizID, courseID = courseID else { ❨╯°□°❩╯⌢"Cannot create routingID without quizID" }
-                return NSURL(string: "/courses/" + courseID + "/quizzes/" + quizID)
+        case .calendarEvent:
+            return URL(string: "/calendar_events/" + id)
+        case .assignment:
+            if submissionTypes.contains(.discussionTopic) {
+                guard let discussionTopicID = discussionTopicID, let courseID = courseID else { ❨╯°□°❩╯⌢"Cannot create routingID without discussionTopicID" }
+                return URL(string: "/courses/" + courseID + "/discussion_topics/" + discussionTopicID)
+            } else if submissionTypes.contains(.quiz) {
+                guard let quizID = quizID, let courseID = courseID else { ❨╯°□°❩╯⌢"Cannot create routingID without quizID" }
+                return URL(string: "/courses/" + courseID + "/quizzes/" + quizID)
             } else {
-                guard let assignmentID = assignmentID, courseID = courseID else { ❨╯°□°❩╯⌢"Cannot create routingID without assignmentID" }
-                return NSURL(string: "/courses/" + courseID + "/assignments/" + assignmentID)
+                guard let assignmentID = assignmentID, let courseID = courseID else { ❨╯°□°❩╯⌢"Cannot create routingID without assignmentID" }
+                return URL(string: "/courses/" + courseID + "/assignments/" + assignmentID)
             }
-        case .Quiz:
-            guard let quizID = quizID, courseID = courseID else { ❨╯°□°❩╯⌢"Cannot create routingID without quizID" }
-            return NSURL(string: "/courses/" + courseID + "/quizzes/" + quizID)
+        case .quiz:
+            guard let quizID = quizID, let courseID = courseID else { ❨╯°□°❩╯⌢"Cannot create routingID without quizID" }
+            return URL(string: "/courses/" + courseID + "/quizzes/" + quizID)
         default:
             return nil
         }
@@ -219,12 +219,12 @@ public final class CalendarEvent: NSManagedObject {
 }
 
 extension CalendarEvent: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
 
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id = try json.stringID("id")
 
         title = try json  <| ("title")
@@ -236,17 +236,17 @@ extension CalendarEvent: SynchronizedModel {
         contextCode = try json  <| ("context_code")
         effectiveContextCode = try json  <| "effective_context_code"
         rawWorkflowState = try json  <| "workflow_state"
-        hidden = try json  <| ("hidden") ?? false
+        hidden = (try json  <| "hidden") ?? false
         url = try json  <| "url"
         htmlURL = try json  <| "html_url"
 
         if let endAt = endAt {
-            allDayDate = CalendarEvent.dayDateFormatter.stringFromDate(endAt)
+            allDayDate = CalendarEvent.dayDateFormatter.string(from: endAt)
         } else {
             allDayDate = "Unknown"
         }
 
-        allDay = try json  <| "all_day" ?? false
+        allDay = (try json  <| "all_day") ?? false
         createdAt = try json  <| "created_at"
         updatedAt = try json  <| "updated_at"
         rawType = try json  <| "type"
@@ -261,7 +261,7 @@ extension CalendarEvent: SynchronizedModel {
             quizID              = try assignmentJSON.stringID("quiz_id")
             let types: [String] = try assignmentJSON <| "submission_types"
             submissionTypes     = SubmissionTypes.fromStrings(types)
-            muted               = try assignmentJSON <| "muted" ?? false
+            muted               = (try assignmentJSON <| "muted") ?? false
 
             if let submissionJSON: JSONObject = try assignmentJSON <| "submission" {
                 let attempt: Int = (try submissionJSON <| "attempt") ?? 0
@@ -270,14 +270,14 @@ extension CalendarEvent: SynchronizedModel {
                 // Can't simply check that there is a submission, SpeedGrader on Web creates one if they try
                 // and grade without a submission.
                 if hasSubmitted {
-                    status.insert(.Submitted)
+                    status.insert(.submitted)
                 }
 
                 currentGrade        = try submissionJSON <| "grade"
                 currentScore        = try submissionJSON <| "score"
-                submissionLate      = try submissionJSON <| "late" ?? false
+                submissionLate      = (try submissionJSON <| "late") ?? false
                 submittedAt         = try submissionJSON <| "submitted_at"
-                submissionExcused   = try submissionJSON <| "excused" ?? false
+                submissionExcused   = (try submissionJSON <| "excused") ?? false
                 gradedAt            = try submissionJSON <| "graded_at"
                 submissionState  = try submissionJSON <| "workflow_state"
 
@@ -296,16 +296,16 @@ extension CalendarEvent: SynchronizedModel {
         }
 
         if submissionLate {
-            status.insert(.Late)
+            status.insert(.late)
         }
         if submissionExcused {
-            status.insert(.Excused)
+            status.insert(.excused)
         }
         if submissionState == "graded" {
-            status.insert(.Graded)
+            status.insert(.graded)
         }
         if submissionState == "pending_review" {
-            status.insert(.PendingReview)
+            status.insert(.pendingReview)
         }
         
         self.status = status

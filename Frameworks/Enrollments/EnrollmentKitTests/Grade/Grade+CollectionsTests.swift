@@ -22,7 +22,7 @@ import XCTest
 import TooLegit
 import DoNotShipThis
 import Result
-import ReactiveCocoa
+import ReactiveSwift
 import CoreData
 
 class GradeCollectionsTests: XCTestCase {
@@ -34,7 +34,7 @@ class GradeCollectionsTests: XCTestCase {
     func testRefreshSignalProducer() {
         let response = getGrades("grades-list", gradingPeriodID: nil)
 
-        guard let grades = response, grade = grades.first where grades.count == 1 else {
+        guard let grades = response, let grade = grades.first, grades.count == 1 else {
             XCTFail("unexpected response: \(response)")
             return
         }
@@ -50,7 +50,7 @@ class GradeCollectionsTests: XCTestCase {
     func testRefreshSignalProducerWithGradingPeriodID() {
         let response = getGrades("grading-period-grades-list", gradingPeriodID: "1")
 
-        guard let grades = response, grade = grades.first where grades.count == 1 else {
+        guard let grades = response, let grade = grades.first, grades.count == 1 else {
             XCTFail("unexpected response: \(response)")
             return
         }
@@ -77,7 +77,7 @@ class GradeCollectionsTests: XCTestCase {
         XCTAssertEqual("C", grade.currentGrade)
     }
 
-    private func getGrades(fixture: String, course: Course? = nil, gradingPeriodID: String?) -> [Grade]? {
+    fileprivate func getGrades(_ fixture: String, course: Course? = nil, gradingPeriodID: String?) -> [Grade]? {
         let course = course ?? Course.build(inSession: session)
 
         let refreshSignalProducer = try! Grade.refreshSignalProducer(session, courseID: course.id, gradingPeriodID: gradingPeriodID)
@@ -87,7 +87,7 @@ class GradeCollectionsTests: XCTestCase {
             refreshSignalProducer.startAndWaitForCompleted()
         }
 
-        let fetch = Grade.fetch(Grade.predicate(course.id, gradingPeriodID: gradingPeriodID), sortDescriptors: nil, inContext: context)
+        let fetch: NSFetchRequest<Grade> = context.fetch(Grade.predicate(course.id, gradingPeriodID: gradingPeriodID), sortDescriptors: nil)
         response = try? context.findAll(fromFetchRequest: fetch)
 
         return response

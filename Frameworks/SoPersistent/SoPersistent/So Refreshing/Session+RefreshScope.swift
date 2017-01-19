@@ -19,12 +19,12 @@
 import TooLegit
 import SoLazy
 
-internal let SoRefreshingStoreID = StoreID(storeName: "SoRefreshing", modelFileName: "SoRefreshing", modelFileBundle: NSBundle(forClass: Refresh.self), localizedErrorDescription: NSLocalizedString("Error loading cache management database.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoPersistent")!, value: "", comment: "error message for when the cache management database fails to load"))
+internal let SoRefreshingStoreID = StoreID(storeName: "SoRefreshing", modelFileName: "SoRefreshing", modelFileBundle: Bundle(for: Refresh.self), localizedErrorDescription: NSLocalizedString("Error loading cache management database.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoPersistent")!, value: "", comment: "error message for when the cache management database fails to load"))
 
 
 extension Session {
-    private enum Associated {
-        private static var refreshScope: UInt8 = 1
+    fileprivate enum Associated {
+        fileprivate static var refreshScope: UInt8 = 1
     }
     
     public var refreshScope: RefreshScope {

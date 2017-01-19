@@ -108,13 +108,13 @@ class CourseSpec: QuickSpec {
                     }
 
                     it("should be the grade for the grading period item") {
-                        expect(course.totalGrade(GradingPeriodItem.Some(gradingPeriods[0]))) == "A  100%"
-                        expect(course.totalGrade(GradingPeriodItem.Some(gradingPeriods[1]))) == "B  80%"
+                        expect(course.totalGrade(GradingPeriodItem.some(gradingPeriods[0]))) == "A  100%"
+                        expect(course.totalGrade(GradingPeriodItem.some(gradingPeriods[1]))) == "B  80%"
                     }
 
                     context("all") {
                         beforeEach {
-                            let totalGradeForAllPeriods = Grade.build(inSession: session) {
+                            let _ = Grade.build(inSession: session) {
                                 $0.gradingPeriodID = nil
                                 $0.currentGrade = "D"
                                 $0.currentScore = 65
@@ -124,12 +124,12 @@ class CourseSpec: QuickSpec {
 
                         it("should be the grade with a nil grading period id") {
                             course.totalForAllGradingPeriodsEnabled = true
-                            expect(course.totalGrade(GradingPeriodItem.All)) == "D  65%"
+                            expect(course.totalGrade(GradingPeriodItem.all)) == "D  65%"
                         }
 
                         it("should be empty without total for all grading periods enabled") {
                             course.totalForAllGradingPeriodsEnabled = false
-                            expect(course.totalGrade(GradingPeriodItem.All)) == "-"
+                            expect(course.totalGrade(GradingPeriodItem.all)) == "-"
                         }
                     }
                 }

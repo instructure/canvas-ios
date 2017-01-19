@@ -19,12 +19,12 @@
 import Foundation
 
 
-let bundle = NSBundle(identifier: "com.instructure.SoIconic")!
+let bundle = Bundle(identifier: "com.instructure.SoIconic")!
 
 extension UIImage {
-    public static func icon(icon: Icon, filled: Bool = false, size: Icon.Size = .standard) -> UIImage {
+    public static func icon(_ icon: Icon, filled: Bool = false, size: Icon.Size = .standard) -> UIImage {
         let name = icon.imageName(filled, size: size)
-        guard let icon = UIImage(named: name, inBundle: bundle, compatibleWithTraitCollection: nil) else {
+        guard let icon = UIImage(named: name, in: bundle, compatibleWith: nil) else {
             fatalError("An image does not exist for the Icon/Filled/Size combination specified: \(name). Please add the varient to SoIconic.framework")
         }
         

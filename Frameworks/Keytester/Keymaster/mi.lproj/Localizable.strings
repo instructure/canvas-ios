@@ -1,18 +1,1 @@
-/* Back Button Title */
-"Back" = "Hoki";
-
-/* Error alert message */
-"Could not create domain.  Please check your school's domain and try again." = "Kāore i taea te waihanga rohe. Koa tirohia rohe o tou kura, me te ngana anō.";
-
-/* Error Alert Title */
-"Error" = "Hapa";
-
-/* Domain Picker Search Placeholder */
-"Find your school or district" = "Kimihia koutou kura takiwa ranei";
-
-/* OK */
-"OK" = "Ok";
-
-/* AccountDomain Database Load Failure Message */
-"There was a problem loading the AccountDomain database file." = "He ko he raru uta i te kōnae pātengi raraunga Pūkete Domain.";
-
+/* No Localized Strings */

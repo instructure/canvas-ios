@@ -18,15 +18,15 @@
 
 import UIKit
 import EnrollmentKit
-import ReactiveCocoa
+import ReactiveSwift
 
-public class EnrollmentCollectionViewCell: EnrollmentKit.EnrollmentCollectionViewCell {
+open class EnrollmentCollectionViewCell: EnrollmentKit.EnrollmentCollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var gradeLabel: UILabel!
     
     var customize: ()->() = {}
     
-    @IBAction func customize(sender: AnyObject) {
+    @IBAction func customize(_ sender: AnyObject) {
         customize()
     }
 }

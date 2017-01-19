@@ -17,18 +17,18 @@
     
 
 import Foundation
-import ReactiveCocoa
+import ReactiveSwift
 import CoreData
 
-public final class ManagedObjectContextScheduler: SchedulerType {
+public final class ManagedObjectContextScheduler: SchedulerProtocol {
     let context: NSManagedObjectContext
     
     public init(context: NSManagedObjectContext) {
         self.context = context
     }
     
-    public func schedule(action: () -> ()) -> Disposable? {
-        context.performBlock(action)
+    public func schedule(_ action: @escaping () -> ()) -> Disposable? {
+        context.perform(action)
         return nil
     }
 }

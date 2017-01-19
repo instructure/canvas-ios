@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		493F18C81DF8883D00A3F7DF /* SoEdventurous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493F18C71DF87FE400A3F7DF /* SoEdventurous.framework */; };
+		49BC090A1DEF812A007F6AE3 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BC09091DEF811E007F6AE3 /* EnrollmentKit.framework */; };
+		49BC090B1DEF812A007F6AE3 /* AssignmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BC09081DEF8116007F6AE3 /* AssignmentKit.framework */; };
+		61106D371DDF7785006ED1A4 /* SuchActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61106D361DDF7785006ED1A4 /* SuchActivity.framework */; };
+		61A2ACE31DE366CA003B8B9D /* RefreshUserActivities.json in Resources */ = {isa = PBXBuildFile; fileRef = 61A2ACE21DE366CA003B8B9D /* RefreshUserActivities.json */; };
 		61C866871D539B2A00100D00 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C866861D539B2A00100D00 /* Result.framework */; };
-		B10189EA1C8F2DAB0026694A /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10189E91C8F2DAB0026694A /* SoPersistent.framework */; };
 		B110A23F1DDFB6960008CF37 /* ModuleItems.json in Resources */ = {isa = PBXBuildFile; fileRef = B110A23D1DDFB6960008CF37 /* ModuleItems.json */; };
 		B110A2401DDFB6960008CF37 /* modules.json in Resources */ = {isa = PBXBuildFile; fileRef = B110A23E1DDFB6960008CF37 /* modules.json */; };
 		B11273DB1C9239DF00452060 /* NSManagedObject+SoAutomated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11273DA1C9239DF00452060 /* NSManagedObject+SoAutomated.swift */; };
@@ -22,20 +26,18 @@
 		B131B7B51DAC4CDC00B10936 /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B131B7B41DAC4CDC00B10936 /* SpecHelper.swift */; };
 		B131B7C31DAD593000B10936 /* AssignmentsAPISpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B131B7C21DAD593000B10936 /* AssignmentsAPISpec.swift */; };
 		B13A39301CBFF76900CBD98B /* DVR+SoAutomated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13A392F1CBFF76900CBD98B /* DVR+SoAutomated.swift */; };
-		B13C60BB1D52525800367E56 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13C60BA1D52525800367E56 /* EnrollmentKit.framework */; };
-		B13C60C01D5284C900367E56 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C49DB11D46ACAE0003F8EB /* ReactiveCocoa.framework */; };
 		B13C60C11D5284C900367E56 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C49DB21D46ACAE0003F8EB /* TooLegit.framework */; };
 		B13C60C21D5284C900367E56 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C49DAF1D46AAAF0003F8EB /* Quick.framework */; };
 		B1451F491C8F4D6A00E78FCE /* NSManagedObjectContext+SoAutomated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1451F481C8F4D6A00E78FCE /* NSManagedObjectContext+SoAutomated.swift */; };
-		B1451F4B1C8F4DBF00E78FCE /* ErrorProneStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1451F4A1C8F4DBF00E78FCE /* ErrorProneStore.swift */; };
 		B16107141C9366130012F5E4 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16107131C9366130012F5E4 /* DVR.framework */; };
 		B1700FAC1CFD01E9008E7293 /* SoPersistent+SoAutomated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1700FAB1CFD01E9008E7293 /* SoPersistent+SoAutomated.swift */; };
-		B1B75B221DAD5A4000692869 /* AssignmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B75B211DAD5A4000692869 /* AssignmentKit.framework */; };
+		B1AC14261E04687D006ECAF3 /* upload-file.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD5D1DDFAFE2000B5D22 /* upload-file.json */; };
 		B1B75B241DAD6C7D00692869 /* IntegrationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B75B231DAD6C7D00692869 /* IntegrationHelper.swift */; };
+		B1B765FE1E049FB500BCABB1 /* assignment-grades.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD301DDFAFE2000B5D22 /* assignment-grades.json */; };
+		B1B765FF1E04AB5400BCABB1 /* upload-file-submission.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD6E1DDFAFE2000B5D22 /* upload-file-submission.json */; };
 		B1C25A161DAC07AF001F1436 /* ManagedFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C25A151DAC07AF001F1436 /* ManagedFactory.swift */; };
 		B1C25A181DAC07D8001F1436 /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C25A171DAC07D8001F1436 /* Factories.swift */; };
 		B1C4DD7C1DDFAFE2000B5D22 /* assignment-grades-mgp.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD2F1DDFAFE2000B5D22 /* assignment-grades-mgp.json */; };
-		B1C4DD7D1DDFAFE2000B5D22 /* assignment-grades.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD301DDFAFE2000B5D22 /* assignment-grades.json */; };
 		B1C4DD7E1DDFAFE2000B5D22 /* assignment-group.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD311DDFAFE2000B5D22 /* assignment-group.json */; };
 		B1C4DD7F1DDFAFE2000B5D22 /* assignment-details.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD331DDFAFE2000B5D22 /* assignment-details.json */; };
 		B1C4DD801DDFAFE2000B5D22 /* assignment.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD341DDFAFE2000B5D22 /* assignment.json */; };
@@ -73,8 +75,6 @@
 		B1C4DDA01DDFAFE2000B5D22 /* get-files.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD591DDFAFE2000B5D22 /* get-files.json */; };
 		B1C4DDA11DDFAFE2000B5D22 /* get-folders.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD5A1DDFAFE2000B5D22 /* get-folders.json */; };
 		B1C4DDA21DDFAFE2000B5D22 /* get-root-folder.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD5B1DDFAFE2000B5D22 /* get-root-folder.json */; };
-		B1C4DDA31DDFAFE2000B5D22 /* refresh-files-and-folders.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD5C1DDFAFE2000B5D22 /* refresh-files-and-folders.json */; };
-		B1C4DDA41DDFAFE2000B5D22 /* upload-file.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD5D1DDFAFE2000B5D22 /* upload-file.json */; };
 		B1C4DDA51DDFAFE2000B5D22 /* ModuleItemMarkDone.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD5F1DDFAFE2000B5D22 /* ModuleItemMarkDone.json */; };
 		B1C4DDA61DDFAFE2000B5D22 /* ModuleItemMarkDoneFailure.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD601DDFAFE2000B5D22 /* ModuleItemMarkDoneFailure.json */; };
 		B1C4DDA71DDFAFE2000B5D22 /* ModuleItemMarkRead.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD611DDFAFE2000B5D22 /* ModuleItemMarkRead.json */; };
@@ -87,7 +87,6 @@
 		B1C4DDAE1DDFAFE2000B5D22 /* luke.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD6A1DDFAFE2000B5D22 /* luke.json */; };
 		B1C4DDAF1DDFAFE2000B5D22 /* people.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD6B1DDFAFE2000B5D22 /* people.json */; };
 		B1C4DDB01DDFAFE2000B5D22 /* refresh-submission.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD6D1DDFAFE2000B5D22 /* refresh-submission.json */; };
-		B1C4DDB11DDFAFE2000B5D22 /* upload-file-submission.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD6E1DDFAFE2000B5D22 /* upload-file-submission.json */; };
 		B1C4DDB21DDFAFE2000B5D22 /* upload-text-submission.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD6F1DDFAFE2000B5D22 /* upload-text-submission.json */; };
 		B1C4DDB31DDFAFE2000B5D22 /* upload-url-submission.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD701DDFAFE2000B5D22 /* upload-url-submission.json */; };
 		B1C4DDB41DDFAFE2000B5D22 /* mark-todo-as-done-fails.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD721DDFAFE2000B5D22 /* mark-todo-as-done-fails.json */; };
@@ -104,7 +103,7 @@
 		B1E5B3821DD606F90074A510 /* ManagedObjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E5B3811DD606F90074A510 /* ManagedObjectSpec.swift */; };
 		B1E5B3841DD6087F0074A510 /* Session+ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E5B3831DD6087F0074A510 /* Session+ManagedObjectContext.swift */; };
 		B1E7B2CC1D2D87E70076F377 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7B2CB1D2D87E70076F377 /* User.swift */; };
-		B1EE2EE61D88A126007A9B4B /* SoEdventurous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EE2EE51D88A126007A9B4B /* SoEdventurous.framework */; };
+		B1F5C1B01E1C1B940027AA0F /* refresh-files-and-folders.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD5C1DDFAFE2000B5D22 /* refresh-files-and-folders.json */; };
 		F97219201C15F8EE0034775D /* SoAutomated.h in Headers */ = {isa = PBXBuildFile; fileRef = F972191F1C15F8EE0034775D /* SoAutomated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -119,8 +118,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		493F18C71DF87FE400A3F7DF /* SoEdventurous.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoEdventurous.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49BC09081DEF8116007F6AE3 /* AssignmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AssignmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49BC09091DEF811E007F6AE3 /* EnrollmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnrollmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61106D361DDF7785006ED1A4 /* SuchActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SuchActivity.framework; path = "../Debug-iphonesimulator/SuchActivity.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		61A2ACE21DE366CA003B8B9D /* RefreshUserActivities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RefreshUserActivities.json; sourceTree = "<group>"; };
 		61C866861D539B2A00100D00 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B10189E91C8F2DAB0026694A /* SoPersistent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPersistent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B110A23D1DDFB6960008CF37 /* ModuleItems.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ModuleItems.json; sourceTree = "<group>"; };
 		B110A23E1DDFB6960008CF37 /* modules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = modules.json; sourceTree = "<group>"; };
 		B11273DA1C9239DF00452060 /* NSManagedObject+SoAutomated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+SoAutomated.swift"; sourceTree = "<group>"; };
@@ -133,17 +136,13 @@
 		B131B7B41DAC4CDC00B10936 /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
 		B131B7C21DAD593000B10936 /* AssignmentsAPISpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentsAPISpec.swift; sourceTree = "<group>"; };
 		B13A392F1CBFF76900CBD98B /* DVR+SoAutomated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DVR+SoAutomated.swift"; sourceTree = "<group>"; };
-		B13C60BA1D52525800367E56 /* EnrollmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnrollmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1451F481C8F4D6A00E78FCE /* NSManagedObjectContext+SoAutomated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+SoAutomated.swift"; sourceTree = "<group>"; };
-		B1451F4A1C8F4DBF00E78FCE /* ErrorProneStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorProneStore.swift; sourceTree = "<group>"; };
 		B16107131C9366130012F5E4 /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DVR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1700FAB1CFD01E9008E7293 /* SoPersistent+SoAutomated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SoPersistent+SoAutomated.swift"; sourceTree = "<group>"; };
-		B1B75B211DAD5A4000692869 /* AssignmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AssignmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B75B231DAD6C7D00692869 /* IntegrationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrationHelper.swift; sourceTree = "<group>"; };
 		B1C25A151DAC07AF001F1436 /* ManagedFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedFactory.swift; sourceTree = "<group>"; };
 		B1C25A171DAC07D8001F1436 /* Factories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
 		B1C49DAF1D46AAAF0003F8EB /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1C49DB11D46ACAE0003F8EB /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1C49DB21D46ACAE0003F8EB /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1C4DD2F1DDFAFE2000B5D22 /* assignment-grades-mgp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "assignment-grades-mgp.json"; sourceTree = "<group>"; };
 		B1C4DD301DDFAFE2000B5D22 /* assignment-grades.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "assignment-grades.json"; sourceTree = "<group>"; };
@@ -216,7 +215,6 @@
 		B1E5B3811DD606F90074A510 /* ManagedObjectSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectSpec.swift; sourceTree = "<group>"; };
 		B1E5B3831DD6087F0074A510 /* Session+ManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+ManagedObjectContext.swift"; sourceTree = "<group>"; };
 		B1E7B2CB1D2D87E70076F377 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		B1EE2EE51D88A126007A9B4B /* SoEdventurous.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoEdventurous.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTehThings-dirfaeihkyzkhoetepifwtdgyhmv/Build/Products/Debug-iphoneos/SoEdventurous.framework"; sourceTree = "<group>"; };
 		F972191C1C15F8EE0034775D /* SoAutomated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F972191F1C15F8EE0034775D /* SoAutomated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoAutomated.h; sourceTree = "<group>"; };
 		F97219211C15F8EE0034775D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -236,22 +234,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61106D371DDF7785006ED1A4 /* SuchActivity.framework in Frameworks */,
 				B13C60C21D5284C900367E56 /* Quick.framework in Frameworks */,
+				493F18C81DF8883D00A3F7DF /* SoEdventurous.framework in Frameworks */,
 				B13C60C11D5284C900367E56 /* TooLegit.framework in Frameworks */,
 				B11544BB1D428E020011E5DF /* Nimble.framework in Frameworks */,
-				B1EE2EE61D88A126007A9B4B /* SoEdventurous.framework in Frameworks */,
-				B13C60C01D5284C900367E56 /* ReactiveCocoa.framework in Frameworks */,
+				49BC090A1DEF812A007F6AE3 /* EnrollmentKit.framework in Frameworks */,
+				49BC090B1DEF812A007F6AE3 /* AssignmentKit.framework in Frameworks */,
 				B16107141C9366130012F5E4 /* DVR.framework in Frameworks */,
-				B13C60BB1D52525800367E56 /* EnrollmentKit.framework in Frameworks */,
-				B1B75B221DAD5A4000692869 /* AssignmentKit.framework in Frameworks */,
 				61C866871D539B2A00100D00 /* Result.framework in Frameworks */,
-				B10189EA1C8F2DAB0026694A /* SoPersistent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		61106D351DDF7785006ED1A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		61A2ACE11DE3668A003B8B9D /* SuchActivity */ = {
+			isa = PBXGroup;
+			children = (
+				61A2ACE21DE366CA003B8B9D /* RefreshUserActivities.json */,
+			);
+			name = SuchActivity;
+			path = DVR/SuchActivity;
+			sourceTree = "<group>";
+		};
 		B11544AF1D4277180011E5DF /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,7 +311,6 @@
 			isa = PBXGroup;
 			children = (
 				B1451F481C8F4D6A00E78FCE /* NSManagedObjectContext+SoAutomated.swift */,
-				B1451F4A1C8F4DBF00E78FCE /* ErrorProneStore.swift */,
 				B11273DA1C9239DF00452060 /* NSManagedObject+SoAutomated.swift */,
 				B1E5B3831DD6087F0074A510 /* Session+ManagedObjectContext.swift */,
 			);
@@ -308,16 +320,15 @@
 		B1AC256A1C5547FE00636DC3 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				B1EE2EE51D88A126007A9B4B /* SoEdventurous.framework */,
-				B1B75B211DAD5A4000692869 /* AssignmentKit.framework */,
-				B13C60BA1D52525800367E56 /* EnrollmentKit.framework */,
+				493F18C71DF87FE400A3F7DF /* SoEdventurous.framework */,
+				49BC09091DEF811E007F6AE3 /* EnrollmentKit.framework */,
+				49BC09081DEF8116007F6AE3 /* AssignmentKit.framework */,
+				61106D361DDF7785006ED1A4 /* SuchActivity.framework */,
 				61C866861D539B2A00100D00 /* Result.framework */,
-				B1C49DB11D46ACAE0003F8EB /* ReactiveCocoa.framework */,
 				B1C49DB21D46ACAE0003F8EB /* TooLegit.framework */,
 				B1C49DAF1D46AAAF0003F8EB /* Quick.framework */,
 				B11544B21D4277350011E5DF /* Nimble.framework */,
 				B16107131C9366130012F5E4 /* DVR.framework */,
-				B10189E91C8F2DAB0026694A /* SoPersistent.framework */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -325,6 +336,7 @@
 		B1C4DD2D1DDFAFBB000B5D22 /* DVR */ = {
 			isa = PBXGroup;
 			children = (
+				61A2ACE11DE3668A003B8B9D /* SuchActivity */,
 				B1C4DD2E1DDFAFE2000B5D22 /* Assignment Groups */,
 				B1C4DD321DDFAFE2000B5D22 /* Assignments */,
 				B1C4DD371DDFAFE2000B5D22 /* Calendar */,
@@ -534,6 +546,7 @@
 				F972191E1C15F8EE0034775D /* SoAutomated */,
 				B1D801171C91BA4F006A1143 /* SoAutomatedTests */,
 				F972191D1C15F8EE0034775D /* Products */,
+				61106D351DDF7785006ED1A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -626,11 +639,11 @@
 				TargetAttributes = {
 					B1D801151C91BA4F006A1143 = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 					};
 					F972191B1C15F8EE0034775D = {
 						CreatedOnToolsVersion = 7.1.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -664,27 +677,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61A2ACE31DE366CA003B8B9D /* RefreshUserActivities.json in Resources */,
 				B1C4DD8C1DDFAFE2000B5D22 /* discussion_topic_details.json in Resources */,
 				B1C4DDAA1DDFAFE2000B5D22 /* RefreshModules.json in Resources */,
 				B1C4DD941DDFAFE2000B5D22 /* grades-list.json in Resources */,
 				B1C4DD7E1DDFAFE2000B5D22 /* assignment-group.json in Resources */,
 				B110A23F1DDFB6960008CF37 /* ModuleItems.json in Resources */,
+				B1B765FF1E04AB5400BCABB1 /* upload-file-submission.json in Resources */,
 				B1C4DD891DDFAFE2000B5D22 /* conversations-2.json in Resources */,
 				B1C4DDB61DDFAFE2000B5D22 /* todo.json in Resources */,
 				B1C4DDB51DDFAFE2000B5D22 /* todo-ignore.json in Resources */,
 				B1C4DDB21DDFAFE2000B5D22 /* upload-text-submission.json in Resources */,
+				B1AC14261E04687D006ECAF3 /* upload-file.json in Resources */,
 				B1C4DDAC1DDFAFE2000B5D22 /* page.json in Resources */,
 				B1C4DD921DDFAFE2000B5D22 /* CoursesWithPendingEnrollments.json in Resources */,
 				B1C4DDA21DDFAFE2000B5D22 /* get-root-folder.json in Resources */,
 				B1C4DDA61DDFAFE2000B5D22 /* ModuleItemMarkDoneFailure.json in Resources */,
 				B1C4DD871DDFAFE2000B5D22 /* observee_calendar_events_list.json in Resources */,
-				B1C4DDA41DDFAFE2000B5D22 /* upload-file.json in Resources */,
 				B1C4DDAB1DDFAFE2000B5D22 /* front-page.json in Resources */,
 				B1C4DD811DDFAFE2000B5D22 /* get-assignment.json in Resources */,
 				B1C4DDA51DDFAFE2000B5D22 /* ModuleItemMarkDone.json in Resources */,
 				B1C4DD801DDFAFE2000B5D22 /* assignment.json in Resources */,
 				B1C4DDB91DDFAFE2000B5D22 /* get-paginated.json in Resources */,
-				B1C4DDA31DDFAFE2000B5D22 /* refresh-files-and-folders.json in Resources */,
 				B1C4DDBA1DDFAFE2000B5D22 /* get.json in Resources */,
 				B1C4DDAE1DDFAFE2000B5D22 /* luke.json in Resources */,
 				B1C4DD911DDFAFE2000B5D22 /* CourseMarkAsFavoriteSendsErrors.json in Resources */,
@@ -696,18 +710,17 @@
 				B1C4DDA11DDFAFE2000B5D22 /* get-folders.json in Resources */,
 				B1C4DDB01DDFAFE2000B5D22 /* refresh-submission.json in Resources */,
 				B1C4DDB31DDFAFE2000B5D22 /* upload-url-submission.json in Resources */,
-				B1C4DD7D1DDFAFE2000B5D22 /* assignment-grades.json in Resources */,
 				B1C4DD991DDFAFE2000B5D22 /* refresh-all-groups.json in Resources */,
 				B1C4DD9C1DDFAFE2000B5D22 /* teacher-grades-list.json in Resources */,
 				B1C4DD821DDFAFE2000B5D22 /* get-assignments.json in Resources */,
 				B1C4DDA01DDFAFE2000B5D22 /* get-files.json in Resources */,
+				B1F5C1B01E1C1B940027AA0F /* refresh-files-and-folders.json in Resources */,
 				B1C4DD901DDFAFE2000B5D22 /* CourseMarkAsFavoriteRemovesFavorite.json in Resources */,
 				B1C4DD971DDFAFE2000B5D22 /* grading-periods.json in Resources */,
 				B1C4DDBC1DDFAFE2000B5D22 /* put.json in Resources */,
 				B1C4DD8D1DDFAFE2000B5D22 /* discussion_topics_list.json in Resources */,
 				B110A2401DDFB6960008CF37 /* modules.json in Resources */,
 				B1C4DD931DDFAFE2000B5D22 /* get-all-groups.json in Resources */,
-				B1C4DDB11DDFAFE2000B5D22 /* upload-file-submission.json in Resources */,
 				B1C4DDA81DDFAFE2000B5D22 /* ModuleItemMarkReadFailure.json in Resources */,
 				B1C4DDA71DDFAFE2000B5D22 /* ModuleItemMarkRead.json in Resources */,
 				B1C4DD9A1DDFAFE2000B5D22 /* refresh-all-tabs.json in Resources */,
@@ -718,6 +731,7 @@
 				B1C4DD831DDFAFE2000B5D22 /* calendar_event.json in Resources */,
 				B1C4DD981DDFAFE2000B5D22 /* refresh-all-courses.json in Resources */,
 				B1C4DDAF1DDFAFE2000B5D22 /* people.json in Resources */,
+				B1B765FE1E049FB500BCABB1 /* assignment-grades.json in Resources */,
 				B1C4DD9E1DDFAFE2000B5D22 /* delete-file.json in Resources */,
 				B1C4DD8A1DDFAFE2000B5D22 /* conversations.json in Resources */,
 				B1C4DD7F1DDFAFE2000B5D22 /* assignment-details.json in Resources */,
@@ -762,7 +776,6 @@
 				B13A39301CBFF76900CBD98B /* DVR+SoAutomated.swift in Sources */,
 				B1700FAC1CFD01E9008E7293 /* SoPersistent+SoAutomated.swift in Sources */,
 				B11544AC1D42761E0011E5DF /* JSONShape.swift in Sources */,
-				B1451F4B1C8F4DBF00E78FCE /* ErrorProneStore.swift in Sources */,
 				B131B7B51DAC4CDC00B10936 /* SpecHelper.swift in Sources */,
 				B1451F491C8F4D6A00E78FCE /* NSManagedObjectContext+SoAutomated.swift in Sources */,
 				B11544BA1D428DF00011E5DF /* BeShapedLike.swift in Sources */,
@@ -784,24 +797,26 @@
 		B1D8011E1C91BA4F006A1143 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = SoAutomatedTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoAutomatedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		B1D8011F1C91BA4F006A1143 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = SoAutomatedTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoAutomatedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -844,7 +859,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -888,7 +903,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -912,7 +927,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = SoAutomated/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -922,7 +937,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -939,7 +954,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = SoAutomated/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -948,7 +963,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoAutomated;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

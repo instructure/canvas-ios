@@ -22,26 +22,26 @@ import TooLegit
 import EnrollmentKit
 import SoLazy
 import Airwolf
-import ReactiveCocoa
+import ReactiveSwift
 
-typealias CalendarEventListSelectCalendarEventAction = (session: Session, observeeID: String, calendarEvent: CalendarEvent)->Void
+typealias CalendarEventListSelectCalendarEventAction = (Session, String, CalendarEvent)->Void
 
 class CalendarEventListViewController: UITableViewController {
 
     let emptyView = TableEmptyView.nibView()
 
-    static var dateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = NSDateFormatter.dateFormatFromTemplate("EEEEMMMMd", options: 0, locale: NSLocale.currentLocale())
+    static var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "EEEEMMMMd", options: 0, locale: NSLocale.current)
         return dateFormatter
     }()
 
     let session: Session
     let studentID: String
-    let startDate: NSDate
-    let endDate: NSDate
-    private var contextCodes: [String]
-    private var courseNamesDictionary = [String: String]()
+    let startDate: Date
+    let endDate: Date
+    fileprivate var contextCodes: [String]
+    fileprivate var courseNamesDictionary = [String: String]()
     var selectCalendarEventAction: CalendarEventListSelectCalendarEventAction? = nil
 
     var courseCollection: FetchedCollection<Course>?
@@ -54,7 +54,7 @@ class CalendarEventListViewController: UITableViewController {
             oldValue?.refreshControl.endRefreshing()
             oldValue?.refreshControl.removeFromSuperview()
             refresher?.makeRefreshable(self)
-            self.refresher?.refreshingCompleted.observeNext { [weak self] err in
+            _ = self.refresher?.refreshingCompleted.observeValues { [weak self] err in
                 self?.updateEmptyView()
                 if let s = self {
                     err?.presentAlertFromViewController(s)
@@ -63,7 +63,7 @@ class CalendarEventListViewController: UITableViewController {
         }
     }
 
-    init(session: Session, studentID: String, startDate: NSDate, endDate: NSDate, contextCodes: [String]) throws {
+    init(session: Session, studentID: String, startDate: Date, endDate: Date, contextCodes: [String]) throws {
         self.session = session
         self.studentID = studentID
         self.startDate = startDate
@@ -97,18 +97,18 @@ class CalendarEventListViewController: UITableViewController {
         tableView.estimatedRowHeight = 90
 
         CalendarEventCellViewModel.tableViewDidLoad(tableView)
-        tableView.registerNib(UINib(nibName: "EmptyCalendarEventCell", bundle: NSBundle(forClass: AppDelegate.self)), forCellReuseIdentifier: "EmptyCalendarEventCell")
+        tableView.register(UINib(nibName: "EmptyCalendarEventCell", bundle: Bundle(for: AppDelegate.self)), forCellReuseIdentifier: "EmptyCalendarEventCell")
     }
     
-    private var courseUpdatesDisposable: Disposable?
-    private var eventUpdatesDisposable: Disposable?
+    fileprivate var courseUpdatesDisposable: Disposable?
+    fileprivate var eventUpdatesDisposable: Disposable?
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         courseUpdatesDisposable = courseCollection?.collectionUpdates
-            .observeOn(UIScheduler())
-            .observeNext { [unowned self] _ in
+            .observe(on: UIScheduler())
+            .observeValues { [unowned self] _ in
                 self.updateData()
             }.map(ScopedDisposable.init)
         self.updateData()
@@ -119,12 +119,12 @@ class CalendarEventListViewController: UITableViewController {
             if self.contextCodes.count == 0 {
                 return true
             }
-            return self.contextCodes.contains(ContextID(id: course.id, context: .Course).canvasContextID)
+            return self.contextCodes.contains(ContextID(id: course.id, context: .course).canvasContextID)
             }.map { course in
-                return ContextID(id: course.id, context: .Course).canvasContextID
+                return ContextID(id: course.id, context: .course).canvasContextID
             } ?? []
         for course in self.courseCollection! {
-            courseNamesDictionary[ContextID(id: course.id, context: .Course).canvasContextID] = course.name
+            courseNamesDictionary[ContextID(id: course.id, context: .course).canvasContextID] = course.name
         }
 
         self.collection = try! CalendarEvent.collectionByDueDate(session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
@@ -133,8 +133,8 @@ class CalendarEventListViewController: UITableViewController {
         self.refresher?.refresh(false)
         self.updateEmptyView()
         eventUpdatesDisposable = collection.collectionUpdates
-            .observeOn(UIScheduler())
-            .observeNext { [unowned self] updates in
+            .observe(on: UIScheduler())
+            .observeValues { [unowned self] updates in
                 self.processUpdates(updates)
             }.map(ScopedDisposable.init)
     }
@@ -142,15 +142,15 @@ class CalendarEventListViewController: UITableViewController {
     // ---------------------------------------------
     // MARK: - UITableView DataSource
     // ---------------------------------------------
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        guard let collection = collection where collection.numberOfSections() != 0 else {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        guard let collection = collection, collection.numberOfSections() != 0 else {
             return 0
         }
 
-        return NSCalendar.currentCalendar().numberOfDaysInWeek
+        return Calendar.current.numberOfDaysInWeek
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let collectionSection = collectionSection(section) else {
             return 1
         }
@@ -158,44 +158,44 @@ class CalendarEventListViewController: UITableViewController {
         return self.collection.numberOfItemsInSection(collectionSection)
     }
 
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
 
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = TableSectionHeaderView()
         view.preservesSuperviewLayoutMargins = true
         let date = startDate + section.daysComponents
-        view.text = CalendarEventListViewController.dateFormatter.stringFromDate(date).uppercaseString
+        view.text = CalendarEventListViewController.dateFormatter.string(from: date).uppercased()
         view.accessibilityIdentifier = "event_list_header_\(section)"
         return view
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let collectionSection = collectionSection(indexPath.section) else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("EmptyCalendarEventCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCalendarEventCell", for: indexPath)
             return cell
         }
 
-        let collectionIndexPath = NSIndexPath(forRow: indexPath.row, inSection: collectionSection)
+        let collectionIndexPath = IndexPath(row: indexPath.row, section: collectionSection)
         let item = collection[collectionIndexPath]
         let vm = viewModelFactory(item)
         return vm.cellForTableView(tableView, indexPath: indexPath)
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let collectionSection = collectionSection(indexPath.section) else {
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
             return
         }
 
-        let collectionIndexPath = NSIndexPath(forRow: indexPath.row, inSection: collectionSection)
+        let collectionIndexPath = IndexPath(row: indexPath.row, section: collectionSection)
         let calendarEvent = collection[collectionIndexPath]
-        selectCalendarEventAction?(session: session, observeeID: studentID, calendarEvent: calendarEvent)
+        selectCalendarEventAction?(session, studentID, calendarEvent)
     }
 
     // This is probably not the best way to search through the sections, but it should be fast enough for now.
-    func collectionSection(daySection: Int) -> Int? {
+    func collectionSection(_ daySection: Int) -> Int? {
         guard let collection = collection else {
             return nil
         }
@@ -203,11 +203,11 @@ class CalendarEventListViewController: UITableViewController {
         let sectionDate = startDate + daySection.daysComponents
         let sections = 0..<collection.numberOfSections()
         for section in sections {
-            guard let dateString = collection.titleForSection(section), collectionDate = CalendarEvent.sectionTitleDateFormatter.dateFromString(dateString) else {
+            guard let dateString = collection.titleForSection(section), let collectionDate = CalendarEvent.sectionTitleDateFormatter.date(from: dateString) else {
                 ❨╯°□°❩╯⌢"Section Date Formatter is not as expected."
             }
 
-            if sectionDate.compare(collectionDate) == .OrderedSame {
+            if sectionDate.compare(collectionDate) == .orderedSame {
                 return section
             }
         }
@@ -215,7 +215,7 @@ class CalendarEventListViewController: UITableViewController {
         return nil
     }
 
-    func processUpdates(updates: [CollectionUpdate<CalendarEvent>]) {
+    func processUpdates(_ updates: [CollectionUpdate<CalendarEvent>]) {
         guard let tableView = tableView else { return }
 
         tableView.reloadData()
@@ -227,8 +227,8 @@ class CalendarEventListViewController: UITableViewController {
         setEmptyViewVisible(emptyVisible)
     }
 
-    func setEmptyViewVisible(visible: Bool) {
-        emptyView.hidden = !visible
+    func setEmptyViewVisible(_ visible: Bool) {
+        emptyView.isHidden = !visible
     }
 
 }

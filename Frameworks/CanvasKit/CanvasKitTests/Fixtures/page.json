@@ -1,0 +1,23 @@
+{
+    "url": "my-page-title",
+    "title": "My Page Title",
+    "created_at": "2012-08-06T16:46:33-06:00",
+    "updated_at": "2012-08-08T14:25:20-06:00",
+    "hide_from_students": true,
+    "editing_roles": "teachers,students",
+    "last_edited_by": {
+        "id": 133,
+        "display_name": "Rey del Pueblo",
+        "avatar_image_url": "https://canvas.example.com/images/thumbnails/bm90aGluZyBoZXJl",
+        "html_url": "https://canvas.example.com/courses/789/users/133"
+    },
+    "body": "<p>Page Content</p>",
+    "published": true,
+    "front_page": true,
+    "locked_for_user": true,
+    "lock_info": {
+        "asset_string": "wiki_page_1",
+        "context_module": {}
+    },
+    "lock_explanation": "This discussion is locked until September 1 at 12:00am"
+}

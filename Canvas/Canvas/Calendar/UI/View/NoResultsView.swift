@@ -22,10 +22,10 @@ class NoResultsView : UIView {
     
     @IBOutlet weak var lblExplanation: UILabel!
     
-    class func instantiateFromNib(explanation: String) -> NoResultsView? {
+    class func instantiateFromNib(_ explanation: String) -> NoResultsView? {
         if let noResultsView = NoResultsView.loadFromNibNamed("NoResultsView", bundle: NoResultsView.bundle) as? NoResultsView {
             
-            noResultsView.backgroundColor = UIColor.clearColor()
+            noResultsView.backgroundColor = UIColor.clear
             
             noResultsView.lblExplanation.textColor = UIColor.calendarNoResultsTextColor
             noResultsView.lblExplanation.text = explanation

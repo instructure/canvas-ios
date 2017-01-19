@@ -28,7 +28,7 @@ let messageKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a pr
 
 extension Session {
     public func messagesManagedObjectContext() throws -> NSManagedObjectContext {
-        let model = NSManagedObjectModel(named: messageKitModelName, inBundle: NSBundle(forClass: Conversation.self))!.mutableCopy() as! NSManagedObjectModel
+        let model = NSManagedObjectModel(named: messageKitModelName, inBundle: Bundle(for: Conversation.self))!.mutableCopy() as! NSManagedObjectModel
         let storeID = StoreID(storeName: messageKitModelName, model: model, localizedErrorDescription: messageKitDBFailedToLoadErrorDescription)
         return try managedObjectContext(storeID)
     }

@@ -18,9 +18,9 @@
 
 import TooLegit
 
-public class AssignmentGroupAPI {
+open class AssignmentGroupAPI {
 
-    public class func getAssignmentGroups(session: Session, courseID: String, gradingPeriodID: String? = nil) throws -> NSURLRequest {
+    open class func getAssignmentGroups(_ session: Session, courseID: String, gradingPeriodID: String? = nil) throws -> URLRequest {
         let path = "/api/v1/courses/\(courseID)/assignment_groups"
 
         var parameters = Assignment.parameters

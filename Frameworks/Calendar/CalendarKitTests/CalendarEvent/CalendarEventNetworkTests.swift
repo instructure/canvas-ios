@@ -20,12 +20,12 @@ import Foundation
 @testable import CalendarKit
 import SoAutomated
 import Marshal
-import ReactiveCocoa
+import ReactiveSwift
 import DoNotShipThis
 import TooLegit
 import Nimble
 
-let currentBundle = NSBundle(forClass: CalendarEventNetworkTests.self)
+let currentBundle = Bundle(for: CalendarEventNetworkTests.self)
 
 class CalendarEventNetworkTests: XCTestCase {
     func test_itCanGetAnEvent() {
@@ -49,8 +49,8 @@ class CalendarEventNetworkTests: XCTestCase {
         session.playback("calendar_events_list", in: currentBundle) {
             waitUntil { done in
                 try! CalendarEvent.getAllCalendarEvents(session, startDate: range.startDate, endDate: range.endDate, contextCodes: contextCodes)
-                    .concat(try! CalendarEvent.getCalendarEvents(session, type: .Assignment, startDate: range.startDate, endDate: range.endDate, contextCodes: contextCodes))
-                    .concat(try! CalendarEvent.getCalendarEvents(session, type: .Event, startDate: range.startDate, endDate: range.endDate, contextCodes: contextCodes))
+                    .concat(try! CalendarEvent.getCalendarEvents(session, type:.assignment, startDate: range.startDate, endDate: range.endDate, contextCodes: contextCodes))
+                    .concat(try! CalendarEvent.getCalendarEvents(session, type: .event, startDate: range.startDate, endDate: range.endDate, contextCodes: contextCodes))
                     .startWithCompletedAction(done)
             }
         }

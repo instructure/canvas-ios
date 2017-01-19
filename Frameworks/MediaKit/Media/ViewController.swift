@@ -27,10 +27,10 @@ enum MediaTest: String {
 }
 
 class DeniedLOL: NSObject, AudioRecorderPermissionDelegate {
-    var permission = AVAudioSessionRecordPermission.Undetermined
+    var permission = AVAudioSessionRecordPermission.undetermined
     
-    func requestRecordPermission(response: PermissionBlock) {
-        permission = .Denied
+    func requestRecordPermission(_ response: @escaping PermissionBlock) {
+        permission = .denied
         response(false)
     }
     
@@ -40,10 +40,10 @@ class DeniedLOL: NSObject, AudioRecorderPermissionDelegate {
 }
 
 class OkaySure: NSObject, AudioRecorderPermissionDelegate {
-    var permission = AVAudioSessionRecordPermission.Undetermined
+    var permission = AVAudioSessionRecordPermission.undetermined
     
-    func requestRecordPermission(response: PermissionBlock) {
-        permission = .Granted
+    func requestRecordPermission(_ response: @escaping PermissionBlock) {
+        permission = .granted
         response(true)
     }
     
@@ -55,39 +55,39 @@ class OkaySure: NSObject, AudioRecorderPermissionDelegate {
 class ViewController: UITableViewController {
     let tests: [MediaTest] = [.RecordAudio, .PermissionDenied, .RequestsPermission]
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tests.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("MediaTestCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MediaTestCell", for: indexPath)
         cell.textLabel?.text = tests[indexPath.row].rawValue
         return cell
     }
     
-    func showAudioRecorderWithDelegate(delegate: AudioRecorderPermissionDelegate, forRowAtIndexPath indexPath: NSIndexPath) {
+    func showAudioRecorderWithDelegate(_ delegate: AudioRecorderPermissionDelegate, forRowAtIndexPath indexPath: IndexPath) {
         let audio = AudioRecorderViewController.presentFromViewController(self, completeButtonTitle: "So Done!", permissionDelegate:  delegate)
         
         audio.cancelButtonTapped = { [weak self] in
-            self?.dismissViewControllerAnimated(true) {
-                let alert = UIAlertController(title: "No worries, Mate.", message: nil, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Crikey!", style: .Default, handler: nil))
-                self?.presentViewController(alert, animated: true, completion: nil)
+            self?.dismiss(animated: true) {
+                let alert = UIAlertController(title: "No worries, Mate.", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Crikey!", style: .default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
             }
-            self?.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
+            self?.tableView?.deselectRow(at: indexPath, animated: true)
         }
         
         audio.didFinishRecordingAudioFile = { [weak self] file in
             // clean up
-            do { try NSFileManager.defaultManager().removeItemAtURL(file) } catch {}
+            do { try FileManager.default.removeItem(at: file) } catch {}
             
-            self?.dismissViewControllerAnimated(true) {
-                let alert = UIAlertController(title: "Good on ya, Mate!", message: nil, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Right!", style: .Default, handler: nil))
-                self?.presentViewController(alert, animated: true, completion: nil)
+            self?.dismiss(animated: true) {
+                let alert = UIAlertController(title: "Good on ya, Mate!", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Right!", style: .default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
             }
-            self?.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
+            self?.tableView?.deselectRow(at: indexPath, animated: true)
         }
     }
     
@@ -95,7 +95,7 @@ class ViewController: UITableViewController {
     
     var okaySure = OkaySure()
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch tests[indexPath.row] {
         case .RecordAudio:
             showAudioRecorderWithDelegate(AVAudioSession.sharedInstance(), forRowAtIndexPath: indexPath)

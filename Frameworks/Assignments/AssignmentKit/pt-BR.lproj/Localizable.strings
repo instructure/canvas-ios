@@ -1,46 +1,46 @@
-/* (No Commment) */
+/* grade details for points based grade i.e. \"10 of 12\" */
 "(formatter(points)) of (formatter(possible))" = "(formatter(points)) de (formatter(possible))";
 
-/* (No Commment) */
+/* Title for 1 day assignment reminder */
 "1 day" = "1 dia";
 
-/* (No Commment) */
+/* Title for 1 hour assignment reminder */
 "1 hour" = "1 hora";
 
-/* (No Commment) */
+/* Title for 3 days assignment reminder */
 "3 days" = "3 dias";
 
-/* (No Commment) */
+/* Title for 5 minutes assignment reminder */
 "5 minutes" = "5 minutos";
 
 /* (No Commment) */
 "Assignment" = "Tarefa";
 
-/* (No Commment) */
+/* Title for alert view for assignment reminders */
 "Assignment Reminder" = "Lembrete de Tarefa";
 
 /* (No Commment) */
 "Assignment is currently being submitted" = "A tarefa está atualmente sendo enviada.";
 
-/* (No Commment) */
+/* This assignment hasn't been graded yet but can be graded */
 "Awaiting Grade" = "Aguardando Nota";
 
-/* (No Commment) */
+/* cancel button */
 "Cancel" = "Cancelar";
 
-/* (No Commment) */
+/* Title for reminder options for an assignment */
 "Choose how long before the assignment due date to get a reminder:" = "Escolha quanto tempo antes da data de vencimento da tarefa obter um lembrete:";
 
-/* (No Commment) */
+/* Title for a rating that hasn't been graded but has a comment */
 "Comment" = "Comentário";
 
 /* (No Commment) */
 "Comment.." = "Comentário..";
 
-/* (No Commment) */
+/* error displayed when submitting an assignment is unavailable */
 "Could not submit assignment. Invalid assignment or session." = "Não foi possível enviar a tarefa. Tarefa ou sessão inválidas.";
 
-/* (No Commment) */
+/* error displayed when submitting a submission is invalid. */
 "Could not submit assignment. Invalid submission." = "Não foi possível enviar a tarefa. Envio inválido.";
 
 /* (No Commment) */
@@ -49,7 +49,7 @@
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Erro ao Atualizar a Tarefa";
 
-/* (No Commment) */
+/* This assignment is excused */
 "Excused" = "Dispensado";
 
 /* Error message when submission attachment fails to load. */
@@ -58,19 +58,19 @@
 /* (No Commment) */
 "Failed to resume upload." = "Falha ao retomar upload.";
 
-/* (No Commment) */
+/* This assignment is late */
 "Late" = "Atrasado";
 
-/* (No Commment) */
+/* Title for a rating that has custom graded but has no comment */
 "No Comment" = "Sem Comentário";
 
-/* (No Commment) */
+/* Default string for due date title */
 "No Due Date" = "Sem Data Limite";
 
 /* Section header for assignments without an assignment group */
 "None" = "Nenhum";
 
-/* (No Commment) */
+/* submission title for assignment waiting user submission */
 "Not Submitted" = "Não Enviado";
 
 /* Overdue assignmnets (not turned in) */
@@ -79,19 +79,19 @@
 /* Assignments that have been turned in and are past */
 "Past" = "Passado";
 
-/* (No Commment) */
+/* Rubric Points Possible Title */
 "Points Possible" = "Pontos Possíveis";
 
-/* (No Commment) */
+/* title for submission button if student has submitted previously */
 "Re-submit Assignment" = "Reenviar Tarefa";
 
 /* (No Commment) */
 "Submission type not allowed" = "Tipo de envio não permitido";
 
-/* (No Commment) */
+/* submission title for assignment that doesn't support submissions */
 "Submissions N/A" = "Envios N/A";
 
-/* (No Commment) */
+/* title for submission button if student has never submitted */
 "Submit Assignment" = "Enviar Tarefa";
 
 /* AssignmentKit database load failure message */
@@ -100,7 +100,7 @@
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "Houve um problema ao atualizar a URL do Questionário";
 
-/* (No Commment) */
+/* submission title for assignemnt that is submitted */
 "Turned in!" = "Ligado!";
 
 /* (No Commment) */
@@ -115,13 +115,13 @@
 /* Assignments with no dates */
 "Undated" = "Sem data";
 
-/* (No Commment) */
+/* This assignment is not graded */
 "Ungraded" = "Sem nota";
 
 /* Upcoming assignments */
 "Upcoming" = "Próximo";
 
-/* (No Commment) */
+/* Title for button to see rubric from assignment detail */
 "View Rubric" = "Visualizar Rubrica";
 
 /* (No Commment) */

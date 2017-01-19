@@ -28,7 +28,7 @@ class GroupCollectionsTests: XCTestCase {
     let session = Session.art
     var context: NSManagedObjectContext!
     
-    lazy var studentContext: String->NSManagedObjectContext = { studentID in
+    lazy var studentContext: (String)->NSManagedObjectContext = { studentID in
         return try! self.session.enrollmentManagedObjectContext(studentID)
     }
     
@@ -81,17 +81,17 @@ class GroupCollectionsTests: XCTestCase {
         let refresher = try! Group.refresher(session)
         let count = Group.observeCount(inSession: session)
         expect {
-            refresher.playback("refresh-all-groups", in: currentBundle, with: self.session)
+            refresher.playback("refresh-all-groups", with: self.session)
         }.to(change({ count.currentCount }, from: 0, to: 2))
     }
     
     func testGroup_refresher_syncsFavoriteColors() {
         let group = Group.build(inSession: session) {
-            $0.id = "24219"
-            $0.color = nil
+            $0.id = "337865"
+            $0.color.value = .black
         }
         let refresher = try! Group.refresher(session)
-        refresher.playback("refresh-all-groups", in: currentBundle, with: session)
-        XCTAssertEqual("#555555", group.rawColor, "refresher syncs favorite colors")
+        refresher.playback("refresh-all-groups", with: session)
+        XCTAssertEqual("#F06291", group.color.value?.hex, "refresher syncs favorite colors")
     }
 }

@@ -24,8 +24,8 @@ class DetailsInfoCell: UITableViewCell {
     @IBOutlet var submissionLabel: TokenLabelView!
 
     @IBOutlet var submissionInfoVisibilityConstraint: NSLayoutConstraint!
-    private let showingSubmissionInfoConstraintValue: CGFloat = 56.0
-    private let hidingSubmissionInfoConstraintValue: CGFloat = 20.0
+    fileprivate let showingSubmissionInfoConstraintValue: CGFloat = 56.0
+    fileprivate let hidingSubmissionInfoConstraintValue: CGFloat = 20.0
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,13 +34,13 @@ class DetailsInfoCell: UITableViewCell {
         submissionLabel.accessibilityIdentifier = "event_detail_submission"
     }
 
-    func setShowsSubmissionInfo(showsInfo: Bool) {
+    func setShowsSubmissionInfo(_ showsInfo: Bool) {
         if showsInfo {
             submissionInfoVisibilityConstraint.constant = showingSubmissionInfoConstraintValue
-            submissionLabel.hidden = false
+            submissionLabel.isHidden = false
         } else {
             submissionInfoVisibilityConstraint.constant = hidingSubmissionInfoConstraintValue
-            submissionLabel.hidden = true
+            submissionLabel.isHidden = true
         }
     }
 }

@@ -19,11 +19,11 @@
 import Foundation
 import SoAutomated
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 
 class SignalProducerRefresherTests: XCTestCase {
 
-    typealias SignalProducerType = SignalProducer<Void, NSError>
+    typealias SignalProducerProtocol = SignalProducer<Void, NSError>
 
     func testDescribeSignalProducerRefresher() {
 
@@ -31,7 +31,7 @@ class SignalProducerRefresherTests: XCTestCase {
             let (refresher, _) = self.refresherWithObserverBlock { $0.sendCompleted() }
 
             context("when the view controller is a UITableViewController") {
-                let vc = UITableViewController(style: .Plain)
+                let vc = UITableViewController(style: .plain)
                 let _ = vc.view // trigger viewDidLoad
                 refresher.makeRefreshable(vc)
 
@@ -40,7 +40,7 @@ class SignalProducerRefresherTests: XCTestCase {
                 }
 
                 it("adds a refresh action") {
-                    let actions = vc.refreshControl!.actionsForTarget(refresher, forControlEvent: .ValueChanged)!
+                    let actions = vc.refreshControl!.actions(forTarget: refresher, forControlEvent: .valueChanged)!
                     XCTAssertEqual("beginRefresh:", actions.first!)
                 }
             }
@@ -55,11 +55,11 @@ class SignalProducerRefresherTests: XCTestCase {
                 }
 
                 it("adds the refreshControl as a subview") {
-                    XCTAssert(refresher.refreshControl.isDescendantOfView(vc.collectionView!))
+                    XCTAssert(refresher.refreshControl.isDescendant(of: vc.collectionView!))
                 }
 
                 it("adds a refresh action") {
-                    let actions = refresher.refreshControl.actionsForTarget(refresher, forControlEvent: .ValueChanged)!
+                    let actions = refresher.refreshControl.actions(forTarget: refresher, forControlEvent: .valueChanged)!
                     XCTAssertEqual("beginRefresh:", actions.first!)
                 }
             }
@@ -68,20 +68,20 @@ class SignalProducerRefresherTests: XCTestCase {
         describe("refreshing") {
             context("when it starts") {
                 it("begins the refresh control") {
-                    let (refresher, _) = self.refresherWithObserverBlock { $0.sendNext() }
+                    let (refresher, _) = self.refresherWithObserverBlock { $0.send(value: ()) }
                     refresher.refresh(true)
-                    XCTAssert(refresher.refreshControl.refreshing)
+                    XCTAssert(refresher.refreshControl.isRefreshing)
                 }
 
                 it("starts the signal producer") {
-                    let started = self.expectationWithDescription("producer started")
-                    let sendNext = self.expectationWithDescription("producer sent next")
-                    let (refresher, sp) = self.refresherWithObserverBlock { $0.sendNext() }
-                    sp.on(started: { started.fulfill() }).startWithNext { sendNext.fulfill() }
+                    let started = self.expectation(description: "producer started")
+                    let sendNext = self.expectation(description: "producer sent next")
+                    let (refresher, sp) = self.refresherWithObserverBlock { $0.send(value: ()) }
+                    sp.on(started: { started.fulfill() }).startWithResult { _ in sendNext.fulfill() }
 
                     refresher.refresh(true)
 
-                    self.waitForExpectationsWithTimeout(1, handler: nil)
+                    self.waitForExpectations(timeout: 1, handler: nil)
                 }
             }
 
@@ -90,39 +90,39 @@ class SignalProducerRefresherTests: XCTestCase {
 
                 it("ends the refresh control") {
                     refresher.refresh(true)
-                    XCTAssertFalse(refresher.refreshControl.refreshing)
+                    XCTAssertFalse(refresher.refreshControl.isRefreshing)
                 }
 
                 it("refreshCompleted event is sent") {
-                    let expectation = self.expectationWithDescription("refreshCompleted")
+                    let expectation = self.expectation(description: "refreshCompleted")
                     var error: NSError?
-                    refresher.refreshingCompleted.observeNext { e in
+                    refresher.refreshingCompleted.observeValues { e in
                         error = e
                         expectation.fulfill()
                     }
                     refresher.refresh(true)
-                    self.waitForExpectationsWithTimeout(1, handler: nil)
+                    self.waitForExpectations(timeout: 1, handler: nil)
                     XCTAssertNil(error)
                 }
             }
 
             context("when it fails") {
-                let (refresher, _) = self.refresherWithObserverBlock { $0.sendFailed(NSError(subdomain: "hi", description: "ho")) }
+                let (refresher, _) = self.refresherWithObserverBlock { $0.send(error: NSError(subdomain: "hi", description: "ho")) }
 
                 it("ends the refresh control") {
                     refresher.refresh(true)
-                    XCTAssertFalse(refresher.refreshControl.refreshing)
+                    XCTAssertFalse(refresher.refreshControl.isRefreshing)
                 }
 
                 it("refreshCompleted event sent with the error") {
-                    let expectation = self.expectationWithDescription("refreshCompleted")
+                    let expectation = self.expectation(description: "refreshCompleted")
                     var error: NSError?
-                    refresher.refreshingCompleted.observeNext { e in
+                    refresher.refreshingCompleted.observeValues { e in
                         error = e
                         expectation.fulfill()
                     }
                     refresher.refresh(true)
-                    self.waitForExpectationsWithTimeout(1, handler: nil)
+                    self.waitForExpectations(timeout: 1, handler: nil)
                     XCTAssertNotNil(error)
                 }
             }
@@ -132,35 +132,35 @@ class SignalProducerRefresherTests: XCTestCase {
 
                 it("ends the refresh control") {
                     refresher.refresh(true)
-                    XCTAssertFalse(refresher.refreshControl.refreshing)
+                    XCTAssertFalse(refresher.refreshControl.isRefreshing)
                 }
 
                 it("refreshCompleted event is sent") {
-                    let expectation = self.expectationWithDescription("refreshCompleted")
+                    let expectation = self.expectation(description: "refreshCompleted")
                     var error: NSError?
-                    refresher.refreshingCompleted.observeNext { e in
+                    refresher.refreshingCompleted.observeValues { e in
                         error = e
                         expectation.fulfill()
                     }
                     refresher.refresh(true)
-                    self.waitForExpectationsWithTimeout(1, handler: nil)
+                    self.waitForExpectations(timeout: 1, handler: nil)
                     XCTAssertNil(error)
                 }
             }
 
             context("when it gets canceled") {
-                let (refresher, _) = self.refresherWithObserverBlock { $0.sendNext() }
+                let (refresher, _) = self.refresherWithObserverBlock { $0.send(value: ()) }
 
                 it("ends refreshing") {
                     refresher.refresh(true)
                     refresher.cancel()
-                    XCTAssertFalse(refresher.refreshControl.refreshing)
+                    XCTAssertFalse(refresher.refreshControl.isRefreshing)
                 }
 
                 it("refreshCompleted event is sent") {
-                    let expectation = self.expectationWithDescription("refreshCompleted")
+                    let expectation = self.expectation(description: "refreshCompleted")
                     var error: NSError?
-                    refresher.refreshingCompleted.observeNext { e in
+                    refresher.refreshingCompleted.observeValues { e in
                         error = e
                         expectation.fulfill()
                     }
@@ -168,7 +168,7 @@ class SignalProducerRefresherTests: XCTestCase {
 
                     refresher.cancel()
 
-                    self.waitForExpectationsWithTimeout(1, handler: nil)
+                    self.waitForExpectations(timeout: 1, handler: nil)
                     XCTAssertNil(error)
                 }
             }
@@ -177,11 +177,11 @@ class SignalProducerRefresherTests: XCTestCase {
 
     // MARK: Helpers
 
-    func refresherWithObserverBlock(block: (Observer<Void, NSError>)->Void) -> (SignalProducerRefresher<SignalProducerType>, SignalProducerType) {
-        let sp = SignalProducerType { observer, disposable in
+    func refresherWithObserverBlock(_ block: @escaping (Observer<Void, NSError>)->Void) -> (SignalProducerRefresher<SignalProducerProtocol>, SignalProducerProtocol) {
+        let sp = SignalProducerProtocol { observer, disposable in
             block(observer)
         }
-        let refresher = SignalProducerRefresher<SignalProducerType>(refreshSignalProducer: sp, scope: RefreshScope.global, cacheKey: "testing_cache_key")
+        let refresher = SignalProducerRefresher<SignalProducerProtocol>(refreshSignalProducer: sp, scope: RefreshScope.global, cacheKey: "testing_cache_key")
         return (refresher, sp)
     }
 

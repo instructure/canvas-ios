@@ -20,36 +20,36 @@ import Foundation
 
 import TooLegit
 
-public class AlertThresholdAPI {
+open class AlertThresholdAPI {
 
-    public class func deleteAlertThreshold(session: Session, observerID: String, alertThresholdID: String) throws -> NSURLRequest {
+    open class func deleteAlertThreshold(_ session: Session, observerID: String, alertThresholdID: String) throws -> URLRequest {
         let path = "/alertthreshold/\(observerID)/\(alertThresholdID)"
-        let parameters: [String: AnyObject] = [:]
+        let parameters: [String: Any] = [:]
 
         return try session.DELETE(path, parameters: parameters)
     }
 
-    public class func getAlertThresholdByObservee(session: Session, parentID: String, studentID: String) throws -> NSURLRequest {
+    open class func getAlertThresholdByObservee(_ session: Session, parentID: String, studentID: String) throws -> URLRequest {
         let path = "/alertthreshold/student/\(parentID)/\(studentID)"
-        let parameters: [String: AnyObject] = [:]
+        let parameters: [String: Any] = [:]
 
         return try session.GET(path, parameters: parameters)
     }
 
-    public class func getAllAlertThresholds(session: Session) throws -> NSURLRequest {
+    open class func getAllAlertThresholds(_ session: Session) throws -> URLRequest {
         let path = "/alertthreshold/\(session.user.id)"
-        let parameters: [String: AnyObject] = [:]
+        let parameters: [String: Any] = [:]
 
         return try session.GET(path, parameters: parameters)
     }
 
-    public class func insertAlertThreshold(session: Session, observerID: String, studentID: String, alertType: String, threshold: String? = nil) throws -> NSURLRequest {
+    open class func insertAlertThreshold(_ session: Session, observerID: String, studentID: String, alertType: String, threshold: String? = nil) throws -> URLRequest {
         let path = "/alertthreshold/\(observerID)/"
-        let nillableParameters: [String: AnyObject?] = [
-            "observer_id": observerID,
-            "student_id": studentID,
-            "alert_type": alertType,
-            "threshold": threshold
+        let nillableParameters: [String: Any?] = [
+            "observer_id": observerID as Optional<Any>,
+            "student_id": studentID as Optional<Any>,
+            "alert_type": alertType as Optional<Any>,
+            "threshold": threshold as Optional<Any>
         ]
 
         let parameters = Session.rejectNilParameters(nillableParameters)
@@ -57,11 +57,11 @@ public class AlertThresholdAPI {
         return try session.PUT(path, parameters: parameters)
     }
 
-    public class func updateAlertThreshold(session: Session, observerID: String, alertThresholdID: String, alertType: String, threshold: String? = nil) throws -> NSURLRequest {
+    open class func updateAlertThreshold(_ session: Session, observerID: String, alertThresholdID: String, alertType: String, threshold: String? = nil) throws -> URLRequest {
         let path = "/alertthreshold/\(observerID)/\(alertThresholdID)"
-        let nillableParameters: [String: AnyObject?] = [
-            "alert_type": alertType,
-            "threshold": threshold
+        let nillableParameters: [String: Any?] = [
+            "alert_type": alertType as Optional<Any>,
+            "threshold": threshold as Optional<Any>
         ]
 
         let parameters = Session.rejectNilParameters(nillableParameters)

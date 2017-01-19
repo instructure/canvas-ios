@@ -17,16 +17,16 @@
     
 
 import Marshal
-import ReactiveCocoa
+import ReactiveSwift
 import TooLegit
 
 extension Todo {
-    static func getTodos(session: Session) throws -> SignalProducer<[JSONObject], NSError> {
+    static func getTodos(_ session: Session) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try TodoAPI.getTodos(session)
         return session.paginatedJSONSignalProducer(request)
     }
 
-    func ignore(session: Session) throws -> SignalProducer<JSONObject, NSError> {
+    func ignore(_ session: Session) throws -> SignalProducer<JSONObject, NSError> {
         let request = try TodoAPI.ignoreTodo(session, todo: self)
         return session.JSONSignalProducer(request)
     }

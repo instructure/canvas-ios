@@ -246,10 +246,10 @@ You must first complete:" = "
 /* Archive selected messages button */
 "Archive" = "アーカイブ";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "選択されたメッセージボタンをアーカイブに保存";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "すべての選択されたメッセージをアーカイブに保存";
 
 /* No comment provided by engineer. */
@@ -383,10 +383,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Completed" = "完了済み";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "メッセージボタンを作成する";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "メッセージを作成する";
 
 /* Title for Conferences tab */

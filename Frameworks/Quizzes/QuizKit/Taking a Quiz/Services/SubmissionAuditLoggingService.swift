@@ -26,7 +26,7 @@ typealias SubmissionAuditLoggingResult = Result<Page<Bool>, NSError>
 
 protocol SubmissionAuditLoggingService {
     
-    func logSessionStarted(completed: SubmissionAuditLoggingResult->())
+    func logSessionStarted(_ completed: @escaping (SubmissionAuditLoggingResult)->())
     
     // TODO: in the future, include other events, such as going into the background, changing answer, flagging a question, etc
 }

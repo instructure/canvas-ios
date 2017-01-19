@@ -21,7 +21,7 @@ import AssignmentKit
 import SoPersistent
 import SoLazy
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import SoPretty
 
 // Mark: Custom Cells
@@ -48,15 +48,17 @@ class RubricViewController: Rubric.DetailViewController {
         super.init(coder: aDecoder)
     }
  
-    static func new(session: Session, courseID: String, assignmentID: String) throws -> RubricViewController {
-        guard let me = UIStoryboard(name: "Rubric", bundle: NSBundle(forClass: self)).instantiateInitialViewController() as? RubricViewController else {
+    static func new(_ session: Session, courseID: String, assignmentID: String) throws -> RubricViewController {
+        guard let me = UIStoryboard(name: "Rubric", bundle: Bundle(for: self)).instantiateInitialViewController() as? RubricViewController else {
             fatalError()
         }
         
         let observer = try Rubric.observer(session, courseID: courseID, assignmentID: assignmentID)
         let refresher = try Rubric.refresher(session, courseID: courseID, assignmentID: assignmentID)
         
-        me.prepare(observer, refresher: refresher, detailsFactory: RubricCellViewModel.rubricDetails(session.baseURL))
+        me.prepare(observer, refresher: refresher) { rubric in
+            RubricCellViewModel.rubricDetails(baseURL: session.baseURL, rubric: rubric)
+        }
         
         return me
     }

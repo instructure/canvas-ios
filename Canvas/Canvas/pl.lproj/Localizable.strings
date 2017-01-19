@@ -59,6 +59,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ wymagają oceny";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ pkt";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Typ: %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -264,7 +270,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Pamięc podręcna wyczyszczona";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Kalendarz";
 
 /* (No Commment) */
@@ -319,6 +326,9 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 
 /* (No Commment) */
 "Choose from Library..." = "Wybierz z Biblioteki...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Wybierz opcję";
 
 /* (No Commment) */
 "Choose video" = "Wybierz wideo";
@@ -377,7 +387,8 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* (No Commment) */
 "Course Syllabus" = "Konspekt kursu";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "Kursy";
 
 /* (No Commment) */
@@ -454,6 +465,9 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 
 /* (No Commment) */
 "Downloading..." = "Pobieranie...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Termin %@";
 
 /* (No Commment) */
 "Due:" = "Termin:";
@@ -638,6 +652,9 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* (No Commment) */
 "Item %1$d of %2$d" = "Pozycja %1$d z %2$d";
 
+/* table header for module items */
+"Items" = "Pozycje";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Jest puste, co tu jeszcze robisz.";
 
@@ -662,11 +679,17 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* (No Commment) */
 "Legal" = "Legalne";
 
+/* Web URL link item label */
+"Link" = "Łącze";
+
 /* (No Commment) */
 "Loading..." = "Ładowanie...";
 
 /* (No Commment) */
 "Locked" = "Zablokowane";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Zablokowano do chwili oceny \"%@\"";
 
 /* locked date */
 "Locked until %@" = "Zablokowane do %@";
@@ -688,6 +711,9 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 
 /* (No Commment) */
 "Masquerade" = "Podszywanie";
+
+/* Master Path module item type */
+"Mastery Path" = "Ścieżka nauki";
 
 /* (No Commment) */
 "Me" = "Ja";
@@ -716,7 +742,7 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Powiadom każdego oddzielnie czy dodaj wszystkich do konwersacji grupowej?";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Wiadomości";
 
 /* (No Commment) */
@@ -761,6 +787,9 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* (No Commment) */
 "New Folder" = "Nowy folder";
 
+/* Button title for next module item. */
+"Next" = "Dalej";
+
 /* (No Commment) */
 "Next 7 Days" = "Kolejnych 7 dni";
 
@@ -775,6 +804,9 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "Brak terminu";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "Brak ścieżek nauki";
 
 /* (No Commment) */
 "No Recorded Audio" = "Brak nagranego dźwięku";
@@ -833,7 +865,8 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Preferencje powiadomień";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Powiadomienia";
 
 /* OK Button Title */
@@ -859,6 +892,9 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 
 /* (No Commment) */
 "Open in..." = "Otwórz w...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Opcja %d";
 
 /* (No Commment) */
 "Other" = "Inne";
@@ -901,6 +937,12 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 
 /* (No Commment) */
 "Posts your comment" = "Opublikuj komentarz";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Wymagane moduły";
+
+/* Button title for previous module item. */
+"Previous" = "Poprzednie";
 
 /* (No Commment) */
 "Previous item" = "Poprzednia pozycja";
@@ -986,6 +1028,12 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Wyszukaj tutaj...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Wybierz opcję";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Wybierz opcję %d";
+
 /* (No Commment) */
 "Select file(s)" = "Wybierz plik(i)";
 
@@ -1036,6 +1084,20 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 
 /* (No Commment) */
 "Starts recording a media comment" = "Rozpoczyna nagrywanie komentarza medialnego";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Status: Ukończono";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Status: Nie ukończono";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Status: Zablokowany";
+
+/* Module status label when started */
+"Status: Started" = "Status: Rozpoczęto";
 
 /* (No Commment) */
 "Stay Logged In" = "Pozostań zalogowany";
@@ -1203,16 +1265,22 @@ Błąd: %@";
 /* (No Commment) */
 "This is a media message." = "To jest wiadomość medialna.";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Nie skonfigurowano ścieżek nauki dla tego elementu modułu.";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "To jest dobry moment na zarobienie dodatkowego kredytu.";
 
 /* Title of the Todo screen */
 "To Do" = "Do zrobienia";
 
+/* To-Do List landing page title */
+"To-Do List" = "Lista rzeczy do zrobienia";
+
 /* (No Commment) */
 "To:" = "Do:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "Dzisiaj";
 
 /* No comment provided by engineer. */
@@ -1232,6 +1300,9 @@ Błąd: %@";
 
 /* (No Commment) */
 "Turn in %@" = "Oddaj %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Typ: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Błąd! Brak połączenia z Internetem";

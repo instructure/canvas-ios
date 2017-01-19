@@ -25,7 +25,7 @@ import Marshal
 import AssignmentKit
 
 extension Todo {
-    static func build(context: NSManagedObjectContext,
+    static func build(_ context: NSManagedObjectContext,
                       id: String = "1",
                       done: Bool = false,
                       type: String = "submitting",
@@ -34,11 +34,11 @@ extension Todo {
                       htmlURL: String = "",
                       assignmentID: String = "1",
                       assignmentName: String = "Simple Assignment",
-                      assignmentDueDate: NSDate? = nil,
+                      assignmentDueDate: Date? = nil,
                       needsGradingCount: NSNumber? = nil,
                       assignmentHtmlURL: String = "",
-                      submissionTypes: SubmissionTypes = [],
-                      contextID: ContextID = ContextID(id: "1", context: .Course)
+                      todoType: TodoType = .assignment,
+                      contextID: ContextID = ContextID(id: "1", context: .course)
     ) -> Todo {
         let todo = Todo(inContext: context)
         todo.id = id
@@ -52,7 +52,7 @@ extension Todo {
         todo.assignmentDueDate = assignmentDueDate
         todo.needsGradingCount = needsGradingCount
         todo.assignmentHtmlURL = assignmentHtmlURL
-        todo.submissionTypes = submissionTypes
+        todo.todoType = todoType
         todo.contextID = contextID
         return todo
     }

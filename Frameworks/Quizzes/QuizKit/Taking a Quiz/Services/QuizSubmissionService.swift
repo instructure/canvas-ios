@@ -29,9 +29,9 @@ protocol QuizSubmissionService {
     
     var submission: Submission { get }
     
-    func getQuestions(completed: SubmissionQuestionsResult->())
+    func getQuestions(_ completed: @escaping (SubmissionQuestionsResult)->())
     
-    func selectAnswer(answer: SubmissionAnswer, forQuestion: SubmissionQuestion, completed: SelectAnswerResult->())
+    func selectAnswer(_ answer: SubmissionAnswer, forQuestion: SubmissionQuestion, completed: @escaping (SelectAnswerResult)->())
     
-    func markQuestionFlagged(question: SubmissionQuestion, flagged: Bool, completed: FlagQuestionResult->())
+    func markQuestionFlagged(_ question: SubmissionQuestion, flagged: Bool, completed: @escaping (FlagQuestionResult)->())
 }

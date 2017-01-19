@@ -33,7 +33,7 @@ let peepKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a probl
 // ---------------------------------------------
 extension Session {
     func observeesManagedObjectContext() throws -> NSManagedObjectContext {
-        guard let model = NSManagedObjectModel(named: "Peeps", inBundle: NSBundle(forClass: User.self))?.mutableCopy() as? NSManagedObjectModel else {
+        guard let model = NSManagedObjectModel(named: "Peeps", inBundle: Bundle(for: User.self))?.mutableCopy() as? NSManagedObjectModel else {
             throw NSError(subdomain: peepKitSubdomain, code: peepKitFailedToLoadErrorCode, title: peepKitFailedToLoadErrorDescription, description: peepKitFailedToLoadErrorDescription)
         }
 

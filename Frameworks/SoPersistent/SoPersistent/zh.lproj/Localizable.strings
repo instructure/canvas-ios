@@ -7,7 +7,7 @@
 /* tile for error reading cache */
 "Read Error" = "阅读错误";
 
-/* SoPersistent Tests database fails */
+/* (No Commment) */
 "There was a problem loading the SoPersistentTests database file." = "加载 SoPersistentTests 数据文件时出现问题。";
 
 /* Persistence error message */

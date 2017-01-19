@@ -27,15 +27,20 @@ class MainPrettyViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "SegueCell")
+        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "SegueCell")
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Toast", style: .plain, target: self, action: #selector(toast(sender:)))
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func toast(sender: Any) {
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return segues.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SegueCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SegueCell", for: indexPath)
         
         cell.textLabel?.text = segues[indexPath.row].0
         
@@ -43,7 +48,7 @@ class MainPrettyViewController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = segues[indexPath.row].1()
         
         self.navigationController?.pushViewController(vc, animated: true)

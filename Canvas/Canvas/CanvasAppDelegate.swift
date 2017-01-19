@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if unitTesting {
             return true
         }
@@ -45,10 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
         if url.scheme == "file" {
             do {
-                try ReceivedFilesViewController.addToReceivedFiles(url)
+                try ReceivedFilesViewController.add(toReceivedFiles: url)
                 return true
             } catch let e as NSError {
                 handleError(e)
@@ -62,29 +62,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
 
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        return self.application(application, handleOpenURL: url)
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return self.application(application, handleOpen: url)
     }
 }
 
 // MARK: Push notifications
 extension AppDelegate {
 
-    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
         #if !arch(i386) && !arch(x86_64)
             application.registerForRemoteNotifications()
         #endif
     }
 
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         didRegisterForRemoteNotifications(deviceToken)
     }
     
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        didFailToRegisterForRemoteNotifications(error)
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        didFailToRegisterForRemoteNotifications(error as NSError)
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         app(application, didReceiveRemoteNotification: userInfo)
     }
     
@@ -92,8 +92,8 @@ extension AppDelegate {
 
 // MARK: Local notifications
 extension AppDelegate {
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        if let assignmentURL = (notification.userInfo?[CBILocalNotificationAssignmentURLKey] as? String).flatMap({ NSURL(string: $0) }) {
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        if let assignmentURL = (notification.userInfo?[CBILocalNotificationAssignmentURLKey] as? String).flatMap({ URL(string: $0) }) {
             openCanvasURL(assignmentURL)
         }
     }
@@ -102,7 +102,7 @@ extension AppDelegate {
 // MARK: Post launch setup
 extension AppDelegate {
     func makeAWindow() {
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
     }
     
@@ -113,8 +113,8 @@ extension AppDelegate {
         NetworkMonitor.engage()
         CBILogger.install(LoginConfiguration.sharedConfiguration.logFileManager)
         Brand.current().apply(self.window!)
-        UINavigationBar.appearance().barStyle = .Black
-        Router.sharedRouter().addCanvasRoutes(handleError)
+        UINavigationBar.appearance().barStyle = .black
+        Router.shared().addCanvasRoutes(handleError)
         setupDefaultErrorHandling()
     }
 }
@@ -123,23 +123,21 @@ extension AppDelegate {
 extension AppDelegate {
     
     func prepareTheKeymaster() {
-        TheKeymaster.delegate = LoginConfiguration.sharedConfiguration
+        TheKeymaster?.delegate = LoginConfiguration.sharedConfiguration
 
         Session.logoutSignalProducer
-            .on(failed: handleError)
-            .startWithNext(didLogout)
+            .startWithValues(didLogout)
         
         Session.loginSignalProducer
-            .on(failed: handleError)
-            .startWithNext(didLogin)
+            .startWithValues(didLogin)
     }
     
-    func didLogin(session: Session) {
+    func didLogin(_ session: Session) {
 
         LegacyModuleProgressShim.observeProgress(session)
         ModuleItem.beginObservingProgress(session)
         Crashlytics.setDebugInformation()
-        ConversationUpdater.sharedConversationUpdater().updateUnreadConversationCount()
+        ConversationUpdater.shared().updateUnreadConversationCount()
         CKCanvasAPI.updateCurrentAPI() // set's currenAPI from CKIClient.currentClient()
         
         let root = rootViewController(session)
@@ -148,11 +146,11 @@ extension AppDelegate {
         window?.rootViewController = root
     }
     
-    func didLogout(domainPicker: UIViewController) {
+    func didLogout(_ domainPicker: UIViewController) {
         window?.rootViewController = domainPicker
     }
     
-    func addClearCacheGesture(view: UIView) {
+    func addClearCacheGesture(_ view: UIView) {
         let clearCacheGesture = UITapGestureRecognizer(target: self, action: #selector(clearCache))
         clearCacheGesture.numberOfTapsRequired = 3
         clearCacheGesture.numberOfTouchesRequired = 4
@@ -160,20 +158,20 @@ extension AppDelegate {
     }
     
     func clearCache() {
-        NSURLCache.sharedURLCache().removeAllCachedResponses()
-        let alert = UIAlertController(title: NSLocalizedString("Cache cleared", comment: ""), message: nil, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .Default, handler: nil))
-        window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        URLCache.shared.removeAllCachedResponses()
+        let alert = UIAlertController(title: NSLocalizedString("Cache cleared", comment: ""), message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .default, handler: nil))
+        window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
 }
 
 // MARK: SoErroneous
 extension AppDelegate {
     
-    func presentErrorAlert(presentingViewController: UIViewController, error: NSError) {
+    func presentErrorAlert(_ presentingViewController: UIViewController, error: NSError) {
         error.presentAlertFromViewController(presentingViewController, reportError: {
-            let support = SupportTicketViewController.presentFromViewController(presentingViewController, supportTicketType: SupportTicketTypeProblem)
-            support.initialTicketBody = error.reportDescription
+            let support = SupportTicketViewController.present(from: presentingViewController, supportTicketType: SupportTicketTypeProblem)
+            support?.initialTicketBody = error.reportDescription
         })
     }
     
@@ -195,7 +193,7 @@ extension AppDelegate {
         return vc
     }
     
-    func handleError(error: NSError) {
+    func handleError(_ error: NSError) {
         if let vc = window?.rootViewController  {
             presentErrorAlert(vc, error: error)
         }
@@ -205,16 +203,16 @@ extension AppDelegate {
 
 // MARK: Launching URLS
 extension AppDelegate {
-    func openCanvasURL(url: NSURL) -> Bool {
+    func openCanvasURL(_ url: URL) -> Bool {
     
         if url.scheme == "canvas-courses" {
-            Router.sharedRouter().openCanvasURL(url)
+            Router.shared().openCanvasURL(url)
             return true
         }
         
         if url.scheme == "file" {
             do {
-                try ReceivedFilesViewController.addToReceivedFiles(url)
+                try ReceivedFilesViewController.add(toReceivedFiles: url)
                 return true
             } catch let e as NSError {
                 handleError(e)
@@ -226,7 +224,7 @@ extension AppDelegate {
             return true
         }
         
-        Router.sharedRouter().openCanvasURL(url)
+        Router.shared().openCanvasURL(url)
         return true
     }
 }

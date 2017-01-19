@@ -21,11 +21,31 @@ import SoLazy
 
 
 public struct ContextID: Hashable, Equatable, CustomStringConvertible {
+    
+    public static let currentUser = ContextID.user(withID: "self")
+    
+    public static func course(withID courseID: String) -> ContextID {
+        return ContextID(id: courseID, context: .course)
+        
+    }
+    
+    public static func group(withID groupID: String) -> ContextID {
+        return ContextID(id: groupID, context: .group)
+    }
+    
+    public static func user(withID userID: String) -> ContextID {
+        return ContextID(id: userID, context: .user)
+    }
+    
+    public static func account(withID accountID: String) -> ContextID {
+        return ContextID(id: accountID, context: .account)
+    }
+    
     public enum Context: String {
-        case Course = "course"
-        case Group = "group"
-        case User = "user"
-        case Account = "account"
+        case course = "course"
+        case group = "group"
+        case user = "user"
+        case account = "account"
 
         public var pathComponent: String {
             return rawValue + "s"
@@ -39,7 +59,7 @@ public struct ContextID: Hashable, Equatable, CustomStringConvertible {
             self = component
         }
         
-        private static var allContexts: [Context] = [.Course, .Group, .User, .Account]
+        fileprivate static var allContexts: [Context] = [.course, .group, .user, .account]
     }
     
     public let id: String
@@ -87,22 +107,22 @@ public func ==(lhs: ContextID, rhs: ContextID) -> Bool {
 // MARK: Parsing
 
 extension ContextID {
-    private static func parseContextAndID(path: String) -> (Context, String)? {
+    fileprivate static func parseContextAndID(_ path: String) -> (Context, String)? {
         let components = (path as NSString).pathComponents
         
-        let matches: [(Int, Context)] = components.enumerate().flatMap { (index, component) in
+        let matches: [(Int, Context)] = components.enumerated().flatMap { (index, component) in
                 return Context(pathComponent: component).map { (index, $0) }
             }
         
-        guard let (index, context) = matches.first where (index + 1) < components.count else { return nil }
+        guard let (index, context) = matches.first, (index + 1) < components.count else { return nil }
         
         let id = components[index + 1]
         
         return (context, expandTildaForCrossShardID(id))
     }
     
-    public init?(url: NSURL) {
-        guard let (context, id) = url.path.flatMap(ContextID.parseContextAndID) else { return nil }
+    public init?(url: URL) {
+        guard let (context, id) = ContextID.parseContextAndID(url.path) else { return nil }
         
         self.id = id
         self.context = context
@@ -116,9 +136,9 @@ extension ContextID {
     }
     
     public init?(canvasContext: String) {
-        let components = canvasContext.componentsSeparatedByString("_")
+        let components = canvasContext.components(separatedBy: "_")
         guard components.count == 2 else { return nil }
-        guard let context = Context(rawValue: components[0].lowercaseString) else { return nil }
+        guard let context = Context(rawValue: components[0].lowercased()) else { return nil }
         self.context = context
         self.id = expandTildaForCrossShardID(components[1])
     }

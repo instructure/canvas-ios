@@ -1,8 +1,8 @@
 /* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "Décryptage de l'id du context depuis l'URL impossible";
+"Could not parse context id from URL" = "Décryptage de l'id du context depuis l'URL impossible ";
 
 /* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "La demande de marquage d'une tâche comme étant réalisée a été interrompue";
+"The request to mark a to do as done was interrupted" = "La demande de marquage d'une tâche comme étant réalisée a été interrompue ";
 
 /* CalendarKit Database Load Failure Message */
 "There was a problem loading the (kitModelName) database file." = "Un problème est survenu lors du chargement du fichier de base de données (kitModelName).";

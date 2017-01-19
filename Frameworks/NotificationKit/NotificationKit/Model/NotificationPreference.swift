@@ -18,7 +18,7 @@
 
 import Foundation
 
-public class NotificationPreference: CustomStringConvertible {
+open class NotificationPreference: CustomStringConvertible {
     public enum Frequency: String, CustomStringConvertible {
         case Immediately = "immediately"
         case Daily = "daily"
@@ -60,14 +60,14 @@ public class NotificationPreference: CustomStringConvertible {
     }
     
     var category: String
-    public var frequency: Frequency
+    open var frequency: Frequency
     var notification: String
     
-    public var description: String {
+    open var description: String {
         return "Category: \(category) Frequency: \(frequency) Notification: \(notification)"
     }
     
-    public static func create(dictionary: Dictionary<String, AnyObject>) -> NotificationPreference? {
+    open static func create(_ dictionary: Dictionary<String, Any>) -> NotificationPreference? {
         if  let category        = dictionary["category"] as? String,
             let frequency       = dictionary["frequency"] as? String,
             let notification    = dictionary["notification"] as? String {
@@ -77,7 +77,7 @@ public class NotificationPreference: CustomStringConvertible {
         }
     }
     
-    private init(category: String, frequency: String, notification: String) {
+    fileprivate init(category: String, frequency: String, notification: String) {
         self.category = category
         if let frequencyToSet = Frequency(rawValue: frequency) {
             self.frequency = frequencyToSet

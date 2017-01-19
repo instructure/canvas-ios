@@ -48,7 +48,7 @@ class SoLazyTests: XCTestCase {
     }
     
     func testLocalNotificationUserInfoDictionary() {
-        let fakeAssignment = NotifiableObject(due: NSDate(timeIntervalSinceNow: 10.0), name: "School of Hard Knock 1", url: NSURL(string: "https://mobiledev.instructure.com/courses/1140383/assignments/4799961")!, id: "4799961")
+        let fakeAssignment = NotifiableObject(due: Date(timeIntervalSinceNow: 10.0), name: "School of Hard Knock 1", url: URL(string: "https://mobiledev.instructure.com/courses/1140383/assignments/4799961")!, id: "4799961")
         let userInfo = notificationHandler.userInfoDictionary(fakeAssignment)
         
         XCTAssertNotNil(userInfo, "failed to create userInfo object from assignment mock object")

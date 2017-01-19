@@ -21,9 +21,9 @@ import SoPretty
 
 class TriangleGradientNavigationBar: UINavigationBar {
 
-    private var topTintColor: UIColor?
-    private var bottomTintColor: UIColor?
-    private var oldSize = CGSizeZero
+    fileprivate var topTintColor: UIColor?
+    fileprivate var bottomTintColor: UIColor?
+    fileprivate var oldSize = CGSize.zero
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,38 +36,38 @@ class TriangleGradientNavigationBar: UINavigationBar {
     }
 
     func commonInit() {
-        translucent = false
-        barStyle = .Black
+        isTranslucent = false
+        barStyle = .black
         shadowImage = UIImage()
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        if !CGSizeEqualToSize(bounds.size, oldSize) {
+        if !bounds.size.equalTo(oldSize) {
             redrawBackgroundImage()
             oldSize = bounds.size
         }
     }
 
-    func transitionToColors(topTintColor: UIColor?, bottomTintColor: UIColor?) {
+    func transitionToColors(_ topTintColor: UIColor?, bottomTintColor: UIColor?) {
         self.topTintColor = topTintColor
         self.bottomTintColor = bottomTintColor
         redrawBackgroundImage()
     }
 
     func redrawBackgroundImage() {
-        guard let topTintColor = topTintColor, bottomTintColor = bottomTintColor else { return }
+        guard let topTintColor = topTintColor, let bottomTintColor = bottomTintColor else { return }
 
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenSize: CGRect = UIScreen.main.bounds
         let triangleBackgroundView = TriangleBackgroundGradientView(frame: screenSize, tintTopColor: topTintColor, tintBottomColor: bottomTintColor)
 
-        UIGraphicsBeginImageContextWithOptions(triangleBackgroundView.frame.size, triangleBackgroundView.opaque, 0.0)
-        triangleBackgroundView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        UIGraphicsBeginImageContextWithOptions(triangleBackgroundView.frame.size, triangleBackgroundView.isOpaque, 0.0)
+        triangleBackgroundView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let img = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        self.setBackgroundImage(img, forBarMetrics: UIBarMetrics.Default)
+        self.setBackgroundImage(img, for: UIBarMetrics.default)
     }
 
 }

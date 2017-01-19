@@ -23,11 +23,11 @@ import CalendarKit
 import TechDebt
 import SoIconic
 
-public func CalendarTabViewController(session session: Session, route: (UIViewController, NSURL)->()) throws -> UIViewController {
+public func CalendarTabViewController(session: Session, route: @escaping (UIViewController, URL)->()) throws -> UIViewController {
     let calendarTitle = NSLocalizedString("Calendar", comment: "Calendar page title")
 
     let calendarVC: UIViewController
-    if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+    if UIDevice.current.userInterfaceIdiom == .phone {
         let monthVC = CalendarMonthViewController.new(session)
         monthVC.routeToURL = { [unowned monthVC] url in
             route(monthVC, url)

@@ -1,8 +1,7 @@
-/* record button a11y hint
-   stop record button a11y hint */
+/* stop record button a11y hint */
 "Begin recording" = "Aufzeichnung starten";
 
-/* Cancel button */
+/* Cancel button title */
 "Cancel" = "Abbrechen";
 
 /* Delete button */
@@ -44,11 +43,11 @@
 /* Record button a11y label */
 "Request Audio Recording Permission" = "Audioaufnahmegenehmigung erbitten";
 
-/* record button a11y hint */
+/* stop record button a11y hint */
 "Request Permission to record audio" = "Genehmigung für eine Audioaufzeichnung erbitten";
 
 /* stop recording button a11y label */
-"Stop" = "Stoppen";
+"Stop" = "Anhalten";
 
 /* Error message for a file missing */
 "The file does not exist." = "Die Datei existiert nicht.";

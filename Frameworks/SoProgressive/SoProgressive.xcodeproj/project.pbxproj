@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4934796D1CB2DE0A008D14DD /* SoProgressive.h in Headers */ = {isa = PBXBuildFile; fileRef = 4934796C1CB2DE0A008D14DD /* SoProgressive.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		493479781CB2DE6A008D14DD /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493479751CB2DE6A008D14DD /* ReactiveCocoa.framework */; };
 		493479791CB2DE6A008D14DD /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493479761CB2DE6A008D14DD /* SoLazy.framework */; };
 		4934797A1CB2DE6A008D14DD /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493479771CB2DE6A008D14DD /* TooLegit.framework */; };
 		4934797C1CB2DE8A008D14DD /* Session+Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934797B1CB2DE8A008D14DD /* Session+Progress.swift */; };
@@ -20,6 +19,7 @@
 		4934799B1CB445E1008D14DD /* ProgressSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934799A1CB445E1008D14DD /* ProgressSpec.swift */; };
 		4934799D1CB4488F008D14DD /* ProgressDispatcherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934799C1CB4488F008D14DD /* ProgressDispatcherSpec.swift */; };
 		493479A11CB457AF008D14DD /* Session+ProgressSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493479A01CB457AF008D14DD /* Session+ProgressSpec.swift */; };
+		4980F9AF1DE3AB0400D71093 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4980F9AE1DE3AAF400D71093 /* ReactiveSwift.framework */; };
 		B1ABA82D1DC2BF750021021C /* DispatcherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABA82C1DC2BF750021021C /* DispatcherSpec.swift */; };
 		B1ABA8321DC2C05D0021021C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ABA82F1DC2C05D0021021C /* Nimble.framework */; };
 		B1ABA8331DC2C05D0021021C /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ABA8301DC2C05D0021021C /* Quick.framework */; };
@@ -42,7 +42,6 @@
 		493479691CB2DE0A008D14DD /* SoProgressive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoProgressive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4934796C1CB2DE0A008D14DD /* SoProgressive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoProgressive.h; sourceTree = "<group>"; };
 		4934796E1CB2DE0A008D14DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		493479751CB2DE6A008D14DD /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		493479761CB2DE6A008D14DD /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		493479771CB2DE6A008D14DD /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4934797B1CB2DE8A008D14DD /* Session+Progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Progress.swift"; sourceTree = "<group>"; };
@@ -55,6 +54,7 @@
 		4934799A1CB445E1008D14DD /* ProgressSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressSpec.swift; sourceTree = "<group>"; };
 		4934799C1CB4488F008D14DD /* ProgressDispatcherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressDispatcherSpec.swift; sourceTree = "<group>"; };
 		493479A01CB457AF008D14DD /* Session+ProgressSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+ProgressSpec.swift"; sourceTree = "<group>"; };
+		4980F9AE1DE3AAF400D71093 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1ABA82C1DC2BF750021021C /* DispatcherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatcherSpec.swift; sourceTree = "<group>"; };
 		B1ABA82F1DC2C05D0021021C /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-bfbrqncyiycsvlbivmvakhrbtxmo/Build/Products/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
 		B1ABA8301DC2C05D0021021C /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-bfbrqncyiycsvlbivmvakhrbtxmo/Build/Products/Debug-iphoneos/Quick.framework"; sourceTree = "<group>"; };
@@ -69,9 +69,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				493479791CB2DE6A008D14DD /* SoLazy.framework in Frameworks */,
-				493479781CB2DE6A008D14DD /* ReactiveCocoa.framework in Frameworks */,
 				4934797A1CB2DE6A008D14DD /* TooLegit.framework in Frameworks */,
 				4934797E1CB3066A008D14DD /* Result.framework in Frameworks */,
+				4980F9AF1DE3AB0400D71093 /* ReactiveSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +92,7 @@
 		4934795F1CB2DE0A008D14DD = {
 			isa = PBXGroup;
 			children = (
+				493479741CB2DE35008D14DD /* Dependencies */,
 				4934796B1CB2DE0A008D14DD /* SoProgressive */,
 				4934798A1CB44510008D14DD /* SoProgressiveTests */,
 				4934796A1CB2DE0A008D14DD /* Products */,
@@ -110,7 +111,6 @@
 		4934796B1CB2DE0A008D14DD /* SoProgressive */ = {
 			isa = PBXGroup;
 			children = (
-				493479741CB2DE35008D14DD /* Dependencies */,
 				4934796C1CB2DE0A008D14DD /* SoProgressive.h */,
 				4934796E1CB2DE0A008D14DD /* Info.plist */,
 				4934797B1CB2DE8A008D14DD /* Session+Progress.swift */,
@@ -125,12 +125,13 @@
 		493479741CB2DE35008D14DD /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				4980F9AE1DE3AAF400D71093 /* ReactiveSwift.framework */,
 				4934797D1CB3066A008D14DD /* Result.framework */,
-				493479751CB2DE6A008D14DD /* ReactiveCocoa.framework */,
 				493479761CB2DE6A008D14DD /* SoLazy.framework */,
 				493479771CB2DE6A008D14DD /* TooLegit.framework */,
 			);
 			name = Dependencies;
+			path = SoProgressive;
 			sourceTree = "<group>";
 		};
 		4934798A1CB44510008D14DD /* SoProgressiveTests */ = {
@@ -219,11 +220,11 @@
 				TargetAttributes = {
 					493479681CB2DE0A008D14DD = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 					493479881CB44510008D14DD = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -408,6 +409,7 @@
 		493479721CB2DE0A008D14DD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -417,19 +419,20 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SoProgressive/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoProgressive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		493479731CB2DE0A008D14DD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -439,12 +442,12 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SoProgressive/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoProgressive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -455,7 +458,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoProgressiveTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -466,7 +469,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoProgressiveTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

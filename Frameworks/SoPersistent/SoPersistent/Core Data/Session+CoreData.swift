@@ -34,7 +34,7 @@ public struct StoreID {
         - Parameter modelFileName: This is the base name of the `.xcdatamodel` file.
         - Parameter localizedErrorDescription: This will be used if there is an error loading the store. It should be user-presentable and localized.
     */
-    public init(storeName: String, modelFileName: String, modelFileBundle: NSBundle, localizedErrorDescription: String) {
+    public init(storeName: String, modelFileName: String, modelFileBundle: Bundle, localizedErrorDescription: String) {
         self.storeName = storeName
         self.localizedErrorDescription = localizedErrorDescription
         
@@ -85,21 +85,22 @@ extension Session {
         }
     }
 
-    public func managedObjectContext(id: StoreID) throws -> NSManagedObjectContext {
+    public func managedObjectContext(_ id: StoreID) throws -> NSManagedObjectContext {
         let contextsByStoreID = self.contextsByStoreID
         guard let context = contextsByStoreID[id.storeName] as? NSManagedObjectContext else {
-            let storeURL = localStoreDirectoryURL.URLByAppendingPathComponent("\(id.storeName).sqlite")
+            let storeURL = localStoreDirectoryURL.appendingPathComponent("\(id.storeName).sqlite")
             print(storeURL)
 
             do {
-                let context = try NSManagedObjectContext(storeURL: storeURL!, model: id.model, concurrencyType: .MainQueueConcurrencyType, storeType: storeType) {
+                let context = try NSManagedObjectContext(storeURL: storeURL, model: id.model, concurrencyType: .mainQueueConcurrencyType, storeType: storeType) {
                     // called if the persistent store was reset due to incompatability
                     self.refreshScope.invalidateAllCaches()
                 }
+                context.mergePolicy = NSMergePolicy(merge: .mergeByPropertyStoreTrumpMergePolicyType)
                 contextsByStoreID[id.storeName] = context
                 return context
             } catch let e as NSError {
-                let title = NSLocalizedString("Data Error", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "Error title for a persistence related data failure")
+                let title = NSLocalizedString("Data Error", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "Error title for a persistence related data failure")
                 throw NSError(subdomain: id.storeName, code: e.code, sessionID: sessionID, apiURL: storeURL, title: title, description: id.localizedErrorDescription, failureReason: e.localizedDescription)
             }
         }

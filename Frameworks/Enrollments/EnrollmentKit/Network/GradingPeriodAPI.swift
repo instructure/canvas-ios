@@ -18,8 +18,8 @@
 
 import TooLegit
 
-public class GradingPeriodAPI {
-    public class func getGradingPeriods(session: Session, courseID: String) throws -> NSURLRequest {
+open class GradingPeriodAPI {
+    open class func getGradingPeriods(_ session: Session, courseID: String) throws -> URLRequest {
         let path = "/api/v1/courses/\(courseID)/grading_periods"
         return try session.GET(path)
     }

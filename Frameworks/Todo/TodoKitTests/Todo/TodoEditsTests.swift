@@ -29,7 +29,7 @@ class TodoEditTests: UnitTestCase {
     func testMarkAsDone_itMarksTheTodoAsDone() {
         let session = Session.ivy
         let context = try! session.todosManagedObjectContext()
-        let todo = Todo.build(context, id: "12345", ignoreURL: "https://mobiledev.instructure.com/api/v1/users/self/todo/assignment_9536420/submitting?permanent=0", done: false)
+        let todo = Todo.build(context, id: "12345", done: false, ignoreURL: "https://mobiledev.instructure.com/api/v1/users/self/todo/assignment_9536420/submitting?permanent=0")
         try! context.save()
 
         session.playback("todo-ignore", in: currentBundle) {
@@ -44,7 +44,7 @@ class TodoEditTests: UnitTestCase {
     func testMarkAsDone_whenTheSignalFails_itMarksTheTodoAsNotDone() {
         let session = Session.art
         let context = try! session.todosManagedObjectContext()
-        let todo = Todo.build(context, id: "12345", ignoreURL: "https://mobiledev.instructure.com/api/v1/users/self/todo/assignment_314159/submitting?permanent=0", done: false)
+        let todo = Todo.build(context, id: "12345", done: false, ignoreURL: "https://mobiledev.instructure.com/api/v1/users/self/todo/assignment_314159/submitting?permanent=0")
         try! context.save()
 
         session.playback("mark-todo-as-done-fails", in: currentBundle) {

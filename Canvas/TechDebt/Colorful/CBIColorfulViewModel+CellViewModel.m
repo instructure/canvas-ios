@@ -18,9 +18,7 @@
 
 #import "CBIColorfulViewModel+CellViewModel.h"
 #import "CBIColorfulCell.h"
-#import "CBISplitViewController.h"
 #import "Router.h"
-#import "UIViewController+Transitions.h"
 #import "CBILog.h"
 
 @implementation CBIColorfulViewModel (CellViewModel)

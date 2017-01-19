@@ -18,7 +18,6 @@
 
 #import "CBIFileViewModel.h"
 #import "CBIColorfulViewModel+CellViewModel.h"
-#import "CBISplitViewController.h"
 #import "EXTScope.h"
 @import CanvasKeymaster;
 #import "UIImage+TechDebt.h"
@@ -85,8 +84,11 @@
 {
     
     [tableViewController.viewModel.collectionController removeObjectAtIndexPath:indexPath];
-    if (tableViewController.cbi_splitViewController.detail.class == [FileViewController class] || self == ((MLVCViewController *)tableViewController.cbi_splitViewController.detail).viewModel) {
-        tableViewController.cbi_splitViewController.detail = nil;
+    MLVCViewController *detail = [tableViewController.splitViewController.viewControllers objectAtIndex:1];
+    if (detail.class == [FileViewController class] || self == detail.viewModel) {
+        UINavigationController *emptyNav = [[UINavigationController alloc] initWithRootViewController:[[UIViewController alloc] init]];
+        emptyNav.view.backgroundColor = [UIColor whiteColor];
+        tableViewController.splitViewController.viewControllers = @[tableViewController.splitViewController.viewControllers.firstObject, emptyNav];
     }
     
     RACSignal *deleteSignal = [[CKIClient currentClient] deleteFile:self.model];

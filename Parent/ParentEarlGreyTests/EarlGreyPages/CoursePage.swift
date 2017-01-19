@@ -22,27 +22,27 @@ class CoursePage: PageObject {
   // Mark: - Page Objects
 
   private static var closeButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("close_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("close_button"))
   }
 
-  private static func courseLabel(name: String) -> GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityLabel(name))
+  private static func courseLabel(_ name: String) -> GREYElementInteraction {
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityLabel(name))
   }
 
   private static var lastWeekButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("last_week_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("last_week_button"))
   }
 
   private static var weekHeaderLabel: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("week_header_label"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("week_header_label"))
   }
 
   private static var nextWeekButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("next_week_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("next_week_button"))
   }
 
   private static var emptyWeekView: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("week_empty_view"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("week_empty_view"))
   }
 
   static func uniquePageElement() -> GREYElementInteraction {
@@ -51,18 +51,18 @@ class CoursePage: PageObject {
 
   // Mark: - Assertion Helpers
 
-  static func assertPageObjects(file: String = #file, _ line: UInt = #line) {
+  static func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    closeButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    lastWeekButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    weekHeaderLabel.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    nextWeekButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
+    closeButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    lastWeekButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    weekHeaderLabel.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    nextWeekButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
   }
 
-  static func assertEmptyWeekView(file: String = #file, _ line: UInt = #line) {
+  static func assertEmptyWeekView(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    emptyWeekView.assertWithMatcher(grey_sufficientlyVisible())
+    emptyWeekView.assert(with: grey_sufficientlyVisible())
   }
 }

@@ -1,8 +1,7 @@
-/* record button a11y hint
-   stop record button a11y hint */
+/* stop record button a11y hint */
 "Begin recording" = "Timata tuhi";
 
-/* Cancel button */
+/* Cancel button title */
 "Cancel" = "Whakakore";
 
 /* Delete button */
@@ -44,7 +43,7 @@
 /* Record button a11y label */
 "Request Audio Recording Permission" = "Tono Ororongo Tuhi Whakaaetanga";
 
-/* record button a11y hint */
+/* stop record button a11y hint */
 "Request Permission to record audio" = "Tono Whakaaetanga ki te Record ororongo";
 
 /* stop recording button a11y label */

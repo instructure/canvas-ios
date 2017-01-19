@@ -62,7 +62,7 @@
 
     return [[RACObserve(self, model.avatarURL) filter:^BOOL(NSURL *avatarURL) {
             return avatarURL != nil;
-    }] flattenMap:^RACStream *(NSURL *avatarURL) {
+    }] flattenMap:^__kindof RACStream *(NSURL *avatarURL) {
         return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
             NSURLSessionDataTask *avatarTask = [client GET:avatarURL.absoluteString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 [subscriber sendNext:responseObject];

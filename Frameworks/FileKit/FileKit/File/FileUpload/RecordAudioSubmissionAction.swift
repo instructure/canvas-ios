@@ -20,7 +20,7 @@ import UIKit
 import MediaKit
 
 class RecordAudioSubmissionAction: UploadAction {
-    let title: String = NSLocalizedString("Record Audio", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Choose record audio submission")
+    let title: String = NSLocalizedString("Record Audio", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Choose record audio submission")
     let icon: UIImage = .FileKitImageNamed("icon_audio")
     
     weak var viewController: UIViewController?
@@ -33,18 +33,18 @@ class RecordAudioSubmissionAction: UploadAction {
 
     func initiate() {
         guard let vc = viewController else { return print("There was no view controller, it must have died") }
-        let recorder = AudioRecorderViewController.presentFromViewController(vc, completeButtonTitle: NSLocalizedString("Turn In", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Turn in button title"))
+        let recorder = AudioRecorderViewController.presentFromViewController(vc, completeButtonTitle: NSLocalizedString("Turn In", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Turn in button title"))
         
         recorder.cancelButtonTapped = { [weak delegate, weak vc] in
-            vc?.dismissViewControllerAnimated(true) {
+            vc?.dismiss(animated: true) {
                 delegate?.actionCancelled()
             }
         }
         
         recorder.didFinishRecordingAudioFile = { [weak delegate, weak vc] url in
             
-            vc?.dismissViewControllerAnimated(true) {
-                delegate?.chooseUpload(.MediaComment(.AudioFile(url)))
+            vc?.dismiss(animated: true) {
+                delegate?.chooseUpload(.mediaComment(.audioFile(url)))
             }
         }
     }

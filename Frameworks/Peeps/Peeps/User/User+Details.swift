@@ -20,50 +20,50 @@ import UIKit
 import TooLegit
 import SoPersistent
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 
 extension User {
-    public static func predicate(observeeID: String) -> NSPredicate {
+    public static func predicate(_ observeeID: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@", "id", observeeID)
     }
 
-    public static func collection(session: Session, observeeID: String) throws -> FetchedCollection<User> {
+    public static func collection(_ session: Session, observeeID: String) throws -> FetchedCollection<User> {
         let pred = predicate(observeeID)
-        let frc = User.fetchedResults(pred, sortDescriptors: ["sortableName".ascending], sectionNameKeypath: nil, inContext: try session.observeesManagedObjectContext())
-
-        return try FetchedCollection<User>(frc: frc)
+        let context = try session.observeesManagedObjectContext()
+        
+        return try FetchedCollection<User>(frc: context.fetchedResults(pred, sortDescriptors: ["sortableName".ascending]))
     }
 
-    public static func observeeSyncProducer(session: Session, observeeID: String) throws -> User.ModelPageSignalProducer {
+    public static func observeeSyncProducer(_ session: Session, observeeID: String) throws -> User.ModelPageSignalProducer {
         let context = try session.observeesManagedObjectContext()
         let remote = try User.getObserveeUser(session, observeeID: observeeID).map { [$0] }
         let pred = predicate(observeeID)
         return User.syncSignalProducer(pred, inContext: context, fetchRemote: remote)
     }
 
-    public static func refresher(session: Session, observeeID: String) throws -> Refresher {
+    public static func refresher(_ session: Session, observeeID: String) throws -> Refresher {
         let sync = try User.observeeSyncProducer(session, observeeID: observeeID)
         
         let key = cacheKey(try session.observeesManagedObjectContext(), [observeeID])
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public static func observer(session: Session, observeeID: String) throws -> ManagedObjectObserver<User> {
+    public static func observer(_ session: Session, observeeID: String) throws -> ManagedObjectObserver<User> {
         let pred = predicate(observeeID)
         let context = try session.observeesManagedObjectContext()
         return try ManagedObjectObserver<User>(predicate: pred, inContext: context)
     }
 
-    public static func detailsTableViewDataSource<DVM: TableViewCellViewModel where DVM: Equatable>(session: Session, observeeID: String, detailsFactory: User->[DVM]) throws -> TableViewDataSource {
+    public static func detailsTableViewDataSource<DVM: TableViewCellViewModel>(_ session: Session, observeeID: String, detailsFactory: @escaping (User)->[DVM]) throws -> TableViewDataSource where DVM: Equatable {
         let obs = try observer(session, observeeID: observeeID)
         let collection = FetchedDetailsCollection<User, DVM>(observer: obs, detailsFactory: detailsFactory)
         return CollectionTableViewDataSource(collection: collection, viewModelFactory: { $0 })
     }
 
-    public class DetailViewController: TableViewController {
-        private (set) public var observer: ManagedObjectObserver<User>!
+    open class DetailViewController: TableViewController {
+        fileprivate (set) open var observer: ManagedObjectObserver<User>!
 
-        public func prepare<DVM: TableViewCellViewModel where DVM: Equatable>(observer: ManagedObjectObserver<User>, refresher: Refresher? = nil, detailsFactory: User->[DVM]) {
+        open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<User>, refresher: Refresher? = nil, detailsFactory: @escaping (User)->[DVM]) where DVM: Equatable {
             self.observer = observer
             let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
             self.refresher = refresher

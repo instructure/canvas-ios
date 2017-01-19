@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0810"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -151,6 +151,16 @@
                BuildableName = "SoEdventurousTests.xctest"
                BlueprintName = "SoEdventurousTests"
                ReferencedContainer = "container:Frameworks/SoEdventurous/SoEdventurous.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "490639C71E200E26001106D7"
+               BuildableName = "PersistentCrashingTests.xctest"
+               BlueprintName = "PersistentCrashingTests"
+               ReferencedContainer = "container:Frameworks/SoPersistent/SoPersistent.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

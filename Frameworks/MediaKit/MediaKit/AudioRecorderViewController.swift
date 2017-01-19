@@ -20,23 +20,23 @@ import UIKit
 import SoPretty
 import AVFoundation
 
-public class AudioRecorderViewController: UIViewController {
+open class AudioRecorderViewController: UIViewController {
     
-    public static func presentFromViewController(viewController: UIViewController, completeButtonTitle: String) -> AudioRecorderViewController {
+    open static func presentFromViewController(_ viewController: UIViewController, completeButtonTitle: String) -> AudioRecorderViewController {
         return presentFromViewController(viewController, completeButtonTitle: completeButtonTitle, permissionDelegate: AVAudioSession.sharedInstance())
     }
     
-    public static func presentFromViewController(viewController: UIViewController, completeButtonTitle: String, permissionDelegate: AudioRecorderPermissionDelegate) -> AudioRecorderViewController {
-        let bundle = NSBundle(forClass: self)
+    open static func presentFromViewController(_ viewController: UIViewController, completeButtonTitle: String, permissionDelegate: AudioRecorderPermissionDelegate) -> AudioRecorderViewController {
+        let bundle = Bundle(for: self)
         
         let nav = UIStoryboard(name: "AudioRecorderViewController", bundle: bundle).instantiateInitialViewController() as! SmallModalNavigationController
         let me = nav.viewControllers.first as! AudioRecorderViewController
         nav.preferredContentSize = CGSize(width: 300, height: 134)
         
-        viewController.presentViewController(nav, animated: true, completion: nil)
+        viewController.present(nav, animated: true, completion: nil)
         
         me.audioRecorderView.presentAlert = { [weak me] alert in
-            me?.presentViewController(alert, animated: true, completion: nil)
+            me?.present(alert, animated: true, completion: nil)
         }
         me.audioRecorderView.permissionDelegate = permissionDelegate
         me.audioRecorderView.completeButtonTitle = completeButtonTitle
@@ -47,7 +47,7 @@ public class AudioRecorderViewController: UIViewController {
         return view as! AudioRecorderView
     }
     
-    public var cancelButtonTapped: ()->() {
+    open var cancelButtonTapped: ()->() {
         set {
             audioRecorderView.didCancel = newValue
         } get {
@@ -55,7 +55,7 @@ public class AudioRecorderViewController: UIViewController {
         }
     }
     
-    public var didFinishRecordingAudioFile: NSURL->() {
+    open var didFinishRecordingAudioFile: (URL)->() {
         set {
             audioRecorderView.didFinishRecordingAudioFile = newValue
         } get {

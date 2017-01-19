@@ -19,37 +19,37 @@
 import UIKit
 import Foundation
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 
 private let backDropWidth: CGFloat = 1364
 private let backDropHeight: CGFloat = 540
 private let backdropWidthOverHeight = backDropWidth/backDropHeight
 
-public class BackdropPickerViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+open class BackdropPickerViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     // track the collection view offset so when we switch back and forth between tabs, we can save the place
-    private var shapeOffset: CGFloat = 0
-    private var photoOffset: CGFloat = 0
+    fileprivate var shapeOffset: CGFloat = 0
+    fileprivate var photoOffset: CGFloat = 0
     
-    public var imageSelected: ((image: UIImage) -> ())
+    open var imageSelected: ((_ image: UIImage) -> ())
     
     var collectionView: UICollectionView?
     var segControl: UISegmentedControl = UISegmentedControl()
     
-    private let session: Session
-    private var tintColor: UIColor?
+    fileprivate let session: Session
+    fileprivate var tintColor: UIColor?
     /**
     If the image changed on the server, and so we have a new value, we want to call imageSelected()
     on cancel.
     */
-    private var imageUpdatedFromServer: Bool = false
+    fileprivate var imageUpdatedFromServer: Bool = false
 
     var disposable: Disposable?
     
     // ---------------------------------------------
     // MARK: - Lifecycle
     // ---------------------------------------------
-    public init(session: Session, imageSelected: (UIImage) -> ()) {
+    public init(session: Session, imageSelected: @escaping (UIImage) -> ()) {
         self.session = session
         self.imageSelected = imageSelected
         self.highlightedFile = session.backdropFile
@@ -60,17 +60,17 @@ public class BackdropPickerViewController: UIViewController, UICollectionViewDel
         fatalError("not supported!")
     }
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         if let d = BackdropFileDownloader
             .sharedDownloader
             .statusChangedSignal
-            .observeNext({ [weak self] file in
-                if let collectionView = self?.collectionView where file.type.rawValue == self?.segControl.selectedSegmentIndex {
+            .observeValues({ [weak self] file in
+                if let collectionView = self?.collectionView, file.type.rawValue == self?.segControl.selectedSegmentIndex {
                     let row = file.n-1
-                    dispatch_async(dispatch_get_main_queue()) {
-                        collectionView.reloadItemsAtIndexPaths([NSIndexPath(forRow: row, inSection: 0)])
+                    DispatchQueue.main.async {
+                        collectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
                     }
                 }
             }) {
@@ -80,11 +80,11 @@ public class BackdropPickerViewController: UIViewController, UICollectionViewDel
         
         
         getBackdropOnServer(session)
-            .startWithNext { file in
-                self.session.backdropFile = file
-                if file != self.highlightedFile {
+            .startWithResult { file in
+                self.session.backdropFile = file.value!
+                if file.value! != self.highlightedFile {
                     self.imageUpdatedFromServer = true
-                    self.highlightedFile = file
+                    self.highlightedFile = file.value.flatMap { $0 }
                     self.scrollToHighlighted()
                 }
             }
@@ -92,9 +92,9 @@ public class BackdropPickerViewController: UIViewController, UICollectionViewDel
         /////////////////////
         // NAVIGATION BUTTONS
         title = "Choose Cover Image"
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(cancelled))
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(cancelled))
         
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
         
         //////////////////
         // COLLECTION VIEW
@@ -104,18 +104,18 @@ public class BackdropPickerViewController: UIViewController, UICollectionViewDel
         collectionView!.translatesAutoresizingMaskIntoConstraints = false
         collectionView!.dataSource = self
         collectionView!.delegate = self
-        collectionView!.registerClass(BackdropCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView?.backgroundColor = UIColor.whiteColor()
+        collectionView!.register(BackdropCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView?.backgroundColor = UIColor.white
         self.view.addSubview(collectionView!)
         
         ////////////////////
         // SEGMENTED CONTROL
-        let segHolder = UIView(frame: CGRectZero)
-        segHolder.backgroundColor = UIColor.whiteColor()
+        let segHolder = UIView(frame: CGRect.zero)
+        segHolder.backgroundColor = UIColor.white
         segHolder.translatesAutoresizingMaskIntoConstraints = false
-        let segBorder = UIView(frame: CGRectZero)
+        let segBorder = UIView(frame: CGRect.zero)
         segBorder.translatesAutoresizingMaskIntoConstraints = false
-        segBorder.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.5)
+        segBorder.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         segHolder.addSubview(segBorder)
         
         let items: [String] = (0..<ImageType.count()).map{n in
@@ -123,7 +123,7 @@ public class BackdropPickerViewController: UIViewController, UICollectionViewDel
             return item.description
         }
         segControl = UISegmentedControl(items: items)
-        segControl.addTarget(self, action: #selector(segPressed(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        segControl.addTarget(self, action: #selector(segPressed(_:)), for: UIControlEvents.valueChanged)
         segControl.translatesAutoresizingMaskIntoConstraints = false
         
         segHolder.addSubview(segControl)
@@ -132,24 +132,24 @@ public class BackdropPickerViewController: UIViewController, UICollectionViewDel
         /////////////
         // AUTOLAYOUT
         let views = ["seg": segHolder, "collection" : collectionView!, "border": segBorder]
-        self.edgesForExtendedLayout = UIRectEdge.None
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[seg]|", options: [], metrics: nil, views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[collection]|", options: [], metrics: nil, views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[seg][collection]|", options: [], metrics: nil, views: views))
-        self.view.addConstraint(NSLayoutConstraint(item: segHolder, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 50))
-        segHolder.addConstraint(NSLayoutConstraint(item: segHolder, attribute: .CenterX, relatedBy: .Equal, toItem: segControl, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        segHolder.addConstraint(NSLayoutConstraint(item: segHolder, attribute: .CenterY, relatedBy: .Equal, toItem: segControl, attribute: .CenterY, multiplier: 1.0, constant: 0))
-        segHolder.addConstraint(NSLayoutConstraint(item: segHolder, attribute: .Width, relatedBy: .Equal, toItem: segControl, attribute: .Width, multiplier: 1, constant: 40))
-        segHolder.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[border]|", options: [], metrics: nil, views: views))
-        segHolder.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[border(1)]|", options: [], metrics: nil, views: views))
+        self.edgesForExtendedLayout = UIRectEdge()
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[seg]|", options: [], metrics: nil, views: views))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[collection]|", options: [], metrics: nil, views: views))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[seg][collection]|", options: [], metrics: nil, views: views))
+        self.view.addConstraint(NSLayoutConstraint(item: segHolder, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50))
+        segHolder.addConstraint(NSLayoutConstraint(item: segHolder, attribute: .centerX, relatedBy: .equal, toItem: segControl, attribute: .centerX, multiplier: 1.0, constant: 0))
+        segHolder.addConstraint(NSLayoutConstraint(item: segHolder, attribute: .centerY, relatedBy: .equal, toItem: segControl, attribute: .centerY, multiplier: 1.0, constant: 0))
+        segHolder.addConstraint(NSLayoutConstraint(item: segHolder, attribute: .width, relatedBy: .equal, toItem: segControl, attribute: .width, multiplier: 1, constant: 40))
+        segHolder.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[border]|", options: [], metrics: nil, views: views))
+        segHolder.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[border(1)]|", options: [], metrics: nil, views: views))
     }
     
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         BackdropFileDownloader.sharedDownloader.requestAllImages()
         
-        segControl.selectedSegmentIndex = ImageType.Photos.rawValue
+        segControl.selectedSegmentIndex = ImageType.photos.rawValue
         // we call layoutIfNeeded to make sure the collectionView doesn't try to reloadData after we have scrolled to the right place
         view.layoutIfNeeded()
         scrollToHighlighted()
@@ -157,96 +157,96 @@ public class BackdropPickerViewController: UIViewController, UICollectionViewDel
         collectionView?.collectionViewLayout.invalidateLayout()
         
         // don't ask
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.scrollToHighlighted()
         }
     }
     
-    public override func viewWillDisappear(animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         BackdropFileDownloader.sharedDownloader.cancelAllFetches()
     }
     
     // ---------------------------------------------
     // MARK: - Highlighted File
     // ---------------------------------------------
-    private func scrollToHighlighted() {
+    fileprivate func scrollToHighlighted() {
         if let highlightedFile = self.highlightedFile {
             segControl.selectedSegmentIndex = highlightedFile.type.rawValue
             segPressed(segControl)
             if let path = pathForFile(highlightedFile) {
-                collectionView?.scrollToItemAtIndexPath(path, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: false)
+                collectionView?.scrollToItem(at: path, at: UICollectionViewScrollPosition.centeredVertically, animated: false)
             }
         }
     }
     
-    private var highlightedFile: BackdropFile? 
+    fileprivate var highlightedFile: BackdropFile? 
     
     // ---------------------------------------------
     // MARK: - Button Targets
     // ---------------------------------------------
     func cancelled() {
         if imageUpdatedFromServer {
-            if let highlightedFile = highlightedFile, image = highlightedFile.localFile {
-                imageSelected(image: image)
+            if let highlightedFile = highlightedFile, let image = highlightedFile.localFile {
+                imageSelected(image)
             }
         }
-        self.navigationController?.popViewControllerAnimated(true)
+        let _ = self.navigationController?.popViewController(animated: true)
     }
     
-    func segPressed(segControl: UISegmentedControl) {
-        if segControl.selectedSegmentIndex == ImageType.Photos.rawValue {
+    func segPressed(_ segControl: UISegmentedControl) {
+        if segControl.selectedSegmentIndex == ImageType.photos.rawValue {
             shapeOffset = collectionView!.contentOffset.y
         } else {
             photoOffset = collectionView!.contentOffset.y
         }
         collectionView!.reloadData()
-        if segControl.selectedSegmentIndex == ImageType.Photos.rawValue {
-            collectionView!.setContentOffset(CGPointMake(0,photoOffset), animated: false)
+        if segControl.selectedSegmentIndex == ImageType.photos.rawValue {
+            collectionView!.setContentOffset(CGPoint(x: 0,y: photoOffset), animated: false)
         } else {
-            collectionView!.setContentOffset(CGPointMake(0, shapeOffset), animated: false)
+            collectionView!.setContentOffset(CGPoint(x: 0, y: shapeOffset), animated: false)
         }
     }
     
     // ---------------------------------------------
     // MARK: - DataSource
     // ---------------------------------------------
-    private func pathForFile(file: BackdropFile) -> NSIndexPath? {
+    fileprivate func pathForFile(_ file: BackdropFile) -> IndexPath? {
         if file.type.rawValue == self.segControl.selectedSegmentIndex {
-            return NSIndexPath(forRow: file.n-1, inSection: 0)
+            return IndexPath(row: file.n-1, section: 0)
         }
         return nil
     }
     
-    private func fileForPath(indexPath: NSIndexPath) -> BackdropFile {
+    fileprivate func fileForPath(_ indexPath: IndexPath) -> BackdropFile {
         return BackdropFile(type: ImageType(rawValue: self.segControl.selectedSegmentIndex)!, n: indexPath.row+1)
     }
     
-    private func imageForPath(indexPath: NSIndexPath) -> UIImage? {
+    fileprivate func imageForPath(_ indexPath: IndexPath) -> UIImage? {
         let file = fileForPath(indexPath)
         return file.localFile
     }
     
-    private func progressForPath(indexPath: NSIndexPath) -> Float {
+    fileprivate func progressForPath(_ indexPath: IndexPath) -> Float {
         return BackdropFileDownloader
             .sharedDownloader
             .progressforFile(self.fileForPath(indexPath))
     }
     
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return BackdropFileDownloader
             .sharedDownloader
             .numberOfRowsInSection(ImageType(rawValue: segControl.selectedSegmentIndex)!)
     }
     
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! BackdropCell
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! BackdropCell
         if let image = self.imageForPath(indexPath) {
             cell.image = image
         } else {
             cell.progress = self.progressForPath(indexPath)
         }
         let file = self.fileForPath(indexPath)
-        cell.contentView.layer.borderColor = (file == self.highlightedFile) ? view.tintColor.CGColor : UIColor.clearColor().CGColor
+        cell.contentView.layer.borderColor = (file == self.highlightedFile) ? view.tintColor.cgColor : UIColor.clear.cgColor
         cell.contentView.layer.borderWidth = 5.0
         return cell
     }
@@ -255,30 +255,30 @@ public class BackdropPickerViewController: UIViewController, UICollectionViewDel
     // MARK: - Flow Layout Delegate
     // ---------------------------------------------
     
-    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width
         return CGSize(width: width, height: width/backdropWidthOverHeight)
     }
     
-    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
     
-    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
     }
 
     // ---------------------------------------------
     // MARK: - Delegate
     // ---------------------------------------------
-    public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let image = self.imageForPath(indexPath) {
             self.highlightedFile = self.fileForPath(indexPath)
             session.backdropFile = self.highlightedFile
             setBackdropOnServer(self.highlightedFile, session: session)
                 .startWithFailed { err in print(err) }
-            imageSelected(image: image)
-            navigationController?.popViewControllerAnimated(true)
+            imageSelected(image)
+            let _ = navigationController?.popViewController(animated: true)
         }
     }
 

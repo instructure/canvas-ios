@@ -22,36 +22,36 @@ import TooLegit
 import CalendarKit
 
 public protocol CalendarDayPageViewControllerDelegate {
-    func dayPageViewController(calendarDayPageViewController: CalendarDayPageViewController, willTransitionToDay day: NSDate)
-    func dayPageViewController(calendarDayPageViewController: CalendarDayPageViewController, didFinishAnimating finished: Bool, toDay day: NSDate, transitionCompleted completed: Bool)
+    func dayPageViewController(_ calendarDayPageViewController: CalendarDayPageViewController, willTransitionToDay day: Date)
+    func dayPageViewController(_ calendarDayPageViewController: CalendarDayPageViewController, didFinishAnimating finished: Bool, toDay day: Date, transitionCompleted completed: Bool)
 }
 
-public class CalendarDayPageViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+open class CalendarDayPageViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     // ---------------------------------------------
     // MARK: - Private Variables
     // ---------------------------------------------
-    private var pageViewController : UIPageViewController!
-    private var session : Session!
+    fileprivate var pageViewController : UIPageViewController!
+    fileprivate var session : Session!
     
-    internal var date: NSDate!
-    private var delegate: CalendarDayPageViewControllerDelegate? = nil
-    private let calendar = NSCalendar.currentCalendar()
+    internal var date: Date!
+    fileprivate var delegate: CalendarDayPageViewControllerDelegate? = nil
+    fileprivate let calendar = Calendar.current
     
-    var dateFormatter = NSDateFormatter()
+    var dateFormatter = DateFormatter()
     var calendarEvents = [CalendarEvent]()
-    var transitionDay: NSDate?
+    var transitionDay: Date?
     
     // ---------------------------------------------
     // MARK: - External Closures
     // ---------------------------------------------
-    public var colorForContextID: ColorForContextID!
-    public var routeToURL: RouteToURL!
+    open var colorForContextID: ColorForContextID!
+    open var routeToURL: RouteToURL!
     
     // ---------------------------------------------
     // MARK: - Lifecycle
     // ---------------------------------------------
-    public static func new(session: Session, date: NSDate, delegate: CalendarDayPageViewControllerDelegate? = nil, routeToURL: RouteToURL, colorForContextID: ColorForContextID) -> CalendarDayPageViewController {
+    open static func new(_ session: Session, date: Date, delegate: CalendarDayPageViewControllerDelegate? = nil, routeToURL: @escaping RouteToURL, colorForContextID: @escaping ColorForContextID) -> CalendarDayPageViewController {
         let controller = CalendarDayPageViewController(nibName: nil, bundle: nil)
         
         controller.session = session
@@ -59,11 +59,11 @@ public class CalendarDayPageViewController: UIViewController, UIPageViewControll
         controller.delegate = delegate
         controller.routeToURL = routeToURL
         controller.colorForContextID = colorForContextID
-        controller.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+        controller.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         return controller
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.calendarDayDetailBackgroundColor
@@ -73,15 +73,15 @@ public class CalendarDayPageViewController: UIViewController, UIPageViewControll
         
         let dayViewController = viewControllerForDay(date)
         let viewControllers = [dayViewController]
-        pageViewController.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: nil)
+        pageViewController.setViewControllers(viewControllers, direction: .forward, animated: false, completion: nil)
         pageViewController.view.frame = view.bounds
         
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
-        pageViewController.didMoveToParentViewController(self)
+        pageViewController.didMove(toParentViewController: self)
     }
     
-    public override func didReceiveMemoryWarning() {
+    open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
@@ -105,29 +105,29 @@ public class CalendarDayPageViewController: UIViewController, UIPageViewControll
     }
     
     func transitionToToday() {
-        transitionToDay(NSDate())
+        transitionToDay(Date())
     }
     
-    private func transitionToDayOffset(daysOffset: Int) {
+    fileprivate func transitionToDayOffset(_ daysOffset: Int) {
         transitionToDay(dateMovedByDays(daysOffset))
     }
     
-    func transitionToDay(newDay: NSDate) {
+    func transitionToDay(_ newDay: Date) {
         let compareDates = newDay.compare(date)
-        if compareDates == .OrderedSame {
+        if compareDates == .orderedSame {
             // Dates are equal, no change is needed
             return
         }
         
-        var transitionDirection: UIPageViewControllerNavigationDirection = .Forward
-        if compareDates == .OrderedAscending {
-            transitionDirection = .Reverse
+        var transitionDirection: UIPageViewControllerNavigationDirection = .forward
+        if compareDates == .orderedAscending {
+            transitionDirection = .reverse
         } else {
-            transitionDirection = .Forward
+            transitionDirection = .forward
         }
         
         date = newDay
-        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             if let strongSelf = self {
                 let dayViewController = strongSelf.viewControllerForDay(strongSelf.date)
                 strongSelf.pageViewController.setViewControllers([dayViewController], direction: transitionDirection, animated: true, completion: nil)
@@ -138,13 +138,13 @@ public class CalendarDayPageViewController: UIViewController, UIPageViewControll
     // ---------------------------------------------
     // MARK: - PageViewControllerDataSource
     // ---------------------------------------------
-    public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    open func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let prevDay = dateMovedByDays(-1)
         let dayViewController = viewControllerForDay(prevDay)
         return dayViewController
     }
     
-    public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    open func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let nextDay = dateMovedByDays(1)
         let dayViewController = viewControllerForDay(nextDay)
         return dayViewController
@@ -153,23 +153,23 @@ public class CalendarDayPageViewController: UIViewController, UIPageViewControll
     // ---------------------------------------------
     // MARK: - PageViewControllerDelegate
     // ---------------------------------------------
-    public func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+    open func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         if let nextVisibleDayViewController = pendingViewControllers.first as? CalendarDayListViewController {
-            if let delegate = delegate, day = nextVisibleDayViewController.day {
-                delegate.dayPageViewController(self, willTransitionToDay: day)
+            if let delegate = delegate, let day = nextVisibleDayViewController.day {
+                delegate.dayPageViewController(self, willTransitionToDay: day as Date)
             }
         }
     }
     
-    public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    open func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if !finished || !completed {
             return
         }
         
-        if let visibleDayViewController = pageViewController.viewControllers?.first as? CalendarDayListViewController, day = visibleDayViewController.day {
-            self.date = day
+        if let visibleDayViewController = pageViewController.viewControllers?.first as? CalendarDayListViewController, let day = visibleDayViewController.day {
+            self.date = day as Date!
             if let delegate = delegate {
-                delegate.dayPageViewController(self, didFinishAnimating: finished, toDay: day, transitionCompleted: completed)
+                delegate.dayPageViewController(self, didFinishAnimating: finished, toDay: day as Date, transitionCompleted: completed)
             }
         }
     }
@@ -177,14 +177,14 @@ public class CalendarDayPageViewController: UIViewController, UIPageViewControll
     // ---------------------------------------------
     // MARK: - View Controller Factory Method
     // ---------------------------------------------
-    public func viewControllerForDay(day: NSDate) -> CalendarDayListViewController {
+    open func viewControllerForDay(_ day: Date) -> CalendarDayListViewController {
         return CalendarDayListViewController.new(session, date: day, routeToURL: routeToURL, colorForContextID: colorForContextID)
     }
     
-    func dateMovedByDays(daysToMove: Int) -> NSDate {
-        let components = NSDateComponents()
+    func dateMovedByDays(_ daysToMove: Int) -> Date {
+        var components = DateComponents()
         components.day = daysToMove
-        return calendar.dateByAddingComponents(components, toDate:date, options: [])!
+        return (calendar as NSCalendar).date(byAdding: components, to:date, options: [])!
     }
     
 }

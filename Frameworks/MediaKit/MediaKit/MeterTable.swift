@@ -19,7 +19,7 @@
 import Foundation
 import SoLazy
 
-private func DBtoAmp(db: Double) -> Double {
+private func DBtoAmp(_ db: Double) -> Double {
     return pow(10.0, 0.05 * db)
 }
 

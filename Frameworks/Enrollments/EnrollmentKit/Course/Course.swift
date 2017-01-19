@@ -22,9 +22,9 @@ import SoPersistent
 import Marshal
 import TooLegit
 import SoLazy
-import ReactiveCocoa
+import ReactiveSwift
 
-public struct EnrollmentRoles: OptionSetType {
+public struct EnrollmentRoles: OptionSet {
     public let rawValue: Int64
     public init(rawValue: Int64) { self.rawValue = rawValue}
 
@@ -54,12 +54,12 @@ public enum DefaultCourseView: String {
     }
 }
 
-private let percentageFormatter: NSNumberFormatter = {
-    let formatter = NSNumberFormatter()
-    formatter.numberStyle = .PercentStyle
+private let percentageFormatter: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .percent
     formatter.multiplier = 1.0
     formatter.maximumFractionDigits = 2
-    formatter.locale = NSLocale.currentLocale()
+    formatter.locale = Locale.current
     return formatter
 }()
 
@@ -67,8 +67,8 @@ public final class Course: Enrollment {
 
     @NSManaged internal (set) public var originalName: String?
     @NSManaged internal (set) public var code: String
-    @NSManaged internal (set) public var startAt: NSDate?
-    @NSManaged internal (set) public var endAt: NSDate?
+    @NSManaged internal (set) public var startAt: Date?
+    @NSManaged internal (set) public var endAt: Date?
     @NSManaged internal (set) public var hideFinalGrades: Bool
     @NSManaged internal (set) public var rawDefaultView: String
     @NSManaged internal (set) public var rawRoles: Int64
@@ -81,11 +81,11 @@ public final class Course: Enrollment {
 
     public override var hasGrades: Bool { return true }
 
-    private var inMGPLimbo: Bool {
+    fileprivate var inMGPLimbo: Bool {
         return multipleGradingPeriodsEnabled && currentGradingPeriodID == nil
     }
 
-    private var gradesAreVisible: Bool {
+    fileprivate var gradesAreVisible: Bool {
         return !inMGPLimbo || totalForAllGradingPeriodsEnabled
     }
 
@@ -103,13 +103,13 @@ public final class Course: Enrollment {
         return visibleGradingPeriodScore(currentGradingPeriodID)
     }
 
-    public func visibleGradingPeriodGrade(gradingPeriodID: String?) -> String? {
+    public func visibleGradingPeriodGrade(_ gradingPeriodID: String?) -> String? {
         return grades.filter { $0.gradingPeriodID == gradingPeriodID }.first?.currentGrade
     }
 
-    public func visibleGradingPeriodScore(gradingPeriodID: String?) -> String? {
+    public func visibleGradingPeriodScore(_ gradingPeriodID: String?) -> String? {
         return grades.filter { $0.gradingPeriodID == gradingPeriodID }.first?.currentScore.flatMap {
-            percentageFormatter.stringFromNumber($0)
+            percentageFormatter.string(from: $0)
         }
     }
 
@@ -130,48 +130,48 @@ public final class Course: Enrollment {
     }
 
     public override var contextID: ContextID {
-        return ContextID(id: id, context: .Course)
+        return ContextID(id: id, context: .course)
     }
     
     public override var shortName: String {
         return code
     }
 
-    public override func markAsFavorite(favorite: Bool, session: Session) -> SignalProducer<Void, NSError> {
+    public override func markAsFavorite(_ favorite: Bool, session: Session) -> SignalProducer<Void, NSError> {
         let path = api/v1/"users"/"self"/"favorites"/"courses"/id
         let request = attemptProducer {
             favorite ? try session.POST(path) : try session.DELETE(path)
         }
         return super.markAsFavorite(favorite, session: session)
-            .flatMap(.Concat, transform: { request })
-            .flatMap(.Concat, transform: session.JSONSignalProducer)
+            .flatMap(.concat, transform: { request })
+            .flatMap(.concat, transform: session.JSONSignalProducer)
             .map { _ in () }
             .on(failed: { [weak self] _ in
                 self?.isFavorite = !favorite
                 let _ = try? self?.managedObjectContext?.saveFRD()
             })
-            .observeOn(UIScheduler())
+            .observe(on: UIScheduler())
     }
 }
 
 extension Course: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
 
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id              = try json.stringID("id")
         name            = try json <| "name"
         originalName    = try json <| "original_name"
         code            = try json <| "course_code"
-        isFavorite      = try json <| "is_favorite" ?? false
+        isFavorite      = (try json <| "is_favorite") ?? false
         startAt         = try json <| "start_at"
         endAt           = try json <| "end_at"
         hideFinalGrades = try json <| "hide_final_grades"
         syllabusBody    = try json <| "syllabus_body"
 
-        rawDefaultView  = try json <| "default_view" ?? "assignments"
+        rawDefaultView  = (try json <| "default_view") ?? "assignments"
 
         let enrollmentsJSON: [JSONObject] = try json <| "enrollments"
         var roles: EnrollmentRoles = []
@@ -181,7 +181,7 @@ extension Course: SynchronizedModel {
             case "student":
                 roles.insert(.Student)
                 currentGradingPeriodID = try eJSON.stringID("current_grading_period_id")
-                multipleGradingPeriodsEnabled = try eJSON <| "multiple_grading_periods_enabled" ?? false
+                multipleGradingPeriodsEnabled = (try eJSON <| "multiple_grading_periods_enabled") ?? false
                 let grade = currentGrade ?? Grade(inContext: context)
                 grade.course = self
                 grade.gradingPeriodID = currentGradingPeriodID

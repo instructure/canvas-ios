@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hEB-wb-kje">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="02T-TL-C6S">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="hEB-wb-kje" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="VCV-yY-9a1">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.9803922176361084" green="0.95908644532560627" blue="0.81045118381734937" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="barTintColor" red="0.96078437566757202" green="0.47058826684951782" blue="0.19607844948768616" alpha="1" colorSpace="deviceRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="QtD-uE-yNJ" kind="relationship" relationship="rootViewController" id="qhA-GH-6VM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yc3-pw-rfz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="278" y="321"/>
+        </scene>
+        <!--View Controller - Welcome!-->
+        <scene sceneID="rm8-vX-PWG">
+            <objects>
+                <viewController id="QtD-uE-yNJ" customClass="CKMViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gtA-vH-hMl"/>
+                        <viewControllerLayoutGuide type="bottom" id="FQ7-u7-Cyk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9gp-wM-lmw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="di9-vw-QT7">
+                                <rect key="frame" x="140" y="174" width="41" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jYD-RA-t1Z">
+                                <rect key="frame" x="102" y="202" width="116" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.9490196704864502" green="0.48235297203063965" blue="0.28627452254295349" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="XOM-OX-EZD"/>
+                                    <constraint firstAttribute="width" constant="116" id="cOl-cw-was"/>
+                                </constraints>
+                                <state key="normal" title="Switch User">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="switchUser:" destination="QtD-uE-yNJ" eventType="touchUpInside" id="yJp-Q9-rov"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="di9-vw-QT7" firstAttribute="top" secondItem="gtA-vH-hMl" secondAttribute="bottom" constant="110" id="I9O-RX-jES"/>
+                            <constraint firstAttribute="centerX" secondItem="jYD-RA-t1Z" secondAttribute="centerX" id="Otx-XO-tej"/>
+                            <constraint firstItem="di9-vw-QT7" firstAttribute="centerX" secondItem="jYD-RA-t1Z" secondAttribute="centerX" id="S09-Mb-3Ru"/>
+                            <constraint firstAttribute="centerX" secondItem="di9-vw-QT7" secondAttribute="centerX" id="fYS-qr-jrA"/>
+                            <constraint firstItem="jYD-RA-t1Z" firstAttribute="top" secondItem="di9-vw-QT7" secondAttribute="bottom" constant="8" id="x3t-8R-9FZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Welcome!" id="9dX-mw-zDZ">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="A5r-zz-POY">
+                            <connections>
+                                <action selector="logout:" destination="QtD-uE-yNJ" id="MvB-Vz-gTl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="userLabel" destination="di9-vw-QT7" id="fNT-o5-Q1u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n2n-be-Poi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="694" y="321"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

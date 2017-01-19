@@ -15,7 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@import CWStatusBarNotification;
+@import CWNotification;
 
 @interface CSGToaster : NSObject
 

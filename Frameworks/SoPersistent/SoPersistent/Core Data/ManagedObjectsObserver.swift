@@ -16,21 +16,21 @@
 
 import Foundation
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 /** Allows you to track and lookup a set of objects from a FetchedCollection
  by some uniqueID
  */
-public class ManagedObjectsObserver<M: NSManagedObject, ID: Hashable> {
-    public let collection: FetchedCollection<M>
-    private let idFunction: M->ID
-    private var propertiesByID: [ID: MutableProperty<M?>] = [:]
-    private let scheduler: ManagedObjectContextScheduler
+open class ManagedObjectsObserver<M: NSManagedObject, ID: Hashable> {
+    open let collection: FetchedCollection<M>
+    fileprivate let idFunction: (M)->ID
+    fileprivate var propertiesByID: [ID: MutableProperty<M?>] = [:]
+    fileprivate let scheduler: ManagedObjectContextScheduler
     
-    private var collectionUpdatesDisposable: Disposable?
+    fileprivate var collectionUpdatesDisposable: Disposable?
     
-    public init(context: NSManagedObjectContext, collection: FetchedCollection<M>, idFunction: M->ID) {
+    public init(context: NSManagedObjectContext, collection: FetchedCollection<M>, idFunction: @escaping (M)->ID) {
         self.collection = collection
         self.idFunction = idFunction
         self.scheduler = ManagedObjectContextScheduler(context: context)
@@ -40,13 +40,13 @@ public class ManagedObjectsObserver<M: NSManagedObject, ID: Hashable> {
         
         collectionUpdatesDisposable = collection
             .collectionUpdates
-            .observeOn(scheduler)
-            .observeNext { [weak self] updates in
+            .observe(on:    scheduler)
+            .observeValues { [weak self] updates in
                 self?.processUpdates(updates)
             }.map(ScopedDisposable.init)
     }
     
-    private func sendUpdate(for model: M?, withID id: ID) {
+    fileprivate func sendUpdate(for model: M?, withID id: ID) {
         if let property = propertiesByID[id] {
             property.value = model
         } else {
@@ -55,14 +55,14 @@ public class ManagedObjectsObserver<M: NSManagedObject, ID: Hashable> {
         }
     }
     
-    private func processUpdates(updates: [CollectionUpdate<M>]) {
+    fileprivate func processUpdates(_ updates: [CollectionUpdate<M>]) {
         for update in updates {
             switch update {
-            case .Updated(_, let m):
+            case .updated(_, let m, _):
                 sendUpdate(for: m, withID: idFunction(m))
-            case .Inserted(_, let m):
+            case .inserted(_, let m, _):
                 sendUpdate(for: m, withID: idFunction(m))
-            case .Deleted(_, let m):
+            case .deleted(_, let m, _):
                 sendUpdate(for: nil, withID: idFunction(m))
             default: break
             }
@@ -70,10 +70,10 @@ public class ManagedObjectsObserver<M: NSManagedObject, ID: Hashable> {
         countProperty.value = collection.count
     }
     
-    public func producer(id: ID) -> SignalProducer<M?, NoError> {
+    open func producer(_ id: ID) -> SignalProducer<M?, NoError> {
         return SignalProducer<ID, NoError>(value: id)
-            .observeOn(scheduler)
-            .flatMap(.Latest) { [weak self] (id: ID) -> SignalProducer<M?, NoError> in
+            .observe(on: scheduler)
+            .flatMap(.latest) { [weak self] (id: ID) -> SignalProducer<M?, NoError> in
                 guard let me = self else { return .empty }
                 if let property = me.propertiesByID[id] {
                     return property.producer
@@ -85,13 +85,13 @@ public class ManagedObjectsObserver<M: NSManagedObject, ID: Hashable> {
         }
     }
     
-    public subscript(id: ID) -> M? {
+    open subscript(id: ID) -> M? {
         return propertiesByID[id]?.value
     }
     
-    private let countProperty = MutableProperty<Int>(0)
+    fileprivate let countProperty = MutableProperty<Int>(0)
     
-    public var count: SignalProducer<Int, NoError> {
+    open var count: SignalProducer<Int, NoError> {
         return countProperty.producer.uniqueValues()
     }
 }

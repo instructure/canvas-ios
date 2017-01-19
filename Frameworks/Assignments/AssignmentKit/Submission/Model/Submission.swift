@@ -26,12 +26,12 @@ public final class Submission: SubmissionEvent {
     @NSManaged internal (set) public var userID: String
     @NSManaged internal (set) public var courseID: String?
     @NSManaged internal (set) public var attempt: Int32
-    @NSManaged internal (set) public var submittedAt: NSDate?
+    @NSManaged internal (set) public var submittedAt: Date?
     
     @NSManaged internal (set) public var late: Bool
     @NSManaged internal (set) public var excused: Bool
     
-    @NSManaged internal (set) public var dateGraded: NSDate?
+    @NSManaged internal (set) public var dateGraded: Date?
     @NSManaged internal (set) public var score: Double
     @NSManaged internal (set) public var grade: String?
     
@@ -39,7 +39,7 @@ public final class Submission: SubmissionEvent {
 
     // submission values plz to use `Kind`
     @NSManaged internal (set) public var submittedText: String?
-    @NSManaged internal (set) public var submittedURL: NSURL?
+    @NSManaged internal (set) public var submittedURL: URL?
     @NSManaged internal (set) public var submittedMediaID: String?
     @NSManaged internal (set) public var submittedMedia: MediaComment?
     @NSManaged var submittedFiles: Set<SubmissionFile>
@@ -50,41 +50,41 @@ public final class Submission: SubmissionEvent {
 
 extension Submission {
     enum Kind {
-        case None
+        case none
         
-        case DiscussionTopic
-        case Quiz
-        case ExternalTool
+        case discussionTopic
+        case quiz
+        case externalTool
         
-        case OnPaper
-        case Text(String)
-        case URL(NSURL)
-        case Files([File])
-        case Media(MediaComment)
+        case onPaper
+        case text(String)
+        case url(Foundation.URL)
+        case files([File])
+        case media(MediaComment)
     }
     
     var kind: Kind {
         switch rawSubmissionType {
         case "discussion_topic":
-            return .DiscussionTopic
+            return .discussionTopic
         case "online_quiz":
-            return .Quiz
+            return .quiz
         case "on_paper":
-            return .OnPaper
+            return .onPaper
         case "none":
-            return .None
+            return .none
         case "external_tool":
-            return .ExternalTool
+            return .externalTool
         case "online_text_entry":
-            return submittedText.map(Kind.Text) ?? .None
+            return submittedText.map(Kind.text) ?? .none
         case "online_url":
-            return submittedURL.map(Kind.URL) ?? .None
+            return submittedURL.map(Kind.url) ?? .none
         case "online_upload":
-            return .Files(Array(submittedFiles.map { $0.file }))
+            return .files(Array(submittedFiles.map { $0.file }))
         case "media_recording":
-            return submittedMedia.map(Kind.Media) ?? .None
+            return submittedMedia.map(Kind.media) ?? .none
         default:
-            return .None
+            return .none
         }
     }
 }
@@ -96,14 +96,14 @@ import Marshal
 import SoLazy
 
 extension Submission: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id") ?? ""
         let attempt: Int = (try json <| "attempt") ?? 0
         
-        return NSPredicate(format: "%K == %@ && %K == %@", "id", id, "attempt", NSNumber(integer: attempt))
+        return NSPredicate(format: "%K == %@ && %K == %@", "id", id, "attempt", NSNumber(value: attempt))
     }
     
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         //We fail and smother the alert here because of the RubricViewController which has to fetch a submission
         // and assignment and concats the results. The API returns a submission object with nil values even if no submission
         // exists. --nlambson June 6, 2016
@@ -111,18 +111,18 @@ extension Submission: SynchronizedModel {
         assignmentID            = try json.stringID("assignment_id")
         userID                  = try json.stringID("user_id")
         courseID                = try json.stringID("course_id")
-        attempt                 = try json <| "attempt" ?? 0
-        late                    = try json <| "late" ?? false
-        excused                 = try json <| "excused" ?? false
+        attempt                 = (try json <| "attempt") ?? 0
+        late                    = (try json <| "late") ?? false
+        excused                 = (try json <| "excused") ?? false
         
         dateGraded              = try json <| "graded_at"
-        score                   = try json <| "score" ?? 0.0
+        score                   = (try json <| "score") ?? 0.0
         grade                   = try json <| "grade"
         
         submittedAt             = try (try json <| "submitted_at") ?? (try json <| "finished_at")
 
         if let rubricAssessmentsJSON: JSONObject = try json <| "rubric_assessment" {
-            for (_, assessment) in rubricAssessmentsJSON.enumerate() {
+            for (_, assessment) in rubricAssessmentsJSON.enumerated() {
                 if var assessmentJSON: JSONObject = assessment.1 as? JSONObject {
                     let assessmentID = assessment.0
                     assessmentJSON["id"] = assessmentID
@@ -146,5 +146,5 @@ extension Submission: SynchronizedModel {
     }
     
     // API parameters
-    public static var parameters: [String: AnyObject] { return ["include": ["rubric_assessment", "visibility", "submission_comments", "submission_history"]] }
+    public static var parameters: [String: Any] { return ["include": ["rubric_assessment", "visibility", "submission_comments", "submission_history"]] }
 }

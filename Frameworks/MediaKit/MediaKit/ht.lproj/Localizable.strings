@@ -1,8 +1,7 @@
-/* record button a11y hint
-   stop record button a11y hint */
+/* stop record button a11y hint */
 "Begin recording" = "Kòmanse Anrejistreman";
 
-/* Cancel button */
+/* Cancel button title */
 "Cancel" = "Anile";
 
 /* Delete button */
@@ -44,7 +43,7 @@
 /* Record button a11y label */
 "Request Audio Recording Permission" = "Demand Pèmisyon Anrejistreman Odyo";
 
-/* record button a11y hint */
+/* stop record button a11y hint */
 "Request Permission to record audio" = "Demand Pèmisyon pou anrejistre odyo";
 
 /* stop recording button a11y label */

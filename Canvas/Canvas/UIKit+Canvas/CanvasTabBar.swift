@@ -19,10 +19,34 @@
 import UIKit
 import NotificationKit
 
-class CanvasTabBar: UITabBarController {
-    override func viewDidAppear(animated: Bool) {
+class CanvasTabBarController: UITabBarController {
+    fileprivate var previousSelectedIndex = 0
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.delegate = self
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         NotificationKitController.registerForPushNotificationsIfAppropriate(self)
+    }
+}
+
+extension CanvasTabBarController: UITabBarControllerDelegate {
+    // Couldn't think of a better way to still do the default way of not poping to the root on select, like UITabBarController
+    // works by default, with our custom crap. So. Here's a hack. Yay for coupling!
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        previousSelectedIndex = selectedIndex
+        return true
+    }
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if self.selectedViewController == viewController, selectedIndex == 0, previousSelectedIndex == selectedIndex {
+            if let svc = viewController as? EnrollmentSplitController {
+                svc.navigateToCoursePicker()
+            }
+        }
     }
 }

@@ -17,17 +17,17 @@
     
 
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 
 extension AssignmentGroup {
-    static func getAssignmentGroups(session: Session, courseID: String, gradingPeriodID: String? = nil) throws -> SignalProducer<[JSONObject], NSError> {
+    static func getAssignmentGroups(_ session: Session, courseID: String, gradingPeriodID: String? = nil) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try AssignmentGroupAPI.getAssignmentGroups(session, courseID: courseID, gradingPeriodID: gradingPeriodID)
         return session.paginatedJSONSignalProducer(request).map(insertGradingPeriodID(gradingPeriodID))
     }
 
-    private static func insertGradingPeriodID(gradingPeriodID: String?) -> (assignmentGroups: [JSONObject]) -> [JSONObject] {
-        func insertGradingPeriodID(json: JSONObject) -> JSONObject {
+    fileprivate static func insertGradingPeriodID(_ gradingPeriodID: String?) -> (_ assignmentGroups: [JSONObject]) -> [JSONObject] {
+        func insertGradingPeriodID(_ json: JSONObject) -> JSONObject {
             var json = json
             json["grading_period_id"] = gradingPeriodID
             return json

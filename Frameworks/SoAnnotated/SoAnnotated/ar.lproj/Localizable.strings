@@ -4,6 +4,27 @@
 /* Button for creating a note from text selection */
 "Create Note" = "إنشاء ملاحظة";
 
+/* Error when submitting an assignment */
+"Failed to Submit" = "تعذر الإرسال";
+
 /* No comment provided by engineer. */
 "Note..." = "ملاحظة...";
+
+/* No comment provided by engineer. */
+"OK" = "موافق";
+
+/* No comment provided by engineer. */
+"Submit" = "إرسال";
+
+/* Title for button to submit assignment */
+"Submit Assignment" = "إرسال المهمة";
+
+/* No comment provided by engineer. */
+"Submitted!" = "تم الإرسال!";
+
+/* No comment provided by engineer. */
+"Submitting" = "جارٍ الإرسال";
+
+/* Message when fails to submit an assignment */
+"There was a problem submitting your assignment. Please try again later." = "وجدت مشكلة أثناء إرسال مهمتك. الرجاء إعادة المحاولة لاحقًا.";
 

@@ -16,17 +16,17 @@
     
     
 
-import ReactiveCocoa
+import ReactiveSwift
 import TooLegit
 import Marshal
 import SoLazy
 
 extension AccountDomain {
     static func getAccountDomains() throws -> SignalProducer<[JSONObject], NSError> {
-        guard let url = NSURL(string: "https://canvas.instructure.com/api/v1/accounts/search?per_page=50") else {
+        guard let url = URL(string: "https://canvas.instructure.com/api/v1/accounts/search?per_page=50") else {
             ❨╯°□°❩╯⌢"URL parsing from normal url string didn't work"
         }
-        let request = NSURLRequest(URL: url)
+        let request = URLRequest(url: url)
         return Session.unauthenticated.paginatedJSONSignalProducer(request)
     }
 }

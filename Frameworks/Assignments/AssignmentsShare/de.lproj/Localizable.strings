@@ -1,1 +1,24 @@
-/* No Localized Strings */
+/* Assignment label */
+"Assignment" = "Aufgabe";
+
+/* Message indicating that an assignment is currently be submitted */
+"Assignment is currently being submitted" = "Die Aufgabe wird gerade eingereicht";
+
+/* Assignment submission comment placeholder text */
+"Comment.." = "Kommentiere...";
+
+/* Error when an upload failed to resume. */
+"Failed to resume upload." = "Fehler beim Fortsetzen des Hochladevorgangs.";
+
+/* Message indicating that a submission type is not supported for this assignment. */
+"Submission type not allowed" = "Einreichungstyp nicht erlaubt";
+
+/* Error message when a course could not be selected */
+"Unable to select a course." = "Kursauswahl nicht möglich";
+
+/* Error message when an assignment could not be selected */
+"Unable to select an assignment." = "Ausgabenauswahl nicht möglich";
+
+/* Error message when unable to submit assignment. */
+"Unable to submit assignment." = "Aufgabeneinreichung nicht möglich";
+

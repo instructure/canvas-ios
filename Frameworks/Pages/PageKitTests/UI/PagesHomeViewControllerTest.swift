@@ -52,7 +52,7 @@ class PagesHomeViewControllerTest: UnitTestCase {
         attempt {
             let controller = try PagesHomeViewController.build()
 
-            controller.embedViewController(.FrontPage)
+            controller.embedViewController(.frontPage)
 
             guard let childController = controller.childViewControllers.first as? Page.FrontPageDetailViewController else {
                 XCTFail("expected FrontPageDetailViewController as child view controller")
@@ -66,7 +66,7 @@ class PagesHomeViewControllerTest: UnitTestCase {
         attempt {
             let controller = try PagesHomeViewController.build()
 
-            controller.embedViewController(.List)
+            controller.embedViewController(.list)
 
             guard let childController = controller.childViewControllers.first as? Page.TableViewController else {
                 XCTFail("expected Page.TableViewController as child view controller")

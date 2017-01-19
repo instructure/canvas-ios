@@ -27,7 +27,7 @@ class AssignmentViewModelSpec: QuickSpec {
                 it("registers AssignmentCell") {
                     let tableView = UITableView()
                     AssignmentViewModel.tableViewDidLoad(tableView)
-                    let cell = tableView.dequeueReusableCellWithIdentifier("AssignmentCell")
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "AssignmentCell")
                     expect(cell).to(beAKindOf(AssignmentCell))
                 }
             }

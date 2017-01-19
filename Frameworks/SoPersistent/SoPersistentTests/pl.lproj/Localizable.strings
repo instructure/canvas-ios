@@ -1,0 +1,3 @@
+/* SoPersistent Tests database fails */
+"There was a problem loading the SoPersistentTests database file." = "Wystąpił błąd podczas ładowania pliku z bazy danych SoPersistentTests.";
+

@@ -23,8 +23,8 @@ class DashboardTabView: UIView {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
-    private let selectedAlpha: CGFloat = 1.0
-    private let unselectedAlpha: CGFloat = 0.6
+    fileprivate let selectedAlpha: CGFloat = 1.0
+    fileprivate let unselectedAlpha: CGFloat = 0.6
     
     var normalImage: UIImage?
     var selectedImage: UIImage?
@@ -50,13 +50,13 @@ class DashboardTabView: UIView {
         super.awakeFromNib()
 
         isAccessibilityElement = true
-        iconImageView.tintColor = UIColor.whiteColor()
-        titleLabel.textColor = UIColor.whiteColor()
+        iconImageView.tintColor = UIColor.white
+        titleLabel.textColor = UIColor.white
 
         iconImageView.addSubview(badgeView)
     }
     
-    func setSelected(selected: Bool) {
+    func setSelected(_ selected: Bool) {
         titleLabel.alpha = selected ? selectedAlpha : unselectedAlpha
 
         iconImageView.alpha = selected ? selectedAlpha : unselectedAlpha

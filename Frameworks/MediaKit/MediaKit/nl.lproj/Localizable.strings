@@ -1,8 +1,7 @@
-/* record button a11y hint
-   stop record button a11y hint */
+/* stop record button a11y hint */
 "Begin recording" = "Beginnen met opnemen";
 
-/* Cancel button */
+/* Cancel button title */
 "Cancel" = "Annuleren";
 
 /* Delete button */
@@ -44,7 +43,7 @@
 /* Record button a11y label */
 "Request Audio Recording Permission" = "Toestemming aanvragen voor audio opname";
 
-/* record button a11y hint */
+/* stop record button a11y hint */
 "Request Permission to record audio" = "Toestemming aanvragen om audio op te nemen";
 
 /* stop recording button a11y label */

@@ -27,7 +27,7 @@ class PageTableViewControllerTest: XCTestCase {
     
     let session = Session.ivy
     var contextID: ContextID {
-        return ContextID(id: "24219", context: .Course)
+        return .course(withID: "24219")
     }
     
     func testTableViewControllerInitializer_itAssignsAttributes() {

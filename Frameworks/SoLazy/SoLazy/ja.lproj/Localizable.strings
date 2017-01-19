@@ -1,8 +1,17 @@
+/* Message for an error alert */
+"An unexpected error occured. %@(%@)" = "予期しないエラーが発生しました。%1$@(%2$@)";
+
 /* Dismiss an error dialog */
 "Dismiss" = "棄却する";
 
 /* Data encoding error title */
 "Encoding Error" = "エンコードエラー";
+
+/* Title for an error alert */
+"Error" = "エラー";
+
+/* attached to error explanation in dialog */
+"Explanation:" = "説明：";
 
 /* Option to report an error */
 "Report" = "報告";
@@ -10,12 +19,9 @@
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "UTF8 データのエンコード中にエラーが発生しました";
 
-/* JSON Parsing error description */
+/* (No Commment) */
 "There was a problem interpreting a response from the server." = "サーバーからの応答の読み取り中にエラーが発生しました。";
 
 /* SoLazy's fallback title for an unknown error */
 "Unknown Error" = "未知のエラー";
-
-/* attached to error explanation in dialog */
-"Explanation:" = "説明：";
 

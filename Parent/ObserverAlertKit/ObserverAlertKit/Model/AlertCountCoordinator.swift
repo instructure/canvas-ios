@@ -21,22 +21,22 @@ import CoreData
 import TooLegit
 import SoPersistent
 
-public class AlertCountCoordinator: ManagedObjectCountObserver<Alert> {
-    private let session: Session
+open class AlertCountCoordinator: ManagedObjectCountObserver<Alert> {
+    fileprivate let session: Session
 
-    public init(session: Session, predicate: NSPredicate, alertCountUpdated: (Int)->Void) {
+    public init(session: Session, predicate: NSPredicate, alertCountUpdated: @escaping (Int)->Void) {
         self.session = session
         let context = try! session.alertsManagedObjectContext()
 
         super.init(predicate: predicate, inContext: context, objectCountUpdated: alertCountUpdated)
     }
 
-    public func refresh() {
+    open func refresh() {
         guard let remote = try? Alert.getAlerts(session) else { return }
         let sync = Alert.syncSignalProducer(inContext: context, fetchRemote: remote)
         let _ = sync.start { event in
             switch event {
-            case .Failed(let e):
+            case .failed(let e):
                 print(e)
                 fallthrough
             default:

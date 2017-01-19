@@ -42,16 +42,16 @@ extension AppDelegate {
     }
 
     func resetDirectoriesForTesting() {
-        let fileManager = NSFileManager.defaultManager()
-        guard let libURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).first,
-            docURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first else {
+        let fileManager = FileManager.default
+        guard let libURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).first,
+            let docURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
                 ❨╯°□°❩╯⌢"GASP! There were no user library search paths"
         }
 
         for dirURL in [libURL, docURL] {
-            let files = try! fileManager.contentsOfDirectoryAtURL(dirURL, includingPropertiesForKeys: nil, options: .SkipsHiddenFiles)
+            let files = try! fileManager.contentsOfDirectory(at: dirURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
             for file in files {
-                let _ = try? fileManager.removeItemAtURL(file)
+                let _ = try? fileManager.removeItem(at: file)
             }
         } 
     }

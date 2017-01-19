@@ -63,10 +63,14 @@ public enum Icon: String {
     case empty
     case complete
     
+    case star
+    case check
+    case expand
+    case collapse
     
     /** name of the icon of the form "icon_lined"
      */
-    func imageName(filled: Bool, size: Size = .standard) -> String {
+    func imageName(_ filled: Bool, size: Size = .standard) -> String {
         var name = rawValue + (!filled ? "_line": "")
         if size != .standard {
             name += "_\(size.identifier)"

@@ -20,11 +20,11 @@ import UIKit
 import TooLegit
 import SoLazy
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 
 public final class Folder: FileNode {
-    @NSManaged public var foldersUrl: NSURL
-    @NSManaged public var filesUrl: NSURL
+    @NSManaged public var foldersUrl: URL
+    @NSManaged public var filesUrl: URL
     @NSManaged public var filesCount: Int32
     @NSManaged public var foldersCount: Int32
     override public var icon: UIImage {
@@ -32,22 +32,22 @@ public final class Folder: FileNode {
         if lockedForUser {
             iconName = "icon_locked_fill"
         }
-        let bundle = NSBundle(forClass: File.self)
-        return UIImage(named: iconName, inBundle: bundle, compatibleWithTraitCollection: nil)!
+        let bundle = Bundle(for: File.self)
+        return UIImage(named: iconName, in: bundle, compatibleWith: nil)!
     }
     
-    override public func deleteFileNode(session: Session, shouldForce: Bool) throws -> SignalProducer<Void, NSError> {
+    override public func deleteFileNode(_ session: Session, shouldForce: Bool) throws -> SignalProducer<Void, NSError> {
         let context = try session.filesManagedObjectContext()
         
        let network: SignalProducer<JSONObject, NSError> = attemptProducer {
             return try Folder.deleteFolder(session, folderID: self.id, shouldForce: shouldForce)
-        }.flatten(.Merge)
+        }.flatten(.merge)
         
         let local = attemptProducer {
-            context.deleteObject(self)
-            try context.save()
-        }
-        .startOn(ManagedObjectContextScheduler(context: context))
+                context.delete(self)
+                try context.save()
+            }
+            .start(on: ManagedObjectContextScheduler(context: context))
        
         return network.map({ _ in () }).concat(local)
     }
@@ -58,8 +58,8 @@ public final class Folder: FileNode {
         return folder
     }
 
-    public class func newFolder(session: Session, contextID: ContextID, folderID: String?, name: String) -> SignalProducer<Void, NSError> {
-        let local: JSONObject -> SignalProducer<Void, NSError> = { json in
+    public class func newFolder(_ session: Session, contextID: ContextID, folderID: String?, name: String) -> SignalProducer<Void, NSError> {
+        let local: (JSONObject) -> SignalProducer<Void, NSError> = { json in
             attemptProducer {
                 let context = try session.filesManagedObjectContext()
                 let folder = Folder.create(inContext: context, contextID: contextID)
@@ -73,20 +73,20 @@ public final class Folder: FileNode {
         if let folderID = folderID {
             let network: SignalProducer<JSONObject, NSError> = attemptProducer {
                 return try Folder.addFolder(session, contextID: contextID, folderID: folderID, name: name)
-            }.flatten(.Merge)
+            }.flatten(.merge)
             
             
-            return network.flatMap(.Concat, transform: local)
+            return network.flatMap(.concat, transform: local)
 
         } else {
             let folderID: SignalProducer<String,  NSError> = FileNode.getRootFolderID(session, contextID: contextID)!
-            let network: String -> SignalProducer<JSONObject, NSError> = { folderID in
+            let network: (String) -> SignalProducer<JSONObject, NSError> = { folderID in
                 attemptProducer {
                     return try Folder.addFolder(session, contextID: contextID, folderID: folderID, name: name)
-                }.flatten(.Merge)
+                }.flatten(.merge)
             }
             
-            return folderID.flatMap(.Concat, transform: network).flatMap(.Concat, transform: local)
+            return folderID.flatMap(.concat, transform: network).flatMap(.concat, transform: local)
         }
     }
 }
@@ -96,16 +96,16 @@ import Marshal
 
 extension Folder: SynchronizedModel {
     
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
     
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         isFolder = true
         id = try json.stringID("id")
         try name = json <| "name"
-        try hiddenForUser = json <| "hidden_for_user" ?? false
+        try hiddenForUser = (json <| "hidden_for_user") ?? false
         try foldersUrl = json <| "folders_url"
         try filesUrl = json <| "files_url"
         try filesCount = json <| "files_count"

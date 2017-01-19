@@ -18,7 +18,7 @@
 
 import AssignmentKit
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import SoPretty
 import SoLazy
 import EnrollmentKit
@@ -26,27 +26,13 @@ import TooLegit
 import SoIconic
 
 extension Assignment {
-    // TODO: one day this should be moved to AssignmentKit
-    var iconicIcon: UIImage {
-        switch submissionTypes {
-        case [.DiscussionTopic]:
-            return .icon(.discussion)
-        case [.ExternalTool]:
-            return .icon(.lti)
-        case [.Quiz]:
-            return .icon(.quiz)
-        default:
-            return .icon(.assignment)
-        }
-    }
-    
     var iconA11yLabel: String {
         switch submissionTypes {
-        case [.DiscussionTopic]:
+        case [.discussionTopic]:
             return NSLocalizedString("Discussion", comment: "Discussion assignment type")
-        case [.Quiz]:
+        case [.quiz]:
             return NSLocalizedString("Quiz", comment: "Title for a quiz submission cell")
-        case [.ExternalTool]:
+        case [.externalTool]:
             return NSLocalizedString("LTI", comment: "LTI tool assignment type")
         default:
             return NSLocalizedString("Assignment", comment: "Plain old assignment (not a quiz or a discussion)")
@@ -55,11 +41,11 @@ extension Assignment {
     
     var gradingStatus: String {
         switch (needsGradingCount, submissionTypes) {
-        case (0, [.DiscussionTopic]):
+        case (0, [.discussionTopic]):
             return NSLocalizedString("All responses have been graded", comment: "Discussion topic responses have been graded")
-        case (1, [.DiscussionTopic]):
+        case (1, [.discussionTopic]):
             return NSLocalizedString("1 response needs grading", comment: "only one discussion response needs grading")
-        case (let count, [.DiscussionTopic]):
+        case (let count, [.discussionTopic]):
             return NSLocalizedString("\(count) responses need grading", comment: "N responses need to be graded")
             
         case (0, _):
@@ -72,37 +58,14 @@ extension Assignment {
     }
 }
 
-struct AssignmentViewModel: TableViewCellViewModel {
-    private let color = MutableProperty(UIColor.prettyGray())
-    private let icon: UIImage
-    private let iconA11yLabel: String
-    private let title: String
-    private let subtitle: String
+func viewModel(for assignment: Assignment, in session: Session) -> ColorfulViewModel {
+    let colorful = ColorfulViewModel(features: [.icon, .subtitle])
     
-    static func tableViewDidLoad(tableView: UITableView) {
-        tableView.registerNib(UINib(nibName: "AssignmentCell", bundle: NSBundle(forClass: AssignmentCell.self)), forCellReuseIdentifier: "AssignmentCell")
-    }
+    colorful.title.value = assignment.name
+    colorful.icon.value = assignment.icon
+    colorful.subtitle.value = assignment.gradingStatus
+    colorful.color <~ session.enrollmentsDataSource
+        .color(for: .course(withID: assignment.courseID))
     
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("AssignmentCell") as? AssignmentCell else {
-            ❨╯°□°❩╯⌢"Need a cell of type AssignmentCell"
-        }
-
-        cell.prepare(icon, iconA11yLabel: iconA11yLabel, title: title, subtitle: subtitle)
-        cell.observe(color)
-        return cell
-    }
-    
-    init(assignment: Assignment, session: Session) {
-        icon = assignment.iconicIcon
-        iconA11yLabel = assignment.iconA11yLabel
-        title = assignment.name
-        subtitle = assignment.gradingStatus
-        
-        let contextID = ContextID(id: assignment.courseID, context: .Course)
-        color <~ session
-            .enrollmentsDataSource
-            .producer(contextID)
-            .map { $0?.color ?? .prettyGray() }
-    }
+    return colorful
 }

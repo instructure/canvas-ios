@@ -19,28 +19,28 @@
 import UIKit
 
 extension UIImage {
-    class func rectImage(frame frame: CGRect, color: UIColor, scale: CGFloat) -> UIImage {
+    class func rectImage(frame: CGRect, color: UIColor, scale: CGFloat) -> UIImage {
         
         UIGraphicsBeginImageContextWithOptions(frame.size, false, scale)
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetFillColorWithColor(context!, color.CGColor)
-        CGContextFillRect(context!, frame)
+        context!.setFillColor(color.cgColor)
+        context!.fill(frame)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return image!
     }
     
-    class func circleImage(frame frame: CGRect, color: UIColor, scale: CGFloat) -> UIImage {
+    class func circleImage(frame: CGRect, color: UIColor, scale: CGFloat) -> UIImage {
         
         UIGraphicsBeginImageContextWithOptions(frame.size, false, scale)
         let context = UIGraphicsGetCurrentContext()
         
         var rect = frame
-        rect.origin = CGPointZero
+        rect.origin = CGPoint.zero
         
-        CGContextSetFillColorWithColor(context!, color.CGColor)
-        CGContextFillEllipseInRect(context!, rect)
+        context!.setFillColor(color.cgColor)
+        context!.fillEllipse(in: rect)
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

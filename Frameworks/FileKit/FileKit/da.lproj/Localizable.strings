@@ -1,4 +1,4 @@
-/* nevermind */
+/* Cancel button title */
 "Cancel" = "Annuller";
 
 /* Pick a photo from library */
@@ -25,14 +25,14 @@
 /* title for file upload errors */
 "File Upload Error" = "Fil upload fejl";
 
-/* Title of files list */
+/* (No Commment) */
 "Files" = "Filer";
 
 /* name for a photo just taken */
 "Photo" = "Foto";
 
 /* Choose record audio submission */
-"Record Audio" = "Optag audio";
+"Record Audio" = "Optage audio";
 
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "Tag foto eller video";
@@ -49,14 +49,14 @@
 /* FileKit Database Load Failure Message */
 "There was a problem loading the FileKit database file." = "Der var et problem med indlæsning af FileKit databasefilen.";
 
-/* FileKit Tests database fails */
+/* (No Commment) */
 "There was a problem loading the FileKitTests database file." = "Der var et problem med indlæsningen af FileKitTests databasefilen.";
 
 /* File upload error message */
 "There was a problem preparing the file for upload" = "Der var et problem med forberedelsen af filen for upload";
 
 /* Turn in button title */
-"Turn In" = "Turn In";
+"Turn In" = "Aflever";
 
 /* name for a video just taken for upload */
 "Video" = "Video";

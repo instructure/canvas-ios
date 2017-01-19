@@ -21,17 +21,17 @@ import SoPretty
 
 class ShortAnswerCell: UITableViewCell {
     
-    @IBOutlet private var textFieldBox: UIView!
+    @IBOutlet fileprivate var textFieldBox: UIView!
     @IBOutlet var textField: UITextField!
     
-    var doneEditing: String->() = { _ in }
+    var doneEditing: (String)->() = { _ in }
     
     class var ReuseID: String {
         return "ShortAnswerCellReuseID"
     }
     
     class var Nib: UINib {
-        return UINib(nibName: "ShortAnswerCell", bundle: NSBundle(forClass: self.classForCoder()))
+        return UINib(nibName: "ShortAnswerCell", bundle: Bundle(for: self.classForCoder()))
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -48,8 +48,8 @@ class ShortAnswerCell: UITableViewCell {
         setup()
     }
     
-    private func setup() {
-        textFieldBox.layer.borderColor = UIColor.prettyLightGray().CGColor
+    fileprivate func setup() {
+        textFieldBox.layer.borderColor = UIColor.prettyLightGray().cgColor
         textFieldBox.layer.borderWidth = 2.0
         
         tintColor = Brand.current().tintColor
@@ -62,24 +62,24 @@ class ShortAnswerCell: UITableViewCell {
 }
 
 extension ShortAnswerCell: UITextFieldDelegate {
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         doneEditing(textField.text ?? "")
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if string.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.lengthOfBytes(using: String.Encoding.utf8) == 0 {
             return true
         }
         
         // This makes the text field smart, and if we intend for only decimal input, then only allow decimal input for things like custom keyboards or external keyboards
-        if (textField.keyboardType == .NumbersAndPunctuation) {
-            let characterSet = NSCharacterSet(charactersInString: "0123456789.-^").invertedSet // couldn't use the decimal set because it doesn't contain the "."
-            let range = string.rangeOfCharacterFromSet(characterSet)
+        if (textField.keyboardType == .numbersAndPunctuation) {
+            let characterSet = CharacterSet(charactersIn: "0123456789.-^").inverted // couldn't use the decimal set because it doesn't contain the "."
+            let range = string.rangeOfCharacter(from: characterSet)
             if range != nil {
                 return false
             }

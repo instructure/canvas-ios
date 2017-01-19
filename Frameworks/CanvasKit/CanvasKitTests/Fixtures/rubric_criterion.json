@@ -1,0 +1,23 @@
+{
+    "points": 9.5,
+    "id": "crit1",
+    "description": "Criterion 1",
+    "long_description": "Here is a longer description.",
+    "ratings": [
+                {
+                "points": 9.5,
+                "id": "rat1",
+                "description": "Full marks"
+                },
+                {
+                "points": 7,
+                "id": "rat2",
+                "description": "Partial answer"
+                },
+                {
+                "points": 0,
+                "id": "rat3",
+                "description": "No marks"
+                }
+                ]
+}

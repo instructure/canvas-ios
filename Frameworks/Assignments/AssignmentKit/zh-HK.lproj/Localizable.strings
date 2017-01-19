@@ -1,46 +1,46 @@
-/* (No Commment) */
+/* grade details for points based grade i.e. \"10 of 12\" */
 "(formatter(points)) of (formatter(possible))" = "(formatter(分數)) 共 (formatter(可能分數))";
 
-/* (No Commment) */
+/* Title for 1 day assignment reminder */
 "1 day" = "1 天";
 
-/* (No Commment) */
+/* Title for 1 hour assignment reminder */
 "1 hour" = "1 小時";
 
-/* (No Commment) */
+/* Title for 3 days assignment reminder */
 "3 days" = "3 天";
 
-/* (No Commment) */
+/* Title for 5 minutes assignment reminder */
 "5 minutes" = "5 分鐘";
 
 /* (No Commment) */
 "Assignment" = "任務";
 
-/* (No Commment) */
+/* Title for alert view for assignment reminders */
 "Assignment Reminder" = "任務提醒";
 
 /* (No Commment) */
 "Assignment is currently being submitted" = "任務正在提交中";
 
-/* (No Commment) */
+/* This assignment hasn't been graded yet but can be graded */
 "Awaiting Grade" = "等待評分中";
 
-/* (No Commment) */
+/* cancel button */
 "Cancel" = "取消";
 
-/* (No Commment) */
+/* Title for reminder options for an assignment */
 "Choose how long before the assignment due date to get a reminder:" = "選擇在任務截止前多久接收提醒：";
 
-/* (No Commment) */
+/* Title for a rating that hasn't been graded but has a comment */
 "Comment" = "評論";
 
 /* (No Commment) */
 "Comment.." = "評論。。";
 
-/* (No Commment) */
+/* error displayed when submitting an assignment is unavailable */
 "Could not submit assignment. Invalid assignment or session." = "無法提交任務。任務或進程無效。";
 
-/* (No Commment) */
+/* error displayed when submitting a submission is invalid. */
 "Could not submit assignment. Invalid submission." = "無法提交任務。提交件無效。";
 
 /* (No Commment) */
@@ -49,7 +49,7 @@
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "更新任務時出錯";
 
-/* (No Commment) */
+/* This assignment is excused */
 "Excused" = "已豁免";
 
 /* Error message when submission attachment fails to load. */
@@ -58,19 +58,19 @@
 /* (No Commment) */
 "Failed to resume upload." = "恢復上載失敗。";
 
-/* (No Commment) */
+/* This assignment is late */
 "Late" = "遲交";
 
-/* (No Commment) */
+/* Title for a rating that has custom graded but has no comment */
 "No Comment" = "無評論";
 
-/* (No Commment) */
+/* Default string for due date title */
 "No Due Date" = "無截止日期";
 
 /* Section header for assignments without an assignment group */
 "None" = "無";
 
-/* (No Commment) */
+/* submission title for assignment waiting user submission */
 "Not Submitted" = "未提交";
 
 /* Overdue assignmnets (not turned in) */
@@ -79,19 +79,19 @@
 /* Assignments that have been turned in and are past */
 "Past" = "過去的";
 
-/* (No Commment) */
+/* Rubric Points Possible Title */
 "Points Possible" = "可獲得分數";
 
-/* (No Commment) */
+/* title for submission button if student has submitted previously */
 "Re-submit Assignment" = "重新提交任務";
 
 /* (No Commment) */
 "Submission type not allowed" = "提交件類型不許可";
 
-/* (No Commment) */
+/* submission title for assignment that doesn't support submissions */
 "Submissions N/A" = "提交件 N/A";
 
-/* (No Commment) */
+/* title for submission button if student has never submitted */
 "Submit Assignment" = "提交任務";
 
 /* AssignmentKit database load failure message */
@@ -100,7 +100,7 @@
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "更新 Quiz RRL時出現錯誤";
 
-/* (No Commment) */
+/* submission title for assignemnt that is submitted */
 "Turned in!" = "已提交！";
 
 /* (No Commment) */
@@ -115,13 +115,13 @@
 /* Assignments with no dates */
 "Undated" = "已更新";
 
-/* (No Commment) */
+/* This assignment is not graded */
 "Ungraded" = "未評分";
 
 /* Upcoming assignments */
 "Upcoming" = "即將進行的";
 
-/* (No Commment) */
+/* Title for button to see rubric from assignment detail */
 "View Rubric" = "檢視專欄";
 
 /* (No Commment) */

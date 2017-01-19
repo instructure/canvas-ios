@@ -22,18 +22,19 @@ import TooLegit
 import TechDebt
 import CanvasKit
 import SoEdventurous
+import struct SoProgressive.Progress
 
 /** Keeps TechDebt Modules and Assignments UI up to date course progress
  */
-public class LegacyModuleProgressShim: NSObject {
-    public static func observeProgress(session: Session) {
-        NSNotificationCenter.defaultCenter().addObserver(session, selector: #selector(Session.legacyModuleItemProgressUpdated(_:)), name: CBIModuleItemProgressUpdatedNotification, object: nil)
+open class LegacyModuleProgressShim: NSObject {
+    open static func observeProgress(_ session: Session) {
+        NotificationCenter.default.addObserver(session, selector: #selector(Session.legacyModuleItemProgressUpdated(_:)), name: NSNotification.Name.CBIModuleItemProgressUpdated, object: nil)
     }
 }
 
 extension Session {
-    func legacyModuleItemProgressUpdated(note: NSNotification) {
-        if let progress = Progress(contextID: ContextID(id: user.id, context: .User), notification: note) {
+    func legacyModuleItemProgressUpdated(_ note: NSNotification) {
+        if let progress = Progress(contextID: ContextID(id: user.id, context: .user), notification: note) {
             progressDispatcher.dispatch(progress)
         }
     }
@@ -43,7 +44,7 @@ extension Progress {
     init?(contextID: ContextID, notification: NSNotification) {
         guard let
             id = notification.userInfo?[CBIUpdatedModuleItemIDStringKey] as? String,
-            noteKind = notification.userInfo?[CBIUpdatedModuleItemTypeKey] as? String
+            let noteKind = notification.userInfo?[CBIUpdatedModuleItemTypeKey] as? String
         else {
             return nil
         }
@@ -51,21 +52,21 @@ extension Progress {
         let kind: Progress.Kind
         switch noteKind {
         case CKIModuleItemCompletionRequirementMustView:
-            kind = .Viewed
+            kind = .viewed
         case CKIModuleItemCompletionRequirementMustSubmit:
-            kind = .Submitted
+            kind = .submitted
         case CKIModuleItemCompletionRequirementMustContribute:
-            kind = .Contributed
+            kind = .contributed
         case CKIModuleItemCompletionRequirementMustMarkDone:
-            kind = .MarkedDone
+            kind = .markedDone
         case CKIModuleItemCompletionRequirementMinimumScore:
-            kind = .MinimumScore
+            kind = .minimumScore
         default: fatalError("Unknown completion requirement")
         }
 
         self.kind = kind
         self.contextID = contextID
-        self.itemType = .LegacyModuleProgressShim
+        self.itemType = .legacyModuleProgressShim
         self.itemID = id
     }
 }

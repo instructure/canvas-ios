@@ -245,10 +245,10 @@ Du skal først fuldføre:";
 /* Archive selected messages button */
 "Archive" = "Arkiv";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Arkiver valge beskeder knap";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Arkiver alle valgte beskeder";
 
 /* No comment provided by engineer. */
@@ -382,10 +382,10 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* (No Commment) */
 "Completed" = "Fuldført";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Skriv besked knap";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Skriv en besked";
 
 /* Title for Conferences tab */

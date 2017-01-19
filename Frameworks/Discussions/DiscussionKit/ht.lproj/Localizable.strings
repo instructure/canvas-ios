@@ -1,3 +1,6 @@
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Echèk chajman (discussionKitModelName) NSManagedObjectModel";
+
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Te gen yon pwoblèm nan chajman fichye DiscussionKit baz de done a.";
 

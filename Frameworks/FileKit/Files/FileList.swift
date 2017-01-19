@@ -21,7 +21,7 @@ import SoPersistent
 import TooLegit
 import CoreData
 import MobileCoreServices
-import ReactiveCocoa
+import ReactiveSwift
 
 struct FileViewModel: TableViewCellViewModel {
     static let fileReuseIdentifier = "FileCell"
@@ -31,17 +31,17 @@ struct FileViewModel: TableViewCellViewModel {
     
     let name: String
     
-    static func tableViewDidLoad(tableView: UITableView) {
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: FileViewModel.fileReuseIdentifier)
+    static func tableViewDidLoad(_ tableView: UITableView) {
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: FileViewModel.fileReuseIdentifier)
     }
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(FileViewModel.fileReuseIdentifier, forIndexPath: indexPath)
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: FileViewModel.fileReuseIdentifier, for: indexPath as IndexPath)
         cell.textLabel!.text = name
         return cell
     }
     
     init(fileNode: FileNode) {
-        name = fileNode.name ?? ""
+        name = fileNode.name
     }
 }
 
@@ -53,7 +53,7 @@ class FileList: FileNode.TableViewController {
     let fileUploadCollection: FetchedCollection<FileUpload>
     var backgroundSession: Session
     
-    private var uploadBuilder: UploadBuilder?
+    fileprivate var uploadBuilder: UploadBuilder?
     
     @IBOutlet var newWordField: UITextField?
     
@@ -67,7 +67,7 @@ class FileList: FileNode.TableViewController {
         self.observer = try File.observer(session, backgroundSessionID: self.backgroundSession.sessionID)
         self.fileUploadCollection = try FileUpload.fetchCollection(session, contextID: contextID, folderID: folderID)
         super.init()
-        observer.signal.observeNext { _, object in
+        observer.signal.observeValues { _, object in
             guard let upload = object else { return }
             if let error = upload.errorMessage {
                 print(error)
@@ -77,26 +77,26 @@ class FileList: FileNode.TableViewController {
                 print("completed")
             }
         }
-        fileUploadCollection.collectionUpdates.observeOn(UIScheduler()).observeNext { updates in
+        fileUploadCollection.collectionUpdates.observe(on: UIScheduler()).observeValues { updates in
             self.processCollectionUpdates(updates)
         }
         let collection = try FileNode.fetchCollection(session, contextID: contextID, hiddenForUser: hiddenForUser, folderID: folderID)
         let refresher = try FileNode.refresher(session, contextID: contextID, hiddenForUser: hiddenForUser, folderID: folderID)
         prepare(collection, refresher: refresher, viewModelFactory: FileViewModel.init, didDeleteItemAtIndexPath: deleteFileNode)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(addTapped))
-        self.navigationItem.title = NSLocalizedString("Files", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Title of files list")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        self.navigationItem.title = NSLocalizedString("Files", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Title of files list")
     }
     
-    func processCollectionUpdates(updates: [CollectionUpdate<FileUpload>]) {
+    func processCollectionUpdates(_ updates: [CollectionUpdate<FileUpload>]) {
         var sentSum = 0
         var totalSum = 0
         for update in updates {
             switch update {
-            case .Updated(_, let upload):
+            case .updated(_, let upload, _):
                 let sent = upload.sent
                 let total = upload.total
                 if total > 0 {
-                    print(upload.name + " (" + String(upload.objectID) + ") upload status: " + String(Int(Double(100*sent/total))) + "%")
+                    print(upload.name + " (" + String(describing: upload.objectID) + ") upload status: " + String(Int(Double(100*sent/total))) + "%")
                 }
                 sentSum += Int(sent)
                 totalSum += Int(total)
@@ -110,26 +110,26 @@ class FileList: FileNode.TableViewController {
     }
     
     func addTapped() {
-        let uploadTypeAlert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        uploadTypeAlert.addAction(UIAlertAction(title: "Add Folder", style: .Default, handler: { (action: UIAlertAction!) in
+        let uploadTypeAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        uploadTypeAlert.addAction(UIAlertAction(title: "Add Folder", style: .default, handler: { (action: UIAlertAction!) in
             self.requestFolderName()
         }))
-        uploadTypeAlert.addAction(UIAlertAction(title: "Upload File", style: .Default, handler: { (action: UIAlertAction!) in
+        uploadTypeAlert.addAction(UIAlertAction(title: "Upload File", style: .default, handler: { (action: UIAlertAction!) in
             self.uploadFile()
         }))
-        uploadTypeAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        presentViewController(uploadTypeAlert, animated: true, completion: nil)
+        uploadTypeAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(uploadTypeAlert, animated: true, completion: nil)
     }
     
-    private func requestFolderName() {
+    fileprivate func requestFolderName() {
         var textField: UITextField?
-        let folderNameAlert = UIAlertController(title: "New Folder", message: "Choose a name for the new folder", preferredStyle: .Alert)
-        folderNameAlert.addTextFieldWithConfigurationHandler { (field) in
+        let folderNameAlert = UIAlertController(title: "New Folder", message: "Choose a name for the new folder", preferredStyle: .alert)
+        folderNameAlert.addTextField { (field) in
             textField = field
         }
-        folderNameAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        folderNameAlert.addAction(UIAlertAction(title: "Save", style: .Default, handler: { (action: UIAlertAction!) in
-            if let textField = textField, text = textField.text where !text.isEmpty {
+        folderNameAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        folderNameAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action: UIAlertAction!) in
+            if let textField = textField, let text = textField.text, !text.isEmpty {
                 Folder.newFolder(self.session, contextID: self.contextID, folderID: self.folderID, name: text).startWithFailed { [weak self] error in
                     self?.handleError(error)
                 }
@@ -139,10 +139,10 @@ class FileList: FileNode.TableViewController {
                 }
             }
         }))
-        presentViewController(folderNameAlert, animated: true, completion: nil)
+        present(folderNameAlert, animated: true, completion: nil)
     }
     
-    private func uploadFile() {
+    fileprivate func uploadFile() {
         let images = [kUTTypeImage as String]
         let video = [kUTTypeMovie as String]
         let allowedImagePickerControllerMediaTypes: [String] = images + video
@@ -150,7 +150,7 @@ class FileList: FileNode.TableViewController {
         let builder = UploadBuilder(viewController: self, barButtonItem: nil, submissionTypes: nil, allowsAudio: false, allowsPhotos: true, allowsVideo: true, allowedUploadUTIs: allowedSubmissionUTIs, allowedImagePickerControllerMediaTypes: allowedImagePickerControllerMediaTypes)
         builder.uploadSelected = { newUpload in
             switch newUpload {
-            case .FileUpload(let newUploadFiles):
+            case .fileUpload(let newUploadFiles):
                 do {
                     try File.uploadFile(inSession: self.session, newUploadFiles: newUploadFiles, folderID: self.folderID, contextID: self.contextID, backgroundSession: self.backgroundSession)
                 } catch let error as NSError {
@@ -164,7 +164,7 @@ class FileList: FileNode.TableViewController {
         builder.beginUpload()
     }
     
-    private func deleteFileNode(indexPath: NSIndexPath) {
+    fileprivate func deleteFileNode(_ indexPath: IndexPath) {
         let fileNode: FileNode = collection[indexPath]
         if fileNode.isFolder {
             let folder: Folder = fileNode as! Folder
@@ -185,7 +185,7 @@ class FileList: FileNode.TableViewController {
         }
     }
     
-    private func deleteFolder(folder: Folder, shouldForce: Bool) {
+    fileprivate func deleteFolder(_ folder: Folder, shouldForce: Bool) {
         do {
             try folder.deleteFileNode(session, shouldForce: shouldForce).startWithFailed { error in
                 self.handleError(error)
@@ -196,13 +196,13 @@ class FileList: FileNode.TableViewController {
         
     }
     
-    private func deleteConfirmationAlert(folder: Folder) {
-        let alert = UIAlertController(title: "Warning", message: "Some selected folders are not empty. Are you sure you want to delete them?", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Don't delete", style: .Default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: { (action: UIAlertAction!) in
+    fileprivate func deleteConfirmationAlert(_ folder: Folder) {
+        let alert = UIAlertController(title: "Warning", message: "Some selected folders are not empty. Are you sure you want to delete them?", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Don't delete", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (action: UIAlertAction!) in
             self.deleteFolder(folder, shouldForce: true)
         }))
-        presentViewController(alert, animated: true, completion: { () in
+        present(alert, animated: true, completion: { () in
         })
     }
     
@@ -210,7 +210,7 @@ class FileList: FileNode.TableViewController {
         fatalError()
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let fileNode: FileNode = collection[indexPath]
         if !fileNode.isFolder {
             let file: File = fileNode as! File

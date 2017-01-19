@@ -26,14 +26,14 @@ let kitModelName = "TodoKit"
 let kitSubdomain = "TodoKit"
 let kitFailedToLoadErrorCode = 10001
 let kitFailedToLoadErrorDescription = "Failed to load \(kitModelName) NSManagedObjectModel"
-let kitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the \(kitModelName) database file.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TodoKit")!, value: "", comment: "CalendarKit Database Load Failure Message")
+let kitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the \(kitModelName) database file.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.TodoKit")!, value: "", comment: "CalendarKit Database Load Failure Message")
 
 // ---------------------------------------------
 // MARK: - Session for current user Calendar Events
 // ---------------------------------------------
 extension Session {
     func todosManagedObjectContext() throws -> NSManagedObjectContext {
-        guard let model = NSManagedObjectModel(named: kitModelName, inBundle: NSBundle(forClass: Todo.self)) else {
+        guard let model = NSManagedObjectModel(named: kitModelName, inBundle: Bundle(for: Todo.self)) else {
             throw NSError(subdomain: kitSubdomain, code: kitFailedToLoadErrorCode, title: kitFailedToLoadErrorDescription, description: kitDBFailedToLoadErrorDescription)
         }
 

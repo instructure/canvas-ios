@@ -1,8 +1,8 @@
 /* Error message component with the report id */
-"Error report ID: (reportID)" = "错误报告ID: (报告ID)";
+" Error report ID: (reportID)" = "错误报告ID: (报告ID)";
 
 /* Failure reason from the JSON payload from canvas */
-"Failure reason: (reason)." = "失败原因: (原因)。";
+" Failure reason: (reason)." = "失败原因: (原因)。";
 
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d 问题没有回答";
@@ -34,16 +34,15 @@
 /* label for quiz availability date */
 "Available Until" = "有效直到";
 
-/* Cancel button
-   cancel button for submitting a quiz
-   Cancel removing the formatting */
+/* Cancel button title */
 "Cancel" = "取消";
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "继续测验";
 
-/* Dismiss button for error alert */
-"Dismiss" = "解雇";
+/* Dismiss button for error alert
+   Dismiss error dialog */
+"Dismiss" = "解散";
 
 /* Done button */
 "Done" = "完成";
@@ -54,8 +53,17 @@
 /* Default text for essay cell */
 "Enter answer..." = "输入答案...";
 
+/* Title for quiz loading error */
+"Error Loading Quiz" = "加载测验时出现错误";
+
+/* (No Commment) */
+"Error report ID: (reportID)" = "报告 ID 出错：(reportID)";
+
 /* Exit button to leave the quiz */
 "Exit" = "退出";
+
+/* (No Commment) */
+"Failure reason: (reason)." = "失败原因：（原因）。";
 
 /* State of the flagged question */
 "Flagged" = "标记";
@@ -75,7 +83,7 @@ Submitting" = "锁定日期到
 "Next" = "下一个";
 
 /* A quiz that has no due date */
-"No Due Date" = "没有截止日期";
+"No Due Date" = "无截止日期";
 
 /* when a quiz has no time limit */
 "No time limit" = "没用时限";
@@ -83,8 +91,11 @@ Submitting" = "锁定日期到
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "不能参加";
 
-/* OK */
+/* OK Button Title */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "请检查您的网络连接并再次尝试。";
 
 /* label for number of points in a quiz */
 "Points" = "点";
@@ -137,9 +148,7 @@ Submitting" = "锁定日期到
 /* Label for indication that the quiz submission failed */
 "Submission Failure" = "提交失败";
 
-/* Button for electing to not be late on a quiz
-   confirm submitting quiz
-   Submit button for completing a quiz */
+/* Submit button title */
 "Submit" = "提交";
 
 /* Label for indication of submitting quiz */
@@ -172,7 +181,7 @@ Submitting" = "锁定日期到
 /* Message when telling the user they can't take the quiz because the quiz is locked */
 "This quiz is locked." = "此测验被锁定。";
 
-/* Message when telling the user they can't take the quiz because the quiz is locked */
+/* (No Commment) */
 "This quiz is locked. Reason: (description)" = "此测验被锁定。 原因：(说明)";
 
 /* label for the time limit */

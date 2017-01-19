@@ -30,24 +30,24 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds match") {
-                    let json: [String: AnyObject] = ["id": 1]
+                    let json: [String: Any] = ["id": 1]
                     expect(json).to(beShapedLike(shape))
                 }
 
                 it("finds mismatch") {
-                    let json: [String: AnyObject] = [:]
+                    let json: [String: Any] = [:]
                     let (matches, key) = jsonShape(shape, matchesObject: json)
                     expect(matches) == false
                     expect(key) == "id"
                 }
 
                 it("finds a match with an array of matching objects") {
-                    let json: [[String: AnyObject]] = [["id": 1]]
+                    let json: [[String: Any]] = [["id": 1]]
                     expect(json).to(beShapedLike(shape))
                 }
 
                 it("finds a mismatch with an array of matching objects") {
-                    let json: [[String: AnyObject]] = [[:]]
+                    let json: [[String: Any]] = [[:]]
                     let (matches, key) = jsonShape(shape, matchesObject: json)
                     expect(matches) == false
                     expect(key) == "id"
@@ -65,7 +65,7 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds match") {
-                    let json: [String: AnyObject] = [
+                    let json: [String: Any] = [
                         "object": [
                             "id": 1
                         ]
@@ -74,14 +74,14 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds missing object") {
-                    let json: [String: AnyObject] = [:]
+                    let json: [String: Any] = [:]
                     let (matches, key) = jsonShape(shape, matchesObject: json)
                     expect(matches) == false
                     expect(key) == "object"
                 }
 
                 it("finds missing object value") {
-                    let json: [String: AnyObject] = [
+                    let json: [String: Any] = [
                         "object": [:]
                     ]
                     let (matches, key) = jsonShape(shape, matchesObject: json)
@@ -101,7 +101,7 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds match") {
-                    let json: [String: AnyObject] = [
+                    let json: [String: Any] = [
                         "contact_info": [
                             "address": [
                                 "city": "SLC",
@@ -113,14 +113,14 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds missing inner object") {
-                    let json: [String: AnyObject] = ["contact_info": [:]]
+                    let json: [String: Any] = ["contact_info": [:]]
                     let (matches, key) = jsonShape(shape, matchesObject: json)
                     expect(matches) == false
                     expect(key) == "address"
                 }
 
                 it("finds missing inner object value") {
-                    let json: [String: AnyObject] = ["contact_info": ["address": ["city": "San Francisco"]]]
+                    let json: [String: Any] = ["contact_info": ["address": ["city": "San Francisco"]]]
                     let (matches, key) = jsonShape(shape, matchesObject: json)
                     expect(matches) == false
                     expect(key) == "state"
@@ -145,7 +145,7 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds match") {
-                    let json: [String: AnyObject] = [
+                    let json: [String: Any] = [
                         "friends": [
                             ["name": "alice", "age": 21],
                             ["name": "bob", "age": 30]
@@ -155,7 +155,7 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("expects value to be an array of objects") {
-                    let json: [String: AnyObject] = [
+                    let json: [String: Any] = [
                         "friends": ["alice", "age"]
                     ]
                     let (matches, key) = jsonShape(shape, matchesObject: json)
@@ -164,7 +164,7 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds missing array object key") {
-                    let json: [String: AnyObject] = [
+                    let json: [String: Any] = [
                         "friends": [
                             ["name": "alice"]
                         ]
@@ -189,7 +189,7 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds match") {
-                    let json: [String: AnyObject] = [
+                    let json: [String: Any] = [
                         "friends": [
                             ["pets": [["name": "fido", "species": "dog"], ["name": "mittens", "species": "cat"]]]
                         ]
@@ -198,7 +198,7 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds mismatch") {
-                    let json: [String: AnyObject] = [
+                    let json: [String: Any] = [
                         "friends": [
                             ["pets": [["name": "fido", "species": "dog"], ["name": "fido"]]]
                         ]
@@ -223,7 +223,7 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds match") {
-                    let json: [String: AnyObject] = [
+                    let json: [String: Any] = [
                         "parent": [
                             "pets": [["species": "dog", "name": "choco"]]
                         ]
@@ -232,7 +232,7 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds mismatched object type") {
-                    let json: [String: AnyObject] = [
+                    let json: [String: Any] = [
                         "parent": "mom"
                     ]
                     let (matches, key) = jsonShape(shape, matchesObject: json)
@@ -241,7 +241,7 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds mismatched array type") {
-                    let json: [String: AnyObject] = [
+                    let json: [String: Any] = [
                         "parent": [
                             "pets": "choc, fido, bell"
                         ]
@@ -252,7 +252,7 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds mismatched array object") {
-                    let json: [String: AnyObject] = [
+                    let json: [String: Any] = [
                         "parent": [
                             "pets": ["species": "dog", "name": "choco"]
                         ]
@@ -270,12 +270,12 @@ class JSONShapeSpec: QuickSpec {
                 }
 
                 it("finds match") {
-                    let json: [String: AnyObject] = [:]
+                    let json: [String: Any] = [:]
                     expect(json).to(beShapedLike(shape))
                 }
 
                 it("finds mismatch") {
-                    let json: [String: AnyObject] = ["name": "alice"]
+                    let json: [String: Any] = ["name": "alice"]
                     let (matches, key) = jsonShape(shape, matchesObject: json)
                     expect(matches) == false
                     expect(key) == "!name"

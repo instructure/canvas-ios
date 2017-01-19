@@ -29,7 +29,7 @@ class PageDetailViewControllerTests : UnitTestCase {
 
             controller.configureRefresher()
 
-            XCTAssertEqual(controller.refresher.refreshControl.actionsForTarget(controller, forControlEvent: .ValueChanged)?.count, 1)
+            XCTAssertEqual(controller.refresher.refreshControl.actions(forTarget: controller, forControlEvent: .valueChanged)?.count, 1)
         }
     }
 
@@ -43,24 +43,13 @@ class PageDetailViewControllerTests : UnitTestCase {
         }
     }
 
-    func testWebViewRouting_whenNoURLIsProvided_itRefusesTheLoadWithoutRouting() {
-        attempt {
-            var routed = false
-            let controller = try Page.DetailViewController.build { _,_ in routed = true }
-            let request = NSURLRequest()
-
-            XCTAssertFalse(controller.webView(controller.webView, shouldStartLoadWithRequest: request, navigationType: .LinkClicked))
-            XCTAssertFalse(routed)
-        }
-    }
-
     func testWebViewRouting_whenTheLinkContainsMailToPrefix_itStartsTheLoadWithoutRouting() {
         attempt {
             var routed = false
             let controller = try Page.DetailViewController.build { _,_ in routed = true }
-            let request = NSURLRequest(URL: NSURL(string: "mailto:test@example.com")!)
+            let request = URLRequest(url: URL(string: "mailto:test@example.com")!)
 
-            XCTAssertTrue(controller.webView(controller.webView, shouldStartLoadWithRequest: request, navigationType: .LinkClicked))
+            XCTAssertTrue(controller.webView(controller.webView, shouldStartLoadWith: request, navigationType: .linkClicked))
             XCTAssertFalse(routed)
         }
     }
@@ -69,9 +58,9 @@ class PageDetailViewControllerTests : UnitTestCase {
         attempt {
             var routed = false
             let controller = try Page.DetailViewController.build { _,_ in routed = true }
-            let request = NSURLRequest(URL: NSURL(string: "https://someurl.com/")!)
+            let request = URLRequest(url: URL(string: "https://someurl.com/")!)
 
-            XCTAssertTrue(controller.webView(controller.webView, shouldStartLoadWithRequest: request, navigationType: .Other))
+            XCTAssertTrue(controller.webView(controller.webView, shouldStartLoadWith: request, navigationType: .other))
             XCTAssertFalse(routed)
         }
     }
@@ -81,9 +70,9 @@ class PageDetailViewControllerTests : UnitTestCase {
         attempt {
             var routed = false
             let controller = try Page.DetailViewController.build { _,_ in routed = true }
-            let request = NSURLRequest(URL: NSURL(string: "https://someurl.com/")!)
+            let request = URLRequest(url: URL(string: "https://someurl.com/")!)
 
-            XCTAssertTrue(controller.webView(controller.webView, shouldStartLoadWithRequest: request, navigationType: .Other))
+            XCTAssertTrue(controller.webView(controller.webView, shouldStartLoadWith: request, navigationType: .other))
             XCTAssertFalse(routed)
         }
     }
@@ -92,9 +81,9 @@ class PageDetailViewControllerTests : UnitTestCase {
         attempt {
             var routed = false
             let controller = try Page.DetailViewController.build { _,_ in routed = true }
-            let request = NSURLRequest(URL: NSURL(string: "https://slideshare.net/")!)
+            let request = URLRequest(url: URL(string: "https://slideshare.net/")!)
 
-            XCTAssertFalse(controller.webView(controller.webView, shouldStartLoadWithRequest: request, navigationType: .LinkClicked))
+            XCTAssertFalse(controller.webView(controller.webView, shouldStartLoadWith: request, navigationType: .linkClicked))
             XCTAssertFalse(routed)
         }
     }
@@ -103,9 +92,9 @@ class PageDetailViewControllerTests : UnitTestCase {
         attempt {
             var routed = false
             let controller = try Page.DetailViewController.build { _,_ in routed = true }
-            let request = NSURLRequest(URL: NSURL(string: "https://mobiledev.instructure.com/external_tools/retrieve?")!)
+            let request = URLRequest(url: URL(string: "https://mobiledev.instructure.com/external_tools/retrieve?")!)
 
-            XCTAssertTrue(controller.webView(controller.webView, shouldStartLoadWithRequest: request, navigationType: .LinkClicked))
+            XCTAssertTrue(controller.webView(controller.webView, shouldStartLoadWith: request, navigationType: .linkClicked))
             XCTAssertFalse(routed)
         }
     }
@@ -114,9 +103,9 @@ class PageDetailViewControllerTests : UnitTestCase {
         attempt {
             var routed = false
             let controller = try Page.DetailViewController.build { _,_ in routed = true }
-            let request = NSURLRequest(URL: NSURL(string: "https://mobiledev.instructure.com/#section")!)
+            let request = URLRequest(url: URL(string: "https://mobiledev.instructure.com/#section")!)
 
-            XCTAssertFalse(controller.webView(controller.webView, shouldStartLoadWithRequest: request, navigationType: .LinkClicked))
+            XCTAssertFalse(controller.webView(controller.webView, shouldStartLoadWith: request, navigationType: .linkClicked))
             XCTAssertFalse(routed)
         }
     }
@@ -125,9 +114,9 @@ class PageDetailViewControllerTests : UnitTestCase {
         attempt {
             var routed = false
             let controller = try Page.DetailViewController.build { _,_ in routed = true }
-            let request = NSURLRequest(URL: NSURL(string: "https://mobiledev.instructure.com/courses/24601/pages/test-page#section")!)
+            let request = URLRequest(url: URL(string: "https://mobiledev.instructure.com/courses/24601/pages/test-page#section")!)
 
-            XCTAssertFalse(controller.webView(controller.webView, shouldStartLoadWithRequest: request, navigationType: .LinkClicked))
+            XCTAssertFalse(controller.webView(controller.webView, shouldStartLoadWith: request, navigationType: .linkClicked))
             XCTAssertFalse(routed)
         }
     }
@@ -136,9 +125,9 @@ class PageDetailViewControllerTests : UnitTestCase {
         attempt {
             var routed = false
             let controller = try Page.DetailViewController.build { _,_ in routed = true }
-            let request = NSURLRequest(URL: NSURL(string: "https://mobiledev.instructure.com/courses/24601/pages/someotherpage")!)
+            let request = URLRequest(url: URL(string: "https://mobiledev.instructure.com/courses/24601/pages/someotherpage")!)
 
-            XCTAssertFalse(controller.webView(controller.webView, shouldStartLoadWithRequest: request, navigationType: .LinkClicked))
+            XCTAssertFalse(controller.webView(controller.webView, shouldStartLoadWith: request, navigationType: .linkClicked))
             XCTAssertTrue(routed)
         }
     }

@@ -18,38 +18,43 @@
 
 import UIKit
 import Peeps
-import ReactiveCocoa
+import ReactiveSwift
 import TooLegit
 import TechDebt
 import Kingfisher
 
-func addProfileButton(session: Session, viewController: UIViewController) {
+func addProfileButton(_ session: Session, viewController: UIViewController) {
     let profileButton = ProfileBarButtonItem(avatarURL: session.user.avatarURL)
     let enrollments = viewController
     
-    profileButton.rac_command = RACCommand() { [unowned profileButton, enrollments] _ in
+    profileButton.rac_command = RACCommand() { [weak profileButton, weak enrollments] _ in
+        guard let profileButton = profileButton, let enrollments = enrollments else { return .empty() }
         let profile = ProfileViewController()
         profile.settingsViewControllerFactory = {
-            return SettingsViewController.controller(CKCanvasAPI.currentAPI())
+            return SettingsViewController.controller(CKCanvasAPI.current())
         }
-        profile.canvasAPI = CKCanvasAPI.currentAPI()
+        profile.canvasAPI = CKCanvasAPI.current()
         profile.user = profile.canvasAPI.user
         profile.profileImageSelected = { newProfileImage in
             if let key = session.user.avatarURL?.absoluteString {
-                KingfisherManager.sharedManager.cache.storeImage(newProfileImage, forKey: key)
+                if let image = newProfileImage {
+                    KingfisherManager.shared.cache.store(image, forKey: key)
+                } else {
+                    KingfisherManager.shared.cache.removeImage(forKey: key)
+                }
             }
             
             profileButton.setProfileImage(newProfileImage)
         }
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
         doneButton.rac_command = RACCommand() { [weak profile] _ in
-            profile?.dismissViewControllerAnimated(true, completion: nil)
+            profile?.dismiss(animated: true, completion: nil)
             return .empty()
         }
         profile.navigationItem.leftBarButtonItem = doneButton
         let nav = UINavigationController(rootViewController: profile)
-        nav.modalPresentationStyle = .FormSheet
-        enrollments.presentViewController(nav, animated: true, completion: nil)
+        nav.modalPresentationStyle = .formSheet
+        enrollments.present(nav, animated: true, completion: nil)
         return .empty()
     }
     enrollments.navigationItem.leftBarButtonItem = profileButton

@@ -18,7 +18,7 @@
 
 import Foundation
 
-prefix operator ❨╯°□°❩╯⌢ {}
-@noreturn prefix public func ❨╯°□°❩╯⌢ (text: String) {
+prefix operator ❨╯°□°❩╯⌢
+prefix public func ❨╯°□°❩╯⌢ (text: String) -> Never  {
     fatalError("❨╯°□°❩╯⌢ \(text)")
 }

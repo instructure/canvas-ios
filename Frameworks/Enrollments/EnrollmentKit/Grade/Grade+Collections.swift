@@ -16,36 +16,37 @@
     
     
 
-import ReactiveCocoa
+import ReactiveSwift
 import TooLegit
 import CoreData
 import SoPersistent
 
 extension Grade {
-    static func coursePredicate(courseID: String) -> NSPredicate {
+    static func coursePredicate(_ courseID: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@", "course.id", courseID)
     }
 
-    static func gradingPeriodPredicate(gradingPeriodID: String?) -> NSPredicate {
+    static func gradingPeriodPredicate(_ gradingPeriodID: String?) -> NSPredicate {
         guard let gradingPeriodID = gradingPeriodID else {
             return NSPredicate(format: "%K == nil", "gradingPeriodID")
         }
         return NSPredicate(format: "%K == %@", "gradingPeriodID", gradingPeriodID)
     }
 
-    static func predicate(courseID: String, gradingPeriodID: String?) -> NSPredicate {
+    static func predicate(_ courseID: String, gradingPeriodID: String?) -> NSPredicate {
         let gradingPeriod = Grade.gradingPeriodPredicate(gradingPeriodID)
         let course = Grade.coursePredicate(courseID)
         return NSCompoundPredicate(andPredicateWithSubpredicates: [gradingPeriod, course])
     }
 
-    public static func collectionByCourseID(session: Session, courseID: String) throws -> FetchedCollection<Grade> {
+    public static func collectionByCourseID(_ session: Session, courseID: String) throws -> FetchedCollection<Grade> {
         let context = try session.enrollmentManagedObjectContext()
-        let frc = fetchedResults(coursePredicate(courseID), sortDescriptors: [], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection(frc: frc)
+        return try FetchedCollection(frc:
+            context.fetchedResults(coursePredicate(courseID), sortDescriptors: [])
+        )
     }
 
-    public static func refreshSignalProducer(session: Session, courseID: String, gradingPeriodID: String?) throws -> SignalProducer<[Grade], NSError> {
+    public static func refreshSignalProducer(_ session: Session, courseID: String, gradingPeriodID: String?) throws -> SignalProducer<[Grade], NSError> {
         let context = try session.enrollmentManagedObjectContext()
         let remote = try Grade.getGrades(session, courseID: courseID, gradingPeriodID: gradingPeriodID)
         let local = predicate(courseID, gradingPeriodID: gradingPeriodID)

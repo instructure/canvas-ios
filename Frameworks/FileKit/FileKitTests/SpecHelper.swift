@@ -20,7 +20,7 @@ import Foundation
 import Marshal
 
 private class Bundle {}
-let currentBundle = NSBundle(forClass: Bundle.self)
+let currentBundle = Foundation.Bundle(for: Bundle.self)
 
 let folderJSON: JSONObject = [
     "id": "1",

@@ -16,12 +16,12 @@
     
     
 
-import ReactiveCocoa
+import ReactiveSwift
 import TooLegit
 import Marshal
 
 extension GradingPeriod {
-    static func getGradingPeriods(session: Session, courseID: String) throws -> SignalProducer<[JSONObject], NSError> {
+    static func getGradingPeriods(_ session: Session, courseID: String) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try GradingPeriodAPI.getGradingPeriods(session, courseID: courseID)
         return session.paginatedJSONSignalProducer(request, keypath: "grading_periods")
     }

@@ -27,16 +27,16 @@ class GradeAPITests: XCTestCase {
 
     func testGradeAPI_getGrades_setsCourseIDInURL() {
         let request = try! GradeAPI.getGrades(session, courseID: "1", gradingPeriodID: nil)
-        XCTAssertEqual("/api/v1/courses/1/enrollments", request.URL?.relativePath, "it should have the correct path")
+        XCTAssertEqual("/api/v1/courses/1/enrollments", request.url?.relativePath, "it should have the correct path")
     }
 
     func testGradeAPI_getGrades_parametersWhenGradingPeriodIDIsNil() {
         let request = try! GradeAPI.getGrades(session, courseID: "1", gradingPeriodID: nil)
-        XCTAssertEqual("enrollment_type=student&per_page=99&user_id=self", request.URL?.query, "it should have the correct parameters")
+        XCTAssertEqual("enrollment_type=student&per_page=99&user_id=self", request.url?.query, "it should have the correct parameters")
     }
 
     func testGradeAPI_getGrades_parametersWhenGradingPeriodIDIsNotNil() {
         let request = try! GradeAPI.getGrades(session, courseID: "1", gradingPeriodID: "1")
-        XCTAssertEqual("enrollment_type=student&grading_period_id=1&per_page=99&user_id=self", request.URL?.query, "it should have the correct parameters")
+        XCTAssertEqual("enrollment_type=student&grading_period_id=1&per_page=99&user_id=self", request.url?.query, "it should have the correct parameters")
     }
 }

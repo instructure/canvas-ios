@@ -22,7 +22,8 @@ class TimedQuizViewController: UIViewController {
     
     var minuteLimit: Int = 0 {
         didSet {
-            timeLimitLabel?.text = NSLocalizedString("You have \(minuteLimit) minutes.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows time limit on a quiz")
+            let template = NSLocalizedString("You have %d minutes.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows time limit on a quiz")
+            timeLimitLabel?.text = String.localizedStringWithFormat(template, minuteLimit)
         }
     }
     

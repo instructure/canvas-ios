@@ -19,15 +19,15 @@ import CoreData
 import TooLegit
 
 extension ModuleItem {
-    public func next(session: Session) throws -> ModuleItem? {
+    public func next(_ session: Session) throws -> ModuleItem? {
         return try search(session, ascending: true)
     }
 
-    public func previous(session: Session) throws -> ModuleItem? {
+    public func previous(_ session: Session) throws -> ModuleItem? {
         return try search(session, ascending: false)
     }
 
-    private func search(session: Session, ascending: Bool) throws -> ModuleItem? {
+    fileprivate func search(_ session: Session, ascending: Bool) throws -> ModuleItem? {
         let context = try session.soEdventurousManagedObjectContext()
 
         let higherPosition = NSPredicate(format: "%K > %f", "position", position)
@@ -35,12 +35,12 @@ extension ModuleItem {
         let searchPosition = ascending ? higherPosition : lowerPosition
         let sameModule = ModuleItem.predicate(forItemsIn: moduleID)
         let notASubHeader = NSPredicate(format: "%K != %@", "contentType", ModuleItem.ContentType.subHeader.rawValue)
-        let notLocked = NSPredicate(format: "%K != %@", "lockedForUser", NSNumber(bool: true))
+        let notLocked = NSPredicate(format: "%K != %@", "lockedForUser", NSNumber(value: true))
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [sameModule, searchPosition, notASubHeader, notLocked])
 
         let sort = ascending ? "position".ascending : "position".descending
 
-        let fetch = ModuleItem.fetch(predicate, sortDescriptors: [sort], inContext: context)
+        let fetch: NSFetchRequest<ModuleItem> = context.fetch(predicate, sortDescriptors: [sort])
         let results: [ModuleItem] = try context.findAll(fromFetchRequest: fetch)
         return results.first
     }

@@ -25,7 +25,7 @@ class MarshalTests: XCTestCase {
         describe("NSNumber.value:") {
             it("converts Any to NSNumber") {
                 // Given
-                let num: Any = NSNumber(double: 2.0)
+                let num: Any = NSNumber(value: 2.0 as Double)
 
                 // When
                 let value = try! NSNumber.value(num)
@@ -38,7 +38,7 @@ class MarshalTests: XCTestCase {
                 it("throws an error") {
                     // Given
                     let string: Any = "Foo"
-                    var theError: ErrorType?
+                    var theError: Error?
 
                     // When
                     do {
@@ -50,7 +50,7 @@ class MarshalTests: XCTestCase {
 
                     // Then
                     XCTAssertNotNil(theError)
-                    if case let Marshal.Error.TypeMismatch(expected: expected, actual: actual) = theError! {
+                    if case let MarshalError.typeMismatch(expected: expected, actual: actual) = theError! {
                         XCTAssert(expected is NSNumber.Type)
                         XCTAssert(actual is String.Type)
                     } else {

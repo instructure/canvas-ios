@@ -22,13 +22,13 @@ import UIKit
 class NeverScrollingTextView: UITextView {
     
     convenience init() {
-        self.init(frame: CGRectZero, textContainer: nil)
+        self.init(frame: CGRect.zero, textContainer: nil)
     }
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         clipsToBounds = false
-        scrollEnabled = false
+        isScrollEnabled = false
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -38,7 +38,7 @@ class NeverScrollingTextView: UITextView {
     override var bounds: CGRect {
         set {
             var myBounds = newValue
-            myBounds.origin = CGPointZero
+            myBounds.origin = CGPoint.zero
             super.bounds = myBounds
         }
         get {

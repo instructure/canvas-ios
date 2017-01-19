@@ -31,7 +31,7 @@ class WhizzyCarsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        tableView.registerClass(WhizzyWigTableViewCell.classForCoder(), forCellReuseIdentifier: "WhizzyCell")
+        tableView.register(WhizzyWigTableViewCell.classForCoder(), forCellReuseIdentifier: "WhizzyCell")
     }
     
     let html = [
@@ -43,15 +43,15 @@ class WhizzyCarsViewController: UITableViewController {
     
     // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return html.count
     }
     
-    func configureCell(cell: WhizzyWigTableViewCell, forRowAtIndexPath indexPath:NSIndexPath) {
+    func configureCell(_ cell: WhizzyWigTableViewCell, forRowAtIndexPath indexPath:IndexPath) {
         cell.whizzyWigView.loadHTMLString(html[indexPath.row], baseURL: nil)
         cell.indexPath = indexPath
         cell.cellSizeUpdated = { [weak self] indexPath in
@@ -59,11 +59,11 @@ class WhizzyCarsViewController: UITableViewController {
         }
     }
     
-    private func updateHeight(height: CGFloat, forRowAtIndexPath indexPath: NSIndexPath) {
+    fileprivate func updateHeight(_ height: CGFloat, forRowAtIndexPath indexPath: IndexPath) {
         
         // this prevents the text height bug. It's weird. but it works
         // other things might cause it to break.
-        if tableView.rectForRowAtIndexPath(indexPath).height == height {
+        if tableView.rectForRow(at: indexPath).height == height {
             return
         }
         
@@ -76,24 +76,24 @@ class WhizzyCarsViewController: UITableViewController {
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("WhizzyCell") as! WhizzyWigTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WhizzyCell") as! WhizzyWigTableViewCell
         configureCell(cell, forRowAtIndexPath: indexPath)
         return cell
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         // EMPTY: must be implemented, but can be empty when using UITableViewRowAction
     }
     
 
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let height = cellHeightCache[indexPath.row] else {
             return 44.0
         }
@@ -101,12 +101,12 @@ class WhizzyCarsViewController: UITableViewController {
         return height
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Strong work: \(indexPath)")
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let deleted = UITableViewRowAction(style: .Default, title: "Delete") { action, indexPath in
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleted = UITableViewRowAction(style: .default, title: "Delete") { action, indexPath in
             print("Go ahead... make my day!")
         }
         

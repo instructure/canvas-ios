@@ -19,10 +19,10 @@
 import Foundation
 
 public extension Session {
-    public static func rejectNilParameters(source: [String:AnyObject?]) -> [String:AnyObject] {
-        var destination : [String:AnyObject] = [:]
+    public static func rejectNilParameters(_ source: [String:Any?]) -> [String:Any] {
+        var destination : [String:Any] = [:]
         for (key, nillableValue) in source {
-            if let value: AnyObject = nillableValue {
+            if let value: Any = nillableValue {
                 destination[key] = value
             }
         }

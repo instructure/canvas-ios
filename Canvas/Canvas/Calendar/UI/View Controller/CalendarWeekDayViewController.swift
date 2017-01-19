@@ -21,7 +21,7 @@ import UIKit
 import CalendarKit
 
 protocol CalendarWeekDayViewControllerDelegate {
-    func weekdayViewController(weekdayViewController: CalendarWeekDayViewController, selectedDate day: NSDate)
+    func weekdayViewController(_ weekdayViewController: CalendarWeekDayViewController, selectedDate day: Date)
 }
 
 class CalendarWeekDayViewController: UIViewController, CalendarWeekViewDelegate {
@@ -29,12 +29,12 @@ class CalendarWeekDayViewController: UIViewController, CalendarWeekViewDelegate 
     // ---------------------------------------------
     // MARK: - Private Variables
     // ---------------------------------------------
-    var calendar: NSCalendar
-    var day: NSDate
+    var calendar: Calendar
+    var day: Date
     var delegate: CalendarWeekDayViewControllerDelegate?
     
     // Date Formatters
-    var dateFormatter = NSDateFormatter()
+    var dateFormatter = DateFormatter()
     
     // Data Structure
     var calendarEvents = [CalendarEvent]()
@@ -44,14 +44,14 @@ class CalendarWeekDayViewController: UIViewController, CalendarWeekViewDelegate 
     // ---------------------------------------------
     // MARK: - Lifecycle
     // ---------------------------------------------
-    init(calendar: NSCalendar, day: NSDate, delegate: CalendarWeekDayViewControllerDelegate?) {
+    init(calendar: Calendar, day: Date, delegate: CalendarWeekDayViewControllerDelegate?) {
         self.calendar = calendar
         self.day = day
         self.delegate = delegate
 
         super.init(nibName: nil, bundle: nil)
         
-        dateFormatter.dateStyle = .FullStyle
+        dateFormatter.dateStyle = .full
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -65,20 +65,20 @@ class CalendarWeekDayViewController: UIViewController, CalendarWeekViewDelegate 
         layoutSubviews()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         setDay(day, animated: false)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         self.weekView.setSelectedDay(nil, animated: true)
     }
     
     func initWeekView() {
-        weekView = CalendarWeekView(frame: CGRectZero)
+        weekView = CalendarWeekView(frame: CGRect.zero)
         weekView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(weekView)
         
@@ -86,29 +86,29 @@ class CalendarWeekDayViewController: UIViewController, CalendarWeekViewDelegate 
     }
     
     func layoutSubviews() {
-        let weekViewVerticalContraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[topLayoutGuide]-topPadding-[weekView]-bottomPadding-|", options: NSLayoutFormatOptions(), metrics: ["topPadding": 0, "bottomPadding": 0], views: ["topLayoutGuide": topLayoutGuide, "weekView": weekView])
-        let weekViewHorizontalContraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-leftPadding-[weekView]-rightPadding-|", options: NSLayoutFormatOptions(), metrics: ["rightPadding": 0, "leftPadding": 0], views: ["weekView": weekView])
+        let weekViewVerticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[topLayoutGuide]-topPadding-[weekView]-bottomPadding-|", options: NSLayoutFormatOptions(), metrics: ["topPadding": 0, "bottomPadding": 0], views: ["topLayoutGuide": topLayoutGuide, "weekView": weekView])
+        let weekViewHorizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-leftPadding-[weekView]-rightPadding-|", options: NSLayoutFormatOptions(), metrics: ["rightPadding": 0, "leftPadding": 0], views: ["weekView": weekView])
         view.addConstraints(weekViewVerticalContraints)
         view.addConstraints(weekViewHorizontalContraints)
     }
     
-    func setSelectedWeekdayIndex(index: Int, animated: Bool) {
+    func setSelectedWeekdayIndex(_ index: Int, animated: Bool) {
         self.weekView.setSelectedWeekdayIndex(index, animated: animated)
     }
     
-    func setDay(day: NSDate, animated: Bool) {
+    func setDay(_ day: Date, animated: Bool) {
         self.day = day
         self.weekView.setInitialDay(day, animated: animated)
         self.weekView.setSelectedDay(day, animated: animated)
     }
     
-    func dateIsInWeek(date: NSDate) -> Bool {
-        let componentsOfDate = calendar.components([.Year, .WeekOfYear], fromDate: date)
-        let componentsOfWeek = calendar.components([.Year, .WeekOfYear], fromDate: day)
+    func dateIsInWeek(_ date: Date) -> Bool {
+        let componentsOfDate = (calendar as NSCalendar).components([.year, .weekOfYear], from: date)
+        let componentsOfWeek = (calendar as NSCalendar).components([.year, .weekOfYear], from: day)
         return componentsOfDate.weekOfYear == componentsOfWeek.weekOfYear && componentsOfDate.year == componentsOfWeek.year
     }
     
-    func weekView(weekView: CalendarWeekView, selectedDate day: NSDate) {
+    func weekView(_ weekView: CalendarWeekView, selectedDate day: Date) {
         if let delegate = delegate {
             delegate.weekdayViewController(self, selectedDate: day)
         }

@@ -22,8 +22,8 @@ import SoPersistent
 
 extension Alert {
     static var validJSON: JSONObject {
-        let bundle = NSBundle(forClass: AlertTests.self)
-        let path = bundle.pathForResource("valid_alert", ofType: "json")!
+        let bundle = Bundle(for: AlertTests.self)
+        let path = bundle.path(forResource: "valid_alert", ofType: "json")!
         return try! JSONParser.JSONObjectWithData(NSData(contentsOfFile: path)!)
     }
 }

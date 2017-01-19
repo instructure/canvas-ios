@@ -17,25 +17,24 @@
     
 
 import Foundation
-import ReactiveCocoa
+import ReactiveSwift
 import Nimble
 
-let timeout: NSTimeInterval = 5
-
-extension SignalProducerType {
+extension SignalProducerProtocol {
     public func waitUntilFirst() -> Value? {
         var value: Value?
-        waitUntil(timeout: timeout) { done in
+        
+        waitUntil(timeout: 5) { done in
             self.start { event in
                 switch event {
-                case .Next(let v):
+                case .value(let v):
                     value = v
                     done()
-                case .Completed:
+                case .completed:
                     break
-                case .Interrupted:
+                case .interrupted:
                     fail("interrupted")
-                case .Failed(let error):
+                case .failed(let error):
                     fail("failed with error \(stringify(error))")
                 }
             }

@@ -17,7 +17,7 @@
     
 
 import Foundation
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 import MobileCoreServices
 import FileKit
@@ -25,45 +25,45 @@ import FileKit
 let itemError = NSError(subdomain: "AssignmentKit.Submissions", description: NSLocalizedString("Failed to load item. Check the allowed assignment submission types.", comment: "Error message when submission attachment fails to load."))
 
 public protocol Attachment {
-    func conforms(to uti: String) -> Bool
-    func load(uti: String, completion: (Result<AnyObject, NSError>) -> Void)
+    func conforms(toUTI uti: String) -> Bool
+    func load(uti: String, completion: @escaping (Result<Any, NSError>) -> Void)
 }
 
 extension Assignment {
-    public func submissions(for attachments: [Attachment], callback: (Result<[NewUpload], NSError>) -> Void) {
-        var attachments: [Attachment] = attachments.reverse()
+    public func submissions(for attachments: [Attachment], callback: @escaping (Result<[NewUpload], NSError>) -> Void) {
+        var attachments: [Attachment] = attachments.reversed()
         var submissions: [NewUpload] = []
         var files: [NewUploadFile] = []
 
-        func load(attachments: [Attachment]) {
+        func load(_ attachments: [Attachment]) {
             var attachments = attachments
             guard let attachment = attachments.popLast() else {
                 if !files.isEmpty {
-                    submissions.append(.FileUpload(files))
+                    submissions.append(.fileUpload(files))
                 }
                 callback(Result(submissions))
                 return
             }
 
-            guard let uti = self.allowedSubmissionUTIs.indexOf(attachment.conforms).flatMap({ self.allowedSubmissionUTIs[$0] }) else {
+            guard let uti = self.allowedSubmissionUTIs.index(where: attachment.conforms).flatMap({ self.allowedSubmissionUTIs[$0] }) else {
                 callback(Result(error: itemError))
                 return
             }
 
-            attachment.load(uti) { result in
-                guard let item = result.value, upload = NewUpload.from(uti, item: item) else {
+            attachment.load(uti: uti) { result in
+                guard let item = result.value, let upload = NewUpload.from(uti, item: item) else {
                     callback(Result(error: result.error ?? itemError))
                     return
                 }
 
                 switch upload {
-                case let .FileUpload(f):
+                case let .fileUpload(f):
                     files += f
-                case let .MediaComment(f):
+                case let .mediaComment(f):
                     files.append(f)
-                case .Text, .URL:
+                case .text, .url:
                     submissions.append(upload)
-                case .None:
+                case .none:
                     callback(Result(error: itemError))
                     return
                 }

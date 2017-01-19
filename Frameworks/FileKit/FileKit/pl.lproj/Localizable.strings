@@ -1,4 +1,4 @@
-/* nevermind */
+/* Cancel button title */
 "Cancel" = "Anuluj";
 
 /* Pick a photo from library */
@@ -25,7 +25,7 @@
 /* title for file upload errors */
 "File Upload Error" = "Błąd podczas wczytywania pliku";
 
-/* Title of files list */
+/* (No Commment) */
 "Files" = "Pliki";
 
 /* name for a photo just taken */
@@ -49,7 +49,7 @@
 /* FileKit Database Load Failure Message */
 "There was a problem loading the FileKit database file." = "Wystąpił błąd podczas ładowania pliku z bazy danych FileKit.";
 
-/* FileKit Tests database fails */
+/* (No Commment) */
 "There was a problem loading the FileKitTests database file." = "Wystąpił błąd podczas ładowania pliku z bazy danych FileKitTests.";
 
 /* File upload error message */

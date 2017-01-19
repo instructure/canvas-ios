@@ -18,26 +18,26 @@
 
 import Foundation
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 
 extension Student {
-    public static func addStudent(session: Session, parentID: String, domain: NSURL) throws -> SignalProducer<(), NSError> {
+    public static func addStudent(_ session: Session, parentID: String, domain: URL) throws -> SignalProducer<(), NSError> {
         let request = try AirwolfAPI.addStudentRequest(session, parentID: parentID, studentDomain: domain)
         return session.emptyResponseSignalProducer(request)
     }
 
-    public static func checkDomain(session: Session, parentID: String, domain: NSURL) throws -> SignalProducer<(), NSError> {
+    public static func checkDomain(_ session: Session, parentID: String, domain: URL) throws -> SignalProducer<(), NSError> {
         let request = try AirwolfAPI.checkDomainRequest(session, parentID: parentID, studentDomain: domain)
         return session.emptyResponseSignalProducer(request)
     }
 
-    public static func getStudents(session: Session, parentID: String) throws -> SignalProducer<[JSONObject], NSError> {
+    public static func getStudents(_ session: Session, parentID: String) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try AirwolfAPI.getStudentsRequest(session, parentID: parentID)
         return session.paginatedJSONSignalProducer(request)
     }
 
-    public static func deleteStudent(session: Session, parentID: String, studentID: String) throws -> SignalProducer<(), NSError> {
+    public static func deleteStudent(_ session: Session, parentID: String, studentID: String) throws -> SignalProducer<(), NSError> {
         let request = try AirwolfAPI.deleteStudentRequest(session, parentID: parentID, studentID: studentID)
         return session.emptyResponseSignalProducer(request)
     }

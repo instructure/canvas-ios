@@ -19,21 +19,21 @@
 import Foundation
 import TooLegit
 import Marshal
-import ReactiveCocoa
+import ReactiveSwift
 
 extension Page {
     
-    public static func getPages(session: Session, contextID: ContextID) throws -> SignalProducer<[JSONObject], NSError> {
+    public static func getPages(_ session: Session, contextID: ContextID) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try PageAPI.getPages(session, contextID: contextID)
         return session.paginatedJSONSignalProducer(request)
     }
     
-    public static func getPage(session: Session, contextID: ContextID, url: String) throws -> SignalProducer<JSONObject, NSError> {
+    public static func getPage(_ session: Session, contextID: ContextID, url: String) throws -> SignalProducer<JSONObject, NSError> {
         let request = try PageAPI.getPage(session, contextID: contextID, url: url)
         return session.JSONSignalProducer(request)
     }
 
-    public static func getFrontPage(session: Session, contextID: ContextID) throws -> SignalProducer<JSONObject, NSError> {
+    public static func getFrontPage(_ session: Session, contextID: ContextID) throws -> SignalProducer<JSONObject, NSError> {
         let request = try PageAPI.getFrontPage(session, contextID: contextID)
         return session.JSONSignalProducer(request)
     }

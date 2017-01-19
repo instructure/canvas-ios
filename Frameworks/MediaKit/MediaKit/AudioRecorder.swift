@@ -20,8 +20,8 @@ import Foundation
 import AVFoundation
 
 protocol AudioRecorderDelegate: class {
-    func recorder(recorder: AudioRecorder, didFinishRecordingWithError error: NSError?)
-    func recorder(recorder: AudioRecorder, progressWithTime time: NSTimeInterval, meter: Int)
+    func recorder(_ recorder: AudioRecorder, didFinishRecordingWithError error: NSError?)
+    func recorder(_ recorder: AudioRecorder, progressWithTime time: TimeInterval, meter: Int)
 }
 
 /** records an audio file and stores it at `recordedFileURL`
@@ -30,18 +30,18 @@ protocol AudioRecorderDelegate: class {
     it's clients are expected to clean up the recorded files.
  */
 class AudioRecorder: NSObject {
-    private let dateFormatter: NSDateFormatter = {
-        let df = NSDateFormatter()
+    fileprivate let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
         df.dateFormat = "MMM d, yyyy HH.mm.ss"
         return df
         }()
     
-    private let meterTable: MeterTable
-    var recordedFileURL: NSURL?
+    fileprivate let meterTable: MeterTable
+    var recordedFileURL: URL?
     
     weak var delegate: AudioRecorderDelegate?
     
-    private var timer: CADisplayLink? = nil
+    fileprivate var timer: CADisplayLink? = nil
     
     init(ticks: Int) {
         meterTable = MeterTable(meterTicks: ticks)
@@ -54,13 +54,13 @@ class AudioRecorder: NSObject {
     var recorder: AVAudioRecorder?
     
     func startRecording() throws {
-        let now = NSDate()
+        let now = Date()
         
-        let tmp = NSURL(fileURLWithPath: NSTemporaryDirectory())
-        let recordedFileURL = tmp.URLByAppendingPathComponent(dateFormatter.stringFromDate(now))!.URLByAppendingPathExtension("m4a")
+        let tmp = URL(fileURLWithPath: NSTemporaryDirectory())
+        let recordedFileURL = tmp.appendingPathComponent(dateFormatter.string(from: now)).appendingPathExtension("m4a")
         
-        let settings: [String: AnyObject] = [
-            AVFormatIDKey: NSNumber(unsignedInt: kAudioFormatMPEG4AAC),
+        let settings: [String: Any] = [
+            AVFormatIDKey: NSNumber(value: kAudioFormatMPEG4AAC as UInt32),
             AVSampleRateKey: 22050,
             AVNumberOfChannelsKey: 2,
             AVLinearPCMBitDepthKey: 16,
@@ -68,9 +68,9 @@ class AudioRecorder: NSObject {
             AVLinearPCMIsFloatKey: false
         ]
         
-        recorder = try AVAudioRecorder(URL: recordedFileURL!, settings: settings)
+        recorder = try AVAudioRecorder(url: recordedFileURL, settings: settings)
         recorder?.delegate = self
-        recorder?.meteringEnabled = true
+        recorder?.isMeteringEnabled = true
 
         try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryRecord)
         try AVAudioSession.sharedInstance().setActive(true)
@@ -79,11 +79,11 @@ class AudioRecorder: NSObject {
         
         if began {
             timer = CADisplayLink(target: self, selector: #selector(AudioRecorder.timerFired(_:)))
-            timer?.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+            timer?.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
             delegate?.recorder(self, progressWithTime: 0, meter: 0)
             self.recordedFileURL = recordedFileURL
         } else {
-            do { try NSFileManager.defaultManager().removeItemAtURL(recordedFileURL!) } catch {}
+            do { try FileManager.default.removeItem(at: recordedFileURL) } catch {}
         }
     }
     
@@ -103,23 +103,23 @@ class AudioRecorder: NSObject {
 
 
 extension AudioRecorder: AVAudioRecorderDelegate {
-    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         stopRecording()
         delegate?.recorder(self, didFinishRecordingWithError: nil)
     }
     
-    func audioRecorderEncodeErrorDidOccur(recorder: AVAudioRecorder, error: NSError?) {
+    func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
         stopRecording()
-        delegate?.recorder(self, didFinishRecordingWithError: error)
+        delegate?.recorder(self, didFinishRecordingWithError: error as NSError?)
     }
 }
 
 extension AudioRecorder {
-    func timerFired(timer: CADisplayLink) {
-        if let r = recorder where r.recording {
+    func timerFired(_ timer: CADisplayLink) {
+        if let r = recorder, r.isRecording {
             r.updateMeters()
-            let peak0 = r.averagePowerForChannel(0)
-            let peak1 = r.averagePowerForChannel(1)
+            let peak0 = r.averagePower(forChannel: 0)
+            let peak1 = r.averagePower(forChannel: 1)
             
             let avgPeak = (peak0 + peak1) / 2.0
             

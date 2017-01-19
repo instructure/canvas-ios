@@ -24,7 +24,7 @@ import SoLazy
 import SoProgressive
 import Result
 
-public class QuizIntroViewController: UIViewController {
+open class QuizIntroViewController: UIViewController {
     
     // This class controls what pages are visible initially to the user
     // Based on the quiz setup, possible pages are:
@@ -42,10 +42,10 @@ public class QuizIntroViewController: UIViewController {
         }
     }
     
-    private var pages: [UIViewController] = []
-    private let pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+    fileprivate var pages: [UIViewController] = []
+    fileprivate let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     
-    private let footerView: QuizIntroFooterView = QuizIntroFooterView()
+    fileprivate let footerView: QuizIntroFooterView = QuizIntroFooterView()
     
     init(quizController: QuizController) {
         self.quizController = quizController
@@ -56,12 +56,13 @@ public class QuizIntroViewController: UIViewController {
                 self?.takeabilityController = QuizTakeabilityController(quiz: quiz, service: quizController.service)
                 self?.takeabilityController?.refreshTakeability()
             } else {
-                let title = NSLocalizedString("Error Loading Quiz", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Title for quiz loading error")
-                let message = NSLocalizedString("Please check your network connection and try again.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "")
-                let buttonTitle = NSLocalizedString("Dismiss", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Dismiss error dialog")
-                let alert = UIAlertController(title: title ?? "", message: message ?? "", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: buttonTitle ?? "", style: .Cancel, handler: nil))
-                self?.presentViewController(alert, animated: true, completion: nil)
+                let bundle = Bundle(identifier: "com.instructure.QuizKit")!
+                let title = NSLocalizedString("Error Loading Quiz", tableName: "Localizable", bundle: bundle, value: "", comment: "Title for quiz loading error")
+                let message = NSLocalizedString("Please check your network connection and try again.", tableName: "Localizable", bundle: bundle, value: "", comment: "")
+                let buttonTitle = NSLocalizedString("Dismiss", tableName: "Localizable", bundle: bundle, value: "", comment: "Dismiss button for error alert")
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: buttonTitle, style: .cancel, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
             }
             
             self?.quizUpdated()
@@ -72,43 +73,43 @@ public class QuizIntroViewController: UIViewController {
         ❨╯°□°❩╯⌢"init(coder:) has not been implemented"
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         preparePageViewController()
         prepareFooterView()
     }
     
-    override public func viewWillAppear(animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.quizController.refreshQuiz()
     }
     
-    override public func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         
-        coordinator.animateAlongsideTransition({ _ in
+        coordinator.animate(alongsideTransition: { _ in
             // who cares?
         }, completion: { _ in
             let currentPage = self.footerView.pageControl.currentPage
             guard currentPage < self.pages.count else { return }
             
             let vc = self.pages[self.footerView.pageControl.currentPage]
-            self.pageViewController.setViewControllers([vc], direction: .Forward, animated: false, completion: nil)
+            self.pageViewController.setViewControllers([vc], direction: .forward, animated: false, completion: nil)
         })
     }
     
-    private func preparePageViewController() {
+    fileprivate func preparePageViewController() {
         automaticallyAdjustsScrollViewInsets = false
         
         pageViewController.delegate = self
         pageViewController.dataSource = self
-        pageViewController.view.backgroundColor = UIColor.whiteColor()
+        pageViewController.view.backgroundColor = UIColor.white
         
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
-        pageViewController.didMoveToParentViewController(self)
+        pageViewController.didMove(toParentViewController: self)
 
         pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
         constrain(view, pageViewController.view) { view, pageView in
@@ -117,11 +118,11 @@ public class QuizIntroViewController: UIViewController {
         }
 
         pages = [buildQuizDetailsPage()]
-        pageViewController.setViewControllers(pages, direction: .Forward, animated: false, completion: nil)
+        pageViewController.setViewControllers(pages, direction: .forward, animated: false, completion: nil)
 
     }
     
-    private func prepareFooterView() {
+    fileprivate func prepareFooterView() {
         view.addSubview(footerView)
         constrain(view, footerView) { view, footerView in
             footerView.left == view.left
@@ -129,34 +130,34 @@ public class QuizIntroViewController: UIViewController {
             footerView.height == 60
         }
         
-        let bottomConstraint = NSLayoutConstraint(item: footerView, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Top, multiplier: 1, constant: 0)
+        let bottomConstraint = NSLayoutConstraint(item: footerView, attribute: .bottom, relatedBy: .equal, toItem: self.bottomLayoutGuide, attribute: .top, multiplier: 1, constant: 0)
         view.addConstraint(bottomConstraint)
         
         
-        footerView.takeButton.addTarget(self, action: #selector(QuizIntroViewController.takeTheQuiz(_:)), forControlEvents: .TouchUpInside)
+        footerView.takeButton.addTarget(self, action: #selector(QuizIntroViewController.takeTheQuiz(_:)), for: .touchUpInside)
     }
     
-    private func buildQuizDetailsPage() -> QuizDetailsViewController {
+    fileprivate func buildQuizDetailsPage() -> QuizDetailsViewController {
         let vc = QuizDetailsViewController(quiz: self.quizController.quiz, baseURL: self.quizController.service.baseURL)
         return vc
     }
     
-    private func buildAnswersFinalPage() -> AnswersFinalViewController {
-        return AnswersFinalViewController(nibName: "AnswersFinalViewController", bundle: NSBundle(forClass: QuizIntroViewController.self))
+    fileprivate func buildAnswersFinalPage() -> AnswersFinalViewController {
+        return AnswersFinalViewController(nibName: "AnswersFinalViewController", bundle: Bundle(for: QuizIntroViewController.self))
     }
     
-    private func buildTimedQuizPage() -> TimedQuizViewController {
-        let vc = TimedQuizViewController(nibName: "TimedQuizViewController", bundle: NSBundle(forClass: QuizIntroViewController.self))
+    fileprivate func buildTimedQuizPage() -> TimedQuizViewController {
+        let vc = TimedQuizViewController(nibName: "TimedQuizViewController", bundle: Bundle(for: QuizIntroViewController.self))
         let _ = vc.view // force the hooking up of the outlet
         return vc
     }
     
-    private func updateTakeButtonAndPages() {
+    fileprivate func updateTakeButtonAndPages() {
         if pages.count == 1 {
-            footerView.pageControl.hidden = true
+            footerView.pageControl.isHidden = true
             footerView.setTakeButtonOnscreen(true, animated: true)
         } else {
-            footerView.pageControl.hidden = false
+            footerView.pageControl.isHidden = false
             footerView.setTakeButtonOnscreen(false, animated: true)
         }
         
@@ -164,16 +165,16 @@ public class QuizIntroViewController: UIViewController {
         footerView.pageControl.numberOfPages = pages.count
     }
     
-    private func quizUpdated() {
+    fileprivate func quizUpdated() {
         // This is a very pared down implementation making a lot of assumptions.
         // Assumptions being, that this updated block would only be called once after fetching the quiz,
         // and not continously in a reactive stream style.
         
         // this stuff is just for precaution, incase you didn't see the above note and it started doing some funky stuff
         if pages.count > 1 {
-            pages.removeRange(1...(pages.count-1))
+            pages.removeSubrange(1...(pages.count-1))
         }
-        pageViewController.setViewControllers(pages, direction: .Forward, animated: false, completion: nil)
+        pageViewController.setViewControllers(pages, direction: .forward, animated: false, completion: nil)
         
         let detailsPage = pages[0] as! QuizDetailsViewController
         detailsPage.quiz = quizController.quiz
@@ -183,7 +184,7 @@ public class QuizIntroViewController: UIViewController {
                 pages.append(buildAnswersFinalPage())
             }
             switch quizController.quiz!.timeLimit {
-            case .Minutes(let minutes):
+            case .minutes(let minutes):
                 let page = buildTimedQuizPage()
                 page.minuteLimit = minutes
                 pages.append(page)
@@ -195,51 +196,51 @@ public class QuizIntroViewController: UIViewController {
 
         if let quiz = quizController.quiz {
             let service = quizController.service
-            service.session.progressDispatcher.dispatch(Progress(kind: .Viewed, contextID: service.context, itemType: .Quiz, itemID: quiz.id))
+            service.session.progressDispatcher.dispatch(Progress(kind: .viewed, contextID: service.context, itemType: .quiz, itemID: quiz.id))
         }
     }
     
-    private func takeabilityUpdated() {
+    fileprivate func takeabilityUpdated() {
         if let takeabilityController = self.takeabilityController {
-            footerView.takeButton.enabled = true
+            footerView.takeButton.isEnabled = true
             footerView.takeabilityUpdated(takeabilityController.takeability)
         }
     }
     
     // MARK: Actions
     
-    func takeTheQuiz(button: UIButton?) {
+    func takeTheQuiz(_ button: UIButton?) {
         if let takeabilityController = self.takeabilityController {
             if takeabilityController.takeableNatively() {
                 let controller = takeabilityController.submissionControllerForTakingQuiz(quizController.quiz!)
                 let vc = QuizPresentingViewController(quizController: quizController, submissionController: controller)
-                presentViewController(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+                present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
             } else if takeabilityController.takeableInWebView() {
                 let vc = NonNativeQuizTakingViewController(session: takeabilityController.service.session, contextID: self.quizController.service.context, quiz: quizController.quiz!, baseURL: quizController.service.baseURL)
-                presentViewController(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+                present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
             } else {
                 var message = ""
                 switch takeabilityController.takeability {
-                case .NotTakeable(let reason):
+                case .notTakeable(let reason):
                     switch reason {
-                    case .AttemptLimitReached:
-                        message = NSLocalizedString("You have used all your attempts available on this quiz.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz because they used up all their attempts")
-                    case .IPFiltered:
-                        message = NSLocalizedString("This quiz has an IP address filter set.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz because the quiz has an IP address filter set")
-                    case .Locked:
-                        message = NSLocalizedString("This quiz is locked.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz because the quiz is locked")
-                    case .Undecided:
-                        message = NSLocalizedString("This quiz is currently unavailable.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz for some weird reason")
-                    case .Other:
-                        message = NSLocalizedString("This quiz is locked.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz because the quiz is locked") // not using the description for now - its HTML :(
+                    case .attemptLimitReached:
+                        message = NSLocalizedString("You have used all your attempts available on this quiz.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz because they used up all their attempts")
+                    case .ipFiltered:
+                        message = NSLocalizedString("This quiz has an IP address filter set.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz because the quiz has an IP address filter set")
+                    case .locked:
+                        message = NSLocalizedString("This quiz is locked.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz because the quiz is locked")
+                    case .undecided:
+                        message = NSLocalizedString("This quiz is currently unavailable.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz for some weird reason")
+                    case .other:
+                        message = NSLocalizedString("This quiz is locked.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message when telling the user they can't take the quiz because the quiz is locked") // not using the description for now - its HTML :(
                     }
                 default:
                     break
                 }
                 
-                let alert = UIAlertController(title: NSLocalizedString("Not Takeable", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Title for alert showing when a quiz isn't takeable"), message: message, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "OK Button Title"), style: .Default, handler: { _ in }))
-                self.presentViewController(alert, animated: true, completion: nil)
+                let alert = UIAlertController(title: NSLocalizedString("Not Takeable", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Title for alert showing when a quiz isn't takeable"), message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "OK Button Title"), style: .default, handler: { _ in }))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
@@ -248,8 +249,8 @@ public class QuizIntroViewController: UIViewController {
 }
 
 extension QuizIntroViewController: UIPageViewControllerDataSource {
-    public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        for (index, page) in pages.enumerate() {
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        for (index, page) in pages.enumerated() {
             if page === viewController && index > 0 {
                 return pages[index-1]
             }
@@ -257,8 +258,8 @@ extension QuizIntroViewController: UIPageViewControllerDataSource {
         return nil
     }
     
-    public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        for (index, page) in pages.enumerate() {
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        for (index, page) in pages.enumerated() {
             if page === viewController && index < pages.count-1 {
                 return pages[index+1]
             }
@@ -268,10 +269,10 @@ extension QuizIntroViewController: UIPageViewControllerDataSource {
 }
 
 extension QuizIntroViewController: UIPageViewControllerDelegate {
-    public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
             // update the current page number
-            for (index, page) in pages.enumerate() {
+            for (index, page) in pages.enumerated() {
                 let vcs = pageViewController.viewControllers ?? []
                 if page === vcs.first {
                     footerView.pageControl.currentPage = index

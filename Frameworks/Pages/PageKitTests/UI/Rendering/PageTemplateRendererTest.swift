@@ -32,16 +32,16 @@ class PageTemplateRendererTest: UnitTestCase {
 
             let html = PageTemplateRenderer.htmlStringForPage(page)
 
-            XCTAssertFalse(html.containsString("{$TITLE$}"))
-            XCTAssertFalse(html.containsString("{$PAGE_BODY$}"))
-            XCTAssertFalse(html.containsString("{$CSS$}"))
-            XCTAssertFalse(html.containsString("{$REWRITE_LINKS_JS$}"))
-            XCTAssertFalse(html.containsString("{$JQUERY_LOCAL_JS$}"))
-            XCTAssertFalse(html.containsString("{$IMAGES_LOADED_JS$}"))
+            XCTAssertFalse(html.contains("{$TITLE$}"))
+            XCTAssertFalse(html.contains("{$PAGE_BODY$}"))
+            XCTAssertFalse(html.contains("{$CSS$}"))
+            XCTAssertFalse(html.contains("{$REWRITE_LINKS_JS$}"))
+            XCTAssertFalse(html.contains("{$JQUERY_LOCAL_JS$}"))
+            XCTAssertFalse(html.contains("{$IMAGES_LOADED_JS$}"))
 
-            XCTAssert(html.containsString(page.title))
+            XCTAssert(html.contains(page.title))
             if let body = page.body {
-                XCTAssert(html.containsString(body))
+                XCTAssert(html.contains(body))
             }
         }
     }

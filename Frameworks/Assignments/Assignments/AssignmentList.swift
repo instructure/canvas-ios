@@ -21,18 +21,18 @@ import UIKit
 import AssignmentKit
 import SoPersistent
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 
 struct AssignmentViewModel: TableViewCellViewModel {
     let name: String
     let subtitle: String
     
-    static func tableViewDidLoad(tableView: UITableView) {
-        tableView.registerNib(UINib(nibName: "AssignmentCell", bundle: NSBundle(forClass: AppDelegate.self)), forCellReuseIdentifier: "AssignmentCell")
+    static func tableViewDidLoad(_ tableView: UITableView) {
+        tableView.register(UINib(nibName: "AssignmentCell", bundle: Bundle(for: AppDelegate.self)), forCellReuseIdentifier: "AssignmentCell")
     }
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("AssignmentCell", forIndexPath: indexPath)
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AssignmentCell", for: indexPath)
         cell.textLabel?.text = name
         cell.detailTextLabel?.text = subtitle
         return cell
@@ -40,7 +40,7 @@ struct AssignmentViewModel: TableViewCellViewModel {
     
     init(assignment: Assignment) {
         name = assignment.name + " \(assignment.gradingPeriodID ?? "none")"
-        subtitle = assignment.due.flatMap({ NSDateFormatter.MediumStyleDateTimeFormatter.stringFromDate($0)}) ?? "No Due Date"
+        subtitle = assignment.due.flatMap({ DateFormatter.MediumStyleDateTimeFormatter.string(from: $0)}) ?? "No Due Date"
     }
 }
 
@@ -63,7 +63,7 @@ class AssignmentList: Assignment.TableViewController {
         fatalError()
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let assignment = collection[indexPath]
         do {
             let deets = try AssignmentDetailViewController.new(session, courseID: assignment.courseID, assignmentID: assignment.id)

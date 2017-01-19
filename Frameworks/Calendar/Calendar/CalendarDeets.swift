@@ -24,43 +24,43 @@ import TooLegit
 
 enum CalendarEventDetailViewModel: TableViewCellViewModel {
 
-    static var dateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .MediumStyle
+    static var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
         return dateFormatter
     }()
 
-    case Title(String)
-    case StartDate(NSDate)
-    case EndDate(NSDate)
-    case Details(NSURL, String)
+    case title(String)
+    case startDate(Date)
+    case endDate(Date)
+    case details(URL, String)
 
-    static func tableViewDidLoad(tableView: UITableView) {
+    static func tableViewDidLoad(_ tableView: UITableView) {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
-        tableView.separatorStyle = .None
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "TitleCell")
-        tableView.registerClass(WhizzyWigTableViewCell.self, forCellReuseIdentifier: "WhizzyCell")
+        tableView.separatorStyle = .none
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "TitleCell")
+        tableView.register(WhizzyWigTableViewCell.self, forCellReuseIdentifier: "WhizzyCell")
     }
 
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch self {
-        case .Title(let name):
-            let cell = tableView.dequeueReusableCellWithIdentifier("TitleCell", forIndexPath: indexPath)
+        case .title(let name):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath)
             cell.textLabel?.text = name
             return cell
-        case .StartDate(let startDate):
-            let cell = tableView.dequeueReusableCellWithIdentifier("TitleCell", forIndexPath: indexPath)
-            cell.textLabel?.text = CalendarEventDetailViewModel.dateFormatter.stringFromDate(startDate)
+        case .startDate(let startDate):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath)
+            cell.textLabel?.text = CalendarEventDetailViewModel.dateFormatter.string(from: startDate)
             return cell
-        case .EndDate(let endDate):
-            let cell = tableView.dequeueReusableCellWithIdentifier("TitleCell", forIndexPath: indexPath)
-            cell.textLabel?.text = CalendarEventDetailViewModel.dateFormatter.stringFromDate(endDate)
+        case .endDate(let endDate):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath)
+            cell.textLabel?.text = CalendarEventDetailViewModel.dateFormatter.string(from: endDate)
             return cell
 
-        case .Details(let baseURL, let deets):
+        case .details(let baseURL, let deets):
             print(deets)
-            guard let cell = tableView.dequeueReusableCellWithIdentifier("WhizzyCell", forIndexPath: indexPath) as? WhizzyWigTableViewCell else { fatalError() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "WhizzyCell", for: indexPath) as? WhizzyWigTableViewCell else { fatalError() }
             cell.whizzyWigView.loadHTMLString(deets, baseURL: baseURL)
             cell.cellSizeUpdated = { [weak tableView] _ in
                 tableView?.beginUpdates()
@@ -71,12 +71,12 @@ enum CalendarEventDetailViewModel: TableViewCellViewModel {
     }
 
 
-    static func detailsForCalendarEvent(baseURL: NSURL)(calendarEvent: CalendarEvent) -> [CalendarEventDetailViewModel] {
+    static func detailsForCalendarEvent(_ baseURL: URL, _ calendarEvent: CalendarEvent) -> [CalendarEventDetailViewModel] {
         return [
-            .Title(calendarEvent.title!),
-            .StartDate(calendarEvent.startAt!),
-            .EndDate(calendarEvent.endAt!),
-            .Details(baseURL, calendarEvent.htmlDescription ?? "")
+            .title(calendarEvent.title!),
+            .startDate(calendarEvent.startAt!),
+            .endDate(calendarEvent.endAt!),
+            .details(baseURL, calendarEvent.htmlDescription ?? "")
         ]
     }
 }
@@ -84,20 +84,20 @@ enum CalendarEventDetailViewModel: TableViewCellViewModel {
 extension CalendarEventDetailViewModel: Equatable { }
 func ==(lhs: CalendarEventDetailViewModel, rhs: CalendarEventDetailViewModel) -> Bool {
     switch (lhs, rhs) {
-    case let (.Title(leftTitle), .Title(rightTitle)):
+    case let (.title(leftTitle), .title(rightTitle)):
         return leftTitle == rightTitle
-    case let (.StartDate(leftStartDate), .StartDate(rightStartDate)):
+    case let (.startDate(leftStartDate), .startDate(rightStartDate)):
         return leftStartDate == rightStartDate
-    case let (.EndDate(leftEndDate), .EndDate(rightEndDate)):
+    case let (.endDate(leftEndDate), .endDate(rightEndDate)):
         return leftEndDate == rightEndDate
-    case let (.Details(leftURL, leftDeets), .Details(rightURL, rightDeets)):
+    case let (.details(leftURL, leftDeets), .details(rightURL, rightDeets)):
         return (leftURL == rightURL) && (leftDeets == rightDeets)
     default:
         return false
     }
 }
 
-import ReactiveCocoa
+import ReactiveSwift
 
 class CalendarEventDeets: CalendarEvent.DetailViewController {
     var disposable: Disposable?
@@ -107,10 +107,12 @@ class CalendarEventDeets: CalendarEvent.DetailViewController {
         let observer = try CalendarEvent.observer(session, calendarEventID: calendarEventID)
         let refresher = try CalendarEvent.refresher(session, calendarEventID: calendarEventID)
 
-        prepare(observer, refresher: refresher, detailsFactory: CalendarEventDetailViewModel.detailsForCalendarEvent(session.baseURL))
+        prepare(observer, refresher: refresher) { event in
+            return CalendarEventDetailViewModel.detailsForCalendarEvent(session.baseURL, event)
+        }
 
         disposable = observer.signal.map { $0.1 }
-            .observeNext { calendarEvent in
+            .observeValues { calendarEvent in
                 print(calendarEvent?.title)
         }
     }

@@ -19,13 +19,13 @@
 import Foundation
 import Result
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 
 internal enum BackdropError: Int {
-    case JSONParse
-    case UnknownError
-    case BadFile
+    case jsonParse
+    case unknownError
+    case badFile
 }
 
 private typealias JSONString = String
@@ -36,14 +36,14 @@ private let backdropScope = "data_sync"
 private let customDataKey = "data"
 private let namespaceKey = "ns"
 
-private let backdropParseResponse: JSONObject -> Result<JSONString, NSError> = {json in
+private let backdropParseResponse: (JSONObject) -> Result<JSONString, NSError> = {json in
     if let json = json as? [String: JSONString] {
         if let uglyString = json[customDataKey] {
             let result: Result<JSONString, NSError> = Result(value: uglyString)
             return result
         }
     }
-    let error = NSError(domain: "ProfileKit.BackdropServerHandling.backdropParseResponse", code: BackdropError.JSONParse.rawValue, userInfo: [NSLocalizedDescriptionKey: "can't parse json"])
+    let error = NSError(domain: "ProfileKit.BackdropServerHandling.backdropParseResponse", code: BackdropError.jsonParse.rawValue, userInfo: [NSLocalizedDescriptionKey: "can't parse json"])
     let result: Result<JSONString, NSError> = Result(error: error)
     return result
 }
@@ -57,16 +57,16 @@ Change the value in the UserCustomDataStore to a certain BackdropFile. Value
 is shared with Android so it's critically important that we don't change
 the formatting of the JSON.
 */
-internal func setBackdropOnServer(file: BackdropFile?, session: Session) ->SignalProducer<BackdropFile?, NSError> {
+internal func setBackdropOnServer(_ file: BackdropFile?, session: Session) ->SignalProducer<BackdropFile?, NSError> {
     
     guard let data = BackdropFile.JSONForFile(file) else { return SignalProducer.empty }
-    let parameters: [String: AnyObject] = [namespaceKey: backdropNamespace, customDataKey: data]
+    let parameters: [String: Any] = [namespaceKey: backdropNamespace, customDataKey: data]
     
     let path = customDataBackdropPath()
     let parseResponse = backdropParseResponse
     
     return attemptProducer { try session.PUT(path, parameters: parameters) }
-        .flatMap(.Merge, transform: session.JSONSignalProducer)
+        .flatMap(.merge, transform: session.JSONSignalProducer)
         .attemptMap(parseResponse)
         .attemptMap(BackdropFile.fromJSON)
 }
@@ -75,12 +75,12 @@ internal func setBackdropOnServer(file: BackdropFile?, session: Session) ->Signa
 Get and Read the JSON stored in the UserCustomDataStore for the Backdrop preferences for 
 a certain user. Return the selected Backdrop as a BackdropFile.
 */
-internal func getBackdropOnServer(session: Session) -> SignalProducer<BackdropFile?, NSError> {
+internal func getBackdropOnServer(_ session: Session) -> SignalProducer<BackdropFile?, NSError> {
     let path = customDataBackdropPath()
     let parseResponse = backdropParseResponse
     let parameters = [namespaceKey: backdropNamespace]
     return attemptProducer { try session.GET(path, parameters: parameters) }
-        .flatMap(.Merge, transform: session.JSONSignalProducer)
+        .flatMap(.merge, transform: session.JSONSignalProducer)
         .attemptMap(parseResponse)
         .attemptMap(BackdropFile.fromJSON)
         .flatMapError { _ in SignalProducer(value: nil) }

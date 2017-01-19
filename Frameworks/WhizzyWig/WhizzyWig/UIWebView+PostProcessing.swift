@@ -28,6 +28,6 @@ import Foundation
 
 extension UIWebView {
     public func replaceHREFsWithAPISafeURLs() {
-        self.stringByEvaluatingJavaScriptFromString("var links = document.getElementsByTagName('a'); for (var i = 0; i < links.length; i++){ if(links[i].getAttribute('data-api-endpoint')){ links[i].setAttribute('href',links[i].getAttribute('data-api-endpoint'));}}")
+        self.stringByEvaluatingJavaScript(from: "var links = document.getElementsByTagName('a'); for (var i = 0; i < links.length; i++){ if(links[i].getAttribute('data-api-endpoint')){ links[i].setAttribute('href',links[i].getAttribute('data-api-endpoint'));}}")
     }
 }

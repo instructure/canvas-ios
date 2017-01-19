@@ -20,15 +20,15 @@ import Foundation
 import TooLegit
 import SoPersistent
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 
 
 extension DiscussionTopic {
-    public static func predicate(discussionTopicID: String) -> NSPredicate {
+    public static func predicate(_ discussionTopicID: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@", "id", discussionTopicID)
     }
 
-    public static func refresher(session: Session, courseID: String, discussionTopicID: String) throws -> Refresher {
+    public static func refresher(_ session: Session, courseID: String, discussionTopicID: String) throws -> Refresher {
         let context = try session.discussionsManagedObjectContext()
         let remote = try DiscussionTopic.getDiscussionTopic(session, courseID: courseID, discussionTopicID: discussionTopicID).map { [$0] }
         let pred = predicate(discussionTopicID)
@@ -37,22 +37,22 @@ extension DiscussionTopic {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public static func observer(session: Session, courseID: String, discussionTopicID: String) throws -> ManagedObjectObserver<DiscussionTopic> {
+    public static func observer(_ session: Session, courseID: String, discussionTopicID: String) throws -> ManagedObjectObserver<DiscussionTopic> {
         let pred = predicate(discussionTopicID)
         let context = try session.discussionsManagedObjectContext()
         return try ManagedObjectObserver<DiscussionTopic>(predicate: pred, inContext: context)
     }
 
-    public static func detailsTableViewDataSource<DVM: TableViewCellViewModel where DVM: Equatable>(session: Session, courseID: String, discussionTopicID: String, detailsFactory: DiscussionTopic->[DVM]) throws -> TableViewDataSource {
+    public static func detailsTableViewDataSource<DVM: TableViewCellViewModel>(_ session: Session, courseID: String, discussionTopicID: String, detailsFactory: @escaping (DiscussionTopic)->[DVM]) throws -> TableViewDataSource where DVM: Equatable {
         let obs = try observer(session, courseID: courseID, discussionTopicID: discussionTopicID)
         let collection = FetchedDetailsCollection<DiscussionTopic, DVM>(observer: obs, detailsFactory: detailsFactory)
         return CollectionTableViewDataSource(collection: collection, viewModelFactory: { $0 })
     }
 
-    public class DetailViewController: TableViewController {
-        private (set) public var observer: ManagedObjectObserver<DiscussionTopic>!
+    open class DetailViewController: TableViewController {
+        fileprivate (set) open var observer: ManagedObjectObserver<DiscussionTopic>!
 
-        public func prepare<DVM: TableViewCellViewModel where DVM: Equatable>(observer: ManagedObjectObserver<DiscussionTopic>, refresher: Refresher? = nil, detailsFactory: DiscussionTopic->[DVM]) {
+        open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<DiscussionTopic>, refresher: Refresher? = nil, detailsFactory: @escaping (DiscussionTopic)->[DVM]) where DVM: Equatable {
             self.observer = observer
             let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
             self.refresher = refresher

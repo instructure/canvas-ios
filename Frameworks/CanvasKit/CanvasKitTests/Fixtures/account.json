@@ -1,0 +1,13 @@
+ [
+  {
+  "id": 170000000000002,
+  "name": "Site Admin",
+  "parent_account_id": null,
+  "root_account_id": null,
+  "workflow_state": "active",
+  "default_storage_quota_mb": 500,
+  "default_user_storage_quota_mb": 50,
+  "default_group_storage_quota_mb": 50,
+  "default_time_zone": "America/Denver"
+  }
+]

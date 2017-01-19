@@ -36,7 +36,7 @@ extension AlertThresholdTests {
             }
         }
 
-        guard let alertThresholds = response, alertThreshold = alertThresholds.first where alertThresholds.count == 2 else {
+        guard let alertThresholds = response, let alertThreshold = alertThresholds.first, alertThresholds.count == 2 else {
             XCTFail("unexpected response")
             return
         }
@@ -60,7 +60,7 @@ extension AlertThresholdTests {
             }
         }
 
-        guard let alertThresholds = response, alertThreshold = alertThresholds.first where alertThresholds.count == 1 else {
+        guard let alertThresholds = response, let alertThreshold = alertThresholds.first, alertThresholds.count == 1 else {
             XCTFail("unexpected response")
             return
         }

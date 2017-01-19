@@ -18,10 +18,10 @@
 
 import Foundation
 import UIKit
-import ReactiveCocoa
+import ReactiveSwift
 import AssignmentKit
 
-public class SubmissionStatusViewModel {
+open class SubmissionStatusViewModel {
     internal let assignment: Assignment
     
     internal let hasSubmitted: MutableProperty<Bool>
@@ -37,63 +37,63 @@ public class SubmissionStatusViewModel {
                 return ""
             }
             
-            let date = NSDateFormatter.MediumStyleDateTimeFormatter.stringFromDate(submittedAt)
+            let date = DateFormatter.MediumStyleDateTimeFormatter.string(from: submittedAt)
             
             switch status {
-            case .Submitted(.Late):
+            case .submitted(.late):
                 return "\(Strings.submissionLate) \(date)"
-            case .Submitted(.Excused):
+            case .submitted(.excused):
                 return "\(Strings.submissionExcused) \(date)"
-            case .Submitted(.Normal): return date
-            case .NotSubmitted, .NotAllowed: return ""
+            case .submitted(.normal): return date
+            case .notSubmitted, .notAllowed: return ""
             }
         }
     }
     
     internal enum SubmittedStatus {
-        case Excused, Late, Normal
+        case excused, late, normal
     }
     
     internal enum SubmissionStatus: CustomStringConvertible {
-        case Submitted(SubmittedStatus), NotSubmitted, NotAllowed
+        case submitted(SubmittedStatus), notSubmitted, notAllowed
         
         var description: String {
             switch self {
-            case .Submitted(_):
+            case .submitted(_):
                 return NSLocalizedString("Turned in!",
                     comment: "submission title for assignemnt that is submitted")
-            case .NotSubmitted:
+            case .notSubmitted:
                 return NSLocalizedString("Not Submitted",
                     comment: "submission title for assignment waiting user submission")
-            case .NotAllowed:
+            case .notAllowed:
                 return NSLocalizedString("Submissions N/A",
                     comment: "submission title for assignment that doesn't support submissions")
             }
         }
         
-        static func forAssignment(assignment: Assignment) -> SubmissionStatus {
+        static func forAssignment(_ assignment: Assignment) -> SubmissionStatus {
             if assignment.hasSubmitted {
                 if assignment.submissionExcused {
-                    return .Submitted(.Excused)
+                    return .submitted(.excused)
                 } else if assignment.submissionLate {
-                    return .Submitted(.Late)
+                    return .submitted(.late)
                 }
-                return .Submitted(.Normal)
+                return .submitted(.normal)
             } else if !assignment.allowsSubmissions {
-                return .NotAllowed
+                return .notAllowed
             }
-            return .NotSubmitted
+            return .notSubmitted
         }
     }
     
     struct Strings {
         
         static var submissionExcused: String {
-            return NSLocalizedString("Excused", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "This assignment is excused")
+            return NSLocalizedString("Excused", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "This assignment is excused")
         }
         
         static var submissionLate: String {
-            return NSLocalizedString("Late", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "This assignment is late")
+            return NSLocalizedString("Late", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "This assignment is late")
         }
         
     }
@@ -111,9 +111,9 @@ public func ==(lhs: SubmissionStatusViewModel, rhs: SubmissionStatusViewModel) -
 extension SubmissionStatusViewModel.SubmissionStatus: Equatable {}
 func ==(lhs: SubmissionStatusViewModel.SubmissionStatus, rhs: SubmissionStatusViewModel.SubmissionStatus) -> Bool {
     switch (lhs, rhs) {
-    case (.NotSubmitted, .NotSubmitted), (.NotAllowed, .NotAllowed):
+    case (.notSubmitted, .notSubmitted), (.notAllowed, .notAllowed):
         return true
-    case let (.Submitted(status1), .Submitted(status2)):
+    case let (.submitted(status1), .submitted(status2)):
         return status1 == status2
     default: return false
     }

@@ -19,16 +19,16 @@
 import TooLegit
 import SoLazy
 
-public class AssignmentAPI {
+open class AssignmentAPI {
 
-    public class func getAssignments(session: Session, courseID: String) throws -> NSURLRequest {
+    open class func getAssignments(_ session: Session, courseID: String) throws -> URLRequest {
         let path = "/api/v1/courses/\(courseID)/assignments"
         let parameters = Assignment.parameters
         
         return try session.GET(path, parameters: parameters)
     }
 
-    public class func getAssignment(session: Session, courseID: String, assignmentID: String) throws -> NSURLRequest {
+    open class func getAssignment(_ session: Session, courseID: String, assignmentID: String) throws -> URLRequest {
         let path = "/api/v1/courses/\(courseID)/assignments/\(assignmentID)"
         let parameters = Assignment.parameters
         

@@ -31,16 +31,16 @@ class CanvadocsCommentsViewController: UIViewController {
     var replyToolbar: CommentReplyView!
     var replyToolbarBottom: NSLayoutConstraint?
     
-    static func new(rootComment: PSPDFAnnotation? = nil, pdfDocument: PSPDFDocument) -> CanvadocsCommentsViewController {
+    static func new(_ rootComment: PSPDFAnnotation? = nil, pdfDocument: PSPDFDocument) -> CanvadocsCommentsViewController {
         let vc = CanvadocsCommentsViewController(nibName: nil, bundle: nil)
         vc.rootComment = rootComment
         vc.pdfDocument = pdfDocument
-        vc.tableView = UITableView(frame: CGRectZero, style: .Plain)
+        vc.tableView = UITableView(frame: CGRect.zero, style: .plain)
         vc.replyToolbar = CommentReplyView.instantiate()
         return vc
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
@@ -54,49 +54,49 @@ class CanvadocsCommentsViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(replyToolbar)
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["tableView": tableView]))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]-0-[replyToolbar]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["tableView": tableView, "replyToolbar": replyToolbar]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tableView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["tableView": tableView]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tableView]-0-[replyToolbar]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["tableView": tableView, "replyToolbar": replyToolbar]))
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 48.0
-        tableView.separatorStyle = .None
-        tableView.registerNib(UINib(nibName: "CommentTableViewCell", bundle: NSBundle(forClass: self.classForCoder)), forCellReuseIdentifier: "CommentCell")
+        tableView.separatorStyle = .none
+        tableView.register(UINib(nibName: "CommentTableViewCell", bundle: Bundle(for: self.classForCoder)), forCellReuseIdentifier: "CommentCell")
         tableView.contentInset = UIEdgeInsets(top: tableView.contentInset.top + 10, left: tableView.contentInset.left, bottom: tableView.contentInset.bottom + 10, right: tableView.contentInset.right)
         tableView.dataSource = self
         
         replyToolbar.sendAction = { [unowned self] in
-            if self.replyToolbar.replyTextView.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 { // make sure they actually entered something
+            if self.replyToolbar.replyTextView.text.lengthOfBytes(using: String.Encoding.utf8) > 0 { // make sure they actually entered something
                 // Cases to handle:
                 // 1. Contents string on a non note type like a box or highlight
                 // 2. New note
                 // 3. Reply
                 
                 // If we can just set the contents in place, without adding a new annotation
-                if self.rootComment != nil && (self.rootComment?.contents == nil || self.rootComment?.contents == "") && self.rootComment?.dynamicType !== PSPDFNoteAnnotation.self {
+                if let root = self.rootComment, (root.contents == nil || root.contents == "") && type(of: root) !== PSPDFNoteAnnotation.self {
                     self.rootComment?.contents = self.replyToolbar.replyTextView.text
                     self.comments.append(self.rootComment!)
-                    NSNotificationCenter.defaultCenter().postNotificationName(PSPDFAnnotationChangedNotification, object: self.rootComment!, userInfo: [PSPDFAnnotationChangedNotificationKeyPathKey: ["contents"]])
+                    NotificationCenter.default.post(name: NSNotification.Name.PSPDFAnnotationChanged, object: self.rootComment!, userInfo: [PSPDFAnnotationChangedNotificationKeyPathKey: ["contents"]])
                     do {
                         try self.pdfDocument.saveAnnotations()
                     } catch {}
                 } else if self.rootComment == nil {
                     self.rootComment = PSPDFNoteAnnotation(contents: self.replyToolbar.replyTextView.text)
-                    self.rootComment?.boundingBox = self.templateAnnotation?.boundingBox ?? CGRectZero
+                    self.rootComment?.boundingBox = self.templateAnnotation?.boundingBox ?? CGRect.zero
                     self.rootComment?.page = self.templateAnnotation?.page ?? 0
                     self.rootComment?.user = self.templateAnnotation?.user
-                    self.rootComment?.editable = self.templateAnnotation?.editable ?? true
+                    self.rootComment?.isEditable = self.templateAnnotation?.isEditable ?? true
                     self.comments.append(self.rootComment!)
-                    self.pdfDocument.addAnnotations([self.rootComment!], options: [PSPDFAnnotationOptionUserCreatedKey:true])
+                    self.pdfDocument.add([self.rootComment!], options: [PSPDFAnnotationOptionUserCreatedKey:true])
                     self.newThread = false
                 } else {
                     if let firstComment = self.comments.first {
                         // There must be some text on it already, so this must be a reply
                         let newAnnotation = CanvadocsCommentReplyAnnotation(contents: self.replyToolbar.replyTextView.text)
-                        newAnnotation.page = firstComment.page ?? 0
-                        newAnnotation.boundingBox = firstComment.boundingBox ?? CGRectZero
+                        newAnnotation.page = firstComment.page
+                        newAnnotation.boundingBox = firstComment.boundingBox
                         newAnnotation.inReplyTo = firstComment.name
                         self.comments.append(newAnnotation)
-                        self.pdfDocument.addAnnotations([newAnnotation], options: [PSPDFAnnotationOptionUserCreatedKey:true])
+                        self.pdfDocument.add([newAnnotation], options: [PSPDFAnnotationOptionUserCreatedKey:true])
                     }
                     
                 }
@@ -105,59 +105,59 @@ class CanvadocsCommentsViewController: UIViewController {
             }
         }
         replyToolbar.translatesAutoresizingMaskIntoConstraints = false
-        replyToolbarBottom = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: replyToolbar, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0.0)
+        replyToolbarBottom = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: replyToolbar, attribute: NSLayoutAttribute.bottom, multiplier: 1.0, constant: 0.0)
         view.addConstraint(replyToolbarBottom!)
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[replyToolbar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["replyToolbar": replyToolbar]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[replyToolbar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["replyToolbar": replyToolbar]))
         
-        navigationItem.title = NSLocalizedString("Comments", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(CanvadocsCommentsViewController.close(_:)))
-        if rootComment?.editable ?? true {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: #selector(CanvadocsCommentsViewController.trash(_:)))
+        navigationItem.title = NSLocalizedString("Comments", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(CanvadocsCommentsViewController.close(_:)))
+        if rootComment?.isEditable ?? true {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(CanvadocsCommentsViewController.trash(_:)))
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CanvadocsCommentsViewController.showingKeyboard(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CanvadocsCommentsViewController.hidingKeyboard(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CanvadocsCommentsViewController.showingKeyboard(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CanvadocsCommentsViewController.hidingKeyboard(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         if rootComment?.contents == nil || rootComment?.contents == "" {
             replyToolbar.replyTextView.becomeFirstResponder()
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    func close(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func close(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
-    func trash(sender: UIBarButtonItem) {
+    func trash(_ sender: UIBarButtonItem) {
         if let rootComment = rootComment {
-            pdfDocument.removeAnnotations([rootComment], options: [:])
+            pdfDocument.remove([rootComment], options: [:])
         }
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
 
 extension CanvadocsCommentsViewController: UITableViewDataSource {
-    func annotationForIndex(index: NSInteger) -> PSPDFAnnotation? {
+    func annotationForIndex(_ index: NSInteger) -> PSPDFAnnotation? {
         return comments[index]
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comments.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell") as! CommentTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentTableViewCell
         
         if let annotation = annotationForIndex(indexPath.row) {
             cell.userLabel.text = annotation.user
@@ -172,35 +172,35 @@ extension CanvadocsCommentsViewController: UITableViewDataSource {
 // MARK: - Keyboard Handling
 // ---------------------------------------------
 extension CanvadocsCommentsViewController {
-    func showingKeyboard(notification: NSNotification) {
+    func showingKeyboard(_ notification: Notification) {
         let info = notification.userInfo as! [String: AnyObject]
-        let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let animationCurve = UIViewAnimationOptions(rawValue: (info[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber) as UInt)
-        let animationDuration: NSTimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        let animationDuration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
         let keyboardHeight = keyboardFrame.height
         
         // We do this before the animation and again during the animation, which forces the tableView to first figure out how big it is (cuz esimatedRowHeight)
         // and then again to do the animation once it actually knows
         if self.tableView(self.tableView, numberOfRowsInSection: 0) > 0 {
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: max(self.tableView(tableView, numberOfRowsInSection: 0)-1, 0), inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
+            self.tableView.scrollToRow(at: IndexPath(row: max(self.tableView(tableView, numberOfRowsInSection: 0)-1, 0), section: 0), at: UITableViewScrollPosition.bottom, animated: false)
         }
         
         self.replyToolbarBottom?.constant = keyboardHeight
-        UIView.animateWithDuration(animationDuration, delay: 0, options: animationCurve, animations: {
+        UIView.animate(withDuration: animationDuration, delay: 0, options: animationCurve, animations: {
             self.view.layoutIfNeeded()
             if self.tableView(self.tableView, numberOfRowsInSection: 0) > 0 {
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.tableView(self.tableView, numberOfRowsInSection: 0)-1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
+                self.tableView.scrollToRow(at: IndexPath(row: self.tableView(self.tableView, numberOfRowsInSection: 0)-1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
             }
         }, completion: nil)
     }
     
-    func hidingKeyboard(notification: NSNotification) {
+    func hidingKeyboard(_ notification: Notification) {
         let info = notification.userInfo as! [String: AnyObject]
         let animationCurve = UIViewAnimationOptions(rawValue: (info[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber) as UInt)
-        let animationDuration: NSTimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        let animationDuration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
         
         self.replyToolbarBottom?.constant = 0.0
-        UIView.animateWithDuration(animationDuration, delay: 0, options: animationCurve, animations: {
+        UIView.animate(withDuration: animationDuration, delay: 0, options: animationCurve, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }

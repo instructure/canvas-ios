@@ -17,7 +17,7 @@
     
 
 @import MyLittleViewController;
-@import ReactiveCocoa;
+@import ReactiveObjC;
 
 typedef id<MLVCViewModel> (^ViewModelFactory)(id model);
 typedef void (^ViewModelUpdateBlock)(id<MLVCViewModel> existingViewModel, id model);
@@ -40,7 +40,7 @@ typedef id (^IdentityBlock)(id);
 
 - (RACTuple *)refreshCollectionWithModelSignal:(RACSignal *)modelSignal modelIDBlock:(IdentityBlock)modelIDBlock viewModelIDBlock:(IdentityBlock)viewModelIDBlock viewModelUpdateBlock:(ViewModelUpdateBlock)viewModelUpdateBlock viewModelFactoryBlock:(ViewModelFactory)factoryBlock;
 {
-    NSArray *existing = [self.groups.rac_sequence flattenMap:^RACStream *(MLVCCollectionControllerGroup *group) {
+    NSArray *existing = [self.groups.rac_sequence flattenMap:^__kindof RACStream *(MLVCCollectionControllerGroup *group) {
         return group.objects.rac_sequence;
     }].array;
     

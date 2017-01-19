@@ -1,0 +1,15 @@
+{
+    "consumer_key": "test",
+    "created_at": "2013-07-29T21:28:47Z",
+    "description": "This example LTI Tool Provider supports LIS Outcome pass-back and the content extension.",
+    "domain": "lti-tool-provider.herokuapp.com",
+    "id": 24506,
+    "name": "LTI Test Tool",
+    "updated_at": "2013-07-29T21:28:47Z",
+    "url": "http://lti-tool-provider.herokuapp.com/lti_tool",
+    "privacy_level": "public",
+    "custom_fields":{"key":"value", "key2":"value2"},
+    "workflow_state": "public",
+    "vendor_help_link": "http://lti-tool-provider.herokuapp.com/lti_tool/help",
+    "icon_url": "http://lti-tool-provider.herokuapp.com/selector.png"
+}

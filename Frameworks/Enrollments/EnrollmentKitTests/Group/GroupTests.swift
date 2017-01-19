@@ -61,10 +61,10 @@ class GroupTests: UnitTestCase {
             try newGroup.updateValues(groupJSON, inContext: context)
         }
         
-        XCTAssertEqual(ContextID(id: "1", context: .Group), newGroup.contextID, "contextID should match")
+        XCTAssertEqual(ContextID(id: "1", context: .group), newGroup.contextID, "contextID should match")
     }
     
-    private var groupJSON: JSONObject {
+    fileprivate var groupJSON: JSONObject {
         return [
             "id": "1",
             "name": "student",

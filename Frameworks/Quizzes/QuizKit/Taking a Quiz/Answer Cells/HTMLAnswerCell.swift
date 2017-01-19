@@ -28,11 +28,11 @@ class HTMLAnswerCell: UITableViewCell {
     }
     
     class var Nib: UINib {
-        return UINib(nibName: "HTMLAnswerCell", bundle: NSBundle(forClass: self.classForCoder()))
+        return UINib(nibName: "HTMLAnswerCell", bundle: Bundle(for: self.classForCoder()))
     }
     
-    var indexPath = NSIndexPath(forRow: 0, inSection: 0)
-    var cellSizeUpdated: NSIndexPath->() = {_ in }
+    var indexPath = IndexPath(row: 0, section: 0)
+    var cellSizeUpdated: (IndexPath)->() = {_ in }
     
     var minHeight: CGFloat = 43.0
     var maxHeight: CGFloat = 2048.0
@@ -55,8 +55,8 @@ class HTMLAnswerCell: UITableViewCell {
         setup()
     }
     
-    private func setup() {
-        selectionStyle = .None
+    fileprivate func setup() {
+        selectionStyle = .none
         
         whizzyWigView.contentBackgroundColor = UIColor.prettyLightGray()
         whizzyWigView.contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
@@ -69,7 +69,7 @@ class HTMLAnswerCell: UITableViewCell {
         selectionStatusImageView.tintColor = Brand.current().secondaryTintColor
     }
     
-    private func contentSizeDidChange() {
+    fileprivate func contentSizeDidChange() {
         let contentHeight = whizzyWigView.contentHeight
         whizzyWigViewHeightConstraint.constant = min(maxHeight, max(minHeight, contentHeight))
         cellSizeUpdated(indexPath)
@@ -87,15 +87,15 @@ class HTMLAnswerCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        indexPath = IndexPath(row: 0, section: 0)
         cellSizeUpdated = {_ in }
         
-        selectionStatusImageView.hidden = true
+        selectionStatusImageView.isHidden = true
     }
 }
 
 extension HTMLAnswerCell: SelectableAnswerCell {
-    func configureForState(selected selected: Bool) {
-        selectionStatusImageView.hidden = !selected
+    func configureForState(selected: Bool) {
+        selectionStatusImageView.isHidden = !selected
     }
 }

@@ -23,24 +23,24 @@ import SoIconic
 extension CalendarEvent {
 
     public func dueText() -> String {
-        guard let startAt = startAt, endAt = endAt else {
+        guard let startAt = startAt, let endAt = endAt else {
             return ""
         }
 
-        if startAt.compare(endAt) == NSComparisonResult.OrderedSame {
-            return "\(CalendarEvent.dueDateFormatter.stringFromDate(startAt))"
+        if startAt.compare(endAt) == .orderedSame {
+            return "\(CalendarEvent.dueDateFormatter.string(from: startAt))"
         }
 
-        return "\(CalendarEvent.dueDateFormatter.stringFromDate(startAt)) - \(CalendarEvent.dueDateFormatter.stringFromDate(endAt))"
+        return "\(CalendarEvent.dueDateFormatter.string(from: startAt)) - \(CalendarEvent.dueDateFormatter.string(from: endAt))"
     }
 
     public func typeImage() -> UIImage {
         switch self.type {
-        case .Assignment:
+        case .assignment:
             return .icon(.assignment)
-        case .Quiz:
+        case .quiz:
             return .icon(.quiz)
-        case .Discussion:
+        case .discussion:
             return .icon(.discussion)
         default:
             return .icon(.calendar)

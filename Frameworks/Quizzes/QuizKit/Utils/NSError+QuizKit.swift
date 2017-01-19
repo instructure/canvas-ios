@@ -20,7 +20,7 @@ import Foundation
 
 
 extension NSError {
-    class func quizErrorWithMessage(message: String) -> NSError {
+    class func quizErrorWithMessage(_ message: String) -> NSError {
         return NSError(domain: "com.instructure.quizkit", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
     }
 }

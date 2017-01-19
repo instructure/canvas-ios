@@ -1,8 +1,8 @@
 /* Error message component with the report id */
-"Error report ID: (reportID)" = "Error report ID: (reportID)";
+" Error report ID: (reportID)" = " Error report ID: (reportID)";
 
 /* Failure reason from the JSON payload from canvas */
-"Failure reason: (reason)." = "Failure reason: (reason).";
+" Failure reason: (reason)." = " Failure reason: (reason).";
 
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d questions not answered";
@@ -34,15 +34,14 @@
 /* label for quiz availability date */
 "Available Until" = "Available Until";
 
-/* Cancel button
-   cancel button for submitting a quiz
-   Cancel removing the formatting */
+/* Cancel button title */
 "Cancel" = "Cancel";
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Continue Quiz";
 
-/* Dismiss button for error alert */
+/* Dismiss button for error alert
+   Dismiss error dialog */
 "Dismiss" = "Dismiss";
 
 /* Done button */
@@ -54,8 +53,17 @@
 /* Default text for essay cell */
 "Enter answer..." = "Enter answer...";
 
+/* Title for quiz loading error */
+"Error Loading Quiz" = "Error Loading Quiz";
+
+/* (No Commment) */
+"Error report ID: (reportID)" = "Error report ID: (reportID)";
+
 /* Exit button to leave the quiz */
 "Exit" = "Exit";
+
+/* (No Commment) */
+"Failure reason: (reason)." = "Failure reason: (reason).";
 
 /* State of the flagged question */
 "Flagged" = "Flagged";
@@ -83,8 +91,11 @@ Submitting";
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Not Takeable";
 
-/* OK */
+/* OK Button Title */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "Please check your network connection and try again.";
 
 /* label for number of points in a quiz */
 "Points" = "Points";
@@ -137,9 +148,7 @@ Submitting";
 /* Label for indication that the quiz submission failed */
 "Submission Failure" = "Submission Failure";
 
-/* Button for electing to not be late on a quiz
-   confirm submitting quiz
-   Submit button for completing a quiz */
+/* Submit button title */
 "Submit" = "Submit";
 
 /* Label for indication of submitting quiz */
@@ -172,7 +181,7 @@ Submitting";
 /* Message when telling the user they can't take the quiz because the quiz is locked */
 "This quiz is locked." = "This quiz is locked.";
 
-/* Message when telling the user they can't take the quiz because the quiz is locked */
+/* (No Commment) */
 "This quiz is locked. Reason: (description)" = "This quiz is locked. Reason: (description)";
 
 /* label for the time limit */

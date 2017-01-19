@@ -23,10 +23,10 @@ import SoPersistent
 import FileKit
 import Nimble
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 
 private class Bundle {}
-let currentBundle = NSBundle(forClass: Bundle.self)
+let currentBundle = Foundation.Bundle(for: Bundle.self)
 
 let rubricJSON: JSONObject = [
     "id": 259883,
@@ -44,19 +44,19 @@ let assignmentJSON: JSONObject = [
 ]
 
 let factoryImage: UIImage = {
-    let path = currentBundle.pathForResource("hubble-large", ofType: "jpg")!
+    let path = currentBundle.path(forResource: "hubble-large", ofType: "jpg")!
     return UIImage(contentsOfFile: path)!
 }()
 
-let factoryURL: NSURL = {
-    return currentBundle.URLForResource("testfile", withExtension: "txt")!
+let factoryURL: URL = {
+    return currentBundle.url(forResource: "testfile", withExtension: "txt")!
 }()
 
-func uploadSubmission(submissionUpload: SubmissionUpload, in session: Session) {
+func uploadSubmission(_ submissionUpload: SubmissionUpload, in session: Session) {
     let predicate = NSPredicate(format: "%K == %@", "backgroundSessionID", submissionUpload.backgroundSessionID)
     let observer = try! ManagedObjectObserver<SubmissionUpload>(predicate: predicate, inContext: submissionUpload.managedObjectContext!)
     var disposable: Disposable?
-    waitUntil(timeout: 2) { done in
+    waitUntil(timeout: 8) { done in
         disposable = observer.signal.observeResult { result in
             expect(result.error).to(beNil())
             if let upload = result.value?.1 {

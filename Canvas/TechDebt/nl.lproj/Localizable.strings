@@ -245,10 +245,10 @@ Je moet eerst voltooien:";
 /* Archive selected messages button */
 "Archive" = "Archiveren";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Knop om geselecteerde berichten te archiveren";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Alle geselecteerde berichten archiveren";
 
 /* No comment provided by engineer. */
@@ -383,10 +383,10 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* (No Commment) */
 "Completed" = "Voltooid";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Knop voor bericht opstellen";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Een bericht opstellen";
 
 /* Title for Conferences tab */

@@ -24,11 +24,11 @@ import CFNetwork
 class WebBrowserViewController: UIViewController {
 
     // MARK: Important stuffs
-    var request: NSURLRequest?
-    var url: NSURL? {
+    var request: URLRequest?
+    var url: URL? {
         didSet {
             if let url = url {
-                self.request = NSURLRequest.requestWithDefaultHTTPHeaders(url)
+                self.request = URLRequest.requestWithDefaultHTTPHeaders(url)
             }
         }
     }
@@ -38,42 +38,42 @@ class WebBrowserViewController: UIViewController {
 
     // MARK: Private stuffs
     // MARK: Outlets
-    private var webView = UIWebView()
-    private var titleField = UITextField()
+    fileprivate var webView = UIWebView()
+    fileprivate var titleField = UITextField()
 
-    private var doneButton: UIBarButtonItem!
-    private var reloadButton: UIBarButtonItem!
-    private var activityItem: UIBarButtonItem!
-    private var stopButton: UIBarButtonItem!
-    private var backButton: UIBarButtonItem!
-    private var forwardButton: UIBarButtonItem!
-    private var actionButton: UIBarButtonItem!
+    fileprivate var doneButton: UIBarButtonItem!
+    fileprivate var reloadButton: UIBarButtonItem!
+    fileprivate var activityItem: UIBarButtonItem!
+    fileprivate var stopButton: UIBarButtonItem!
+    fileprivate var backButton: UIBarButtonItem!
+    fileprivate var forwardButton: UIBarButtonItem!
+    fileprivate var actionButton: UIBarButtonItem!
 
-    private var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    fileprivate var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
-    private var networkOps: UInt = 0
-    private var fullURLString: String?
-    private var hostURLString: String?
-    private var fileURLString: String?
-    private var isTitleAbreviated: Bool = true
-    private var isAnimatingTitle: Bool = false
+    fileprivate var networkOps: UInt = 0
+    fileprivate var fullURLString: String?
+    fileprivate var hostURLString: String?
+    fileprivate var fileURLString: String?
+    fileprivate var isTitleAbreviated: Bool = true
+    fileprivate var isAnimatingTitle: Bool = false
 
     init(useAPISafeLinks: Bool = true, isModal: Bool = true) {
         self.useAPISafeLinks = useAPISafeLinks
         self.isModal = isModal
         super.init(nibName: nil, bundle: nil)
 
-        self.doneButton = UIBarButtonItem(title: NSLocalizedString("Close", comment: "Close Button Title"), style: .Plain, target: self, action: #selector(WebBrowserViewController.doneButtonTapped(_:)))
-        self.reloadButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(WebBrowserViewController.reloadButtonTapped(_:)))
+        self.doneButton = UIBarButtonItem(title: NSLocalizedString("Close", comment: "Close Button Title"), style: .plain, target: self, action: #selector(WebBrowserViewController.doneButtonTapped(_:)))
+        self.reloadButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(WebBrowserViewController.reloadButtonTapped(_:)))
         self.activityItem = UIBarButtonItem(customView: activityIndicator)
-        self.stopButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(WebBrowserViewController.stopButtonTapped(_:)))
-        self.backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .Plain, target: self, action: #selector(WebBrowserViewController.backButtonTapped(_:)))
-        self.forwardButton = UIBarButtonItem(image: UIImage(named: "forward"), style: .Plain, target: self, action: #selector(WebBrowserViewController.forwardButtonTapped(_:)))
-        self.actionButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(WebBrowserViewController.actionButtonTapped(_:)))
+        self.stopButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(WebBrowserViewController.stopButtonTapped(_:)))
+        self.backButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(WebBrowserViewController.backButtonTapped(_:)))
+        self.forwardButton = UIBarButtonItem(image: UIImage(named: "forward"), style: .plain, target: self, action: #selector(WebBrowserViewController.forwardButtonTapped(_:)))
+        self.actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(WebBrowserViewController.actionButtonTapped(_:)))
 
-        let fixedSpace = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
+        let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         fixedSpace.width = 20
-        self.toolbarItems = [backButton, fixedSpace, forwardButton, UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil), actionButton]
+        self.toolbarItems = [backButton, fixedSpace, forwardButton, UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), actionButton]
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -81,10 +81,10 @@ class WebBrowserViewController: UIViewController {
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         if let fileURLString = fileURLString {
             do {
-                try NSFileManager.defaultManager().removeItemAtPath(fileURLString)
+                try FileManager.default.removeItem(atPath: fileURLString)
             } catch {
                 print(error)
             }
@@ -94,7 +94,7 @@ class WebBrowserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.toolbarHidden = false
+        navigationController?.isToolbarHidden = false
         if isModal {
             navigationItem.leftBarButtonItem = doneButton
         }
@@ -107,56 +107,56 @@ class WebBrowserViewController: UIViewController {
         webView.scalesPageToFit = true
         view.addSubview(webView)
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView": webView]))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView": webView]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView": webView]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[webView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView": webView]))
 
         if let request = self.request {
             webView.loadRequest(request)
         }
-        edgesForExtendedLayout = .None
+        edgesForExtendedLayout = UIRectEdge()
 
         view.backgroundColor = UIColor.prettyBlack()
-        titleField.textColor = self.navigationController?.navigationBar.barStyle == .Black ? UIColor.whiteColor() : UIColor.darkTextColor()
-        titleField.backgroundColor = UIColor.clearColor()
-        titleField.borderStyle = .None
+        titleField.textColor = self.navigationController?.navigationBar.barStyle == .black ? UIColor.white : UIColor.darkText
+        titleField.backgroundColor = UIColor.clear
+        titleField.borderStyle = .none
         titleField.tintColor = Brand.current().tintColor
-        titleField.returnKeyType = .Go
+        titleField.returnKeyType = .go
         titleField.delegate = self
 
         var frame = titleField.frame
         frame.size.height = 30
         titleField.frame = frame
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(WebBrowserViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WebBrowserViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(WebBrowserViewController.webViewTapped(_:)))
         webView.addGestureRecognizer(tapGesture)
     }
 
     // MARK: Handlers
-    func doneButtonTapped(doneButton: UIBarButtonItem) {
-        self.presentingViewController?.dismissViewControllerAnimated(true) { [weak self] in
+    func doneButtonTapped(_ doneButton: UIBarButtonItem) {
+        self.presentingViewController?.dismiss(animated: true) { [weak self] in
             self?.webView.loadHTMLString("", baseURL: nil)
         }
     }
 
-    func backButtonTapped(backButton: UIBarButtonItem) {
+    func backButtonTapped(_ backButton: UIBarButtonItem) {
         guard webView.canGoBack else { return }
 
         networkOps = 0
         webView.goBack()
     }
 
-    func forwardButtonTapped(forwardButton: UIBarButtonItem) {
+    func forwardButtonTapped(_ forwardButton: UIBarButtonItem) {
         guard webView.canGoForward else { return }
 
         networkOps = 0
         webView.goForward()
     }
 
-    func reloadButtonTapped(refreshButton: UIBarButtonItem) {
+    func reloadButtonTapped(_ refreshButton: UIBarButtonItem) {
         networkOps = 0
-        if let request = webView.request where request.URL?.absoluteString?.characters.count > 0 && request.URL?.absoluteString != "about:blank" {
+        if let request = webView.request, (request.url?.absoluteString.characters.count)! > 0 && request.url?.absoluteString != "about:blank" {
             webView.reload()
         } else {
             if let request = self.request {
@@ -165,23 +165,23 @@ class WebBrowserViewController: UIViewController {
         }
     }
 
-    func actionButtonTapped(actionButton: UIBarButtonItem) {
-        let title = webView.stringByEvaluatingJavaScriptFromString("document.title")
-        let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .ActionSheet)
-        if let fullURLString = fullURLString, url = NSURL(string: fullURLString) where request?.URL?.fileURL == false {
-            actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Open in Safari", comment: "Open a url in the application Safari"), style: .Default) { action in
-                UIApplication.sharedApplication().openURL(url)
+    func actionButtonTapped(_ actionButton: UIBarButtonItem) {
+        let title = webView.stringByEvaluatingJavaScript(from: "document.title")
+        let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        if let fullURLString = fullURLString, let url = URL(string: fullURLString), request?.url?.isFileURL == false {
+            actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Open in Safari", comment: "Open a url in the application Safari"), style: .default) { action in
+                UIApplication.shared.openURL(url)
             })
         }
 
-        if let fileURLString = fileURLString, fileURL = NSURL(string: fileURLString) {
-            let dic = UIDocumentInteractionController(URL: fileURL)
-            actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Open in...", comment: "Open file in another application"), style: .Default) { [weak dic, weak self] action in
-                let presentedOpenInMenu = dic?.presentOpenInMenuFromBarButtonItem(actionButton, animated: true)
+        if let fileURLString = fileURLString, let fileURL = URL(string: fileURLString) {
+            let dic = UIDocumentInteractionController(url: fileURL)
+            actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Open in...", comment: "Open file in another application"), style: .default) { [weak dic, weak self] action in
+                let presentedOpenInMenu = dic?.presentOpenInMenu(from: actionButton, animated: true)
                 if presentedOpenInMenu == false {
-                    let errorSheet = UIAlertController(title: NSLocalizedString("No installed apps support opening this file", comment: "Error message"), message: nil, preferredStyle: .ActionSheet)
-                    errorSheet.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .Default) { _ in })
-                    self?.presentViewController(errorSheet, animated: true, completion: nil)
+                    let errorSheet = UIAlertController(title: NSLocalizedString("No installed apps support opening this file", comment: "Error message"), message: nil, preferredStyle: .actionSheet)
+                    errorSheet.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .default) { _ in })
+                    self?.present(errorSheet, animated: true, completion: nil)
                 }
             })
         }
@@ -190,19 +190,19 @@ class WebBrowserViewController: UIViewController {
             actionSheet.title = NSLocalizedString("There are no actions for this item", comment: "Error message")
         }
 
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: .Cancel) { _ in })
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: .cancel) { _ in })
 
         actionSheet.popoverPresentationController?.sourceView = self.view
         actionSheet.popoverPresentationController?.barButtonItem = actionButton
-        presentViewController(actionSheet, animated: true, completion: nil)
+        present(actionSheet, animated: true, completion: nil)
     }
 
-    func stopButtonTapped(stopButton: UIBarButtonItem) {
+    func stopButtonTapped(_ stopButton: UIBarButtonItem) {
         networkOps = 0
         webView.stopLoading()
     }
 
-    func webViewTapped(tapGesture: UITapGestureRecognizer) {
+    func webViewTapped(_ tapGesture: UITapGestureRecognizer) {
         if !isTitleAbreviated {
             toggleTitleDisplayState()
             titleField.resignFirstResponder()
@@ -212,9 +212,9 @@ class WebBrowserViewController: UIViewController {
 
 // MARK: - UIWebViewDelegate
 extension WebBrowserViewController: UIWebViewDelegate {
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        fullURLString = request.URL?.absoluteString
-        hostURLString = request.URL?.host
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        fullURLString = request.url?.absoluteString
+        hostURLString = request.url?.host
 
         if isTitleAbreviated {
             titleField.text = hostURLString
@@ -223,32 +223,32 @@ extension WebBrowserViewController: UIWebViewDelegate {
             toggleTitleDisplayState()
         }
 
-        // TODO: NSURLConnection???
+        // TODO: URLConnection???
 
         return true
     }
 
-    func webViewDidStartLoad(webView: UIWebView) {
+    func webViewDidStartLoad(_ webView: UIWebView) {
         networkOps += 1
 
-        backButton.enabled = webView.canGoBack
-        forwardButton.enabled = webView.canGoForward
+        backButton.isEnabled = webView.canGoBack
+        forwardButton.isEnabled = webView.canGoForward
 
         if networkOps == 1 {
             activityIndicator.startAnimating()
             navigationItem.rightBarButtonItems = [stopButton, activityItem]
-            actionButton.enabled = false
+            actionButton.isEnabled = false
         }
     }
 
-    func webViewDidFinishLoad(webView: UIWebView) {
-        backButton.enabled = webView.canGoBack
-        fullURLString = webView.request?.URL?.absoluteString
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        backButton.isEnabled = webView.canGoBack
+        fullURLString = webView.request?.url?.absoluteString
         // Show the title of the document.
-        if let url = webView.request?.URL where url.fileURL == true {
-            navigationItem.title = webView.request?.URL?.lastPathComponent
+        if let url = webView.request?.url, url.isFileURL == true {
+            navigationItem.title = webView.request?.url?.lastPathComponent
         } else {
-            let title = webView.stringByEvaluatingJavaScriptFromString("document.title")
+            let title = webView.stringByEvaluatingJavaScript(from: "document.title")
             titleField.text = title
             hostURLString = title
         }
@@ -257,23 +257,23 @@ extension WebBrowserViewController: UIWebViewDelegate {
         if networkOps == 0 {
             activityIndicator.stopAnimating()
             navigationItem.rightBarButtonItems = [reloadButton]
-            actionButton.enabled = true
+            actionButton.isEnabled = true
         }
 
-        UIView.animateWithDuration(0.3) {
-            if let text = self.titleField.text, font = self.titleField.font where text.characters.count > 0 {
-                let size = (text as NSString).sizeWithAttributes([NSFontAttributeName: font])
+        UIView.animate(withDuration: 0.3, animations: {
+            if let text = self.titleField.text, let font = self.titleField.font, text.characters.count > 0 {
+                let size = (text as NSString).size(attributes: [NSFontAttributeName: font])
                 let x: CGFloat = (self.view.frame.size.width - CGFloat(roundf(Float(size.width))) * 0.5)
                 let width: CGFloat = CGFloat(roundf(Float(size.width)))
                 self.titleField.frame = CGRect(x: x, y: self.titleField.frame.origin.y, width: width, height: self.titleField.frame.size.height)
             }
-        }
+        }) 
 
-        let html = webView.stringByEvaluatingJavaScriptFromString("document.body.innerHTML")
+        let html = webView.stringByEvaluatingJavaScript(from: "document.body.innerHTML")
         if html == "Could not find download URL" {
-            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("There was an error loading your content. If it  is an audio or video upload it may still be processing.", comment: ""), preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("There was an error loading your content. If it  is an audio or video upload it may still be processing.", comment: ""), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
 
         if useAPISafeLinks {
@@ -281,16 +281,17 @@ extension WebBrowserViewController: UIWebViewDelegate {
         }
     }
 
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        let error = error as NSError
         if networkOps > 0 { networkOps -= 1 }
         if networkOps == 0 {
             activityIndicator.stopAnimating()
             navigationItem.rightBarButtonItems = [reloadButton]
-            actionButton.enabled = true
+            actionButton.isEnabled = true
         }
 
-        if let error = error where error.code != Int(CFNetworkErrors.CFURLErrorCancelled.rawValue) {
-            if error.code == 204 && error.userInfo[NSURLErrorFailingURLStringErrorKey] != nil {
+        if error.code != Int(CFNetworkErrors.cfurlErrorCancelled.rawValue) {
+            if error.code == 204 && error.userInfo[NSURLErrorFailingURLErrorKey] != nil {
                 // Handle Kaltura media
                 // 204 is "Plug-in handled load", meaning it was handled outside the webview. Just let it be.
                 return
@@ -300,13 +301,13 @@ extension WebBrowserViewController: UIWebViewDelegate {
         }
     }
 
-    func downloadFile(atURL url: NSURL) {
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: config)
-        let downloadTask = session.dataTaskWithURL(url) { data, response, error in
+    func downloadFile(atURL url: URL) {
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let downloadTask = session.dataTask(with: url) { data, response, error in
             let filename = response?.suggestedFilename ?? "file"
-            guard let url = NSURL.fileURLWithPath(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]).URLByAppendingPathComponent(filename) else { return }
-            let _ = try? data?.writeToURL(url, options: NSDataWritingOptions.DataWritingAtomic)
+            let url = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]).appendingPathComponent(filename)
+            let _ = try? data?.write(to: url, options: .atomic)
             self.fileURLString = url.absoluteString
         }
         downloadTask.resume()
@@ -315,12 +316,12 @@ extension WebBrowserViewController: UIWebViewDelegate {
 
 // MARK: - UITextFieldDelegate
 extension WebBrowserViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         toggleTitleDisplayState()
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if let text = titleField.text, url = NSURL(string: text) {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let text = titleField.text, let url = URL(string: text) {
             self.url = url
             if let request = self.request {
                 webView.loadRequest(request)
@@ -338,28 +339,28 @@ extension WebBrowserViewController: UITextFieldDelegate {
 
         if isTitleAbreviated {
             titleField.text = fullURLString
-            titleField.borderStyle = .RoundedRect
-            UIView.animateWithDuration(0.3, animations: {
+            titleField.borderStyle = .roundedRect
+            UIView.animate(withDuration: 0.3, animations: {
                 self.titleField.frame = CGRect(x: 0, y: self.titleField.frame.origin.y, width: self.view.frame.size.width, height: self.titleField.frame.size.height)
-                self.titleField.backgroundColor = UIColor.whiteColor()
-                self.titleField.textColor = UIColor.darkTextColor()
+                self.titleField.backgroundColor = UIColor.white
+                self.titleField.textColor = UIColor.darkText
             }, completion: { _ in
                 self.isAnimatingTitle = false
             })
         } else {
             titleField.text = hostURLString
-            UIView.animateWithDuration(0.3, animations: {
-                if let hostURLString = self.hostURLString, font = self.titleField.font {
-                    let size = (hostURLString as NSString).sizeWithAttributes([NSFontAttributeName: font])
+            UIView.animate(withDuration: 0.3, animations: {
+                if let hostURLString = self.hostURLString, let font = self.titleField.font {
+                    let size = (hostURLString as NSString).size(attributes: [NSFontAttributeName: font])
                     let x: CGFloat = (self.view.frame.size.width - CGFloat(roundf(Float(size.width))) * 0.5)
                     let width: CGFloat = CGFloat(roundf(Float(size.width)))
                     self.titleField.frame = CGRect(x: x, y: self.titleField.frame.origin.y, width: width, height: self.titleField.frame.size.height)
-                    self.titleField.backgroundColor = UIColor.clearColor()
-                    self.titleField.textColor = self.navigationController?.navigationBar.barStyle == .Black ? UIColor.whiteColor() : UIColor.darkTextColor()
+                    self.titleField.backgroundColor = UIColor.clear
+                    self.titleField.textColor = self.navigationController?.navigationBar.barStyle == .black ? UIColor.white : UIColor.darkText
                 }
             }, completion: { _ in
                 self.isAnimatingTitle = false
-                self.titleField.borderStyle = .None
+                self.titleField.borderStyle = .none
             })
 
             self.titleField.resignFirstResponder()
@@ -369,7 +370,7 @@ extension WebBrowserViewController: UITextFieldDelegate {
 
 // MARK: - Keyboard Notifications
 extension WebBrowserViewController {
-    func keyboardWillHide(note: NSNotification) {
+    func keyboardWillHide(_ note: Notification) {
         if !isTitleAbreviated {
             toggleTitleDisplayState()
         }

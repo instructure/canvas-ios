@@ -28,7 +28,35 @@
 #import <CanvasKit1/CKContextInfo.h>
 #import "CKCanvasAPI+CurrentAPI.h"
 
-#import "CBISplitViewController.h"
+
+@interface UIViewController (Push)
+@property (nonnull, readonly) UIViewController *currentLeaf;
+@end
+
+@implementation UIViewController (Push)
+- (UIViewController *)currentLeaf {
+    return self;
+}
+@end
+
+@implementation UINavigationController (Push)
+- (UIViewController *)currentLeaf {
+    return self.topViewController.currentLeaf;
+}
+@end
+
+@implementation UITabBarController (Push)
+- (UIViewController *)currentLeaf {
+    return self.selectedViewController.currentLeaf;
+}
+@end
+
+@implementation UISplitViewController (Push)
+- (UIViewController *)currentLeaf {
+    return [self.viewControllers lastObject].currentLeaf;
+}
+@end
+
 @import CanvasKit;
 @import CanvasKeymaster;
 
@@ -165,27 +193,23 @@
 
 - (UIViewController *)controllerForHandlingBlockFromViewModel:(CBIViewModel *)viewModel {
     __block id returnedController;
+    NSURL *matchURL;
     if ([viewModel isKindOfClass:[CBISyllabusViewModel class]]){
-        [self matchURL:[NSURL URLWithString:[viewModel.model.path stringByAppendingPathComponent:@"item/syllabus"]] matchHandler:^(NSDictionary *params, id classOrBlock) {
-            if (class_isMetaClass(object_getClass(classOrBlock))) { // it's a class
-                returnedController = [self controllerForClass:classOrBlock params:params];
-            } else {
-                id(^blockForPath)(NSDictionary *, id) = classOrBlock;
-                returnedController = blockForPath(params, viewModel);
-            }
-        }];
+        matchURL = [NSURL URLWithString:[viewModel.model.path stringByAppendingPathComponent:@"item/syllabus"]];
     }
     else {
-        [self matchURL:[NSURL URLWithString:[viewModel.model.path realURLEncodedString]] matchHandler:^(NSDictionary *params, id classOrBlock) {
-            if (class_isMetaClass(object_getClass(classOrBlock))) { // it's a class
-                returnedController = [self controllerForClass:classOrBlock params:params];
-            } else {
-                id(^blockForPath)(NSDictionary *, id) = classOrBlock;
-                returnedController = blockForPath(params, viewModel);
-            }
-        }];
+        matchURL = [NSURL URLWithString:[viewModel.model.path realURLEncodedString]];
     }
-    
+
+    [self matchURL:matchURL matchHandler:^(NSDictionary *params, id classOrBlock) {
+        if (class_isMetaClass(object_getClass(classOrBlock))) { // it's a class
+            returnedController = [self controllerForClass:classOrBlock params:params];
+        } else {
+            id(^blockForPath)(NSDictionary *, id) = classOrBlock;
+            returnedController = blockForPath(params, viewModel);
+        }
+    }];
+
     return returnedController;
 }
 
@@ -197,9 +221,9 @@
         self.fallbackHandler(url, sourceController);
         return nil;
     }
-    
+
     [sourceController cbi_transitionToViewController:destinationViewController animated:YES];
-    
+
     return destinationViewController;
 }
 
@@ -216,16 +240,8 @@
     RACSignal *clientFromSuggestedDomain = [TheKeymaster signalForLoginWithDomain:url.host];
     
     [clientFromSuggestedDomain subscribeNext:^(CKIClient *client) {
-        UITabBarController *root = (UITabBarController *)UIApplication.sharedApplication.windows[0].rootViewController;
-        UINavigationController *selectedController = (UINavigationController *)root.selectedViewController;
-        UIViewController *sourceViewController = selectedController.topViewController;
-        
-        if ([sourceViewController isKindOfClass:[CBISplitViewController class]]) {
-            CBISplitViewController *split = (CBISplitViewController *)sourceViewController;
-            sourceViewController = split.detail ?: split.master;
-        }
-        
-        [self routeFromController:selectedController.topViewController toURL:url];
+        UIViewController *root = UIApplication.sharedApplication.windows[0].rootViewController;
+        [self routeFromController:root.currentLeaf toURL:url];
     }];
 }
 

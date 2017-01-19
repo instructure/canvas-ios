@@ -17,42 +17,34 @@
     
 
 #import "UIViewController+Transitions.h"
-#import "CBISplitViewControllerTransitioningDelegate.h"
-#import "CBIAlwaysPushTransitioningDelegate.h"
-#import <objc/runtime.h>
+@import SoPretty;
 
 @implementation UIViewController (Transitions)
 
-- (id<CBITransitioningDelegate>)cbi_transitioningDelegate
-{
-    id <CBITransitioningDelegate> delegate = objc_getAssociatedObject(self, @selector(cbi_transitioningDelegate));
-    if (delegate == nil) {
-        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-            self.cbi_transitioningDelegate = [CBISplitViewControllerTransitioningDelegate new];
-        } else {
-            self.cbi_transitioningDelegate = [CBIAlwaysPushTransitioningDelegate new];
-        }
-    }
-    return objc_getAssociatedObject(self, @selector(cbi_transitioningDelegate));
-}
-
-- (BOOL)cbi_canBecomeMaster
-{
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
-}
-
-- (void)setCbi_canBecomeMaster:(BOOL)canBecomeMaster
-{
-    return objc_setAssociatedObject(self, @selector(cbi_canBecomeMaster), @(canBecomeMaster), OBJC_ASSOCIATION_RETAIN);
-}
-
-- (void)setCbi_transitioningDelegate:(id<CBITransitioningDelegate>)cbiTransitioningDelegate
-{
-    return objc_setAssociatedObject(self, @selector(cbi_transitioningDelegate), cbiTransitioningDelegate, OBJC_ASSOCIATION_RETAIN);
-}
-
 - (void)cbi_transitionToViewController:(UIViewController *)destinationViewController animated:(BOOL)animated
 {
-    [self.cbi_transitioningDelegate transitionFromViewController:self toViewController:destinationViewController animated:animated];
+    if (self.splitViewController) {
+        if (self.splitViewController.traitCollection.horizontalSizeClass != UIUserInterfaceSizeClassCompact) {
+            UIBarButtonItem *splitThing = self.splitViewController.prettyDisplayModeButtonItem;
+            destinationViewController.navigationItem.leftBarButtonItem = splitThing;
+            destinationViewController.navigationItem.leftItemsSupplementBackButton = YES;
+        }
+
+        // If the presenting view controller is a master list, swap out the detail entirely so as to clear the nav stack
+        if (self.splitViewController.viewControllers.firstObject == self || ([self.splitViewController.viewControllers.firstObject isKindOfClass:[UINavigationController class]] && ((UINavigationController *)self.splitViewController.viewControllers.firstObject).topViewController == self)) {
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:destinationViewController];
+            [self.splitViewController showDetailViewController:nav sender:nil];
+        } else if ([self.splitViewController.viewControllers.lastObject isKindOfClass:[UINavigationController class]] && self.splitViewController.viewControllers.count == 2) {
+            [((UINavigationController *)self.splitViewController.viewControllers.lastObject) pushViewController:destinationViewController animated:YES];
+        } else if ([self.splitViewController.viewControllers.firstObject isKindOfClass:[UINavigationController class]] && self.splitViewController.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
+            [((UINavigationController *)self.splitViewController.viewControllers.firstObject) pushViewController:destinationViewController animated:YES];
+        } else {
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:destinationViewController];
+            [self.splitViewController showDetailViewController:nav sender:nil];
+        }
+    } else {
+        [self.navigationController pushViewController:destinationViewController animated:animated];
+    }
 }
 @end
+

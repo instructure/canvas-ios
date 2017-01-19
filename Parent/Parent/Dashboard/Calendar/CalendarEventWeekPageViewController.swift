@@ -24,12 +24,12 @@ import CalendarKit
 import SoPretty
 import Armchair
 
-typealias EventWeekPageSelectCalendarEventAction = (session: Session, observeeID: String, calendarEvent: CalendarEvent)->Void
+typealias EventWeekPageSelectCalendarEventAction = (_ session: Session, _ observeeID: String, _ calendarEvent: CalendarEvent)->Void
 
 class CalendarEventWeekPageViewController: UIViewController {
 
-    static var headerDateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
+    static var headerDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d"
         return dateFormatter
     }()
@@ -42,7 +42,7 @@ class CalendarEventWeekPageViewController: UIViewController {
 
     var session: Session!
     var studentID: String!
-    var initialReferenceDate: NSDate!
+    var initialReferenceDate: Date!
     var contextCodes: [String]!
     var useBackgroundView = false
 
@@ -63,9 +63,9 @@ class CalendarEventWeekPageViewController: UIViewController {
     // ---------------------------------------------
     // MARK: - Initializers
     // ---------------------------------------------
-    private static let defaultStoryboardName = "CalendarEventWeekPageViewController"
-    static func new(storyboardName: String = defaultStoryboardName, session: Session, studentID: String, contextCodes: [String] = [], initialReferenceDate: NSDate = NSDate()) -> CalendarEventWeekPageViewController {
-        guard let controller = UIStoryboard(name: storyboardName, bundle: NSBundle(forClass: self)).instantiateInitialViewController() as? CalendarEventWeekPageViewController else {
+    fileprivate static let defaultStoryboardName = "CalendarEventWeekPageViewController"
+    static func new(_ storyboardName: String = defaultStoryboardName, session: Session, studentID: String, contextCodes: [String] = [], initialReferenceDate: Date = Date()) -> CalendarEventWeekPageViewController {
+        guard let controller = UIStoryboard(name: storyboardName, bundle: Bundle(for: self)).instantiateInitialViewController() as? CalendarEventWeekPageViewController else {
             fatalError("Initial ViewController is not of type CalendarEventWeekPageViewController")
         }
         
@@ -83,40 +83,40 @@ class CalendarEventWeekPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let nextImage = UIImage.RTLImage("icon_forward", renderingMode: .AlwaysTemplate)
-        let prevImage = UIImage.RTLImage("icon_back", renderingMode: .AlwaysTemplate)
+        let nextImage = UIImage.RTLImage("icon_forward", renderingMode: .alwaysTemplate)
+        let prevImage = UIImage.RTLImage("icon_back", renderingMode: .alwaysTemplate)
         
-        nextWeekButton.tintColor = UIColor.whiteColor()
-        nextWeekButton.setImage(nextImage, forState: .Normal)
+        nextWeekButton.tintColor = UIColor.white
+        nextWeekButton.setImage(nextImage, for: .normal)
         nextWeekButton.accessibilityIdentifier = "next_week_button"
         nextWeekButton.accessibilityLabel = NSLocalizedString("Next Week", comment: "Next Week Button Accessibility Label")
         
-        prevWeekButton.tintColor = UIColor.whiteColor()
-        prevWeekButton.setImage(prevImage, forState: .Normal)
+        prevWeekButton.tintColor = UIColor.white
+        prevWeekButton.setImage(prevImage, for: .normal)
         prevWeekButton.accessibilityIdentifier = "last_week_button"
         prevWeekButton.accessibilityLabel = NSLocalizedString("Last Week", comment: "Last Week Button Accessibility Label")
         
         updateHeaderTitle()
 
         if useBackgroundView {
-            backgroundView = insertTriangleBackgroundView()
+            backgroundView = insertBackgroundView()
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embed_page_view_controller" {
-            guard let pageVC = segue.destinationViewController as? UIPageViewController else {
+            guard let pageVC = segue.destination as? UIPageViewController else {
                 fatalError("PageViewController is not of type UIPageViewController")
             }
 
             pageVC.delegate = self
             pageVC.dataSource = self
-            pageVC.setViewControllers([UIViewController()], direction: .Forward, animated: false, completion: nil)
+            pageVC.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
             let startDate = initialReferenceDate.dateOnSundayAtTheBeginningOfTheWeek
-            let endDate = startDate + NSCalendar.currentCalendar().numberOfDaysInWeek.daysComponents
+            let endDate = startDate + Calendar.current.numberOfDaysInWeek.daysComponents
             let initialViewController = try! CalendarEventListViewController(session: session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
             initialViewController.selectCalendarEventAction = selectCalendarEventAction
-            pageVC.setViewControllers([initialViewController], direction: .Forward, animated: false, completion: nil)
+            pageVC.setViewControllers([initialViewController], direction: .forward, animated: false, completion: nil)
 
             pageViewController = pageVC
         }
@@ -131,33 +131,33 @@ class CalendarEventWeekPageViewController: UIViewController {
         }
 
         let formatter = CalendarEventWeekPageViewController.headerDateFormatter
-        headerLabel.text = "\(formatter.stringFromDate(viewController.startDate)) - \(formatter.stringFromDate(viewController.endDate - 1.secondsComponents))"
+        headerLabel.text = "\(formatter.string(from: viewController.startDate)) - \(formatter.string(from: viewController.endDate - 1.secondsComponents))"
         headerLabel.accessibilityIdentifier = "week_header_label"
-        headerLabel.accessibilityLabel = String(format: NSLocalizedString("%@ to %@", comment: "Something to Something"), formatter.stringFromDate(viewController.startDate), formatter.stringFromDate(viewController.endDate))
+        headerLabel.accessibilityLabel = String(format: NSLocalizedString("%@ to %@", comment: "Something to Something"), formatter.string(from: viewController.startDate), formatter.string(from: viewController.endDate))
 
 
     }
 
-    override func insertTriangleBackgroundView() -> TriangleBackgroundGradientView {
+    func insertBackgroundView() -> TriangleBackgroundGradientView {
         if let oldBackgroundView = self.backgroundView {
             oldBackgroundView.removeFromSuperview()
         }
 
         let colorScheme = ColorCoordinator.colorSchemeForStudentID(studentID)
-        let backgroundView = TriangleBackgroundGradientView(frame: CGRectZero, tintTopColor: colorScheme.tintTopColor, tintBottomColor: colorScheme.tintBottomColor)
+        let backgroundView = TriangleBackgroundGradientView(frame: CGRect.zero, tintTopColor: colorScheme.tintTopColor, tintBottomColor: colorScheme.tintBottomColor)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.insertSubview(backgroundView, atIndex: 0)
+        self.view.insertSubview(backgroundView, at: 0)
         backgroundView.clipsToBounds = true
 
-        var barHeight: CGFloat = CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
+        var barHeight: CGFloat = UIApplication.shared.statusBarFrame.height
         if let navbarFrame = self.navigationController?.navigationBar.frame {
-            barHeight += CGRectGetHeight(navbarFrame)
+            barHeight += navbarFrame.height
         }
 
         let offset = -barHeight
 
-        let horizontalAccountsConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: ["subview": backgroundView])
-        let verticalAccountsConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-offset-[subview]-0-|", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: ["offset": offset], views: ["subview": backgroundView])
+        let horizontalAccountsConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[subview]-0-|", options: NSLayoutFormatOptions.directionLeadingToTrailing, metrics: nil, views: ["subview": backgroundView])
+        let verticalAccountsConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-offset-[subview]-0-|", options: NSLayoutFormatOptions.directionLeadingToTrailing, metrics: ["offset": offset], views: ["subview": backgroundView])
         self.view.addConstraints(horizontalAccountsConstraints)
         self.view.addConstraints(verticalAccountsConstraints)
         return backgroundView
@@ -166,48 +166,48 @@ class CalendarEventWeekPageViewController: UIViewController {
     // ---------------------------------------------
     // MARK: - IBActions
     // ---------------------------------------------
-    @IBAction func scrollToNextWeek(sender: UIButton) {
-        guard let pageViewController = pageViewController, viewController = pageViewController.viewControllers?[0] as? CalendarEventListViewController else {
+    @IBAction func scrollToNextWeek(_ sender: UIButton) {
+        guard let pageViewController = pageViewController, let viewController = pageViewController.viewControllers?[0] as? CalendarEventListViewController else {
             fatalError("View Controller in a CalendarEventWeekPageViewController should always be of type CalendarEventListViewController")
         }
 
-        let numDays = NSCalendar.currentCalendar().numberOfDaysInWeek
+        let numDays = Calendar.current.numberOfDaysInWeek
         let startDate = viewController.startDate + numDays.daysComponents
         let initialViewController = eventListController(startDate)
         Armchair.userDidSignificantEvent(true)
-        pageViewController.setViewControllers([initialViewController], direction: .Forward, animated: true, completion: { [unowned self] finished in
+        pageViewController.setViewControllers([initialViewController], direction: .forward, animated: true, completion: { [unowned self] finished in
             if (finished) {
                 self.updateHeaderTitle()
             }
         })
     }
 
-    @IBAction func scrollToPrevWeek(sender: UIButton) {
-        guard let pageViewController = pageViewController, viewController = pageViewController.viewControllers?[0] as? CalendarEventListViewController else {
+    @IBAction func scrollToPrevWeek(_ sender: UIButton) {
+        guard let pageViewController = pageViewController, let viewController = pageViewController.viewControllers?[0] as? CalendarEventListViewController else {
             fatalError("View Controller in a CalendarEventWeekPageViewController should always be of type CalendarEventListViewController")
         }
 
-        let numDays = NSCalendar.currentCalendar().numberOfDaysInWeek
+        let numDays = Calendar.current.numberOfDaysInWeek
         let startDate = viewController.startDate - numDays.daysComponents
         let initialViewController = eventListController(startDate)
         Armchair.userDidSignificantEvent(true)
-        pageViewController.setViewControllers([initialViewController], direction: .Reverse, animated: true, completion: { [unowned self] finished in
+        pageViewController.setViewControllers([initialViewController], direction: .reverse, animated: true, completion: { [unowned self] finished in
             if finished {
                 self.updateHeaderTitle()
             }
         })
     }
 
-    func close(sender: UIBarButtonItem) {
+    func close(_ sender: UIBarButtonItem) {
         Armchair.userDidSignificantEvent(true)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
     // ---------------------------------------------
     // MARK: - Helper Functions
     // ---------------------------------------------
-    func eventListController(startDate: NSDate) -> CalendarEventListViewController {
-        let endDate = startDate + NSCalendar.currentCalendar().numberOfDaysInWeek.daysComponents
+    func eventListController(_ startDate: Date) -> CalendarEventListViewController {
+        let endDate = startDate + Calendar.current.numberOfDaysInWeek.daysComponents
 
         // Failing on purpose here.  If this is broken it's programmer error
         let eventListViewController = try! CalendarEventListViewController(session: session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
@@ -215,10 +215,10 @@ class CalendarEventWeekPageViewController: UIViewController {
         return eventListViewController
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
 
-        coordinator.animateAlongsideTransition(nil, completion: {[unowned self] context in
+        coordinator.animate(alongsideTransition: nil, completion: {[unowned self] context in
             if self.useBackgroundView {
                 self.backgroundView = self.insertTriangleBackgroundView()
             }
@@ -230,22 +230,22 @@ class CalendarEventWeekPageViewController: UIViewController {
 // MARK: - UIPageViewControllerDataSource
 // ---------------------------------------------
 extension CalendarEventWeekPageViewController : UIPageViewControllerDataSource {
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewController = viewController as? CalendarEventListViewController else {
             return nil
         }
 
-        let numDays = NSCalendar.currentCalendar().numberOfDaysInWeek
+        let numDays = Calendar.current.numberOfDaysInWeek
         let startDate = viewController.startDate - numDays.daysComponents
         return eventListController(startDate)
     }
 
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let viewController = viewController as? CalendarEventListViewController else {
             return nil
         }
 
-        let numDays = NSCalendar.currentCalendar().numberOfDaysInWeek
+        let numDays = Calendar.current.numberOfDaysInWeek
         let startDate = viewController.startDate + numDays.daysComponents
         return eventListController(startDate)
     }
@@ -255,7 +255,7 @@ extension CalendarEventWeekPageViewController : UIPageViewControllerDataSource {
 // MARK: - UIPageViewControllerDelegate
 // ---------------------------------------------
 extension CalendarEventWeekPageViewController : UIPageViewControllerDelegate {
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if finished {
             updateHeaderTitle()
         }

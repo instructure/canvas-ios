@@ -1,8 +1,8 @@
 /* Error message component with the report id */
-"Error report ID: (reportID)" = "錯誤報告 ID：(reportID)";
+" Error report ID: (reportID)" = "錯誤報告 ID：(reportID)";
 
 /* Failure reason from the JSON payload from canvas */
-"Failure reason: (reason)." = "失敗原因： (reason).";
+" Failure reason: (reason)." = "失敗原因： (reason).";
 
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d 個問題尚未回答";
@@ -34,15 +34,14 @@
 /* label for quiz availability date */
 "Available Until" = "可供使用直到";
 
-/* Cancel button
-   cancel button for submitting a quiz
-   Cancel removing the formatting */
+/* Cancel button title */
 "Cancel" = "取消";
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "繼續考試";
 
-/* Dismiss button for error alert */
+/* Dismiss button for error alert
+   Dismiss error dialog */
 "Dismiss" = "取消";
 
 /* Done button */
@@ -54,8 +53,17 @@
 /* Default text for essay cell */
 "Enter answer..." = "輸入 答案...";
 
+/* Title for quiz loading error */
+"Error Loading Quiz" = "載入測驗時發生錯誤";
+
+/* (No Commment) */
+"Error report ID: (reportID)" = "報告 ID 錯誤：(reportID)";
+
 /* Exit button to leave the quiz */
 "Exit" = "退出";
+
+/* (No Commment) */
+"Failure reason: (reason)." = "失敗原因：（原因）。";
 
 /* State of the flagged question */
 "Flagged" = "已標記";
@@ -83,8 +91,11 @@ Submitting" = "到達鎖定日期
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "不可用";
 
-/* OK */
+/* OK Button Title */
 "OK" = "是";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "請檢查您的網路連接然後重試。";
 
 /* label for number of points in a quiz */
 "Points" = "點數";
@@ -137,9 +148,7 @@ Submitting" = "到達鎖定日期
 /* Label for indication that the quiz submission failed */
 "Submission Failure" = "提交失敗";
 
-/* Button for electing to not be late on a quiz
-   confirm submitting quiz
-   Submit button for completing a quiz */
+/* Submit button title */
 "Submit" = "提交";
 
 /* Label for indication of submitting quiz */
@@ -172,7 +181,7 @@ Submitting" = "到達鎖定日期
 /* Message when telling the user they can't take the quiz because the quiz is locked */
 "This quiz is locked." = "此考試已被鎖定";
 
-/* Message when telling the user they can't take the quiz because the quiz is locked */
+/* (No Commment) */
 "This quiz is locked. Reason: (description)" = "此考試已被鎖定。原因為：(description)";
 
 /* label for the time limit */

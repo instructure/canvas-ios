@@ -21,7 +21,7 @@ import Foundation
 extension Quiz {
     var timed: Bool {
         switch timeLimit {
-        case .Minutes( _):
+        case .minutes( _):
             return true
         default:
             return false
@@ -35,12 +35,12 @@ class QuizSubmissionTimerController: NSObject {
     let timedQuizSubmissionService: TimedQuizSubmissionService
     var submission: Submission?
     
-    private (set) var timerTime = 0
-    var timerTick: (currentTime: Int)->() = { _ in }
+    fileprivate (set) var timerTime = 0
+    var timerTick: (_ currentTime: Int)->() = { _ in }
     var timeExpired: ()->() = {}
     
-    private var timer: NSTimer?
-    private var timeSyncTimer: NSTimer?
+    fileprivate var timer: Timer?
+    fileprivate var timeSyncTimer: Timer?
     
     init(quiz: Quiz, timedQuizSubmissionService: TimedQuizSubmissionService) {
         self.quiz = quiz
@@ -48,21 +48,21 @@ class QuizSubmissionTimerController: NSObject {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    func startSubmission(submission: Submission) {
+    func startSubmission(_ submission: Submission) {
         self.submission = submission
         
         syncStartingTime()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(QuizSubmissionTimerController.applicationBecameActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(QuizSubmissionTimerController.applicationBecameActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         
         startTimers()
     }
     
     func stopTimedSubmission() {
         invalidateTimers()
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func applicationBecameActive() {
@@ -73,15 +73,15 @@ class QuizSubmissionTimerController: NSObject {
         startTimers()
     }
     
-    private func startTimers() {
-        timer = NSTimer(timeInterval: 1.0, target: self, selector: #selector(QuizSubmissionTimerController.updateTimer), userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
+    fileprivate func startTimers() {
+        timer = Timer(timeInterval: 1.0, target: self, selector: #selector(QuizSubmissionTimerController.updateTimer), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer!, forMode: RunLoopMode.commonModes)
         
-        timeSyncTimer = NSTimer(timeInterval: 30.0, target: self, selector: #selector(QuizSubmissionTimerController.syncTimeWithServer), userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(timeSyncTimer!, forMode: NSRunLoopCommonModes)
+        timeSyncTimer = Timer(timeInterval: 30.0, target: self, selector: #selector(QuizSubmissionTimerController.syncTimeWithServer), userInfo: nil, repeats: true)
+        RunLoop.main.add(timeSyncTimer!, forMode: RunLoopMode.commonModes)
     }
     
-    private func invalidateTimers() {
+    fileprivate func invalidateTimers() {
         timer?.invalidate()
         timer = nil
         
@@ -89,25 +89,25 @@ class QuizSubmissionTimerController: NSObject {
         timeSyncTimer = nil
     }
     
-    private func syncStartingTime() {
+    fileprivate func syncStartingTime() {
         if quiz.timed {
             if let submission = submission {
                 var secondsTimeLimit = 0
                 switch quiz.timeLimit {
-                case .Minutes(let minutes):
+                case .minutes(let minutes):
                     secondsTimeLimit = minutes * 60
                 default: break
                 }
                 
                 let startTime = submission.dateStarted!
-                let currentTime = NSDate()
-                let diff = currentTime.timeIntervalSinceDate(startTime)
+                let currentTime = Date()
+                let diff = currentTime.timeIntervalSince(startTime as Date)
                 timerTime = secondsTimeLimit - Int(diff)
             }
         } else {
-            if let submission = submission, startTime = submission.dateStarted {
-                let currentTime = NSDate()
-                let diff = currentTime.timeIntervalSinceDate(startTime)
+            if let submission = submission, let startTime = submission.dateStarted {
+                let currentTime = Date()
+                let diff = currentTime.timeIntervalSince(startTime as Date)
                 timerTime = Int(diff)
             }
         }
@@ -120,7 +120,7 @@ class QuizSubmissionTimerController: NSObject {
             timerTime += 1
         }
         
-        timerTick(currentTime: timerTime)
+        timerTick(timerTime)
         
         if timerTime <= 0 && quiz.timed {
             stopTimedSubmission()

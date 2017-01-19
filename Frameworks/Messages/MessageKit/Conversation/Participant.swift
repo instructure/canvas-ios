@@ -25,7 +25,7 @@ final public class Participant: NSManagedObject {
     @NSManaged public internal (set) var name: String
     @NSManaged public internal (set) var avatarURL: String
 
-    static func from(json json: JSONObject, in context: NSManagedObjectContext) throws -> Participant {
+    static func from(json: JSONObject, in context: NSManagedObjectContext) throws -> Participant {
         let participant = Participant(inContext: context)
         participant.id = try json.stringID("id")
         participant.name = try json <| "name"

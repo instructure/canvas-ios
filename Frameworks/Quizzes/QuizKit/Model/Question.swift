@@ -90,21 +90,21 @@ func ==(lhs: Question.Kind, rhs: Question.Kind) -> Bool {
 // MARK: JSON
 
 extension Question: JSONDecodable {
-    static func fromJSON(json: AnyObject?) -> Question? {
-        if let json = json as? [String: AnyObject] {
+    static func fromJSON(_ json: Any?) -> Question? {
+        if let json = json as? [String: Any] {
 
-            let answers: [Answer] = decodeArray(json["answers"] as? [AnyObject] ?? [])
+            let answers: [Answer] = decodeArray(json["answers"] as? [Any] ?? [])
             
             if let
                 id = idString(json["id"]),
-                position = json["position"] as? Int,
-                name = json["question_name"] as? String,
-                text = json["question_text"] as? String,
-                questionType = json["question_type"] as? String,
-                kind = Question.Kind(rawValue: questionType)
+                let position = json["position"] as? Int,
+                let name = json["question_name"] as? String,
+                let text = json["question_text"] as? String,
+                let questionType = json["question_type"] as? String,
+                let kind = Question.Kind(rawValue: questionType)
             {
                 var matches: [Match]? = nil
-                if let matchesJSON = json["matches"] as? [AnyObject] {
+                if let matchesJSON = json["matches"] as? [Any] {
                     matches = decodeArray(matchesJSON)
                     matches = matches?.shuffle()
                 }
@@ -117,7 +117,7 @@ extension Question: JSONDecodable {
 }
 
 extension Question.Kind: JSONDecodable {
-    static func fromJSON(json: AnyObject?) -> Question.Kind? {
+    static func fromJSON(_ json: Any?) -> Question.Kind? {
         if let string = json as? String {
             return Question.Kind(rawValue: string)
         }
@@ -127,12 +127,12 @@ extension Question.Kind: JSONDecodable {
 }
 
 extension Question.Match: JSONDecodable {
-    static func fromJSON(json: AnyObject?) -> Question.Match? {
-        if let json = json as? [String: AnyObject] {
+    static func fromJSON(_ json: Any?) -> Question.Match? {
+        if let json = json as? [String: Any] {
             
             if let
                 id = idString(json["match_id"]),
-                text = json["text"] as? String
+                let text = json["text"] as? String
             {
                 return Question.Match(id: id, text: text)
             }

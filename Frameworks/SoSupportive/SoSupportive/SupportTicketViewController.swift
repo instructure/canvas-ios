@@ -27,27 +27,27 @@ private enum SupportTicketCellTag: String {
     case Email, Subject, Impact, Comment
 }
 
-public class SupportTicketViewController : FormViewController {
+open class SupportTicketViewController : FormViewController {
 
-    private var requesterName: String = NSLocalizedString("Unknown User", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Default name given a user until we find their real name")
-    private var requesterUsername: String = NSLocalizedString("Unknown User Name", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Default user name, the computer-friendly version of their name, until we find their real user name")
-    private var requesterEmail: String? = nil {
+    fileprivate var requesterName: String = NSLocalizedString("Unknown User", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Default name given a user until we find their real name")
+    fileprivate var requesterUsername: String = NSLocalizedString("Unknown User Name", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Default user name, the computer-friendly version of their name, until we find their real user name")
+    fileprivate var requesterEmail: String? = nil {
         didSet {
-            if let row = form.rowByTag(SupportTicketCellTag.Email.rawValue) {
+            if let row = form.rowBy(tag: SupportTicketCellTag.Email.rawValue) {
                 row.evaluateHidden()
             }
         }
     }
-    private var baseURL : NSURL? = nil
-    private var type: SupportTicketType = .Problem
-    private var session: Session? = nil
+    fileprivate var baseURL : URL? = nil
+    fileprivate var type: SupportTicketType = .problem
+    fileprivate var session: Session? = nil
 
-    private var cancelButton: UIBarButtonItem!
-    private var doneButton: UIBarButtonItem!
-    private let notification = ToastManager()
-    private var sendTask: NSURLSessionDataTask?
+    fileprivate var cancelButton: UIBarButtonItem!
+    fileprivate var doneButton: UIBarButtonItem!
+    fileprivate let notification = ToastManager()
+    fileprivate var sendTask: URLSessionDataTask?
 
-    public static func new(session: Session, type: SupportTicketType) -> SupportTicketViewController{
+    open static func new(_ session: Session, type: SupportTicketType) -> SupportTicketViewController{
         let controller = SupportTicketViewController()
         controller.requesterName = session.user.sortableName ?? session.user.name
         controller.requesterEmail = session.user.email
@@ -62,19 +62,19 @@ public class SupportTicketViewController : FormViewController {
     // ---------------------------------------------
     // MARK: - UIViewController LifeCycle
     // ---------------------------------------------
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
-        cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(SupportTicketViewController.cancelTapped(_:)))
-        doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(SupportTicketViewController.doneTapped(_:)))
+        cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(SupportTicketViewController.cancelTapped(_:)))
+        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SupportTicketViewController.doneTapped(_:)))
         
         self.navigationItem.leftBarButtonItem = cancelButton
         self.navigationItem.rightBarButtonItem = doneButton
 
         form +++ Section()
             <<< PushRow<String>() {
-                $0.title = NSLocalizedString("Impact:", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Impact Title")
-                $0.selectorTitle = NSLocalizedString("Select Impact", tableName: "Localizable", bundle: .soSupportive(), value: "", comment: "Select Impact Placeholder")
+                $0.title = NSLocalizedString("Impact:", tableName: "Localizable", bundle: .soSupportive, value: "", comment: "Impact Title")
+                $0.selectorTitle = NSLocalizedString("Select Impact", tableName: "Localizable", bundle: .soSupportive, value: "", comment: "Select Impact Placeholder")
                 $0.options = ImpactLevel.impacts().map { $0.description() }
                 $0.value = ImpactLevel.None.description()
                 $0.tag = SupportTicketCellTag.Impact.rawValue
@@ -85,19 +85,19 @@ public class SupportTicketViewController : FormViewController {
                 let rowHidden = (self?.requesterEmail != nil)
                 $0.hidden = Condition(booleanLiteral: rowHidden)
                 }.cellSetup { cell, row in
-                cell.textField.placeholder = NSLocalizedString("Your Email", tableName: "Localizable", bundle: .soSupportive(), value: "", comment: "Title for the email field")
+                cell.textField.placeholder = NSLocalizedString("Your Email", tableName: "Localizable", bundle: .soSupportive, value: "", comment: "Title for the email field")
                 }.onChange { [weak self] row in
                     self?.validateForm()
             }
             <<<  TextRow(SupportTicketCellTag.Subject.rawValue).cellSetup { cell, row in
-                cell.textField.placeholder = NSLocalizedString("Subject", bundle: .soSupportive(), comment: "Title for the subject field")
+                cell.textField.placeholder = NSLocalizedString("Subject", bundle: .soSupportive, comment: "Title for the subject field")
                 }.onChange { [weak self] row in
                     self?.validateForm()
             }
             <<< TextAreaRow(SupportTicketCellTag.Comment.rawValue) {
                 $0.placeholder = type.description()
                 $0.cell.textView.accessibilityHint = "\($0.placeholder)"
-                $0.textAreaHeight = .Dynamic(initialTextViewHeight: 100)
+                $0.textAreaHeight = .dynamic(initialTextViewHeight: 100)
                 }.onChange { [weak self] row in
                     self?.validateForm()
             }
@@ -108,28 +108,28 @@ public class SupportTicketViewController : FormViewController {
     // ---------------------------------------------
     // MARK: - IBActions
     // ---------------------------------------------
-    func doneTapped(barButtonItem: UIBarButtonItem) {
-        guard let impactRow = form.rowByTag(SupportTicketCellTag.Impact.rawValue) as? PushRow<String>,
-            subjectRow = form.rowByTag(SupportTicketCellTag.Subject.rawValue) as? TextRow,
-            commentRow = form.rowByTag(SupportTicketCellTag.Comment.rawValue) as? TextAreaRow,
-            impactValue = impactRow.value,
-            impact = ImpactLevel.impactFromDescription(impactValue),
-            subject = subjectRow.value?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()),
-            comment = commentRow.value?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) else {
-                notification.statusBarToastSuccess(NSLocalizedString("Invalid Input.  Check fields and try again.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Support Ticket Invalid Input Message"))
+    func doneTapped(_ barButtonItem: UIBarButtonItem) {
+        guard let impactRow = form.rowBy(tag: SupportTicketCellTag.Impact.rawValue) as? PushRow<String>,
+            let subjectRow = form.rowBy(tag: SupportTicketCellTag.Subject.rawValue) as? TextRow,
+            let commentRow = form.rowBy(tag: SupportTicketCellTag.Comment.rawValue) as? TextAreaRow,
+            let impactValue = impactRow.value,
+            let impact = ImpactLevel.impactFromDescription(impactValue),
+            let subject = subjectRow.value?.trimmingCharacters(in: .whitespacesAndNewlines),
+            let comment = commentRow.value?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+                notification.statusBarToastSuccess(NSLocalizedString("Invalid Input.  Check fields and try again.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Support Ticket Invalid Input Message"))
                 return
         }
 
         var email = requesterEmail ?? "unknown_email@unknown.com"
-        if let emailRow = form.rowByTag(SupportTicketCellTag.Email.rawValue) as? TextRow,
-        emailValue = emailRow.value?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) {
+        if let emailRow = form.rowBy(tag: SupportTicketCellTag.Email.rawValue) as? TextRow,
+            let emailValue = emailRow.value?.trimmingCharacters(in: .whitespacesAndNewlines) {
             email = requesterEmail ?? emailValue
         }
 
-        let realBaseURL = baseURL ?? NSURL(string: "https://canvas.instructure.com")!
-        let url = realBaseURL.URLByAppendingPathComponent("error_reports.json")
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "POST"
+        let realBaseURL = baseURL ?? URL(string: "https://canvas.instructure.com")!
+        let url = realBaseURL.appendingPathComponent("error_reports.json")
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
 
@@ -139,47 +139,47 @@ public class SupportTicketViewController : FormViewController {
         } else {
             supportTicket = SupportTicket(requesterName: requesterName, requesterUsername: requesterUsername, requesterEmail: email, requesterDomain: realBaseURL, subject: subject, body: comment, impact: impact, type: type)
         }
-        let data = try! NSJSONSerialization.dataWithJSONObject(supportTicket.dictionaryValue(), options: .PrettyPrinted)
-        request.HTTPBody = data
+        let data = try! JSONSerialization.data(withJSONObject: supportTicket.dictionaryValue(), options: .prettyPrinted)
+        request.httpBody = data
 
         setLoading(true)
-        sendTask = NSURLSession.sharedSession().dataTaskWithRequest(request){ [weak self] data,response,error in
+        sendTask = URLSession.shared.dataTask(with: request) { [weak self] data,response,error in
             let notification = ToastManager()
             guard error == nil else {
                 if let _ = error {
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         self?.setLoading(false)
-                        notification.statusBarToastSuccess(NSLocalizedString("Request Failed!  Check network and try again!", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Support Ticket Creation Failed"))
+                        notification.statusBarToastSuccess(NSLocalizedString("Request Failed!  Check network and try again!", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Support Ticket Creation Failed"))
                     }
                 }
                 return
             }
 
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self?.setLoading(false)
-                self?.navigationController?.popViewControllerAnimated(true)
-                notification.statusBarToastSuccess(NSLocalizedString("Thanks, your request was received!", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Support Ticket Created Successfully"))
+                let _ = self?.navigationController?.popViewController(animated: true)
+                notification.statusBarToastSuccess(NSLocalizedString("Thanks, your request was received!", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoSupportive")!, value: "", comment: "Support Ticket Created Successfully"))
             }
         }
 
         sendTask?.resume()
     }
 
-    func cancelTapped(barButtonItem: UIBarButtonItem) {
+    func cancelTapped(_ barButtonItem: UIBarButtonItem) {
         sendTask?.cancel()
-        navigationController?.popViewControllerAnimated(true)
+        let _ = navigationController?.popViewController(animated: true)
     }
 
     // ---------------------------------------------
     // MARK: - Validation
     // ---------------------------------------------
     func validateForm() {
-        doneButton.enabled = isFormValid()
+        doneButton.isEnabled = isFormValid()
     }
 
-    func setLoading(loading: Bool) {
+    func setLoading(_ loading: Bool) {
         if loading {
-            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
             activityIndicator.startAnimating()
         } else {
@@ -188,18 +188,18 @@ public class SupportTicketViewController : FormViewController {
     }
 
     func isFormValid() -> Bool {
-        if let emailRow = form.rowByTag(SupportTicketCellTag.Email.rawValue) as? EmailRow,
-            formEmail = emailRow.value {
+        if let emailRow = form.rowBy(tag: SupportTicketCellTag.Email.rawValue) as? EmailRow,
+            let formEmail = emailRow.value {
             requesterEmail = formEmail
         }
 
-        guard let impactRow = form.rowByTag(SupportTicketCellTag.Impact.rawValue) as? PushRow<String>,
-            subjectRow = form.rowByTag(SupportTicketCellTag.Subject.rawValue) as? TextRow,
-            commentRow = form.rowByTag(SupportTicketCellTag.Comment.rawValue) as? TextAreaRow,
-            impact = impactRow.value,
-            email = requesterEmail,
-            subject = subjectRow.value?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()),
-            comment = commentRow.value?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) else {
+        guard let impactRow = form.rowBy(tag: SupportTicketCellTag.Impact.rawValue) as? PushRow<String>,
+            let subjectRow = form.rowBy(tag: SupportTicketCellTag.Subject.rawValue) as? TextRow,
+            let commentRow = form.rowBy(tag: SupportTicketCellTag.Comment.rawValue) as? TextAreaRow,
+            let impact = impactRow.value,
+            let email = requesterEmail,
+            let subject = subjectRow.value?.trimmingCharacters(in: .whitespacesAndNewlines),
+            let comment = commentRow.value?.trimmingCharacters(in: .whitespacesAndNewlines) else {
                 return false
         }
 

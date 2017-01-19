@@ -37,18 +37,21 @@
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "Kāore he Teihana Kōrero Kitea";
 
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "Kaore he awakeri pana i kitea";
+
 /* Title for the notification preferences page */
 "Notification Preferences" = "Manakohanga Whakamōhiotanga";
 
-/* Action title for being unable to update a push notification preference
-   Alert action button text when unable to load communication channels
-   Alert action button text when unable to load notification preferences
-   Alert action button text when unable to parse JSON for communication channels
-   Alert action button text when unable to parse JSON for notification preferences */
+/* OK Button Title */
+"OK" = "OK";
+
+/* (No Commment) */
 "Ok" = "Ok";
 
 /* Description for Push Notification channel */
-"Push Notifications" = "Pana Whakamōhiotanga";
+"Push Notifications" = "Pana Whakamōhiotanga
+";
 
 /* Description for SMS communication channel */
 "SMS" = "SMS";
@@ -70,6 +73,12 @@
 
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Kāore e taea te uta i tetahi manakohanga whakamōhiotanga i tenei wa. Hapa: ( Result.error? .localizedDescription)";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "Kaore i taea te porporo JSON mo ngā awakeri kōrero";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "Kaore i taea te porporo JSON mo ngā manakohanga whakamōhiotanga";
 
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "kihai i taea e ki te whakahōu i tenei uara ki te tūmau tatou";

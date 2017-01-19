@@ -20,25 +20,25 @@
 import XCTest
 import SoAutomated
 import Result
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 import Marshal
 
 class TooLegitTests: XCTestCase {
 
     func testWrappingAThrowingFunctionInASignalProducer_whenTheFunctionDoesNotThrow_sendsTheValueOfTheFunction() {
-        let expectation = expectationWithDescription("value was sent")
+        let expectation = self.expectation(description: "value was sent")
         let producer = attemptProducer {
             return try throwError(nil)
         }
 
-        producer.startWithNext { _ in expectation.fulfill() }
+        producer.startWithResult { _ in expectation.fulfill() }
 
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
     }
 
     func testWrappingAThrowingFunctionInASignalProducer_whenTheFunctionThrowsAnNSError_catchesAndSendsTheError() {
-        let expectation = expectationWithDescription("error was caught and sent")
+        let expectation = self.expectation(description: "error was caught and sent")
         let error = NSError(subdomain: "TooLegitTests", description: "test catching NSError")
 
         attemptProducer {
@@ -50,12 +50,12 @@ class TooLegitTests: XCTestCase {
             }
         }
 
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
     }
 
     func testWrappingAThrowingFunctionInASignalProducer_whenTheFunctionThrowsAMarshalError_catchesAndSendsTheErrorAsAnNSError() {
-        let expectation = expectationWithDescription("marshal error was caught and sent as an NSError")
-        let error = Marshal.Error.KeyNotFound(key: "foo")
+        let expectation = self.expectation(description: "marshal error was caught and sent as an NSError")
+        let error = MarshalError.keyNotFound(key: "foo")
 
         attemptProducer {
             return try throwError(error)
@@ -66,7 +66,7 @@ class TooLegitTests: XCTestCase {
             }
         }
 
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
     }
 
     func testWrappingABlockInASignalProducer_waitsToInvokeTheBlockUntilTheProducerStarts() {
@@ -76,15 +76,15 @@ class TooLegitTests: XCTestCase {
     }
 
     func testWrappingABlockInASignalProducer_invokesTheBlockWhenTheProducerStarts() {
-        let expectation = expectationWithDescription("block was invoked")
+        let expectation = self.expectation(description: "block was invoked")
         blockProducer {
             return expectation.fulfill()
         }
         .start()
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
     }
 
-    private func throwError(error: ErrorType?) throws -> Bool {
+    fileprivate func throwError(_ error: Error?) throws -> Bool {
         if let error = error {
             throw error
         }

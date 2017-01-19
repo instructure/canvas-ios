@@ -19,15 +19,15 @@
 import TooLegit
 import SoLazy
 
-public class SubmissionAPI {
+open class SubmissionAPI {
     
-    public class func getStudentSubmissions(session: Session, courseID: String, assignmentID: String) throws -> NSURLRequest {
-        let path = ContextID(id: courseID, context: .Course).apiPath/"assignments"/assignmentID/"submissions"
+    open class func getStudentSubmissions(_ session: Session, courseID: String, assignmentID: String) throws -> URLRequest {
+        let path = ContextID.course(withID: courseID).apiPath/"assignments"/assignmentID/"submissions"
         
         return try session.GET(path, parameters: Submission.parameters)
     }
     
-    public class func getSubmission(session: Session, courseID: String, assignmentID: String) throws -> NSURLRequest {
+    open class func getSubmission(_ session: Session, courseID: String, assignmentID: String) throws -> URLRequest {
         let path = "/api/v1/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(session.user.id)"
         let parameters = Submission.parameters
         

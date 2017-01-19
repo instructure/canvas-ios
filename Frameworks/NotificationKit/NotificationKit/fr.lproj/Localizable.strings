@@ -37,14 +37,16 @@
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "Aucun canal de communication trouvé";
 
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "Aucun canal push trouvé";
+
 /* Title for the notification preferences page */
 "Notification Preferences" = "Préférences de notification";
 
-/* Action title for being unable to update a push notification preference
-   Alert action button text when unable to load communication channels
-   Alert action button text when unable to load notification preferences
-   Alert action button text when unable to parse JSON for communication channels
-   Alert action button text when unable to parse JSON for notification preferences */
+/* OK Button Title */
+"OK" = "D'accord";
+
+/* (No Commment) */
 "Ok" = "D'accord";
 
 /* Description for Push Notification channel */
@@ -71,11 +73,17 @@
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Impossible de charger, en ce moment, quelconque préférence de notification. Erreur : (result.error?.localizedDescription)";
 
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "Impossible d'analyser JSON pour les canaux de communication";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "Impossible d'analyser JSON pour les préférences de notification";
+
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "Nous n'avons pu mettre cette valeur à jour avec le serveur";
 
 /* Message for push notification pre-authorization alert */
-"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "Désirez-vous permettre à Canvas de vous envoyer des notifications importantes à propos d'annonces, de cours, de travaux assignés, etc... ?";
+"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "Désirez-vous permettre à Canvas de vous envoyer des notifications importantes à propos d'annonces, de cours, de travaux assignés, etc... ? ";
 
 /* Title for yes button for push notification pre-authorization alert */
 "Yes" = "Oui";

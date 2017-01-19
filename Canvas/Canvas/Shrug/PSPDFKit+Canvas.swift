@@ -23,7 +23,7 @@ import Secrets
 extension PSPDFKit {
     static func license() {
         
-        if let key = Secrets.fetch(.CanvasPSPDFKit) {
+        if let key = Secrets.fetch(.canvasPSPDFKit) {
            setLicenseKey(key)
         }
     }

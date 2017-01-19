@@ -20,8 +20,8 @@ import Foundation
 
 class LoadingQuestionsView: UIView {
     class func goGoGadgetLoadingQuestionsView() -> LoadingQuestionsView {
-        let nib = UINib(nibName: "LoadingQuestionsView", bundle: NSBundle(forClass: LoadingQuestionsView.classForCoder()))
+        let nib = UINib(nibName: "LoadingQuestionsView", bundle: Bundle(for: LoadingQuestionsView.classForCoder()))
         
-        return nib.instantiateWithOwner(nil, options: nil).first as! LoadingQuestionsView
+        return nib.instantiate(withOwner: nil, options: nil).first as! LoadingQuestionsView
     }
 }

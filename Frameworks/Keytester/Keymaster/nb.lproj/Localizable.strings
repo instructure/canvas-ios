@@ -1,18 +1,1 @@
-/* Back Button Title */
-"Back" = "Tilbake";
-
-/* Error alert message */
-"Could not create domain.  Please check your school's domain and try again." = "Kunne ikke opprette domene. Sjekk skolen din sitt domene og forsøk igjen.";
-
-/* Error Alert Title */
-"Error" = "Feil";
-
-/* Domain Picker Search Placeholder */
-"Find your school or district" = "Finn skolen eller distriktet ditt";
-
-/* OK */
-"OK" = "OK";
-
-/* AccountDomain Database Load Failure Message */
-"There was a problem loading the AccountDomain database file." = "Det oppsto et problem under opplasting av databasefilen til kontodomenet.";
-
+/* No Localized Strings */

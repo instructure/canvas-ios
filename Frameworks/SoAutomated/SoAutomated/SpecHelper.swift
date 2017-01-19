@@ -16,41 +16,47 @@
     
     
 
+import CoreLocation
+import Photos
+import AVFoundation
+import WebKit
 import Nimble
 import DVR
 import TooLegit
 @testable import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import CoreData
 import Quick
 import Result
+import SoLazy
 
 class SpecHelperConfiguration: QuickConfiguration {
-    override class func configure(configuration: Configuration) {
+    override class func configure(_ configuration: Configuration) {
         // increase default poll interval because Core Data change notifications are slow.
         Nimble.AsyncDefaults.PollInterval = 0.5
+
+        // increase default timeout because sometimes even stubbed network calls can be slow.
+        Nimble.AsyncDefaults.Timeout = 8
     }
 }
 
-public let DefaultNetworkTimeout: NSTimeInterval = 5
-
 extension Refresher {
-    public func refreshAndWait(timeout: NSTimeInterval = 1) {
+    public func refreshAndWait(_ timeout: TimeInterval = Nimble.AsyncDefaults.Timeout) {
         waitUntil(timeout: timeout) { done in
-            self.refreshingCompleted.observeNext { error in
+            self.refreshingCompleted.observeValues { error in
                 expect(error).to(beNil())
-                done()
+                delay(0.05) { done() }
             }
             self.refresh(true)
         }
     }
 
-    @available(*, deprecated, message="Use playback(name:with:timeout:) because all recordings should be in SoAutomated.")
-    public func playback(name: String, in bundle: NSBundle, with session: TooLegit.Session, timeout: NSTimeInterval = 1) {
+    @available(*, deprecated, message: "Use playback(name:with:timeout:) because all recordings should be in SoAutomated.")
+    public func playback(_ name: String, in bundle: Bundle, with session: TooLegit.Session, timeout: TimeInterval = Nimble.AsyncDefaults.Timeout) {
         playback(name, with: session, timeout: timeout)
     }
 
-    public func playback(name: String, with session: TooLegit.Session, timeout: NSTimeInterval = 1) {
+    public func playback(_ name: String, with session: TooLegit.Session, timeout: TimeInterval = Nimble.AsyncDefaults.Timeout) {
         session.playback(name) {
             refreshAndWait(timeout)
         }
@@ -58,17 +64,21 @@ extension Refresher {
 }
 
 extension TooLegit.Session {
-    @available(*, deprecated, message="Use playback(name:block:) because all recordings should be in SoAutomated.")
-    public func playback(name: String, in bundle: NSBundle, @noescape block: ()->Void) {
+    @available(*, deprecated, message: "Use playback(name:block:) because all recordings should be in SoAutomated.")
+    public func playback(_ name: String, in bundle: Bundle, block: ()->Void) {
         playback(name, block: block)
     }
 
-    public func playback(name: String, @noescape block: ()->Void) {
+    public func playback(_ name: String, block: ()->Void) {
         let URLSession = self.URLSession
 
         // remove User-Agent header temporarily because it varies from target to target
-        let userAgent = URLSession.configuration.HTTPAdditionalHeaders?["User-Agent"]
-        URLSession.configuration.HTTPAdditionalHeaders?.removeValueForKey("User-Agent")
+        let userAgent = URLSession.configuration.httpAdditionalHeaders?["User-Agent"]
+        URLSession.configuration.httpAdditionalHeaders?.removeValue(forKey: "User-Agent")
+
+        // remove Accept-Language header
+        let acceptLanguage = URLSession.configuration.httpAdditionalHeaders?["Accept-Language"]
+        URLSession.configuration.httpAdditionalHeaders?.removeValue(forKey: "Accept-Language")
 
         let DVRSession = DVR.Session(outputDirectory: "~/Desktop/", cassetteName: name, testBundle: .soAutomated, backingSession: URLSession)
         self.URLSession = DVRSession
@@ -77,10 +87,11 @@ extension TooLegit.Session {
         DVRSession.endRecording()
         
         self.URLSession = URLSession
-        self.URLSession.configuration.HTTPAdditionalHeaders?["User-Agent"] = userAgent
+        self.URLSession.configuration.httpAdditionalHeaders?["User-Agent"] = userAgent
+        self.URLSession.configuration.httpAdditionalHeaders?["Accept-Language"] = acceptLanguage
     }
 
-    public func cacheInvalidated(key: String) -> Bool {
+    public func cacheInvalidated(_ key: String) -> Bool {
         let refreshingMoc = try! managedObjectContext(SoRefreshingStoreID)
         let refresh: Refresh? = try! refreshingMoc.findOne(withValue: key, forKey: "key")
         return refresh != nil
@@ -90,15 +101,15 @@ extension TooLegit.Session {
 // MARK: - RAC+SoAutomated
 
 public enum TestError: Int {
-	case Default = 0
-	case Error1 = 1
-	case Error2 = 2
+	case `default` = 0
+	case error1 = 1
+	case error2 = 2
 }
 
-extension TestError: ErrorType {
+extension TestError: Error {
 }
 
-extension SignalProducerType {
+extension SignalProducerProtocol {
 	/// Halts if an error is emitted in the receiver signal.
 	/// This is useful in tests to be able to just use `startWithNext`
 	/// in cases where we know that an error won't be emitted.
@@ -107,7 +118,7 @@ extension SignalProducerType {
 	}
 }
 
-extension SignalType {
+extension SignalProtocol {
 	/// Halts if an error is emitted in the receiver signal.
 	/// This is useful in tests to be able to just use `startWithNext`
 	/// in cases where we know that an error won't be emitted.
@@ -120,31 +131,31 @@ extension SignalType {
 	}
 }
 
-extension SignalProducerType {
-    public func startWithCompletedAction(doneAction: () -> Void, file: StaticString = #file, line: UInt = #line, next: ((Value) -> Void)? = nil) -> Disposable {
+extension SignalProducerProtocol {
+    public func startWithCompletedAction(_ doneAction: @escaping () -> Void, file: StaticString = #file, line: UInt = #line, next: ((Value) -> Void)? = nil) -> Disposable {
         return start { event in
             switch event {
-            case .Next(let v): next?(v)
-            case .Completed: doneAction()
-            case .Interrupted: XCTFail("interrupted", file: file, line: line)
-            case .Failed(let error): XCTFail("failed \(error)")
+            case .value(let v): next?(v)
+            case .completed: DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { doneAction() }
+            case .interrupted: XCTFail("interrupted", file: file, line: line)
+            case .failed(let error): XCTFail("failed \(error)")
             }
         }
     }
 
-    public func startWithFailedAction(doneAction: () -> Void, file: StaticString = #file, line: UInt = #line, failed: ((Error) -> Void)? = nil) -> Disposable {
+    public func startWithFailedAction(_ doneAction: @escaping () -> Void, file: StaticString = #file, line: UInt = #line, failed: ((Error) -> Void)? = nil) -> Disposable {
         return start { event in
             switch event {
-            case .Next, .Completed: break
-            case .Interrupted: XCTFail("interrupted", file: file, line: line)
-            case .Failed(let error):
+            case .value, .completed: break
+            case .interrupted: XCTFail("interrupted", file: file, line: line)
+            case .failed(let error):
                 failed?(error)
                 doneAction()
             }
         }
     }
 
-    public func startAndWaitForCompleted(next: ((Value) -> Void)? = nil) {
+    public func startAndWaitForCompleted(_ next: ((Value) -> Void)? = nil) {
         var disposable: Disposable?
         waitUntil { done in
             disposable = self.startWithCompletedAction(done, next: next)
@@ -152,7 +163,7 @@ extension SignalProducerType {
         disposable?.dispose()
     }
 
-    public func startAndWaitForFailed(failed: ((Error) -> Void)? = nil) {
+    public func startAndWaitForFailed(_ failed: ((Error) -> Void)? = nil) {
         var disposable: Disposable?
         waitUntil { done in
             disposable = self.startWithFailedAction(done, failed: failed)
@@ -161,57 +172,57 @@ extension SignalProducerType {
     }
 }
 
-extension Collection {
+extension SoPersistent.Collection {
     public subscript(section: Int, row: Int) -> Object {
-        return self[NSIndexPath(forRow: row, inSection: section)]
+        return self[IndexPath(row: row, section: section)]
     }
 }
 
 extension NSManagedObject {
     public func reload() -> Self {
-        managedObjectContext!.refreshObject(self, mergeChanges: true)
+        managedObjectContext!.refresh(self, mergeChanges: true)
         return self
     }
 }
 
-public func jsonify(date date: NSDate) -> String {
-    return ISO8601SecondFormatter.stringFromDate(date)
+public func jsonify(date: Date) -> String {
+    return ISO8601SecondFormatter.string(from: date)
 }
 
 public func ==<U: Equatable>(a: CollectionUpdate<U>, b: CollectionUpdate<U>) -> Bool {
     switch (a, b) {
-    case (.SectionInserted(let a), .SectionInserted(let b)) where a == b: return true
-    case (.SectionDeleted(let a), .SectionDeleted(let b)) where a == b: return true
-    case (.Inserted(let a, let pa), .Inserted(let b, let pb)) where a == b && pa == pb: return true
-    case (.Updated(let a, let pa), .Updated(let b, let pb)) where a == b && pa == pb: return true
-    case (.Moved(let a, let aa, let pa), .Moved(let b, let bb, let pb)) where a == b && aa == bb && pa == pb: return true
-    case (.Deleted(let a, let pa), .Deleted(let b, let pb)) where a == b && pa == pb: return true
+    case (.sectionInserted(let a), .sectionInserted(let b)) where a == b: return true
+    case (.sectionDeleted(let a), .sectionDeleted(let b)) where a == b: return true
+    case (.inserted(let a, let pa, _), .inserted(let b, let pb, _)) where a == b && pa == pb: return true
+    case (.updated(let a, let pa, _), .updated(let b, let pb, _)) where a == b && pa == pb: return true
+    case (.moved(let a, let aa, let pa, _), .moved(let b, let bb, let pb, _)) where a == b && aa == bb && pa == pb: return true
+    case (.deleted(let a, let pa, _), .deleted(let b, let pb, _)) where a == b && pa == pb: return true
     default: return false
     }
 }
 
-private class Bundle {}
-extension NSBundle {
-    public static var soAutomated: NSBundle { return NSBundle(forClass: Bundle.self) }
+private class TestBundle {}
+extension Bundle {
+    public static var soAutomated: Bundle { return Bundle(for: TestBundle.self) }
 }
 
 // MARK: - Deprecated
-public func attempt(@noescape block: () throws -> Void) {
+public func attempt(_ block: () throws -> Void) {
     try! block()
 }
 
-public class UnitTestCase: XCTestCase {}
+open class UnitTestCase: XCTestCase {}
 
 extension ManagedObjectObserver {
-    public func observe(object: NSManagedObject, change: ManagedObjectChange, withExpectation expectation: XCTestExpectation) -> Disposable? {
-        return signal.observeNext { _change in
-            if case change = _change.0 where _change.1 == object { expectation.fulfill() }
+    public func observe(_ object: NSManagedObject, change: ManagedObjectChange, withExpectation expectation: XCTestExpectation) -> Disposable? {
+        return signal.observeValues { _change in
+            if case change = _change.0, _change.1 == object { expectation.fulfill() }
         }
     }
 }
 
 extension XCTestCase {
-    public func assertDifference<T: IntegerArithmeticType>(@noescape selector: ()->T, _ difference: T, _ message: String = "", @noescape block: () throws -> Void) {
+    public func assertDifference<T: IntegerArithmetic>(_ selector: ()->T, _ difference: T, _ message: String = "", block: () throws -> Void) {
         let before = selector()
         attempt {
             try block()

@@ -24,12 +24,12 @@ import ReactiveCocoa
 import Marshal
 
 extension Todo {
-    public func markAsDone(session: Session, completion: (Result<Bool, NSError>->())? = nil) {
+    public func markAsDone(_ session: Session, completion: ((Result<Bool, NSError>)->())? = nil) {
         guard let context = managedObjectContext else {
             ❨╯°□°❩╯⌢"Every object should have a context or we're screwed"
         }
 
-        context.performBlock {
+        context.perform {
             self.done = true
             let _ = try? context.save()
         }
@@ -39,32 +39,32 @@ extension Todo {
             producer.startWithSignal { signal, disposable in
                 signal.observe { event in
                     switch event {
-                    case .Completed:
-                        completion?(.Success(true))
-                    case .Failed(let error):
-                        context.performBlock {
+                    case .completed:
+                        completion?(.success(true))
+                    case .failed(let error):
+                        context.perform {
                             self.done = false
                             let _ = try? context.save()
                         }
-                        completion?(.Failure(error))
-                    case .Interrupted:
-                        context.performBlock {
+                        completion?(.failure(error))
+                    case .interrupted:
+                        context.perform {
                             self.done = false
                             let _ = try? context.save()
                         }
-                        let error = NSError(subdomain: "Todos", description: NSLocalizedString("The request to mark a to do as done was interrupted", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TodoKit")!, value: "", comment: "Error message for interrupted requests marking a to do as done"))
-                        completion?(.Failure(error))
+                        let error = NSError(subdomain: "Todos", description: NSLocalizedString("The request to mark a to do as done was interrupted", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.TodoKit")!, value: "", comment: "Error message for interrupted requests marking a to do as done"))
+                        completion?(.failure(error))
                     default:
                         break
                     }
                 }
             }
         } catch let e as NSError {
-            context.performBlock {
+            context.perform {
                 self.done = false
                 let _ = try? context.save()
             }
-            completion?(.Failure(e))
+            completion?(.failure(e))
         }
     }
 }

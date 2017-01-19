@@ -24,7 +24,7 @@ class LoginConfiguration: NSObject, CanvasKeymasterDelegate {
     static let sharedConfiguration = LoginConfiguration()
     
     let logFileManager: DDLogFileManagerDefault = {
-        let logsDirectory = (NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as NSString).stringByAppendingPathComponent("InstructureLog")
+        let logsDirectory = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString).appendingPathComponent("InstructureLog")
         return DDLogFileManagerDefault(logsDirectory: logsDirectory)
     }()
     

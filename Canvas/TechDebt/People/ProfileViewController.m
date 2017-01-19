@@ -180,9 +180,15 @@ CGFloat square(CGFloat x){return x*x;}
     [self.logoutButton setTitle:NSLocalizedString(@"Logout", @"Title for a button to logout a user") forState:UIControlStateNormal];
     [self.settingsButton setTitle:NSLocalizedString(@"Settings", @"Title for Settings") forState:UIControlStateNormal];
     [self.helpButton setTitle:NSLocalizedString(@"Help", @"help button") forState:UIControlStateNormal];
+
+    [@[self.filesButton, self.logoutButton, self.settingsButton, self.helpButton] enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL * _Nonnull stop) {
+    button.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 3);
+    }];
     
     [self.avatarButton setAdjustsImageWhenHighlighted:NO];
     [self.avatarButton setContentMode:UIViewContentModeCenter];
+    self.avatarButton.accessibilityIdentifier = @"profile_photo_button";
+    self.avatarButton.accessibilityLabel = NSLocalizedString(@"Change Profile Image", @"button to change user's profile image");
     
     [self updateForUser];
     

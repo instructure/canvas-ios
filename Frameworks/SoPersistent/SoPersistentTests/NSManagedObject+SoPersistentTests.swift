@@ -22,6 +22,9 @@ import SoAutomated
 import CoreData
 import TooLegit
 
+import Photos
+import CoreLocation
+
 class NSManagedObjectTests: XCTestCase {
     func testEntityNameMatchesOnClassName() {
         attempt {
@@ -37,7 +40,7 @@ class NSManagedObjectTests: XCTestCase {
             let session = Session.inMemory
             let context = try session.soPersistentTestsManagedObjectContext()
             let predicate = NSPredicate(value: true)
-            let request = Panda.fetch(predicate, sortDescriptors: ["name".ascending], inContext: context)
+            let request: NSFetchRequest<Panda> = context.fetch(predicate, sortDescriptors: ["name".ascending])
 
             XCTAssertEqual("Panda", request.entityName, "it sets entityName")
             XCTAssertEqual(predicate, request.predicate, "it sets predicate")
@@ -49,7 +52,7 @@ class NSManagedObjectTests: XCTestCase {
         attempt {
             let session = Session.inMemory
             let context = try session.soPersistentTestsManagedObjectContext()
-            let frc = Panda.fetchedResults(nil, sortDescriptors: [], sectionNameKeypath: nil, inContext: context)
+            let frc: NSFetchedResultsController<Panda> = context.fetchedResults(nil, sortDescriptors: [], sectionNameKeypath: nil)
 
             XCTAssertFalse(frc.fetchRequest.returnsObjectsAsFaults, "it sets returnsObjectsAsFaults to false")
             XCTAssertEqual(30, frc.fetchRequest.fetchBatchSize, "it sets the fetchBatchSize to 30")
@@ -63,7 +66,7 @@ class NSManagedObjectTests: XCTestCase {
             let context = try session.soPersistentTestsManagedObjectContext()
             let panda = Panda.build(context)
             panda.delete(inContext: context)
-            XCTAssert(panda.deleted)
+            XCTAssert(panda.isDeleted)
         }
     }
 
@@ -89,7 +92,7 @@ class ModelTests: XCTestCase {
             let context = try session.soPersistentTestsManagedObjectContext()
             let (alpha, _, _) = seedData(context)
             let predicate = NSPredicate(format: "%K == %@", "name", "alpha")
-            let request = Panda.fetch(predicate, sortDescriptors: nil, inContext: context)
+            let request: NSFetchRequest<Panda> = context.fetch(predicate, sortDescriptors: [])
             let withRequest: [Panda] = try context.findAll(fromFetchRequest: request)
             XCTAssertEqual(1, withRequest.count)
             XCTAssert(withRequest.contains(alpha))
@@ -151,11 +154,11 @@ class ModelTests: XCTestCase {
             let session = Session.inMemory
             let context = try session.soPersistentTestsManagedObjectContext()
             let created = Panda(inContext: context)
-            XCTAssert(created.inserted)
+            XCTAssert(created.isInserted)
         }
     }
 
-    private func seedData(context: NSManagedObjectContext) -> (Panda, Panda, Panda) {
+    fileprivate func seedData(_ context: NSManagedObjectContext) -> (Panda, Panda, Panda) {
         let alpha = Panda.build(context, name: "alpha")
         let beta = Panda.build(context, name: "beta")
         let charlie = Panda.build(context, name: "charlie")

@@ -20,9 +20,9 @@ import Foundation
 import CoreData
 
 extension NSManagedObject {
-    public static func cacheKey(context: NSManagedObjectContext, _ values: [AnyObject] = []) -> String {
+    public static func cacheKey(_ context: NSManagedObjectContext, _ values: [Any] = []) -> String {
         return entityName(context)
             + "://"
-            + (values.map { "\($0)" }).joinWithSeparator("//")
+            + (values.map { "\($0)" }).joined(separator: "//")
     }
 }

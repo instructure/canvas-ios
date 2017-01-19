@@ -19,13 +19,13 @@
 import Foundation
 import XCTest
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 import SoAutomated
 import DoNotShipThis
 import Nimble
 
-let currentBundle = NSBundle(forClass: SessionTests.self)
+let currentBundle = Bundle(for: SessionTests.self)
 
 class SessionTests: XCTestCase {
     func testGET() {
@@ -110,7 +110,7 @@ class SessionTests: XCTestCase {
     }
 
     func testRemovingNilValuesFromJSON_whenThereAreNilValues_theirKeysAreRemoved() {
-        let nillable: [String: AnyObject?] = [
+        let nillable: [String: Any?] = [
             "nil": nil,
             "non-nil": 1
         ]
@@ -160,13 +160,10 @@ class SessionTests: XCTestCase {
         let session = Session.build(localStoreDirectory: .Default)
         let directoryURL = session.localStoreDirectoryURL
         var isDir: ObjCBool = true
-        guard let path = directoryURL.path else {
-            XCTFail("expected a path")
-            return
-        }
-        let exists = NSFileManager.defaultManager().fileExistsAtPath(path, isDirectory: &isDir)
+        let path = directoryURL.path
+        let exists = FileManager.default.fileExists(atPath: path, isDirectory: &isDir)
         XCTAssert(exists, "it exists")
-        XCTAssert(isDir, "it is a directory")
+        XCTAssert(isDir.boolValue, "it is a directory")
     }
 
     func testConvertingSessionToAndFromJSON_yieldsValidSession() {
@@ -183,7 +180,7 @@ class SessionTests: XCTestCase {
 
     func testSession_emptyResponseSignalProducer_swallowsResponse() {
         let session = httpBinSession()
-        var request: NSURLRequest!
+        var request: URLRequest!
         attempt {
             request = try session.GET("/get")
         }
@@ -198,7 +195,7 @@ class SessionTests: XCTestCase {
     func testSession_paginatedJSONSignalProducer_getsAllPages() {
         let session: Session = Session.nas
         var response: [JSONObject]?
-        var request: NSURLRequest!
+        var request: URLRequest!
         attempt {
             request = try session.GET("/api/v1/courses/24219/assignments", parameters: ["per_page": 10])
         }
@@ -219,22 +216,22 @@ class SessionTests: XCTestCase {
 
         // given invalid response
         let statusCode = 404
-        let url = NSURL(string: "https://instructure.com")!
-        let response = NSHTTPURLResponse(URL: url, statusCode: statusCode, HTTPVersion: nil, headerFields: nil)!
+        let url = URL(string: "https://instructure.com")!
+        let response = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
 
         // given dummy data
         let data = sampleData([:])
 
         // when
-        let expectation = expectationWithDescription("response failed")
+        let expectation = self.expectation(description: "response failed")
         session.responseJSONSignalProducer(data, response: response).startWithFailed {
             error = $0
             expectation.fulfill()
         }
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
 
         // then
-        let reasonExists = error?.localizedFailureReason?.rangeOfString("Expected a response in the 200-299 range. Got 404") != nil
+        let reasonExists = error?.localizedFailureReason?.range(of: "Expected a response in the 200-299 range. Got 404") != nil
         XCTAssert(reasonExists, "error has the expected failure reason")
     }
 
@@ -244,8 +241,8 @@ class SessionTests: XCTestCase {
 
         // given valid response
         let statusCode = 200
-        let url = NSURL(string: "https://instructure.com")!
-        let response = NSHTTPURLResponse(URL: url, statusCode: statusCode, HTTPVersion: nil, headerFields: nil)!
+        let url = URL(string: "https://instructure.com")!
+        let response = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
 
         // given data
         let jsonData: JSONObject = ["foo": "bar"]
@@ -284,20 +281,20 @@ class SessionTests: XCTestCase {
 
     // MARK: Helpers
 
-    private func quickSession(token: String?, url: String, userID: String, userName: String) -> Session {
-        let url = NSURL(string: url)!
+    fileprivate func quickSession(_ token: String?, url: String, userID: String, userName: String) -> Session {
+        let url = URL(string: url)!
         let user = SessionUser(id: userID, name: userName)
         return Session(baseURL: url, user: user, token: token)
     }
 
-    private func httpBinSession() -> Session {
-        return Session(baseURL: NSURL(string: "https://httpbin.org")!, user: SessionUser(id: "", name: ""), token: nil)
+    fileprivate func httpBinSession() -> Session {
+        return Session(baseURL: URL(string: "https://httpbin.org")!, user: SessionUser(id: "", name: ""), token: nil)
     }
 
-    private func sampleData(json: JSONObject) -> NSData {
-        var data: NSData!
+    fileprivate func sampleData(_ json: JSONObject) -> Data {
+        var data: Data!
         attempt {
-            data = try NSJSONSerialization.dataWithJSONObject(json, options: [])
+            data = try JSONSerialization.data(withJSONObject: json, options: [])
         }
         return data
     }

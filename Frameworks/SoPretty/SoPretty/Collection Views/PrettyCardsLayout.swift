@@ -20,8 +20,8 @@ import UIKit
 import SoLazy
 
 extension UITraitCollection {
-    private var prettyCardsPadding: CGFloat {
-        return (horizontalSizeClass == .Compact || userInterfaceIdiom == .Phone) ? 20.0 : 40
+    fileprivate var prettyCardsPadding: CGFloat {
+        return (horizontalSizeClass == .compact || userInterfaceIdiom == .phone) ? 20.0 : 40
     }
 }
 
@@ -29,8 +29,8 @@ private let minCardWidth: CGFloat = 250.0
 private let maxCardWidth: CGFloat = 350.0
 
 
-public class PrettyCardsLayout: UICollectionViewFlowLayout {
-    public override func prepareLayout() {
+open class PrettyCardsLayout: UICollectionViewFlowLayout {
+    open override func prepare() {
         
         guard let collectionView = collectionView else { ❨╯°□°❩╯⌢"You can't prepare a layout for a nil collectionView" }
         let traits = collectionView.traitCollection
@@ -38,29 +38,29 @@ public class PrettyCardsLayout: UICollectionViewFlowLayout {
         
         let padding: CGFloat = traits.prettyCardsPadding
         updatePadding(padding)
-        scrollDirection = .Vertical
+        scrollDirection = .vertical
         estimatedItemSize = CGSize(width: widthOfItemIn(boundsWidth, traits: traits), height: 160)
         
-        for cell in collectionView.visibleCells() {
+        for cell in collectionView.visibleCells {
             if let prettyCell = cell as? PrettyCardsCell {
                 prettyCell.widthConstraint.constant = estimatedItemSize.width
                 prettyCell.setNeedsLayout()
             }
         }
         
-        super.prepareLayout()
+        super.prepare()
     }
     
-    func updatePadding(padding: CGFloat) {
+    func updatePadding(_ padding: CGFloat) {
         minimumLineSpacing = padding
         minimumInteritemSpacing = padding
         sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
     }
     
-    public func widthOfItemIn(width: CGFloat, traits: UITraitCollection) -> CGFloat {
+    open func widthOfItemIn(_ width: CGFloat, traits: UITraitCollection) -> CGFloat {
         let padding = traits.prettyCardsPadding
         let widthForOneColumn = width - 2.0 * padding
-        return (1...5).reduce(widthForOneColumn, combine: {initial, new in
+        return (1...5).reduce(widthForOneColumn, {initial, new in
             let totalPadding = CGFloat(new+1)*padding
             let proposedWidth = (width-totalPadding)/CGFloat(new)
             if minCardWidth <= proposedWidth && proposedWidth <= maxCardWidth {
@@ -70,7 +70,7 @@ public class PrettyCardsLayout: UICollectionViewFlowLayout {
         })
     }
     
-    public override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
+    open override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         if let collectionView = collectionView {
             let traits = collectionView.traitCollection
             let padding = traits.prettyCardsPadding
@@ -84,18 +84,18 @@ public class PrettyCardsLayout: UICollectionViewFlowLayout {
             }
         }
         
-        return super.shouldInvalidateLayoutForBoundsChange(newBounds)
+        return super.shouldInvalidateLayout(forBoundsChange: newBounds)
     }
 
-    public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard let collectionView = collectionView else {
             return nil
         }
         var attributes: [UICollectionViewLayoutAttributes] = []
-        for section in 0..<collectionView.numberOfSections() {
-            for item in 0..<collectionView.numberOfItemsInSection(section) {
-                let indexPath = NSIndexPath(forItem: item, inSection: section)
-                if let attribute = layoutAttributesForItemAtIndexPath(indexPath) {
+        for section in 0..<collectionView.numberOfSections {
+            for item in 0..<collectionView.numberOfItems(inSection: section) {
+                let indexPath = IndexPath(item: item, section: section)
+                if let attribute = layoutAttributesForItem(at: indexPath) {
                     attributes.append(attribute)
                 }
             }
@@ -105,9 +105,9 @@ public class PrettyCardsLayout: UICollectionViewFlowLayout {
 }
 
 
-public class PrettyCardsCell: UICollectionViewCell {
-    private(set) public lazy var widthConstraint: NSLayoutConstraint = {
-        let constraint = NSLayoutConstraint(item: self.contentView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 300)
+open class PrettyCardsCell: UICollectionViewCell {
+    fileprivate(set) open lazy var widthConstraint: NSLayoutConstraint = {
+        let constraint = NSLayoutConstraint(item: self.contentView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 300)
         constraint.identifier = "Pretty Card Width"
         return constraint
     }()

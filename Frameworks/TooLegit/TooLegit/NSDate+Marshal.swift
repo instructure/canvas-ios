@@ -19,45 +19,45 @@
 import Foundation
 import Marshal
 
-extension NSDate : ValueType {
-    public static func value(object: Any) throws -> NSDate {
+extension Date : ValueType {
+    public static func value(from object: Any) throws -> Date {
         guard let dateString = object as? String else {
-            throw Error.TypeMismatch(expected: String.self, actual: object.dynamicType)
+            throw MarshalError.typeMismatch(expected: String.self, actual: type(of: object))
         }
-        guard let date = NSDate.fromISO8601String(dateString) else {
-            throw Error.TypeMismatch(expected: "ISO8601 date string", actual: dateString)
+        guard let date = Date.fromISO8601String(dateString) else {
+            throw MarshalError.typeMismatch(expected: "ISO8601 date string", actual: dateString)
         }
         return date
     }
 }
 
-public let ISO8601MillisecondFormatter: NSDateFormatter = {
-    let formatter = NSDateFormatter()
-    formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+public let ISO8601MillisecondFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-    let tz = NSTimeZone(abbreviation:"GMT")
+    let tz = TimeZone(abbreviation:"GMT")
     formatter.timeZone = tz
     return formatter
 }()
 
-public let ISO8601SecondFormatter: NSDateFormatter = {
-    let formatter = NSDateFormatter()
-    formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+public let ISO8601SecondFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ";
-    let tz = NSTimeZone(abbreviation:"GMT")
+    let tz = TimeZone(abbreviation:"GMT")
     formatter.timeZone = tz
     return formatter
 }()
 
 private let formatters = [ISO8601MillisecondFormatter, ISO8601SecondFormatter]
 
-public extension NSDate {
-    static func fromISO8601String(dateString: String) -> NSDate? {
+public extension Date {
+    static func fromISO8601String(_ dateString: String) -> Date? {
         for formatter in formatters {
-            if let date = formatter.dateFromString(dateString) {
+            if let date = formatter.date(from: dateString) {
                 return date
             }
         }
-        return .None
+        return .none
     }
 }

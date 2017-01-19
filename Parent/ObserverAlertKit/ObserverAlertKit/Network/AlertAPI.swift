@@ -21,21 +21,21 @@ import Foundation
 import TooLegit
 import SoLazy
 
-public class AlertAPI {
+open class AlertAPI {
 
-    public class func getAlert(session: Session, observerID: String, alertID: String) throws -> NSURLRequest {
+    open class func getAlert(_ session: Session, observerID: String, alertID: String) throws -> URLRequest {
         let path = "/alert/\(observerID)/\(alertID)"
-        let parameters: [String: AnyObject] = [:]
+        let parameters: [String: Any] = [:]
 
         return try session.GET(path, parameters: parameters)
     }
 
-    public class func getAlertsForParent(session: Session, observerID: String, studentID: String, earliestTimestamp: NSDate? = nil, latestTimeStamp: NSDate? = nil) throws -> NSURLRequest {
+    open class func getAlertsForParent(_ session: Session, observerID: String, studentID: String, earliestTimestamp: Date? = nil, latestTimeStamp: Date? = nil) throws -> URLRequest {
         let path = "/alerts/student/\(observerID)/\(studentID)"
 
         let earlyTimestamp: Double? = (earliestTimestamp?.timeIntervalSince1970 == nil) ? nil : (earliestTimestamp?.timeIntervalSince1970)!*1000
         let lateTimestamp: Double? = (latestTimeStamp?.timeIntervalSince1970 == nil) ? nil : (latestTimeStamp?.timeIntervalSince1970)!*1000
-        let nillableParams: [String: AnyObject?] = [
+        let nillableParams: [String: Any?] = [
             "earliest_timestamp" : earlyTimestamp,
             "latest_timestamp" : lateTimestamp
         ]
@@ -45,12 +45,12 @@ public class AlertAPI {
         return try session.GET(path, parameters: parameters)
     }
 
-    public class func getAlerts(session: Session, earliestTimestamp: NSDate? = nil, latestTimeStamp: NSDate? = nil) throws -> NSURLRequest {
+    open class func getAlerts(_ session: Session, earliestTimestamp: Date? = nil, latestTimeStamp: Date? = nil) throws -> URLRequest {
         let path = "/alerts/\(session.user.id)"
 
         let earlyTimestamp: Double? = (earliestTimestamp?.timeIntervalSince1970 == nil) ? nil : (earliestTimestamp?.timeIntervalSince1970)!*1000
         let lateTimestamp: Double? = (latestTimeStamp?.timeIntervalSince1970 == nil) ? nil : (latestTimeStamp?.timeIntervalSince1970)!*1000
-        let nillableParams: [String: AnyObject?] = [
+        let nillableParams: [String: Any?] = [
             "earliest_timestamp" : earlyTimestamp,
             "latest_timestamp" : lateTimestamp
             ]
@@ -60,17 +60,17 @@ public class AlertAPI {
         return try session.GET(path, parameters: parameters)
     }
 
-    public class func updateAlert(session: Session, observerID: String, alertID: String, read: Bool? = nil, dismissed: Bool? = nil) throws -> NSURLRequest {
+    open class func updateAlert(_ session: Session, observerID: String, alertID: String, read: Bool? = nil, dismissed: Bool? = nil) throws -> URLRequest {
         let path = "/alert/\(observerID)/\(alertID)"
 
-        let nillableParams: [String: AnyObject?] = [
+        let nillableParams: [String: Any?] = [
             "read" : read,
             "dismissed" : dismissed
             ]
 
         let parameters = Session.rejectNilParameters(nillableParams)
 
-        return try session.POST(path, parameters: parameters, encoding: .URL)
+        return try session.POST(path, parameters: parameters, encoding: .url)
     }
 
 }

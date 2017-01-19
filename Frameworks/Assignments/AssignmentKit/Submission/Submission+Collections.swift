@@ -16,12 +16,13 @@
 
 import Foundation
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 import TooLegit
+import CoreData
 
 extension Submission {
-    public static func studentSubmissionsRefresher(session: Session, courseID: String, assignmentID: String) throws -> Refresher {
+    public static func studentSubmissionsRefresher(_ session: Session, courseID: String, assignmentID: String) throws -> Refresher {
         let context = try session.assignmentsManagedObjectContext()
         
         let get = try Submission.getStudentSubmissions(session, courseID: courseID, assignmentID: assignmentID)
@@ -31,11 +32,11 @@ extension Submission {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
     
-    public static func studentSubmissionsCollection(session: Session, courseID: String, assignmentID: String) throws -> FetchedCollection<Submission> {
+    public static func studentSubmissionsCollection(_ session: Session, courseID: String, assignmentID: String) throws -> FetchedCollection<Submission> {
         let context = try session.assignmentsManagedObjectContext()
         
         let predicate = NSPredicate(format: "%K == %@", "assignmentID", assignmentID)
-        let frc = Submission.fetchedResults(predicate, sortDescriptors: ["submittedAt".ascending, "id".ascending], inContext: context)
+        let frc: NSFetchedResultsController<Submission> = context.fetchedResults(predicate, sortDescriptors: ["submittedAt".ascending, "id".ascending])
         
         return try FetchedCollection(frc: frc)
     }

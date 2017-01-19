@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ muss benotet werden";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ Pkte.";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Typ: %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache geleert";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Kalender";
 
 /* (No Commment) */
@@ -318,6 +325,9 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 
 /* (No Commment) */
 "Choose from Library..." = "Aus der Bibliothek wählen...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Option wählen";
 
 /* (No Commment) */
 "Choose video" = "Video wählen";
@@ -376,7 +386,8 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* (No Commment) */
 "Course Syllabus" = "Kursprogramm";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "Kurse";
 
 /* (No Commment) */
@@ -453,6 +464,9 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 
 /* (No Commment) */
 "Downloading..." = "Download läuft...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Fällig %@";
 
 /* (No Commment) */
 "Due:" = "Fällig:";
@@ -637,6 +651,9 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* (No Commment) */
 "Item %1$d of %2$d" = "Element %1$d von %2$d";
 
+/* table header for module items */
+"Items" = "Elemente";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Hier gibt es nichts. Was machen Sie noch hier?!";
 
@@ -661,11 +678,17 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* (No Commment) */
 "Legal" = "Juristisch";
 
+/* Web URL link item label */
+"Link" = "Link";
+
 /* (No Commment) */
 "Loading..." = "Wird geladen...";
 
 /* (No Commment) */
 "Locked" = "Gesperrt";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Gesperrt bis „%@“ benotet ist";
 
 /* locked date */
 "Locked until %@" = "Gesperrt bis %@";
@@ -687,6 +710,9 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 
 /* (No Commment) */
 "Masquerade" = "Sich ausgeben als";
+
+/* Master Path module item type */
+"Mastery Path" = "Leistungsziel-Pfad";
 
 /* (No Commment) */
 "Me" = "Ich selbst";
@@ -716,7 +742,7 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 "Message everyone separately, or add everyone to a group conversation?" = "Jeden einzeln benachrichtigen oder jeden einem Gruppengespräch hinzufügen?
 ";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Nachrichten";
 
 /* (No Commment) */
@@ -761,6 +787,9 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* (No Commment) */
 "New Folder" = "Neuer Ordner";
 
+/* Button title for next module item. */
+"Next" = "Weiter";
+
 /* (No Commment) */
 "Next 7 Days" = "Die nächsten 7 Tage";
 
@@ -775,6 +804,9 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "Kein Abgabedatum";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "Keine Leistungsziel-Pfade";
 
 /* (No Commment) */
 "No Recorded Audio" = "Kein aufgezeichnetes Audio";
@@ -833,7 +865,8 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Benachrichtigung - Lieblingseinstellungen";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Benachrichtigungen";
 
 /* OK Button Title */
@@ -859,6 +892,9 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 
 /* (No Commment) */
 "Open in..." = "Öffnen in...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Option %d";
 
 /* (No Commment) */
 "Other" = "Andere(r)";
@@ -901,6 +937,12 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 
 /* (No Commment) */
 "Posts your comment" = "Postet Ihren Kommentar";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Voraussetzungsmodule";
+
+/* Button title for previous module item. */
+"Previous" = "Vorherige/r";
 
 /* (No Commment) */
 "Previous item" = "Vorheriges Element";
@@ -986,6 +1028,12 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Hier suchen ...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Option auswählen";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Option auswählen %d";
+
 /* (No Commment) */
 "Select file(s)" = "Datei(en) auswählen";
 
@@ -1036,6 +1084,20 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 
 /* (No Commment) */
 "Starts recording a media comment" = "Startet die Aufzeichnung eines Medienkommentars";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Status: Abgeschlossen";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Status: Unvollständig";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Status: Gesperrt";
+
+/* Module status label when started */
+"Status: Started" = "Status: Begonnen";
 
 /* (No Commment) */
 "Stay Logged In" = "Angemeldet bleiben";
@@ -1203,16 +1265,22 @@ Fehler: %@";
 /* (No Commment) */
 "This is a media message." = "Dies ist eine Mediennachricht.";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Für dieses Modul wurden keine Leistungsziel-Pfade eingerichtet.";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Dies wäre genau die richtige Zeit, um sich ein paar extra Punkte zu verdienen.";
 
 /* Title of the Todo screen */
 "To Do" = "To Do";
 
+/* To-Do List landing page title */
+"To-Do List" = "To-Do Liste";
+
 /* (No Commment) */
 "To:" = "An:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "Heute";
 
 /* No comment provided by engineer. */
@@ -1232,6 +1300,9 @@ Fehler: %@";
 
 /* (No Commment) */
 "Turn in %@" = "%@ einreichen";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Typ: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Oh je! Keine Internetverbindung";

@@ -26,18 +26,20 @@ import SoLazy
 // MARK: - Calendar Events collection for current user
 // ---------------------------------------------
 extension User {
-    public static func collectionOfObservedUsers(session: Session) throws -> FetchedCollection<User> {
-        let frc = User.fetchedResults(nil, sortDescriptors: ["sortableName".ascending], sectionNameKeypath: nil, inContext: try session.observeesManagedObjectContext())
+    public static func collectionOfObservedUsers(_ session: Session) throws -> FetchedCollection<User> {
+        let context = try session.observeesManagedObjectContext()
 
-        return try FetchedCollection<User>(frc: frc)
+        return try FetchedCollection<User>(frc:
+            context.fetchedResults(nil, sortDescriptors: ["sortableName".ascending])
+        )
     }
 
-    public static func observeesSyncProducer(session: Session) throws -> User.ModelPageSignalProducer {
+    public static func observeesSyncProducer(_ session: Session) throws -> User.ModelPageSignalProducer {
         let remote = try User.getObserveeUsers(session)
         return User.syncSignalProducer(inContext: try session.observeesManagedObjectContext(), fetchRemote: remote)
     }
 
-    public static func observeesRefresher(session: Session) throws -> Refresher {
+    public static func observeesRefresher(_ session: Session) throws -> Refresher {
         let sync = try User.observeesSyncProducer(session)
         let key = cacheKey(try session.observeesManagedObjectContext())
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)

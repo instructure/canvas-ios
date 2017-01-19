@@ -20,11 +20,12 @@ import CoreData
 @testable import EnrollmentKit
 
 extension GradingPeriod {
-    static func build(context: NSManagedObjectContext,
+    @discardableResult
+    static func build(_ context: NSManagedObjectContext,
                       id: String = "1",
                       title: String = "Period 1",
                       courseID: String = "1",
-                      startDate: NSDate = NSDate()
+                      startDate: Date = Date()
     ) -> GradingPeriod {
         let gradingPeriod = GradingPeriod(inContext: context)
         gradingPeriod.id = id

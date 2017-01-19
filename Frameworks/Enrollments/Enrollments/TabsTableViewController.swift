@@ -27,7 +27,7 @@
 import UIKit
 import EnrollmentKit
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import TooLegit
 import SoLazy
 import SoPretty
@@ -35,12 +35,12 @@ import SoPretty
 extension ColorfulViewModel {
     
     init(session: Session, tab: Tab) {
-        self.init(style: .Basic)
+        self.init(features: .icon)
         
         title.value = tab.label
         icon.value = tab.icon
 
-        color <~ session.enrollmentsDataSource.producer(tab.contextID).map { $0?.color ?? .prettyGray() }
+        color <~ session.enrollmentsDataSource.color(for: tab.contextID)
     }
 }
 
@@ -59,7 +59,7 @@ class TabsTableViewController: Tab.TableViewController {
         ❨╯°□°❩╯⌢"Sorrrrry, no storyboards for me."
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let tab = collection[indexPath]
         
         print("Navigate to URL: \(tab.url)")

@@ -28,5 +28,5 @@ protocol TimedQuizSubmissionService {
     var context: ContextID { get }
     var quizID: String { get }
     
-    func getTimeRemaining(completed: TimeRemainingResult->())
+    func getTimeRemaining(_ completed: @escaping (TimeRemainingResult)->())
 }

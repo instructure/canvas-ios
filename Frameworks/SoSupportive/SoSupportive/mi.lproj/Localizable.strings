@@ -31,6 +31,9 @@
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "pakaru te tahi mea te engari ka taea e ahau te mahi a tawhio noa te reira";
 
+/* Title for the subject field */
+"Subject" = "Kaupapa";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "Mihi, ka riro koutou tono!";
 
@@ -46,4 +49,3 @@
 /* Title for the email field */
 "Your Email" = "tou Īmēra";
 
-"Subject" = "Kaupapa";

@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ behøver bedømmelse";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ Point";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Type: %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache slettet";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Kalender";
 
 /* (No Commment) */
@@ -318,6 +325,9 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 
 /* (No Commment) */
 "Choose from Library..." = "Vælg fra bibliotek...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Vælg indstilling";
 
 /* (No Commment) */
 "Choose video" = "Vælg video";
@@ -376,7 +386,8 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* (No Commment) */
 "Course Syllabus" = "Kursuspensum";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "Kurser";
 
 /* (No Commment) */
@@ -453,6 +464,9 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 
 /* (No Commment) */
 "Downloading..." = "Downloading...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Forfalder %@";
 
 /* (No Commment) */
 "Due:" = "Forfald:";
@@ -637,6 +651,9 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* (No Commment) */
 "Item %1$d of %2$d" = "Element %1$d af %2$d";
 
+/* table header for module items */
+"Items" = "Elementer";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Det er tomt, hvad gør du stadig her?";
 
@@ -661,11 +678,17 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* (No Commment) */
 "Legal" = "Juridisk";
 
+/* Web URL link item label */
+"Link" = "Link";
+
 /* (No Commment) */
 "Loading..." = "Indlæser...";
 
 /* (No Commment) */
 "Locked" = "Låst";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Låst indtil  \"%@\" bedømmes";
 
 /* locked date */
 "Locked until %@" = "Låst indtil %@";
@@ -687,6 +710,9 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 
 /* (No Commment) */
 "Masquerade" = "Forklæd";
+
+/* Master Path module item type */
+"Mastery Path" = "Læringssti";
 
 /* (No Commment) */
 "Me" = "Mig";
@@ -715,7 +741,7 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Send besked til alle separat, eller tilføj alle til en gruppe konversation?";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Beskeder";
 
 /* (No Commment) */
@@ -760,6 +786,9 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* (No Commment) */
 "New Folder" = "Ny mappe";
 
+/* Button title for next module item. */
+"Next" = "Næste";
+
 /* (No Commment) */
 "Next 7 Days" = "Næste 7 dage";
 
@@ -774,6 +803,9 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "Ingen forfaldsdato";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "Ingen læringsstier";
 
 /* (No Commment) */
 "No Recorded Audio" = "Ingen optaget lyd";
@@ -832,7 +864,8 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Notifikationsindstillinger";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Notifikationer";
 
 /* OK Button Title */
@@ -858,6 +891,9 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 
 /* (No Commment) */
 "Open in..." = "Åbn i...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Indstillinger %d";
 
 /* (No Commment) */
 "Other" = "Andre";
@@ -900,6 +936,12 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 
 /* (No Commment) */
 "Posts your comment" = "Poster din komentar";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Forudsatte moduler";
+
+/* Button title for previous module item. */
+"Previous" = "Forrige";
 
 /* (No Commment) */
 "Previous item" = "Forrige element";
@@ -985,6 +1027,12 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Søg her ...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Vælg indstilling";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Vælg indstilling %d";
+
 /* (No Commment) */
 "Select file(s)" = "Vælg fil(-er)";
 
@@ -1035,6 +1083,20 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 
 /* (No Commment) */
 "Starts recording a media comment" = "Start optagelse af en mediekommentar";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Status: Fuldført";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Status: Ufuldstændig";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Status: Låst";
+
+/* Module status label when started */
+"Status: Started" = "Status: Startet";
 
 /* (No Commment) */
 "Stay Logged In" = "Forbliv logget ind";
@@ -1202,16 +1264,22 @@ Fejlr: %@";
 /* (No Commment) */
 "This is a media message." = "Dette er en mediebesked.";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Dette modul har ikke nogen oprettede læringsstier";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Dette ville være en fantastisk tid for nogle ekstra points";
 
 /* Title of the Todo screen */
 "To Do" = "To Do";
 
+/* To-Do List landing page title */
+"To-Do List" = "To-Do List";
+
 /* (No Commment) */
 "To:" = "Til:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "I dag";
 
 /* No comment provided by engineer. */
@@ -1231,6 +1299,9 @@ Fejlr: %@";
 
 /* (No Commment) */
 "Turn in %@" = "TAflever %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Type: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Åh nej! Ingen internetforbindelse";

@@ -22,46 +22,46 @@ import TooLegit
 import CoreData
 import SoPersistent
 import SoLazy
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 import Marshal
 import SoPersistent
 
 extension DiscussionEntry {
     
-    static func extractParticipantsAndEntries(jsonView: JSONObject) -> Result<([JSONObject], [JSONObject]), NSError> {
+    static func extractParticipantsAndEntries(_ jsonView: JSONObject) -> Result<([JSONObject], [JSONObject]), NSError> {
         return Result((try jsonView <| "participants", try jsonView <| "view"))
     }
     
-    static func upsertParticipants(session: Session, participants: [JSONObject]) -> SignalProducer<(), NSError> {
+    static func upsertParticipants(_ session: Session, participants: [JSONObject]) -> SignalProducer<(), NSError> {
         return SignalProducer.empty
     }
     
-    static func upsertEntries(session: Session, contextID: ContextID, topicID: String, entries: [JSONObject], parentID: String? = nil) -> SignalProducer<(), NSError> {
+    static func upsertEntries(_ session: Session, contextID: ContextID, topicID: String, entries: [JSONObject], parentID: String? = nil) -> SignalProducer<(), NSError> {
         let predicate = parentID.map { NSPredicate(format: "%K == %@", "parentID", $0) }
         
         let context = Result<NSManagedObjectContext, NSError>(try session.discussionsManagedObjectContext())
         return SignalProducer(result: context)
-            .flatMap(.Latest) { (context: NSManagedObjectContext)->SignalProducer<[DiscussionEntry], NSError> in
+            .flatMap(.latest) { (context: NSManagedObjectContext)->SignalProducer<[DiscussionEntry], NSError> in
                 syncSignalProducer(predicate, inContext: context, fetchRemote: SignalProducer(value: entries), postProcess: { entry, json in
                     entry.contextID = contextID
                     entry.topicID = topicID
                     try entry.syncAllReplies(json, contextID: contextID, topicID: topicID, inContext: context)
                 })
             }
-            .flatMap(.Merge) { (_: [DiscussionEntry]) -> SignalProducer<(), NSError> in SignalProducer.empty }
+            .flatMap(.merge) { (_: [DiscussionEntry]) -> SignalProducer<(), NSError> in SignalProducer.empty }
     }
     
-    static func refreshEntriesAndParticipants(session: Session, contextID: ContextID, topicID: String) -> SignalProducer<(), NSError> {
+    static func refreshEntriesAndParticipants(_ session: Session, contextID: ContextID, topicID: String) -> SignalProducer<(), NSError> {
         return DiscussionTopic.getDiscussionTopicView(session, contextID: contextID, topicID: topicID)
             .attemptMap(extractParticipantsAndEntries)
-            .flatMap(.Merge) { (participants, entries) in
+            .flatMap(.merge) { (participants, entries) in
                 return upsertParticipants(session, participants: participants)
                     .concat(upsertEntries(session, contextID: contextID, topicID: topicID, entries: entries))
             }
     }
     
-    public static func refresher(session: Session, contextID: ContextID, topicID: String) throws -> Refresher {
+    public static func refresher(_ session: Session, contextID: ContextID, topicID: String) throws -> Refresher {
         let sync = refreshEntriesAndParticipants(session, contextID: contextID, topicID: topicID)
         
         let context = try session.discussionsManagedObjectContext()
@@ -69,7 +69,7 @@ extension DiscussionEntry {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
     
-    public static func predicate(contextID: ContextID, topicID: String, parentEntryID: String?) -> NSPredicate {
+    public static func predicate(_ contextID: ContextID, topicID: String, parentEntryID: String?) -> NSPredicate {
         if let parentID = parentEntryID {
             return NSPredicate(format: "%K == %@ && %K == %@ && %K == %@", "rawContextID", contextID.canvasContextID, "topicID", topicID, "parentID", parentID)
         } else {
@@ -77,13 +77,13 @@ extension DiscussionEntry {
         }
     }
     
-    public static func collection(session: Session, contextID: ContextID, topicID: String, parentEntryID: String? = nil) throws -> FetchedCollection<DiscussionEntry> {
+    public static func collection(_ session: Session, contextID: ContextID, topicID: String, parentEntryID: String? = nil) throws -> FetchedCollection<DiscussionEntry> {
         
         let context = try session.discussionsManagedObjectContext()
         let pred = predicate(contextID, topicID: topicID, parentEntryID: parentEntryID)
         let descriptors = ["date".descending]
         
-        return try FetchedCollection(frc: fetchedResults(pred, sortDescriptors: descriptors, sectionNameKeypath: nil, inContext: context))
+        return try FetchedCollection(frc: context.fetchedResults(pred, sortDescriptors: descriptors))
     }
     
     public typealias TableViewController = FetchedTableViewController<DiscussionEntry>

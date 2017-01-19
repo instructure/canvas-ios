@@ -38,25 +38,25 @@ import Marshal
 import SoLazy
 
 extension Rubric {
-    public static func uniquePredicateForObject(assignmentID: String) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ assignmentID: String) throws -> NSPredicate {
         let assignmentID: String = assignmentID
         return NSPredicate(format: "%K == %@", "assignmentID", assignmentID)
     }
     
-    public func updateValues(rubricCriterionsJSON: [JSONObject], rubricSettingsJSON: JSONObject, assignmentID: String, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ rubricCriterionsJSON: [JSONObject], rubricSettingsJSON: JSONObject, assignmentID: String, inContext context: NSManagedObjectContext) throws {
         self.assignmentID = assignmentID
         title = try rubricSettingsJSON <| "title"
-        freeFormCriterionComments = try rubricSettingsJSON  <| ("free_form_criterion_comments") ?? false
+        freeFormCriterionComments = (try rubricSettingsJSON  <| "free_form_criterion_comments") ?? false
         pointsPossible = try rubricSettingsJSON <| "points_possible"
 
-        for (index,criterion) in rubricCriterionsJSON.enumerate() {
+        for (index,criterion) in rubricCriterionsJSON.enumerated() {
             if let rubricCriterion: RubricCriterion = try context.findOne(withPredicate: try RubricCriterion.uniquePredicateForObject(self.assignmentID, json:criterion)) {
-                try rubricCriterion.updateValues(criterion, assignmentID: assignmentID, position:index, inContext: context)
+                try rubricCriterion.updateValues(criterion, assignmentID: assignmentID, position:NSNumber(value: index), inContext: context)
             
                 rubricCriterions.insert(rubricCriterion)
             } else {
                 let rubricCriterion = RubricCriterion(inContext: context)
-                try rubricCriterion.updateValues(criterion, assignmentID: assignmentID, position:index, inContext: context)
+                try rubricCriterion.updateValues(criterion, assignmentID: assignmentID, position:NSNumber(value: index), inContext: context)
                 
                 rubricCriterions.insert(rubricCriterion)
             }

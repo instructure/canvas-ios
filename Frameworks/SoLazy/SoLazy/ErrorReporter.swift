@@ -22,22 +22,22 @@ import Foundation
 // the shared error reporter
 public typealias ErrorReporterBlock = (NSError, [String: AnyObject]?) -> ()
 
-public class ErrorReporter {
+open class ErrorReporter {
     
-    public static let sharedErrorReporter = ErrorReporter()
+    open static let sharedErrorReporter = ErrorReporter()
     
     /// The app that wishes to use this reporter *must* set this block
-    private var reportBlock: ErrorReporterBlock?
+    fileprivate var reportBlock: ErrorReporterBlock?
     
     /// The error paramteter is an optional for ease of use
     /// This allows errors to be reported without checking for the optional
     /// nil errors will be ignored
-    public func reportError(error: NSError?) {
+    open func reportError(_ error: NSError?) {
         guard let err = error else { return }
         self.reportBlock?(err, nil)
     }
     
-    public static func setErrorHandler(handler: ErrorReporterBlock) {
+    open static func setErrorHandler(_ handler: @escaping ErrorReporterBlock) {
         ErrorReporter.sharedErrorReporter.reportBlock = handler
     }
 }

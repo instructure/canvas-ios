@@ -55,48 +55,48 @@ class CalendarEventTests: CalendarKitTests {
     }
 
     func test_itConvertsRawTypeToType() {
-        let types: [EventType] = [.Quiz, .Assignment, .Discussion, .CalendarEvent, .Error]
+        let types: [EventType] = [.quiz, .assignment, .discussion, .calendarEvent, .error]
         for type in types {
             let event = CalendarEvent.build(self.managedObjectContext, rawType: type.rawValue)
 
             // switch for brevity
             switch type {
-            case .Quiz: XCTAssert(eventTypesAreEqual(type, event.type))
-            case .Assignment: XCTAssert(eventTypesAreEqual(type, event.type))
-            case .Discussion: XCTAssert(eventTypesAreEqual(type, event.type))
-            case .CalendarEvent: XCTAssert(eventTypesAreEqual(type, event.type))
-            case .Error: XCTAssert(eventTypesAreEqual(type, event.type))
+            case .quiz: XCTAssert(eventTypesAreEqual(type, event.type))
+            case .assignment: XCTAssert(eventTypesAreEqual(type, event.type))
+            case .discussion: XCTAssert(eventTypesAreEqual(type, event.type))
+            case .calendarEvent: XCTAssert(eventTypesAreEqual(type, event.type))
+            case .error: XCTAssert(eventTypesAreEqual(type, event.type))
             }
         }
     }
 
     func test_itConvertsAssignmentTypeToQuizWhenQuizIDIsPresent() {
-        let type = EventType.Assignment
+        let type = EventType.assignment
         let event = CalendarEvent.build(self.managedObjectContext, rawType: type.rawValue, quizID: "notnil")
 
-        XCTAssert(eventTypesAreEqual(EventType.Quiz, event.type))
+        XCTAssert(eventTypesAreEqual(EventType.quiz, event.type))
     }
 
     func test_itConvertsStatusProperly() {
-        let event = CalendarEvent.build(self.managedObjectContext, rawStatus: SubmissionStatus.Excused.rawValue)
-        XCTAssertEqual(event.status, SubmissionStatus.Excused)
+        let event = CalendarEvent.build(self.managedObjectContext, rawStatus: SubmissionStatus.excused.rawValue)
+        XCTAssertEqual(event.status, SubmissionStatus.excused)
     }
 
     func test_whenRawTypeIsInvalid_itConvertsItToAnErrorType() {
         let event = CalendarEvent.build(self.managedObjectContext, rawType: "foo")
-        XCTAssert(eventTypesAreEqual(.Error, event.type))
+        XCTAssert(eventTypesAreEqual(.error, event.type))
     }
 
     func test_itConvertsRawWorkflowStateToWorkflowState() {
-        let states: [EventWorkflowState] = [.Active, .Locked, .Deleted]
+        let states: [EventWorkflowState] = [.active, .locked, .deleted]
         for state in states {
             let event = CalendarEvent.build(self.managedObjectContext, rawWorkflowState: state.rawValue)
 
             // switch for brevity
             switch state {
-            case .Active: XCTAssert(workflowStatesAreEqual(state, event.workflowState))
-            case .Locked: XCTAssert(workflowStatesAreEqual(state, event.workflowState))
-            case .Deleted: XCTAssert(workflowStatesAreEqual(state, event.workflowState))
+            case .active: XCTAssert(workflowStatesAreEqual(state, event.workflowState))
+            case .locked: XCTAssert(workflowStatesAreEqual(state, event.workflowState))
+            case .deleted: XCTAssert(workflowStatesAreEqual(state, event.workflowState))
             }
         }
     }
@@ -115,15 +115,15 @@ class CalendarEventTests: CalendarKitTests {
         ]
 
         let typeValues : SubmissionTypes = [
-            .DiscussionTopic,
-            .Quiz,
-            .OnPaper,
-            .ExternalTool,
-            .Text,
-            .URL,
-            .Upload,
-            .MediaRecording,
-            .None
+            .discussionTopic,
+            .quiz,
+            .onPaper,
+            .externalTool,
+            .text,
+            .url,
+            .upload,
+            .mediaRecording,
+            .none
         ]
 
         XCTAssertEqual(SubmissionTypes.fromStrings(typeStringValues), typeValues)
@@ -134,12 +134,12 @@ class CalendarEventTests: CalendarKitTests {
     }
 
     func test_pastStartDateCalculatedCorrectly() {
-        let event = CalendarEvent.build(self.managedObjectContext, startAt: NSDate(timeIntervalSinceNow: -1))
+        let event = CalendarEvent.build(self.managedObjectContext, startAt: Date(timeIntervalSinceNow: -1))
         XCTAssertEqual(event.pastStartDate, true)
     }
 
     func test_pastEndDateCalculatedCorrectly() {
-        let event = CalendarEvent.build(self.managedObjectContext, endAt: NSDate(timeIntervalSinceNow: -1))
+        let event = CalendarEvent.build(self.managedObjectContext, endAt: Date(timeIntervalSinceNow: -1))
         XCTAssertEqual(event.pastEndDate, true)
     }
 
@@ -154,69 +154,69 @@ class CalendarEventTests: CalendarKitTests {
     }
 
     func test_routingURLCorrectForCalendarEvent() {
-        let event = CalendarEvent.build(self.managedObjectContext, id: "1234567890", rawType: EventType.CalendarEvent.rawValue)
-        XCTAssertEqual(event.routingURL, NSURL(string: "/calendar_events/1234567890"))
+        let event = CalendarEvent.build(self.managedObjectContext, id: "1234567890", rawType: EventType.calendarEvent.rawValue)
+        XCTAssertEqual(event.routingURL, URL(string: "/calendar_events/1234567890"))
     }
 
     func test_routingURLCorrectForQuiz() {
-        let event = CalendarEvent.build(self.managedObjectContext, quizID: "1234567890", courseID: "1234", rawType: EventType.Quiz.rawValue)
-        XCTAssertEqual(event.routingURL, NSURL(string: "/courses/1234/quizzes/1234567890"))
+        let event = CalendarEvent.build(self.managedObjectContext, rawType: EventType.quiz.rawValue, quizID: "1234567890", courseID: "1234")
+        XCTAssertEqual(event.routingURL, URL(string: "/courses/1234/quizzes/1234567890"))
     }
 
     func test_routingURLCorrectForDiscussionTopic() {
-        let event = CalendarEvent.build(self.managedObjectContext, courseID: "1234", discussionTopicID: "12345", rawType: EventType.Assignment.rawValue, rawSubmissionTypes: Int32(SubmissionTypes.DiscussionTopic.rawValue))
-        XCTAssertEqual(event.routingURL, NSURL(string: "/courses/1234/discussion_topics/12345"))
+        let event = CalendarEvent.build(self.managedObjectContext, rawType: EventType.assignment.rawValue, rawSubmissionTypes: Int32(SubmissionTypes.discussionTopic.rawValue), discussionTopicID: "12345", courseID: "1234")
+        XCTAssertEqual(event.routingURL, URL(string: "/courses/1234/discussion_topics/12345"))
     }
 
     func test_routingURLCorrectForAssignmentQuiz() {
-        let event = CalendarEvent.build(self.managedObjectContext, courseID: "1234", quizID: "12345", rawType: EventType.Assignment.rawValue, rawSubmissionTypes: Int32(SubmissionTypes.Quiz.rawValue))
-        XCTAssertEqual(event.routingURL, NSURL(string: "/courses/1234/quizzes/12345"))
+        let event = CalendarEvent.build(self.managedObjectContext, rawType: EventType.assignment.rawValue, rawSubmissionTypes: Int32(SubmissionTypes.quiz.rawValue), quizID: "12345", courseID: "1234")
+        XCTAssertEqual(event.routingURL, URL(string: "/courses/1234/quizzes/12345"))
     }
 
     func test_routingURLCorrectForAssignment() {
-        let event = CalendarEvent.build(self.managedObjectContext, courseID: "1234", assignmentID: "12345", rawType: EventType.Assignment.rawValue)
-        XCTAssertEqual(event.routingURL, NSURL(string: "/courses/1234/assignments/12345"))
+        let event = CalendarEvent.build(self.managedObjectContext, rawType: EventType.assignment.rawValue, assignmentID: "12345", courseID: "1234")
+        XCTAssertEqual(event.routingURL, URL(string: "/courses/1234/assignments/12345"))
     }
 
     func test_routingURLCorrectForErrorType() {
-        let event = CalendarEvent.build(self.managedObjectContext, rawType: EventType.Error.rawValue)
+        let event = CalendarEvent.build(self.managedObjectContext, rawType: EventType.error.rawValue)
         XCTAssertEqual(event.routingURL, nil)
     }
 
     func test_itCorrectlyCalculatesOnlineSubmission() {
-        var type = SubmissionTypes.DiscussionTopic
+        var type = SubmissionTypes.discussionTopic
         XCTAssertEqual(type.onlineSubmission, true)
 
-        type = SubmissionTypes.Quiz
+        type = SubmissionTypes.quiz
         XCTAssertEqual(type.onlineSubmission, true)
 
-        type = SubmissionTypes.Text
+        type = SubmissionTypes.text
         XCTAssertEqual(type.onlineSubmission, true)
 
-        type = SubmissionTypes.Quiz
+        type = SubmissionTypes.quiz
         XCTAssertEqual(type.onlineSubmission, true)
 
-        type = SubmissionTypes.URL
+        type = SubmissionTypes.url
         XCTAssertEqual(type.onlineSubmission, true)
 
-        type = SubmissionTypes.Upload
+        type = SubmissionTypes.upload
         XCTAssertEqual(type.onlineSubmission, true)
 
-        type = SubmissionTypes.MediaRecording
+        type = SubmissionTypes.mediaRecording
         XCTAssertEqual(type.onlineSubmission, true)
 
-        type = SubmissionTypes.ExternalTool
+        type = SubmissionTypes.externalTool
         XCTAssertEqual(type.onlineSubmission, true)
 
-        type = SubmissionTypes.None
+        type = SubmissionTypes.none
         XCTAssertEqual(type.onlineSubmission, true)
 
-        type = SubmissionTypes.OnPaper
+        type = SubmissionTypes.onPaper
         XCTAssertEqual(type.onlineSubmission, false)
     }
 
     func test_itCorrectlyCalculatesCanSubmit() {
-        var type = SubmissionTypes.DiscussionTopic
+        var type = SubmissionTypes.discussionTopic
         XCTAssertEqual(type.canSubmit, true)
 
         type = []
@@ -226,7 +226,7 @@ class CalendarEventTests: CalendarKitTests {
     // MARK: Helpers
     // TODO: Move this to EventType and EventWorkflowState
 
-    func eventTypesAreEqual(left: EventType, _ right: EventType) -> Bool {
+    func eventTypesAreEqual(_ left: EventType, _ right: EventType) -> Bool {
         if case left = right {
             return true
         } else {
@@ -234,7 +234,7 @@ class CalendarEventTests: CalendarKitTests {
         }
     }
 
-    func workflowStatesAreEqual(left: EventWorkflowState, _ right: EventWorkflowState) -> Bool {
+    func workflowStatesAreEqual(_ left: EventWorkflowState, _ right: EventWorkflowState) -> Bool {
         if case left = right {
             return true
         } else {

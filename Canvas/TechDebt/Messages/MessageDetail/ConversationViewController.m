@@ -35,7 +35,6 @@
 #import "CBIURLParser.h"
 #import "CBIMessageDetailViewController.h"
 #import "UIViewController+Transitions.h"
-#import "CBISplitViewController.h"
 #import "CBIMessageParticipantsViewModel.h"
 #import "CBIConversationStarter.h"
 #import "Analytics.h"

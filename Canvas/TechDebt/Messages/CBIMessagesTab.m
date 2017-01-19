@@ -18,41 +18,29 @@
 
 #import "CBIMessagesTab.h"
 #import "CBIMessagesListViewModel.h"
-#import "CBIMessagesSplitViewController.h"
 #import "CBIMessagesListViewController.h"
+#import "CBIMessageDetailViewController.h"
 #import "UIImage+TechDebt.h"
-#import "UIImage+TechDebt.h"
-#import "UIImage+TechDebt.h"
+@import SoPretty;
 
 @implementation UIViewController (CBIMessagesTab)
 + (UIViewController *)messagesTab {
-    UIViewController *vc;
-    CBIMessagesListViewModel *vm;
-    
-    switch (UIDevice.currentDevice.userInterfaceIdiom) {
-        case UIUserInterfaceIdiomPad: {
-            CBIMessagesSplitViewController *split = [[CBIMessagesSplitViewController alloc] init];
-            vc = split;
-            vm = split.viewModel;
-            break;
-        }
-        default: {
-            CBIMessagesListViewController *list = [[CBIMessagesListViewController alloc] init];
-            vc = list;
-            vm = list.viewModel;
-            break;
-        }
-    }
+    SplitViewController *split = [[SplitViewController alloc] init];
+    split.preferredDisplayMode = UISplitViewControllerDisplayModeAllVisible;
+
+    CBIMessagesListViewController *list = [[CBIMessagesListViewController alloc] init];
+    UINavigationController *master = [[UINavigationController alloc] initWithRootViewController:list];
+    CBIMessageDetailViewController *detail = [[CBIMessageDetailViewController alloc] init];
+    detail.viewModel = [[CBIMessageViewModel alloc] init];
+    UINavigationController *details = [[UINavigationController alloc] initWithRootViewController:detail];
+    [split setViewControllers:@[master, details]];
     
     NSString *title = NSLocalizedString(@"Messages", comment: @"Title for the messages screen");
+    list.title = title;
+    split.tabBarItem.title = title;
+
+    [list.viewModel badgeTabBarItem:split.tabBarItem];
     
-    vc.title = title;
-    
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.tabBarItem.title = title;
-    [vm badgeTabBarItem:nav.tabBarItem];
-    
-    
-    return nav;
+    return split;
 }
 @end

@@ -14,28 +14,31 @@
 // limitations under the License.
 //
     
-    
 
-import Foundation
-import ReactiveCocoa
+import UIKit
 import SoLazy
 import Result
 
-public class TokenLabelView: UIView {
-    
-    private var horizontalConstraints: [NSLayoutConstraint] = []
-    private var verticalConstraints: [NSLayoutConstraint] = []
-    
-    private let label = UILabel()
-    
-    public var text = MutableProperty("")
-    
-    var insets = UIEdgeInsets(top: 0, left: 10, bottom: 1, right: 10) {
-        didSet {
-            updateViewConstraints()
-        }
+extension UIFont {
+    // Attribution: http://stackoverflow.com/a/37926738/1518561
+    fileprivate static var tokenFont: UIFont {
+        let font = UIFont.preferredFont(forTextStyle: .caption2)
+        
+        let settings = [[UIFontFeatureTypeIdentifierKey: kLowerCaseType, UIFontFeatureSelectorIdentifierKey: kLowerCaseSmallCapsSelector]]
+        
+        let attributes: [String: Any] = [UIFontDescriptorFeatureSettingsAttribute: settings, UIFontDescriptorNameAttribute: font.fontName]
+        
+        let descriptor = UIFontDescriptor(fontAttributes: attributes)
+            .withSymbolicTraits([.traitBold])
+        return UIFont(descriptor: descriptor!, size: font.pointSize)
     }
+}
+
+public class TokenView: UILabel {
     
+    private static let xInset = CGFloat(7)
+    private static let yInset = CGFloat(1)
+
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -48,55 +51,38 @@ public class TokenLabelView: UIView {
         setup()
     }
     
-    override public func layoutSubviews() {
-        super.layoutSubviews()
-        
-        layer.cornerRadius = CGRectGetHeight(frame)/2
-    }
-    
     func setup() {
         clipsToBounds = true
+        font = .tokenFont
+        textColor = UIColor.white
         
-        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
-        label.textColor = UIColor.whiteColor()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(label)
-        
-        label.rac_text <~ text
-        label.rac_text.signal.observeNext { [weak self] text in
-            self?.updateViewConstraints()
-            self?.sizeToFit()
-        }
-        
-        updateViewConstraints()
+        setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .vertical)
     }
     
-    func updateViewConstraints() {
-        removeConstraints(horizontalConstraints)
-        removeConstraints(verticalConstraints)
-        
-        if label.text == nil || label.text!.isEmpty {
-            horizontalConstraints = []
-            verticalConstraints = []
-            sizeToFit()
-            return
-        }
-        
-        horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-leftMargin-[subview]-rightMargin-|", options: .DirectionLeadingToTrailing, metrics: ["leftMargin": insets.left, "rightMargin": insets.right], views: ["subview": label])
-        verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-topMargin-[subview]-bottomMargin-|", options: .DirectionLeadingToTrailing, metrics: ["topMargin": insets.top, "bottomMargin": insets.bottom], views: ["subview": label])
-        
-        addConstraints(horizontalConstraints)
-        addConstraints(verticalConstraints)
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.height/2
     }
     
+    public override func drawText(in rect: CGRect) {
+        super.drawText(in: rect.insetBy(dx: TokenView.xInset, dy: TokenView.yInset))
+    }
+    
+    public override var intrinsicContentSize: CGSize {
+        var size = super.intrinsicContentSize
+        
+        size.width += TokenView.xInset + TokenView.xInset
+        size.height += TokenView.yInset + TokenView.yInset
+        
+        return size
+    }
+    
+    public override var text: String? {
+        set {
+            super.text = newValue?.lowercased()
+            invalidateIntrinsicContentSize()
+        } get {
+            return super.text
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
-

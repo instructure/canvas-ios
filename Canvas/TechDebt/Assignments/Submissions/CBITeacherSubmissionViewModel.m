@@ -45,7 +45,7 @@
     RACSignal *tint = RACObserve(self, tintColor);
     CKIAssignment *assignment = self.model;
     return [[[[TheKeymaster.currentClient fetchSubmissionRecordsForAssignment:self.model] flattenMap:^id(NSArray *records) {
-        return [records.rac_sequence.signal flattenMap:^RACStream *(CKISubmissionRecord *record) {
+        return [records.rac_sequence.signal flattenMap:^__kindof RACStream *(CKISubmissionRecord *record) {
             CKIUser *user = [CKIUser modelWithID:record.userID context:assignment.context];
             return [[TheKeymaster.currentClient refreshModel:user parameters:@{}] map:^id(CKIUser *user) {
                 CBIStudentSubmissionViewModel *studentSubmission = [CBIStudentSubmissionViewModel viewModelForModel:assignment];

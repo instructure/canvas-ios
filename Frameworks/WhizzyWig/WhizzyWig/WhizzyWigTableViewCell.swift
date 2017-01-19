@@ -18,37 +18,37 @@
 
 import UIKit
 
-public class WhizzyWigTableViewCell: UITableViewCell {
+open class WhizzyWigTableViewCell: UITableViewCell {
     
-    public var indexPath = NSIndexPath(forRow: 0, inSection: 0)
-    public var cellSizeUpdated: NSIndexPath->() = {_ in }
-    public var readMore: (WhizzyWigViewController->())? {
+    open var indexPath = IndexPath(row: 0, section: 0)
+    open var cellSizeUpdated: (IndexPath)->() = {_ in }
+    open var readMore: ((WhizzyWigViewController)->())? {
         didSet {
-            readMoreButton.hidden = readMore == nil || whizzyWigView.contentHeight <= maxHeight
+            readMoreButton.isHidden = readMore == nil || whizzyWigView.contentHeight <= maxHeight
         }
     }
     
     var minHeight: CGFloat = 0.0
     var maxHeight: CGFloat = 6144.0
     
-    public let whizzyWigView = WhizzyWigView(frame: CGRect(x: 0, y: 0, width: 320, height: 43))
+    open let whizzyWigView = WhizzyWigView(frame: CGRect(x: 0, y: 0, width: 320, height: 43))
     
     let heightConstraint: NSLayoutConstraint
-    let readMoreButton = UIButton(type: .System)
+    let readMoreButton = UIButton(type: .system)
     
     public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
-        heightConstraint = NSLayoutConstraint(item: whizzyWigView, attribute: .Height, relatedBy: .GreaterThanOrEqual, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: minHeight)
+        heightConstraint = NSLayoutConstraint(item: whizzyWigView, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: minHeight)
         heightConstraint.priority = 999.0
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        selectionStyle = .None
+        selectionStyle = .none
 
         contentView.addSubview(whizzyWigView)
 
-        let h = NSLayoutConstraint.constraintsWithVisualFormat("|[whizzy]|", options: [], metrics: nil, views: ["whizzy": whizzyWigView])
-        let v = NSLayoutConstraint.constraintsWithVisualFormat("V:|[whizzy]|", options: [], metrics: nil, views: ["whizzy": whizzyWigView])
+        let h = NSLayoutConstraint.constraints(withVisualFormat: "|[whizzy]|", options: [], metrics: nil, views: ["whizzy": whizzyWigView])
+        let v = NSLayoutConstraint.constraints(withVisualFormat: "V:|[whizzy]|", options: [], metrics: nil, views: ["whizzy": whizzyWigView])
         
         contentView.addConstraints(h+v)
         whizzyWigView.addConstraint(heightConstraint)
@@ -60,46 +60,46 @@ public class WhizzyWigTableViewCell: UITableViewCell {
             }
         }
 
-        let readMore = NSLocalizedString("Read More", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "button to read more of the description")
-        readMoreButton.setTitle(readMore, forState: .Normal)
+        let readMore = NSLocalizedString("Read More", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "button to read more of the description")
+        readMoreButton.setTitle(readMore, for: UIControlState())
         readMoreButton.translatesAutoresizingMaskIntoConstraints = false
-        readMoreButton.addTarget(self, action: #selector(WhizzyWigTableViewCell.readMoreButtonWasTapped(_:)), forControlEvents: .TouchUpInside)
-        readMoreButton.hidden = true
-        readMoreButton.backgroundColor = UIColor.whiteColor()
+        readMoreButton.addTarget(self, action: #selector(WhizzyWigTableViewCell.readMoreButtonWasTapped(_:)), for: .touchUpInside)
+        readMoreButton.isHidden = true
+        readMoreButton.backgroundColor = UIColor.white
         contentView.addSubview(readMoreButton)
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "|[readMore]|", options: [], metrics: nil, views: ["readMore": readMoreButton]))
+        contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "|[readMore]|", options: [], metrics: nil, views: ["readMore": readMoreButton]))
         contentView.addConstraint(NSLayoutConstraint(
             item: readMoreButton,
-            attribute: .Bottom,
-            relatedBy: .Equal,
+            attribute: .bottom,
+            relatedBy: .equal,
             toItem: whizzyWigView,
-            attribute: .Bottom,
+            attribute: .bottom,
             multiplier: 1,
             constant: 0))
     }
     
-    private func contentSizeDidChange() {
+    fileprivate func contentSizeDidChange() {
         let contentHeight = whizzyWigView.contentHeight
         heightConstraint.constant = min(maxHeight, max(minHeight, contentHeight))
         cellSizeUpdated(indexPath)
         if contentHeight > maxHeight && readMore != nil {
-            readMoreButton.hidden = false
+            readMoreButton.isHidden = false
         }
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        heightConstraint = aDecoder.decodeObjectForKey("heightConstraint") as! NSLayoutConstraint
+        heightConstraint = aDecoder.decodeObject(forKey: "heightConstraint") as! NSLayoutConstraint
         super.init(coder: aDecoder)
     }
     
-    public override func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(indexPath, forKey: "indexPath")
-        aCoder.encodeObject(heightConstraint, forKey: "heightConstraint")
+    open override func encode(with aCoder: NSCoder) {
+        aCoder.encode(indexPath, forKey: "indexPath")
+        aCoder.encode(heightConstraint, forKey: "heightConstraint")
     }
     
     
-    public var expectedHeight: CGFloat {
+    open var expectedHeight: CGFloat {
         get {
             return heightConstraint.constant
         }
@@ -109,13 +109,13 @@ public class WhizzyWigTableViewCell: UITableViewCell {
         }
     }
     
-    public override func prepareForReuse() {
-        indexPath = NSIndexPath(forRow: 0, inSection: 0)
+    open override func prepareForReuse() {
+        indexPath = IndexPath(row: 0, section: 0)
         cellSizeUpdated = {_ in }
         readMore = nil
     }
 
-    public func readMoreButtonWasTapped(sender: UIButton) {
+    open func readMoreButtonWasTapped(_ sender: UIButton) {
         let wwvc = WhizzyWigViewController(nibName: nil, bundle: nil)
         self.readMore?(wwvc)
     }

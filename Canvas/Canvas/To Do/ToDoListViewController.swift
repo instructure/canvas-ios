@@ -21,31 +21,32 @@ import TooLegit
 import TodoKit
 import SoPersistent
 import SoPretty
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 import SoIconic
 
-func colorfulToDoViewModel(session session: Session, toDoItem: Todo) -> ColorfulViewModel {
+func colorfulToDoViewModel(session: Session, toDoItem: Todo) -> ColorfulViewModel {
     struct DateFormatters {
-        static var dateFormatter: NSDateFormatter = {
-            let formatter = NSDateFormatter()
-            let dateFormat = NSDateFormatter.dateFormatFromTemplate("EdMMM", options: 0, locale: NSLocale.currentLocale())
+        static var dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            let dateFormat = DateFormatter.dateFormat(fromTemplate: "EdMMM", options: 0, locale: Locale.current)
             formatter.dateFormat = dateFormat
             return formatter
         }()
 
-        static var timeFormatter: NSDateFormatter = {
-            let formatter = NSDateFormatter()
-            formatter.dateStyle = .NoStyle
-            formatter.timeStyle = .ShortStyle
+        static var timeFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .none
+            formatter.timeStyle = .short
             return formatter
         }()
     }
+    
 
     func subtitle(forToDoItem toDoItem: Todo) -> String {
         switch toDoItem.type {
         case "grading":
-            let gradingCount = toDoItem.needsGradingCount?.integerValue ?? 0
+            let gradingCount = toDoItem.needsGradingCount?.intValue ?? 0
             if gradingCount == 1 {
                 return String(format: NSLocalizedString("1 needs grading", comment: "Label indicating a submission need grading"))
             } else if gradingCount > 1 {
@@ -55,7 +56,7 @@ func colorfulToDoViewModel(session session: Session, toDoItem: Todo) -> Colorful
             }
         case "submitting":
             if let dueDate = toDoItem.assignmentDueDate {
-                return String(format: NSLocalizedString("Due: %@ at %@", comment: "Due date label for to do items, first placeholder is date, second is time"), DateFormatters.dateFormatter.stringFromDate(dueDate), DateFormatters.timeFormatter.stringFromDate(dueDate))
+                return String(format: NSLocalizedString("Due: %@ at %@", comment: "Due date label for to do items, first placeholder is date, second is time"), DateFormatters.dateFormatter.string(from: dueDate), DateFormatters.timeFormatter.string(from: dueDate))
             } else {
                 return NSLocalizedString("No Due Date", comment: "Label shown for a to do that doesn't have a due date")
             }
@@ -64,14 +65,19 @@ func colorfulToDoViewModel(session session: Session, toDoItem: Todo) -> Colorful
         }
     }
 
-    let vm = ColorfulViewModel(style: .Subtitle)
+    var vm = ColorfulViewModel(features: [.icon, .subtitle, .token])
+    vm.titleLineBreakMode = .byWordWrapping
     vm.title.value = toDoItem.assignmentName
-    vm.detail.value = subtitle(forToDoItem: toDoItem)
-    vm.color <~ session.enrollmentsDataSource.producer(toDoItem.contextID).map { $0?.color ?? .prettyGray() }
+    vm.subtitle.value = subtitle(forToDoItem: toDoItem)
+    
+    let context = session.enrollmentsDataSource.producer(toDoItem.contextID)
 
-    if toDoItem.submissionTypes.contains(.Quiz) {
+    vm.color <~ session.enrollmentsDataSource.color(for: toDoItem.contextID)
+    vm.tokenViewText <~ context.map { $0?.shortName ?? "" }
+
+    if toDoItem.todoType == .quiz {
         vm.icon.value = .icon(.quiz)
-    } else if toDoItem.submissionTypes.contains(.DiscussionTopic) {
+    } else if toDoItem.todoType == .discussion {
         vm.icon.value = .icon(.discussion)
     } else {
         vm.icon.value = .icon(.assignment)
@@ -83,12 +89,15 @@ func colorfulToDoViewModel(session session: Session, toDoItem: Todo) -> Colorful
 class ToDoListViewController: Todo.TableViewController {
 
     let session: Session
-    let route: (UIViewController, NSURL)->()
+    let route: (UIViewController, URL)->()
 
-    init(session: Session, route: (UIViewController, NSURL)->()) throws {
+    init(session: Session, route: @escaping (UIViewController, URL)->()) throws {
         self.session = session
         self.route = route
         super.init()
+
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 50.0
 
         prepare(try Todo.allTodos(session), refresher: try Todo.refresher(session)) { todo in colorfulToDoViewModel(session: session, toDoItem: todo) }
     }
@@ -102,8 +111,8 @@ class ToDoListViewController: Todo.TableViewController {
         navigationItem.title = NSLocalizedString("To Do", comment:"Title of the Todo screen")
     }
 
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let action = UITableViewRowAction(style: .Normal, title: NSLocalizedString("Done", comment: "Button title to mark a to do item as done")) { (action, indexPath) in
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Done", comment: "Button title to mark a to do item as done")) { (action, indexPath) in
             let todo = self.collection[indexPath]
             tableView.setEditing(false, animated: true)
             todo.markAsDone(self.session)
@@ -112,9 +121,9 @@ class ToDoListViewController: Todo.TableViewController {
         return [action]
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let todo = collection[indexPath]
-        if let url = NSURL(string: todo.routingURL) {
+        if let url = URL(string: todo.routingURL) {
             route(self, url)
         }
     }

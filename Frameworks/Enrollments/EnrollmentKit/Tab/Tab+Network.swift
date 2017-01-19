@@ -18,15 +18,15 @@
 
 import Foundation
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 
 
 extension Tab {
-    public static func get(session: Session, contextID: ContextID) -> SignalProducer<[JSONObject], NSError> {
+    public static func get(_ session: Session, contextID: ContextID) -> SignalProducer<[JSONObject], NSError> {
         let path = contextID.apiPath/"tabs"
         return attemptProducer { try session.GET(path) }
-            .flatMap(.Merge) { request in
+            .flatMap(.merge) { request in
                 return session.paginatedJSONSignalProducer(request)
             }
     }

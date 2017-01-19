@@ -39,7 +39,7 @@ class AssignmentsTableViewControllerSpec: QuickSpec {
                 describe(".viewWillAppear") {
                     context("when header has been selected") {
                         beforeEach {
-                            assignments.header.tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: false, scrollPosition: .None)
+                            assignments.header.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
                             expect(assignments.header.tableView.indexPathsForSelectedRows).toNot(beEmpty())
                         }
 

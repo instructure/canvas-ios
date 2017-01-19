@@ -1,13 +1,13 @@
 /* all pages segmented control title */
 "All Pages" = "全部页面";
 
-/* badge indicating front page */
+/* front page segmented control title */
 "Front Page" = "首页";
 
-/* Generic button to dismiss the popup message */
+/* (No Commment) */
 "Okay" = "Okay";
 
-/* The page is locked by the teacher */
+/* (No Commment) */
 "Page Locked" = "页面锁定";
 
 /* Page list fails */

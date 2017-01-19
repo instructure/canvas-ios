@@ -20,6 +20,7 @@ import Foundation
 
 import MobileCoreServices
 
+
 extension Assignment {
     // these are the allowed file types
     public var allowedSubmissionUTIs: [String] {
@@ -27,8 +28,8 @@ extension Assignment {
         
         var startDotStar = false
         
-        if submissionTypes.contains(.Upload) {
-            if allowedExtensions?.count > 0 {
+        if submissionTypes.contains(.upload) {
+            if let count = allowedExtensions?.count, count > 0 {
                 utis += (allowedExtensions ?? []).map(toUTI)
             } else {
                 startDotStar = true
@@ -36,15 +37,15 @@ extension Assignment {
             }
         }
         
-        if !startDotStar && submissionTypes.contains(.MediaRecording) {
+        if !startDotStar && submissionTypes.contains(.mediaRecording) {
             utis += [kUTTypeMovie as String, kUTTypeAudio as String]
         }
 
-        if submissionTypes.contains(.Text) {
+        if submissionTypes.contains(.text) {
             utis += [kUTTypeText as String]
         }
 
-        if submissionTypes.contains(.URL) {
+        if submissionTypes.contains(.url) {
             utis += [kUTTypeURL as String]
         }
 
@@ -76,7 +77,7 @@ extension Assignment {
 }
 
 
-private func toUTI(ext: String) -> String {
+private func toUTI(_ ext: String) -> String {
     let cfUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as CFString, nil)
         .map { $0.takeRetainedValue() }
         .map { $0 as String }
@@ -84,14 +85,14 @@ private func toUTI(ext: String) -> String {
     return cfUTI ?? ""
 }
 
-private func isUTIVideo(uti: String) -> Bool {
+private func isUTIVideo(_ uti: String) -> Bool {
     return UTTypeConformsTo(uti as CFString, kUTTypeMovie)
 }
 
-private func isUTIPhoto(uti: String) -> Bool {
+private func isUTIPhoto(_ uti: String) -> Bool {
     return UTTypeConformsTo(uti as CFString, kUTTypeImage)
 }
 
-private func isUTIAudio(uti: String) -> Bool {
+private func isUTIAudio(_ uti: String) -> Bool {
     return UTTypeConformsTo(uti as CFString, kUTTypeAudio)
 }

@@ -45,75 +45,71 @@ class PhotoOrVideoUploadAction: NSObject, UploadAction, UIImagePickerControllerD
         picker.mediaTypes = mediaTypes
         picker.delegate = self
         
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            picker.modalPresentationStyle = .PageSheet
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            picker.modalPresentationStyle = .pageSheet
         }
         
-        viewController?.presentViewController(picker, animated: true, completion: nil)
+        viewController?.present(picker, animated: true, completion: nil)
     }
     
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        var upload = NewUpload.None
+        var upload = NewUpload.none
         
         if let
-            assetURL = info[UIImagePickerControllerReferenceURL] as? NSURL,
-            asset = PHAsset.fetchAssetsWithALAssetURLs([assetURL], options: nil).firstObject as? PHAsset {
+            assetURL = info[UIImagePickerControllerReferenceURL] as? URL,
+            let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL], options: nil).firstObject {
                 
-            upload = .FileUpload([.CameraRollAsset(asset)])
+            upload = .fileUpload([.cameraRollAsset(asset)])
         } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            upload = .FileUpload([.Photo(image)])
-        } else if let videoURL = info[UIImagePickerControllerMediaURL] as? NSURL {
-            upload = .MediaComment(.VideoURL(videoURL))
+            upload = .fileUpload([.photo(image)])
+        } else if let videoURL = info[UIImagePickerControllerMediaURL] as? URL {
+            upload = .mediaComment(.videoURL(videoURL))
         }
-        viewController?.dismissViewControllerAnimated(true) {
+        viewController?.dismiss(animated: true) {
             self.delegate?.chooseUpload(upload)
         }
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        viewController?.dismissViewControllerAnimated(true) {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        viewController?.dismiss(animated: true) {
             self.delegate?.actionCancelled()
         }
-    }
-    
-    deinit {
-        print("Photo action died")
     }
 }
 
 
 extension PhotoOrVideoUploadAction {
-    static func actionsForUpload(viewController: UIViewController?, delegate: UploadActionDelegate, allowedImagePickerControllerMediaTypes: [String], allowsPhotos: Bool, allowsVideo: Bool) -> [UploadAction] {
+    static func actionsForUpload(_ viewController: UIViewController?, delegate: UploadActionDelegate, allowedImagePickerControllerMediaTypes: [String], allowsPhotos: Bool, allowsVideo: Bool) -> [UploadAction] {
         
         let mediaTypes = allowedImagePickerControllerMediaTypes
         guard mediaTypes.count > 0 else { return [] }
 
         let titles = titlesForTakingPhotoOrVideo(allowsPhotos, allowsVideo: allowsVideo)
         return [
-            PhotoOrVideoUploadAction(title: titles.choosing, icon: .FileKitImageNamed("icon_cameraroll"), sourceType: .PhotoLibrary, mediaTypes: mediaTypes, viewController: viewController, delegate: delegate),
-            PhotoOrVideoUploadAction(title: titles.taking, icon: .FileKitImageNamed("icon_camera"), sourceType: .Camera, mediaTypes: mediaTypes, viewController: viewController, delegate: delegate)
+            PhotoOrVideoUploadAction(title: titles.choosing, icon: .FileKitImageNamed("icon_cameraroll"), sourceType: .photoLibrary, mediaTypes: mediaTypes, viewController: viewController, delegate: delegate),
+            PhotoOrVideoUploadAction(title: titles.taking, icon: .FileKitImageNamed("icon_camera"), sourceType: .camera, mediaTypes: mediaTypes, viewController: viewController, delegate: delegate)
         ]
     }
     
-    private static func titlesForTakingPhotoOrVideo(allowsPhotos: Bool, allowsVideo: Bool) -> (taking: String, choosing: String) {
+    fileprivate static func titlesForTakingPhotoOrVideo(_ allowsPhotos: Bool, allowsVideo: Bool) -> (taking: String, choosing: String) {
         let titles: (String, String)
         switch (allowsPhotos, allowsVideo) {
         case (true, false):
             titles = (
-                taking: NSLocalizedString("Take a Photo", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Take a photo submission choice"),
-                choosing: NSLocalizedString("Choose a Photo", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Pick a photo from library")
+                taking: NSLocalizedString("Take a Photo", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Take a photo submission choice"),
+                choosing: NSLocalizedString("Choose a Photo", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Pick a photo from library")
             )
         case (false, true):
             titles = (
-                taking: NSLocalizedString("Take a Video", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Take a video submission choice"),
-                choosing: NSLocalizedString("Choose a Video", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Pick a video from library")
+                taking: NSLocalizedString("Take a Video", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Take a video submission choice"),
+                choosing: NSLocalizedString("Choose a Video", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Pick a video from library")
             )
         default:
             titles = (
-                taking: NSLocalizedString("Take Photo or Video", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Take a photo or video submission choice"),
-                choosing: NSLocalizedString("Choose a Photo or Video", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Pick a photo or video")
+                taking: NSLocalizedString("Take Photo or Video", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Take a photo or video submission choice"),
+                choosing: NSLocalizedString("Choose a Photo or Video", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Pick a photo or video")
             )
         }
         

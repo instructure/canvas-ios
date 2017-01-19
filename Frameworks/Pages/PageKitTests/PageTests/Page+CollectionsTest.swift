@@ -23,22 +23,22 @@ import TooLegit
 import DoNotShipThis
 import CoreData
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 import Nimble
 
-let currentBundle = NSBundle(forClass: PageCollectionsTest.self)
+let currentBundle = Bundle(for: PageCollectionsTest.self)
 
 class PageCollectionsTest: UnitTestCase {
     
     let session = Session.ivy
     
     var defaultContextID: ContextID {
-        return ContextID(id: "24601", context: .Course)
+        return ContextID(id: "24601", context: .course)
     }
     
     var realContextID: ContextID {
-        return ContextID(id: "24219", context: .Course)
+        return ContextID(id: "24219", context: .course)
     }
 
     func testRoutingUrl_isTheCorrectPath() {
@@ -82,7 +82,7 @@ class PageCollectionsTest: UnitTestCase {
         attempt {
             let context = try session.pagesManagedObjectContext()
             let pageWithMatchingID = Page.build(context, contextID: defaultContextID)
-            let pageWithWrongID = Page.build(context, contextID: ContextID(id: "12345", context: .Course))
+            let pageWithWrongID = Page.build(context, contextID: ContextID(id: "12345", context: .course))
 
             guard let collection = try? Page.collectionAlphabetical(session, contextID: defaultContextID) else {
                 XCTFail("expected collection")
@@ -115,8 +115,8 @@ class PageCollectionsTest: UnitTestCase {
         }
     }
     
-    func pathForRow(row: Int) -> NSIndexPath {
-        return NSIndexPath(forRow: row, inSection: 0)
+    func pathForRow(_ row: Int) -> IndexPath {
+        return IndexPath(row: row, section: 0)
     }
     
 }

@@ -245,10 +245,10 @@ Dabò ou dwe ranpli:";
 /* Archive selected messages button */
 "Archive" = "Achiv";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Bouton Stokaj Mesaj Seleksyone";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Stoke tout mesaj seleksyone yo";
 
 /* No comment provided by engineer. */
@@ -382,10 +382,10 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* (No Commment) */
 "Completed" = "Fini";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Bouton Konpozisyon Mesaj";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Konpoze yon mesaj";
 
 /* Title for Conferences tab */

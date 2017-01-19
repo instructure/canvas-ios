@@ -19,11 +19,11 @@ import TooLegit
 import Peeps
 import SoPersistent
 import AssignmentKit
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
-public class GradingNavigationViewController: UIViewController {
-    public static func present(from: UIViewController, for assignmentID: String, in context: ContextID, with session: Session) throws {
+open class GradingNavigationViewController: UIViewController {
+    open static func present(_ from: UIViewController, for assignmentID: String, in context: ContextID, with session: Session) throws {
 
         let story = UIStoryboard(name: "GradingNavigation", bundle: .swiftGrader)
         let nav = story.instantiateInitialViewController() as! UINavigationController
@@ -31,7 +31,7 @@ public class GradingNavigationViewController: UIViewController {
         let gradingNav = nav.topViewController as! GradingNavigationViewController
         try gradingNav.prepare(for: assignmentID, in: context, with: session)
         
-        from.presentViewController(nav, animated: true, completion: nil)
+        from.present(nav, animated: true, completion: nil)
     }
     
     var assignmentObserver: ManagedObjectObserver<Assignment>!
@@ -58,9 +58,9 @@ public class GradingNavigationViewController: UIViewController {
         
         enrollmentsRefresher = try UserEnrollment.refresher(enrolledIn: context, for: session)
         enrollmentsRefreshErrorsDisposable = enrollmentsRefresher?.refreshingCompleted
-            .observeOn(UIScheduler())
-            .observeNext { [weak self] error in
-                guard let me = self, err = error else { return }
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] error in
+                guard let me = self, let err = error else { return }
                 err.report(false, alertUserFrom: me)
             }.map(ScopedDisposable.init)
         enrollmentsRefresher?.refresh(true)
@@ -69,13 +69,13 @@ public class GradingNavigationViewController: UIViewController {
 
         let assignmentsContext = try session.assignmentsManagedObjectContext()
         let submissions = try Submission.studentSubmissionsCollection(session, courseID: context.id, assignmentID: assignmentID)
-        submissionsObserver = ManagedObjectsObserver<Submission, String>(context: assignmentsContext, collection: submissions) { $0.userID ?? "" }
+        submissionsObserver = ManagedObjectsObserver<Submission, String>(context: assignmentsContext, collection: submissions) { $0.userID }
         
         submissionsRefresher = try Submission.studentSubmissionsRefresher(session, courseID: context.id, assignmentID: assignmentID)
         submissionsRefreshErrorsDisposable = submissionsRefresher?.refreshingCompleted
-            .observeOn(UIScheduler())
-            .observeNext { [weak self] error in
-                guard let me = self, err = error else { return }
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] error in
+                guard let me = self, let err = error else { return }
                 err.report(false, alertUserFrom: me)
             }.map(ScopedDisposable.init)
         submissionsRefresher?.refresh(true)
@@ -86,19 +86,19 @@ public class GradingNavigationViewController: UIViewController {
             .flatMapError {_ in .empty }
     }
     
-    public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let pager = segue.destinationViewController as? SubmissionPageViewController {
+    open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let pager = segue.destination as? SubmissionPageViewController {
             guard let assignment = assignmentObserver.object else { return }
             pager.loadSubmissions(enrollments: enrollmentsObserver.collection, submissionsObserver: submissionsObserver, assignment: assignment, inSession: session)
         }
     }
     
     
-    @IBAction func doneGrading(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func doneGrading(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func toggleGradeView(sender: AnyObject) {
+    @IBAction func toggleGradeView(_ sender: AnyObject) {
         
     }
 }

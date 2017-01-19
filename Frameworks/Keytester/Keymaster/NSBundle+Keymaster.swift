@@ -18,8 +18,8 @@
 
 import Foundation
 
-extension NSBundle {
-    static func keymaster() -> NSBundle {
-        return NSBundle(identifier: "com.instructure.Keymaster")!
+extension Bundle {
+    static func keymaster() -> Bundle {
+        return Bundle(identifier: "com.instructure.Keymaster")!
     }
 }

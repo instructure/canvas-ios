@@ -18,12 +18,12 @@
 
 import UIKit
 
-public class SmallModalNavigationController: UINavigationController, UIViewControllerTransitioningDelegate {
+open class SmallModalNavigationController: UINavigationController, UIViewControllerTransitioningDelegate {
     
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        modalPresentationStyle = .Custom
+        modalPresentationStyle = .custom
         preferredContentSize = CGSize(width: 300, height: 240)
         transitioningDelegate = self
     }
@@ -38,26 +38,26 @@ public class SmallModalNavigationController: UINavigationController, UIViewContr
         super.init(coder: aDecoder)
     }
     
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         
-        modalPresentationStyle = .Custom
+        modalPresentationStyle = .custom
         preferredContentSize = CGSize(width: 300, height: 240)
         transitioningDelegate = self
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
     }
     
     let txDelegate = FadeInOutTransition()
-    public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    open func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return txDelegate
     }
     
-    public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    open func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return txDelegate
     }
 }
@@ -65,7 +65,7 @@ public class SmallModalNavigationController: UINavigationController, UIViewContr
 
 class FadeInOutTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
-    private let duration = 0.2
+    fileprivate let duration = 0.2
     
     let shadowView: UIView = {
         let view = UIView()
@@ -73,56 +73,56 @@ class FadeInOutTransition: NSObject, UIViewControllerAnimatedTransitioning {
         return view
     }()
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }
     
-    func transitionToModal(modal: SmallModalNavigationController, inContext context: UIViewControllerContextTransitioning) {
+    func transitionToModal(_ modal: SmallModalNavigationController, inContext context: UIViewControllerContextTransitioning) {
         let view = modal.view
-        let containerView = context.containerView()
+        let containerView = context.containerView
         let containerBounds = containerView.bounds
         
         shadowView.frame = containerView.bounds
         containerView.addSubview(shadowView)
-        containerView.addSubview(view)
+        containerView.addSubview(view!)
         
         shadowView.alpha = 0.0
-        view.alpha = 0.0
-        let finalTX = view.transform
-        view.transform = CGAffineTransformScale(finalTX, 1.2, 1.2)
-        view.center = CGPoint(x: CGRectGetMidX(containerBounds), y: containerBounds.size.height/3.0 + containerBounds.origin.y)
-        view.bounds = CGRect(origin: CGPointZero, size: modal.preferredContentSize)
-        view.autoresizingMask = [.FlexibleTopMargin, .FlexibleBottomMargin, .FlexibleLeftMargin, .FlexibleRightMargin]
+        view?.alpha = 0.0
+        let finalTX = view?.transform
+        view?.transform = (finalTX?.scaledBy(x: 1.2, y: 1.2))!
+        view?.center = CGPoint(x: containerBounds.midX, y: containerBounds.size.height/3.0 + containerBounds.origin.y)
+        view?.bounds = CGRect(origin: CGPoint.zero, size: modal.preferredContentSize)
+        view?.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin, .flexibleLeftMargin, .flexibleRightMargin]
         
-        UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
             
             self.shadowView.alpha = 1
-            view.alpha = 1
-            view.transform = finalTX
+            view?.alpha = 1
+            view?.transform = finalTX!
         
         }) { finished in
             context.completeTransition(true)
         }
     }
     
-    func transitionFromModel(modal: SmallModalNavigationController, inContext context: UIViewControllerContextTransitioning) {
+    func transitionFromModel(_ modal: SmallModalNavigationController, inContext context: UIViewControllerContextTransitioning) {
         let view = modal.view
         
-        UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseIn, animations: {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: {
             self.shadowView.alpha = 0.0
-            view.alpha = 0.0
-            view.transform = CGAffineTransformScale(view.transform, 0.9, 0.9)
+            view?.alpha = 0.0
+            view?.transform = (view?.transform.scaledBy(x: 0.9, y: 0.9))!
         }) { finished in
             self.shadowView.removeFromSuperview()
-            view.removeFromSuperview()
+            view?.removeFromSuperview()
             context.completeTransition(true)
         }
     }
     
-    func animateTransition(context: UIViewControllerContextTransitioning) {
-        if let destination = context.viewControllerForKey(UITransitionContextToViewControllerKey) as? SmallModalNavigationController {
+    func animateTransition(using context: UIViewControllerContextTransitioning) {
+        if let destination = context.viewController(forKey: UITransitionContextViewControllerKey.to) as? SmallModalNavigationController {
             transitionToModal(destination, inContext: context)
-        } else if let source = context.viewControllerForKey(UITransitionContextFromViewControllerKey) as? SmallModalNavigationController {
+        } else if let source = context.viewController(forKey: UITransitionContextViewControllerKey.from) as? SmallModalNavigationController {
             transitionFromModel(source, inContext: context)
         }
     }

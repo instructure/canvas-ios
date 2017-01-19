@@ -19,7 +19,7 @@
 #import "MLVCTableViewController.h"
 #import "MLVCCollectionController.h"
 #import "MLVCTableViewCellViewModel.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
+@import ReactiveObjC;
 #import <objc/runtime.h>
 
 #define CURRENT_SYSTEM_VERSION_IS_IOS8_PLUS ([[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."][0] intValue] >= 8)

@@ -1,8 +1,17 @@
+/* Message for an error alert */
+"An unexpected error occured. %@(%@)" = "En uventet feil oppstod. %1$@(%2$@)";
+
 /* Dismiss an error dialog */
-"Dismiss" = "Forkast";
+"Dismiss" = "Avvis";
 
 /* Data encoding error title */
 "Encoding Error" = "Kodefeil";
+
+/* Title for an error alert */
+"Error" = "Feil";
+
+/* attached to error explanation in dialog */
+"Explanation:" = "Forklaring:";
 
 /* Option to report an error */
 "Report" = "Rapporter";
@@ -10,12 +19,9 @@
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "Det oppsto et problem med kodingen av UTF8-data";
 
-/* JSON Parsing error description */
+/* (No Commment) */
 "There was a problem interpreting a response from the server." = "Det var et problem med tolkningen av svaret fra serveren.";
 
 /* SoLazy's fallback title for an unknown error */
 "Unknown Error" = "Ukjent feil";
-
-/* attached to error explanation in dialog */
-"Explanation:" = "Forklaring:";
 

@@ -33,14 +33,14 @@ class QuizDetailsViewController: UITableViewController {
     
     // other properties
     
-    private let baseURL: NSURL
-    private var details: [(String, String)] = []
+    fileprivate let baseURL: URL
+    fileprivate var details: [(String, String)] = []
 
-    let descriptionCell = WhizzyWigTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "WhoCares")
+    let descriptionCell = WhizzyWigTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "WhoCares")
 
     // initialization
 
-    init(quiz: Quiz?, baseURL: NSURL) {
+    init(quiz: Quiz?, baseURL: URL) {
         self.quiz = quiz
         self.baseURL = baseURL
         super.init(nibName: nil, bundle: nil)
@@ -65,64 +65,64 @@ class QuizDetailsViewController: UITableViewController {
         tableView.scrollIndicatorInsets = insets
     }
     
-    private func prepareTable() {
-        tableView.separatorStyle = .None
+    fileprivate func prepareTable() {
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 20+44+20)) // padding for scrolling above the page indicator, TODO: make constants
-        tableView.registerNib(QuizDetailCell.Nib, forCellReuseIdentifier: QuizDetailCell.ReuseID)
+        tableView.register(QuizDetailCell.Nib, forCellReuseIdentifier: QuizDetailCell.ReuseID)
     }
     
-    private func prepareDescriptionCell() {
+    fileprivate func prepareDescriptionCell() {
         descriptionCell.cellSizeUpdated = { [weak self] cell in
             if let me = self {
                 let tv = me.tableView
-                tv.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .None)
+                tv?.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .none)
             }
         }
         descriptionCell.readMore = { wwvc in
             let nav = UINavigationController(rootViewController: wwvc)
-            self.presentViewController(nav, animated: true) {
+            self.present(nav, animated: true) {
                 wwvc.whizzyWigView.loadHTMLString(self.quiz?.description ?? "", baseURL: self.baseURL)
             }
         }
-        descriptionCell.selectionStyle = .None
+        descriptionCell.selectionStyle = .none
     }
     
-    private func prepareTheDetails() {
+    fileprivate func prepareTheDetails() {
         var deets = [(String, String)]()
         
-        let DueDateLabel = NSLocalizedString("Due Date", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "due date label for quiz due date")
+        let DueDateLabel = NSLocalizedString("Due Date", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "due date label for quiz due date")
         deets.append((DueDateLabel, self.quiz?.due.description ?? ""))
         
-        let PointsLabel = NSLocalizedString("Points", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for number of points in a quiz")
+        let PointsLabel = NSLocalizedString("Points", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for number of points in a quiz")
         deets.append((PointsLabel, self.quiz?.scoring.description ?? ""))
         
-        let QuestionCountLabel = NSLocalizedString("Questions", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for the number of questions")
+        let QuestionCountLabel = NSLocalizedString("Questions", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for the number of questions")
         deets.append((QuestionCountLabel, String(self.quiz?.questionCount ?? 0)))
         
         // TODO: add availability
-        let _ = NSLocalizedString("Available Until", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for quiz availability date")
+        let _ = NSLocalizedString("Available Until", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for quiz availability date")
         
-        let TimeLimitLabel = NSLocalizedString("Time Limit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for the time limit")
+        let TimeLimitLabel = NSLocalizedString("Time Limit", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for the time limit")
         deets.append((TimeLimitLabel, self.quiz?.timeLimit.description ?? ""))
         
-        let AttemptsLabel = NSLocalizedString("Allowed Attempts", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for number of attempts that are allowed")
+        let AttemptsLabel = NSLocalizedString("Allowed Attempts", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for number of attempts that are allowed")
         let allowed = self.quiz?.attemptLimit.description ?? ""
         deets.append((AttemptsLabel, allowed))
         
         details = deets
     }
     
-    private func prepareTheDescription() {
+    fileprivate func prepareTheDescription() {
         descriptionCell.whizzyWigView.loadHTMLString(self.quiz?.description ?? "", baseURL: baseURL)
     }
     
-    private func quizUpdated() {
+    fileprivate func quizUpdated() {
         prepareTheDetails()
         prepareTheDescription()
         
-        if isViewLoaded() {
+        if isViewLoaded {
             tableView.reloadData()
         }
     }
@@ -132,11 +132,11 @@ extension QuizDetailsViewController {
 
     // table view
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return quiz == nil ? 0 : 3
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // an extra 1 for the padding at the top, didn't use section headers because of the sticky headers
         switch section {
         case 0: // title
@@ -157,24 +157,24 @@ extension QuizDetailsViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             return getPaddingCell()
         }
         
         if indexPath.section == 0 {
-            var cell = tableView.dequeueReusableCellWithIdentifier("QuizTitleCell") 
+            var cell = tableView.dequeueReusableCell(withIdentifier: "QuizTitleCell") 
             if cell == nil {
-                cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "QuizTitleCell")
-                cell?.textLabel?.textAlignment = .Center
-                cell?.textLabel?.font = UIFont.boldSystemFontOfSize(20.0)
+                cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "QuizTitleCell")
+                cell?.textLabel?.textAlignment = .center
+                cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
             }
             cell!.textLabel?.text = quiz?.title ?? ""
             return cell!
         } else if indexPath.section == 1 {
             return descriptionCell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(QuizDetailCell.ReuseID) as! QuizDetailCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: QuizDetailCell.ReuseID) as! QuizDetailCell
             let deets = details[indexPath.row-1] // 1 for the padding cell
             cell.itemLabel.text = deets.0
             cell.detailLabel.text = deets.1
@@ -182,10 +182,10 @@ extension QuizDetailsViewController {
         }
     }
     
-    private func getPaddingCell() -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("PaddingCell") 
+    fileprivate func getPaddingCell() -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "PaddingCell") 
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: "PaddingCell")
+            cell = UITableViewCell(style: .default, reuseIdentifier: "PaddingCell")
             constrain(cell!.contentView) { contentView in
                 contentView.height == 30; return
             }

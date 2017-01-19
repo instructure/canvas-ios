@@ -40,13 +40,13 @@ class CollectionViewDataSourceTests: XCTestCase {
 
         let newPanda = Panda.build(managedObjectContext, id: "4", name: "Po")
         waitUntil { done in
-            if collectionView.numberOfItemsInSection(0) == 4 { done() }
+            if collectionView.numberOfItems(inSection: 0) == 4 { done() }
         }
 
         newPanda.name = "not po"
         managedObjectContext.processPendingChanges()
 
-        expect(collectionView.numberOfItemsInSection(0)).toEventually(equal(3), timeout: 5)
+        expect(collectionView.numberOfItems(inSection: 0)).toEventually(equal(3), timeout: 5)
     }
 
     func pandasNamedPo() {

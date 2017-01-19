@@ -23,7 +23,7 @@ let QuestionDescriptionCellReuseID = "QuizDescriptionCell"
 
 class QuestionDescriptionCell : WhizzyWigTableViewCell {
     init() {
-        super.init(style: .Default, reuseIdentifier: QuestionDescriptionCellReuseID)
+        super.init(style: .default, reuseIdentifier: QuestionDescriptionCellReuseID)
     }
 
     required init?(coder aDecoder: NSCoder) {

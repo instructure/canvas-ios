@@ -19,15 +19,15 @@ import Foundation
 import CoreData
 import SoPersistent
 import Marshal
-import ReactiveCocoa
+import ReactiveSwift
 import TooLegit
 
 public final class DiscussionEntry: NSManagedObject {
-    @NSManaged private (set) public var id: String
-    @NSManaged private (set) public var date: NSDate
-    @NSManaged private (set) public var message: String
-    @NSManaged private var parentID: String?
-    @NSManaged private (set) public var read: Bool
+    @NSManaged fileprivate (set) public var id: String
+    @NSManaged fileprivate (set) public var date: Date
+    @NSManaged fileprivate (set) public var message: String
+    @NSManaged fileprivate var parentID: String?
+    @NSManaged fileprivate (set) public var read: Bool
     @NSManaged internal (set) public var topicID: String
     
     @NSManaged var rawContextID: String
@@ -43,29 +43,29 @@ public final class DiscussionEntry: NSManagedObject {
 
 
 extension DiscussionEntry: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id);
     }
     
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         
         let readState: String? = try json <| "read_state"
 
         try id              = json.stringID("id")
-        try message         = json <| "message" ?? ""
+        try message         = (json <| "message") ?? ""
         try date            = json <| "created_at"
         try parentID        = json.stringID("parent_id")
         read                = readState == "read"
     }
     
-    func syncAllReplies(json: JSONObject, contextID: ContextID, topicID: String, inContext context: NSManagedObjectContext) throws {
+    func syncAllReplies(_ json: JSONObject, contextID: ContextID, topicID: String, inContext context: NSManagedObjectContext) throws {
         typealias DE = DiscussionEntry
         
         let previousEntries: [DiscussionEntry] = try context.findAll(withValue: id, forKey: "parentID")
         var previousSet = Set(previousEntries)
         
-        let replies: [JSONObject] = try json <| "replies" ?? []
+        let replies: [JSONObject] = (try json <| "replies") ?? []
         
         for reply in replies {
             let entry: DiscussionEntry = try context.findOne(withPredicate: try DE.uniquePredicateForObject(reply))
@@ -80,7 +80,7 @@ extension DiscussionEntry: SynchronizedModel {
         }
         
         for deleted in previousSet {
-            context.deleteObject(deleted)
+            context.delete(deleted)
         }
     }
 }

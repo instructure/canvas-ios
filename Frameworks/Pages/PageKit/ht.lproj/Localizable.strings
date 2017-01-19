@@ -1,13 +1,13 @@
 /* all pages segmented control title */
 "All Pages" = "Tout Paj";
 
-/* badge indicating front page */
+/* front page segmented control title */
 "Front Page" = "Kouvèti";
 
-/* Generic button to dismiss the popup message */
+/* (No Commment) */
 "Okay" = "OK";
 
-/* The page is locked by the teacher */
+/* (No Commment) */
 "Page Locked" = "Paj Bloke";
 
 /* Page list fails */

@@ -24,7 +24,7 @@ import SoLazy
 
 extension Session {
     public func airwolfManagedObjectContext() throws -> NSManagedObjectContext {
-        guard let model = NSManagedObjectModel(named: "Airwolf", inBundle: NSBundle(forClass: Student.self))?.mutableCopy() as? NSManagedObjectModel else {
+        guard let model = NSManagedObjectModel(named: "Airwolf", inBundle: Bundle(for: Student.self))?.mutableCopy() as? NSManagedObjectModel else {
             throw NSError(subdomain: "Airwolf", description: "Failed to load Airwolf NSManagedObjectModel")
         }
 

@@ -21,18 +21,14 @@ import CoreData
 
 extension NSManagedObjectContext {
 
-    public static func inMemoryTestContext(model: NSManagedObjectModel) -> NSManagedObjectContext {
+    public static func inMemoryTestContext(_ model: NSManagedObjectModel) -> NSManagedObjectContext {
         return testContext(model) { $0.addInMemoryTestStore() }
     }
 
-    public static func errorProneContext(model: NSManagedObjectModel) -> NSManagedObjectContext {
-        return testContext(model) { $0.addErrorProneStore() }
-    }
-
-    static func testContext(model: NSManagedObjectModel, addStore: NSPersistentStoreCoordinator -> ()) -> NSManagedObjectContext {
+    static func testContext(_ model: NSManagedObjectModel, addStore: (NSPersistentStoreCoordinator) -> ()) -> NSManagedObjectContext {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
         addStore(coordinator)
-        let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         context.persistentStoreCoordinator = coordinator
         return context
     }
@@ -41,12 +37,7 @@ extension NSManagedObjectContext {
 extension NSPersistentStoreCoordinator {
 
     func addInMemoryTestStore() {
-        try! addPersistentStoreWithType(NSInMemoryStoreType, configuration: nil, URL: nil, options: nil)
-    }
-
-    func addErrorProneStore() {
-        NSPersistentStoreCoordinator.registerStoreClass(ErrorProneStore.self, forStoreType: ErrorProneStoreType)
-        try! addPersistentStoreWithType(ErrorProneStoreType, configuration: nil, URL: nil, options: nil)
+        try! addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
     }
 
 }

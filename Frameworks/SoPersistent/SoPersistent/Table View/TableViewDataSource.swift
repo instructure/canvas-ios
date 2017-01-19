@@ -17,13 +17,13 @@
     
 
 import UIKit
-import ReactiveCocoa
+import ReactiveSwift
 
 @objc
 public protocol TableViewDataSource: NSObjectProtocol, UITableViewDataSource {
     var collectionDidChange: (Void)->Void { get set }
     var tableView: UITableView? { get set }
-    func viewDidLoad(controller: UITableViewController)
+    func viewDidLoad(_ controller: UITableViewController)
     func isEmpty() -> Bool
 }
 
@@ -33,69 +33,18 @@ extension TableViewDataSource {
             return true
         }
 
-        let numberOfSections = numberOfSectionsInTableView?(table) ?? 0
-        var empty = numberOfSections == 0
-        if numberOfSections == 1 && tableView(table, numberOfRowsInSection: 0) == 0 {
+        let sectionCount = numberOfSections?(in: table) ?? 0
+        var empty = sectionCount == 0
+        if sectionCount == 1 && tableView(table, numberOfRowsInSection: 0) == 0 {
             empty = true
         }
         return empty
     }
-}
 
-public class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewModel>: NSObject, TableViewDataSource {
-    public let collection: C
-    public let viewModelFactory: C.Object->VM
-    public var collectionDidChange: (Void)->Void = { }
-    private var disposable: Disposable?
-
-    weak public var tableView: UITableView? {
-        didSet {
-            oldValue?.dataSource = nil
-            tableView?.dataSource = self
-            tableView?.reloadData()
-        }
-    }
-
-    public init(collection: C, viewModelFactory: C.Object -> VM) {
-        self.collection = collection
-        self.viewModelFactory = viewModelFactory
-        super.init()
-
-        disposable = collection.collectionUpdates.observeOn(UIScheduler()).observeNext { [weak self] updates in
-            self?.processUpdates(updates)
-            self?.collectionDidChange()
-        }.map(ScopedDisposable.init)
-    }
-
-    public func viewDidLoad(controller: UITableViewController) {
-        VM.tableViewDidLoad(controller.tableView)
-        tableView = controller.tableView
-    }
-
-    // MARK: UITableViewDataSource
-
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return collection.numberOfSections()
-    }
-
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return collection.numberOfItemsInSection(section)
-    }
-
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let item = collection[indexPath]
-        let vm = viewModelFactory(item)
-        return vm.cellForTableView(tableView, indexPath: indexPath)
-    }
-
-    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return collection.titleForSection(section)
-    }
-
-    func processUpdates(updates: [CollectionUpdate<C.Object>]) {
+    public func processUpdates<CollectedType>(_ updates: [CollectionUpdate<CollectedType>]) {
         guard let tableView = tableView else { return }
 
-        if updates == [.Reload] {
+        if updates == [.reload] {
             tableView.reloadData()
             return
         }
@@ -106,35 +55,86 @@ public class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewM
         for update in updates {
             switch update {
 
-            case .SectionInserted(let s):
-                tableView.insertSections(NSIndexSet(index: s), withRowAnimation: .Automatic)
+            case .sectionInserted(let s):
+                tableView.insertSections(IndexSet(integer: s), with: .automatic)
 
-            case .SectionDeleted(let s):
-                tableView.deleteSections(NSIndexSet(index: s), withRowAnimation: .Automatic)
+            case .sectionDeleted(let s):
+                tableView.deleteSections(IndexSet(integer: s), with: .automatic)
 
-            case .Inserted(let indexPath, _):
-                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            case .inserted(let indexPath, _, let animated):
+                tableView.insertRows(at: [indexPath], with: animated ? .automatic : .none)
 
-            case .Updated(let indexPath, _):
-                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            case .updated(let indexPath, _, let animated):
+                tableView.reloadRows(at: [indexPath], with: animated ? .automatic : .none)
 
-            case let .Moved(from, to, _):
-                tableView.deleteRowsAtIndexPaths([from], withRowAnimation: .Fade)
-                tableView.insertRowsAtIndexPaths([to], withRowAnimation: .Fade)
+            case let .moved(from, to, _, animated):
+                tableView.deleteRows(at: [from], with: animated ? .fade : .none)
+                tableView.insertRows(at: [to], with: animated ? .fade : .none)
 
-            case .Deleted(let indexPath, _):
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            case .deleted(let indexPath, _, let animated):
+                tableView.deleteRows(at: [indexPath], with: animated ? .automatic : .none)
 
             default:
                 break
             }
         }
         tableView.endUpdates()
+        
+        tableView.selectRow(at: selectedIndexPath, animated: false, scrollPosition: .none)
+    }
+}
 
-        tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .None)
+open class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewModel>: NSObject, TableViewDataSource {
+    open let collection: C
+    open let viewModelFactory: (C.Object)->VM
+    open var collectionDidChange: (Void)->Void = { }
+    fileprivate var disposable: Disposable?
+
+    weak open var tableView: UITableView? {
+        didSet {
+            oldValue?.dataSource = nil
+            tableView?.dataSource = self
+            tableView?.reloadData()
+        }
     }
 
-    public func isEmpty() -> Bool {
+    public init(collection: C, viewModelFactory: @escaping (C.Object) -> VM) {
+        self.collection = collection
+        self.viewModelFactory = viewModelFactory
+        super.init()
+
+        disposable = collection.collectionUpdates.observe(on: UIScheduler()).observeValues { [weak self] updates in
+            self?.processUpdates(updates)
+            self?.collectionDidChange()
+        }.map(ScopedDisposable.init)
+    }
+
+    open func viewDidLoad(_ controller: UITableViewController) {
+        VM.tableViewDidLoad(controller.tableView)
+        tableView = controller.tableView
+    }
+
+    // MARK: UITableViewDataSource
+
+    open func numberOfSections(in tableView: UITableView) -> Int {
+        return collection.numberOfSections()
+    }
+
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return collection.numberOfItemsInSection(section)
+    }
+
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = collection[indexPath]
+        let vm = viewModelFactory(item)
+        return vm.cellForTableView(tableView, indexPath: indexPath)
+    }
+
+    open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return collection.titleForSection(section)
+    }
+
+    open func isEmpty() -> Bool {
         return self.isEmpty
     }
 }

@@ -20,19 +20,20 @@ import FileKit
 import CoreData
 import TooLegit
 import SoLazy
+import SoPersistent
 
 extension Upload {
-    public static func inProgress(session: Session) throws -> [Upload] {
+    public static func inProgress(_ session: Session) throws -> [Upload] {
         let context = try session.assignmentsManagedObjectContext()
-        let request = NSFetchRequest(entityName: entityName(context))
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName(context))
         request.predicate = NSPredicate(format: "%K == nil", "terminatedAt")
-        return try context.executeFetchRequest(request) as? [Upload] ?? []
+        return try context.fetch(request) as? [Upload] ?? []
     }
 
-    public static func activeBackgroundSessionIdentifiers(session: Session) throws -> [String] {
+    public static func activeBackgroundSessionIdentifiers(_ session: Session) throws -> [String] {
         let context = try session.assignmentsManagedObjectContext()
 
-        guard let entity = NSEntityDescription.entityForName(entityName(context), inManagedObjectContext: context) else {
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName(context), in: context) else {
             ❨╯°□°❩╯⌢"Failed to get Entity Description for Upload."
         }
 
@@ -40,25 +41,25 @@ extension Upload {
             ❨╯°□°❩╯⌢"Failed to get backgroundSessionID property."
         }
 
-        let request = NSFetchRequest(entityName: entityName(context))
-        request.resultType = .DictionaryResultType
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName(context))
+        request.resultType = .dictionaryResultType
         request.propertiesToFetch = [property]
         request.returnsDistinctResults = true
 
-        guard let ids = try context.executeFetchRequest(request) as? [String] else {
+        guard let ids = try context.fetch(request) as? [String] else {
             ❨╯°□°❩╯⌢"expected an array of String ids"
         }
 
         return ids
     }
 
-    public static func inProgressFetch(session: Session, identifier: String) throws -> NSFetchRequest {
+    public static func inProgressFetch(_ session: Session, identifier: String) throws -> NSFetchRequest<Upload> {
         let context = try session.assignmentsManagedObjectContext()
         let predicate = NSPredicate(format: "%K == %@ && %K == nil", "backgroundSessionID", identifier, "terminatedAt")
-        return fetch(predicate, sortDescriptors: ["startedAt".ascending], inContext: context)
+        return context.fetch(predicate, sortDescriptors: ["startedAt".ascending])
     }
 
-    public static func inProgressFRC(session: Session, identifier: String) throws -> NSFetchedResultsController {
+    public static func inProgressFRC(_ session: Session, identifier: String) throws -> NSFetchedResultsController<Upload> {
         let context = try session.assignmentsManagedObjectContext()
         let request = try inProgressFetch(session, identifier: identifier)
         return NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)

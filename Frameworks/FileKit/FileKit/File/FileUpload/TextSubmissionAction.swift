@@ -19,7 +19,7 @@
 import UIKit
 
 class TextSubmissionAction: UploadAction {
-    let title = NSLocalizedString("Text", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Text submission option")
+    let title = NSLocalizedString("Text", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Text submission option")
     let icon = UIImage.FileKitImageNamed("icon_text")
     let currentSubmission: NewUpload
     weak var delegate: UploadActionDelegate?
@@ -31,10 +31,10 @@ class TextSubmissionAction: UploadAction {
     
     func initiate() {
         switch currentSubmission {
-        case .Text(_):
+        case .text(_):
             delegate?.chooseUpload(currentSubmission)
         default:
-            delegate?.chooseUpload(.Text(""))
+            delegate?.chooseUpload(.text(""))
         }
     }
 }

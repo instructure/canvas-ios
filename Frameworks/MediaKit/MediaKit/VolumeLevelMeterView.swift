@@ -20,13 +20,13 @@ import Foundation
 
 
 class VolumeLevelMeterView: UIView {
-    override class func layerClass() -> AnyClass {
+    override class var layerClass : AnyClass {
         return CAReplicatorLayer.classForCoder()
     }
     
     lazy var tick: CALayer = {
         let tick = CALayer()
-        tick.backgroundColor = UIColor.whiteColor().CGColor
+        tick.backgroundColor = UIColor.white.cgColor
         tick.frame = CGRect(x: -4, y: 1.5, width: 4, height: self.bounds.size.height - 3.0)
         tick.cornerRadius = 2
         return tick
@@ -41,8 +41,8 @@ class VolumeLevelMeterView: UIView {
         replicator.instanceCount = 0
         replicator.instanceDelay = 0.0
         
-        layer.borderColor = UIColor.blackColor().CGColor
-        layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
+        layer.borderColor = UIColor.black.cgColor
+        layer.borderWidth = 1.0 / UIScreen.main.scale
         layer.cornerRadius = 3
     }
     

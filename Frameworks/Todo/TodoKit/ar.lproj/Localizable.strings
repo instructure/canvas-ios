@@ -2,7 +2,7 @@
 "Could not parse context id from URL" = "تعذر تحليل معرف السياق من عنوان URL";
 
 /* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "انقطع طلب وضع علامة &quot;تم&quot; على مهمة يجب القيام بها";
+"The request to mark a to do as done was interrupted" = "انقطع طلب وضع علامة \"تم\" على مهمة يجب القيام بها";
 
 /* CalendarKit Database Load Failure Message */
 "There was a problem loading the (kitModelName) database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة بيانات (kitModelName).";

@@ -22,21 +22,21 @@ import SoLazy
 import TooLegit
 import Airwolf
 import SoPersistent
-import CWStatusBarNotification
 import Armchair
+import SoPretty
 
 class WebLoginViewController: UIViewController {
     
-    let request: NSURLRequest?
+    let request: URLRequest?
     let useBackButton: Bool
     let loginFailureMessage: String
     var prompt: String? = nil
     
     let webView = UIWebView()
-    private let backButton = UIButton(type: .Custom)
-    private let statusBarNotification = CWStatusBarNotification()
+    fileprivate let backButton = UIButton(type: .custom)
+    fileprivate let statusBarNotification = ToastManager()
     
-    init(request: NSURLRequest?, useBackButton: Bool, loginFailureMessage: String) {
+    init(request: URLRequest?, useBackButton: Bool, loginFailureMessage: String) {
         self.request = request
         self.useBackButton = useBackButton
         self.loginFailureMessage = loginFailureMessage
@@ -58,66 +58,66 @@ class WebLoginViewController: UIViewController {
         startLoginRequest()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if let prompt = prompt {
-            statusBarNotification.displayNotificationWithMessage(prompt) { _ in }
+            statusBarNotification.statusBarToastInfo(prompt)
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         statusBarNotification.dismissNotification()
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
-    private func clearExistingCookies() {
-        let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+    fileprivate func clearExistingCookies() {
+        let storage = HTTPCookieStorage.shared
         if let cookies = storage.cookies {
             for cookie in cookies {
                 storage.deleteCookie(cookie)
             }
         }
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.synchronize()
     }
     
     func setupBackButton() {
-        if let navController = self.navigationController where !navController.navigationBarHidden {
+        if let navController = self.navigationController, !navController.isNavigationBarHidden {
             return
         }
-        let backImage = UIImage.RTLImage("icon_back", renderingMode: .AlwaysTemplate)
+        let backImage = UIImage.RTLImage("icon_back", renderingMode: .alwaysTemplate)
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.setBackgroundImage(backImage, forState: .Normal)
-        backButton.setBackgroundImage(backImage, forState: .Selected)
-        backButton.tintColor = UIColor.whiteColor()
+        backButton.setBackgroundImage(backImage, for: .normal)
+        backButton.setBackgroundImage(backImage, for: .selected)
+        backButton.tintColor = UIColor.white
         
         self.view.addSubview(backButton)
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[subview]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": backButton]))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-30-[subview]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": backButton]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[subview]", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": backButton]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[subview]", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": backButton]))
         
-        backButton.addConstraint(NSLayoutConstraint(item: backButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 40.0))
-        backButton.addConstraint(NSLayoutConstraint(item: backButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 40.0))
+        backButton.addConstraint(NSLayoutConstraint(item: backButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 40.0))
+        backButton.addConstraint(NSLayoutConstraint(item: backButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 40.0))
         
-        backButton.addTarget(self, action: #selector(backButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        backButton.hidden = !useBackButton
+        backButton.addTarget(self, action: #selector(backButtonPressed(_:)), for: .touchUpInside)
+        backButton.isHidden = !useBackButton
     }
     
     func setupWebView() {
         self.automaticallyAdjustsScrollViewInsets = false
         webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.backgroundColor = UIColor.blackColor()
+        webView.backgroundColor = UIColor.black
         self.view.addSubview(webView)
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[webview]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webview": webView]))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[webview]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webview": webView]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[webview]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webview": webView]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[webview]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webview": webView]))
     }
     
-    func backButtonPressed(sender: UIButton) {
-        self.navigationController?.popViewControllerAnimated(true)
+    func backButtonPressed(_ sender: UIButton) {
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     func startLoginRequest() {
@@ -127,21 +127,21 @@ class WebLoginViewController: UIViewController {
     }
     
     func presentUnexpectedAuthError() {
-        let alertController = UIAlertController(title: NSLocalizedString("Authorization Failed.", comment: "Authorization Failed Title"), message: loginFailureMessage, preferredStyle: .Alert)
-        let action = UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .Default, handler: { [weak self] _ in self?.navigationController?.popViewControllerAnimated(true) })
+        let alertController = UIAlertController(title: NSLocalizedString("Authorization Failed.", comment: "Authorization Failed Title"), message: loginFailureMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .default, handler: { [weak self] _ in _ = self?.navigationController?.popViewController(animated: true) })
         alertController.addAction(action)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
 
-    func handleCommonResponses(url: NSURL) -> (failedLogin: Bool, shouldStartLoad: Bool) {
-        if url.absoluteString!.containsString("/oauthFailure") {
+    func handleCommonResponses(_ url: URL) -> (failedLogin: Bool, shouldStartLoad: Bool) {
+        if url.absoluteString.contains("/oauthFailure") {
             self.presentUnexpectedAuthError()
             return (true, false)
-        } else if url.absoluteString!.containsString("/oauth2/deny") {
-            self.navigationController?.popViewControllerAnimated(true)
+        } else if url.absoluteString.contains("/oauth2/deny") {
+            _ = self.navigationController?.popViewController(animated: true)
             return (true, false)
-        } else if url.absoluteString!.containsString("404") {
-            backButton.tintColor = UIColor.blackColor()
+        } else if url.absoluteString.contains("404") {
+            backButton.tintColor = UIColor.black
             return (true, true)
         }
         
@@ -154,7 +154,7 @@ class AddStudentViewController: WebLoginViewController {
     var completionHandler: ((Result<Bool, NSError>)->Void)?
     let refresher: Refresher
 
-    init(session: Session, domain: NSURL, useBackButton: Bool = false, completionHandler: (Result<Bool, NSError>)->Void) throws {
+    init(session: Session, domain: URL, useBackButton: Bool = false, completionHandler: @escaping (Result<Bool, NSError>)->Void) throws {
         self.refresher = try Student.observedStudentsRefresher(session)
         
         super.init(request: try? AirwolfAPI.addStudentRequest(session, parentID: session.user.id, studentDomain: domain), useBackButton: useBackButton, loginFailureMessage: NSLocalizedString("Unexpected Authentication Error.  Please try logging in again", comment: "Auth Failed Message"))
@@ -169,8 +169,8 @@ class AddStudentViewController: WebLoginViewController {
 }
 
 extension AddStudentViewController: UIWebViewDelegate {
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if let url = request.URL {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if let url = request.url {
             if url.description == "about.blank" {
                 return false
             }
@@ -180,12 +180,12 @@ extension AddStudentViewController: UIWebViewDelegate {
                 return commonErrorResults.shouldStartLoad
             }
             
-            if url.absoluteString!.containsString("/oauthSuccess") {
+            if url.absoluteString.contains("/oauthSuccess") {
                 // Clear the cookies so you're not automatically logged into a session on the next browser launch
                 Armchair.userDidSignificantEvent(true)
                 clearExistingCookies()
-                refresher.refreshingCompleted.observeNext { [weak self] _ in
-                    self?.completionHandler?(.Success(true))
+                refresher.refreshingCompleted.observeValues { [weak self] _ in
+                    self?.completionHandler?(.success(true))
                 }
                 refresher.refresh(true)
                 return false

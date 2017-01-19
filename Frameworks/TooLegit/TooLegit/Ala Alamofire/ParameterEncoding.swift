@@ -29,6 +29,15 @@ import Foundation
 */
 public enum Method: String {
     case OPTIONS, GET, HEAD, POST, PUT, PATCH, DELETE, TRACE, CONNECT
+    
+    var defaultEncoding: ParameterEncoding {
+        switch self {
+        case .GET, .HEAD, .DELETE:
+            return .url
+        default:
+            return .json
+        }
+    }
 }
 
 // MARK: ParameterEncoding
@@ -45,7 +54,7 @@ public enum Method: String {
                          dictionary values (`foo[bar]=baz`).
 
     - `URLEncodedInURL`: Creates query string to be set as or appended to any existing URL query. Uses the same
-                         implementation as the `.URL` case, but always applies the encoded result to the URL.
+                         implementation as the `.url` case, but always applies the encoded result to the URL.
 
     - `JSON`:            Uses `NSJSONSerialization` to create a JSON representation of the parameters object, which is 
                          set as the body of the request. The `Content-Type` HTTP header field of an encoded request is 
@@ -53,17 +62,17 @@ public enum Method: String {
 
 */
 public enum ParameterEncoding {
-    case URL
-    case URLEncodedInURL
-    case JSON
+    case url
+    case urlEncodedInURL
+    case json
     
-    func encodesParametersInURL(method: Method) -> Bool {
-        if case .URLEncodedInURL = self {
+    func encodesParametersInURL(_ method: Method) -> Bool {
+        if case .urlEncodedInURL = self {
             return true
         }
         
         switch (self, method) {
-        case (.URL, .GET), (.URL, .HEAD), (.URL, .DELETE):
+        case (.url, .GET), (.url, .HEAD), (.url, .DELETE):
             return true
         default:
             return false
@@ -71,52 +80,52 @@ public enum ParameterEncoding {
 
     }
     
-    func query(parameters: [String: AnyObject]) -> String {
+    func query(_ parameters: [String: Any]) -> String {
         var components: [(String, String)] = []
         
-        for key in parameters.keys.sort(<) {
+        for key in parameters.keys.sorted(by: <) {
             let value = parameters[key]!
-            components += queryComponents(key, value)
+            components += queryComponents(fromKey: key, value: value)
         }
         
-        return (components.map { "\($0)=\($1)" } as [String]).joinWithSeparator("&")
+        return (components.map { "\($0)=\($1)" } as [String]).joined(separator: "&")
     }
 
     
-    public func URLWithURL(URL: NSURL, method: Method, encodingParameters parameters: [String: AnyObject]) -> NSURL {
+    public func URLWithURL(_ URL: URL, method: Method, encodingParameters parameters: [String: Any]) -> URL {
         guard parameters.count > 0 else { return URL }
         guard encodesParametersInURL(method) else { return URL }
         
-        guard let components = NSURLComponents(URL: URL, resolvingAgainstBaseURL: false) else { return URL }
+        guard var components = URLComponents(url: URL, resolvingAgainstBaseURL: false) else { return URL }
         
         let percentEncodedQuery = (components.percentEncodedQuery.map { $0 + "&" } ?? "") + query(parameters)
         components.percentEncodedQuery = percentEncodedQuery
-        return components.URL ?? URL
+        return components.url ?? URL
     }
     
-    func contentType(method: Method) -> String? {
+    func contentType(_ method: Method) -> String? {
         guard !encodesParametersInURL(method) else { return nil }
         
         switch self {
-        case .URL:
+        case .url:
             return "application/x-www-form-urlencoded; charset=utf-8"
-        case .JSON:
+        case .json:
             return "application/json"
         default:
             return nil
         }
     }
     
-    func body(method: Method, encodingParameters parameters: [String: AnyObject]) throws -> NSData? {
+    func body(_ method: Method, encodingParameters parameters: [String: Any]) throws -> Data? {
         guard !encodesParametersInURL(method) && !parameters.isEmpty else { return nil }
 
         switch self {
-        case .URL:
+        case .url:
             let encoded = query(parameters)
-            return encoded.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-        case .JSON:
-            let options = NSJSONWritingOptions()
-            return try NSJSONSerialization.dataWithJSONObject(parameters, options: options)
+            return encoded.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        case .json:
+            let options = JSONSerialization.WritingOptions()
+            return try JSONSerialization.data(withJSONObject: parameters, options: options)
         default:
             return nil
         }
@@ -130,24 +139,32 @@ public enum ParameterEncoding {
 
         - returns: The percent-escaped, URL encoded query string components.
     */
-    func queryComponents(key: String, _ value: AnyObject) -> [(String, String)] {
+    public func queryComponents(fromKey key: String, value: Any) -> [(String, String)] {
         var components: [(String, String)] = []
 
-        if let dictionary = value as? [String: AnyObject] {
+        if let dictionary = value as? [String: Any] {
             for (nestedKey, value) in dictionary {
-                components += queryComponents("\(key)[\(nestedKey)]", value)
+                components += queryComponents(fromKey: "\(key)[\(nestedKey)]", value: value)
             }
-        } else if let array = value as? [AnyObject] {
+        } else if let array = value as? [Any] {
             for value in array {
-                components += queryComponents("\(key)[]", value)
+                components += queryComponents(fromKey: "\(key)[]", value: value)
             }
+        } else if let value = value as? NSNumber {
+            if value.isBool {
+                components.append((escape(key), escape((value.boolValue ? "1" : "0"))))
+            } else {
+                components.append((escape(key), escape("\(value)")))
+            }
+        } else if let bool = value as? Bool {
+            components.append((escape(key), escape((bool ? "1" : "0"))))
         } else {
             components.append((escape(key), escape("\(value)")))
         }
 
         return components
     }
-
+    
     /**
         Returns a percent-escaped string following RFC 3986 for a query string key or value.
 
@@ -164,12 +181,12 @@ public enum ParameterEncoding {
 
         - returns: The percent-escaped string.
     */
-    func escape(string: String) -> String {
+    func escape(_ string: String) -> String {
         let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
         let subDelimitersToEncode = "!$&'()*+,;="
 
-        let allowedCharacterSet = NSCharacterSet.URLQueryAllowedCharacterSet().mutableCopy() as! NSMutableCharacterSet
-        allowedCharacterSet.removeCharactersInString(generalDelimitersToEncode + subDelimitersToEncode)
+        let allowedCharacterSet = (CharacterSet.urlQueryAllowed as NSCharacterSet).mutableCopy() as! NSMutableCharacterSet
+        allowedCharacterSet.removeCharacters(in: generalDelimitersToEncode + subDelimitersToEncode)
 
         var escaped = ""
 
@@ -184,25 +201,12 @@ public enum ParameterEncoding {
         //
         //==========================================================================================================
 
-        if #available(iOS 8.3, OSX 10.10, *) {
-            escaped = string.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacterSet) ?? string
-        } else {
-            let batchSize = 50
-            var index = string.startIndex
-
-            while index != string.endIndex {
-                let startIndex = index
-                let endIndex = index.advancedBy(batchSize, limit: string.endIndex)
-                let range = startIndex..<endIndex
-
-                let substring = string.substringWithRange(range)
-
-                escaped += substring.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacterSet) ?? substring
-
-                index = endIndex
-            }
-        }
-
+        escaped = string.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet as CharacterSet) ?? string
         return escaped
     }
+}
+
+
+extension NSNumber {
+    fileprivate var isBool: Bool { return CFBooleanGetTypeID() == CFGetTypeID(self) }
 }

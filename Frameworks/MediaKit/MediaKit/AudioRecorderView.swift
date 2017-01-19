@@ -28,62 +28,62 @@ private let meterTicks = 13
 
 // this is an abstraction introduced for the purposes of testing
 public protocol AudioRecorderPermissionDelegate {
-    func requestRecordPermission(response: PermissionBlock)
+    func requestRecordPermission(_ response: @escaping AVFoundation.PermissionBlock)
     func recordPermission() -> AVAudioSessionRecordPermission
 }
 
 extension AVAudioSession: AudioRecorderPermissionDelegate {
 }
 
-public class AudioRecorderView: UIView {
+open class AudioRecorderView: UIView {
     // MARK: State
     
-    private var state: State = .PreRecording(.Undetermined)
+    fileprivate var state: State = .preRecording(.undetermined)
     var permissionDelegate: AudioRecorderPermissionDelegate = AVAudioSession.sharedInstance() {
         didSet {
-            setState(.PreRecording(permissionDelegate.recordPermission()), animated: false)
+            setState(.preRecording(permissionDelegate.recordPermission()), animated: false)
         }
     }
     
-    private func setState(newState: State, animated: Bool) {
+    fileprivate func setState(_ newState: State, animated: Bool) {
         state = newState
         state.transitionToState(self, animated: animated)
     }
     
-    private enum State {
-        case PreRecording(AVAudioSessionRecordPermission)
-        case Recording(AudioRecorder)
-        case Playing(AudioPlayer)
-        case Paused(AudioPlayer)
+    fileprivate enum State {
+        case preRecording(AVAudioSessionRecordPermission)
+        case recording(AudioRecorder)
+        case playing(AudioPlayer)
+        case paused(AudioPlayer)
         
-        private func transitionToState(view: AudioRecorderView, animated: Bool) {
+        fileprivate func transitionToState(_ view: AudioRecorderView, animated: Bool) {
             var disabled = (trash: true, meter: false, done: false)
             
             switch self {
-            case .PreRecording(AVAudioSessionRecordPermission.Denied):
-                view.recordButton.recordButtonState = .Denied(.Denied)
+            case .preRecording(AVAudioSessionRecordPermission.denied):
+                view.recordButton.recordButtonState = .denied(.denied)
                 view.recordButtonTopConstraint.constant = recordingTopMargin
                 view.playbackBottomConstraint.constant = recordingBottomMargin
                 view.volumeMeterView.level = 0
                 disabled.done = true
                 
-            case .PreRecording(AVAudioSessionRecordPermission.Undetermined):
-                view.recordButton.recordButtonState = .Denied(.Undetermined)
+            case .preRecording(AVAudioSessionRecordPermission.undetermined):
+                view.recordButton.recordButtonState = .denied(.undetermined)
                 view.recordButtonTopConstraint.constant = recordingTopMargin
                 view.playbackBottomConstraint.constant = recordingBottomMargin
                 view.volumeMeterView.level = 0
                 disabled.done = true
                 
                 
-            case .Recording:
-                view.recordButton.recordButtonState = .Stop
+            case .recording:
+                view.recordButton.recordButtonState = .stop
                 view.recordButtonTopConstraint.constant = recordingTopMargin
                 view.playbackBottomConstraint.constant = recordingBottomMargin
                 view.volumeMeterView.level = 3
                 disabled.done = true
                 
-            case .PreRecording(_):
-                view.recordButton.recordButtonState = .Record
+            case .preRecording(_):
+                view.recordButton.recordButtonState = .record
                 view.recordButtonTopConstraint.constant = recordingTopMargin
                 view.playbackBottomConstraint.constant = recordingBottomMargin
                 view.volumeMeterView.level = 0
@@ -91,16 +91,16 @@ public class AudioRecorderView: UIView {
                 disabled.meter = true
                 view.durationLabel.text = "00:00.0"
                 
-            case .Playing(let player):
-                view.recordButton.recordButtonState = .Pause
+            case .playing(let player):
+                view.recordButton.recordButtonState = .pause
                 view.recordButtonTopConstraint.constant = playbackTopMargin
                 view.playbackBottomConstraint.constant = playbackBottomMargin
                 view.volumeMeterView.level = 12
                 
                 view.playbackScrubber.update(player.duration, currentTime: player.currentTime)
                 
-            case .Paused(let player):
-                view.recordButton.recordButtonState = .Play
+            case .paused(let player):
+                view.recordButton.recordButtonState = .play
                 view.recordButtonTopConstraint.constant = playbackTopMargin
                 view.playbackBottomConstraint.constant = playbackBottomMargin
                 disabled.trash = false
@@ -114,98 +114,98 @@ public class AudioRecorderView: UIView {
                 view.layoutIfNeeded()
                 view.trashButton.alpha = disabled.trash ? 0.0: 1.0
                 view.volumeMeterView.alpha = disabled.meter ? 0.0: 1.0
-                view.doneButton.enabled = !disabled.done
+                view.doneButton.isEnabled = !disabled.done
             }
             
             if animated {
-                UIView.animateWithDuration(0.15, delay: 0.0, options: .CurveEaseOut, animations: updateBlock, completion:nil)
+                UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseOut, animations: updateBlock, completion:nil)
             } else {
                 updateBlock()
             }
         }
         
-        private func recordButtonTapped(view: AudioRecorderView) {
+        fileprivate func recordButtonTapped(_ view: AudioRecorderView) {
             switch self {
-            case .PreRecording(AVAudioSessionRecordPermission.Denied):
-                let title = NSLocalizedString("Not Permitted", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "can't record because request for mic access was denied title")
+            case .preRecording(AVAudioSessionRecordPermission.denied):
+                let title = NSLocalizedString("Not Permitted", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "can't record because request for mic access was denied title")
                 
-                let appName = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleDisplayName") as? String ?? "Canvas"
-                let message = NSLocalizedString("You must grant \(appName) Microphone access in the Settings app in order to record audio.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "permission was rejected")
+                let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? "Canvas"
+                let message = NSLocalizedString("You must grant \(appName) Microphone access in the Settings app in order to record audio.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "permission was rejected")
                 
                 let error = NSError(domain: "com.instructure", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
-                view.notifyUserOfError(error, title: title, dismissToState: .PreRecording(.Denied))
+                view.notifyUserOfError(error, title: title, dismissToState: .preRecording(.denied))
                 
-            case .PreRecording(AVAudioSessionRecordPermission.Undetermined):
+            case .preRecording(AVAudioSessionRecordPermission.undetermined):
                 view.permissionDelegate.requestRecordPermission { permissionGranted in
                     if permissionGranted {
-                        view.setState(.PreRecording(.Granted), animated: true)
+                        view.setState(.preRecording(.granted), animated: true)
                     } else {
                         print("Denied!")
-                        view.setState(.PreRecording(.Denied), animated: true)
+                        view.setState(.preRecording(.denied), animated: true)
                     }
                 }
                 
-            case .Recording(let recorder):
+            case .recording(let recorder):
                 view.finishRecordingWithRecorder(recorder)
                 
-            case .PreRecording(_):
+            case .preRecording(_):
                 view.startRecording()
                 
-            case .Paused(let player):
+            case .paused(let player):
                 player.play()
-                view.setState(.Playing(player), animated: true)
+                view.setState(.playing(player), animated: true)
                 
-            case .Playing(let player):
+            case .playing(let player):
                 player.pause()
-                view.setState(.Paused(player), animated: true)
+                view.setState(.paused(player), animated: true)
             }
         }
         
-        private func trashButtonTapped(view: AudioRecorderView) {
+        fileprivate func trashButtonTapped(_ view: AudioRecorderView) {
             switch self {
-            case .Paused(let player):
-                view.confirmDeletionOfFileAtURL(player.audioFileURL) {
-                    view.setState(.PreRecording(view.permissionDelegate.recordPermission()), animated: true)
+            case .paused(let player):
+                view.confirmDeletionOfFileAtURL(player.audioFileURL as URL) {
+                    view.setState(.preRecording(view.permissionDelegate.recordPermission()), animated: true)
                 }
-            case .Playing(let player):
-                view.confirmDeletionOfFileAtURL(player.audioFileURL) {
-                    view.setState(.PreRecording(view.permissionDelegate.recordPermission()), animated: true)
+            case .playing(let player):
+                view.confirmDeletionOfFileAtURL(player.audioFileURL as URL) {
+                    view.setState(.preRecording(view.permissionDelegate.recordPermission()), animated: true)
                 }
                 
             default: break
             }
         }
         
-        private func setPlaybackTime(time: NSTimeInterval) {
+        fileprivate func setPlaybackTime(_ time: TimeInterval) {
             switch self {
-            case .Paused(let player):
+            case .paused(let player):
                 player.currentTime = time
-            case .Playing(let player):
+            case .playing(let player):
                 player.currentTime = time
             default: break
             }
         }
         
-        private func doneButtonTapped(view: AudioRecorderView) {
+        fileprivate func doneButtonTapped(_ view: AudioRecorderView) {
             switch self {
-            case .Paused(let player):
-                view.didFinishRecordingAudioFile(player.audioFileURL)
-            case .Playing(let player):
-                view.didFinishRecordingAudioFile(player.audioFileURL)
+            case .paused(let player):
+                view.didFinishRecordingAudioFile(player.audioFileURL as URL)
+            case .playing(let player):
+                view.didFinishRecordingAudioFile(player.audioFileURL as URL)
             default:
                 break // Done button is disabled. This should never happen.
             }
         }
         
-        private func cancelButtonTapped(view: AudioRecorderView) {
+        fileprivate func cancelButtonTapped(_ view: AudioRecorderView) {
             switch self {
-            case .Paused(let player):
-                view.confirmDeletionOfFileAtURL(player.audioFileURL, onConfirmation: view.didCancel)
-            case .Playing(let player):
-                view.confirmDeletionOfFileAtURL(player.audioFileURL, onConfirmation: view.didCancel)
+            case .paused(let player):
+                view.confirmDeletionOfFileAtURL(player.audioFileURL as URL, onConfirmation: view.didCancel)
+            case .playing(let player):
+                view.confirmDeletionOfFileAtURL(player.audioFileURL as URL, onConfirmation: view.didCancel)
                 recordButtonTapped(view) // pause the player
-            case .Recording(let recorder) where recorder.recordedFileURL != nil:
-                view.confirmDeletionOfFileAtURL(recorder.recordedFileURL!, onConfirmation: view.didCancel)
+            case .recording(let recorder) where recorder.recordedFileURL != nil:
+                view.confirmDeletionOfFileAtURL(recorder.recordedFileURL! as URL, onConfirmation: view.didCancel)
                 recordButtonTapped(view) // stop recording 
             default:
                 view.didCancel()
@@ -215,23 +215,23 @@ public class AudioRecorderView: UIView {
     
     // MARK: life cycle
     
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         state.transitionToState(self, animated: false)
     }
     
     // MARK: callbacks
 
-    public var didCancel: ()->() = {}
-    public var presentAlert: UIAlertController->() = { _ in }
-    public var didFinishRecordingAudioFile: NSURL->() = { _ in }
-    public var completeButtonTitle: String {
+    open var didCancel: ()->() = {}
+    open var presentAlert: (UIAlertController)->() = { _ in }
+    open var didFinishRecordingAudioFile: (URL)->() = { _ in }
+    open var completeButtonTitle: String {
         set {
-            self.doneButton.setTitle(newValue, forState: .Normal)
+            self.doneButton.setTitle(newValue, for: UIControlState())
             self.doneButton.accessibilityLabel = newValue
             self.doneButton.accessibilityIdentifier = newValue
         } get {
-            return self.doneButton.titleForState(.Normal) ?? ""
+            return self.doneButton.title(for: UIControlState()) ?? ""
         }
     }
     
@@ -256,19 +256,19 @@ public class AudioRecorderView: UIView {
     
     // MARK: UI Actions
     
-    @IBAction func recordButtonTapped(sender: AnyObject) {
+    @IBAction func recordButtonTapped(_ sender: AnyObject) {
         state.recordButtonTapped(self)
     }
     
-    @IBAction func trashButtonTapped(sender: AnyObject) {
+    @IBAction func trashButtonTapped(_ sender: AnyObject) {
         state.trashButtonTapped(self)
     }
     
-    @IBAction func cancelButtonTapped(sender: AnyObject) {
+    @IBAction func cancelButtonTapped(_ sender: AnyObject) {
         state.cancelButtonTapped(self)
     }
     
-    @IBAction func doneButtonTapped(sender: AnyObject) {
+    @IBAction func doneButtonTapped(_ sender: AnyObject) {
         state.doneButtonTapped(self)
     }
 }
@@ -277,10 +277,10 @@ public class AudioRecorderView: UIView {
 
 extension AudioRecorderView {
 
-    private func notifyUserOfError(error: NSError, title: String, dismissToState: AudioRecorderView.State = .PreRecording(.Granted)) {
-        let errorController = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .Alert)
-        let dismiss = NSLocalizedString("Dismiss", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Dismiss an error dialog")
-        errorController.addAction(UIAlertAction(title: dismiss, style: .Default) { _ in
+    fileprivate func notifyUserOfError(_ error: NSError, title: String, dismissToState: AudioRecorderView.State = .preRecording(.granted)) {
+        let errorController = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+        let dismiss = NSLocalizedString("Dismiss", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Dismiss an error dialog")
+        errorController.addAction(UIAlertAction(title: dismiss, style: .default) { _ in
             self.setState(dismissToState, animated: true)
         })
         
@@ -291,7 +291,7 @@ extension AudioRecorderView {
 
 // MARK: Audio Recording
 
-private let recordingErrorTitle = NSLocalizedString("Recording Error", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "title for a recording error")
+private let recordingErrorTitle = NSLocalizedString("Recording Error", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "title for a recording error")
 
 extension AudioRecorderView: AudioRecorderDelegate {
     func startRecording() {
@@ -301,22 +301,22 @@ extension AudioRecorderView: AudioRecorderDelegate {
         do {
             try recorder.startRecording()
             
-            setState(.Recording(recorder), animated: true)
+            setState(.recording(recorder), animated: true)
         } catch let error as NSError {
             notifyUserOfError(error, title: recordingErrorTitle)
         }
     }
     
-    func finishRecordingWithRecorder(recorder: AudioRecorder) {
+    func finishRecordingWithRecorder(_ recorder: AudioRecorder) {
         recorder.stopRecording()
 
         do {
             if let fileURL = recorder.recordedFileURL {
                 let player = try AudioPlayer(audioFileURL: fileURL, ticks:meterTicks)
                 player.delegate = self
-                setState(.Paused(player), animated: true)
+                setState(.paused(player), animated: true)
             } else {
-                let error = NSError(domain: "com.instructure", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("The file does not exist.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Error message for a file missing")])
+                let error = NSError(domain: "com.instructure", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("The file does not exist.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Error message for a file missing")])
                 notifyUserOfError(error, title: recordingErrorTitle)
             }
         } catch let error as NSError {
@@ -324,7 +324,7 @@ extension AudioRecorderView: AudioRecorderDelegate {
         }
     }
     
-    func recorder(recorder: AudioRecorder, didFinishRecordingWithError error: NSError?) {
+    func recorder(_ recorder: AudioRecorder, didFinishRecordingWithError error: NSError?) {
         if let error = error {
             notifyUserOfError(error, title: recordingErrorTitle)
         } else {
@@ -332,7 +332,7 @@ extension AudioRecorderView: AudioRecorderDelegate {
         }
     }
     
-    func recorder(recorder: AudioRecorder, progressWithTime time: NSTimeInterval, meter: Int) {
+    func recorder(_ recorder: AudioRecorder, progressWithTime time: TimeInterval, meter: Int) {
         volumeMeterView.level = meter
         durationLabel.text = time.formatted(true)
     }
@@ -342,15 +342,15 @@ extension AudioRecorderView: AudioRecorderDelegate {
 // MARK: Audio Playback
 
 extension AudioRecorderView: AudioPlayerDelegate {
-    func player(player: AudioPlayer, finishedWithError error: NSError?) {
+    func player(_ player: AudioPlayer, finishedWithError error: NSError?) {
         if let error = error {
-            notifyUserOfError(error, title: NSLocalizedString("Playback Error", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Title for playback error messages"), dismissToState: .Paused(player))
+            notifyUserOfError(error, title: NSLocalizedString("Playback Error", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Title for playback error messages"), dismissToState: .paused(player))
         } else {
-            setState(.Paused(player), animated: true)
+            setState(.paused(player), animated: true)
         }
     }
     
-    func player(player: AudioPlayer, progressUpdatedWithCurrentTime currentTime: NSTimeInterval, meter: Int) {
+    func player(_ player: AudioPlayer, progressUpdatedWithCurrentTime currentTime: TimeInterval, meter: Int) {
         
         playbackScrubber.update(player.duration, currentTime: player.currentTime)
         
@@ -358,7 +358,7 @@ extension AudioRecorderView: AudioPlayerDelegate {
     }
     
     
-    @IBAction func scrub(sender: AnyObject) {
+    @IBAction func scrub(_ sender: AnyObject) {
         state.setPlaybackTime(playbackScrubber.currentTime)
     }
 }
@@ -367,18 +367,18 @@ extension AudioRecorderView: AudioPlayerDelegate {
 // MARK: file management
 
 extension AudioRecorderView {
-    func confirmDeletionOfFileAtURL(url: NSURL, onConfirmation: ()->()) {
-        let message = NSLocalizedString("Delete recording?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "message for delete dialog of audio recorder")
-        let controller = UIAlertController(title: message, message: nil, preferredStyle: .ActionSheet)
+    func confirmDeletionOfFileAtURL(_ url: URL, onConfirmation: @escaping ()->()) {
+        let message = NSLocalizedString("Delete recording?", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "message for delete dialog of audio recorder")
+        let controller = UIAlertController(title: message, message: nil, preferredStyle: .actionSheet)
         
-        let delete = NSLocalizedString("Delete", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Delete button")
-        controller.addAction(UIAlertAction(title: delete, style: .Destructive) { _ in
-            do { try NSFileManager.defaultManager().removeItemAtURL(url) } catch { }
+        let delete = NSLocalizedString("Delete", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Delete button")
+        controller.addAction(UIAlertAction(title: delete, style: .destructive) { _ in
+            do { try FileManager.default.removeItem(at: url) } catch { }
             onConfirmation()
         })
         
-        let cancel = NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Cancel button title")
-        controller.addAction(UIAlertAction(title: cancel, style: .Cancel) { _ in
+        let cancel = NSLocalizedString("Cancel", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.MediaKit")!, value: "", comment: "Cancel button title")
+        controller.addAction(UIAlertAction(title: cancel, style: .cancel) { _ in
             // do nothing!
         })
         

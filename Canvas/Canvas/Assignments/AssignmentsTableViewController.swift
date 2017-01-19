@@ -21,22 +21,22 @@ import AssignmentKit
 import SoPretty
 import EnrollmentKit
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 import SoPersistent
 import Result
 import TechDebt
 
 extension Course {
-    func totalGrade(gradingPeriodItem: GradingPeriodItem?) -> String {
+    func totalGrade(_ gradingPeriodItem: GradingPeriodItem?) -> String {
         let grades: [String?]
         let empty = "-"
 
         if let gradingPeriodItem = gradingPeriodItem {
             switch gradingPeriodItem {
-            case .Some(let gradingPeriod):
+            case .some(let gradingPeriod):
                 grades = [visibleGradingPeriodGrade(gradingPeriod.id), visibleGradingPeriodScore(gradingPeriod.id)]
-            case .All:
+            case .all:
                 guard totalForAllGradingPeriodsEnabled else {
                     return empty
                 }
@@ -48,7 +48,7 @@ extension Course {
 
         let totalGrade = grades
             .flatMap { $0 }
-            .joinWithSeparator("  ")
+            .joined(separator: "  ")
 
         if totalGrade.isEmpty {
             return empty
@@ -59,10 +59,10 @@ extension Course {
 }
 
 extension Assignment {
-    func colorfulViewModel(dataSource: EnrollmentsDataSource) -> ColorfulViewModel {
-        let model = ColorfulViewModel(style: .Basic)
+    func colorfulViewModel(_ dataSource: EnrollmentsDataSource) -> ColorfulViewModel {
+        let model = ColorfulViewModel(features: .icon)
         model.title.value = name
-        model.color <~ dataSource.producer(ContextID(id: courseID, context: .Course)).map { $0?.color ?? .prettyGray() }
+        model.color <~ dataSource.color(for: .course(withID: courseID))
         model.icon.value = icon
         return model
     }
@@ -71,16 +71,16 @@ extension Assignment {
 class AssignmentsTableViewController: Assignment.TableViewController, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
     let session: Session
     let courseID: String
-    let route: (UIViewController, NSURL)->()
+    let route: (UIViewController, URL)->()
     
     var header: GradingPeriod.Header!
     var searchController: UISearchController!
     
     var multipleGradingPeriodsEnabled: Bool {
-        return (session.enrollmentsDataSource[ContextID(id: courseID, context: .Course)] as? Course)?.multipleGradingPeriodsEnabled ?? false
+        return (session.enrollmentsDataSource[ContextID(id: courseID, context: .course)] as? Course)?.multipleGradingPeriodsEnabled ?? false
     }
 
-    init(session: Session, courseID: String, route: (UIViewController, NSURL)->()) throws {
+    init(session: Session, courseID: String, route: @escaping (UIViewController, URL)->()) throws {
         self.session = session
         self.courseID = courseID
         self.route = route
@@ -89,7 +89,7 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
 
         header = try GradingPeriod.Header(session: self.session, courseID: self.courseID, viewController: self, includeGradingPeriods: multipleGradingPeriodsEnabled)
         header.selectedGradingPeriod.producer
-            .startWithNext { [weak self] item in
+            .startWithValues { [weak self] item in
                 guard let me = self else { return }
                 
                 do {
@@ -100,8 +100,6 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
             }
 
         title = NSLocalizedString("Assignments", comment: "Title for Assignments view controller")
-
-        cbi_canBecomeMaster = true
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -114,7 +112,7 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         definesPresentationContext = true
 
         if multipleGradingPeriodsEnabled {
-            header.tableView.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(view.bounds), height: 44)
+            header.tableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 44)
             tableView.tableHeaderView = header.tableView
 //            configureSearchController(header.tableView)
         } else {
@@ -122,17 +120,17 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        header.tableView.indexPathsForSelectedRows?.forEach { header.tableView.deselectRowAtIndexPath($0, animated: true) }
+        header.tableView.indexPathsForSelectedRows?.forEach { header.tableView.deselectRow(at: $0, animated: true) }
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let assignment = collection[indexPath]
         route(self, assignment.htmlURL)
     }
 
-    private func configureSearchController(table: UITableView) {
+    fileprivate func configureSearchController(_ table: UITableView) {
         // Initialize and perform a minimum configuration to the search controller.
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -145,59 +143,56 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
 
         // TODO: When removing the custom split stuff, we should nuke this code
         // if iPad...
-        if self.traitCollection.horizontalSizeClass == .Regular && self.traitCollection.verticalSizeClass == .Regular {
+        if self.traitCollection.horizontalSizeClass == .regular && self.traitCollection.verticalSizeClass == .regular {
             searchController.hidesNavigationBarDuringPresentation = false
         }
         
         if let refresher = refresher {
-            refresher.refreshingBegan.observeNext({ [weak self] in
-                self?.searchController.searchBar.userInteractionEnabled = false
+            refresher.refreshingBegan.observeValues({ [weak self] in
+                self?.searchController.searchBar.isUserInteractionEnabled = false
             })
             
-            refresher.refreshingCompleted.observeNext({ [weak self] _ in
-                self?.searchController.searchBar.userInteractionEnabled = true
+            refresher.refreshingCompleted.observeValues({ [weak self] _ in
+                self?.searchController.searchBar.isUserInteractionEnabled = true
             })
         }
     }
     
-    private func updateCollections(courseID: String, gradingPeriodID: String?, name: String? = nil) throws {
+    fileprivate func updateCollections(_ courseID: String, gradingPeriodID: String?, name: String? = nil) throws {
         let collection = try self.collection(session, courseID: courseID, gradingPeriodID: gradingPeriodID, name: name)
         
         let invalidGradingPeriods = try GradingPeriod.gradingPeriodIDs(session, courseID: courseID, excludingGradingPeriodID: gradingPeriodID)
         let assignments = try Assignment.refreshSignalProducer(session, courseID: courseID, gradingPeriodID: gradingPeriodID, invalidatingGradingPeriodIDs: invalidGradingPeriods, cacheKey: cacheKey)
         let grades = try Grade.refreshSignalProducer(session, courseID: courseID, gradingPeriodID: gradingPeriodID).map { _ in () }
-        let sync: SignalProducer<SignalProducer<Void, NSError>, NSError> = SignalProducer(values: [assignments, grades])
+        let sync: SignalProducer<SignalProducer<Void, NSError>, NSError> = SignalProducer([assignments, grades])
         
         let key = cacheKey(courseID, gradingPeriodID: gradingPeriodID)
-        let refresher = SignalProducerRefresher(refreshSignalProducer: sync.flatten(.Merge), scope: session.refreshScope, cacheKey: key)
+        let refresher = SignalProducerRefresher(refreshSignalProducer: sync.flatten(.merge), scope: session.refreshScope, cacheKey: key)
         
         prepare(collection, refresher: refresher) { [weak self] (assignment: Assignment) -> ColorfulViewModel in
-            guard let me = self else { return ColorfulViewModel(style: .Basic) }
+            guard let me = self else { return ColorfulViewModel(features: .icon) }
             return me.viewModelFactory(assignment)
         }
-        
-        // manually show the refresh control because of some bug somewhere
-        if refresher.shouldRefresh  {
-            tableView.contentOffset = CGPoint(x: 0, y: tableView.contentOffset.y - refresher.refreshControl.frame.size.height)
-        }
 
-        if let sc = searchController where sc.active {
+        if let sc = searchController, sc.isActive {
             refreshControl = nil
         }
-        
-        refresher.refresh(false)
+
+        if isViewLoaded {
+            refresher.refresh(false)
+        }
     }
     
-    func collection(session: Session, courseID: String, gradingPeriodID: String?, name: String? = nil) throws -> FetchedCollection<Assignment> {
+    func collection(_ session: Session, courseID: String, gradingPeriodID: String?, name: String? = nil) throws -> FetchedCollection<Assignment> {
         return try Assignment.collectionByDueStatus(session, courseID: courseID, gradingPeriodID: gradingPeriodID, filteredByName: name)
     }
 
-    func viewModelFactory(assignment: Assignment) -> ColorfulViewModel {
+    func viewModelFactory(_ assignment: Assignment) -> ColorfulViewModel {
         let dataSource = session.enrollmentsDataSource
         return assignment.colorfulViewModel(dataSource)
     }
 
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         let searchString = searchController.searchBar.text ?? ""
         
         let fuzzySearchString = self.fuzzySearchStringFormatter(searchString)
@@ -209,43 +204,43 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         }
     }
     
-    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         guard let r = refresher else { return true }
         
         return !r.isRefreshing
     }
     
-    private func fuzzySearchStringFormatter(searchString: String) -> String {
+    fileprivate func fuzzySearchStringFormatter(_ searchString: String) -> String {
        let searchWithWildcards = NSMutableString(string: "*")
         
-        searchString.enumerateSubstringsInRange(searchString.startIndex..<searchString.endIndex, options: NSStringEnumerationOptions.ByComposedCharacterSequences, { (substring, substringRange, enclosingRange, stop) -> () in
+        searchString.enumerateSubstrings(in: searchString.startIndex..<searchString.endIndex, options: [.byComposedCharacterSequences], { (substring, substringRange, enclosingRange, stop) -> () in
             if let substring = substring {
-                searchWithWildcards.appendString(substring)
-                searchWithWildcards.appendString("*")
+                searchWithWildcards.append(substring)
+                searchWithWildcards.append("*")
             }
         })
         
         return searchWithWildcards as String
     }
 
-    func willDismissSearchController(searchController: UISearchController) {
+    func willDismissSearchController(_ searchController: UISearchController) {
         refresher?.makeRefreshable(self)
     }
 }
 
-func cacheKey(courseID: String, gradingPeriodID: String?) -> String {
-    return ["assignments", courseID, gradingPeriodID].flatMap { $0 }.joinWithSeparator("//")
+func cacheKey(_ courseID: String, gradingPeriodID: String?) -> String {
+    return ["assignments", courseID, gradingPeriodID].flatMap { $0 }.joined(separator: "//")
 }
 
 class GradesTableViewController: AssignmentsTableViewController {
     let gradesCollection: FetchedCollection<Grade>
 
-    override init(session: Session, courseID: String, route: (UIViewController, NSURL) -> ()) throws {
+    override init(session: Session, courseID: String, route: @escaping (UIViewController, URL) -> ()) throws {
         self.gradesCollection = try Grade.collectionByCourseID(session, courseID: courseID)
 
         try super.init(session: session, courseID: courseID, route: route)
 
-        guard let course = session.enrollmentsDataSource[ContextID(id: courseID, context: .Course)] as? Course else {
+        guard let course = session.enrollmentsDataSource[ContextID(id: courseID, context: .course)] as? Course else {
             ❨╯°□°❩╯⌢"We should have a course."
         }
 
@@ -253,15 +248,13 @@ class GradesTableViewController: AssignmentsTableViewController {
         let grades = gradesCollection.collectionUpdates
 
         header.grade.value = course.totalGrade(header.selectedGradingPeriod.value)
-        header.grade <~ combineLatest(gradingPeriod, grades)
-            .observeOn(UIScheduler())
+        header.grade <~ Signal.combineLatest(gradingPeriod, grades)
+            .observe(on: UIScheduler())
             .map { gradingPeriodItem, _ in
                 return course.totalGrade(gradingPeriodItem)
             }
 
         title = NSLocalizedString("Grades", comment: "Title for Grades view controller")
-        
-        cbi_canBecomeMaster = true
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -271,17 +264,17 @@ class GradesTableViewController: AssignmentsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        header.tableView.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(view.bounds), height: header.includeGradingPeriods ? 88 : 44)
+        header.tableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: header.includeGradingPeriods ? 88 : 44)
         tableView.tableHeaderView = header.tableView
 //        configureSearchController(header.tableView)
     }
 
-    override func viewModelFactory(assignment: Assignment) -> ColorfulViewModel {
+    override func viewModelFactory(_ assignment: Assignment) -> ColorfulViewModel {
         let dataSource = session.enrollmentsDataSource
         return assignment.gradeColorfulViewModel(dataSource)
     }
 
-    override func collection(session: Session, courseID: String, gradingPeriodID: String?, name: String? = nil) throws -> FetchedCollection<Assignment> {
+    override func collection(_ session: Session, courseID: String, gradingPeriodID: String?, name: String? = nil) throws -> FetchedCollection<Assignment> {
         return try Assignment.collectionByAssignmentGroup(session, courseID: courseID, gradingPeriodID: gradingPeriodID, filteredByName: name)
     }
 }

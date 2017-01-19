@@ -33,29 +33,29 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        activityIndicator.hidden = true
+        activityIndicator.isHidden = true
     }
 
-    @IBAction func loadButtonTapped(sender: UIButton) {
-        loadButton.hidden = true
+    @IBAction func loadButtonTapped(_ sender: UIButton) {
+        loadButton.isHidden = true
         activityIndicator.startAnimating()
-        activityIndicator.hidden = false
+        activityIndicator.isHidden = false
 
         loadPreSubmissionFlowDocument()
     }
 
     func loadLocalCanvadocsDocument() {
-        let file = NSBundle.mainBundle().URLForResource("file_firstpage", withExtension: "pdf")!
-        let annots = NSBundle.mainBundle().URLForResource("annotations", withExtension: "xfdf")!
+        let file = Bundle.main.url(forResource: "file_firstpage", withExtension: "pdf")!
+        let annots = Bundle.main.url(forResource: "annotations", withExtension: "xfdf")!
 
         canvadocsPresenter = CanvadocsPDFDocumentPresenter(localPDFURL: file, localXFDFURL: annots)
         let vc = canvadocsPresenter.getPDFViewController()
         let nav = UINavigationController(rootViewController: vc)
-        self.presentViewController(nav, animated: true, completion: nil)
+        self.present(nav, animated: true, completion: nil)
     }
 
     func loadRemoteCanvadocsDocument() {
-//        let sessionURL = NSURL(string: "https://canvadocs-edge.insops.net/1/sessions/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjIjoxNDQ2MjE1Nzc3MzkxLCJkIjoiOHlXLTJMMmQwVm1ZZEg5MWpCZ2F2X2xQdDlPN21WIiwiZSI6MTQ0NjgyMDU3NywiYSI6eyJjIjoiY2FudmFkb2NzX2FkbWluIiwicCI6InJlYWR3cml0ZSIsInUiOiJjYW52YWRvY3NfYWRtaW4iLCJuIjoiQ2FudmFkb2NzIFVzZXIiLCJyIjoiQWRtaW4ifSwiaWF0IjoxNDQ2MjE1Nzc3fQ.L7Q4Mxw9eQ7HP_a7_4QRCfiX8zcBoqNDAo_pvh_e0lM")!
+//        let sessionURL = URL(string: "https://canvadocs-edge.insops.net/1/sessions/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjIjoxNDQ2MjE1Nzc3MzkxLCJkIjoiOHlXLTJMMmQwVm1ZZEg5MWpCZ2F2X2xQdDlPN21WIiwiZSI6MTQ0NjgyMDU3NywiYSI6eyJjIjoiY2FudmFkb2NzX2FkbWluIiwicCI6InJlYWR3cml0ZSIsInUiOiJjYW52YWRvY3NfYWRtaW4iLCJuIjoiQ2FudmFkb2NzIFVzZXIiLCJyIjoiQWRtaW4ifSwiaWF0IjoxNDQ2MjE1Nzc3fQ.L7Q4Mxw9eQ7HP_a7_4QRCfiX8zcBoqNDAo_pvh_e0lM")!
 //
 //        DocumentPresenter.loadPDFViewController(sessionURL) { (viewController, error) in
 //            self.activityIndicator.stopAnimating()
@@ -76,29 +76,29 @@ class ViewController: UIViewController {
 
     func loadPreSubmissionFlowDocument() {
         func pdfPath() -> String {
-            let pathToDocumentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-            return (pathToDocumentsFolder as NSString).stringByAppendingPathComponent("/file_firstpage.pdf")
+            let pathToDocumentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+            return (pathToDocumentsFolder as NSString).appendingPathComponent("/file_firstpage.pdf")
         }
 
-        let theFileManager = NSFileManager.defaultManager()
+        let theFileManager = FileManager.default
 
-        if theFileManager.fileExistsAtPath(pdfPath()) {
+        if theFileManager.fileExists(atPath: pdfPath()) {
             print("File Found!")
         }
         else {
             // Copy the file from the Bundle and write it to the Device:
-            let pathToBundledPDF = NSBundle.mainBundle().pathForResource("file_firstpage", ofType: "pdf")
+            let pathToBundledPDF = Bundle.main.path(forResource: "file_firstpage", ofType: "pdf")
             let pathToDevice = pdfPath()
 
             // Here is where I get the error:
-            let _ = try? theFileManager.copyItemAtPath(pathToBundledPDF!, toPath: pathToDevice)
+            let _ = try? theFileManager.copyItem(atPath: pathToBundledPDF!, toPath: pathToDevice)
         }
 
-        let pdfURL = NSURL(fileURLWithPath: pdfPath())
+        let pdfURL = URL(fileURLWithPath: pdfPath())
 
         preSubmissionPresenter = PreSubmissionPDFDocumentPresenter(documentURL: pdfURL, session: Session.nas)
         let vc = preSubmissionPresenter.getPDFViewController()
         let nav = UINavigationController(rootViewController: vc)
-        self.presentViewController(nav, animated: true, completion: nil)
+        self.present(nav, animated: true, completion: nil)
     }
 }

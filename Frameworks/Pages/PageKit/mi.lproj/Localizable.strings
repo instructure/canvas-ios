@@ -1,13 +1,13 @@
 /* all pages segmented control title */
 "All Pages" = "Whārangi Katoa";
 
-/* badge indicating front page */
+/* front page segmented control title */
 "Front Page" = "Whārangi Mua";
 
-/* Generic button to dismiss the popup message */
+/* (No Commment) */
 "Okay" = "Te pai";
 
-/* The page is locked by the teacher */
+/* (No Commment) */
 "Page Locked" = "Maukatia Whārangi";
 
 /* Page list fails */

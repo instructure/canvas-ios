@@ -29,15 +29,15 @@ let RemindableActionURLKey = "RemindableActionURL"
 protocol Remindable {
     var id: String { get }
     var reminderBody: String { get }
-    var defaultReminderDate: NSDate { get }
+    var defaultReminderDate: Date { get }
 
-    func scheduleReminder(atTime date: NSDate, actionURL: NSURL)
+    func scheduleReminder(atTime date: Date, actionURL: URL)
     func scheduledReminder() -> UILocalNotification?
     func cancelReminder()
 }
 
 extension Remindable {
-    func scheduleReminder(atTime date: NSDate, actionURL: NSURL) {
+    func scheduleReminder(atTime date: Date, actionURL: URL) {
         if let _ = scheduledReminder() {
             cancelReminder()
         }
@@ -46,16 +46,16 @@ extension Remindable {
         notification.alertBody = reminderBody
         notification.alertAction = NSLocalizedString("View", comment: "Name of action when viewing a reminder")
         notification.fireDate = date
-        notification.timeZone = NSTimeZone.localTimeZone()
-        notification.userInfo = [RemindableIDKey: id, RemindableActionURLKey: actionURL.absoluteString!]
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        notification.timeZone = TimeZone.autoupdatingCurrent
+        notification.userInfo = [RemindableIDKey: id, RemindableActionURLKey: actionURL.absoluteString]
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
 
     func scheduledReminder() -> UILocalNotification? {
-        let application = UIApplication.sharedApplication()
+        let application = UIApplication.shared
 
         let notes = application.scheduledLocalNotifications?.filter {
-            guard let id = $0.userInfo?[RemindableIDKey] as? String where id == self.id else { return false}
+            guard let id = $0.userInfo?[RemindableIDKey] as? String, id == self.id else { return false}
             return true
         }
         return notes?.first
@@ -63,7 +63,7 @@ extension Remindable {
 
     func cancelReminder() {
         if let reminder = self.scheduledReminder() {
-            UIApplication.sharedApplication().cancelLocalNotification(reminder)
+            UIApplication.shared.cancelLocalNotification(reminder)
         }
     }
 }
@@ -71,26 +71,26 @@ extension Remindable {
 import AssignmentKit
 
 extension Assignment: Remindable {
-    private static var dueDateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .MediumStyle
-        dateFormatter.timeStyle = .ShortStyle
+    fileprivate static var dueDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
         return dateFormatter
     }()
 
     var reminderBody: String {
         if let dueDate = due {
-            return String(format: NSLocalizedString("Assignment reminder: %@ is due at %@", comment: ""), name, Assignment.dueDateFormatter.stringFromDate(dueDate))
+            return String(format: NSLocalizedString("Assignment reminder: %@ is due at %@", comment: ""), name, Assignment.dueDateFormatter.string(from: dueDate))
         } else {
             return String(format: NSLocalizedString("Assignment reminder: %@", comment: ""), name)
         }
     }
 
-    var defaultReminderDate: NSDate {
+    var defaultReminderDate: Date {
         if let dueDate = due {
             return dueDate - 1.daysComponents // 1 day before the assignment is due
         } else {
-            return NSDate() + 1.daysComponents // if no due date, just put me 1 day into the future, I can change it if needed
+            return Date() + 1.daysComponents // if no due date, just put me 1 day into the future, I can change it if needed
         }
     }
 }
@@ -98,10 +98,10 @@ extension Assignment: Remindable {
 import CalendarKit
 
 extension CalendarEvent: Remindable {
-    private static var startAtDateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .MediumStyle
-        dateFormatter.timeStyle = .ShortStyle
+    fileprivate static var startAtDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
         return dateFormatter
     }()
 
@@ -110,21 +110,23 @@ extension CalendarEvent: Remindable {
             return ""
         }
         switch type {
-        case .Assignment, .Quiz, .Discussion where endAt != nil:
-            return String(format: NSLocalizedString("Assignment reminder: %@ is due at %@", comment: ""), title, Assignment.dueDateFormatter.stringFromDate(endAt!))
-        case .CalendarEvent where startAt != nil:
-            return String(format: NSLocalizedString("Event reminder: %@ will begin at %@", comment: ""), title, CalendarEvent.startAtDateFormatter.stringFromDate(startAt!))
-        case .Assignment, .Quiz, .Discussion, .CalendarEvent: // "Case will never be executed" my BUTT! It has one less statement than the other two!
+        case .assignment where endAt != nil,
+             .quiz where endAt != nil,
+             .discussion where endAt != nil:
+            return String(format: NSLocalizedString("Assignment reminder: %@ is due at %@", comment: ""), title, Assignment.dueDateFormatter.string(from: endAt!))
+        case .calendarEvent where startAt != nil:
+            return String(format: NSLocalizedString("Event reminder: %@ will begin at %@", comment: ""), title, CalendarEvent.startAtDateFormatter.string(from: startAt!))
+        case .assignment, .quiz, .discussion, .calendarEvent: // "Case will never be executed" my BUTT! It has one less statement than the other two!
             return String(format: NSLocalizedString("Event reminder: %@", comment: ""), title)
         default:
             return "" // For our purposes, there should always be a time and title attached
         }
     }
 
-    var defaultReminderDate: NSDate {
-        guard let startAt = startAt else { return NSDate()+1.weeksComponents }
+    var defaultReminderDate: Date {
+        guard let startAt = startAt else { return Date()+1.weeksComponents }
         switch type {
-        case .Assignment:
+        case .assignment:
             return startAt - 1.daysComponents // If it's an assignment, remind me 1 day before it's due by default
         default:
             return startAt - 1.hoursComponents // If it's some sort of event, 1 hour prior to the event?

@@ -1,0 +1,135 @@
+  {
+  "group_weight": 25,
+  "id": 1030331,
+  "name": "flashcards",
+  "position": 1,
+  "rules": {},
+  "assignments": [
+                  {
+                  "assignment_group_id": 1030331,
+                  "automatic_peer_reviews": false,
+                  "description": "<table style=\"float: left;\" border=\"0\"><tbody>\n<tr>\n<td>\n<img src=\"https://mobiledev.instructure.com/courses/24219/files/31675638/download?verifier=X9jCvIM2FbSxNBU3YALwZ4vrcDIqpn05KW4CshH9\" alt=\"\" width=\"58\" height=\"53\"><span style=\"font-size: xx-large;\">UIView</span>\n</td>\r\n<td>The basic view abstraction within UIKit. (Very Important)</td>\r\n</tr>\n<tr>\n<td style=\"text-align: center;\">\r\n<table border=\"0\"><tbody><tr>\n<td><img src=\"https://mobiledev.instructure.com/courses/24219/files/31675638/download?verifier=X9jCvIM2FbSxNBU3YALwZ4vrcDIqpn05KW4CshH9\" alt=\"\" width=\"58\" height=\"53\"></td>\r\n</tr></tbody></table>\n<span style=\"font-size: xx-large;\">UIButton</span>\n</td>\r\n<td>Very useful for tapping.</td>\r\n</tr>\n<tr>\n<td>\r\n<table border=\"0\"><tbody><tr>\n<td><img src=\"https://mobiledev.instructure.com/courses/24219/files/31675638/download?verifier=X9jCvIM2FbSxNBU3YALwZ4vrcDIqpn05KW4CshH9\" alt=\"\" width=\"58\" height=\"53\"></td>\r\n</tr></tbody></table>\n<span style=\"font-size: xx-large;\">UITextField</span>\n</td>\r\n<td style=\"text-align: center;\">This is how you get words from your users.</td>\r\n</tr>\n<tr>\n<td>\r\n<table border=\"0\"><tbody><tr>\n<td><img src=\"https://mobiledev.instructure.com/courses/24219/files/31675638/download?verifier=X9jCvIM2FbSxNBU3YALwZ4vrcDIqpn05KW4CshH9\" alt=\"\" width=\"58\" height=\"53\"></td>\r\n</tr></tbody></table>\n<span style=\"font-size: xx-large;\">UIApplication</span>\n</td>\r\n<td>Don't override this. You shouldn't ever need to.</td>\r\n</tr>\n<tr>\n<td>\r\n<table border=\"0\"><tbody><tr>\n<td><img src=\"https://mobiledev.instructure.com/courses/24219/files/31675638/download?verifier=X9jCvIM2FbSxNBU3YALwZ4vrcDIqpn05KW4CshH9\" alt=\"\" width=\"58\" height=\"53\"></td>\r\n</tr></tbody></table>\n<span style=\"font-size: xx-large;\">UIScrollView</span>\n</td>\r\n<td>Quite possibly the most important class in UIKit.</td>\r\n</tr>\n<tr>\n<td>\r\n<table border=\"0\"><tbody><tr>\n<td><img src=\"https://mobiledev.instructure.com/courses/24219/files/31675638/download?verifier=X9jCvIM2FbSxNBU3YALwZ4vrcDIqpn05KW4CshH9\" alt=\"\" width=\"58\" height=\"53\"></td>\r\n</tr></tbody></table>\n<span style=\"font-size: xx-large;\">UITableView</span>\n</td>\r\n<td>Nothing more than an awesome incarnation of UIScrollView.</td>\r\n</tr>\n<tr>\n<td>\r\n<table border=\"0\"><tbody><tr>\n<td><img src=\"https://mobiledev.instructure.com/courses/24219/files/31675638/download?verifier=X9jCvIM2FbSxNBU3YALwZ4vrcDIqpn05KW4CshH9\" alt=\"\" width=\"58\" height=\"53\"></td>\r\n</tr></tbody></table>\n<span style=\"font-size: xx-large;\">UILabel</span>\n</td>\r\n<td style=\"text-align: center;\">For labeling things. Good name, right?</td>\r\n</tr>\n<tr>\n<td>\r\n<table border=\"0\"><tbody><tr>\n<td><img src=\"https://mobiledev.instructure.com/courses/24219/files/31675638/download?verifier=X9jCvIM2FbSxNBU3YALwZ4vrcDIqpn05KW4CshH9\" alt=\"\" width=\"58\" height=\"53\"></td>\r\n</tr></tbody></table>\n<span style=\"font-size: xx-large;\">UIApplicationDelegate</span>\n</td>\r\n<td>The protocol you should implement to make your UIApplication useful.</td>\r\n</tr>\n</tbody></table>",
+                  "due_at": null,
+                  "grade_group_students_individually": false,
+                  "grading_standard_id": null,
+                  "grading_type": "not_graded",
+                  "group_category_id": null,
+                  "id": 2972519,
+                  "lock_at": null,
+                  "peer_reviews": false,
+                  "points_possible": null,
+                  "position": 1,
+                  "unlock_at": null,
+                  "course_id": 24219,
+                  "name": "UIKit",
+                  "submission_types": [
+                                       "not_graded"
+                                       ],
+                  "muted": false,
+                  "html_url": "https://mobiledev.instructure.com/courses/24219/assignments/2972519",
+                  "locked_for_user": false
+                  },
+                  {
+                  "assignment_group_id": 1030331,
+                  "automatic_peer_reviews": false,
+                  "description": "<table border=\"0\"><tbody>\n<tr>\n<td>NSArray</td>\r\n<td>An array.</td>\r\n</tr>\n<tr>\n<td>NSMutableArray</td>\r\n<td>Same, only mutable.</td>\r\n</tr>\n<tr>\n<td>NSDictionary</td>\r\n<td>A dictionary or hash table implementation. Very useful for associating one object with a key. They are also pretty fast.</td>\r\n</tr>\n<tr>\n<td>NSMutableDictionary</td>\r\n<td>A mutable version of NSDictionary.</td>\r\n</tr>\n<tr>\n<td> </td>\r\n<td> </td>\r\n</tr>\n<tr>\n<td> </td>\r\n<td> </td>\r\n</tr>\n<tr>\n<td> </td>\r\n<td> </td>\r\n</tr>\n<tr>\n<td> </td>\r\n<td> </td>\r\n</tr>\n<tr>\n<td> </td>\r\n<td> </td>\r\n</tr>\n<tr>\n<td> </td>\r\n<td> </td>\r\n</tr>\n<tr>\n<td> </td>\r\n<td> </td>\r\n</tr>\n<tr>\n<td> </td>\r\n<td> </td>\r\n</tr>\n<tr>\n<td> </td>\r\n<td> </td>\r\n</tr>\n<tr>\n<td> </td>\r\n<td> </td>\r\n</tr>\n</tbody></table>",
+                  "due_at": null,
+                  "grade_group_students_individually": false,
+                  "grading_standard_id": null,
+                  "grading_type": "not_graded",
+                  "group_category_id": null,
+                  "id": 2973156,
+                  "lock_at": null,
+                  "peer_reviews": false,
+                  "points_possible": null,
+                  "position": 2,
+                  "unlock_at": null,
+                  "course_id": 24219,
+                  "name": "Foundation",
+                  "submission_types": [
+                                       "not_graded"
+                                       ],
+                  "muted": false,
+                  "html_url": "https://mobiledev.instructure.com/courses/24219/assignments/2973156",
+                  "locked_for_user": false
+                  },
+                  {
+                  "assignment_group_id": 1030331,
+                  "automatic_peer_reviews": false,
+                  "description": "<table border=\"0\"><tbody>\n<tr>\n<td>Cat</td>\r\n<td>\r\n<p>Member of the feline family. Four legs, tail, etc.</p>\r\n</td>\r\n</tr>\n<tr>\n<td>Dog</td>\r\n<td>\r\n<p>Member of the canine family. Four legs, tail, etc.</p>\r\n</td>\r\n</tr>\n<tr>\n<td>\r\n<p>Dolphin</p>\r\n</td>\r\n<td>\r\n<p>Looks like a fish, but don't be deceived... Mammal.</p>\r\n</td>\r\n</tr>\n<tr>\n<td>Turkey</td>\r\n<td>\r\n<p>Essential part of a club sandwich. Comes in two varieties: wild and Jennie-O.</p>\r\n</td>\r\n</tr>\n<tr>\n<td>Huge Manatee</td>\r\n<td>\r\n<p>Cow of the sea.</p>\r\n</td>\r\n</tr>\n</tbody></table>",
+                  "due_at": null,
+                  "grade_group_students_individually": false,
+                  "grading_standard_id": null,
+                  "grading_type": "points",
+                  "group_category_id": null,
+                  "id": 2978687,
+                  "lock_at": null,
+                  "peer_reviews": false,
+                  "points_possible": 5,
+                  "position": 3,
+                  "unlock_at": null,
+                  "course_id": 24219,
+                  "name": "Animals",
+                  "submission_types": [
+                                       "online_text_entry"
+                                       ],
+                  "muted": false,
+                  "html_url": "https://mobiledev.instructure.com/courses/24219/assignments/2978687",
+                  "locked_for_user": false
+                  },
+                  {
+                  "assignment_group_id": 1030331,
+                  "automatic_peer_reviews": false,
+                  "description": "",
+                  "due_at": null,
+                  "grade_group_students_individually": false,
+                  "grading_standard_id": null,
+                  "grading_type": "points",
+                  "group_category_id": null,
+                  "id": 3461388,
+                  "lock_at": null,
+                  "peer_reviews": false,
+                  "points_possible": 0,
+                  "position": 4,
+                  "unlock_at": null,
+                  "course_id": 24219,
+                  "name": "Quizlet!",
+                  "submission_types": [
+                                       "external_tool"
+                                       ],
+                  "muted": false,
+                  "html_url": "https://mobiledev.instructure.com/courses/24219/assignments/3461388",
+                  "external_tool_tag_attributes": {
+                  "url": "https://www.edu-apps.org/tool_redirect?url=http%3A%2F%2Fquizlet.com%2F14626356%2Ffamiliarize%2Fembed%2F%3FhideLinks",
+                  "new_tab": false,
+                  "resource_link_id": "0ce9d88f9dbf670be228eb7396c977bde7b503df"
+                  },
+                  "url": "https://mobiledev.instructure.com/api/v1/courses/24219/external_tools/sessionless_launch?assignment_id=3461388&launch_type=assessment",
+                  "locked_for_user": false
+                  },
+                  {
+                  "assignment_group_id": 1030331,
+                  "automatic_peer_reviews": false,
+                  "description": "",
+                  "due_at": null,
+                  "grade_group_students_individually": false,
+                  "grading_standard_id": null,
+                  "grading_type": "points",
+                  "group_category_id": null,
+                  "id": 3562637,
+                  "lock_at": null,
+                  "peer_reviews": false,
+                  "points_possible": 0,
+                  "position": 5,
+                  "unlock_at": null,
+                  "course_id": 24219,
+                  "name": "Assignment for 27th - Upcoming Event",
+                  "submission_types": [
+                                       "online_text_entry"
+                                       ],
+                  "muted": false,
+                  "html_url": "https://mobiledev.instructure.com/courses/24219/assignments/3562637",
+                  "locked_for_user": false
+                  }
+                  ]
+  }

@@ -61,7 +61,7 @@ class GradingPeriodSpec: QuickSpec {
                         presenter = UIViewController()
                         window.rootViewController = presenter
                         window.makeKeyAndVisible()
-                        presenter.presentViewController(tableViewController, animated: false, completion: nil)
+                        presenter.present(tableViewController, animated: false, completion: nil)
                         expect(presenter.presentedViewController).toNot(beNil())
                     }
 

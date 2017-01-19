@@ -1,13 +1,13 @@
 /* all pages segmented control title */
 "All Pages" = "すべてのページ";
 
-/* badge indicating front page */
+/* front page segmented control title */
 "Front Page" = "フロントページ";
 
-/* Generic button to dismiss the popup message */
+/* (No Commment) */
 "Okay" = "Ok";
 
-/* The page is locked by the teacher */
+/* (No Commment) */
 "Page Locked" = "ページはロックされています";
 
 /* Page list fails */

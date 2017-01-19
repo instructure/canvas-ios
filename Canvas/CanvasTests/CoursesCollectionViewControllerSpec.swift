@@ -21,6 +21,7 @@ import Canvas
 import Quick
 import Nimble
 import SoAutomated
+import CoreData
 @testable import EnrollmentKit
 
 class CoursesCollectionViewControllerSpec: QuickSpec {
@@ -41,15 +42,15 @@ class CoursesCollectionViewControllerSpec: QuickSpec {
                     vc = try! CoursesCollectionViewController(session: session) { _ in }
 
                     waitUntil { done in
-                        if vc.collectionView?.numberOfItemsInSection(0) == 4 {
-                            courseToRemove.setValue(false, forKey: "isFavorite")
+                        if vc.collectionView?.numberOfItems(inSection: 0) == 4 {
+                            courseToRemove.isFavorite = false
                             done()
                         }
                     }
                 }
 
                 it("updates the collection view") {
-                    expect(vc.collectionView?.numberOfItemsInSection(0)).toEventually(equal(3), timeout: 2)
+                    expect(vc.collectionView?.numberOfItems(inSection: 0)).toEventually(equal(3), timeout: 2)
                 }
             }
         }

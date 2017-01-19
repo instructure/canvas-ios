@@ -16,6 +16,11 @@ OptionParser.new do |opts|
   opts.on('-s', '--skipPush', 'Skips pushing file to transifex') do |v|
     options[:skipPush] = v
   end
+
+  opts.on('-pPROJECT', '--project=PROJECT', 'Import only a specific project') do |p|
+    options[:project] = p
+  end
+
 end.parse!
 
 class ExportLocalizations

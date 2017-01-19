@@ -21,28 +21,28 @@ import CoreData
 import SoPersistent
 import SoLazy
 
-public class Module: NSManagedObject {
-    @NSManaged internal (set) public var id: String
-    @NSManaged internal (set) public var courseID: String // This is not in the json, but set in the refresher
-    @NSManaged internal (set) public var name: String
-    @NSManaged internal (set) public var position: Int64
-    @NSManaged internal (set) public var requireSequentialProgress: Bool
-    @NSManaged internal (set) public var itemCount: Int64
-    @NSManaged internal (set) public var unlockDate: NSDate?
-    @NSManaged internal (set) public var completionDate: NSDate?
+open class Module: NSManagedObject {
+    @NSManaged internal (set) open var id: String
+    @NSManaged internal (set) open var courseID: String // This is not in the json, but set in the refresher
+    @NSManaged internal (set) open var name: String
+    @NSManaged internal (set) open var position: Int64
+    @NSManaged internal (set) open var requireSequentialProgress: Bool
+    @NSManaged internal (set) open var itemCount: Int64
+    @NSManaged internal (set) open var unlockDate: Date?
+    @NSManaged internal (set) open var completionDate: Date?
 
-    @NSManaged private var primitivePrerequisiteModuleIDs: String
-    internal (set) public var prerequisiteModuleIDs: [String] {
+    @NSManaged fileprivate var primitivePrerequisiteModuleIDs: String
+    internal (set) open var prerequisiteModuleIDs: [String] {
         get {
-            willAccessValueForKey("prerequisiteModuleIDs")
-            let value = primitivePrerequisiteModuleIDs.componentsSeparatedByString(",").filter { !$0.isEmpty }
-            didAccessValueForKey("prerequisiteModuleIDs")
+            willAccessValue(forKey: "prerequisiteModuleIDs")
+            let value = primitivePrerequisiteModuleIDs.components(separatedBy: ",").filter { !$0.isEmpty }
+            didAccessValue(forKey: "prerequisiteModuleIDs")
             return value
         }
         set {
-            willChangeValueForKey("prerequisiteModuleIDs")
-            primitivePrerequisiteModuleIDs = newValue.joinWithSeparator(",")
-            didChangeValueForKey("prerequisiteModuleIDs")
+            willChangeValue(forKey: "prerequisiteModuleIDs")
+            primitivePrerequisiteModuleIDs = newValue.joined(separator: ",")
+            didChangeValue(forKey: "prerequisiteModuleIDs")
         }
     }
 
@@ -52,19 +52,19 @@ public class Module: NSManagedObject {
         case started = "started"
         case completed = "completed"
     }
-    @NSManaged private var primitiveState: String?
+    @NSManaged fileprivate var primitiveState: String?
 
-    internal (set) public var state: State? {
+    internal (set) open var state: State? {
         get {
-            willAccessValueForKey("state")
+            willAccessValue(forKey: "state")
             let value = primitiveState.flatMap(State.init)
-            didAccessValueForKey("state")
+            didAccessValue(forKey: "state")
             return value
         }
         set {
-            willChangeValueForKey("state")
+            willChangeValue(forKey: "state")
             primitiveState = newValue?.rawValue
-            didChangeValueForKey("state")
+            didChangeValue(forKey: "state")
         }
     }
 
@@ -72,25 +72,25 @@ public class Module: NSManagedObject {
         case active = "active"
         case deleted = "deleted"
     }
-    @NSManaged private var primitiveWorkflowState: String?
-    internal (set) public var workflowState: WorkflowState? {
+    @NSManaged fileprivate var primitiveWorkflowState: String?
+    internal (set) open var workflowState: WorkflowState? {
         get {
-            willAccessValueForKey("workflowState")
+            willAccessValue(forKey: "workflowState")
             var value: WorkflowState? = nil
             if let primitiveWorkflowState = primitiveWorkflowState {
                 value = WorkflowState(rawValue: primitiveWorkflowState)
             }
-            didAccessValueForKey("workflowState")
+            didAccessValue(forKey: "workflowState")
             return value
         }
         set {
-            willChangeValueForKey("workflowState")
+            willChangeValue(forKey: "workflowState")
             primitiveWorkflowState = newValue?.rawValue
-            didChangeValueForKey("workflowState")
+            didChangeValue(forKey: "workflowState")
         }
     }
 
-    public var hasPrerequisites: Bool {
+    open var hasPrerequisites: Bool {
         return !prerequisiteModuleIDs.isEmpty
     }
 }
@@ -99,18 +99,18 @@ public class Module: NSManagedObject {
 import Marshal
 
 extension Module: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
 
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id                          = try json.stringID("id")
         courseID                    = try json.stringID("course_id")
         name                        = try json <| "name"
-        position                    = try json <| "position" ?? 1
-        requireSequentialProgress   = try json <| "require_sequential_progress" ?? false
-        itemCount                   = try json <| "items_count" ?? 0
+        position                    = (try json <| "position") ?? 1
+        requireSequentialProgress   = (try json <| "require_sequential_progress") ?? false
+        itemCount                   = (try json <| "items_count") ?? 0
         unlockDate                  = try json <| "unlock_at"
         completionDate              = try json <| "completed_at"
         prerequisiteModuleIDs       = try json.stringIDs("prerequisite_module_ids")
@@ -119,16 +119,16 @@ extension Module: SynchronizedModel {
         try updateState(json, inContext: context)
     }
 
-    func updateState(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    func updateState(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         state = try json <| "state"
 
         if state == .completed {
             let hasCompletionRequirement: (JSONObject) throws -> Bool = { json in
                 let (completionRequirement, _, _) = try ModuleItem.parseCompletionRequirement(json)
-                return completionRequirement != nil && completionRequirement != .MustChoose
+                return completionRequirement != nil && completionRequirement != .mustChoose
             }
-            let items: [JSONObject] = try json <| "items" ?? []
-            if try items.findFirst(hasCompletionRequirement) == nil {
+            let items: [JSONObject] = (try json <| "items") ?? []
+            if try items.findFirst(test: hasCompletionRequirement) == nil {
                 state = nil
             }
         }

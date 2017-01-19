@@ -27,7 +27,7 @@ public final class MediaComment: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var name: String?
     @NSManaged public var contentType: String
-    @NSManaged var url: NSURL?
+    @NSManaged var url: URL?
     
     public enum Kind: String {
         case Video = "video"
@@ -46,12 +46,12 @@ public final class MediaComment: NSManagedObject {
 
 extension MediaComment: SynchronizedModel {
     
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json <| "media_id"
         return NSPredicate(format: "%K == %@", "id", id)
     }
     
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         try id = json <| "media_id"
         try name = json <| "display_name"
         try contentType = json <| "contentType"

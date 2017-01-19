@@ -34,19 +34,19 @@ import SoLazy
 extension AppDelegate {
     
     // MARK: Handle Registration Callbacks
-    func didRegisterForRemoteNotifications(deviceToken: NSData) {
+    func didRegisterForRemoteNotifications(_ deviceToken: Data) {
         
         // TODO: figure out how this was being called before the user was logged in (it shouldn't be) this will keep it from crashing in the mean time
-        if let client = CanvasKeymaster.theKeymaster().currentClient {
+        if let client = CanvasKeymaster.the().currentClient {
             
             let session = client.authSession
             let controller = NotificationKitController(session: session)
             controller.registerPushNotificationTokenWithPushService(deviceToken, registrationCompletion: { (result) -> () in
                 switch result {
-                case .Success():
+                case .success():
                     // TODO: tally this event to get a feel for how many users are using push
                     print("Success")
-                case .Error(let error):
+                case .error(let error):
                     self.handleError(error.addingInfo())
                     print("Error: \(error) + error localized: \(error.localizedDescription)")
                 }
@@ -54,64 +54,64 @@ extension AppDelegate {
         }
     }
     
-    func didFailToRegisterForRemoteNotifications(error: NSError) {
+    func didFailToRegisterForRemoteNotifications(_ error: NSError) {
         handleError(error.addingInfo())
     }
     
     
     // MARK: Handle Remote Notification
-    func app(app: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        if app.applicationState == .Inactive {
+    func app(_ app: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        if app.applicationState == .inactive {
             routeToPushNotificationPayloadURL(userInfo)
         } else {
-            handlePushNotificationPayload(userInfo)
+            handlePushNotificationPayload(userInfo as NSDictionary)
         }
     }
     
-    func handlePushNotificationPayload(payload: NSDictionary) {
+    func handlePushNotificationPayload(_ payload: NSDictionary) {
         // TODO: Should be verifying the user id that the notification is for as well as the user who is currently logged in
         // TODO: May need the user to log in before attempting to show the notification
         // TODO: What should we do when the item we're attempting to show no longer exists?  (should probably be handled in the router make sure that it is handled correctly)
         if let message = ((payload["aps"] as? NSDictionary)?["alert"]) as? String {
-            let alertController = UIAlertController(title: NSLocalizedString("Notification", comment: ""), message: message, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: NSLocalizedString("Notification", comment: ""), message: message, preferredStyle: .alert)
             if let urlString: NSString = payload["html_url"] as! NSString? {
                 let actualURLString: String = swappedPushBetaURLString((urlString as String)) ?? (urlString as String)
-                if let notificationURL = NSURL(string: actualURLString) {
-                    let laterAction = UIAlertAction(title: NSLocalizedString("Later", comment: ""), style: .Cancel) { _ in }
+                if let notificationURL = URL(string: actualURLString) {
+                    let laterAction = UIAlertAction(title: NSLocalizedString("Later", comment: ""), style: .cancel) { _ in }
                     alertController.addAction(laterAction)
-                    let viewAction = UIAlertAction(title: NSLocalizedString("View", comment: ""), style: .Default) { _ in
+                    let viewAction = UIAlertAction(title: NSLocalizedString("View", comment: ""), style: .default) { _ in
                         self.openCanvasURL(notificationURL)
                     }
                     alertController.addAction(viewAction)
                 } else {
-                    let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel) { _ in }
+                    let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel) { _ in }
                     alertController.addAction(okAction)
                 }
             } else {
-                let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel) { _ in }
+                let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel) { _ in }
                 alertController.addAction(okAction)
             }
-            visibleController.presentViewController(alertController, animated: true, completion: nil)
+            visibleController.present(alertController, animated: true, completion: nil)
         }
     }
     
-    func routeToPushNotificationPayloadURL(payload: [NSObject: AnyObject]) {
+    func routeToPushNotificationPayloadURL(_ payload: [AnyHashable: Any]) {
         if let urlString: NSString = payload["html_url"] as! NSString? {
             let actualURLString: String = swappedPushBetaURLString((urlString as String)) ?? (urlString as String)
-            if let notificationURL = NSURL(string: actualURLString) {
+            if let notificationURL = URL(string: actualURLString) {
                 
                 self.openCanvasURL(notificationURL)
             }
         }
     }
     
-    private func swappedPushBetaURLString(urlString: String) -> String? {
-        if let baseURL = CanvasKeymaster.theKeymaster().currentClient.baseURL, let baseURLString = baseURL.absoluteString {
-            if baseURLString.rangeOfString("beta") != nil { // if we are currently in beta, the payload's url doesn't have it (a known issue) so we need to swap it out
-                let nonBetaBaseURLString = baseURLString.stringByReplacingOccurrencesOfString(".beta", withString: "")
+    fileprivate func swappedPushBetaURLString(_ urlString: String) -> String? {
+        if let baseURLString = CanvasKeymaster.the().currentClient.baseURL?.absoluteString {
+            if baseURLString.range(of: "beta") != nil { // if we are currently in beta, the payload's url doesn't have it (a known issue) so we need to swap it out
+                let nonBetaBaseURLString = baseURLString.replacingOccurrences(of: ".beta", with: "")
                 // Get each host, compare. If they are the same then we are good to add in the .beta to the url
-                if let baseURLComponents = NSURLComponents(string: baseURLString), nonBetaBaseURLComponents = NSURLComponents(string: nonBetaBaseURLString), actualURLComponents = NSURLComponents(string: (urlString as String)) {
-                    if let baseURLHost = baseURLComponents.host, nonBetaBaseURLHost = nonBetaBaseURLComponents.host, actualURLHost = actualURLComponents.host {
+                if let baseURLComponents = URLComponents(string: baseURLString), let nonBetaBaseURLComponents = URLComponents(string: nonBetaBaseURLString), var actualURLComponents = URLComponents(string: (urlString as String)) {
+                    if let baseURLHost = baseURLComponents.host, let nonBetaBaseURLHost = nonBetaBaseURLComponents.host, let actualURLHost = actualURLComponents.host {
                         if nonBetaBaseURLHost == actualURLHost { // if the stripped "beta" stripped base url == the url given in the push, do the swap with the one containing the "beta"
                             actualURLComponents.host = baseURLHost
                             return actualURLComponents.string

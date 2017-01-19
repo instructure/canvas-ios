@@ -22,31 +22,31 @@ class CreateAccountPage: PageObject {
   // Mark: - Page Objects
 
   private static var firstNameField: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("first_name_field"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("first_name_field"))
   }
 
   private static var lastNameField: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("last_name_field"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("last_name_field"))
   }
 
   private static var emailField: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("email_field"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("email_field"))
   }
 
   private static var passwordField: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("password_field"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("password_field"))
   }
 
   private static var confirmPasswordField: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("confirm_password_field"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("confirm_password_field"))
   }
 
   private static var createAccountButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("primary_action_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("primary_action_button"))
   }
 
   private static var cancelButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("cancel_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("cancel_button"))
   }
 
   static func uniquePageElement() -> GREYElementInteraction {
@@ -55,76 +55,76 @@ class CreateAccountPage: PageObject {
 
   // Mark: - Assertion Helpers
 
-  static func assertPageObjects(file: String = #file, _ line: UInt = #line) {
+  static func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
     dismissKeyboard()
-    firstNameField.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    lastNameField.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    emailField.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    passwordField.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    confirmPasswordField.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    createAccountButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    cancelButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
+    firstNameField.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    lastNameField.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    emailField.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    passwordField.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    confirmPasswordField.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    createAccountButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    cancelButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
   }
 
-  static func assertCreateAccountButtonDisabled(file: String = #file, _ line: UInt = #line) {
+  static func assertCreateAccountButtonDisabled(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    createAccountButton.assertWithMatcher(grey_not(grey_enabled()))
+    createAccountButton.assert(with: grey_not(grey_enabled()))
   }
 
-  static func assertCreateAccountButtonEnabled(file: String = #file, _ line: UInt = #line) {
+  static func assertCreateAccountButtonEnabled(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    createAccountButton.assertWithMatcher(grey_enabled())
+    createAccountButton.assert(with: grey_enabled())
   }
 
   // Mark: - UI Action Helpers
 
-  static func enterCredentials(parent: CanvasParent, file: String = #file, _ line: UInt = #line) {
+  static func enterCredentials(_ parent: CanvasParent, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    firstNameField.performAction(grey_replaceText(parent.firstName))
-    lastNameField.performAction(grey_replaceText(parent.lastName))
-    emailField.performAction(grey_replaceText(parent.username))
-    passwordField.performAction(grey_replaceText(parent.password))
-    confirmPasswordField.performAction(grey_replaceText(parent.password))
+    firstNameField.perform(grey_replaceText(parent.firstName))
+    lastNameField.perform(grey_replaceText(parent.lastName))
+    emailField.perform(grey_replaceText(parent.username))
+    passwordField.perform(grey_replaceText(parent.password))
+    confirmPasswordField.perform(grey_replaceText(parent.password))
   }
 
-  static func randomizePasswordField(file: String = #file, _ line: UInt = #line) {
+  static func randomizePasswordField(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    passwordField.performAction(grey_replaceText(NSUUID().UUIDString))
+    passwordField.perform(grey_replaceText(NSUUID().uuidString))
   }
 
-  static func clearConfirmPasswordField(file: String = #file, _ line: UInt = #line) {
+  static func clearConfirmPasswordField(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    confirmPasswordField.performAction(grey_replaceText(""))
+    confirmPasswordField.perform(grey_replaceText(""))
   }
 
-  static func tapCancelButton(file: String = #file, _ line: UInt = #line) {
+  static func tapCancelButton(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
     dismissKeyboard()
-    cancelButton.performAction(grey_tap())
+    cancelButton.perform(grey_tap())
   }
 
-  static func clearForm(field: String, file: String = #file, _ line: UInt = #line) {
+  static func clearForm(_ field: String, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
     switch(field) {
     case "firstName":
-      firstNameField.performAction(grey_replaceText(""))
+      firstNameField.perform(grey_replaceText(""))
     case "lastName":
-      lastNameField.performAction(grey_replaceText(""))
+      lastNameField.perform(grey_replaceText(""))
     case "email":
-      emailField.performAction(grey_replaceText(""))
+      emailField.perform(grey_replaceText(""))
     case "password":
-      passwordField.performAction(grey_replaceText(""))
+      passwordField.perform(grey_replaceText(""))
     case "confirmPassword":
-      confirmPasswordField.performAction(grey_replaceText(""))
+      confirmPasswordField.perform(grey_replaceText(""))
     default:
       break
     }

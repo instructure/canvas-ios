@@ -1,0 +1,9 @@
+/* Class = "UILabel"; text = "Enable Push Notifications"; ObjectID = "PMb-wZ-ARX"; */
+"PMb-wZ-ARX.text" = "プッシュ通知を有効にする";
+
+/* Class = "UILabel"; text = "Allow Notifications in Settings"; ObjectID = "mYw-YB-SVS"; */
+"mYw-YB-SVS.text" = "通知の設定を許可";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "qwG-FB-tzR"; */
+"qwG-FB-tzR.title" = "設定";
+

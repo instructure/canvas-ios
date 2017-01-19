@@ -48,7 +48,7 @@ class FolderSpec: QuickSpec {
             describe("newFolder") {
                 it("through a network call should create a file") {
                     let session = User(credentials: .user4).session
-                    let contextID = ContextID(id: "6782429", context: .User)
+                    let contextID = ContextID(id: "6782429", context: .user)
                     let count = Folder.observeCount(inSession: session)
                     expect {
                         session.playback("add-folder", in: currentBundle) {
@@ -75,14 +75,14 @@ class FolderSpec: QuickSpec {
                 
                 it("sets hidden_for_user to false by default") {
                     var json = folderJSON
-                    json.removeValueForKey("hidden_for_user")
+                    json.removeValue(forKey: "hidden_for_user")
                     try! folder.updateValues(json, inContext: folder.managedObjectContext!)
                     expect(folder.hiddenForUser) == false
                 }
 
                 it("sets the parent folder id if present") {
                     var json = folderJSON
-                    json.removeValueForKey("parent_folder_id")
+                    json.removeValue(forKey: "parent_folder_id")
                     try! folder.updateValues(json, inContext: folder.managedObjectContext!)
                     expect(folder.parentFolderID).to(beNil())
 

@@ -246,10 +246,10 @@ Najpierw musisz ukończyć:";
 /* Archive selected messages button */
 "Archive" = "Archiwum";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Przycisk do archiwizacji wybranych wiadomości";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Archiwizuj wszystkie wybrane wiadomości";
 
 /* No comment provided by engineer. */
@@ -383,10 +383,10 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* (No Commment) */
 "Completed" = "Uzupełniono";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Przycisk komponowania wiadomości";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Skomponuj wiadomość";
 
 /* Title for Conferences tab */

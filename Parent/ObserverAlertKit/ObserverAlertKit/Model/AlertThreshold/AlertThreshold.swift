@@ -24,43 +24,43 @@ import Marshal
 import SoLazy
 
 public enum AlertThresholdType: String {
-    case CourseAnnouncement = "course_announcement"
-    case InstitutionAnnouncement = "institution_announcement"
-    case AssignmentGradeHigh = "assignment_grade_high"
-    case AssignmentGradeLow = "assignment_grade_low"
-    case AssignmentMissing = "assignment_missing"
-    case CourseGradeHigh = "course_grade_high"
-    case CourseGradeLow = "course_grade_low"
-    case Unknown = "unknown"
+    case courseAnnouncement = "course_announcement"
+    case institutionAnnouncement = "institution_announcement"
+    case assignmentGradeHigh = "assignment_grade_high"
+    case assignmentGradeLow = "assignment_grade_low"
+    case assignmentMissing = "assignment_missing"
+    case courseGradeHigh = "course_grade_high"
+    case courseGradeLow = "course_grade_low"
+    case unknown = "unknown"
 
     public static var validThresholdTypes: [AlertThresholdType] {
         return [
-            .CourseAnnouncement,
-            .AssignmentGradeHigh,
-            .AssignmentGradeLow,
-            .AssignmentMissing,
-            .CourseGradeHigh,
-            .CourseGradeLow
+            .courseAnnouncement,
+            .assignmentGradeHigh,
+            .assignmentGradeLow,
+            .assignmentMissing,
+            .courseGradeHigh,
+            .courseGradeLow
         ]
     }
 
     public var allowsThresholdValue: Bool {
         switch self {
-        case .CourseGradeLow:
+        case .courseGradeLow:
             return true
-        case .CourseGradeHigh:
+        case .courseGradeHigh:
             return true
-        case .AssignmentMissing:
+        case .assignmentMissing:
             return false
-        case .AssignmentGradeLow:
+        case .assignmentGradeLow:
             return true
-        case .AssignmentGradeHigh:
+        case .assignmentGradeHigh:
             return true
-        case .InstitutionAnnouncement:
+        case .institutionAnnouncement:
             return false
-        case .CourseAnnouncement:
+        case .courseAnnouncement:
             return false
-        case .Unknown:
+        case .unknown:
             return false
         }
     }
@@ -71,32 +71,32 @@ public final class AlertThreshold: NSManagedObject {
     @NSManaged internal (set) public var id: String
     @NSManaged internal (set) public var observerID: String
     @NSManaged internal (set) public var studentID: String
-    @NSManaged private var primitiveType: String
+    @NSManaged fileprivate var primitiveType: String
     static let typeKey = "type"
     internal (set) public var type: AlertThresholdType {
         get {
-            willAccessValueForKey(AlertThreshold.typeKey)
-            let val = AlertThresholdType(rawValue: primitiveType) ?? .Unknown
-            didAccessValueForKey(AlertThreshold.typeKey)
-            if val == .Unknown { print("invalid AlertType enum value: %@", primitiveType) }
+            willAccessValue(forKey: AlertThreshold.typeKey)
+            let val = AlertThresholdType(rawValue: primitiveType) ?? .unknown
+            didAccessValue(forKey: AlertThreshold.typeKey)
+            if val == .unknown { print("invalid AlertType enum value: %@", primitiveType) }
             return val
         }
         set {
-            willChangeValueForKey(AlertThreshold.typeKey)
+            willChangeValue(forKey: AlertThreshold.typeKey)
             primitiveType = newValue.rawValue
-            didChangeValueForKey(AlertThreshold.typeKey)
+            didChangeValue(forKey: AlertThreshold.typeKey)
         }
     }
     @NSManaged internal (set) public var threshold: String?
 }
 
 extension AlertThreshold: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
 
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id = try json.stringID("id")
         studentID = try json.stringID("student_id")
         primitiveType = try json <| "alert_type"

@@ -19,7 +19,7 @@ import Foundation
 import DiscussionKit
 import SoPersistent
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import EnrollmentKit
 
 class EntriesTableViewController: DiscussionEntry.TableViewController {
@@ -32,16 +32,20 @@ class EntriesTableViewController: DiscussionEntry.TableViewController {
         
         let c = try DiscussionEntry.collection(session, contextID: contextID, topicID: topicID, parentEntryID: parentEntryID)
         let r = try DiscussionEntry.refresher(session, contextID: contextID, topicID: topicID)
-        let color = session.enrollmentsDataSource.producer(contextID).map { $0?.color ?? .prettyGray() }
+        let color = session.enrollmentsDataSource.color(for: contextID)
         prepare(c, refresher: r) { (entry: DiscussionEntry) -> ColorfulViewModel in
-            let vm = ColorfulViewModel(style: .Basic)
+            let vm = ColorfulViewModel()
             vm.title.value = entry.message
             vm.color <~ color
             return vm
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let entry = collection[indexPath]
         
         let vc = try! EntriesTableViewController(session: session, contextID: entry.contextID, topicID: entry.topicID, parentEntryID: entry.id)

@@ -1,0 +1,9 @@
+/* Class = "UILabel"; text = "You have 5 minutes."; ObjectID = "KWG-Lz-03A"; */
+"KWG-Lz-03A.text" = "您有 5 分鐘。";
+
+/* Class = "UILabel"; text = "Hide/show timer by pressing the timer."; ObjectID = "VPh-7F-wIC"; */
+"VPh-7F-wIC.text" = "按一下計時器，以隱藏/顯示計時器。";
+
+/* Class = "UILabel"; text = "Timed Quiz"; ObjectID = "aPJ-b1-PDA"; */
+"aPJ-b1-PDA.text" = "計時測驗";
+

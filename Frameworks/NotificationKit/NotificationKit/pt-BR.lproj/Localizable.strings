@@ -37,14 +37,16 @@
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "Nenhum Canal de Comunicação Encontrado";
 
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "Nenhum canal por push encontrado";
+
 /* Title for the notification preferences page */
 "Notification Preferences" = "Preferências de Notificação";
 
-/* Action title for being unable to update a push notification preference
-   Alert action button text when unable to load communication channels
-   Alert action button text when unable to load notification preferences
-   Alert action button text when unable to parse JSON for communication channels
-   Alert action button text when unable to parse JSON for notification preferences */
+/* OK Button Title */
+"OK" = "OK";
+
+/* (No Commment) */
 "Ok" = "Ok";
 
 /* Description for Push Notification channel */
@@ -70,6 +72,12 @@
 
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Não é possível carregar quaisquer preferências de notificação neste momento. Erro: (result.error?.localizedDescription)";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "Não é possível analisar JSON para os canais de comunicação";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "Não é possível analisar JSON para preferências de comunicação";
 
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "Nós não fomos capazes de atualizar este valor com o servidor";

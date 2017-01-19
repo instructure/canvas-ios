@@ -20,7 +20,6 @@
 #import "CBIMessageDetailViewController.h"
 #import "CBIMessageParticipantsViewModel.h"
 #import "UIViewController+Transitions.h"
-#import "CBIMessagesSplitViewController.h"
 
 @implementation CBIMessagesListViewController
 

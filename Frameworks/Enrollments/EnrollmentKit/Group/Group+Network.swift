@@ -20,11 +20,11 @@ import UIKit
 import SoPretty
 import TooLegit
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 
 extension Group {
-    static func getAllGroups(session: Session) throws -> SignalProducer<[JSONObject], NSError> {
+    static func getAllGroups(_ session: Session) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try session.GET(api/v1/"users/self/groups")
         return session.paginatedJSONSignalProducer(request)
     }

@@ -24,32 +24,32 @@ class NextOrSubmitView: UIView {
     @IBOutlet var submitButton: UIButton!
     
     enum NextOrSubmit: Int {
-        case Next, Submit
+        case next, submit
         
         var labelText: String {
             switch self {
-            case .Next:
-                return NSLocalizedString("Next", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Next button for advancing a quiz")
-            case .Submit:
-                return NSLocalizedString("Submit", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Submit button title")
+            case .next:
+                return NSLocalizedString("Next", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Next button for advancing a quiz")
+            case .submit:
+                return NSLocalizedString("Submit", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Submit button title")
             }
         }
     }
     
     var onNextOrSubmit: ()->() = {}
     
-    func doNextOrSubmit(button: UIButton) {
+    func doNextOrSubmit(_ button: UIButton) {
         onNextOrSubmit()
     }
     
-    class func createWithNextOrSubmit(nextOrSubmit: NextOrSubmit, target: AnyObject?, action: Selector) -> NextOrSubmitView {
-        let nib = UINib(nibName: "NextOrSubmitView", bundle: NSBundle(forClass: NextOrSubmitView.classForCoder()))
+    class func createWithNextOrSubmit(_ nextOrSubmit: NextOrSubmit, target: Any?, action: Selector) -> NextOrSubmitView {
+        let nib = UINib(nibName: "NextOrSubmitView", bundle: Bundle(for: NextOrSubmitView.classForCoder()))
         
-        let me = nib.instantiateWithOwner(nil, options: nil).first as! NextOrSubmitView
+        let me = nib.instantiate(withOwner: nil, options: nil).first as! NextOrSubmitView
         
-        me.submitButton.setTitle(nextOrSubmit.labelText, forState: .Normal)
+        me.submitButton.setTitle(nextOrSubmit.labelText, for: UIControlState())
         me.submitButton.makeItBlue()
-        me.submitButton.addTarget(target, action: action, forControlEvents: .TouchUpInside)
+        me.submitButton.addTarget(target, action: action, for: .touchUpInside)
         
         return me
     }

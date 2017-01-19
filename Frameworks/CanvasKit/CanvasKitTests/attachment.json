@@ -1,0 +1,19 @@
+{
+    "id": 43444064,
+    "content-type": "image/jpeg",
+    "display_name": "profilePic-1.jpg",
+    "filename": "profilePic.jpg",
+    "url": "https://mobiledev.instructure.com/images/thumbnails/43444064/z5y5XR4cxQjd1VTvteYgdgp8M38eNcftbN7fG2UJ",
+    "size": 7105,
+    "created_at": "2013-10-21T14:41:33Z",
+    "updated_at": "2013-10-21T14:41:35Z",
+    "unlock_at": null,
+    "locked": false,
+    "hidden": false,
+    "lock_at": null,
+    "hidden_for_user": false,
+    "thumbnail_url": "https://instructure-uploads.s3.amazonaws.com/thumbnails/43444064/profilePic_thumb.jpg?AWSAccessKeyId=AKIAJBQ7MOX3B5WFZGBA&Expires=1406490315&Signature=j%2BFIlGfvzsLYUCVmNwwwZMrWNMY%3D",
+    "locked_for_user": false,
+    "type": "attachment",
+    "token": "c140c7cfb9a46b07128e414dca37ba9c0f80032f"
+}

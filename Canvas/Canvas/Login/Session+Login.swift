@@ -20,41 +20,41 @@ import Foundation
 import CanvasKeymaster
 import TooLegit
 import SoLazy
+import Result
+import ReactiveSwift
+import ReactiveObjCBridge
 
 
-let TheKeymaster = CanvasKeymaster.theKeymaster()
+let TheKeymaster = CanvasKeymaster.the()
 
 
 extension CKIUser {
-    private var sessionUser: SessionUser {
+    fileprivate var sessionUser: SessionUser {
         return SessionUser(id: id, name: name, loginID: loginID, sortableName: sortableName, email: email, avatarURL: avatarURL)
     }
 }
 
 extension CKIClient {
-    private var legitSession: Session {
+    fileprivate var legitSession: Session {
         guard let url = baseURL else { ❨╯°□°❩╯⌢"The client doesn't have a baseURL?" }
         return Session(baseURL: url, user: currentUser.sessionUser, token: accessToken, masqueradeAsUserID: self.actAsUserID)
     }
 }
 
 extension Session {
-    static var loginSignalProducer: SignalProducer<Session, NSError> {
-        return CanvasKeymaster
-            .theKeymaster()
-            .signalForLogin
-            .toSignalProducer()
-            .startOn(UIScheduler())
-            .map { $0 as! CKIClient }
-            .map { $0.authSession }
+    static var loginSignalProducer: SignalProducer<Session, NoError> {
+        let login: SignalProducer<CKIClient?, NoError> = bridgedSignalProducer(from: CanvasKeymaster.the().signalForLogin).flatMapError { _ in .empty }
+        return login
+            .map { $0!.authSession }
+            .start(on: UIScheduler())
+            .observe(on: UIScheduler())
     }
     
-    static var logoutSignalProducer: SignalProducer<UIViewController, NSError> {
-        return CanvasKeymaster
-            .theKeymaster()
-            .signalForLogout
-            .toSignalProducer()
-            .startOn(UIScheduler())
-            .map { $0 as! UIViewController }
+    static var logoutSignalProducer: SignalProducer<UIViewController, NoError> {
+        let logout: SignalProducer<UIViewController?, NoError> = bridgedSignalProducer(from: CanvasKeymaster.the().signalForLogout).flatMapError { _ in .empty }
+        return logout
+            .map { $0! }
+            .start(on: UIScheduler())
+            .observe(on: UIScheduler())
     }
 }

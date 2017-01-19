@@ -21,32 +21,32 @@ import UIKit
 import TooLegit
 import SoPersistent
 
-public class PagesHomeViewController: UIViewController {
+open class PagesHomeViewController: UIViewController {
 
     let refresher: Refresher
-    let route: (UIViewController, NSURL) -> ()
+    let route: (UIViewController, URL) -> ()
     let observer: ManagedObjectObserver<Page>
     let contextID: ContextID
     let session: Session
     let listViewModelFactory: (Session, Page) -> ColorfulViewModel
 
     var innerControllerToggle: UIBarButtonItem?
-    var innerController: InnerController = .None {
+    var innerController: InnerController = .none {
         didSet {
             embedViewController(innerController)
         }
     }
 
-    let frontPageTitle = NSLocalizedString("Front Page", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "front page segmented control title")
-    let allPagesTitle = NSLocalizedString("All Pages", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.PageKit")!, value: "", comment: "all pages segmented control title")
+    let frontPageTitle = NSLocalizedString("Front Page", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.PageKit")!, value: "", comment: "front page segmented control title")
+    let allPagesTitle = NSLocalizedString("All Pages", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.PageKit")!, value: "", comment: "all pages segmented control title")
 
     enum InnerController {
-        case List
-        case FrontPage
-        case None
+        case list
+        case frontPage
+        case none
     }
 
-    public init(session: Session, contextID: ContextID, listViewModelFactory: (Session, Page) -> ColorfulViewModel, route: (UIViewController, NSURL) -> ()) throws {
+    public init(session: Session, contextID: ContextID, listViewModelFactory: @escaping (Session, Page) -> ColorfulViewModel, route: @escaping (UIViewController, URL) -> ()) throws {
         self.session = session
         self.contextID = contextID
         self.route = route
@@ -64,41 +64,41 @@ public class PagesHomeViewController: UIViewController {
 
     // MARK: - View Controller Life Cycle
 
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         // Make background white while making network request
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
 
-        refresher.refreshingCompleted.observeNext { [weak self] error in
-            if let me = self, e = error {
+        refresher.refreshingCompleted.observeValues { [weak self] error in
+            if let me = self, let e = error {
                 if e.code == 404 {
-                    self?.innerController = .List
+                    self?.innerController = .list
                 } else {
                     e.presentAlertFromViewController(me)
                 }
             } else {
-                self?.innerController = .FrontPage
+                self?.innerController = .frontPage
             }
         }
 
         refresher.refresh(false)
 
         if !refresher.isRefreshing && observer.object == nil {
-            self.innerController = .List
+            self.innerController = .list
         } else if !refresher.isRefreshing {
-            self.innerController = .FrontPage
+            self.innerController = .frontPage
         }
 
         // Prevent view from hiding under navbar
         self.automaticallyAdjustsScrollViewInsets = false
-        self.edgesForExtendedLayout = .None
+        self.edgesForExtendedLayout = UIRectEdge()
     }
 
     // MARK: - Helpers
 
     func initializeToggleButton() {
-        innerControllerToggle = UIBarButtonItem(title: "", style: .Plain, target: self, action: #selector(toggleInnerController))
+        innerControllerToggle = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(toggleInnerController))
         navigationItem.rightBarButtonItem = innerControllerToggle
     }
 
@@ -106,34 +106,34 @@ public class PagesHomeViewController: UIViewController {
         let control = UISegmentedControl(items: [frontPageTitle, allPagesTitle])
         control.sizeToFit()
         control.selectedSegmentIndex = 0
-        control.addTarget(self, action: #selector(toggleInnerController), forControlEvents: .ValueChanged)
+        control.addTarget(self, action: #selector(toggleInnerController), for: .valueChanged)
         self.navigationItem.titleView = control
     }
 
     func toggleInnerController() {
         switch innerController {
-        case .FrontPage: innerController = .List
-        case .List: innerController = .FrontPage
+        case .frontPage: innerController = .list
+        case .list: innerController = .frontPage
         default: break
         }
     }
 
-    func embedViewController(type: InnerController) {
+    func embedViewController(_ type: InnerController) {
         var innerViewController = UIViewController()
 
         do {
             switch type {
-            case .FrontPage:
+            case .frontPage:
                 innerViewController = try Page.FrontPageDetailViewController(session: session, contextID: contextID, route: route)
 
-                if UI_USER_INTERFACE_IDIOM() == .Phone {
+                if UI_USER_INTERFACE_IDIOM() == .phone {
                     addSegmentedControl()
-                } else if UI_USER_INTERFACE_IDIOM() == .Pad {
+                } else if UI_USER_INTERFACE_IDIOM() == .pad {
                     initializeToggleButton()
                 }
 
                 innerControllerToggle?.title = allPagesTitle
-            case .List:
+            case .list:
                 innerViewController = try Page.TableViewController(session: session, contextID: contextID, viewModelFactory: listViewModelFactory, route: route)
                 innerControllerToggle?.title = frontPageTitle
             default: return
@@ -144,15 +144,15 @@ public class PagesHomeViewController: UIViewController {
 
         self.addChildViewController(innerViewController)
         self.view.addSubview(innerViewController.view)
-        innerViewController.didMoveToParentViewController(self)
+        innerViewController.didMove(toParentViewController: self)
 
         addConstraints(innerViewController.view)
     }
 
-    func addConstraints(view: UIView) {
+    func addConstraints(_ view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
-        let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[view]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": view])
-        let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[view]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": view])
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[view]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": view])
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[view]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": view])
         self.view.addConstraints(horizontalConstraints)
         self.view.addConstraints(verticalConstraints)
     }

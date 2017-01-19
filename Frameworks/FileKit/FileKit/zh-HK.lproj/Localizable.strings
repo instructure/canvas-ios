@@ -1,4 +1,4 @@
-/* nevermind */
+/* Cancel button title */
 "Cancel" = "取消";
 
 /* Pick a photo from library */
@@ -25,7 +25,7 @@
 /* title for file upload errors */
 "File Upload Error" = "資料夾上載錯誤";
 
-/* Title of files list */
+/* (No Commment) */
 "Files" = "資料夾";
 
 /* name for a photo just taken */
@@ -49,7 +49,7 @@
 /* FileKit Database Load Failure Message */
 "There was a problem loading the FileKit database file." = "載入資料包資料庫資料夾時出現錯誤。";
 
-/* FileKit Tests database fails */
+/* (No Commment) */
 "There was a problem loading the FileKitTests database file." = "載入資料測試包資料庫資料夾時出現錯誤。";
 
 /* File upload error message */

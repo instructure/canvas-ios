@@ -13,7 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-
 @testable import Canvas
 import Quick
 import Nimble
@@ -21,14 +20,15 @@ import SoAutomated
 import TooLegit
 @testable import SoEdventurous
 import TechDebt
+import SoPersistent
 
 class ModuleDetailsViewControllerSpec: QuickSpec {
     override func spec() {
         describe("ModuleDetailsViewController") {
             it("should keep selected cell in sync with module item detail progression") {
-                login()
+                _ = login()
                 let route = currentSession.baseURL / "unit-test/module-details-vc-selected-progress"
-                Router.sharedRouter().addRoute(route.path!) { _ in UIViewController() }
+                Router.shared().addRoute(route.path) { _ in UIViewController() }
 
                 let module = Module.build()
 
@@ -50,11 +50,11 @@ class ModuleDetailsViewControllerSpec: QuickSpec {
                 let vc = try! ModuleDetailsViewController(session: currentSession, courseID: module.courseID, moduleID: module.id, route: ignoreRouteAction)
                 _ = vc.view
 
-                let row0 = NSIndexPath(forRow: 0, inSection: 1)
-                let row1 = NSIndexPath(forRow: 1, inSection: 1)
+                let row0 = IndexPath(row: 0, section: 1)
+                let row1 = IndexPath(row: 1, section: 1)
 
-                expect(vc.tableView.cellForRowAtIndexPath(row0)!.textLabel!.text).toEventually(equal(one.title))
-                expect(vc.tableView.cellForRowAtIndexPath(row1)!.textLabel!.text).toEventually(equal(two.title))
+                expect((vc.tableView.cellForRow(at: row0)! as! ColorfulTableViewCell).titleLabel.text).toEventually(equal(one.title))
+                expect((vc.tableView.cellForRow(at: row1)! as! ColorfulTableViewCell).titleLabel.text).toEventually(equal(two.title))
                 expect(vc.tableView.indexPathsForSelectedRows).to(beNil())
 
                 let detail = try! ModuleItemDetailViewController(session: currentSession, courseID: module.courseID, moduleID: module.id, moduleItemID: one.id, route: ignoreRouteAction)
@@ -70,15 +70,15 @@ class ModuleDetailsViewControllerSpec: QuickSpec {
                 expect(vc.tableView.indexPathForSelectedRow).toEventually(equal(row0))
                 expect(vc.tableView.indexPathsForSelectedRows).toNot(contain(row1))
 
-                Router.sharedRouter().removeRoute(route.path!)
+                Router.shared().removeRoute(route.path)
             }
         }
 
         describe("didSelectRowAtIndexPath") {
             it("should route to mastery path options path") {
-                login()
-                Router.sharedRouter().addCanvasRoutes { fatalError($0.localizedDescription) }
-                var route: NSURL?
+                _ = login()
+                Router.shared().addCanvasRoutes { fatalError($0.localizedDescription) }
+                var route: URL?
 
                 let module = Module.build()
                 module.id = "1"
@@ -103,10 +103,10 @@ class ModuleDetailsViewControllerSpec: QuickSpec {
                     route = url
                 }
 
-                expect(vc.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))!.textLabel!.text).toEventually(equal("Item 1"))
-                expect(vc.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1))!.textLabel!.text).toEventually(equal("Choose option"))
+                expect((vc.tableView.cellForRow(at: IndexPath(row: 0, section: 1))! as! ColorfulTableViewCell).titleLabel.text).toEventually(equal("Item 1"))
+                expect((vc.tableView.cellForRow(at: IndexPath(row: 1, section: 1))! as! ColorfulTableViewCell).titleLabel.text).toEventually(equal("Choose option"))
 
-                vc.tableView(vc.tableView, didSelectRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 1, section: 1))
 
                 expect(route).toNot(beNil())
                 expect(route?.path) == "courses/1/modules/1/items/123-456"
@@ -119,7 +119,7 @@ extension ModuleItemDetailViewController {
     func next() {
         viewModel.nextAction.apply(()).start()
     }
-
+    
     func previous() {
         viewModel.previousAction.apply(()).start()
     }

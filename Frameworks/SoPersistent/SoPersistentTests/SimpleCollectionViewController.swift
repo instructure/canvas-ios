@@ -24,7 +24,7 @@ class SimpleCollectionViewDataSource: NSObject, CollectionViewDataSource {
     var layoutForTraitsWasCalled = false
     var sizeInCollectionViewWasCalled = false
 
-    func viewDidLoad(controller: UICollectionViewController) {
+    func viewDidLoad(_ controller: UICollectionViewController) {
         viewDidLoadWasCalled = true
     }
 
@@ -33,22 +33,22 @@ class SimpleCollectionViewDataSource: NSObject, CollectionViewDataSource {
         return UICollectionViewFlowLayout()
     }
 
-    func sizeInCollectionView(collectionView: UICollectionView, forItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func sizeInCollectionView(_ collectionView: UICollectionView, forItemAtIndexPath indexPath: IndexPath) -> CGSize {
         sizeInCollectionViewWasCalled = true
-        return CGSizeZero
+        return .zero
     }
 
     // MARK: UICollectionViewDataSource
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 0
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return UICollectionViewCell()
     }
 

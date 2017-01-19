@@ -18,52 +18,87 @@
 
 import Foundation
 
-/**
-Creates default values for the "Accept-Encoding", "Accept-Language" and "User-Agent" headers.
-*/
-let defaultHTTPHeaders: [String: String] = {
+
+//  This code is extracted and slightly modified from Alamofire
+
+//  Copyright (c) 2014-2016 Alamofire Software Foundation (http://alamofire.org/)
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+//
+
+
+/// Creates default values for the "Accept-Encoding", "Accept-Language" and "User-Agent" headers.
+public let defaultHTTPHeaders: [String: String] = {
     // Accept-Encoding HTTP Header; see https://tools.ietf.org/html/rfc7230#section-4.2.3
-    let acceptEncoding: String = "gzip;q=1.0,compress;q=0.5"
+    let acceptEncoding: String = "gzip;q=1.0, compress;q=0.5"
     
     // Accept-Language HTTP Header; see https://tools.ietf.org/html/rfc7231#section-5.3.5
-    let acceptLanguage: String = {
-        
-        // Airwolf doesn't support regions yet, so, this adds additional headers that strip that out
-        // Example: ["de-US;q=1.0", "de;q=0.95", "ar-US;q=0.9", "ar;q=0.85", "en;q=0.80"]
-        let preferred = NSLocale.preferredLanguages()
-        let languages = preferred.reduce([String]()) { memo, item in
-            
-            if let range = item.rangeOfString("-", options: [.BackwardsSearch], range: nil, locale: nil) {
-                let stripped = item.substringToIndex(range.startIndex)
-                return memo + [item, stripped]
-            }
-            else {
-                return memo + [item]
-            }
-            }.enumerate().map { index, element in
-                return "\(element);q=\(1.0 - (Double(index) * 0.05))"
-        }
-        
-        return languages.joinWithSeparator(",")
-    }()
+    let acceptLanguage = Locale.preferredLanguages.prefix(6).enumerated().map { index, languageCode in
+        let quality = 1.0 - (Double(index) * 0.1)
+        return "\(languageCode);q=\(quality)"
+        }.joined(separator: ", ")
     
     // User-Agent Header; see https://tools.ietf.org/html/rfc7231#section-5.5.3
+    // Example: `iOS Example/1.0 (org.alamofire.iOS-Example; build:1; iOS 10.0.0) Alamofire/4.0.0`
     let userAgent: String = {
-        if let info = NSBundle.mainBundle().infoDictionary {
-            let executable: AnyObject = info[kCFBundleExecutableKey as String] ?? "Unknown"
-            let bundle: AnyObject = info[kCFBundleIdentifierKey as String] ?? "Unknown"
-            let version: AnyObject = info[kCFBundleVersionKey as String] ?? "Unknown"
-            let os: AnyObject = NSProcessInfo.processInfo().operatingSystemVersionString ?? "Unknown"
+        if let info = Bundle.main.infoDictionary {
+            let executable = info[kCFBundleExecutableKey as String] as? String ?? "Unknown"
+            let bundle = info[kCFBundleIdentifierKey as String] as? String ?? "Unknown"
+            let appVersion = info["CFBundleShortVersionString"] as? String ?? "Unknown"
+            let appBuild = info[kCFBundleVersionKey as String] as? String ?? "Unknown"
             
-            var mutableUserAgent = NSMutableString(string: "\(executable)/\(bundle) (\(version); OS \(os))") as CFMutableString
-            let transform = NSString(string: "Any-Latin; Latin-ASCII; [:^ASCII:] Remove") as CFString
+            let osNameVersion: String = {
+                let version = ProcessInfo.processInfo.operatingSystemVersion
+                let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
+                
+                let osName: String = {
+                    #if os(iOS)
+                        return "iOS"
+                    #elseif os(watchOS)
+                        return "watchOS"
+                    #elseif os(tvOS)
+                        return "tvOS"
+                    #elseif os(macOS)
+                        return "OS X"
+                    #elseif os(Linux)
+                        return "Linux"
+                    #else
+                        return "Unknown"
+                    #endif
+                }()
+                
+                return "\(osName) \(versionString)"
+            }()
             
-            if CFStringTransform(mutableUserAgent, UnsafeMutablePointer<CFRange>(nil), transform, false) {
-                return mutableUserAgent as String
-            }
+            let alamofireVersion: String = {
+                guard
+                    let afInfo = Bundle.tooLegit.infoDictionary,
+                    let build = afInfo["CFBundleShortVersionString"]
+                    else { return "Unknown" }
+                
+                return "TooLegit/\(build)"
+            }()
+            
+            return "\(executable)/\(appVersion) (\(bundle); build:\(appBuild); \(osNameVersion)) \(alamofireVersion)"
         }
         
-        return "ThreeLegit"
+        return "TooLegit"
     }()
     
     return [
@@ -73,11 +108,11 @@ let defaultHTTPHeaders: [String: String] = {
     ]
 }()
 
-extension NSMutableURLRequest {
+extension URLRequest {
     
     /// Adds our default set of headers to the url request
     /// *Note* Will OVERWRITE any other headers that were set
-    public func addDefaultHTTPHeaders() {
+    public mutating func addDefaultHTTPHeaders() {
         defaultHTTPHeaders.forEach { (key, value) in
             self.addValue(value, forHTTPHeaderField: key)
         }

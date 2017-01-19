@@ -31,22 +31,22 @@ protocol QuizService {
     
     var session: Session { get }
     
-    var baseURL: NSURL { get }
+    var baseURL: URL { get }
     
     var context: ContextID { get }
     var quizID: String { get }
     
-    func getQuiz(completed: QuizResult->())
+    func getQuiz(_ completed: @escaping (QuizResult)->())
     
-    func getSubmissions(completed: QuizSubmissionsResult->())
+    func getSubmissions(_ completed: @escaping (QuizSubmissionsResult)->())
     
-    func beginNewSubmission(completed: QuizSubmissionResult->())
+    func beginNewSubmission(_ completed: @escaping (QuizSubmissionResult)->())
     
-    func completeSubmission(submission: Submission, completed: QuizSubmissionResult->())
+    func completeSubmission(_ submission: Submission, completed: @escaping (QuizSubmissionResult)->())
     
-    func serviceForSubmission(submission: Submission) -> QuizSubmissionService
+    func serviceForSubmission(_ submission: Submission) -> QuizSubmissionService
     
-    func serviceForTimedQuizSubmission(submission: Submission) -> TimedQuizSubmissionService
+    func serviceForTimedQuizSubmission(_ submission: Submission) -> TimedQuizSubmissionService
     
-    func serviceForAuditLoggingSubmission(submission: Submission) -> SubmissionAuditLoggingService
+    func serviceForAuditLoggingSubmission(_ submission: Submission) -> SubmissionAuditLoggingService
 }

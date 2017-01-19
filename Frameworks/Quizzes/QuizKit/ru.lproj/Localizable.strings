@@ -1,8 +1,8 @@
 /* Error message component with the report id */
-"Error report ID: (reportID)" = "ID Сообщения об ошибке: (reportID)";
+" Error report ID: (reportID)" = " ID Сообщения об ошибке: (reportID)";
 
 /* Failure reason from the JSON payload from canvas */
-"Failure reason: (reason)." = "Причина сбоя: (reason).";
+" Failure reason: (reason)." = " Причина сбоя: (reason).";
 
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d вопросов не отвечено";
@@ -34,15 +34,14 @@
 /* label for quiz availability date */
 "Available Until" = "Доступно до";
 
-/* Cancel button
-   cancel button for submitting a quiz
-   Cancel removing the formatting */
+/* Cancel button title */
 "Cancel" = "Отменить";
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Продолжить тест";
 
-/* Dismiss button for error alert */
+/* Dismiss button for error alert
+   Dismiss error dialog */
 "Dismiss" = "Отклонить";
 
 /* Done button */
@@ -54,8 +53,17 @@
 /* Default text for essay cell */
 "Enter answer..." = "Введите ответ...";
 
+/* Title for quiz loading error */
+"Error Loading Quiz" = "Ошибка при загрузке контрольной работы";
+
+/* (No Commment) */
+"Error report ID: (reportID)" = "Идентификатор отчета об ошибках: (reportID)";
+
 /* Exit button to leave the quiz */
 "Exit" = "Выйти";
+
+/* (No Commment) */
+"Failure reason: (reason)." = "Причина отказа: (причина).";
 
 /* State of the flagged question */
 "Flagged" = "Отмечено";
@@ -83,8 +91,11 @@ Submitting" = "Достигнута дата блокирования
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Невозможно пройти";
 
-/* OK */
+/* OK Button Title */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "Пожалуйста, проверьте подключение к сети и повторите попытку.";
 
 /* label for number of points in a quiz */
 "Points" = "Баллы";
@@ -137,9 +148,7 @@ Submitting" = "Достигнута дата блокирования
 /* Label for indication that the quiz submission failed */
 "Submission Failure" = "Ошибка при отправке";
 
-/* Button for electing to not be late on a quiz
-   confirm submitting quiz
-   Submit button for completing a quiz */
+/* Submit button title */
 "Submit" = "Отправить";
 
 /* Label for indication of submitting quiz */
@@ -172,7 +181,7 @@ Submitting" = "Достигнута дата блокирования
 /* Message when telling the user they can't take the quiz because the quiz is locked */
 "This quiz is locked." = "Этот тест заблокирован.";
 
-/* Message when telling the user they can't take the quiz because the quiz is locked */
+/* (No Commment) */
 "This quiz is locked. Reason: (description)" = "Этот тест заблокирован. Причина: (description)";
 
 /* label for the time limit */

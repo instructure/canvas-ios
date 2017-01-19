@@ -1,0 +1,16 @@
+{
+    "id": 1023,
+    "poll_id": 55,
+    "course_id": 1111,
+    "course_section_id": 444,
+    "is_published": true,
+    "has_public_results": true,
+    "has_submitted": true,
+    "created_at": "2014-01-07T15:16:18Z",
+    "results": {
+        "144": 10,
+        "145": 3,
+        "146": 27,
+        "147": 8
+    }
+}

@@ -18,13 +18,13 @@
 
 import Foundation
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 import SoLazy
 import CoreData
 
 struct UploadTarget {
-    let url: NSURL
+    let url: URL
     let parameters: JSONObject
     
     static func parse(json: JSONObject) -> SignalProducer<UploadTarget, NSError> {
@@ -37,7 +37,7 @@ struct UploadTarget {
     }
 }
 
-private let FileUploadErrorTitle = NSLocalizedString("File Upload Error", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "title for file upload errors")
+private let FileUploadErrorTitle = NSLocalizedString("File Upload Error", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "title for file upload errors")
 
 private let MultipartBoundary = try! "---------------------------3klfenalksjflkjoi9auf89eshajsnl3kjnwal".UTF8Data()
 
@@ -65,24 +65,24 @@ extension Session {
         case Completed(File)
     }
     
-    func requestPostUploadTarget(path: String, fileName: String, size: Int, contentType: String?, folderPath: String?, overwrite: Bool) throws -> NSURLRequest {
-        var parametrs: [String: AnyObject] = [
+    func requestPostUploadTarget(path: String, fileName: String, size: Int, contentType: String?, folderPath: String?, overwrite: Bool) throws -> URLRequest {
+        var parameters: [String: Any] = [
             "name": fileName,
             "size": size,
         ]
         
-        if let c = contentType { parametrs["content_type"] = c }
-        if let f = folderPath { parametrs["folder"] = f }
-        if !overwrite { parametrs["on_duplicate"] = "rename" }
+        if let c = contentType { parameters["content_type"] = c }
+        if let f = folderPath { parameters["folder"] = f }
+        if !overwrite { parameters["on_duplicate"] = "rename" }
         
-        return try POST(path, parameters: parametrs, encoding: .URL)
+        return try POST(path, parameters: parameters, encoding: .url)
     }
     
-    func encodeMultipartBody(data: NSData, parameters: [String: AnyObject]) -> SignalProducer<NSData, NSError> {
+    func encodeMultipartBody(data: Data, parameters: [String: Any]) -> SignalProducer<Data, NSError> {
         return attemptProducer {
             let delim = try "--\(MultipartBoundary)\r\n".UTF8Data()
             
-            let body = NSMutableData()
+            var body = Data()
             body += delim
             for (key, value) in parameters {
                 body += try "Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n\(value)\r\n".UTF8Data()
@@ -97,45 +97,46 @@ extension Session {
         }
     }
 
-    func writeDataToFile(identifier: String) -> (data: NSData) -> SignalProducer<NSURL, NSError> {
+    func writeDataToFile(identifier: String) -> (Data) -> SignalProducer<URL, NSError> {
         return { data in
-            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
             let documentsURL = NSURL(fileURLWithPath: documentsPath, isDirectory: true)
 
             let fileName = identifier + ".tmp"
 
-            let url = documentsURL.URLByAppendingPathComponent(fileName)
+            let url = documentsURL.appendingPathComponent(fileName)
 
-            data.writeToURL(url!, atomically: true)
-            return SignalProducer(value: url!)
+            return attemptProducer {
+                    try data.write(to: url!, options: .atomic)
+                }.map { url! }
         }
     }
 
-    func requestUploadFile(data: NSData) -> (target: UploadTarget) -> SignalProducer<(NSMutableURLRequest, NSURL), NSError> {
+    func requestUploadFile(data: Data) -> (UploadTarget) -> SignalProducer<(URLRequest, URL), NSError> {
         return { target in
             let identifier = String(NSDate().timeIntervalSince1970)
 
-            let request = NSMutableURLRequest(URL: target.url, cachePolicy: .ReloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
-            request.HTTPMethod = "POST"
+            var request = URLRequest(url: target.url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
+            request.httpMethod = "POST"
             
             let contentType = "multipart/form-data; boundary=\(MultipartBoundary)"
             request.addValue(contentType, forHTTPHeaderField: "Content-Type")
             
             let sessionID = self.sessionID
             
-            return self.encodeMultipartBody(data, parameters: target.parameters)
+            return self.encodeMultipartBody(data: data, parameters: target.parameters)
                 .mapError { (e: NSError)->NSError in
-                    let description = NSLocalizedString("There was a problem preparing the file for upload", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "File upload error message")
+                    let description = NSLocalizedString("There was a problem preparing the file for upload", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "File upload error message")
                     return NSError(subdomain: "FileKit", code: 0, sessionID: sessionID, apiURL: target.url, title: FileUploadErrorTitle, description: description, failureReason: e.localizedDescription)
                 }
-                .flatMap(.Concat, transform: self.writeDataToFile(identifier))
+                .flatMap(.concat, transform: self.writeDataToFile(identifier: identifier))
                 .map { (request, $0) }
         }
     }
 
     public func addFileUploadCompletionHandler(fileUpload: FileUpload, inContext context: NSManagedObjectContext) {
         URLSession.getAllTheTasksWithCompletionHandler { tasks in
-            if let task = tasks.filter({ $0.taskIdentifier == fileUpload.taskIdentifier }).first {
+            if let task = tasks.filter({ $0.taskIdentifier == fileUpload.taskIdentifier?.intValue }).first {
                 fileUpload.addTaskCompletionHandler(task, inSession: self, inContext: context)
             }
         }

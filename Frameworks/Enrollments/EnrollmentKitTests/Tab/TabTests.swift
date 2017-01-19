@@ -45,7 +45,7 @@ class TabTests: UnitTestCase {
         }
         
         XCTAssertEqual("1", tab.id, "id should match")
-        XCTAssertEqual(NSURL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605"), tab.url, "url should match")
+        XCTAssertEqual(URL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605"), tab.url, "url should match")
         XCTAssertEqual(Int32(1), tab.position, "position should match")
         XCTAssertEqual("1", tab.label, "label should match")
         XCTAssert(tab.isValid)
@@ -55,7 +55,7 @@ class TabTests: UnitTestCase {
         attempt {
             try tab.updateValues(fullURLJSON, inContext: context)
         }
-        XCTAssertEqual(NSURL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605"), tab.url, "url should match")
+        XCTAssertEqual(URL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605"), tab.url, "url should match")
         XCTAssert(tab.isValid)
     }
 
@@ -77,7 +77,7 @@ class TabTests: UnitTestCase {
     func testTab_uniquePredicateForObject(){
         attempt{
             let predicate: NSPredicate = try Tab.uniquePredicateForObject(fullURLJSON)
-            let context: ContextID = ContextID(url: NSURL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
+            let context: ContextID = ContextID(url: URL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
             XCTAssertEqual(String(format: "id == \"1\" AND rawContextID == \"%@\"", context.canvasContextID), predicate.predicateFormat, "predicate should match")
         }
     }
@@ -112,7 +112,7 @@ class TabTests: UnitTestCase {
     func testTab_contextID() {
         attempt{
             try tab.updateValues(tabJSON, inContext: context)
-            let contextID: ContextID = ContextID(url: NSURL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
+            let contextID: ContextID = ContextID(url: URL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
             XCTAssertEqual(contextID, tab.contextID, "contextID should match")
         }
     }
@@ -120,7 +120,7 @@ class TabTests: UnitTestCase {
     
     //MARK: JSON tabs
     
-    private var tabJSON: JSONObject {
+    fileprivate var tabJSON: JSONObject {
         return [
             "url": "https://mobiledev.instructure.com/api/v1/courses/1422605",
             "id": "1",
@@ -129,7 +129,7 @@ class TabTests: UnitTestCase {
         ]
     }
     
-    private var fullURLJSON: JSONObject {
+    fileprivate var fullURLJSON: JSONObject {
         return [
             "full_url": "https://mobiledev.instructure.com/api/v1/courses/1422605",
             "id": "1",
@@ -138,7 +138,7 @@ class TabTests: UnitTestCase {
         ]
     }
     
-    private var badJSON: JSONObject {
+    fileprivate var badJSON: JSONObject {
         return [
             "url": "www.instructure.com",
             "id": "1",
@@ -147,7 +147,7 @@ class TabTests: UnitTestCase {
         ]
     }
     
-    private var pagesJSON: JSONObject {
+    fileprivate var pagesJSON: JSONObject {
         return [
             "url": "https://mobiledev.instructure.com/api/v1/courses/1422605",
             "id": "pages",
@@ -156,7 +156,7 @@ class TabTests: UnitTestCase {
         ]
     }
     
-    private var homeJSON: JSONObject {
+    fileprivate var homeJSON: JSONObject {
         return [
             "url": "https://mobiledev.instructure.com/api/v1/courses/1422605",
             "id": "home",
@@ -165,7 +165,7 @@ class TabTests: UnitTestCase {
         ]
     }
     
-    private var pageJSON: JSONObject {
+    fileprivate var pageJSON: JSONObject {
         return [
             "url": "https://mobiledev.instructure.com/api/v1/courses/1422605",
             "id": "wiki",

@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ doit être noté";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ pts";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Type : %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Mémoire cache vidée";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Calendrier";
 
 /* (No Commment) */
@@ -318,6 +325,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 
 /* (No Commment) */
 "Choose from Library..." = "Choisir de puis la bibliothèque...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Choisir l'option";
 
 /* (No Commment) */
 "Choose video" = "Choisir une vidéo";
@@ -376,7 +386,8 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Course Syllabus" = "Programme du cours";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "Cours";
 
 /* (No Commment) */
@@ -453,6 +464,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 
 /* (No Commment) */
 "Downloading..." = "Téléversement en cours...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Dû %@";
 
 /* (No Commment) */
 "Due:" = "Dû : ";
@@ -637,6 +651,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Item %1$d of %2$d" = "Élément %1$d sur %2$d au total";
 
+/* table header for module items */
+"Items" = "Éléments";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "C'est vide, que faites-vous encore ici.";
 
@@ -661,11 +678,17 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Legal" = "Légal";
 
+/* Web URL link item label */
+"Link" = "Lien";
+
 /* (No Commment) */
 "Loading..." = "Chargement en cours...";
 
 /* (No Commment) */
 "Locked" = "Verrouillé";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Verrouillé jusqu'à ce que « %@ » soit classé";
 
 /* locked date */
 "Locked until %@" = "Verrouillé jusqu'à %@";
@@ -687,6 +710,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 
 /* (No Commment) */
 "Masquerade" = "Se faire passer pour quelqu'un d'autre";
+
+/* Master Path module item type */
+"Mastery Path" = "Chemin de réussite";
 
 /* (No Commment) */
 "Me" = "Moi";
@@ -715,7 +741,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Envoyer un message séparé à chacun, ou ajouter tout le monde à une discussion de groupe ?";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Messages";
 
 /* (No Commment) */
@@ -760,6 +786,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "New Folder" = "Nouveau dossier";
 
+/* Button title for next module item. */
+"Next" = "Suivant";
+
 /* (No Commment) */
 "Next 7 Days" = "Les 7 prochains jours";
 
@@ -774,6 +803,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "Pas d'échéance";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "Aucun chemin de réussite";
 
 /* (No Commment) */
 "No Recorded Audio" = "Pas d'enregistrement audio";
@@ -832,7 +864,8 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Préférences de notification";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Notifications";
 
 /* OK Button Title */
@@ -858,6 +891,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 
 /* (No Commment) */
 "Open in..." = "Ouvrir avec...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Option %d";
 
 /* (No Commment) */
 "Other" = "Autre";
@@ -900,6 +936,12 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 
 /* (No Commment) */
 "Posts your comment" = "Publie votre commentaire";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Modules prérequis";
+
+/* Button title for previous module item. */
+"Previous" = "Précédent";
 
 /* (No Commment) */
 "Previous item" = "Élément précédent";
@@ -985,6 +1027,12 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Rechercher ici...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Sélectionner l'option";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Sélectionner l'option %d";
+
 /* (No Commment) */
 "Select file(s)" = "Sélectionner un ou plusieurs fichier(s)";
 
@@ -1035,6 +1083,20 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 
 /* (No Commment) */
 "Starts recording a media comment" = "Commencer l'enregistrement d'un commentaire de média";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Statut : Terminé";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Statut : Incomplet";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Statut : Verrouillé";
+
+/* Module status label when started */
+"Status: Started" = "Statut : Début";
 
 /* (No Commment) */
 "Stay Logged In" = "Rester connecté";
@@ -1202,16 +1264,22 @@ Erreur : %@";
 /* (No Commment) */
 "This is a media message." = "Ceci est un message de média.";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Cet élément de module n'a pas de chemin de réussite configuré.";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "C'est un moment opportun pour effectuer des travaux optionnels.";
 
 /* Title of the Todo screen */
 "To Do" = "À faire";
 
+/* To-Do List landing page title */
+"To-Do List" = "Liste de choses à faire";
+
 /* (No Commment) */
 "To:" = "À : ";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "Aujourd'hui";
 
 /* No comment provided by engineer. */
@@ -1231,6 +1299,9 @@ Erreur : %@";
 
 /* (No Commment) */
 "Turn in %@" = "Rendre %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Type : %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Oh oh ! Aucune connexion à internet";

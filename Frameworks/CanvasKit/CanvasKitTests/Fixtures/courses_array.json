@@ -1,0 +1,140 @@
+ [
+  {
+  "account_id": 99299,
+  "course_code": "CNVS-1997",
+  "default_view": "feed",
+  "id": 927343,
+  "name": "CNVS-1997",
+  "start_at": "2012-12-06T14:01:57-07:00",
+  "end_at": null,
+  "public_syllabus": false,
+  "storage_quota_mb": 500,
+  "apply_assignment_group_weights": false,
+  "calendar": {
+  "ics": "https://mobiledev.instructure.com/feeds/calendars/course_IoarMFIkhvaSxaiDPWJtNjk1zEoLYPWm5ZLoIrMD.ics"
+  },
+  "enrollments": [
+                  {
+                  "type": "student",
+                  "role": "StudentEnrollment"
+                  }
+                  ],
+  "hide_final_grades": false,
+  "workflow_state": "available"
+  },
+  {
+  "account_id": 99299,
+  "course_code": "CNVS-2933",
+  "default_view": "feed",
+  "id": 959141,
+  "name": "CNVS-2933",
+  "start_at": "2013-01-14T12:20:52-07:00",
+  "end_at": null,
+  "public_syllabus": false,
+  "storage_quota_mb": 500,
+  "apply_assignment_group_weights": false,
+  "calendar": {
+  "ics": "https://mobiledev.instructure.com/feeds/calendars/course_PeNSCEshTSFD0vlgaTEeMbfqz5Yp8APV8FQDW0UJ.ics"
+  },
+  "enrollments": [
+                  {
+                  "type": "student",
+                  "role": "StudentEnrollment"
+                  }
+                  ],
+  "hide_final_grades": false,
+  "workflow_state": "available"
+  },
+  {
+  "account_id": 99299,
+  "course_code": "CNVS-3325",
+  "default_view": "feed",
+  "id": 967544,
+  "name": "CNVS-3325",
+  "start_at": "2013-01-24T13:37:24-07:00",
+  "end_at": null,
+  "public_syllabus": false,
+  "storage_quota_mb": 500,
+  "apply_assignment_group_weights": false,
+  "calendar": {
+  "ics": "https://mobiledev.instructure.com/feeds/calendars/course_tadKAKgcD0rCH6uFzzDNKIN3rGJekbfSQGwwPloH.ics"
+  },
+  "enrollments": [
+                  {
+                  "type": "student",
+                  "role": "StudentEnrollment"
+                  }
+                  ],
+  "hide_final_grades": false,
+  "workflow_state": "available"
+  },
+  {
+  "account_id": 99299,
+  "course_code": "CNVS-3355",
+  "default_view": "feed",
+  "id": 968245,
+  "name": "CNVS-3355",
+  "start_at": "2013-01-25T17:54:37-07:00",
+  "end_at": null,
+  "public_syllabus": false,
+  "storage_quota_mb": 500,
+  "apply_assignment_group_weights": false,
+  "calendar": {
+  "ics": "https://mobiledev.instructure.com/feeds/calendars/course_yVwgM1jEhy0teMXpIktH3BzPGonki1RqQUuKNT1i.ics"
+  },
+  "enrollments": [
+                  {
+                  "type": "student",
+                  "role": "StudentEnrollment"
+                  }
+                  ],
+  "hide_final_grades": false,
+  "workflow_state": "available"
+  },
+  {
+  "account_id": 99299,
+  "course_code": "CNVS-3622",
+  "default_view": "feed",
+  "id": 970393,
+  "name": "CNVS-3622",
+  "start_at": "2013-02-05T08:59:12-07:00",
+  "end_at": null,
+  "public_syllabus": false,
+  "storage_quota_mb": 500,
+  "apply_assignment_group_weights": false,
+  "calendar": {
+  "ics": "https://mobiledev.instructure.com/feeds/calendars/course_9AGaBUrvTeg8K8gQDv5mgFPAWfVXRRd1YCsSJWpn.ics"
+  },
+  "enrollments": [
+                  {
+                  "type": "student",
+                  "role": "StudentEnrollment"
+                  }
+                  ],
+  "hide_final_grades": false,
+  "workflow_state": "available"
+  },
+  {
+  "account_id": 99299,
+  "course_code": "CNVS-3670",
+  "default_view": "feed",
+  "id": 970713,
+  "name": "CNVS-3670",
+  "start_at": "2013-02-06T12:35:43-07:00",
+  "end_at": null,
+  "public_syllabus": false,
+  "storage_quota_mb": 500,
+  "apply_assignment_group_weights": false,
+  "calendar": {
+  "ics": "https://mobiledev.instructure.com/feeds/calendars/course_Djx5loksCnyrAWAJYlSDr9J6QPVcUvFruBqhMbiw.ics"
+  },
+  "enrollments": [
+                  {
+                  "type": "student",
+                  "role": "StudentEnrollment"
+                  }
+                  ],
+  "hide_final_grades": false,
+  "workflow_state": "available"
+  }
+  ]

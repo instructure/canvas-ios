@@ -21,11 +21,11 @@ import Foundation
 
 // MARK: Class Instantiation
 extension CommunicationChannelsViewController {
-    private static let storyboardName = "Main"
-    private static let viewControllerName = "CommunicationsChannelsViewController"
-    public class func new(dataController: NotificationKitController) -> CommunicationChannelsViewController {
-        let storyboard = UIStoryboard(name: CommunicationChannelsViewController.storyboardName, bundle: NSBundle(forClass: CommunicationChannelsViewController.classForCoder()))
-        let controller = storyboard.instantiateViewControllerWithIdentifier(CommunicationChannelsViewController.viewControllerName) as! CommunicationChannelsViewController
+    fileprivate static let storyboardName = "Main"
+    fileprivate static let viewControllerName = "CommunicationsChannelsViewController"
+    public class func new(_ dataController: NotificationKitController) -> CommunicationChannelsViewController {
+        let storyboard = UIStoryboard(name: CommunicationChannelsViewController.storyboardName, bundle: Bundle(for: CommunicationChannelsViewController.classForCoder()))
+        let controller = storyboard.instantiateViewController(withIdentifier: CommunicationChannelsViewController.viewControllerName) as! CommunicationChannelsViewController
         
         controller.dataController = dataController
         
@@ -33,42 +33,42 @@ extension CommunicationChannelsViewController {
     }
 }
 
-public class CommunicationChannelsViewController: UITableViewController {
-    private var dataController: NotificationKitController!
-    private var datasource: [CommunicationChannel] = []
+open class CommunicationChannelsViewController: UITableViewController {
+    fileprivate var dataController: NotificationKitController!
+    fileprivate var datasource: [CommunicationChannel] = []
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Notification Preferences", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Title for the notification preferences page")
+        self.title = NSLocalizedString("Notification Preferences", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Title for the notification preferences page")
         
-        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         refreshControl = UIRefreshControl()
-        refreshControl!.addTarget(self, action: #selector(CommunicationChannelsViewController.refreshDataSource(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl!.addTarget(self, action: #selector(CommunicationChannelsViewController.refreshDataSource(_:)), for: UIControlEvents.valueChanged)
         
         refreshControl!.beginRefreshing()
         self.refreshDataSource(refreshControl!)
     }
     
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationItem.backBarButtonItem?.title = ""
     }
     
-    func refreshDataSource(sender: AnyObject) {
+    func refreshDataSource(_ sender: AnyObject) {
         self.dataController.getCommunicationChannels { (result) -> () in
             if result.error != nil {
                 self.datasource = []
 
-                let title = NSLocalizedString("No Communication Channels Found", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to load communication channels")
-                let message = NSLocalizedString("Unable to load any Communication Channels at this time.  Error: \(result.error?.localizedDescription)", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to load communication channels")
-                let actionText = NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title")
+                let title = NSLocalizedString("No Communication Channels Found", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to load communication channels")
+                let message = NSLocalizedString("Unable to load any Communication Channels at this time.  Error: \(result.error?.localizedDescription)", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to load communication channels")
+                let actionText = NSLocalizedString("OK", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title")
                 
                 self.showSimpleAlert(title, message: message, actionText: actionText)
                 
@@ -78,9 +78,9 @@ public class CommunicationChannelsViewController: UITableViewController {
                     self.tableView.reloadData()
                 } else {
                     
-                    let title = NSLocalizedString("Can't Display Communication Channels", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to parse JSON for communication channels")
-                    let message = NSLocalizedString("Unable to display any Communication Channels returned from the server at this time.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to parse JSON for communication channels")
-                    let actionText = NSLocalizedString("OK", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title")
+                    let title = NSLocalizedString("Can't Display Communication Channels", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert title when unable to parse JSON for communication channels")
+                    let message = NSLocalizedString("Unable to display any Communication Channels returned from the server at this time.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Alert message when unable to parse JSON for communication channels")
+                    let actionText = NSLocalizedString("OK", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "OK Button Title")
                     
                     self.showSimpleAlert(title, message: message, actionText: actionText)
                 }
@@ -92,30 +92,30 @@ public class CommunicationChannelsViewController: UITableViewController {
 }
 
 extension CommunicationChannelsViewController {
-    public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    open override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.datasource.count
     }
     
-    private static let cellReuseIdentifier = "CommunicationChannelCell"
-    public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CommunicationChannelsViewController.cellReuseIdentifier, forIndexPath: indexPath) 
+    fileprivate static let cellReuseIdentifier = "CommunicationChannelCell"
+    open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CommunicationChannelsViewController.cellReuseIdentifier, for: indexPath) 
         let communicationChannel = datasource[indexPath.row] as CommunicationChannel
         cell.textLabel?.text = communicationChannel.address
         cell.detailTextLabel?.text = communicationChannel.type.description
         return cell
     }
     
-    public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let channel = datasource[indexPath.row] as CommunicationChannel
         let viewController = NotificationPreferencesViewController.new(channel, dataController: self.dataController)
         
         navigationController?.pushViewController(viewController, animated: true)
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

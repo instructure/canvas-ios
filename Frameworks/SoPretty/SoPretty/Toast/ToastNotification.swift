@@ -13,11 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-    
-    
+
+
 
 import Foundation
-import CWStatusBarNotification
+import CWNotification
 
 public class ToastManager : NSObject {
     
@@ -32,42 +32,42 @@ public class ToastManager : NSObject {
     // MARK: - Default Duration
     // ---------------------------------------------
     
-    public func statusBarToastSuccess(message: String) {
+    public func statusBarToastSuccess(_ message: String) {
         createToastWithColorAndDefaultDuration(message, color: UIColor.toastSuccess)
     }
     
-    public func statusBarToastInfo(message: String) {
+    public func statusBarToastInfo(_ message: String) {
         createToastWithColorAndDefaultDuration(message, color: UIColor.toastInfo)
     }
     
-    public func statusBarToastFailure(message: String) {
-        createToastWithColorAndDefaultDuration(message, color: UIColor.toastFailure)
+    public func statusBarToastFailure(_ message: String) {
+        createToastWithColorAndDefaultDuration( message, color: UIColor.toastFailure)
     }
     
-    func createToastWithColorAndDefaultDuration(message: String, color: UIColor) {
+    func createToastWithColorAndDefaultDuration(_ message: String, color: UIColor) {
         notification.notificationLabelBackgroundColor = color
-        notification.displayNotificationWithMessage(message, forDuration: defaultToastDuration)
+        notification.display(withMessage: message, forDuration: defaultToastDuration)
     }
     
     // ---------------------------------------------
     // MARK: - With Completion Block
     // ---------------------------------------------
     
-    public func statusBarToastSuccess(message: String, completion: (() -> ())?) {
+    public func statusBarToastSuccess(_ message: String, completion: (() -> ())?) {
         createToastWithColorAndCompletionBlock(message, color: UIColor.toastSuccess, completion: completion)
     }
     
-    public func statusBarToastInfo(message: String, completion: (() -> ())?) {
+    public func statusBarToastInfo(_ message: String, completion: (() -> ())?) {
         createToastWithColorAndCompletionBlock(message, color: UIColor.toastInfo, completion: completion)
     }
     
-    public func statusBarToastFailure(message: String, completion: (() -> ())?) {
+    public func statusBarToastFailure(_ message: String, completion: (() -> ())?) {
         createToastWithColorAndCompletionBlock(message, color: UIColor.toastFailure, completion: completion)
     }
     
-    func createToastWithColorAndCompletionBlock(message: String, color: UIColor, completion: (() -> ())?) {
+    func createToastWithColorAndCompletionBlock(_ message: String, color: UIColor, completion: (() -> ())?) {
         notification.notificationLabelBackgroundColor = color
-        notification.displayNotificationWithMessage(message) {
+        notification.display(withMessage: message) {
             completion?()
         }
     }
@@ -77,6 +77,6 @@ public class ToastManager : NSObject {
     // ---------------------------------------------
     
     public func dismissNotification() {
-        notification.dismissNotification()
+        notification.dismiss()
     }
 }

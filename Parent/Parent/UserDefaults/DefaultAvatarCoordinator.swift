@@ -34,20 +34,20 @@ class DefaultAvatarCoordinator {
         return avatarImages
     }()
 
-    static func defaultAvatarForStudent(student: Student) -> UIImage {
+    static func defaultAvatarForStudent(_ student: Student) -> UIImage {
         return defaultAvatarForStudentID(student.id)
     }
 
-    static func defaultAvatarForStudentID(studentID: String) -> UIImage {
+    static func defaultAvatarForStudentID(_ studentID: String) -> UIImage {
         return defaultAvatarForKey(studentID)
     }
 
-    static func defaultAvatarForKey(key: String) -> UIImage {
-        guard let colorSchemeIndexDictionary = NSUserDefaults.standardUserDefaults().objectForKey(DefaultAvatarDictionaryKey) as? [String : Int] else {
+    static func defaultAvatarForKey(_ key: String) -> UIImage {
+        guard let colorSchemeIndexDictionary = UserDefaults.standard.object(forKey: DefaultAvatarDictionaryKey) as? [String : Int] else {
             var colorSchemeIndexDictionary = [String : Int]()
             let nextIndex = nextAvatarIndex()
             colorSchemeIndexDictionary[key] = nextIndex
-            NSUserDefaults.standardUserDefaults().setObject(colorSchemeIndexDictionary, forKey: DefaultAvatarDictionaryKey)
+            UserDefaults.standard.set(colorSchemeIndexDictionary, forKey: DefaultAvatarDictionaryKey)
             return DefaultAvatarCoordinator.avatarImages[nextIndex]
         }
 
@@ -55,7 +55,7 @@ class DefaultAvatarCoordinator {
         guard let colorSchemeIndex = colorSchemeIndexDictionary[key] else {
             let nextIndex = nextAvatarIndex()
             mutableIndexDictionary[key] = nextIndex
-            NSUserDefaults.standardUserDefaults().setObject(mutableIndexDictionary, forKey: DefaultAvatarDictionaryKey)
+            UserDefaults.standard.set(mutableIndexDictionary, forKey: DefaultAvatarDictionaryKey)
             return DefaultAvatarCoordinator.avatarImages[nextIndex]
         }
 
@@ -63,15 +63,15 @@ class DefaultAvatarCoordinator {
     }
 
     static func nextAvatarIndex() -> Int {
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
 
-        let currentIndex = defaults.integerForKey(CurrentAvatarIndexKey)
+        let currentIndex = defaults.integer(forKey: CurrentAvatarIndexKey)
         var nextIndex = currentIndex + 1
         if nextIndex >= DefaultAvatarCoordinator.avatarImages.count {
             nextIndex = 0
         }
 
-        defaults.setInteger(nextIndex, forKey: CurrentAvatarIndexKey)
+        defaults.set(nextIndex, forKey: CurrentAvatarIndexKey)
         defaults.synchronize()
         
         return nextIndex

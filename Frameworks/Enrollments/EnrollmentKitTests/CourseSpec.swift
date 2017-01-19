@@ -23,9 +23,9 @@ import SoAutomated
 import CoreData
 import Marshal
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 
-let currentBundle = NSBundle(forClass: CourseSpec.self)
+let currentBundle = Bundle(for: CourseSpec.self)
 
 class CourseSpec: QuickSpec {
     override func spec() {
@@ -336,8 +336,8 @@ class CourseSpec: QuickSpec {
                     session.playback("CoursesWithPendingEnrollments", in: currentBundle) {
                         waitUntil { done in
                             try! Course.getAllCourses(session)
-                                .take(1)
-                                .on(next: { courses = $0 })
+                                .take(first: 1)
+                                .on(value: { courses = $0 })
                                 .startWithCompleted { done() }
                         }
                     }

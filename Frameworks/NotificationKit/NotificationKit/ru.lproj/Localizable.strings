@@ -37,14 +37,16 @@
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "Каналы связи не найдены";
 
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "Не найдено ни одного push-канала";
+
 /* Title for the notification preferences page */
 "Notification Preferences" = "Настройки уведомлений";
 
-/* Action title for being unable to update a push notification preference
-   Alert action button text when unable to load communication channels
-   Alert action button text when unable to load notification preferences
-   Alert action button text when unable to parse JSON for communication channels
-   Alert action button text when unable to parse JSON for notification preferences */
+/* OK Button Title */
+"OK" = "OK";
+
+/* (No Commment) */
 "Ok" = "Ok";
 
 /* Description for Push Notification channel */
@@ -70,6 +72,12 @@
 
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Невозможно загрузить любые настройки уведомлений в это время. Ошибка: (result.error?.localizedDescription)";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "Невозможно провести синтаксический разбор JSON для каналов связи";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "Невозможно провести синтаксический разбор JSON для параметров настройки уведомлений";
 
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "Мы не смогли обновить это значение с сервером";

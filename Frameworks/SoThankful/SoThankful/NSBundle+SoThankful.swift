@@ -16,9 +16,9 @@
 
 import Foundation
 
-extension NSBundle {
+extension Bundle {
     
-    static func soThankfulBundle() -> NSBundle {
-        return NSBundle(identifier: "com.instructure.SoThankful")!
+    static func soThankfulBundle() -> Bundle {
+        return Bundle(identifier: "com.instructure.SoThankful")!
     }
 }

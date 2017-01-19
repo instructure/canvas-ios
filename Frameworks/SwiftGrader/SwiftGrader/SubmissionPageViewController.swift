@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import ReactiveCocoa
+import ReactiveSwift
 import Peeps
 import SoPersistent
 import AssignmentKit
@@ -31,8 +31,8 @@ class SubmissionPageViewController: UIPageViewController {
         delegate = self
     }
     
-    func createViewController(iterator: GradingIterator) -> SubmissionViewController {
-        let vc = storyboard!.instantiateViewControllerWithIdentifier("SubmissionViewController") as! SubmissionViewController
+    func createViewController(_ iterator: GradingIterator) -> SubmissionViewController {
+        let vc = storyboard!.instantiateViewController(withIdentifier: "SubmissionViewController") as! SubmissionViewController
         let submissionProducer = submissionsObserver.producer(iterator.enrollment.user!.id)
         vc.observeSubmission(submissionProducer, iterator: iterator, assignment: assignment, inSession: session)
         
@@ -49,7 +49,7 @@ class SubmissionPageViewController: UIPageViewController {
         currentPage.value = current
         nextPage = createViewController(iterator.next)
         previousPage = createViewController(iterator.previous)
-        setViewControllers([current], direction: .Forward, animated: false, completion: nil)
+        setViewControllers([current], direction: .forward, animated: false, completion: nil)
     }
     
     var session: Session!
@@ -59,18 +59,18 @@ class SubmissionPageViewController: UIPageViewController {
     var previousPage: SubmissionViewController?
     let currentPage = MutableProperty<SubmissionViewController?>(nil)
     
-    var navigationDirection: UIPageViewControllerNavigationDirection = .Forward
+    var navigationDirection: UIPageViewControllerNavigationDirection = .forward
     var submissionsObserver: ManagedObjectsObserver<Submission, String>!
 }
 
 
 extension SubmissionPageViewController: UIPageViewControllerDataSource {
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         return nextPage
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         return previousPage
     }
@@ -78,25 +78,25 @@ extension SubmissionPageViewController: UIPageViewControllerDataSource {
 
 
 extension SubmissionPageViewController: UIPageViewControllerDelegate {
-    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         
         if pendingViewControllers.first == nextPage {
-            navigationDirection = .Forward
+            navigationDirection = .forward
             print("Forward")
         } else {
-            navigationDirection = .Reverse
+            navigationDirection = .reverse
             print("Reverse")
         }
     }
     
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
             switch navigationDirection {
-            case .Forward:
+            case .forward:
                 previousPage = currentPage.value
                 currentPage.value = nextPage
                 nextPage = (nextPage?.iterator?.next).map(self.createViewController)
-            case .Reverse:
+            case .reverse:
                 nextPage = currentPage.value
                 currentPage.value = previousPage
                 previousPage = (previousPage?.iterator?.previous).map(self.createViewController)

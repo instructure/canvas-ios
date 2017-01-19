@@ -37,14 +37,16 @@
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "Ingen kommunikationskanaler fundet";
 
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "Ingen push-kanal fundet";
+
 /* Title for the notification preferences page */
 "Notification Preferences" = "Notifikationsindstillinger";
 
-/* Action title for being unable to update a push notification preference
-   Alert action button text when unable to load communication channels
-   Alert action button text when unable to load notification preferences
-   Alert action button text when unable to parse JSON for communication channels
-   Alert action button text when unable to parse JSON for notification preferences */
+/* OK Button Title */
+"OK" = "OK";
+
+/* (No Commment) */
 "Ok" = "Ok";
 
 /* Description for Push Notification channel */
@@ -70,6 +72,12 @@
 
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Er på nuværende tidspunkt ikke i stand til at  indlæse notifikationsindstillinger. Fejl: (result.error?.localizedDescription)";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "Kan ikke parse JSON for kommunikationskanaler";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "Kan ikke parse JSON for meddelelsesindstillinger";
 
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "Vi var ikke i stand til at opdatere denne værdi på serveren";

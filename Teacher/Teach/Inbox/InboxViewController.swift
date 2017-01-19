@@ -22,7 +22,7 @@ import SoIconic
 
 private let inboxTitle = NSLocalizedString("Inbox", comment: "Title for Inbox view")
 class InboxViewController: UIViewController {
-    static func tab(session: Session, route: RouteAction) throws -> UIViewController {
+    static func tab(_ session: Session, route: RouteAction) throws -> UIViewController {
         let nav = UINavigationController(rootViewController: InboxViewController())
         nav.tabBarItem.title = inboxTitle
         nav.tabBarItem.image = .icon(.inbox)

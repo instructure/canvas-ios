@@ -1,18 +1,1 @@
-/* Back Button Title */
-"Back" = "Retounen";
-
-/* Error alert message */
-"Could not create domain.  Please check your school's domain and try again." = "Pa kapab kreye domèn. Tanpri verifye domèn lekòl ou a epi eseye ankò.";
-
-/* Error Alert Title */
-"Error" = "Erè";
-
-/* Domain Picker Search Placeholder */
-"Find your school or district" = "Jwenn lekòl oswa distri ou a";
-
-/* OK */
-"OK" = "OK";
-
-/* AccountDomain Database Load Failure Message */
-"There was a problem loading the AccountDomain database file." = "Te gen yon pwoblèm nan chajman fichye AccountDomain baz de done a.";
-
+/* No Localized Strings */

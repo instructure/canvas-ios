@@ -1,0 +1,41 @@
+{
+    "associated_user_id":null,
+    "sis_course_id": "SHEL93921",
+    "course_integration_id": "SHEL93921",
+    "section_integration_id": "SHEL93921",
+    "sis_import_id": 83,
+    "root_account_id": 1,
+    "sis_section_id": "SHEL93921",
+    "course_id":24219,
+    "course_section_id":31105,
+    "created_at":"2013-08-28T16:32:33Z",
+    "end_at":null,
+    "id":20179095,
+    "limit_privileges_to_course_section":false,
+    "root_account_id":99298,
+    "start_at":null,
+    "type":"designer",
+    "updated_at":"2013-08-28T16:42:51Z",
+    "user_id":4976425,
+    "enrollment_state":"active",
+    "role":"designer",
+    "updated_at": "2012-04-18T23:08:51Z",
+    "start_at": "2012-04-18T23:08:51Z",
+    "end_at": "2012-04-18T23:08:51Z",
+    "last_activity_at":"2013-08-28T16:43:00Z",
+    "total_activity_time":260,
+    "html_url":"https://mobiledev.instructure.com/courses/24219/users/4976425",
+    "user":{
+        "id":4976425,
+        "name":"mwsuman+designer@gmail.com",
+        "sortable_name":"mwsuman+designer@gmail.com",
+        "short_name":"mwsuman+designer@gmail.com"
+    },
+    "grades":{
+        "html_url":"https://mobiledev.instructure.com/courses/24219/grades/5060228"
+    },
+    "computed_final_score": 10,
+    "computed_current_score": 11,
+    "computed_final_grade": "A-",
+    "computed_current_grade": "B+"
+}

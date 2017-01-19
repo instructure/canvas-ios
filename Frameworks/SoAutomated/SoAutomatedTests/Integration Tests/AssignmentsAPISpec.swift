@@ -21,7 +21,7 @@ import Quick
 import Nimble
 import SoAutomated
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 import Marshal
 

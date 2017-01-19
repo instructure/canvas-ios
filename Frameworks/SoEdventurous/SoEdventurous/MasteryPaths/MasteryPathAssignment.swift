@@ -18,22 +18,23 @@ import Foundation
 import CoreData
 import SoPersistent
 
-public final class MasteryPathAssignment: NSManagedObject {
-    public enum Type: String {
-        case assignment = "assignment"
-        case quiz = "quiz"
-        case discussionTopic = "discussion_topic"
-        case externalTool = "external_tool"
-
-        public var accessibilityLabel: String {
-            switch self {
-            case .assignment: return NSLocalizedString("assignment", comment: "label to be read for visually impaired users with assignment types")
-            case .quiz: return NSLocalizedString("quiz", comment: "label to be read for visually impaired users with quiz assignment types")
-            case .discussionTopic: return NSLocalizedString("discussion topic", comment: "label to be read for visually impaired users with discusstion topic assignment types")
-            case .externalTool: return NSLocalizedString("external tool", comment: "label to be read for visually impaired users with external tool assignment types")
-            }
+public enum MasteryPathAssignmentType: String {
+    case assignment = "assignment"
+    case quiz = "quiz"
+    case discussionTopic = "discussion_topic"
+    case externalTool = "external_tool"
+    
+    public var accessibilityLabel: String {
+        switch self {
+        case .assignment: return NSLocalizedString("assignment", comment: "label to be read for visually impaired users with assignment types")
+        case .quiz: return NSLocalizedString("quiz", comment: "label to be read for visually impaired users with quiz assignment types")
+        case .discussionTopic: return NSLocalizedString("discussion topic", comment: "label to be read for visually impaired users with discusstion topic assignment types")
+        case .externalTool: return NSLocalizedString("external tool", comment: "label to be read for visually impaired users with external tool assignment types")
         }
     }
+}
+
+public final class MasteryPathAssignment: NSManagedObject {
 
     @NSManaged internal (set) public var id: String
     @NSManaged internal (set) public var assignmentID: String
@@ -43,22 +44,22 @@ public final class MasteryPathAssignment: NSManagedObject {
     @NSManaged internal (set) public var name: String
     @NSManaged internal (set) public var details: String
     @NSManaged internal (set) public var pointsPossible: Double
-    @NSManaged internal (set) public var due: NSDate?
+    @NSManaged internal (set) public var due: Date?
 
-    internal (set) public var type: Type {
+    internal (set) public var type: MasteryPathAssignmentType {
         get {
-            willAccessValueForKey("type")
-            let value = Type(rawValue: primitiveType)!
-            didAccessValueForKey("type")
+            willAccessValue(forKey: "type")
+            let value = MasteryPathAssignmentType(rawValue: primitiveType)!
+            didAccessValue(forKey: "type")
             return value
         }
         set {
-            willChangeValueForKey("type")
+            willChangeValue(forKey: "type")
             primitiveType = newValue.rawValue
-            didChangeValueForKey("type")
+            didChangeValue(forKey: "type")
         }
     }
-    @NSManaged private var primitiveType: String
+    @NSManaged fileprivate var primitiveType: String
 
     @NSManaged internal (set) public var assignmentSet: MasteryPathAssignmentSet
 }
@@ -66,12 +67,12 @@ public final class MasteryPathAssignment: NSManagedObject {
 import Marshal
 
 extension MasteryPathAssignment: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
 
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id                  = try json.stringID("id")
         assignmentID        = try json.stringID("assignment_id")
         assignmentSetID     = try json.stringID("assignment_set_id")
@@ -81,8 +82,8 @@ extension MasteryPathAssignment: SynchronizedModel {
         let model: JSONObject = try json <| "model"
         name                = try model <| "name"
         due                 = try model <| "due_at"
-        details             = try model <| "description" ?? ""
-        pointsPossible      = try model <| "points_possible" ?? 0
+        details             = (try model <| "description") ?? ""
+        pointsPossible      = (try model <| "points_possible") ?? 0
 
         let types: [String] = try model <| "submission_types"
         // Doing something similar to Assignment's icon variable

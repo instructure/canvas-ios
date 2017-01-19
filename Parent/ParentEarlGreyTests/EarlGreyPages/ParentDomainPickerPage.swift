@@ -22,23 +22,23 @@ class ParentDomainPickerPage: PageObject {
   // Mark: - Page Objects
 
   private static var emailField: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("email_field"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("email_field"))
   }
 
   private static var passwordField: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("password_field"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("password_field"))
   }
 
   private static var loginButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("primary_action_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("primary_action_button"))
   }
 
   private static var createAccountButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("create_account_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("create_account_button"))
   }
 
   private static var forgotPasswordButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("forgot_password_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("forgot_password_button"))
   }
 
   static func uniquePageElement() -> GREYElementInteraction {
@@ -47,65 +47,65 @@ class ParentDomainPickerPage: PageObject {
 
   // Mark: - Assertion Helpers
 
-  static func assertPageObjects(file: String = #file, _ line: UInt = #line) {
+  static func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    emailField.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    passwordField.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    loginButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    createAccountButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    forgotPasswordButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
+    emailField.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    passwordField.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    loginButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    createAccountButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    forgotPasswordButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
   }
 
-  static func assertLoginButtonDisabled(file: String = #file, _ line: UInt = #line) {
+  static func assertLoginButtonDisabled(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    loginButton.assertWithMatcher(grey_not(grey_enabled()))
+    loginButton.assert(with: grey_not(grey_enabled()))
   }
 
-  static func assertLoginButtonEnabled(file: String = #file, _ line: UInt = #line) {
+  static func assertLoginButtonEnabled(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    loginButton.assertWithMatcher(grey_enabled())
+    loginButton.assert(with: grey_enabled())
   }
 
   // Mark: - UI Action Helpers
 
-  static func tapCreateAccount(file: String = #file, _ line: UInt = #line) {
+  static func tapCreateAccount(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    createAccountButton.performAction(grey_tap())
+    createAccountButton.perform(grey_tap())
   }
 
-  static func tapForgotPassword(file: String = #file, _ line: UInt = #line) {
+  static func tapForgotPassword(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    forgotPasswordButton.performAction(grey_tap())
+    forgotPasswordButton.perform(grey_tap())
   }
 
-  static func enterCredentials(parent: CanvasParent, file: String = #file, _ line: UInt = #line) {
+  static func enterCredentials(_ parent: CanvasParent, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    emailField.performAction(grey_replaceText(parent.username))
-    passwordField.performAction(grey_replaceText(parent.password))
+    emailField.perform(grey_replaceText(parent.username))
+    passwordField.perform(grey_replaceText(parent.password))
   }
 
-  static func loginAs(parent: CanvasParent, file: String = #file, _ line: UInt = #line) {
+  static func loginAs(_ parent: CanvasParent, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
     enterCredentials(parent)
-    loginButton.performAction(grey_tap())
+    loginButton.perform(grey_tap())
   }
 
-  static func clearPasswordField(file: String = #file, _ line: UInt = #line) {
+  static func clearPasswordField(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    passwordField.performAction(grey_replaceText(""))
+    passwordField.perform(grey_replaceText(""))
   }
 
-  static func clearEmailField(file: String = #file, _ line: UInt = #line) {
+  static func clearEmailField(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    emailField.performAction(grey_replaceText(""))
+    emailField.perform(grey_replaceText(""))
   }
 }

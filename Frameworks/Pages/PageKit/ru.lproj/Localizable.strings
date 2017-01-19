@@ -1,13 +1,13 @@
 /* all pages segmented control title */
 "All Pages" = "Все страницы";
 
-/* badge indicating front page */
+/* front page segmented control title */
 "Front Page" = "Первая страница";
 
-/* Generic button to dismiss the popup message */
+/* (No Commment) */
 "Okay" = "Хорошо";
 
-/* The page is locked by the teacher */
+/* (No Commment) */
 "Page Locked" = "Страница заблокирована";
 
 /* Page list fails */

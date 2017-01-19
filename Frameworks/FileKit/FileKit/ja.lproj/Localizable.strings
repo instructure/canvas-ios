@@ -1,4 +1,4 @@
-/* nevermind */
+/* Cancel button title */
 "Cancel" = "キャンセル";
 
 /* Pick a photo from library */
@@ -25,7 +25,7 @@
 /* title for file upload errors */
 "File Upload Error" = "ファイルアップロードエラー";
 
-/* Title of files list */
+/* (No Commment) */
 "Files" = "ファイル";
 
 /* name for a photo just taken */
@@ -49,7 +49,7 @@
 /* FileKit Database Load Failure Message */
 "There was a problem loading the FileKit database file." = "FIleKit データベースファイルの読み込み中にエラーが発生しました。";
 
-/* FileKit Tests database fails */
+/* (No Commment) */
 "There was a problem loading the FileKitTests database file." = "FIleKitTests データベースファイルの読み込み中にエラーが発生しました。";
 
 /* File upload error message */

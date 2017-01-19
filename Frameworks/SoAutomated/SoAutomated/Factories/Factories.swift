@@ -22,7 +22,7 @@ import CoreData
 
 public typealias Stub = String
 
-func defineLockedStatus(object: LockableModel) {
+func defineLockedStatus(_ object: LockableModel) {
     object.lockedForUser = false
     object.canView = true
     object.lockExplanation = nil
@@ -33,8 +33,8 @@ func defineLockedStatus(object: LockableModel) {
 @testable import EnrollmentKit
 
 extension Course: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .EnrollmentKit }
-    public static func define(object: Course) {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .enrollmentKit }
+    public static func define(_ object: Course) {
         object.id = "1"
         object.name = "One"
         object.code = "one"
@@ -43,8 +43,8 @@ extension Course: ManagedFactory {
 }
 
 extension Group: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .EnrollmentKit }
-    public static func define(object: Group) {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .enrollmentKit }
+    public static func define(_ object: Group) {
         object.id = "1"
         object.name = "one"
         object.isFavorite = false
@@ -52,29 +52,29 @@ extension Group: ManagedFactory {
 }
 
 extension Tab: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .EnrollmentKit }
-    public static func define(object: Tab) {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .enrollmentKit }
+    public static func define(_ object: Tab) {
         object.id = "1"
-        object.rawContextID = ContextID(id: "1", context: .Course).canvasContextID
+        object.rawContextID = ContextID(id: "1", context: .course).canvasContextID
         object.label = "Tab"
         object.position = 0
     }
 }
 
 extension Grade: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .EnrollmentKit }
-    public static func define(object: Grade) {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .enrollmentKit }
+    public static func define(_ object: Grade) {
         object.course = Course.build(inContext: object.managedObjectContext!)
     }
 }
 
 extension GradingPeriod: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .EnrollmentKit }
-    public static func define(object: GradingPeriod) {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .enrollmentKit }
+    public static func define(_ object: GradingPeriod) {
         object.id = "1"
         object.title = "Period 1"
         object.courseID = "1"
-        object.startDate = NSDate()
+        object.startDate = Date()
     }
 }
 
@@ -83,25 +83,25 @@ extension GradingPeriod: ManagedFactory {
 @testable import AssignmentKit
 
 extension Rubric: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .AssignmentKit }
-    public static func define(object: Rubric) {}
+    public static var auto_managedObjectContext: ManagedObjectContext { return .assignmentKit }
+    public static func define(_ object: Rubric) {}
 }
 
 extension Assignment: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .AssignmentKit }
-    public static func define(object: Assignment) {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .assignmentKit }
+    public static func define(_ object: Assignment) {
         object.id = "1"
         object.courseID = "1"
         object.name = "Assignment 1"
         object.details = ""
-        object.htmlURL = NSURL(string: "http://canvas.example.com/courses/1/assignments/1")!
-        object.submissionTypes = [.Text]
+        object.htmlURL = URL(string: "http://canvas.example.com/courses/1/assignments/1")!
+        object.submissionTypes = [.text]
     }
 }
 
 extension AssignmentGroup: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .AssignmentKit }
-    public static func define(object: AssignmentGroup) {
+    public static var auto_managedObjectContext: ManagedObjectContext { return.assignmentKit }
+    public static func define(_ object: AssignmentGroup) {
         object.id = "1"
         object.name = "Assignments"
         object.position = 0
@@ -111,8 +111,8 @@ extension AssignmentGroup: ManagedFactory {
 }
 
 extension Submission: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .AssignmentKit }
-    public static func define(object: Submission) {
+    public static var auto_managedObjectContext: ManagedObjectContext { return.assignmentKit }
+    public static func define(_ object: Submission) {
         object.rawSubmissionType = "online_upload"
     }
 }
@@ -122,19 +122,19 @@ extension Submission: ManagedFactory {
 @testable import FileKit
 
 extension Folder: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .FileKit }
-    public static func define(object: Folder) {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .fileKit }
+    public static func define(_ object: Folder) {
         object.id = "1"
-        object.contextID = ContextID(id: "1", context: .User)
+        object.contextID = ContextID(id: "1", context: .user)
         object.name = "New Folder"
     }
 }
 
 extension File: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .FileKit }
-    public static func define(object: File) {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .fileKit }
+    public static func define(_ object: File) {
         object.id = "1"
-        object.contextID = ContextID(id: "1", context: .User)
+        object.contextID = ContextID(id: "1", context: .user)
         object.name = "New File"
     }
 }
@@ -144,8 +144,8 @@ extension File: ManagedFactory {
 @testable import SoEdventurous
 
 extension Module: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .SoEdventurous }
-    public static func define(object: Module) {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .soEdventurous }
+    public static func define(_ object: Module) {
         object.id = "1"
         object.courseID = "1"
         object.name = "Module 1"
@@ -154,15 +154,15 @@ extension Module: ManagedFactory {
 }
 
 extension ModuleItem: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .SoEdventurous }
-    public static func define(object: ModuleItem) {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .soEdventurous }
+    public static func define(_ object: ModuleItem) {
         object.id = "1"
         object.courseID = "1"
         object.moduleID = "1"
         object.position = 0
         object.title = "Module Item 1"
         object.contentType = .assignment
-        object.content = .Assignment(id: "1")
+        object.content = .assignment(id: "1")
         object.completed = false
     }
 }
@@ -174,7 +174,7 @@ extension MasteryPathsItem {
         return object
     }
 
-    static func factory(context: NSManagedObjectContext) -> MasteryPathsItem {
+    static func factory(_ context: NSManagedObjectContext) -> MasteryPathsItem {
         let object: MasteryPathsItem = create(inContext: context)
         ModuleItem.define(object)
         object.moduleItemID = "1"
@@ -184,9 +184,25 @@ extension MasteryPathsItem {
 }
 
 extension MasteryPathAssignmentSet: ManagedFactory {
-    public static var auto_managedObjectContext: ManagedObjectContext { return .SoEdventurous }
-    public static func define(object: MasteryPathAssignmentSet) {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .soEdventurous }
+    public static func define(_ object: MasteryPathAssignmentSet) {
         object.id = "1"
         object.position = 0
+    }
+}
+
+// MARK: - SuchActivity
+
+@testable import SuchActivity
+
+extension Activity: ManagedFactory {
+    public static var auto_managedObjectContext: ManagedObjectContext { return .suchActivity }
+    public static func define(_ object: Activity) {
+        object.id = "1"
+        object.title = "Some activity"
+        object.message = "Some activity's deets"
+        object.createdAt = Date()
+        object.updatedAt = Date()
+        object.type = .submission
     }
 }

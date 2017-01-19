@@ -34,7 +34,6 @@
 #import "CBILog.h"
 #import "CKIClient+CBIClient.h"
 #import "CBIAssignmentDetailViewController.h"
-#import "CBISplitViewController.h"
 
 @import SoAnnotated;
 @import PSPDFKit;
@@ -355,10 +354,10 @@
 
     UIViewController *previousViewController = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
     UIViewController *realFRD = previousViewController;
-    if ([previousViewController isKindOfClass:[CBISplitViewController class]]) {
-        CBISplitViewController *splitView = (CBISplitViewController *)realFRD;
-        if ([splitView.detail isKindOfClass:[CBIAssignmentDetailViewController class]]) {
-            realFRD = splitView.detail;
+    if ([previousViewController isKindOfClass:[UISplitViewController class]]) {
+        UISplitViewController *splitView = (UISplitViewController *)realFRD;
+        if ([[splitView.viewControllers objectAtIndex:1] isKindOfClass:[UINavigationController class]] && [((UINavigationController *)[splitView.viewControllers objectAtIndex:1]).topViewController isKindOfClass:[CBIAssignmentDetailViewController class]]) {
+            realFRD = [splitView.viewControllers objectAtIndex:1];
         }
         // TODO: This never worked in the first place, put we should fix it!
         /*else if ([splitView.detail isKindOfClass:[CBIModuleProgressionViewController class]]) {

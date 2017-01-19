@@ -21,8 +21,8 @@ import TooLegit
 
 
 extension QuizIntroViewController {
-    public convenience init(session: Session, quizURL: NSURL, quizID: String) {
-        let components = NSURLComponents(URL:quizURL, resolvingAgainstBaseURL: false)
+    public convenience init(session: Session, quizURL: URL, quizID: String) {
+        let components = NSURLComponents(url:quizURL, resolvingAgainstBaseURL: false)
         components?.path = nil
         components?.query = nil
         components?.fragment = nil

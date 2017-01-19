@@ -22,18 +22,18 @@ import CoreData
 import SoPersistent
 import SoLazy
 import Marshal
-import ReactiveCocoa
+import ReactiveSwift
 
 extension FileNode {
-    public static func contextIDPredicate(contextID: ContextID) -> NSPredicate {
+    public static func contextIDPredicate(_ contextID: ContextID) -> NSPredicate {
         return NSPredicate(format:"%K == %@", "rawContextID", contextID.canvasContextID)
     }
     
-    public static func hiddenForUserPredicate(hiddenForUser: Bool) -> NSPredicate {
-        return NSPredicate(format:"%K == %@", "hiddenForUser", hiddenForUser)
+    public static func hiddenForUserPredicate(_ hiddenForUser: Bool) -> NSPredicate {
+        return NSPredicate(format:"%K == %@", "hiddenForUser", hiddenForUser as CVarArg)
     }
     
-    public static func folderIDPredicate(folderID: String?) -> NSPredicate {
+    public static func folderIDPredicate(_ folderID: String?) -> NSPredicate {
         if let folderID = folderID {
             return NSPredicate(format:"%K == %@", "parentFolderID", folderID)
         } else {
@@ -41,11 +41,11 @@ extension FileNode {
         }
     }
 
-    public static func rootFolderPredicate(isInRootFolder: Bool) -> NSPredicate {
-        return NSPredicate(format:"%K == %@", "isInRootFolder", isInRootFolder)
+    public static func rootFolderPredicate(_ isInRootFolder: Bool) -> NSPredicate {
+        return NSPredicate(format:"%K == %@", "isInRootFolder", isInRootFolder as CVarArg)
     }
     
-    public static func predicate(contextID: ContextID, hiddenForUser: Bool, folderID: String?) -> NSPredicate {
+    public static func predicate(_ contextID: ContextID, hiddenForUser: Bool, folderID: String?) -> NSPredicate {
         let contextID = contextIDPredicate(contextID)
         let hidden = hiddenForUserPredicate(hiddenForUser)
         let folder = folderIDPredicate(folderID)
@@ -55,14 +55,15 @@ extension FileNode {
 
 extension FileNode {
     
-    public static func fetchCollection(session: Session, contextID: ContextID, hiddenForUser: Bool, folderID: String?) throws -> FetchedCollection<FileNode> {
+    public static func fetchCollection(_ session: Session, contextID: ContextID, hiddenForUser: Bool, folderID: String?) throws -> FetchedCollection<FileNode> {
         let context = try session.filesManagedObjectContext()
         let predicate = FileNode.predicate(contextID, hiddenForUser: hiddenForUser, folderID: folderID)
-        let frc = FileNode.fetchedResults(predicate, sortDescriptors: ["name".ascending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection<FileNode>(frc: frc)
+        return try FetchedCollection<FileNode>(frc:
+            context.fetchedResults(predicate, sortDescriptors: ["name".ascending])
+        )
     }
     
-    public static func refresher(session: Session, contextID: ContextID, hiddenForUser: Bool, folderID: String?) throws -> Refresher {
+    public static func refresher(_ session: Session, contextID: ContextID, hiddenForUser: Bool, folderID: String?) throws -> Refresher {
         let predicate = FileNode.predicate(contextID, hiddenForUser: hiddenForUser, folderID: folderID)
         
         let folderIDProducer: SignalProducer<String,  NSError>
@@ -70,7 +71,7 @@ extension FileNode {
             folderIDProducer = SignalProducer(value: folderID)
         } else {
             folderIDProducer = try Folder.getRootFolder(session, contextID: contextID)
-                .flatMap(.Concat) { json in
+                .flatMap(.concat) { json in
                     attemptProducer {
                         let id: String = try json.stringID("id")
                         return id
@@ -78,10 +79,10 @@ extension FileNode {
             }
         }
         
-        let folders = folderIDProducer.flatMap(.Concat) { folderID in
+        let folders = folderIDProducer.flatMap(.concat) { folderID in
             attemptProducer {
                 return try Folder.getFolders(session, folderID: folderID)
-            }.flatten(.Merge)
+            }.flatten(.merge)
         }
         
         let context = try session.filesManagedObjectContext()
@@ -91,10 +92,10 @@ extension FileNode {
         }
         .map { _ in () }
         
-        let files = folderIDProducer.flatMap(.Concat) { folderID in
+        let files = folderIDProducer.flatMap(.concat) { folderID in
             attemptProducer {
                 return try File.getFiles(session, folderID: folderID)
-            }.flatten(.Merge)
+            }.flatten(.merge)
         }
         
         let filesSync = File.syncSignalProducer(predicate, inContext: context, fetchRemote: files) { file,_ in
@@ -110,11 +111,11 @@ extension FileNode {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
     
-    public static func getRootFolderID(session: Session, contextID: ContextID) -> SignalProducer<String,  NSError>? {
+    public static func getRootFolderID(_ session: Session, contextID: ContextID) -> SignalProducer<String,  NSError>? {
         let folderIDProducer: SignalProducer<String,  NSError>
         do {
             folderIDProducer = try Folder.getRootFolder(session, contextID: contextID)
-                .flatMap(.Concat) { json in
+                .flatMap(.concat) { json in
                     attemptProducer {
                         let id: String = try json.stringID("id")
                         return id
@@ -127,10 +128,10 @@ extension FileNode {
         return nil
     }
     
-    public class TableViewController: SoPersistent.TableViewController {
-        private (set) public var collection: FetchedCollection<FileNode>!
+    open class TableViewController: SoPersistent.TableViewController {
+        fileprivate (set) open var collection: FetchedCollection<FileNode>!
         
-        public func prepare<VM: TableViewCellViewModel>(collection: FetchedCollection<FileNode>, refresher: Refresher? = nil, viewModelFactory: FileNode->VM, didDeleteItemAtIndexPath: (NSIndexPath->Void)? = nil) {
+        open func prepare<VM: TableViewCellViewModel>(_ collection: FetchedCollection<FileNode>, refresher: Refresher? = nil, viewModelFactory: @escaping (FileNode)->VM, didDeleteItemAtIndexPath: ((IndexPath)->Void)? = nil) {
             self.collection = collection
             self.refresher = refresher
             let dataSource = FileCollectionTableViewDataSource(collection: collection, viewModelFactory: viewModelFactory)
@@ -140,19 +141,19 @@ extension FileNode {
     }
 }
 
-public class FileCollectionTableViewDataSource<VM: TableViewCellViewModel>: CollectionTableViewDataSource<FetchedCollection<FileNode>, VM> {
-    var didDeleteItemAtIndexPath: (NSIndexPath->Void)? = nil
+open class FileCollectionTableViewDataSource<VM: TableViewCellViewModel>: CollectionTableViewDataSource<FetchedCollection<FileNode>, VM> {
+    var didDeleteItemAtIndexPath: ((IndexPath)->Void)? = nil
     
-    override init(collection: FetchedCollection<FileNode>, viewModelFactory: FileNode -> VM) {
+    override init(collection: FetchedCollection<FileNode>, viewModelFactory: @escaping (FileNode) -> VM) {
         super.init(collection: collection, viewModelFactory: viewModelFactory)
     }
     
-    public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return (collection[indexPath].contextID.context == .User)
+    open func tableView(_ tableView: UITableView, canEditRowAtIndexPath indexPath: IndexPath) -> Bool {
+        return (collection[indexPath].contextID.context == .user)
    }
     
-    public func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    open func tableView(_ tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: IndexPath) {
+        if editingStyle == .delete {
             didDeleteItemAtIndexPath?(indexPath)
         }
     }

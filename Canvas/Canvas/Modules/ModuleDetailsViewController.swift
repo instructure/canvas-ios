@@ -22,23 +22,23 @@ import SoIconic
 import SafariServices
 import SoProgressive
 import SoPretty
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
-import ReactiveCocoa
+import ReactiveSwift
 
 class ModuleDetailsViewController: SoPersistent.TableViewController {
     let session: Session
     let courseID: String
     let viewModel: ModuleViewModel
-    let route: (UIViewController, NSURL) -> Void
+    let route: (UIViewController, URL) -> Void
     let disposable = CompositeDisposable()
 
-    init(session: Session, courseID: String, moduleID: String, route: (UIViewController, NSURL) -> Void) throws {
+    init(session: Session, courseID: String, moduleID: String, route: @escaping (UIViewController, URL) -> Void) throws {
         self.session = session
         self.courseID = courseID
         self.route = route
         viewModel = try ModuleViewModel(session: session, courseID: courseID, moduleID: moduleID)
-        super.init(style: .Grouped)
+        super.init(style: .grouped)
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
@@ -48,9 +48,9 @@ class ModuleDetailsViewController: SoPersistent.TableViewController {
 
         rac_title <~ viewModel.name.producer
 
-        self.refresher = try Module.refresher(session, courseID: courseID, moduleID: moduleID)
+        self.refresher = try Module.refresher(session: session, courseID: courseID, moduleID: moduleID)
 
-        disposable += viewModel.prerequisiteModuleIDs.producer.skipRepeats({ $0 == $1 }).startWithNext { [weak self] in
+        disposable += viewModel.prerequisiteModuleIDs.producer.skipRepeats({ $0 == $1 }).startWithValues { [weak self] in
             do {
                 self?.dataSource = try ModuleDetailDataSource(session: session, courseID: courseID, moduleID: moduleID, prerequisiteModuleIDs: $0, moduleViewModelFactory: { try! ModuleViewModel(session: session, module: $0, prerequisite: true) }, itemViewModelFactory: { try! ModuleItemViewModel(session: session, moduleItem: $0) })
             } catch let error as NSError {
@@ -74,17 +74,17 @@ class ModuleDetailsViewController: SoPersistent.TableViewController {
         tableView.estimatedRowHeight = 44
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let dataSource = dataSource as? ModuleDetailDataSource<ModuleViewModel, ModuleItemViewModel> else { fatalError("unexpected data source") }
         switch indexPath.section {
         case 0:
-            let module = dataSource.prerequisiteModulesCollection[NSIndexPath(forRow: indexPath.row, inSection: 0)]
-            let url = NSURL(string: ContextID(id: module.courseID, context: .Course).htmlPath / "modules" / module.id)!
+            let module = dataSource.prerequisiteModulesCollection[IndexPath(row: indexPath.row, section: 0)]
+            let url = URL(string: ContextID.course(withID: courseID).htmlPath / "modules" / module.id)!
             route(self, url)
         case 1:
-            let moduleItem = dataSource.itemsCollection[NSIndexPath(forRow: indexPath.row, inSection: 0)]
-            guard let content = moduleItem.content where content != .SubHeader else { return }
-            let url = NSURL(string: ContextID(id: courseID, context: .Course).htmlPath/"modules"/moduleItem.moduleID/"items"/moduleItem.id)!
+            let moduleItem = dataSource.itemsCollection[IndexPath(row: indexPath.row, section: 0)]
+            guard let content = moduleItem.content, content != .subHeader else { return }
+            let url = URL(string: ContextID(id: courseID, context: .course).htmlPath/"modules"/moduleItem.moduleID/"items"/moduleItem.id)!
             route(self, url)
         default:
             return

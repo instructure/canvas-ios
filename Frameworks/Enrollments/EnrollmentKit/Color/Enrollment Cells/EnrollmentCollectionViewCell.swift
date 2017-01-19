@@ -18,36 +18,26 @@
 
 import Foundation
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 import SoLazy
 import SoPretty
 
-extension Enrollment {
-    var colorSignalProducer: SignalProducer<UIColor, NoError> {
-        return rac_valuesForKeyPath("color", observer: nil)
-            .toSignalProducer()
-            .map { $0 as? UIColor ?? .prettyGray() }
-            .flatMapError { _ in SignalProducer<UIColor, NoError>(value: UIColor.prettyGray()) }
-    }
-}
+open class EnrollmentCollectionViewCell: PrettyCardsCell {
+    open var enrollment: MutableProperty<Enrollment?> = MutableProperty(nil)
+    fileprivate var colorDisposable: Disposable?
 
-public class EnrollmentCollectionViewCell: PrettyCardsCell {
-    public var enrollment: MutableProperty<Enrollment?> = MutableProperty(nil)
-    private var colorDisposable: Disposable?
-
-    private func beginObservingColors() {
-        colorDisposable = enrollment.producer
-            .observeOn(UIScheduler())
-            .flatMap(.Latest) { enrollment in
-                return enrollment?.colorSignalProducer ?? SignalProducer<UIColor, NoError>(value: .prettyGray())
-            }
-            .startWithNext { [weak self] color in
-                self?.colorUpdated(color)
-            }
+    fileprivate func beginObservingColors() {
+        colorDisposable = ScopedDisposable(enrollment.producer
+            .skipNil()
+            .observe(on: UIScheduler())
+            .flatMap(.latest) { $0.color.producer }
+            .startWithValues { [weak self] color in
+                self?.colorUpdated(color ?? .prettyGray())
+            })
     }
 
-    public func colorUpdated(color: UIColor) {
+    open func colorUpdated(_ color: UIColor) {
         self.backgroundColor = color
     }
 

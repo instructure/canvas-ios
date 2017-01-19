@@ -23,10 +23,10 @@ import CoreData
 
 extension Session {
     func soPersistentTestsManagedObjectContext() throws -> NSManagedObjectContext {
-        guard let model = NSManagedObjectModel(named: "DataModel", inBundle: NSBundle(forClass: Panda.self))?.mutableCopy() as? NSManagedObjectModel else { ❨╯°□°❩╯⌢"problems?" }
+        guard let model = NSManagedObjectModel(named: "DataModel", inBundle: Bundle(for: Panda.self))?.mutableCopy() as? NSManagedObjectModel else { ❨╯°□°❩╯⌢"problems?" }
 
         let storeID = StoreID(storeName: "SoPersistentTests", model: model,
-            localizedErrorDescription: NSLocalizedString("There was a problem loading the SoPersistentTests database file.", tableName: "Localizable", bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "SoPersistent Tests database fails"))
+            localizedErrorDescription: NSLocalizedString("There was a problem loading the SoPersistentTests database file.", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "SoPersistent Tests database fails"))
         
         return try managedObjectContext(storeID)
     }

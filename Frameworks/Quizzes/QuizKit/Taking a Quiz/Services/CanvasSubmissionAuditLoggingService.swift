@@ -34,20 +34,20 @@ class CanvasSubmissionAuditLoggingService: SubmissionAuditLoggingService {
     let auth: Session
     let apiPath: String
     
-    var baseURL: NSURL {
+    var baseURL: URL {
         return auth.baseURL
     }
     
-    func logSessionStarted(completed: SubmissionAuditLoggingResult->()) {
-        makeRequest(submissionEventRequest(SessionStartedEventType), completed: completed)
+    func logSessionStarted(_ completed: @escaping (SubmissionAuditLoggingResult)->()) {
+        let _ = makeRequest(submissionEventRequest(SessionStartedEventType), completed: completed)
     }
     
     // TODO: in the future, include other events, such as going into the background, changing answer, flagging a question, etc
     
-    func submissionEventRequest(eventType: String) -> Request<Bool> {
-        let path = (apiPath as NSString).stringByAppendingPathComponent("events")
+    func submissionEventRequest(_ eventType: String) -> Request<Bool> {
+        let path = (apiPath as NSString).appendingPathComponent("events")
         
-        let params: [String: AnyObject] = [
+        let params: [String: Any] = [
             "quiz_submission_events": [
                 [
                     "event_type": eventType,
@@ -62,6 +62,6 @@ class CanvasSubmissionAuditLoggingService: SubmissionAuditLoggingService {
     }
 }
 
-private func parseResponse(json: AnyObject?) -> Result<Bool, NSError> {
+private func parseResponse(_ json: Any?) -> Result<Bool, NSError> {
     return Result(value: true) // yay this is a fire-and-forget
 }

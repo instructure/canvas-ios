@@ -22,7 +22,7 @@ import SoLazy
 import Marshal
 
 struct Submission {
-    init(id: String, dateStarted: NSDate?, dateFinished: NSDate?, endAt: NSDate?, attempt: Int, attemptsLeft: Int, validationToken: String, workflowState: WorkflowState) {
+    init(id: String, dateStarted: Date?, dateFinished: Date?, endAt: Date?, attempt: Int, attemptsLeft: Int, validationToken: String, workflowState: WorkflowState) {
         self.id = id
         self.dateStarted = dateStarted
         self.dateFinished = dateFinished
@@ -34,9 +34,9 @@ struct Submission {
     }
     
     let id: String
-    let dateStarted: NSDate?
-    let dateFinished: NSDate?
-    let endAt: NSDate?
+    let dateStarted: Date?
+    let dateFinished: Date?
+    let endAt: Date?
     let attempt: Int
     let attemptsLeft: Int
     let validationToken: String
@@ -68,22 +68,22 @@ func ==(lhs: Submission.WorkflowState, rhs: Submission.WorkflowState) -> Bool {
 
 
 extension Submission.WorkflowState: JSONDecodable {
-    static func fromJSON(json: AnyObject?) -> Submission.WorkflowState? {
+    static func fromJSON(_ json: Any?) -> Submission.WorkflowState? {
         return (json as? String).flatMap { return Submission.WorkflowState(rawValue: $0) }
     }
 }
 
 extension Submission : JSONDecodable {
-    static func fromJSON(json: AnyObject?) -> Submission? {
+    static func fromJSON(_ json: Any?) -> Submission? {
         let jsonObject = json as? NSDictionary
         if let
             id = idString(jsonObject?["id"]),
-            attempt = jsonObject?["attempt"] as? Int,
-            attemptsLeft = jsonObject?["attempts_left"] as? Int,
-            validationToken = jsonObject?["validation_token"] as? String,
-            workflowState = Submission.WorkflowState.fromJSON(jsonObject?["workflow_state"]) {
+            let attempt = jsonObject?["attempt"] as? Int,
+            let attemptsLeft = jsonObject?["attempts_left"] as? Int,
+            let validationToken = jsonObject?["validation_token"] as? String,
+            let workflowState = Submission.WorkflowState.fromJSON(jsonObject?["workflow_state"]) {
                 
-                return Submission(id: id, dateStarted: NSDate.fromJSON(jsonObject?["started_at"]), dateFinished: NSDate.fromJSON(jsonObject?["finished_at"]), endAt: NSDate.fromJSON(jsonObject?["end_at"]), attempt: attempt, attemptsLeft: attemptsLeft, validationToken: validationToken, workflowState: workflowState)
+                return Submission(id: id, dateStarted: Date.fromJSON(jsonObject?["started_at"]), dateFinished: Date.fromJSON(jsonObject?["finished_at"]), endAt: Date.fromJSON(jsonObject?["end_at"]), attempt: attempt, attemptsLeft: attemptsLeft, validationToken: validationToken, workflowState: workflowState)
         }
         
         return nil

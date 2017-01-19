@@ -18,8 +18,8 @@
 
 import Foundation
 
-extension NSBundle {
-    static func secrets() -> NSBundle {
-        return NSBundle(identifier: "com.instructure.Secrets")!
+extension Bundle {
+    static var secrets: Bundle {
+        return Bundle(identifier: "com.instructure.Secrets")!
     }
 }

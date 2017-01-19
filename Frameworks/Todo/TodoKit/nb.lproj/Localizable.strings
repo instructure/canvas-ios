@@ -8,5 +8,5 @@
 "There was a problem loading the (kitModelName) database file." = "Det var et problem med lastingen av databasefilen (kitModelName).";
 
 /* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "Det var en feil knyttet til en arkfane med et kurs eller en gruppe.";
+"There was an error associating a tab with a course or group." = "Det var en feil knyttet til en arkfane med et emne eller en gruppe.";
 

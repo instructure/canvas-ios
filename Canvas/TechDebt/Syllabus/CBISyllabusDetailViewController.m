@@ -23,7 +23,6 @@
 #import "WebBrowserViewController.h"
 #import "UIWebView+SafeAPIURL.h"
 #import "CKIClient+CBIClient.h"
-#import "CBISplitViewController.h"
 #import "Router.h"
 @import CanvasKeymaster;
 #import "CBILog.h"

@@ -25,5 +25,3 @@ FOUNDATION_EXPORT double SoPersistentVersionNumber;
 FOUNDATION_EXPORT const unsigned char SoPersistentVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SoPersistent/PublicHeader.h>
-
-

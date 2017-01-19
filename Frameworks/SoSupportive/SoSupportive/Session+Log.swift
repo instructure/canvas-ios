@@ -20,17 +20,15 @@ import Foundation
 import TooLegit
 
 extension Session {
-    public func logFilePath() -> NSURL? {
-        let files = try! NSFileManager.defaultManager().contentsOfDirectoryAtURL(logDirectoryURL, includingPropertiesForKeys: [NSURLContentModificationDateKey], options: .SkipsHiddenFiles).sort({ file1URL, file2URL -> Bool in
+    public func logFilePath() -> URL? {
+        let files = try! FileManager.default.contentsOfDirectory(at: logDirectoryURL, includingPropertiesForKeys: [URLResourceKey.contentModificationDateKey], options: .skipsHiddenFiles).sorted(by: { file1URL, file2URL -> Bool in
             do {
-                var file1URLModifiedDate: AnyObject?
-                try file1URL.getResourceValue(&file1URLModifiedDate, forKey: NSURLContentModificationDateKey)
+                let file1URLModifiedDate = try file1URL.resourceValues(forKeys: [URLResourceKey.contentModificationDateKey]).contentModificationDate
 
-                var file2URLModifiedDate: AnyObject?
-                try file2URL.getResourceValue(&file2URLModifiedDate, forKey: NSURLContentModificationDateKey)
+                let file2URLModifiedDate = try file2URL.resourceValues(forKeys: [URLResourceKey.contentModificationDateKey]).contentModificationDate
 
-                if let date1 = file1URLModifiedDate as? NSDate, date2 = file2URLModifiedDate as? NSDate {
-                    return date1.compare(date2) == .OrderedAscending
+                if let date1 = file1URLModifiedDate, let date2 = file2URLModifiedDate {
+                    return date1 < date2
                 }
             } catch {
                 return false

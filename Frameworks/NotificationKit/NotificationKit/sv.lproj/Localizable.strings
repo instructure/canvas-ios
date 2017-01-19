@@ -37,14 +37,16 @@
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "Inga kommunikationskanaler hittades";
 
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "Ingen pushkanal hittad";
+
 /* Title for the notification preferences page */
 "Notification Preferences" = "Aviseringsinställningar";
 
-/* Action title for being unable to update a push notification preference
-   Alert action button text when unable to load communication channels
-   Alert action button text when unable to load notification preferences
-   Alert action button text when unable to parse JSON for communication channels
-   Alert action button text when unable to parse JSON for notification preferences */
+/* OK Button Title */
+"OK" = "OK";
+
+/* (No Commment) */
 "Ok" = "Ok";
 
 /* Description for Push Notification channel */
@@ -70,6 +72,12 @@
 
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Kan inte läsa in några aviseringsinställningar just nu. Fel: (result.error?.localizedDescription)";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "Kan inte analysera JSON för kommunikationskanaler";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "Kan inte analysera JSON för meddelandepreferenser";
 
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "Vi kunde inte uppdatera det här värdet med servern";

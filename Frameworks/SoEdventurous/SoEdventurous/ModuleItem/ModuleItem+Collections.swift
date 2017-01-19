@@ -27,17 +27,16 @@ extension ModuleItem {
     }
 
     public static func predicateWithCompletionRequirement() -> NSPredicate {
-        return NSPredicate(format: "%K != nil && %K != %@", "completionRequirement", "completionRequirement", ModuleItem.CompletionRequirement.MustChoose.rawValue)
+        return NSPredicate(format: "%K != nil && %K != %@", "completionRequirement", "completionRequirement", ModuleItem.CompletionRequirement.mustChoose.rawValue)
     }
 
-    public static func allModuleItemsCollection<T>(session: Session, moduleID: String, titleForSectionTitle: String? -> String? = { _ in nil }) throws -> FetchedCollection<T> {
+    public static func allModuleItemsCollection<T>(_ session: Session, moduleID: String, titleForSectionTitle: @escaping (String?) -> String? = { _ in nil }) throws -> FetchedCollection<T> {
         let context = try session.soEdventurousManagedObjectContext()
-        let frc = fetchedResults(predicate(forItemsIn: moduleID), sortDescriptors: ["position".ascending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection(frc: frc, titleForSectionTitle: titleForSectionTitle)
+        return try FetchedCollection(frc: context.fetchedResults(predicate(forItemsIn: moduleID), sortDescriptors: ["position".ascending]), titleForSectionTitle: titleForSectionTitle)
     }
 
-    public static func withCompletionRequirement(session: Session, moduleID: String) throws -> [ModuleItem] {
-        let predicate = NSPredicate(format: "%K == %@, %K != nil && %K != %@", "moduleID", moduleID, "completionRequirement", "completionRequirement", ModuleItem.CompletionRequirement.MustChoose.rawValue)
+    public static func withCompletionRequirement(_ session: Session, moduleID: String) throws -> [ModuleItem] {
+        let predicate = NSPredicate(format: "%K == %@, %K != nil && %K != %@", "moduleID", moduleID, "completionRequirement", "completionRequirement", ModuleItem.CompletionRequirement.mustChoose.rawValue)
         return try session.soEdventurousManagedObjectContext().findAll(matchingPredicate: predicate)
     }
 }

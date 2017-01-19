@@ -36,12 +36,12 @@ import SoLazy
 
 extension RubricCriterion {
     
-    public static func uniquePredicateForObject(assignmentID: String, json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ assignmentID: String, json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id") ?? ""
         return NSPredicate(format: "%K == %@ && %K == %@", "id", id, "assignmentID", assignmentID)
     }
     
-    public func updateValues(json: JSONObject, assignmentID: String, position: NSNumber, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, assignmentID: String, position: NSNumber, inContext context: NSManagedObjectContext) throws {
         id = try json.stringID("id")
         criterionDescription = try json <| "description"
         longDescription = try json <| "long_description"
@@ -50,7 +50,7 @@ extension RubricCriterion {
         self.assignmentID = assignmentID
         self.position = position
         
-        if let criterionRatings: [JSONObject] = try json <| "ratings" ?? [] {
+        if let criterionRatings: [JSONObject] = try json <| "ratings" {
             for rating in criterionRatings {
                 if let rubricCriterionRating: RubricCriterionRating = try context.findOne(withPredicate: try RubricCriterionRating.uniquePredicateForObject(id, assignmentID: self.assignmentID, json: rating)) {
                     try rubricCriterionRating.updateValues(rating, assignmentID: self.assignmentID, inContext: context)

@@ -19,17 +19,17 @@
 import UIKit
 import QuartzCore
 
-public class TriangleBackgroundGradientView: UIImageView {
+open class TriangleBackgroundGradientView: UIImageView {
     var gradientLayer : CAGradientLayer = CAGradientLayer()
 
-    var tintTopColor : UIColor = UIColor.clearColor()
-    var tintBottomColor : UIColor = UIColor.clearColor()
-    public var diagonal: Bool = true {
+    var tintTopColor : UIColor = UIColor.clear
+    var tintBottomColor : UIColor = UIColor.clear
+    open var diagonal: Bool = true {
         didSet {
             updateTintColor()
         }
     }
-    public var collection : UITraitCollection? {
+    open var collection : UITraitCollection? {
         didSet {
             if let collection = collection {
                 self.updateImage(collection)
@@ -37,7 +37,7 @@ public class TriangleBackgroundGradientView: UIImageView {
         }
     }
 
-    public var tintOpacity : Float = 0.8 {
+    open var tintOpacity : Float = 0.8 {
         didSet { updateTintColor() }
     }
 
@@ -65,34 +65,34 @@ public class TriangleBackgroundGradientView: UIImageView {
         updateTintColor()
     }
 
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         updateTintColor()
     }
 
     func commonInit() {
-        self.image = UIImage(named: "tri_pattern", inBundle: NSBundle(forClass: TriangleBackgroundGradientView.self), compatibleWithTraitCollection: collection)
-        self.contentMode = .ScaleAspectFill
+        self.image = UIImage(named: "tri_pattern", in: Bundle(for: TriangleBackgroundGradientView.self), compatibleWith: collection)
+        self.contentMode = .scaleAspectFill
     }
 
-    public func updateImage(collection: UITraitCollection, coordinator: UIViewControllerTransitionCoordinator? = nil) {
-        self.image = UIImage(named: "tri_pattern", inBundle: NSBundle(forClass: TriangleBackgroundGradientView.self), compatibleWithTraitCollection: collection)
+    open func updateImage(_ collection: UITraitCollection, coordinator: UIViewControllerTransitionCoordinator? = nil) {
+        self.image = UIImage(named: "tri_pattern", in: Bundle(for: TriangleBackgroundGradientView.self), compatibleWith: collection)
         let transition = CATransition()
-        transition.duration = coordinator?.transitionDuration() ?? 1.0
+        transition.duration = coordinator?.transitionDuration ?? 1.0
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.type = kCATransitionFade
-        self.layer.addAnimation(transition, forKey: nil)
+        self.layer.add(transition, forKey: nil)
     }
 
-    public func transitionToColors(tintTopColor: UIColor, tintBottomColor: UIColor, duration: NSTimeInterval = 0.0) {
+    open func transitionToColors(_ tintTopColor: UIColor, tintBottomColor: UIColor, duration: TimeInterval = 0.0) {
 
-        gradientLayer.colors = [tintTopColor.CGColor, tintBottomColor.CGColor]
+        gradientLayer.colors = [tintTopColor.cgColor, tintBottomColor.cgColor]
 
         let colorAnimation = CABasicAnimation(keyPath: "colors")
-        colorAnimation.fromValue = [self.tintTopColor.CGColor, self.tintBottomColor.CGColor]
-        colorAnimation.toValue = [tintTopColor.CGColor, tintBottomColor.CGColor]
+        colorAnimation.fromValue = [self.tintTopColor.cgColor, self.tintBottomColor.cgColor]
+        colorAnimation.toValue = [tintTopColor.cgColor, tintBottomColor.cgColor]
         colorAnimation.duration = duration
-        gradientLayer.addAnimation(colorAnimation, forKey: "colorAnimation")
+        gradientLayer.add(colorAnimation, forKey: "colorAnimation")
 
         self.tintTopColor = tintTopColor
         self.tintBottomColor = tintBottomColor
@@ -102,14 +102,14 @@ public class TriangleBackgroundGradientView: UIImageView {
         gradientLayer.frame = bounds
         gradientLayer.opacity = tintOpacity
         gradientLayer.removeFromSuperlayer()
-        gradientLayer.colors = [tintTopColor.CGColor, tintBottomColor.CGColor]
+        gradientLayer.colors = [tintTopColor.cgColor, tintBottomColor.cgColor]
 
         if diagonal {
-            gradientLayer.startPoint = CGPointMake(0.0, 1)
-            gradientLayer.endPoint = CGPointMake(1.0, 0.0)
+            gradientLayer.startPoint = CGPoint(x: 0.0, y: 1)
+            gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
         } else {
-            gradientLayer.startPoint = CGPointMake(0.5, 1)
-            gradientLayer.endPoint = CGPointMake(0.5, 0)
+            gradientLayer.startPoint = CGPoint(x: 0.5, y: 1)
+            gradientLayer.endPoint = CGPoint(x: 0.5, y: 0)
         }
         
         layer.addSublayer(gradientLayer)

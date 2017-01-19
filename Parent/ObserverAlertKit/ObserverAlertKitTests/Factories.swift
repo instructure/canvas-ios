@@ -25,7 +25,7 @@ import SoPersistent
 import CoreData
 
 extension Alert {
-    static func build(context: NSManagedObjectContext,
+    static func build(_ context: NSManagedObjectContext,
                       id: String = "1",
                       observerID: String = "observerID",
                       studentID: String = "studentID",
@@ -34,7 +34,7 @@ extension Alert {
                       title: String = "title",
                       read: Bool = false,
                       dismissed: Bool = false,
-                      actionDate: NSDate = NSDate(),
+                      actionDate: Date = Date(),
                       assetPath: String = "assetPath",
                       type: AlertThresholdType = .CourseAnnouncement
         ) -> Alert {
@@ -55,7 +55,7 @@ extension Alert {
 }
 
 extension AlertThreshold {
-    static func build(context: NSManagedObjectContext,
+    static func build(_ context: NSManagedObjectContext,
                       id: String = "1",
                       observerID: String = "observerID",
                       studentID: String = "studentID",

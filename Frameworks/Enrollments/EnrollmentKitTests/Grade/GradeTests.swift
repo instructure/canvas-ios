@@ -99,14 +99,14 @@ class GradeTests: XCTestCase {
         ]
     }
 
-    private func assertTeacherGradesAreNil(grade: Grade) {
+    fileprivate func assertTeacherGradesAreNil(_ grade: Grade) {
         XCTAssertNil(grade.currentGrade, "currentGrade is nil")
         XCTAssertNil(grade.currentScore, "currentScore is nil")
         XCTAssertNil(grade.finalGrade, "finalGrade is nil")
         XCTAssertNil(grade.finalScore, "finalScore is nil")
     }
 
-    private func assertGradesAreSet(grade: Grade) {
+    fileprivate func assertGradesAreSet(_ grade: Grade) {
         XCTAssertEqual(100, grade.currentScore, "currentScore is set")
         XCTAssertEqual("A", grade.currentGrade, "currentGrade is set")
         XCTAssertEqual(80, grade.finalScore, "finalScore is set")

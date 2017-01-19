@@ -1,8 +1,7 @@
-/* record button a11y hint
-   stop record button a11y hint */
+/* stop record button a11y hint */
 "Begin recording" = "Iniciar gravação";
 
-/* Cancel button */
+/* Cancel button title */
 "Cancel" = "Cancelar";
 
 /* Delete button */
@@ -44,7 +43,7 @@
 /* Record button a11y label */
 "Request Audio Recording Permission" = "Pedir permissão de Gravação Audio";
 
-/* record button a11y hint */
+/* stop record button a11y hint */
 "Request Permission to record audio" = "Pedir Permissão para gravar audio";
 
 /* stop recording button a11y label */

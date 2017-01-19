@@ -31,6 +31,9 @@
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "出現某些故障但我能解決它";
 
+/* Title for the subject field */
+"Subject" = "課程";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "謝謝，您的請求已經被接收！";
 
@@ -45,7 +48,4 @@
 
 /* Title for the email field */
 "Your Email" = "您的電子郵件";
-
-"Subject" = "主題";
-
 

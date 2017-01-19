@@ -21,10 +21,10 @@ import UIKit
 import XCTest
 import SoLazy
 
-extension NSURL {
-    static var image: NSURL {
-        let bundle = NSBundle(forClass: SessionTests.self)
-        guard let path = bundle.URLForResource("hubble-large", withExtension: "jpg") else {
+extension URL {
+    static var image: URL {
+        let bundle = Bundle(for: SessionTests.self)
+        guard let path = bundle.url(forResource: "hubble-large", withExtension: "jpg") else {
             XCTFail("image not found")
             fatalError()
         }

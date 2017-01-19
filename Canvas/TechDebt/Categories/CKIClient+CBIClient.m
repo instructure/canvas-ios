@@ -55,7 +55,7 @@ NSString * const CBICourseColorUpdatedValue = @"CBICourseColorUpdatedValue";
     return client;
 }
 
-- (Session*)authSession{
+- (Session *)authSession {
     Session *session = objc_getAssociatedObject(self, @selector(authSession));
     if (session != nil && [session isKindOfClass:[Session class]]) {
         return session;

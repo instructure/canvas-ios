@@ -21,28 +21,28 @@ import SoLazy
 import TooLegit
 import Security
 
-public class Keymaster {
+open class Keymaster {
     
-    public static let sharedInstance = Keymaster()
-    public var useSharedCredentials = false {
+    open static let sharedInstance = Keymaster()
+    open var useSharedCredentials = false {
         didSet {
             if useSharedCredentials {
                 keychain = FXKeychain(service: "com.instructure.shared-credentials", accessGroup: "8MKNFMCD9M.com.instructure.shared-credentials")
             } else {
-                keychain = FXKeychain.defaultKeychain()
+                keychain = FXKeychain.default()
             }
         }
     }
     
-    private let keychainClientsKey = "CBIKeychainClients"
-    private var keychain = FXKeychain.defaultKeychain()
+    fileprivate let keychainClientsKey = "CBIKeychainClients"
+    fileprivate var keychain = FXKeychain.default()
     
-    public var currentSession: Session?
+    open var currentSession: Session?
     
     // ---------------------------------------------
     // MARK: - Session Accessors
     // ---------------------------------------------
-    public func mostRecentSession() -> Session? {
+    open func mostRecentSession() -> Session? {
         let savedSessions = self.savedSessions()
         if savedSessions.count > 0 {
             return savedSessions[0]
@@ -51,9 +51,9 @@ public class Keymaster {
         return nil
     }
     
-    public func savedSessions() -> [Session] {
-        keychain.accessibility = FXKeychainAccess.AccessibleAfterFirstUnlock
-        let object: AnyObject? = keychain.objectForKey("CBIKeychainClients")
+    open func savedSessions() -> [Session] {
+        keychain.accessibility = FXKeychainAccess.accessibleAfterFirstUnlock
+        let object = keychain.object(forKey: "CBIKeychainClients")
         if let sessionDicts = object as? [[String: AnyObject]] {
             return sessionDicts.flatMap { Session.fromJSON($0).map { [$0] } ?? [] }
         }
@@ -61,9 +61,9 @@ public class Keymaster {
         return []
     }
 
-    public func savedSessionDictionaries() -> [[String: AnyObject]] {
-        keychain.accessibility = FXKeychainAccess.AccessibleAfterFirstUnlock
-        let object: AnyObject? = keychain.objectForKey("CBIKeychainClients")
+    open func savedSessionDictionaries() -> [[String: AnyObject]] {
+        keychain.accessibility = FXKeychainAccess.accessibleAfterFirstUnlock
+        let object = keychain.object(forKey: "CBIKeychainClients")
         if let sessionDicts = object as? [[String: AnyObject]] {
             return sessionDicts
         }
@@ -71,20 +71,20 @@ public class Keymaster {
         return []
     }
     
-    public func deleteSession(session: Session) {
+    open func deleteSession(_ session: Session) {
         let savedSessions = self.savedSessions()
         var mutableSessions = savedSessionDictionaries()
 
-        for (index, savedSession) in savedSessions.enumerate() {
+        for (index, savedSession) in savedSessions.enumerated() {
             if session.compare(savedSession) {
-                mutableSessions.removeAtIndex(index)
+                mutableSessions.remove(at: index)
             }
         }
 
         keychain.setObject(mutableSessions, forKey: keychainClientsKey)
     }
     
-    public func addSession(session: Session) {
+    open func addSession(_ session: Session) {
         self.updateMostRecentSession(session)
     }
     
@@ -94,24 +94,24 @@ public class Keymaster {
      
      :param: session The session you want to be moved to index 0.
      */
-    public func updateMostRecentSession(session: Session) {
+    open func updateMostRecentSession(_ session: Session) {
         let savedSessions = self.savedSessions()
         var mutableSessions = savedSessionDictionaries()
 
-        for (index, savedSession) in savedSessions.enumerate() {
+        for (index, savedSession) in savedSessions.enumerated() {
             if session.compare(savedSession) {
-                mutableSessions.removeAtIndex(index)
+                mutableSessions.remove(at: index)
             }
         }
 
-        mutableSessions.insert(session.dictionaryValue(), atIndex: 0)
+        mutableSessions.insert(session.dictionaryValue() as [String : AnyObject], at: 0)
         keychain.setObject(mutableSessions, forKey: keychainClientsKey)
     }
     
     // ---------------------------------------------
     // MARK: - User
     // ---------------------------------------------
-    public func logout() {
+    open func logout() {
         guard let session = currentSession else {
             return
         }
@@ -120,11 +120,11 @@ public class Keymaster {
         currentSession = nil
     }
     
-    public func switchUser() {
+    open func switchUser() {
         currentSession = nil
     }
     
-    public func login(session: Session) {
+    open func login(_ session: Session) {
         currentSession = session
         addSession(session)
     }
@@ -132,7 +132,7 @@ public class Keymaster {
     // ---------------------------------------------
     // MARK: - Masquerading
     // ---------------------------------------------
-    public func masqueradeForUser(id: String, domain: String? = nil) {
+    open func masqueradeForUser(_ id: String, domain: String? = nil) {
         guard let session = currentSession else {
             return
         }
@@ -150,8 +150,8 @@ public class Keymaster {
         // TODO: Fetch the masqueraded user and set it on the session
     }
     
-    public func stopMasquerading() {
-        guard let currentSession = currentSession, _ = currentSession.masqueradeAsUserID else {
+    open func stopMasquerading() {
+        guard let currentSession = currentSession, let _ = currentSession.masqueradeAsUserID else {
             return
         }
         

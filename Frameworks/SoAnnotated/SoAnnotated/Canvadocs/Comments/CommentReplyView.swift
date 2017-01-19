@@ -29,7 +29,7 @@ class CommentReplyView: UIView {
     var sendAction: ()->() = { }
     
     static func instantiate() -> CommentReplyView {
-        return NSBundle(forClass: self.classForCoder()).loadNibNamed("CommentReplyView", owner: self, options: nil)!.first! as! CommentReplyView
+        return Bundle(for: self.classForCoder()).loadNibNamed("CommentReplyView", owner: self, options: nil)!.first! as! CommentReplyView
     }
     
     override func awakeFromNib() {
@@ -37,16 +37,16 @@ class CommentReplyView: UIView {
         
         replyContainerView.layer.cornerRadius = 5.0
         replyContainerView.layer.borderWidth = 1.0
-        replyContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        replyContainerView.layer.borderColor = UIColor.lightGray.cgColor
         replyContainerView.clipsToBounds = true
         
-        replyTextView.scrollEnabled = false
+        replyTextView.isScrollEnabled = false
         
-        heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 63.0)
+        heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: 63.0)
         self.addConstraint(heightConstraint!)
     }
     
-    @IBAction func sendButtonClicked(sender: UIButton) {
+    @IBAction func sendButtonClicked(_ sender: UIButton) {
         sendAction()
     }
     
@@ -57,18 +57,18 @@ class CommentReplyView: UIView {
     
     func adjustHeight() {
         let fixedWidth = replyTextView.frame.size.width
-        let newSize = replyTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        let newSize = replyTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         heightConstraint?.constant = min(newSize.height + 30, 148) // 148 is 6 rows of text
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.superview?.layoutIfNeeded()
         })
         
-        replyTextView.scrollEnabled = heightConstraint?.constant == 148
+        replyTextView.isScrollEnabled = heightConstraint?.constant == 148
     }
 }
 
 extension CommentReplyView: UITextViewDelegate {
-    func textViewDidChange(textView: UITextView) {
+    func textViewDidChange(_ textView: UITextView) {
         adjustHeight()
     }
 }

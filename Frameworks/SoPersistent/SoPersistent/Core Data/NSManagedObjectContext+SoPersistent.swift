@@ -20,10 +20,10 @@ import CoreData
 import SoLazy
 
 extension NSManagedObjectModel {
-    public convenience init?(named: String, inBundle bundle: NSBundle = NSBundle.mainBundle()) {
-        guard let url = bundle.URLForResource(named, withExtension: "momd") else { return nil }
+    public convenience init?(named: String, inBundle bundle: Bundle = Bundle.main) {
+        guard let url = bundle.url(forResource: named, withExtension: "momd") else { return nil }
         
-        self.init(contentsOfURL: url)
+        self.init(contentsOf: url)
     }
 }
 
@@ -33,31 +33,34 @@ public enum StoreResilience {
 }
 
 extension NSPersistentStoreCoordinator {
-    func addStore(url url: NSURL, type: String, resilience: StoreResilience, cacheReset: ()->()) throws {
+    func addStore(url: URL, type: String, resilience: StoreResilience, cacheReset: ()->()) throws {
         
         if resilience == .userData || type != NSSQLiteStoreType {
-            try addPersistentStoreWithType(type, configuration: nil, URL: url, options: nil)
+            try addPersistentStore(ofType: type, configurationName: nil, at: url, options: nil)
             return
         }
 
         
         // if it's just cache then let's remove the old store first and then create a new one
         do {
-            try addPersistentStoreWithType(type, configuration: nil, URL: url, options: nil)
+            try addPersistentStore(ofType: type, configurationName: nil, at: url, options: nil)
         } catch {
-            let manager = NSFileManager.defaultManager()
-            if let path = url.path where manager.fileExistsAtPath(path) {
-                try manager.removeItemAtURL(url)
+            let manager = FileManager.default
+            let path = url.path
+            if manager.fileExists(atPath: path) {
+                try manager.removeItem(at: url)
             }
-            try addPersistentStoreWithType(type, configuration: nil, URL: url, options: nil)
+            try addPersistentStore(ofType: type, configurationName: nil, at: url, options: nil)
             cacheReset()
         }
     }
 }
 
+let pendingMergesQueue = DispatchQueue(label: "com.instructure.PendingCoreDataMerges")
+
 extension NSManagedObjectContext {
     
-    public convenience init(storeURL: NSURL, model: NSManagedObjectModel, resilience: StoreResilience = .cache,  concurrencyType: NSManagedObjectContextConcurrencyType = .MainQueueConcurrencyType, storeType: String = NSSQLiteStoreType, cacheReset: ()->()) throws {
+    public convenience init(storeURL: URL, model: NSManagedObjectModel, resilience: StoreResilience = .cache,  concurrencyType: NSManagedObjectContextConcurrencyType = .mainQueueConcurrencyType, storeType: String = NSSQLiteStoreType, cacheReset: ()->()) throws {
         self.init(concurrencyType: concurrencyType)
         
         let psc = NSPersistentStoreCoordinator(managedObjectModel: model)
@@ -69,9 +72,9 @@ extension NSManagedObjectContext {
     var persistentStoreCoordinatorFRD: NSPersistentStoreCoordinator {
         guard let psc =
             persistentStoreCoordinator
-            ?? parentContext?.persistentStoreCoordinator
-            ?? parentContext?.parentContext?.persistentStoreCoordinator
-            ?? parentContext?.parentContext?.parentContext?.persistentStoreCoordinator
+            ?? parent?.persistentStoreCoordinator
+            ?? parent?.parent?.persistentStoreCoordinator
+            ?? parent?.parent?.parent?.persistentStoreCoordinator
         else {
             ❨╯°□°❩╯⌢"Seriously? Either you have no psc or you're trolling me."
         }
@@ -82,17 +85,35 @@ extension NSManagedObjectContext {
     public func saveFRD() throws {
         try save()
         
-        var parent = self.parentContext
+        var parent = self.parent
         while let p = parent {
             try p.save()
-            parent = parent?.parentContext
+            parent = parent?.parent
         }
     }
     
-    func observeChangesFromContext(key: String, context: NSManagedObjectContext) {
-        self.userInfo[key] = NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextDidSaveNotification, object: context, queue: nil) { [weak self] note in
-            self?.performBlockAndWait {
-                self?.mergeChangesFromContextDidSaveNotification(note)
+    private var pointerDerivedID: String {
+        return String(format: "%p", self)
+    }
+    
+    func observeChangesFromContext(_ key: String, context: NSManagedObjectContext) {
+        self.userInfo[key] = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSManagedObjectContextDidSave, object: context, queue: nil) { [weak self] note in
+            
+            // move changes off the source contexts queue so we can control the locking order
+            pendingMergesQueue.async { [weak self] in
+                guard let sourceContext = note.object as? NSManagedObjectContext else { return }
+                guard let destinationContext = self else { return }
+
+                // the pointer address is an artibrary, but unchanging, id for the contexts
+                // that we can use to guarantee that they lock in the same order every time.
+                let contextsToLock = [sourceContext, destinationContext].sorted(by: { $0.pointerDerivedID < $1.pointerDerivedID })
+                
+                // the first lock should not block the PendingMergesQueue
+                contextsToLock[0].perform {
+                    contextsToLock[1].performAndWait {
+                        destinationContext.mergeChanges(fromContextDidSave: note)
+                    }
+                }
             }
         }
     }
@@ -100,14 +121,15 @@ extension NSManagedObjectContext {
     public var syncContext: NSManagedObjectContext {
         var sync: NSManagedObjectContext!
         
-        performBlockAndWait {
+        performAndWait {
             if let context = self.userInfo[SyncContextKey] as? NSManagedObjectContext { sync = context; return }
             
-            let context = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+            let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
             context.persistentStoreCoordinator = self.persistentStoreCoordinatorFRD
+            context.mergePolicy = NSMergePolicy(merge: .mergeByPropertyObjectTrumpMergePolicyType)
             
             self.observeChangesFromContext(MainContextObserverKey, context: context)
-            context.performBlock {
+            context.perform {
                 context.observeChangesFromContext(MainContextObserverKey, context: self)
             }
             
@@ -133,10 +155,10 @@ extension NSManagedObjectContext {
         }
     }
     
-    public func performChanges(block: () -> ()) {
-        performBlock {
+    public func performChanges(_ block: @escaping () -> ()) {
+        perform {
             block()
-            self.saveOrRollback()
+            _ = self.saveOrRollback()
         }
     }
 }
@@ -148,21 +170,21 @@ private let errorTitle = NSLocalizedString("Read Error", comment: "tile for erro
 extension NSManagedObjectContext {
     // MARK: - Fetching single items from context
     public func findOne<T: NSManagedObject>(withPredicate predicate: NSPredicate) throws -> T? {
-        let fetchRequest = T.fetch(predicate, inContext: self)
+        let fetchRequest: NSFetchRequest<T> = fetch(predicate)
 
         // Check if the object has been registered in the context first
-        for obj in registeredObjects where !obj.fault {
-            guard let result = obj as? T where predicate.evaluateWithObject(result) else { continue }
+        for obj in registeredObjects where !obj.isFault {
+            guard let result = obj as? T, predicate.evaluate(with: result) else { continue }
             return result
         }
 
         return try findAll(fromFetchRequest: fetchRequest).first
     }
 
-    public func findOne<T: NSManagedObject>(objectID: NSManagedObjectID) throws -> T {
+    public func findOne<T: NSManagedObject>(_ objectID: NSManagedObjectID) throws -> T {
         var object: T?
-        performBlockAndWait {
-            object = self.objectWithID(objectID) as? T
+        performAndWait {
+            object = self.object(with: objectID) as? T
         }
 
         guard let foundObject = object else {
@@ -173,7 +195,7 @@ extension NSManagedObjectContext {
         return foundObject
     }
 
-    public func findOne<T: NSManagedObject>(withValue value: AnyObject, forKey key: String) throws -> T? {
+    public func findOne<T: NSManagedObject>(withValue value: Any, forKey key: String) throws -> T? {
         let predicate = NSPredicate(format: "%K == %@", argumentArray: [key, value])
         let object: T? = try findOne(withPredicate: predicate)
         return object
@@ -181,37 +203,50 @@ extension NSManagedObjectContext {
 
     // MARK: - Fetching multiple items from context
     public func findAll<T: NSManagedObject>() throws -> [T] {
-        let request = T.fetch(nil, inContext: self)
-        guard let all = try executeFetchRequest(request) as? [T] else {
-            let reason = "Expected an array of type [\(T.self)]"
-            throw NSError(subdomain: "SoPersistent", title: errorTitle, description: errorDesc, failureReason: reason)
-        }
+        let request: NSFetchRequest<T> = fetch(nil)
+        let all = try fetch(request)
         return all
     }
 
-    public func findAll<T: NSManagedObject>(fromFetchRequest request: NSFetchRequest) throws -> [T] {
-        guard let models = try executeFetchRequest(request) as? [T] else {
-            let reason = "Expected an array of type [\(T.self)]"
-            throw NSError(subdomain: "SoPersistent", title: errorTitle, description: errorDesc, failureReason: reason)
-        }
+    public func findAll<T: NSManagedObject>(fromFetchRequest request: NSFetchRequest<T>) throws -> [T] {
+        let models = try fetch(request)
         return models
     }
 
     public func findAll<T: NSManagedObject>(matchingPredicate predicate: NSPredicate) throws -> [T] {
-        let request = NSFetchRequest(entityName: T.entityName(self))
+        print("Class being searched for: \(T.self)")
+        let request = NSFetchRequest<T>(entityName: T.entityName(self))
         request.predicate = predicate
         return try findAll(fromFetchRequest: request)
     }
 
-    public func findAll<T: NSManagedObject>(withValue value: AnyObject, forKey key: String) throws -> [T] {
+    public func findAll<T: NSManagedObject>(withValue value: Any, forKey key: String) throws -> [T] {
         let predicate = NSPredicate(format: "%K == %@", argumentArray: [key, value])
-        let request = T.fetch(predicate, inContext: self)
+        let request: NSFetchRequest<T> = fetch(predicate)
         return try findAll(fromFetchRequest: request)
     }
 
-    public func findAll<T: NSManagedObject>(withValues values: [AnyObject], forKey key: String) throws -> [T] {
+    public func findAll<T: NSManagedObject>(withValues values: [Any], forKey key: String) throws -> [T] {
         let predicate = NSPredicate(format: "%K in %@", key, values)
-        let request = T.fetch(predicate, inContext: self)
+        let request: NSFetchRequest<T> = fetch(predicate)
         return try findAll(fromFetchRequest: request)
+    }
+    
+    
+    public func fetch<T: NSManagedObject>(_ predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]? = nil) -> NSFetchRequest<T> {
+        let request = NSFetchRequest<T>(entityName: T.entityName(self))
+        request.predicate = predicate
+        request.sortDescriptors = sortDescriptors
+        return request
+    }
+    
+    public func fetchedResults<T: NSManagedObject>(_ predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor], sectionNameKeypath: String? = nil, propertiesToFetch: [String]? = nil) -> NSFetchedResultsController<T> {
+        let fetchRequest: NSFetchRequest<T> = fetch(predicate, sortDescriptors: sortDescriptors)
+        fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.fetchBatchSize = 30
+        if let props = propertiesToFetch { fetchRequest.propertiesToFetch = props }
+        let frc = NSFetchedResultsController<T>(fetchRequest: fetchRequest, managedObjectContext: self, sectionNameKeyPath: sectionNameKeypath, cacheName: nil)
+        
+        return frc
     }
 }

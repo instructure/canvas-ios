@@ -1,1 +1,24 @@
-/* No Localized Strings */
+/* Assignment label */
+"Assignment" = "Uppgift";
+
+/* Message indicating that an assignment is currently be submitted */
+"Assignment is currently being submitted" = "Uppgiften skickas in";
+
+/* Assignment submission comment placeholder text */
+"Comment.." = "Kommentera...";
+
+/* Error when an upload failed to resume. */
+"Failed to resume upload." = "Kunde inte återuppta uppladdning.";
+
+/* Message indicating that a submission type is not supported for this assignment. */
+"Submission type not allowed" = "Inlämningstyp inte tillåten";
+
+/* Error message when a course could not be selected */
+"Unable to select a course." = "Kunde inte välja kurs";
+
+/* Error message when an assignment could not be selected */
+"Unable to select an assignment." = "Kunde inte välja uppgift.";
+
+/* Error message when unable to submit assignment. */
+"Unable to submit assignment." = "Kunde inte skicka in uppgift.";
+

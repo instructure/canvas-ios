@@ -35,7 +35,7 @@ extension AlertTests {
             expectation.fulfill()
         }
 
-        guard let alerts = response, alert = alerts.first where alerts.count == 2 else {
+        guard let alerts = response, let alert = alerts.first, alerts.count == 2 else {
             XCTFail("unexpected response")
             return
         }
@@ -53,7 +53,7 @@ extension AlertTests {
             }
         }
 
-        guard let alerts = response, alert = alerts.first where alerts.count == 2 else {
+        guard let alerts = response, let alert = alerts.first, alerts.count == 2 else {
             XCTFail("unexpected response")
             return
         }
@@ -98,5 +98,5 @@ extension AlertTests {
 
 extension String: Fixture {
     public var name: String { return self }
-    public var bundle: NSBundle { return NSBundle(forClass: AlertTests.self) }
+    public var bundle: Bundle { return Bundle(for: AlertTests.self) }
 }

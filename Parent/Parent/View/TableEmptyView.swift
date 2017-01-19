@@ -25,7 +25,7 @@ class TableEmptyView: UIView {
     @IBOutlet weak var textLabel: UILabel!
 
     static func nibView() -> TableEmptyView {
-        guard let view = NSBundle(forClass: TableEmptyView.self).loadNibNamed("TableEmptyView", owner: self, options: nil)!.first as? TableEmptyView else {
+        guard let view = Bundle(for: TableEmptyView.self).loadNibNamed("TableEmptyView", owner: self, options: nil)!.first as? TableEmptyView else {
             ❨╯°□°❩╯⌢"View loaded from NIB is not a TableEmptyView"
         }
 

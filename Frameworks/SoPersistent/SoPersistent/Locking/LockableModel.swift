@@ -28,9 +28,9 @@ public protocol LockableModel: class {
 import Marshal
 
 extension LockableModel {
-    public func updateLockStatus(json: JSONObject) throws {
-        try lockedForUser = json <| "locked_for_user" ?? false
+    public func updateLockStatus(_ json: JSONObject) throws {
+        try lockedForUser = (json <| "locked_for_user") ?? false
         try lockExplanation = json <| "lock_explanation"
-        try canView = json <| "lock_info.can_view" ?? true
+        try canView = (json <| "lock_info.can_view") ?? true
     }
 }

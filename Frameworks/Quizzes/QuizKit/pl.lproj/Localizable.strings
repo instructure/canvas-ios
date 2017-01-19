@@ -1,8 +1,8 @@
 /* Error message component with the report id */
-"Error report ID: (reportID)" = "Identyfikator raportu o błędach: (raportID)";
+" Error report ID: (reportID)" = "Identyfikator raportu o błędach: (raportID)";
 
 /* Failure reason from the JSON payload from canvas */
-"Failure reason: (reason)." = "Powód niepowodzenia: (powód).";
+" Failure reason: (reason)." = "Powód niepowodzenia: (powód).";
 
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d pytań bez odpowiedzi";
@@ -34,15 +34,14 @@
 /* label for quiz availability date */
 "Available Until" = "Dostępne do";
 
-/* Cancel button
-   cancel button for submitting a quiz
-   Cancel removing the formatting */
+/* Cancel button title */
 "Cancel" = "Anuluj";
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Kontynuuj test";
 
-/* Dismiss button for error alert */
+/* Dismiss button for error alert
+   Dismiss error dialog */
 "Dismiss" = "Odwołaj";
 
 /* Done button */
@@ -54,8 +53,17 @@
 /* Default text for essay cell */
 "Enter answer..." = "Wpisz odpowiedź...";
 
+/* Title for quiz loading error */
+"Error Loading Quiz" = "Błąd podczas wczytywania quizu";
+
+/* (No Commment) */
+"Error report ID: (reportID)" = "ID raportu o błędach: (reportID)";
+
 /* Exit button to leave the quiz */
 "Exit" = "Wyjdź";
+
+/* (No Commment) */
+"Failure reason: (reason)." = "Przyczyna niepowodzenia: (przyczyna).";
 
 /* State of the flagged question */
 "Flagged" = "Oflagowano";
@@ -83,8 +91,11 @@ Wysyłanie";
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Nie mogą być brane";
 
-/* OK */
-"OK" = "OK";
+/* OK Button Title */
+"OK" = "Ok";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "Sprawdź połączenie sieciowe i spróbuj ponownie.";
 
 /* label for number of points in a quiz */
 "Points" = "Punkty";
@@ -137,9 +148,7 @@ Wysyłanie";
 /* Label for indication that the quiz submission failed */
 "Submission Failure" = "Błąd złożenia";
 
-/* Button for electing to not be late on a quiz
-   confirm submitting quiz
-   Submit button for completing a quiz */
+/* Submit button title */
 "Submit" = "Złóż";
 
 /* Label for indication of submitting quiz */
@@ -172,7 +181,7 @@ Wysyłanie";
 /* Message when telling the user they can't take the quiz because the quiz is locked */
 "This quiz is locked." = "Dany test jest zablokowany.";
 
-/* Message when telling the user they can't take the quiz because the quiz is locked */
+/* (No Commment) */
 "This quiz is locked. Reason: (description)" = "Dany test jest zablokowany. Powód: (opis)";
 
 /* label for the time limit */

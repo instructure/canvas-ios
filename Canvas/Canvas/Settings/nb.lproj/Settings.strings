@@ -1,0 +1,9 @@
+/* Class = "UILabel"; text = "Enable Push Notifications"; ObjectID = "PMb-wZ-ARX"; */
+"PMb-wZ-ARX.text" = "Aktivere push-varsler";
+
+/* Class = "UILabel"; text = "Allow Notifications in Settings"; ObjectID = "mYw-YB-SVS"; */
+"mYw-YB-SVS.text" = "Tillat varslinger i innstillinger";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "qwG-FB-tzR"; */
+"qwG-FB-tzR.title" = "Innstillinger";
+

@@ -1,11 +1,11 @@
 /* Error message component with the report id */
-"Error report ID: (reportID)" = "ID pūrongo Hapa: (pūrongo ID)";
+" Error report ID: (reportID)" = "ID pūrongo Hapa: (pūrongo ID)";
 
 /* Failure reason from the JSON payload from canvas */
-"Failure reason: (reason)." = "take Rahunga: (take).";
+" Failure reason: (reason)." = "take Rahunga: (take).";
 
 /* Confirmations alerting user of unanswered questions */
-"%d questions not answered" = "%d ngā pātai e kore e whakahoki";
+"%d questions not answered" = " %d ngā pātai e kore e whakahoki";
 
 /* Accessiblity hint for question drawer button */
 "(questionsController!.flaggedCount) Questions Answered" = "(Pātai Controller! Kaute .flagged) Tali Pātai";
@@ -34,15 +34,14 @@
 /* label for quiz availability date */
 "Available Until" = "Wātea Kia";
 
-/* Cancel button
-   cancel button for submitting a quiz
-   Cancel removing the formatting */
+/* Cancel button title */
 "Cancel" = "Whakakore";
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Tonu Pātaitai";
 
-/* Dismiss button for error alert */
+/* Dismiss button for error alert
+   Dismiss error dialog */
 "Dismiss" = "Tonoa";
 
 /* Done button */
@@ -54,8 +53,17 @@
 /* Default text for essay cell */
 "Enter answer..." = "E tomo whakahoki ...";
 
+/* Title for quiz loading error */
+"Error Loading Quiz" = "He hapa i te wā uta patapatai";
+
+/* (No Commment) */
+"Error report ID: (reportID)" = "Rīpoata hapa ID: (reportID)";
+
 /* Exit button to leave the quiz */
 "Exit" = "Waiho";
+
+/* (No Commment) */
+"Failure reason: (reason)." = "Te take i rahua ai: (take)";
 
 /* State of the flagged question */
 "Flagged" = "Karaina";
@@ -83,8 +91,11 @@ tuku";
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "e kore e taaketia ana";
 
-/* OK */
-"OK" = "Ok";
+/* OK Button Title */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "tirohia koa koutou hononga whatunga, me te ngana anō.";
 
 /* label for number of points in a quiz */
 "Points" = "Piro";
@@ -102,7 +113,8 @@ tuku";
 "Questions" = "Pātai";
 
 /* Title for alert that shows when a quiz hits the due date */
-"Quiz Due" = "Pātaitai Nā";
+"Quiz Due" = "Pātaitai Nā
+";
 
 /* Title for quiz error */
 "Quiz Error" = "Hapa Pātaitai";
@@ -137,9 +149,7 @@ tuku";
 /* Label for indication that the quiz submission failed */
 "Submission Failure" = "Rahunga Tukunga";
 
-/* Button for electing to not be late on a quiz
-   confirm submitting quiz
-   Submit button for completing a quiz */
+/* Submit button title */
 "Submit" = "Tuku";
 
 /* Label for indication of submitting quiz */
@@ -172,7 +182,7 @@ tuku";
 /* Message when telling the user they can't take the quiz because the quiz is locked */
 "This quiz is locked." = "maukati tēnei pātaitai te.";
 
-/* Message when telling the user they can't take the quiz because the quiz is locked */
+/* (No Commment) */
 "This quiz is locked. Reason: (description)" = "maukati tēnei pātaitai te. Take: (whakaahuatanga)";
 
 /* label for the time limit */

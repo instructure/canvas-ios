@@ -16,3 +16,6 @@
 /* PeepKit Database Load Failure Message */
 "There was a problem loading the PeepKit database file." = "He ko he raru uta i te kōnae pātengi raraunga kowhetewhete Kit.";
 
+/* An error message shown when the Users cache file fails to load */
+"There was an error loading the Users cache." = "I hapa i te utanga i te keteroki Kaiwhakamahi.";
+

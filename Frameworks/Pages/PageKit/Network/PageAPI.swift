@@ -22,17 +22,17 @@ import SoLazy
 
 let pagesPathSuffix = "/pages"
 
-public class PageAPI {
+open class PageAPI {
     
-    public class func getPages(session: Session, contextID: ContextID) throws -> NSURLRequest {
+    open class func getPages(_ session: Session, contextID: ContextID) throws -> URLRequest {
         return try session.GET(contextID.apiPath + pagesPathSuffix)
     }
     
-    public class func getPage(session: Session, contextID: ContextID, url: String) throws -> NSURLRequest {
+    open class func getPage(_ session: Session, contextID: ContextID, url: String) throws -> URLRequest {
         return try session.GET(contextID.apiPath + pagesPathSuffix + "/" + url)
     }
 
-    public class func getFrontPage(session: Session, contextID: ContextID) throws -> NSURLRequest {
+    open class func getFrontPage(_ session: Session, contextID: ContextID) throws -> URLRequest {
         return try session.GET(contextID.apiPath + "/front_page")
     }
     

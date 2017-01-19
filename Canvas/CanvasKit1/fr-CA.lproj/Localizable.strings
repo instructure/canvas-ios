@@ -50,7 +50,7 @@
 "File extension not allowed: %@" = "Extension de fichier non autorisée : %@";
 
 /* Comes before a list of file extensions allowed for an assinment submission */
-"File extension(s) permitted for this assignment: " = "Extensions de fichier permises pour ce travail assigné :";
+"File extension(s) permitted for this assignment: " = "Extensions de fichier permises pour cette tâche () :";
 
 /* File upload failed. */
 "File upload failed." = "Le téléversement du fichier a échoué.";
@@ -137,7 +137,7 @@
 "Text Comment" = "Commentaire de texte";
 
 /* Generic name for a submission entered online. */
-"Text Submission" = "Soumission de texte";
+"Text Submission" = "Envoi de texte";
 
 /* Error description when a user tries to upload a file that's too big */
 "The file you are trying to uploading is %@, but the maximum size is %@." = "Le fichier que vous tentez d'envoyer fait %1$@, mais la taille maximum est de %2$@.";

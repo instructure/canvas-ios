@@ -44,7 +44,7 @@ public struct Credentials {
         domain: "mobiledev.instructure.com",
         email: "mobiledevinstruct+user1@gmail.com",
         password: "finland-deflect-flab-lend-taper",
-        token: "1~O7YyCsxPDKM4GCd3aybOh6jrX4kaRAgT1CXtFa7ClmG79u9mOF2j7Nr56liMdGro",
+        token: "1~SBZIQpCWzvdP3ImbNoU61qxzrpoO88IzJX5kPxUICSoOIHXKeVOkvjLmJXIsa6oC",
         name: "User 1"
     )
 
@@ -133,17 +133,17 @@ public struct Credentials {
     )
 }
 
-public class User {
-    public let credentials: Credentials
+open class User {
+    open let credentials: Credentials
 
-    public var id: String {
+    open var id: String {
         return credentials.id
     }
 
-    public lazy var session: Session = {
+    open lazy var session: Session = {
         let creds = self.credentials
         let user = SessionUser(id: creds.id, name: creds.name, loginID: nil, sortableName: creds.name, email: creds.email, avatarURL: nil)
-        let baseURL = NSURL(string: "https://\(creds.domain)")!
+        let baseURL = URL(string: "https://\(creds.domain)")!
         return Session(baseURL: baseURL, user: user, token: creds.token, unitTesting: true)
     }()
 
@@ -153,7 +153,7 @@ public class User {
 }
 
 extension Session {
-    public convenience init(baseURL: NSURL, user: SessionUser, token: String?, unitTesting: Bool) {
+    public convenience init(baseURL: URL, user: SessionUser, token: String?, unitTesting: Bool) {
         self.init(baseURL: baseURL, user: user, token: token)
         if unitTesting {
             storeType = NSInMemoryStoreType

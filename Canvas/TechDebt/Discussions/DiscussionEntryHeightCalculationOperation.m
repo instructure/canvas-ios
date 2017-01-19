@@ -17,7 +17,7 @@
     
 
 #import "DiscussionEntryHeightCalculationOperation.h"
-@import ReactiveCocoa;
+@import ReactiveObjC;
 #import <CanvasKit1/CanvasKit1.h>
 #import "DiscussionEntryCell.h"
 

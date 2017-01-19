@@ -29,7 +29,7 @@ class FileSpec: QuickSpec {
             describe("deleteFileNode") {
                 it("through a network call should delete the file") {
                     let session = User(credentials: .user4).session
-                    let contextID = ContextID(id: "6782429", context: .User)
+                    let contextID = ContextID(id: "6782429", context: .user)
                     let file = File.build(inSession: session) {
                         $0.id = "85285506"
                         $0.contextID = contextID

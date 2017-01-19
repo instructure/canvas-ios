@@ -68,20 +68,20 @@ class ColorCoordinator {
         return ColorScheme.blueColorScheme
     }
 
-    static func colorSchemeForStudent(student: Student) -> ColorScheme {
+    static func colorSchemeForStudent(_ student: Student) -> ColorScheme {
         return colorSchemeForKey(student.id)
     }
 
-    static func colorSchemeForStudentID(studentID: String) -> ColorScheme {
+    static func colorSchemeForStudentID(_ studentID: String) -> ColorScheme {
         return colorSchemeForKey(studentID)
     }
 
-    static func colorSchemeForKey(key: String) -> ColorScheme {
-        guard let colorSchemeIndexDictionary = NSUserDefaults.standardUserDefaults().objectForKey(ColorSchemeDictionaryKey) as? [String : Int] else {
+    static func colorSchemeForKey(_ key: String) -> ColorScheme {
+        guard let colorSchemeIndexDictionary = UserDefaults.standard.object(forKey: ColorSchemeDictionaryKey) as? [String : Int] else {
             var colorSchemeIndexDictionary = [String : Int]()
             let nextIndex = nextColorSchemeIndex()
             colorSchemeIndexDictionary[key] = nextIndex
-            NSUserDefaults.standardUserDefaults().setObject(colorSchemeIndexDictionary, forKey: ColorSchemeDictionaryKey)
+            UserDefaults.standard.set(colorSchemeIndexDictionary, forKey: ColorSchemeDictionaryKey)
             return ColorScheme.colorSchemes[nextIndex]
         }
 
@@ -89,7 +89,7 @@ class ColorCoordinator {
         guard let colorSchemeIndex = colorSchemeIndexDictionary[key] else {
             let nextIndex = nextColorSchemeIndex()
             mutableIndexDictionary[key] = nextIndex
-            NSUserDefaults.standardUserDefaults().setObject(mutableIndexDictionary, forKey: ColorSchemeDictionaryKey)
+            UserDefaults.standard.set(mutableIndexDictionary, forKey: ColorSchemeDictionaryKey)
             return ColorScheme.colorSchemes[nextIndex]
         }
 
@@ -97,15 +97,15 @@ class ColorCoordinator {
     }
 
     static func nextColorSchemeIndex() -> Int {
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
 
-        let currentIndex = defaults.integerForKey(CurrentIndexKey)
+        let currentIndex = defaults.integer(forKey: CurrentIndexKey)
         var nextIndex = currentIndex + 1
         if nextIndex >= ColorScheme.colorSchemes.count {
             nextIndex = 0
         }
 
-        defaults.setInteger(nextIndex, forKey: CurrentIndexKey)
+        defaults.set(nextIndex, forKey: CurrentIndexKey)
         defaults.synchronize()
 
         return nextIndex

@@ -16,38 +16,38 @@
     
     
 
-import ReactiveCocoa
+import ReactiveSwift
 import TooLegit
 import Marshal
 
 extension User {
-    public static func getUsers(context: ContextID, session: Session) throws -> SignalProducer<[JSONObject], NSError> {
+    public static func getUsers(_ context: ContextID, session: Session) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try UserAPI.getUsers(session, context: context)
         return session.paginatedJSONSignalProducer(request)
     }
     
     
-    public static func getObserveeUsers(session: Session) throws -> SignalProducer<[JSONObject], NSError> {
+    public static func getObserveeUsers(_ session: Session) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try UserAPI.getObserveeUsers(session)
         return session.paginatedJSONSignalProducer(request)
     }
 
-    public static func getObserveeUser(session: Session, observeeID: String) throws -> SignalProducer<JSONObject, NSError> {
+    public static func getObserveeUser(_ session: Session, observeeID: String) throws -> SignalProducer<JSONObject, NSError> {
         let request = try UserAPI.getObserveeUser(session, observeeID: observeeID)
         return session.JSONSignalProducer(request)
     }
 
-    public static func removeObserver(session: Session, observeeID: String) throws -> SignalProducer<(), NSError> {
+    public static func removeObserver(_ session: Session, observeeID: String) throws -> SignalProducer<(), NSError> {
         let request = try UserAPI.removeObserver(session, observeeID: observeeID)
         return session.emptyResponseSignalProducer(request)
     }
 
-    public static func addObserver(session: Session, accessToken: String) throws -> SignalProducer<[JSONObject], NSError> {
+    public static func addObserver(_ session: Session, accessToken: String) throws -> SignalProducer<[JSONObject], NSError> {
         let request = try UserAPI.addObserver(session, accessToken: accessToken)
         return session.paginatedJSONSignalProducer(request)
     }
 
-    public static func removeAccessToken(session: Session) throws -> SignalProducer<(), NSError> {
+    public static func removeAccessToken(_ session: Session) throws -> SignalProducer<(), NSError> {
         let request = try UserAPI.removeAccessToken(session)
         return session.emptyResponseSignalProducer(request)
     }

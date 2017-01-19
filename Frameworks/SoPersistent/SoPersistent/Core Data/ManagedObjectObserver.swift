@@ -19,9 +19,9 @@
 import Foundation
 import CoreData
 
-extension NSNotification {
+extension Notification {
     
-    func objectsForKey(key: String) -> Set<NSManagedObject> {
+    func objectsForKey(_ key: String) -> Set<NSManagedObject> {
         return (userInfo?[key] as? Set<NSManagedObject>) ?? Set()
     }
     
@@ -52,23 +52,23 @@ extension NSNotification {
 
 
 public enum ManagedObjectChange {
-    case Insert
-    case Delete
-    case Update
+    case insert
+    case delete
+    case update
 }
 
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 public final class ManagedObjectObserver<Object: NSManagedObject> {
     
-    private let predicate: NSPredicate
-    private let context: NSManagedObjectContext
-    private (set) public var object: Object?
-    private var token: NSObjectProtocol! = nil
+    fileprivate let predicate: NSPredicate
+    fileprivate let context: NSManagedObjectContext
+    fileprivate (set) public var object: Object?
+    fileprivate var token: NSObjectProtocol! = nil
     
     public let signal: Signal<(ManagedObjectChange, Object?), NoError>
-    private let observer: Observer<(ManagedObjectChange, Object?), NoError>
+    fileprivate let observer: Observer<(ManagedObjectChange, Object?), NoError>
     
     public init(predicate: NSPredicate, inContext context: NSManagedObjectContext) throws {
         self.predicate = predicate
@@ -76,38 +76,38 @@ public final class ManagedObjectObserver<Object: NSManagedObject> {
         
         let sig: Signal<(ManagedObjectChange, Object?), NoError>
         (sig, observer) = Signal.pipe()
-        self.signal = sig.observeOn(UIScheduler())
+        self.signal = sig.observe(on: UIScheduler())
         
-        token = NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextObjectsDidChangeNotification, object: context, queue: nil) { [unowned self] note in
+        token = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: context, queue: nil) { [unowned self] note in
             guard let changeType = self.changeTypeOfObject(note) else { return }
-            self.observer.sendNext((changeType, self.object))
+            self.observer.send(value: (changeType, self.object))
         }
 
-        let request = Object.fetch(predicate, sortDescriptors: nil, inContext: context)
-        object = (try context.executeFetchRequest(request)).first as? Object
+        let request: NSFetchRequest<Object> = context.fetch(predicate, sortDescriptors: nil)
+        object = (try context.fetch(request)).first
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(token)
+        NotificationCenter.default.removeObserver(token)
     }
     
-    private func changeTypeOfObject(note: NSNotification) -> ManagedObjectChange? {
+    fileprivate func changeTypeOfObject(_ note: Notification) -> ManagedObjectChange? {
         for inserted in note.insertedObjects {
-            guard let insertedModel = inserted as? Object where predicate.evaluateWithObject(insertedModel) else { continue }
+            guard let insertedModel = inserted as? Object, predicate.evaluate(with: insertedModel) else { continue }
             
             object = insertedModel
-            return .Insert
+            return .insert
         }
         
         guard let object = self.object else { return nil }
 
         let deleted = note.deletedObjects.union(note.invalidatedObjects)
         if note.invalidatedAllObjects || (deleted.contains { $0 === self.object }) {
-            return .Delete
+            return .delete
         }
         let updated = note.updatedObjects.union(note.refreshedObjects)
         if (updated.contains { $0 === object }) {
-            return .Update
+            return .update
         }
         return nil
     }

@@ -23,21 +23,23 @@ import TooLegit
 import PageKit
 import SoLazy
 import SoPersistent
+import CoreLocation
+import Photos
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if unitTesting {
             return true
         }
         
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
 
         // ID of course with no home page for testing: 1623595
-        let contextID = ContextID(id: "24219", context: .Course)
+        let contextID = ContextID.course(withID: "24219")
         let navController = UINavigationController()
         let session = Session.ivy
         let detailVC = try! Page.DetailViewController(session: session, contextID: contextID, url: "links-to-things") {_, _ in }
@@ -48,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navController.pushViewController(detailVC, animated: true)
         }
 
-        let route: (UIViewController, NSURL) -> () = { source, url in
+        let route: (UIViewController, URL) -> () = { source, url in
             navController.pushViewController(list, animated: true)
         }
 
@@ -56,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             route: route)
         navController.viewControllers = [frontPage]
         navController.navigationBar.barTintColor = UIColor.colorFromHexString("0E1521")
-        navController.navigationBar.tintColor = UIColor.whiteColor()
+        navController.navigationBar.tintColor = UIColor.white
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
         

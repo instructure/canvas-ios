@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 import Peeps
 import SoPersistent
@@ -36,7 +36,7 @@ class GradingIterator {
     }
     
     var enrollment: UserEnrollment {
-        return collection[NSIndexPath(forRow: index, inSection: 0)]
+        return collection[IndexPath(row: index, section: 0)]
     }
     
     var next: GradingIterator {
@@ -48,13 +48,13 @@ class GradingIterator {
     }
 }
 
-private let formatDate = NSDateFormatter.LongStyleDateFormatter.stringFromDate
+private let formatDate = DateFormatter.LongStyleDateFormatter.string(from:)
 
 extension Session {
-    func rac_loadAvatar(url: NSURL?) -> SignalProducer<UIImage?, NSError> {
+    func rac_loadAvatar(_ url: URL?) -> SignalProducer<UIImage?, NSError> {
         guard let url = url else { return SignalProducer(value: .icon(.user)) }
         
-        let request = NSURLRequest(URL: url)
+        let request = URLRequest(url: url as URL)
         return rac_dataWithRequest(request)
             .map { (data, response) in
                 return UIImage(data: data) ?? .icon(.user)
@@ -89,19 +89,19 @@ class SubmissionViewController: UIViewController {
         
         studentName.rac_text <~ enrollment.producer
             .map { $0?.user?.name ?? "" }
-            .observeOn(UIScheduler())
+            .observe(on: UIScheduler())
         
         submittedDate.rac_text <~ submission.producer
             .map { $0?.submittedAt.map(formatDate) ?? "No Submission" }
-            .observeOn(UIScheduler())
+            .observe(on: UIScheduler())
         
         avatar.rac_image <~ enrollment.producer
             .map { $0?.user?.avatarURL }
-            .flatMap(.Latest) { url in
+            .flatMap(.latest) { url in
                 self.session.rac_loadAvatar(url)
             }
             .flatMapError { _ in .empty }
-            .observeOn(UIScheduler())
+            .observe(on: UIScheduler())
         
         grade.rac_text <~ submission.producer.map { $0?.grade ?? "--" }
     }
@@ -110,7 +110,7 @@ class SubmissionViewController: UIViewController {
         
     }
     
-    func observeSubmission(submission: SignalProducer<Submission?, NoError>, iterator: GradingIterator, assignment: Assignment, inSession session: Session) {
+    func observeSubmission(_ submission: SignalProducer<Submission?, NoError>, iterator: GradingIterator, assignment: Assignment, inSession session: Session) {
         self.session = session
         self.assignment = assignment
         self.submission <~ submission

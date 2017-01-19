@@ -19,27 +19,27 @@
 import Foundation
 import CoreData
 import Marshal
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 
-private let errorDesc = NSLocalizedString("There was a problem reading cached data", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoPersistent")!, value: "", comment: "Persistence error message")
-private let errorTitle = NSLocalizedString("Read Error", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.SoPersistent")!, value: "", comment: "tile for error reading cache")
+private let errorDesc = NSLocalizedString("There was a problem reading cached data", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoPersistent")!, value: "", comment: "Persistence error message")
+private let errorTitle = NSLocalizedString("Read Error", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.SoPersistent")!, value: "", comment: "tile for error reading cache")
 
 extension NSManagedObject {
     public convenience init(inContext context: NSManagedObjectContext) {
-        let entityName = self.dynamicType.entityName(context)
-        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context)!
-        self.init(entity: entity, insertIntoManagedObjectContext: context)
+        let entityName = type(of: self).entityName(context)
+        let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)!
+        self.init(entity: entity, insertInto: context)
     }
 
     public static func create<T>(inContext context: NSManagedObjectContext) -> T {
-        guard let entity = NSEntityDescription.insertNewObjectForEntityForName(entityName(context), inManagedObjectContext: context) as? T else { ❨╯°□°❩╯⌢"This only works with managed objects" }
+        guard let entity = NSEntityDescription.insertNewObject(forEntityName: entityName(context), into: context) as? T else { ❨╯°□°❩╯⌢"This only works with managed objects" }
         return entity
     }
 
-    public static func entityName(context: NSManagedObjectContext) -> String {
+    public static func entityName(_ context: NSManagedObjectContext) -> String {
         let className = NSStringFromClass(object_getClass(self))
-        guard let entityName = className.componentsSeparatedByString(".").last else { ❨╯°□°❩╯⌢"ObjC runtime has failed us. Just give up and go home." }
+        guard let entityName = className.components(separatedBy: ".").last else { ❨╯°□°❩╯⌢"ObjC runtime has failed us. Just give up and go home." }
         
         let model = context.persistentStoreCoordinatorFRD.managedObjectModel
         if let _ = model.entitiesByName[className] {
@@ -51,24 +51,7 @@ extension NSManagedObject {
         }
     }
 
-    public static func fetch(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]? = nil, inContext context: NSManagedObjectContext) -> NSFetchRequest {
-        let request = NSFetchRequest(entityName: entityName(context))
-        request.predicate = predicate
-        request.sortDescriptors = sortDescriptors
-        return request
-    }
-
-    public static func fetchedResults(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor], sectionNameKeypath: String? = nil, propertiesToFetch: [String]? = nil, inContext context: NSManagedObjectContext) -> NSFetchedResultsController {
-        let fetchRequest = fetch(predicate, sortDescriptors: sortDescriptors, inContext: context)
-        fetchRequest.returnsObjectsAsFaults = false
-        fetchRequest.fetchBatchSize = 30
-        if let props = propertiesToFetch { fetchRequest.propertiesToFetch = props }
-        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: sectionNameKeypath, cacheName: nil)
-        
-        return frc
-    }
-
     public func delete(inContext context: NSManagedObjectContext) {
-        context.deleteObject(self)
+        context.delete(self)
     }
 }

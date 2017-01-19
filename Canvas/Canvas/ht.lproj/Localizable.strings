@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ bezwen klasman";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ pts";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Tip: %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Kache netwaye";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Kalandriye";
 
 /* (No Commment) */
@@ -318,6 +325,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 
 /* (No Commment) */
 "Choose from Library..." = "Chwazi nan Bibliyotèk...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Chwazi opsyon";
 
 /* (No Commment) */
 "Choose video" = "Chwazi videyo";
@@ -376,7 +386,8 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* (No Commment) */
 "Course Syllabus" = "Pwogram Kou a";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "Kou";
 
 /* (No Commment) */
@@ -453,6 +464,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 
 /* (No Commment) */
 "Downloading..." = "Telechajman an kou...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Delè %@";
 
 /* (No Commment) */
 "Due:" = "Delè:";
@@ -637,6 +651,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* (No Commment) */
 "Item %1$d of %2$d" = "Atik %1$d de %2$d";
 
+/* table header for module items */
+"Items" = "Atik";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Li vid, sa w ap fè la a toujou.";
 
@@ -661,11 +678,17 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* (No Commment) */
 "Legal" = "Legal";
 
+/* Web URL link item label */
+"Link" = "Lyen";
+
 /* (No Commment) */
 "Loading..." = "Chajman";
 
 /* (No Commment) */
 "Locked" = "Bloke";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Bloke jiskaske \"%@\" evalye";
 
 /* locked date */
 "Locked until %@" = "Bloke jiska %@";
@@ -687,6 +710,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 
 /* (No Commment) */
 "Masquerade" = "Degizman";
+
+/* Master Path module item type */
+"Mastery Path" = "Metriz Pakou";
 
 /* (No Commment) */
 "Me" = "Mwen";
@@ -715,7 +741,7 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Ekri chak moun apa, oswa ajoute chak moun nan yon konvèsasyon an gwoup?";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Mesaj";
 
 /* (No Commment) */
@@ -760,6 +786,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* (No Commment) */
 "New Folder" = "Nouvo Dosye";
 
+/* Button title for next module item. */
+"Next" = "Pwochen";
+
 /* (No Commment) */
 "Next 7 Days" = "7 Pwochen Jou";
 
@@ -774,6 +803,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "San Delè";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "Pa gen Metriz Pakou";
 
 /* (No Commment) */
 "No Recorded Audio" = "Pa gen Odyo Anrejistre";
@@ -832,7 +864,8 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Preferans Notifikasyon";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Notifikasyon";
 
 /* OK Button Title */
@@ -858,6 +891,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 
 /* (No Commment) */
 "Open in..." = "Ouvri nan...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Opsyon %d";
 
 /* (No Commment) */
 "Other" = "Lòt";
@@ -900,6 +936,12 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 
 /* (No Commment) */
 "Posts your comment" = "Poste Kòmantè ou a";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Modil Preyalab";
+
+/* Button title for previous module item. */
+"Previous" = "Anvan";
 
 /* (No Commment) */
 "Previous item" = "Atik pase";
@@ -985,6 +1027,12 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Chèche la...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Seleksyone Opsyon";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Seleksyone Opsyon %d";
+
 /* (No Commment) */
 "Select file(s)" = "Seleksyone fichye";
 
@@ -1035,6 +1083,20 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 
 /* (No Commment) */
 "Starts recording a media comment" = "Kòmanse anrejistre yon kòmantè medya";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Estati: Fini";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Estati: Enkonplè";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Estati: Bloke";
+
+/* Module status label when started */
+"Status: Started" = "Estati: Kòmanse";
 
 /* (No Commment) */
 "Stay Logged In" = "Rete Konekte";
@@ -1202,16 +1264,22 @@ Erè: %@";
 /* (No Commment) */
 "This is a media message." = "Sa se yon mesaj medya.";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Eleman modil sa a pa gen pakou metris ki defini.";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Sa ta dwe pi bon moman pou fè kèk kredi siplemantè.";
 
 /* Title of the Todo screen */
 "To Do" = "Pou Fè";
 
+/* To-Do List landing page title */
+"To-Do List" = "Lis Tach";
+
 /* (No Commment) */
 "To:" = "A:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "Jodi a";
 
 /* No comment provided by engineer. */
@@ -1231,6 +1299,9 @@ Erè: %@";
 
 /* (No Commment) */
 "Turn in %@" = "Soumèt %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Tip: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Uh-oh! Pa Gen Koneksyon Entènèt";

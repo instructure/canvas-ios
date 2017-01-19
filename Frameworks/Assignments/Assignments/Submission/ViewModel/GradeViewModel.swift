@@ -22,15 +22,15 @@ import UIKit
 
 public enum GradeViewModel {
     
-    case None
-    case AwaitingGrade
-    case Ungraded
-    case LetterGradeOrGPA(String, points: Double, possible: Double)
-    case Points(points: Double, possible: Double)
-    case Percent(String, points: Double, possible: Double)
-    case CompleteOrIncomplete(String, points: Double, possible: Double)
+    case none
+    case awaitingGrade
+    case ungraded
+    case letterGradeOrGPA(String, points: Double, possible: Double)
+    case points(points: Double, possible: Double)
+    case percent(String, points: Double, possible: Double)
+    case completeOrIncomplete(String, points: Double, possible: Double)
     
-    public func detailsWithFormatter(formatter: Double->String) -> (grade: String, gradeDetails: String, circlePercent: CGFloat, gradeLabelOffset: CGFloat) {
+    public func detailsWithFormatter(_ formatter: (Double)->String) -> (grade: String, gradeDetails: String, circlePercent: CGFloat, gradeLabelOffset: CGFloat) {
         var details = (
             grade: "",
             gradeDetails: "",
@@ -39,45 +39,45 @@ public enum GradeViewModel {
         )
         
         switch self {
-        case .None:
+        case .none:
             details.gradeLabelOffset = 0.0
             
-        case .AwaitingGrade:
+        case .awaitingGrade:
             details.grade = formatter(0.0)
-            details.gradeDetails = NSLocalizedString("Awaiting Grade", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "This assignment hasn't been graded yet but can be graded")
+            details.gradeDetails = NSLocalizedString("Awaiting Grade", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "This assignment hasn't been graded yet but can be graded")
             details.circlePercent = CGFloat(0.0/1.0)
             
-        case .Ungraded:
-            details.grade = NSLocalizedString("Ungraded", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "This assignment is not graded")
+        case .ungraded:
+            details.grade = NSLocalizedString("Ungraded", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "This assignment is not graded")
             details.gradeLabelOffset = 0.0
             
-        case let .LetterGradeOrGPA(grade, points, possible):
+        case let .letterGradeOrGPA(grade, points, possible):
             details.grade = grade
-            details.gradeDetails = NSLocalizedString("\(formatter(points)) of \(formatter(possible))", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "grade details for points based grade i.e. \"10 of 12\"")
+            details.gradeDetails = NSLocalizedString("\(formatter(points)) of \(formatter(possible))", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "grade details for points based grade i.e. \"10 of 12\"")
             details.circlePercent = possible <= 0 ? 0.0 : CGFloat(points/possible)
             
-        case let .Points(points, possible):
-            details.grade = formatter(points) ?? ""
-            details.gradeDetails = NSLocalizedString(" of \(formatter(possible))", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "grade details for points based grade i.e. \"10 of 12\"")
+        case let .points(points, possible):
+            details.grade = formatter(points) 
+            details.gradeDetails = NSLocalizedString(" of \(formatter(possible))", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "grade details for points based grade i.e. \"10 of 12\"")
             details.circlePercent = possible <= 0 ? 0.0 : CGFloat(points/possible)
             
-        case let .Percent(percentText, points, possible):
+        case let .percent(percentText, points, possible):
             details.grade = percentText
-            details.gradeDetails = NSLocalizedString("\(formatter(points)) of \(formatter(possible))", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "grade details for points based grade i.e. \"10 of 12\"")
+            details.gradeDetails = NSLocalizedString("\(formatter(points)) of \(formatter(possible))", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "grade details for points based grade i.e. \"10 of 12\"")
             details.circlePercent = possible <= 0 ? 0.0 : CGFloat(points/possible)
             
-        case let .CompleteOrIncomplete(label, points, possible):
-            details.grade = label.capitalizedString
-            details.gradeDetails = NSLocalizedString("\(formatter(points)) of \(formatter(possible))", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "grade details for points based grade i.e. \"10 of 12\"")
+        case let .completeOrIncomplete(label, points, possible):
+            details.grade = label.capitalized
+            details.gradeDetails = NSLocalizedString("\(formatter(points)) of \(formatter(possible))", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "grade details for points based grade i.e. \"10 of 12\"")
             details.circlePercent = possible <= 0 ? 0.0 : CGFloat(points/possible)
         }
         return details
     }
     
-    func updateGradeView(view: CircularGradeView, animated: Bool) {
+    func updateGradeView(_ view: CircularGradeView, animated: Bool) {
         CATransaction.begin()
         CATransaction.setDisableActions(!animated)
-        let details = detailsWithFormatter({ CircularGradeView.numberFormatter.stringFromNumber($0) ?? "" } )
+        let details = detailsWithFormatter({ CircularGradeView.numberFormatter.string(from: NSNumber(value: $0)) ?? "" } )
         view.gradeLabel.text = details.grade
         view.gradeDetailLabel.text = details.gradeDetails
         view.gradeLayer.strokeEnd = details.circlePercent
@@ -85,31 +85,31 @@ public enum GradeViewModel {
         CATransaction.commit()
     }
     
-    public static func gradeViewModelForAssignment(assignment: Assignment) -> GradeViewModel {
-        var grade = GradeViewModel.None
+    public static func gradeViewModelForAssignment(_ assignment: Assignment) -> GradeViewModel {
+        var grade = GradeViewModel.none
         
         
-        if (assignment.gradedAt == nil && assignment.gradingType != GradingType.NotGraded) {
-            grade = .AwaitingGrade
+        if (assignment.gradedAt == nil && assignment.gradingType != .notGraded) {
+            grade = .awaitingGrade
             return grade
         }
         
         
         let currentScore = assignment.currentScore?.doubleValue ?? 0
         switch assignment.gradingType {
-        case GradingType.NotGraded:
-            grade = .Ungraded
-        case GradingType.LetterGrade, GradingType.GPAScale:
-            let letterGrade = assignment.currentGrade ?? ""
-            grade = .LetterGradeOrGPA(letterGrade, points: currentScore, possible: assignment.pointsPossible)
-        case GradingType.PassFail:
-            let completeIncomplete = assignment.currentGrade ?? ""
-            grade = .CompleteOrIncomplete(completeIncomplete, points: currentScore, possible: assignment.pointsPossible)
-        case GradingType.Percent:
-            let letterGrade = assignment.currentGrade ?? ""
-            grade = .Percent(letterGrade, points: currentScore, possible: assignment.pointsPossible)
-        case GradingType.Points:
-            grade = .Points(points: currentScore, possible: assignment.pointsPossible)
+        case .notGraded:
+            grade = .ungraded
+        case .letterGrade, .gpaScale:
+            let letterGrade = assignment.currentGrade 
+            grade = .letterGradeOrGPA(letterGrade, points: currentScore, possible: assignment.pointsPossible)
+        case .passFail:
+            let completeIncomplete = assignment.currentGrade 
+            grade = .completeOrIncomplete(completeIncomplete, points: currentScore, possible: assignment.pointsPossible)
+        case .percent:
+            let letterGrade = assignment.currentGrade 
+            grade = .percent(letterGrade, points: currentScore, possible: assignment.pointsPossible)
+        case .points:
+            grade = .points(points: currentScore, possible: assignment.pointsPossible)
         default: print("Error this shouldn't happen")
         }
         
@@ -122,15 +122,15 @@ public enum GradeViewModel {
 extension GradeViewModel: Equatable {}
 public func ==(lhs: GradeViewModel, rhs: GradeViewModel) -> Bool {
     switch (lhs, rhs) {
-    case (.None, .None), (.AwaitingGrade, .AwaitingGrade), (.Ungraded, .Ungraded):
+    case (.none, .none), (.awaitingGrade, .awaitingGrade), (.ungraded, .ungraded):
         return true
-    case let (.LetterGradeOrGPA(grade1, points1, possible1), .LetterGradeOrGPA(grade2, points2, possible2)):
+    case let (.letterGradeOrGPA(grade1, points1, possible1), .letterGradeOrGPA(grade2, points2, possible2)):
         return grade1 == grade2 && points1 == points2 && possible1 == possible2
-    case let (.Points(points1, possible1), .Points(points2, possible2)):
+    case let (.points(points1, possible1), .points(points2, possible2)):
         return points1 == points2 && possible1 == possible2
-    case let (.Percent(text1, points1, possible1), .Percent(text2, points2, possible2)):
+    case let (.percent(text1, points1, possible1), .percent(text2, points2, possible2)):
         return text1 == text2 && points1 == points2 && possible1 == possible2
-    case let (.CompleteOrIncomplete(label1, points1, possible1), .CompleteOrIncomplete(label2, points2, possible2)):
+    case let (.completeOrIncomplete(label1, points1, possible1), .completeOrIncomplete(label2, points2, possible2)):
         return label1 == label2 && points1 == points2 && possible1 == possible2
     default: return false
     }

@@ -20,19 +20,19 @@ import UIKit
 import TooLegit
 import SoPersistent
 import CoreData
-import ReactiveCocoa
+import ReactiveSwift
 
 extension Rubric {
     
-    public static func detailsCacheKey(context: NSManagedObjectContext, courseID: String, assignmentID: String) -> String {
+    public static func detailsCacheKey(_ context: NSManagedObjectContext, courseID: String, assignmentID: String) -> String {
         return cacheKey(context, [courseID, assignmentID])
     }
     
-    public static func predicate(courseID: String, assignmentID: String) -> NSPredicate {
+    public static func predicate(_ courseID: String, assignmentID: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@ && %K == %@", "courseID", courseID, "assignmentID", assignmentID)
     }
 
-    public static func refresher(session: Session, courseID: String, assignmentID: String) throws -> Refresher {
+    public static func refresher(_ session: Session, courseID: String, assignmentID: String) throws -> Refresher {
         let context = try session.assignmentsManagedObjectContext()
         let syncSubmission: SignalProducer<Void, NSError> = try Submission.refreshSignalProducer(session, courseID: courseID, assignmentID: assignmentID)
             .map { _ in () }
@@ -46,21 +46,21 @@ extension Rubric {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
     
-    public static func observer(session: Session, courseID: String, assignmentID: String) throws -> ManagedObjectObserver<Rubric> {
+    public static func observer(_ session: Session, courseID: String, assignmentID: String) throws -> ManagedObjectObserver<Rubric> {
         let context = try session.assignmentsManagedObjectContext()
         return try ManagedObjectObserver<Rubric>(predicate: predicate(courseID, assignmentID: assignmentID), inContext: context)
     }
 
-    public static func detailsTableViewDataSource<DVM: TableViewCellViewModel where DVM: Equatable>(session: Session, courseID: String, assignmentID: String, detailsFactory: Rubric->[DVM]) throws -> TableViewDataSource {
+    public static func detailsTableViewDataSource<DVM: TableViewCellViewModel>(_ session: Session, courseID: String, assignmentID: String, detailsFactory: @escaping (Rubric)->[DVM]) throws -> TableViewDataSource where DVM: Equatable {
         let obs = try observer(session, courseID: courseID, assignmentID: assignmentID)
         let collection = FetchedDetailsCollection<Rubric, DVM>(observer: obs, detailsFactory: detailsFactory)
         return CollectionTableViewDataSource(collection: collection, viewModelFactory: { $0 })
     }
 
-    public class DetailViewController: SoPersistent.TableViewController {
-        private (set) public var observer: ManagedObjectObserver<Rubric>!
+    open class DetailViewController: SoPersistent.TableViewController {
+        fileprivate (set) open var observer: ManagedObjectObserver<Rubric>!
         
-        public func prepare<DVM: TableViewCellViewModel where DVM: Equatable>(observer: ManagedObjectObserver<Rubric>, refresher: Refresher? = nil, detailsFactory: Rubric->[DVM]) {
+        open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<Rubric>, refresher: Refresher? = nil, detailsFactory: @escaping (Rubric)->[DVM]) where DVM: Equatable {
             self.observer = observer
             let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
             self.refresher = refresher

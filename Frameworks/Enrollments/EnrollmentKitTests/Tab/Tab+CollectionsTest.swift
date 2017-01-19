@@ -40,7 +40,7 @@ class TabCollectionsTests: UnitTestCase {
             try third.updateValues(tabJSON(3), inContext: context)
             let second = Tab.build(inSession: session)
             try second.updateValues(tabJSON(2), inContext: context)
-            let contextID: ContextID = ContextID(url: NSURL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
+            let contextID: ContextID = ContextID(url: URL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
             let collection = try Tab.collection(session, contextID: contextID)
             XCTAssert(collection[0, 0] === first)
             XCTAssert(collection[0, 1] === second)
@@ -53,7 +53,7 @@ class TabCollectionsTests: UnitTestCase {
             context = try session.enrollmentManagedObjectContext()
             let tab = Tab.build(inSession: session)
             try tab.updateValues(tabJSON(1), inContext: context)
-            let contextID: ContextID = ContextID(url: NSURL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
+            let contextID: ContextID = ContextID(url: URL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
             let shortcuts = try Tab.shortcuts(session, contextID: contextID)
             XCTAssert(shortcuts[0, 0] === tab)
         }
@@ -64,7 +64,7 @@ class TabCollectionsTests: UnitTestCase {
     func testTab_refresher() {
         attempt {
             context = try session.enrollmentManagedObjectContext()
-            let contextID: ContextID = ContextID(url: NSURL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
+            let contextID: ContextID = ContextID(url: URL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
             let refresher = try Tab.refresher(session, contextID: contextID)
             let count = Tab.observeCount(inSession: session)
             expect {
@@ -73,7 +73,7 @@ class TabCollectionsTests: UnitTestCase {
         }
     }
     
-    private func tabJSON(position: Int) -> JSONObject {
+    fileprivate func tabJSON(_ position: Int) -> JSONObject {
         return [
             "url": "https://mobiledev.instructure.com/api/v1/courses/1422605",
             "id": "files",
@@ -92,7 +92,7 @@ class TabTableViewControllerTests: UnitTestCase {
     
     func testTableViewController_prepare_setsCollection() {
         attempt {
-            let contextID: ContextID = ContextID(url: NSURL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
+            let contextID: ContextID = ContextID(url: URL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
             let collection = try Tab.collection(session, contextID: contextID)
             tvc.prepare(collection, viewModelFactory: viewModelFactory)
             XCTAssertEqual(collection, tvc.collection, "prepare sets the collection")
@@ -101,7 +101,7 @@ class TabTableViewControllerTests: UnitTestCase {
     
     func testTableViewController_prepare_setsRefresher() {
         attempt {
-            let contextID: ContextID = ContextID(url: NSURL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
+            let contextID: ContextID = ContextID(url: URL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
             let collection = try Tab.collection(session, contextID: contextID)
             let refresher = try Tab.refresher(session, contextID: contextID)
             tvc.prepare(collection, refresher: refresher, viewModelFactory: viewModelFactory)
@@ -111,7 +111,7 @@ class TabTableViewControllerTests: UnitTestCase {
     
     func testTableViewController_prepare_setsDataSource() {
         attempt {
-            let contextID: ContextID = ContextID(url: NSURL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
+            let contextID: ContextID = ContextID(url: URL(string: "https://mobiledev.instructure.com/api/v1/courses/1422605")!)!
             let collection = try Tab.collection(session, contextID: contextID)
             tvc.prepare(collection, viewModelFactory: viewModelFactory)
             XCTAssertNotNil(tvc.dataSource, "prepare sets the data source")

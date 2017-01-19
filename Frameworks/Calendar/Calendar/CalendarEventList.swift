@@ -22,9 +22,9 @@ import TooLegit
 import SoLazy
 
 struct CalendarEventViewModel: TableViewCellViewModel {
-    static var subtitleDateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .MediumStyle
+    static var subtitleDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
         return dateFormatter
     }()
 
@@ -34,11 +34,11 @@ struct CalendarEventViewModel: TableViewCellViewModel {
     let name: String
     let subtitle: String
 
-    static func tableViewDidLoad(tableView: UITableView) {
-        tableView.registerNib(UINib(nibName: CalendarEventViewModel.nibName, bundle: NSBundle(forClass: AppDelegate.self)), forCellReuseIdentifier: CalendarEventViewModel.reuseIdentifier)
+    static func tableViewDidLoad(_ tableView: UITableView) {
+        tableView.register(UINib(nibName: CalendarEventViewModel.nibName, bundle: Bundle(for: AppDelegate.self)), forCellReuseIdentifier: CalendarEventViewModel.reuseIdentifier)
     }
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CalendarEventViewModel.reuseIdentifier, forIndexPath: indexPath)
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CalendarEventViewModel.reuseIdentifier, for: indexPath)
         cell.textLabel?.text = name
         cell.detailTextLabel?.text = subtitle
         return cell
@@ -56,7 +56,7 @@ class CalendarEventList: CalendarEvent.TableViewController {
 
     let session: Session
 
-    init(session: Session, startDate: NSDate, endDate: NSDate, contextCodes: [String]) throws {
+    init(session: Session, startDate: Date, endDate: Date, contextCodes: [String]) throws {
         self.session = session
         super.init()
 
@@ -69,7 +69,7 @@ class CalendarEventList: CalendarEvent.TableViewController {
         fatalError()
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let calendarEvent = collection[indexPath]
         do {
             let deets = try CalendarEventDeets(session: session, calendarEventID: calendarEvent.id)

@@ -23,17 +23,18 @@ import CanvasKeymaster
 @testable import SoEdventurous
 import Result
 import SoPersistent
+import ReactiveSwift
 
-let ignoreRouteAction: (UIViewController, NSURL) -> Void = { _ in }
+let ignoreRouteAction: (UIViewController, URL) -> Void = { _ in }
 
 private class CurrentBundle {}
-let currentBundle = NSBundle(forClass: CurrentBundle.self)
+let currentBundle = Bundle(for: CurrentBundle.self)
 
-func login(credentials: Credentials = .user1) -> Session {
+func login(_ credentials: Credentials = .user1) -> Session {
     logoutEverybody()
     let user = User(credentials: credentials)
     let client = MockClient(user: user)
-    FXKeychain.sharedCanvasKeychain().addClient(client)
+    FXKeychain.sharedCanvas().add(client)
     var session: Session!
     var disposable: Disposable?
     waitUntil(timeout: 2) { done in
@@ -47,22 +48,22 @@ func login(credentials: Credentials = .user1) -> Session {
 }
 
 private func logoutEverybody() {
-    FXKeychain.sharedCanvasKeychain().clearKeychain()
-    let fileManager = NSFileManager.defaultManager()
-    guard let libURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).first,
-        docURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first else {
+    FXKeychain.sharedCanvas().clear()
+    let fileManager = FileManager.default
+    guard let libURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).first,
+        let docURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             fatalError("There were no user library search paths")
     }
 
     for dirURL in [libURL, docURL] {
-        let files = try! fileManager.contentsOfDirectoryAtURL(dirURL, includingPropertiesForKeys: nil, options: .SkipsHiddenFiles)
+        let files = try! fileManager.contentsOfDirectory(at: dirURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
         for file in files {
-            let _ = try? fileManager.removeItemAtURL(file)
+            let _ = try? fileManager.removeItem(at: file)
         }
     } 
 }
 
-func embedInNavigationController(viewController: UIViewController) -> UINavigationController {
+func embedInNavigationController(_ viewController: UIViewController) -> UINavigationController {
     let nav = MockNavigationController()
     nav.viewControllers = [viewController]
     return nav
@@ -75,13 +76,13 @@ class MockNavigationController: UINavigationController {
         return _topViewController
     }
 
-    override func pushViewController(viewController: UIViewController, animated: Bool) {
-        _topViewController = (viewController as? CBISplitViewController)?.master ?? viewController
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        _topViewController = viewController
     }
 }
 
 extension ManagedFactory where Self: NSManagedObject {
-    static func build(options: FactoryOptions = [:], customize: (Self) -> Void = { _ in }) -> Self {
+    static func build(_ options: FactoryOptions = [:], customize: (Self) -> Void = { _ in }) -> Self {
         return build(inSession: currentSession, options: options, customize: customize)
     }
 }

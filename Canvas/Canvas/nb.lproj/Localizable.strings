@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ trenger vurdering";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ poeng";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Type: %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Hurtiglager nullstilt";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Kalender";
 
 /* (No Commment) */
@@ -318,6 +325,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 
 /* (No Commment) */
 "Choose from Library..." = "Velg fra bibliotek";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Velg et alternativ";
 
 /* (No Commment) */
 "Choose video" = "Velg video";
@@ -374,10 +384,11 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 "Couldn't find recipients" = "Fant ikke mottakere";
 
 /* (No Commment) */
-"Course Syllabus" = "Kurspensum";
+"Course Syllabus" = "Emneoversikt";
 
-/* Courses page title */
-"Courses" = "Kurs";
+/* Courses landing page title
+   Courses page title */
+"Courses" = "Emne";
 
 /* (No Commment) */
 "Create Folder" = "Lag mappe";
@@ -454,6 +465,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* (No Commment) */
 "Downloading..." = "Laster ned ...";
 
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Leveres innen %@";
+
 /* (No Commment) */
 "Due:" = "Frist:";
 
@@ -470,7 +484,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 "Edit" = "Rediger";
 
 /* Edit course list title */
-"Edit Course List" = "Rediger kursliste";
+"Edit Course List" = "Rediger emneliste";
 
 /* Edit group list title */
 "Edit Group List" = "Rediger gruppeliste";
@@ -637,6 +651,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* (No Commment) */
 "Item %1$d of %2$d" = "Objekt %1$d av %2$d";
 
+/* table header for module items */
+"Items" = "Elementer";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Den er tom, hva driver du med her fremdeles.";
 
@@ -661,11 +678,17 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* (No Commment) */
 "Legal" = "Lovlig";
 
+/* Web URL link item label */
+"Link" = "Lenke";
+
 /* (No Commment) */
 "Loading..." = "Laster...";
 
 /* (No Commment) */
 "Locked" = "Låst";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Låst inntil \"%@\" har fått karakter";
 
 /* locked date */
 "Locked until %@" = "Låst inntil %@";
@@ -687,6 +710,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 
 /* (No Commment) */
 "Masquerade" = "Forkledning";
+
+/* Master Path module item type */
+"Mastery Path" = "Overordnet bane";
 
 /* (No Commment) */
 "Me" = "Meg";
@@ -715,7 +741,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Send melding til alle hver for seg, eller legg alle til i en gruppesamtale?";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Meldinger";
 
 /* (No Commment) */
@@ -760,6 +786,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* (No Commment) */
 "New Folder" = "Ny mappe";
 
+/* Button title for next module item. */
+"Next" = "Neste";
+
 /* (No Commment) */
 "Next 7 Days" = "Neste 7 dager";
 
@@ -774,6 +803,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "Ingen innleveringsfrist";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "Ingen overordnede baner";
 
 /* (No Commment) */
 "No Recorded Audio" = "Ingen lydopptak";
@@ -832,7 +864,8 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Varslingspreferanser";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Varslinger";
 
 /* OK Button Title */
@@ -858,6 +891,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 
 /* (No Commment) */
 "Open in..." = "Åpne i ...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Valg %d";
 
 /* (No Commment) */
 "Other" = "Andre";
@@ -900,6 +936,12 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 
 /* (No Commment) */
 "Posts your comment" = "Poste kommentaren din";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Påkrevde moduler";
+
+/* Button title for previous module item. */
+"Previous" = "Forrige";
 
 /* (No Commment) */
 "Previous item" = "Forrige artikkel";
@@ -985,6 +1027,12 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Søk her...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Velg et alternativ";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Velg et alternativ %d";
+
 /* (No Commment) */
 "Select file(s)" = "Velg fil(er)";
 
@@ -1035,6 +1083,20 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 
 /* (No Commment) */
 "Starts recording a media comment" = "Begynner opptak av et mediainnhold";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Status: Fullført";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Status: Ufullstendig";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Status: Låst";
+
+/* Module status label when started */
+"Status: Started" = "Status: Startet";
 
 /* (No Commment) */
 "Stay Logged In" = "Forbli innlogget";
@@ -1094,7 +1156,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 "Switches to text comment mode" = "Bytter til tekstkommentarmodus";
 
 /* (No Commment) */
-"Syllabus" = "Pensum";
+"Syllabus" = "Emneoversikt";
 
 /* (No Commment) */
 "TA" = "TA";
@@ -1202,16 +1264,22 @@ Feil: %@";
 /* (No Commment) */
 "This is a media message." = "Dette er en mediamelding.";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Denne modulen har ingen konfigurerte overordnede baner.";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Dette bør være et flott tidspunkt for å få gjort unna litt ekstra kreditt.";
 
 /* Title of the Todo screen */
 "To Do" = "Gjøremål";
 
+/* To-Do List landing page title */
+"To-Do List" = "Gjøremålsliste";
+
 /* (No Commment) */
 "To:" = "Til:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "I dag";
 
 /* No comment provided by engineer. */
@@ -1231,6 +1299,9 @@ Feil: %@";
 
 /* (No Commment) */
 "Turn in %@" = "Lever inn %@";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Type: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Ups! Ingen internettilkobling";
@@ -1335,7 +1406,7 @@ Feil: %@";
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Du har ikke SpeedGrader til iPad. Du kan laste den ned gratis i App-Store.";
 
 /* Error message for an unauthorized course or group. */
-"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Du har ikke tilgang til dette innholdet. Kurset eller gruppen har kanskje ikke startet, eller kanskje det er avsluttet.";
+"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Du har ikke tilgang til dette innholdet. Emnet eller gruppen har kanskje ikke startet, eller kanskje det er avsluttet.";
 
 /* (No Commment) */
 "You do not have permission to delete this reply" = "Du har ikke tillatelse til å slette dette svaret";

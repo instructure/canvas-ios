@@ -24,11 +24,11 @@ import TooLegit
 @testable import FileKit
 import CoreData
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 extension Upload {
-    public static func observer(session: Session, backgroundSessionID: String) throws -> ManagedObjectObserver<Upload> {
+    public static func observer(_ session: Session, backgroundSessionID: String) throws -> ManagedObjectObserver<Upload> {
         let predicate = NSPredicate(format: "%K == %@", "backgroundSessionID", backgroundSessionID)
         let context = try session.assignmentsManagedObjectContext()
         return try ManagedObjectObserver(predicate: predicate, inContext: context)
@@ -53,7 +53,7 @@ class SubmissionUploadSpec: QuickSpec {
                     let upload = TextSubmissionUpload.create(backgroundSessionID: "unit test", assignment: assignment, text: "This is some text", inContext: assignment.managedObjectContext!)
                     let count = Submission.observeCount(inSession: session)
                     expect {
-                        session.playback("upload-text-submission", in: currentBundle) {
+                        session.playback("upload-text-submission") {
                             uploadSubmission(upload, in: session)
                         }
                     }.to(change({ count.currentCount }, from: 0, to: 1))
@@ -65,7 +65,7 @@ class SubmissionUploadSpec: QuickSpec {
                     let upload = URLSubmissionUpload.create(backgroundSessionID: "unit test", assignment: assignment, url: "http://google.com", inContext: assignment.managedObjectContext!)
                     let count = Submission.observeCount(inSession: session)
                     expect {
-                        session.playback("upload-url-submission", in: currentBundle) {
+                        session.playback("upload-url-submission") {
                             uploadSubmission(upload, in: session)
                         }
                     }.to(change({ count.currentCount }, from: 0, to: 1))
@@ -74,7 +74,7 @@ class SubmissionUploadSpec: QuickSpec {
 
             describe("FileSubmissionUpload") {
                 it("should create a submission") {
-                    let newUpload = NewUpload.FileUpload([.FileURL(factoryURL)])
+                    let newUpload = NewUpload.fileUpload([.fileURL(factoryURL)])
                     var upload: FileSubmissionUpload!
                     waitUntil { done in
                         try! assignment.uploadForNewSubmission(newUpload, inSession: session) {
@@ -85,7 +85,7 @@ class SubmissionUploadSpec: QuickSpec {
                     }
                     let count = Submission.observeCount(inSession: session)
                     expect {
-                        session.playback("upload-file-submission", in: currentBundle) {
+                        session.playback("upload-file-submission") {
                             uploadSubmission(upload, in: session)
                         }
                     }.to(change({ count.currentCount }, from: 0, to: 1))

@@ -18,7 +18,7 @@
 
 import Foundation
 import UIKit
-import ReactiveCocoa
+import ReactiveSwift
 import EnrollmentKit
 
 class CourseCell: EnrollmentCollectionViewCell {
@@ -30,18 +30,18 @@ class CourseCell: EnrollmentCollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var subtitleLabel: UILabel?
     
-    var customize: UIButton->() = {_ in}
+    var customize: (UIButton)->() = {_ in}
     var makeAnnouncement: ()->() = {}
     
-    private var disposable: CompositeDisposable = CompositeDisposable()
+    fileprivate var disposable: CompositeDisposable = CompositeDisposable()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         makeEvenMoreBeautiful()
         beginObservingProperties()
         makeAccessible()
-        announceButton?.setImage(.icon(.announcement), forState: .Normal)
-        customizeButton?.setImage(.icon(.edit, filled: true), forState: .Normal)
+        announceButton?.setImage(.icon(.announcement), for: .normal)
+        customizeButton?.setImage(.icon(.edit, filled: true), for: .normal)
     }
     
     // MARK: Content
@@ -70,16 +70,16 @@ class CourseCell: EnrollmentCollectionViewCell {
     func makeEvenMoreBeautiful() {
         announceButtonView?.layer.cornerRadius = 21
         innerAnnounceButtonView?.layer.cornerRadius = 19
-        innerAnnounceButtonView?.backgroundColor = .whiteColor()
-        tintColor = .whiteColor()
+        innerAnnounceButtonView?.backgroundColor = .white
+        tintColor = .white
         layer.borderWidth = 2.0
-        if let a = announceButtonView { contentView.bringSubviewToFront(a) }
+        if let a = announceButtonView { contentView.bringSubview(toFront: a) }
     }
     
-    override func colorUpdated(color: UIColor) {
+    override func colorUpdated(_ color: UIColor) {
         super.colorUpdated(color)
         announceButtonView?.backgroundColor = color
-        layer.borderColor = color.CGColor
+        layer.borderColor = color.cgColor
         innerAnnounceButtonView?.tintColor = color
     }
     
@@ -104,13 +104,13 @@ class CourseCell: EnrollmentCollectionViewCell {
     
     // MARK: Actions
     
-    @IBAction func customizeCourse(sender: AnyObject) {
+    @IBAction func customizeCourse(_ sender: AnyObject) {
         if let button = customizeButton {
             customize(button)
         }
     }
     
-    @IBAction func makeAnAnnouncement(sender: AnyObject) {
+    @IBAction func makeAnAnnouncement(_ sender: AnyObject) {
         makeAnnouncement()
     }
 }

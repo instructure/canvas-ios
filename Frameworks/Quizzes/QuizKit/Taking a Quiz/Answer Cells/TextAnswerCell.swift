@@ -28,7 +28,7 @@ class TextAnswerCell: UITableViewCell {
     }
     
     class var Nib: UINib {
-        return UINib(nibName: "TextAnswerCell", bundle: NSBundle(forClass: self.classForCoder()))
+        return UINib(nibName: "TextAnswerCell", bundle: Bundle(for: self.classForCoder()))
     }
     
     override func awakeFromNib() {
@@ -38,10 +38,10 @@ class TextAnswerCell: UITableViewCell {
     }
     
     class var font: UIFont {
-        return UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
     }
     
-    class func heightWithText(text: String, boundsWidth width: CGFloat) -> CGFloat {
+    class func heightWithText(_ text: String, boundsWidth width: CGFloat) -> CGFloat {
         let insets = UIEdgeInsets(top: 15.0, left: 40.0, bottom: 15.0, right: 40.0)
         let labelBoundsWidth = width - insets.left - insets.right
         let textSize = font.sizeOfString(text, constrainedToWidth: labelBoundsWidth)
@@ -50,13 +50,13 @@ class TextAnswerCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        self.selectionStatusImageView.hidden = true
+        self.selectionStatusImageView.isHidden = true
         self.textAnswerLabel.text = ""
     }
 }
 
 extension TextAnswerCell: SelectableAnswerCell {
-    func configureForState(selected selected: Bool) {
-        selectionStatusImageView.hidden = !selected
+    func configureForState(selected: Bool) {
+        selectionStatusImageView.isHidden = !selected
     }
 }

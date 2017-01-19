@@ -21,11 +21,11 @@ import TooLegit
 import SoPersistent
 
 extension FileUpload {
-    public static func contextIDPredicate(contextID: ContextID) -> NSPredicate {
+    public static func contextIDPredicate(_ contextID: ContextID) -> NSPredicate {
         return NSPredicate(format:"%K == %@", "rawContextID", contextID.canvasContextID)
     }
     
-    public static func folderIDPredicate(folderID: String?) -> NSPredicate {
+    public static func folderIDPredicate(_ folderID: String?) -> NSPredicate {
         if let folderID = folderID {
             return NSPredicate(format:"%K == %@", "parentFolderID", folderID)
         } else {
@@ -33,11 +33,11 @@ extension FileUpload {
         }
     }
     
-    public static func rootFolderPredicate(isInRootFolder: Bool) -> NSPredicate {
-        return NSPredicate(format:"%K == %@", "isInRootFolder", isInRootFolder)
+    public static func rootFolderPredicate(_ isInRootFolder: Bool) -> NSPredicate {
+        return NSPredicate(format:"%K == %@", "isInRootFolder", isInRootFolder as CVarArg)
     }
     
-    public static func predicate(contextID: ContextID, folderID: String?) -> NSPredicate {
+    public static func predicate(_ contextID: ContextID, folderID: String?) -> NSPredicate {
         let contextID = contextIDPredicate(contextID)
         let folder = folderIDPredicate(folderID)
         return NSCompoundPredicate(andPredicateWithSubpredicates: [contextID, folder])
@@ -46,10 +46,11 @@ extension FileUpload {
 
 
 extension FileUpload {
-    public static func fetchCollection(session: Session, contextID: ContextID, folderID: String?) throws -> FetchedCollection<FileUpload> {
+    public static func fetchCollection(_ session: Session, contextID: ContextID, folderID: String?) throws -> FetchedCollection<FileUpload> {
         let context = try session.filesManagedObjectContext()
         let predicate = FileUpload.predicate(contextID, folderID: folderID)
-        let frc = FileUpload.fetchedResults(predicate, sortDescriptors: ["name".ascending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection<FileUpload>(frc: frc)
+        return try FetchedCollection<FileUpload>(frc:
+            context.fetchedResults(predicate, sortDescriptors: ["name".ascending])
+        )
     }
 }

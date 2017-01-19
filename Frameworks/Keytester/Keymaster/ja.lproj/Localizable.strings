@@ -1,18 +1,1 @@
-/* Back Button Title */
-"Back" = "戻る";
-
-/* Error alert message */
-"Could not create domain.  Please check your school's domain and try again." = "ドメインを作成することができませんでした。学校のドメインを確認し、再度お試しください。";
-
-/* Error Alert Title */
-"Error" = "エラー";
-
-/* Domain Picker Search Placeholder */
-"Find your school or district" = "学校または学区を探す";
-
-/* OK */
-"OK" = "OK";
-
-/* AccountDomain Database Load Failure Message */
-"There was a problem loading the AccountDomain database file." = "AccountDomain データベースファイルの読み込み中にエラーが発生しました。";
-
+/* No Localized Strings */

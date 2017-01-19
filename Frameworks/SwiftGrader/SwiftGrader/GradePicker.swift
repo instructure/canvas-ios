@@ -18,13 +18,13 @@ import UIKit
 import Foundation
 
 let gpaNumberFormatter: (Double) -> String = {
-    let formatter = NSNumberFormatter()
+    let formatter = NumberFormatter()
     formatter.alwaysShowsDecimalSeparator = true
     formatter.minimumFractionDigits = 1
     formatter.maximumFractionDigits = 1
     formatter.minimumIntegerDigits = 1
     
-    return { n in formatter.stringFromNumber(n)! }
+    return { n in formatter.string(from: NSNumber(value: n))! }
 }()
 
 private let passFailTitles = [
@@ -48,19 +48,19 @@ private let letterTitles = [
 ]
 
 extension UILabel {
-    func adjustSize(biggestString: String) {
-        font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody).monospacedDigitFont
+    func adjustSize(_ biggestString: String) {
+        font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body).monospacedDigitFont
         text = biggestString
         sizeToFit()
         bounds.size.width += 2
     }
 }
 
-private func bigString(maxPoints: Double, includeDecimal: Bool = true) -> String {
+private func bigString(_ maxPoints: Double, includeDecimal: Bool = true) -> String {
     let digitCount = Int(max(log10(maxPoints), 0.0) + 1)
     var bigString = (0..<digitCount)
         .map { _ in "8" }
-        .joinWithSeparator("")
+        .joined(separator: "")
     
     if includeDecimal {
         bigString += ".8"
@@ -88,32 +88,32 @@ class GradePicker: UIControl {
             }
         }
         
-        func view(scoreIndex scoreIndex: Int, reusing reusableView: UIView?) -> UIView {
+        func view(scoreIndex: Int, reusing reusableView: UIView?) -> UIView {
             let label = (reusableView as? UILabel) ?? UILabel()
             switch self {
             case .points(let maxPoints):
                 label.adjustSize(bigString(maxPoints, includeDecimal: false))
                 label.text = "\(scoreIndex)"
-                label.textAlignment = .Right
+                label.textAlignment = .right
                 
             case .percentage:
                 label.adjustSize(bigString(100, includeDecimal: false) + "%")
                 label.text = "\(scoreIndex)%"
-                label.textAlignment = .Right
+                label.textAlignment = .right
                 
             case .passFail:
                 label.adjustSize("FAILPASSWHATABOUTGERMAN?")
-                label.textAlignment = .Center
+                label.textAlignment = .center
                 label.text = passFailTitles[scoreIndex]
                 
             case .letter:
                 label.adjustSize("C+.")
-                label.textAlignment = .Left
+                label.textAlignment = .left
                 label.text = letterTitles[scoreIndex]
                 
             case .gpa:
                 label.adjustSize(bigString(4.0))
-                label.textAlignment = .Right
+                label.textAlignment = .right
                 label.text = gpaNumberFormatter(Double(scoreIndex)/10.0)
                 
             case .none:
@@ -141,16 +141,16 @@ class GradePicker: UIControl {
 
 
 extension GradePicker: UIPickerViewDataSource {
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return scoringType.numberOfScores
     }
 }
 
 extension GradePicker: UIPickerViewDelegate {
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         return scoringType.view(scoreIndex: row, reusing: view)
     }
 }

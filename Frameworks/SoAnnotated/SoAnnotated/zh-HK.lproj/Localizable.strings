@@ -4,6 +4,27 @@
 /* Button for creating a note from text selection */
 "Create Note" = "創建筆記";
 
+/* Error when submitting an assignment */
+"Failed to Submit" = "提交失敗";
+
 /* No comment provided by engineer. */
 "Note..." = "筆記...";
+
+/* No comment provided by engineer. */
+"OK" = "是";
+
+/* No comment provided by engineer. */
+"Submit" = "提交";
+
+/* Title for button to submit assignment */
+"Submit Assignment" = "提交任務";
+
+/* No comment provided by engineer. */
+"Submitted!" = "提交成功！";
+
+/* No comment provided by engineer. */
+"Submitting" = "提交";
+
+/* Message when fails to submit an assignment */
+"There was a problem submitting your assignment. Please try again later." = "你的任務提交出現了問題。請稍後再試。";
 

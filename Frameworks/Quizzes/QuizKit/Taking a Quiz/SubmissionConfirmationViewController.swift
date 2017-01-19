@@ -19,14 +19,14 @@
 import UIKit
 
 enum SubmissionViewState {
-    case Loading
-    case Successful
-    case Failed
+    case loading
+    case successful
+    case failed
 }
 
 class SubmissionConfirmationViewController: UIViewController {
     
-    var resultsURL: NSURL?
+    var resultsURL: URL?
     var customLoadingText: String?
     
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
@@ -34,17 +34,17 @@ class SubmissionConfirmationViewController: UIViewController {
     @IBOutlet var infoLabel: UILabel!
     @IBOutlet var resultsButton: UIButton!
     
-    private var successImage: UIImage {
-        return UIImage(named: "submitted", inBundle: NSBundle(forClass: SubmissionConfirmationViewController.self), compatibleWithTraitCollection: nil)!
+    fileprivate var successImage: UIImage {
+        return UIImage(named: "submitted", in: Bundle(for: SubmissionConfirmationViewController.self), compatibleWith: nil)!
     }
     
-    private var failedImage: UIImage {
-        return UIImage(named: "error", inBundle: NSBundle(forClass: SubmissionConfirmationViewController.self), compatibleWithTraitCollection: nil)!
+    fileprivate var failedImage: UIImage {
+        return UIImage(named: "error", in: Bundle(for: SubmissionConfirmationViewController.self), compatibleWith: nil)!
     }
     
-    init(resultsURL: NSURL?) {
+    init(resultsURL: URL?) {
         self.resultsURL = resultsURL
-        super.init(nibName: "SubmissionConfirmationViewController", bundle: NSBundle(forClass: SubmissionConfirmationViewController.self))
+        super.init(nibName: "SubmissionConfirmationViewController", bundle: Bundle(for: SubmissionConfirmationViewController.self))
         let _ = self.view // force the loading of the nib and connection of the outlets
     }
 
@@ -52,73 +52,73 @@ class SubmissionConfirmationViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         prepareNavigationBar()
     }
 
-    private func prepareNavigationBar() {
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(SubmissionConfirmationViewController.doneTapped(_:)))
+    fileprivate func prepareNavigationBar() {
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SubmissionConfirmationViewController.doneTapped(_:)))
         navigationItem.rightBarButtonItem = doneButton
     }
     
-    func showState(state: SubmissionViewState) {
+    func showState(_ state: SubmissionViewState) {
         switch state {
-        case .Loading:
-            activityIndicator.hidden = false
+        case .loading:
+            activityIndicator.isHidden = false
             activityIndicator.startAnimating()
-            statusImageView.hidden = true
+            statusImageView.isHidden = true
             if customLoadingText != nil {
                 infoLabel.text = customLoadingText!
             } else {
-                infoLabel.text = NSLocalizedString("Submitting Quiz", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Label for indication of submitting quiz")
+                infoLabel.text = NSLocalizedString("Submitting Quiz", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Label for indication of submitting quiz")
             }
-            resultsButton.hidden = true
-        case .Successful:
-            activityIndicator.hidden = true
+            resultsButton.isHidden = true
+        case .successful:
+            activityIndicator.isHidden = true
             activityIndicator.stopAnimating()
             statusImageView.image = successImage
-            statusImageView.hidden = false
+            statusImageView.isHidden = false
             animateImagePop()
-            infoLabel.text = NSLocalizedString("Quiz Submitted", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Label for indication that the quiz submission was successful")
-            resultsButton.hidden = (resultsURL == nil)
+            infoLabel.text = NSLocalizedString("Quiz Submitted", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Label for indication that the quiz submission was successful")
+            resultsButton.isHidden = (resultsURL == nil)
             break
-        case .Failed:
-            activityIndicator.hidden = true
+        case .failed:
+            activityIndicator.isHidden = true
             activityIndicator.stopAnimating()
             statusImageView.image = failedImage
-            statusImageView.hidden = false
+            statusImageView.isHidden = false
             animateImagePop()
-            infoLabel.text = NSLocalizedString("Submission Failure", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Label for indication that the quiz submission failed")
-            resultsButton.hidden = true
+            infoLabel.text = NSLocalizedString("Submission Failure", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Label for indication that the quiz submission failed")
+            resultsButton.isHidden = true
             break
         }
     }
     
-    private func animateImagePop() {
+    fileprivate func animateImagePop() {
         let totalDuration = 0.6
         let keyframeDuration = totalDuration / 3
-        statusImageView.transform = CGAffineTransformMakeScale(1, 1)
-        UIView.animateKeyframesWithDuration(totalDuration, delay: 0, options: [], animations: {
-            UIView.addKeyframeWithRelativeStartTime(0*keyframeDuration, relativeDuration: keyframeDuration, animations: {
-                self.statusImageView.transform = CGAffineTransformMakeScale(1.2, 1.2)
+        statusImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+        UIView.animateKeyframes(withDuration: totalDuration, delay: 0, options: [], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0*keyframeDuration, relativeDuration: keyframeDuration, animations: {
+                self.statusImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             })
-            UIView.addKeyframeWithRelativeStartTime(1*keyframeDuration, relativeDuration: keyframeDuration, animations: {
-                self.statusImageView.transform = CGAffineTransformMakeScale(0.9, 0.9)
+            UIView.addKeyframe(withRelativeStartTime: 1*keyframeDuration, relativeDuration: keyframeDuration, animations: {
+                self.statusImageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             })
-            UIView.addKeyframeWithRelativeStartTime(2*keyframeDuration, relativeDuration: keyframeDuration, animations: {
-                self.statusImageView.transform = CGAffineTransformMakeScale(1, 1)
+            UIView.addKeyframe(withRelativeStartTime: 2*keyframeDuration, relativeDuration: keyframeDuration, animations: {
+                self.statusImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
             })
         }, completion: nil)
     }
     
     // MARK: Actions
     
-    func doneTapped(button: UIBarButtonItem?) {
-        self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil) // go back 2 screens
+    func doneTapped(_ button: UIBarButtonItem?) {
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil) // go back 2 screens
     }
     
-    @IBAction private func resultsTapped(button: UIButton?) {
-        UIApplication.sharedApplication().openURL(resultsURL!)
+    @IBAction fileprivate func resultsTapped(_ button: UIButton?) {
+        UIApplication.shared.openURL(resultsURL!)
     }
 }

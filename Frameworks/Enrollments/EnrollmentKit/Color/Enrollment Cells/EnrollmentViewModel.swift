@@ -17,13 +17,13 @@
     
 
 import Foundation
-import ReactiveCocoa
+import ReactiveSwift
 import TooLegit
 
 
 extension Enrollment {
-    public class ViewModel {
-        public let enrollment: MutableProperty<Enrollment?>
+    open class ViewModel {
+        open let enrollment: MutableProperty<Enrollment?>
         public init(enrollment: Enrollment?) {
             self.enrollment = MutableProperty(enrollment)
         }

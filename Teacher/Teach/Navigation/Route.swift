@@ -18,32 +18,29 @@
 
 import UIKit
 import TooLegit
-import URITemplate
+import Pathetic
 
 class Route {
     enum Presentation {
-        case Master
-        case Detail
-        case Modal(UIModalPresentationStyle)
+        case master
+        case detail
+        case modal(UIModalPresentationStyle)
     }
     
     let presentation: Presentation
-    let template: URITemplate
-    let factory: (RouteAction, Session, parameters: [String: String]) throws -> UIViewController?
+    let factory: (URL, Session, Navigator) throws -> UIViewController?
     
-    init(_ presentation: Presentation, path: URITemplate, factory: (RouteAction, Session, [String: String]) throws -> UIViewController?) {
+    init<P>(presentation: Presentation, path: PathTemplate<P>, factory: @escaping (P, Session, Navigator) throws -> UIViewController?) {
         self.presentation = presentation
-        self.template = path
-        self.factory = factory
+        self.factory = { (url, session, navigator) -> UIViewController? in
+            return try path.match(url.path)
+                .flatMap { try factory($0, session, navigator) }
+        }
     }
     
-    func constructViewController(route: RouteAction, session: Session, url: NSURL) throws -> UIViewController? {
-        guard let apiPath = url.path else { return nil }
-        let path = apiPath.stringByReplacingOccurrencesOfString("/api/v1", withString: "") // remove the api prefix
-        guard let parameters = template.extract(path) else { return nil }
-        
-        return try factory(route, session, parameters: parameters)
+    func constructViewController(for url: URL, in session: Session, navigator: Navigator) throws -> UIViewController? {
+        return try factory(url, session, navigator)
     }
 }
 
-typealias RouteAction = (UIViewController, NSURL) throws -> ()
+typealias RouteAction = (UIViewController, URL) throws -> ()

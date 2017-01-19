@@ -25,12 +25,12 @@ public struct MobileVerifyResponse {
     
     public let clientID : String?
     public let clientSecret : String?
-    public let baseURL : NSURL?
+    public let baseURL : URL?
     public let apiKey : String?
 }
 
 extension MobileVerifyResponse {
-    public static func fromJSON(json: AnyObject?) -> MobileVerifyResponse? {
+    public static func fromJSON(_ json: Any?) -> MobileVerifyResponse? {
         if let json = json as? [String: AnyObject] {
             
             let kAuthorized = "authorized"
@@ -42,13 +42,13 @@ extension MobileVerifyResponse {
             
             if let
                 authorized = json[kAuthorized] as? Bool,
-                result = json[kResult] as? Int
+                let result = json[kResult] as? Int
             {
                 let clientID = json[kClientID] as? String
                 let clientSecret = json[kClientSecret] as? String
-                var baseURL: NSURL? = nil
+                var baseURL: URL? = nil
                 if let baseURLString = json[kBaseURL] as? String {
-                    baseURL = NSURL(string: baseURLString)
+                    baseURL = URL(string: baseURLString)
                 }
                 
                 let apiKey = json[kAPIKey] as? String

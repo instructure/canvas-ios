@@ -30,9 +30,9 @@ class QuestionDrawerViewController: UITableViewController {
         }
     }
     
-    var questionSelectionAction: (questionIndex: Int)->() = { _ in }
+    var questionSelectionAction: (_ questionIndex: Int)->() = { _ in }
     
-    private var flaggedQuestions: [SubmissionQuestion] = []
+    fileprivate var flaggedQuestions: [SubmissionQuestion] = []
     
     var isLoading: Bool = false {
         didSet {
@@ -40,7 +40,7 @@ class QuestionDrawerViewController: UITableViewController {
         }
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
@@ -52,9 +52,9 @@ class QuestionDrawerViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         tableView.rowHeight = 50
-        tableView.registerNib(QuestionDrawerCell.Nib, forCellReuseIdentifier: QuestionDrawerCell.ReuseID)
+        tableView.register(QuestionDrawerCell.Nib, forCellReuseIdentifier: QuestionDrawerCell.ReuseID)
         updateLoadingQuestionView()
     }
 }
@@ -63,11 +63,11 @@ extension QuestionDrawerViewController {
     
     // MARK: UITableViewDatasource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 { // flagged
             return flaggedQuestions.count
         } else if section == 1 { // all questions
@@ -77,48 +77,52 @@ extension QuestionDrawerViewController {
         return 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("QuestionDrawerCell", forIndexPath: indexPath) as! QuestionDrawerCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionDrawerCell", for: indexPath) as! QuestionDrawerCell
         
         if indexPath.section == 0 { // flagged
             let question = flaggedQuestions[indexPath.row]
-            cell.displayState(.Flagged)
-            cell.questionTextLabel.text = "Question \(question.question.position)"
+            cell.displayState(.flagged)
+            let template = NSLocalizedString("Question %d", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows question position")
+            cell.questionTextLabel.text = String.localizedStringWithFormat(template, question.question.position)
         } else {
             let question = questions[indexPath.row]
             if question.flagged {
-                cell.displayState(.Flagged)
+                cell.displayState(.flagged)
             } else {
                 switch question.answer {
-                case .ID(_):
-                    cell.displayState(.Answered)
-                case .IDs(_):
-                    cell.displayState(.Answered)
-                case .Text(_):
-                    cell.displayState(.Answered)
+                case .id(_):
+                    cell.displayState(.answered)
+                case .ids(_):
+                    cell.displayState(.answered)
+                case .text(_):
+                    cell.displayState(.answered)
                 case .Matches(let matches):
                     if matches.keys.count == question.question.answers.count {
-                        cell.displayState(.Answered)
+                        cell.displayState(.answered)
                     } else {
-                        cell.displayState(.Untouched)
+                        cell.displayState(.untouched)
                     }
                 default:
-                    cell.displayState(.Untouched)
+                    cell.displayState(.untouched)
                     break
                 }
             }
-            
-            cell.questionTextLabel.text = "Question \(question.question.position)"
+
+            let template = NSLocalizedString("Question %d", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows question position")
+            cell.questionTextLabel.text = String.localizedStringWithFormat(template, question.question.position)
         }
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 && flaggedQuestions.count > 0 { // flagged
-            return "\(flaggedQuestions.count) Flagged"
+            let template = NSLocalizedString("%d Flagged", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows the number of flagged questions")
+            return String.localizedStringWithFormat(template, flaggedQuestions.count)
         } else if section == 1 { // all questions
-            return "All \(questions.count) Questions"
+            let template = NSLocalizedString("All %d Questions", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows the number questions")
+            return String.localizedStringWithFormat(template, questions.count)
         }
         
         return nil
@@ -126,14 +130,14 @@ extension QuestionDrawerViewController {
     
     // MARK: UITableViewDelegate
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 { // flagged
             let flaggedQuestion = flaggedQuestions[indexPath.row]
             let index = flaggedQuestion.question.position - 1 // position is 1 based, not 0 based
-            questionSelectionAction(questionIndex: index)
+            questionSelectionAction(index)
         } else if indexPath.section == 1 { // all
-            questionSelectionAction(questionIndex: indexPath.row)
+            questionSelectionAction(indexPath.row)
         }
     }
 }
@@ -143,7 +147,7 @@ extension QuestionDrawerViewController {
 
 extension QuestionDrawerViewController {
     func updateLoadingQuestionView() {
-        if !isViewLoaded() {
+        if !isViewLoaded {
             return
         }
         
@@ -161,7 +165,7 @@ extension QuestionDrawerViewController {
 // MARK: - Updates
 
 extension QuestionDrawerViewController {
-    func handleQuestionsUpdateResult(result: SubmissionQuestionsUpdateResult) {
+    func handleQuestionsUpdateResult(_ result: SubmissionQuestionsUpdateResult) {
         if let _ = result.error { // don't report the error - the presenting view already did
             return
         }

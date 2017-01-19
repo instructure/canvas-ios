@@ -26,7 +26,7 @@ class MasteryPathAssignmentInfoCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        let titleDescriptor = UIFontDescriptor.preferredFontDescriptorWithTextStyle(UIFontTextStyleTitle3).fontDescriptorWithSymbolicTraits(.TraitBold)!
+        let titleDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: UIFontTextStyle.title3).withSymbolicTraits(.traitBold)!
         titleLabel.font = UIFont(descriptor: titleDescriptor, size: 0.0)
     }
 }

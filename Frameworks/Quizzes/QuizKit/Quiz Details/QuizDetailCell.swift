@@ -24,7 +24,7 @@ class QuizDetailCell: UITableViewCell {
     @IBOutlet var detailLabel: UILabel!
     
     class var Nib: UINib {
-        return UINib(nibName: "QuizDetailCell", bundle: NSBundle(forClass: self.classForCoder()))
+        return UINib(nibName: "QuizDetailCell", bundle: Bundle(for: self.classForCoder()))
     }
     
     class var ReuseID: String {
@@ -33,7 +33,7 @@ class QuizDetailCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        selectionStyle = .None
+        selectionStyle = .none
     }
     
     required init?(coder aDecoder: NSCoder) {

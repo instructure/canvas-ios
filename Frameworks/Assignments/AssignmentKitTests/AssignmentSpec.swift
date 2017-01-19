@@ -38,35 +38,35 @@ class AssignmentSpec: QuickSpec {
 
             describe("grade") {
                 it("should change based on grading type") {
-                    assignment.gradingType = .NotGraded
+                    assignment.gradingType = .notGraded
                     assignment.currentGrade = ""
                     expect(assignment.grade) == "n/a"
 
-                    assignment.gradingType = .LetterGrade
+                    assignment.gradingType = .letterGrade
                     assignment.currentGrade = "A-"
                     expect(assignment.grade) == "A-"
                     assignment.currentGrade = ""
                     expect(assignment.grade) == "-"
 
-                    assignment.gradingType = .GPAScale
+                    assignment.gradingType = .gpaScale
                     assignment.currentGrade = "3.7"
                     expect(assignment.grade) == "3.7"
                     assignment.currentGrade = ""
                     expect(assignment.grade) == "-"
 
-                    assignment.gradingType = .PassFail
+                    assignment.gradingType = .passFail
                     assignment.currentGrade = "P"
                     expect(assignment.grade) == "P"
                     assignment.currentGrade = ""
                     expect(assignment.grade) == "-"
 
-                    assignment.gradingType = .Percent
+                    assignment.gradingType = .percent
                     assignment.currentGrade = "90%"
                     expect(assignment.grade) == "90%"
                     assignment.currentGrade = ""
                     expect(assignment.grade) == "-"
 
-                    assignment.gradingType = .Points
+                    assignment.gradingType = .points
                     assignment.currentGrade = ""
                     assignment.pointsPossible = 100
                     expect(assignment.grade) == "-/100"
@@ -75,7 +75,7 @@ class AssignmentSpec: QuickSpec {
                     assignment.currentGrade = "Not a number"
                     expect(assignment.grade) == "-/100"
 
-                    assignment.gradingType = .Error
+                    assignment.gradingType = .error
                     assignment.currentGrade = ""
                     expect(assignment.grade) == "-"
                 }
@@ -85,12 +85,12 @@ class AssignmentSpec: QuickSpec {
                 context("when the assignment is submitted online and is past due") {
                     beforeEach {
                         var json = assignmentJSON
-                        let due = NSDate(year: 2000, month: 1, day: 1)
+                        let due = Date(year: 2000, month: 1, day: 1)
                         json["due_at"] = jsonify(date: due)
                         json["submission_types"] = ["external_tool"]
                         json["has_submitted_submissions"] = false
                         json["locked_for_user"] = false
-                        Clock.timeTravel(to: NSDate(year: 2000, month: 1, day: 2)) {
+                        Clock.timeTravel(to: Date(year: 2000, month: 1, day: 2)) {
                             try! assignment.updateValues(json, inContext: assignment.managedObjectContext!)
                         }
                     }
@@ -103,10 +103,10 @@ class AssignmentSpec: QuickSpec {
                 context("when the submission type is not online and due date is in the past") {
                     it("should be past due") {
                         var json = assignmentJSON
-                        let due = NSDate(year: 2000, month: 1, day: 1)
+                        let due = Date(year: 2000, month: 1, day: 1)
                         json["submission_types"] = ["on_paper"]
                         json["due_at"] = jsonify(date: due)
-                        Clock.timeTravel(to: NSDate(year: 2000, month: 1, day: 2)) {
+                        Clock.timeTravel(to: Date(year: 2000, month: 1, day: 2)) {
                             try! assignment.updateValues(json, inContext: assignment.managedObjectContext!)
                         }
                         expect(assignment.rawDueStatus) == DueStatus.Past.rawValue
@@ -116,11 +116,11 @@ class AssignmentSpec: QuickSpec {
                 context("when the assignment has been graded and it is past due with no submission") {
                     it("should be marked as Past, not Overdue") {
                         var json = assignmentJSON
-                        let due = NSDate(year: 2016, month: 9, day: 1)
+                        let due = Date(year: 2016, month: 9, day: 1)
                         json["due_at"] = jsonify(date: due)
-                        let graded = NSDate(year: 2016, month: 10, day: 1)
+                        let graded = Date(year: 2016, month: 10, day: 1)
                         json["submission"] = ["graded_at": jsonify(date: graded), "workflow_state": "graded", "grade": "A"]
-                        Clock.timeTravel(to: NSDate(year: 2016, month: 10, day: 2)) {
+                        Clock.timeTravel(to: Date(year: 2016, month: 10, day: 2)) {
                             try! assignment.updateValues(json, inContext: assignment.managedObjectContext!)
                         }
                         expect(assignment.rawDueStatus) == DueStatus.Past.rawValue
@@ -130,9 +130,9 @@ class AssignmentSpec: QuickSpec {
                 context("when the assignment is upcoming") {
                     beforeEach {
                         var json = assignmentJSON
-                        let due = NSDate(year: 2000, month: 1, day: 1)
+                        let due = Date(year: 2000, month: 1, day: 1)
                         json["due_at"] = jsonify(date: due)
-                        Clock.timeTravel(to: NSDate(year: 1999, month: 12, day: 1)) {
+                        Clock.timeTravel(to: Date(year: 1999, month: 12, day: 1)) {
                             try! assignment.updateValues(json, inContext: assignment.managedObjectContext!)
                         }
                     }
@@ -152,22 +152,23 @@ class AssignmentSpec: QuickSpec {
                         "online_quiz"
                     ]
                     try! assignment.updateValues(json, inContext: assignment.managedObjectContext!)
-                    expect(assignment.submissionTypes.contains(.ExternalTool)) == true
-                    expect(assignment.submissionTypes.contains(.DiscussionTopic)) == true
-                    expect(assignment.submissionTypes.contains(.Quiz)) == true
+                    expect(assignment.submissionTypes.contains(.externalTool)) == true
+                    expect(assignment.submissionTypes.contains(.discussionTopic)) == true
+                    expect(assignment.submissionTypes.contains(.quiz)) == true
                 }
 
-                it("should allow an empty html url with quiz type") {
+                it("should not allow an empty html url with quiz type") {
                     var json = assignmentJSON
                     json["submission_types"] = ["online_quiz"]
                     json["html_url"] = ""
-                    try! assignment.updateValues(json, inContext: assignment.managedObjectContext!)
-                    expect(assignment.submissionTypes.contains(.Quiz)) == true
+                    expect {
+                        try assignment.updateValues(json, inContext: assignment.managedObjectContext!)
+                    }.to(throwError())
                 }
 
                 context("uploads") {
                     it("should allow certain file types based on the extension") {
-                        assignment.submissionTypes = [.Upload]
+                        assignment.submissionTypes = [.upload]
                         assignment.allowedExtensions = nil
                         expect(assignment.allowsAllFiles) == true
                         expect(assignment.allowsPhotos) == true
@@ -194,13 +195,13 @@ class AssignmentSpec: QuickSpec {
                         expect(assignment.allowsPhotos) == true
                         expect(assignment.allowsVideo) == false
                         expect(assignment.allowsAudio) == false
-                        expect(assignment.allowedImagePickerControllerMediaTypes) == [kUTTypeImage]
+                        expect(assignment.allowedImagePickerControllerMediaTypes) == [kUTTypeImage as String]
 
                         assignment.allowedExtensions = ["mp4"]
                         expect(assignment.allowsPhotos) == false
                         expect(assignment.allowsVideo) == true
                         expect(assignment.allowsAudio) == false
-                        expect(assignment.allowedImagePickerControllerMediaTypes) == [kUTTypeMovie]
+                        expect(assignment.allowedImagePickerControllerMediaTypes) == [kUTTypeMovie as String]
                         
                         assignment.allowedExtensions = ["mp4", "mp3", "jpg"]
                         expect(assignment.allowsPhotos) == true
@@ -215,7 +216,7 @@ class AssignmentSpec: QuickSpec {
 
             describe("uploadForNewSubmission") {
                 context("text submission") {
-                    let submission = NewUpload.Text("text")
+                    let submission = NewUpload.text("text")
                     var upload: TextSubmissionUpload!
                     beforeEach {
                         waitUntil { done in
@@ -236,12 +237,12 @@ class AssignmentSpec: QuickSpec {
                 }
 
                 context("url submission") {
-                    let submission = NewUpload.URL(NSURL(string: "http://google.com")!)
+                    let submission = NewUpload.url(URL(string: "http://google.com")!)
                     var upload: URLSubmissionUpload!
                     beforeEach {
                         waitUntil { done in
                             try! assignment.uploadForNewSubmission(submission, inSession: session) {
-                                expect($0).to(beAnInstanceOf(URLSubmissionUpload))
+                                expect($0).to(beAnInstanceOf(URLSubmissionUpload.self))
                                 upload = $0 as! URLSubmissionUpload
                                 done()
                             }
@@ -258,12 +259,12 @@ class AssignmentSpec: QuickSpec {
                 }
 
                 context("file submission") {
-                    let submission = NewUpload.FileUpload([.FileURL(factoryURL), .Photo(factoryImage)])
+                    let submission = NewUpload.fileUpload([.fileURL(factoryURL), .photo(factoryImage)])
                     var upload: FileSubmissionUpload!
                     beforeEach {
                         waitUntil { done in
                             try! assignment.uploadForNewSubmission(submission, inSession: session) {
-                                expect($0).to(beAnInstanceOf(FileSubmissionUpload))
+                                expect($0).to(beAnInstanceOf(FileSubmissionUpload.self))
                                 upload = $0 as! FileSubmissionUpload
                                 done()
                             }
@@ -272,7 +273,7 @@ class AssignmentSpec: QuickSpec {
                     }
 
                     it("creates file uploads") {
-                        let fileUploads = upload.fileUploads.sort { $0.name < $1.name } // [Photo, testfile.txt]
+                        let fileUploads = upload.fileUploads.sorted { $0.name < $1.name } // [Photo, testfile.txt]
                         
                         let photo = fileUploads.first!
                         expect(photo.name) == "Photo"
@@ -292,7 +293,7 @@ class AssignmentSpec: QuickSpec {
                     let moc = session.managedObjectContext(Assignment.self)
                     try! assignment.updateValues(assignmentJSON, inContext: moc)
                     
-                    class DummyTask: NSURLSessionTask {
+                    class DummyTask: URLSessionTask {
                         override var taskIdentifier: Int {
                             get { return 1 }
                             set {}
@@ -322,8 +323,8 @@ class AssignmentSpec: QuickSpec {
                         let count = Assignment.observeCount(inSession: session)
                         let refresher = try! Assignment.refresher(session, courseID: "1867097", gradingPeriodID: nil)
                         expect {
-                            refresher.playback("assignment-grades", in: currentBundle, with: session)
-                        }.to(change({ count.currentCount }, from: 0, to: 5))
+                            refresher.playback("assignment-grades", with: session)
+                        }.to(change({ count.currentCount }, from: 0, to: 14))
                     }
 
                     it("should create assignment groups") {
@@ -376,9 +377,9 @@ class AssignmentSpec: QuickSpec {
                 }
 
                 it("should create a text submission for each text attachment") {
-                    assignment.submissionTypes = [.Text]
-                    let one = NSItemProvider("foo", kUTTypeText)
-                    let two = NSItemProvider("bar", kUTTypeText)
+                    assignment.submissionTypes = [.text]
+                    let one = NSItemProvider("foo" as NSSecureCoding?, kUTTypeText)
+                    let two = NSItemProvider("bar" as NSSecureCoding?, kUTTypeText)
 
                     var result: Result<[NewUpload], NSError>?
                     waitUntil { done in
@@ -391,18 +392,18 @@ class AssignmentSpec: QuickSpec {
                     expect(result).toNot(beNil())
                     expect(result?.error).to(beNil())
                     expect(result?.value?.count) == 2
-                    if let one = result?.value?.first, two = result?.value?.last {
-                        if case .Text("foo") = one {} else {
+                    if let one = result?.value?.first, let two = result?.value?.last {
+                        if case .text("foo") = one {} else {
                             fail("expected .Text('foo') got \(one)")
                         }
-                        if case .Text("bar") = two {} else {
+                        if case .text("bar") = two {} else {
                             fail("expected .Text('bar') got \(two)")
                         }
                     }
                 }
 
                 it("should create url submissions for url attachments") {
-                    assignment.submissionTypes = [.URL]
+                    assignment.submissionTypes = [.url]
                     let one = NSItemProvider(NSURL(string: "https://google.com")!, kUTTypeURL)
                     let two = NSItemProvider(NSURL(string: "https://facebook.com")!, kUTTypeURL)
 
@@ -417,18 +418,18 @@ class AssignmentSpec: QuickSpec {
                     expect(result).toNot(beNil())
                     expect(result?.error).to(beNil())
                     expect(result?.value?.count) == 2
-                    if let one = result?.value?.first, two = result?.value?.last {
-                        if case .URL(NSURL(string: "https://google.com")!) = one {} else {
+                    if let one = result?.value?.first, let two = result?.value?.last {
+                        if case .url(URL(string: "https://google.com")!) = one {} else {
                             fail("expected .URL('https://google.com') got \(one)")
                         }
-                        if case .URL(NSURL(string: "https://facebook.com")!) = two {} else {
+                        if case .url(URL(string: "https://facebook.com")!) = two {} else {
                             fail("expected .URL('https://facebook.com') got \(two)")
                         }
                     }
                 }
 
                 it("should consolidate all file attachments into one submission") {
-                    assignment.submissionTypes = [.Upload]
+                    assignment.submissionTypes = [.upload]
                     let one = NSItemProvider(factoryImage, kUTTypeImage)
                     let two = NSItemProvider(NSData(), kUTTypeItem)
                     
@@ -444,7 +445,7 @@ class AssignmentSpec: QuickSpec {
                     expect(result?.error).to(beNil())
                     expect(result?.value?.count) == 1
                     if let submission = result?.value?.first {
-                        if case .FileUpload(let files) = submission {
+                        if case .fileUpload(let files) = submission {
                             expect(files.count) == 2
                         } else {
                             fail("expected a file upload")
@@ -453,8 +454,8 @@ class AssignmentSpec: QuickSpec {
                 }
 
                 it("should handle many attachment types") {
-                    assignment.submissionTypes = [.Text, .URL]
-                    let text = NSItemProvider("foo", kUTTypeText)
+                    assignment.submissionTypes = [.text, .url]
+                    let text = NSItemProvider("foo" as NSSecureCoding?, kUTTypeText)
                     let url = NSItemProvider(NSURL(string: "https://google.com")!, kUTTypeURL)
 
                     var result: Result<[NewUpload], NSError>?
@@ -468,11 +469,11 @@ class AssignmentSpec: QuickSpec {
                     expect(result).toNot(beNil())
                     expect(result?.error).to(beNil())
                     expect(result?.value?.count) == 2
-                    if let one = result?.value?.first, two = result?.value?.last {
-                        if case .Text("foo") = one {} else {
+                    if let one = result?.value?.first, let two = result?.value?.last {
+                        if case .text("foo") = one {} else {
                             fail("expected .Text('foo') got \(one)")
                         }
-                        if case .URL(NSURL(string: "https://google.com")!) = two {} else {
+                        if case .url(URL(string: "https://google.com")!) = two {} else {
                             fail("expected .URL('https://google.com') got \(two)")
                         }
                     }
@@ -480,8 +481,8 @@ class AssignmentSpec: QuickSpec {
 
                 context("when one or more attachment is not supported by the assignment") {
                     it("should send an error") {
-                        assignment.submissionTypes = [.URL]
-                        let text = NSItemProvider("foo", kUTTypeText)
+                        assignment.submissionTypes = [.url]
+                        let text = NSItemProvider("foo" as NSSecureCoding?, kUTTypeText)
 
                         var result: Result<[NewUpload], NSError>?
                         waitUntil { done in

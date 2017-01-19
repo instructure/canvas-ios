@@ -39,7 +39,7 @@ extension Double : DeltaArithmetic {}
 
 private let changeRequiresClosureError = FailureMessage(stringValue: "expect(...).(to|toNot)(change(...)) requires an explicit closure (eg - expect { ... }.to(change(...)) )")
 
-public func change<T: Equatable>(value: (Void) -> T?) -> MatcherFunc<Void> {
+public func change<T: Equatable>(_ value: @escaping (Void) -> T?) -> MatcherFunc<Void> {
     return MatcherFunc { expression, failureMessage in
         guard expression.isClosure else {
             failureMessage.stringValue = changeRequiresClosureError.stringValue
@@ -57,7 +57,7 @@ public func change<T: Equatable>(value: (Void) -> T?) -> MatcherFunc<Void> {
     }
 }
 
-private func didChange<T, U where T: Equatable>(value: (Void) -> T?, expression: Expression<U>, from: T?, to: T?, failureMessage: FailureMessage) throws -> Bool {
+private func didChange<T, U>(_ value: (Void) -> T?, expression: Expression<U>, from: T?, to: T?, failureMessage: FailureMessage) throws -> Bool where T: Equatable {
     guard expression.isClosure else {
         failureMessage.stringValue = changeRequiresClosureError.stringValue
         return false
@@ -74,19 +74,19 @@ private func didChange<T, U where T: Equatable>(value: (Void) -> T?, expression:
     return before == from && after == to
 }
 
-public func change<T where T: Equatable, T: DeltaArithmetic>(value: (Void) -> T, by expectedDelta: T) -> MatcherFunc<Void> {
+public func change<T>(_ value: @escaping (Void) -> T, by expectedDelta: T) -> MatcherFunc<Void> where T: Equatable, T: DeltaArithmetic {
     return MatcherFunc { expression, failureMessage in
         return try didChange(value, expression: expression, from: value(), to: value() + expectedDelta, failureMessage: failureMessage)
     }
 }
 
-public func change<T where T: Equatable>(value: (Void) -> T?, from: T?, to: T?) -> MatcherFunc<Void> {
+public func change<T>(_ value: @escaping (Void) -> T?, from: T?, to: T?) -> MatcherFunc<Void> where T: Equatable {
     return MatcherFunc { expression, failureMessage in
         return try didChange(value, expression: expression, from: from, to: to, failureMessage: failureMessage)
     }
 }
 
-public func change<T where T: Equatable>(value: (Void) -> T?, to: T?) -> MatcherFunc<Void> {
+public func change<T>(_ value: @escaping (Void) -> T?, to: T?) -> MatcherFunc<Void> where T: Equatable {
     return MatcherFunc { expression, failureMessage in
         let before = value()
         

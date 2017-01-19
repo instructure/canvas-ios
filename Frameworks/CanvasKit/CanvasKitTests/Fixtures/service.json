@@ -1,0 +1,7 @@
+{
+    "domain": "kaltura.example.com",
+    "enabled": true,
+    "partner_id": "123456",
+    "resource_domain": "cdn.kaltura.example.com",
+    "rtmp_domain": "rtmp.example.com"
+}

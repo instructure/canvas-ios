@@ -24,45 +24,45 @@ import SoPretty
 
 class NetworkMonitor: NSObject {
     static func engage() {
-        NSNotificationCenter.defaultCenter().addObserver(sharedMonitor, selector: #selector(networkActivityStarted), name: CKCanvasNetworkRequestStartedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(sharedMonitor, selector: #selector(networkActivityEnded), name: CKCanvasNetworkRequestFinishedNotification, object: nil)
+        NotificationCenter.default.addObserver(sharedMonitor, selector: #selector(networkActivityStarted), name: NSNotification.Name.CKCanvasNetworkRequestStarted, object: nil)
+        NotificationCenter.default.addObserver(sharedMonitor, selector: #selector(networkActivityEnded), name: NSNotification.Name.CKCanvasNetworkRequestFinished, object: nil)
         
     }
     
-    private static let sharedMonitor = NetworkMonitor()
+    fileprivate static let sharedMonitor = NetworkMonitor()
     
-    private var inflightNetworkOps = 0
+    fileprivate var inflightNetworkOps = 0
     
     func networkActivityStarted() {
         inflightNetworkOps += 1
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
     func networkActivityEnded() {
         inflightNetworkOps -= 1
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = inflightNetworkOps > 0
+        UIApplication.shared.isNetworkActivityIndicatorVisible = inflightNetworkOps > 0
     }
     
     
     // MARK: Reachability
-    private let toast = ToastManager()
+    fileprivate let toast = ToastManager()
     
     func monitorReachability() {
-        Reachability.reachabilityForInternetConnection().stopNotifier()
+        Reachability.forInternetConnection().stopNotifier()
         let reach = Reachability(hostName: "canvas.instructure.com")
         
-        reach.reachableBlock = { _ in
-            dispatch_async(dispatch_get_main_queue()) {
+        reach?.reachableBlock = { _ in
+            DispatchQueue.main.async {
                 self.toast.dismissNotification()
             }
         }
-        reach.unreachableBlock = { _ in
-            dispatch_async(dispatch_get_main_queue()) {
+        reach?.unreachableBlock = { _ in
+            DispatchQueue.main.async {
                 let message = NSLocalizedString("Uh-oh! No Internet Connection", comment: "Notification over status bar that displays when not connected to the internet.")
                 self.toast.statusBarToastFailure(message)
             }
         }
         
-        reach.startNotifier()
+        reach?.startNotifier()
     }
 }

@@ -28,34 +28,34 @@ extension Tab {
 
     public static func invalidateCache(session: Session, contextID: ContextID) throws {
         let context = try session.enrollmentManagedObjectContext()
-        let key = collectionCacheKey(context, contextID: contextID)
+        let key = collectionCacheKey(context: context, contextID: contextID)
         session.refreshScope.invalidateCache(key)
     }
     
-    public static func collection(session: Session, contextID: ContextID) throws -> FetchedCollection<Tab> {
+    public static func collection(_ session: Session, contextID: ContextID) throws -> FetchedCollection<Tab> {
         let predicate = NSPredicate(format: "%K == %@ AND %K == NO", "rawContextID", contextID.canvasContextID, "hidden")
         let context = try session.enrollmentManagedObjectContext()
-        let frc = Tab.fetchedResults(predicate, sortDescriptors: ["position".ascending], sectionNameKeypath: nil, inContext: context)
-
-        return try FetchedCollection(frc: frc)
+        return try FetchedCollection(frc:
+            context.fetchedResults(predicate, sortDescriptors: ["position".ascending])
+        )
     }
     
-    public static func shortcuts(session: Session, contextID: ContextID) throws -> FetchedCollection<Tab> {
+    public static func shortcuts(_ session: Session, contextID: ContextID) throws -> FetchedCollection<Tab> {
         let predicate = NSPredicate(format: "%K == %@ AND %@ CONTAINS %K", "rawContextID", contextID.canvasContextID, ShortcutTabIDs, "id")
         let context = try session.enrollmentManagedObjectContext()
-        let frc = Tab.fetchedResults(predicate, sortDescriptors: ["position".ascending], sectionNameKeypath: nil, inContext: context)
-        
-        return try FetchedCollection(frc: frc)
+        return try FetchedCollection(frc:
+            context.fetchedResults(predicate, sortDescriptors: ["position".ascending])
+        )
     }
     
-    public static func refresher(session: Session, contextID: ContextID) throws -> Refresher {
+    public static func refresher(_ session: Session, contextID: ContextID) throws -> Refresher {
         
         let remote = Tab.get(session, contextID: contextID)
         let context = try session.enrollmentManagedObjectContext()
         let predicate = NSPredicate(format: "%K == %@", "rawContextID", contextID.canvasContextID)
         let sync = syncSignalProducer(predicate, inContext: context, fetchRemote: remote)
 
-        let key = collectionCacheKey(context, contextID: contextID)
+        let key = collectionCacheKey(context: context, contextID: contextID)
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 

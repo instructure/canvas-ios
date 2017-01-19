@@ -1,8 +1,17 @@
+/* Message for an error alert */
+"An unexpected error occured. %@(%@)" = "发生意外错误。%1$@(%2$@)";
+
 /* Dismiss an error dialog */
-"Dismiss" = "解雇";
+"Dismiss" = "解散";
 
 /* Data encoding error title */
 "Encoding Error" = "编码错误";
+
+/* Title for an error alert */
+"Error" = "错误";
+
+/* attached to error explanation in dialog */
+"Explanation:" = "解释：";
 
 /* Option to report an error */
 "Report" = "报告";
@@ -10,12 +19,9 @@
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "编码UTF8数据时出现问题";
 
-/* JSON Parsing error description */
+/* (No Commment) */
 "There was a problem interpreting a response from the server." = "解读服务器的响应时出现问题。";
 
 /* SoLazy's fallback title for an unknown error */
 "Unknown Error" = "未知错误";
-
-/* attached to error explanation in dialog */
-"Explanation:" = "解释：";
 

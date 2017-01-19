@@ -58,6 +58,12 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ moet beoordeeld worden";
 
+/* Shows points possible for an assignment */
+"%@ pts" = "%@ punten";
+
+/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
+"%@. Type: %@" = "%1$@. Type %2$@";
+
 /* (No Commment) */
 "%@..." = "%@...";
 
@@ -263,7 +269,8 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache gewist";
 
-/* Calendar page title */
+/* Calendar landing page title
+   Calendar page title */
 "Calendar" = "Kalender";
 
 /* (No Commment) */
@@ -319,6 +326,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 
 /* (No Commment) */
 "Choose from Library..." = "Kiezen uit bibliotheek...";
+
+/* Text for button to allow user to choose a set of assignments to do */
+"Choose option" = "Kies een optie";
 
 /* (No Commment) */
 "Choose video" = "Video kiezen";
@@ -377,7 +387,8 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* (No Commment) */
 "Course Syllabus" = "Cursus Syllabus";
 
-/* Courses page title */
+/* Courses landing page title
+   Courses page title */
 "Courses" = "Cursussen";
 
 /* (No Commment) */
@@ -454,6 +465,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 
 /* (No Commment) */
 "Downloading..." = "Downloaden...";
+
+/* Formatted string for showing an assingment due date (date already localized by system) */
+"Due %@" = "Inleverdatum %@";
 
 /* (No Commment) */
 "Due:" = "Inleverdatum:";
@@ -638,6 +652,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* (No Commment) */
 "Item %1$d of %2$d" = "Item %1$d of %2$d";
 
+/* table header for module items */
+"Items" = "Items";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Het is leeg, wat doe je hier nog .";
 
@@ -662,11 +679,17 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* (No Commment) */
 "Legal" = "Juridisch";
 
+/* Web URL link item label */
+"Link" = "Koppeling";
+
 /* (No Commment) */
 "Loading..." = "Bezig met laden...";
 
 /* (No Commment) */
 "Locked" = "Vergrendeld";
+
+/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
+"Locked until \"%@\" is graded" = "Vergrendeld totdat \"%@\" is beoordeeld";
 
 /* locked date */
 "Locked until %@" = "Vergrendeld tot %@";
@@ -688,6 +711,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 
 /* (No Commment) */
 "Masquerade" = "Masker toepassen";
+
+/* Master Path module item type */
+"Mastery Path" = "Leertraject";
 
 /* (No Commment) */
 "Me" = "Mij";
@@ -716,7 +742,7 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* (No Commment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Iedereen apart een bericht sturen, of iedereen toevoegen aan groepconversatie?";
 
-/* (No Commment) */
+/* Messages landing page title */
 "Messages" = "Berichten";
 
 /* (No Commment) */
@@ -761,6 +787,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* (No Commment) */
 "New Folder" = "Nieuwe map";
 
+/* Button title for next module item. */
+"Next" = "Volgende";
+
 /* (No Commment) */
 "Next 7 Days" = "Volgende 7 dagen";
 
@@ -775,6 +804,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "Geen inleverdatum";
+
+/* Title for alert when a module item hasn't been set up with mastery paths */
+"No Mastery Paths" = "Geen leertrajecten";
 
 /* (No Commment) */
 "No Recorded Audio" = "Geen opgenomen audio";
@@ -833,7 +865,8 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Voorkeuren berichtgeving";
 
-/* Notifications tab title */
+/* Notifications landing page title
+   Notifications tab title */
 "Notifications" = "Berichtgevingen";
 
 /* OK Button Title */
@@ -859,6 +892,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 
 /* (No Commment) */
 "Open in..." = "Openen in...";
+
+/* Button title for selecting an option given a number */
+"Option %d" = "Optie %d";
 
 /* (No Commment) */
 "Other" = "Overig";
@@ -901,6 +937,12 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 
 /* (No Commment) */
 "Posts your comment" = "Plaatst je opmerking";
+
+/* Table header for prerequisite modules */
+"Prerequisite Modules" = "Vereiste modules";
+
+/* Button title for previous module item. */
+"Previous" = "Vorige";
 
 /* (No Commment) */
 "Previous item" = "Vorige item";
@@ -986,6 +1028,12 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* Placeholder text for search bar on assignments page */
 "Search here..." = "Hier zoeken...";
 
+/* No comment provided by engineer. */
+"Select Option" = "Selecteer optie";
+
+/* Button title to select a certain assignment set option */
+"Select Option %d" = "Selecteer optie %d";
+
 /* (No Commment) */
 "Select file(s)" = "Bestand(en) selecteren";
 
@@ -1036,6 +1084,20 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 
 /* (No Commment) */
 "Starts recording a media comment" = "Een media opmerking wordt opgenomen";
+
+/* Label read aloud when item status is completed.
+   Module status label when completed */
+"Status: Completed" = "Status: Voltooid";
+
+/* Label read aloud when item status is incomplete. */
+"Status: Incomplete" = "Status: Incompleet";
+
+/* Label read aloud when item status is locked.
+   Module status label when locked */
+"Status: Locked" = "Status: Vergrendeld";
+
+/* Module status label when started */
+"Status: Started" = "Status: Gestart";
 
 /* (No Commment) */
 "Stay Logged In" = "Blijf ingelogd";
@@ -1203,16 +1265,22 @@ Fout: %@";
 /* (No Commment) */
 "This is a media message." = "Dit is een media bericht.";
 
+/* Description for alert when a module item doesn't have mastery paths configured */
+"This module item doesn't have mastery paths set up." = "Voor dit module-item zijn geen leertrajecten ingesteld.";
+
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Dit is een goede tijd voor wat extra punten.";
 
 /* Title of the Todo screen */
 "To Do" = "Te doen";
 
+/* To-Do List landing page title */
+"To-Do List" = "To-Do lijst";
+
 /* (No Commment) */
 "To:" = "Aan:";
 
-/* (No Commment) */
+/* Button to scroll to 'today' on the calendar */
 "Today" = "Vandaag";
 
 /* No comment provided by engineer. */
@@ -1232,6 +1300,9 @@ Fout: %@";
 
 /* (No Commment) */
 "Turn in %@" = "%@ inleveren";
+
+/* Label read aloud to describe module item type */
+"Type: %@" = "Type: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "O nee! Geen internetverbinding";

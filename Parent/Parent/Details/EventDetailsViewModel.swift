@@ -29,54 +29,54 @@ private let DetailsCellReuseIdentifier = "DetailsCell"
 
 enum EventDetailsViewModel: TableViewCellViewModel {
 
-    case Info(name: String, submissionInfo: String?, submissionColor: UIColor?)
-    case Reminder(date: NSDate?, remindable: Remindable, actionURL: NSURL, context: UIViewController)
-    case Date(start: NSDate, end: NSDate)
-    case Location(locationName: String?, address: String?)
-    case Details(baseURL: NSURL, deets: String)
+    case info(name: String, submissionInfo: String?, submissionColor: UIColor?)
+    case reminder(date: Date?, remindable: Remindable, actionURL: URL, context: UIViewController)
+    case date(start: Date, end: Date)
+    case location(locationName: String?, address: String?)
+    case details(baseURL: URL, deets: String)
 
-    static func tableViewDidLoad(tableView: UITableView) {
+    static func tableViewDidLoad(_ tableView: UITableView) {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 52.0
-        tableView.separatorStyle = .None
-        tableView.registerNib(UINib(nibName: "DetailsInfoCell", bundle: nil), forCellReuseIdentifier: TitleCellReuseIdentifier)
-        tableView.registerNib(UINib(nibName: "DetailsReminderCell", bundle: nil), forCellReuseIdentifier: ReminderCellReuseIdentifier)
-        tableView.registerNib(UINib(nibName: "DetailsDateCell", bundle: nil), forCellReuseIdentifier: DateCellReuseIdentifier)
-        tableView.registerNib(UINib(nibName: "DetailsLocationCell", bundle: nil), forCellReuseIdentifier: LocationCellReuseIdentifier)
-        tableView.registerClass(DetailsDescriptionCell.self, forCellReuseIdentifier: DetailsCellReuseIdentifier)
+        tableView.separatorStyle = .none
+        tableView.register(UINib(nibName: "DetailsInfoCell", bundle: nil), forCellReuseIdentifier: TitleCellReuseIdentifier)
+        tableView.register(UINib(nibName: "DetailsReminderCell", bundle: nil), forCellReuseIdentifier: ReminderCellReuseIdentifier)
+        tableView.register(UINib(nibName: "DetailsDateCell", bundle: nil), forCellReuseIdentifier: DateCellReuseIdentifier)
+        tableView.register(UINib(nibName: "DetailsLocationCell", bundle: nil), forCellReuseIdentifier: LocationCellReuseIdentifier)
+        tableView.register(DetailsDescriptionCell.self, forCellReuseIdentifier: DetailsCellReuseIdentifier)
     }
 
-    static var dateFormatter: NSDateIntervalFormatter = {
-        let dateFormatter = NSDateIntervalFormatter()
-        dateFormatter.dateStyle = .MediumStyle
-        dateFormatter.timeStyle = .ShortStyle
+    static var dateFormatter: DateIntervalFormatter = {
+        let dateFormatter = DateIntervalFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
         return dateFormatter
     }()
 
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch self {
-        case .Info(let name, let submissionInfo, let submissionColor):
-            guard let cell = tableView.dequeueReusableCellWithIdentifier(TitleCellReuseIdentifier, forIndexPath: indexPath) as? DetailsInfoCell else { fatalError() }
+        case .info(let name, let submissionInfo, let submissionColor):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleCellReuseIdentifier, for: indexPath) as? DetailsInfoCell else { fatalError() }
             cell.titleLabel.text? = name
             cell.submissionLabel.text = submissionInfo ?? ""
             cell.submissionLabel.backgroundColor = submissionColor
             cell.setShowsSubmissionInfo(submissionInfo != nil && submissionInfo!.characters.count > 0)
             return cell
 
-        case .Date(let startDate, let endDate):
-            guard let cell = tableView.dequeueReusableCellWithIdentifier(DateCellReuseIdentifier, forIndexPath: indexPath) as? DetailsDateCell else { fatalError() }
+        case .date(let startDate, let endDate):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DateCellReuseIdentifier, for: indexPath) as? DetailsDateCell else { fatalError() }
 
-            let str = String(format: NSLocalizedString("%@", comment: "Label indicating when the event takes place"), EventDetailsViewModel.dateFormatter.stringFromDate(startDate, toDate: endDate))
+            let str = String(format: NSLocalizedString("%@", comment: "Label indicating when the event takes place"), EventDetailsViewModel.dateFormatter.string(from: startDate, to: endDate))
             cell.dateLabel.text = str
 
             return cell
 
-        case .Reminder(let date, let remindable, let actionURL, let context):
-            guard let cell = tableView.dequeueReusableCellWithIdentifier(ReminderCellReuseIdentifier, forIndexPath: indexPath) as? DetailsReminderCell else { fatalError() }
-            cell.toggle.on = (date != nil)
+        case .reminder(let date, let remindable, let actionURL, let context):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReminderCellReuseIdentifier, for: indexPath) as? DetailsReminderCell else { fatalError() }
+            cell.toggle.isOn = (date != nil)
             cell.setExpanded((date != nil))
             if let date = date {
-                cell.dateLabel.text = DetailsReminderCell.dateFormatter.stringFromDate(date)
+                cell.dateLabel.text = DetailsReminderCell.dateFormatter.string(from: date)
             } else {
                 cell.dateLabel.text = ""
             }
@@ -93,17 +93,17 @@ enum EventDetailsViewModel: TableViewCellViewModel {
                     }
                     vc.doneAction = { date in
                         remindable.scheduleReminder(atTime: date, actionURL: actionURL)
-                        cell.dateLabel.text = DetailsReminderCell.dateFormatter.stringFromDate(date)
+                        cell.dateLabel.text = DetailsReminderCell.dateFormatter.string(from: date)
                         cell.setExpanded(true)
                         tableView?.beginUpdates()
                         tableView?.endUpdates()
                     }
-                    vc.datePicker.date = max(NSDate(), remindable.defaultReminderDate) // never let it go into the past
-                    vc.datePicker.minimumDate = NSDate()
+                    vc.datePicker.date = max(Date(), remindable.defaultReminderDate) // never let it go into the past
+                    vc.datePicker.minimumDate = Date()
                     let nav = SmallModalNavigationController(rootViewController: vc)
-                    nav.navigationBar.barStyle = .Black
-                    nav.navigationBar.barTintColor = UIColor.whiteColor()
-                    context.presentViewController(nav, animated: true, completion: nil)
+                    nav.navigationBar.barStyle = .black
+                    nav.navigationBar.barTintColor = .white
+                    context.present(nav, animated: true, completion: nil)
                 } else {
                     remindable.cancelReminder()
                     cell.dateLabel.text = ""
@@ -113,14 +113,14 @@ enum EventDetailsViewModel: TableViewCellViewModel {
                 }
             }
             return cell
-        case .Location(let locationName, let address):
-            guard let cell = tableView.dequeueReusableCellWithIdentifier(LocationCellReuseIdentifier, forIndexPath: indexPath) as? DetailsLocationCell else { fatalError() }
+        case .location(let locationName, let address):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationCellReuseIdentifier, for: indexPath) as? DetailsLocationCell else { fatalError() }
             let components = [locationName, address].flatMap { $0 }
-            cell.locationLabel.text = components.joinWithSeparator("\n")
+            cell.locationLabel.text = components.joined(separator: "\n")
             return cell
 
-        case .Details(let baseURL, let deets):
-            guard let cell = tableView.dequeueReusableCellWithIdentifier(DetailsCellReuseIdentifier, forIndexPath: indexPath) as? WhizzyWigTableViewCell else { fatalError() }
+        case .details(let baseURL, let deets):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailsCellReuseIdentifier, for: indexPath) as? WhizzyWigTableViewCell else { fatalError() }
             cell.whizzyWigView.useAPISafeLinks = false
             cell.whizzyWigView.loadHTMLString(deets, baseURL: baseURL)
             cell.cellSizeUpdated = { [weak tableView] _ in
@@ -136,15 +136,15 @@ enum EventDetailsViewModel: TableViewCellViewModel {
 extension EventDetailsViewModel: Equatable { }
 func ==(lhs: EventDetailsViewModel, rhs: EventDetailsViewModel) -> Bool {
     switch(lhs, rhs) {
-    case let (.Info(leftName, leftSubmissionInfo, _), .Info(rightName, rightSubmissionInfo, _)):
+    case let (.info(leftName, leftSubmissionInfo, _), .info(rightName, rightSubmissionInfo, _)):
         return leftName == rightName && leftSubmissionInfo == rightSubmissionInfo
-    case let (.Date(leftStartDate, leftEndDate), .Date(rightStartDate, rightEndDate)):
+    case let (.date(leftStartDate, leftEndDate), .date(rightStartDate, rightEndDate)):
         return (leftStartDate == rightStartDate) && (leftEndDate == rightEndDate)
-    case let (.Reminder(leftDate, _, _, _), .Reminder(rightDate, _, _, _)):
+    case let (.reminder(leftDate, _, _, _), .reminder(rightDate, _, _, _)):
         return leftDate == rightDate
-    case let (.Location(leftName, leftAddress), .Location(rightName, rightAddress)):
+    case let (.location(leftName, leftAddress), .location(rightName, rightAddress)):
         return (leftName == rightName) && (leftAddress == rightAddress)
-    case let (.Details(leftURL, leftDeets), .Details(rightURL, rightDeets)):
+    case let (.details(leftURL, leftDeets), .details(rightURL, rightDeets)):
         return (leftURL == rightURL) && (leftDeets == rightDeets)
     default:
         return false

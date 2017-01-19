@@ -27,14 +27,14 @@ public struct OAuthToken {
     public let userID: Int
     public let userName: String
     
-    static func fromJSON(json: AnyObject?) -> OAuthToken? {
+    static func fromJSON(_ json: Any?) -> OAuthToken? {
         if let json = json as? [String: AnyObject]{
             if let
                 accessToken = json["access_token"] as? String,
-                refreshToken = json["refresh_token"] as? String,
-                userObj = json["user"] as? [String: AnyObject],
-                userID = userObj["id"] as? Int,
-                userName = userObj["name"] as? String
+                let refreshToken = json["refresh_token"] as? String,
+                let userObj = json["user"] as? [String: AnyObject],
+                let userID = userObj["id"] as? Int,
+                let userName = userObj["name"] as? String
             {
                 let token = OAuthToken(accessToken: accessToken, refreshToken: refreshToken, userID: userID, userName: userName)
                 return token

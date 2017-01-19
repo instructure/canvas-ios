@@ -21,45 +21,48 @@ import TooLegit
 import CoreData
 import SoPersistent
 import SoLazy
-import ReactiveCocoa
+import ReactiveSwift
 import Cartography
 
 extension GradingPeriodItem {
-    func colorfulViewModel(dataSource: EnrollmentsDataSource, courseID: String, selected: Bool) -> ColorfulViewModel {
-        let model = ColorfulViewModel(style: .Basic)
+    func colorfulViewModel(_ dataSource: EnrollmentsDataSource, courseID: String, selected: Bool) -> ColorfulViewModel {
+        let model = ColorfulViewModel()
         model.title.value = title
-        model.color <~ dataSource.producer(ContextID(id: courseID, context: .Course)).map { $0?.color ?? .prettyGray() }
-        model.accessoryType.value = selected ? .Checkmark : .None
+        model.color <~ dataSource.color(for: .course(withID: courseID))
+        model.accessoryType.value = selected ? .checkmark : .none
         return model
     }
 }
 
 
 extension GradingPeriod {
-    static func collectionCacheKey(context: NSManagedObjectContext, courseID: String) -> String {
+    static func collectionCacheKey(_ context: NSManagedObjectContext, courseID: String) -> String {
         return cacheKey(context, [courseID])
     }
 
-    public static func predicate(courseID: String) -> NSPredicate {
+    public static func predicate(_ courseID: String) -> NSPredicate {
         return NSPredicate(format:"%K == %@", "courseID", courseID)
     }
 
-    internal static func predicate(courseID: String, notMatchingID id: String?) -> NSPredicate {
+    internal static func predicate(_ courseID: String, notMatchingID id: String?) -> NSPredicate {
         return id.flatMap { NSPredicate(format: "%K == %@ && %K != %@", "courseID", courseID, "id", $0) } ?? NSPredicate(format: "%K == %@", "courseID", courseID)
     }
     
-    public static func gradingPeriodIDs(session: Session, courseID: String, excludingGradingPeriodID: String?) throws -> [String] {
+    public static func gradingPeriodIDs(_ session: Session, courseID: String, excludingGradingPeriodID: String?) throws -> [String] {
         let context = try session.enrollmentManagedObjectContext()
-        let invalidatedGradingPeriods: [GradingPeriod] = try context.findAll(fromFetchRequest: GradingPeriod.fetch(GradingPeriod.predicate(courseID, notMatchingID: excludingGradingPeriodID), sortDescriptors: nil, inContext: context))
+        let fetch: NSFetchRequest<GradingPeriod> = context.fetch(predicate(courseID, notMatchingID: excludingGradingPeriodID))
+        let invalidatedGradingPeriods: [GradingPeriod] = try context.findAll(fromFetchRequest: fetch)
         return invalidatedGradingPeriods.map { $0.id }
     }
 
-    public static func collectionByCourseID(session: Session, courseID: String) throws -> FetchedCollection<GradingPeriod> {
-        let frc = GradingPeriod.fetchedResults(GradingPeriod.predicate(courseID), sortDescriptors: ["startDate".ascending], sectionNameKeypath: nil, inContext: try session.enrollmentManagedObjectContext())
-        return try FetchedCollection(frc: frc)
+    public static func collectionByCourseID(_ session: Session, courseID: String) throws -> FetchedCollection<GradingPeriod> {
+        let context = try session.enrollmentManagedObjectContext()
+        return try FetchedCollection(frc:
+            context.fetchedResults(predicate(courseID), sortDescriptors: ["startDate".ascending])
+        )
     }
 
-    public static func refresher(session: Session, courseID: String) throws -> Refresher {
+    public static func refresher(_ session: Session, courseID: String) throws -> Refresher {
         let context = try session.enrollmentManagedObjectContext()
         let remote = try GradingPeriod.getGradingPeriods(session, courseID: courseID)
         let sync = GradingPeriod.syncSignalProducer(inContext: context, fetchRemote: remote) { gradingPeriod, _ in
@@ -70,10 +73,10 @@ extension GradingPeriod {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public class TableViewController: SoPersistent.TableViewController {
-        private (set) public var collection: GradingPeriodCollection!
+    open class TableViewController: SoPersistent.TableViewController {
+        fileprivate (set) open var collection: GradingPeriodCollection!
 
-        func prepare<VM: TableViewCellViewModel>(collection: GradingPeriodCollection, refresher: Refresher? = nil, viewModelFactory: GradingPeriodItem->VM) {
+        func prepare<VM: TableViewCellViewModel>(_ collection: GradingPeriodCollection, refresher: Refresher? = nil, viewModelFactory: @escaping (GradingPeriodItem)->VM) {
             self.collection = collection
             self.refresher = refresher
             dataSource = CollectionTableViewDataSource(collection: collection, viewModelFactory: viewModelFactory)
@@ -82,10 +85,10 @@ extension GradingPeriod {
         public init(session: Session, courseID: String, collection: GradingPeriodCollection, refresher: Refresher) throws {
             super.init()
             
-            title = NSLocalizedString("Grading Periods", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Title for grading periods picker")
+            title = NSLocalizedString("Grading Periods", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Title for grading periods picker")
             collection.selectedGradingPeriod.producer
-                .observeOn(UIScheduler())
-                .startWithNext { [weak collection] _ in collection?.updatesObserver.sendNext([.Reload]) }
+                .observe(on: UIScheduler())
+                .startWithValues { [weak collection] _ in collection?.updatesObserver.send(value: [.reload]) }
 
             let dataSource = session.enrollmentsDataSource
             prepare(collection, refresher: refresher) { item in
@@ -97,56 +100,56 @@ extension GradingPeriod {
             fatalError()
         }
 
-        public override func viewDidLoad() {
+        open override func viewDidLoad() {
             super.viewDidLoad()
-            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(cancel))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         }
 
-        override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let item = collection[indexPath]
             collection.selectedGradingPeriod.value = item
         }
 
         func cancel() {
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
         }
     }
     
-    public class Header: NSObject, UITableViewDataSource, UITableViewDelegate {
+    open class Header: NSObject, UITableViewDataSource, UITableViewDelegate {
         // Input
-        public let includeGradingPeriods: Bool
-        public weak var viewController: UIViewController?
-        public let grade: MutableProperty<String?>
+        open let includeGradingPeriods: Bool
+        open weak var viewController: UIViewController?
+        open let grade: MutableProperty<String?>
         
         // Output
-        public var selectedGradingPeriod: AnyProperty<GradingPeriodItem?> {
+        open var selectedGradingPeriod: ReactiveSwift.Property<GradingPeriodItem?> {
             guard includeGradingPeriods else {
-                return AnyProperty(ConstantProperty(nil))
+                return ReactiveSwift.Property(value: nil)
             }
-            return AnyProperty(gradingPeriodsList.collection.selectedGradingPeriod)
+            return ReactiveSwift.Property(gradingPeriodsList.collection.selectedGradingPeriod)
         }
 
-        public lazy var tableView: UITableView = {
-            let tableView = UITableView(frame: CGRectZero, style: .Plain)
+        open lazy var tableView: UITableView = {
+            let tableView = UITableView(frame: CGRect.zero, style: .plain)
             tableView.dataSource = self
             tableView.delegate = self
-            tableView.scrollEnabled = false
-            tableView.tableFooterView = UIView(frame: CGRectZero)
+            tableView.isScrollEnabled = false
+            tableView.tableFooterView = UIView(frame: CGRect.zero)
             tableView.estimatedRowHeight = 44.0
             tableView.rowHeight = UITableViewAutomaticDimension
             return tableView
         }()
 
-        private let gradingPeriod: AnyProperty<String?>
-        private let gradingPeriodsList: TableViewController
-        private var disposable: Disposable?
+        fileprivate let gradingPeriod: ReactiveSwift.Property<String?>
+        fileprivate let gradingPeriodsList: TableViewController
+        fileprivate var disposable: Disposable?
 
         var includeGrade: Bool {
             return grade.value != nil
         }
 
         public init(session: Session, courseID: String, viewController: UIViewController, includeGradingPeriods: Bool, grade: MutableProperty<String?> = MutableProperty(nil)) throws {
-            guard let course = session.enrollmentsDataSource[ContextID(id: courseID, context: .Course)] as? Course else {
+            guard let course = session.enrollmentsDataSource[ContextID(id: courseID, context: .course)] as? Course else {
                 ❨╯°□°❩╯⌢"We gots to have the course. Shouldn't we already have all teh courses?"
             }
 
@@ -160,14 +163,14 @@ extension GradingPeriod {
 
             self.viewController = viewController
 
-            self.gradingPeriod = AnyProperty(initialValue: nil, producer: gradingPeriodsCollection.selectedGradingPeriod.producer.map { $0?.title })
+            self.gradingPeriod = ReactiveSwift.Property(initial: nil, then: gradingPeriodsCollection.selectedGradingPeriod.producer.map { $0?.title })
 
             super.init()
 
             // reload table view when grading period or grade change
-            combineLatest(gradingPeriod.producer, grade.producer)
-                .observeOn(UIScheduler())
-                .startWithNext { [weak self] this in
+            SignalProducer.combineLatest(gradingPeriod.producer, grade.producer)
+                .observe(on: UIScheduler())
+                .startWithValues { [weak self] this in
                     if let tableView = self?.tableView {
                         tableView.reloadData()
                     }
@@ -178,51 +181,51 @@ extension GradingPeriod {
             }
         }
         
-        public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        open func numberOfSections(in tableView: UITableView) -> Int {
             return 1
         }
         
-        public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return [includeGradingPeriods, includeGrade].filter { $0 }.count
         }
         
-        public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             switch indexPath.row {
             case 0:
                 guard includeGradingPeriods else {
                     fallthrough
                 }
-                let cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
+                let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
                 cell.textLabel?.text = gradingPeriod.value
-                cell.accessoryType = .DisclosureIndicator
+                cell.accessoryType = .disclosureIndicator
                 return cell
             case 1:
-                let cell = UITableViewCell(style: .Value1, reuseIdentifier: nil)
-                cell.textLabel?.text = NSLocalizedString("Total Grade", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Total grade label")
+                let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+                cell.textLabel?.text = NSLocalizedString("Total Grade", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.EnrollmentKit")!, value: "", comment: "Total grade label")
                 cell.detailTextLabel?.text = grade.value
-                cell.selectionStyle = .None
+                cell.selectionStyle = .none
                 return cell
             default: fatalError("too many rows!")
             }
         }
         
-        public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             switch indexPath.row {
             case 0 where includeGradingPeriods:
                 let nav = UINavigationController(rootViewController: gradingPeriodsList)
-                nav.modalPresentationStyle = .FormSheet
+                nav.modalPresentationStyle = .formSheet
 
                 disposable?.dispose()
                 disposable = gradingPeriodsList.collection.selectedGradingPeriod.signal
-                    .observeOn(UIScheduler())
-                    .observeNext { _ in
-                        nav.dismissViewControllerAnimated(true) {
-                            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                    .observe(on: UIScheduler())
+                    .observeValues { _ in
+                        nav.dismiss(animated: true) {
+                            tableView.deselectRow(at: indexPath, animated: true)
                         }
                     }
 
-                viewController?.presentViewController(nav, animated: true, completion: {
-                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                viewController?.present(nav, animated: true, completion: {
+                    tableView.deselectRow(at: indexPath, animated: true)
                 })
             default: break
             }

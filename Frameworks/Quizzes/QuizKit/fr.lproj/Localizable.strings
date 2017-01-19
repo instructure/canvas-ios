@@ -1,8 +1,8 @@
 /* Error message component with the report id */
-"Error report ID: (reportID)" = "ID du rapport d'erreur : (reportID)";
+" Error report ID: (reportID)" = "ID du rapport d'erreur : (reportID)";
 
 /* Failure reason from the JSON payload from canvas */
-"Failure reason: (reason)." = "Raison de l'échec : (reason).";
+" Failure reason: (reason)." = "Raison de l'échec : (reason).";
 
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d questions sans réponse";
@@ -20,7 +20,7 @@
 "30 seconds remaining" = "Il reste 30 secondes";
 
 /* label for number of attempts that are allowed */
-"Allowed Attempts" = "Tentatives autorisées";
+"Allowed Attempts" = "Tentatives autorisées ";
 
 /* an unknown error's message */
 "An unknown error has occurred." = "Une erreur inconnue s'est produite.";
@@ -34,15 +34,14 @@
 /* label for quiz availability date */
 "Available Until" = "Disponible jusqu'à/au";
 
-/* Cancel button
-   cancel button for submitting a quiz
-   Cancel removing the formatting */
+/* Cancel button title */
 "Cancel" = "Annuler";
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Continuer le questionnaire";
 
-/* Dismiss button for error alert */
+/* Dismiss button for error alert
+   Dismiss error dialog */
 "Dismiss" = "Rejeter";
 
 /* Done button */
@@ -54,8 +53,17 @@
 /* Default text for essay cell */
 "Enter answer..." = "Saisir la réponse...";
 
+/* Title for quiz loading error */
+"Error Loading Quiz" = "Erreur lors du chargement du quiz";
+
+/* (No Commment) */
+"Error report ID: (reportID)" = "ID du rapport d’erreur : (reportID)";
+
 /* Exit button to leave the quiz */
 "Exit" = "Sortir";
+
+/* (No Commment) */
+"Failure reason: (reason)." = "Raison de l'échec : (raison).";
 
 /* State of the flagged question */
 "Flagged" = "Marqué";
@@ -69,13 +77,13 @@
 /* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
 "Lock Date Reached
 Submitting" = "Date de verrouillage atteinte
-Soumission";
+Soumission ";
 
 /* Next button for advancing a quiz */
 "Next" = "Suivant";
 
 /* A quiz that has no due date */
-"No Due Date" = "Aucune date d'échéance";
+"No Due Date" = "Pas d'échéance";
 
 /* when a quiz has no time limit */
 "No time limit" = "Aucune limite de temps";
@@ -83,8 +91,11 @@ Soumission";
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Ne peut être pris";
 
-/* OK */
+/* OK Button Title */
 "OK" = "D'accord";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "Veuillez vérifier votre connexion au réseau et réessayer.";
 
 /* label for number of points in a quiz */
 "Points" = "Points";
@@ -102,7 +113,7 @@ Soumission";
 "Questions" = "Questions";
 
 /* Title for alert that shows when a quiz hits the due date */
-"Quiz Due" = "Questionnaire dû";
+"Quiz Due" = "Questionnaire dû ";
 
 /* Title for quiz error */
 "Quiz Error" = "Erreur du questionnaire";
@@ -137,9 +148,7 @@ Soumission";
 /* Label for indication that the quiz submission failed */
 "Submission Failure" = "Échec de soumission";
 
-/* Button for electing to not be late on a quiz
-   confirm submitting quiz
-   Submit button for completing a quiz */
+/* Submit button title */
 "Submit" = "Soumettre";
 
 /* Label for indication of submitting quiz */
@@ -172,7 +181,7 @@ Soumission";
 /* Message when telling the user they can't take the quiz because the quiz is locked */
 "This quiz is locked." = "Ce questionnaire est verrouillé.";
 
-/* Message when telling the user they can't take the quiz because the quiz is locked */
+/* (No Commment) */
 "This quiz is locked. Reason: (description)" = "Ce questionnaire est verrouillé. Raison : (description)";
 
 /* label for the time limit */
@@ -191,7 +200,7 @@ Soumission";
 "Warning" = "Avertissement";
 
 /* Shows time limit on a quiz */
-"You have (minuteLimit) minutes." = "Vous avez (minuteLimit) minutes.";
+"You have (minuteLimit) minutes." = "Vous avez (minuteLimit) minutes. ";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Vous avez utilisé toutes vos tentatives possibles pour ce questionnaire.";

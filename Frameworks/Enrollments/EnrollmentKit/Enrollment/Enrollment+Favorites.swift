@@ -20,45 +20,49 @@ import SoPersistent
 import SoPretty
 import SoLazy
 import TooLegit
+import ReactiveSwift
+import ReactiveCocoa
+import SoIconic
 
-func colorfulFavoriteViewModel(enrollment: Enrollment) -> ColorfulViewModel {
-    let vm = ColorfulViewModel(style: .Subtitle)
+func colorfulFavoriteViewModel(_ enrollment: Enrollment) -> ColorfulViewModel {
+    let vm = ColorfulViewModel(features: .subtitle)
     vm.title.value = enrollment.name
-    vm.color.value = enrollment.color ?? UIColor.prettyGray()
-    vm.detail.value = enrollment.shortName
+    vm.color <~ enrollment.color.map { $0 ?? .prettyGray() }
+    vm.subtitle.value = enrollment.shortName
     
-    let imageName = enrollment.isFavorite ? "icon_favorite_fill" : "icon_favorite"
-    
-    vm.accessoryView.value = UIImageView(image: UIImage(named: imageName, inBundle: NSBundle(forClass: EditFavoriteEnrollmentsViewController.self), compatibleWithTraitCollection: nil))
+    let image = UIImage.icon(.star, filled: enrollment.isFavorite)
+    vm.accessoryView.value = UIImageView(image: image)
     return vm
 }
 
-public class EditFavoriteEnrollmentsViewController: TableViewController {
-    let collection: FetchedCollection<Enrollment>
+open class EditFavoriteEnrollmentsViewController<T where T: Enrollment>: TableViewController {
+    let collection: FetchedCollection<T>
     let session: Session
     
-    public init(session: Session, collection: FetchedCollection<Enrollment>, refresher: Refresher) throws {
+    public init(session: Session, collection: FetchedCollection<T>, refresher: Refresher) throws {
         self.session = session
         self.collection = collection
         super.init()
-        
+
         self.dataSource = CollectionTableViewDataSource(collection: collection, viewModelFactory: colorfulFavoriteViewModel)
         self.refresher = refresher
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(dismiss(_:)))
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismiss(_:)))
+
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 50
     }
     
-    func dismiss(button: AnyObject?) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func dismiss(_ button: AnyObject?) {
+        dismiss(animated: true, completion: nil)
     }
     
     public required init?(coder aDecoder: NSCoder) {
         ❨╯°□°❩╯⌢"No storyboards!"
     }
     
-    
-    public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
 
         let enrollment = collection[indexPath]
         
@@ -70,13 +74,17 @@ public class EditFavoriteEnrollmentsViewController: TableViewController {
 }
 
 extension Enrollment {
-    public static func allCourses(session: Session) throws -> FetchedCollection<Enrollment> {
-        let frc = Course.fetchedResults(nil, sortDescriptors: ["isFavorite".descending, "name".ascending, "id".ascending], sectionNameKeypath: "faves", inContext: try session.enrollmentManagedObjectContext())
-        return try FetchedCollection(frc: frc)
+    public static func allCourses(_ session: Session) throws -> FetchedCollection<Course> {
+        let context = try session.enrollmentManagedObjectContext()
+        return try FetchedCollection(frc:
+            context.fetchedResults(nil, sortDescriptors: ["isFavorite".descending, "name".ascending, "id".ascending], sectionNameKeypath: "faves")
+        )
     }
     
-    public static func allGroups(session: Session) throws -> FetchedCollection<Enrollment> {
-        let frc = Group.fetchedResults(nil, sortDescriptors: ["isFavorite".descending, "name".ascending, "id".ascending], sectionNameKeypath: "faves", inContext: try session.enrollmentManagedObjectContext())
-        return try FetchedCollection(frc: frc)
+    public static func allGroups(_ session: Session) throws -> FetchedCollection<Group> {
+        let context = try session.enrollmentManagedObjectContext()
+        return try FetchedCollection(frc:
+            context.fetchedResults(nil, sortDescriptors: ["isFavorite".descending, "name".ascending, "id".ascending], sectionNameKeypath: "faves")
+        )
     }
 }

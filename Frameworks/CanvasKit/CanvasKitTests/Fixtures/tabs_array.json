@@ -1,0 +1,92 @@
+ [
+  {
+  "html_url": "/courses/926378",
+  "label": "Home",
+  "id": "home",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/announcements",
+  "label": "Announcements",
+  "id": "announcements",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/assignments",
+  "label": "Assignments",
+  "id": "assignments",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/discussion_topics",
+  "label": "Discussions",
+  "id": "discussions",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/grades",
+  "label": "Grades",
+  "id": "grades",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/users",
+  "label": "People",
+  "id": "people",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/wiki",
+  "label": "Pages",
+  "id": "pages",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/files",
+  "label": "Files",
+  "id": "files",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/assignments/syllabus",
+  "label": "Syllabus",
+  "id": "syllabus",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/outcomes",
+  "label": "Outcomes",
+  "id": "outcomes",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/quizzes",
+  "label": "Quizzes",
+  "id": "quizzes",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/modules",
+  "label": "Modules",
+  "id": "modules",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/conferences",
+  "label": "Conferences",
+  "id": "conferences",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/collaborations",
+  "label": "Collaborations",
+  "id": "collaborations",
+  "type": "internal"
+  },
+  {
+  "html_url": "/courses/926378/settings",
+  "label": "Settings",
+  "id": "settings",
+  "type": "internal"
+  }
+  ]

@@ -22,31 +22,35 @@ import CoreData
 import SoPersistent
 import SoLazy
 import Marshal
+import ReactiveSwift
 
 // ---------------------------------------------
 // MARK: - Courses current user
 // ---------------------------------------------
 extension Course {
-    public static func allCoursesCollection(session: Session) throws -> FetchedCollection<Course> {
+    public static func allCoursesCollection(_ session: Session) throws -> FetchedCollection<Course> {
         let context = try session.enrollmentManagedObjectContext()
-        let frc = Course.fetchedResults(nil, sortDescriptors: ["name".ascending, "id".ascending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection(frc: frc)
+        return try FetchedCollection(frc:
+            context.fetchedResults(nil, sortDescriptors: ["name".ascending, "id".ascending])
+        )
     }
 
-    public static func favoritesCollection(session: Session) throws -> FetchedCollection<Course> {
+    public static func favoritesCollection(_ session: Session) throws -> FetchedCollection<Course> {
         let favorites = NSPredicate(format: "%K == YES", "isFavorite")
         let context = try session.enrollmentManagedObjectContext()
-        let frc = Course.fetchedResults(favorites, sortDescriptors: ["name".ascending, "id".ascending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection(frc: frc)
+        return try FetchedCollection(frc:
+            context.fetchedResults(favorites, sortDescriptors: ["name".ascending, "id".ascending])
+        )
     }
 
-    public static func collectionByStudent(session: Session, studentID: String) throws -> FetchedCollection<Course> {
+    public static func collectionByStudent(_ session: Session, studentID: String) throws -> FetchedCollection<Course> {
         let context = try session.enrollmentManagedObjectContext(studentID)
-        let frc = Course.fetchedResults(nil, sortDescriptors: ["name".ascending, "id".ascending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection(frc: frc)
+        return try FetchedCollection(frc:
+            context.fetchedResults(nil, sortDescriptors: ["name".ascending, "id".ascending])
+        )
     }
 
-    public static func refresher(session: Session) throws -> Refresher {
+    public static func refresher(_ session: Session) throws -> Refresher {
         let remote = try Course.getAllCourses(session)
         let context = try session.enrollmentManagedObjectContext()
         let sync = Course.syncSignalProducer(inContext: context, fetchRemote: remote)

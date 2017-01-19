@@ -22,15 +22,17 @@ import SoPersistent
 import TooLegit
 import EnrollmentKit
 import SoLazy
+import CoreLocation
+import Photos
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if unitTesting { return true }
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
         
         window?.rootViewController = UINavigationController(rootViewController: IntroViewController(nibName: nil, bundle: nil))
         

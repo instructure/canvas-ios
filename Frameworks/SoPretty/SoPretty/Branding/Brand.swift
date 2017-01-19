@@ -18,12 +18,12 @@
 
 import UIKit
 
-private func rgb(r: Int, g: Int, b: Int) -> UIColor {
+private func rgb(_ r: Int, g: Int, b: Int) -> UIColor {
     return UIColor(red: CGFloat(r)/255.0, green: CGFloat(g)/255.0, blue: CGFloat(b)/255.0, alpha: 1.0)
 }
 
-private func rgbPreTint(r: Int, g: Int, b: Int) -> UIColor {
-    func adjust(n: Int) -> CGFloat {
+private func rgbPreTint(_ r: Int, g: Int, b: Int) -> UIColor {
+    func adjust(_ n: Int) -> CGFloat {
         let x: CGFloat = max(CGFloat(n) - 40.0, 0)
         let y: CGFloat = 1.0 - 40.0/255.0
         let z: CGFloat = 255.0
@@ -33,21 +33,21 @@ private func rgbPreTint(r: Int, g: Int, b: Int) -> UIColor {
     return UIColor(red: adjust(r), green: adjust(g), blue: adjust(b), alpha: 1.0)
 }
 
-private func prettyImage(named: String) -> UIImage {
-    return UIImage(named: named, inBundle: NSBundle(forClass: PandaTableView.classForCoder()), compatibleWithTraitCollection: nil)!
+private func prettyImage(_ named: String) -> UIImage {
+    return UIImage(named: named, in: Bundle(for: PandaTableView.classForCoder()), compatibleWith: nil)!
 }
 
-public class Brand: NSObject {
-    public let tintColor: UIColor
-    public let secondaryTintColor: UIColor
+open class Brand: NSObject {
+    open let tintColor: UIColor
+    open let secondaryTintColor: UIColor
 
-    public let navBarTintColor: UIColor
-    public let navForegroundColor: UIColor
+    open let navBarTintColor: UIColor
+    open let navForegroundColor: UIColor
     
-    public let tabBarTintColor: UIColor
-    public let tabsForegroundColor: UIColor
+    open let tabBarTintColor: UIColor
+    open let tabsForegroundColor: UIColor
     
-    public let logo: UIImage
+    open let logo: UIImage
     
     public init(tintColor: UIColor, secondaryTintColor: UIColor, navBarTintColor: UIColor, navForegroundColor: UIColor, tabBarTintColor: UIColor, tabsForegroundColor: UIColor, logo: UIImage) {
         self.tintColor = tintColor
@@ -61,7 +61,7 @@ public class Brand: NSObject {
     }
 
 
-    public func apply(window: UIWindow) {
+    open func apply(_ window: UIWindow) {
         window.tintColor = tintColor
         
         let navAppearance = UINavigationBar.appearance()
@@ -78,22 +78,22 @@ public class Brand: NSObject {
 }
 
 extension Brand {
-    private static let Canvas = Brand(
+    fileprivate static let Canvas = Brand(
         tintColor: rgb(227, g: 60, b: 41),
         secondaryTintColor: rgb(0, g: 118, b: 163),
         navBarTintColor: rgb(14, g: 20, b: 34), // This is 52, 57, 69 plugged into this calculator to get it to show right: http://htmlpreview.github.io/?https://github.com/tparry/Miscellaneous/blob/master/UINavigationBar_UIColor_calculator.html
-        navForegroundColor: UIColor.whiteColor(),
-        tabBarTintColor: UIColor.whiteColor(),
+        navForegroundColor: UIColor.white,
+        tabBarTintColor: UIColor.white,
         tabsForegroundColor: rgb(52, g: 57, b: 69),
         logo: prettyImage("canvas_logo"))
     
-    private static var currentBrand = Canvas
+    fileprivate static var currentBrand = Canvas
     
     public class func current() -> Brand {
         return currentBrand
     }
     
-    public class func setCurrentBrand(brand: Brand, applyInWindow window: UIWindow? = nil) {
+    public class func setCurrentBrand(_ brand: Brand, applyInWindow window: UIWindow? = nil) {
         currentBrand = brand
         if let window = window {
             currentBrand.apply(window)

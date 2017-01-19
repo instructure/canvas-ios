@@ -67,13 +67,13 @@ class AlertThresholdTests: XCTestCase {
         threshold = .CourseGradeHigh
         XCTAssertEqual("Grade above", threshold.onDescription)
 
-        threshold = .AssignmentMissing
+        threshold =.assignmentMissing
         XCTAssertEqual("Assignment missing", threshold.onDescription)
 
-        threshold = .AssignmentGradeLow
+        threshold =.assignmentGradeLow
         XCTAssertEqual("Assignment grade below", threshold.onDescription)
 
-        threshold = .AssignmentGradeHigh
+        threshold =.assignmentGradeHigh
         XCTAssertEqual("Assignment grade above", threshold.onDescription)
 
         threshold = .InstitutionAnnouncement
@@ -93,13 +93,13 @@ class AlertThresholdTests: XCTestCase {
         threshold = .CourseGradeHigh
         XCTAssertEqual("High course grade", threshold.offDescription)
 
-        threshold = .AssignmentMissing
+        threshold =.assignmentMissing
         XCTAssertEqual("Assignment missing", threshold.offDescription)
 
-        threshold = .AssignmentGradeLow
+        threshold =.assignmentGradeLow
         XCTAssertEqual("Low assignment grade", threshold.offDescription)
 
-        threshold = .AssignmentGradeHigh
+        threshold =.assignmentGradeHigh
         XCTAssertEqual("High assignment grade", threshold.offDescription)
 
         threshold = .InstitutionAnnouncement
@@ -119,13 +119,13 @@ class AlertThresholdTests: XCTestCase {
         threshold = .CourseGradeHigh
         XCTAssertEqual(true, threshold.allowsThresholdValue)
 
-        threshold = .AssignmentMissing
+        threshold =.assignmentMissing
         XCTAssertEqual(false, threshold.allowsThresholdValue)
 
-        threshold = .AssignmentGradeLow
+        threshold =.assignmentGradeLow
         XCTAssertEqual(true, threshold.allowsThresholdValue)
 
-        threshold = .AssignmentGradeHigh
+        threshold =.assignmentGradeHigh
         XCTAssertEqual(true, threshold.allowsThresholdValue)
 
         threshold = .InstitutionAnnouncement

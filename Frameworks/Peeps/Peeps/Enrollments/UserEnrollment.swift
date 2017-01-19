@@ -20,7 +20,7 @@ import SoPersistent
 import TooLegit
 
 // Groups don't technically have enrollments, so for the case of groups the role may be []
-public struct UserEnrollmentRoles: OptionSetType {
+public struct UserEnrollmentRoles: OptionSet {
     public let rawValue: Int32
     public init(rawValue: Int32) { self.rawValue = rawValue}
     
@@ -31,33 +31,33 @@ public struct UserEnrollmentRoles: OptionSetType {
     public static let Designer = UserEnrollmentRoles(rawValue: 16)
 }
 
-public class UserEnrollment: NSManagedObject {
-    @NSManaged internal(set) public var user: User?
-    @NSManaged private var primitiveContextID: String
+open class UserEnrollment: NSManagedObject {
+    @NSManaged internal(set) open var user: User?
+    @NSManaged fileprivate var primitiveContextID: String
     
-    internal(set) public var contextID: ContextID {
+    internal(set) open var contextID: ContextID {
         get {
-            willAccessValueForKey("context")
-            defer { didAccessValueForKey("context") }
+            willAccessValue(forKey: "context")
+            defer { didAccessValue(forKey: "context") }
             return ContextID(canvasContext: primitiveContextID)!
         } set {
-            willChangeValueForKey("context")
-            defer { didChangeValueForKey("context") }
+            willChangeValue(forKey: "context")
+            defer { didChangeValue(forKey: "context") }
             primitiveContextID = newValue.canvasContextID
         }
     }
     
-    @NSManaged private var primitiveRoles: NSNumber
+    @NSManaged fileprivate var primitiveRoles: NSNumber
     
-    internal(set) public var roles: UserEnrollmentRoles {
+    internal(set) open var roles: UserEnrollmentRoles {
         get {
-            willAccessValueForKey("enrollmentType")
-            defer { didAccessValueForKey("enrollmentType") }
-            return UserEnrollmentRoles(rawValue: Int32(primitiveRoles.integerValue))
+            willAccessValue(forKey: "enrollmentType")
+            defer { didAccessValue(forKey: "enrollmentType") }
+            return UserEnrollmentRoles(rawValue: Int32(primitiveRoles.intValue))
         } set {
-            willChangeValueForKey("enrollmentType")
-            defer { didChangeValueForKey("enrollmentType") }
-            primitiveRoles = Int(newValue.rawValue)
+            willChangeValue(forKey: "enrollmentType")
+            defer { didChangeValue(forKey: "enrollmentType") }
+            primitiveRoles = NSNumber(value: Int(newValue.rawValue))
         }
     }
 }
@@ -65,26 +65,26 @@ public class UserEnrollment: NSManagedObject {
 import Marshal
 
 extension UserEnrollment: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let userID: String = try json.stringID("id")
-        let enrolments: [JSONObject] = try json <| "enrollments" ?? []
+        let enrolments: [JSONObject] = (try json <| "enrollments") ?? []
         let courseID: String = try (enrolments.first).map { try $0.stringID("course_id") } ?? ""
         
         
         return NSPredicate(format: "%K == %@ && %K == %@",
             "user.id", userID,
-            "contextID", ContextID(id: courseID, context: .Course).canvasContextID
+            "contextID", ContextID.course(withID: courseID).canvasContextID
         )
     }
     
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         user = try context.findOne(withPredicate: try User.uniquePredicateForObject(json)) ?? User.create(inContext: context)
         try user?.updateValues(json, inContext: context)
         
-        let enrollments: [JSONObject] = try json <| "enrollments" ?? []
+        let enrollments: [JSONObject] = (try json <| "enrollments") ?? []
         var roles = UserEnrollmentRoles()
         for eJSON in enrollments {
-            contextID = ContextID(id: try eJSON.stringID("course_id"), context: .Course)
+            contextID = ContextID.course(withID: try eJSON.stringID("course_id"))
             let type: String = try eJSON <| "type"
             switch type {
             case "StudentEnrollment":

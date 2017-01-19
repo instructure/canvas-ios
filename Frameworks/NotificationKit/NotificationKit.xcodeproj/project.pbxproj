@@ -14,7 +14,6 @@
 		49EB0BDD1BC47B39008F938C /* NotificationKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB0BDC1BC47B39008F938C /* NotificationKitTests.swift */; };
 		49EB0BEA1BC47E71008F938C /* CommunicationChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB0BE71BC47E71008F938C /* CommunicationChannel.swift */; };
 		49EB0BEB1BC47E71008F938C /* NotificationPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB0BE81BC47E71008F938C /* NotificationPreference.swift */; };
-		49EB0BEC1BC47E71008F938C /* PushNotificationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB0BE91BC47E71008F938C /* PushNotificationToken.swift */; };
 		49EB0BEF1BC47E86008F938C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49EB0BEE1BC47E86008F938C /* Main.storyboard */; };
 		49EB0BF41BC47EA5008F938C /* CommunicationChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB0BF11BC47EA5008F938C /* CommunicationChannelsViewController.swift */; };
 		49EB0BF51BC47EA5008F938C /* NotificationPreferencesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB0BF21BC47EA5008F938C /* NotificationPreferencesTableViewCell.swift */; };
@@ -24,6 +23,8 @@
 		49EB0C021BC48426008F938C /* SimpleAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB0C001BC48426008F938C /* SimpleAlertExtension.swift */; };
 		49EB0C031BC48426008F938C /* SimpleErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB0C011BC48426008F938C /* SimpleErrorExtension.swift */; };
 		5EBD45741BE26DFA003B667A /* PushState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBD45731BE26DFA003B667A /* PushState.swift */; };
+		B16B5D621E254CF900DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5D641E254CF900DED47B /* InfoPlist.strings */; };
+		B16B5D671E254CFB00DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5D691E254CFB00DED47B /* InfoPlist.strings */; };
 		B5A260371D8CB4C400E5C95E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A260331D8CB4C400E5C95E /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +49,6 @@
 		49EB0BDC1BC47B39008F938C /* NotificationKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKitTests.swift; sourceTree = "<group>"; };
 		49EB0BE71BC47E71008F938C /* CommunicationChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationChannel.swift; sourceTree = "<group>"; };
 		49EB0BE81BC47E71008F938C /* NotificationPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPreference.swift; sourceTree = "<group>"; };
-		49EB0BE91BC47E71008F938C /* PushNotificationToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationToken.swift; sourceTree = "<group>"; };
 		49EB0BEE1BC47E86008F938C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		49EB0BF11BC47EA5008F938C /* CommunicationChannelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationChannelsViewController.swift; sourceTree = "<group>"; };
 		49EB0BF21BC47EA5008F938C /* NotificationPreferencesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesTableViewCell.swift; sourceTree = "<group>"; };
@@ -58,6 +58,44 @@
 		49EB0C001BC48426008F938C /* SimpleAlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAlertExtension.swift; sourceTree = "<group>"; };
 		49EB0C011BC48426008F938C /* SimpleErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleErrorExtension.swift; sourceTree = "<group>"; };
 		5EBD45731BE26DFA003B667A /* PushState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushState.swift; sourceTree = "<group>"; };
+		B16B5D631E254CF900DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D681E254CFB00DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D6A1E254D0A00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D6B1E254D0B00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D6C1E254D1600DED47B /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5D6D1E254D1700DED47B /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5D6E1E254D2A00DED47B /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D6F1E254D2B00DED47B /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D701E254D3400DED47B /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D711E254D3500DED47B /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D721E254D3F00DED47B /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5D731E254D3F00DED47B /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5D741E254D4B00DED47B /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5D751E254D4C00DED47B /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5D761E254D5600DED47B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D771E254D5700DED47B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D781E254D8700DED47B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D791E254D8800DED47B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D7A1E254D9D00DED47B /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D7B1E254D9E00DED47B /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D7C1E254DAB00DED47B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D7D1E254DAC00DED47B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D7E1E254DBC00DED47B /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D7F1E254DBD00DED47B /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D801E254DC900DED47B /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D811E254DCA00DED47B /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D821E254DD500DED47B /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D831E254DD600DED47B /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D841E254DE100DED47B /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D851E254DE200DED47B /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D861E254DED00DED47B /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5D871E254DED00DED47B /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5D881E254DFB00DED47B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D891E254DFC00DED47B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D8A1E254E0900DED47B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D8B1E254E0A00DED47B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D8C1E254E1500DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5D8D1E254E1600DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B56F6BC21D8CB506000AAD48 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = NotificationKit/es.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B56F6BC31D8CB506000AAD48 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = NotificationKit/fr.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B56F6BC41D8CB506000AAD48 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = NotificationKit/ht.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
@@ -145,6 +183,7 @@
 		49EB0BCD1BC47B39008F938C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B16B5D691E254CFB00DED47B /* InfoPlist.strings */,
 				B5A260331D8CB4C400E5C95E /* Localizable.strings */,
 				49EB0BCE1BC47B39008F938C /* Info.plist */,
 			);
@@ -163,6 +202,7 @@
 		49EB0BDA1BC47B39008F938C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B16B5D641E254CF900DED47B /* InfoPlist.strings */,
 				49EB0BDB1BC47B39008F938C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -173,7 +213,6 @@
 			children = (
 				49EB0BE71BC47E71008F938C /* CommunicationChannel.swift */,
 				49EB0BE81BC47E71008F938C /* NotificationPreference.swift */,
-				49EB0BE91BC47E71008F938C /* PushNotificationToken.swift */,
 				5EBD45731BE26DFA003B667A /* PushState.swift */,
 			);
 			path = Model;
@@ -281,15 +320,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					49EB0BC91BC47B39008F938C = {
 						CreatedOnToolsVersion = 6.4;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 					};
 					49EB0BD41BC47B39008F938C = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -336,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49EB0BEF1BC47E86008F938C /* Main.storyboard in Resources */,
+				B16B5D671E254CFB00DED47B /* InfoPlist.strings in Resources */,
 				B5A260371D8CB4C400E5C95E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +385,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B16B5D621E254CF900DED47B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,7 +407,6 @@
 				49EB0BF61BC47EA5008F938C /* NotificationPreferencesViewController.swift in Sources */,
 				49EB0C031BC48426008F938C /* SimpleErrorExtension.swift in Sources */,
 				2C9D40B31DB14061009F69AA /* NSBundle+NotificationKit.swift in Sources */,
-				49EB0BEC1BC47E71008F938C /* PushNotificationToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +429,58 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B16B5D641E254CF900DED47B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B16B5D631E254CF900DED47B /* ar */,
+				B16B5D6A1E254D0A00DED47B /* zh */,
+				B16B5D6C1E254D1600DED47B /* zh-HK */,
+				B16B5D6E1E254D2A00DED47B /* da */,
+				B16B5D701E254D3400DED47B /* nl */,
+				B16B5D721E254D3F00DED47B /* en-AU */,
+				B16B5D741E254D4B00DED47B /* en-GB */,
+				B16B5D761E254D5600DED47B /* fr */,
+				B16B5D781E254D8700DED47B /* de */,
+				B16B5D7A1E254D9D00DED47B /* ht */,
+				B16B5D7C1E254DAB00DED47B /* ja */,
+				B16B5D7E1E254DBC00DED47B /* mi */,
+				B16B5D801E254DC900DED47B /* nb */,
+				B16B5D821E254DD500DED47B /* pl */,
+				B16B5D841E254DE100DED47B /* pt */,
+				B16B5D861E254DED00DED47B /* pt-BR */,
+				B16B5D881E254DFB00DED47B /* ru */,
+				B16B5D8A1E254E0900DED47B /* es */,
+				B16B5D8C1E254E1500DED47B /* sv */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B16B5D691E254CFB00DED47B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B16B5D681E254CFB00DED47B /* ar */,
+				B16B5D6B1E254D0B00DED47B /* zh */,
+				B16B5D6D1E254D1700DED47B /* zh-HK */,
+				B16B5D6F1E254D2B00DED47B /* da */,
+				B16B5D711E254D3500DED47B /* nl */,
+				B16B5D731E254D3F00DED47B /* en-AU */,
+				B16B5D751E254D4C00DED47B /* en-GB */,
+				B16B5D771E254D5700DED47B /* fr */,
+				B16B5D791E254D8800DED47B /* de */,
+				B16B5D7B1E254D9E00DED47B /* ht */,
+				B16B5D7D1E254DAC00DED47B /* ja */,
+				B16B5D7F1E254DBD00DED47B /* mi */,
+				B16B5D811E254DCA00DED47B /* nb */,
+				B16B5D831E254DD600DED47B /* pl */,
+				B16B5D851E254DE200DED47B /* pt */,
+				B16B5D871E254DED00DED47B /* pt-BR */,
+				B16B5D891E254DFC00DED47B /* ru */,
+				B16B5D8B1E254E0A00DED47B /* es */,
+				B16B5D8D1E254E1600DED47B /* sv */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		B5A260331D8CB4C400E5C95E /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -423,6 +516,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -459,7 +553,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -474,6 +568,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -503,7 +598,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -529,7 +624,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -548,7 +643,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -567,7 +662,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -582,7 +677,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

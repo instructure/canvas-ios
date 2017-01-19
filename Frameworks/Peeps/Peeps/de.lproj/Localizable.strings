@@ -16,3 +16,6 @@
 /* PeepKit Database Load Failure Message */
 "There was a problem loading the PeepKit database file." = "Beim Laden der Datenbankdatei PeepKit ist ein Problem aufgetreten.";
 
+/* An error message shown when the Users cache file fails to load */
+"There was an error loading the Users cache." = "Beim Laden des Benutzer-Cache ist ein Fehler aufgetreten.";
+

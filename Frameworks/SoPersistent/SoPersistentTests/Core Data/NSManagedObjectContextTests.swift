@@ -35,11 +35,11 @@ class NSManagedObjectContextTests: XCTestCase {
     func testDescribeInit() {
         describe("init(storeURL:model:concurrencyType:") {
 
-            let model = NSManagedObjectModel(named: "DataModel", inBundle: NSBundle(forClass: Panda.self))!
+            let model = NSManagedObjectModel(named: "DataModel", inBundle: Bundle(for: Panda.self))!
 
             context("when given valid parameters") {
-                let storeURL = self.session.localStoreDirectoryURL.URLByAppendingPathComponent("test.sqlite")
-                let context = try! NSManagedObjectContext(storeURL: storeURL!, model: model, concurrencyType: .MainQueueConcurrencyType, cacheReset: {})
+                let storeURL = self.session.localStoreDirectoryURL.appendingPathComponent("test.sqlite")
+                let context = try! NSManagedObjectContext(storeURL: storeURL, model: model, concurrencyType: .mainQueueConcurrencyType, cacheReset: {})
 
                 it("is initialized with a persistent store coordinator") {
                     XCTAssertNotNil(context)
@@ -47,8 +47,8 @@ class NSManagedObjectContextTests: XCTestCase {
                 }
 
                 it("defaults the concurrencyType") {
-                    let context = try! NSManagedObjectContext(storeURL: storeURL!, model: model, cacheReset: {})
-                    XCTAssertEqual(NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType, context.concurrencyType)
+                    let context = try! NSManagedObjectContext(storeURL: storeURL, model: model, cacheReset: {})
+                    XCTAssertEqual(NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType, context.concurrencyType)
                 }
             }
         }
@@ -60,24 +60,15 @@ class NSManagedObjectContextTests: XCTestCase {
                 XCTAssert(self.managedObjectContext.saveOrRollback())
             }
         }
-
-        context("when it fails to save") {
-            let model = NSManagedObjectModel(named: "DataModel", inBundle: NSBundle(forClass: Panda.self))!
-            let errorContext = NSManagedObjectContext.errorProneContext(model)
-
-            it("returns false") {
-                XCTAssertFalse(errorContext.saveOrRollback())
-            }
-        }
     }
 
     func testDescribePerformChanges() {
         it("performs the changes") {
-            let expectation = self.expectationWithDescription("block was performed")
+            let expectation = self.expectation(description: "block was performed")
             self.managedObjectContext.performChanges {
                 expectation.fulfill()
             }
-            self.waitForExpectationsWithTimeout(1, handler: nil)
+            self.waitForExpectations(timeout: 1, handler: nil)
         }
     }
 

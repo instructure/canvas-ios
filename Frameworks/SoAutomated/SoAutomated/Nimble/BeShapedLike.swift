@@ -18,7 +18,7 @@
 
 import Nimble
 
-public func beShapedLike(expected: JSONShape?) -> NonNilMatcherFunc<[String: AnyObject]> {
+public func beShapedLike(_ expected: JSONShape?) -> NonNilMatcherFunc<[String: Any]> {
     return NonNilMatcherFunc { actualExpression, failureMessage in
         let actualValue = try actualExpression.evaluate()
         if expected == nil || actualValue == nil {
@@ -35,7 +35,7 @@ public func beShapedLike(expected: JSONShape?) -> NonNilMatcherFunc<[String: Any
     }
 }
 
-public func beShapedLike(expected: JSONShape?) -> NonNilMatcherFunc<[[String: AnyObject]]> {
+public func beShapedLike(_ expected: JSONShape?) -> NonNilMatcherFunc<[[String: Any]]> {
     return NonNilMatcherFunc { actualExpression, failureMessage in
         let actualValue = try actualExpression.evaluate()
         if expected == nil || actualValue == nil {

@@ -30,46 +30,46 @@ public final class Alert: NSManagedObject {
     @NSManaged internal (set) public var courseID: String?
     @NSManaged internal (set) public var thresholdID: String
 
-    @NSManaged private var primitiveType: String
+    @NSManaged fileprivate var primitiveType: String
     static let typeKey = "type"
     internal (set) public var type: AlertThresholdType {
         get {
-            willAccessValueForKey(Alert.typeKey)
-            let val = AlertThresholdType(rawValue: primitiveType) ?? .Unknown
-            didAccessValueForKey(Alert.typeKey)
-            if val == .Unknown { print("invalid AlertType enum value: %@", primitiveType) }
+            willAccessValue(forKey: Alert.typeKey)
+            let val = AlertThresholdType(rawValue: primitiveType) ?? .unknown
+            didAccessValue(forKey: Alert.typeKey)
+            if val == .unknown { print("invalid AlertType enum value: %@", primitiveType) }
             return val
         }
         set {
-            willChangeValueForKey(Alert.typeKey)
+            willChangeValue(forKey: Alert.typeKey)
             primitiveType = newValue.rawValue
-            didChangeValueForKey(Alert.typeKey)
+            didChangeValue(forKey: Alert.typeKey)
         }
     }
 
     @NSManaged internal (set) public var title: String
     @NSManaged internal (set) public var read: Bool
     @NSManaged internal (set) public var dismissed: Bool
-    @NSManaged internal (set) public var actionDate: NSDate
+    @NSManaged internal (set) public var actionDate: Date
     @NSManaged internal (set) public var assetPath: String
 }
 
 extension Alert: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
 
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id = try json.stringID("id")
         observerID = try json.stringID("parent_id")
         studentID = try json.stringID("student_id")
         courseID = try json.stringID("course_id")
         thresholdID = try json.stringID("alert_threshold_id")
 
-        willChangeValueForKey(Alert.typeKey)
+        willChangeValue(forKey: Alert.typeKey)
         primitiveType = try json <| "alert_type"
-        didChangeValueForKey(Alert.typeKey)
+        didChangeValue(forKey: Alert.typeKey)
         
         title = try json <| "title"
         read = try json <| "marked_read"

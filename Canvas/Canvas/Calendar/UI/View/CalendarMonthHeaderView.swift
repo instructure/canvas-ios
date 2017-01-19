@@ -31,7 +31,7 @@ class CalendarMonthHeaderView: UICollectionReusableView {
     }
     
     var monthLabelFont: UIFont = UIFont(name:"HelveticaNeue-Thin", size: 20.0)!
-    var monthLabelTextColor = UIColor.blackColor()
+    var monthLabelTextColor = UIColor.black
     var currentMonthLabelTextColor = UIColor.calendarTintColor
     
     override init(frame: CGRect) {
@@ -54,15 +54,15 @@ class CalendarMonthHeaderView: UICollectionReusableView {
     func initialize() {
         monthLabelFont = isPad() ? UIFont(name:"HelveticaNeue-Thin", size: 32.0)! : UIFont(name:"HelveticaNeue-Thin", size: 20.0)!
         
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
         dateLabel.font = monthLabelFont
-        dateLabel.opaque = false
-        dateLabel.textAlignment = NSTextAlignment.Center
+        dateLabel.isOpaque = false
+        dateLabel.textAlignment = NSTextAlignment.center
         addSubview(dateLabel)
     }
     
     func isPad() -> Bool {
-        return UIDevice.currentDevice().userInterfaceIdiom == .Pad
+        return UIDevice.current.userInterfaceIdiom == .pad
     }
     
 }

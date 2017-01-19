@@ -33,13 +33,15 @@ extension UserEnrollment {
         
         let predicate: NSPredicate
         if !roles.isEmpty {
-            predicate = NSPredicate(format: "%K == %@ && (%K & %@) > 0", "contextID", contextID.canvasContextID, "roles", NSNumber(int: roles.rawValue))
+            predicate = NSPredicate(format: "%K == %@ && (%K & %@) > 0", "contextID", contextID.canvasContextID, "roles", NSNumber(value: roles.rawValue))
         } else {
             predicate = NSPredicate(format: "%K == %@", "contextID", contextID.canvasContextID)
         }
         
-        let frc = UserEnrollment.fetchedResults(predicate, sortDescriptors: ["user.sortableName".ascending], sectionNameKeypath: nil, propertiesToFetch: ["user"], inContext: try session.peepsManagedObjectContext())
+        let context = try session.peepsManagedObjectContext()
         
-        return try FetchedCollection(frc: frc)
+        return try FetchedCollection(frc:
+            context.fetchedResults(predicate, sortDescriptors: ["user.sortableName".ascending], propertiesToFetch: ["user"])
+        )
     }
 }

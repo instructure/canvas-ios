@@ -1,0 +1,923 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C73C9C91E0333830064A19D /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73C9C81E0333830064A19D /* CWNotification.framework */; };
+		2C73C9CA1E0333830064A19D /* CWNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73C9C81E0333830064A19D /* CWNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4917EDAF1D947CAF009D58B5 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4917EDAE1D947C9D009D58B5 /* AFNetworking.framework */; };
+		4917EDB01D947CAF009D58B5 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4917EDAE1D947C9D009D58B5 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		499F7FDD1C9B6812005CCD00 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499F7FDC1C9B6812005CCD00 /* Reachability.framework */; };
+		49C0FB30190B167900572CA1 /* LaunchImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49C0FB2F190B167900572CA1 /* LaunchImage.xcassets */; };
+		49E545A21909B4AC001AD3BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E9586B190967B000A1BFB7 /* Foundation.framework */; };
+		49E545A41909B4AC001AD3BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E545A31909B4AC001AD3BC /* CoreGraphics.framework */; };
+		49E545A51909B4AC001AD3BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E9587C190967B000A1BFB7 /* UIKit.framework */; };
+		49E545AB1909B4AC001AD3BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49E545A91909B4AC001AD3BC /* InfoPlist.strings */; };
+		49E545AD1909B4AC001AD3BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E545AC1909B4AC001AD3BC /* main.m */; };
+		49E545B11909B4AC001AD3BC /* CKMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E545B01909B4AC001AD3BC /* CKMAppDelegate.m */; };
+		49E545B41909B4AC001AD3BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49E545B21909B4AC001AD3BC /* Main.storyboard */; };
+		49E545B71909B4AC001AD3BC /* CKMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E545B61909B4AC001AD3BC /* CKMViewController.m */; };
+		49E545B91909B4AC001AD3BC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49E545B81909B4AC001AD3BC /* Images.xcassets */; };
+		49E545D61909C9DC001AD3BC /* CKMLockedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E545D51909C9DC001AD3BC /* CKMLockedViewController.m */; };
+		6181F12D1DFF365900B94488 /* CKMDomainPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E958981909979B00A1BFB7 /* CKMDomainPickerViewController.m */; };
+		B181D2A41DFB20C600114ACE /* CKMDomainPickerPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2A61DFB20C600114ACE /* CKMDomainPickerPhone.storyboard */; };
+		B181D2A71DFB210000114ACE /* CKMDomainPickerPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2A91DFB210000114ACE /* CKMDomainPickerPad.storyboard */; };
+		B181D2AA1DFB211500114ACE /* SupportTicket.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2AC1DFB211500114ACE /* SupportTicket.storyboard */; };
+		B1ECFC8E1C999EEF007C8852 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ECFC8D1C999EEF007C8852 /* Mantle.framework */; };
+		B1ECFC901C999F0F007C8852 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ECFC8F1C999F0F007C8852 /* Result.framework */; };
+		B1FC3AF61C98B4E500A8001F /* CanvasKeymaster.h in Headers */ = {isa = PBXBuildFile; fileRef = B1FC3AF51C98B4E500A8001F /* CanvasKeymaster.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B001C98B5AE00A8001F /* CanvasKeymaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E958921909768F00A1BFB7 /* CanvasKeymaster.m */; };
+		B1FC3B011C98B60E00A8001F /* icon_forward_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48EE1A894A21002445A3 /* icon_forward_arrow@3x.png */; };
+		B1FC3B021C98B60E00A8001F /* icon_forward_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48EF1A894A21002445A3 /* icon_forward_arrow@2x.png */; };
+		B1FC3B031C98B60E00A8001F /* icon_forward_arrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48F01A894A21002445A3 /* icon_forward_arrow@1x.png */; };
+		B1FC3B041C98B60E00A8001F /* icon_x_delete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48F11A894A4B002445A3 /* icon_x_delete@3x.png */; };
+		B1FC3B051C98B60E00A8001F /* icon_x_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48F21A894A4B002445A3 /* icon_x_delete@2x.png */; };
+		B1FC3B061C98B60E00A8001F /* icon_x_delete@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48F31A894A4B002445A3 /* icon_x_delete@1x.png */; };
+		B1FC3B071C98B60E00A8001F /* icon_help.png in Resources */ = {isa = PBXBuildFile; fileRef = BD94CF0C19A3D87B000423DE /* icon_help.png */; };
+		B1FC3B081C98B60E00A8001F /* icon_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD94CF0D19A3D87B000423DE /* icon_help@2x.png */; };
+		B1FC3B091C98B60E00A8001F /* icon_cancel_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E274A401914434100E04789 /* icon_cancel_light.png */; };
+		B1FC3B0A1C98B60E00A8001F /* icon_cancel_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E274A411914434100E04789 /* icon_cancel_light@2x.png */; };
+		B1FC3B0B1C98B60E00A8001F /* icon_profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E274A421914434100E04789 /* icon_profile@2x.png */; };
+		B1FC3B0C1C98B60E00A8001F /* CKMMultiUserTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ED1DCD019103DCB00368AE7 /* CKMMultiUserTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B0D1C98B60E00A8001F /* CKMMultiUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED1DCD119103DCB00368AE7 /* CKMMultiUserTableViewCell.m */; };
+		B1FC3B0E1C98B60E00A8001F /* CKMMultiUserTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ED1DCD219103DCB00368AE7 /* CKMMultiUserTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B0F1C98B60E00A8001F /* CKMMultiUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED1DCD319103DCB00368AE7 /* CKMMultiUserTableViewController.m */; };
+		B1FC3B141C98B60E00A8001F /* CKMDomainSuggester.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E958991909979C00A1BFB7 /* CKMDomainSuggester.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B151C98B60E00A8001F /* CKMDomainSuggester.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9589A1909979C00A1BFB7 /* CKMDomainSuggester.m */; };
+		B1FC3B161C98B60E00A8001F /* CKMDomainSuggestionTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E9589B1909979C00A1BFB7 /* CKMDomainSuggestionTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B171C98B60E00A8001F /* CKMDomainSuggestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9589C1909979C00A1BFB7 /* CKMDomainSuggestionTableViewCell.m */; };
+		B1FC3B181C98B60E00A8001F /* CKMDomainSuggestionTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E9589D1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B191C98B60E00A8001F /* CKMDomainSuggestionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9589E1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.m */; };
+		B1FC3B1A1C98B60E00A8001F /* CKMLocationSchoolSuggester.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EDE06401999FE7D009244F9 /* CKMLocationSchoolSuggester.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B1B1C98B60E00A8001F /* CKMLocationSchoolSuggester.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE06411999FE7D009244F9 /* CKMLocationSchoolSuggester.m */; };
+		B1FC3B1C1C98B60E00A8001F /* CKMSchool.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EDE0643199A0091009244F9 /* CKMSchool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B1D1C98B60E00A8001F /* CKMSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE0644199A0091009244F9 /* CKMSchool.m */; };
+		B1FC3B1E1C98B60E00A8001F /* CKMLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EDE0648199A4BCC009244F9 /* CKMLocationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B1F1C98B60E00A8001F /* CKMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE0649199A4BCC009244F9 /* CKMLocationManager.m */; };
+		B1FC3B201C98B60E00A8001F /* CKMDomainHelpViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E93CC38199C1B1E004FC97F /* CKMDomainHelpViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B211C98B60E00A8001F /* CKMDomainHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E93CC39199C1B1E004FC97F /* CKMDomainHelpViewController.m */; };
+		B1FC3B221C98B60E00A8001F /* CKMDomainHelpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E93CC3B199C1B45004FC97F /* CKMDomainHelpViewController.storyboard */; };
+		B1FC3B231C98B62600A8001F /* UIDevice+CKMHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E54670190AACA6001AD3BC /* UIDevice+CKMHardware.m */; };
+		B1FC3B241C98B65900A8001F /* FXKeychain+CKMKeyChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E54673190AACDA001AD3BC /* FXKeychain+CKMKeyChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B251C98B65900A8001F /* FXKeychain+CKMKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E54674190AACDA001AD3BC /* FXKeychain+CKMKeyChain.m */; };
+		B1FC3B261C98B66000A8001F /* CLLocation+CKMDistance.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EDE064C199A5E87009244F9 /* CLLocation+CKMDistance.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B271C98B66000A8001F /* CLLocation+CKMDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE064D199A5E87009244F9 /* CLLocation+CKMDistance.m */; };
+		B1FC3B2A1C98B66800A8001F /* ImpactTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E505F331B55ABF6007BD968 /* ImpactTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B2B1C98B66800A8001F /* ImpactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E505F341B55ABF6007BD968 /* ImpactTableViewController.m */; };
+		B1FC3B2C1C98B66800A8001F /* SupportTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EEEB1731B56C9A7001438C3 /* SupportTicket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B2D1C98B66800A8001F /* SupportTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEEB1741B56C9A7001438C3 /* SupportTicket.m */; };
+		B1FC3B2E1C98B66800A8001F /* SupportTicketManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EEEB1751B56C9A7001438C3 /* SupportTicketManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B2F1C98B66800A8001F /* SupportTicketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEEB1761B56C9A7001438C3 /* SupportTicketManager.m */; };
+		B1FC3B301C98B66800A8001F /* SupportTicketViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EEEB1771B56C9A7001438C3 /* SupportTicketViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B311C98B66800A8001F /* SupportTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEEB1781B56C9A7001438C3 /* SupportTicketViewController.m */; };
+		B1FC3B361C98B6B700A8001F /* CKMDomainPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E958971909979B00A1BFB7 /* CKMDomainPickerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B381C98BD7600A8001F /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC7001C90FA5800E85895 /* CocoaLumberjack.framework */; };
+		B1FC3B391C98BD7D00A8001F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */; };
+		B1FC3B3B1C98BD8B00A8001F /* FXKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FA1C90F94F00E85895 /* FXKeychain.framework */; };
+		B5FF832C1D6E3EDB005DFE19 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FC1C90F9A800E85895 /* ReactiveCocoa.framework */; };
+		B5FF83311D6E3FE3005DFE19 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ECFC8F1C999F0F007C8852 /* Result.framework */; };
+		B5FF83321D6E3FE3005DFE19 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1ECFC8F1C999F0F007C8852 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5FF83331D6E3FE3005DFE19 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ECFC8D1C999EEF007C8852 /* Mantle.framework */; };
+		B5FF83341D6E3FE3005DFE19 /* Mantle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1ECFC8D1C999EEF007C8852 /* Mantle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5FF83351D6E3FE3005DFE19 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC7001C90FA5800E85895 /* CocoaLumberjack.framework */; };
+		B5FF83361D6E3FE3005DFE19 /* CocoaLumberjack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC7001C90FA5800E85895 /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5FF83371D6E3FE3005DFE19 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */; };
+		B5FF83381D6E3FE3005DFE19 /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5FF83391D6E3FE3005DFE19 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FC1C90F9A800E85895 /* ReactiveCocoa.framework */; };
+		B5FF833A1D6E3FE3005DFE19 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FC1C90F9A800E85895 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5FF833B1D6E3FE3005DFE19 /* FXKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FA1C90F94F00E85895 /* FXKeychain.framework */; };
+		B5FF833C1D6E3FE3005DFE19 /* FXKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FA1C90F94F00E85895 /* FXKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5FF833E1D6E3FE6005DFE19 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499F7FDC1C9B6812005CCD00 /* Reachability.framework */; };
+		B5FF833F1D6E3FE6005DFE19 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 499F7FDC1C9B6812005CCD00 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5FF83401D6E4041005DFE19 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1FC3AF31C98B4E500A8001F /* CanvasKeymaster.framework */; };
+		B5FF83411D6E4041005DFE19 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1FC3AF31C98B4E500A8001F /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BD94CF0E19A3D87B000423DE /* icon_help.png in Resources */ = {isa = PBXBuildFile; fileRef = BD94CF0C19A3D87B000423DE /* icon_help.png */; };
+		BD94CF0F19A3D87B000423DE /* icon_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD94CF0D19A3D87B000423DE /* icon_help@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B5FF83421D6E4041005DFE19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49E95860190967B000A1BFB7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1FC3AF21C98B4E500A8001F;
+			remoteInfo = CanvasKeymaster;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B5FF833D1D6E3FE3005DFE19 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B5FF83321D6E3FE3005DFE19 /* Result.framework in Embed Frameworks */,
+				B5FF83361D6E3FE3005DFE19 /* CocoaLumberjack.framework in Embed Frameworks */,
+				B5FF83341D6E3FE3005DFE19 /* Mantle.framework in Embed Frameworks */,
+				2C73C9CA1E0333830064A19D /* CWNotification.framework in Embed Frameworks */,
+				B5FF83381D6E3FE3005DFE19 /* CanvasKit.framework in Embed Frameworks */,
+				B5FF833C1D6E3FE3005DFE19 /* FXKeychain.framework in Embed Frameworks */,
+				B5FF833A1D6E3FE3005DFE19 /* ReactiveCocoa.framework in Embed Frameworks */,
+				B5FF83411D6E4041005DFE19 /* CanvasKeymaster.framework in Embed Frameworks */,
+				4917EDB01D947CAF009D58B5 /* AFNetworking.framework in Embed Frameworks */,
+				B5FF833F1D6E3FE6005DFE19 /* Reachability.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2C73C9C81E0333830064A19D /* CWNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4917EDAE1D947C9D009D58B5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		499F7FDC1C9B6812005CCD00 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49C0FB2F190B167900572CA1 /* LaunchImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LaunchImage.xcassets; sourceTree = "<group>"; };
+		49E545A11909B4AC001AD3BC /* CanvasKeytester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanvasKeytester.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49E545A31909B4AC001AD3BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		49E545A81909B4AC001AD3BC /* CanvasKeytester-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CanvasKeytester-Info.plist"; sourceTree = "<group>"; };
+		49E545AA1909B4AC001AD3BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		49E545AC1909B4AC001AD3BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		49E545AE1909B4AC001AD3BC /* CanvasKeytester-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CanvasKeytester-Prefix.pch"; sourceTree = "<group>"; };
+		49E545AF1909B4AC001AD3BC /* CKMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKMAppDelegate.h; sourceTree = "<group>"; };
+		49E545B01909B4AC001AD3BC /* CKMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKMAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		49E545B31909B4AC001AD3BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		49E545B51909B4AC001AD3BC /* CKMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKMViewController.h; sourceTree = "<group>"; };
+		49E545B61909B4AC001AD3BC /* CKMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKMViewController.m; sourceTree = "<group>"; };
+		49E545B81909B4AC001AD3BC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		49E545D41909C9DC001AD3BC /* CKMLockedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMLockedViewController.h; sourceTree = "<group>"; };
+		49E545D51909C9DC001AD3BC /* CKMLockedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMLockedViewController.m; sourceTree = "<group>"; };
+		49E5466F190AACA6001AD3BC /* UIDevice+CKMHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+CKMHardware.h"; sourceTree = "<group>"; };
+		49E54670190AACA6001AD3BC /* UIDevice+CKMHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+CKMHardware.m"; sourceTree = "<group>"; };
+		49E54673190AACDA001AD3BC /* FXKeychain+CKMKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FXKeychain+CKMKeyChain.h"; sourceTree = "<group>"; };
+		49E54674190AACDA001AD3BC /* FXKeychain+CKMKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FXKeychain+CKMKeyChain.m"; sourceTree = "<group>"; };
+		49E9586B190967B000A1BFB7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		49E95879190967B000A1BFB7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		49E9587C190967B000A1BFB7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		49E958921909768F00A1BFB7 /* CanvasKeymaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasKeymaster.m; sourceTree = "<group>"; };
+		49E958971909979B00A1BFB7 /* CKMDomainPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMDomainPickerViewController.h; sourceTree = "<group>"; };
+		49E958981909979B00A1BFB7 /* CKMDomainPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKMDomainPickerViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		49E958991909979C00A1BFB7 /* CKMDomainSuggester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMDomainSuggester.h; sourceTree = "<group>"; };
+		49E9589A1909979C00A1BFB7 /* CKMDomainSuggester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMDomainSuggester.m; sourceTree = "<group>"; };
+		49E9589B1909979C00A1BFB7 /* CKMDomainSuggestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMDomainSuggestionTableViewCell.h; sourceTree = "<group>"; };
+		49E9589C1909979C00A1BFB7 /* CKMDomainSuggestionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMDomainSuggestionTableViewCell.m; sourceTree = "<group>"; };
+		49E9589D1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMDomainSuggestionTableViewController.h; sourceTree = "<group>"; };
+		49E9589E1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMDomainSuggestionTableViewController.m; sourceTree = "<group>"; };
+		49E958A31909A66B00A1BFB7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		49E958A51909A67500A1BFB7 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		5E274A401914434100E04789 /* icon_cancel_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cancel_light.png; sourceTree = "<group>"; };
+		5E274A411914434100E04789 /* icon_cancel_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_cancel_light@2x.png"; sourceTree = "<group>"; };
+		5E274A421914434100E04789 /* icon_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_profile@2x.png"; sourceTree = "<group>"; };
+		5E505F331B55ABF6007BD968 /* ImpactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImpactTableViewController.h; sourceTree = "<group>"; };
+		5E505F341B55ABF6007BD968 /* ImpactTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImpactTableViewController.m; sourceTree = "<group>"; };
+		5E930139199D1CAB006F8F3B /* accounts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = accounts.json; sourceTree = "<group>"; };
+		5E93CC36199C18EE004FC97F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		5E93CC38199C1B1E004FC97F /* CKMDomainHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMDomainHelpViewController.h; sourceTree = "<group>"; };
+		5E93CC39199C1B1E004FC97F /* CKMDomainHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMDomainHelpViewController.m; sourceTree = "<group>"; };
+		5E93CC3B199C1B45004FC97F /* CKMDomainHelpViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CKMDomainHelpViewController.storyboard; sourceTree = "<group>"; };
+		5ED1DCD019103DCB00368AE7 /* CKMMultiUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMMultiUserTableViewCell.h; sourceTree = "<group>"; };
+		5ED1DCD119103DCB00368AE7 /* CKMMultiUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMMultiUserTableViewCell.m; sourceTree = "<group>"; };
+		5ED1DCD219103DCB00368AE7 /* CKMMultiUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMMultiUserTableViewController.h; sourceTree = "<group>"; };
+		5ED1DCD319103DCB00368AE7 /* CKMMultiUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMMultiUserTableViewController.m; sourceTree = "<group>"; };
+		5EDE06401999FE7D009244F9 /* CKMLocationSchoolSuggester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMLocationSchoolSuggester.h; sourceTree = "<group>"; };
+		5EDE06411999FE7D009244F9 /* CKMLocationSchoolSuggester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMLocationSchoolSuggester.m; sourceTree = "<group>"; };
+		5EDE0643199A0091009244F9 /* CKMSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMSchool.h; sourceTree = "<group>"; };
+		5EDE0644199A0091009244F9 /* CKMSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMSchool.m; sourceTree = "<group>"; };
+		5EDE0646199A00D7009244F9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5EDE0648199A4BCC009244F9 /* CKMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMLocationManager.h; sourceTree = "<group>"; };
+		5EDE0649199A4BCC009244F9 /* CKMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMLocationManager.m; sourceTree = "<group>"; };
+		5EDE064C199A5E87009244F9 /* CLLocation+CKMDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+CKMDistance.h"; sourceTree = "<group>"; };
+		5EDE064D199A5E87009244F9 /* CLLocation+CKMDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+CKMDistance.m"; sourceTree = "<group>"; };
+		5EEEB1731B56C9A7001438C3 /* SupportTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTicket.h; sourceTree = "<group>"; };
+		5EEEB1741B56C9A7001438C3 /* SupportTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicket.m; sourceTree = "<group>"; };
+		5EEEB1751B56C9A7001438C3 /* SupportTicketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTicketManager.h; sourceTree = "<group>"; };
+		5EEEB1761B56C9A7001438C3 /* SupportTicketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicketManager.m; sourceTree = "<group>"; };
+		5EEEB1771B56C9A7001438C3 /* SupportTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTicketViewController.h; sourceTree = "<group>"; };
+		5EEEB1781B56C9A7001438C3 /* SupportTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicketViewController.m; sourceTree = "<group>"; };
+		B181D2A51DFB20C600114ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CKMDomainPickerPhone.storyboard; sourceTree = "<group>"; };
+		B181D2A81DFB210000114ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CKMDomainPickerPad.storyboard; sourceTree = "<group>"; };
+		B181D2AB1DFB211500114ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SupportTicket.storyboard; sourceTree = "<group>"; };
+		B1ADC6FA1C90F94F00E85895 /* FXKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FXKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1ADC6FC1C90F9A800E85895 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1ADC7001C90FA5800E85895 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1ECFC8D1C999EEF007C8852 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1ECFC8F1C999F0F007C8852 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1FC3AF31C98B4E500A8001F /* CanvasKeymaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1FC3AF51C98B4E500A8001F /* CanvasKeymaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasKeymaster.h; sourceTree = "<group>"; };
+		B1FC3AF71C98B4E500A8001F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B58A48EE1A894A21002445A3 /* icon_forward_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_forward_arrow@3x.png"; sourceTree = "<group>"; };
+		B58A48EF1A894A21002445A3 /* icon_forward_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_forward_arrow@2x.png"; sourceTree = "<group>"; };
+		B58A48F01A894A21002445A3 /* icon_forward_arrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_forward_arrow@1x.png"; sourceTree = "<group>"; };
+		B58A48F11A894A4B002445A3 /* icon_x_delete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_x_delete@3x.png"; sourceTree = "<group>"; };
+		B58A48F21A894A4B002445A3 /* icon_x_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_x_delete@2x.png"; sourceTree = "<group>"; };
+		B58A48F31A894A4B002445A3 /* icon_x_delete@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_x_delete@1x.png"; sourceTree = "<group>"; };
+		BD94CF0C19A3D87B000423DE /* icon_help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_help.png; sourceTree = "<group>"; };
+		BD94CF0D19A3D87B000423DE /* icon_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_help@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		49E5459E1909B4AC001AD3BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5FF83371D6E3FE3005DFE19 /* CanvasKit.framework in Frameworks */,
+				4917EDAF1D947CAF009D58B5 /* AFNetworking.framework in Frameworks */,
+				49E545A41909B4AC001AD3BC /* CoreGraphics.framework in Frameworks */,
+				B5FF83331D6E3FE3005DFE19 /* Mantle.framework in Frameworks */,
+				B5FF83391D6E3FE3005DFE19 /* ReactiveCocoa.framework in Frameworks */,
+				49E545A51909B4AC001AD3BC /* UIKit.framework in Frameworks */,
+				49E545A21909B4AC001AD3BC /* Foundation.framework in Frameworks */,
+				B5FF83351D6E3FE3005DFE19 /* CocoaLumberjack.framework in Frameworks */,
+				B5FF833E1D6E3FE6005DFE19 /* Reachability.framework in Frameworks */,
+				2C73C9C91E0333830064A19D /* CWNotification.framework in Frameworks */,
+				B5FF833B1D6E3FE3005DFE19 /* FXKeychain.framework in Frameworks */,
+				B5FF83401D6E4041005DFE19 /* CanvasKeymaster.framework in Frameworks */,
+				B5FF83311D6E3FE3005DFE19 /* Result.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1FC3AEF1C98B4E500A8001F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5FF832C1D6E3EDB005DFE19 /* ReactiveCocoa.framework in Frameworks */,
+				B1FC3B381C98BD7600A8001F /* CocoaLumberjack.framework in Frameworks */,
+				B1ECFC8E1C999EEF007C8852 /* Mantle.framework in Frameworks */,
+				B1FC3B391C98BD7D00A8001F /* CanvasKit.framework in Frameworks */,
+				B1ECFC901C999F0F007C8852 /* Result.framework in Frameworks */,
+				B1FC3B3B1C98BD8B00A8001F /* FXKeychain.framework in Frameworks */,
+				499F7FDD1C9B6812005CCD00 /* Reachability.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		49E545A61909B4AC001AD3BC /* CanvasKeytester */ = {
+			isa = PBXGroup;
+			children = (
+				5ECA7A4D1912CB5D00EEA436 /* iPad */,
+				49E545AF1909B4AC001AD3BC /* CKMAppDelegate.h */,
+				49E545B01909B4AC001AD3BC /* CKMAppDelegate.m */,
+				49E545B21909B4AC001AD3BC /* Main.storyboard */,
+				49E545B51909B4AC001AD3BC /* CKMViewController.h */,
+				49E545B61909B4AC001AD3BC /* CKMViewController.m */,
+				49E545D41909C9DC001AD3BC /* CKMLockedViewController.h */,
+				49E545D51909C9DC001AD3BC /* CKMLockedViewController.m */,
+				49E545B81909B4AC001AD3BC /* Images.xcassets */,
+				49C0FB2F190B167900572CA1 /* LaunchImage.xcassets */,
+				49E545A71909B4AC001AD3BC /* Supporting Files */,
+			);
+			path = CanvasKeytester;
+			sourceTree = "<group>";
+		};
+		49E545A71909B4AC001AD3BC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				49E545A81909B4AC001AD3BC /* CanvasKeytester-Info.plist */,
+				49E545A91909B4AC001AD3BC /* InfoPlist.strings */,
+				49E545AC1909B4AC001AD3BC /* main.m */,
+				49E545AE1909B4AC001AD3BC /* CanvasKeytester-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		49E5466E190AAC4F001AD3BC /* UIKit+CanvasKeymaster */ = {
+			isa = PBXGroup;
+			children = (
+				49E5466F190AACA6001AD3BC /* UIDevice+CKMHardware.h */,
+				49E54670190AACA6001AD3BC /* UIDevice+CKMHardware.m */,
+			);
+			path = "UIKit+CanvasKeymaster";
+			sourceTree = "<group>";
+		};
+		49E54672190AACC0001AD3BC /* FXKeychain+CanvasKeymaster */ = {
+			isa = PBXGroup;
+			children = (
+				49E54673190AACDA001AD3BC /* FXKeychain+CKMKeyChain.h */,
+				49E54674190AACDA001AD3BC /* FXKeychain+CKMKeyChain.m */,
+			);
+			path = "FXKeychain+CanvasKeymaster";
+			sourceTree = "<group>";
+		};
+		49E9585F190967B000A1BFB7 = {
+			isa = PBXGroup;
+			children = (
+				49E545A61909B4AC001AD3BC /* CanvasKeytester */,
+				B1FC3AF41C98B4E500A8001F /* CanvasKeymaster */,
+				49E9586A190967B000A1BFB7 /* Frameworks */,
+				49E95869190967B000A1BFB7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		49E95869190967B000A1BFB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				49E545A11909B4AC001AD3BC /* CanvasKeytester.app */,
+				B1FC3AF31C98B4E500A8001F /* CanvasKeymaster.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		49E9586A190967B000A1BFB7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C73C9C81E0333830064A19D /* CWNotification.framework */,
+				5E93CC36199C18EE004FC97F /* MessageUI.framework */,
+				5EDE0646199A00D7009244F9 /* CoreLocation.framework */,
+				49E958A51909A67500A1BFB7 /* libsqlite3.dylib */,
+				49E958A31909A66B00A1BFB7 /* libz.dylib */,
+				49E9586B190967B000A1BFB7 /* Foundation.framework */,
+				49E95879190967B000A1BFB7 /* XCTest.framework */,
+				49E9587C190967B000A1BFB7 /* UIKit.framework */,
+				49E545A31909B4AC001AD3BC /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		49E958941909979B00A1BFB7 /* Domain Picker */ = {
+			isa = PBXGroup;
+			children = (
+				5E274A3F1914434100E04789 /* Resources */,
+				5ED1DCD019103DCB00368AE7 /* CKMMultiUserTableViewCell.h */,
+				5ED1DCD119103DCB00368AE7 /* CKMMultiUserTableViewCell.m */,
+				5ED1DCD219103DCB00368AE7 /* CKMMultiUserTableViewController.h */,
+				5ED1DCD319103DCB00368AE7 /* CKMMultiUserTableViewController.m */,
+				B181D2A91DFB210000114ACE /* CKMDomainPickerPad.storyboard */,
+				B181D2A61DFB20C600114ACE /* CKMDomainPickerPhone.storyboard */,
+				49E958971909979B00A1BFB7 /* CKMDomainPickerViewController.h */,
+				49E958981909979B00A1BFB7 /* CKMDomainPickerViewController.m */,
+				49E958991909979C00A1BFB7 /* CKMDomainSuggester.h */,
+				49E9589A1909979C00A1BFB7 /* CKMDomainSuggester.m */,
+				49E9589B1909979C00A1BFB7 /* CKMDomainSuggestionTableViewCell.h */,
+				49E9589C1909979C00A1BFB7 /* CKMDomainSuggestionTableViewCell.m */,
+				49E9589D1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.h */,
+				49E9589E1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.m */,
+				5EDE06401999FE7D009244F9 /* CKMLocationSchoolSuggester.h */,
+				5EDE06411999FE7D009244F9 /* CKMLocationSchoolSuggester.m */,
+				5EDE0643199A0091009244F9 /* CKMSchool.h */,
+				5EDE0644199A0091009244F9 /* CKMSchool.m */,
+				5EDE0648199A4BCC009244F9 /* CKMLocationManager.h */,
+				5EDE0649199A4BCC009244F9 /* CKMLocationManager.m */,
+				5E93CC38199C1B1E004FC97F /* CKMDomainHelpViewController.h */,
+				5E93CC39199C1B1E004FC97F /* CKMDomainHelpViewController.m */,
+				5E93CC3B199C1B45004FC97F /* CKMDomainHelpViewController.storyboard */,
+			);
+			path = "Domain Picker";
+			sourceTree = "<group>";
+		};
+		5E274A3F1914434100E04789 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5E930139199D1CAB006F8F3B /* accounts.json */,
+				B58A48EE1A894A21002445A3 /* icon_forward_arrow@3x.png */,
+				B58A48EF1A894A21002445A3 /* icon_forward_arrow@2x.png */,
+				B58A48F01A894A21002445A3 /* icon_forward_arrow@1x.png */,
+				B58A48F11A894A4B002445A3 /* icon_x_delete@3x.png */,
+				B58A48F21A894A4B002445A3 /* icon_x_delete@2x.png */,
+				B58A48F31A894A4B002445A3 /* icon_x_delete@1x.png */,
+				BD94CF0C19A3D87B000423DE /* icon_help.png */,
+				BD94CF0D19A3D87B000423DE /* icon_help@2x.png */,
+				5E274A401914434100E04789 /* icon_cancel_light.png */,
+				5E274A411914434100E04789 /* icon_cancel_light@2x.png */,
+				5E274A421914434100E04789 /* icon_profile@2x.png */,
+			);
+			name = Resources;
+			path = CanvasKeymaster/Resources;
+			sourceTree = SOURCE_ROOT;
+		};
+		5E505F321B55ABF6007BD968 /* ZenDesk */ = {
+			isa = PBXGroup;
+			children = (
+				B181D2AC1DFB211500114ACE /* SupportTicket.storyboard */,
+				5E505F331B55ABF6007BD968 /* ImpactTableViewController.h */,
+				5E505F341B55ABF6007BD968 /* ImpactTableViewController.m */,
+				5EEEB1731B56C9A7001438C3 /* SupportTicket.h */,
+				5EEEB1741B56C9A7001438C3 /* SupportTicket.m */,
+				5EEEB1751B56C9A7001438C3 /* SupportTicketManager.h */,
+				5EEEB1761B56C9A7001438C3 /* SupportTicketManager.m */,
+				5EEEB1771B56C9A7001438C3 /* SupportTicketViewController.h */,
+				5EEEB1781B56C9A7001438C3 /* SupportTicketViewController.m */,
+			);
+			name = ZenDesk;
+			path = SupportTicket;
+			sourceTree = "<group>";
+		};
+		5ECA7A4D1912CB5D00EEA436 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		5EDE064B199A5E73009244F9 /* CLLocation+CKMDistance */ = {
+			isa = PBXGroup;
+			children = (
+				5EDE064C199A5E87009244F9 /* CLLocation+CKMDistance.h */,
+				5EDE064D199A5E87009244F9 /* CLLocation+CKMDistance.m */,
+			);
+			path = "CLLocation+CKMDistance";
+			sourceTree = "<group>";
+		};
+		B1051E751C909A41007C529F /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				4917EDAE1D947C9D009D58B5 /* AFNetworking.framework */,
+				499F7FDC1C9B6812005CCD00 /* Reachability.framework */,
+				B1ECFC8F1C999F0F007C8852 /* Result.framework */,
+				B1ECFC8D1C999EEF007C8852 /* Mantle.framework */,
+				B1ADC7001C90FA5800E85895 /* CocoaLumberjack.framework */,
+				B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */,
+				B1ADC6FC1C90F9A800E85895 /* ReactiveCocoa.framework */,
+				B1ADC6FA1C90F94F00E85895 /* FXKeychain.framework */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		B1FC3AF41C98B4E500A8001F /* CanvasKeymaster */ = {
+			isa = PBXGroup;
+			children = (
+				B1051E751C909A41007C529F /* Dependencies */,
+				5E505F321B55ABF6007BD968 /* ZenDesk */,
+				5EDE064B199A5E73009244F9 /* CLLocation+CKMDistance */,
+				49E54672190AACC0001AD3BC /* FXKeychain+CanvasKeymaster */,
+				49E5466E190AAC4F001AD3BC /* UIKit+CanvasKeymaster */,
+				49E958941909979B00A1BFB7 /* Domain Picker */,
+				B1FC3AF51C98B4E500A8001F /* CanvasKeymaster.h */,
+				49E958921909768F00A1BFB7 /* CanvasKeymaster.m */,
+				B1FC3AF71C98B4E500A8001F /* Info.plist */,
+			);
+			path = CanvasKeymaster;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B1FC3AF01C98B4E500A8001F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1FC3AF61C98B4E500A8001F /* CanvasKeymaster.h in Headers */,
+				B1FC3B0E1C98B60E00A8001F /* CKMMultiUserTableViewController.h in Headers */,
+				B1FC3B361C98B6B700A8001F /* CKMDomainPickerViewController.h in Headers */,
+				B1FC3B161C98B60E00A8001F /* CKMDomainSuggestionTableViewCell.h in Headers */,
+				B1FC3B1E1C98B60E00A8001F /* CKMLocationManager.h in Headers */,
+				B1FC3B301C98B66800A8001F /* SupportTicketViewController.h in Headers */,
+				B1FC3B181C98B60E00A8001F /* CKMDomainSuggestionTableViewController.h in Headers */,
+				B1FC3B1C1C98B60E00A8001F /* CKMSchool.h in Headers */,
+				B1FC3B2A1C98B66800A8001F /* ImpactTableViewController.h in Headers */,
+				B1FC3B261C98B66000A8001F /* CLLocation+CKMDistance.h in Headers */,
+				B1FC3B2E1C98B66800A8001F /* SupportTicketManager.h in Headers */,
+				B1FC3B241C98B65900A8001F /* FXKeychain+CKMKeyChain.h in Headers */,
+				B1FC3B141C98B60E00A8001F /* CKMDomainSuggester.h in Headers */,
+				B1FC3B2C1C98B66800A8001F /* SupportTicket.h in Headers */,
+				B1FC3B0C1C98B60E00A8001F /* CKMMultiUserTableViewCell.h in Headers */,
+				B1FC3B201C98B60E00A8001F /* CKMDomainHelpViewController.h in Headers */,
+				B1FC3B1A1C98B60E00A8001F /* CKMLocationSchoolSuggester.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		49E545A01909B4AC001AD3BC /* CanvasKeytester */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49E545CC1909B4AD001AD3BC /* Build configuration list for PBXNativeTarget "CanvasKeytester" */;
+			buildPhases = (
+				49E5459D1909B4AC001AD3BC /* Sources */,
+				49E5459E1909B4AC001AD3BC /* Frameworks */,
+				49E5459F1909B4AC001AD3BC /* Resources */,
+				B5FF833D1D6E3FE3005DFE19 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5FF83431D6E4041005DFE19 /* PBXTargetDependency */,
+			);
+			name = CanvasKeytester;
+			productName = CanvasKeytester;
+			productReference = 49E545A11909B4AC001AD3BC /* CanvasKeytester.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B1FC3AF21C98B4E500A8001F /* CanvasKeymaster */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1FC3AFC1C98B4E500A8001F /* Build configuration list for PBXNativeTarget "CanvasKeymaster" */;
+			buildPhases = (
+				B1FC3AEE1C98B4E500A8001F /* Sources */,
+				B1FC3AEF1C98B4E500A8001F /* Frameworks */,
+				B1FC3AF01C98B4E500A8001F /* Headers */,
+				B1FC3AF11C98B4E500A8001F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CanvasKeymaster;
+			productName = CanvasKeymaster;
+			productReference = B1FC3AF31C98B4E500A8001F /* CanvasKeymaster.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		49E95860190967B000A1BFB7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CKM;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = Instructure;
+				TargetAttributes = {
+					49E545A01909B4AC001AD3BC = {
+						DevelopmentTeam = B6333T4PXQ;
+					};
+					B1FC3AF21C98B4E500A8001F = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = B6333T4PXQ;
+					};
+				};
+			};
+			buildConfigurationList = 49E95863190967B000A1BFB7 /* Build configuration list for PBXProject "CanvasKeymaster" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 49E9585F190967B000A1BFB7;
+			productRefGroup = 49E95869190967B000A1BFB7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				49E545A01909B4AC001AD3BC /* CanvasKeytester */,
+				B1FC3AF21C98B4E500A8001F /* CanvasKeymaster */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		49E5459F1909B4AC001AD3BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49E545B91909B4AC001AD3BC /* Images.xcassets in Resources */,
+				BD94CF0E19A3D87B000423DE /* icon_help.png in Resources */,
+				49E545AB1909B4AC001AD3BC /* InfoPlist.strings in Resources */,
+				49E545B41909B4AC001AD3BC /* Main.storyboard in Resources */,
+				BD94CF0F19A3D87B000423DE /* icon_help@2x.png in Resources */,
+				49C0FB30190B167900572CA1 /* LaunchImage.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1FC3AF11C98B4E500A8001F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1FC3B061C98B60E00A8001F /* icon_x_delete@1x.png in Resources */,
+				B1FC3B041C98B60E00A8001F /* icon_x_delete@3x.png in Resources */,
+				B1FC3B0A1C98B60E00A8001F /* icon_cancel_light@2x.png in Resources */,
+				B1FC3B071C98B60E00A8001F /* icon_help.png in Resources */,
+				B1FC3B221C98B60E00A8001F /* CKMDomainHelpViewController.storyboard in Resources */,
+				B1FC3B031C98B60E00A8001F /* icon_forward_arrow@1x.png in Resources */,
+				B181D2AA1DFB211500114ACE /* SupportTicket.storyboard in Resources */,
+				B1FC3B051C98B60E00A8001F /* icon_x_delete@2x.png in Resources */,
+				B1FC3B0B1C98B60E00A8001F /* icon_profile@2x.png in Resources */,
+				B181D2A41DFB20C600114ACE /* CKMDomainPickerPhone.storyboard in Resources */,
+				B1FC3B091C98B60E00A8001F /* icon_cancel_light.png in Resources */,
+				B1FC3B011C98B60E00A8001F /* icon_forward_arrow@3x.png in Resources */,
+				B1FC3B081C98B60E00A8001F /* icon_help@2x.png in Resources */,
+				B181D2A71DFB210000114ACE /* CKMDomainPickerPad.storyboard in Resources */,
+				B1FC3B021C98B60E00A8001F /* icon_forward_arrow@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		49E5459D1909B4AC001AD3BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49E545D61909C9DC001AD3BC /* CKMLockedViewController.m in Sources */,
+				49E545B71909B4AC001AD3BC /* CKMViewController.m in Sources */,
+				49E545B11909B4AC001AD3BC /* CKMAppDelegate.m in Sources */,
+				49E545AD1909B4AC001AD3BC /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1FC3AEE1C98B4E500A8001F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1FC3B211C98B60E00A8001F /* CKMDomainHelpViewController.m in Sources */,
+				B1FC3B191C98B60E00A8001F /* CKMDomainSuggestionTableViewController.m in Sources */,
+				B1FC3B0F1C98B60E00A8001F /* CKMMultiUserTableViewController.m in Sources */,
+				B1FC3B0D1C98B60E00A8001F /* CKMMultiUserTableViewCell.m in Sources */,
+				B1FC3B2B1C98B66800A8001F /* ImpactTableViewController.m in Sources */,
+				B1FC3B151C98B60E00A8001F /* CKMDomainSuggester.m in Sources */,
+				6181F12D1DFF365900B94488 /* CKMDomainPickerViewController.m in Sources */,
+				B1FC3B1B1C98B60E00A8001F /* CKMLocationSchoolSuggester.m in Sources */,
+				B1FC3B271C98B66000A8001F /* CLLocation+CKMDistance.m in Sources */,
+				B1FC3B251C98B65900A8001F /* FXKeychain+CKMKeyChain.m in Sources */,
+				B1FC3B171C98B60E00A8001F /* CKMDomainSuggestionTableViewCell.m in Sources */,
+				B1FC3B2D1C98B66800A8001F /* SupportTicket.m in Sources */,
+				B1FC3B2F1C98B66800A8001F /* SupportTicketManager.m in Sources */,
+				B1FC3B1D1C98B60E00A8001F /* CKMSchool.m in Sources */,
+				B1FC3B311C98B66800A8001F /* SupportTicketViewController.m in Sources */,
+				B1FC3B1F1C98B60E00A8001F /* CKMLocationManager.m in Sources */,
+				B1FC3B001C98B5AE00A8001F /* CanvasKeymaster.m in Sources */,
+				B1FC3B231C98B62600A8001F /* UIDevice+CKMHardware.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B5FF83431D6E4041005DFE19 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1FC3AF21C98B4E500A8001F /* CanvasKeymaster */;
+			targetProxy = B5FF83421D6E4041005DFE19 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		49E545A91909B4AC001AD3BC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49E545AA1909B4AC001AD3BC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		49E545B21909B4AC001AD3BC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49E545B31909B4AC001AD3BC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B181D2A61DFB20C600114ACE /* CKMDomainPickerPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B181D2A51DFB20C600114ACE /* Base */,
+			);
+			name = CKMDomainPickerPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		B181D2A91DFB210000114ACE /* CKMDomainPickerPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B181D2A81DFB210000114ACE /* Base */,
+			);
+			name = CKMDomainPickerPad.storyboard;
+			sourceTree = "<group>";
+		};
+		B181D2AC1DFB211500114ACE /* SupportTicket.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B181D2AB1DFB211500114ACE /* Base */,
+			);
+			name = SupportTicket.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		49E545CD1909B4AD001AD3BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CanvasKeytester/CanvasKeytester-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CanvasKeytester/CanvasKeytester-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		49E545CE1909B4AD001AD3BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CanvasKeytester/CanvasKeytester-Prefix.pch";
+				INFOPLIST_FILE = "CanvasKeytester/CanvasKeytester-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		49E95889190967B000A1BFB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		49E9588A190967B000A1BFB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B1FC3AFD1C98B4E500A8001F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = CanvasKeymaster/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasKeymaster;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B1FC3AFE1C98B4E500A8001F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = CanvasKeymaster/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasKeymaster;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		49E545CC1909B4AD001AD3BC /* Build configuration list for PBXNativeTarget "CanvasKeytester" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49E545CD1909B4AD001AD3BC /* Debug */,
+				49E545CE1909B4AD001AD3BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49E95863190967B000A1BFB7 /* Build configuration list for PBXProject "CanvasKeymaster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49E95889190967B000A1BFB7 /* Debug */,
+				49E9588A190967B000A1BFB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1FC3AFC1C98B4E500A8001F /* Build configuration list for PBXNativeTarget "CanvasKeymaster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1FC3AFD1C98B4E500A8001F /* Debug */,
+				B1FC3AFE1C98B4E500A8001F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 49E95860190967B000A1BFB7 /* Project object */;
+}

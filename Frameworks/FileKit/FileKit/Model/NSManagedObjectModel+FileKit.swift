@@ -31,17 +31,17 @@ private enum Entities: String {
 // comments
 extension NSManagedObjectModel {
     
-    @warn_unused_result(message="The File entity is added to a copy of the receiver. The receiver is immutable.")
+    
     public func loadingFileEntity() -> NSManagedObjectModel {
-        let fileKitBundle = NSBundle(forClass: File.self)
-        guard let fileMOM = NSManagedObjectModel.mergedModelFromBundles([fileKitBundle]) else {
+        let fileKitBundle = Bundle(for: File.self)
+        guard let fileMOM = NSManagedObjectModel.mergedModel(from: [fileKitBundle]) else {
             ❨╯°□°❩╯⌢"The FileKit.xcdatamodel is noticably absent"
         }
 
         return loadStubbedEntities([.File, .Upload, .FileUpload], fromModel: fileMOM)
     }
 
-    private func loadStubbedEntities(entities: [Entities], fromModel model: NSManagedObjectModel) -> NSManagedObjectModel {
+    fileprivate func loadStubbedEntities(_ entities: [Entities], fromModel model: NSManagedObjectModel) -> NSManagedObjectModel {
         guard let plusEntities = self.copy() as? NSManagedObjectModel else { ❨╯°□°❩╯⌢"This should never fail" }
 
         for name in entities.map({ $0.rawValue }) {

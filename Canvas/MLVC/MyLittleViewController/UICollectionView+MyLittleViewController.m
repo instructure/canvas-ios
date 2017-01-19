@@ -22,7 +22,7 @@
 #import "EXTScope.h"
 @import CocoaLumberjack;
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
+@import ReactiveObjC;
 #define ddLogLevel LOG_LEVEL_VERBOSE
 
 

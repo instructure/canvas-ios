@@ -26,12 +26,12 @@ import FileKit
 let discussionKitModelName = "DiscussionKit"
 let discussionKitSubdomain = "DiscussionKit"
 let discussionKitFailedToLoadErrorCode = 10001
-let discussionKitFailedToLoadErrorDescription = NSLocalizedString("Failed to load \(discussionKitModelName) NSManagedObjectModel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.DiscussionKit")!, value: "", comment: "Error Message when the app can't load an object model from the database")
-let discussionKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the DiscussionKit database file.", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.DiscussionKit")!, value: "", comment: "DiscussionKit Database Load Failure Message")
+let discussionKitFailedToLoadErrorDescription = NSLocalizedString("Failed to load \(discussionKitModelName) NSManagedObjectModel", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.DiscussionKit")!, value: "", comment: "Error Message when the app can't load an object model from the database")
+let discussionKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the DiscussionKit database file.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.DiscussionKit")!, value: "", comment: "DiscussionKit Database Load Failure Message")
 
 extension Session {
-    public func discussionsManagedObjectContext(scope: String? = nil) throws -> NSManagedObjectContext {
-        guard let model = NSManagedObjectModel(named: discussionKitModelName, inBundle: NSBundle(forClass: DiscussionTopic.self))?.mutableCopy() as? NSManagedObjectModel else {
+    public func discussionsManagedObjectContext(_ scope: String? = nil) throws -> NSManagedObjectContext {
+        guard let model = NSManagedObjectModel(named: discussionKitModelName, inBundle: Bundle(for: DiscussionTopic.self))?.mutableCopy() as? NSManagedObjectModel else {
             throw NSError(subdomain: discussionKitSubdomain, code: discussionKitFailedToLoadErrorCode, title: discussionKitFailedToLoadErrorDescription, description: discussionKitFailedToLoadErrorDescription)
         }
         let withFiles = model.loadingFileEntity()

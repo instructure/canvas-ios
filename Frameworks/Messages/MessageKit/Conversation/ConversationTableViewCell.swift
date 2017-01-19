@@ -17,55 +17,57 @@
     
 
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import SoLazy
 import Kingfisher
 import SoIconic
 import SoLazy
 
-public class ConversationTableViewCell: UITableViewCell {
-    @IBOutlet public weak var nameTextLabel: UILabel?
-    @IBOutlet public weak var subjectTextLabel: UILabel?
-    @IBOutlet public weak var dateTextLabel: UILabel?
-    @IBOutlet public weak var messageTextLabel: UILabel?
-    @IBOutlet public weak var avatarImageView: UIImageView?
+open class ConversationTableViewCell: UITableViewCell {
+    @IBOutlet open weak var nameTextLabel: UILabel?
+    @IBOutlet open weak var subjectTextLabel: UILabel?
+    @IBOutlet open weak var dateTextLabel: UILabel?
+    @IBOutlet open weak var messageTextLabel: UILabel?
+    @IBOutlet open weak var avatarImageView: UIImageView?
 
-    public static var nib: UINib {
-        let bundle = NSBundle(forClass: self)
+    open static var nib: UINib {
+        let bundle = Bundle(for: self)
         return UINib(nibName: "ConversationTableViewCell", bundle: bundle)
     }
 
-    public static let reuseIdentifier = "conversation-cell"
+    open static let reuseIdentifier = "conversation-cell"
 
-    public var viewModel: ConversationViewModel? {
+    open var viewModel: ConversationViewModel? {
         didSet {
             beginObservingViewModel()
         }
     }
 
-    private let disposable = CompositeDisposable()
+    fileprivate let disposable = CompositeDisposable()
 
-    private func beginObservingViewModel() {
+    fileprivate func beginObservingViewModel() {
         guard let vm = viewModel else { return }
 
         nameTextLabel?.text = vm.displayName
         subjectTextLabel?.text = vm.subject
         dateTextLabel?.text = vm.displayDate
         messageTextLabel?.text = vm.mostRecentMessage
-        disposable += (avatarImageView?.rac_image).map { $0 <~ vm.avatarImage }
+        if let avatarImageView = avatarImageView {
+            disposable += avatarImageView.rac_image <~ vm.avatarImage
+        }
     }
 }
 
-public class ConversationViewModel: TableViewCellViewModel {
+open class ConversationViewModel: TableViewCellViewModel {
 
     // MARK: TableViewCellViewModel
 
-    public static func tableViewDidLoad(tableView: UITableView) {
-        tableView.registerNib(ConversationTableViewCell.nib, forCellReuseIdentifier: ConversationTableViewCell.reuseIdentifier)
+    open static func tableViewDidLoad(_ tableView: UITableView) {
+        tableView.register(ConversationTableViewCell.nib, forCellReuseIdentifier: ConversationTableViewCell.reuseIdentifier)
     }
 
-    public func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(ConversationTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! ConversationTableViewCell
+    open func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ConversationTableViewCell.reuseIdentifier, for: indexPath) as! ConversationTableViewCell
         cell.viewModel = self
         return cell
     }
@@ -80,7 +82,7 @@ public class ConversationViewModel: TableViewCellViewModel {
      
      Example: Bianca Pascellita, +5
      */
-    public lazy var displayName: String = {
+    open lazy var displayName: String = {
         let mostRecentSender = self.conversation.mostRecentSender.name
         guard self.conversation.numberOfParticipants > 1 else {
             return mostRecentSender
@@ -106,37 +108,37 @@ public class ConversationViewModel: TableViewCellViewModel {
     /**
      The formatted date of the most recent message.
      */
-    public lazy var displayDate: String = {
+    open lazy var displayDate: String = {
         let date = self.conversation.date
         let currentTime = Clock.currentTime()
         let formatter = date.isTheSameDayAsDate(currentTime) ? self.todayDateFormatter : self.notTodayDateFormatter
-        return formatter.stringFromDate(date)
+        return formatter.string(from: date)
     }()
 
     /**
      The avatar image of the most recent sender.
      */
-    public lazy var avatarImage: AnyProperty<UIImage?> = {
+    open lazy var avatarImage: Property<UIImage?> = {
         let defaultAvatar = UIImage.icon(.course, filled: true) // TODO: default avatar frd
         let avatar = MutableProperty<UIImage?>(defaultAvatar)
-        if let url = NSURL(string: self.conversation.mostRecentSender.avatarURL) {
-            KingfisherManager.sharedManager.retrieveImageWithURL(url, optionsInfo: nil, progressBlock: nil) { image, _, _, _ in
+        if let url = URL(string: self.conversation.mostRecentSender.avatarURL) {
+            KingfisherManager.shared.retrieveImage(with: url, options: nil, progressBlock: nil) { image, _, _, _ in
                 if let image = image {
                     avatar.value = image
                 }
             }
         }
-        return AnyProperty(initialValue: defaultAvatar, producer: avatar.producer)
+        return Property(initial: defaultAvatar, then: avatar.producer)
     }()
 
-    private let conversation: Conversation
-    private lazy var todayDateFormatter: NSDateFormatter = {
-        let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle
+    fileprivate let conversation: Conversation
+    fileprivate lazy var todayDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
         return formatter
     }()
-    private lazy var notTodayDateFormatter: NSDateFormatter = {
-        let formatter = NSDateFormatter()
+    fileprivate lazy var notTodayDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
         formatter.dateFormat = "MMM d"
         return formatter
     }()

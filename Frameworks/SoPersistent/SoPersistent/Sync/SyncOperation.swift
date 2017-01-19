@@ -17,7 +17,7 @@
     
 
 import Foundation
-import ReactiveCocoa
+import ReactiveSwift
 import CoreData
 import Marshal
 import TooLegit
@@ -25,29 +25,31 @@ import TooLegit
 extension SynchronizedModel where Self: NSManagedObject {
     public typealias ModelPageSignalProducer = SignalProducer<[Self], NSError>
     
-    public static func syncSignalProducer(localPredicate: NSPredicate? = nil, includeSubentities: Bool = true, inContext context: NSManagedObjectContext, fetchRemote: SignalProducer<[JSONObject], NSError>, postProcess: (Self, JSONObject) throws -> Void = { _, _ in }) -> ModelPageSignalProducer {
+    public static func syncSignalProducer(_ localPredicate: NSPredicate? = nil, includeSubentities: Bool = true, inContext context: NSManagedObjectContext, fetchRemote: SignalProducer<[JSONObject], NSError>, postProcess: @escaping (Self, JSONObject) throws -> Void = { _, _ in }) -> ModelPageSignalProducer {
         
         let syncContextModelsSignal = ModelPageSignalProducer({ observer, compositeDisposable in
             
             let syncContext = context.syncContext
             
-            syncContext.performBlock() {
+            syncContext.perform() {
                 do {
-                    let fetchLocal = fetch(localPredicate, sortDescriptors: nil, inContext: syncContext)
+                    let fetchLocal: NSFetchRequest<Self> = syncContext.fetch(localPredicate, sortDescriptors: nil)
                     fetchLocal.includesPropertyValues = false
                     fetchLocal.returnsObjectsAsFaults = true
                     fetchLocal.includesSubentities = includeSubentities
                     var existing = try Set(syncContext.findAll(fromFetchRequest: fetchLocal))
                     
-                    let upsertSignal: ModelPageSignalProducer = fetchRemote.flatMap(.Concat, transform: Self.upsert(inContext: syncContext, postProcess: postProcess))
+                    let upsertSignal: ModelPageSignalProducer = fetchRemote.flatMap(.concat) { Self.upsert(inContext: syncContext, postProcess: postProcess, jsonArray: $0) }
 
                     upsertSignal.startWithSignal { signal, signalDisposable in
                         compositeDisposable += signalDisposable
                         
                         signal.observe { event in
-                            syncContext.performBlock {
+                            syncContext.perform {
                                 switch event {
-                                case .Completed:
+                                case .interrupted:
+                                    print("What?! why??!")
+                                case .completed:
                                     
                                     guard existing.count > 0 else {
                                         observer.sendCompleted()
@@ -62,19 +64,19 @@ extension SynchronizedModel where Self: NSManagedObject {
                                         try syncContext.saveFRD()
                                         observer.sendCompleted()
                                     } catch let e as NSError {
-                                        observer.sendFailed(e)
+                                        observer.send(error: e)
                                     }
                                     
-                                case .Next(let models):
+                                case .value(let models):
                                     for model in models {
                                         existing.remove(model)
                                     }
                                     
                                     do {
                                         try syncContext.saveFRD()
-                                        observer.sendNext(models)
+                                        observer.send(value: models)
                                     } catch let e as NSError {
-                                        observer.sendFailed(e)
+                                        observer.send(error: e)
                                     }
                                     
                                 default:
@@ -84,16 +86,16 @@ extension SynchronizedModel where Self: NSManagedObject {
                         }
                     }
                 } catch let e as NSError {
-                    observer.sendFailed(e)
+                    observer.send(error: e)
                 }
             }
         })
 
-        let scheduler = QueueScheduler(qos: QOS_CLASS_USER_INITIATED, name: "com.instructure.SoPersistent")
+        let scheduler = QueueScheduler(qos: .userInitiated, name: "com.instructure.SoPersistent")
         return syncContextModelsSignal
-            .startOn(scheduler)
-            .flatMap(.Merge) { _ in return ModelPageSignalProducer.empty }
-            .observeOn(UIScheduler())
+            .start(on: scheduler)
+            .flatMap(.merge) { _ in return ModelPageSignalProducer.empty }
+            .observe(on: UIScheduler())
     }
     
 }

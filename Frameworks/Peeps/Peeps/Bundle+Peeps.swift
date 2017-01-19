@@ -16,8 +16,8 @@
 
 import Foundation
 
-extension NSBundle {
-    static var peeps: NSBundle {
-        return NSBundle(identifier: "com.instructure.Peeps")!
+extension Bundle {
+    static var peeps: Bundle {
+        return Bundle(identifier: "com.instructure.Peeps")!
     }
 }

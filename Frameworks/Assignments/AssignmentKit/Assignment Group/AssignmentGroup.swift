@@ -34,25 +34,26 @@ public final class AssignmentGroup: NSManagedObject {
 
 
 extension AssignmentGroup: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
     
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         try id          = json.stringID("id")
         try name        = json <| "name"
         try position    = json <| "position"
         try weight      = json <| "group_weight"
 
         try updateAssignments(json, inContext: context)
+        
         let assignments: [Assignment] = try context.findAll(withValue: id, forKey: "assignmentGroupID")
         assignments.forEach { $0.assignmentGroup = self }
     }
 
-    func updateAssignments(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    func updateAssignments(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         let gradingPeriodID: String? = try json.stringID("grading_period_id")
-        let assignmentsJSON: [JSONObject] = try json <| "assignments" ?? []
+        let assignmentsJSON: [JSONObject] = (try json <| "assignments") ?? []
         let assignmentIDs: [String] = try assignmentsJSON.map { try $0.stringID("id") }
 
         let assignments: [Assignment] = try context.findAll(withValues: assignmentIDs, forKey: "id")

@@ -22,7 +22,7 @@ import TooLegit
 import SoIconic
 import SoPretty
 
-private func courseVM(course: Course, session: Session, presenter: UIViewController?) -> CourseViewModel {
+private func courseVM(_ course: Course, session: Session, presenter: UIViewController?) -> CourseViewModel {
 
     let contextID = course.contextID
 
@@ -31,12 +31,12 @@ private func courseVM(course: Course, session: Session, presenter: UIViewControl
         let customize = CustomizeEnrollmentViewController(session: session, context: contextID)
         let nav = UINavigationController(rootViewController: customize)
         
-        nav.modalPresentationStyle = .Popover
+        nav.modalPresentationStyle = .popover
         nav.popoverPresentationController?.sourceView = button
         nav.popoverPresentationController?.sourceRect = button.bounds
         nav.preferredContentSize = CGSize(width: 320, height: 240)
         
-        presenter?.presentViewController(nav, animated: true, completion: nil)
+        presenter?.present(nav, animated: true, completion: nil)
     }, makeAnAnnouncement: { [weak presenter] in
         
     })
@@ -45,7 +45,7 @@ private func courseVM(course: Course, session: Session, presenter: UIViewControl
 
 private let coursesTitle = NSLocalizedString("Courses", comment: "Courses view title and nav button")
 class CoursesCollectionViewController: Course.CollectionViewController {
-    static func tab(session: Session, route: RouteAction) throws -> UIViewController {
+    static func tab(_ session: Session, route: @escaping RouteAction) throws -> UIViewController {
         let nav = UINavigationController(rootViewController: try CoursesCollectionViewController(session: session, route: route))
         nav.tabBarItem.title = coursesTitle
         nav.tabBarItem.image = .icon(.course)
@@ -55,7 +55,7 @@ class CoursesCollectionViewController: Course.CollectionViewController {
     
     let route: RouteAction
     
-    init(session: Session, route: RouteAction) throws {
+    init(session: Session, route: @escaping RouteAction) throws {
         self.route = route
         super.init()
         
@@ -69,11 +69,11 @@ class CoursesCollectionViewController: Course.CollectionViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = collection[indexPath]
         
         do {
-            try route(self, NSURL(string: "/courses/\(course.id)")!)
+            try route(self, URL(string: "/courses/\(course.id)")!)
         } catch let e as NSError {
             e.presentAlertFromViewController(self)
         }

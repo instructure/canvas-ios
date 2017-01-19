@@ -21,23 +21,23 @@ import UIKit
 import TooLegit
 import SoLazy
 
-private func nav(vc: UIViewController) -> UINavigationController {
+private func nav(_ vc: UIViewController) -> UINavigationController {
     return UINavigationController(rootViewController: vc)
 }
 
-private func tabs(vcs: [UIViewController]) -> UITabBarController {
+private func tabs(_ vcs: [UIViewController]) -> UITabBarController {
     let tabs = UITabBarController()
     tabs.viewControllers = vcs
     return tabs
 }
 
 class Navigator {
-    private let splitViewController = UISplitViewController()
+    fileprivate let splitViewController = UISplitViewController()
     
     let session: Session
     
     lazy var routeAction: RouteAction = { [weak self] source, url in
-        try self?.navigate(source, destination: url)
+        try self?.navigate(from: source, to: url)
     }
 
     init(session: Session) throws {
@@ -59,12 +59,12 @@ class Navigator {
     
     var currentMasterNavigationController: UINavigationController {
         guard let tab = splitViewController.viewControllers[0] as? UITabBarController,
-            nav = tab.selectedViewController as? UINavigationController else { ❨╯°□°❩╯⌢"Unexpected configuration!" }
+            let nav = tab.selectedViewController as? UINavigationController else { ❨╯°□°❩╯⌢"Unexpected configuration!" }
         
         return nav
     }
 
-    func showDetail(viewController: UIViewController) {
+    func showDetail(_ viewController: UIViewController) {
         if splitViewController.viewControllers.count == 1 {
             currentMasterNavigationController.pushViewController(viewController, animated: true)
         } else {
@@ -73,21 +73,21 @@ class Navigator {
         }
     }
     
-    func present(presentation: Route.Presentation, viewController: UIViewController, from: UIViewController) {
+    func present(_ presentation: Route.Presentation, viewController: UIViewController, from: UIViewController) {
         switch presentation {
-        case .Master:
+        case .master:
             currentMasterNavigationController.pushViewController(viewController, animated: true)
-        case .Detail:
+        case .detail:
             showDetail(viewController)
-        case .Modal(let style):
+        case .modal(let style):
             viewController.modalPresentationStyle = style
-            from.presentViewController(viewController, animated: true, completion: nil)
+            from.present(viewController, animated: true, completion: nil)
         }
     }
     
-    func navigate(source: UIViewController, destination: NSURL) throws {
+    func navigate(from source: UIViewController, to destination: URL) throws {
         for route in TeachRoutes {
-            if let viewController = try route.constructViewController(routeAction, session: session, url: destination) {
+            if let viewController = try route.constructViewController(for: destination, in: session, navigator: self) {
                 present(route.presentation, viewController: viewController, from: source)
             }
         }

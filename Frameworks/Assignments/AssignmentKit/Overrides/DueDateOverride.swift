@@ -20,9 +20,9 @@ import Foundation
 import CoreData
 
 public final class DueDateOverride: NSManagedObject {
-    @NSManaged private (set) public var id: String
-    @NSManaged private (set) public var title: String
-    @NSManaged private (set) public var due: NSDate
+    @NSManaged fileprivate (set) public var id: String
+    @NSManaged fileprivate (set) public var title: String
+    @NSManaged fileprivate (set) public var due: Date
     
     @NSManaged var assignment: Assignment?
 }
@@ -33,12 +33,12 @@ import Marshal
 
 extension DueDateOverride: SynchronizedModel {
     
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")
         return NSPredicate(format: "%K == %@", "id", id)
     }
     
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id      = try json.stringID("id")
         title   = try json <| "title"
         due     = try json <| "due_at"

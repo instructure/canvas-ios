@@ -22,12 +22,12 @@ import EnrollmentKit
 import Airwolf
 
 
-typealias CourseListSelectCourseAction = (session: Session, observeeID: String, course: Course)->Void
+typealias CourseListSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: Course)->Void
 
 class CourseListViewController: Course.TableViewController {
 
-    private let session: Session
-    private let observeeID: String
+    fileprivate let session: Session
+    fileprivate let observeeID: String
 
     var courseCollection: FetchedCollection<Course>?
     var selectCourseAction: CourseListSelectCourseAction? = nil
@@ -66,9 +66,9 @@ class CourseListViewController: Course.TableViewController {
         tableView.backgroundColor = UIColor.defaultTableViewBackgroundColor()
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let course = collection[indexPath]
-        selectCourseAction?(session: session, observeeID: observeeID, course: course)
+        selectCourseAction?(session, observeeID, course)
     }
 
 }

@@ -1,8 +1,7 @@
-/* record button a11y hint
-   stop record button a11y hint */
+/* stop record button a11y hint */
 "Begin recording" = "録音を開始する";
 
-/* Cancel button */
+/* Cancel button title */
 "Cancel" = "キャンセル";
 
 /* Delete button */
@@ -44,7 +43,7 @@
 /* Record button a11y label */
 "Request Audio Recording Permission" = "オーディオ録音許可をリクエストする";
 
-/* record button a11y hint */
+/* stop record button a11y hint */
 "Request Permission to record audio" = "オーディオ録音の許可をリクエストする";
 
 /* stop recording button a11y label */

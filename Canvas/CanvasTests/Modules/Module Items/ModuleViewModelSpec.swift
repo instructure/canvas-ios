@@ -31,13 +31,13 @@ class ModuleViewModelSpec: QuickSpec {
             var module: Module!
             var vm: ModuleViewModel!
             beforeEach {
-                login()
+                _ = login()
                 module = Module.build()
                 vm = try! ModuleViewModel(session: currentSession, module: module)
             }
 
             it("should format the unlock date") {
-                module.unlockDate = NSDate(year: 2016, month: 10, day: 20)
+                module.unlockDate = Date(year: 2016, month: 10, day: 20)
                 expect(vm.unlockDate.value).toEventually(equal("Locked until October 20, 2016"))
 
                 module.unlockDate = nil
@@ -49,15 +49,15 @@ class ModuleViewModelSpec: QuickSpec {
                 var cell: UITableViewCell!
                 beforeEach {
                     ModuleViewModel.tableViewDidLoad(tableView)
-                    cell = vm.cellForTableView(tableView, indexPath: NSIndexPath(forRow: 0, inSection: 0))
+                    cell = vm.cellForTableView(tableView, indexPath: IndexPath(row: 0, section: 0))
 
-                    Course.build {
+                    _ = Course.build {
                         $0.id = module.courseID
                         $0.roles = [.Student]
                     }
-                    ModuleItem.build {
+                    _ = ModuleItem.build {
                         $0.moduleID = module.id
-                        $0.completionRequirement = .MustView
+                        $0.completionRequirement = .mustView
                         $0.completed = false
                     }
                 }
@@ -76,7 +76,7 @@ class ModuleViewModelSpec: QuickSpec {
                     module.state = .completed
                     expect(cell.accessibilityLabel).toEventually(equal("Module 2. Status: Completed"))
 
-                    module.unlockDate = NSDate(year: 2016, month: 1, day: 1)
+                    module.unlockDate = Date(year: 2016, month: 1, day: 1)
                     expect(cell.accessibilityLabel).toEventually(equal("Module 2. Locked until January 1, 2016. Status: Completed"))
                 }
 

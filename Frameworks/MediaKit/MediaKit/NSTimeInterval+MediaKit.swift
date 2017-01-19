@@ -20,21 +20,21 @@ import Foundation
 
 
 
-private let numberFormatter: NSNumberFormatter = {
-    let numberFormatter = NSNumberFormatter()
+private let numberFormatter: NumberFormatter = {
+    let numberFormatter = NumberFormatter()
     numberFormatter.minimumIntegerDigits = 2
     return numberFormatter
     }()
 
 
-extension NSTimeInterval {
-    func formatted(includeSubSeconds: Bool = false) -> String {
+extension TimeInterval {
+    func formatted(_ includeSubSeconds: Bool = false) -> String {
         let effectiveTime = self < 0 ? -self : self
         
-        let seconds = numberFormatter.stringFromNumber(Int(effectiveTime) % 60) ?? "!!"
+        let seconds = numberFormatter.string(from: NSNumber(value: Int(effectiveTime) % 60)) ?? "!!"
         let justTheMinutes = Int(effectiveTime) / 60
         // if `justTheMinutes` is more than 99 just use the whole thing.
-        let minutes = numberFormatter.stringFromNumber(justTheMinutes) ?? "\(justTheMinutes)"
+        let minutes = numberFormatter.string(from: NSNumber(value: justTheMinutes)) ?? "\(justTheMinutes)"
 
         let subSeconds: String
         if includeSubSeconds {

@@ -31,29 +31,29 @@ class CanvasQuizSubmissionService: QuizSubmissionService {
         print("service for submission \(submission.id)")  
     }
     
-    private var submissionPath: String {
+    fileprivate var submissionPath: String {
         return api/v1/"quiz_submissions"/submission.id
     }
     
     let auth: Session
     let submission: Submission
 
-    func getQuestions(completed: SubmissionQuestionsResult->()) {
-        makeRequest(submissionQuestionsRequest(), completed: completed)
+    func getQuestions(_ completed: @escaping (SubmissionQuestionsResult)->()) {
+        let _ = makeRequest(submissionQuestionsRequest(), completed: completed)
     }
     
-    func selectAnswer(answer: SubmissionAnswer, forQuestion: SubmissionQuestion, completed: SelectAnswerResult -> ()) {
-        makeRequest(requestToSelectAnswer(answer, forQuestion: forQuestion), completed: completed)
+    func selectAnswer(_ answer: SubmissionAnswer, forQuestion: SubmissionQuestion, completed: @escaping (SelectAnswerResult) -> ()) {
+        let _ = makeRequest(requestToSelectAnswer(answer, forQuestion: forQuestion), completed: completed)
     }
     
-    func markQuestionFlagged(question: SubmissionQuestion, flagged: Bool, completed: FlagQuestionResult->()) {
-        makeRequest(requestToMarkQuestionFlagged(question, flagged: flagged), completed: completed)
+    func markQuestionFlagged(_ question: SubmissionQuestion, flagged: Bool, completed: @escaping (FlagQuestionResult)->()) {
+        let _ = makeRequest(requestToMarkQuestionFlagged(question, flagged: flagged), completed: completed)
     }
     
-    func requestToSelectAnswer(answer: SubmissionAnswer, forQuestion question: SubmissionQuestion) -> Request<Bool> {
+    func requestToSelectAnswer(_ answer: SubmissionAnswer, forQuestion question: SubmissionQuestion) -> Request<Bool> {
         let path = submissionPath + "/questions"
         
-        let params: [String: AnyObject] = [
+        let params: [String: Any] = [
             "attempt": submission.attempt,
             "validation_token": submission.validationToken,
             "quiz_questions": [["id": question.question.id, "answer": answer.apiAnswer]]
@@ -68,8 +68,8 @@ class CanvasQuizSubmissionService: QuizSubmissionService {
         let path = api/v1/"quiz_submissions"/submission.id/"questions"
         
         return Request(auth: auth, method: .GET, path: path, parameters: nil) { jsonValue in
-            let object = jsonValue as? [String: AnyObject]
-            if let array = object?["quiz_submission_questions"] as? [AnyObject] {
+            let object = jsonValue as? [String: Any]
+            if let array = object?["quiz_submission_questions"] as? [Any] {
                 let decoded: [SubmissionQuestion] = decodeArray(array)
                 return Result(value: decoded)
             }
@@ -78,11 +78,11 @@ class CanvasQuizSubmissionService: QuizSubmissionService {
         }
     }
     
-    func requestToMarkQuestionFlagged(question: SubmissionQuestion, flagged: Bool) -> Request<Bool> {
+    func requestToMarkQuestionFlagged(_ question: SubmissionQuestion, flagged: Bool) -> Request<Bool> {
         let status = flagged ? "flag" : "unflag"
         let path = api/v1/"quiz_submissions"/submission.id/"questions"/question.question.id/status
         
-        let params: [String: AnyObject] = [
+        let params: [String: Any] = [
             "attempt": submission.attempt,
             "validation_token": submission.validationToken
         ]

@@ -28,18 +28,18 @@ class MatchAnswerCell: UITableViewCell {
     var pickerView: UIPickerView = UIPickerView()
     var pickerItems: [String] = []
 
-    var donePicking: Int->() = { _ in }
+    var donePicking: (Int)->() = { _ in }
 
     class var ReuseID: String {
         return "MatchAnswerCellReuseID"
     }
 
     class var Nib: UINib {
-        return UINib(nibName: "MatchAnswerCell", bundle: NSBundle(forClass: self.classForCoder()))
+        return UINib(nibName: "MatchAnswerCell", bundle: Bundle(for: self.classForCoder()))
     }
 
     class var font: UIFont {
-        return UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
     }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -56,33 +56,33 @@ class MatchAnswerCell: UITableViewCell {
         setup()
     }
 
-    private func setup() {
+    fileprivate func setup() {
         self.addSubview(hiddenTextField)
-        hiddenTextField.hidden = true
+        hiddenTextField.isHidden = true
 
         pickerView.frame = CGRect(x: 0, y: 0, width: contentView.frame.size.width, height: 216.0)
-        pickerView.backgroundColor = UIColor.whiteColor()
+        pickerView.backgroundColor = UIColor.white
         pickerView.showsSelectionIndicator = true
         pickerView.delegate = self
         pickerView.dataSource = self
 
         let toolbar = UIToolbar()
-        toolbar.barStyle = .Default
-        toolbar.translucent = true
+        toolbar.barStyle = .default
+        toolbar.isTranslucent = true
         toolbar.barTintColor = Brand.current().navBarTintColor
-        toolbar.tintColor = UIColor.whiteColor()
+        toolbar.tintColor = UIColor.white
         toolbar.sizeToFit()
 
-        let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Done button"), style: .Plain, target: self, action: #selector(MatchAnswerCell.doneButtonSelected))
-        let spaceItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Cancel button title"), style: .Plain, target: self, action: #selector(MatchAnswerCell.cancelButtonSelected))
+        let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Done button"), style: .plain, target: self, action: #selector(MatchAnswerCell.doneButtonSelected))
+        let spaceItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Cancel button title"), style: .plain, target: self, action: #selector(MatchAnswerCell.cancelButtonSelected))
         toolbar.setItems([cancelButton, spaceItem, doneButton], animated: false)
 
         hiddenTextField.inputView = pickerView
         hiddenTextField.inputAccessoryView = toolbar
     }
 
-    class func heightWithAnswerText(answerText: String, matchText: String, boundsWidth width: CGFloat) -> CGFloat {
+    class func heightWithAnswerText(_ answerText: String, matchText: String, boundsWidth width: CGFloat) -> CGFloat {
         let horizontalPadding: CGFloat = 30.0
         let verticalPadding: CGFloat = 18.0
         let maxLabelWidth = width - (2 * horizontalPadding)
@@ -93,7 +93,7 @@ class MatchAnswerCell: UITableViewCell {
     }
 
     func doneButtonSelected() {
-        let row = pickerView.selectedRowInComponent(0)
+        let row = pickerView.selectedRow(inComponent: 0)
         hiddenTextField.resignFirstResponder()
         donePicking(row)
     }
@@ -112,17 +112,17 @@ class MatchAnswerCell: UITableViewCell {
 }
 
 extension MatchAnswerCell: UIPickerViewDataSource {
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
 
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerItems.count
     }
 }
 
 extension MatchAnswerCell: UIPickerViewDelegate {
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerItems[row]
     }
 }

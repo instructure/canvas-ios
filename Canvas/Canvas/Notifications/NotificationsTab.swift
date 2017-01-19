@@ -20,22 +20,28 @@ import UIKit
 import Foundation
 import TechDebt
 import SoIconic
+import SuchActivity
+import TooLegit
+import SoPretty
 
-func NotificationsTab() -> UIViewController {
-    let vc: UIViewController
-    
-    if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad {
-        vc = CBINotificationSplitViewController()
-    } else {
-        vc = CBINotificationListViewController()
-    }
-    
+func NotificationsTab(session: Session) throws -> UIViewController {
     let title = NSLocalizedString("Notifications", comment: "Notifications tab title")
+    let activityStream = try ActivityStreamTableViewController(session: session, route: { viewController, url in
+        Router.shared().route(from: viewController, to: url)
+    })
+    activityStream.title = title
     
-    vc.navigationItem.title = title
+    let split = SplitViewController()
+    split.preferredDisplayMode = .allVisible
+    let masterNav = UINavigationController(rootViewController: activityStream)
+    let detailNav = UINavigationController()
+    detailNav.view.backgroundColor = UIColor.white
+    split.viewControllers = [masterNav, detailNav]
     
-    vc.tabBarItem.title = title
-    vc.tabBarItem.image = .icon(.notification)
-    vc.tabBarItem.selectedImage = .icon(.notification, filled: true)
-    return UINavigationController(rootViewController: vc);
+    activityStream.navigationItem.title = title
+    split.tabBarItem.title = title
+    split.tabBarItem.image = .icon(.notification)
+    split.tabBarItem.selectedImage = .icon(.notification, filled: true)
+    return split
 }
+

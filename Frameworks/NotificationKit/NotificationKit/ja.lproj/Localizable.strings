@@ -37,14 +37,16 @@
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "コミュニケーションチャンネルが見つかりません";
 
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "プッシュチャネルが見つかりません";
+
 /* Title for the notification preferences page */
 "Notification Preferences" = "通知の設定";
 
-/* Action title for being unable to update a push notification preference
-   Alert action button text when unable to load communication channels
-   Alert action button text when unable to load notification preferences
-   Alert action button text when unable to parse JSON for communication channels
-   Alert action button text when unable to parse JSON for notification preferences */
+/* OK Button Title */
+"OK" = "OK";
+
+/* (No Commment) */
 "Ok" = "Ok";
 
 /* Description for Push Notification channel */
@@ -70,6 +72,12 @@
 
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "只今、すべての通知設定を読み込むことができません。エラー： (result.error?.localizedDescription)";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "通信チャネル用に JSON をパースすることはできません";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "通知設定用に JSON をパースすることはできません";
 
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "サーバーでこの値をアップデートすることができませんでした";

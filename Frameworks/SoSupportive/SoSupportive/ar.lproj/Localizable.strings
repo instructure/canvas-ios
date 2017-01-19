@@ -31,6 +31,9 @@
 /* Status level for issue being reported */
 "Something is broken but I can work around it" = "شيء ما معطل لكن أستطيع تدبير أموري";
 
+/* Title for the subject field */
+"Subject" = "الموضوع";
+
 /* Support Ticket Created Successfully */
 "Thanks, your request was received!" = "شكراً، تم استلام طلبك!";
 
@@ -45,6 +48,4 @@
 
 /* Title for the email field */
 "Your Email" = "بريدك الإلكتروني";
-
-"Subject" = "موضوع";
 

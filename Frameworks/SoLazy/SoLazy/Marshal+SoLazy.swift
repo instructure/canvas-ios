@@ -19,11 +19,11 @@
 import Foundation
 import Marshal
 
-private let tilda = NSCharacterSet(charactersInString: "~")
-private let parseNumber = NSNumberFormatter().numberFromString
+private let tilda = CharacterSet(charactersIn: "~")
+private let parseNumber = NumberFormatter().number(from:)
 private let shardFactor: Int64 = 10_000_000_000_000
-private let idTypeMismatchError: (KeyType, Any) -> Marshal.Error = { key, any in
-    return Error.TypeMismatchWithKey(key: key.stringValue, expected: "\([String].self) or \([Int64].self)", actual: any.dynamicType)
+private let idTypeMismatchError: (KeyType, Any) -> MarshalError = { key, any in
+    return .typeMismatchWithKey(key: key.stringValue, expected: "\([String].self) or \([Int64].self)", actual: type(of: any))
 }
 
 /** Converts an id that might be cross-shard to a standard ID (no `~`)
@@ -45,17 +45,17 @@ private let idTypeMismatchError: (KeyType, Any) -> Marshal.Error = { key, any in
     It is safe to pass in IDs that do not have a `~`. The result will
     simply be the ID passed in.
  */
-public func expandTildaForCrossShardID(id: String) -> String {
-    let components = id.componentsSeparatedByCharactersInSet(tilda)
+public func expandTildaForCrossShardID(_ id: String) -> String {
+    let components = id.components(separatedBy: tilda)
     
     if components.count != 2 {
         return id
     }
     
-    guard let shardID = components.first.flatMap(parseNumber)?.longLongValue else {
+    guard let shardID = components.first.flatMap(parseNumber)?.int64Value else {
         return id
     }
-    guard let resourceID = components.last.flatMap(parseNumber)?.longLongValue else {
+    guard let resourceID = components.last.flatMap(parseNumber)?.int64Value else {
         return id
     }
     
@@ -63,41 +63,41 @@ public func expandTildaForCrossShardID(id: String) -> String {
 }
 
 extension Dictionary where Key: KeyType {
-    public func stringID(key: Key) throws -> String {
-        return try convertIDString(key)(any: try anyForKey(key))
+    public func stringID(_ key: Key) throws -> String {
+        return try convertIDString(key)(any: try any(for: key))
     }
 
-    public func stringIDs(key: Key) throws -> [String] {
-        let any = try anyForKey(key) as? [AnyObject]
-        guard let ids = try any.flatMap({ try $0.map(convertIDString(key)) }) else {
-            throw idTypeMismatchError(key, any)
+    public func stringIDs(_ key: Key) throws -> [String] {
+        let a = try any(for: key) as? [AnyObject]
+        guard let ids = try a.flatMap({ try $0.map(convertIDString(key)) }) else {
+            throw idTypeMismatchError(key, a)
         }
         return ids
     }
 
-    public func stringID(key: Key) throws -> String? {
+    public func stringID(_ key: Key) throws -> String? {
         do {
             let id: String = try stringID(key)
             return id
-        } catch Error.KeyNotFound {
+        } catch MarshalError.keyNotFound {
             return nil
-        } catch Error.NullValue {
+        } catch MarshalError.nullValue {
             return nil
         }
     }
 
-    private func convertIDString(key: Key) -> (any: Any) throws -> String {
-        return { any in
-            guard let id = ((try? Int64.value(any)).map({ "\($0)" }) ?? (try? String.value(any))).map(expandTildaForCrossShardID) else {
-                throw idTypeMismatchError(key, any)
+    fileprivate func convertIDString(_ key: Key) -> (_ any: Any) throws -> String {
+        return { anyValue in
+            guard let id = ((try? Int64.value(from: anyValue)).map({ "\($0)" }) ?? (try? String.value(from: anyValue))).map(expandTildaForCrossShardID) else {
+                throw idTypeMismatchError(key, anyValue)
             }
             return id
         }
     }
 }
 
-public func insert(value: AnyObject?, forKey key: String) -> (array: [JSONObject]) -> [JSONObject] {
-    func insert(json: JSONObject) -> JSONObject {
+public func insert(_ value: Any?, forKey key: String) -> (_ array: [JSONObject]) -> [JSONObject] {
+    func insert(_ json: JSONObject) -> JSONObject {
         var json = json
         json[key] = value
         return json

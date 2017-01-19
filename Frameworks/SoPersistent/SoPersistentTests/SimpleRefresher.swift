@@ -18,7 +18,7 @@
 
 import Foundation
 import SoPersistent
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 class SimpleRefresher: Refresher {
@@ -37,19 +37,19 @@ class SimpleRefresher: Refresher {
 
     init() {
         let (beganSignal, beganObserver) = Signal<(), NoError>.pipe()
-        self.refreshingBegan = beganSignal.observeOn(UIScheduler())
+        self.refreshingBegan = beganSignal.observe(on: UIScheduler())
         self.refreshingBeganObserver = beganObserver
 
         let (completedSignal, completedObserver) = Signal<NSError?, NoError>.pipe()
-        self.refreshingCompleted = completedSignal.observeOn(UIScheduler())
+        self.refreshingCompleted = completedSignal.observe(on: UIScheduler())
         self.refreshingCompletedObserver = completedObserver
     }
 
-    func makeRefreshable(viewController: UIViewController) {
+    func makeRefreshable(_ viewController: UIViewController) {
         makeRefreshableWasCalled = true
     }
 
-    func refresh(forced: Bool) {
+    func refresh(_ forced: Bool) {
         refreshWasCalled = true
     }
 

@@ -21,26 +21,26 @@ import TooLegit
 import Result
 
 
-public class NotificationKitController {
+open class NotificationKitController {
     
-    private var remoteService: RemoteService
+    fileprivate var remoteService: RemoteService
     
     public init(session: Session) {
         self.remoteService = RemoteService(session: session)    }
     
     public enum RegisterPushNotificationTokenResult {
-        case Success()
-        case Error(NSError)
+        case success()
+        case error(NSError)
     }
     
     // This is super ugly, change with Swift 2.0 - guard
-    public typealias RegisterPushNotificationTokenCompletion = (result: RegisterPushNotificationTokenResult) -> ()
-    public func registerPushNotificationTokenWithPushService(deviceToken: NSData, registrationCompletion: RegisterPushNotificationTokenCompletion) {
-        let token = PushNotificationToken(deviceTokenData: deviceToken)
+    public typealias RegisterPushNotificationTokenCompletion = (_ result: RegisterPushNotificationTokenResult) -> ()
+    open func registerPushNotificationTokenWithPushService(_ deviceToken: Data, registrationCompletion: @escaping RegisterPushNotificationTokenCompletion) {
+        let token = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
         self.remoteService.registerPushNotificationTokenWithPushService(token, completion: { (pushNotificationRegistrationResult) -> () in
             
             if pushNotificationRegistrationResult.error != nil {
-                registrationCompletion(result: RegisterPushNotificationTokenResult.Error(pushNotificationRegistrationResult.error!))
+                registrationCompletion(RegisterPushNotificationTokenResult.error(pushNotificationRegistrationResult.error!))
             } else if pushNotificationRegistrationResult.value != nil {
                 
                 // Verify whether user has previously set up notification preferences
@@ -53,11 +53,11 @@ public class NotificationKitController {
                             self.setNotificationPreferenceDefaults(registrationCompletion)
                         } else {
                             // actually had an error, return that
-                            registrationCompletion(result: RegisterPushNotificationTokenResult.Error(notificationPreferencesResult.error!))
+                            registrationCompletion(RegisterPushNotificationTokenResult.error(notificationPreferencesResult.error!))
                         }
                     } else {
                         // There's no need to look at the data at this point, if it's able to fetch the data then we don't need to setup the notification preferences, the only way a value gets there is if the values get setup
-                        registrationCompletion(result: RegisterPushNotificationTokenResult.Success())
+                        registrationCompletion(RegisterPushNotificationTokenResult.success())
                     }
                 })
             }
@@ -65,19 +65,19 @@ public class NotificationKitController {
     }
     
     // This is super ugly, change with Swift 2.0 - guard
-    private func setNotificationPreferenceDefaults(registrationCompletion: RegisterPushNotificationTokenCompletion) {
+    fileprivate func setNotificationPreferenceDefaults(_ registrationCompletion: @escaping RegisterPushNotificationTokenCompletion) {
         // After we've successfully registered for push notifications set all of the preferences to IMMEDIATELY tostart sending push notifications
         self.remoteService.getUserCommunicationChannels({ (getChannelsResult) -> () in
             // result.value?.content
             if getChannelsResult.error != nil {
-                registrationCompletion(result: RegisterPushNotificationTokenResult.Error(getChannelsResult.error!))
+                registrationCompletion(RegisterPushNotificationTokenResult.error(getChannelsResult.error!))
             } else if getChannelsResult.value != nil {
                 if let channels: [CommunicationChannel] = getChannelsResult.value {
                     // Find push notification channel id
                     var channelID = ""
                     
                     for channel in channels {
-                        if channel.type == CommunicationChannelType.Push {
+                        if channel.type == .push {
                             channelID = channel.id
                             break
                         }
@@ -86,7 +86,7 @@ public class NotificationKitController {
                     if channelID != "" {
                         self.remoteService.getNotificationPreferences(channelID, completion: { (getNotificationResult) -> () in
                             if getNotificationResult.error != nil {
-                                registrationCompletion(result: RegisterPushNotificationTokenResult.Error(getNotificationResult.error!))
+                                registrationCompletion(RegisterPushNotificationTokenResult.error(getNotificationResult.error!))
                             } else if (getNotificationResult.value != nil) {
                                 if let preferences: [NotificationPreference] = getNotificationResult.value {
                                     // We don't use/care about some preferences, strip those out so we're not setting values for ones that we don't let them change through the application
@@ -106,15 +106,15 @@ public class NotificationKitController {
                                     
                                     self.remoteService.setNotificationPreferences(channelID, preferences: actualPreferences, completion: { (setPreferencesResult) -> () in
                                         if setPreferencesResult.error != nil {
-                                            registrationCompletion(result: RegisterPushNotificationTokenResult.Error(setPreferencesResult.error!))
+                                            registrationCompletion(.error(setPreferencesResult.error!))
                                         } else if (setPreferencesResult.value != nil) {
                                             // need to set the key/value data indicating that this process has happened so that any settings updated by the user after this or on different devices doesn't get overwritten
                                             self.remoteService.updateNotificationPreferencesSetup({ (updateNotificationPreferencesSetupResult) -> () in
                                                 if updateNotificationPreferencesSetupResult.error != nil {
                                                     // error
-                                                    registrationCompletion(result: RegisterPushNotificationTokenResult.Error(updateNotificationPreferencesSetupResult.error!))
+                                                    registrationCompletion(.error(updateNotificationPreferencesSetupResult.error!))
                                                 } else {
-                                                    registrationCompletion(result: RegisterPushNotificationTokenResult.Success())
+                                                    registrationCompletion(.success())
                                                 }
                                             })
                                         }
@@ -123,7 +123,7 @@ public class NotificationKitController {
                                     
                                     let localizedDescription = NSLocalizedString("Unable to parse JSON for communication channels", tableName: "Localizable", bundle: .notificationKit(), comment: "Error message when parsing communication preferences")
                                     let error = NSError.simpleError(localizedDescription, code: 90210)
-                                    registrationCompletion(result: RegisterPushNotificationTokenResult.Error(error))
+                                    registrationCompletion(.error(error))
                                 }
                             }
                         })
@@ -131,86 +131,86 @@ public class NotificationKitController {
                         
                         let localizedDescription = NSLocalizedString("No push channel found", tableName: "Localizable", bundle: .notificationKit(), comment: "Error when push channel cannot be found in notificaitons")
                         let error = NSError.simpleError(localizedDescription, code: 90211)
-                        registrationCompletion(result: RegisterPushNotificationTokenResult.Error(error))
+                        registrationCompletion(.error(error))
                     }
                 } else {
                     let localizedDescription = NSLocalizedString("Unable to parse JSON for notification preferences", tableName: "Localizable", bundle: .notificationKit(), comment: "Error message when parsing notification preferences")
                     let error = NSError.simpleError(localizedDescription, code: 90212)
-                    registrationCompletion(result: RegisterPushNotificationTokenResult.Error(error))
+                    registrationCompletion(.error(error))
                 }
             }
         })
 
     }
     
-    public typealias CommunicationChannelsCompletion = (result: Result<[CommunicationChannel], NSError>) -> ()
-    public func getCommunicationChannels(completion: CommunicationChannelsCompletion) {
+    public typealias CommunicationChannelsCompletion = (_ result: Result<[CommunicationChannel], NSError>) -> ()
+    open func getCommunicationChannels(_ completion: @escaping CommunicationChannelsCompletion) {
         self.remoteService.getUserCommunicationChannels { (result) -> () in
-            completion(result: result)
+            completion(result)
         }
     }
     
-    public typealias NotificationPreferencesCompletion = (result: Result<[NotificationPreference], NSError>) -> ()
-    public func getNotificationPreferences(channel: CommunicationChannel, completion: NotificationPreferencesCompletion) {
+    public typealias NotificationPreferencesCompletion = (_ result: Result<[NotificationPreference], NSError>) -> ()
+    open func getNotificationPreferences(_ channel: CommunicationChannel, completion: @escaping NotificationPreferencesCompletion) {
         self.remoteService.getNotificationPreferences(channel.id, completion: { (result) -> () in
-            completion(result: result)
+            completion(result)
         })
     }
     
-    public typealias SetNotificationPreferencesCompletion = (result: Result<Bool, NSError>) -> ()
-    public func setNotificationPreferences(channel: CommunicationChannel, preferences: [NotificationPreference], completion: SetNotificationPreferencesCompletion) {
+    public typealias SetNotificationPreferencesCompletion = (_ result: Result<Bool, NSError>) -> ()
+    open func setNotificationPreferences(_ channel: CommunicationChannel, preferences: [NotificationPreference], completion: @escaping SetNotificationPreferencesCompletion) {
         self.remoteService.setNotificationPreferences(channel.id, preferences: preferences) { (result) -> () in
-            completion(result: result)
+            completion(result)
         }
     }
 
 
     // MARK: Pre-authorization for Push Notifications
-    public static func registerForPushNotificationsIfAppropriate(controller: UIViewController) {
-        if PushPreAuthStatus.currentPushPreAuthStatus() == .NeverShown && !UIApplication.sharedApplication().isRegisteredForRemoteNotifications() {
+    open static func registerForPushNotificationsIfAppropriate(_ controller: UIViewController) {
+        if PushPreAuthStatus.currentPushPreAuthStatus() == .neverShown && !UIApplication.shared.isRegisteredForRemoteNotifications {
             showPreauthorizationAlert(controller)
-        } else if PushPreAuthStatus.currentPushPreAuthStatus() != .ShownAndDeclined {
+        } else if PushPreAuthStatus.currentPushPreAuthStatus() != .shownAndDeclined {
             registerForRemoteNotifications()
         }
     }
     
-    public typealias ShowPreauthorizationAlertCompletion = (result: Bool) -> ()
-    public static func showPreauthorizationAlert(controller: UIViewController, completion: ShowPreauthorizationAlertCompletion? = nil) {
-        let yesActionTitle = NSLocalizedString("Yes", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Title for yes button for push notification pre-authorization alert")
-        let yesAction = UIAlertAction(title: yesActionTitle, style: UIAlertActionStyle.Default) { (alertAction) -> Void in
-            PushPreAuthStatus.setCurrentPushPreAuthStatus(PushPreAuthStatus.ShownAndAccepted)
+    public typealias ShowPreauthorizationAlertCompletion = (_ result: Bool) -> ()
+    open static func showPreauthorizationAlert(_ controller: UIViewController, completion: ShowPreauthorizationAlertCompletion? = nil) {
+        let yesActionTitle = NSLocalizedString("Yes", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Title for yes button for push notification pre-authorization alert")
+        let yesAction = UIAlertAction(title: yesActionTitle, style: UIAlertActionStyle.default) { (alertAction) -> Void in
+            PushPreAuthStatus.setCurrentPushPreAuthStatus(PushPreAuthStatus.shownAndAccepted)
             if completion != nil {
-                completion!(result: true)
+                completion!(true)
             }
             self.registerForRemoteNotifications()
         }
         
-        let noActionTitle = NSLocalizedString("No", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Title for no button for push notification pre-authorization alert")
-        let noAction = UIAlertAction(title: noActionTitle, style: .Cancel) { (alertAction) -> Void in
-            PushPreAuthStatus.setCurrentPushPreAuthStatus(PushPreAuthStatus.ShownAndDeclined)
+        let noActionTitle = NSLocalizedString("No", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Title for no button for push notification pre-authorization alert")
+        let noAction = UIAlertAction(title: noActionTitle, style: .cancel) { (alertAction) -> Void in
+            PushPreAuthStatus.setCurrentPushPreAuthStatus(PushPreAuthStatus.shownAndDeclined)
             if completion != nil {
-                completion!(result: false)
+                completion!(false)
             }
         }
         
-        let alertTitle = NSLocalizedString("Allow Push Notifications?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Title for push notification pre-authorization alert")
-        let alertMessage = NSLocalizedString("Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Message for push notification pre-authorization alert")
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        let alertTitle = NSLocalizedString("Allow Push Notifications?", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Title for push notification pre-authorization alert")
+        let alertMessage = NSLocalizedString("Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.NotificationKit")!, value: "", comment: "Message for push notification pre-authorization alert")
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(noAction)
         alert.addAction(yesAction)
         
-        controller.presentViewController(alert, animated: true, completion: nil)
+        controller.present(alert, animated: true, completion: nil)
     }
     
     // MARK: Register for push
-    public static func registerForRemoteNotifications() {
+    open static func registerForRemoteNotifications() {
         let categories = Set<UIUserNotificationCategory>()
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: categories)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: categories)
+        UIApplication.shared.registerUserNotificationSettings(settings)
     }
     
     // MARK: Unregister for push
-    public static func unregisterForRemoteNotifications() {
-        UIApplication.sharedApplication().unregisterForRemoteNotifications()
+    open static func unregisterForRemoteNotifications() {
+        UIApplication.shared.unregisterForRemoteNotifications()
     }
 }

@@ -36,19 +36,19 @@ class CanvasTimedQuizSubmissionService: TimedQuizSubmissionService {
         self.quizID = quizID
     }
     
-    func getTimeRemaining(completed: TimeRemainingResult -> ()) {
-        makeRequest(requestToGetTimeRemaining()) { pageResult in
+    func getTimeRemaining(_ completed: @escaping (TimeRemainingResult) -> ()) {
+        let _ = makeRequest(requestToGetTimeRemaining()) { pageResult in
             completed(pageResult.map { page in
                 return page.content
             })
         }
     }
     
-    private func requestToGetTimeRemaining() -> Request<Int> {
+    fileprivate func requestToGetTimeRemaining() -> Request<Int> {
         let path = context.apiPath/"quizzes"/quizID/"submissions"/submission.id/"time"
         
         return Request(auth: auth, method: .GET, path: path, parameters: nil) { jsonValue in
-            let object = jsonValue as? [String: AnyObject]
+            let object = jsonValue as? [String: Any]
             if let timeLeft = object?["time_left"] as? Int {
                 return Result(value: timeLeft)
             }

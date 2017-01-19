@@ -28,15 +28,15 @@ class GradingPeriodDetailsTests: XCTestCase {
         let gradingPeriod = GradingPeriod.build(context, id: "1", courseID: "1")
         try! context.save()
         let observer = try! GradingPeriod.observer(session, id: "1", courseID: "1")
-        let expectation = expectationWithDescription("it should observe changes")
+        let expectation = self.expectation(description: "it should observe changes")
 
-        observer.signal.observeNext { change, gradingPeriod in
-            if let title = gradingPeriod?.title where title == "observer" && change == .Update {
+        observer.signal.observeValues { change, gradingPeriod in
+            if let title = gradingPeriod?.title, title == "observer" && change == .update {
                 expectation.fulfill()
             }
         }
 
         gradingPeriod.title = "observer"
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
     }
 }

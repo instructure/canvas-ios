@@ -245,10 +245,10 @@ Du må først fullføre:";
 /* Archive selected messages button */
 "Archive" = "Arkiv";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Knapp, arkivere valgte meldinger";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Arkivere alle valgte meldinger";
 
 /* No comment provided by engineer. */
@@ -382,10 +382,10 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* (No Commment) */
 "Completed" = "Fullført";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Knapp, skriv melding";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Skriv en melding";
 
 /* Title for Conferences tab */
@@ -407,10 +407,10 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 "Couldn't find recipients" = "Fant ikke mottakere";
 
 /* Title for Course Syllabus view controller */
-"Course Syllabus" = "Kurspensum";
+"Course Syllabus" = "Emneoversikt";
 
 /* (No Commment) */
-"Courses" = "Kurs";
+"Courses" = "Emne";
 
 /* cancel folder creation */
 "Create Folder" = "Lag mappe";
@@ -503,7 +503,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 "Edit" = "Rediger";
 
 /* (No Commment) */
-"Edit Course List" = "Rediger kursliste";
+"Edit Course List" = "Rediger emneliste";
 
 /* (No Commment) */
 "Edit Group List" = "Rediger gruppeliste";
@@ -1139,7 +1139,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 "Switches to text comment mode" = "Bytter til tekstkommentarmodus";
 
 /* Title for Syllabus screen */
-"Syllabus" = "Pensum";
+"Syllabus" = "Emneoversikt";
 
 /* (No Commment) */
 "TA" = "TA";
@@ -1386,7 +1386,7 @@ Feil: %@";
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Du har ikke SpeedGrader til iPad. Du kan laste den ned gratis i App-Store.";
 
 /* (No Commment) */
-"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Du har ikke tilgang til dette innholdet. Kurset eller gruppen har kanskje ikke startet, eller kanskje det er avsluttet.";
+"You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Du har ikke tilgang til dette innholdet. Emnet eller gruppen har kanskje ikke startet, eller kanskje det er avsluttet.";
 
 /* Error message */
 "You do not have permission to delete this reply" = "Du har ikke tillatelse til å slette dette svaret";

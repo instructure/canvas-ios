@@ -1,0 +1,39 @@
+{
+        "asset_string": "wiki_page_1664923",
+        "context_module": {
+            "cloned_item_id": null,
+            "completion_requirements": [],
+            "context_id": 710747,
+            "context_type": "Course",
+            "created_at": "2013-03-25T19:49:59Z",
+            "deleted_at": null,
+            "downstream_modules": null,
+            "end_at": "2013-07-22T21:22:06Z",
+            "id": 843260,
+            "migration_id": null,
+            "name": "Unit 4",
+            "position": 4,
+            "prerequisites": [
+                              {
+                              "id": 843255,
+                              "type": "context_module",
+                              "name": "Unit 1"
+                              },
+                              {
+                              "id": 843258,
+                              "type": "context_module",
+                              "name": "Unit 2"
+                              },
+                              {
+                              "id": 843259,
+                              "type": "context_module",
+                              "name": "Unit 3"
+                              }
+                              ],
+            "require_sequential_progress": true,
+            "start_at": "2013-07-22T21:22:06Z",
+            "unlock_at": "2013-07-22T21:22:06Z",
+            "updated_at": "2013-07-22T21:22:06Z",
+            "workflow_state": "active"
+        }
+}

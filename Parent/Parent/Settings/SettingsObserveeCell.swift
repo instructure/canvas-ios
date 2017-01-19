@@ -23,10 +23,10 @@ class SettingsObserveeCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
 
-    var highlightColor = UIColor.whiteColor()
+    var highlightColor = UIColor.white
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .Default, reuseIdentifier: reuseIdentifier)
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
 
         stylize()
     }
@@ -41,29 +41,29 @@ class SettingsObserveeCell: UITableViewCell {
         stylize()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        self.backgroundColor = selected ? highlightColor : UIColor.whiteColor()
+        self.backgroundColor = selected ? highlightColor : UIColor.white
     }
 
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
 
-        self.backgroundColor = highlighted ? highlightColor : UIColor.whiteColor()
+        self.backgroundColor = highlighted ? highlightColor : UIColor.white
     }
 
     func stylize() {
-        selectionStyle = .None
+        selectionStyle = .none
         
         guard let imageView = avatarImageView else {
             return
         }
 
-        imageView.layer.cornerRadius = CGRectGetHeight(imageView.frame)/2
+        imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.clipsToBounds = true
         
-        accessoryType = .DisclosureIndicator
+        accessoryType = .disclosureIndicator
     }
 
 }

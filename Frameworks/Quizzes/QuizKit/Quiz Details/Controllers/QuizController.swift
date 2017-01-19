@@ -24,9 +24,9 @@ import Result
 class QuizController {
     let service: QuizService
     
-    private (set) var quiz: Quiz?
+    fileprivate (set) var quiz: Quiz?
     
-    var quizUpdated: QuizResult->() = {_ in } {
+    var quizUpdated: (QuizResult)->() = {_ in } {
         didSet {
             if let quiz = self.quiz {
                 quizUpdated(Result(value: Page(content: quiz)))
@@ -48,31 +48,31 @@ class QuizController {
         }
     }
     
-    func urlForViewingResultsForAttempt(attempt: Int) -> NSURL? {
-        var url: NSURL? = nil
+    func urlForViewingResultsForAttempt(_ attempt: Int) -> URL? {
+        var url: URL? = nil
         switch quiz!.hideResults {
-        case .Never:
+        case .never:
             url = resultURLForAttempt(attempt)
-        case .Always:
+        case .always:
             url = nil
-        case .UntilAfterLastAttempt:
+        case .untilAfterLastAttempt:
             switch quiz!.attemptLimit {
-            case .Count(let attemptLimit):
+            case .count(let attemptLimit):
                 if attempt >= attemptLimit {
                     url = resultURLForAttempt(attempt)
                 } else {
                     url = nil
                 }
-            case .Unlimited:
+            case .unlimited:
                 break
             }
         }
         return url
     }
     
-    private func resultURLForAttempt(attempt: Int) -> NSURL? {
+    fileprivate func resultURLForAttempt(_ attempt: Int) -> URL? {
         // URLByAppendingPathComponent encoded the version query param wrong so...
-        let url = NSURL(string: service.baseURL.absoluteString! + "/" + service.context.htmlPath + "/quizzes/\(service.quizID)/history?attempt=\(attempt)")
+        let url = URL(string: service.baseURL.absoluteString + "/" + service.context.htmlPath + "/quizzes/\(service.quizID)/history?attempt=\(attempt)")
         return url
     }
 }

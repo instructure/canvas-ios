@@ -20,7 +20,6 @@
 #import "CBIFileViewModel.h"
 @import CanvasKit;
 #import "Router.h"
-#import "CBISplitViewController.h"
 #import "EXTScope.h"
 
 #import "ReceivedFilesViewController.h"
@@ -173,8 +172,10 @@
 - (void)tableViewController:(MLVCTableViewController *)tableViewController commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableViewController.viewModel.collectionController removeObjectAtIndexPath:indexPath];
-    if (self == ((MLVCViewController *)tableViewController.cbi_splitViewController.detail).viewModel) {
-        tableViewController.cbi_splitViewController.detail = nil;
+    if (self == ((MLVCViewController *)[tableViewController.splitViewController.viewControllers objectAtIndex:1]).viewModel) {
+        UINavigationController *emptyNav = [[UINavigationController alloc] initWithRootViewController:[[UIViewController alloc] init]];
+        emptyNav.view.backgroundColor = [UIColor whiteColor];
+        tableViewController.splitViewController.viewControllers = @[tableViewController.splitViewController.viewControllers[0], emptyNav];
     }
     
     RACSignal *deleteSignal = [[CKIClient currentClient] deleteFolder:self.model];

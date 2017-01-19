@@ -33,13 +33,13 @@ import Marshal
 import SoLazy
 
 extension RubricAssessment {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let assessmentID: String = try json.stringID("id")
         let submissionID: String = try json.stringID("submissionID")
         return NSPredicate(format: "%K == %@ && %K == %@", "id", assessmentID, "submission.id", submissionID)
     }
     
-    public func updateValues(assessmentID: String, submission: Submission, json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ assessmentID: String, submission: Submission, json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id = assessmentID
         comments = try json <| "comments"
         points = try json <| "points"

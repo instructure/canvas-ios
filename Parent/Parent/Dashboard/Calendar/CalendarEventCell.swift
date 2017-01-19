@@ -28,32 +28,32 @@ class CalendarEventCell: UITableViewCell {
     @IBOutlet weak var courseNameLabel: UILabel!
     @IBOutlet weak var statusLabel: TokenLabelView!
 
-    var highlightColor = UIColor.whiteColor()
+    var highlightColor = UIColor.white
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        selectionStyle = .None
+        selectionStyle = .none
         typeImageView.clipsToBounds = true
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        typeImageView.layer.cornerRadius = CGRectGetHeight(typeImageView.frame)/2
-        statusLabel.layer.cornerRadius = CGRectGetHeight(statusLabel.frame)/2
+        typeImageView.layer.cornerRadius = typeImageView.frame.height/2
+        statusLabel.layer.cornerRadius = statusLabel.frame.height/2
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        contentView.backgroundColor = selected ? highlightColor : UIColor.whiteColor()
+        contentView.backgroundColor = selected ? highlightColor : UIColor.white
     }
 
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
 
-        contentView.backgroundColor = highlighted ? highlightColor : UIColor.whiteColor()
+        contentView.backgroundColor = highlighted ? highlightColor : UIColor.white
     }
     
 }

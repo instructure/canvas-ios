@@ -245,10 +245,10 @@ You must first complete:";
 /* Archive selected messages button */
 "Archive" = "Archive";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Archive Selected messages button";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Archive all selected messages";
 
 /* No comment provided by engineer. */
@@ -382,10 +382,10 @@ If you believe that a quiz contains unsupported content, please take the quiz on
 /* (No Commment) */
 "Completed" = "Completed";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Compose message button";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Compose a message";
 
 /* Title for Conferences tab */

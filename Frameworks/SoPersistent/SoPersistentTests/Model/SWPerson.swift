@@ -43,12 +43,12 @@ import Marshal
 
 extension SWPerson: SynchronizedModel {
 
-    static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let name: String = try json <| "name"
         return NSPredicate(format: "%K == %@", "name", name)
     }
 
-    func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         name = try json <| "name"
         height = try json <| "height"
     }
@@ -58,11 +58,10 @@ extension SWPerson: SynchronizedModel {
 // MARK: SWPerson+Collections
 extension SWPerson {
     static func collection<T>(inContext context: NSManagedObjectContext) throws -> FetchedCollection<T> {
-        let frc = SWPerson.fetchedResults(nil, sortDescriptors: ["name".ascending], sectionNameKeypath: nil, inContext: context)
-        return try FetchedCollection(frc: frc)
+        return try FetchedCollection(frc: context.fetchedResults(nil, sortDescriptors: ["name".ascending]))
     }
 
-    static func fetchedResults(inContext context: NSManagedObjectContext) throws -> NSFetchedResultsController {
-        return SWPerson.fetchedResults(nil, sortDescriptors: [], sectionNameKeypath: nil, inContext: context)
+    static func fetchedResults(inContext context: NSManagedObjectContext) throws -> NSFetchedResultsController<SWPerson> {
+        return context.fetchedResults(nil, sortDescriptors: [])
     }
 }

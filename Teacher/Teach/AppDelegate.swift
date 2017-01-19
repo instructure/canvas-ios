@@ -27,13 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
     var navigator: Navigator?
 
-    func handleError(error: NSError) {
+    func handleError(_ error: NSError) {
         if let vc = window?.rootViewController  {
             error.presentAlertFromViewController(vc)
         }
     }
 
-    func didLogin(session: Session) {
+    func didLogin(_ session: Session) {
         do {
             navigator = try Navigator(session: session)
             window?.rootViewController = navigator?.rootViewController
@@ -42,12 +42,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
     }
 
-    func didLogout(domainPicker: UIViewController) {
+    func didLogout(_ domainPicker: UIViewController) {
         window?.rootViewController = domainPicker
     }
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        window = UIWindow(frame: UIScreen.main.bounds)
         
         window?.rootViewController = UINavigationController(rootViewController: domainPicker())
         window?.makeKeyAndVisible()
@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         domainPicker.allowMultipleUsers = true
         domainPicker.useMobileVerify = true
         domainPicker.pickedSessionAction = { [weak self] session in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self?.didLogin(session)
             }
         }
@@ -76,7 +76,7 @@ let TeachBranding = Brand(
     tintColor:UIColor(hue: 350/360.0, saturation: 1.0, brightness: 0.76, alpha: 0),
     secondaryTintColor: UIColor(hue: 205/360.0, saturation: 0.92, brightness: 0.82, alpha: 1.0),
     navBarTintColor: UIColor(hue: 229/360.0, saturation: 1.0, brightness: 0.24, alpha: 1.0),
-    navForegroundColor: .whiteColor(),
-    tabBarTintColor: .whiteColor(),
+    navForegroundColor: .white,
+    tabBarTintColor: .white,
     tabsForegroundColor: UIColor(hue: 229/360.0, saturation: 1.0, brightness: 0.24, alpha: 1.0),
     logo: UIImage(named: "logo")!)

@@ -37,14 +37,16 @@
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "لم يتم العثور على أي قنوات اتصال";
 
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "لم يتم العثور على قناة دفع";
+
 /* Title for the notification preferences page */
 "Notification Preferences" = "تفضيلات الإخطار";
 
-/* Action title for being unable to update a push notification preference
-   Alert action button text when unable to load communication channels
-   Alert action button text when unable to load notification preferences
-   Alert action button text when unable to parse JSON for communication channels
-   Alert action button text when unable to parse JSON for notification preferences */
+/* OK Button Title */
+"OK" = "موافق";
+
+/* (No Commment) */
 "Ok" = "موافق";
 
 /* Description for Push Notification channel */
@@ -70,6 +72,12 @@
 
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "يتعذر  تحميل جميع تفضيلات الإخطار في هذه الآونة. الخطأ: (result.error?.localizedDescription)";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "تعذر تحليل JSON لقنوات الاتصالات";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "تعذر تحليل JSON لتفضيلات الإشعارات";
 
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "لم نتمكن من تحديث هذه القيمة مع الخادم";

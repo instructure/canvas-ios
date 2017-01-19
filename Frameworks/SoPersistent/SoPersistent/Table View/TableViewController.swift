@@ -17,24 +17,24 @@
     
 
 import UIKit
-import ReactiveCocoa
+import ReactiveSwift
 import CoreData
 import SoLazy
 import Result
 
 public protocol TableViewCellViewModel {
-    static func tableViewDidLoad(tableView: UITableView)
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell
+    static func tableViewDidLoad(_ tableView: UITableView)
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
 }
 
-public class TableViewController: UITableViewController {
-    public static var defaultErrorHandler: (UIViewController, NSError) -> () = { viewController, error in
+open class TableViewController: UITableViewController {
+    open static var defaultErrorHandler: (UIViewController, NSError) -> () = { viewController, error in
         error.presentAlertFromViewController(viewController)
     }
 
-    public var dataSource: TableViewDataSource? {
+    open var dataSource: TableViewDataSource? {
         didSet {
-            if isViewLoaded() {
+            if isViewLoaded {
                 dataSource?.viewDidLoad(self)
             }
 
@@ -44,7 +44,7 @@ public class TableViewController: UITableViewController {
         }
     }
 
-    public var refresher: Refresher? {
+    open var refresher: Refresher? {
         didSet {
             if oldValue !== refresher {
                 oldValue?.refreshControl.endRefreshing()
@@ -54,24 +54,30 @@ public class TableViewController: UITableViewController {
             }
         }
     }
+    
+    private var refreshDisposable: Disposable? = nil
 
-    public var didSelectItemAtIndexPath: (NSIndexPath->())? = nil
+    open var didSelectItemAtIndexPath: ((IndexPath)->())? = nil
 
-    public var emptyView: UIView? {
+    open var emptyView: UIView? {
         didSet {
             self.updateEmptyView()
         }
     }
 
     public init() {
-        super.init(style: .Plain)
+        super.init(style: .plain)
+    }
+    
+    deinit {
+        refreshDisposable?.dispose()
     }
 
     public override init(style: UITableViewStyle) {
         super.init(style: style)
     }
 
-    public init(dataSource: TableViewDataSource, refresher: Refresher? = nil, style: UITableViewStyle = .Plain) {
+    public init(dataSource: TableViewDataSource, refresher: Refresher? = nil, style: UITableViewStyle = .plain) {
         self.dataSource = dataSource
         self.refresher = refresher
         super.init(style: style)
@@ -82,11 +88,15 @@ public class TableViewController: UITableViewController {
         super.init(coder: aDecoder)
     }
 
-    private func setupRefreshingObservation() {
-        refresher?.refreshingBegan.observeNext { [weak self] in
+    fileprivate func setupRefreshingObservation() {
+        refreshDisposable?.dispose()
+        let composite = CompositeDisposable()
+        refreshDisposable = composite
+        
+        composite += refresher?.refreshingBegan.observeValues { [weak self] in
             self?.updateEmptyView()
         }
-        refresher?.refreshingCompleted.observeNext { [weak self] error in
+        composite += refresher?.refreshingCompleted.observeValues { [weak self] error in
             self?.updateEmptyView()
             if let error = error {
                 self?.handleError(error)
@@ -94,25 +104,25 @@ public class TableViewController: UITableViewController {
         }
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         dataSource?.viewDidLoad(self)
         refresher?.makeRefreshable(self)
         updateEmptyView()
     }
 
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refresher?.refresh(false)
     }
 
-    public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelectItemAtIndexPath?(indexPath)
     }
 
     // MARK: Empty View Handling
-    private func updateEmptyView() {
-        guard let emptyView = emptyView, dataSource = dataSource else {
+    fileprivate func updateEmptyView() {
+        guard let emptyView = emptyView, let dataSource = dataSource else {
             return
         }
 
@@ -132,7 +142,7 @@ public class TableViewController: UITableViewController {
 
      Override if you wish to handle the error yourself
      */
-    public func handleError(error: NSError) {
+    open func handleError(_ error: NSError) {
         TableViewController.defaultErrorHandler(self, error)
     }
 }

@@ -20,19 +20,19 @@ import UIKit
 import CalendarKit
 
 public protocol CalendarWeekPageViewControllerDelegate: class {
-    func weekPageViewController(calendarWeekPageViewController: CalendarWeekPageViewController, daySelected day: NSDate)
-    func weekPageViewController(calendarWeekPageViewController: CalendarWeekPageViewController, willTransitionToDay day: NSDate)
-    func weekPageViewController(calendarWeekPageViewController: CalendarWeekPageViewController, didFinishAnimating finished: Bool, toDay day: NSDate, transitionCompleted completed: Bool)
+    func weekPageViewController(_ calendarWeekPageViewController: CalendarWeekPageViewController, daySelected day: Date)
+    func weekPageViewController(_ calendarWeekPageViewController: CalendarWeekPageViewController, willTransitionToDay day: Date)
+    func weekPageViewController(_ calendarWeekPageViewController: CalendarWeekPageViewController, didFinishAnimating finished: Bool, toDay day: Date, transitionCompleted completed: Bool)
 }
 
-public class CalendarWeekPageViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, CalendarWeekDayViewControllerDelegate {
+open class CalendarWeekPageViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, CalendarWeekDayViewControllerDelegate {
 
     // ---------------------------------------------
     // MARK: - Private Variables
     // ---------------------------------------------
-    public var calendar: NSCalendar
-    public var day: NSDate
-    public weak var delegate: CalendarWeekPageViewControllerDelegate?
+    open var calendar: Calendar
+    open var day: Date
+    open weak var delegate: CalendarWeekPageViewControllerDelegate?
     
     // Page View Controller
     var pageViewController : UIPageViewController!
@@ -41,12 +41,12 @@ public class CalendarWeekPageViewController: UIViewController, UIPageViewControl
     var calendarEvents = [CalendarEvent]()
 
     // Temp Variables
-    var transitionDay: NSDate?
+    var transitionDay: Date?
     
     // ---------------------------------------------
     // MARK: - Lifecycle
     // ---------------------------------------------
-    public init(calendar: NSCalendar, day: NSDate, delegate: CalendarWeekPageViewControllerDelegate?) {
+    public init(calendar: Calendar, day: Date, delegate: CalendarWeekPageViewControllerDelegate?) {
         self.calendar = calendar
         self.day = day
         self.delegate = delegate
@@ -58,24 +58,24 @@ public class CalendarWeekPageViewController: UIViewController, UIPageViewControl
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
-        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+        pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         pageViewController.dataSource = self
         pageViewController.delegate = self
         
         let dayViewController = viewControllerForDay(day)
         let viewControllers = [dayViewController]
-        pageViewController.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: nil)
-        pageViewController.view.frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)
+        pageViewController.setViewControllers(viewControllers, direction: .forward, animated: false, completion: nil)
+        pageViewController.view.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
-        pageViewController.didMoveToParentViewController(self)
+        pageViewController.didMove(toParentViewController: self)
     }
     
-    public override func didReceiveMemoryWarning() {
+    open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
@@ -90,26 +90,26 @@ public class CalendarWeekPageViewController: UIViewController, UIPageViewControl
         transitionToDayOffset(-numberOfDaysInWeek())
     }
     
-    func transitionToDayOffset(daysOffset: Int) {
+    func transitionToDayOffset(_ daysOffset: Int) {
         transitionToDay(dateMovedByDays(daysOffset))
     }
     
-    private func transitionToDay(newDay: NSDate) {
+    fileprivate func transitionToDay(_ newDay: Date) {
         let compareDates = newDay.compare(day)
-        if compareDates == .OrderedSame {
+        if compareDates == .orderedSame {
             // Dates are equal, no change is needed
             return
         }
         
-        var transitionDirection: UIPageViewControllerNavigationDirection = .Forward
-        if compareDates == .OrderedAscending {
-            transitionDirection = .Reverse
+        var transitionDirection: UIPageViewControllerNavigationDirection = .forward
+        if compareDates == .orderedAscending {
+            transitionDirection = .reverse
         } else {
-            transitionDirection = .Forward
+            transitionDirection = .forward
         }
         
         day = newDay
-        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             if let strongSelf = self {
                 let dayViewController = strongSelf.viewControllerForDay(strongSelf.day)
                 strongSelf.pageViewController.setViewControllers([dayViewController], direction: transitionDirection, animated: true, completion:nil)
@@ -121,13 +121,13 @@ public class CalendarWeekPageViewController: UIViewController, UIPageViewControl
     // ---------------------------------------------
     // MARK: - UIPageViewControllerDataSource
     // ---------------------------------------------
-    public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    open func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let prevDay = dateMovedByDays(-numberOfDaysInWeek())
         let dayViewController = viewControllerForDay(prevDay)
         return dayViewController
     }
     
-    public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    open func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let nextDay = dateMovedByDays(numberOfDaysInWeek())
         let dayViewController = viewControllerForDay(nextDay)
         return dayViewController
@@ -136,15 +136,15 @@ public class CalendarWeekPageViewController: UIViewController, UIPageViewControl
     // ---------------------------------------------
     // MARK: - UIPageViewControllerDelegate
     // ---------------------------------------------
-    public func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+    open func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         if let nextVisibleDayViewController = pendingViewControllers.first as? CalendarWeekDayViewController {
             let compareDates = nextVisibleDayViewController.day.compare(day)
-            if compareDates == .OrderedSame {
+            if compareDates == .orderedSame {
                 // Dates are equal, no change is needed
                 return
             }
             
-            if compareDates == .OrderedAscending {
+            if compareDates == .orderedAscending {
                 transitionDay = dateMovedByDays(-numberOfDaysInWeek())
             } else {
                 transitionDay = dateMovedByDays(numberOfDaysInWeek())
@@ -158,7 +158,7 @@ public class CalendarWeekPageViewController: UIViewController, UIPageViewControl
         }
     }
     
-    public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    open func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if finished && completed {
             day = transitionDay!
         }
@@ -172,21 +172,21 @@ public class CalendarWeekPageViewController: UIViewController, UIPageViewControl
     // ---------------------------------------------
     // MARK: - Data Methods
     // ---------------------------------------------
-    func viewControllerForDay(day: NSDate) -> CalendarWeekDayViewController {
+    func viewControllerForDay(_ day: Date) -> CalendarWeekDayViewController {
         return CalendarWeekDayViewController(calendar: calendar, day: day, delegate: self)
     }
     
-    func dateMovedByDays(daysToMove: Int) -> NSDate {
-        let components = NSDateComponents()
+    func dateMovedByDays(_ daysToMove: Int) -> Date {
+        var components = DateComponents()
         components.day = daysToMove
-        return calendar.dateByAddingComponents(components, toDate:day, options: [])!
+        return (calendar as NSCalendar).date(byAdding: components, to:day, options: [])!
     }
     
     func numberOfDaysInWeek() -> Int {
-        return calendar.maximumRangeOfUnit(.Weekday).length
+        return (calendar as NSCalendar).maximumRange(of: .weekday).length
     }
     
-    func setDay(day: NSDate, animated: Bool) {
+    func setDay(_ day: Date, animated: Bool) {
         if let currentWeekViewController = pageViewController.viewControllers?.first as? CalendarWeekDayViewController {
             if !currentWeekViewController.dateIsInWeek(day) {
                 transitionToDay(day)
@@ -198,7 +198,7 @@ public class CalendarWeekPageViewController: UIViewController, UIPageViewControl
         }
     }
     
-    func weekdayViewController(weekdayViewController: CalendarWeekDayViewController, selectedDate day: NSDate) {
+    func weekdayViewController(_ weekdayViewController: CalendarWeekDayViewController, selectedDate day: Date) {
         setDay(day, animated: true)
         if let delegate = delegate {
             delegate.weekPageViewController(self, daySelected: day)

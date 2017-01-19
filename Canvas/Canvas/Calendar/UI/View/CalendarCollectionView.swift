@@ -19,12 +19,12 @@
 import UIKit
 
 protocol CalendarCollectionViewDelegate: UICollectionViewDelegate {
-    func collectionViewWillLayoutSubview(calendarCollectionView: CalendarCollectionView)
+    func collectionViewWillLayoutSubview(_ calendarCollectionView: CalendarCollectionView)
 }
 
 class CalendarCollectionView: UICollectionView {
     var calendarDelegate: CalendarCollectionViewDelegate?
-    var selfBackgroundColor: UIColor = UIColor.whiteColor()
+    var selfBackgroundColor: UIColor = .white
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)

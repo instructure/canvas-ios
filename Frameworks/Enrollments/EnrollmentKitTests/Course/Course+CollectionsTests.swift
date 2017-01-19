@@ -28,7 +28,7 @@ class CourseCollectionsTests: UnitTestCase {
     let session = Session.nas
     var context: NSManagedObjectContext!
 
-    lazy var studentContext: String->NSManagedObjectContext = { studentID in
+    lazy var studentContext: (String)->NSManagedObjectContext = { studentID in
         var context: NSManagedObjectContext!
         attempt {
             context = try self.session.enrollmentManagedObjectContext(studentID)
@@ -134,11 +134,14 @@ class CourseCollectionsTests: UnitTestCase {
 
     func testCourse_refresher_syncsFavoriteColors() {
         attempt {
-            let course = Course.build(inSession: session) { $0.id = "24219"; $0.color = nil }
+            let course = Course.build(inSession: session) {
+                $0.id = "24219"
+                $0.color.value = .black
+            }
             try context.save()
             let refresher = try Course.refresher(session)
             refresher.playback("refresh-all-courses", in: currentBundle, with: session)
-            XCTAssertEqual("#009688", course.rawColor, "refresher syncs favorite colors")
+            XCTAssertEqual("#009688", course.color.value?.hex, "refresher syncs favorite colors")
         }
     }
 }

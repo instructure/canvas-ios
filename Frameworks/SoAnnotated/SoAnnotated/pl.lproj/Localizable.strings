@@ -4,6 +4,27 @@
 /* Button for creating a note from text selection */
 "Create Note" = "Utwórz notatkę";
 
+/* Error when submitting an assignment */
+"Failed to Submit" = "Nie udało się przesłać";
+
 /* No comment provided by engineer. */
 "Note..." = "Notatka...";
+
+/* No comment provided by engineer. */
+"OK" = "Ok";
+
+/* No comment provided by engineer. */
+"Submit" = "Złóż";
+
+/* Title for button to submit assignment */
+"Submit Assignment" = "Wyślij zadanie";
+
+/* No comment provided by engineer. */
+"Submitted!" = "Przesłano!";
+
+/* No comment provided by engineer. */
+"Submitting" = "Przesyłanie";
+
+/* Message when fails to submit an assignment */
+"There was a problem submitting your assignment. Please try again later." = "Wystąpił problem z przesyłaniem zadania. Spróbuj ponownie później.";
 

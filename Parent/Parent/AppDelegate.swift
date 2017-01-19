@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return topViewControler
     }
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         BuddyBuildSDK.setup()
         
@@ -53,8 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Armchair.usesUntilPrompt(10)
         Armchair.useMainAppBundleForLocalizations(true)
         
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
 
         if let url = RegionPicker.defaultPicker.pickedRegionURL {
             AirwolfAPI.baseURL = url
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let webBrowser = WebBrowserViewController(useAPISafeLinks: false)
             webBrowser.url = url
             let nav = UINavigationController(rootViewController: webBrowser)
-            self.topViewController.presentViewController(nav, animated: true, completion: nil)
+            self.topViewController.present(nav, animated: true, completion: nil)
         }
         
         Router.sharedInstance.addRoutes()
@@ -91,14 +91,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window!.makeKeyAndVisible()
 
-        if let notification = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
+        if let notification = launchOptions?[UIApplicationLaunchOptionsKey.localNotification] as? UILocalNotification {
             routeToRemindable(from: notification)
         }
 
         return true
     }
 
-    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, withResponseInfo responseInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+    func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable: Any], completionHandler: @escaping () -> Void) {
         // On, iOS 10.0b1 application:didReceiveLocalNotification is not being called when opening the app from a local notification and making it transistion from the background. Instead, this is being called. Not
         // sure if this is a bug or some change in API behavior.
         // 
@@ -108,24 +108,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        if application.applicationState == .Active {
-            let alert = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("View", comment: ""), style: .Cancel, handler: { [unowned self] _ in
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        if application.applicationState == .active {
+            let alert = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("View", comment: ""), style: .cancel, handler: { [unowned self] _ in
                 self.routeToRemindable(from: notification)
             }))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: { _ in }))
-            topViewController.presentViewController(alert, animated: true, completion: nil)
-        } else if application.applicationState == .Inactive {
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { _ in }))
+            topViewController.present(alert, animated: true, completion: nil)
+        } else if application.applicationState == .inactive {
             routeToRemindable(from: notification)
         }
     }
 
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         if url.scheme == "canvas-parent" {
             if let _ = Keymaster.sharedInstance.currentSession {
                 Router.sharedInstance.route(self.topViewController, toURL: url, modal: false)
-            } else if let window = self.window, vc = Router.sharedInstance.viewControllerForURL(url) {
+            } else if let window = self.window, let vc = Router.sharedInstance.viewControllerForURL(url) {
                 Router.sharedInstance.route(window, toRootViewController: vc)
             } else {
                 // should never get here... should either have a session or a window!
@@ -135,8 +135,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
 
-    private func routeToRemindable(from notification: UILocalNotification) {
-        if let urlString = notification.userInfo?[RemindableActionURLKey] as? String, url = NSURL(string: urlString) {
+    fileprivate func routeToRemindable(from notification: UILocalNotification) {
+        if let urlString = notification.userInfo?[RemindableActionURLKey] as? String, let url = URL(string: urlString) {
             Router.sharedInstance.route(topViewController, toURL: url, modal: true)
         }
     }

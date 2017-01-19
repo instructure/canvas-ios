@@ -22,71 +22,71 @@ class SettingsPage: PageObject {
   // Mark: - Page Objects
 
   private static var closeButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("close_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("close_button"))
   }
 
   private static var settingsTitle: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("Settings"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("Settings"))
   }
 
   private static var helpMenuButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("help_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("help_button"))
   }
 
   private static var helpMenuMessage: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityLabel("How can we help?"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityLabel("How can we help?"))
   }
 
   private static var helpGuide: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_allOfMatchers(
+    return EarlGrey.select(elementWithMatcher: grey_allOfMatchers([
       grey_accessibilityLabel("Help Guide"),
-      grey_kindOfClass(Class.UIAlertControllerActionView)))
+      grey_kindOfClass(Class.UIAlertControllerActionView)]))
   }
 
   private static var helpShareLove: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_allOfMatchers(
+    return EarlGrey.select(elementWithMatcher: grey_allOfMatchers([
       grey_accessibilityLabel("Share Some Love"),
-      grey_kindOfClass(Class.UIAlertControllerActionView)))
+      grey_kindOfClass(Class.UIAlertControllerActionView)]))
   }
 
   private static var helpReportProblem: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_allOfMatchers(
+    return EarlGrey.select(elementWithMatcher: grey_allOfMatchers([
       grey_accessibilityLabel("Report a Problem"),
-      grey_kindOfClass(Class.UIAlertControllerActionView)))
+      grey_kindOfClass(Class.UIAlertControllerActionView)]))
   }
 
   private static var helpRequestFeature: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_allOfMatchers(
+    return EarlGrey.select(elementWithMatcher: grey_allOfMatchers([
       grey_accessibilityLabel("Request a Feature"),
-      grey_kindOfClass(Class.UIAlertControllerActionView)))
+      grey_kindOfClass(Class.UIAlertControllerActionView)]))
   }
 
   private static var helpOpenSourceComponents: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_allOfMatchers(
+    return EarlGrey.select(elementWithMatcher: grey_allOfMatchers([
       grey_accessibilityLabel("Open Source Components"),
-      grey_kindOfClass(Class.UIAlertControllerActionView)))
+      grey_kindOfClass(Class.UIAlertControllerActionView)]))
   }
 
   private static var helpCancelButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_allOfMatchers(
+    return EarlGrey.select(elementWithMatcher: grey_allOfMatchers([
       grey_accessibilityLabel("Cancel"),
-      grey_kindOfClass(Class.UIAlertControllerActionView)))
+      grey_kindOfClass(Class.UIAlertControllerActionView)]))
   }
 
   private static var addStudentButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("add_observee_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("add_observee_button"))
   }
 
   private static var logoutButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("logout_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("logout_button"))
   }
 
-  private static func observeeAvatar(row: Int) -> GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("observee_avatar_\(row)"))
+  private static func observeeAvatar(_ row: Int) -> GREYElementInteraction {
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("observee_avatar_\(row)"))
   }
 
-  private static func observeeNameLabel(row: Int) -> GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("observee_name_\(row)"))
+  private static func observeeNameLabel(_ row: Int) -> GREYElementInteraction {
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("observee_name_\(row)"))
   }
 
   static func uniquePageElement() -> GREYElementInteraction {
@@ -94,39 +94,39 @@ class SettingsPage: PageObject {
   }
 
   // Mark: - Assertion Helpers
-  static func assertPageObjects(file: String = #file, _ line: UInt = #line) {
+  static func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    closeButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    settingsTitle.assertWithMatcher(grey_sufficientlyVisible())
-    helpMenuButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    addStudentButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    logoutButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
+    closeButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    settingsTitle.assert(with: grey_sufficientlyVisible())
+    helpMenuButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    addStudentButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    logoutButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
   }
 
-  static func assertHelpMenu(file: String = #file, _ line: UInt = #line) {
+  static func assertHelpMenu(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    helpMenuMessage.assertWithMatcher(grey_sufficientlyVisible())
-    helpGuide.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    helpShareLove.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    helpReportProblem.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    helpRequestFeature.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    helpOpenSourceComponents.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    helpCancelButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
+    helpMenuMessage.assert(with: grey_sufficientlyVisible())
+    helpGuide.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    helpShareLove.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    helpReportProblem.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    helpRequestFeature.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    helpOpenSourceComponents.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    helpCancelButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
   }
 
-  static func assertObserveeCell(row: Int = 0, file: String = #file, _ line: UInt = #line) {
+  static func assertObserveeCell(_ row: Int = 0, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    observeeAvatar(row).assertWithMatcher(grey_sufficientlyVisible())
-    observeeNameLabel(row).assertWithMatcher(grey_sufficientlyVisible())
+    observeeAvatar(row).assert(with: grey_sufficientlyVisible())
+    observeeNameLabel(row).assert(with: grey_sufficientlyVisible())
   }
 
   //Mark: - UI Action Helpers
-  static func tapHelpButton(file: String = #file, _ line: UInt = #line) {
+  static func tapHelpButton(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    helpMenuButton.performAction(grey_tap())
+    helpMenuButton.perform(grey_tap())
   }
 }

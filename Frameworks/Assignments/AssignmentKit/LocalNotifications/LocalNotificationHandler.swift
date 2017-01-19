@@ -19,12 +19,12 @@
 import Foundation
 
 public struct NotifiableObject {
-    var due: NSDate
+    var due: Date
     var name: String
-    var url: NSURL
+    var url: URL
     var id: String
     
-    public init(due: NSDate, name: String, url: NSURL, id: String) {
+    public init(due: Date, name: String, url: URL, id: String) {
         self.due = due
         self.name = name
         self.url = url
@@ -41,20 +41,20 @@ struct LocalNotificationConstants {
     static let LocalNotificationOperatingSystemMax = 64
 }
 
-public class LocalNotificationHandler {
+open class LocalNotificationHandler {
     //# MARK: - init / singleton
     
     //The one-liner singleton http://krakendev.io/blog/the-right-way-to-write-a-singleton
-    public static let sharedInstance = LocalNotificationHandler()
+    open static let sharedInstance = LocalNotificationHandler()
     
     //'private' prevents others from using the default '()' initializer for this class.
-    private init() {}
+    fileprivate init() {}
     
-    public var notificationApplication : UIApplication? = nil
+    open var notificationApplication : UIApplication? = nil
     
     //# MARK: - register
     
-    public func canScheduleLocalNotifications() -> Bool {
+    open func canScheduleLocalNotifications() -> Bool {
         guard let application = notificationApplication else {
             print("ERROR: Can not check notification preferences without a valid instance of UIApplication")
             return false
@@ -66,10 +66,10 @@ public class LocalNotificationHandler {
             }
         }
         
-        if let permissions = application.currentUserNotificationSettings() {
-            if permissions.types.contains([.Alert, .Badge]) {
+        if let permissions = application.currentUserNotificationSettings {
+            if permissions.types.contains([.alert, .badge]) {
                 return true
-            } else if permissions.types.contains([.Alert]) {
+            } else if permissions.types.contains([.alert]) {
                 return true
             }
             
@@ -79,13 +79,13 @@ public class LocalNotificationHandler {
         return false
     }
     
-    public func scheduleLocaNotification(notifiableObject: NotifiableObject, offsetInMinutes: Int) {
-        let reminderDate = NSDate(timeInterval: Double(-LocalNotificationConstants.LocalNotificationNumberSecondsInMinute * offsetInMinutes), sinceDate: notifiableObject.due)
+    open func scheduleLocaNotification(_ notifiableObject: NotifiableObject, offsetInMinutes: Int) {
+        let reminderDate = Date(timeInterval: Double(-LocalNotificationConstants.LocalNotificationNumberSecondsInMinute * offsetInMinutes), since: notifiableObject.due)
         let body = "\(notifiableObject.name) is due in \(dueDateFromMinuteOffset(offsetInMinutes))"
         scheduleLocalNotification(body, fireDate: reminderDate, userInfo: userInfoDictionary(notifiableObject))
     }
     
-    public func scheduleLocalNotification(body: String, fireDate: NSDate, userInfo: [String : String]?) {
+    open func scheduleLocalNotification(_ body: String, fireDate: Date, userInfo: [String : String]?) {
         guard let application = notificationApplication else {
             print("ERROR: Can not schedule notification without a valid instance of UIApplication")
             return
@@ -97,18 +97,18 @@ public class LocalNotificationHandler {
         notification.fireDate = fireDate
         notification.userInfo = userInfo
         
-        if ((application.currentUserNotificationSettings()?.types.contains([.Badge])) != nil) {
+        if ((application.currentUserNotificationSettings?.types.contains([.badge])) != nil) {
             notification.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
         }
         
-        notification.timeZone = NSTimeZone.localTimeZone()
+        notification.timeZone = TimeZone.autoupdatingCurrent
         
         application.scheduleLocalNotification(notification)
     }
 
     //# MARK: - unregister
 
-    public func removeLocalNotification(assignmentID : String) {
+    open func removeLocalNotification(_ assignmentID : String) {
         guard let application = notificationApplication else {
             print("ERROR: Can not remove notifications without a valid instance of UIApplication")
             return
@@ -122,14 +122,14 @@ public class LocalNotificationHandler {
     
     //# MARK: - helper
     
-    func userInfoDictionary(assignment : NotifiableObject) -> [String : String] {
+    func userInfoDictionary(_ assignment : NotifiableObject) -> [String : String] {
         return [
             LocalNotificationConstants.LocalNotificationAssignmentIDKey : assignment.id,
             LocalNotificationConstants.LocalNotificationAssignmentURLKey : assignment.url.description ?? ""
         ]
     }
  
-    func dueDateFromMinuteOffset(minutes : Int) -> String {
+    func dueDateFromMinuteOffset(_ minutes : Int) -> String {
         switch minutes {
         case _ where minutes <= 1:
             return "\(minutes) minute"
@@ -156,7 +156,7 @@ public class LocalNotificationHandler {
         }
     }
     
-    func localNotification(assignmentID : String) -> UILocalNotification? {
+    func localNotification(_ assignmentID : String) -> UILocalNotification? {
         guard let application = notificationApplication else {
             print("ERROR: Can not access notifications without a valid instance of UIApplication")
             return nil
@@ -173,7 +173,7 @@ public class LocalNotificationHandler {
         return nil
     }
     
-    public func localNotificationExists(assignmentID : String) -> Bool {
+    open func localNotificationExists(_ assignmentID : String) -> Bool {
         if let _ = localNotification(assignmentID) {
             return true
         }

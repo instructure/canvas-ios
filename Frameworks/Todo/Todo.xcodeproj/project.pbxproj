@@ -7,9 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4907DF911DF61211000D745D /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4907DF901DF61206000D745D /* SoPersistent.framework */; };
+		4907DF921DF61211000D745D /* SoPersistent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4907DF901DF61206000D745D /* SoPersistent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4907DF931DF61214000D745D /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4907DF901DF61206000D745D /* SoPersistent.framework */; };
 		4928EBE61C84DF3C00799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBE51C84DF3C00799E04 /* Marshal.framework */; };
 		4928EBE71C84DF4200799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBE51C84DF3C00799E04 /* Marshal.framework */; };
 		4928EBE81C84DF4200799E04 /* Marshal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBE51C84DF3C00799E04 /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49998EE31E1D936400C98AC2 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49998EE01E1D8B5100C98AC2 /* Cartography.framework */; };
+		49998EE41E1D936400C98AC2 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49998EE01E1D8B5100C98AC2 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49998EE51E1D936400C98AC2 /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49998EE11E1D8B5100C98AC2 /* CWNotification.framework */; };
+		49998EE61E1D936400C98AC2 /* CWNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49998EE11E1D8B5100C98AC2 /* CWNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49998EE71E1D936400C98AC2 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49998EE21E1D8B5100C98AC2 /* Kingfisher.framework */; };
+		49998EE81E1D936400C98AC2 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49998EE21E1D8B5100C98AC2 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49998EE91E1D936700C98AC2 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4938A2701DEDC9D20099C223 /* ReactiveSwift.framework */; };
+		49998EEA1E1D936700C98AC2 /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4938A2701DEDC9D20099C223 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49998EEB1E1D939A00C98AC2 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C8668C1D53B71600100D00 /* Result.framework */; };
+		49998EEC1E1D939A00C98AC2 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61C8668C1D53B71600100D00 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E5DB621C6E340E00E3701B /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E5DB5D1C6E340E00E3701B /* ReactiveCocoa.framework */; };
 		49E5DB631C6E340E00E3701B /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E5DB5E1C6E340E00E3701B /* SoLazy.framework */; };
 		49E5DB641C6E340E00E3701B /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E5DB5F1C6E340E00E3701B /* SoPretty.framework */; };
@@ -22,9 +35,6 @@
 		49E5DB6D1C6E341D00E3701B /* SoPretty.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49E5DB5F1C6E340E00E3701B /* SoPretty.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E5DB6E1C6E341E00E3701B /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E5DB601C6E340E00E3701B /* TooLegit.framework */; };
 		49E5DB6F1C6E341E00E3701B /* TooLegit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49E5DB601C6E340E00E3701B /* TooLegit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49E5DB711C6E347000E3701B /* AssignmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E5DB701C6E347000E3701B /* AssignmentKit.framework */; };
-		49E5DB721C6E347600E3701B /* AssignmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E5DB701C6E347000E3701B /* AssignmentKit.framework */; };
-		49E5DB731C6E347600E3701B /* AssignmentKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49E5DB701C6E347000E3701B /* AssignmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E2EFD121CC7D6BF00208401 /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E2EFD111CC7D6AD00208401 /* SoAutomated.framework */; };
 		5E2EFD161CC7D6F600208401 /* TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2EFD151CC7D6F600208401 /* TodoTests.swift */; };
 		5E2EFD1E1CC7EB4900208401 /* DoNotShipThis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5E2EFD1D1CC7EB3900208401 /* DoNotShipThis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -35,8 +45,10 @@
 		5E40A0D91CC5858C00350F70 /* Todo+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40A0D81CC5858C00350F70 /* Todo+Network.swift */; };
 		5E40A0DB1CC5860A00350F70 /* TodoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40A0DA1CC5860A00350F70 /* TodoAPI.swift */; };
 		5E40A0DD1CC5877A00350F70 /* Session+Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40A0DC1CC5877A00350F70 /* Session+Todo.swift */; };
-		5E40A0DF1CC5921000350F70 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40A0DE1CC5921000350F70 /* TodoList.swift */; };
 		6102CF971CD16719003BF30A /* Todo+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6102CF961CD16719003BF30A /* Todo+Edits.swift */; };
+		611495CB1DFF231200A05873 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 611495CA1DFF230800A05873 /* SoIconic.framework */; };
+		611495CC1DFF231900A05873 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 611495CA1DFF230800A05873 /* SoIconic.framework */; };
+		611495CD1DFF231900A05873 /* SoIconic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 611495CA1DFF230800A05873 /* SoIconic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		61C8668D1D53B71600100D00 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C8668C1D53B71600100D00 /* Result.framework */; };
 		AC7A9B531D21D1D800496FD0 /* TodoEditsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A9B521D21D1D800496FD0 /* TodoEditsTests.swift */; };
 		AC8DB79E1D21BAEA0036D00F /* Todo+CollectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8DB79D1D21BAEA0036D00F /* Todo+CollectionTest.swift */; };
@@ -46,10 +58,12 @@
 		B14E11641C63C60F00007938 /* TodoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B14E115A1C63C60F00007938 /* TodoKit.framework */; };
 		B14E116F1C63C60F00007938 /* TodoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B14E115A1C63C60F00007938 /* TodoKit.framework */; };
 		B14E11701C63C60F00007938 /* TodoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B14E115A1C63C60F00007938 /* TodoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B16B5FDF1E256B8600DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5FE11E256B8600DED47B /* InfoPlist.strings */; };
+		B16B5FE41E256B8800DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5FE61E256B8800DED47B /* InfoPlist.strings */; };
+		B16B5FE91E256B8900DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5FEB1E256B8900DED47B /* InfoPlist.strings */; };
 		B19FB4B21C6BD0CD00B4A93B /* TodoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19FB4B11C6BD0CD00B4A93B /* TodoCell.xib */; };
 		B1F820C71CEB9AE7006EC0BC /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F820C61CEB9AE7006EC0BC /* Factories.swift */; };
 		B50E51411D8CA08A00A2E028 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B50E513E1D8CA08A00A2E028 /* Localizable.strings */; };
-		B54EB7591D8CC7200003AD5B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B14E115E1C63C60F00007938 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,12 +97,18 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				49998EE41E1D936400C98AC2 /* Cartography.framework in Embed Frameworks */,
+				49998EEA1E1D936700C98AC2 /* ReactiveSwift.framework in Embed Frameworks */,
 				5E2EFD1E1CC7EB4900208401 /* DoNotShipThis.framework in Embed Frameworks */,
 				49E5DB6D1C6E341D00E3701B /* SoPretty.framework in Embed Frameworks */,
 				49E5DB691C6E341C00E3701B /* ReactiveCocoa.framework in Embed Frameworks */,
+				49998EE81E1D936400C98AC2 /* Kingfisher.framework in Embed Frameworks */,
+				611495CD1DFF231900A05873 /* SoIconic.framework in Embed Frameworks */,
 				49E5DB6B1C6E341D00E3701B /* SoLazy.framework in Embed Frameworks */,
-				49E5DB731C6E347600E3701B /* AssignmentKit.framework in Embed Frameworks */,
 				B14E11701C63C60F00007938 /* TodoKit.framework in Embed Frameworks */,
+				4907DF921DF61211000D745D /* SoPersistent.framework in Embed Frameworks */,
+				49998EE61E1D936400C98AC2 /* CWNotification.framework in Embed Frameworks */,
+				49998EEC1E1D939A00C98AC2 /* Result.framework in Embed Frameworks */,
 				4928EBE81C84DF4200799E04 /* Marshal.framework in Embed Frameworks */,
 				49E5DB6F1C6E341E00E3701B /* TooLegit.framework in Embed Frameworks */,
 			);
@@ -98,12 +118,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4907DF901DF61206000D745D /* SoPersistent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPersistent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4928EBE51C84DF3C00799E04 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4938A2701DEDC9D20099C223 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49998EE01E1D8B5100C98AC2 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49998EE11E1D8B5100C98AC2 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49998EE21E1D8B5100C98AC2 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49E5DB5D1C6E340E00E3701B /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49E5DB5E1C6E340E00E3701B /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49E5DB5F1C6E340E00E3701B /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49E5DB601C6E340E00E3701B /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49E5DB701C6E347000E3701B /* AssignmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AssignmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E2EFD111CC7D6AD00208401 /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E2EFD151CC7D6F600208401 /* TodoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoTests.swift; sourceTree = "<group>"; };
 		5E2EFD1D1CC7EB3900208401 /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DoNotShipThis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,8 +137,8 @@
 		5E40A0D81CC5858C00350F70 /* Todo+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+Network.swift"; sourceTree = "<group>"; };
 		5E40A0DA1CC5860A00350F70 /* TodoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoAPI.swift; sourceTree = "<group>"; };
 		5E40A0DC1CC5877A00350F70 /* Session+Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Todo.swift"; sourceTree = "<group>"; };
-		5E40A0DE1CC5921000350F70 /* TodoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		6102CF961CD16719003BF30A /* Todo+Edits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+Edits.swift"; sourceTree = "<group>"; };
+		611495CA1DFF230800A05873 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C8668C1D53B71600100D00 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC7A9B521D21D1D800496FD0 /* TodoEditsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoEditsTests.swift; sourceTree = "<group>"; };
 		AC8DB79D1D21BAEA0036D00F /* Todo+CollectionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+CollectionTest.swift"; sourceTree = "<group>"; };
@@ -127,6 +151,63 @@
 		B14E115E1C63C60F00007938 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B14E11631C63C60F00007938 /* TodoKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B14E116C1C63C60F00007938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B16B5FE01E256B8600DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5FE51E256B8800DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5FEA1E256B8900DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5FEC1E256B9400DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5FED1E256B9500DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5FEE1E256B9600DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5FEF1E256BA000DED47B /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5FF01E256BA100DED47B /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5FF11E256BA200DED47B /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5FF21E256BAC00DED47B /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5FF31E256BAD00DED47B /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5FF41E256BAE00DED47B /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5FF51E256BC000DED47B /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5FF61E256BC100DED47B /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5FF71E256BC100DED47B /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5FF81E256BCA00DED47B /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5FF91E256BCB00DED47B /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5FFA1E256BCC00DED47B /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5FFB1E256BD500DED47B /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5FFC1E256BD600DED47B /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5FFD1E256BD600DED47B /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B5FFE1E256BF300DED47B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B5FFF1E256BF300DED47B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60001E256BF400DED47B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60011E256BFE00DED47B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60021E256BFF00DED47B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60031E256C0000DED47B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60041E256C0A00DED47B /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60051E256C0B00DED47B /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60061E256C0C00DED47B /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60071E256C1400DED47B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60081E256C1500DED47B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60091E256C1600DED47B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B600A1E256C2100DED47B /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B600B1E256C2200DED47B /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B600C1E256C2200DED47B /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B600D1E256C2B00DED47B /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B600E1E256C2C00DED47B /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B600F1E256C2D00DED47B /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60101E256C3700DED47B /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60111E256C3800DED47B /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60121E256C3800DED47B /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60131E256C4500DED47B /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60141E256C4600DED47B /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60151E256C4700DED47B /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60161E256C9A00DED47B /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B60171E256C9B00DED47B /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B60181E256C9C00DED47B /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B16B60191E256CA600DED47B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B601A1E256CA700DED47B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B601B1E256CA800DED47B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B601C1E256CB500DED47B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B601D1E256CB600DED47B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B601E1E256CB700DED47B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B601F1E256CBF00DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60201E256CC000DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B16B60211E256CC100DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B19FB4B11C6BD0CD00B4A93B /* TodoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodoCell.xib; sourceTree = "<group>"; };
 		B1F820C61CEB9AE7006EC0BC /* Factories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
 		B50E513F1D8CA08A00A2E028 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "TodoKit/zh-HK.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
@@ -156,12 +237,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49998EE31E1D936400C98AC2 /* Cartography.framework in Frameworks */,
+				49998EE91E1D936700C98AC2 /* ReactiveSwift.framework in Frameworks */,
 				49E5DB6C1C6E341D00E3701B /* SoPretty.framework in Frameworks */,
 				49E5DB681C6E341C00E3701B /* ReactiveCocoa.framework in Frameworks */,
 				49E5DB6A1C6E341D00E3701B /* SoLazy.framework in Frameworks */,
-				49E5DB721C6E347600E3701B /* AssignmentKit.framework in Frameworks */,
+				49998EE71E1D936400C98AC2 /* Kingfisher.framework in Frameworks */,
+				611495CC1DFF231900A05873 /* SoIconic.framework in Frameworks */,
 				B14E116F1C63C60F00007938 /* TodoKit.framework in Frameworks */,
 				4928EBE71C84DF4200799E04 /* Marshal.framework in Frameworks */,
+				4907DF911DF61211000D745D /* SoPersistent.framework in Frameworks */,
+				49998EE51E1D936400C98AC2 /* CWNotification.framework in Frameworks */,
+				49998EEB1E1D939A00C98AC2 /* Result.framework in Frameworks */,
 				5E2EFD1F1CC7EB4D00208401 /* DoNotShipThis.framework in Frameworks */,
 				49E5DB6E1C6E341E00E3701B /* TooLegit.framework in Frameworks */,
 			);
@@ -171,10 +258,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49E5DB711C6E347000E3701B /* AssignmentKit.framework in Frameworks */,
+				611495CB1DFF231200A05873 /* SoIconic.framework in Frameworks */,
 				61C8668D1D53B71600100D00 /* Result.framework in Frameworks */,
 				49E5DB651C6E340E00E3701B /* TooLegit.framework in Frameworks */,
 				49E5DB621C6E340E00E3701B /* ReactiveCocoa.framework in Frameworks */,
+				4907DF931DF61214000D745D /* SoPersistent.framework in Frameworks */,
 				4928EBE61C84DF3C00799E04 /* Marshal.framework in Frameworks */,
 				49E5DB631C6E340E00E3701B /* SoLazy.framework in Frameworks */,
 				49E5DB641C6E340E00E3701B /* SoPretty.framework in Frameworks */,
@@ -254,11 +342,11 @@
 		B14E11421C63C56A00007938 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
+				B16B5FE61E256B8800DED47B /* InfoPlist.strings */,
 				B14E11431C63C56A00007938 /* AppDelegate.swift */,
 				B14E114A1C63C56A00007938 /* Assets.xcassets */,
 				B14E114F1C63C56A00007938 /* Info.plist */,
 				B19FB4B11C6BD0CD00B4A93B /* TodoCell.xib */,
-				5E40A0DE1CC5921000350F70 /* TodoList.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -266,6 +354,7 @@
 		B14E115B1C63C60F00007938 /* TodoKit */ = {
 			isa = PBXGroup;
 			children = (
+				B16B5FE11E256B8600DED47B /* InfoPlist.strings */,
 				5E40A0CE1CC5855F00350F70 /* Model */,
 				5E40A0D11CC5855F00350F70 /* Network */,
 				5E40A0D21CC5855F00350F70 /* Todo */,
@@ -280,6 +369,7 @@
 		B14E11691C63C60F00007938 /* TodoKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				B16B5FEB1E256B8900DED47B /* InfoPlist.strings */,
 				B14E117A1C63C64600007938 /* Dependencies */,
 				5E2EFD141CC7D6EC00208401 /* Todo */,
 				B14E116C1C63C60F00007938 /* Info.plist */,
@@ -299,11 +389,16 @@
 		B14E11831C63E40400007938 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				61C8668C1D53B71600100D00 /* Result.framework */,
+				49998EE01E1D8B5100C98AC2 /* Cartography.framework */,
+				49998EE11E1D8B5100C98AC2 /* CWNotification.framework */,
+				49998EE21E1D8B5100C98AC2 /* Kingfisher.framework */,
+				611495CA1DFF230800A05873 /* SoIconic.framework */,
+				4907DF901DF61206000D745D /* SoPersistent.framework */,
 				5E2EFD1D1CC7EB3900208401 /* DoNotShipThis.framework */,
 				4928EBE51C84DF3C00799E04 /* Marshal.framework */,
-				49E5DB701C6E347000E3701B /* AssignmentKit.framework */,
 				49E5DB5D1C6E340E00E3701B /* ReactiveCocoa.framework */,
+				4938A2701DEDC9D20099C223 /* ReactiveSwift.framework */,
+				61C8668C1D53B71600100D00 /* Result.framework */,
 				49E5DB5E1C6E340E00E3701B /* SoLazy.framework */,
 				49E5DB5F1C6E340E00E3701B /* SoPretty.framework */,
 				49E5DB601C6E340E00E3701B /* TooLegit.framework */,
@@ -388,20 +483,21 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					B14E113F1C63C56A00007938 = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 0800;
+						DevelopmentTeam = B6333T4PXQ;
+						LastSwiftMigration = 0810;
 					};
 					B14E11591C63C60F00007938 = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 					};
 					B14E11621C63C60F00007938 = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 						TestTargetID = B14E113F1C63C56A00007938;
 					};
 				};
@@ -451,6 +547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B14E114B1C63C56A00007938 /* Assets.xcassets in Resources */,
+				B16B5FE41E256B8800DED47B /* InfoPlist.strings in Resources */,
 				B19FB4B21C6BD0CD00B4A93B /* TodoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,8 +556,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B54EB7591D8CC7200003AD5B /* Info.plist in Resources */,
 				B50E51411D8CA08A00A2E028 /* Localizable.strings in Resources */,
+				B16B5FDF1E256B8600DED47B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +565,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B16B5FE91E256B8900DED47B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,7 +577,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B14E11441C63C56A00007938 /* AppDelegate.swift in Sources */,
-				5E40A0DF1CC5921000350F70 /* TodoList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +626,84 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B16B5FE11E256B8600DED47B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B16B5FE01E256B8600DED47B /* ar */,
+				B16B5FEC1E256B9400DED47B /* zh */,
+				B16B5FEF1E256BA000DED47B /* zh-HK */,
+				B16B5FF21E256BAC00DED47B /* da */,
+				B16B5FF51E256BC000DED47B /* nl */,
+				B16B5FF81E256BCA00DED47B /* en-AU */,
+				B16B5FFB1E256BD500DED47B /* en-GB */,
+				B16B5FFE1E256BF300DED47B /* fr */,
+				B16B60011E256BFE00DED47B /* de */,
+				B16B60041E256C0A00DED47B /* ht */,
+				B16B60071E256C1400DED47B /* ja */,
+				B16B600A1E256C2100DED47B /* mi */,
+				B16B600D1E256C2B00DED47B /* nb */,
+				B16B60101E256C3700DED47B /* pl */,
+				B16B60131E256C4500DED47B /* pt */,
+				B16B60161E256C9A00DED47B /* pt-BR */,
+				B16B60191E256CA600DED47B /* ru */,
+				B16B601C1E256CB500DED47B /* es */,
+				B16B601F1E256CBF00DED47B /* sv */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B16B5FE61E256B8800DED47B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B16B5FE51E256B8800DED47B /* ar */,
+				B16B5FED1E256B9500DED47B /* zh */,
+				B16B5FF01E256BA100DED47B /* zh-HK */,
+				B16B5FF31E256BAD00DED47B /* da */,
+				B16B5FF61E256BC100DED47B /* nl */,
+				B16B5FF91E256BCB00DED47B /* en-AU */,
+				B16B5FFC1E256BD600DED47B /* en-GB */,
+				B16B5FFF1E256BF300DED47B /* fr */,
+				B16B60021E256BFF00DED47B /* de */,
+				B16B60051E256C0B00DED47B /* ht */,
+				B16B60081E256C1500DED47B /* ja */,
+				B16B600B1E256C2200DED47B /* mi */,
+				B16B600E1E256C2C00DED47B /* nb */,
+				B16B60111E256C3800DED47B /* pl */,
+				B16B60141E256C4600DED47B /* pt */,
+				B16B60171E256C9B00DED47B /* pt-BR */,
+				B16B601A1E256CA700DED47B /* ru */,
+				B16B601D1E256CB600DED47B /* es */,
+				B16B60201E256CC000DED47B /* sv */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B16B5FEB1E256B8900DED47B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B16B5FEA1E256B8900DED47B /* ar */,
+				B16B5FEE1E256B9600DED47B /* zh */,
+				B16B5FF11E256BA200DED47B /* zh-HK */,
+				B16B5FF41E256BAE00DED47B /* da */,
+				B16B5FF71E256BC100DED47B /* nl */,
+				B16B5FFA1E256BCC00DED47B /* en-AU */,
+				B16B5FFD1E256BD600DED47B /* en-GB */,
+				B16B60001E256BF400DED47B /* fr */,
+				B16B60031E256C0000DED47B /* de */,
+				B16B60061E256C0C00DED47B /* ht */,
+				B16B60091E256C1600DED47B /* ja */,
+				B16B600C1E256C2200DED47B /* mi */,
+				B16B600F1E256C2D00DED47B /* nb */,
+				B16B60121E256C3800DED47B /* pl */,
+				B16B60151E256C4700DED47B /* pt */,
+				B16B60181E256C9C00DED47B /* pt-BR */,
+				B16B601B1E256CA800DED47B /* ru */,
+				B16B601E1E256CB700DED47B /* es */,
+				B16B60211E256CC100DED47B /* sv */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		B50E513E1D8CA08A00A2E028 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -564,6 +739,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -611,6 +787,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -653,11 +830,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = Todo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Todo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -666,11 +844,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = Todo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Todo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -686,13 +865,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = TodoKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TodoKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -710,12 +889,12 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = TodoKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TodoKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -724,11 +903,12 @@
 		B14E11761C63C60F00007938 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = TodoKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TodoKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Todo.app/Todo";
 			};
 			name = Debug;
@@ -736,11 +916,12 @@
 		B14E11771C63C60F00007938 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = TodoKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TodoKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Todo.app/Todo";
 			};
 			name = Release;

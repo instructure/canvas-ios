@@ -20,7 +20,7 @@ import SoPretty
 
 
 class URLSubmissionAction: UploadAction {
-    let title = NSLocalizedString("Choose a Webpage", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.FileKit")!, value: "", comment: "URL submission option")
+    let title = NSLocalizedString("Choose a Webpage", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "URL submission option")
     let icon = UIImage.FileKitImageNamed("icon_link")
     
     weak var viewController: UIViewController?
@@ -39,7 +39,7 @@ class URLSubmissionAction: UploadAction {
             delegate?.actionCancelled()
         }
         browser.didSelectURLForSubmission = { [weak delegate] url in
-            delegate?.chooseUpload(.URL(url))
+            delegate?.chooseUpload(.url(url))
         }
     }
 }

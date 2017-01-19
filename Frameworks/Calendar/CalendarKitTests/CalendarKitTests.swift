@@ -26,20 +26,20 @@ import TooLegit
 struct DateRange {
     let start: String
     let end: String
-    private let formatter: NSDateFormatter
+    fileprivate let formatter: DateFormatter
 
-    var startDate: NSDate {
-        return formatter.dateFromString(start)!
+    var startDate: Date {
+        return formatter.date(from: start)!
     }
 
-    var endDate: NSDate {
-        return formatter.dateFromString(end)!
+    var endDate: Date {
+        return formatter.date(from: end)!
     }
 
     init(start: String, end: String) {
         self.start = start
         self.end = end
-        formatter = NSDateFormatter()
+        formatter = DateFormatter()
         formatter.dateFormat = "YYY-MM-dd"
     }
 }
@@ -54,57 +54,57 @@ class CalendarKitTests: XCTestCase {
         managedObjectContext = try! session.calendarEventsManagedObjectContext()
     }
 
-    var dayDateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
+    var dayDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
         return dateFormatter
     }()
 
-    var ISO8601DateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
+    var ISO8601DateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         return dateFormatter
     }()
 
-    func IS8601StringFromDayDate(dayDate: String) -> String {
-        return ISO8601DateFormatter.stringFromDate(dayDateFormatter.dateFromString(dayDate)!)
+    func IS8601StringFromDayDate(_ dayDate: String) -> String {
+        return ISO8601DateFormatter.string(from: dayDateFormatter.date(from: dayDate)!)
     }
 
     func loadDummyData(inContext context: NSManagedObjectContext) -> [String: CalendarEvent] {
-        var date = self.dayDateFormatter.dateFromString("2016-01-01")!
+        var date = self.dayDateFormatter.date(from: "2016-01-01")!
         let jan = CalendarEvent.build(context,
                                       title: "New Years",
                                       startAt: date,
                                       endAt: date,
-                                      allDayDate: self.dayDateFormatter.stringFromDate(date),
-                                      contextCode: "code_get_the_car"
+                                      contextCode: "code_get_the_car",
+                                      allDayDate: self.dayDateFormatter.string(from: date)
         )
 
-        date = self.dayDateFormatter.dateFromString("2016-02-01")!
+        date = self.dayDateFormatter.date(from: "2016-02-01")!
         let feb = CalendarEvent.build(context,
                                       title: "First day of Feb",
                                       startAt: date,
                                       endAt: date,
-                                      allDayDate: self.dayDateFormatter.stringFromDate(date),
-                                      contextCode: "code_feb"
+                                      contextCode: "code_feb",
+                                      allDayDate: self.dayDateFormatter.string(from: date)
         )
 
-        date = self.dayDateFormatter.dateFromString("2016-06-01")!
+        date = self.dayDateFormatter.date(from: "2016-06-01")!
         let jun = CalendarEvent.build(context,
                                       title: "First day of June",
                                       startAt: date,
                                       endAt: date,
-                                      allDayDate: self.dayDateFormatter.stringFromDate(date),
-                                      contextCode: "code_get_the_car"
+                                      contextCode: "code_get_the_car",
+                                      allDayDate: self.dayDateFormatter.string(from: date)
         )
 
-        date = self.dayDateFormatter.dateFromString("2016-12-01")!
+        date = self.dayDateFormatter.date(from: "2016-12-01")!
         let dec = CalendarEvent.build(context,
                                       title: "First day of Dec",
                                       startAt: date,
                                       endAt: date,
-                                      allDayDate: self.dayDateFormatter.stringFromDate(date),
-                                      contextCode: "code_get_the_car"
+                                      contextCode: "code_get_the_car",
+                                      allDayDate: self.dayDateFormatter.string(from: date)
         )
 
         return [

@@ -82,7 +82,7 @@ typedef NS_ENUM(NSInteger, sectionType) {
         self.discussionViewModelClass = [CBIDiscussionTopicViewModel class];
         self.createButtonImage = [UIImage techDebtImageNamed:@"icon_add_discussion"];
 
-        self.canCreateSignal = [RACObserve(self, model.context) flattenMap:^RACStream *(id context) {
+        self.canCreateSignal = [RACObserve(self, model.context) flattenMap:^__kindof RACStream *(id context) {
             if ([context isKindOfClass:[CKICourse class]]) {
                 CKICourse *course = (CKICourse *)context;
                 return RACObserve(course, canCreateDiscussionTopics);

@@ -1,0 +1,9 @@
+/* Class = "UILabel"; text = "Enable Push Notifications"; ObjectID = "PMb-wZ-ARX"; */
+"PMb-wZ-ARX.text" = "Push berichtgevingen inschakelen";
+
+/* Class = "UILabel"; text = "Allow Notifications in Settings"; ObjectID = "mYw-YB-SVS"; */
+"mYw-YB-SVS.text" = "Berichtgevingen toestaan in instellingen";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "qwG-FB-tzR"; */
+"qwG-FB-tzR.title" = "Instellingen";
+

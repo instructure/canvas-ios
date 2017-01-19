@@ -1,1 +1,24 @@
-/* No Localized Strings */
+/* Assignment label */
+"Assignment" = "任務";
+
+/* Message indicating that an assignment is currently be submitted */
+"Assignment is currently being submitted" = "任務正在提交中";
+
+/* Assignment submission comment placeholder text */
+"Comment.." = "評論。。";
+
+/* Error when an upload failed to resume. */
+"Failed to resume upload." = "恢復上載失敗。";
+
+/* Message indicating that a submission type is not supported for this assignment. */
+"Submission type not allowed" = "提交件類型不許可";
+
+/* Error message when a course could not be selected */
+"Unable to select a course." = "無法選擇一門課程。";
+
+/* Error message when an assignment could not be selected */
+"Unable to select an assignment." = "無法選擇一個任務。";
+
+/* Error message when unable to submit assignment. */
+"Unable to submit assignment." = "無法提交任務。";
+

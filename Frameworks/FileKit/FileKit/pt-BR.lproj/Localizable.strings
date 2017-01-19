@@ -1,4 +1,4 @@
-/* nevermind */
+/* Cancel button title */
 "Cancel" = "Cancelar";
 
 /* Pick a photo from library */
@@ -17,7 +17,7 @@
 "Data" = "Dado";
 
 /* Delete button for file upload */
-"Delete" = "Excluir";
+"Delete" = "Exluir";
 
 /* Prompt for text upload */
 "Enter your upload..." = "Digite seu upload...";
@@ -25,7 +25,7 @@
 /* title for file upload errors */
 "File Upload Error" = "Erro de Upload de Arquivo";
 
-/* Title of files list */
+/* (No Commment) */
 "Files" = "Arquivos";
 
 /* name for a photo just taken */
@@ -49,7 +49,7 @@
 /* FileKit Database Load Failure Message */
 "There was a problem loading the FileKit database file." = "Houve um problema ao carregar o arquivo de banco de dados  FileKit.";
 
-/* FileKit Tests database fails */
+/* (No Commment) */
 "There was a problem loading the FileKitTests database file." = "Houve um problema ao carregar o arquivo de banco de dados  FileKitTests.";
 
 /* File upload error message */

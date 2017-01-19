@@ -19,15 +19,15 @@
 import UIKit
 import SoLazy
 import TooLegit
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 public protocol Refresher: class {
     var cacheKey: String { get }
 
-    func makeRefreshable(viewController: UIViewController)
+    func makeRefreshable(_ viewController: UIViewController)
 
-    func refresh(forced: Bool)
+    func refresh(_ forced: Bool)
 
     func cancel()
 
@@ -40,26 +40,26 @@ public protocol Refresher: class {
     var refreshControl: UIRefreshControl { get }
 }
 
-import ReactiveCocoa
+import ReactiveSwift
 
-public class SignalProducerRefresher<SP: SignalProducerType where SP.Error == NSError>: NSObject, Refresher {
+open class SignalProducerRefresher<SP: SignalProducerProtocol>: NSObject, Refresher where SP.Error == NSError {
 
-    public let refreshControl = UIRefreshControl()
+    open let refreshControl = UIRefreshControl()
     let signalProducer: SP
     var disposable: Disposable?
 
-    public let cacheKey: String
+    open let cacheKey: String
     weak var scope: RefreshScope?
-    let ttl: NSTimeInterval
+    let ttl: TimeInterval
 
-    private (set) public var isRefreshing: Bool = false
-    public var refreshingBegan: Signal<(), NoError>
+    fileprivate (set) open var isRefreshing: Bool = false
+    open var refreshingBegan: Signal<(), NoError>
     var refreshingBeganObserver: Observer<(), NoError>
-    public var refreshingCompleted: Signal<NSError?, NoError>
+    open var refreshingCompleted: Signal<NSError?, NoError>
     var refreshingCompletedObserver: Observer<NSError?, NoError>
 
-    public var shouldRefresh: Bool {
-        if let scope = scope where scope.shouldRefreshCache(cacheKey, ttl: ttl) {
+    open var shouldRefresh: Bool {
+        if let scope = scope, scope.shouldRefreshCache(cacheKey, ttl: ttl) {
             return true
         }
         return false
@@ -70,18 +70,18 @@ public class SignalProducerRefresher<SP: SignalProducerType where SP.Error == NS
      * - param refreshSignalProducer The producer to invoke in order to sync the data
      * - param cacheKey The unique key for the cache. __MUST BE UNIQUE TO THE REQUEST__
      */
-    public init(refreshSignalProducer: SP, scope: RefreshScope, cacheKey: String, ttl: NSTimeInterval = 2.hours) {
+    public init(refreshSignalProducer: SP, scope: RefreshScope, cacheKey: String, ttl: TimeInterval = 2.hours) {
         self.scope = scope
         self.cacheKey = cacheKey
         self.ttl = ttl
         self.signalProducer = refreshSignalProducer
 
         let (beganSignal, beganObserver) = Signal<(), NoError>.pipe()
-        self.refreshingBegan = beganSignal.observeOn(UIScheduler())
+        self.refreshingBegan = beganSignal.observe(on: UIScheduler())
         self.refreshingBeganObserver = beganObserver
 
         let (completedSignal, completedObserver) = Signal<NSError?, NoError>.pipe()
-        self.refreshingCompleted = completedSignal.observeOn(UIScheduler())
+        self.refreshingCompleted = completedSignal.observe(on: UIScheduler())
         self.refreshingCompletedObserver = completedObserver
 
         super.init()
@@ -89,9 +89,9 @@ public class SignalProducerRefresher<SP: SignalProducerType where SP.Error == NS
         scope.register(self)
     }
 
-    public func makeRefreshable(viewController: UIViewController) {
-        guard viewController.isViewLoaded() else { return }
-        refreshControl.addTarget(self, action: #selector(beginRefresh(_:)), forControlEvents: .ValueChanged)
+    open func makeRefreshable(_ viewController: UIViewController) {
+        guard viewController.isViewLoaded else { return }
+        refreshControl.addTarget(self, action: #selector(beginRefresh(_:)), for: .valueChanged)
         if let tv = viewController as? UITableViewController {
             tv.refreshControl = refreshControl
         } else if let cv = viewController as? UICollectionViewController {
@@ -103,18 +103,23 @@ public class SignalProducerRefresher<SP: SignalProducerType where SP.Error == NS
         refreshControl.layoutIfNeeded()
     }
 
-    public func refresh(forced: Bool) {
+    open func refresh(_ forced: Bool) {
         guard forced || shouldRefresh else { return }
 
         refreshControl.beginRefreshing()
+
+        if let scrollView = refreshControl.superview as? UIScrollView, forced || shouldRefresh {
+            scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentOffset.y - refreshControl.frame.size.height), animated: true)
+        }
+
         beginRefresh(refreshControl)
     }
 
-    public func cancel() {
+    open func cancel() {
         disposable?.dispose()
     }
 
-    public func safeCopy() -> Refresher? {
+    open func safeCopy() -> Refresher? {
         guard let scope = scope else { return nil }
         return SignalProducerRefresher(refreshSignalProducer: signalProducer, scope: scope, cacheKey: cacheKey, ttl: ttl)
     }
@@ -124,36 +129,41 @@ public class SignalProducerRefresher<SP: SignalProducerType where SP.Error == NS
         disposable?.dispose()
     }
 
-    func beginRefresh(control: UIRefreshControl) {
+    func beginRefresh(_ control: UIRefreshControl) {
         guard let scope = self.scope else { return }
 
         isRefreshing = true
-        refreshingBeganObserver.sendNext()
+        refreshingBeganObserver.send(value: ())
 
-        let last = scope.lastCacheRefresh(cacheKey)
-        scope.setCacheRefreshed(cacheKey)
+        let key = cacheKey
+        let last = scope.lastCacheRefresh(key)
+        scope.setCacheRefreshed(key)
         disposable = signalProducer
-            .observeOn(UIScheduler())
+            .observe(on: UIScheduler())
             .start { [weak self] event in
-                self?.isRefreshing = false
                 switch event {
-                case .Next(_): break
+                case .value(_): break
 
-                case .Completed, .Interrupted:
-                    control.endRefreshing()
-                    self?.refreshingCompletedObserver.sendNext(nil)
-                    self?.disposable = nil
+                case .completed:
+                    self?.endRefreshing()
+                    
+                case .interrupted:
+                    self?.endRefreshing()
+                    // if the refresh was interrupted, assume the
+                    // refresh was incomplete like the error case
+                    scope.setCacheRefreshed(key, date: last)
 
-                case .Failed(let err):
-                    control.endRefreshing()
-                    self?.refreshingCompletedObserver.sendNext(err)
-                    self?.disposable = nil
-
-                    if let me = self {
-                        // reset the cache ttl date if refresh failed
-                        scope.setCacheRefreshed(me.cacheKey, date: last)
-                    }
+                case .failed(let err):
+                    self?.endRefreshing(error: err)
+                    scope.setCacheRefreshed(key, date: last)
                 }
         }
+    }
+    
+    func endRefreshing(error: NSError? = nil) {
+        isRefreshing = false
+        refreshControl.endRefreshing()
+        refreshingCompletedObserver.send(value: error)
+        disposable = nil
     }
 }

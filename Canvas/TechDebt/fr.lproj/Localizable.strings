@@ -245,10 +245,10 @@ Vous devez tout d'abord terminer :";
 /* Archive selected messages button */
 "Archive" = "Archiver";
 
-/* archive selected messages */
+/* (No Commment) */
 "Archive Selected Messages Button" = "Bouton d'archivage des messages sélectionnés";
 
-/* hint to archive selected messages */
+/* (No Commment) */
 "Archive all selected messages" = "Archiver tous les messages sélectionnés";
 
 /* No comment provided by engineer. */
@@ -382,10 +382,10 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Completed" = "Terminé";
 
-/* button to compose a message */
+/* (No Commment) */
 "Compose Message Button" = "Bouton de composition de message";
 
-/* hint for button to compose a message */
+/* (No Commment) */
 "Compose a message" = "Composer un message";
 
 /* Title for Conferences tab */

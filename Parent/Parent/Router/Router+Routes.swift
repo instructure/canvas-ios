@@ -21,6 +21,7 @@ import UIKit
 import Result
 import TooLegit
 import Keymaster
+import ReactiveSwift
 import ReactiveCocoa
 import EnrollmentKit
 import Airwolf
@@ -28,9 +29,12 @@ import SoLazy
 import SoPersistent
 import SoSupportive
 
-let LoggedInNotificationName = "LoggedInNotificationName"
 let LoggedInNotificationContentsSession = "LoggedInNotificationContentsSession"
-let LoggedOutNotificationName = "LoggedOutNotificationName"
+
+extension NSNotification.Name {
+    static let loggedIn = NSNotification.Name(rawValue: "LoggedInNotificationName")
+    static let loggedOut = NSNotification.Name(rawValue: "LoggedOutNotificationName")
+}
 
 class RouteTemplates {
     static let loginRouteTemplate = "login"
@@ -52,70 +56,70 @@ class RouteTemplates {
 }
 
 extension Router {
-    func loginRoute(baseURL: NSURL) -> NSURL {
-        return NSURL(string: RouteTemplates.loginRouteTemplate)!
+    func loginRoute(_ baseURL: URL) -> URL {
+        return URL(string: RouteTemplates.loginRouteTemplate)!
     }
 
-    func dashboardRoute() -> NSURL {
-        return NSURL(string: RouteTemplates.dashboardRouteTemplate)!
+    func dashboardRoute() -> URL {
+        return URL(string: RouteTemplates.dashboardRouteTemplate)!
     }
 
-    func settingsRoute() -> NSURL {
-        return NSURL(string: RouteTemplates.settingsRouteTemplate)!
+    func settingsRoute() -> URL {
+        return URL(string: RouteTemplates.settingsRouteTemplate)!
     }
 
-    func addStudentRoute() -> NSURL {
-        return NSURL(string: RouteTemplates.addStudentRouteTemplate)!
+    func addStudentRoute() -> URL {
+        return URL(string: RouteTemplates.addStudentRouteTemplate)!
     }
 
-    func viewGuidesRoute() -> NSURL {
-        return NSURL(string: RouteTemplates.viewGuidesRouteTemplate)!
+    func viewGuidesRoute() -> URL {
+        return URL(string: RouteTemplates.viewGuidesRouteTemplate)!
     }
 
-    func requestFeatureRoute() -> NSURL {
-        return NSURL(string: RouteTemplates.requestFeatureRouteTemplate)!
+    func requestFeatureRoute() -> URL {
+        return URL(string: RouteTemplates.requestFeatureRouteTemplate)!
     }
 
-    func reportProblemRoute() -> NSURL {
-        return NSURL(string: RouteTemplates.reportProblemRouteTemplate)!
+    func reportProblemRoute() -> URL {
+        return URL(string: RouteTemplates.reportProblemRouteTemplate)!
     }
 
-    func thresholdSettingsRoute(studentID studentID: String) -> NSURL {
-        return NSURL(string: "students/\(studentID)/thresholds")!
+    func thresholdSettingsRoute(studentID: String) -> URL {
+        return URL(string: "students/\(studentID)/thresholds")!
     }
 
-    func assignmentDetailsRoute(studentID studentID: String, courseID: String, assignmentID: String) -> NSURL {
-        return NSURL(string: "students/\(studentID)/courses/\(courseID)/assignments/\(assignmentID)")!
+    func assignmentDetailsRoute(studentID: String, courseID: String, assignmentID: String) -> URL {
+        return URL(string: "students/\(studentID)/courses/\(courseID)/assignments/\(assignmentID)")!
     }
 
-    func standaloneAssignmentDetailsRoute(studentID studentID: String, courseID: String, assignmentID: String) -> NSURL {
-        return NSURL(string: "students/\(studentID)/courses/\(courseID)/assignments/\(assignmentID)/standalone")!
+    func standaloneAssignmentDetailsRoute(studentID: String, courseID: String, assignmentID: String) -> URL {
+        return URL(string: "students/\(studentID)/courses/\(courseID)/assignments/\(assignmentID)/standalone")!
     }
 
-    func calendarEventDetailsRoute(studentID studentID: String, courseID: String, calendarEventID: String) -> NSURL {
-        return NSURL(string: "students/\(studentID)/courses/\(courseID)/calendar_events/\(calendarEventID)")!
+    func calendarEventDetailsRoute(studentID: String, courseID: String, calendarEventID: String) -> URL {
+        return URL(string: "students/\(studentID)/courses/\(courseID)/calendar_events/\(calendarEventID)")!
     }
 
-    func standaloneCalendarEventDetailsRoute(studentID studentID: String, courseID: String, calendarEventID: String) -> NSURL {
-        return NSURL(string: "students/\(studentID)/courses/\(courseID)/calendar_events/\(calendarEventID)/standalone")!
+    func standaloneCalendarEventDetailsRoute(studentID: String, courseID: String, calendarEventID: String) -> URL {
+        return URL(string: "students/\(studentID)/courses/\(courseID)/calendar_events/\(calendarEventID)/standalone")!
     }
 
-    func courseCalendarEventsRoute(studentID studentID: String, courseID: String) -> NSURL {
-        return NSURL(string: "students/\(studentID)/courses/\(courseID)/calendar_events")!
+    func courseCalendarEventsRoute(studentID: String, courseID: String) -> URL {
+        return URL(string: "students/\(studentID)/courses/\(courseID)/calendar_events")!
     }
 
-    func courseSyllabusRoute(studentID studentID: String, courseID: String) -> NSURL {
-        return NSURL(string: "students/\(studentID)/courses/\(courseID)/syllabus")!
+    func courseSyllabusRoute(studentID: String, courseID: String) -> URL {
+        return URL(string: "students/\(studentID)/courses/\(courseID)/syllabus")!
     }
 
-    func courseAnnouncementRoute(studentID studentID: String, courseID: String, announcementID: String) -> NSURL {
-        return NSURL(string: "students/\(studentID)/courses/\(courseID)/discussion_topics/\(announcementID)")!
+    func courseAnnouncementRoute(studentID: String, courseID: String, announcementID: String) -> URL {
+        return URL(string: "students/\(studentID)/courses/\(courseID)/discussion_topics/\(announcementID)")!
     }
 
-    func alertRoute(studentID studentID: String, alertAssetPath: String) -> NSURL? {
-        let components = NSURLComponents(string: alertAssetPath)
+    func alertRoute(studentID: String, alertAssetPath: String) -> URL? {
+        let components = URLComponents(string: alertAssetPath)
         guard let path = components?.path else { return nil }
-        return NSURL(string: "students/\(studentID)")!.URLByAppendingPathComponent(path)
+        return URL(string: "students/\(studentID)")!.appendingPathComponent(path)
     }
 }
 
@@ -145,29 +149,29 @@ extension Router {
         addRoutesWithDictionary(routeDictionary)
     }
     
-    func routeToLoggedInViewController(animated animated: Bool = false) {
+    func routeToLoggedInViewController(animated: Bool = false) {
         guard let window = applicationWindow() else {
             fatalError("We don't have a window?  We're doomed!")
         }
 
         if let session = session {
-            NSNotificationCenter.defaultCenter().postNotificationName(LoggedInNotificationName, object: self, userInfo: [LoggedInNotificationContentsSession: session])
+            NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: session])
         }
 
         let dashboardHandler = Router.sharedInstance.parentDashboardHandler()
-        let dashboardVC = dashboardHandler(params: nil)
+        let dashboardVC = dashboardHandler(nil)
         Router.sharedInstance.route(window, toRootViewController: dashboardVC, animated: animated)
     }
     
-    func routeToLoggedOutViewController(animated animated: Bool = false) {
+    func routeToLoggedOutViewController(animated: Bool = false) {
         guard let window = applicationWindow() else {
             fatalError("We don't have a window?  We're doomed!")
         }
 
-        NSNotificationCenter.defaultCenter().postNotificationName(LoggedOutNotificationName, object: self)
+        NotificationCenter.default.post(name: .loggedOut, object: self)
 
         let initialHandler = Router.sharedInstance.loginRouteHandler()
-        let initialViewController = initialHandler(params: nil)
+        let initialViewController = initialHandler(nil)
         Router.sharedInstance.route(window, toRootViewController: initialViewController, animated: animated)
     }
     
@@ -177,7 +181,7 @@ extension Router {
             loginViewController.loggedInHandler = { session in
                 Keymaster.sharedInstance.login(session)
                 self.session = session
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.routeToLoggedInViewController(animated: true)
                 }
             }
@@ -188,8 +192,8 @@ extension Router {
 
     func resetPasswordRouteHandler() -> RouteHandler {
         return { params in
-            let fallback = self.loginRouteHandler()(params: params)
-            guard let params = params, email = params["username"] as? String, recoveryToken = params["recovery_token"] as? String else {
+            let fallback = self.loginRouteHandler()(params)
+            guard let params = params, let email = params["username"] as? String, let recoveryToken = params["recovery_token"] as? String else {
                 return fallback
             }
 
@@ -197,7 +201,7 @@ extension Router {
             loginViewController.loggedInHandler = { session in
                 Keymaster.sharedInstance.login(session)
                 self.session = session
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.routeToLoggedInViewController(animated: true)
                 }
             }
@@ -223,7 +227,7 @@ extension Router {
                 }
 
                 switch calendarEvent.type {
-                case .Assignment, .Quiz:
+                case .assignment, .quiz:
                     guard let assignmentID = calendarEvent.assignmentID else { fallthrough }
                     self.route(dashboardVC, toURL: self.assignmentDetailsRoute(studentID: studentID, courseID: courseID, assignmentID: assignmentID), modal: true)
                 default:
@@ -257,10 +261,10 @@ extension Router {
                     fatalError("You can't add a user without a session")
                 }
                 let producer = try! Student.checkDomain(session, parentID: session.user.id, domain: domain)
-                producer.observeOn(UIScheduler()).startWithSignal({ signal, disposable in
+                producer.observe(on: UIScheduler()).startWithSignal({ signal, disposable in
                                         signal.observe { event in
                                             switch event {
-                                            case .Failed(let e):
+                                            case .failed(let e):
                                                 print("Error adding Student Domain: \(e)")
                                                 let createAccountTitle = NSLocalizedString("Unable to Add Student", comment: "Title for alert when failing to add student domain")
                                                 var createAccountMessage = e.localizedDescription
@@ -269,13 +273,13 @@ extension Router {
                                                 } else if e.code == 403 {
                                                     createAccountMessage = NSLocalizedString("This institution has not enabled access to the Canvas Parent mobile app.", comment: "Alert Message for institution not authorized")
                                                 }
-                                                let alert = UIAlertController(title: createAccountTitle, message: createAccountMessage, preferredStyle: .Alert)
-                                                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
-                                                selectDomainViewController?.presentViewController(alert, animated: true, completion: nil)
-                                            case .Completed:
+                                                let alert = UIAlertController(title: createAccountTitle, message: createAccountMessage, preferredStyle: .alert)
+                                                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                                                selectDomainViewController?.present(alert, animated: true, completion: nil)
+                                            case .completed:
                                                 do {
                                                     let addVC = try AddStudentViewController(session: session, domain: domain, useBackButton: true) { result in
-                                                        selectDomainViewController?.navigationController?.popToRootViewControllerAnimated(true)
+                                                        let _ = selectDomainViewController?.navigationController?.popToRootViewController(animated: true)
                                                     }
                                                     addVC.prompt = NSLocalizedString("Enter student's login information", comment: "Prompt for logging in as student")
                                                     selectDomainViewController?.navigationController?.pushViewController(addVC, animated: true)
@@ -301,7 +305,7 @@ extension Router {
     func viewGuidesHandler() -> RouteHandler {
         return { params in
             let webBrowser = WebBrowserViewController(useAPISafeLinks: false, isModal: false)
-            webBrowser.url = NSURL(string: "https://community.canvaslms.com/community/answers/guides/")!
+            webBrowser.url = URL(string: "https://community.canvaslms.com/community/answers/guides/")!
             return webBrowser
         }
     }
@@ -312,7 +316,7 @@ extension Router {
                 fatalError("You can't create a ParentDashboardViewController without a Session")
             }
 
-            let supportTicketVC = SupportTicketViewController.new(session, type: .Problem)
+            let supportTicketVC = SupportTicketViewController.new(session, type: .problem)
             return supportTicketVC
         }
     }
@@ -323,7 +327,7 @@ extension Router {
                 fatalError("You can't create a ParentDashboardViewController without a Session")
             }
             
-            let supportTicketVC = SupportTicketViewController.new(session, type: .FeatureRequest)
+            let supportTicketVC = SupportTicketViewController.new(session, type: .featureRequest)
             return supportTicketVC
         }
     }
@@ -337,7 +341,7 @@ extension Router {
             let settingsVC = SettingsViewController.new(session: session)
             
             settingsVC.closeAction = { [weak settingsVC] session in
-                settingsVC?.dismissViewControllerAnimated(true, completion: nil)
+                settingsVC?.dismiss(animated: true, completion: nil)
             }
 
             settingsVC.addObserveeAction = { [weak settingsVC] session in
@@ -370,14 +374,14 @@ extension Router {
             }
 
             let navigationController = UINavigationController.coloredTriangleNavigationController(withRootViewController: settingsVC)
-            navigationController.modalPresentationStyle = .FormSheet
+            navigationController.modalPresentationStyle = .formSheet
             return navigationController
         }
     }
 
     func adjustThresholdsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, parameters = params, studentID = parameters["studentID"] as? String else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String else {
                 fatalError("You can't edit thresholds without a Session and studentID")
             }
 
@@ -388,14 +392,14 @@ extension Router {
 
     func courseCalendarEventsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, parameters = params, studentID = parameters["studentID"] as? String, courseID = parameters["courseID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let courseID = parameters["courseID"] as? NSNumber else {
                 fatalError("You can't show an course without having a session, student and course id!")
             }
 
-            let calendarWeekPageVC = CalendarEventWeekPageViewController.new(session: session, studentID: studentID, contextCodes: [ContextID(id: courseID.stringValue, context: .Course).canvasContextID])
+            let calendarWeekPageVC = CalendarEventWeekPageViewController.new(session: session, studentID: studentID, contextCodes: [ContextID(id: courseID.stringValue, context: .course).canvasContextID])
             calendarWeekPageVC.selectCalendarEventAction = { session, studentID, calendarEvent in
                 switch calendarEvent.type {
-                case .Assignment:
+                case .assignment:
                     guard let assignmentID = calendarEvent.assignmentID else { fallthrough }
                     self.route(calendarWeekPageVC, toURL: self.standaloneAssignmentDetailsRoute(studentID: studentID, courseID: courseID.stringValue, assignmentID: assignmentID), modal: false)
                 default:
@@ -404,13 +408,13 @@ extension Router {
             }
             calendarWeekPageVC.useBackgroundView = true
 
-            calendarWeekPageVC.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: calendarWeekPageVC, action: #selector(CalendarEventWeekPageViewController.close(_:)))
-            calendarWeekPageVC.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+            calendarWeekPageVC.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: calendarWeekPageVC, action: #selector(CalendarEventWeekPageViewController.close(_:)))
+            calendarWeekPageVC.navigationItem.leftBarButtonItem?.tintColor = .white
             calendarWeekPageVC.navigationItem.leftBarButtonItem?.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             calendarWeekPageVC.navigationItem.leftBarButtonItem?.accessibilityIdentifier = "close_button"
 
             // Only add syllabus if the course has a syllabus
-            session.enrollmentsDataSource(withScope: studentID.stringValue).producer(ContextID(id: courseID.stringValue, context: .Course)).observeOn(UIScheduler()).startWithNext { next in
+            session.enrollmentsDataSource(withScope: studentID.stringValue).producer(ContextID(id: courseID.stringValue, context: .course)).observe(on: UIScheduler()).startWithValues { next in
                 guard let course = next as? Course else { return }
 
                 calendarWeekPageVC.title = course.name
@@ -418,19 +422,20 @@ extension Router {
                 guard let _ = course.syllabusBody else { return }
 
                 let image = UIImage(named: "icon_document_fill")?.imageScaledByPercentage(0.75)
-                let syllabusButton = UIBarButtonItem(image: image, style: .Plain, target: nil, action: nil)
+                let syllabusButton = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
                 syllabusButton.accessibilityLabel = NSLocalizedString("Syllabus", comment: "Syllabus Button Title")
                 syllabusButton.accessibilityIdentifier = "syllabus_button"
-                syllabusButton.rac_command = RACCommand() { _ in
+                let close = Action<(), (), NoError>() { _ in
                     self.route(calendarWeekPageVC, toURL: self.courseSyllabusRoute(studentID: studentID.stringValue, courseID: courseID.stringValue))
-                    return RACSignal.empty()
+                    return .empty
                 }
-                syllabusButton.tintColor = UIColor.whiteColor()
+                syllabusButton.reactive.pressed = CocoaAction(close)
+                syllabusButton.tintColor = .white
                 calendarWeekPageVC.navigationItem.rightBarButtonItem = syllabusButton
             }
 
             let navController = UINavigationController.coloredTriangleNavigationController(withRootViewController: calendarWeekPageVC, forObservee: studentID.stringValue)
-            navController.navigationBar.tintColor = UIColor.whiteColor()
+            navController.navigationBar.tintColor = .white
             navController.navigationBar.accessibilityIdentifier = "navigation_bar"
             return navController
         }
@@ -438,21 +443,22 @@ extension Router {
 
     func assignmentDetailsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, parameters = params, studentID = parameters["studentID"] as? String, courseID = parameters["courseID"] as? NSNumber, assignmentID = parameters["assignmentID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let courseID = parameters["courseID"] as? NSNumber, let assignmentID = parameters["assignmentID"] as? NSNumber else {
                 fatalError("You can't show an assignment without having a session, course and assignment id!")
             }
 
             let assignmentDetailsVC = try! AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID.stringValue, assignmentID: assignmentID.stringValue)
 
-            let closeButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: nil, action: nil)
+            let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             closeButton.accessibilityIdentifier = "close_button"
-            closeButton.rac_command = RACCommand() { _ in
-                assignmentDetailsVC.dismissViewControllerAnimated(true, completion: nil)
-                return RACSignal.empty()
+            let close = Action<(), (), NoError>() { _ in
+                assignmentDetailsVC.dismiss(animated: true, completion: nil)
+                return .empty
             }
+            closeButton.reactive.pressed = CocoaAction(close)
             assignmentDetailsVC.navigationItem.leftBarButtonItem = closeButton
-            assignmentDetailsVC.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+            assignmentDetailsVC.navigationItem.leftBarButtonItem?.tintColor = .white
 
             let navController = UINavigationController.coloredTriangleNavigationController(withRootViewController: assignmentDetailsVC, forObservee: studentID.stringValue)
             return navController
@@ -461,7 +467,7 @@ extension Router {
 
     func standaloneAssignmentDetailsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, parameters = params, studentID = parameters["studentID"] as? String, courseID = parameters["courseID"] as? NSNumber, assignmentID = parameters["assignmentID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let courseID = parameters["courseID"] as? NSNumber, let assignmentID = parameters["assignmentID"] as? NSNumber else {
                 fatalError("You can't show an assignment without having a session, course and assignment id!")
             }
 
@@ -472,21 +478,22 @@ extension Router {
 
     func calendarEventDetailsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, parameters = params, studentID = parameters["studentID"] as? String, calendarEventID = parameters["calendarEventID"] as? NSNumber, courseID = parameters["courseID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let calendarEventID = parameters["calendarEventID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber else {
                 fatalError("You can't show a calendar event without having a session and a calendar event id!")
             }
 
             let calendarEventDetailsVC = try! CalendarEventDetailsViewController(session: session, studentID: studentID, courseID: courseID.stringValue, calendarEventID: calendarEventID.stringValue)
 
-            let closeButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: nil, action: nil)
+            let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             closeButton.accessibilityIdentifier = "close_button"
-            closeButton.rac_command = RACCommand() { _ in
-                calendarEventDetailsVC.dismissViewControllerAnimated(true, completion: nil)
-                return RACSignal.empty()
+            let close = Action<(), (), NoError>() {
+                calendarEventDetailsVC.dismiss(animated: true, completion: nil)
+                return .empty
             }
+            closeButton.reactive.pressed = CocoaAction(close)
             calendarEventDetailsVC.navigationItem.leftBarButtonItem = closeButton
-            calendarEventDetailsVC.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+            calendarEventDetailsVC.navigationItem.leftBarButtonItem?.tintColor = .white
 
             let navController = UINavigationController.coloredTriangleNavigationController(withRootViewController: calendarEventDetailsVC, forObservee: studentID.stringValue)
             return navController
@@ -495,12 +502,12 @@ extension Router {
 
     func standaloneCalendarEventDetailsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, parameters = params, studentID = parameters["studentID"] as? String, calendarEventID = parameters["calendarEventID"] as? NSNumber, courseID = parameters["courseID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let calendarEventID = parameters["calendarEventID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber else {
                 fatalError("You can't show a calendar event without having a session and a calendar event id!")
             }
 
             let calendarEventDetailsVC = try! CalendarEventDetailsViewController(session: session, studentID: studentID, courseID: courseID.stringValue, calendarEventID: calendarEventID.stringValue)
-            calendarEventDetailsVC.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+            calendarEventDetailsVC.navigationItem.leftBarButtonItem?.tintColor = .white
 
             return calendarEventDetailsVC
         }
@@ -508,7 +515,7 @@ extension Router {
 
     func courseSyllabusHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, parameters = params, studentID = parameters["studentID"] as? String, courseID = parameters["courseID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let courseID = parameters["courseID"] as? NSNumber else {
                 fatalError("You can't show a course syllabus without having a session, course id and an student id!")
             }
 
@@ -520,20 +527,21 @@ extension Router {
 
     func courseAnnouncementHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, parameters = params, studentID = parameters["studentID"] as? String, courseID = parameters["courseID"] as? NSNumber, announcementID = parameters["announcementID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let courseID = parameters["courseID"] as? NSNumber, let announcementID = parameters["announcementID"] as? NSNumber else {
                 ❨╯°□°❩╯⌢"You can't show a course announcement with having a session, studentID, courseID and an announcementID dude!"
             }
 
             let announcementVC = try! AnnouncementDetailsViewController(session: session, studentID: studentID, courseID: courseID.stringValue, announcementID: announcementID.stringValue)
-            let closeButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: nil, action: nil)
+            let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             closeButton.accessibilityIdentifier = "close_button"
-            closeButton.rac_command = RACCommand() { _ in
-                announcementVC.dismissViewControllerAnimated(true, completion: nil)
-                return RACSignal.empty()
+            let close = Action<(),(), NoError>() { _ in
+                announcementVC.dismiss(animated: true, completion: nil)
+                return .empty
             }
+            closeButton.reactive.pressed = CocoaAction(close)
             announcementVC.navigationItem.leftBarButtonItem = closeButton
-            announcementVC.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+            announcementVC.navigationItem.leftBarButtonItem?.tintColor = .white
 
             let navController = UINavigationController.coloredTriangleNavigationController(withRootViewController: announcementVC, forObservee: studentID.stringValue)
             return navController
@@ -553,7 +561,7 @@ extension Router {
     }
 
     func appDelegate() -> AppDelegate {
-        guard let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate else {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             fatalError("How is the App Delegate wrong?")
         }
 

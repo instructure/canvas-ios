@@ -22,27 +22,27 @@ class DashboardPage: PageObject {
   // Mark: - Page Objects
 
   private static var userCarousel: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("user_selection_carousel"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("user_selection_carousel"))
   }
 
   private static var userNameLabel: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("student_name_label"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("student_name_label"))
   }
 
   private static var settingsButton: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("settings_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("settings_button"))
   }
 
   private static var coursesTab: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("courses_tab_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("courses_tab_button"))
   }
 
   private static var weekTab: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("week_tab_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("week_tab_button"))
   }
 
   private static var alertsTab: GREYElementInteraction {
-    return EarlGrey().selectElementWithMatcher(grey_accessibilityID("alerts_tab_button"))
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("alerts_tab_button"))
   }
 
   static func uniquePageElement() -> GREYElementInteraction {
@@ -51,41 +51,41 @@ class DashboardPage: PageObject {
 
   // Mark: - Assertion Helpers
 
-  static func assertPageObjects(file: String = #file, _ line: UInt = #line) {
+  static func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
     waitForPageToLoad()
-    userCarousel.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    userNameLabel.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    settingsButton.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    coursesTab.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    weekTab.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
-    alertsTab.assertWithMatcher(grey_allOfMatchers(grey_sufficientlyVisible(), grey_interactable()))
+    userCarousel.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    userNameLabel.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    settingsButton.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    coursesTab.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    weekTab.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    alertsTab.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
   }
 
   // Mark: - UI Action Helpers
 
-  static func tapSettingsButton(file: String = #file, _ line: UInt = #line) {
+  static func tapSettingsButton(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    settingsButton.performAction(grey_tap())
+    settingsButton.perform(grey_tap())
   }
 
-  static func tapCoursesTab(file: String = #file, _ line: UInt = #line) {
+  static func tapCoursesTab(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    coursesTab.performAction(grey_tap())
+    coursesTab.perform(grey_tap())
   }
 
-  static func tapWeekTab(file: String = #file, _ line: UInt = #line) {
+  static func tapWeekTab(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    weekTab.performAction(grey_tap())
+    weekTab.perform(grey_tap())
   }
 
-  static func tapAlertsTab(file: String = #file, _ line: UInt = #line) {
+  static func tapAlertsTab(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
-    alertsTab.performAction(grey_tap())
+    alertsTab.perform(grey_tap())
   }
 }

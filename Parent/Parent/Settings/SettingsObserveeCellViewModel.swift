@@ -25,7 +25,7 @@ import Airwolf
 struct SettingsObserveeCellViewModel: TableViewCellViewModel {
     let name: String
     let studentID: String
-    let avatarURL: NSURL?
+    let avatarURL: URL?
     let highlightColor: UIColor
 
     init(student: Student, highlightColor: UIColor) {
@@ -35,13 +35,13 @@ struct SettingsObserveeCellViewModel: TableViewCellViewModel {
         self.highlightColor = highlightColor
     }
 
-    static func tableViewDidLoad(tableView: UITableView) {
+    static func tableViewDidLoad(_ tableView: UITableView) {
         tableView.estimatedRowHeight = 64
-        tableView.registerNib(UINib(nibName: "SettingsObserveeCell", bundle: NSBundle(forClass: SettingsObserveeCell.self)), forCellReuseIdentifier: "SettingsObserveeCell")
+        tableView.register(UINib(nibName: "SettingsObserveeCell", bundle: Bundle(for: SettingsObserveeCell.self)), forCellReuseIdentifier: "SettingsObserveeCell")
     }
 
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("SettingsObserveeCell", forIndexPath: indexPath) as? SettingsObserveeCell else {
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsObserveeCell", for: indexPath) as? SettingsObserveeCell else {
             fatalError("Incorrect cell type found. Expected: SettingsObserveeCell")
         }
 
@@ -51,7 +51,7 @@ struct SettingsObserveeCellViewModel: TableViewCellViewModel {
         cell.avatarImageView?.accessibilityIdentifier = "observee_avatar_\(indexPath.row)"
 
         if let avatarURL = avatarURL {
-            cell.avatarImageView?.kf_setImageWithURL(avatarURL, placeholderImage: DefaultAvatarCoordinator.defaultAvatarForStudentID(studentID))
+            cell.avatarImageView?.kf.setImage(with: avatarURL, placeholder: DefaultAvatarCoordinator.defaultAvatarForStudentID(studentID))
         }
 
         return cell

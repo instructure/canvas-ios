@@ -1,18 +1,1 @@
-/* Back Button Title */
-"Back" = "Wróć";
-
-/* Error alert message */
-"Could not create domain.  Please check your school's domain and try again." = "Nie udało się utworzyć domeny. Proszę sprawdzić domenę swojej szkoły i spróbować ponownie.";
-
-/* Error Alert Title */
-"Error" = "Błąd";
-
-/* Domain Picker Search Placeholder */
-"Find your school or district" = "Znajdź swoją szkołę lub dzielnicę";
-
-/* OK */
-"OK" = "OK";
-
-/* AccountDomain Database Load Failure Message */
-"There was a problem loading the AccountDomain database file." = "Wystąpił błąd podczas ładowania pliku z bazy danych AccountDomain.";
-
+/* No Localized Strings */

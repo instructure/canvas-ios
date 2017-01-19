@@ -24,8 +24,8 @@ import CoreData
 // MARK: - Model
 // ---------------------------------------------
 public final class AccountDomain: NSManagedObject {
-    @NSManaged private (set) public var name: String
-    @NSManaged private (set) public var domain: String
+    @NSManaged fileprivate (set) public var name: String
+    @NSManaged fileprivate (set) public var domain: String
 }
 
 import SoPersistent
@@ -35,12 +35,12 @@ import Marshal
 // MARK: - Synchronized Model
 // ---------------------------------------------
 extension AccountDomain: SynchronizedModel {
-    public static func uniquePredicateForObject(json: JSONObject) throws -> NSPredicate {
+    public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let domain: String = try json <| "domain"
         return NSPredicate(format: "%K == %@", "domain", domain)
     }
     
-    public func updateValues(json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         name    = try json <| "name"
         domain  = try json <| "domain"
     }

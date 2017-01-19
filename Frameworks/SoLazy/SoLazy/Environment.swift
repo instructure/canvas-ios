@@ -17,5 +17,5 @@
     
 
 public var unitTesting: Bool {
-    return NSProcessInfo.processInfo().environment["XCTestConfigurationFilePath"] != nil
+    return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
 }

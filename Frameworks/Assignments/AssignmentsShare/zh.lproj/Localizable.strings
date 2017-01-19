@@ -1,1 +1,24 @@
-/* No Localized Strings */
+/* Assignment label */
+"Assignment" = "作业";
+
+/* Message indicating that an assignment is currently be submitted */
+"Assignment is currently being submitted" = "作业目前正在提交";
+
+/* Assignment submission comment placeholder text */
+"Comment.." = "评论..";
+
+/* Error when an upload failed to resume. */
+"Failed to resume upload." = "继续上传失败。";
+
+/* Message indicating that a submission type is not supported for this assignment. */
+"Submission type not allowed" = "不允许提交类型";
+
+/* Error message when a course could not be selected */
+"Unable to select a course." = "无法选择课程。";
+
+/* Error message when an assignment could not be selected */
+"Unable to select an assignment." = "无法选择作业。";
+
+/* Error message when unable to submit assignment. */
+"Unable to submit assignment." = "无法提交作业。";
+

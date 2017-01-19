@@ -23,20 +23,20 @@ import TooLegit
 import CoreData
 import SoPersistent
 import SoLazy
-import ReactiveCocoa
+import ReactiveSwift
 import Marshal
 import EnrollmentKit
 
 extension Assignment {
-    public static func collectionCacheKey(context: NSManagedObjectContext, courseID: String, gradingPeriodID: String? = nil) -> String {
+    public static func collectionCacheKey(_ context: NSManagedObjectContext, courseID: String, gradingPeriodID: String? = nil) -> String {
         return cacheKey(context, [courseID, gradingPeriodID].flatMap { $0 })
     }
     
-    public static func predicate(courseID: String) -> NSPredicate {
+    public static func predicate(_ courseID: String) -> NSPredicate {
         return NSPredicate(format:"%K == %@", "courseID", courseID)
     }
 
-    public static func predicate(courseID: String, gradingPeriodID: String) -> NSPredicate {
+    public static func predicate(_ courseID: String, gradingPeriodID: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@ && %K == %@", "courseID", courseID, "gradingPeriodID", gradingPeriodID)
     }
 
@@ -45,7 +45,7 @@ extension Assignment {
         return NSPredicate(format: "%K LIKE[cd] %@", "name", name)
     }
     
-    public static func collectionByDueStatus(session: Session, courseID: String, gradingPeriodID: String? = nil, filteredByName name: String? = nil) throws -> FetchedCollection<Assignment> {
+    public static func collectionByDueStatus(_ session: Session, courseID: String, gradingPeriodID: String? = nil, filteredByName name: String? = nil) throws -> FetchedCollection<Assignment> {
         let predicate = gradingPeriodID.flatMap { Assignment.predicate(courseID, gradingPeriodID: $0) } ?? Assignment.predicate(courseID)
         let predicateFRD: NSPredicate
         if let name = name {
@@ -54,17 +54,17 @@ extension Assignment {
         } else {
             predicateFRD = predicate
         }
-        let frc = Assignment.fetchedResults(predicateFRD, sortDescriptors: ["rawDueStatus".ascending, "due".ascending, "name".ascending], sectionNameKeypath: "rawDueStatus", inContext: try session.assignmentsManagedObjectContext())
-        let titleFunction: String?->String? = { $0.flatMap { DueStatus(rawValue: $0) }?.description }
+        let frc: NSFetchedResultsController<Assignment> = try session.assignmentsManagedObjectContext().fetchedResults(predicateFRD, sortDescriptors: ["rawDueStatus".ascending, "due".ascending, "name".ascending], sectionNameKeypath: "rawDueStatus")
+        let titleFunction: (String?)->String? = { $0.flatMap { DueStatus(rawValue: $0) }?.description }
         return try FetchedCollection<Assignment>(frc: frc, titleForSectionTitle:titleFunction)
     }
     
-    public static func collectionByDueDate(session: Session, courseID: String) throws -> FetchedCollection<Assignment> {
-        let frc = Assignment.fetchedResults(Assignment.predicate(courseID), sortDescriptors: ["due".ascending, "name".ascending, "id".ascending], sectionNameKeypath: nil, inContext: try session.assignmentsManagedObjectContext())
+    public static func collectionByDueDate(_ session: Session, courseID: String) throws -> FetchedCollection<Assignment> {
+        let frc: NSFetchedResultsController<Assignment> = try session.assignmentsManagedObjectContext().fetchedResults(Assignment.predicate(courseID), sortDescriptors: ["due".ascending, "name".ascending, "id".ascending], sectionNameKeypath: nil)
         return try FetchedCollection(frc: frc)
     }
     
-    public static func collectionByAssignmentGroup(session: Session, courseID: String, gradingPeriodID: String? = nil, filteredByName name: String? = nil) throws -> FetchedCollection<Assignment> {
+    public static func collectionByAssignmentGroup(_ session: Session, courseID: String, gradingPeriodID: String? = nil, filteredByName name: String? = nil) throws -> FetchedCollection<Assignment> {
         let predicate = gradingPeriodID.flatMap { Assignment.predicate(courseID, gradingPeriodID: $0) } ?? Assignment.predicate(courseID)
         let predicateFRD: NSPredicate
         if let name = name {
@@ -73,19 +73,19 @@ extension Assignment {
         } else {
             predicateFRD = predicate
         }
-        let frc = Assignment.fetchedResults(predicateFRD, sortDescriptors: ["assignmentGroup.position".ascending, "due".ascending, "name".ascending, "id".ascending], sectionNameKeypath: "assignmentGroup.name", inContext: try session.assignmentsManagedObjectContext())
+        let frc: NSFetchedResultsController<Assignment> = try session.assignmentsManagedObjectContext().fetchedResults(predicateFRD, sortDescriptors: ["assignmentGroup.position".ascending, "due".ascending, "name".ascending, "id".ascending], sectionNameKeypath: "assignmentGroupName")
         return try FetchedCollection(frc: frc)
     }
 
-    public static func refreshSignalProducer(session: Session, courseID: String, gradingPeriodID: String?, invalidatingGradingPeriodIDs: [String], cacheKey: (courseID: String, gradingPeriodID: String?) -> String) throws -> SignalProducer<Void, NSError> {
+    public static func refreshSignalProducer(_ session: Session, courseID: String, gradingPeriodID: String?, invalidatingGradingPeriodIDs: [String], cacheKey: @escaping (String, String?) -> String) throws -> SignalProducer<Void, NSError> {
         let context = try session.assignmentsManagedObjectContext()
 
         // invalidate refresh cache for all other grading periods
-        let invalidate = SignalProducer<String, NSError>(values: invalidatingGradingPeriodIDs).map { invalidGradingPeriodID in
-            let key = cacheKey(courseID: courseID, gradingPeriodID: invalidGradingPeriodID)
+        let invalidate = SignalProducer<String, NSError>(invalidatingGradingPeriodIDs).map { invalidGradingPeriodID in
+            let key = cacheKey(courseID, invalidGradingPeriodID)
             session.refreshScope.invalidateCache(key, refresh: false)
             if gradingPeriodID != nil {
-                session.refreshScope.invalidateCache(cacheKey(courseID: courseID, gradingPeriodID: nil), refresh: false)
+                session.refreshScope.invalidateCache(cacheKey(courseID, nil), refresh: false)
             }
         }
         .map { _ in () }
@@ -108,7 +108,7 @@ extension Assignment {
         return invalidate.concat(assignmentsSync).concat(groupsSync)
     }
 
-    public static func refresher(session: Session, courseID: String, gradingPeriodID: String? = nil, invalidatingGradingPeriodIDs: [String] = []) throws -> Refresher {
+    public static func refresher(_ session: Session, courseID: String, gradingPeriodID: String? = nil, invalidatingGradingPeriodIDs: [String] = []) throws -> Refresher {
         let context = try session.assignmentsManagedObjectContext()
         let sync = try refreshSignalProducer(session, courseID: courseID, gradingPeriodID: gradingPeriodID, invalidatingGradingPeriodIDs: invalidatingGradingPeriodIDs) { courseID, gradingPeriodID in
             return collectionCacheKey(context, courseID: courseID, gradingPeriodID: gradingPeriodID)
@@ -117,7 +117,7 @@ extension Assignment {
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 
-    public static func invalidateCache(session: Session, courseID: String) throws {
+    public static func invalidateCache(_ session: Session, courseID: String) throws {
         let context = try session.assignmentsManagedObjectContext()
         session.refreshScope.invalidateCache(collectionCacheKey(context, courseID: courseID), refresh: false)
         for gradingPeriodID in try GradingPeriod.gradingPeriodIDs(session, courseID: courseID, excludingGradingPeriodID: nil) {

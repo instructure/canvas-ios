@@ -20,31 +20,31 @@ import Foundation
 import SoLazy
 import TooLegit
 
-public class SelectSessionListViewController: UITableViewController {
+open class SelectSessionListViewController: UITableViewController {
 
     public typealias PickSessionAction = (Session) -> ()
     var sessions = [Session]()
     let reuseIdentifier = "MultiUserCellReuseIdentifier"
-    public var pickedSessionAction : PickSessionAction = { session in
+    open var pickedSessionAction : PickSessionAction = { session in
         print("Session Picked:\n  \t\(session)")
     }
-    public var sessionDeleted : PickSessionAction? = { session in
+    open var sessionDeleted : PickSessionAction? = { session in
         print("Session Deleted:\n  \t\(session)")
     }
 
     // ---------------------------------------------
     // MARK: - Initializers
     // ---------------------------------------------
-    private static let defaultStoryboardName = "SelectSessionListViewController"
-    public static func new(storyboardName: String = defaultStoryboardName) -> SelectSessionListViewController {
-        guard let controller = UIStoryboard(name: storyboardName, bundle: NSBundle(forClass:object_getClass(self))).instantiateInitialViewController() as? SelectSessionListViewController else {
+    fileprivate static let defaultStoryboardName = "SelectSessionListViewController"
+    open static func new(_ storyboardName: String = defaultStoryboardName) -> SelectSessionListViewController {
+        guard let controller = UIStoryboard(name: storyboardName, bundle: Bundle(for:object_getClass(self))).instantiateInitialViewController() as? SelectSessionListViewController else {
             ❨╯°□°❩╯⌢"Initial ViewController is not of type MultiUserTableViewController"
         }
 
         return controller
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.tableFooterView = UIView()
@@ -52,28 +52,28 @@ public class SelectSessionListViewController: UITableViewController {
         reloadData()
     }
 
-    public override func didReceiveMemoryWarning() {
+    open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
     // ---------------------------------------------
     // MARK: - UITableViewDataSource
     // ---------------------------------------------
-    public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    open override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sessions.count
     }
 
-    public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         configureCell(indexPath, cell: cell)
         return cell
     }
 
-    func configureCell(indexPath: NSIndexPath, cell: UITableViewCell) {
+    func configureCell(_ indexPath: IndexPath, cell: UITableViewCell) {
         guard let cell = cell as? SelectSessionTableViewCell else {
             ❨╯°□°❩╯⌢"Expected a SelectSessionTableViewCell"
         }
@@ -82,12 +82,12 @@ public class SelectSessionListViewController: UITableViewController {
         cell.session = session
 
         cell.deleteButton.tag = indexPath.row
-        cell.deleteButton.addTarget(self, action: #selector(SelectSessionListViewController.deleteButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        cell.deleteButton.hidden = sessionDeleted == nil
-        cell.accessoryType = sessionDeleted == nil ? .DisclosureIndicator : .None
+        cell.deleteButton.addTarget(self, action: #selector(SelectSessionListViewController.deleteButtonPressed(_:)), for: .touchUpInside)
+        cell.deleteButton.isHidden = sessionDeleted == nil
+        cell.accessoryType = sessionDeleted == nil ? .disclosureIndicator : .none
 
         if indexPath.row == sessions.count - 1 {
-            cell.roundCorners([.BottomRight, .BottomLeft], radius: 10.0)
+            cell.roundCorners([.bottomRight, .bottomLeft], radius: 10.0)
         } else {
             cell.layer.mask = nil
         }
@@ -96,8 +96,8 @@ public class SelectSessionListViewController: UITableViewController {
     // ---------------------------------------------
     // MARK: - UITableViewDelegate
     // ---------------------------------------------
-    public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let session = sessions[indexPath.row]
         pickedSessionAction(session)
     }
@@ -105,7 +105,7 @@ public class SelectSessionListViewController: UITableViewController {
     // ---------------------------------------------
     // MARK: - IBActions
     // ---------------------------------------------
-    @IBAction func deleteButtonPressed(sender: UIButton) {
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
         let tag = sender.tag
         guard sessions.count > tag else {
             ❨╯°□°❩╯⌢"Multi User Tag is somehow higher than number of sessions"
@@ -117,16 +117,16 @@ public class SelectSessionListViewController: UITableViewController {
         sessionDeleted?(session)
     }
 
-    func removeSessionAtIndex(index: Int) {
-        self.sessions.removeAtIndex(index)
+    func removeSessionAtIndex(_ index: Int) {
+        self.sessions.remove(at: index)
 
         // reload everything below and 1 above, just in case we reuse the cell and the corners are rounded
         let reloadCells = tableView.indexPathsForVisibleRows?.filter{ $0.row > index || $0.row == index - 1}
 
         tableView.beginUpdates()
-        tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .Left)
+        tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
         if let reloadCells = reloadCells {
-            tableView.reloadRowsAtIndexPaths(reloadCells, withRowAnimation: .Automatic)
+            tableView.reloadRows(at: reloadCells, with: .automatic)
         }
         tableView.endUpdates()
     }

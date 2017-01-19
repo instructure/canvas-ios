@@ -30,7 +30,7 @@ extension String: Fixture {
     public var bundle: NSBundle { return NSBundle(forClass: DescribeSyncingConversations.self) }
 }
 
-import ReactiveCocoa
+import ReactiveSwift
 extension SignalProducerType {
     func startWithStub(stub: Stub, file: StaticString = #file, line: UInt = #line, next: (Value -> Void)?) {
         stub.testCase.stub(stub.session, stub.name) { expectation in

@@ -21,15 +21,15 @@ import SoLazy
 import Kingfisher
 
 // this is in `AuthKit` so the `Session` can have a `currentUser`
-public class SessionUser: NSObject {
-    public let id: String
-    public let loginID: String?
-    public let name: String
-    public let sortableName: String?
-    public let email: String?
-    public let avatarURL: NSURL?
+open class SessionUser: NSObject {
+    open let id: String
+    open let loginID: String?
+    open let name: String
+    open let sortableName: String?
+    open let email: String?
+    open let avatarURL: URL?
     
-    public init(id: String, name: String, loginID: String? = nil, sortableName: String? = nil, email: String? = nil, avatarURL: NSURL? = nil) {
+    public init(id: String, name: String, loginID: String? = nil, sortableName: String? = nil, email: String? = nil, avatarURL: URL? = nil) {
         self.id = id
         self.loginID = loginID
         self.name = name
@@ -38,10 +38,10 @@ public class SessionUser: NSObject {
         self.sortableName = sortableName
     }
 
-    public func getAvatarImage(completion: (image: UIImage?, error: NSError?)->Void) {
-        guard let url = avatarURL else { completion(image: nil, error: NSError(subdomain: "TooLegit", description: NSLocalizedString("User has no valid avatar image url", tableName: "Localizable", bundle: NSBundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Error message if we can't pull the avatar image"))); return }
-        KingfisherManager.sharedManager.retrieveImageWithURL(url, optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
-            completion(image: image, error: error)
+    open func getAvatarImage(_ completion: @escaping (UIImage?, NSError?)->Void) {
+        guard let url = avatarURL else { completion(nil, NSError(subdomain: "TooLegit", description: NSLocalizedString("User has no valid avatar image url", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.TooLegit")!, value: "", comment: "Error message if we can't pull the avatar image"))); return }
+        KingfisherManager.shared.retrieveImage(with: url, options: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
+            completion(image, error)
         }
     }
 }
@@ -50,14 +50,14 @@ public class SessionUser: NSObject {
 // MARK: JSON
 
 extension SessionUser {
-    public class func fromJSON(json: AnyObject?) -> SessionUser? {
+    public class func fromJSON(_ json: Any?) -> SessionUser? {
         if let
             data = json as? [String: AnyObject],
-            id = data["id"] as? String,
-            name = data["name"] as? String {
+            let id = data["id"] as? String,
+            let name = data["name"] as? String {
                 let sortableName = data["sortable_name"] as? String
                 let loginID = data["login_id"] as? String
-                let avatarURL = (data["avatar_url"] as? String).flatMap { NSURL(string: $0) }
+                let avatarURL = (data["avatar_url"] as? String).flatMap { URL(string: $0) }
                 let email = data["primary_email"] as? String // Optional
                 
                 return SessionUser(id: id, name: name, loginID: loginID, sortableName: sortableName, email: email, avatarURL: avatarURL)
@@ -65,8 +65,8 @@ extension SessionUser {
         return nil
     }
 
-    public func JSONDictionary() -> [String : AnyObject] {
-        var dictionary = [String : AnyObject]()
+    public func JSONDictionary() -> [String : Any] {
+        var dictionary = [String : Any]()
         dictionary["avatar_url"] = avatarURL?.absoluteString ?? ""
         dictionary["id"] = id
         dictionary["login_id"] = loginID

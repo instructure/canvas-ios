@@ -28,43 +28,43 @@ struct AccountDomainViewModel: TableViewCellViewModel {
     let name: String
     let domain: String
 
-    static func tableViewDidLoad(tableView: UITableView) {
-        tableView.registerNib(UINib(nibName: "AccountDomainTableViewCell", bundle: NSBundle(forClass: SelectSessionTableViewCell.self)), forCellReuseIdentifier: "AccountDomainViewModel")
+    static func tableViewDidLoad(_ tableView: UITableView) {
+        tableView.register(UINib(nibName: "AccountDomainTableViewCell", bundle: Bundle(for: SelectSessionTableViewCell.self)), forCellReuseIdentifier: "AccountDomainViewModel")
     }
-    func cellForTableView(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("AccountDomainViewModel", forIndexPath: indexPath)
+    func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountDomainViewModel", for: indexPath)
         cell.textLabel?.text = name
         cell.detailTextLabel?.text = domain
         return cell
     }
 }
 
-import ReactiveCocoa
+import ReactiveSwift
 import CoreData
 
-public class AccountDomainListViewController: UITableViewController {
+open class AccountDomainListViewController: UITableViewController {
 
     var collection: FetchedCollection<AccountDomain>
-    public var dataSource: TableViewDataSource?
+    open var dataSource: TableViewDataSource?
 
-    let syncProducer: ReactiveCocoa.SignalProducer<[AccountDomain], NSError>
+    let syncProducer: SignalProducer<[AccountDomain], NSError>
     var disposable: Disposable?
-    var pickedDomainAction: ((NSURL)->Void)?
+    var pickedDomainAction: ((URL)->Void)?
     var collectionUpdatesDisposable: Disposable?
 
     let context: NSManagedObjectContext = {
-        let bundle = NSBundle(forClass: AccountDomain.self)
+        let bundle = Bundle(for: AccountDomain.self)
         guard let model = NSManagedObjectModel(named: "Keymaster", inBundle:bundle) else { ❨╯°□°❩╯⌢"problems?" }
 
-        let storeURL = AccountDomainListViewController.localStoreDirectoryURL().URLByAppendingPathComponent("account_domains.sqlite")
+        let storeURL = AccountDomainListViewController.localStoreDirectoryURL().appendingPathComponent("account_domains.sqlite")
 
-        let context = try! NSManagedObjectContext(storeURL: storeURL!, model: model, cacheReset: {})
+        let context = try! NSManagedObjectContext(storeURL: storeURL, model: model, cacheReset: {})
         return context
     }()
 
-    static func localStoreDirectoryURL() -> NSURL {
-        guard let lib = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true).first else { ❨╯°□°❩╯⌢"GASP! There were no user library search paths" }
-        let fileURL = NSURL(fileURLWithPath: lib)
+    static func localStoreDirectoryURL() -> URL {
+        guard let lib = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first else { ❨╯°□°❩╯⌢"GASP! There were no user library search paths" }
+        let fileURL = URL(fileURLWithPath: lib)
         return fileURL
     }
 
@@ -90,71 +90,71 @@ public class AccountDomainListViewController: UITableViewController {
         ❨╯°□°❩╯⌢"initWithCoder not implemented"
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.clearColor()
+        self.view.backgroundColor = UIColor.clear
         tableView.tableFooterView = UIView()
 
         dataSource?.viewDidLoad(self)
 
         AccountDomainViewModel.tableViewDidLoad(tableView)
-        collectionUpdatesDisposable = collection.collectionUpdates.observeOn(UIScheduler()).observeNext { [unowned self] updates in
+        collectionUpdatesDisposable = collection.collectionUpdates.observe(on: UIScheduler()).observeValues { [unowned self] updates in
             self.handleUpdates(updates)
         }.map(ScopedDisposable.init)
 
         refresh(nil)
 
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(AccountDomainListViewController.refresh(_:)), forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(AccountDomainListViewController.refresh(_:)), for: .valueChanged)
     }
 
-    func refresh(refreshContol: UIRefreshControl?) {
+    func refresh(_ refreshContol: UIRefreshControl?) {
         disposable = syncProducer.start { event in
             print(event)
             switch event {
-            case .Completed, .Interrupted, .Failed:
+            case .completed, .interrupted, .failed:
                 refreshContol?.endRefreshing()
             default: break
             }
         }
     }
 
-    public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let accountDomain = collection[indexPath]
 
         let viewModel = AccountDomainViewModel(name: accountDomain.name, domain: accountDomain.domain)
         let cell = viewModel.cellForTableView(tableView, indexPath: indexPath)
         if indexPath.row == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1 {
-            cell.roundCorners([.BottomRight, .BottomLeft], radius: 10.0)
+            cell.roundCorners([.bottomRight, .bottomLeft], radius: 10.0)
         } else {
             cell.layer.mask = nil
         }
         return cell
     }
 
-    public override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    open override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return collection.titleForSection(section)
     }
 
-    public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    open override func numberOfSections(in tableView: UITableView) -> Int {
         return collection.numberOfSections()
     }
 
-    public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return collection.numberOfItemsInSection(section)
     }
 
-    public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
 
         let domain = collection[indexPath].domain
-        if let url = NSURL(string: "https://\(domain)") {
+        if let url = URL(string: "https://\(domain)") {
             pickedDomainAction?(url)
         }
     }
 
-    private func handleUpdates(updates: [CollectionUpdate<AccountDomain>]) {
+    fileprivate func handleUpdates(_ updates: [CollectionUpdate<AccountDomain>]) {
         tableView.reloadData()
     }
 }

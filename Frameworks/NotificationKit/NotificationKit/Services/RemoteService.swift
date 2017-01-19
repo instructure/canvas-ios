@@ -21,9 +21,9 @@ import Foundation
 import TooLegit
 import Result
 import Marshal
-import ReactiveCocoa
+import ReactiveSwift
 
-public class RemoteService {
+open class RemoteService {
     
     let session: Session
     
@@ -32,10 +32,10 @@ public class RemoteService {
     }
     
     // MARK: Notification Settings Globally Update
-    public func getNotificationPreferencesSetup(completion: Result<Bool, NSError> -> ()) {
+    open func getNotificationPreferencesSetup(_ completion: @escaping (Result<Bool, NSError>) -> ()) {
         requestForGetNotificationPreferencesSetup()
-            .flatMap(.Concat, transform: session.JSONSignalProducer)
-            .on(next: { response in
+            .flatMap(.concat, transform: session.JSONSignalProducer)
+            .on(value: { response in
                 let resultString: String = (try? response <| "\(RemoteService.customDataKey).\(RemoteService.key)") ?? "false"
                 completion(Result(value: (resultString as NSString).boolValue))
             })
@@ -44,47 +44,47 @@ public class RemoteService {
             }
     }
     
-    private func requestForGetNotificationPreferencesSetup() -> SignalProducer<NSURLRequest, NSError> {
+    fileprivate func requestForGetNotificationPreferencesSetup() -> SignalProducer<URLRequest, NSError> {
         let path = pathForKeyValueStore()
         let parameters = [RemoteService.namespaceKey: RemoteService.namespaceValue]
         return attemptProducer { try session.GET(path, parameters: parameters) }
     }
     
-    public func updateNotificationPreferencesSetup(completion: Result<Bool, NSError> -> ()) {
+    open func updateNotificationPreferencesSetup(_ completion: @escaping (Result<Bool, NSError>) -> ()) {
         requestForGetNotificationPreferencesSetup()
-            .flatMap(.Concat, transform: session.emptyResponseSignalProducer)
-            .on(next: { completion(Result(value: true)) })
+            .flatMap(.concat, transform: session.emptyResponseSignalProducer)
+            .on(value: { completion(Result(value: true)) })
             .startWithFailed { err in completion(Result(error: err)) }
     }
     
-    private func requestForUpdateNotificationPreferencesSetup() -> SignalProducer<NSURLRequest, NSError> {
+    fileprivate func requestForUpdateNotificationPreferencesSetup() -> SignalProducer<URLRequest, NSError> {
         let path = pathForKeyValueStore()
-        let parameters: [String : AnyObject] = [RemoteService.namespaceKey: RemoteService.namespaceValue, RemoteService.customDataKey: "true"]
+        let parameters: [String : Any] = [RemoteService.namespaceKey: RemoteService.namespaceValue, RemoteService.customDataKey: "true"]
         return attemptProducer { try session.POST(path, parameters: parameters) }
     }
     
     // DON'T CHANGE THESE! THE FATE OF THE WORLD DEPENDS ON IT!
     // *******************************************************************************************
-    private static let scope = "data_sync"
-    private static let namespaceKey = "ns"
-    private static let namespaceValue = "MOBILE_CANVAS_USER_NOTIFICATION_STATUS_SETUP"
-    private static let customDataKey = "data"
-    private static let key = "NOTIFICATION_PREFERENCES_SETUP"
+    fileprivate static let scope = "data_sync"
+    fileprivate static let namespaceKey = "ns"
+    fileprivate static let namespaceValue = "MOBILE_CANVAS_USER_NOTIFICATION_STATUS_SETUP"
+    fileprivate static let customDataKey = "data"
+    fileprivate static let key = "NOTIFICATION_PREFERENCES_SETUP"
     // *******************************************************************************************
 
-    private func pathForKeyValueStore() -> String {
+    fileprivate func pathForKeyValueStore() -> String {
         return "api/v1/users/self/custom_data/\(RemoteService.scope)"
     }
     
     // MARK: Push notification registration
-    public func registerPushNotificationTokenWithPushService(pushToken: String, completion: Result<Bool, NSError> -> ()) {
+    open func registerPushNotificationTokenWithPushService(_ pushToken: String, completion: @escaping (Result<Bool, NSError>) -> ()) {
         requestForPushNotificationRegistration(pushToken)
-            .flatMap(.Concat, transform: session.emptyResponseSignalProducer)
-            .on(next: { completion(Result(value: true)) })
+            .flatMap(.concat, transform: session.emptyResponseSignalProducer)
+            .on(starting: { completion(Result(value: true)) })
             .startWithFailed { err in completion(Result(error: err)) }
     }
     
-    private func requestForPushNotificationRegistration(pushToken: String) -> SignalProducer<NSURLRequest, NSError> {
+    fileprivate func requestForPushNotificationRegistration(_ pushToken: String) -> SignalProducer<URLRequest, NSError> {
         let path = "api/v1/users/self/communication_channels"
         
         let channel = ["type": "push", "token": pushToken]
@@ -95,15 +95,15 @@ public class RemoteService {
     
     // MARK: Retrieve communication channels
     //       GET /users/:user_id/communication_channels
-    public func getUserCommunicationChannels(completion: Result<[CommunicationChannel], NSError> -> ()) {
+    open func getUserCommunicationChannels(_ completion: @escaping (Result<[CommunicationChannel], NSError>) -> ()) {
         requestForUserCommunicationChannels()
-            .flatMap(.Merge, transform: { self.session.paginatedJSONSignalProducer($0) } )
+            .flatMap(.merge, transform: { self.session.paginatedJSONSignalProducer($0) } )
             .map { $0.flatMap(CommunicationChannel.create) }
-            .on(next: { completion(Result(value: $0)) })
+            .on(value: { completion(Result(value: $0)) })
             .startWithFailed { err in completion(Result(error: err)) }
     }
     
-    private func requestForUserCommunicationChannels() -> SignalProducer<NSURLRequest, NSError> {
+    fileprivate func requestForUserCommunicationChannels() -> SignalProducer<URLRequest, NSError> {
         let path = "api/v1/users/self/communication_channels"
         
         return attemptProducer { try session.GET(path) }
@@ -111,15 +111,15 @@ public class RemoteService {
     
     // MARK: Retrieve notification preferences for a channel
     //       GET /users/:user_id/communication_channels/:communication_channel_id/notification_preferences
-    public func getNotificationPreferences(channelID: String, completion: Result<[NotificationPreference], NSError> -> ()) {
+    open func getNotificationPreferences(_ channelID: String, completion: @escaping (Result<[NotificationPreference], NSError>) -> ()) {
         requestForNotificationPreferences(channelID)
-            .flatMap(.Concat, transform: { self.session.paginatedJSONSignalProducer($0, keypath: "notification_preferences") } )
+            .flatMap(.concat, transform: { self.session.paginatedJSONSignalProducer($0, keypath: "notification_preferences") } )
             .map { $0.flatMap(NotificationPreference.create) }
-            .on(next: { completion(Result(value: $0)) })
+            .on(value: { completion(Result(value: $0)) })
             .startWithFailed { err in completion(Result(error: err)) }
     }
     
-    private func requestForNotificationPreferences(channelID: String) -> SignalProducer<NSURLRequest, NSError> {
+    fileprivate func requestForNotificationPreferences(_ channelID: String) -> SignalProducer<URLRequest, NSError> {
         let path = "api/v1/users/self/communication_channels/\(channelID)/notification_preferences"
         
         return attemptProducer { try session.GET(path) }
@@ -129,16 +129,16 @@ public class RemoteService {
     // MARK: Update preferences for a channel
     //       PUT /users/self/communication_channels/5574839/notification_preferences[new_file_added][frequency]=immediately&notification_preferences[new_files_added][frequency]=immediately
     //       e.g. https://mobiledev.instructure.com/api/v1/users/self/communication_channels/5574839/notification_preferences[new_file_added][frequency]=immediately&notification_preferences[new_files_added][frequency]=immediately
-    public func setNotificationPreferences(channelID: String, preferences: [NotificationPreference], completion: Result<Bool, NSError> -> ()) {
+    open func setNotificationPreferences(_ channelID: String, preferences: [NotificationPreference], completion: @escaping (Result<Bool, NSError>) -> ()) {
         requestForSetNotificationPreferences(channelID, preferences: preferences)
-            .flatMap(.Merge, transform: session.emptyResponseSignalProducer)
-            .on(next: { completion(Result(value: true)) })
+            .flatMap(.merge, transform: session.emptyResponseSignalProducer)
+            .on(value: { completion(Result(value: true)) })
             .startWithFailed { err in completion(Result(error: err)) }
     }
     
-    private func requestForSetNotificationPreferences(channelID: String, preferences: [NotificationPreference]) -> SignalProducer<NSURLRequest, NSError> {
+    fileprivate func requestForSetNotificationPreferences(_ channelID: String, preferences: [NotificationPreference]) -> SignalProducer<URLRequest, NSError> {
         let path = "api/v1/users/self/communication_channels/\(channelID)/notification_preferences"
-        var notificationMap = [String : AnyObject]()
+        var notificationMap = [String : Any]()
         
         for preference in preferences {
             notificationMap[preference.notification] = ["frequency" : "\(preference.frequency.rawValue)"]
