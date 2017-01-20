@@ -24,6 +24,7 @@
 		49E545B91909B4AC001AD3BC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49E545B81909B4AC001AD3BC /* Images.xcassets */; };
 		49E545D61909C9DC001AD3BC /* CKMLockedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E545D51909C9DC001AD3BC /* CKMLockedViewController.m */; };
 		6181F12D1DFF365900B94488 /* CKMDomainPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E958981909979B00A1BFB7 /* CKMDomainPickerViewController.m */; };
+		B16702051E32817D00C901E9 /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16702041E32817D00C901E9 /* CWNotification.framework */; };
 		B181D2A41DFB20C600114ACE /* CKMDomainPickerPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2A61DFB20C600114ACE /* CKMDomainPickerPhone.storyboard */; };
 		B181D2A71DFB210000114ACE /* CKMDomainPickerPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2A91DFB210000114ACE /* CKMDomainPickerPad.storyboard */; };
 		B181D2AA1DFB211500114ACE /* SupportTicket.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2AC1DFB211500114ACE /* SupportTicket.storyboard */; };
@@ -198,6 +199,7 @@
 		5EEEB1761B56C9A7001438C3 /* SupportTicketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicketManager.m; sourceTree = "<group>"; };
 		5EEEB1771B56C9A7001438C3 /* SupportTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTicketViewController.h; sourceTree = "<group>"; };
 		5EEEB1781B56C9A7001438C3 /* SupportTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicketViewController.m; sourceTree = "<group>"; };
+		B16702041E32817D00C901E9 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B181D2A51DFB20C600114ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CKMDomainPickerPhone.storyboard; sourceTree = "<group>"; };
 		B181D2A81DFB210000114ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CKMDomainPickerPad.storyboard; sourceTree = "<group>"; };
 		B181D2AB1DFB211500114ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SupportTicket.storyboard; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				B1ECFC8E1C999EEF007C8852 /* Mantle.framework in Frameworks */,
 				B1FC3B391C98BD7D00A8001F /* CanvasKit.framework in Frameworks */,
 				B1ECFC901C999F0F007C8852 /* Result.framework in Frameworks */,
+				B16702051E32817D00C901E9 /* CWNotification.framework in Frameworks */,
 				B1FC3B3B1C98BD8B00A8001F /* FXKeychain.framework in Frameworks */,
 				499F7FDD1C9B6812005CCD00 /* Reachability.framework in Frameworks */,
 			);
@@ -427,6 +430,7 @@
 		B1051E751C909A41007C529F /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				B16702041E32817D00C901E9 /* CWNotification.framework */,
 				4917EDAE1D947C9D009D58B5 /* AFNetworking.framework */,
 				499F7FDC1C9B6812005CCD00 /* Reachability.framework */,
 				B1ECFC8F1C999F0F007C8852 /* Result.framework */,
