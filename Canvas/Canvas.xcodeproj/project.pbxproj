@@ -806,7 +806,7 @@
 		49F9FA5A1CF8CDC400654758 /* UIImage+TechDebt.h in Headers */ = {isa = PBXBuildFile; fileRef = 49F9FA581CF8CDC400654758 /* UIImage+TechDebt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49F9FA5B1CF8CDC400654758 /* UIImage+TechDebt.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA591CF8CDC400654758 /* UIImage+TechDebt.m */; };
 		49F9FA6F1CF8FC8500654758 /* AppDelegate+Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */; };
-		5E2159051D4BEA540005D2DF /* (null) in Resources */ = {isa = PBXBuildFile; };
+		5E2159051D4BEA540005D2DF /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		5E95954A1D36CA2D00C86F93 /* CalendarEvent+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9595491D36CA2D00C86F93 /* CalendarEvent+Display.swift */; };
 		5EB46DE51D21A75C00C859A4 /* NSDate+DayConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DBE1D21A75C00C859A4 /* NSDate+DayConvenience.swift */; };
 		5EB46DE61D21A75C00C859A4 /* NSDate+ReferenceDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DBF1D21A75C00C859A4 /* NSDate+ReferenceDate.swift */; };
@@ -4413,7 +4413,7 @@
 				4927065A1CF4B7A800C631C6 /* ThreadedDiscussion.css in Resources */,
 				492705F41CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib in Resources */,
 				4950686C1D414DC00030A9D5 /* avatar-default-50.png in Resources */,
-				5E2159051D4BEA540005D2DF /* (null) in Resources */,
+				5E2159051D4BEA540005D2DF /* BuildFile in Resources */,
 				492707511CF4BACB00C631C6 /* Conversation.css in Resources */,
 				492705341CF4B70600C631C6 /* CBISubmissionCommentCell-TheirVideo.xib in Resources */,
 				4927052F1CF4B70600C631C6 /* CBISubmissionCommentCell-Mine.xib in Resources */,
@@ -4526,7 +4526,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		4902E1271CF4CBA00069E043 /* Fabric */ = {
@@ -4555,7 +4555,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name 'PSPDFKit.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name \'PSPDFKit.framework\' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
 		};
 		71B7D2303DAF27D7EBF8BFDD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4569,7 +4569,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		B0C8BDFA0291149E97BCF90D /* [CP] Embed Pods Frameworks */ = {
