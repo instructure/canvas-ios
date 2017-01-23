@@ -30,10 +30,20 @@
       codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "49EA6B091D1AFF4200748645"
+               BuildableName = "TeacherTests.xctest"
+               BlueprintName = "TeacherTests"
+               ReferencedContainer = "container:Teach.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2C46E5C51E31763B00B8D1BD"
                BuildableName = "TeachTests.xctest"
                BlueprintName = "TeachTests"
                ReferencedContainer = "container:Teach.xcodeproj">
