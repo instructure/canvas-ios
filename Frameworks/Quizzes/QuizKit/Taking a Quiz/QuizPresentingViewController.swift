@@ -450,23 +450,21 @@ extension QuizPresentingViewController {
     }
     
     func goAheadAndSubmit(_ customLoadingText: String? = nil) {
-        let submit: ()->Void = {
-            let confirmationViewController = SubmissionConfirmationViewController(resultsURL: self.quizController.urlForViewingResultsForAttempt(self.submissionController.submission!.attempt))
+        submissionViewController.answerUnsubmittedQuestions() { [weak self] in
+            guard let me = self, let submission = me.submissionController.submission else { return }
+
+            let confirmationViewController = SubmissionConfirmationViewController(resultsURL: me.quizController.urlForViewingResultsForAttempt(submission.attempt), requiresLockdownBrowserForViewingResults: me.quizController.quiz?.requiresLockdownBrowserForResults ?? false)
             confirmationViewController.customLoadingText = customLoadingText
             confirmationViewController.showState(.loading)
-            self.present(UINavigationController(rootViewController: confirmationViewController), animated: true, completion: nil)
+            me.present(UINavigationController(rootViewController: confirmationViewController), animated: true, completion: nil)
 
-            self.submissionController.submit { result in
+            me.submissionController.submit { result in
                 if let _ = result.error {
                     confirmationViewController.showState(.failed)
                 } else {
                     confirmationViewController.showState(.successful)
                 }
             }
-        }
-
-        submissionViewController.answerUnsubmittedQuestions() {
-            submit()
         }
     }
 }

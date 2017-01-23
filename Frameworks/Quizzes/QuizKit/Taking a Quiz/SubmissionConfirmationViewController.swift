@@ -25,7 +25,8 @@ enum SubmissionViewState {
 }
 
 class SubmissionConfirmationViewController: UIViewController {
-    
+
+    var requiresLockdownBrowserForViewingResults: Bool = false
     var resultsURL: URL?
     var customLoadingText: String?
     
@@ -42,8 +43,9 @@ class SubmissionConfirmationViewController: UIViewController {
         return UIImage(named: "error", in: Bundle(for: SubmissionConfirmationViewController.self), compatibleWith: nil)!
     }
     
-    init(resultsURL: URL?) {
+    init(resultsURL: URL?, requiresLockdownBrowserForViewingResults: Bool) {
         self.resultsURL = resultsURL
+        self.requiresLockdownBrowserForViewingResults = requiresLockdownBrowserForViewingResults
         super.init(nibName: "SubmissionConfirmationViewController", bundle: Bundle(for: SubmissionConfirmationViewController.self))
         let _ = self.view // force the loading of the nib and connection of the outlets
     }
@@ -119,6 +121,12 @@ class SubmissionConfirmationViewController: UIViewController {
     }
     
     @IBAction fileprivate func resultsTapped(_ button: UIButton?) {
-        UIApplication.shared.openURL(resultsURL!)
+        if requiresLockdownBrowserForViewingResults {
+            let alert = UIAlertController(title: NSLocalizedString("Lockdown Browser Required", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Title for when another tool called Lockdown Browser is required to take a quiz"), message: NSLocalizedString("Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Detail label for when a tool called Lockdown Browser is required to take the quiz"), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: ""), style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else if let resultsURL = resultsURL {
+            UIApplication.shared.openURL(resultsURL)
+        }
     }
 }

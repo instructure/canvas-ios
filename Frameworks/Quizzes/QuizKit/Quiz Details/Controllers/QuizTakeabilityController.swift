@@ -117,7 +117,7 @@ class QuizTakeabilityController {
     }
     
     func takeableNatively() -> Bool {
-        return takeability.takeable && quizQuestionsSupportedNatively(quiz) && !quiz.oneQuestionAtATime && !quiz.hasAccessCode && (quiz.ipFilter == nil)
+        return takeability.takeable && quizQuestionsSupportedNatively(quiz) && !quiz.oneQuestionAtATime && !quiz.hasAccessCode && (quiz.ipFilter == nil) && !quiz.requiresLockdownBrowser
     }
     
     func takeableInWebView() -> Bool {

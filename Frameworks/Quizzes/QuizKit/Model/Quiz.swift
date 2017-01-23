@@ -21,28 +21,6 @@ import SoLazy
 
 /// The Canvas™ assessment tool of choice.
 struct Quiz {
-    init(id: String, title: String, description: String, due: Due, timeLimit: TimeLimit, scoring: Scoring, questionCount: Int, questionTypes: [Question.Kind], attemptLimit: AttemptLimit, oneQuestionAtATime: Bool, cantGoBack: Bool, hideResults: HideResults, lockAt: Date?, lockedForUser: Bool, lockExplanation: String?, ipFilter: String?, mobileURL: URL, shuffleAnswers: Bool, hasAccessCode: Bool) {
-        self.id = id
-        self.title = title
-        self.description = description
-        self.due = due
-        self.timeLimit = timeLimit
-        self.scoring = scoring
-        self.questionCount = questionCount
-        self.questionTypes = questionTypes
-        self.attemptLimit = attemptLimit
-        self.oneQuestionAtATime = oneQuestionAtATime
-        self.cantGoBack = cantGoBack
-        self.hideResults = hideResults
-        self.lockAt = lockAt
-        self.lockedForUser = lockedForUser
-        self.lockExplanation = lockExplanation
-        self.ipFilter = ipFilter
-        self.mobileURL = mobileURL
-        self.shuffleAnswers = shuffleAnswers
-        self.hasAccessCode = hasAccessCode
-    }
-    
     /// The id of the quiz.
     let id: String
 
@@ -102,6 +80,12 @@ struct Quiz {
     
     /// Whether or not the quiz has an access code
     let hasAccessCode: Bool
+
+    /// Whether or not lockdown browser is required
+    let requiresLockdownBrowser: Bool
+
+    /// Whether or not lockdown browser is required in order to view the results
+    let requiresLockdownBrowserForResults: Bool
     
     /**
         When is the quiz due?
@@ -304,10 +288,12 @@ extension Quiz: JSONDecodable {
             let mobileURL = URL.fromJSON(json["mobile_url"])
             let shuffleAnswers = json["shuffle_answers"] as? Bool
             let hasAccessCode = json["has_access_code"] as? Bool ?? true
+            let requiresLockdownBrowser = json["require_lockdown_browser"] as? Bool ?? false
+            let requiresLockdownBrowserForResults = json["require_lockdown_browser_for_results"] as? Bool ?? false
             
             if let id = id, let title = title, let due = due, let timeLimit = timeLimit, let scoring = scoring, let questionCount = questionCount, let allowedAttempts = allowedAttempts, let oqqaat = oqqaat, let cantGoBack = cantGoBack, let hideResults=hideResults, let lockedForUser = lockedForUser, let mobileURL = mobileURL, let shuffleAnswers = shuffleAnswers
             {
-                return Quiz(id: id, title: title, description: description, due: due, timeLimit: timeLimit, scoring: scoring, questionCount: questionCount, questionTypes: questionTypes, attemptLimit: allowedAttempts, oneQuestionAtATime: oqqaat, cantGoBack: cantGoBack, hideResults: hideResults, lockAt: Date.fromJSON(json["lock_at"]), lockedForUser: lockedForUser, lockExplanation: lockExplanation, ipFilter: json["ip_filter"] as? String, mobileURL: mobileURL, shuffleAnswers: shuffleAnswers, hasAccessCode: hasAccessCode)
+                return Quiz(id: id, title: title, description: description, due: due, timeLimit: timeLimit, scoring: scoring, questionCount: questionCount, questionTypes: questionTypes, attemptLimit: allowedAttempts, oneQuestionAtATime: oqqaat, cantGoBack: cantGoBack, hideResults: hideResults, lockAt: Date.fromJSON(json["lock_at"]), lockedForUser: lockedForUser, lockExplanation: lockExplanation, ipFilter: json["ip_filter"] as? String, mobileURL: mobileURL, shuffleAnswers: shuffleAnswers, hasAccessCode: hasAccessCode, requiresLockdownBrowser: requiresLockdownBrowser, requiresLockdownBrowserForResults: requiresLockdownBrowserForResults)
             }
         }
         
