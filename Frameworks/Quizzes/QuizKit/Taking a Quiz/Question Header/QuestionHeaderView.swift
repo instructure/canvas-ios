@@ -33,9 +33,13 @@ class QuestionHeaderView: UITableViewHeaderFooterView {
         }
     }
     
-    var questionNumber: Int = 0 {
+    var questionNumber: Int? {
         didSet {
-            numberLabel?.text = "\(questionNumber)."
+            if let questionNumber = questionNumber {
+                numberLabel?.text = "\(questionNumber)."
+            } else {
+                numberLabel?.text = ""
+            }
             updateAccessibilityLabel()
         }
     }

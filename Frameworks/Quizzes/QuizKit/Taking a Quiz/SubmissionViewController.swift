@@ -406,7 +406,7 @@ extension SubmissionViewController {
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: QuestionHeaderView.ReuseID) as! QuestionHeaderView
             let question = questions[questionIndex]
             let position = question.question.position
-            view.questionNumber = position
+            view.questionNumber = question.question.kind == .TextOnly ? nil : position
             view.questionFlagged = { [weak self] in
                 if let me = self {
                     me.submissionInteractor?.markQuestonFlagged(view.flagged, forQuestionAtIndex: questionIndex)
