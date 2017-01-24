@@ -62,7 +62,8 @@ extension CalendarEvent {
 extension CalendarEvent {
     fileprivate static func collectionByDueDate(_ session: Session, studentID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String], context: NSManagedObjectContext) throws -> FetchedCollection<CalendarEvent> {
         let predicate = CalendarEvent.predicate(startDate, endDate: endDate, contextCodes: contextCodes)
-        let frc: NSFetchedResultsController<CalendarEvent> = context.fetchedResults(predicate, sortDescriptors: ["endAt".ascending], sectionNameKeypath: "allDayDate")
+        let sortDescriptors = ["endAt".ascending, "id".ascending]
+        let frc: NSFetchedResultsController<CalendarEvent> = context.fetchedResults(predicate, sortDescriptors: sortDescriptors, sectionNameKeypath: "allDayDate")
         let titleFunction: (String?)->String? = { $0.flatMap {
             if let date = CalendarEvent.dayDateFormatter.date(from: $0) {
                 return CalendarEvent.sectionTitleDateFormatter.string(from: date)
