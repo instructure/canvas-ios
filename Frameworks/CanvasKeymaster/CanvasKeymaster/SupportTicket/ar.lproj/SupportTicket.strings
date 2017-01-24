@@ -1,0 +1,45 @@
+/* Class = "UILabel"; text = "Subject:"; ObjectID = "2Rv-2E-aXf"; */
+"2Rv-2E-aXf.text" = "الموضوع:";
+
+/* Class = "UILabel"; text = "I can't get things done until I hear back from you"; ObjectID = "3W4-tq-IWk"; */
+"3W4-tq-IWk.text" = "لن أستطيع إنجاز أعمالي حتى تردون عليّ";
+
+/* Class = "UILabel"; text = "Casual question or suggestion"; ObjectID = "4tN-KR-Cbp"; */
+"4tN-KR-Cbp.text" = "مجرد سؤال عابر أو اقتراح";
+
+/* Class = "UILabel"; text = "Your Email:"; ObjectID = "6TI-vH-jf1"; */
+"6TI-vH-jf1.text" = "بريدك الإلكتروني:";
+
+/* Class = "UITextField"; placeholder = "user@example.com"; ObjectID = "Dfu-ki-tj3"; */
+"Dfu-ki-tj3.placeholder" = "user@example.com";
+
+/* Class = "UIBarButtonItem"; title = "Send"; ObjectID = "IXk-9a-lZr"; */
+"IXk-9a-lZr.title" = "إرسال";
+
+/* Class = "UILabel"; text = "Describe your problem"; ObjectID = "MFL-XU-ZnR"; */
+"MFL-XU-ZnR.text" = "قم بوصف مشكلتك";
+
+/* Class = "UIButton"; normalTitle = "Choose One"; ObjectID = "MIQ-TR-wtL"; */
+"MIQ-TR-wtL.normalTitle" = "اختيار واحد";
+
+/* Class = "UILabel"; text = "I need help but it's not urgent"; ObjectID = "Mzb-Ip-AeR"; */
+"Mzb-Ip-AeR.text" = "أحتاج للمساعدة لكن الأمر ليس مستعجلاً";
+
+/* Class = "UINavigationItem"; title = "Impact Level"; ObjectID = "WJ3-te-MeT"; */
+"WJ3-te-MeT.title" = "مستوى التأثير";
+
+/* Class = "UITextField"; placeholder = "Fix all the things"; ObjectID = "iNZ-xc-hnX"; */
+"iNZ-xc-hnX.placeholder" = "إصلاح كل الأشياء";
+
+/* Class = "UILabel"; text = "Something is broken but I can work around it"; ObjectID = "noj-Yi-xpa"; */
+"noj-Yi-xpa.text" = "شيء ما معطل لكن أستطيع تدبير أموري";
+
+/* Class = "UINavigationItem"; title = "Report a Problem"; ObjectID = "vMz-Cg-DUM"; */
+"vMz-Cg-DUM.title" = "الإبلاغ عن مشكلة";
+
+/* Class = "UILabel"; text = "Extremely critical emergency"; ObjectID = "wHQ-Tn-kQn"; */
+"wHQ-Tn-kQn.text" = "حالة طارئة حرجة للغاية";
+
+/* Class = "UILabel"; text = "Impact:"; ObjectID = "zHJ-ya-AKU"; */
+"zHJ-ya-AKU.text" = "التأثير:";
+

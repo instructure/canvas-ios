@@ -1,0 +1,119 @@
+/* prompt for a support error message */
+"
+
+===== tell us what happened above this line =====
+
+" = "
+
+===== fortell oss hva hva som skjedde over denne linjen =====
+
+";
+
+/* The distance in miles that a user is from a school. */
+"%@ miles away" = "%@ engelske mil unna";
+
+/* No comment provided by engineer. */
+"Build all the things" = "Bygg alle tingene";
+
+/* Help label when user can't find their school. */
+"Can't find your school?" = "Finner du ikke skolen din?";
+
+/* No comment provided by engineer. */
+"Cancel" = "Avbryt";
+
+/* Label displayed when forcing canvas login */
+"Canvas Login" = "Logg inn på lerret";
+
+/* No comment provided by engineer. */
+"Casual question or suggestion" = "Tilfeldig spørsmål eller forslag";
+
+/* No comment provided by engineer. */
+"Describe the feature here" = "Beskriv funksjonen her";
+
+/* Dismiss login expired/revoked alert button */
+"Dismiss" = "Avvis";
+
+/* No comment provided by engineer. */
+"Emergency" = "Nødstilfelle";
+
+/* Text field to enter school domain that user would like the search in Domain Picker View */
+"Enter school domain." = "Skriv inn skolens domene.";
+
+/* Text view to enter the description of the ticket */
+"Enter ticket description" = "Skriv inn beskrivelse av billett";
+
+/* Text field to enter subject of the ticket */
+"Enter ticket subject" = "Skriv inn emne for billett";
+
+/* Subtitle help text describing how to find a school. */
+"Enter your school's domain or tap for help." = "Skriv inn skolens domene eller trykk for hjelp.";
+
+/* No comment provided by engineer. */
+"Find School Domain" = "Finn skolens domene";
+
+/* Help View Controller Title */
+"Help" = "Hjelp";
+
+/* No comment provided by engineer. */
+"I am stuck and can't get things done" = "Jeg står fast og kommer ikke videre";
+
+/* No comment provided by engineer. */
+"Invalid Canvas URL." = "Ugyldig Canvas URL.";
+
+/* No comment provided by engineer. */
+"Invalid User Agent." = "Ugyldig brukeragent.";
+
+/* No comment provided by engineer. */
+"Non-urgent help needed" = "Mindre presserende hjelp trengs";
+
+/* No comment provided by engineer. */
+"Not authorized." = "Ikke autorisert.";
+
+/* Placeholder for help icon (question mark) on Domain Picker View */
+"Open help menu." = "Åpne hjelpemenyen.";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "Rapporter et problem";
+
+/* No comment provided by engineer. */
+"Report a problem" = "Rapporter et problem";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Be om en funksjon";
+
+/* No comment provided by engineer. */
+"Request a feature" = "Be om en funksjon";
+
+/* No comment provided by engineer. */
+"Right Behind You" = "Rett bak deg";
+
+/* Placeholder for search button on Domain Picker View */
+"Search for domain." = "Søk etter domene.";
+
+/* Button to select the severity of the ticket */
+"Select ticket impact level" = "Velg innvirkningsnivå";
+
+/* No comment provided by engineer. */
+"Send" = "Send";
+
+/* Label displayed when logging in as site admin */
+"Site Admin Login" = "Sideadministratorinnlogging";
+
+/* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Noe er ødelagt, men jeg kan omgå det";
+
+/* when the access token has been revoked */
+"Your login has expired or has been removed by the server. Please log in again." = "Innloggingen din er utløpt eller har blitt slettet fra serveren. Vennligst logg inn på nytt.";
+
+/* No comment provided by engineer. */
+"describe your problem" = "beskriv problemet ditt";
+
+/* No comment provided by engineer. */
+"enter a subject" = "skriv inn et emne";
+
+/* Placeholder for delete icon in Multi User Table View Cell */
+"remove user" = "fjern bruker";
+
+/* No comment provided by engineer. */
+"select the impact" = "velg innvirkning";
+

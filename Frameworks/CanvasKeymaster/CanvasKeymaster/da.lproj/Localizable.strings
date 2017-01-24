@@ -1,0 +1,119 @@
+/* prompt for a support error message */
+"
+
+===== tell us what happened above this line =====
+
+" = "
+
+===== fortæl os, hvad der skete over denne linje =====
+
+";
+
+/* The distance in miles that a user is from a school. */
+"%@ miles away" = "%@ kilometer væk";
+
+/* No comment provided by engineer. */
+"Build all the things" = "Byg alle tingene";
+
+/* Help label when user can't find their school. */
+"Can't find your school?" = "Kan du ikke finde din skole?";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annuller";
+
+/* Label displayed when forcing canvas login */
+"Canvas Login" = "Canvas-login";
+
+/* No comment provided by engineer. */
+"Casual question or suggestion" = "Uformelt spørgsmål eller forslag";
+
+/* No comment provided by engineer. */
+"Describe the feature here" = "Beskriv funktionen her";
+
+/* Dismiss login expired/revoked alert button */
+"Dismiss" = "Afvis";
+
+/* No comment provided by engineer. */
+"Emergency" = "Nødsituation";
+
+/* Text field to enter school domain that user would like the search in Domain Picker View */
+"Enter school domain." = "Indtast skolens domæne";
+
+/* Text view to enter the description of the ticket */
+"Enter ticket description" = "Indtast billettens beskrivelse";
+
+/* Text field to enter subject of the ticket */
+"Enter ticket subject" = "Indtast billettens emne";
+
+/* Subtitle help text describing how to find a school. */
+"Enter your school's domain or tap for help." = "Indtast din skoles domæne eller tryk for hjælp";
+
+/* No comment provided by engineer. */
+"Find School Domain" = "Find skolens domæne";
+
+/* Help View Controller Title */
+"Help" = "Hjælp";
+
+/* No comment provided by engineer. */
+"I am stuck and can't get things done" = "Jeg er gået i stå og kan ikke få noget gjort";
+
+/* No comment provided by engineer. */
+"Invalid Canvas URL." = "Ugyldig Canvas-webadresse.";
+
+/* No comment provided by engineer. */
+"Invalid User Agent." = "Ugyldig brugeragent.";
+
+/* No comment provided by engineer. */
+"Non-urgent help needed" = "Behov for ikke-akut hjælp";
+
+/* No comment provided by engineer. */
+"Not authorized." = "Ikke godkendt.";
+
+/* Placeholder for help icon (question mark) on Domain Picker View */
+"Open help menu." = "Åbn hjælpemenu";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "Rapporter et problem";
+
+/* No comment provided by engineer. */
+"Report a problem" = "Rapporter et problem";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Anmod om en funktion";
+
+/* No comment provided by engineer. */
+"Request a feature" = "Anmod om en funktion";
+
+/* No comment provided by engineer. */
+"Right Behind You" = "Lige bag dig";
+
+/* Placeholder for search button on Domain Picker View */
+"Search for domain." = "Søg efter domæne.";
+
+/* Button to select the severity of the ticket */
+"Select ticket impact level" = "Vælg billettens betydningsniveau";
+
+/* No comment provided by engineer. */
+"Send" = "Send";
+
+/* Label displayed when logging in as site admin */
+"Site Admin Login" = "Websted admin login";
+
+/* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Noget virker ikke, men jeg kan klare mig";
+
+/* when the access token has been revoked */
+"Your login has expired or has been removed by the server. Please log in again." = "Dit login er udløbet eller er blevet fjernet af serveren. Log ind igen.";
+
+/* No comment provided by engineer. */
+"describe your problem" = "beskriv dit problem";
+
+/* No comment provided by engineer. */
+"enter a subject" = "indtast et emne";
+
+/* Placeholder for delete icon in Multi User Table View Cell */
+"remove user" = "fjern bruger";
+
+/* No comment provided by engineer. */
+"select the impact" = "vælg betydning";
+

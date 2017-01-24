@@ -25,6 +25,12 @@ source_file = translations/source/canvas/en-complete.xliff
 source_lang = en
 type = XLIFF
 
+[canvas-ios.en_canvaskeymaster-iosxliff]
+file_filter = translations/canvas-ios.en_canvaskeymaster-iosxliff/<lang>.xlf
+source_file = translations/source/canvas/en-complete.xliff
+source_lang = en
+type = XLIFF
+
 [canvas-ios.en_discussionsxliff]
 file_filter = translations/canvas-ios.en_discussionsxliff/<lang>.xlf
 source_file = translations/source/discussions/en-complete.xliff

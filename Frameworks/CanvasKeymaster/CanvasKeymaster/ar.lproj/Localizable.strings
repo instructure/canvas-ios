@@ -1,0 +1,119 @@
+/* prompt for a support error message */
+"
+
+===== tell us what happened above this line =====
+
+" = "
+
+===== أخبرنا عن ما حدث أعلى هذا السطر =====
+
+";
+
+/* The distance in miles that a user is from a school. */
+"%@ miles away" = "%@ على بعد أميال";
+
+/* No comment provided by engineer. */
+"Build all the things" = "ابن كل الأشياء";
+
+/* Help label when user can't find their school. */
+"Can't find your school?" = "ألا تستطيع العثور على مدرستك؟";
+
+/* No comment provided by engineer. */
+"Cancel" = "إلغاء";
+
+/* Label displayed when forcing canvas login */
+"Canvas Login" = "تسجيل الدخول إلى Canvas";
+
+/* No comment provided by engineer. */
+"Casual question or suggestion" = "مجرد سؤال عابر أو اقتراح";
+
+/* No comment provided by engineer. */
+"Describe the feature here" = "قم بوصف الميزة هنا";
+
+/* Dismiss login expired/revoked alert button */
+"Dismiss" = "رفض";
+
+/* No comment provided by engineer. */
+"Emergency" = "الطوارئ";
+
+/* Text field to enter school domain that user would like the search in Domain Picker View */
+"Enter school domain." = "أدخل مجال المدرسة.";
+
+/* Text view to enter the description of the ticket */
+"Enter ticket description" = "أدخل وصف التذكرة";
+
+/* Text field to enter subject of the ticket */
+"Enter ticket subject" = "أدخل مادة التذكرة";
+
+/* Subtitle help text describing how to find a school. */
+"Enter your school's domain or tap for help." = "أدخل مجال المدرسة الخاص بك أو انقر هنا لطلب المساعدة.";
+
+/* No comment provided by engineer. */
+"Find School Domain" = "العثور على مجال المدرسة";
+
+/* Help View Controller Title */
+"Help" = "مساعدة";
+
+/* No comment provided by engineer. */
+"I am stuck and can't get things done" = "أنا عالق وليس بمقدوري أن أنجز المطلوب";
+
+/* No comment provided by engineer. */
+"Invalid Canvas URL." = "عنوان URL غير صالح بـ Canvas.";
+
+/* No comment provided by engineer. */
+"Invalid User Agent." = "وكيل مستخدم غير صالح.";
+
+/* No comment provided by engineer. */
+"Non-urgent help needed" = "مطلوب مساعدة غير عاجلة";
+
+/* No comment provided by engineer. */
+"Not authorized." = "غير مصرح به.";
+
+/* Placeholder for help icon (question mark) on Domain Picker View */
+"Open help menu." = "فتح قائمة المساعدة.";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "الإبلاغ عن مشكلة";
+
+/* No comment provided by engineer. */
+"Report a problem" = "الإبلاغ عن مشكلة";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "طلب ميزة";
+
+/* No comment provided by engineer. */
+"Request a feature" = "طلب ميزة";
+
+/* No comment provided by engineer. */
+"Right Behind You" = "خلفك تمامًا";
+
+/* Placeholder for search button on Domain Picker View */
+"Search for domain." = "البحث عن مجال.";
+
+/* Button to select the severity of the ticket */
+"Select ticket impact level" = "تحديد مستوى تأثير التذكرة";
+
+/* No comment provided by engineer. */
+"Send" = "إرسال";
+
+/* Label displayed when logging in as site admin */
+"Site Admin Login" = "تسجيل دخول مسؤول الموقع";
+
+/* No comment provided by engineer. */
+"Something is broken but I can work around it" = "شيء ما معطل لكن أستطيع تدبير أموري";
+
+/* when the access token has been revoked */
+"Your login has expired or has been removed by the server. Please log in again." = "انتهت مدة تسجيل الدخول الخاصة بك أو تمت الإزالة من قبل الخادم. يُرجى تسجيل الدخول مرة أخرى.";
+
+/* No comment provided by engineer. */
+"describe your problem" = "قم بوصف مشكلتك";
+
+/* No comment provided by engineer. */
+"enter a subject" = "أدخل موضوعًا";
+
+/* Placeholder for delete icon in Multi User Table View Cell */
+"remove user" = "قم بإزالة مستخدم";
+
+/* No comment provided by engineer. */
+"select the impact" = "حدد التأثير";
+

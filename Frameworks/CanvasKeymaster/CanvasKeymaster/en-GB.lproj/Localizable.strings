@@ -1,0 +1,119 @@
+/* prompt for a support error message */
+"
+
+===== tell us what happened above this line =====
+
+" = "
+
+===== tell us what happened above this line =====
+
+";
+
+/* The distance in miles that a user is from a school. */
+"%@ miles away" = "%@ miles away";
+
+/* No comment provided by engineer. */
+"Build all the things" = "Build all of the things";
+
+/* Help label when user can't find their school. */
+"Can't find your school?" = "Can't find your school?";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel";
+
+/* Label displayed when forcing canvas login */
+"Canvas Login" = "Canvas login";
+
+/* No comment provided by engineer. */
+"Casual question or suggestion" = "Casual question or suggestion";
+
+/* No comment provided by engineer. */
+"Describe the feature here" = "Describe the feature here";
+
+/* Dismiss login expired/revoked alert button */
+"Dismiss" = "Dismiss";
+
+/* No comment provided by engineer. */
+"Emergency" = "Emergency";
+
+/* Text field to enter school domain that user would like the search in Domain Picker View */
+"Enter school domain." = "Enter school domain.";
+
+/* Text view to enter the description of the ticket */
+"Enter ticket description" = "Enter ticket description";
+
+/* Text field to enter subject of the ticket */
+"Enter ticket subject" = "Enter ticket subject";
+
+/* Subtitle help text describing how to find a school. */
+"Enter your school's domain or tap for help." = "Enter your school's domain or tap for help.";
+
+/* No comment provided by engineer. */
+"Find School Domain" = "Find school domain";
+
+/* Help View Controller Title */
+"Help" = "Help";
+
+/* No comment provided by engineer. */
+"I am stuck and can't get things done" = "I am stuck and can't get things done";
+
+/* No comment provided by engineer. */
+"Invalid Canvas URL." = "Invalid Canvas URL.";
+
+/* No comment provided by engineer. */
+"Invalid User Agent." = "Invalid User Agent.";
+
+/* No comment provided by engineer. */
+"Non-urgent help needed" = "Non-urgent help needed";
+
+/* No comment provided by engineer. */
+"Not authorized." = "Not authorised.";
+
+/* Placeholder for help icon (question mark) on Domain Picker View */
+"Open help menu." = "Open help menu.";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "Report a problem";
+
+/* No comment provided by engineer. */
+"Report a problem" = "Report a problem";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Request a feature";
+
+/* No comment provided by engineer. */
+"Request a feature" = "Request a feature";
+
+/* No comment provided by engineer. */
+"Right Behind You" = "Right behind you";
+
+/* Placeholder for search button on Domain Picker View */
+"Search for domain." = "Search for domain.";
+
+/* Button to select the severity of the ticket */
+"Select ticket impact level" = "Select ticket impact level";
+
+/* No comment provided by engineer. */
+"Send" = "Send";
+
+/* Label displayed when logging in as site admin */
+"Site Admin Login" = "Site admin login";
+
+/* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Something is broken but I can work around it";
+
+/* when the access token has been revoked */
+"Your login has expired or has been removed by the server. Please log in again." = "Your login has expired or has been removed by the server. Please log in again.";
+
+/* No comment provided by engineer. */
+"describe your problem" = "Describe your problem";
+
+/* No comment provided by engineer. */
+"enter a subject" = "Enter a subject";
+
+/* Placeholder for delete icon in Multi User Table View Cell */
+"remove user" = "Remove user";
+
+/* No comment provided by engineer. */
+"select the impact" = "Select the impact";
+

@@ -219,11 +219,17 @@ int ddLogLevel =
 {
     [self.helpButton setImage:[[UIImage imageNamed:@"icon_help" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [self.helpButton setAccessibilityIdentifier:@"helpButton"];
-    [self.helpButton setAccessibilityLabel:NSLocalizedString(@"Open help menu.", @"Placeholder for help icon (question mark) on Domain Picker View")];
+    NSString *openHelp = NSLocalizedStringFromTableInBundle(@"Open help menu", @"Localizable", [NSBundle bundleForClass:[self class]], @"Placeholder for help icon (question mark) on Domain Picker View");
+    [self.helpButton setAccessibilityLabel:openHelp];
     
     [[self.helpButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *button) {
         DDLogVerbose(@"helpButtonPressed : %@", self.domainTextField.text);
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Help Menu" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Report a Problem", nil), NSLocalizedString(@"Request a Feature", nil), NSLocalizedString(@"Find School Domain", nil), nil];
+        NSString *title = NSLocalizedStringFromTableInBundle(@"Help Menu", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
+        NSString *problem = NSLocalizedStringFromTableInBundle(@"Report a Problem", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
+        NSString *feature = NSLocalizedStringFromTableInBundle(@"Request a Feature", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
+        NSString *findSchool = NSLocalizedStringFromTableInBundle(@"Find School Domain", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
+        NSString *cancel = NSLocalizedStringFromTableInBundle(@"Cancel", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:cancel destructiveButtonTitle:nil otherButtonTitles:problem, feature, findSchool, nil];
         actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             [actionSheet showFromRect:button.bounds inView:button animated:YES];

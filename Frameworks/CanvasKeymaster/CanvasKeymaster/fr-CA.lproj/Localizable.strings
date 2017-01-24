@@ -1,0 +1,119 @@
+/* prompt for a support error message */
+"
+
+===== tell us what happened above this line =====
+
+" = "
+
+===== Dites-nous ce qui est arrivé au-dessus de cette ligne =====
+
+";
+
+/* The distance in miles that a user is from a school. */
+"%@ miles away" = "%@ à plusieurs miles de distance";
+
+/* No comment provided by engineer. */
+"Build all the things" = "Construire toutes les choses";
+
+/* Help label when user can't find their school. */
+"Can't find your school?" = "Vous ne trouvez pas votre école?";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annuler";
+
+/* Label displayed when forcing canvas login */
+"Canvas Login" = "Connexion à Canvas";
+
+/* No comment provided by engineer. */
+"Casual question or suggestion" = "Question ou suggestion ordinaire";
+
+/* No comment provided by engineer. */
+"Describe the feature here" = "Décrire la fonctionnalité ici";
+
+/* Dismiss login expired/revoked alert button */
+"Dismiss" = "Rejeter";
+
+/* No comment provided by engineer. */
+"Emergency" = "Urgence";
+
+/* Text field to enter school domain that user would like the search in Domain Picker View */
+"Enter school domain." = "Saisissez le domaine de l’école.";
+
+/* Text view to enter the description of the ticket */
+"Enter ticket description" = "Saisissez la description du ticket";
+
+/* Text field to enter subject of the ticket */
+"Enter ticket subject" = "Saisissez l’objet du ticket";
+
+/* Subtitle help text describing how to find a school. */
+"Enter your school's domain or tap for help." = "Saisissez le domaine de votre école ou tapez pour obtenir de l'aide.";
+
+/* No comment provided by engineer. */
+"Find School Domain" = "Recherchez le domaine de l’école";
+
+/* Help View Controller Title */
+"Help" = "Aide";
+
+/* No comment provided by engineer. */
+"I am stuck and can't get things done" = "Je suis coincé et je ne peut pas faire avancer les choses";
+
+/* No comment provided by engineer. */
+"Invalid Canvas URL." = "URL de Canvas non valide";
+
+/* No comment provided by engineer. */
+"Invalid User Agent." = "Agent utilisateur non valide.";
+
+/* No comment provided by engineer. */
+"Non-urgent help needed" = "Aide non urgente requise";
+
+/* No comment provided by engineer. */
+"Not authorized." = "Non autorisé.";
+
+/* Placeholder for help icon (question mark) on Domain Picker View */
+"Open help menu." = "Ouvrez le menu d'aide.";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "Signaler un problème";
+
+/* No comment provided by engineer. */
+"Report a problem" = "Signaler un problème";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Demander l'ajout d'une fonctionnalité";
+
+/* No comment provided by engineer. */
+"Request a feature" = "Demander l'ajout d'une fonctionnalité";
+
+/* No comment provided by engineer. */
+"Right Behind You" = "Juste derrière vous";
+
+/* Placeholder for search button on Domain Picker View */
+"Search for domain." = "Recherchez le domaine.";
+
+/* Button to select the severity of the ticket */
+"Select ticket impact level" = "Sélectionnez le niveau d'impact du ticket";
+
+/* No comment provided by engineer. */
+"Send" = "Envoyer";
+
+/* Label displayed when logging in as site admin */
+"Site Admin Login" = "Connexion au site Admin";
+
+/* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Quelque chose ne fonctionne plus mais je peux quand même travailler";
+
+/* when the access token has been revoked */
+"Your login has expired or has been removed by the server. Please log in again." = "Votre connexion a expiré ou a été supprimée par le serveur. Veuillez vous connecter à nouveau.";
+
+/* No comment provided by engineer. */
+"describe your problem" = "décrivez votre problème";
+
+/* No comment provided by engineer. */
+"enter a subject" = "saisissez un objet";
+
+/* Placeholder for delete icon in Multi User Table View Cell */
+"remove user" = "supprimez l'utilisateur";
+
+/* No comment provided by engineer. */
+"select the impact" = "sélectionnez l'impact";
+

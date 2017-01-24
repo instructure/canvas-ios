@@ -1,0 +1,45 @@
+/* Class = "UILabel"; text = "Subject:"; ObjectID = "2Rv-2E-aXf"; */
+"2Rv-2E-aXf.text" = "主題";
+
+/* Class = "UILabel"; text = "I can't get things done until I hear back from you"; ObjectID = "3W4-tq-IWk"; */
+"3W4-tq-IWk.text" = "在收到您的回覆之前，我無法把事情做好";
+
+/* Class = "UILabel"; text = "Casual question or suggestion"; ObjectID = "4tN-KR-Cbp"; */
+"4tN-KR-Cbp.text" = "隨意的問題或建議";
+
+/* Class = "UILabel"; text = "Your Email:"; ObjectID = "6TI-vH-jf1"; */
+"6TI-vH-jf1.text" = "您的電郵：";
+
+/* Class = "UITextField"; placeholder = "user@example.com"; ObjectID = "Dfu-ki-tj3"; */
+"Dfu-ki-tj3.placeholder" = "user@example.com";
+
+/* Class = "UIBarButtonItem"; title = "Send"; ObjectID = "IXk-9a-lZr"; */
+"IXk-9a-lZr.title" = "發送";
+
+/* Class = "UILabel"; text = "Describe your problem"; ObjectID = "MFL-XU-ZnR"; */
+"MFL-XU-ZnR.text" = "描述您的問題";
+
+/* Class = "UIButton"; normalTitle = "Choose One"; ObjectID = "MIQ-TR-wtL"; */
+"MIQ-TR-wtL.normalTitle" = "選擇一個";
+
+/* Class = "UILabel"; text = "I need help but it's not urgent"; ObjectID = "Mzb-Ip-AeR"; */
+"Mzb-Ip-AeR.text" = "我需要幫助但情況並不緊急";
+
+/* Class = "UINavigationItem"; title = "Impact Level"; ObjectID = "WJ3-te-MeT"; */
+"WJ3-te-MeT.title" = "影響程度";
+
+/* Class = "UITextField"; placeholder = "Fix all the things"; ObjectID = "iNZ-xc-hnX"; */
+"iNZ-xc-hnX.placeholder" = "解決所有問題";
+
+/* Class = "UILabel"; text = "Something is broken but I can work around it"; ObjectID = "noj-Yi-xpa"; */
+"noj-Yi-xpa.text" = "出現某些故障但我能解決它";
+
+/* Class = "UINavigationItem"; title = "Report a Problem"; ObjectID = "vMz-Cg-DUM"; */
+"vMz-Cg-DUM.title" = "報告問題";
+
+/* Class = "UILabel"; text = "Extremely critical emergency"; ObjectID = "wHQ-Tn-kQn"; */
+"wHQ-Tn-kQn.text" = "萬分危急的緊急情況";
+
+/* Class = "UILabel"; text = "Impact:"; ObjectID = "zHJ-ya-AKU"; */
+"zHJ-ya-AKU.text" = "影響：";
+

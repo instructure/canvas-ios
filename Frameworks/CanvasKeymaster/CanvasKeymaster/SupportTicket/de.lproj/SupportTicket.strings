@@ -1,0 +1,45 @@
+/* Class = "UILabel"; text = "Subject:"; ObjectID = "2Rv-2E-aXf"; */
+"2Rv-2E-aXf.text" = "Betreff:";
+
+/* Class = "UILabel"; text = "I can't get things done until I hear back from you"; ObjectID = "3W4-tq-IWk"; */
+"3W4-tq-IWk.text" = "Ich benötige eine Antwort, um die Arbeit fortzusetzen";
+
+/* Class = "UILabel"; text = "Casual question or suggestion"; ObjectID = "4tN-KR-Cbp"; */
+"4tN-KR-Cbp.text" = "Beiläufige Frage oder Vorschlag";
+
+/* Class = "UILabel"; text = "Your Email:"; ObjectID = "6TI-vH-jf1"; */
+"6TI-vH-jf1.text" = "Deine E-Mail:";
+
+/* Class = "UITextField"; placeholder = "user@example.com"; ObjectID = "Dfu-ki-tj3"; */
+"Dfu-ki-tj3.placeholder" = "benutzer@beispiel.com";
+
+/* Class = "UIBarButtonItem"; title = "Send"; ObjectID = "IXk-9a-lZr"; */
+"IXk-9a-lZr.title" = "Senden";
+
+/* Class = "UILabel"; text = "Describe your problem"; ObjectID = "MFL-XU-ZnR"; */
+"MFL-XU-ZnR.text" = "Bitte beschreiben Sie Ihr Problem";
+
+/* Class = "UIButton"; normalTitle = "Choose One"; ObjectID = "MIQ-TR-wtL"; */
+"MIQ-TR-wtL.normalTitle" = "Bitte eins auswählen";
+
+/* Class = "UILabel"; text = "I need help but it's not urgent"; ObjectID = "Mzb-Ip-AeR"; */
+"Mzb-Ip-AeR.text" = "Ich benötige zwar Hilfe, es eilt jedoch nicht";
+
+/* Class = "UINavigationItem"; title = "Impact Level"; ObjectID = "WJ3-te-MeT"; */
+"WJ3-te-MeT.title" = "Auswirkungsstufe";
+
+/* Class = "UITextField"; placeholder = "Fix all the things"; ObjectID = "iNZ-xc-hnX"; */
+"iNZ-xc-hnX.placeholder" = "Fülle alles aus.";
+
+/* Class = "UILabel"; text = "Something is broken but I can work around it"; ObjectID = "noj-Yi-xpa"; */
+"noj-Yi-xpa.text" = "Es liegt zwar ein Problem vor, aber ich kann es umgehen";
+
+/* Class = "UINavigationItem"; title = "Report a Problem"; ObjectID = "vMz-Cg-DUM"; */
+"vMz-Cg-DUM.title" = "Ein Problem melden";
+
+/* Class = "UILabel"; text = "Extremely critical emergency"; ObjectID = "wHQ-Tn-kQn"; */
+"wHQ-Tn-kQn.text" = "Sehr kritischer Notfall";
+
+/* Class = "UILabel"; text = "Impact:"; ObjectID = "zHJ-ya-AKU"; */
+"zHJ-ya-AKU.text" = "Auswirkung:";
+

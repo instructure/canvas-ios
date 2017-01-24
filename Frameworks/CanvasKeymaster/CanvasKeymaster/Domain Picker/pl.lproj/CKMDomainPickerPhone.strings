@@ -1,0 +1,18 @@
+/* Class = "UILabel"; text = "Label"; ObjectID = "7tl-s1-0wg"; */
+"7tl-s1-0wg.text" = "Etykieta";
+
+/* Class = "UILabel"; text = "Canvas Login On"; ObjectID = "BD1-jZ-xPz"; */
+"BD1-jZ-xPz.text" = "Logowanie w Canvas";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UqJ-Ob-4nT"; */
+"UqJ-Ob-4nT.text" = "Etykieta";
+
+/* Class = "UITextField"; placeholder = "Find your school or district"; ObjectID = "W9p-nq-GlV"; */
+"W9p-nq-GlV.placeholder" = "Znajdź swoją szkołę lub dzielnicę";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "jsr-jq-3y0"; */
+"jsr-jq-3y0.text" = "Tytuł";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "nTZ-ii-mqn"; */
+"nTZ-ii-mqn.text" = "Podtytuł";
+

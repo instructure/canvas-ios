@@ -116,7 +116,7 @@ open class LandingPageViewController: UITableViewController {
     
     open override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "Choose Landing Page"
+            return NSLocalizedString("Choose Landing Page", comment: "Button to select a landing page")
         } else {
             return nil
         }

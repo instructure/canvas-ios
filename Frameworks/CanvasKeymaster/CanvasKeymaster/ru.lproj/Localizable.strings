@@ -1,0 +1,119 @@
+/* prompt for a support error message */
+"
+
+===== tell us what happened above this line =====
+
+" = "
+
+===== расскажите нам, что произошло над этой строкой =====
+
+";
+
+/* The distance in miles that a user is from a school. */
+"%@ miles away" = "%@ на расстоянии";
+
+/* No comment provided by engineer. */
+"Build all the things" = "Построить все";
+
+/* Help label when user can't find their school. */
+"Can't find your school?" = "Не можете найти ваше учебное заведение?";
+
+/* No comment provided by engineer. */
+"Cancel" = "Отменить";
+
+/* Label displayed when forcing canvas login */
+"Canvas Login" = "Вход в Canvas";
+
+/* No comment provided by engineer. */
+"Casual question or suggestion" = "Обычный вопрос или предложение";
+
+/* No comment provided by engineer. */
+"Describe the feature here" = "Опишите функцию здесь";
+
+/* Dismiss login expired/revoked alert button */
+"Dismiss" = "Отклонить";
+
+/* No comment provided by engineer. */
+"Emergency" = "Чрезвычайная ситуация";
+
+/* Text field to enter school domain that user would like the search in Domain Picker View */
+"Enter school domain." = "Введите домен учебного заведения.";
+
+/* Text view to enter the description of the ticket */
+"Enter ticket description" = "Введите описание обращения";
+
+/* Text field to enter subject of the ticket */
+"Enter ticket subject" = "Введите тему обращения";
+
+/* Subtitle help text describing how to find a school. */
+"Enter your school's domain or tap for help." = "Введите домен вашего учебного заведения или нажмите для получения справки.";
+
+/* No comment provided by engineer. */
+"Find School Domain" = "Введите домен учебного заведения";
+
+/* Help View Controller Title */
+"Help" = "Справка";
+
+/* No comment provided by engineer. */
+"I am stuck and can't get things done" = "Я зашел в тупик и не могу завершить начатое";
+
+/* No comment provided by engineer. */
+"Invalid Canvas URL." = "Неправильный URL Canvas.";
+
+/* No comment provided by engineer. */
+"Invalid User Agent." = "Неправильный пользовательский агент.";
+
+/* No comment provided by engineer. */
+"Non-urgent help needed" = "Требуется несрочная помощь";
+
+/* No comment provided by engineer. */
+"Not authorized." = "Не разрешено.";
+
+/* Placeholder for help icon (question mark) on Domain Picker View */
+"Open help menu." = "Откройте меню справки.";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "Сообщить о проблеме";
+
+/* No comment provided by engineer. */
+"Report a problem" = "Сообщить о проблеме";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Запрос функции";
+
+/* No comment provided by engineer. */
+"Request a feature" = "Запрос функции";
+
+/* No comment provided by engineer. */
+"Right Behind You" = "Прямо позади вас";
+
+/* Placeholder for search button on Domain Picker View */
+"Search for domain." = "Выполните поиск домена.";
+
+/* Button to select the severity of the ticket */
+"Select ticket impact level" = "Выберите уровень воздействия обращения";
+
+/* No comment provided by engineer. */
+"Send" = "Отправить";
+
+/* Label displayed when logging in as site admin */
+"Site Admin Login" = "Учетная запись администратора";
+
+/* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Что-то сломалось, но я могу работать и без этого";
+
+/* when the access token has been revoked */
+"Your login has expired or has been removed by the server. Please log in again." = "Ваша учетная запись устарела или была удалена сервером. Пожалуйста, войдите снова.";
+
+/* No comment provided by engineer. */
+"describe your problem" = "опишите вашу проблему";
+
+/* No comment provided by engineer. */
+"enter a subject" = "введите тему";
+
+/* Placeholder for delete icon in Multi User Table View Cell */
+"remove user" = "удалить пользователя";
+
+/* No comment provided by engineer. */
+"select the impact" = "выбрать воздействие";
+

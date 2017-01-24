@@ -1,0 +1,45 @@
+/* Class = "UILabel"; text = "Subject:"; ObjectID = "2Rv-2E-aXf"; */
+"2Rv-2E-aXf.text" = "Тема:";
+
+/* Class = "UILabel"; text = "I can't get things done until I hear back from you"; ObjectID = "3W4-tq-IWk"; */
+"3W4-tq-IWk.text" = "Я не могу закончить, пока не услышу ваш ответ";
+
+/* Class = "UILabel"; text = "Casual question or suggestion"; ObjectID = "4tN-KR-Cbp"; */
+"4tN-KR-Cbp.text" = "Обычный вопрос или предложение";
+
+/* Class = "UILabel"; text = "Your Email:"; ObjectID = "6TI-vH-jf1"; */
+"6TI-vH-jf1.text" = "Ваша электронная почта:";
+
+/* Class = "UITextField"; placeholder = "user@example.com"; ObjectID = "Dfu-ki-tj3"; */
+"Dfu-ki-tj3.placeholder" = "user@example.com";
+
+/* Class = "UIBarButtonItem"; title = "Send"; ObjectID = "IXk-9a-lZr"; */
+"IXk-9a-lZr.title" = "Отправить";
+
+/* Class = "UILabel"; text = "Describe your problem"; ObjectID = "MFL-XU-ZnR"; */
+"MFL-XU-ZnR.text" = "Опишите вашу проблему";
+
+/* Class = "UIButton"; normalTitle = "Choose One"; ObjectID = "MIQ-TR-wtL"; */
+"MIQ-TR-wtL.normalTitle" = "Выберите один";
+
+/* Class = "UILabel"; text = "I need help but it's not urgent"; ObjectID = "Mzb-Ip-AeR"; */
+"Mzb-Ip-AeR.text" = "Мне нужна помощь, но это не срочно";
+
+/* Class = "UINavigationItem"; title = "Impact Level"; ObjectID = "WJ3-te-MeT"; */
+"WJ3-te-MeT.title" = "Уровень воздействия";
+
+/* Class = "UITextField"; placeholder = "Fix all the things"; ObjectID = "iNZ-xc-hnX"; */
+"iNZ-xc-hnX.placeholder" = "Исправить все";
+
+/* Class = "UILabel"; text = "Something is broken but I can work around it"; ObjectID = "noj-Yi-xpa"; */
+"noj-Yi-xpa.text" = "Что-то сломалось, но я могу работать и без этого";
+
+/* Class = "UINavigationItem"; title = "Report a Problem"; ObjectID = "vMz-Cg-DUM"; */
+"vMz-Cg-DUM.title" = "Сообщить о проблеме";
+
+/* Class = "UILabel"; text = "Extremely critical emergency"; ObjectID = "wHQ-Tn-kQn"; */
+"wHQ-Tn-kQn.text" = "Крайне критическая ситуация";
+
+/* Class = "UILabel"; text = "Impact:"; ObjectID = "zHJ-ya-AKU"; */
+"zHJ-ya-AKU.text" = "Влияние:";
+

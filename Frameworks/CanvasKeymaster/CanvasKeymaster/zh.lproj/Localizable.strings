@@ -1,0 +1,119 @@
+/* prompt for a support error message */
+"
+
+===== tell us what happened above this line =====
+
+" = "
+
+=====请在此行上方告诉我们发生了什么事情=====
+
+";
+
+/* The distance in miles that a user is from a school. */
+"%@ miles away" = "%@ 还有数公里";
+
+/* No comment provided by engineer. */
+"Build all the things" = "构建所有事情";
+
+/* Help label when user can't find their school. */
+"Can't find your school?" = "找不到学校？";
+
+/* No comment provided by engineer. */
+"Cancel" = "取消";
+
+/* Label displayed when forcing canvas login */
+"Canvas Login" = "Canvas 登录";
+
+/* No comment provided by engineer. */
+"Casual question or suggestion" = "简单问题或建议";
+
+/* No comment provided by engineer. */
+"Describe the feature here" = "在此处描述功能";
+
+/* Dismiss login expired/revoked alert button */
+"Dismiss" = "解散";
+
+/* No comment provided by engineer. */
+"Emergency" = "紧急";
+
+/* Text field to enter school domain that user would like the search in Domain Picker View */
+"Enter school domain." = "输入学校域。";
+
+/* Text view to enter the description of the ticket */
+"Enter ticket description" = "输入票描述";
+
+/* Text field to enter subject of the ticket */
+"Enter ticket subject" = "输入票科目";
+
+/* Subtitle help text describing how to find a school. */
+"Enter your school's domain or tap for help." = "输入学校的域或敲击以获取帮助。";
+
+/* No comment provided by engineer. */
+"Find School Domain" = "查找学校域";
+
+/* Help View Controller Title */
+"Help" = "帮助";
+
+/* No comment provided by engineer. */
+"I am stuck and can't get things done" = "我卡住了，无法完成工作";
+
+/* No comment provided by engineer. */
+"Invalid Canvas URL." = "Canvas URL 无效。";
+
+/* No comment provided by engineer. */
+"Invalid User Agent." = "用户代理无效。";
+
+/* No comment provided by engineer. */
+"Non-urgent help needed" = "无需紧急帮助";
+
+/* No comment provided by engineer. */
+"Not authorized." = "未获授权。";
+
+/* Placeholder for help icon (question mark) on Domain Picker View */
+"Open help menu." = "打开帮助菜单。";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "报告一个问题";
+
+/* No comment provided by engineer. */
+"Report a problem" = "报告一个问题";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "请求一个功能";
+
+/* No comment provided by engineer. */
+"Request a feature" = "请求一个功能";
+
+/* No comment provided by engineer. */
+"Right Behind You" = "就在您后面";
+
+/* Placeholder for search button on Domain Picker View */
+"Search for domain." = "搜索域。";
+
+/* Button to select the severity of the ticket */
+"Select ticket impact level" = "选择票影响级别";
+
+/* No comment provided by engineer. */
+"Send" = "发送";
+
+/* Label displayed when logging in as site admin */
+"Site Admin Login" = "站点管理员登录";
+
+/* No comment provided by engineer. */
+"Something is broken but I can work around it" = "某东西坏了，但我可以修复它";
+
+/* when the access token has been revoked */
+"Your login has expired or has been removed by the server. Please log in again." = "您的登录已过期或已经被服务器删除。请重新登录。";
+
+/* No comment provided by engineer. */
+"describe your problem" = "描述您的问题";
+
+/* No comment provided by engineer. */
+"enter a subject" = "输入主题";
+
+/* Placeholder for delete icon in Multi User Table View Cell */
+"remove user" = "删除用户";
+
+/* No comment provided by engineer. */
+"select the impact" = "选择影响";
+

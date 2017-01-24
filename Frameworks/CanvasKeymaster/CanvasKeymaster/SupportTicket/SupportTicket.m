@@ -115,22 +115,22 @@ static NSString * const ExtremeCriticalEmergencyValue = @"extreme_critical_emerg
 {
     switch (self.impactValue) {
         case SupportTicketImpactLevelNone:
-            return @"Choose One";
+            return NSLocalizedStringFromTableInBundle(@"Choose One", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
             break;
         case SupportTicketImpactLevelComment:
-            return @"Casual question or suggestion";
+            return NSLocalizedStringFromTableInBundle(@"Casual question or suggestion", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
             break;
         case SupportTicketImpactLevelNotUrgent:
-            return @"I need help but it's not urgent";
+            return NSLocalizedStringFromTableInBundle(@"I need help but it's not urgent", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
             break;
         case SupportTicketImpactLevelWorkaroundPossible:
-            return @"Something is broken but I can work around it";
+            return NSLocalizedStringFromTableInBundle(@"Something is broken but I can work around it", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
             break;
         case SupportTicketImpactLevelBlocking:
-            return @"I can't get things done until I hear back from you";
+            return NSLocalizedStringFromTableInBundle(@"I can't get things done until I hear back from you", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
             break;
         case SupportTicketImpactLevelEmergency:
-            return @"Extremely critical emergency";
+            return NSLocalizedStringFromTableInBundle(@"Extremely critical emergency", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
             break;
         default:
             break;

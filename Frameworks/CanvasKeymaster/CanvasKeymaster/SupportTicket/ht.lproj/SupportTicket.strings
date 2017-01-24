@@ -1,0 +1,45 @@
+/* Class = "UILabel"; text = "Subject:"; ObjectID = "2Rv-2E-aXf"; */
+"2Rv-2E-aXf.text" = "Sijè:";
+
+/* Class = "UILabel"; text = "I can't get things done until I hear back from you"; ObjectID = "3W4-tq-IWk"; */
+"3W4-tq-IWk.text" = "Mwen paka fè bagay yo jiskaske mwen tounen tande w";
+
+/* Class = "UILabel"; text = "Casual question or suggestion"; ObjectID = "4tN-KR-Cbp"; */
+"4tN-KR-Cbp.text" = "Kesyon oswa sijesyon pa aza";
+
+/* Class = "UILabel"; text = "Your Email:"; ObjectID = "6TI-vH-jf1"; */
+"6TI-vH-jf1.text" = "Imèl Ou:";
+
+/* Class = "UITextField"; placeholder = "user@example.com"; ObjectID = "Dfu-ki-tj3"; */
+"Dfu-ki-tj3.placeholder" = "user@example.com";
+
+/* Class = "UIBarButtonItem"; title = "Send"; ObjectID = "IXk-9a-lZr"; */
+"IXk-9a-lZr.title" = "Voye";
+
+/* Class = "UILabel"; text = "Describe your problem"; ObjectID = "MFL-XU-ZnR"; */
+"MFL-XU-ZnR.text" = "Dekri Pwoblèm ou a";
+
+/* Class = "UIButton"; normalTitle = "Choose One"; ObjectID = "MIQ-TR-wtL"; */
+"MIQ-TR-wtL.normalTitle" = "Chwazi Yonn";
+
+/* Class = "UILabel"; text = "I need help but it's not urgent"; ObjectID = "Mzb-Ip-AeR"; */
+"Mzb-Ip-AeR.text" = "Mwen bezwen èd men li pa ijan";
+
+/* Class = "UINavigationItem"; title = "Impact Level"; ObjectID = "WJ3-te-MeT"; */
+"WJ3-te-MeT.title" = "Nivo Enpak:";
+
+/* Class = "UITextField"; placeholder = "Fix all the things"; ObjectID = "iNZ-xc-hnX"; */
+"iNZ-xc-hnX.placeholder" = "Fikse tout bagay";
+
+/* Class = "UILabel"; text = "Something is broken but I can work around it"; ObjectID = "noj-Yi-xpa"; */
+"noj-Yi-xpa.text" = "Gen yon bagay ki kase mwen mwen ka jere sa";
+
+/* Class = "UINavigationItem"; title = "Report a Problem"; ObjectID = "vMz-Cg-DUM"; */
+"vMz-Cg-DUM.title" = "Rapòte yon Pwoblèm";
+
+/* Class = "UILabel"; text = "Extremely critical emergency"; ObjectID = "wHQ-Tn-kQn"; */
+"wHQ-Tn-kQn.text" = "Ijans Trè Kritik";
+
+/* Class = "UILabel"; text = "Impact:"; ObjectID = "zHJ-ya-AKU"; */
+"zHJ-ya-AKU.text" = "Enpa";
+
