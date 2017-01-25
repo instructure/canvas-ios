@@ -46,7 +46,7 @@ func courseCardViewModel(_ enrollment: Enrollment, session: Session, viewControl
     return vm
 }
 
-open class CoursesCollectionViewController: Course.CollectionViewController {
+open class CoursesCollectionViewController: Course.CollectionViewController, UICollectionViewDelegateFlowLayout {
     
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -178,7 +178,15 @@ open class CoursesCollectionViewController: Course.CollectionViewController {
         
         route(enrollmentsVC, tabsURL)
     }
-    
+
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            let size = cell.contentView.systemLayoutSizeFitting(collectionView.bounds.size)
+            return size
+        }
+        return .zero
+    }
+
     open override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         (cell as? EnrollmentCardCell)?.updateA11y()
     }

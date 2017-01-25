@@ -22,7 +22,7 @@ import SoPersistent
 import TooLegit
 import SoLazy
 
-class GroupsCollectionViewController: Group.CollectionViewController {
+class GroupsCollectionViewController: Group.CollectionViewController, UICollectionViewDelegateFlowLayout {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -93,5 +93,13 @@ class GroupsCollectionViewController: Group.CollectionViewController {
         guard let enrollmentsVC = self.parent else { return print("¯\\_(ツ)_/¯") }
         
         route(enrollmentsVC, tabsURL)
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            let size = cell.contentView.systemLayoutSizeFitting(collectionView.bounds.size)
+            return size
+        }
+        return .zero
     }
 }

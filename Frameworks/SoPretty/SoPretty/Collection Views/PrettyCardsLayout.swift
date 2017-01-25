@@ -86,22 +86,6 @@ open class PrettyCardsLayout: UICollectionViewFlowLayout {
         
         return super.shouldInvalidateLayout(forBoundsChange: newBounds)
     }
-
-    open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        guard let collectionView = collectionView else {
-            return nil
-        }
-        var attributes: [UICollectionViewLayoutAttributes] = []
-        for section in 0..<collectionView.numberOfSections {
-            for item in 0..<collectionView.numberOfItems(inSection: section) {
-                let indexPath = IndexPath(item: item, section: section)
-                if let attribute = layoutAttributesForItem(at: indexPath) {
-                    attributes.append(attribute)
-                }
-            }
-        }
-        return attributes
-    }
 }
 
 
