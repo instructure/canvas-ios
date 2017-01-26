@@ -63,7 +63,6 @@
     NSError* error = nil;
     self.recorder = [[AVAudioRecorder alloc] initWithURL:self.audioRecorderFileURL settings:recorderSettings error:&error];
     
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error: nil];
     [[AVAudioSession sharedInstance] setActive: YES error: nil];
     
     self.recorder.delegate = self;

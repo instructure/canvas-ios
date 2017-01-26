@@ -12,7 +12,6 @@
     #import <Foundation/Foundation.h>
     #import <CanvasKit/CanvasKit.h>
     #import <CanvasKeymaster/CanvasKeymaster.h>
-    #import <ReactiveCocoa/ReactiveCocoa.h>
 //    #import <Mantle/EXTScope.h>
     #import "CSGUserPrefsKeys.h"
     #import "UIColor+CSGColor.h"

@@ -17,12 +17,10 @@ PODS:
   - GoogleUtilities (1.3.1):
     - GoogleSymbolUtilities (~> 1.0)
   - JSTokenField (1.1)
-  - SimulatorStatusMagic (1.9)
 
 DEPENDENCIES:
   - Google/Analytics
   - JSTokenField (~> 1.1)
-  - SimulatorStatusMagic
 
 SPEC CHECKSUMS:
   FirebaseAnalytics: 3f5358d9104adf159cc8d99b7b501e50099a39ad
@@ -33,8 +31,7 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   JSTokenField: f619bc91e942f05b2bf4e67fe46aabd9e7891f5a
-  SimulatorStatusMagic: 4db65b11c095bbb3abd966a4ae8ee0f11789e8e0
 
-PODFILE CHECKSUM: eed5b2f6560d82bed31ffd821a69b7f6e439de5d
+PODFILE CHECKSUM: 6e9862a5dabba084b25ec094a1059639308c96c3
 
 COCOAPODS: 1.0.1

@@ -204,6 +204,7 @@
 - (AFHTTPSessionManager *)xmlReauestManager {
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:self.baseURL];
     manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     return manager;
 }

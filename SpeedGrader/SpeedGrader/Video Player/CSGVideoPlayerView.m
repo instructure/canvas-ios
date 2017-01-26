@@ -53,6 +53,8 @@ static void *CSGVideoPlayerViewPlayerLayerReadyForDisplayObservationContext = &C
 
 @property (nonatomic, readonly) AVPlayerLayer *playerLayer;
 
+@property (nonatomic, nullable) id didPlayToEndObserver;
+
 @property (nonatomic, strong, readwrite) AVAsset *asset;
 @property (nonatomic, strong) AVPlayerItem *playerItem;
 @property (nonatomic, assign) CMTime duration;
@@ -143,6 +145,8 @@ static void *CSGVideoPlayerViewPlayerLayerReadyForDisplayObservationContext = &C
 #pragma mark KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
     if (context == CSGVideoPlayerViewPlayerItemStatusObservationContext) {
         [self syncPlayPauseButton];
         
@@ -198,9 +202,13 @@ static void *CSGVideoPlayerViewPlayerLayerReadyForDisplayObservationContext = &C
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
+        
+    });
 }
 
 - (void)dealloc {
+    [NSNotificationCenter.defaultCenter removeObserver:self.didPlayToEndObserver];
+    [self removePlayerObservations:self.player];
     [self removePlayerTimeObserver];
     
     [self.playerItem removeObserver:self forKeyPath:@"status"];
@@ -290,9 +298,11 @@ static void *CSGVideoPlayerViewPlayerLayerReadyForDisplayObservationContext = &C
                          options:(NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew)
                          context:CSGVideoPlayerViewPlayerItemDurationObservationContext];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:AVPlayerItemDidPlayToEndTimeNotification
+    @weakify(self);
+    self.didPlayToEndObserver = [[NSNotificationCenter defaultCenter] addObserverForName:AVPlayerItemDidPlayToEndTimeNotification
                                                       object:self.playerItem
                                                        queue:nil usingBlock:^(NSNotification *note) {
+                                                           @strongify(self);
                                                            [self setControlsVisible:YES animated:YES];
                                                            [self setSeekToZeroBeforePlay:YES];
                                                        }];
@@ -313,9 +323,11 @@ static void *CSGVideoPlayerViewPlayerLayerReadyForDisplayObservationContext = &C
     self.asset = [AVURLAsset URLAssetWithURL:URL options:nil];
     NSArray *keys = @[@"tracks", @"playable"];
     
+    @weakify(self);
     [self.asset loadValuesAsynchronouslyForKeys:keys completionHandler:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             // Displatch to main queue!
+            @strongify(self);
             [self doneLoadingAsset:self.asset withKeys:keys];
         });
     }];
@@ -497,13 +509,13 @@ static void *CSGVideoPlayerViewPlayerLayerReadyForDisplayObservationContext = &C
 
 - (void)addPlayerTimeObserver {
     if (!_playerTimeObserver) {
-        __unsafe_unretained CSGVideoPlayerView *weakSelf = self;
+        @weakify(self);
         id observer = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(.5, NSEC_PER_SEC)
                                                                 queue:dispatch_get_main_queue()
                                                            usingBlock:^(CMTime time) {
-                                                               CSGVideoPlayerView *strongSelf = weakSelf;
-                                                               if (CMTIME_IS_VALID(strongSelf.player.currentTime) && CMTIME_IS_VALID(strongSelf.duration)) {
-                                                                   [strongSelf syncScrubber];
+                                                               @strongify(self);
+                                                               if (CMTIME_IS_VALID(self.player.currentTime) && CMTIME_IS_VALID(self.duration)) {
+                                                                   [self syncScrubber];
                                                                }
                                                            }];
         self.playerTimeObserver = observer;

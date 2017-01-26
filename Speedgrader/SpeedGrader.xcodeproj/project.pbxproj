@@ -192,13 +192,10 @@
 		614D2E541A47B5D700164097 /* CSGFlyingPandaRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 614D2E531A47B5D700164097 /* CSGFlyingPandaRefreshControl.m */; };
 		615B771C1A44C74E00AAEE2C /* CSGFlyingPandaActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 615B771B1A44C74E00AAEE2C /* CSGFlyingPandaActivityView.m */; };
 		61A97E0C1A659022004C2007 /* CSGAudioPlaybackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A97E0B1A659022004C2007 /* CSGAudioPlaybackManager.m */; };
-		61C2E9681DAD411700073F62 /* SpeedGrader-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA6E871C2A886BAC8EFA512D /* SpeedGrader-Info.plist */; };
 		61C2E96A1DAD42F000073F62 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E9691DAD42EA00073F62 /* AFNetworking.framework */; };
 		61C2E96B1DAD42F000073F62 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E9691DAD42EA00073F62 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		61C2E9701DAD435500073F62 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E96F1DAD434F00073F62 /* CocoaLumberjack.framework */; };
 		61C2E9711DAD435500073F62 /* CocoaLumberjack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E96F1DAD434F00073F62 /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		61C2E9731DAD438800073F62 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E9721DAD438100073F62 /* ReactiveCocoa.framework */; };
-		61C2E9741DAD438800073F62 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E9721DAD438100073F62 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		61C2E9761DAD43B400073F62 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E9751DAD43AB00073F62 /* Kingfisher.framework */; };
 		61C2E9771DAD43B400073F62 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E9751DAD43AB00073F62 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		61C2E9791DAD43DF00073F62 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E9781DAD43D900073F62 /* SoLazy.framework */; };
@@ -227,8 +224,16 @@
 		61C2E99E1DAD460900073F62 /* Mantle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E99C1DAD45FB00073F62 /* Mantle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		61C2E9A01DAD463000073F62 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E99F1DAD462A00073F62 /* Reachability.framework */; };
 		61C2E9A11DAD463000073F62 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61C2E99F1DAD462A00073F62 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		800C77787D3A8CF4FAD668C2 /* Pods_SpeedGrader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB7129EA3276CC744B88C5A /* Pods_SpeedGrader.framework */; };
 		B18B34821DB5A30400355EDD /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18B34811DB5A30400355EDD /* Masonry.framework */; };
+		B1E526311E369FA100BDDAD8 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5262F1E369FA100BDDAD8 /* ReactiveObjC.framework */; };
+		B1E526321E36AE5400BDDAD8 /* ReactiveObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5262F1E369FA100BDDAD8 /* ReactiveObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1E526331E36AE5400BDDAD8 /* Masonry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B18B34811DB5A30400355EDD /* Masonry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1E526351E36B20200BDDAD8 /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E526341E36B20200BDDAD8 /* CWNotification.framework */; };
+		B1E526361E36B21800BDDAD8 /* CWNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1E526341E36B20200BDDAD8 /* CWNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1E526381E36B25E00BDDAD8 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E526371E36B25E00BDDAD8 /* ReactiveSwift.framework */; };
+		B1E526391E36B26A00BDDAD8 /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1E526371E36B25E00BDDAD8 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1E5263B1E36B2A300BDDAD8 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5263A1E36B2A300BDDAD8 /* ReactiveCocoa.framework */; };
+		B1E5263C1E36B2AF00BDDAD8 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5263A1E36B2A300BDDAD8 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B50356611A5B4C7600387BB2 /* CSGMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50356601A5B4C7600387BB2 /* CSGMoviePlayerViewController.m */; };
 		B504D8671A118513002F0153 /* CSGNotificationPermissionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B504D8661A118513002F0153 /* CSGNotificationPermissionHandler.m */; };
 		B509A7231A813BB500A7ACFA /* CSGAudioUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B509A7221A813BB500A7ACFA /* CSGAudioUtils.m */; };
@@ -269,7 +274,6 @@
 		BA6E8AA9702CB38B5FCC47FE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6E888430D296ACAFECA951 /* XCTest.framework */; };
 		BA6E8AFC59ECA4148E3156E7 /* CSGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6E86D60D46113180F38E3C /* CSGAppDelegate.m */; };
 		BA6E8C9995F977574B5DD166 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6E8D64760A00F2E750AEAB /* main.m */; };
-		BD84D7151A239B1C0065F3F2 /* VideoPlaybackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD84D7141A239B1C0065F3F2 /* VideoPlaybackManager.m */; };
 		BD84D7181A23A77B0065F3F2 /* VideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD84D7171A23A77B0065F3F2 /* VideoPlayerView.m */; };
 		BD88B6431A128EE900A89DD7 /* VideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD88B6421A128EE900A89DD7 /* VideoManager.m */; };
 		BD88B6501A13C7AB00A89DD7 /* VideoRecorderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD88B64F1A13C7AB00A89DD7 /* VideoRecorderView.xib */; };
@@ -309,6 +313,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B1E5263C1E36B2AF00BDDAD8 /* ReactiveCocoa.framework in Embed Frameworks */,
+				B1E526391E36B26A00BDDAD8 /* ReactiveSwift.framework in Embed Frameworks */,
+				B1E526361E36B21800BDDAD8 /* CWNotification.framework in Embed Frameworks */,
+				B1E526321E36AE5400BDDAD8 /* ReactiveObjC.framework in Embed Frameworks */,
+				B1E526331E36AE5400BDDAD8 /* Masonry.framework in Embed Frameworks */,
 				613A9D5D1DAC5C3100AB4C6D /* TooLegit.framework in Embed Frameworks */,
 				61C2E9831DAD445000073F62 /* AssignmentKit.framework in Embed Frameworks */,
 				6145A4BC1DAC3DA400DFE0AA /* PSPDFKit.framework in Embed Frameworks */,
@@ -326,7 +335,6 @@
 				61C2E9711DAD435500073F62 /* CocoaLumberjack.framework in Embed Frameworks */,
 				61C2E99B1DAD45D300073F62 /* SoProgressive.framework in Embed Frameworks */,
 				61C2E97A1DAD43DF00073F62 /* SoLazy.framework in Embed Frameworks */,
-				61C2E9741DAD438800073F62 /* ReactiveCocoa.framework in Embed Frameworks */,
 				61C2E9891DAD44A200073F62 /* Cartography.framework in Embed Frameworks */,
 				613A9D601DAC5C7C00AB4C6D /* SoPersistent.framework in Embed Frameworks */,
 				6145A4C01DAC3DA400DFE0AA /* SoAnnotated.framework in Embed Frameworks */,
@@ -586,9 +594,7 @@
 		61A97E0A1A659022004C2007 /* CSGAudioPlaybackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSGAudioPlaybackManager.h; sourceTree = "<group>"; };
 		61A97E0B1A659022004C2007 /* CSGAudioPlaybackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGAudioPlaybackManager.m; sourceTree = "<group>"; };
 		61C2E9691DAD42EA00073F62 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		61C2E96C1DAD431300073F62 /* CWStatusBarNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C2E96F1DAD434F00073F62 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		61C2E9721DAD438100073F62 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C2E9751DAD43AB00073F62 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C2E9781DAD43D900073F62 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C2E97B1DAD440200073F62 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -605,6 +611,10 @@
 		61C2E99F1DAD462A00073F62 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FB7129EA3276CC744B88C5A /* Pods_SpeedGrader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpeedGrader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B18B34811DB5A30400355EDD /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1E5262F1E369FA100BDDAD8 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1E526341E36B20200BDDAD8 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1E526371E36B25E00BDDAD8 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1E5263A1E36B2A300BDDAD8 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B503565F1A5B4C7600387BB2 /* CSGMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSGMoviePlayerViewController.h; sourceTree = "<group>"; };
 		B50356601A5B4C7600387BB2 /* CSGMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGMoviePlayerViewController.m; sourceTree = "<group>"; };
 		B504D8651A118513002F0153 /* CSGNotificationPermissionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSGNotificationPermissionHandler.h; sourceTree = "<group>"; };
@@ -1881,8 +1891,6 @@
 		BA6E8FF79C55231FEF355A1D /* icon_compose_sml.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_compose_sml.png; sourceTree = "<group>"; };
 		BA6E8FFA5B059143FE181C35 /* icon_move_fill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_move_fill@2x.png"; sourceTree = "<group>"; };
 		BA6E8FFA9D046A85748B8757 /* icon_trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_trash@2x.png"; sourceTree = "<group>"; };
-		BD84D7131A239B1C0065F3F2 /* VideoPlaybackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlaybackManager.h; sourceTree = "<group>"; };
-		BD84D7141A239B1C0065F3F2 /* VideoPlaybackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlaybackManager.m; sourceTree = "<group>"; };
 		BD84D7161A23A77B0065F3F2 /* VideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerView.h; sourceTree = "<group>"; };
 		BD84D7171A23A77B0065F3F2 /* VideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerView.m; sourceTree = "<group>"; };
 		BD88B6411A128EE900A89DD7 /* VideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoManager.h; sourceTree = "<group>"; };
@@ -1917,8 +1925,9 @@
 				2C6DC3DD1DC3A31100F3E8C2 /* Secrets.framework in Frameworks */,
 				6145A4C51DAC430800DFE0AA /* Pods_SpeedGrader.framework in Frameworks */,
 				61C2E99D1DAD460900073F62 /* Mantle.framework in Frameworks */,
+				B1E526311E369FA100BDDAD8 /* ReactiveObjC.framework in Frameworks */,
 				61C2E9761DAD43B400073F62 /* Kingfisher.framework in Frameworks */,
-				61C2E9731DAD438800073F62 /* ReactiveCocoa.framework in Frameworks */,
+				B1E526351E36B20200BDDAD8 /* CWNotification.framework in Frameworks */,
 				5E303C381A5F3F8E00104915 /* Fabric.framework in Frameworks */,
 				61C2E9821DAD445000073F62 /* AssignmentKit.framework in Frameworks */,
 				6145A4BB1DAC3DA400DFE0AA /* PSPDFKit.framework in Frameworks */,
@@ -1936,14 +1945,15 @@
 				5EFC62601975BB1D00B1EA6F /* Crashlytics.framework in Frameworks */,
 				61C2E96A1DAD42F000073F62 /* AFNetworking.framework in Frameworks */,
 				BA6E81E74E54F6337D0BDC6B /* CoreGraphics.framework in Frameworks */,
+				B1E526381E36B25E00BDDAD8 /* ReactiveSwift.framework in Frameworks */,
 				6145A4B71DAC315600DFE0AA /* Result.framework in Frameworks */,
 				61C2E97C1DAD440700073F62 /* Marshal.framework in Frameworks */,
 				BA6E83F215B1051E4DBC706F /* UIKit.framework in Frameworks */,
 				613A9D5F1DAC5C7C00AB4C6D /* SoPersistent.framework in Frameworks */,
+				B1E5263B1E36B2A300BDDAD8 /* ReactiveCocoa.framework in Frameworks */,
 				61C2E98F1DAD454600073F62 /* FXKeychain.framework in Frameworks */,
 				61C2E9911DAD454700073F62 /* EnrollmentKit.framework in Frameworks */,
 				61C2E9941DAD457200073F62 /* MediaKit.framework in Frameworks */,
-				800C77787D3A8CF4FAD668C2 /* Pods_SpeedGrader.framework in Frameworks */,
 				61C2E9701DAD435500073F62 /* CocoaLumberjack.framework in Frameworks */,
 				61C2E9971DAD45B000073F62 /* SoIconic.framework in Frameworks */,
 				61C2E9791DAD43DF00073F62 /* SoLazy.framework in Frameworks */,
@@ -2208,8 +2218,6 @@
 				B5E0A9B71A36722600659333 /* CSGGradingCommentsViewController.storyboard */,
 				BD88B6411A128EE900A89DD7 /* VideoManager.h */,
 				BD88B6421A128EE900A89DD7 /* VideoManager.m */,
-				BD84D7131A239B1C0065F3F2 /* VideoPlaybackManager.h */,
-				BD84D7141A239B1C0065F3F2 /* VideoPlaybackManager.m */,
 				BD84D7161A23A77B0065F3F2 /* VideoPlayerView.h */,
 				BD84D7171A23A77B0065F3F2 /* VideoPlayerView.m */,
 				B5134F1C1A1E8C32001B6FE2 /* CSGAudioManager.h */,
@@ -2445,6 +2453,10 @@
 		6145A49A1DAC2F9300DFE0AA /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				B1E5263A1E36B2A300BDDAD8 /* ReactiveCocoa.framework */,
+				B1E526371E36B25E00BDDAD8 /* ReactiveSwift.framework */,
+				B1E526341E36B20200BDDAD8 /* CWNotification.framework */,
+				B1E5262F1E369FA100BDDAD8 /* ReactiveObjC.framework */,
 				2C73C9CB1E0337C10064A19D /* SoPretty.framework */,
 				2C6DC3DC1DC3A31100F3E8C2 /* Secrets.framework */,
 				61C2E99F1DAD462A00073F62 /* Reachability.framework */,
@@ -2462,9 +2474,7 @@
 				61C2E97B1DAD440200073F62 /* Marshal.framework */,
 				61C2E9781DAD43D900073F62 /* SoLazy.framework */,
 				61C2E9751DAD43AB00073F62 /* Kingfisher.framework */,
-				61C2E9721DAD438100073F62 /* ReactiveCocoa.framework */,
 				61C2E96F1DAD434F00073F62 /* CocoaLumberjack.framework */,
-				61C2E96C1DAD431300073F62 /* CWStatusBarNotification.framework */,
 				61C2E9691DAD42EA00073F62 /* AFNetworking.framework */,
 				613A9D5E1DAC5C7100AB4C6D /* SoPersistent.framework */,
 				613A9D5B1DAC5C2100AB4C6D /* TooLegit.framework */,
@@ -7317,7 +7327,7 @@
 			attributes = {
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					BA6E867087F7F3176A0FC858 = {
@@ -7405,7 +7415,6 @@
 				5E8B55EE19C8EC7E0070D6F3 /* CSGGradingViewController.storyboard in Resources */,
 				5E0FECDD1A1E683D00B612F2 /* ox.plist in Resources */,
 				5E0FECD11A1E683D00B612F2 /* lsl.plist in Resources */,
-				61C2E9681DAD411700073F62 /* SpeedGrader-Info.plist in Resources */,
 				5E0FECBC1A1E683D00B612F2 /* d.plist in Resources */,
 				5E0FECBF1A1E683D00B612F2 /* erl.plist in Resources */,
 				5E0FECF41A1E683D00B612F2 /* udo.plist in Resources */,
@@ -7496,7 +7505,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		5EFC625E1975BAFE00B1EA6F /* Fabric */ = {
@@ -7525,7 +7534,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name \'PSPDFKit.framework\' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name 'PSPDFKit.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
 		};
 		802668CE383AED2F51804E58 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -7589,7 +7598,6 @@
 				B5B233F61A083EFA00973C72 /* CSGColorManager.m in Sources */,
 				5E8B55F719C8EC7E0070D6F3 /* CSGGradingRubricCell.m in Sources */,
 				5E8B55F019C8EC7E0070D6F3 /* CSGGradingCommentCell.m in Sources */,
-				BD84D7151A239B1C0065F3F2 /* VideoPlaybackManager.m in Sources */,
 				5E8B560319C8EC7E0070D6F3 /* CSGBadgeView.m in Sources */,
 				B50356611A5B4C7600387BB2 /* CSGMoviePlayerViewController.m in Sources */,
 				5E8B55F919C8EC7E0070D6F3 /* CSGPickFileTableViewController.m in Sources */,

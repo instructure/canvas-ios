@@ -229,8 +229,8 @@ typedef enum {
     
     [self changeStatusLabelWidthTo:STATUS_LABEL_WIDTH animated:NO];
     [UIView animateWithDuration:animationDuration animations:[self hideSendCommentButtonAnimation] completion:^(BOOL finished) {
-            @weakify(self);
-            [[[TheKeymaster currentClient] addComment:comment forSubmissionRecord:self.dataSource.selectedSubmissionRecord] subscribeNext:^(CKISubmissionRecord *submisssionRecord) {
+        @weakify(self);
+        [[[TheKeymaster currentClient] addComment:comment forSubmissionRecord:self.dataSource.selectedSubmissionRecord] subscribeNext:^(CKISubmissionRecord *submisssionRecord) {
             [self.dataSource replaceSubmissionRecord:self.dataSource.selectedSubmissionRecord withSubmissionRecord:submisssionRecord];
         } error:^(NSError *error) {
             DDLogInfo(@"POST TEXT FAILED: %@", error.localizedDescription);
@@ -530,21 +530,40 @@ typedef enum {
             DDLogInfo(@"POST VIDEO SUCCEEDED");
             // mark that the view has changed until comment is submitted
             self.dataSource.selectedSubmissionCommentChanged = NO;
-            @strongify(self);
-            [UIView animateWithDuration:animationDuration animations:self.showCommentSubmittedAnimation completion:^(BOOL finished) {
-                // After we show the comment submitted, let it stay for
-                [self performSelector:@selector(showSendCommentsButton) withObject:nil afterDelay:CSGShowSendCommentSubmittedTime];
-            }];
             
-            NSString *message = NSLocalizedString(@"Success! Your video can take a few minutes to appear", @"Successfully uploaded video submission comment toast notification");
-            [self.toaster statusBarToast:message Color:[UIColor cbi_blue] Duration:5.0f];
+            @strongify(self);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:animationDuration animations:self.showCommentSubmittedAnimation completion:^(BOOL finished) {
+                    // After we show the comment submitted, let it stay for
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [UIView animateWithDuration:CSGShowHideSendCommentAnimationDuration animations:^{
+                            self.sendCommentButton.alpha = 1.0;
+                            
+                            self.activityStatusLabel.alpha = 0.0;
+                            self.activityStatusImageView.alpha = 0.0;
+                            [self.activityStatusIndicatorView stopAnimating];
+                        } completion:^(BOOL finished) {
+                            [self.videoRecorderView reset];
+                        }];
+                        
+                        [self changeStatusLabelWidthTo:STATUS_LABEL_WIDTH_SMALL animated:NO];
+                        [self changeStatusImageViewWidthTo:0-STATUS_IMAGE_VIEW_PADDING animated:YES];
+                    });
+                }];
+                
+                NSString *message = NSLocalizedString(@"Success! Your video can take a few minutes to appear", @"Successfully uploaded video submission comment toast notification");
+                [self.toaster statusBarToast:message Color:[UIColor cbi_blue] Duration:5.0f];
+            });
         } failure:^(NSError *error) {
             DDLogInfo(@"POST VIDEO FAILED: %@", error.localizedDescription);
             @strongify(self);
-            [UIView animateWithDuration:animationDuration animations:self.showCommentSubmitFailedAnimation completion:^(BOOL finished) {
-                // After we show the comment submitted, let it stay for
-                [self performSelector:@selector(showSendCommentsButton) withObject:nil afterDelay:CSGShowSendCommentSubmittedTime];
-            }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:animationDuration animations:self.showCommentSubmitFailedAnimation completion:^(BOOL finished) {
+                    // After we show the comment submitted, let it stay for
+                    [self performSelector:@selector(showSendCommentsButton) withObject:nil afterDelay:CSGShowSendCommentSubmittedTime];
+                }];
+            });
         }];
     }];
 }

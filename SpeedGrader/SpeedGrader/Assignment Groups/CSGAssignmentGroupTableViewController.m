@@ -16,7 +16,6 @@
 
 #import "CSGAssignmentGroupTableViewController.h"
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "CSGNoResultsView.h"
 #import "CSGAssignmentTableViewCell.h"
 #import "CSGGradingViewController.h"

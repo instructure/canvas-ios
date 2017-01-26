@@ -17,8 +17,8 @@
         self.enabled = [info[@"enabled"] boolValue];
         NSString *domainString = [self objectForKeyCheckingNull:@"domain" inDictionary:info];
         if (domainString) {
-            if (![domainString hasPrefix:@"http"]) {
-                domainString = [NSString stringWithFormat:@"http://%@",domainString];
+            if (![domainString hasPrefix:@"https"]) {
+                domainString = [NSString stringWithFormat:@"https://%@",domainString];
             }
             self.domain = [[NSURL alloc] initWithString:domainString];
         }

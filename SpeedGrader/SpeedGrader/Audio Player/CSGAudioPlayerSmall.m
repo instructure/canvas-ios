@@ -21,7 +21,6 @@
 #import "CSGGradingCommentCell.h"
 #import "CSGAudioUtils.h"
 
-@import ReactiveCocoa;
 @import Masonry;
 
 @interface CSGAudioPlayerSmall ()

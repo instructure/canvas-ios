@@ -28,7 +28,5 @@ target 'SpeedGrader' do
     inhibit_all_warnings!
 
     pod 'Google/Analytics'
-
-    pod 'SimulatorStatusMagic', :configurations => ['Debug']
 end
 

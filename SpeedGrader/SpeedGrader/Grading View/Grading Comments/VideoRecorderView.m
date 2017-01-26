@@ -90,6 +90,10 @@ typedef enum  {
 }
 
 - (IBAction)trashButtonTouched:(id)sender {
+    [self reset];
+}
+
+- (void)reset {
     [self.videoManager deleteAndReset];
     [self updateViewForState:VideoRecorderViewStateDefault];
     

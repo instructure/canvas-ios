@@ -29,6 +29,7 @@
 @property (nonatomic, weak) id <VideoRecorderViewDelegate> delegate;
 
 - (void)deleteVideo;
+- (void)reset;
 
 @end
 
