@@ -143,19 +143,12 @@ struct Quiz {
             
             switch self {
             case .minutes(let minutes):
-                let i18nHours = NSLocalizedString("hr", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Hours label for time limit")
-                let i18nMin = NSLocalizedString("min", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Minutes label localized")
-                
-                switch (minutes / 60, minutes % 60) {
-                case let (hours, minutes) where hours == 0:
-                    return "\(minutes) \(i18nMin)"
-                    
-                case let (hours, minutes) where minutes == 0:
-                    return "\(hours) \(i18nHours)"
-                    
-                case let (hours, minutes):
-                    return "\(hours) \(i18nHours) \(minutes) \(i18nMin)"
-                }
+                let components = DateComponents(minute: minutes)
+                let dateComponentsFormatter = DateComponentsFormatter()
+                dateComponentsFormatter.unitsStyle = .short
+                dateComponentsFormatter.allowedUnits = [.hour, .minute]
+
+                return dateComponentsFormatter.string(from: components) ?? ""
             case .noTimeLimit:
                 return NoTimeLimit
             }
@@ -183,7 +176,9 @@ struct Quiz {
         var description: String {
             switch self {
             case .count(let limit):
-                return String(limit)
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .none
+                return formatter.string(from: NSNumber(value: limit)) ?? ""
             case .unlimited:
                 return NSLocalizedString("Unlimited", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "When a quiz has no limit on the number of attempts")
             }
@@ -214,7 +209,10 @@ struct Quiz {
         
         var description: String {
             switch self {
-            case .pointsPossible(let points): return String(points)
+            case .pointsPossible(let points):
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .none
+                return formatter.string(from: NSNumber(value: points)) ?? ""
             default: return NSLocalizedString("Ungraded", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Ungraded quiz")
             }
         }

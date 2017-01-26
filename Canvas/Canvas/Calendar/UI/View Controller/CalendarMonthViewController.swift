@@ -84,7 +84,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
             if let popGestureRecognizer = self.navigationController?.interactivePopGestureRecognizer {
                 popGestureRecognizer.isEnabled = false
             }
-            self.title = self.backTitleDateFormatter.string(from: date as Date)
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: self.backTitleDateFormatter.string(from: date), style: .plain, target: nil, action: nil)
             self.navigationController?.show(dayViewController, sender: self)
         }
     }()
@@ -144,7 +144,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
         super.viewWillAppear(animated)
 
         // This needs to be reset here because we set it to the previous month when drilled in
-        self.title = "Calendar"
+        self.title = NSLocalizedString("Calendar", comment: "Calendar page title")
         self.view.backgroundColor = .white
 
         // Scrolling needs to happen after viewDidAppear so we're hiding this until after that happens

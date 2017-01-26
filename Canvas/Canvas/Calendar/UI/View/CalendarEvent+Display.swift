@@ -28,10 +28,10 @@ extension CalendarEvent {
         }
 
         if startAt.compare(endAt) == .orderedSame {
-            return "\(CalendarEvent.dueDateFormatter.string(from: startAt))"
+            return CalendarEvent.dueDateFormatter.string(from: startAt)
+        } else {
+            return CalendarEvent.dateRangeFormatter.string(from: startAt, to: endAt)
         }
-
-        return "\(CalendarEvent.dueDateFormatter.string(from: startAt)) - \(CalendarEvent.dueDateFormatter.string(from: endAt))"
     }
 
     public func typeImage() -> UIImage {

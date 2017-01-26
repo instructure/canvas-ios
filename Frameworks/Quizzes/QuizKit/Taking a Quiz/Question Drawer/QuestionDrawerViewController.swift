@@ -33,6 +33,11 @@ class QuestionDrawerViewController: UITableViewController {
     var questionSelectionAction: (_ questionIndex: Int)->() = { _ in }
     
     fileprivate var flaggedQuestions: [SubmissionQuestion] = []
+    fileprivate static let questionNumberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        return formatter
+    }()
     
     var isLoading: Bool = false {
         didSet {
@@ -83,8 +88,8 @@ extension QuestionDrawerViewController {
         if indexPath.section == 0 { // flagged
             let question = flaggedQuestions[indexPath.row]
             cell.displayState(.flagged)
-            let template = NSLocalizedString("Question %d", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows question position")
-            cell.questionTextLabel.text = String.localizedStringWithFormat(template, question.question.position)
+            let template = NSLocalizedString("Question %@", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows question position")
+            cell.questionTextLabel.text = String.localizedStringWithFormat(template, QuestionDrawerViewController.questionNumberFormatter.string(from: NSNumber(value: question.question.position)) ?? "")
         } else {
             let question = questions[indexPath.row]
             if question.flagged {
@@ -109,8 +114,8 @@ extension QuestionDrawerViewController {
                 }
             }
 
-            let template = NSLocalizedString("Question %d", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows question position")
-            cell.questionTextLabel.text = String.localizedStringWithFormat(template, question.question.position)
+            let template = NSLocalizedString("Question %@", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows question position")
+            cell.questionTextLabel.text = String.localizedStringWithFormat(template, QuestionDrawerViewController.questionNumberFormatter.string(from: NSNumber(value: question.question.position)) ?? "")
         }
         
         return cell
@@ -118,11 +123,11 @@ extension QuestionDrawerViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 && flaggedQuestions.count > 0 { // flagged
-            let template = NSLocalizedString("%d Flagged", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows the number of flagged questions")
-            return String.localizedStringWithFormat(template, flaggedQuestions.count)
+            let template = NSLocalizedString("%@ Flagged", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows the number of flagged questions")
+            return String.localizedStringWithFormat(template, QuestionDrawerViewController.questionNumberFormatter.string(from: NSNumber(value: flaggedQuestions.count)) ?? "")
         } else if section == 1 { // all questions
-            let template = NSLocalizedString("All %d Questions", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows the number questions")
-            return String.localizedStringWithFormat(template, questions.count)
+            let template = NSLocalizedString("All %@ Questions", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows the number questions")
+            return String.localizedStringWithFormat(template, QuestionDrawerViewController.questionNumberFormatter.string(from: NSNumber(value: questions.count)) ?? "")
         }
         
         return nil

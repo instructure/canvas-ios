@@ -148,7 +148,7 @@ typedef NS_ENUM(NSInteger, sectionType) {
             }
             
             return NSLocalizedString(@"Future", nil);
-        }sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"syllabusDate" ascending:YES]]];
+        }sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"syllabusDate" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:true]]];
         self.syllabusItemsByID = [NSMutableDictionary dictionary];
     }
     return self;

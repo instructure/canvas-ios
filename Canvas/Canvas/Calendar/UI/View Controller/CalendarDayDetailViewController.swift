@@ -275,7 +275,7 @@ open class CalendarDayDetailViewController: UIViewController, CalendarDayPageVie
         if let dateLabel = self.dateLabel {
             dateLabel.text = dateFormatter.string(from: date)
             if let rootVC = self.navigationController?.viewControllers[0] {
-                rootVC.title = backTitleDateFormatter.string(from: date)
+                rootVC.navigationItem.backBarButtonItem = UIBarButtonItem(title: backTitleDateFormatter.string(from: date), style: .plain, target: nil, action: nil)
             }
         }
     }

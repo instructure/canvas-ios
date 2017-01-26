@@ -114,7 +114,7 @@ open class CalendarSplitMonthViewController: UIViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Calendar"
+        self.title = NSLocalizedString("Calendar", comment: "Calendar page title")
         self.view.backgroundColor = UIColor.calendarDayDetailBackgroundColor
         
         // TODO: Nate Pin the View Controllers (Day/List) to correct positions with NSConstraints

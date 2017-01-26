@@ -355,6 +355,12 @@ extension ModuleItemViewModel: TableViewCellViewModel {
 
 
 extension ModuleItem {
+    static let mustScoreNumberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        return formatter
+    }()
+
     var icon: UIImage? {
         guard let content = content else { return nil }
         switch content {
@@ -380,7 +386,7 @@ extension ModuleItem {
         case .mustChoose:       return ""
         case .minScore:
             guard let minScore = minScore else { return "" }
-            return String(format: NSLocalizedString("Must score %@ or higher", comment: "format string saying what the minimum score must be"), minScore)
+            return String(format: NSLocalizedString("Must score %@ or higher", comment: "format string saying what the minimum score must be"), ModuleItem.mustScoreNumberFormatter.string(from: minScore) ?? "")
         }
     }
 }

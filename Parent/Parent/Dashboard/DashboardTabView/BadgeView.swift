@@ -44,7 +44,6 @@ class BadgeView: UIView {
     init() {
         super.init(frame: CGRect.zero)
 
-        formatter.groupingSeparator = ","
         formatter.usesGroupingSeparator = true
 
         clipsToBounds = true

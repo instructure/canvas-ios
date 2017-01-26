@@ -111,6 +111,12 @@ public final class CalendarEvent: NSManagedObject {
         return dateFormatter
     }()
 
+    public static var dateRangeFormatter: DateIntervalFormatter = {
+        let formatter = DateIntervalFormatter()
+        formatter.dateStyle = .full
+        return formatter
+    }()
+
     @NSManaged internal (set) public var id: String
     @NSManaged internal (set) public var title: String?
     @NSManaged internal (set) public var startAt: Date?

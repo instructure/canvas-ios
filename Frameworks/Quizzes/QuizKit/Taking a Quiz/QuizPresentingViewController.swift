@@ -50,6 +50,11 @@ class QuizPresentingViewController: UIViewController {
     
     fileprivate let flaggedCountLabel = UILabel()
     fileprivate let flaggedButton = UIButton()
+    fileprivate static let flaggedCountFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        return formatter
+    }()
     
     fileprivate var timerVisible = false
     fileprivate let timerLabel = UILabel()
@@ -64,6 +69,8 @@ class QuizPresentingViewController: UIViewController {
     fileprivate let contentOverlay = UIView()
     
     fileprivate var submissionViewController: SubmissionViewController!
+
+    fileprivate var timerFormatter = DateComponentsFormatter()
     
     init(quizController: QuizController, submissionController: SubmissionController, questionsController: SubmissionQuestionsController? = nil) {
         self.quizController = quizController
@@ -71,6 +78,9 @@ class QuizPresentingViewController: UIViewController {
         self.questionsController = questionsController
         
         super.init(nibName: nil, bundle: nil)
+
+        timerFormatter.unitsStyle = .positional
+        timerFormatter.allowedUnits = [.hour, .minute, .second]
         
         submissionController.submissionDidChange = { [weak self] submissionResult in
             if let error = submissionResult.error {
@@ -273,21 +283,9 @@ class QuizPresentingViewController: UIViewController {
     }
     
     fileprivate func updateTimer(_ currentTime: Int) {
-        let hours: Int = currentTime / 3600
-        let minutes: Int = (currentTime % 3600) / 60
-        let seconds: Int = (currentTime % 3600) % 60
-        
         if self.timerVisible {
-            var displayString: String = ""
-            // yeah I could probably figure some other way of displaying this better...
-            if hours > 0 {
-                displayString = String(format: "%d:%02d:%02d", hours, minutes, seconds) // show something like "1:29:31"
-            } else if minutes > 0 {
-                displayString = String(format: "%d:%02d", minutes, seconds) // show something like "4:34"
-            } else {
-                displayString = String(format: "%02d:%02d", minutes, seconds) // show something like "00:35"
-            }
-            
+            let timeInterval = TimeInterval(currentTime)
+            let displayString = timerFormatter.string(from: timeInterval)
             self.timerLabel.text = displayString
         }
         
@@ -477,18 +475,20 @@ extension QuizPresentingViewController {
         }
             
         else if let updates = result.value {
+            guard let questionsController = questionsController else { return }
+
+            let flaggedCountString = QuizPresentingViewController.flaggedCountFormatter.string(from: NSNumber(value: questionsController.flaggedCount)) ?? ""
+
             for update in updates {
                 switch update {
-                case .added(_):
-                    flaggedCountLabel.text = "\(questionsController!.flaggedCount)"
+                case .added(_), .flagChanged(_):
+                    flaggedCountLabel.text = flaggedCountString
                 case .answerChanged(_):
                     break
-                case .flagChanged(_):
-                    flaggedCountLabel.text = "\(questionsController!.flaggedCount)"
                 }
             }
             
-            flaggedButton.accessibilityHint = NSLocalizedString("\(questionsController!.flaggedCount) Questions Answered", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Accessiblity hint for question drawer button")
+            flaggedButton.accessibilityHint = String(format: NSLocalizedString("%@ Questions Answered", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Accessiblity hint for question drawer button"), flaggedCountString)
         }
     }
 }

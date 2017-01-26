@@ -88,19 +88,20 @@
     NSString *detailPlaceholder = [NSString stringWithFormat:@"<span style=\"color: #999999;\">%@</span>", NSLocalizedString(@"This assignment has no details.", @"message displayed in the details section if there is no comment.")];
     NSString *details = self.assignment.assignmentDescription ?: detailPlaceholder;
     
-    if(self.prependAssignmentInfoToContent){
-        NSString *date = NSLocalizedString(@"Due:", "This string is prepended to the due date for an assignment");
-        
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        dateFormat.dateStyle = NSDateFormatterMediumStyle;
-        dateFormat.timeStyle = NSDateFormatterShortStyle;
-        
-        if (self.assignment.dueDate != nil) {
-            date = [date stringByAppendingString:[dateFormat stringFromDate:self.assignment.dueDate]];
+    if (self.prependAssignmentInfoToContent) {
+        NSString *dueDateString;
+        if (self.assignment.dueDate == nil) {
+            dueDateString = NSLocalizedString(@"No due date", "Indicates an assignment does not have a due date");
+        } else {
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            dateFormat.dateStyle = NSDateFormatterMediumStyle;
+            dateFormat.timeStyle = NSDateFormatterShortStyle;
+
+            dueDateString = [NSString stringWithFormat: NSLocalizedString(@"Due: %@", "Due date label indicating when an assignment is due"), [dateFormat stringFromDate:self.assignment.dueDate]];
         }
         
         if (self.assignment.name) {
-            NSString* assignmentInfo = [NSString stringWithFormat:@"<p style=\"font-family:'HelveticaNeue-Medium','Helvetica Neue Medium','Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-weight:500;\"><span style=\"font-size: 125%%;\">%@</span><br><span style=\"font-style:italic; font-weight:bold;\">%@</span></p>",self.assignment.name, date];
+            NSString* assignmentInfo = [NSString stringWithFormat:@"<p style=\"font-family:'HelveticaNeue-Medium','Helvetica Neue Medium','Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-weight:500;\"><span style=\"font-size: 125%%;\">%@</span><br><span style=\"font-style:italic; font-weight:bold;\">%@</span></p>",self.assignment.name, dueDateString];
             details = [assignmentInfo stringByAppendingString:details];       
         }
     }

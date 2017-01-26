@@ -63,6 +63,12 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     internal var collectionView: CalendarCollectionView!
     
     internal var calCollectionViewLayout = CalendarCollectionViewLayout()
+
+    private static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMM YYYY", options: 0, locale: Locale.current)
+        return dateFormatter
+    }()
     
     
     // ---------------------------------------------
@@ -206,15 +212,12 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
         if kind == UICollectionElementKindSectionHeader {
             if let monthHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CALENDAR_VIEW_MONTH_HEADER_IDENTIFIER, for: indexPath) as? CalendarMonthHeaderView {
                 
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMM YYYY", options: 0, locale: Locale.current)
-                
                 let formattedDate = dateForFirstDayInSection(indexPath.section)
                 var date = CalendarDate()
                 date.populate(formattedDate, calendar: calendar)
                 
                 monthHeader.date = date
-                monthHeader.dateLabel.text = dateFormatter.string(from: formattedDate).uppercased()
+                monthHeader.dateLabel.text = CalendarView.dateFormatter.string(from: formattedDate).uppercased()
                 
                 var todayCalDate = CalendarDate()
                 todayCalDate.populate(today, calendar: calendar)
@@ -536,8 +539,7 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
                     if (self.selectedDate == todayCalDate) {
                         selectedCell.cellState = .today
                     } else {
-                        let weekday = (calendar as NSCalendar).components(.weekday, from: selectedDate).weekday
-                        if (weekday == 1 || weekday == 7) {
+                        if Calendar.current.isDateInWeekend(selectedDate) {
                             selectedCell.cellState = .off
                         } else {
                             selectedCell.cellState = .normal

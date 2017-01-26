@@ -83,6 +83,7 @@ static UIImage *(^iconForSubmissionType)(NSString *) = ^(NSString *submissionTyp
                 return [submission.attachments[0] name];
             }
             else if (submission.attachments.count > 1) {
+                // TODO: use localizeable pluralization plist stuffs
                 NSString *template = NSLocalizedString(@"%u files", @"Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1'");
                 return [NSString stringWithFormat:template, submission.attachments.count];
             }

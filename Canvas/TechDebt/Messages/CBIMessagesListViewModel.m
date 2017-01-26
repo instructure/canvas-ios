@@ -33,6 +33,7 @@
 @property (nonatomic) CKIConversationScope currentScope;
 @property (nonatomic) RACTuple *currentRequestSignalAndDisposable;
 @property (nonatomic) RACDisposable *messageListRefresh;
+@property (nonatomic) NSNumberFormatter *badgeCountNumberFormatter;
 @end
 
 @implementation CBIMessagesListViewModel
@@ -46,6 +47,8 @@
     if (self) {
         self.collectionController = [MLVCCollectionController collectionControllerGroupingByBlock:nil groupTitleBlock:nil sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]]];
         self.viewControllerTitle = NSLocalizedString(@"Messages", @"Title for the messages screen");
+        self.badgeCountNumberFormatter = [[NSNumberFormatter alloc] init];
+        self.badgeCountNumberFormatter.numberStyle = NSNumberFormatterNoStyle;
     }
     return self;
 }
@@ -198,7 +201,7 @@
         if ([unreadCount unsignedIntegerValue] == 0) {
             return nil;
         }
-        return [unreadCount description];
+        return [self.badgeCountNumberFormatter stringFromNumber:unreadCount];
     }];
     [[[RACObserve(self, unreadMessagesCount) takeUntil:TheKeymaster.signalForLogout] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *count) {
         [UIApplication sharedApplication].applicationIconBadgeNumber = count.integerValue;

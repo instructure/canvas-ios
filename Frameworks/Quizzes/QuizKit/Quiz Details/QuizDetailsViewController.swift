@@ -99,7 +99,10 @@ class QuizDetailsViewController: UITableViewController {
         deets.append((PointsLabel, self.quiz?.scoring.description ?? ""))
         
         let QuestionCountLabel = NSLocalizedString("Questions", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for the number of questions")
-        deets.append((QuestionCountLabel, String(self.quiz?.questionCount ?? 0)))
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        let questionCountString = formatter.string(from: NSNumber(value: self.quiz?.questionCount ?? 0)) ?? ""
+        deets.append((QuestionCountLabel, questionCountString))
         
         // TODO: add availability
         let _ = NSLocalizedString("Available Until", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "label for quiz availability date")

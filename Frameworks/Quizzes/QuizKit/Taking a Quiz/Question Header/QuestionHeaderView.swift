@@ -23,6 +23,12 @@ class QuestionHeaderView: UITableViewHeaderFooterView {
     
     @IBOutlet fileprivate var flagButton: UIButton!
     @IBOutlet fileprivate var numberLabel: UILabel!
+
+    static var questionNumberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        return formatter
+    }()
     
     var flagged: Bool {
         get {
@@ -36,7 +42,7 @@ class QuestionHeaderView: UITableViewHeaderFooterView {
     var questionNumber: Int? {
         didSet {
             if let questionNumber = questionNumber {
-                numberLabel?.text = "\(questionNumber)."
+                numberLabel?.text = String(format: NSLocalizedString("%@.", comment: "Question number in a quiz"), QuestionHeaderView.questionNumberFormatter.string(from: NSNumber(value: questionNumber)) ?? "")
             } else {
                 numberLabel?.text = ""
             }
