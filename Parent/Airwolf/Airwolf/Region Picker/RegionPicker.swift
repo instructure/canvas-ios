@@ -79,7 +79,7 @@ open class RegionPicker: NSObject {
         let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
         return (isReachable && !needsConnection)
     }
-    
+
     internal(set) open var pickedRegionURL: URL? {
         set {
             if beta.value { return } // don't alter the picked region when using beta

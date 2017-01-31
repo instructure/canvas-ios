@@ -13,14 +13,17 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import Foundation
 import Keymaster
 import SoLazy
+import Airwolf
 
 extension AppDelegate {
+    static func resetRegionForTesting() {
+      RegionPicker.defaultPicker.beta.value = true
+    }
+
     static func logout() {
         // Prevent a memory leak after setting window.rootViewController while another view is presented
         // like in settings with the log out action sheet.
@@ -40,6 +43,7 @@ extension AppDelegate {
     }
 
     static func resetApplicationForTesting() {
+        AppDelegate.resetRegionForTesting()
         AppDelegate.resetKeychainForTesting()
         AppDelegate.resetCacheForTesting()
     }
