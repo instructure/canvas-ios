@@ -82,7 +82,7 @@ class CreateAccountPage: PageObject {
 
   // Mark: - UI Action Helpers
 
-  static func enterCredentials(_ parent: CanvasParent, _ file: StaticString = #file, _ line: UInt = #line) {
+  static func enterCredentials(_ parent: Parent, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
     firstNameField.perform(grey_replaceText(parent.firstName))

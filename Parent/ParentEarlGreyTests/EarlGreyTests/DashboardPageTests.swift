@@ -18,7 +18,7 @@ class DashboardPageTests: LogoutBeforeEach {
 
   override func setUp() {
     super.setUp()
-    parentDomainPickerPage.loginAs(CanvasParent.withOneStudentDashboardPage)
+    parentDomainPickerPage.loginAs(Parents.withOneStudentDashboardPage)
     dashboardPage.waitForPageToLoad()
   }
 

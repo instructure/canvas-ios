@@ -18,7 +18,7 @@ class GettingStartedPageTests: LogoutBeforeEach {
 
   override func setUp() {
     super.setUp()
-    parentDomainPickerPage.loginAs(CanvasParent.withNoStudentsGettingStartedPage)
+    parentDomainPickerPage.loginAs(Parents.withNoStudentsGettingStartedPage)
     gettingStartedPage.waitForPageToLoad()
   }
 

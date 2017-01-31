@@ -18,7 +18,7 @@ class SettingsPageTests: LogoutBeforeEach {
 
   override func setUp() {
     super.setUp()
-    loginAs(CanvasParent.withOneStudentSettingsPage)
+    loginAs(Parents.withOneStudentSettingsPage)
     dashboardPage.tapSettingsButton()
   }
 

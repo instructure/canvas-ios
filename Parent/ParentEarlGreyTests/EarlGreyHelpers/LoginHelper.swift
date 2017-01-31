@@ -17,7 +17,7 @@
 import XCTest
 
 extension XCTestCase {
-  func loginAs(_ parent: CanvasParent) {
+  func loginAs(_ parent: Parent) {
     parentDomainPickerPage.loginAs(parent)
     dashboardPage.waitForPageToLoad()
   }

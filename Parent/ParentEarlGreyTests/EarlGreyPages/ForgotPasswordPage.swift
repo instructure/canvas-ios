@@ -67,7 +67,7 @@ class ForgotPasswordPage: PageObject {
     cancelButton.perform(grey_tap())
   }
 
-  static func enterEmail(_ parent: CanvasParent, _ file: StaticString = #file, _ line: UInt = #line) {
+  static func enterEmail(_ parent: Parent, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
     emailField.perform(grey_replaceText(parent.username))

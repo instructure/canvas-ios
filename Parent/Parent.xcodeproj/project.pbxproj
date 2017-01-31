@@ -21,7 +21,6 @@
 		0AF959C51DD511080096104D /* PageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959A61DD511080096104D /* PageObjects.swift */; };
 		0AF959C61DD511080096104D /* ParentDomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959A71DD511080096104D /* ParentDomainPickerPage.swift */; };
 		0AF959C71DD511080096104D /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959A81DD511080096104D /* SettingsPage.swift */; };
-		0AF959C91DD511080096104D /* AccountAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959AB1DD511080096104D /* AccountAdmin.swift */; };
 		0AF959CB1DD511080096104D /* CoursesTabPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959AE1DD511080096104D /* CoursesTabPageTests.swift */; };
 		0AF959CC1DD511080096104D /* CreateAccountPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959AF1DD511080096104D /* CreateAccountPageTests.swift */; };
 		0AF959CD1DD511080096104D /* DashboardPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959B01DD511080096104D /* DashboardPageTests.swift */; };
@@ -193,8 +192,6 @@
 		61F454141CA58EC200F32B72 /* DiscussionKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61F454121CA58EB500F32B72 /* DiscussionKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		69314CA725B369ACD3820C90 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA3222C210BA8D462970C66 /* Domain.swift */; };
 		6FAE9F6F4D3677779058AFE5 /* Students.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2704BFDDBCF7795293114D7 /* Students.swift */; };
-		7EF7AE9C22D02E371E0073FC /* CanvasParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E4937EA16AEA72ADA7FE48 /* CanvasParent.swift */; };
-		909D1C516DA645A228FD4F72 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC2D406F73B5A24D3747A5D /* User.swift */; };
 		A38C00BCD468B79D2B73F170 /* Parents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72AFA40E9940B2188BDE8BD /* Parents.swift */; };
 		A6BB9228575599D7B56D3701 /* Teachers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C961B64465FB835914D1FA /* Teachers.swift */; };
 		ADA375F3E48558FED756C65E /* CanvasUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D717C1344BD77482A213EA6 /* CanvasUser.swift */; };
@@ -285,7 +282,6 @@
 		0AF959A61DD511080096104D /* PageObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageObjects.swift; sourceTree = "<group>"; };
 		0AF959A71DD511080096104D /* ParentDomainPickerPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentDomainPickerPage.swift; sourceTree = "<group>"; };
 		0AF959A81DD511080096104D /* SettingsPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
-		0AF959AB1DD511080096104D /* AccountAdmin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountAdmin.swift; sourceTree = "<group>"; };
 		0AF959AE1DD511080096104D /* CoursesTabPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesTabPageTests.swift; sourceTree = "<group>"; };
 		0AF959AF1DD511080096104D /* CreateAccountPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountPageTests.swift; sourceTree = "<group>"; };
 		0AF959B01DD511080096104D /* DashboardPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardPageTests.swift; sourceTree = "<group>"; };
@@ -804,7 +800,6 @@
 		49ED5A4C1DBFD02E009E2896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49F0888A1DF0CE7F008BB8DA /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E7D72F0B9B76A0A4384E49C /* Enrollment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Enrollment.swift; sourceTree = "<group>"; };
-		5CC2D406F73B5A24D3747A5D /* User.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5E0F9A501C739E6A00BB7707 /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AlertCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5E0F9A521C739E6A00BB7707 /* AlertCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCellViewModel.swift; sourceTree = "<group>"; };
 		5E0F9A541C739E6A00BB7707 /* CalendarEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventCell.swift; sourceTree = "<group>"; };
@@ -925,7 +920,6 @@
 		B5CB1B751DC15B4800FE9C93 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/ArmchairLocalizable.strings"; sourceTree = "<group>"; };
 		B5CB1B761DC15B4900FE9C93 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
 		B72AFA40E9940B2188BDE8BD /* Parents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Parents.swift; sourceTree = "<group>"; };
-		D1E4937EA16AEA72ADA7FE48 /* CanvasParent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CanvasParent.swift; sourceTree = "<group>"; };
 		F2704BFDDBCF7795293114D7 /* Students.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Students.swift; sourceTree = "<group>"; };
 		F96C7E6A1D108AEB008935F3 /* ParentEarlGreyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParentEarlGreyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F96C7E6E1D108AEB008935F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1018,10 +1012,8 @@
 				4E7D72F0B9B76A0A4384E49C /* Enrollment.swift */,
 				31DF6DC2A55F937957D3BFBF /* Page.swift */,
 				7BC1640811F36F0B4298AD40 /* Quiz.swift */,
-				5CC2D406F73B5A24D3747A5D /* User.swift */,
 				24B1A39A8CA98A1A398F08E0 /* Alert.swift */,
 				6E2497B7578742F19E46A2D5 /* AlertThreshold.swift */,
-				D1E4937EA16AEA72ADA7FE48 /* CanvasParent.swift */,
 				3D717C1344BD77482A213EA6 /* CanvasUser.swift */,
 				2BB6E5A59B673384E6504E16 /* Parent.swift */,
 			);
@@ -1048,7 +1040,6 @@
 		0AF959AA1DD511080096104D /* EarlGreySecrets */ = {
 			isa = PBXGroup;
 			children = (
-				0AF959AB1DD511080096104D /* AccountAdmin.swift */,
 				9CA3222C210BA8D462970C66 /* Domain.swift */,
 				4311F0CAF6BD7810E743D50D /* Courses.swift */,
 				8292EE5023DD5DB24C196D12 /* Assignments.swift */,
@@ -1679,7 +1670,6 @@
 				0AF959C51DD511080096104D /* PageObjects.swift in Sources */,
 				0AF959C31DD511080096104D /* GettingStartedPage.swift in Sources */,
 				0AF959CB1DD511080096104D /* CoursesTabPageTests.swift in Sources */,
-				0AF959C91DD511080096104D /* AccountAdmin.swift in Sources */,
 				0AF959C01DD511080096104D /* CreateAccountPage.swift in Sources */,
 				0AF959CD1DD511080096104D /* DashboardPageTests.swift in Sources */,
 				0AF959C71DD511080096104D /* SettingsPage.swift in Sources */,
@@ -1697,10 +1687,8 @@
 				0E586CE804E516C885D23FEE /* Enrollment.swift in Sources */,
 				FFC148C541D42A39316B77DC /* Page.swift in Sources */,
 				D45E2841BEC77CBE33B8CE5E /* Quiz.swift in Sources */,
-				909D1C516DA645A228FD4F72 /* User.swift in Sources */,
 				C95E330A1A4C3F3CEF42E5FC /* Alert.swift in Sources */,
 				E2E1E8E72842152E69A62412 /* AlertThreshold.swift in Sources */,
-				7EF7AE9C22D02E371E0073FC /* CanvasParent.swift in Sources */,
 				ADA375F3E48558FED756C65E /* CanvasUser.swift in Sources */,
 				69314CA725B369ACD3820C90 /* Domain.swift in Sources */,
 				B69EB34B0BFB87E691AEE7D8 /* Courses.swift in Sources */,

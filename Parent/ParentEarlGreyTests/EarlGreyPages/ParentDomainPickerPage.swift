@@ -83,14 +83,14 @@ class ParentDomainPickerPage: PageObject {
     forgotPasswordButton.perform(grey_tap())
   }
 
-  static func enterCredentials(_ parent: CanvasParent, _ file: StaticString = #file, _ line: UInt = #line) {
+  static func enterCredentials(_ parent: Parent, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
     emailField.perform(grey_replaceText(parent.username))
     passwordField.perform(grey_replaceText(parent.password))
   }
 
-  static func loginAs(_ parent: CanvasParent, _ file: StaticString = #file, _ line: UInt = #line) {
+  static func loginAs(_ parent: Parent, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
     enterCredentials(parent)

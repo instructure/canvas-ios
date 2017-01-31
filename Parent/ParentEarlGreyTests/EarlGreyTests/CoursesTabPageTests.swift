@@ -17,7 +17,7 @@
 class CoursesTabPageTests: LogoutBeforeEach {
 
   func testCoursesTabPage_emptyList() {
-    loginAs(CanvasParent.withStudentWithNoCoursesCoursesTabPage)
+    loginAs(Parents.withStudentWithNoCoursesCoursesTabPage)
     coursesTabPage.assertPageObjects()
   }
 }

@@ -27,35 +27,35 @@ class CreateAccountPageTests: LogoutBeforeEach {
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(CanvasParent.withNoStudentsGettingStartedPage)
+    createAccountPage.enterCredentials(Parents.withNoStudentsGettingStartedPage)
     createAccountPage.clearForm("firstName")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoLastName() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(CanvasParent.withNoStudentsGettingStartedPage)
+    createAccountPage.enterCredentials(Parents.withNoStudentsGettingStartedPage)
     createAccountPage.clearForm("lastName")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoEmail() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(CanvasParent.withNoStudentsGettingStartedPage)
+    createAccountPage.enterCredentials(Parents.withNoStudentsGettingStartedPage)
     createAccountPage.clearForm("email")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoPassword() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(CanvasParent.withNoStudentsGettingStartedPage)
+    createAccountPage.enterCredentials(Parents.withNoStudentsGettingStartedPage)
     createAccountPage.clearForm("password")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(CanvasParent.withNoStudentsGettingStartedPage)
+    createAccountPage.enterCredentials(Parents.withNoStudentsGettingStartedPage)
     createAccountPage.clearForm("confirmPassword")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
