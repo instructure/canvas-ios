@@ -48,7 +48,8 @@ open class NotificationKitController {
                     if notificationPreferencesResult.error != nil {
                         // nothing has been saved for the piece that we're looking at
                         // TODO: How can we make this more robust with the Request stuff?  a problem for future generations
-                        if notificationPreferencesResult.error!.code == 400 && notificationPreferencesResult.error!.localizedFailureReason == "no data for scope" {
+                        
+                        if notificationPreferencesResult.error!.code == 400 {
                             // should do setup
                             self.setNotificationPreferenceDefaults(registrationCompletion)
                         } else {

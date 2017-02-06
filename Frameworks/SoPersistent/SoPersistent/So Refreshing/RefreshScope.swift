@@ -110,7 +110,12 @@ open class RefreshScope: NSObject {
     
     open func invalidateCache(_ key: String, refresh: Bool = true) {
         setCacheRefreshed(key, date: Date(timeIntervalSince1970: 0) - 100.yearsComponents) // old and crusty
-        refreshers[key]?.refresh(refresh)
+
+        if let refresher = refreshers[key], refresh {
+            // The parameter here is whether or not this was a forced refresh. The param passed into this above function is different,
+            // whether or not to actually refresh. Let's keep them disjointed!
+            refresher.refresh(false)
+        }
     }
     
     
