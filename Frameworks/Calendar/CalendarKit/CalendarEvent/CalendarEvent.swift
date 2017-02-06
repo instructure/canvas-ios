@@ -128,8 +128,8 @@ public final class CalendarEvent: NSManagedObject {
     @NSManaged internal (set) public var effectiveContextCode: String?
     @NSManaged internal var rawWorkflowState: String
     @NSManaged internal (set) public var hidden: Bool
-    @NSManaged internal (set) public var url: URL
-    @NSManaged internal (set) public var htmlURL: URL
+    @NSManaged internal (set) public var url: URL?
+    @NSManaged internal (set) public var htmlURL: URL?
     @NSManaged internal (set) public var allDayDate: String
     @NSManaged internal (set) public var allDay: Bool
     @NSManaged internal (set) public var createdAt: Date
