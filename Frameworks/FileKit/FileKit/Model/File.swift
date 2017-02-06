@@ -65,28 +65,6 @@ public final class File: FileNode {
         return network.map({ _ in () }).concat(local)
     }
     
-    public static func uploadFile(inSession session: Session, newUploadFiles: [NewUploadFile], folderID: String?, contextID: ContextID, backgroundSession: Session) throws {
-        let context = try session.filesManagedObjectContext()
-        let path: String
-        if let folderID = folderID {
-            path = "/api/v1/folders/\(folderID)/files"
-        } else {
-            path = contextID.apiPath/"files"
-        }
-        
-        for newUploadFile in newUploadFiles {
-            let name = newUploadFile.name
-            let contentType = newUploadFile.contentType
-            newUploadFile.extractDataProducer.on(value: { data in
-                if let data = data {
-                    let fileUpload = FileUpload.createInContext(context)
-                    fileUpload.prepare(backgroundSession.sessionID, path: path, data: data, name: name, contentType: contentType, parentFolderID: folderID, contextID: contextID)
-                    fileUpload.begin(inSession: backgroundSession, inContext: context)
-                }
-            }).start()
-        }
-    }
-    
     public static func uploadIdentifier (_ folderID: String?) -> String {
         if let folderID = folderID {
             return "file-upload-\(folderID)"

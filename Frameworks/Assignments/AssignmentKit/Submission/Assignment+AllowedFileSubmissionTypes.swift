@@ -19,11 +19,20 @@
 import Foundation
 
 import MobileCoreServices
+import ReactiveCocoa
+import Result
+import FileKit
+import TooLegit
+import SoPersistent
+import CoreData
 
 
 extension Assignment {
-    // these are the allowed file types
     public var allowedSubmissionUTIs: [String] {
+        return Assignment.allowedSubmissionUTIs(submissionTypes, allowedExtensions: allowedExtensions)
+    }
+
+    public static func allowedSubmissionUTIs(_ submissionTypes: SubmissionTypes, allowedExtensions: [String]?) -> [String] {
         var utis: [String] = []
         
         var startDotStar = false
@@ -51,48 +60,4 @@ extension Assignment {
 
         return utis
     }
-
-    public var allowsAllFiles: Bool {
-        return allowedSubmissionUTIs.contains(kUTTypeItem as String)
-    }
-    
-    public var allowsPhotos: Bool {
-        return allowsAllFiles || allowedSubmissionUTIs.filter(isUTIPhoto).count > 0
-    }
-    
-    public var allowsVideo: Bool {
-        return allowsAllFiles || allowedSubmissionUTIs.filter(isUTIVideo).count > 0
-    }
-    
-    public var allowsAudio: Bool {
-        return allowsAllFiles || allowedSubmissionUTIs.filter(isUTIAudio).count > 0
-    }
-    
-    public var allowedImagePickerControllerMediaTypes: [String] {
-        let images =  allowsPhotos ? [kUTTypeImage as String] : []
-        let video = allowsVideo ? [kUTTypeMovie as String] : []
-        
-        return images + video
-    }
-}
-
-
-private func toUTI(_ ext: String) -> String {
-    let cfUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as CFString, nil)
-        .map { $0.takeRetainedValue() }
-        .map { $0 as String }
-    
-    return cfUTI ?? ""
-}
-
-private func isUTIVideo(_ uti: String) -> Bool {
-    return UTTypeConformsTo(uti as CFString, kUTTypeMovie)
-}
-
-private func isUTIPhoto(_ uti: String) -> Bool {
-    return UTTypeConformsTo(uti as CFString, kUTTypeImage)
-}
-
-private func isUTIAudio(_ uti: String) -> Bool {
-    return UTTypeConformsTo(uti as CFString, kUTTypeAudio)
 }

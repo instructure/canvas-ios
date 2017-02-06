@@ -18,33 +18,35 @@
 
 import UIKit
 import MediaKit
+import ReactiveSwift
+import Result
 
-class RecordAudioSubmissionAction: UploadAction {
-    let title: String = NSLocalizedString("Record Audio", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Choose record audio submission")
+class RecordAudioSubmissionAction: FileUploadAction {
+    weak var delegate: FileUploadActionDelegate?
+    let title: String = NSLocalizedString("Record Audio", tableName: "Localizable", bundle: .fileKit, value: "", comment: "Choose record audio submission")
     let icon: UIImage = .FileKitImageNamed("icon_audio")
-    
-    weak var viewController: UIViewController?
-    weak var delegate: UploadActionDelegate?
-    
-    init(viewController: UIViewController?, delegate: UploadActionDelegate) {
-        self.viewController = viewController
-        self.delegate = delegate
-    }
 
     func initiate() {
-        guard let vc = viewController else { return print("There was no view controller, it must have died") }
-        let recorder = AudioRecorderViewController.presentFromViewController(vc, completeButtonTitle: NSLocalizedString("Turn In", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.FileKit")!, value: "", comment: "Turn in button title"))
+        let recorder = AudioRecorderViewController.new(completeButtonTitle: NSLocalizedString("Turn In", tableName: "Localizable", bundle: .fileKit, value: "", comment: "Turn in button title"))
+        delegate?.fileUploadAction(self, wantsToPresent: recorder)
         
-        recorder.cancelButtonTapped = { [weak delegate, weak vc] in
-            vc?.dismiss(animated: true) {
-                delegate?.actionCancelled()
+        recorder.cancelButtonTapped = { [weak self] in
+            guard let me = self else { return }
+            recorder.dismiss(animated: true) {
+                me.delegate?.fileUploadActionDidCancel(me)
             }
         }
         
-        recorder.didFinishRecordingAudioFile = { [weak delegate, weak vc] url in
-            
-            vc?.dismiss(animated: true) {
-                delegate?.chooseUpload(.mediaComment(.audioFile(url)))
+        recorder.didFinishRecordingAudioFile = { [weak self] url in
+            guard let me = self else { return }
+            guard let data = try? Data(contentsOf: url) else {
+                recorder.dismiss(animated: true) {
+                    me.delegate?.fileUploadActionFailedToConvertData(me)
+                }
+                return
+            }
+            recorder.dismiss(animated: true) {
+                me.delegate?.fileUploadAction(me, finishedWith: NewFileUpload(kind: .audioFile(url), data: data))
             }
         }
     }

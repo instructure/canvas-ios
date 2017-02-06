@@ -53,8 +53,6 @@ class FileList: FileNode.TableViewController {
     let fileUploadCollection: FetchedCollection<FileUpload>
     var backgroundSession: Session
     
-    fileprivate var uploadBuilder: UploadBuilder?
-    
     @IBOutlet var newWordField: UITextField?
     
     init(session: Session, contextID: ContextID, hiddenForUser: Bool, folderID: String?) throws {
@@ -143,25 +141,6 @@ class FileList: FileNode.TableViewController {
     }
     
     fileprivate func uploadFile() {
-        let images = [kUTTypeImage as String]
-        let video = [kUTTypeMovie as String]
-        let allowedImagePickerControllerMediaTypes: [String] = images + video
-        let allowedSubmissionUTIs = [kUTTypeItem as String]
-        let builder = UploadBuilder(viewController: self, barButtonItem: nil, submissionTypes: nil, allowsAudio: false, allowsPhotos: true, allowsVideo: true, allowedUploadUTIs: allowedSubmissionUTIs, allowedImagePickerControllerMediaTypes: allowedImagePickerControllerMediaTypes)
-        builder.uploadSelected = { newUpload in
-            switch newUpload {
-            case .fileUpload(let newUploadFiles):
-                do {
-                    try File.uploadFile(inSession: self.session, newUploadFiles: newUploadFiles, folderID: self.folderID, contextID: self.contextID, backgroundSession: self.backgroundSession)
-                } catch let error as NSError {
-                    self.handleError(error)
-                }
-                
-            default: break // we only care about FileUploads
-            }
-        }
-        uploadBuilder = builder
-        builder.beginUpload()
     }
     
     fileprivate func deleteFileNode(_ indexPath: IndexPath) {

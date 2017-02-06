@@ -36,6 +36,15 @@
 @import SoPretty;
 #import "CKCanvasAPI+CurrentAPI.h"
 #import "CBILog.h"
+@import AssignmentKit;
+@import FileKit;
+@import TooLegit;
+#import "CKIClient+CBIClient.h"
+#import "MobileQuizInformationViewController.h"
+#import "Router.h"
+#import "ThreadedDiscussionViewController.h"
+
+static const BOOL newSubmissionWorkflowFeatureEnabled = NO;
 
 typedef enum CBISubmissionState : NSUInteger {
     CBISubmissionStateNotAllowed,
@@ -43,7 +52,7 @@ typedef enum CBISubmissionState : NSUInteger {
     CBISubmissionStateUploading,
 } CBISubmissionState;
 
-@interface CBIStudentSubmissionViewController () <UIToolbarDelegate, UIActionSheetDelegate, UIPopoverControllerDelegate>
+@interface CBIStudentSubmissionViewController () <UIToolbarDelegate, UIActionSheetDelegate, UIPopoverControllerDelegate, NewSubmissionViewModelShimProtocol>
 @property (strong, nonatomic) IBOutlet UIToolbar *floatingActionBar;
 @property (nonatomic) NSCache *avatarImageCache;
 
@@ -64,6 +73,10 @@ typedef enum CBISubmissionState : NSUInteger {
 @property (nonatomic) BOOL allowMediaComments;
 @property (nonatomic) RACSignal *isTeacherOrTaSignal;
 @property (nonatomic) BOOL isTeacherOrTA;
+
+@property (nonatomic, strong) UIProgressView *progressView;
+
+@property (nonatomic, strong) NewSubmissionViewModelShim *submissionViewModel;
 @end
 
 
@@ -154,7 +167,9 @@ typedef enum CBISubmissionState : NSUInteger {
         }
         return @(NO);
     }];
-    
+
+    self.submissionViewModel = [NewSubmissionViewModelShim new];
+
     return self;
 }
 
@@ -296,6 +311,11 @@ typedef enum CBISubmissionState : NSUInteger {
 }
 
 - (IBAction)tappedTurnIn:(id)sender {
+    if (newSubmissionWorkflowFeatureEnabled) {
+        [self newSubmissionWorkflowFeature_tappedTurnIn];
+        return;
+    }
+
     DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
     SubmissionWorkflowController *controller = [[SubmissionWorkflowController alloc] initWithViewController:self];
     controller.allowsMediaSubmission = CKCanvasAPI.currentAPI.mediaServer.enabled;
@@ -352,6 +372,142 @@ typedef enum CBISubmissionState : NSUInteger {
     };
     self.workflow = controller;
     [controller present];
+}
+
+- (void)newSubmissionWorkflowFeature_tappedTurnIn
+{
+    if (self.legacyAssignment.type == CKAssignmentTypeQuiz) {
+        [self turnInQuiz];
+        return;
+    }
+
+    if (self.legacyAssignment.type == CKAssignmentTypeDiscussion) {
+        [self turnInDiscussion];
+        return;
+    }
+
+    Session *session = [CKIClient currentClient].authSession;
+    [self.submissionViewModel configureWithSession:session
+                                                id:self.assignment.id
+                                          courseID:self.assignment.courseID
+                                   submissionTypes:[self submissionTypes]
+                                 allowedExtensions:self.legacyAssignment.allowedExtensions
+                                        groupSetID:[self.legacyAssignment.groupCategoryID stringValue]];
+    self.submissionViewModel.delegate = self;
+    [self.submissionViewModel tappedTurnIn];
+}
+
+- (void)turnInQuiz
+{
+    CKAssignment *assignment = self.legacyAssignment;
+
+    NSString *title = NSLocalizedString(@"Quiz Alert", @"Title for alert notifying users that support for quizzes on mobile is limited.");
+    NSString *message = NSLocalizedString(@"Currently there is limited quiz support on mobile", @"Message telling users that quiz support on mobile is limited");
+    NSString *moreInfoButtonText = NSLocalizedString(@"More Info", @"Button title for selecting to view more info about the limitations of mobile quizzes");
+    NSString *continueButtonText = NSLocalizedString(@"Continue", @"Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations.");
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *moreInfoAction = [UIAlertAction actionWithTitle:moreInfoButtonText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [MobileQuizInformationViewController presentFromViewController:self];
+    }];
+    [alert addAction:moreInfoAction];
+
+    UIAlertAction *continueToQuizAction = [UIAlertAction actionWithTitle:continueButtonText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSURL *url = [TheKeymaster.currentClient.baseURL URLByAppendingPathComponent:[NSString stringWithFormat:@"api/v1/courses/%@/quizzes/%@", @(assignment.courseIdent), @(assignment.quizIdent)]];
+        [[Router sharedRouter] routeFromController:self toURL:url];
+    }];
+    [alert addAction:continueToQuizAction];
+
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)turnInDiscussion
+{
+    ThreadedDiscussionViewController *controller = [[ThreadedDiscussionViewController alloc] init];
+    controller.canvasAPI = CKCanvasAPI.currentAPI;
+    controller.topicIdent = (uint64_t)[self.assignment.discussionTopic.id integerValue];
+    controller.contextInfo = self.legacyContext;
+    [controller performSelector:@selector(fetchTopic:) withObject:@YES];
+
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (NSArray *)submissionTypes
+{
+    CKSubmissionType submissionTypes = self.legacyAssignment.submissionTypes;
+    NSMutableArray *strings = [NSMutableArray array];
+
+    if (submissionTypes & CKSubmissionTypeDiscussionTopic) {
+        [strings addObject:CKISubmissionTypeDiscussion];
+    }
+
+    if (submissionTypes & CKSubmissionTypeOnlineQuiz) {
+        [strings addObject:CKISubmissionTypeQuiz];
+    }
+
+    if (submissionTypes & CKSubmissionTypeExternalTool) {
+        [strings addObject:CKISubmissionTypeExternalTool];
+    }
+
+    if (submissionTypes & CKSubmissionTypeOnlineTextEntry) {
+        [strings addObject:CKISubmissionTypeOnlineTextEntry];
+    }
+
+    if (submissionTypes & CKSubmissionTypeOnlineURL) {
+        [strings addObject:CKISubmissionTypeOnlineURL];
+    }
+
+    if (submissionTypes & CKSubmissionTypeOnlineUpload) {
+        [strings addObject:CKISubmissionTypeOnlineUpload];
+    }
+
+    if (submissionTypes & CKSubmissionTypeMediaRecording) {
+        [strings addObject:CKISubmissionTypeMediaRecording];
+    }
+
+    return strings;
+}
+
+
+#pragma mark - NewSubmissionViewModelObjcProtocol
+
+- (void)newSubmissionViewModel:(NewSubmissionViewModel *)submissionViewModel wantsToPresentViewController:(UIViewController *)viewController completion:(void (^)(void))completion
+{
+    [self presentViewController:viewController animated:YES completion:completion];
+}
+
+- (void)newSubmissionViewModel:(NewSubmissionViewModel *)newSubmissionViewModel wantsToPresentTurnInPrompt:(UIAlertController *)alertController completion:(void (^)(void))completion
+{
+    alertController.popoverPresentationController.barButtonItem = self.turnInButton;
+    [self presentViewController:alertController animated:YES completion:completion];
+}
+
+- (void)newSubmissionViewModel:(NewSubmissionViewModel *)submissionViewModel createdSubmission:(Submission *)submission
+{
+    CBIPostModuleItemProgressUpdate(self.viewModel.model.id, CKIModuleItemCompletionRequirementMustSubmit);
+    [[self.viewModel refreshViewModelSignalForced:YES] subscribeError:^(NSError *error) {
+        [self postUploadError];
+    } completed:^{
+        [RatingsController appLoadedOnViewController:self];
+    }];
+}
+
+- (void)newSubmissionViewModel:(NewSubmissionViewModel *)submissionViewModel failedWith:(NSString *)error
+{
+    [self postUploadError];
+}
+
+- (UIProgressView *)progressView
+{
+    if (!_progressView) {
+        CGRect actionBarBounds = self.floatingActionBar.bounds;
+        _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, actionBarBounds.size.height - 2, actionBarBounds.size.width, 2)];
+        _progressView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+        [self.floatingActionBar addSubview:_progressView];
+    }
+
+    return _progressView;
 }
 
 

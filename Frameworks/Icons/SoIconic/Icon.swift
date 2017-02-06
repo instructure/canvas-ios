@@ -34,21 +34,29 @@ public enum Icon: String {
 
     case announcement
     case assignment
+    case audio
     case calendar
+    case camera
+    case cancel
+    case code
     case collaboration
     case conference
     case course
     case discussion
+    case email
     case file
     case grades
     case home
+    case info
     case link
     case lti
     case module
     case outcome
     case page
+    case pdf
     case prerequisite
     case quiz
+    case refresh
     case settings
     case syllabus
     case user

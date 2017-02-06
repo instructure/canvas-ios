@@ -67,7 +67,7 @@ class PickAssignmentTableViewCellViewModel: TableViewCellViewModel {
     let selected: Bool
     let uploadAlreadyInProgress: Bool
 
-    let submissions: MutableProperty<[NewUpload]> = MutableProperty([])
+    let submissions: MutableProperty<[OldNewSubmission]> = MutableProperty([])
     let spinning = MutableProperty(true)
     let submittable = MutableProperty(false)
 

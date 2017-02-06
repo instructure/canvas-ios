@@ -70,23 +70,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         alert.show()
     }
 
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        let session = Session.nas // TODO: get real session
-        do {
-            let uploads = try Upload.inProgress(session)
-            try addUploadCompletionHandlers(session, uploads: uploads)
-        } catch {
-            // oh well
-        }
-    }
-
-    func addUploadCompletionHandlers(_ session: Session, uploads: [Upload]) throws {
-        for upload in uploads {
-            if let fileUpload = upload as? SubmissionFileUpload {
-                let backgroundSession = session.copyToBackgroundSessionWithIdentifier(upload.backgroundSessionID, sharedContainerIdentifier: nil)
-                try fileUpload.addCompletionHandler(inSession: backgroundSession)
-            }
-        }
-    }
-
 }

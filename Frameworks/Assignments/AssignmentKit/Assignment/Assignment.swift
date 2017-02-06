@@ -73,7 +73,6 @@ public final class Assignment: NSManagedObject, LockableModel {
     @NSManaged internal (set) public var quizID: String?
 
     @NSManaged internal (set) public var rubric: Rubric?
-    @NSManaged internal (set) public var submissionUploads: Set<SubmissionUpload>
     @NSManaged internal (set) public var assignmentGroup: AssignmentGroup?
 
     internal (set) public var submissionTypes: SubmissionTypes {
@@ -150,26 +149,6 @@ public final class Assignment: NSManagedObject, LockableModel {
 
     var assignmentGroupName: String {
         return assignmentGroup?.name ?? NSLocalizedString("None", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "Section header for assignments without an assignment group")
-    }
-    
-    public func getUploadTypesFromSubmissionTypes() -> UploadTypes {
-        var uploadTypes: UploadTypes = []
-        if self.submissionTypes.contains(.text) {
-            uploadTypes.insert(.Text)
-        }
-        if self.submissionTypes.contains(.url) {
-            uploadTypes.insert(.URL)
-        }
-        if self.submissionTypes.contains(.upload) {
-            uploadTypes.insert(.Upload)
-        }
-        if self.submissionTypes.contains(.mediaRecording) {
-            uploadTypes.insert(.MediaRecording)
-        }
-        if self.submissionTypes.contains(.none) {
-            uploadTypes.insert(.None)
-        }
-        return uploadTypes
     }
 }
 

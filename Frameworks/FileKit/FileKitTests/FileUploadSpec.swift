@@ -27,24 +27,23 @@ import Quick
 import Nimble
 
 class FileUploadSpec: QuickSpec {
+    let session = User(credentials: .user4).session
     override func spec() {
         describe("FileUpload") {
             describe("begin") {
                 it("through a series of requests creates a file") {
-                    let session = User(credentials: .user4).session
                     let data = try! Data(contentsOf: currentBundle.url(forResource: "testfile", withExtension: "txt")!)
                     let parentFolderID = "6782429"
                     let path = "/api/v1/users/\(parentFolderID)/files"
 
-                    let context = try! session.filesManagedObjectContext()
-                    let upload = FileUpload.createInContext(context)
-                    upload.prepare("unit test", path: path, data: data, name: "testfile.txt", contentType: nil, parentFolderID: parentFolderID, contextID: ContextID(id: parentFolderID, context: .user))
+                    let context = try! self.session.filesManagedObjectContext()
+                    let upload = FileUpload(inContext: context, backgroundSessionID: "unit test", path: path, data: data, name: "testfile.txt", contentType: nil, parentFolderID: parentFolderID, contextID: ContextID(id: parentFolderID, context: .user))
                     
                     let predicate = NSPredicate(format: "%K == %@", "backgroundSessionID", "unit test")
                     let observer = try! ManagedObjectObserver<FileUpload>(predicate: predicate, inContext: context)
                     var disposable: Disposable?
 
-                    session.playback("upload-file") {
+                    self.session.playback("upload-file") {
                         waitUntil(timeout: 5) { done in
                             disposable = observer.signal.observeResult { result in
                                 expect(result.error).to(beNil())
@@ -55,10 +54,11 @@ class FileUploadSpec: QuickSpec {
                                     }
                                 }
                             }
-                            upload.begin(inSession: session, inContext: context)
+                            upload.begin(inSession: self.session, inContext: context)
                         }
                     }
 
+                    expect(upload.errorMessage).to(beNil())
                     expect(upload.file).toNot(beNil())
                     
                     disposable?.dispose()

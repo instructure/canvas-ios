@@ -27,21 +27,21 @@ import WebKit
 open class Upload: NSManagedObject {
     @NSManaged open var id: String
     @NSManaged open var backgroundSessionID: String
-    @NSManaged open fileprivate(set) var taskIdentifier: NSNumber?
-    @NSManaged open fileprivate(set) var startedAt: Date?
-    @NSManaged open fileprivate(set) var completedAt: Date?
-    @NSManaged open fileprivate(set) var failedAt: Date?
-    @NSManaged open fileprivate(set) var canceledAt: Date?
-    @NSManaged open fileprivate(set) var terminatedAt: Date?
-    @NSManaged open fileprivate(set) var errorMessage: String?
+    @NSManaged open internal(set) var taskIdentifier: NSNumber?
+    @NSManaged open internal(set) var startedAt: Date?
+    @NSManaged open internal(set) var completedAt: Date?
+    @NSManaged open internal(set) var failedAt: Date?
+    @NSManaged open internal(set) var canceledAt: Date?
+    @NSManaged open internal(set) var terminatedAt: Date?
+    @NSManaged open internal(set) var errorMessage: String?
 
     open var hasStarted: Bool { return startedAt != nil }
     open var isInProgress: Bool { return hasStarted && terminatedAt == nil }
     open var hasCompleted: Bool { return completedAt != nil }
     open var hasTerminated: Bool { return terminatedAt != nil }
 
-    @NSManaged open var sent: Int64
-    @NSManaged open var total: Int64
+    @NSManaged open fileprivate(set) var sent: Int64
+    @NSManaged open fileprivate(set) var total: Int64
 
     open override func awakeFromInsert() {
         super.awakeFromInsert()
@@ -53,9 +53,22 @@ open class Upload: NSManagedObject {
         start()
     }
 
-    fileprivate func start() {
-        guard startedAt == nil else { return }
+    open func start() {
+        if hasTerminated {
+            reset()
+        }
         startedAt = Date()
+    }
+
+    open func reset() {
+        startedAt = nil
+        completedAt = nil
+        terminatedAt = nil
+        failedAt = nil
+        errorMessage = nil
+        canceledAt = nil
+        sent = 0
+        total = 0
     }
 
     open func complete() {
@@ -65,7 +78,8 @@ open class Upload: NSManagedObject {
     }
 
     open func failWithError(_ error: NSError) {
-        guard failedAt == nil && isInProgress else { return }
+        guard failedAt == nil && !hasTerminated else { return }
+        self.startedAt = startedAt ?? Date()
         self.errorMessage = [error.localizedDescription, error.localizedFailureReason].flatMap { $0 }.joined(separator: ": ")
         self.failedAt = Date()
         self.terminate()
@@ -82,42 +96,65 @@ open class Upload: NSManagedObject {
     }
 }
 
-//// FileKit+RAC
 extension Upload {
-//    public var onCompleted: SignalProducer<Void, NSError> {
-//        MutableProperty
-//        return rac_valuesForKeyPath("completedAt", observer: nil)
-//            .toSignalProducer()
-//            .map { $0 as? NSDate }
-//            .filter { $0 != nil }
-//            .map({})
-//            .take(1)
-//    }
-//
-//    public var onStarted: SignalProducer<Void, NSError> {
-//        return rac_valuesForKeyPath("startedAt", observer: nil)
-//            .toSignalProducer()
-//            .map { $0 as? NSDate }
-//            .filter { $0 != nil }
-//            .map({})
-//            .take(1)
-//    }
-//    
-//    public var onFailed: SignalProducer<String?, NSError> {
-//        return rac_valuesForKeyPath("failedAt", observer: nil)
-//            .toSignalProducer()
-//            .map { $0 as? NSDate }
-//            .filter { $0 != nil }
-//            .map { self.errorMessage }
-//            .take(1)
-//    }
-//
-    public func saveError(_ context: NSManagedObjectContext) -> (NSError) -> SignalProducer<Void, NSError> {
+    open func process(sent: Int64, of total: Int64) {
+        self.sent = sent
+        self.total = total
+    }
+
+    open func saveError(_ context: NSManagedObjectContext) -> (NSError) -> SignalProducer<Void, NSError> {
         return { error in
             return attemptProducer {
                 self.failWithError(error)
                 try context.save()
             }
         }
+    }
+}
+
+extension Upload {
+    public enum Status {
+        case notStarted
+        case inProgress(Double)
+        case completed
+        case failed(String)
+        case cancelled
+
+        var terminated: Bool {
+            switch self {
+            case .completed, .failed, .cancelled:
+                return true
+            case .inProgress, .notStarted:
+                return false
+            }
+        }
+    }
+
+    public var status: Status? {
+        if startedAt == nil {
+            return .notStarted
+        }
+
+        if completedAt != nil {
+            return .completed
+        }
+
+        if failedAt != nil {
+            guard let message = errorMessage else {
+                fatalError("no error message?")
+            }
+            return .failed(message)
+        }
+
+        if canceledAt != nil {
+            return .cancelled
+        }
+
+        if startedAt != nil, terminatedAt == nil {
+            let progress = total > 0 ? (Double(sent) * 100) / Double(total) : 0
+            return .inProgress(progress)
+        }
+
+        return nil
     }
 }

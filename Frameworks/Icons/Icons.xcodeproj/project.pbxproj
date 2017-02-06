@@ -20,6 +20,7 @@
 		49B5D6791D05E8E00084BD39 /* UIImage+SoIconic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D6781D05E8E00084BD39 /* UIImage+SoIconic.swift */; };
 		49B5D67C1D05E9130084BD39 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D67B1D05E9130084BD39 /* Icon.swift */; };
 		49B5D67E1D05EACF0084BD39 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B5D67D1D05EACF0084BD39 /* Icons.xcassets */; };
+		B19C42691E31F93600B4CF02 /* Graphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19C42681E31F93600B4CF02 /* Graphic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		49B5D6781D05E8E00084BD39 /* UIImage+SoIconic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+SoIconic.swift"; sourceTree = "<group>"; };
 		49B5D67B1D05E9130084BD39 /* Icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		49B5D67D1D05EACF0084BD39 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
+		B19C42681E31F93600B4CF02 /* Graphic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				49B5D6781D05E8E00084BD39 /* UIImage+SoIconic.swift */,
 				49B5D67B1D05E9130084BD39 /* Icon.swift */,
 				49B5D67D1D05EACF0084BD39 /* Icons.xcassets */,
+				B19C42681E31F93600B4CF02 /* Graphic.swift */,
 			);
 			path = SoIconic;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B19C42691E31F93600B4CF02 /* Graphic.swift in Sources */,
 				49B5D67C1D05E9130084BD39 /* Icon.swift in Sources */,
 				49B5D6791D05E8E00084BD39 /* UIImage+SoIconic.swift in Sources */,
 			);

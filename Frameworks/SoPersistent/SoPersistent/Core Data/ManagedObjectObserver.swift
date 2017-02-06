@@ -65,50 +65,56 @@ public final class ManagedObjectObserver<Object: NSManagedObject> {
     fileprivate let predicate: NSPredicate
     fileprivate let context: NSManagedObjectContext
     fileprivate (set) public var object: Object?
-    fileprivate var token: NSObjectProtocol! = nil
+    fileprivate let token: Lifetime.Token
     
     public let signal: Signal<(ManagedObjectChange, Object?), NoError>
-    fileprivate let observer: Observer<(ManagedObjectChange, Object?), NoError>
     
     public init(predicate: NSPredicate, inContext context: NSManagedObjectContext) throws {
         self.predicate = predicate
         self.context = context
-        
-        let sig: Signal<(ManagedObjectChange, Object?), NoError>
-        (sig, observer) = Signal.pipe()
-        self.signal = sig.observe(on: UIScheduler())
-        
-        token = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: context, queue: nil) { [unowned self] note in
-            guard let changeType = self.changeTypeOfObject(note) else { return }
-            self.observer.send(value: (changeType, self.object))
-        }
+
+        let token = Lifetime.Token()
+        self.signal = ManagedObjectObserver<Object>.changes(predicate: predicate, context: context, lifetime: Lifetime(token))
+        self.token = token
 
         let request: NSFetchRequest<Object> = context.fetch(predicate, sortDescriptors: nil)
         object = (try context.fetch(request)).first
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(token)
+    public static func changes(predicate: NSPredicate, context: NSManagedObjectContext, lifetime: Lifetime) -> Signal<(ManagedObjectChange, Object?), NoError> {
+        return NotificationCenter
+            .default
+            .reactive
+            .notifications(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: context)
+            .take(during: lifetime)
+            .map { changeType($0, predicate: predicate) }
+            .skipNil()
     }
-    
-    fileprivate func changeTypeOfObject(_ note: Notification) -> ManagedObjectChange? {
-        for inserted in note.insertedObjects {
-            guard let insertedModel = inserted as? Object, predicate.evaluate(with: insertedModel) else { continue }
-            
-            object = insertedModel
-            return .insert
-        }
-        
-        guard let object = self.object else { return nil }
 
-        let deleted = note.deletedObjects.union(note.invalidatedObjects)
-        if note.invalidatedAllObjects || (deleted.contains { $0 === self.object }) {
-            return .delete
+    public static func object(predicate: NSPredicate, context: NSManagedObjectContext, lifetime: Lifetime) -> Signal<Object, NoError> {
+        return changes(predicate: predicate, context: context, lifetime: lifetime)
+            .map { _, object in object }
+            .skipNil()
+    }
+
+    private static func changeType(_ note: Notification, predicate: NSPredicate) -> (ManagedObjectChange, Object?)? {
+        if let inserted = note.insertedObjects.map({ $0 as? Object }).findFirst(predicate.evaluate) {
+            return (.insert, inserted)
         }
-        let updated = note.updatedObjects.union(note.refreshedObjects)
-        if (updated.contains { $0 === object }) {
-            return .update
+
+        if note.invalidatedAllObjects {
+            return (.delete, nil)
         }
+
+        if let deleted = note.deletedObjects.union(note.invalidatedObjects).map({ $0 as? Object }).findFirst(predicate.evaluate) {
+            return (.delete, deleted)
+        }
+
+        if let updated = note.updatedObjects.union(note.refreshedObjects).map({ $0 as? Object }).findFirst(predicate.evaluate) {
+            return (.update, updated)
+        }
+
         return nil
     }
+
 }

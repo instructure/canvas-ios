@@ -128,7 +128,7 @@ extension Module: SynchronizedModel {
                 return completionRequirement != nil && completionRequirement != .mustChoose
             }
             let items: [JSONObject] = (try json <| "items") ?? []
-            if try items.findFirst(test: hasCompletionRequirement) == nil {
+            if try items.findFirst(hasCompletionRequirement) == nil {
                 state = nil
             }
         }

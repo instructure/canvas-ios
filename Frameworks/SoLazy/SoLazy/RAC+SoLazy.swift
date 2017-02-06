@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-    
-    
+
+
 
 import UIKit
 import Result
@@ -52,7 +52,7 @@ func lazyMutableProperty<T>(_ host: AnyObject, key: UnsafeRawPointer, setter: @e
                 newValue in
                 setter(newValue)
         }
-        
+
         return property
     }
 }
@@ -61,7 +61,7 @@ extension NSObject {
     public var rac_a11yLabel: MutableProperty<String?> {
         return lazyMutableProperty(self, key: &AssociationKey.a11yLabel, setter: { [unowned self] in self.accessibilityLabel = $0 }, getter: { [unowned self] in self.accessibilityLabel })
     }
-    
+
     public var rac_a11yHint: MutableProperty<String?> {
         return lazyMutableProperty(self, key: &AssociationKey.a11yHint, setter: { [unowned self] in self.accessibilityHint = $0 }, getter: { [unowned self] in self.accessibilityHint })
     }
@@ -71,15 +71,15 @@ extension UIView {
     public var rac_alpha: MutableProperty<CGFloat> {
         return lazyMutableProperty(self, key: &AssociationKey.alpha, setter: { [unowned self] in self.alpha = $0 }, getter: { [unowned self] in self.alpha  })
     }
-    
+
     public var rac_hidden: MutableProperty<Bool> {
         return lazyMutableProperty(self, key: &AssociationKey.hidden, setter: { [unowned self] in self.isHidden = $0 }, getter: { [unowned self] in self.isHidden  })
     }
-    
+
     public var rac_backgroundColor: MutableProperty<UIColor?> {
         return lazyMutableProperty(self, key: &AssociationKey.backgroundColor, setter: { [unowned self] in self.backgroundColor = $0 }, getter: { [unowned self] in self.backgroundColor })
     }
-    
+
     public var rac_tintColor: MutableProperty<UIColor> {
         return lazyMutableProperty(self, key: &AssociationKey.tintColor, setter: { [unowned self] in self.tintColor = $0 }, getter: { [unowned self] in self.tintColor })
     }
@@ -94,9 +94,9 @@ extension UILabel {
 extension UITextField {
     public var rac_text: MutableProperty<String> {
         return lazyAssociatedProperty(self, key: &AssociationKey.text) {
-            
+
             self.addTarget(self, action: #selector(UITextField.changed), for: .editingChanged)
-            
+
             let property = MutableProperty<String>(self.text ?? "")
             property.producer
                 .startWithValues {
@@ -106,7 +106,7 @@ extension UITextField {
             return property
         }
     }
-    
+
     func changed() {
         rac_text.value = self.text ?? ""
     }
@@ -122,7 +122,7 @@ extension UIButton {
     public var rac_image: MutableProperty<UIImage?> {
         return lazyMutableProperty(self, key: &AssociationKey.image, setter: { [unowned self] in self.setImage($0, for: .normal) }, getter: { [unowned self] in self.imageView?.image })
     }
-    
+
     public var rac_title: MutableProperty<String?> {
         return lazyMutableProperty(self, key: &AssociationKey.text, setter: { [unowned self] in self.setTitle($0, for: .normal) }, getter: { [unowned self] in self.titleLabel?.text })
     }

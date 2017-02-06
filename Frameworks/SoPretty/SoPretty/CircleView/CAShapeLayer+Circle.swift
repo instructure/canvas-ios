@@ -23,18 +23,18 @@ private let pi = CGFloat(M_PI) // just cast it dang it <twitching eye>
 public extension CAShapeLayer {
     static func pathForAngle(_ angle: CGFloat) -> UIBezierPath {
         let path = UIBezierPath()
-        
+
         // starting point
         let graphCenterRadius = CGFloat(62)
         let startingPoint = CGPoint(x: graphCenterRadius, y: 0)
         path.move(to: startingPoint)
-        
+
         path.addArc(withCenter: .zero, radius: graphCenterRadius, startAngle: 0, endAngle: angle, clockwise: true)
-        
+
         path.apply(CGAffineTransform(rotationAngle: pi/2.0 + (2.0*pi-angle)/2.0))
         return path
     }
-    
+
     static func layerForCircleView(_ width: CGFloat = 16.0, color: UIColor) -> CAShapeLayer {
         let layer = CAShapeLayer()
         layer.path = pathForAngle(1.5 * pi).cgPath
@@ -42,7 +42,7 @@ public extension CAShapeLayer {
         layer.strokeColor = color.cgColor
         layer.lineWidth = width
         layer.lineCap = kCALineCapButt
-        
+
         return layer
     }
 }

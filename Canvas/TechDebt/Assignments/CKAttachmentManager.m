@@ -213,7 +213,7 @@
 - (void)recordAudio 
 {
     NSString *doneButtonTitle = NSLocalizedString(@"Use", @"button for using the recorded audio");
-    AudioRecorderViewController *recorder = [AudioRecorderViewController presentFromViewController:self.presentFromViewController completeButtonTitle:doneButtonTitle];
+    AudioRecorderViewController *recorder = [AudioRecorderViewController presentFrom:self.presentFromViewController completeButtonTitle:doneButtonTitle];
 
     
     @weakify(recorder);

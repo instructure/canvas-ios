@@ -21,6 +21,7 @@ import TooLegit
 import SoPersistent
 import CoreData
 import ReactiveSwift
+import SoLazy
 
 extension Submission {
     
@@ -43,5 +44,14 @@ extension Submission {
         let pred = predicate(courseID, assignmentID: assignmentID, userID: session.user.id)
         let context = try session.assignmentsManagedObjectContext()
         return try ManagedObjectObserver<Submission>(predicate: pred, inContext: context)
+    }
+
+    public static func create(_ newSubmission: NewSubmission, session: Session, courseID: String, assignmentID: String, comment: String?) throws -> SignalProducer<Submission, NSError> {
+        let context = try session.assignmentsManagedObjectContext()
+        let remote = try self.post(newSubmission, session: session, courseID: courseID, assignmentID: assignmentID, comment: comment)
+        return remote
+            .map { [$0] }
+            .flatMap(.concat) { Submission.upsert(inContext: context, jsonArray: $0) }
+            .uncollect()
     }
 }

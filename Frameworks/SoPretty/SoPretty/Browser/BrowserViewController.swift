@@ -65,7 +65,7 @@ open class BrowserViewController: UIViewController {
         tapoutView?.removeFromSuperview()
         webView.scrollView.isScrollEnabled = true
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Turn In", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "Turn in this url button"), style: .done, target: self, action: #selector(BrowserViewController.submit(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Submit", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "Turn in this url button"), style: .done, target: self, action: #selector(BrowserViewController.submit(_:)))
         navigationItem.rightBarButtonItem?.isEnabled = parseURLForInput(titleView.text) != nil
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(BrowserViewController.cancelTurnIn(_:)))
     }
@@ -73,7 +73,6 @@ open class BrowserViewController: UIViewController {
     fileprivate func beginEditing() {
         installTapoutView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Go", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "navigate"), style: .done, target: self, action: #selector(BrowserViewController.go(_:)))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(BrowserViewController.cancelEditingURL(_:)))
     }
     
     func go(_ sender: AnyObject?) {

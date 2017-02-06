@@ -24,41 +24,48 @@ import Marshal
 import SoLazy
 
 open class FileUpload: Upload {
-    @NSManaged open fileprivate(set) var data: Data
-    @NSManaged open fileprivate(set) var name: String
-    @NSManaged open fileprivate(set) var contentType: String?
-    @NSManaged open fileprivate(set) var path: String
+    @NSManaged open internal(set) var data: Data
+    @NSManaged open internal(set) var name: String
+    @NSManaged open internal(set) var contentType: String?
+    @NSManaged open internal(set) var path: String
     @NSManaged open var isInRootFolder: Bool
     @NSManaged open fileprivate(set) var parentFolderID: String?
-    @NSManaged open var rawContextID: String
-    internal (set) open var contextID: ContextID {
-        get {
-            return ContextID(canvasContext: rawContextID)!
-        } set {
-            rawContextID = newValue.canvasContextID
-        }
-    }
 
     @NSManaged fileprivate var targetURL: String?
     @NSManaged fileprivate var targetParameters: [String: String]?
 
     @NSManaged open fileprivate(set) var file: File?
+    @NSManaged open fileprivate(set) var batch: FileUploadBatch?
 
     open var disposable = CompositeDisposable()
 
-    open override func cancel() {
-        super.cancel()
+    open func abort() {
+        cancel()
         disposable.dispose()
     }
 
-    open static func createInContext(_ context: NSManagedObjectContext) -> FileUpload {
-        guard let upload = NSEntityDescription.insertNewObject(forEntityName: entityName(context), into: context) as? FileUpload else {
-            ❨╯°□°❩╯⌢"FileUpload not found in data model!"
-        }
-        return upload
+    open override func prepareForDeletion() {
+        super.prepareForDeletion()
+
+        abort()
     }
-    
-    open func prepare(_ backgroundSessionID: String, path: String, data: Data, name: String, contentType: String?, parentFolderID: String?, contextID: ContextID) {
+
+    public convenience init(inContext context: NSManagedObjectContext, uploadable: Uploadable, path: String, backgroundSessionID: String = "", parentFolderID: String? = nil, batch: FileUploadBatch? = nil) {
+        self.init(
+            inContext: context,
+            backgroundSessionID: backgroundSessionID,
+            path: path,
+            data: uploadable.data,
+            name: uploadable.name,
+            contentType: uploadable.contentType,
+            parentFolderID: nil,
+            contextID: ContextID(id: "", context: .course),
+            batch: batch
+        )
+    }
+
+    public convenience init(inContext context: NSManagedObjectContext, backgroundSessionID: String, path: String, data: Data, name: String, contentType: String?, parentFolderID: String?, contextID: ContextID, batch: FileUploadBatch? = nil) {
+        self.init(inContext: context)
         self.backgroundSessionID = backgroundSessionID
         self.path = path
         self.data = data
@@ -66,21 +73,14 @@ open class FileUpload: Upload {
         self.contentType = contentType
         self.isInRootFolder = parentFolderID == nil
         self.parentFolderID = parentFolderID
-        self.contextID = contextID
+        self.batch = batch
     }
 
-    open func begin(inSession session: Session, inContext context: NSManagedObjectContext) {
-        disposable += attemptProducer {
-            let request = try session.requestPostUploadTarget(path: path, fileName: name, size: data.count, contentType: contentType, folderPath: nil, overwrite: false)
-            let task = session.URLSession.dataTask(with: request)
-            self.startWithTask(task)
-            try context.save()
-            self.addTaskCompletionHandler(task, inSession: session, inContext: context)
-            task.resume()
-        }
-        .observe(on: ManagedObjectContextScheduler(context: context))
-        .flatMapError(saveError(context))
-        .start()
+    open override func reset() {
+        super.reset()
+        self.targetURL = nil
+        self.targetParameters = nil
+        self.file = nil
     }
 
     fileprivate func saveUploadTargetInContext(_ context: NSManagedObjectContext) -> (_ target: UploadTarget) -> SignalProducer<UploadTarget, NSError> {
@@ -106,9 +106,11 @@ open class FileUpload: Upload {
                 self.addTaskCompletionHandler(task, inSession: session, inContext: context)
                 session.progressUpdateByTask[task] = { [weak self] bytesSent, totalBytes in
                     context.perform({
-                        self?.sent = bytesSent
-                        self?.total = totalBytes
+                        self?.process(sent: bytesSent, of: totalBytes)
                     })
+                }
+                self.disposable.add { [weak task] in
+                    task?.cancel()
                 }
                 task.resume()
             }
@@ -135,24 +137,13 @@ open class FileUpload: Upload {
                 SignalProducer(files)
                     .flatMap(.concat) { file in
                         return attemptProducer {
-                            self.file = file
-                            self.file?.parentFolderID = self.parentFolderID
-                            self.file?.isInRootFolder = self.parentFolderID == nil
-                            self.file?.contextID = self.contextID
-                            self.complete(inSession: session, inContext: context)
+                            self.complete(file: file)
                             try context.save()
                         }
                     }
             }
-            .observe(on: ManagedObjectContextScheduler(context: context))
             .flatMapError(saveError(context))
             .start()
-    }
-
-    open func session(_ session: Session, didFinishTask task: URLSessionTask, withError error: NSError, inContext context: NSManagedObjectContext) {
-        context.performChanges {
-            self.failWithError(error)
-        }
     }
 
     open func addTaskCompletionHandler(_ task: URLSessionTask, inSession session: Session, inContext context: NSManagedObjectContext) {
@@ -163,22 +154,50 @@ open class FileUpload: Upload {
                         self?.session(session, didFinishTask: task, withResponse: json, inContext: context)
 
                     } else {
-                        let error = result.error ?? NSError.invalidResponseError(task.response?.url)
-                        self?.failWithError(error)
+                        context.performChanges {
+                            let error = result.error ?? NSError.invalidResponseError(task.response?.url)
+                            self?.failWithError(error)
+                        }
                     }
                 } else {
-                    let error = NSError.invalidResponseError(task.response?.url)
-                    self?.failWithError(error)
+                    context.performChanges {
+                        let error = NSError.invalidResponseError(task.response?.url)
+                        self?.failWithError(error)
+                    }
                 }
             } else {
-                let e = error ?? NSError.invalidResponseError(task.response?.url)
-                self?.failWithError(e)
+                context.performChanges {
+                    let e = error ?? NSError.invalidResponseError(task.response?.url)
+                    self?.failWithError(e)
+                }
             }
         }
     }
+}
 
-    open func complete(inSession session: Session, inContext context: NSManagedObjectContext) {
-        self.complete()
+extension FileUpload {
+    open func begin(inSession session: Session, inContext context: NSManagedObjectContext) {
+        disposable = CompositeDisposable()
+        disposable += attemptProducer {
+            let request = try session.requestPostUploadTarget(path: path, fileName: name, size: data.count, contentType: contentType, folderPath: nil, overwrite: false)
+            let task = session.URLSession.dataTask(with: request)
+            self.startWithTask(task)
+            try context.save()
+            self.addTaskCompletionHandler(task, inSession: session, inContext: context)
+            self.disposable.add { [weak task] in
+                task?.cancel()
+            }
+            task.resume()
+        }
+        .observe(on: ManagedObjectContextScheduler(context: context))
+        .flatMapError(saveError(context))
+        .start()
     }
 
+    internal func complete(file: File) {
+        file.parentFolderID = self.parentFolderID
+        file.isInRootFolder = self.parentFolderID == nil
+        self.file = file
+        self.complete()
+    }
 }

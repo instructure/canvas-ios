@@ -29,7 +29,7 @@ public extension Collection {
 }
 
 public extension Collection {
-    public func findFirst(test: (Iterator.Element) throws -> Bool) rethrows -> Iterator.Element? {
+    public func findFirst(_ test: (Iterator.Element) throws -> Bool) rethrows -> Iterator.Element? {
         for (_, element) in enumerated() {
             if try test(element) {
                 return element
@@ -38,12 +38,16 @@ public extension Collection {
         return nil
     }
 
-    public func any(test: ((Iterator.Element) throws -> Bool)) rethrows -> Bool {
-        return try findFirst(test: test) != nil
+    public func any(_ test: ((Iterator.Element) throws -> Bool)) rethrows -> Bool {
+        return try findFirst(test) != nil
     }
 
     public func any() -> Bool {
         return any { _ in true }
+    }
+
+    public func all(_ test: ((Iterator.Element) throws -> Bool)) rethrows -> Bool {
+        return try filter { !(try test($0)) }.isEmpty
     }
 }
 

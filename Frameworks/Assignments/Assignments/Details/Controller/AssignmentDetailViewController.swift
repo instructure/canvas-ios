@@ -64,10 +64,7 @@ class AssignmentDetailViewController: Assignment.DetailViewController {
         return lockedButton
     }()
 
-    var uploadFRC: NSFetchedResultsController<Upload>?
-
     fileprivate var session: Session?
-    fileprivate var uploadBuilder: UploadBuilder?
     fileprivate var beginDragY: CGFloat = 0
     fileprivate let notificationHandler = LocalNotificationHandler.sharedInstance
 
@@ -124,15 +121,6 @@ class AssignmentDetailViewController: Assignment.DetailViewController {
 
         guard let assignment = observer.object, let session = session else {
             return
-        }
-
-        do {
-            uploadFRC = try Upload.inProgressFRC(session, identifier: assignment.submissionUploadIdentifier)
-            uploadFRC?.delegate = self
-            try uploadFRC?.performFetch()
-            updateUploadProgress()
-        } catch let e as NSError {
-            e.presentAlertFromViewController(self)
         }
     }
     
@@ -194,20 +182,6 @@ class AssignmentDetailViewController: Assignment.DetailViewController {
             turnInError = NSError(subdomain: "Assignments.submit", description: NSLocalizedString("Could not submit assignment. Invalid assignment or session.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "error displayed when submitting an assignment is unavailable"))
             return
         }
-        let uploadTypes: UploadTypes = assignment.getUploadTypesFromSubmissionTypes()
-        let builder = UploadBuilder(viewController: self, barButtonItem: button, submissionTypes: uploadTypes, allowsAudio: assignment.allowsAudio, allowsPhotos: assignment.allowsPhotos, allowsVideo: assignment.allowsVideo, allowedUploadUTIs: assignment.allowedSubmissionUTIs, allowedImagePickerControllerMediaTypes: assignment.allowedImagePickerControllerMediaTypes)
-        //let builder = UploadBuilder(assignment: assignment, viewController: self, barButtonItem: button)
-        builder.uploadSelected = { newUpload in
-            do {
-                try assignment.uploadSubmission(newUpload, inSession: session)
-            } catch {
-                turnInError = NSError(subdomain: "Assignments.submit", description: NSLocalizedString("Could not submit assignment. Invalid submission.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.AssignmentKit")!, value: "", comment: "error displayed when submitting a submission is invalid."))
-            }
-        }
-        
-        self.uploadBuilder = builder
-
-        builder.beginUpload()
     }
 
     // Mark: Reminders
@@ -308,54 +282,4 @@ class AssignmentDetailViewController: Assignment.DetailViewController {
             self.present(actionSheet, animated: true, completion: nil)
         }
     }
-}
-
-extension AssignmentDetailViewController: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if controller == uploadFRC {
-            DispatchQueue.main.async {
-                self.updateUploadProgress()
-            }
-        }
-    }
-
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        if let submissionUpload = anObject as? SubmissionUpload, submissionUpload.hasCompleted {
-            self.refresher?.refresh(true)
-        }
-    }
-
-    fileprivate func updateUploadProgress() {
-        guard let uploads = uploadFRC?.fetchedObjects, !uploads.isEmpty else {
-            self.submissionBarButtonItem.isEnabled = true
-            self.updateTurnInButton(self.observer.object)
-            return
-        }
-
-        self.submissionBarButtonItem.isEnabled = false
-
-        var bytesSent = 0
-        var bytesTotal = 0
-        for upload in uploads {
-            bytesSent += Int(upload.sent)
-            bytesTotal += Int(upload.total)
-        }
-
-        let progress = hashProgress(bytesSent, bytesTotal)
-        self.submissionBarButtonItem.title = progress
-    }
-}
-
-typealias ProgressBar = (_ n: Int, _ d: Int) -> String
-
-// [####      ] (40%)
-let hashProgress: ProgressBar = { n, d in
-    guard d > 0 && n <= d else { return "[] (0%)" }
-    let max = 10
-    let p = (n*100)/d
-    let x = (p*10)/100
-    let hss = Array(repeating: "#", count: x).joined(separator: "")
-    let blanks = Array(repeating: " ", count: 10 - x).joined(separator: "")
-    return "[\(hss)\(blanks)] (\(p)%)"
 }

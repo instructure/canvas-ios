@@ -34,10 +34,9 @@ extension Session {
         guard let model = NSManagedObjectModel(named: assignmentKitModelName, inBundle: Bundle(for: Assignment.self))?.mutableCopy() as? NSManagedObjectModel else {
             throw NSError(subdomain: assignmentKitSubdomain, code: assignmentKitFailedToLoadErrorCode, title: assignmentKitFailedToLoadErrorDescription, description: assignmentKitDBFailedToLoadErrorDescription)
         }
-        let withFiles = model.loadingFileEntity()
 
         let storeName = scope == nil ? assignmentKitModelName : "\(assignmentKitModelName)_\(scope!)"
-        let storeID = StoreID(storeName: storeName, model: withFiles, localizedErrorDescription: assignmentKitDBFailedToLoadErrorDescription)
+        let storeID = StoreID(storeName: storeName, model: model, localizedErrorDescription: assignmentKitDBFailedToLoadErrorDescription)
         
         return try managedObjectContext(storeID)
     }

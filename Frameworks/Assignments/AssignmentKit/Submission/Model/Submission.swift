@@ -42,51 +42,7 @@ public final class Submission: SubmissionEvent {
     @NSManaged internal (set) public var submittedURL: URL?
     @NSManaged internal (set) public var submittedMediaID: String?
     @NSManaged internal (set) public var submittedMedia: MediaComment?
-    @NSManaged var submittedFiles: Set<SubmissionFile>
     @NSManaged internal (set) public var assessments: Set<RubricAssessment>
-}
-
-// MARK: Type of submission
-
-extension Submission {
-    enum Kind {
-        case none
-        
-        case discussionTopic
-        case quiz
-        case externalTool
-        
-        case onPaper
-        case text(String)
-        case url(Foundation.URL)
-        case files([File])
-        case media(MediaComment)
-    }
-    
-    var kind: Kind {
-        switch rawSubmissionType {
-        case "discussion_topic":
-            return .discussionTopic
-        case "online_quiz":
-            return .quiz
-        case "on_paper":
-            return .onPaper
-        case "none":
-            return .none
-        case "external_tool":
-            return .externalTool
-        case "online_text_entry":
-            return submittedText.map(Kind.text) ?? .none
-        case "online_url":
-            return submittedURL.map(Kind.url) ?? .none
-        case "online_upload":
-            return .files(Array(submittedFiles.map { $0.file }))
-        case "media_recording":
-            return submittedMedia.map(Kind.media) ?? .none
-        default:
-            return .none
-        }
-    }
 }
 
 // MARK: SoPersistent

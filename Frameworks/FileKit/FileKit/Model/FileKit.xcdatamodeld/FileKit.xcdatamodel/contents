@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16B2555" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="File" representedClassName="FileKit.File" parentEntity="FileNode" syncable="YES">
         <attribute name="contentType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="size" optional="YES" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
@@ -26,10 +26,15 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="parentFolderID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="path" attributeType="String" syncable="YES"/>
-        <attribute name="rawContextID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="targetParameters" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="targetURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="batch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FileUploadBatch" inverseName="fileUploads" inverseEntity="FileUploadBatch" syncable="YES"/>
         <relationship name="file" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" syncable="YES"/>
+    </entity>
+    <entity name="FileUploadBatch" syncable="YES">
+        <attribute name="apiPath" attributeType="String" syncable="YES"/>
+        <attribute name="fileTypes" attributeType="String" syncable="YES"/>
+        <relationship name="fileUploads" toMany="YES" deletionRule="Cascade" destinationEntity="FileUpload" inverseName="batch" inverseEntity="FileUpload" syncable="YES"/>
     </entity>
     <entity name="Folder" representedClassName="FileKit.Folder" parentEntity="FileNode" syncable="YES">
         <attribute name="filesCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
@@ -53,7 +58,8 @@
     <elements>
         <element name="File" positionX="-101" positionY="-84" width="128" height="120"/>
         <element name="FileNode" positionX="115" positionY="-273" width="128" height="195"/>
-        <element name="FileUpload" positionX="-317" positionY="-81" width="128" height="148"/>
+        <element name="FileUpload" positionX="-378" positionY="-13" width="128" height="195"/>
+        <element name="FileUploadBatch" positionX="-549" positionY="-81" width="128" height="88"/>
         <element name="Folder" positionX="234" positionY="-54" width="128" height="103"/>
         <element name="Upload" positionX="-317" positionY="-288" width="128" height="210"/>
     </elements>

@@ -23,18 +23,12 @@
 		2A7F6DAA1CE67F7900286CD4 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F6DA91CE67F7900286CD4 /* Folder.swift */; };
 		2A7F6DB21CEA5ACE00286CD4 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F6DB11CEA5ACE00286CD4 /* File.swift */; };
 		2A93B08A1CF3B74100196101 /* NewUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93B0881CF3B74100196101 /* NewUpload.swift */; };
-		2A93B08B1CF3B74100196101 /* UploadBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93B0891CF3B74100196101 /* UploadBuilder.swift */; };
-		2A93B0911CF3B87300196101 /* UploadAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93B0901CF3B87300196101 /* UploadAction.swift */; };
+		2A93B0911CF3B87300196101 /* FileUploadAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93B0901CF3B87300196101 /* FileUploadAction.swift */; };
 		2A93B0931CF4AB3F00196101 /* PhotoOrVideoUploadAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93B0921CF4AB3F00196101 /* PhotoOrVideoUploadAction.swift */; };
-		2A93B0951CF4BA9F00196101 /* NewUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93B0941CF4BA9F00196101 /* NewUploadViewController.swift */; };
-		2A93B0971CF4BE4A00196101 /* FileSubmissionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93B0961CF4BE4A00196101 /* FileSubmissionAction.swift */; };
-		2A93B09B1CF4E3C400196101 /* TextSubmissionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93B0991CF4E3C400196101 /* TextSubmissionAction.swift */; };
-		2A93B09C1CF4E3C400196101 /* URLSubmissionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93B09A1CF4E3C400196101 /* URLSubmissionAction.swift */; };
-		2A93B09F1CF4E51600196101 /* AnythingButFilesSubmissionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93B09D1CF4E51600196101 /* AnythingButFilesSubmissionAction.swift */; };
+		2A93B0951CF4BA9F00196101 /* FileUploadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93B0941CF4BA9F00196101 /* FileUploadsViewController.swift */; };
 		2A93B0A01CF4E51600196101 /* RecordAudioSubmissionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93B09E1CF4E51600196101 /* RecordAudioSubmissionAction.swift */; };
 		2A93B0A21CF4F94700196101 /* Upload Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A93B0A11CF4F94700196101 /* Upload Icons.xcassets */; };
 		2A93B0B71CF79F9C00196101 /* FileKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A93B0B61CF79F9C00196101 /* FileKit.xcassets */; };
-		2AACDFCE1D021EEE008B52A4 /* NewUpload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AACDFCC1D021EEE008B52A4 /* NewUpload.storyboard */; };
 		2AACDFD21D022DF1008B52A4 /* MediaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AACDFD01D022DF1008B52A4 /* MediaKit.framework */; };
 		2AACDFD31D022DF1008B52A4 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AACDFD11D022DF1008B52A4 /* TooLegit.framework */; };
 		2AACDFD71D022F81008B52A4 /* WhizzyWig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AACDFD61D022F81008B52A4 /* WhizzyWig.framework */; };
@@ -79,19 +73,33 @@
 		49D3B8C41C51F73C00291009 /* NSManagedObjectModel+FileKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D3B8C31C51F73C00291009 /* NSManagedObjectModel+FileKit.swift */; };
 		49D3B8C71C52DEF800291009 /* FileKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49D3B8C51C52DEF800291009 /* FileKit.xcdatamodeld */; };
 		61C866891D539B3B00100D00 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C866881D539B3B00100D00 /* Result.framework */; };
+		B1111AAA1E3933AB002D3B3A /* FileUploadsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1111AA91E3933AB002D3B3A /* FileUploadsViewModelTests.swift */; };
+		B1111AAC1E3934BA002D3B3A /* FileUploadBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1111AAB1E3934BA002D3B3A /* FileUploadBatch.swift */; };
 		B13746891DB14A140048F7DD /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13746881DB14A140048F7DD /* SpecHelper.swift */; };
 		B13A39191CBC12CA00CBD98B /* FileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13A39181CBC12CA00CBD98B /* FileUpload.swift */; };
 		B13A391B1CBC12D200CBD98B /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13A391A1CBC12D200CBD98B /* Upload.swift */; };
 		B13A39201CBC63CC00CBD98B /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13A391F1CBC63CC00CBD98B /* SoAutomated.framework */; };
 		B13A39251CBD9D0D00CBD98B /* FileUploadSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13A39241CBD9D0D00CBD98B /* FileUploadSpec.swift */; };
 		B153C6321CE0E3370017F0CF /* testfile.txt in Resources */ = {isa = PBXBuildFile; fileRef = B153C6311CE0E3370017F0CF /* testfile.txt */; };
+		B16589621E295CA2007ACB5B /* FileUploadsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16589611E295CA2007ACB5B /* FileUploadsViewModel.swift */; };
 		B16B5BFE1E245C5400DED47B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5C001E245C5400DED47B /* Localizable.strings */; };
 		B16B5C031E245C5500DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5C051E245C5500DED47B /* InfoPlist.strings */; };
 		B16B5C091E245C5700DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5C0B1E245C5700DED47B /* InfoPlist.strings */; };
 		B16B5C0E1E245C5900DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5C101E245C5900DED47B /* InfoPlist.strings */; };
+		B17C734B1E2D7CC2009A155F /* FileUploadBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17C734A1E2D7CC2009A155F /* FileUploadBatch.swift */; };
 		B1818CD21DB160290021CB16 /* FileNodeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1818CD11DB160290021CB16 /* FileNodeSpec.swift */; };
 		B1818CD71DB161B90021CB16 /* FileSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1818CD51DB161B90021CB16 /* FileSpec.swift */; };
 		B1818CD81DB161B90021CB16 /* FolderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1818CD61DB161B90021CB16 /* FolderSpec.swift */; };
+		B19C42651E31F8AA00B4CF02 /* FileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19C42641E31F8AA00B4CF02 /* FileUpload.swift */; };
+		B19C42671E31F8F100B4CF02 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19C42661E31F8F100B4CF02 /* File.swift */; };
+		B19C426B1E320D6000B4CF02 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19C426A1E320D6000B4CF02 /* Colors.swift */; };
+		B1A21B211E27FAF00098CA66 /* FileUploadViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A21B201E27FAF00098CA66 /* FileUploadViewModelSpec.swift */; };
+		B1CAE82B1E353B3E0061D411 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1CAE82A1E353B3E0061D411 /* EnrollmentKit.framework */; };
+		B1CAE82D1E3545F70061D411 /* FileUploadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CAE82C1E3545F70061D411 /* FileUploadTableViewCell.swift */; };
+		B1E1ED1A1E37F949007A4A73 /* Bundle+FileKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E1ED191E37F949007A4A73 /* Bundle+FileKit.swift */; };
+		B1E1ED1C1E37FA06007A4A73 /* UIImage+FileKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E1ED1B1E37FA06007A4A73 /* UIImage+FileKit.swift */; };
+		B1EB80951E2978B6006225AF /* Upload+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EB80941E2978B6006225AF /* Upload+Details.swift */; };
+		B1EB80971E2978C7006225AF /* FileUploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EB80961E2978C7006225AF /* FileUploadViewModel.swift */; };
 		B5DC371D1D8CB7BE005051CE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5DC37181D8CB7BE005051CE /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -158,19 +166,13 @@
 		2A7F6DA91CE67F7900286CD4 /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		2A7F6DB11CEA5ACE00286CD4 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		2A93B0881CF3B74100196101 /* NewUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUpload.swift; sourceTree = "<group>"; };
-		2A93B0891CF3B74100196101 /* UploadBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadBuilder.swift; sourceTree = "<group>"; };
-		2A93B0901CF3B87300196101 /* UploadAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadAction.swift; sourceTree = "<group>"; };
+		2A93B0901CF3B87300196101 /* FileUploadAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadAction.swift; sourceTree = "<group>"; };
 		2A93B0921CF4AB3F00196101 /* PhotoOrVideoUploadAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoOrVideoUploadAction.swift; sourceTree = "<group>"; };
-		2A93B0941CF4BA9F00196101 /* NewUploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUploadViewController.swift; sourceTree = "<group>"; };
-		2A93B0961CF4BE4A00196101 /* FileSubmissionAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSubmissionAction.swift; sourceTree = "<group>"; };
-		2A93B0991CF4E3C400196101 /* TextSubmissionAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSubmissionAction.swift; sourceTree = "<group>"; };
-		2A93B09A1CF4E3C400196101 /* URLSubmissionAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSubmissionAction.swift; sourceTree = "<group>"; };
-		2A93B09D1CF4E51600196101 /* AnythingButFilesSubmissionAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnythingButFilesSubmissionAction.swift; sourceTree = "<group>"; };
+		2A93B0941CF4BA9F00196101 /* FileUploadsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadsViewController.swift; sourceTree = "<group>"; };
 		2A93B09E1CF4E51600196101 /* RecordAudioSubmissionAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordAudioSubmissionAction.swift; sourceTree = "<group>"; };
 		2A93B0A11CF4F94700196101 /* Upload Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Upload Icons.xcassets"; sourceTree = "<group>"; };
 		2A93B0A31CF4FAB300196101 /* Files.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Files.entitlements; sourceTree = "<group>"; };
 		2A93B0B61CF79F9C00196101 /* FileKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = FileKit.xcassets; path = FileKit/FileKit.xcassets; sourceTree = "<group>"; };
-		2AACDFCC1D021EEE008B52A4 /* NewUpload.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewUpload.storyboard; sourceTree = "<group>"; };
 		2AACDFD01D022DF1008B52A4 /* MediaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MediaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AACDFD11D022DF1008B52A4 /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AACDFD41D022E0D008B52A4 /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DoNotShipThis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,12 +197,15 @@
 		49D3B8C31C51F73C00291009 /* NSManagedObjectModel+FileKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "NSManagedObjectModel+FileKit.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49D3B8C61C52DEF800291009 /* FileKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FileKit.xcdatamodel; sourceTree = "<group>"; };
 		61C866881D539B3B00100D00 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1111AA91E3933AB002D3B3A /* FileUploadsViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadsViewModelTests.swift; sourceTree = "<group>"; };
+		B1111AAB1E3934BA002D3B3A /* FileUploadBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadBatch.swift; sourceTree = "<group>"; };
 		B13746881DB14A140048F7DD /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
 		B13A39181CBC12CA00CBD98B /* FileUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUpload.swift; sourceTree = "<group>"; };
 		B13A391A1CBC12D200CBD98B /* Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
 		B13A391F1CBC63CC00CBD98B /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B13A39241CBD9D0D00CBD98B /* FileUploadSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadSpec.swift; sourceTree = "<group>"; };
 		B153C6311CE0E3370017F0CF /* testfile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testfile.txt; sourceTree = "<group>"; };
+		B16589611E295CA2007ACB5B /* FileUploadsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadsViewModel.swift; sourceTree = "<group>"; };
 		B16B5BFF1E245C5400DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B16B5C041E245C5500DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5C061E245C5600DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -296,9 +301,20 @@
 		B16B5C681E24603A00DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B16B5C691E24603A00DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5C6A1E24603B00DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B17C734A1E2D7CC2009A155F /* FileUploadBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadBatch.swift; sourceTree = "<group>"; };
 		B1818CD11DB160290021CB16 /* FileNodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNodeSpec.swift; sourceTree = "<group>"; };
 		B1818CD51DB161B90021CB16 /* FileSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileSpec.swift; path = FileKitTests/FileSpec.swift; sourceTree = SOURCE_ROOT; };
 		B1818CD61DB161B90021CB16 /* FolderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FolderSpec.swift; path = FileKitTests/FolderSpec.swift; sourceTree = SOURCE_ROOT; };
+		B19C42641E31F8AA00B4CF02 /* FileUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUpload.swift; sourceTree = "<group>"; };
+		B19C42661E31F8F100B4CF02 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		B19C426A1E320D6000B4CF02 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		B1A21B201E27FAF00098CA66 /* FileUploadViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadViewModelSpec.swift; sourceTree = "<group>"; };
+		B1CAE82A1E353B3E0061D411 /* EnrollmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnrollmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1CAE82C1E3545F70061D411 /* FileUploadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadTableViewCell.swift; sourceTree = "<group>"; };
+		B1E1ED191E37F949007A4A73 /* Bundle+FileKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+FileKit.swift"; sourceTree = "<group>"; };
+		B1E1ED1B1E37FA06007A4A73 /* UIImage+FileKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+FileKit.swift"; sourceTree = "<group>"; };
+		B1EB80941E2978B6006225AF /* Upload+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Upload+Details.swift"; path = "Upload/Upload+Details.swift"; sourceTree = "<group>"; };
+		B1EB80961E2978C7006225AF /* FileUploadViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadViewModel.swift; sourceTree = "<group>"; };
 		B564DDF71D8CB7DB00E25BDA /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = FileKit/mi.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B564DDF81D8CB7DB00E25BDA /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = FileKit/nb.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B564DDF91D8CB7DB00E25BDA /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = FileKit/nl.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
@@ -349,6 +365,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1CAE82B1E353B3E0061D411 /* EnrollmentKit.framework in Frameworks */,
 				49895EFE1C46F313002A16EC /* SoPersistent.framework in Frameworks */,
 				495FD06B1BEBE818004A91C6 /* SoLazy.framework in Frameworks */,
 				4928EBD41C84DE7C00799E04 /* Marshal.framework in Frameworks */,
@@ -425,19 +442,16 @@
 		2A93B0981CF4C41800196101 /* FileUpload */ = {
 			isa = PBXGroup;
 			children = (
-				2A93B0891CF3B74100196101 /* UploadBuilder.swift */,
-				2A93B0901CF3B87300196101 /* UploadAction.swift */,
+				B1EB80961E2978C7006225AF /* FileUploadViewModel.swift */,
+				2A93B0901CF3B87300196101 /* FileUploadAction.swift */,
 				2A93B0881CF3B74100196101 /* NewUpload.swift */,
-				2AACDFCC1D021EEE008B52A4 /* NewUpload.storyboard */,
-				2A93B0941CF4BA9F00196101 /* NewUploadViewController.swift */,
+				2A93B0941CF4BA9F00196101 /* FileUploadsViewController.swift */,
 				2A93B0921CF4AB3F00196101 /* PhotoOrVideoUploadAction.swift */,
-				2A93B0991CF4E3C400196101 /* TextSubmissionAction.swift */,
-				2A93B09A1CF4E3C400196101 /* URLSubmissionAction.swift */,
-				2A93B0961CF4BE4A00196101 /* FileSubmissionAction.swift */,
-				2A93B09D1CF4E51600196101 /* AnythingButFilesSubmissionAction.swift */,
 				2A93B09E1CF4E51600196101 /* RecordAudioSubmissionAction.swift */,
 				2A4EE9B91D0762CC00D8C539 /* FileUpload+Collections.swift */,
 				2A93B0A11CF4F94700196101 /* Upload Icons.xcassets */,
+				B16589611E295CA2007ACB5B /* FileUploadsViewModel.swift */,
+				B1CAE82C1E3545F70061D411 /* FileUploadTableViewCell.swift */,
 			);
 			name = FileUpload;
 			path = ../File/FileUpload;
@@ -460,6 +474,7 @@
 		49895EFF1C46F31E002A16EC /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				B1CAE82A1E353B3E0061D411 /* EnrollmentKit.framework */,
 				49998E501E1D774500C98AC2 /* ReactiveCocoa.framework */,
 				49998E511E1D774500C98AC2 /* SoIconic.framework */,
 				49998E2A1E1D727800C98AC2 /* CWNotification.framework */,
@@ -506,6 +521,8 @@
 			isa = PBXGroup;
 			children = (
 				B16B5C051E245C5500DED47B /* InfoPlist.strings */,
+				B17C73491E2D7CA3009A155F /* FileUploadBatch */,
+				B16589581E283BAC007ACB5B /* Upload */,
 				2A37E1121CE3D8A200048EBD /* FileNode */,
 				49D3B8C11C51F6F100291009 /* Session+FileUploads.swift */,
 				2A7F6DB51CEBBCC700286CD4 /* File */,
@@ -515,6 +532,9 @@
 				49C1A79B1BE97B2E008A21B9 /* Info.plist */,
 				B5DC37181D8CB7BE005051CE /* Localizable.strings */,
 				2A37E1151CE3E27E00048EBD /* Network */,
+				B19C426A1E320D6000B4CF02 /* Colors.swift */,
+				B1E1ED191E37F949007A4A73 /* Bundle+FileKit.swift */,
+				B1E1ED1B1E37FA06007A4A73 /* UIImage+FileKit.swift */,
 			);
 			path = FileKit;
 			sourceTree = "<group>";
@@ -524,6 +544,7 @@
 			children = (
 				B16B5C101E245C5900DED47B /* InfoPlist.strings */,
 				B13A391E1CBC635600CBD98B /* Dependencies */,
+				B19C42631E31F89000B4CF02 /* Templates */,
 				B13A39261CBDB2CA00CBD98B /* Fixtures */,
 				49C1A7A71BE97B2E008A21B9 /* Info.plist */,
 				B1818CD51DB161B90021CB16 /* FileSpec.swift */,
@@ -531,6 +552,8 @@
 				B13A39241CBD9D0D00CBD98B /* FileUploadSpec.swift */,
 				B13746881DB14A140048F7DD /* SpecHelper.swift */,
 				B1818CD11DB160290021CB16 /* FileNodeSpec.swift */,
+				B1A21B201E27FAF00098CA66 /* FileUploadViewModelSpec.swift */,
+				B1111AA91E3933AB002D3B3A /* FileUploadsViewModelTests.swift */,
 			);
 			path = FileKitTests;
 			sourceTree = "<group>";
@@ -549,6 +572,32 @@
 				B153C6311CE0E3370017F0CF /* testfile.txt */,
 			);
 			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		B16589581E283BAC007ACB5B /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				B1EB80941E2978B6006225AF /* Upload+Details.swift */,
+			);
+			name = Upload;
+			sourceTree = "<group>";
+		};
+		B17C73491E2D7CA3009A155F /* FileUploadBatch */ = {
+			isa = PBXGroup;
+			children = (
+				B17C734A1E2D7CC2009A155F /* FileUploadBatch.swift */,
+			);
+			path = FileUploadBatch;
+			sourceTree = "<group>";
+		};
+		B19C42631E31F89000B4CF02 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				B19C42641E31F8AA00B4CF02 /* FileUpload.swift */,
+				B19C42661E31F8F100B4CF02 /* File.swift */,
+				B1111AAB1E3934BA002D3B3A /* FileUploadBatch.swift */,
+			);
+			path = Templates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -709,7 +758,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AACDFCE1D021EEE008B52A4 /* NewUpload.storyboard in Resources */,
 				B5DC371D1D8CB7BE005051CE /* Localizable.strings in Resources */,
 				2A93B0B71CF79F9C00196101 /* FileKit.xcassets in Resources */,
 				2A93B0A21CF4F94700196101 /* Upload Icons.xcassets in Resources */,
@@ -742,28 +790,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B17C734B1E2D7CC2009A155F /* FileUploadBatch.swift in Sources */,
 				B13A391B1CBC12D200CBD98B /* Upload.swift in Sources */,
 				2A37E1141CE3D90800048EBD /* FileNode+Collections.swift in Sources */,
 				2A7F6DB21CEA5ACE00286CD4 /* File.swift in Sources */,
+				B1EB80971E2978C7006225AF /* FileUploadViewModel.swift in Sources */,
 				2A93B0931CF4AB3F00196101 /* PhotoOrVideoUploadAction.swift in Sources */,
+				B16589621E295CA2007ACB5B /* FileUploadsViewModel.swift in Sources */,
 				2A37E11B1CE3EA3900048EBD /* File+Network.swift in Sources */,
 				49D3B8C71C52DEF800291009 /* FileKit.xcdatamodeld in Sources */,
-				2A93B08B1CF3B74100196101 /* UploadBuilder.swift in Sources */,
-				2A93B0971CF4BE4A00196101 /* FileSubmissionAction.swift in Sources */,
+				B1EB80951E2978B6006225AF /* Upload+Details.swift in Sources */,
 				2A93B08A1CF3B74100196101 /* NewUpload.swift in Sources */,
+				B1CAE82D1E3545F70061D411 /* FileUploadTableViewCell.swift in Sources */,
+				B1E1ED1C1E37FA06007A4A73 /* UIImage+FileKit.swift in Sources */,
 				49D3B8C21C51F6F100291009 /* Session+FileUploads.swift in Sources */,
-				2A93B0911CF3B87300196101 /* UploadAction.swift in Sources */,
-				2A93B09B1CF4E3C400196101 /* TextSubmissionAction.swift in Sources */,
+				2A93B0911CF3B87300196101 /* FileUploadAction.swift in Sources */,
 				2A7F6DAA1CE67F7900286CD4 /* Folder.swift in Sources */,
+				B19C426B1E320D6000B4CF02 /* Colors.swift in Sources */,
 				2A93B0A01CF4E51600196101 /* RecordAudioSubmissionAction.swift in Sources */,
 				2A37E1171CE3E34B00048EBD /* Session+FileNode.swift in Sources */,
 				2A4EE9BA1D0762CC00D8C539 /* FileUpload+Collections.swift in Sources */,
 				49D3B8C41C51F73C00291009 /* NSManagedObjectModel+FileKit.swift in Sources */,
+				B1E1ED1A1E37F949007A4A73 /* Bundle+FileKit.swift in Sources */,
 				B13A39191CBC12CA00CBD98B /* FileUpload.swift in Sources */,
 				2A7F6DA61CE67ECA00286CD4 /* Folder+Network.swift in Sources */,
-				2A93B09C1CF4E3C400196101 /* URLSubmissionAction.swift in Sources */,
-				2A93B09F1CF4E51600196101 /* AnythingButFilesSubmissionAction.swift in Sources */,
-				2A93B0951CF4BA9F00196101 /* NewUploadViewController.swift in Sources */,
+				2A93B0951CF4BA9F00196101 /* FileUploadsViewController.swift in Sources */,
 				2A7F6D971CE62A8300286CD4 /* File+Details.swift in Sources */,
 				49895EF91C46EFE4002A16EC /* FileNode.swift in Sources */,
 				2A37E1191CE3E3CB00048EBD /* FileNodeAPI.swift in Sources */,
@@ -774,10 +825,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B19C42651E31F8AA00B4CF02 /* FileUpload.swift in Sources */,
 				B1818CD71DB161B90021CB16 /* FileSpec.swift in Sources */,
 				B13A39251CBD9D0D00CBD98B /* FileUploadSpec.swift in Sources */,
+				B19C42671E31F8F100B4CF02 /* File.swift in Sources */,
 				B13746891DB14A140048F7DD /* SpecHelper.swift in Sources */,
+				B1111AAC1E3934BA002D3B3A /* FileUploadBatch.swift in Sources */,
+				B1111AAA1E3933AB002D3B3A /* FileUploadsViewModelTests.swift in Sources */,
 				B1818CD81DB161B90021CB16 /* FolderSpec.swift in Sources */,
+				B1A21B211E27FAF00098CA66 /* FileUploadViewModelSpec.swift in Sources */,
 				B1818CD21DB160290021CB16 /* FileNodeSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

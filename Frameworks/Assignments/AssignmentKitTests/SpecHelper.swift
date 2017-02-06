@@ -52,25 +52,6 @@ let factoryURL: URL = {
     return currentBundle.url(forResource: "testfile", withExtension: "txt")!
 }()
 
-func uploadSubmission(_ submissionUpload: SubmissionUpload, in session: Session) {
-    let predicate = NSPredicate(format: "%K == %@", "backgroundSessionID", submissionUpload.backgroundSessionID)
-    let observer = try! ManagedObjectObserver<SubmissionUpload>(predicate: predicate, inContext: submissionUpload.managedObjectContext!)
-    var disposable: Disposable?
-    waitUntil(timeout: 8) { done in
-        disposable = observer.signal.observeResult { result in
-            expect(result.error).to(beNil())
-            if let upload = result.value?.1 {
-                expect(upload.errorMessage).to(beNil())
-                if upload.hasCompleted {
-                    done()
-                }
-            }
-        }
-        submissionUpload.begin(inSession: session, inContext: submissionUpload.managedObjectContext!)
-    }
-    disposable?.dispose()
-}
-
 extension NSItemProvider {
     convenience init(_ item: NSSecureCoding?, _ identifier: CFString) {
         self.init(item: item, typeIdentifier: identifier as String)

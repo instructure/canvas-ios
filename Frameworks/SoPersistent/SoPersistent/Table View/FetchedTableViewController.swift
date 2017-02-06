@@ -32,7 +32,7 @@ open class FetchedTableViewController<M: NSManagedObject>: SoPersistent.TableVie
     }
 
     public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     open func prepare<VM: TableViewCellViewModel>(_ collection: FetchedCollection<M>, refresher: Refresher? = nil, viewModelFactory: @escaping (M)->VM) {

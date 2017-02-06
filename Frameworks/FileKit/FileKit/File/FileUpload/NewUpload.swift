@@ -47,16 +47,33 @@ private func MIMEType(_ fileExtension: String) -> String? {
     return nil
 }
 
-public enum NewUploadFile {
+public enum UploadType {
     case audioFile(URL)
     case fileURL(URL)
     case cameraRollAsset(PHAsset)
     case videoURL(URL)
     case photo(UIImage)
     case data(Data)
-    
+}
+
+public protocol Uploadable {
+    var name: String { get }
+    var contentType: String? { get }
+    var image: UIImage { get }
+    var data: Data { get }
+}
+
+public struct NewFileUpload: Uploadable {
+    public let kind: UploadType
+    public let data: Data
+
+    public init(kind: UploadType, data: Data) {
+        self.kind = kind
+        self.data = data
+    }
+
     public var name: String {
-        switch self {
+        switch kind {
         case .fileURL(let url):
             return url.lastPathComponent
         case .cameraRollAsset(let asset):
@@ -82,8 +99,8 @@ public enum NewUploadFile {
     }
 
     public var contentType: String? {
-        switch self {
-            case .fileURL(let url): return MIMEType(url.pathExtension)
+        switch kind {
+        case .fileURL(let url): return MIMEType(url.pathExtension)
         case .audioFile(_):
             return "audio/mp4"
         case .cameraRollAsset(let asset):
@@ -96,11 +113,11 @@ public enum NewUploadFile {
         case .data(_): return "text/plain"
         }
     }
-    
-    var image: UIImage {
+
+    public var image: UIImage {
         let size = CGSize(width: 34, height: 34)
         
-        switch self {
+        switch kind {
         case .cameraRollAsset(let asset):
             let options = PHImageRequestOptions()
             options.isSynchronous = true
@@ -114,92 +131,11 @@ public enum NewUploadFile {
             
             return thumb
         case .audioFile(_):
-            return UIImage(named: "icon_audio", in: Bundle(for: UploadBuilder.classForCoder()), compatibleWith: nil)!
+            return UIImage(named: "icon_audio", in: .fileKit, compatibleWith: nil)!
         case .photo(let image):
             return image
         default:
-            return UIImage(named: "icon_document", in: Bundle(for: UploadBuilder.classForCoder()), compatibleWith: nil)!
-        }
-    }
-
-    public var extractDataProducer: SignalProducer<Data?, NSError> {
-        return SignalProducer() { observer, disposable in
-            do {
-                switch self {
-                case .fileURL(let url):
-                    observer.send(value: try Data(contentsOf: url))
-                case .audioFile(let url):
-                    observer.send(value: try Data(contentsOf: url))
-                case .videoURL(let url):
-                    observer.send(value: try Data(contentsOf: url))
-                case .photo(let image):
-                    observer.send(value: UIImagePNGRepresentation(image))
-                case .cameraRollAsset(let asset):
-                    let manager = PHCachingImageManager()
-                    switch asset.mediaType {
-                    case .image:
-                        manager.requestImageData(for: asset, options: nil) { (data, _, _, _) in
-                            observer.send(value: data)
-                        }
-                    case .video:
-                        manager.requestAVAsset(forVideo: asset, options: nil) { asset, audioMix, info in
-                            if let asset = asset as? AVURLAsset, let data = try? Data(contentsOf: asset.url) {
-                                observer.send(value: data)
-                            }
-                        }
-                    default: observer.send(value: nil)
-                    }
-                case .data(let data):
-                    observer.send(value: data)
-                }
-            } catch let e as NSError {
-                observer.send(error: e)
-            }
-        }
-    }
-}
-
-public enum NewUpload {
-    case none
-    case text(String)
-    case url(Foundation.URL)
-    case mediaComment(NewUploadFile)
-    case fileUpload([NewUploadFile])
-
-    var fileCount: Int {
-        switch self {
-        case .fileUpload(let urls):
-            return urls.count
-        case .mediaComment(_):
-            return 1
-        default:
-            return 0
-        }
-    }
-
-    func uploadByDeletingFileAtIndex(_ row: Int) -> NewUpload {
-        switch self {
-        case .fileUpload(var urls) where row < urls.count:
-            urls.remove(at: row)
-            return .fileUpload(urls)
-        default:
-            return self
-        }
-    }
-
-    func uploadByAppendingFile(_ file: NewUploadFile) -> NewUpload {
-        switch (self, file) {
-        case (.fileUpload(var files), _):
-            files.append(file)
-            return .fileUpload(files)
-        case (.mediaComment(let mediaCommentFile), _):
-            return .fileUpload([mediaCommentFile, file])
-        case (.none, .videoURL), (.none, .audioFile):
-            return .mediaComment(file)
-        case (.none, _):
-            return .fileUpload([file])
-        default:
-            return self
+            return UIImage(named: "icon_document", in: .fileKit, compatibleWith: nil)!
         }
     }
 }

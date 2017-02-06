@@ -34,7 +34,7 @@ class ArraySpec: QuickSpec {
                     expect([1, 2, 3].findFirst { $0 < 0 }).to(beNil())
 
                     let empty: [Int] = []
-                    expect(empty.findFirst { $0 != nil }).to(beNil())
+                    expect(empty.findFirst { $0 > 0 }).to(beNil())
                 }
             }
 
@@ -53,6 +53,13 @@ class ArraySpec: QuickSpec {
                 it("should return true if no test is given and the array is not empty") {
                     expect([1].any()) == true
                     expect(["1"].any()) == true
+                }
+            }
+
+            describe("all") {
+                it("should return true if all the elements match the test") {
+                    expect([1, 2, 3].all { $0 > 0 }) == true
+                    expect([1, 2, 3].all { $0 > 2 }) == false
                 }
             }
         }

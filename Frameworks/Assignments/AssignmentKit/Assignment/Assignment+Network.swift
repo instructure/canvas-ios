@@ -32,4 +32,8 @@ extension Assignment {
 
         return session.JSONSignalProducer(request)
     }
+
+    public var submissionsPath: String {
+         return "/api/v1/courses/\(courseID)/assignments/\(id)/submissions/self/files"
+    }
 }

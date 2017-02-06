@@ -32,6 +32,8 @@ open class SmallModalNavigationController: UINavigationController, UIViewControl
         super.init(rootViewController: rootViewController)
         
         preferredContentSize = rootViewController.preferredContentSize
+        modalPresentationStyle = .custom
+        transitioningDelegate = self
     }
 
     public required init?(coder aDecoder: NSCoder) {

@@ -20,6 +20,7 @@ import CoreLocation
 import Photos
 import AVFoundation
 import WebKit
+import MapKit
 import Nimble
 import DVR
 import TooLegit

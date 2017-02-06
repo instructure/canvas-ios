@@ -68,6 +68,7 @@
 		B16B5E851E255F7400DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5E871E255F7400DED47B /* InfoPlist.strings */; };
 		B16B5E8A1E255F7600DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5E8C1E255F7600DED47B /* InfoPlist.strings */; };
 		B16B5E8F1E255F7700DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5E911E255F7700DED47B /* InfoPlist.strings */; };
+		B1031B221E31AFC8008E835B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1031B211E31AFC8008E835B /* GradientView.swift */; };
 		B5E793FF1D8CA39600D3E38B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E793FB1D8CA39600D3E38B /* Localizable.strings */; };
 		B5FE27C21C9768C300D07C43 /* CAShapeLayer+Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FE27C11C9768C300D07C43 /* CAShapeLayer+Circle.swift */; };
 /* End PBXBuildFile section */
@@ -242,6 +243,7 @@
 		B16B5ED81E25605700DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5ED91E25605800DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5EDA1E25605900DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B1031B211E31AFC8008E835B /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		B51B2E601D8CA3DA0093A7A6 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = SoPretty/pt.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B51B2E611D8CA3DA0093A7A6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = SoPretty/ru.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B51B2E621D8CA3E90093A7A6 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = SoPretty/pl.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
@@ -373,6 +375,7 @@
 				49A9610F1BC31C4700592D94 /* SoPretty.h */,
 				49A9610D1BC31C4700592D94 /* Supporting Files */,
 				61740C511DEF3BD9000C2BA7 /* SplitViewController.swift */,
+				B1031B211E31AFC8008E835B /* GradientView.swift */,
 			);
 			path = SoPretty;
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				4909C7031C75073B00FAC8FB /* PrettyCardsLayout.swift in Sources */,
 				49A961611BC31CC900592D94 /* UIColor+LightenUpOkay.swift in Sources */,
 				496E7D1F1BEA8727005C8746 /* SmallModalNavigationController.swift in Sources */,
+				B1031B221E31AFC8008E835B /* GradientView.swift in Sources */,
 				49A961541BC31CC900592D94 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				5E13DE5F1C4E1A6500E45D73 /* UIImage+URLSource.swift in Sources */,
 				49A961521BC31CC900592D94 /* Brand.swift in Sources */,

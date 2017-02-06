@@ -44,7 +44,7 @@ class ShareViewController: SLComposeServiceViewController {
         }
     }
 
-    var newSubmissions = [NewUpload]() {
+    var newSubmissions = [OldNewSubmission]() {
         didSet {
             validateContent()
         }
@@ -73,7 +73,7 @@ class ShareViewController: SLComposeServiceViewController {
 
         let backgroundSession = session.copyToBackgroundSessionWithIdentifier(assignment.submissionUploadIdentifier, sharedContainerIdentifier: appGroup)
 
-        func uploadSubmissions(_ submissions: [NewUpload]) {
+        func uploadSubmissions(_ submissions: [OldNewSubmission]) {
             if submissions.isEmpty {
                 completionHandler()
                 return

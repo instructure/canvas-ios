@@ -133,12 +133,5 @@ extension Session {
                 .map { (request, $0) }
         }
     }
-
-    public func addFileUploadCompletionHandler(fileUpload: FileUpload, inContext context: NSManagedObjectContext) {
-        URLSession.getAllTheTasksWithCompletionHandler { tasks in
-            if let task = tasks.filter({ $0.taskIdentifier == fileUpload.taskIdentifier?.intValue }).first {
-                fileUpload.addTaskCompletionHandler(task, inSession: self, inContext: context)
-            }
-        }
-    }
 }
+

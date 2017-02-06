@@ -22,7 +22,7 @@ import TooLegit
 
 extension Upload {
     public static func observer(_ session: Session, id: String) throws -> ManagedObjectObserver<Upload> {
-        let predicate = NSPredicate(format: "%K == %@", "id", id)
+        let predicate = self.predicate(id: id)
         let context = try session.assignmentsManagedObjectContext()
         return try ManagedObjectObserver(predicate: predicate, inContext: context)
     }

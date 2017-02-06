@@ -25,6 +25,7 @@ import TooLegit
 import SoPersistent
 import SoPretty
 import ReactiveSwift
+import ReactiveCocoa
 
 class SubmitAnnotatedAssignmentViewController: UITableViewController {
 
@@ -34,6 +35,8 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
     var defaultAssignmentID: String?
     var didSubmitAssignment: (Void)->Void = { }
     var observer: ManagedObjectObserver<Upload>?
+
+    let newSubmissionViewModel: NewSubmissionViewModelType = NewSubmissionViewModel()
 
     @IBOutlet var courseCell: UITableViewCell!
     @IBOutlet var assignmentCell: UITableViewCell!
@@ -62,6 +65,9 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
         didSet {
             assignmentCell.detailTextLabel?.text = assignment?.name ?? ""
             navigationItem.rightBarButtonItem?.isEnabled = (course != nil && assignment != nil)
+            if let assignment = assignment {
+                newSubmissionViewModel.inputs.configureWith(session: session, assignment: assignment)
+            }
         }
     }
 
@@ -96,6 +102,22 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
         } else {
             course = nil
         }
+
+        bindViewModel()
+    }
+
+    fileprivate func bindViewModel() {
+        self.newSubmissionViewModel.outputs.showError
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] in
+                self?.handleSubmitError($0)
+            }
+
+        self.newSubmissionViewModel.outputs.submission
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] _ in
+                self?.uploadSubmitted()
+            }
     }
 
     fileprivate func showSubmitButton() {
@@ -121,57 +143,34 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
 
         flattenDocument() { url in
-            let newUpload = NewUpload.fileUpload([.fileURL(url)])
             do {
-                try assignment.uploadForNewSubmission(newUpload, inSession: self.session) { submissionUpload in
-                    guard let submissionUpload = submissionUpload else { print("Failed to begin the submission upload"); return }
+                let data = try Data(contentsOf: url)
+                let newUpload = NewFileUpload(kind: .fileURL(url), data: data)
+                let context = try self.session.filesManagedObjectContext()
+                let fileUpload = FileUpload(inContext: context, uploadable: newUpload, path: assignment.submissionsPath)
+                let predicate = NSPredicate(format: "self == %@", fileUpload)
 
-                    let handleError: (String) -> Void = { [weak self] message in
-                        let alert = UIAlertController(title: NSLocalizedString("Failed to Submit", comment: "Error when submitting an assignment"), message: message, preferredStyle: .alert)
-                        let action = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil)
-                        alert.addAction(action)
-                        self?.present(alert, animated: true, completion: nil)
+                let uploadChanges = ManagedObjectObserver<FileUpload>.object(predicate: predicate, context: context, lifetime: self.reactive.lifetime)
 
-                        self?.navigationItem.title = nil
-                        self?.showSubmitButton()
-                        self?.navigationItem.leftBarButtonItem?.isEnabled = true
-                        self?.courseCell.isUserInteractionEnabled = true
-                        self?.courseCell.textLabel?.textColor = UIColor.black
-                        self?.assignmentCell.isUserInteractionEnabled = true
-                        self?.assignmentCell.textLabel?.textColor = UIColor.black
+                uploadChanges
+                    .filter { $0.failedAt != nil }
+                    .map { $0.errorMessage }
+                    .take(first: 1)
+                    .observeValues { [weak self] in
+                        self?.handleSubmitError($0)
                     }
 
-                    do {
-                        self.observer = try Upload.observer(self.session, id: submissionUpload.id)
-                        self.submissionUploadCompletedDisposable = self.observer!.signal.observeValues { [weak self] change, upload in
-                            if let upload = upload {
-                                guard upload.failedAt == nil else {
-                                    let message = NSLocalizedString("There was a problem submitting your assignment. Please try again later.", comment: "Message when fails to submit an assignment")
-                                    handleError(upload.errorMessage ?? message)
-                                    return
-                                }
-
-                                if upload.hasCompleted {
-                                    self?.navigationItem.title = NSLocalizedString("Submitted!", comment: "")
-                                    self?.navigationItem.rightBarButtonItem = nil
-                                    self?.navigationItem.leftBarButtonItem = nil
-
-                                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-                                        self?.didSubmitAssignment()
-                                        self?.dismiss(animated: true, completion: nil)
-                                    }
-                                }
-                            }
-                        }
-
-                        submissionUpload.begin(inSession: self.session, inContext: try self.session.assignmentsManagedObjectContext())
-                    } catch let e as NSError {
-                        handleError(e.localizedDescription)
+                uploadChanges
+                    .filter { $0.hasCompleted }
+                    .map { NewSubmission.fileUpload([$0.file!]) }
+                    .take(first: 1)
+                    .observeValues { [weak self] in
+                        self?.newSubmissionViewModel.inputs.submit(newSubmission: $0)
                     }
 
-                }
+                fileUpload.begin(inSession: self.session, inContext: context)
             } catch {
-                print("Error starting upload for assignment submission: \(error)")
+                self.handleSubmitError("Error starting upload: \(error)")
             }
         }
     }
@@ -204,6 +203,33 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
             } catch {
                 print("Error generating new file with flattened annotations: \(error)")
             }
+        }
+    }
+
+    fileprivate func handleSubmitError(_ message: String?) {
+        let defaultMessage = NSLocalizedString("There was a problem submitting your assignment. Please try again later.", comment: "Message when fails to submit an assignment")
+        let alert = UIAlertController(title: NSLocalizedString("Failed to Submit", comment: "Error when submitting an assignment"), message: message ?? defaultMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+
+        self.navigationItem.title = nil
+        self.showSubmitButton()
+        self.navigationItem.leftBarButtonItem?.isEnabled = true
+        self.courseCell.isUserInteractionEnabled = true
+        self.courseCell.textLabel?.textColor = UIColor.black
+        self.assignmentCell.isUserInteractionEnabled = true
+        self.assignmentCell.textLabel?.textColor = UIColor.black
+    }
+
+    fileprivate func uploadSubmitted() {
+        self.navigationItem.title = NSLocalizedString("Submitted!", comment: "")
+        self.navigationItem.rightBarButtonItem = nil
+        self.navigationItem.leftBarButtonItem = nil
+
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            self.didSubmitAssignment()
+            self.dismiss(animated: true, completion: nil)
         }
     }
 

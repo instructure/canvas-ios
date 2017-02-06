@@ -19,6 +19,7 @@
 import ReactiveSwift
 import TooLegit
 import Marshal
+import FileKit
 
 extension Submission {
     static func getStudentSubmissions(_ session: Session, courseID: String, assignmentID: String) throws -> SignalProducer<[JSONObject], NSError> {
@@ -29,6 +30,13 @@ extension Submission {
     static func getSubmission(_ session: Session, courseID: String, assignmentID: String) throws -> SignalProducer<JSONObject, NSError> {
         let request = try SubmissionAPI.getSubmission(session, courseID: courseID, assignmentID: assignmentID)
         
+        return session.JSONSignalProducer(request)
+    }
+
+    static func post(_ newSubmission: NewSubmission, session: Session, courseID: String, assignmentID: String, comment: String?) throws -> SignalProducer<JSONObject, NSError> {
+        let path = "/api/v1/courses/\(courseID)/assignments/\(assignmentID)/submissions"
+        let parameters = Session.rejectNilParameters(["submission": newSubmission.parameters, "comment": comment])
+        let request = try session.POST(path, parameters: parameters)
         return session.JSONSignalProducer(request)
     }
 }

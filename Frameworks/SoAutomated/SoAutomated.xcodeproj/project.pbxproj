@@ -30,6 +30,10 @@
 		B13C60C21D5284C900367E56 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C49DAF1D46AAAF0003F8EB /* Quick.framework */; };
 		B1451F491C8F4D6A00E78FCE /* NSManagedObjectContext+SoAutomated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1451F481C8F4D6A00E78FCE /* NSManagedObjectContext+SoAutomated.swift */; };
 		B16107141C9366130012F5E4 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16107131C9366130012F5E4 /* DVR.framework */; };
+		B16589531E283965007ACB5B /* TestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16589521E283965007ACB5B /* TestObserver.swift */; };
+		B16589551E283A2E007ACB5B /* XCTAssert-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16589541E283A2E007ACB5B /* XCTAssert-Extensions.swift */; };
+		B16589571E283A51007ACB5B /* Event-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16589561E283A51007ACB5B /* Event-Extensions.swift */; };
+		B165895C1E283FF9007ACB5B /* DummyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B165895B1E283FF9007ACB5B /* DummyTask.swift */; };
 		B1700FAC1CFD01E9008E7293 /* SoPersistent+SoAutomated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1700FAB1CFD01E9008E7293 /* SoPersistent+SoAutomated.swift */; };
 		B1AC14261E04687D006ECAF3 /* upload-file.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD5D1DDFAFE2000B5D22 /* upload-file.json */; };
 		B1B75B241DAD6C7D00692869 /* IntegrationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B75B231DAD6C7D00692869 /* IntegrationHelper.swift */; };
@@ -138,6 +142,10 @@
 		B13A392F1CBFF76900CBD98B /* DVR+SoAutomated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DVR+SoAutomated.swift"; sourceTree = "<group>"; };
 		B1451F481C8F4D6A00E78FCE /* NSManagedObjectContext+SoAutomated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+SoAutomated.swift"; sourceTree = "<group>"; };
 		B16107131C9366130012F5E4 /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DVR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B16589521E283965007ACB5B /* TestObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestObserver.swift; sourceTree = "<group>"; };
+		B16589541E283A2E007ACB5B /* XCTAssert-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTAssert-Extensions.swift"; sourceTree = "<group>"; };
+		B16589561E283A51007ACB5B /* Event-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event-Extensions.swift"; sourceTree = "<group>"; };
+		B165895B1E283FF9007ACB5B /* DummyTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyTask.swift; sourceTree = "<group>"; };
 		B1700FAB1CFD01E9008E7293 /* SoPersistent+SoAutomated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SoPersistent+SoAutomated.swift"; sourceTree = "<group>"; };
 		B1B75B231DAD6C7D00692869 /* IntegrationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrationHelper.swift; sourceTree = "<group>"; };
 		B1C25A151DAC07AF001F1436 /* ManagedFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedFactory.swift; sourceTree = "<group>"; };
@@ -542,6 +550,7 @@
 		F97219121C15F8EE0034775D = {
 			isa = PBXGroup;
 			children = (
+				B165895B1E283FF9007ACB5B /* DummyTask.swift */,
 				B1AC256A1C5547FE00636DC3 /* Dependencies */,
 				F972191E1C15F8EE0034775D /* SoAutomated */,
 				B1D801171C91BA4F006A1143 /* SoAutomatedTests */,
@@ -573,6 +582,9 @@
 				B1E7B2CB1D2D87E70076F377 /* User.swift */,
 				B11544AB1D42761E0011E5DF /* JSONShape.swift */,
 				B131B7B41DAC4CDC00B10936 /* SpecHelper.swift */,
+				B16589521E283965007ACB5B /* TestObserver.swift */,
+				B16589541E283A2E007ACB5B /* XCTAssert-Extensions.swift */,
+				B16589561E283A51007ACB5B /* Event-Extensions.swift */,
 			);
 			path = SoAutomated;
 			sourceTree = "<group>";
@@ -768,6 +780,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B16589531E283965007ACB5B /* TestObserver.swift in Sources */,
 				B1C25A181DAC07D8001F1436 /* Factories.swift in Sources */,
 				B131B7B01DAC24E700B10936 /* Change.swift in Sources */,
 				B1E5B3841DD6087F0074A510 /* Session+ManagedObjectContext.swift in Sources */,
@@ -776,8 +789,11 @@
 				B13A39301CBFF76900CBD98B /* DVR+SoAutomated.swift in Sources */,
 				B1700FAC1CFD01E9008E7293 /* SoPersistent+SoAutomated.swift in Sources */,
 				B11544AC1D42761E0011E5DF /* JSONShape.swift in Sources */,
+				B165895C1E283FF9007ACB5B /* DummyTask.swift in Sources */,
+				B16589551E283A2E007ACB5B /* XCTAssert-Extensions.swift in Sources */,
 				B131B7B51DAC4CDC00B10936 /* SpecHelper.swift in Sources */,
 				B1451F491C8F4D6A00E78FCE /* NSManagedObjectContext+SoAutomated.swift in Sources */,
+				B16589571E283A51007ACB5B /* Event-Extensions.swift in Sources */,
 				B11544BA1D428DF00011E5DF /* BeShapedLike.swift in Sources */,
 				B1C25A161DAC07AF001F1436 /* ManagedFactory.swift in Sources */,
 			);
