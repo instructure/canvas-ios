@@ -124,8 +124,6 @@
 		492705A31CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927055E1CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m */; };
 		492705A61CF4B73200C631C6 /* CKIClient+CBIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705611CF4B73200C631C6 /* CKIClient+CBIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492705A71CF4B73200C631C6 /* CKIClient+CBIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705621CF4B73200C631C6 /* CKIClient+CBIClient.m */; };
-		492705A81CF4B73200C631C6 /* Crashlytics+CBIAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705641CF4B73200C631C6 /* Crashlytics+CBIAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		492705A91CF4B73200C631C6 /* Crashlytics+CBIAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705651CF4B73200C631C6 /* Crashlytics+CBIAdditions.m */; };
 		492705AA1CF4B73200C631C6 /* Crashlytics+CrashContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705661CF4B73200C631C6 /* Crashlytics+CrashContext.h */; };
 		492705AB1CF4B73200C631C6 /* Crashlytics+CrashContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705671CF4B73200C631C6 /* Crashlytics+CrashContext.m */; };
 		492705AC1CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705681CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.h */; };
@@ -1121,8 +1119,6 @@
 		4927055E1CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIUser+SwiftCompatibility.m"; sourceTree = "<group>"; };
 		492705611CF4B73200C631C6 /* CKIClient+CBIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKIClient+CBIClient.h"; sourceTree = "<group>"; };
 		492705621CF4B73200C631C6 /* CKIClient+CBIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CBIClient.m"; sourceTree = "<group>"; };
-		492705641CF4B73200C631C6 /* Crashlytics+CBIAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Crashlytics+CBIAdditions.h"; sourceTree = "<group>"; };
-		492705651CF4B73200C631C6 /* Crashlytics+CBIAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Crashlytics+CBIAdditions.m"; sourceTree = "<group>"; };
 		492705661CF4B73200C631C6 /* Crashlytics+CrashContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Crashlytics+CrashContext.h"; sourceTree = "<group>"; };
 		492705671CF4B73200C631C6 /* Crashlytics+CrashContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Crashlytics+CrashContext.m"; sourceTree = "<group>"; };
 		492705681CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKNumberBadgeView+CanvasStyle.h"; sourceTree = "<group>"; };
@@ -2531,8 +2527,6 @@
 		492705631CF4B73200C631C6 /* Crashlytics */ = {
 			isa = PBXGroup;
 			children = (
-				492705641CF4B73200C631C6 /* Crashlytics+CBIAdditions.h */,
-				492705651CF4B73200C631C6 /* Crashlytics+CBIAdditions.m */,
 				492705661CF4B73200C631C6 /* Crashlytics+CrashContext.h */,
 				492705671CF4B73200C631C6 /* Crashlytics+CrashContext.m */,
 			);
@@ -3953,7 +3947,6 @@
 				492706571CF4B7A800C631C6 /* DiscussionPresentationStrategy.h in Headers */,
 				492705B21CF4B73200C631C6 /* NSURL+RemoveFragment.h in Headers */,
 				492706AB1CF4B98900C631C6 /* iCanvasErrorHandler.h in Headers */,
-				492705A81CF4B73200C631C6 /* Crashlytics+CBIAdditions.h in Headers */,
 				49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */,
 				492705391CF4B70600C631C6 /* CBISubmissionDialogViewModel.h in Headers */,
 				4902E1251CF4C8890069E043 /* Analytics.h in Headers */,
@@ -4707,7 +4700,6 @@
 				492707471CF4BACB00C631C6 /* CBIMessageParticipantsViewModel.m in Sources */,
 				492705AD1CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.m in Sources */,
 				492706E51CF4BAB500C631C6 /* VideoRecorderController.m in Sources */,
-				492705A91CF4B73200C631C6 /* Crashlytics+CBIAdditions.m in Sources */,
 				492707451CF4BACB00C631C6 /* CBIMessageParticipantsCell.m in Sources */,
 				492708401CF4BC3200C631C6 /* CBISyllabusTabViewModel.m in Sources */,
 				492706431CF4B7A800C631C6 /* CBIDiscussionTopicCell.m in Sources */,

@@ -25,6 +25,9 @@ import SoLazy
 import SoPersistent
 import SoEdventurous
 import CanvasKeymaster
+import Fabric
+import Crashlytics
+import Secrets
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -108,7 +111,7 @@ extension AppDelegate {
     
     func postLaunchSetup() {
         PSPDFKit.license()
-        Crashlytics.prepare()
+        self.setupCrashlytics()
         Analytics.prepare()
         NetworkMonitor.engage()
         CBILogger.install(LoginConfiguration.sharedConfiguration.logFileManager)
@@ -136,7 +139,7 @@ extension AppDelegate {
 
         LegacyModuleProgressShim.observeProgress(session)
         ModuleItem.beginObservingProgress(session)
-        Crashlytics.setDebugInformation()
+        self.setupCrashlyitcsDebugInformation()
         ConversationUpdater.shared().updateUnreadConversationCount()
         CKCanvasAPI.updateCurrentAPI() // set's currenAPI from CKIClient.currentClient()
         
@@ -197,6 +200,30 @@ extension AppDelegate {
         if let vc = window?.rootViewController  {
             presentErrorAlert(vc, error: error)
         }
+    }
+}
+
+// MARK: Crashlytics
+extension AppDelegate {
+    
+    func setupCrashlytics() {
+        guard let _ = Bundle.main.object(forInfoDictionaryKey: "Fabric") else {
+            NSLog("WARNING: Crashlytics was not properly initialized.");
+            return
+        }
+        
+        Fabric.with([Crashlytics.self])
+    }
+    
+    func setupCrashlyitcsDebugInformation() {
+        let client = CKIClient.current()
+        let baseURLString = client?.baseURL?.absoluteString
+        guard Secrets.featureEnabled(.protectedUserInformation, domain: baseURLString) == true else { return }
+        guard let user = client?.currentUser else { return }
+        
+        Crashlytics.sharedInstance().setObjectValue(client?.actAsUserID, forKey: "MASQUERADE_AS_USER_ID")
+        Crashlytics.sharedInstance().setObjectValue(baseURLString, forKey: "DOMAIN")
+        Crashlytics.sharedInstance().setUserIdentifier(user.id)
     }
 }
 
