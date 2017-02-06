@@ -188,7 +188,6 @@
 		6145A4C31DAC3DA400DFE0AA /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145A4A61DAC30BE00DFE0AA /* CanvasKit.framework */; };
 		6145A4C41DAC3DA400DFE0AA /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6145A4A61DAC30BE00DFE0AA /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6145A4C51DAC430800DFE0AA /* Pods_SpeedGrader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB7129EA3276CC744B88C5A /* Pods_SpeedGrader.framework */; };
-		6145A4C61DAC430800DFE0AA /* Pods_SpeedGrader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB7129EA3276CC744B88C5A /* Pods_SpeedGrader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		614D2E541A47B5D700164097 /* CSGFlyingPandaRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 614D2E531A47B5D700164097 /* CSGFlyingPandaRefreshControl.m */; };
 		615B771C1A44C74E00AAEE2C /* CSGFlyingPandaActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 615B771B1A44C74E00AAEE2C /* CSGFlyingPandaActivityView.m */; };
 		61A97E0C1A659022004C2007 /* CSGAudioPlaybackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A97E0B1A659022004C2007 /* CSGAudioPlaybackManager.m */; };
@@ -323,7 +322,6 @@
 				6145A4BC1DAC3DA400DFE0AA /* PSPDFKit.framework in Embed Frameworks */,
 				61C2E98E1DAD454400073F62 /* WhizzyWig.framework in Embed Frameworks */,
 				61C2E9A11DAD463000073F62 /* Reachability.framework in Embed Frameworks */,
-				6145A4C61DAC430800DFE0AA /* Pods_SpeedGrader.framework in Embed Frameworks */,
 				61C2E97D1DAD440700073F62 /* Marshal.framework in Embed Frameworks */,
 				61C2E9951DAD457200073F62 /* MediaKit.framework in Embed Frameworks */,
 				6145A4BE1DAC3DA400DFE0AA /* Result.framework in Embed Frameworks */,
@@ -7336,6 +7334,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};

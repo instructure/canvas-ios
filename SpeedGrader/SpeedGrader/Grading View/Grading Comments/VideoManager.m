@@ -115,7 +115,7 @@ static const NSString *ItemStatusContext;
 
 - (void)setupForVideoRecording {
     [self.playaLaya removeFromSuperlayer];
-    
+    [self cleanUpAfterPlayingVideo];
     [self.containerView.layer addSublayer:self.previewLayer];
     
     [self.captureSession removeOutput:self.videoFileOutput];
@@ -247,7 +247,8 @@ static const NSString *ItemStatusContext;
 
 - (void)cleanUpAfterPlayingVideo
 {
-    [self.playaLaya setPlayer:nil];
+    self.playaLaya.player = nil;
+    self.playaLaya = nil;
 }
 
 - (void)stopCaptureSession
