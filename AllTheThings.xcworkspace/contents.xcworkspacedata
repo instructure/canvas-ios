@@ -8,7 +8,10 @@
       location = "container:Teacher"
       name = "Teacher">
       <FileRef
-         location = "group:Teach.xcodeproj">
+         location = "group:Teacher.playground">
+      </FileRef>
+      <FileRef
+         location = "group:Teacher.xcodeproj">
       </FileRef>
    </Group>
    <Group
@@ -179,6 +182,9 @@
       </FileRef>
       <FileRef
          location = "group:Secrets/Secrets.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:SixtySix/SixtySix.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:SoAnnotated/SoAnnotated.xcodeproj">
