@@ -16,32 +16,35 @@
 
 import TooLegit
 import SoPersistent
+import CoreData
 
 extension UserEnrollment {
-    public static func refresher(enrolledIn context: ContextID, for session: Session) throws -> Refresher {
+    public static func refresher(enrolledInCourseWithID courseID: String, for session: Session) throws -> Refresher {
         let moc = try session.peepsManagedObjectContext()
-        let predicate = NSPredicate(format: "%K == %@", "contextID", context.canvasContextID)
-        let refreshProducer = UserEnrollment.syncSignalProducer(predicate, inContext: moc, fetchRemote: try User.getUsers(context, session: session)) { enrollment, _ in
-            enrollment.contextID = context
-        }
+        let predicate = NSPredicate(format: "%K == %@", "courseID", courseID)
+        let refreshProducer = UserEnrollment.syncSignalProducer(predicate, inContext: moc, fetchRemote: try UserEnrollment.getUsers(enrolledInCourseWithID: courseID, session: session))
         
-        let key = cacheKey(moc, [context.canvasContextID])
+        let key = cacheKey(moc, [courseID])
         return SignalProducerRefresher(refreshSignalProducer: refreshProducer, scope: session.refreshScope, cacheKey: key)
     }
     
-    public static func collection(enrolledIn contextID: ContextID, as roles: UserEnrollmentRoles = [], for session: Session) throws -> FetchedCollection<UserEnrollment> {
+    public static func collectionByRole(enrolledInCourseWithID courseID: String, as roles: [UserEnrollmentRole] = [], for session: Session) throws -> FetchedCollection<UserEnrollment> {
         
         let predicate: NSPredicate
         if !roles.isEmpty {
-            predicate = NSPredicate(format: "%K == %@ && (%K & %@) > 0", "contextID", contextID.canvasContextID, "roles", NSNumber(value: roles.rawValue))
+            predicate = NSPredicate(format: "%K == %@ && %@ CONTAINS %K ", "courseID", courseID, roles.map { $0.rawValue }, "role")
         } else {
-            predicate = NSPredicate(format: "%K == %@", "contextID", contextID.canvasContextID)
+            predicate = NSPredicate(format: "%K == %@", "courseID", courseID)
         }
         
         let context = try session.peepsManagedObjectContext()
-        
-        return try FetchedCollection(frc:
-            context.fetchedResults(predicate, sortDescriptors: ["user.sortableName".ascending], propertiesToFetch: ["user"])
-        )
+        let frc: NSFetchedResultsController<UserEnrollment> = context.fetchedResults(predicate, sortDescriptors: ["roleOrder".ascending, "user.sortableName".ascending], sectionNameKeypath: "role", propertiesToFetch: ["user"])
+        return try FetchedCollection(frc: frc) { role in
+            return role
+                .flatMap { UserEnrollmentRole(rawValue: $0) }
+                .map { $0.title }
+        }
     }
+    
+    public typealias TableViewController = FetchedTableViewController<UserEnrollment>
 }

@@ -9,10 +9,18 @@
 import Foundation
 import SixtySix
 import Pathetic
+import SafariServices
 
 private let apiV1 = /?"api"/"v1"
 private let courses = apiV1/?"courses"
 private let course = courses/string
+private let assignments = course/"assignments"
+private let people = course/"users"
+private let person = people/string
+private let wiki = course/"wiki"
+private let pages = course/"pages"
+private let wikiPage = wiki/string
+private let page = pages/string
 
 class CookiesViewController: UIViewController, Destination {
     static func visit(with parameters: (String, String)) throws -> UIViewController {
@@ -22,7 +30,21 @@ class CookiesViewController: UIViewController, Destination {
 
 extension Router {
     public static let teacher = Router(
-        Route(course, to: AssignmentsTableViewController.self)
+        // Course view controller
+        Route(course,       to: CourseViewController.self),
+        
+        // Assignments
+        Route(assignments,  to: AssignmentsTableViewController.self),
+        
+        // People
+        Route(people,       to: PeopleViewController.self),
+        Route(person,       to: PersonDetailViewController.self),
+        
+        // Pages
+        Route(pages,        to: PagesTableViewController.self),
+        Route(wiki,         to: PagesTableViewController.self),
+        Route(wikiPage,     to: PageDetailViewController.self),
+        Route(page,         to: PageDetailViewController.self)
     )
 }
 
@@ -45,7 +67,9 @@ extension Router {
                     .presenter
                     .present(destination, from: source, animated: animated)
             } else {
-                // TODO: SafariViewController?
+                let safari = SFSafariViewController(url: url)
+                safari.modalPresentationStyle = .fullScreen
+                source.present(safari, animated: true, completion: nil)
             }
         }
     }

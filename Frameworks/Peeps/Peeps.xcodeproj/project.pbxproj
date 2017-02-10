@@ -11,6 +11,7 @@
 		4911671A1DAF4B1000D18837 /* UserEnrollment+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491167191DAF4B1000D18837 /* UserEnrollment+Collections.swift */; };
 		4911671C1DAFE49600D18837 /* Bundle+Peeps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911671B1DAFE49600D18837 /* Bundle+Peeps.swift */; };
 		4928EBDE1C84DEE500799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBDD1C84DEE500799E04 /* Marshal.framework */; };
+		49850A491E49A36700885F71 /* UserEnrollment+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49850A481E49A36700885F71 /* UserEnrollment+Network.swift */; };
 		49A04E301CF50BE20051E1E7 /* BackdropCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E2A1CF50BE20051E1E7 /* BackdropCell.swift */; };
 		49A04E311CF50BE20051E1E7 /* BackdropFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E2B1CF50BE20051E1E7 /* BackdropFile.swift */; };
 		49A04E321CF50BE20051E1E7 /* BackdropFileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E2C1CF50BE20051E1E7 /* BackdropFileDownloader.swift */; };
@@ -45,6 +46,7 @@
 		491167191DAF4B1000D18837 /* UserEnrollment+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserEnrollment+Collections.swift"; sourceTree = "<group>"; };
 		4911671B1DAFE49600D18837 /* Bundle+Peeps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Peeps.swift"; sourceTree = "<group>"; };
 		4928EBDD1C84DEE500799E04 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49850A481E49A36700885F71 /* UserEnrollment+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserEnrollment+Network.swift"; sourceTree = "<group>"; };
 		49A04E2A1CF50BE20051E1E7 /* BackdropCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackdropCell.swift; sourceTree = "<group>"; };
 		49A04E2B1CF50BE20051E1E7 /* BackdropFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackdropFile.swift; sourceTree = "<group>"; };
 		49A04E2C1CF50BE20051E1E7 /* BackdropFileDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackdropFileDownloader.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				491167171DAF467C00D18837 /* UserEnrollment.swift */,
 				491167191DAF4B1000D18837 /* UserEnrollment+Collections.swift */,
+				49850A481E49A36700885F71 /* UserEnrollment+Network.swift */,
 			);
 			path = Enrollments;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				4911671C1DAFE49600D18837 /* Bundle+Peeps.swift in Sources */,
 				49A04E471CF6149A0051E1E7 /* PandatarBuilderViewController.swift in Sources */,
 				5E5560141C8EC90200933E08 /* User.swift in Sources */,
+				49850A491E49A36700885F71 /* UserEnrollment+Network.swift in Sources */,
 				49A04E4A1CF614DC0051E1E7 /* ProfileBarButtonItem.swift in Sources */,
 				5E5560181C8ECA2400933E08 /* User+Network.swift in Sources */,
 				49A04E301CF50BE20051E1E7 /* BackdropCell.swift in Sources */,

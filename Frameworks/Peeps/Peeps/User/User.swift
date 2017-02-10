@@ -44,10 +44,9 @@ extension User: SynchronizedModel {
         loginID         = try json <| "login_id"
         sortableName    = try json <| "sortable_name"
         email           = try json <| "primary_email"
-
-        let avatarURLString: String? = try json <| "avatar_url"
-        if let urlString = avatarURLString {
-            avatarURL   = URL(string: urlString)
+        
+        if let avatarURLString: String = try json <| "avatar_url" {
+            avatarURL   = URL(string: avatarURLString)
         }
     }
 }
