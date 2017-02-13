@@ -56,8 +56,8 @@ class CalendarEventListViewController: UITableViewController {
             refresher?.makeRefreshable(self)
             _ = self.refresher?.refreshingCompleted.observeValues { [weak self] err in
                 self?.updateEmptyView()
-                if let s = self {
-                    err?.presentAlertFromViewController(s)
+                if let s = self, let e = err {
+                    Router.sharedInstance.defaultErrorHandler()(s, e)
                 }
             }
         }

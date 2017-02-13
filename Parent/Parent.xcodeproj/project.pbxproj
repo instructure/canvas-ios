@@ -75,6 +75,7 @@
 		496A49DB1DB822A40044E19C /* CanvasObserverLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A49DA1DB822A40044E19C /* CanvasObserverLoginViewController.swift */; };
 		49998E281E1D6B1A00C98AC2 /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49998E271E1D6B0100C98AC2 /* CWNotification.framework */; };
 		49998E291E1D6B1A00C98AC2 /* CWNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49998E271E1D6B0100C98AC2 /* CWNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49DB0AE61E4E27030036D96E /* Student+AccessRemoved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DB0AE51E4E27030036D96E /* Student+AccessRemoved.swift */; };
 		49E21B081D1C66CA00B7B9B4 /* SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E21B071D1C667A00B7B9B4 /* SoGrey.framework */; };
 		5E0F9A671C739E6A00BB7707 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A501C739E6A00BB7707 /* AlertCell.swift */; };
 		5E0F9A691C739E6A00BB7707 /* AlertCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A521C739E6A00BB7707 /* AlertCellViewModel.swift */; };
@@ -776,6 +777,7 @@
 		496A49D81DB810620044E19C /* ParentSelectDomainDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentSelectDomainDataSource.swift; sourceTree = "<group>"; };
 		496A49DA1DB822A40044E19C /* CanvasObserverLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasObserverLoginViewController.swift; sourceTree = "<group>"; };
 		49998E271E1D6B0100C98AC2 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49DB0AE51E4E27030036D96E /* Student+AccessRemoved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+AccessRemoved.swift"; sourceTree = "<group>"; };
 		49E21B071D1C667A00B7B9B4 /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49ED5A351DBFC84D009E2896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoStudentsViewController.xib; sourceTree = "<group>"; };
 		49ED5A391DBFC943009E2896 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/NoStudentsViewController.strings; sourceTree = "<group>"; };
@@ -1138,6 +1140,7 @@
 				5E0F9A661C739E6A00BB7707 /* SettingsViewModel.swift */,
 				2CB69BC51D91CE140059C5A5 /* UserCell.xib */,
 				614BAAB41CE6685000BAF7D6 /* AddStudentViewController.swift */,
+				49DB0AE51E4E27030036D96E /* Student+AccessRemoved.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1633,6 +1636,7 @@
 				5E41048B1C99E08B0021567C /* UIImage+Resize.swift in Sources */,
 				5E5EE0FF1D0218C700FB0BA5 /* Router+Errors.swift in Sources */,
 				5E0F9A701C739E6A00BB7707 /* DashboardTabView.swift in Sources */,
+				49DB0AE61E4E27030036D96E /* Student+AccessRemoved.swift in Sources */,
 				5E0F9A761C739E6A00BB7707 /* SettingsObserveeCellViewModel.swift in Sources */,
 				5E0F9A691C739E6A00BB7707 /* AlertCellViewModel.swift in Sources */,
 				61EB8D651CF62A2100E794A4 /* NoStudentsViewController.swift in Sources */,

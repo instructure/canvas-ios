@@ -28,6 +28,9 @@ extension Router {
             let networkError = error.domain == "com.instructure.TooLegit"
             if networkError {
                 switch error.code {
+                case 403:
+                    guard let s = self.session else { self.presentGenericNetworkError(viewController, error: error); return }
+                    Student.refreshForAccessRemoved(session: s, from: viewController)
                 case 401:
                     self.presentNotAuthorizedError(viewController, error: error)
                 case 404:

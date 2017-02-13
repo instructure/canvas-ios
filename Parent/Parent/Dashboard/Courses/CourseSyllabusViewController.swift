@@ -87,7 +87,7 @@ class CourseSyllabusViewController: UIViewController {
         
         r.refreshingCompleted.observeValues { [weak self] error in
             if let me = self, let error = error {
-                error.presentAlertFromViewController(me)
+                Router.sharedInstance.defaultErrorHandler()(me, error)
             }
         }
     }
