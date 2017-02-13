@@ -39,8 +39,8 @@ class GroupsCollectionViewController: Group.CollectionViewController, UICollecti
         let customize: (Enrollment)->() = { [weak self] enrollment in
             let picker = CustomizeEnrollmentViewController(session: session, context: enrollment.contextID)
             let nav = UINavigationController(rootViewController: picker)
-            nav.modalPresentationStyle = .popover
- 
+            nav.modalPresentationStyle = .formSheet
+            
             self?.present(nav, animated: true, completion: nil)
         }
         
