@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Course" representedClassName=".Course" parentEntity="Enrollment" syncable="YES">
         <attribute name="activeGradingPeriodID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="code" attributeType="String" syncable="YES"/>
@@ -16,6 +16,7 @@
         <relationship name="grades" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Grade" inverseName="course" inverseEntity="Grade" syncable="YES"/>
     </entity>
     <entity name="Enrollment" representedClassName=".Enrollment" isAbstract="YES" syncable="YES">
+        <attribute name="arcLTIToolID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="color" attributeType="Transformable" defaultValueString="#555555" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="isFavorite" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="NO" syncable="YES"/>
@@ -46,7 +47,7 @@
     </entity>
     <elements>
         <element name="Course" positionX="-279" positionY="468" width="128" height="240"/>
-        <element name="Enrollment" positionX="-189" positionY="270" width="128" height="105"/>
+        <element name="Enrollment" positionX="-189" positionY="270" width="128" height="120"/>
         <element name="Grade" positionX="-558" positionY="453" width="128" height="135"/>
         <element name="GradingPeriod" positionX="-351" positionY="414" width="128" height="105"/>
         <element name="Group" positionX="-45" positionY="477" width="128" height="45"/>

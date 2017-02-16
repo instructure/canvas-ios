@@ -29,6 +29,7 @@ NSString * const CKISubmissionTypeQuiz = @"online_quiz";
 NSString * const CKISubmissionTypeDiscussion = @"discussion_topic";
 NSString * const CKISubmissionTypeExternalTool = @"external_tool";
 NSString * const CKISubmissionTypePaper = @"on_paper";
+NSString * const CKISubmissionTypeLTILaunch = @"basic_lti_launch";
 
 
 @implementation CKISubmission

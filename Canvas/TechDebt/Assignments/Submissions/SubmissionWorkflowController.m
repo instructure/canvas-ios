@@ -32,10 +32,14 @@
 #import "MobileQuizInformationViewController.h"
 
 @import CanvasKeymaster;
+@import AssignmentKit;
+@import EnrollmentKit;
+
 
 @interface SubmissionWorkflowController () <CKRichTextInputViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) UIViewController *viewController;
 @property CKAudioCommentRecorderView *audioRecorder;
+@property (copy, nonatomic, nullable) NSString *arcLTIToolID;
 
 @property (copy) void (^continueToQuizAction)(void);
 @property (copy) void (^cancelAction)(void);
@@ -105,6 +109,19 @@
     // __builtin_popcount returns the number of bits set in the binary rep of the int.
     // Surprisingly, there's not a simpler thing in the C standard to do this.
     int numberOfPossibleTypes = __builtin_popcount(submissionTypes);
+    
+    NSString *canvasContext = @"";
+    switch (self.contextInfo.contextType) {
+        case CKContextTypeCourse:
+            canvasContext = [NSString stringWithFormat:@"%@_%lld", @"course", self.contextInfo.ident];
+            break;
+        case CKContextTypeGroup:
+            canvasContext = [NSString stringWithFormat:@"%@_%lld", @"group", self.contextInfo.ident];
+            break;
+        default:
+            canvasContext = @"";
+    }
+    self.arcLTIToolID = [TheKeymaster.currentClient.authSession.enrollmentsDataSource arcLTIToolIdForCanvasContext:canvasContext];
     
     if (numberOfPossibleTypes > 1) {
         [self showSubmissionTypePicker];
@@ -177,11 +194,11 @@
 
 // This is a static function so that it can be called from a completion
 // block even if the controller has been dealloc'd
-static void showErrorForAssignment(NSError *error, CKAssignment *assignment) {
+static void showErrorForAssignment(NSError *error, NSString *assignmentName) {
     UIApplication *application = [UIApplication sharedApplication];
     
     NSString *template = NSLocalizedString(@"Upload to assignment \"%@\" failed", @"Error message");
-    NSString *message = [NSString stringWithFormat:template, assignment.name];
+    NSString *message = [NSString stringWithFormat:template, assignmentName];
     if (application.applicationState == UIApplicationStateBackground) {
         UILocalNotification *note = [UILocalNotification new];
         note.alertBody = message;
@@ -215,6 +232,12 @@ static void deleteFiles(NSArray *fileURLs) {
         [sheet addButtonWithTitle:NSLocalizedString(@"File upload", @"File upload submission type") handler:^{
             [self showSubmissionLibrary];
         }];
+        
+        if (self.arcLTIToolID.length > 0) {
+            [sheet addButtonWithTitle:NSLocalizedString(@"Arc", @"Assignment submission type for selecting an Arc video") handler:^{
+                [self showArcPicker];
+            }];
+        }
     }
     if (submissionTypes & CKSubmissionTypeMediaRecording) {
         if (self.allowsMediaSubmission) {
@@ -287,7 +310,7 @@ static void deleteFiles(NSArray *fileURLs) {
                        }
                      completionBlock:^(NSError *error, BOOL isFinalValue, CKSubmission *submission) {
                          if (error) {
-                             showErrorForAssignment(error, assignment);
+                             showErrorForAssignment(error, assignment.name);
                          }
                          [weakSelf reportCompletionWithSubmission:submission error:error];
                          [application endBackgroundTask:backgroundTask];
@@ -351,7 +374,7 @@ static void deleteFiles(NSArray *fileURLs) {
               }
             completionBlock:^(NSError *error, BOOL isFinalValue, CKSubmission *submission) {
                 if (error) {
-                    showErrorForAssignment(error, assignment);
+                    showErrorForAssignment(error, assignment.name);
                 }
                 [weakSelf reportCompletionWithSubmission:submission error:error];
                 [application endBackgroundTask:backgroundTask];
@@ -384,7 +407,7 @@ static void deleteFiles(NSArray *fileURLs) {
         [canvasAPI postURL:url asSubmissionForAssignment:assignment
            completionBlock:^(NSError *error, BOOL isFinalValue, CKSubmission *submission) {
                if (error) {
-                   showErrorForAssignment(error, assignment);
+                   showErrorForAssignment(error, assignment.name);
                }
                
                [weakSelf reportCompletionWithSubmission:submission error:error];
@@ -392,6 +415,49 @@ static void deleteFiles(NSArray *fileURLs) {
     }];
     
     [self.viewController presentViewController:controller animated:YES completion:NULL];
+}
+
+- (void)showArcPicker {
+    NSString *contextType = @"";
+    if (self.contextInfo.contextType == CKContextTypeCourse) {
+        contextType = @"course";
+    } else if (self.contextInfo.contextType == CKContextTypeGroup) {
+        contextType = @"group";
+    }
+    
+    NSString *contextID = [NSString stringWithFormat:@"%llu", self.contextInfo.ident];
+    NSString *courseID = [NSString stringWithFormat:@"%llu", self.legacyAssignment.courseIdent];
+    NSURL *url = [Assignment arcSubmissionLTILaunchURLWithSession:TheKeymaster.currentClient.authSession contextType:contextType contextID: contextID assignmentID:_assignment.id arcLTIToolID:self.arcLTIToolID];
+    ArcVideoPickerViewController *picker = [[ArcVideoPickerViewController alloc] initWithArcLTIURL:url videoPickedAction:^(NSURL * _Nonnull url) {
+        NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.instructure.TechDebt"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTableInBundle(@"Confirm Submission", @"Localizable", bundle, @"Confirm an arc video submission for an assignment") message:NSLocalizedStringFromTableInBundle(@"Are you sure you want to submit this Arc video for this assignment?", @"Localizable", bundle, @"Confirmation alert text for submitting an Arc video for an assignment") preferredStyle:UIAlertControllerStyleAlert];
+        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.text = url.absoluteString;
+            textField.userInteractionEnabled = NO;
+        }];
+        
+        UIAlertAction *submitAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTableInBundle(@"Submit", @"Localizable", bundle, @"Submit Arc video as assignment button") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+            
+            [Submission submitArcSubmission:url session:TheKeymaster.currentClient.authSession courseID:courseID assignmentID:self.assignment.id completion:^(NSError * _Nullable error) {
+                if (error != nil) {
+                    showErrorForAssignment(error, _assignment.name);
+                }
+                
+                if (self.uploadCompleteBlock) {
+                    self.uploadCompleteBlock(nil, error);
+                }
+
+            }];
+        }];
+        [alert addAction:submitAction];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTableInBundle(@"Cancel", @"Localizable", bundle, @"Cancel button title to cancel submitting an Arc video as an assignment submission") style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAction];
+        
+        [self.viewController presentViewController:alert animated:YES completion:nil];
+    }];
+    [self.viewController.navigationController pushViewController:picker animated:YES];
 }
 
 - (void)showSubmissionLibrary {
@@ -432,7 +498,7 @@ static void deleteFiles(NSArray *fileURLs) {
                   }
                 completionBlock:^(NSError *error, BOOL isFinalValue, CKSubmission *submission) {
                     if (error) {
-                        showErrorForAssignment(error, assignment);
+                        showErrorForAssignment(error, assignment.name);
                     }
                     [weakSelf reportCompletionWithSubmission:submission error:error];
                     deleteFiles(urls);
@@ -462,7 +528,7 @@ static void deleteFiles(NSArray *fileURLs) {
     [canvasAPI postHTML:comment asSubmissionForAssignment:assignment
         completionBlock:^(NSError *error, BOOL isFinalValue, CKSubmission *submission) {
             if (error) {
-                showErrorForAssignment(error, assignment);
+                showErrorForAssignment(error, assignment.name);
             }
             typeof(self) strongSelf = weakSelf;
             if (strongSelf) {

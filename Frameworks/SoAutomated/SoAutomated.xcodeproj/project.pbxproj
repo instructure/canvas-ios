@@ -11,6 +11,7 @@
 		49BC090A1DEF812A007F6AE3 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BC09091DEF811E007F6AE3 /* EnrollmentKit.framework */; };
 		49BC090B1DEF812A007F6AE3 /* AssignmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BC09081DEF8116007F6AE3 /* AssignmentKit.framework */; };
 		61106D371DDF7785006ED1A4 /* SuchActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61106D361DDF7785006ED1A4 /* SuchActivity.framework */; };
+		619A61321E4E7B0700EF4F30 /* refresh-all-courses.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD501DDFAFE2000B5D22 /* refresh-all-courses.json */; };
 		61A2ACE31DE366CA003B8B9D /* RefreshUserActivities.json in Resources */ = {isa = PBXBuildFile; fileRef = 61A2ACE21DE366CA003B8B9D /* RefreshUserActivities.json */; };
 		61C866871D539B2A00100D00 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C866861D539B2A00100D00 /* Result.framework */; };
 		B110A23F1DDFB6960008CF37 /* ModuleItems.json in Resources */ = {isa = PBXBuildFile; fileRef = B110A23D1DDFB6960008CF37 /* ModuleItems.json */; };
@@ -68,7 +69,6 @@
 		B1C4DD951DDFAFE2000B5D22 /* grading-period-courses.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD4D1DDFAFE2000B5D22 /* grading-period-courses.json */; };
 		B1C4DD961DDFAFE2000B5D22 /* grading-period-grades-list.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD4E1DDFAFE2000B5D22 /* grading-period-grades-list.json */; };
 		B1C4DD971DDFAFE2000B5D22 /* grading-periods.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD4F1DDFAFE2000B5D22 /* grading-periods.json */; };
-		B1C4DD981DDFAFE2000B5D22 /* refresh-all-courses.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD501DDFAFE2000B5D22 /* refresh-all-courses.json */; };
 		B1C4DD991DDFAFE2000B5D22 /* refresh-all-groups.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD511DDFAFE2000B5D22 /* refresh-all-groups.json */; };
 		B1C4DD9A1DDFAFE2000B5D22 /* refresh-all-tabs.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD521DDFAFE2000B5D22 /* refresh-all-tabs.json */; };
 		B1C4DD9B1DDFAFE2000B5D22 /* refresh-favorite-colors.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD531DDFAFE2000B5D22 /* refresh-favorite-colors.json */; };
@@ -739,9 +739,9 @@
 				B1C4DD7C1DDFAFE2000B5D22 /* assignment-grades-mgp.json in Resources */,
 				B1C4DD841DDFAFE2000B5D22 /* calendar_event_assignment.json in Resources */,
 				B1C4DD9D1DDFAFE2000B5D22 /* add-folder.json in Resources */,
+				619A61321E4E7B0700EF4F30 /* refresh-all-courses.json in Resources */,
 				B1C4DD861DDFAFE2000B5D22 /* calendar_events_list.json in Resources */,
 				B1C4DD831DDFAFE2000B5D22 /* calendar_event.json in Resources */,
-				B1C4DD981DDFAFE2000B5D22 /* refresh-all-courses.json in Resources */,
 				B1C4DDAF1DDFAFE2000B5D22 /* people.json in Resources */,
 				B1B765FE1E049FB500BCABB1 /* assignment-grades.json in Resources */,
 				B1C4DD9E1DDFAFE2000B5D22 /* delete-file.json in Resources */,

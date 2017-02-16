@@ -17,6 +17,7 @@ extern NSString * const CKISubmissionTypeQuiz;
 extern NSString * const CKISubmissionTypeDiscussion;
 extern NSString * const CKISubmissionTypeExternalTool;
 extern NSString * const CKISubmissionTypePaper;
+extern NSString * const CKISubmissionTypeLTILaunch;
 
 typedef NS_ENUM(NSInteger, CKISubmissionEnumType) {
     CKISubmissionEnumTypeUnknown            = -1,
@@ -28,6 +29,7 @@ typedef NS_ENUM(NSInteger, CKISubmissionEnumType) {
     CKISubmissionEnumTypeDiscussion         = 5,
     CKISubmissionEnumTypeExternalTool       = 6,
     CKISubmissionEnumTypePaper              = 7,
+    CKISubmissionEnumTypeLTILaunch          = 8,
 };
 
 @class CKIAssignment;

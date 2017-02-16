@@ -128,7 +128,7 @@ class CourseCollectionsTests: UnitTestCase {
             let count = Course.observeCount(inSession: session)
             expect {
                 refresher.playback("refresh-all-courses", in: currentBundle, with: self.session)
-            }.to(change({ count.currentCount }, from: 0, to: 3))
+            }.to(change({ count.currentCount }, from: 0, to: 2))
         }
     }
 

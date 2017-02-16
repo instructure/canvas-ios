@@ -31,6 +31,11 @@ open class Enrollment: NSManagedObject {
     @NSManaged internal (set) open var name: String
     @NSManaged internal (set) open var isFavorite: Bool
     
+    // If nil - hasn't checked yet to see if this enrollment supports arc
+    // If an empty string - have checked, and it's not
+    // Else, arc is supported!
+    @NSManaged internal (set) open var arcLTIToolID: String?
+    
     open override func awakeFromInsert() {
         super.awakeFromInsert()
         color.value = .prettyGray()
@@ -45,11 +50,6 @@ open class Enrollment: NSManagedObject {
     public lazy var color: DynamicProperty<UIColor> = {
         return DynamicProperty(object: self, keyPath: "color")
     }()
-    
-    @objc
-    open static func keyPathsForValuesAffectingColor() -> NSSet {
-        return NSSet(objects: "rawColor")
-    }
     
     open var contextID: ContextID { ❨╯°□°❩╯⌢"Enrollment is abstract, yo. This gots to be overrid" }
     

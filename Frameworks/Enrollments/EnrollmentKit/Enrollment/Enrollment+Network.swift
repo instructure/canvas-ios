@@ -29,4 +29,27 @@ extension Enrollment {
         return attemptProducer { try session.PUT(path, parameters: params) }
             .flatMap(.merge, transform: session.emptyResponseSignalProducer)
     }
+    
+    public static func arcLTIToolID(_ session: Session, for contextID: ContextID) throws -> SignalProducer<String, NSError> {
+        let path = contextID.apiPath + "/external_tools"
+        let request = try session.GET(path, parameters: ["include_parents": "true"], encoding: .urlEncodedInURL, authorized: true)
+        return session.paginatedJSONSignalProducer(request)
+            .map { jsonLTITools in
+                
+                return jsonLTITools
+                    .filter { json in
+                        guard let url: String = (try? json <| "url") else { return false }
+                        return url.contains("instructuremedia.com/lti/launch")
+                    }
+                
+                    .flatMap { json in
+                        return try? json.stringID("id")
+                    }
+                
+                    // There should only ever be one arc lti me thinks
+                    // See Enrollment.swift - 
+                    // Empty string means we've checked, nil string means we haven't
+                    .first ?? ""
+            }
+    }
 }

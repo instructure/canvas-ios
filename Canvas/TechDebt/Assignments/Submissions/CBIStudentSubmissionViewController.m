@@ -32,17 +32,19 @@
 #import <CanvasKit1/CKMediaComment.h>
 #import <CanvasKit1/CKAudioCommentRecorderView.h>
 #import <CanvasKit1/CKOverlayViewController.h>
-@import CanvasKeymaster;
-@import SoPretty;
 #import "CKCanvasAPI+CurrentAPI.h"
 #import "CBILog.h"
-@import AssignmentKit;
-@import FileKit;
-@import TooLegit;
 #import "CKIClient+CBIClient.h"
 #import "MobileQuizInformationViewController.h"
 #import "Router.h"
 #import "ThreadedDiscussionViewController.h"
+
+@import CanvasKeymaster;
+@import SoPretty;
+@import AssignmentKit;
+@import FileKit;
+@import TooLegit;
+@import EnrollmentKit;
 
 static const BOOL newSubmissionWorkflowFeatureEnabled = NO;
 
@@ -340,7 +342,7 @@ typedef enum CBISubmissionState : NSUInteger {
         progressView.progress = progress * 0.8;
     };
     
-    controller.uploadCompleteBlock = ^(CKSubmission *submission, NSError *error) {
+    controller.uploadCompleteBlock = ^(CKSubmission * _Nullable submission, NSError *error) {
         @strongify(self);
         if (error) {
             DDLogVerbose(@"%@ - %@ : error: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd), [error localizedDescription]);

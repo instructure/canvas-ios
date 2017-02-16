@@ -12,6 +12,7 @@ public enum NewSubmission {
     case fileUpload([File])
     case text(String)
     case url(URL)
+    case arc(URL)
 
     var parameters: [String: Any] {
         switch self {
@@ -28,6 +29,11 @@ public enum NewSubmission {
         case .url(let url):
             return [
                 "submission_type": "online_url",
+                "url": url.absoluteString
+            ]
+        case .arc(let url):
+            return [
+                "submission_type": "basic_lti_launch",
                 "url": url.absoluteString
             ]
         }

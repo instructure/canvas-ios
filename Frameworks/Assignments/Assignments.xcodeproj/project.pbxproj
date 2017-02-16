@@ -73,6 +73,8 @@
 		49E696EA1CC1327800A17AF1 /* DueDateOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E696E91CC1327800A17AF1 /* DueDateOverride.swift */; };
 		5E5560011C8EB37500933E08 /* Assignment+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5560001C8EB37500933E08 /* Assignment+Network.swift */; };
 		5E5560071C8EB93700933E08 /* AssignmentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5560061C8EB93700933E08 /* AssignmentAPI.swift */; };
+		6167F79D1E48ED2F002DCCD7 /* Assignment+ArcLTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6167F79C1E48ED2F002DCCD7 /* Assignment+ArcLTI.swift */; };
+		6167F7A11E4928B0002DCCD7 /* ArcVideoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6167F7A01E4928B0002DCCD7 /* ArcVideoPickerViewController.swift */; };
 		61913DB61D9F09CA000D4DF2 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61913DB51D9F09BC000D4DF2 /* SoIconic.framework */; };
 		B10713AA1D7491160061E84A /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10713A71D7491160061E84A /* Nimble.framework */; };
 		B10713AB1D7491160061E84A /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10713A81D7491160061E84A /* Quick.framework */; };
@@ -255,6 +257,8 @@
 		49E696E91CC1327800A17AF1 /* DueDateOverride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDateOverride.swift; sourceTree = "<group>"; };
 		5E5560001C8EB37500933E08 /* Assignment+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+Network.swift"; sourceTree = "<group>"; };
 		5E5560061C8EB93700933E08 /* AssignmentAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentAPI.swift; sourceTree = "<group>"; };
+		6167F79C1E48ED2F002DCCD7 /* Assignment+ArcLTI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+ArcLTI.swift"; sourceTree = "<group>"; };
+		6167F7A01E4928B0002DCCD7 /* ArcVideoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcVideoPickerViewController.swift; sourceTree = "<group>"; };
 		61913DB51D9F09BC000D4DF2 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10713A71D7491160061E84A /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10713A81D7491160061E84A /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -748,6 +752,8 @@
 				B1D7B01A1E0207D900B6398A /* TextSubmissionActionViewController.swift */,
 				B1CAE8301E35F6C30061D411 /* NewSubmissionViewModel.swift */,
 				B1CAE8351E35F8190061D411 /* SubmissionType.swift */,
+				6167F79C1E48ED2F002DCCD7 /* Assignment+ArcLTI.swift */,
+				6167F7A01E4928B0002DCCD7 /* ArcVideoPickerViewController.swift */,
 			);
 			path = "New Submission";
 			sourceTree = "<group>";
@@ -1088,6 +1094,7 @@
 				5E5560011C8EB37500933E08 /* Assignment+Network.swift in Sources */,
 				49893A271C8E5C9D00A8CFBA /* Submission.swift in Sources */,
 				490A86A41C407D1D00351185 /* AssignmentKit.xcdatamodeld in Sources */,
+				6167F7A11E4928B0002DCCD7 /* ArcVideoPickerViewController.swift in Sources */,
 				5E5560071C8EB93700933E08 /* AssignmentAPI.swift in Sources */,
 				B1F123DD1DAEBA29004EBC57 /* Upload+Details.swift in Sources */,
 				B1409A7C1CA2F4CF00E88AE5 /* AssignmentGroup.swift in Sources */,
@@ -1111,6 +1118,7 @@
 				B1EB12841CCFD5F800BE4280 /* AssignmentGroupAPI.swift in Sources */,
 				B1CAE8361E35F8190061D411 /* SubmissionType.swift in Sources */,
 				B5549F8D1C99FA6C0040CB05 /* RubricCriterion.swift in Sources */,
+				6167F79D1E48ED2F002DCCD7 /* Assignment+ArcLTI.swift in Sources */,
 				49895EDF1C45B883002A16EC /* Assignment+AllowedFileSubmissionTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
