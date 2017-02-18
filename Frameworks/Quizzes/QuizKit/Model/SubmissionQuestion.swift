@@ -90,6 +90,18 @@ extension SubmissionQuestion: JSONDecodable {
                                 answer = .Matches(answerMatchMap)
                             }
                         }
+                    case .MultipleDropdowns:
+                        if let answers = answerJSON as? [String: Any] {
+                            var answerMap: [String: String] = [:]
+                            for obj in answers {
+                                if let id = idString(obj.value) {
+                                    answerMap[obj.key] = idString(obj.value)
+                                }
+                            }
+                            if answerMap.keys.count > 0 {
+                                answer = .idsHash(answerMap)
+                            }
+                        }
                     default:
                         answer = .unanswered
                 }

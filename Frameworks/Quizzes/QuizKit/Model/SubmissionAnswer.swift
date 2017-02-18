@@ -27,6 +27,7 @@ enum SubmissionAnswer: Equatable {
     case id(String)
     case ids([String])
     case text(String)
+    case idsHash([String: String])
     
     
     var answerText: String? {
@@ -119,6 +120,9 @@ func ==(lhs: SubmissionAnswer, rhs: SubmissionAnswer) -> Bool {
         
     case let (.Matches(leftMatches), .Matches(rightMatches)):
         return leftMatches == rightMatches
+
+    case let(.idsHash(leftHash), .idsHash(rightHash)):
+        return leftHash == rightHash
         
     default:
         return false
@@ -145,6 +149,14 @@ extension SubmissionAnswer {
                 arr.append(dict)
             }
             return arr
+        case .idsHash(let hash):
+            var newHash: [String: NSNumber] = [:]
+            for key in hash.keys {
+                if let value = hash[key] {
+                    newHash[key] = value.toNSNumberWrappingInt64()
+                }
+            }
+            return newHash
         default:
             return ""
         }

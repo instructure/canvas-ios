@@ -115,6 +115,8 @@
 		49EB085A1BC45158008F938C /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB08591BC45158008F938C /* Cartography.framework */; };
 		49EB085E1BC451F3008F938C /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB085C1BC451F3008F938C /* SoLazy.framework */; };
 		49EB08601BC45231008F938C /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB085F1BC45231008F938C /* SoPretty.framework */; };
+		B150576C1E4E3EBB0059CF0E /* DropdownAnswersPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150576B1E4E3EBB0059CF0E /* DropdownAnswersPickerView.swift */; };
+		B150576E1E4E40910059CF0E /* DropdownAnswersPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B150576D1E4E40910059CF0E /* DropdownAnswersPickerView.xib */; };
 		B16B5EDD1E25635200DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5EDF1E25635200DED47B /* InfoPlist.strings */; };
 		B16B5EE21E25635500DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5EE41E25635500DED47B /* InfoPlist.strings */; };
 		B16B5EE91E25635800DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5EEB1E25635800DED47B /* InfoPlist.strings */; };
@@ -122,6 +124,9 @@
 		B177E7691E2ECDBF00D7477D /* TimedQuizViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E76B1E2ECDBF00D7477D /* TimedQuizViewController.xib */; };
 		B17F0F451E48EFD100300D6C /* FileUploadAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F0F441E48EFD100300D6C /* FileUploadAnswerCell.swift */; };
 		B17F0F471E491F8C00300D6C /* FileKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17F0F461E491F8C00300D6C /* FileKit.framework */; };
+		B18981061E4CE4AB003E5B68 /* DropdownAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18981051E4CE4AB003E5B68 /* DropdownAnswerCell.xib */; };
+		B18981081E4CE4D6003E5B68 /* DropdownAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18981071E4CE4D6003E5B68 /* DropdownAnswerCell.swift */; };
+		B189810A1E4D2348003E5B68 /* MultipleDropdownColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18981091E4D2348003E5B68 /* MultipleDropdownColors.swift */; };
 		B5A9511B1D8CAC1C00988A4A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A951181D8CAC1C00988A4A /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -278,6 +283,8 @@
 		49EB08591BC45158008F938C /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EB085C1BC451F3008F938C /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EB085F1BC45231008F938C /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B150576B1E4E3EBB0059CF0E /* DropdownAnswersPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownAnswersPickerView.swift; sourceTree = "<group>"; };
+		B150576D1E4E40910059CF0E /* DropdownAnswersPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropdownAnswersPickerView.xib; sourceTree = "<group>"; };
 		B16B5EDE1E25635200DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5EE31E25635500DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5EE51E25635600DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -422,6 +429,9 @@
 		B177E77F1E2F062C00D7477D /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		B17F0F441E48EFD100300D6C /* FileUploadAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadAnswerCell.swift; sourceTree = "<group>"; };
 		B17F0F461E491F8C00300D6C /* FileKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FileKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B18981051E4CE4AB003E5B68 /* DropdownAnswerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropdownAnswerCell.xib; sourceTree = "<group>"; };
+		B18981071E4CE4D6003E5B68 /* DropdownAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownAnswerCell.swift; sourceTree = "<group>"; };
+		B18981091E4D2348003E5B68 /* MultipleDropdownColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleDropdownColors.swift; sourceTree = "<group>"; };
 		B5A951191D8CAC1C00988A4A /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5A9511A1D8CAC1C00988A4A /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5B4DC0C1D6254540051C04C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -699,6 +709,10 @@
 		49EB07F21BC45047008F938C /* Answer Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B18981071E4CE4D6003E5B68 /* DropdownAnswerCell.swift */,
+				B18981051E4CE4AB003E5B68 /* DropdownAnswerCell.xib */,
+				B150576B1E4E3EBB0059CF0E /* DropdownAnswersPickerView.swift */,
+				B150576D1E4E40910059CF0E /* DropdownAnswersPickerView.xib */,
 				49EB07F31BC45047008F938C /* EssayAnswerCell.swift */,
 				B17F0F441E48EFD100300D6C /* FileUploadAnswerCell.swift */,
 				49EB07F41BC45047008F938C /* HTMLAnswerCell.swift */,
@@ -765,6 +779,7 @@
 			children = (
 				49EB081A1BC45047008F938C /* NSError+QuizKit.swift */,
 				49EB081B1BC45047008F938C /* UIWebView+Quizzes.swift */,
+				B18981091E4D2348003E5B68 /* MultipleDropdownColors.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -980,6 +995,7 @@
 				49EB08381BC45047008F938C /* MatchAnswerCell.xib in Resources */,
 				49EB08451BC45047008F938C /* QuestionDrawerCell.xib in Resources */,
 				B5A9511B1D8CAC1C00988A4A /* Localizable.strings in Resources */,
+				B18981061E4CE4AB003E5B68 /* DropdownAnswerCell.xib in Resources */,
 				B16B5EE91E25635800DED47B /* InfoPlist.strings in Resources */,
 				49EB08361BC45047008F938C /* LoadingQuestionsView.xib in Resources */,
 				49EB083D1BC45047008F938C /* ShortAnswerCell.xib in Resources */,
@@ -989,6 +1005,7 @@
 				B177E7691E2ECDBF00D7477D /* TimedQuizViewController.xib in Resources */,
 				49EB08281BC45047008F938C /* QuizDetailCell.xib in Resources */,
 				49EB08521BC45047008F938C /* SubmissionConfirmationViewController.xib in Resources */,
+				B150576E1E4E40910059CF0E /* DropdownAnswersPickerView.xib in Resources */,
 				49EB08301BC45047008F938C /* Quizzes.xcassets in Resources */,
 				49EB08481BC45047008F938C /* QuestionHeaderView.xib in Resources */,
 			);
@@ -1052,6 +1069,7 @@
 				49EB08261BC45047008F938C /* QuizTakeabilityController.swift in Sources */,
 				498230091C6AAE9600D2318A /* CanvasRequest.swift in Sources */,
 				49EB081E1BC45047008F938C /* Quiz.swift in Sources */,
+				B189810A1E4D2348003E5B68 /* MultipleDropdownColors.swift in Sources */,
 				49EB08231BC45047008F938C /* AnswersFinalViewController.swift in Sources */,
 				49EB08431BC45047008F938C /* NonNativeQuizTakingViewController.swift in Sources */,
 				49EB084E1BC45047008F938C /* QuizSubmissionService.swift in Sources */,
@@ -1060,6 +1078,8 @@
 				49EB08271BC45047008F938C /* QuizDetailCell.swift in Sources */,
 				49EB084F1BC45047008F938C /* SubmissionAuditLoggingService.swift in Sources */,
 				49EB084D1BC45047008F938C /* CanvasTimedQuizSubmissionService.swift in Sources */,
+				B150576C1E4E3EBB0059CF0E /* DropdownAnswersPickerView.swift in Sources */,
+				B18981081E4CE4D6003E5B68 /* DropdownAnswerCell.swift in Sources */,
 				49EB082E1BC45047008F938C /* TimedQuizViewController.swift in Sources */,
 				49EB08471BC45047008F938C /* QuestionHeaderView.swift in Sources */,
 				49EB08441BC45047008F938C /* QuestionDrawerCell.swift in Sources */,

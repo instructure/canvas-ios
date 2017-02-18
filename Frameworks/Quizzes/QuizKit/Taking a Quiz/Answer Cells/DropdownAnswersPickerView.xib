@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DropdownAnswersPickerView" customModule="QuizKit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9zs-gC-8Ze">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <items>
+                        <barButtonItem systemItem="cancel" id="r7K-9z-vvs"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Twq-NY-gmI"/>
+                        <barButtonItem style="plain" id="05J-c5-Ark">
+                            <view key="customView" contentMode="scaleToFill" id="q6b-wl-nUj">
+                                <rect key="frame" x="84" y="6" width="206" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5L-lF-Ed6">
+                                        <rect key="frame" x="0.0" y="6" width="206" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="J5L-lF-Ed6" firstAttribute="centerY" secondItem="q6b-wl-nUj" secondAttribute="centerY" id="Dd8-6h-qYP"/>
+                                    <constraint firstItem="J5L-lF-Ed6" firstAttribute="leading" secondItem="q6b-wl-nUj" secondAttribute="leading" id="h3q-ty-Daw"/>
+                                    <constraint firstAttribute="trailing" secondItem="J5L-lF-Ed6" secondAttribute="trailing" id="kqD-Lh-Pcb"/>
+                                    <constraint firstItem="J5L-lF-Ed6" firstAttribute="centerX" secondItem="q6b-wl-nUj" secondAttribute="centerX" id="t3Y-9D-nvw"/>
+                                </constraints>
+                            </view>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="KTu-Un-fBj"/>
+                        <barButtonItem style="done" systemItem="done" id="FAN-JX-j0B"/>
+                    </items>
+                </toolbar>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KrJ-Rg-BOg">
+                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                </pickerView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="9zs-gC-8Ze" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9EI-6C-FOk"/>
+                <constraint firstAttribute="trailing" secondItem="KrJ-Rg-BOg" secondAttribute="trailing" id="Ei5-PM-LU5"/>
+                <constraint firstItem="9zs-gC-8Ze" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RIF-MK-bTZ"/>
+                <constraint firstAttribute="trailing" secondItem="9zs-gC-8Ze" secondAttribute="trailing" id="TJ0-E9-DY2"/>
+                <constraint firstItem="KrJ-Rg-BOg" firstAttribute="top" secondItem="9zs-gC-8Ze" secondAttribute="bottom" id="fRk-OD-0Kw"/>
+                <constraint firstItem="KrJ-Rg-BOg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qDb-8B-Dan"/>
+                <constraint firstAttribute="bottom" secondItem="KrJ-Rg-BOg" secondAttribute="bottom" id="sQ7-GX-agD"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <connections>
+                <outlet property="picker" destination="KrJ-Rg-BOg" id="Ohz-2F-4ga"/>
+            </connections>
+            <point key="canvasLocation" x="-220" y="-94"/>
+        </view>
+    </objects>
+</document>

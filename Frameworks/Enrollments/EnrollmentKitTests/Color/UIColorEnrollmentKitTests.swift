@@ -18,6 +18,7 @@
 
 import XCTest
 import UIKit
+import SoPretty
 
 func Assert(_ hex: String, red: CGFloat, green: CGFloat, blue: CGFloat, file: StaticString = #file, line: UInt = #line) {
 

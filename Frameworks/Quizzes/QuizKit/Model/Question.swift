@@ -44,12 +44,12 @@ struct Question {
         case ShortAnswer = "short_answer_question" // supported, the web ui calls this "Fill in the blank"
         case FillInMultipleBlanks = "fill_in_multiple_blanks_question"
         case MultipleAnswers = "multiple_answers_question" // supported
-        case MultipleDropdowns = "multiple_dropdowns_question"
+        case MultipleDropdowns = "multiple_dropdowns_question" // supported
         case Matching = "matching_question" // supported
         case Numerical = "numerical_question" // supported
         case Calculated = "calculated_question"
         case Essay = "essay_question" // supported
-        case FileUpload = "file_upload_question"
+        case FileUpload = "file_upload_question" // supported
         case TextOnly = "text_only_question" // supported
     }
     
@@ -92,7 +92,6 @@ func ==(lhs: Question.Kind, rhs: Question.Kind) -> Bool {
 extension Question: JSONDecodable {
     static func fromJSON(_ json: Any?) -> Question? {
         if let json = json as? [String: Any] {
-
             let answers: [Answer] = decodeArray(json["answers"] as? [Any] ?? [])
             
             if let

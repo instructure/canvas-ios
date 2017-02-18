@@ -19,7 +19,7 @@
 import TooLegit
 import ReactiveSwift
 import Marshal
-
+import SoPretty
 import CoreData
 import SoPersistent
 

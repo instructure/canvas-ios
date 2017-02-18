@@ -25,6 +25,7 @@ import SoLazy
 import SoPersistent
 import CoreLocation
 import Photos
+import SoPretty
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

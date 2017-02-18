@@ -18,6 +18,7 @@
 
 import Foundation
 import PSPDFKit
+import SoPretty
 
 class CanvadocsAnnotationProvider: PSPDFXFDFAnnotationProvider {
     
@@ -89,7 +90,7 @@ class CanvadocsAnnotationProvider: PSPDFXFDFAnnotationProvider {
                     
                     // Don't ask me why, but somehow some notes were going black, this fixes it ¯\_(ツ)_/¯
                     DispatchQueue.main.async(execute: {
-                        if noteAnnotation.color?.hexStringRepresentation() != "#F2DD47" {
+                        if noteAnnotation.color?.hex != "#F2DD47" {
                             noteAnnotation.color = UIColor(rgba: "#F2DD47")
                             NotificationCenter.default.post(name: NSNotification.Name.PSPDFAnnotationChanged, object: noteAnnotation, userInfo: [PSPDFAnnotationChangedNotificationKeyPathKey: ["color"]])
                         }

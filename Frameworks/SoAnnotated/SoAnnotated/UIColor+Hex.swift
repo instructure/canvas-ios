@@ -62,13 +62,4 @@ extension UIColor {
         }
         self.init(red:red, green:green, blue:blue, alpha:alpha)
     }
-    
-    func hexStringRepresentation() -> String {
-        let components = cgColor.components
-        let r = components?[0]
-        let g = components?[1]
-        let b = components?[2]
-        
-        return String(format: "#%02lX%02lX%02lX", lroundf(Float(r!*255)), lroundf(Float(g!*255)), lroundf(Float(b!*255)))
-    }
 }

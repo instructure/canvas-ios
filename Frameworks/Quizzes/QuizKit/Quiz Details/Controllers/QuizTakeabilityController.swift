@@ -30,7 +30,7 @@ class QuizTakeabilityController {
     /// This is the list of question types that is supported natively. 
     /// This will change as we add support for more question types.
     fileprivate var nativelySupportedQuestionTypes: [Question.Kind] {
-        return [ .TrueFalse, .MultipleChoice, .MultipleAnswers, .Matching, .Essay, .ShortAnswer, .TextOnly, .Numerical, .FileUpload ]
+        return [ .TrueFalse, .MultipleChoice, .MultipleAnswers, .Matching, .Essay, .ShortAnswer, .TextOnly, .Numerical, .FileUpload, .MultipleDropdowns ]
     }
     
     init(quiz: Quiz, service: QuizService) {

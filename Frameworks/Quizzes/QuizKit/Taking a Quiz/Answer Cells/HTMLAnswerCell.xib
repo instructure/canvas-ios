@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,18 +17,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="122"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tcF-gt-a6D" userLabel="Content container">
-                        <rect key="frame" x="20" y="9" width="560" height="105"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tcF-gt-a6D" userLabel="Content container">
+                        <rect key="frame" x="20" y="9" width="560" height="104"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="io1-N6-P11" customClass="WhizzyWigView" customModule="WhizzyWig">
-                                <rect key="frame" x="20" y="15" width="520" height="75"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="io1-N6-P11" customClass="WhizzyWigView" customModule="WhizzyWig">
+                                <rect key="frame" x="20" y="15" width="520" height="74"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="999" constant="75" id="Rsw-DO-lSa"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="io1-N6-P11" secondAttribute="trailing" constant="20" id="CA8-eE-XFY"/>
                             <constraint firstItem="io1-N6-P11" firstAttribute="top" secondItem="tcF-gt-a6D" secondAttribute="top" constant="15" id="Gln-r1-72A"/>
@@ -33,8 +36,8 @@
                             <constraint firstAttribute="bottom" secondItem="io1-N6-P11" secondAttribute="bottom" constant="15" id="xGa-57-w91"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="selected" translatesAutoresizingMaskIntoConstraints="NO" id="B4a-lA-cok">
-                        <rect key="frame" x="9" y="52" width="23" height="20"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selected" translatesAutoresizingMaskIntoConstraints="NO" id="B4a-lA-cok">
+                        <rect key="frame" x="9" y="51" width="23" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="INb-LZ-cgr"/>
                             <constraint firstAttribute="width" constant="23" id="Xte-82-VSR"/>

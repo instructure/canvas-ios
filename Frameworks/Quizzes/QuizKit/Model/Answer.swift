@@ -22,6 +22,7 @@ import SoLazy
 struct Answer {
     let id: String
     let content: Content
+    let blankID: String?
     
     enum Content {
         case text(String)
@@ -38,7 +39,8 @@ extension Answer: JSONDecodable {
                 id = idString(json["id"]),
                 let content = Answer.Content.fromJSON(json)
             {
-                return Answer(id: id, content: content)
+                let blankID = idString(json["blank_id"])
+                return Answer(id: id, content: content, blankID: blankID)
             }
         }
         
