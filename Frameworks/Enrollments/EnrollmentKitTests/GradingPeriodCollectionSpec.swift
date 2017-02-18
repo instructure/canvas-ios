@@ -166,7 +166,7 @@ class GradingPeriodCollectionSpec: QuickSpec {
                     context("when collection updates") {
                         it("offsets inserts") {
                             let gradingPeriod = GradingPeriod.build(managedObjectContext)
-                            expectUpdate(.inserted(IndexPath(row: 2, section: 1), .some(gradingPeriod), animated: false)) {
+                            expectUpdate(.reload) {
                                 gradingPeriod.courseID = "1"
                             }
                         }
@@ -187,20 +187,17 @@ class GradingPeriodCollectionSpec: QuickSpec {
                                     gradingPeriod.title = "Updated title"
                                 }
 
-                                // RADAR (rdar://279557917): Sends an `update` with two index paths so we treat it as a move.
-                                let deleted = CollectionUpdate<GradingPeriodItem>.deleted(IndexPath(row: 0, section: 1), .some(gradingPeriod), animated: false)
-                                let inserted = CollectionUpdate<GradingPeriodItem>.inserted(IndexPath(row: 0, section: 1), .some(gradingPeriod), animated: false)
-                                expect(updates) == [deleted, inserted]
+                                expect(updates) == [.reload]
                             }
 
                             it("offsets deletes") {
-                                expectUpdate(.deleted(IndexPath(row: 0, section: 1), .some(gradingPeriod), animated: false)) {
+                                expectUpdate(.reload) {
                                     gradingPeriod.delete(inContext: managedObjectContext)
                                 }
                             }
 
                             it("offsets moves") {
-                                expectUpdate(.moved(IndexPath(row: 0, section: 1), IndexPath(row: 1, section: 1), .some(gradingPeriod), animated: false)) {
+                                expectUpdate(.reload) {
                                     gradingPeriod.startDate = Date(year: 2016, month: 1, day: 3)
                                 }
                             }

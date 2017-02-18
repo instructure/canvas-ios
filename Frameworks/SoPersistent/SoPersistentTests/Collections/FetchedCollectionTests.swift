@@ -119,10 +119,8 @@ class FetchedCollectionTests: XCTestCase {
                     let expectation = self.expectation(description: "section was inserted")
                     collection.collectionUpdates.observeValues { updates in
                         for update in updates {
-                            if case .sectionInserted(let s) = update {
-                                if s == 3 {
-                                    expectation.fulfill()
-                                }
+                            if case .reload = update {
+                                expectation.fulfill()
                             }
                         }
                     }
@@ -151,7 +149,7 @@ class FetchedCollectionTests: XCTestCase {
                     let expectation = self.expectation(description: "section was deleted")
                     collection.collectionUpdates.observeValues { updates in
                         for update in updates {
-                            if case .sectionDeleted(let s) = update, s == 3 {
+                            if case .reload = update {
                                 expectation.fulfill()
                             }
                         }
@@ -185,7 +183,7 @@ class FetchedCollectionTests: XCTestCase {
 
                     collection.collectionUpdates.observeValues { updates in
                         for update in updates {
-                            if case .inserted(let indexPath, let object, _) = update, indexPath == expectedIndexPath && object.name == "Alpha" {
+                            if case .reload = update {
                                     expectation.fulfill()
                             }
                         }
@@ -213,8 +211,7 @@ class FetchedCollectionTests: XCTestCase {
 
                     self.waitForExpectations(timeout: 1, handler: nil)
 
-                    let moved = CollectionUpdate<Panda>.moved(updatedIndexPath, updatedIndexPath, four, animated: false)
-                    XCTAssertEqual(updates, [moved])
+                    XCTAssertEqual(updates, [.reload])
                 }
             }
 
@@ -234,8 +231,7 @@ class FetchedCollectionTests: XCTestCase {
 
                     self.waitForExpectations(timeout: 1, handler: nil)
 
-                    let moved = CollectionUpdate<Panda>.moved(originalIndexPath, updatedIndexPath, four, animated: false)
-                    XCTAssertEqual(updates, [moved])
+                    XCTAssertEqual(updates, [.reload])
                 }
             }
 
@@ -246,7 +242,7 @@ class FetchedCollectionTests: XCTestCase {
                     let expectation = self.expectation(description: "object was deleted")
                     collection.collectionUpdates.observeValues { updates in
                         for update in updates {
-                            if case .deleted(let i, let m, _) = update, i == deletedIndexPath && m.name == one.name {
+                            if case .reload = update {
                                 expectation.fulfill()
                             }
                         }

@@ -34,8 +34,6 @@ open class FetchedCollection<Model>: NSObject, Collection, Sequence, NSFetchedRe
     let fetchedResultsController: NSFetchedResultsController<Model>
     let titleForSectionTitle: (String?)->String?
 
-    fileprivate var updateBatch: [CollectionUpdate<Object>] = []
-    
     open let collectionUpdates: Signal<[CollectionUpdate<Model>], NoError>
     internal let updatesObserver: Observer<[CollectionUpdate<Model>], NoError>
     
@@ -93,49 +91,8 @@ open class FetchedCollection<Model>: NSObject, Collection, Sequence, NSFetchedRe
     }
     
     // MARK: NSFetchedResultsControllerDelegate
-    
-    open func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        updateBatch = []
-    }
-    
-    open func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        switch type {
-        case .insert:
-            updateBatch.append(.sectionInserted(sectionIndex))
-        case .delete:
-            updateBatch.append(.sectionDeleted(sectionIndex))
-        default:
-            break // NA sections only insert and delete
-        }
-    }
-    
-    open func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        guard let m = anObject as? Object else { ❨╯°□°❩╯⌢"Make sure the entity type for your FRC matches M" }
-        
-        switch type {
-        case .insert:
-            updateBatch.append(.inserted(newIndexPath!, m, animated: true))
-        case .update:
-            if let newIndexPath = newIndexPath {
-                // RADAR (rdar://279557917): Sends an `update` with two index paths so it's actually a move.
-                updateBatch.append(.deleted(indexPath!, m, animated: false))
-                updateBatch.append(.inserted(newIndexPath, m, animated: false))
-                return
-            }
-            updateBatch.append(.updated(indexPath!, m, animated: true))
-        case .move:
-            let from = indexPath!
-            let to = newIndexPath!
-
-            updateBatch.append(.moved(from, to, m, animated: true))
-        case .delete:
-            updateBatch.append(.deleted(indexPath!, m, animated: true))
-        }
-    }
-    
     open func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        updatesObserver.send(value: updateBatch)
+        updatesObserver.send(value: [.reload])
     }
     
 }
