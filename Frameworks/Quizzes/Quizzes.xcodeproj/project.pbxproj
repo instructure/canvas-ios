@@ -120,6 +120,8 @@
 		B16B5EE91E25635800DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5EEB1E25635800DED47B /* InfoPlist.strings */; };
 		B16B5EEE1E25635A00DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5EF01E25635A00DED47B /* InfoPlist.strings */; };
 		B177E7691E2ECDBF00D7477D /* TimedQuizViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E76B1E2ECDBF00D7477D /* TimedQuizViewController.xib */; };
+		B17F0F451E48EFD100300D6C /* FileUploadAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F0F441E48EFD100300D6C /* FileUploadAnswerCell.swift */; };
+		B17F0F471E491F8C00300D6C /* FileKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17F0F461E491F8C00300D6C /* FileKit.framework */; };
 		B5A9511B1D8CAC1C00988A4A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A951181D8CAC1C00988A4A /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -418,6 +420,8 @@
 		B177E77D1E2F060300D7477D /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		B177E77E1E2F061600D7477D /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		B177E77F1E2F062C00D7477D /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
+		B17F0F441E48EFD100300D6C /* FileUploadAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadAnswerCell.swift; sourceTree = "<group>"; };
+		B17F0F461E491F8C00300D6C /* FileKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FileKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5A951191D8CAC1C00988A4A /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5A9511A1D8CAC1C00988A4A /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5B4DC0C1D6254540051C04C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -479,6 +483,7 @@
 			files = (
 				49A9C3E71BCF0058002E3A62 /* TooLegit.framework in Frameworks */,
 				49EB08601BC45231008F938C /* SoPretty.framework in Frameworks */,
+				B17F0F471E491F8C00300D6C /* FileKit.framework in Frameworks */,
 				4983321B1CB4641500A94475 /* SoProgressive.framework in Frameworks */,
 				49EB08581BC450D6008F938C /* WhizzyWig.framework in Frameworks */,
 				49EB085E1BC451F3008F938C /* SoLazy.framework in Frameworks */,
@@ -695,6 +700,7 @@
 			isa = PBXGroup;
 			children = (
 				49EB07F31BC45047008F938C /* EssayAnswerCell.swift */,
+				B17F0F441E48EFD100300D6C /* FileUploadAnswerCell.swift */,
 				49EB07F41BC45047008F938C /* HTMLAnswerCell.swift */,
 				49EB07F51BC45047008F938C /* HTMLAnswerCell.xib */,
 				49EB07F61BC45047008F938C /* LoadingQuestionsView.swift */,
@@ -766,6 +772,7 @@
 		49EB08561BC450C8008F938C /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				B17F0F461E491F8C00300D6C /* FileKit.framework */,
 				49998EA61E1D7C5E00C98AC2 /* SoIconic.framework */,
 				49998EA31E1D7BF900C98AC2 /* CWNotification.framework */,
 				49998E9D1E1D7B9600C98AC2 /* ReactiveCocoa.framework */,
@@ -1039,6 +1046,7 @@
 				49EB08541BC45047008F938C /* NSError+QuizKit.swift in Sources */,
 				49EB08201BC45047008F938C /* SubmissionAnswer.swift in Sources */,
 				49EB082D1BC45047008F938C /* QuizService.swift in Sources */,
+				B17F0F451E48EFD100300D6C /* FileUploadAnswerCell.swift in Sources */,
 				49EB08391BC45047008F938C /* NextOrSubmitView.swift in Sources */,
 				49EB081D1BC45047008F938C /* Question.swift in Sources */,
 				49EB08261BC45047008F938C /* QuizTakeabilityController.swift in Sources */,

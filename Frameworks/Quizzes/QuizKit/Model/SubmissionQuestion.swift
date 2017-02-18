@@ -57,7 +57,7 @@ extension SubmissionQuestion: JSONDecodable {
                 switch question.kind {
                     case .TextOnly:
                         answer = .na
-                    case .TrueFalse, .MultipleChoice:
+                    case .TrueFalse, .MultipleChoice, .FileUpload:
                         if let id = idString(answerJSON) {
                             answer = .id(id)
                         }

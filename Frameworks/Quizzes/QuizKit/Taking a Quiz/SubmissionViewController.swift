@@ -21,6 +21,10 @@ import Foundation
 import WhizzyWig
 import Cartography
 import SoLazy
+import FileKit
+import ReactiveSwift
+import Result
+import MobileCoreServices
 
 protocol SubmissionInteractor: class {
     var submission: Submission { get }
@@ -33,12 +37,17 @@ class SubmissionViewController: UITableViewController {
     var quiz: Quiz?
     var questions: [SubmissionQuestion]
     let whizzyBaseURL: URL
+    let quizService: QuizService
+
+    let documentMenuViewModel: DocumentMenuViewModelType = DocumentMenuViewModel()
+    private let fileUploadIndexPath = MutableProperty<IndexPath?>(nil)
 
     weak var submissionInteractor: SubmissionInteractor?
     var submitAction: ()->() = {}
 
     fileprivate var cellHeightCache: [Index: CGFloat] = [:]
     fileprivate var currentInputIndexPath: IndexPath? = nil
+    fileprivate var currentFileUploadIndexPath: IndexPath?
 
     var isLoading: Bool = true {
         didSet {
@@ -46,10 +55,11 @@ class SubmissionViewController: UITableViewController {
         }
     }
 
-    init(quiz: Quiz?, questions: [SubmissionQuestion], whizzyBaseURL: URL) {
+    init(quiz: Quiz?, questions: [SubmissionQuestion], whizzyBaseURL: URL, quizService: QuizService) {
         self.quiz = quiz
         self.questions = questions
         self.whizzyBaseURL = whizzyBaseURL
+        self.quizService = quizService
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -73,6 +83,8 @@ class SubmissionViewController: UITableViewController {
 
         prepareTableView()
         updateLoadingStatus()
+        bindDocumentMenuViewModel()
+        documentMenuViewModel.inputs.configureWith(fileTypes: [kUTTypeItem as String])
     }
 
     func navigateToQuestionAtIndex(_ questionIndex: Int) {
@@ -173,6 +185,83 @@ extension SubmissionViewController {
     }
 }
 
+// MARK: - File Uploads
+
+extension SubmissionViewController: DocumentMenuController, UIDocumentPickerDelegate, UIDocumentMenuDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func chooseFile(at indexPath: IndexPath) {
+        self.currentFileUploadIndexPath = indexPath
+        self.documentMenuViewModel.inputs.showDocumentMenuButtonTapped()
+    }
+
+    // MARK: DocumentMenuController
+    func documentMenuFinished(uploadable: Uploadable) {
+        let alertMessage = NSLocalizedString("Uploading file...", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Message displayed while a file is being uploaded")
+        let cancel = NSLocalizedString("Cancel", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Cancel upload")
+        let alert = UIAlertController(title: nil, message: alertMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: cancel, style: .cancel) { [weak self] _ in
+            self?.quizService.cancelUploadSubmissionFile()
+        })
+        self.present(alert, animated: true) {
+            self.quizService.uploadSubmissionFile(uploadable) { [weak self] result in
+                DispatchQueue.main.async {
+                    if let file = result.value, let indexPath = self?.currentFileUploadIndexPath, let questionIndex = Index(indexPath: indexPath).questionIndex {
+                        alert.dismiss(animated: true)
+                        self?.submissionInteractor?.selectAnswer(.id(file.id), forQuestionAtIndex: questionIndex, completed: {})
+                        self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    }
+
+                    if let error = result.error {
+                        alert.message = error.localizedDescription
+                    }
+                }
+            }
+        }
+    }
+
+    func documentMenuFinished(error: NSError) {
+        let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: ""), style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func presentDocumentMenuViewController(_ documentMenu: UIDocumentMenuViewController) {
+        if let indexPath = currentFileUploadIndexPath, let cell = tableView.cellForRow(at: indexPath) {
+            documentMenu.popoverPresentationController?.sourceView = cell
+        }
+        present(documentMenu, animated: true, completion: nil)
+    }
+
+    // MARK: UIDocumentPickerDelegate
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        self.documentMenuViewModel.inputs.pickedDocument(at: url)
+    }
+
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        if let indexPath = currentFileUploadIndexPath {
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+
+
+    // MARK: UIDocumentMenuDelegate
+    func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+        self.documentMenuViewModel.inputs.tappedDocumentPicker(documentPicker)
+    }
+
+    func documentMenuWasCancelled(_ documentMenu: UIDocumentMenuViewController) {
+        if let indexPath = currentFileUploadIndexPath {
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+
+    // MARK: UIImagePickerControllerDelegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true) {
+            self.documentMenuViewModel.inputs.pickedMedia(with: info)
+        }
+    }
+}
+
 // MARK: - UITableViewDataSource/Delegate
 
 private let QuizDescriptionCellReuseID = "QuizDescriptionCellReuseID"
@@ -265,6 +354,7 @@ extension SubmissionViewController {
         tableView.register(HTMLAnswerCell.Nib, forCellReuseIdentifier: HTMLAnswerCell.ReuseID)
         tableView.register(ShortAnswerCell.Nib, forCellReuseIdentifier: ShortAnswerCell.ReuseID)
         tableView.register(MatchAnswerCell.Nib, forCellReuseIdentifier: MatchAnswerCell.ReuseID)
+        tableView.register(FileUploadAnswerCell.self, forCellReuseIdentifier: FileUploadAnswerCell.ReuseID)
         tableView.register(QuestionHeaderView.Nib, forHeaderFooterViewReuseIdentifier: QuestionHeaderView.ReuseID)
     }
 
@@ -277,8 +367,7 @@ extension SubmissionViewController {
 
     // returns 1(for the question itself) + number of answers
     fileprivate func numberOfRowsForQuestion(_ question: SubmissionQuestion) -> Int {
-        if question.question.kind == .Essay || question.question.kind == .ShortAnswer || question.question.kind == .Numerical {
-            // an essay question has no answers, but we need a row for the answer button
+        if [.Essay, .ShortAnswer, .Numerical, .FileUpload].contains(question.question.kind) {
             return 2
         }
         return 1 + question.question.answers.count
@@ -343,7 +432,7 @@ extension SubmissionViewController {
                     return MatchAnswerCell.heightWithAnswerText(text, matchText: matchText, boundsWidth: tableView.bounds.size.width)
                 default: break
                 }
-            case .ShortAnswer, .Numerical:
+            case .ShortAnswer, .Numerical, .FileUpload:
                 return 44.0
             default: break
             }
@@ -476,6 +565,14 @@ extension SubmissionViewController {
 
                 return essayCell
             }
+        case .FileUpload:
+            let questionIndex = Index(indexPath: indexPath).questionIndex!
+            let cell = tableView.dequeueReusableCell(withIdentifier: FileUploadAnswerCell.ReuseID, for: indexPath) as! FileUploadAnswerCell
+            cell.removeFileAction = { [weak self] in
+                self?.submissionInteractor?.selectAnswer(.unanswered, forQuestionAtIndex: questionIndex, completed: {})
+                self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+            return cell
         case .MultipleChoice, .MultipleAnswers, .TrueFalse:
             let answerIndex = indexPath.row - 1
             let answer = question.question.answers[answerIndex]
@@ -581,6 +678,9 @@ extension SubmissionViewController {
                 if let cell = tableView.cellForRow(at: indexPath) as? ShortAnswerCell {
                     cell.textField.becomeFirstResponder()
                 }
+
+            case .FileUpload:
+                self.chooseFile(at: indexPath)
 
             default:
                 break
@@ -728,6 +828,10 @@ extension SubmissionViewController {
                     if question.question.kind == .Numerical {
                         cell.textField.keyboardType = .numbersAndPunctuation
                     }
+                }
+            case .FileUpload:
+                if let cell = cell as? FileUploadAnswerCell {
+                    cell.fileName = question.answer.answerID.flatMap(self.quizService.findFile(withID:))?.name
                 }
             default:
                 return

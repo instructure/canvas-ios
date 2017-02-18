@@ -13,6 +13,7 @@ import SoLazy
 import FileKit
 import SoPersistent
 import SoPretty
+import MediaKit
 
 @objc public protocol NewSubmissionViewModelShimProtocol: class {
     func newSubmissionViewModel(_ newSubmissionViewModel: NewSubmissionViewModel, wantsToPresentViewController viewController: UIViewController, completion: ((Void) -> Void)?)
@@ -23,6 +24,7 @@ import SoPretty
 
 public class NewSubmissionViewModelShim: NewSubmissionViewModel {
     public weak var delegate: NewSubmissionViewModelShimProtocol?
+    fileprivate let documentMenuViewModel: DocumentMenuViewModelType = DocumentMenuViewModel()
 
     override init() {
         super.init()
@@ -65,6 +67,49 @@ public class NewSubmissionViewModelShim: NewSubmissionViewModel {
             .observe(on: UIScheduler())
             .observeValues { [weak self] in
                 self?.presentURLPicker()
+            }
+
+        showDocumentMenu
+            .observe(on: UIScheduler())
+            .observeValues { [weak self]  in
+                self?.documentMenuViewModel.inputs.configureWith(fileTypes: $0)
+                self?.documentMenuViewModel.inputs.showDocumentMenuButtonTapped()
+            }
+
+        documentMenuViewModel.outputs.showDocumentMenu
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] options, fileTypes in
+                self?.presentDocumentMenu(fileTypes: fileTypes, options: options)
+            }
+
+        documentMenuViewModel.outputs.showImagePicker
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] sourceType, mediaTypes in
+                self?.presentImagePickerController(sourceType: sourceType, mediaTypes: mediaTypes)
+            }
+
+        documentMenuViewModel.outputs.showAudioRecorder
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] buttonTitle in
+                self?.presentAudioRecorder(completeButtonTitle: buttonTitle)
+            }
+
+        documentMenuViewModel.outputs.showDocumentPicker
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] picker in
+                self?.presentDocumentPicker(picker)
+            }
+
+        documentMenuViewModel.outputs.uploadable
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] uploadable in
+                self?.inputs.selected(uploadable: uploadable)
+            }
+
+        documentMenuViewModel.outputs.errors
+            .observeValues { [weak self] error in
+                guard let me = self else { return }
+                self?.delegate?.newSubmissionViewModel(me, failedWith: error.localizedDescription)
             }
     }
 
@@ -140,6 +185,45 @@ public class NewSubmissionViewModelShim: NewSubmissionViewModel {
         let nav = UINavigationController(rootViewController: browser)
         self.delegate?.newSubmissionViewModel(self, wantsToPresentViewController: nav, completion: nil)
     }
+
+    private func presentDocumentMenu(fileTypes: [String], options: [DocumentOption]) {
+        let docsMenu = UIDocumentMenuViewController(documentTypes: fileTypes, in: .import)
+        docsMenu.delegate = self
+
+        for option in options {
+            docsMenu.addOption(withTitle: option.title, image: option.icon, order: .first) { [weak self] in
+                self?.documentMenuViewModel.inputs.tappedDocumentOption(option)
+            }
+        }
+
+        self.delegate?.newSubmissionViewModel(self, wantsToPresentViewController: docsMenu, completion: nil)
+    }
+
+    private func presentImagePickerController(sourceType: UIImagePickerControllerSourceType, mediaTypes: [String]) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = sourceType
+        picker.mediaTypes = mediaTypes
+
+        self.delegate?.newSubmissionViewModel(self, wantsToPresentViewController: picker, completion: nil)
+    }
+
+    private func presentAudioRecorder(completeButtonTitle: String) {
+        let recorder = AudioRecorderViewController.new(completeButtonTitle: completeButtonTitle)
+        recorder.didFinishRecordingAudioFile = { [weak self] file in
+            self?.documentMenuViewModel.inputs.recorded(audioFile: file)
+        }
+        recorder.cancelButtonTapped = {
+            recorder.dismiss(animated: true, completion: nil)
+        }
+
+        self.delegate?.newSubmissionViewModel(self, wantsToPresentViewController: recorder, completion: nil)
+    }
+
+    private func presentDocumentPicker(_ controller: UIDocumentPickerViewController) {
+        controller.delegate = self
+        self.delegate?.newSubmissionViewModel(self, wantsToPresentViewController: controller, completion: nil)
+    }
 }
 
 extension NewSubmissionViewModelShim: FileUploadsViewControllerDelegate {
@@ -150,6 +234,29 @@ extension NewSubmissionViewModelShim: FileUploadsViewControllerDelegate {
     public func fileUploadsViewController(_ viewController: FileUploadsViewController, uploaded files: [File]) {
         viewController.dismiss(animated: true) { [weak self] in
             self?.inputs.submit(newSubmission: .fileUpload(files))
+        }
+    }
+}
+
+extension NewSubmissionViewModelShim: UIDocumentMenuDelegate {
+    public func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+        self.documentMenuViewModel.inputs.tappedDocumentPicker(documentPicker)
+    }
+}
+
+extension NewSubmissionViewModelShim: UIDocumentPickerDelegate {
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        controller.dismiss(animated: true) {
+            self.documentMenuViewModel.inputs.pickedDocument(at: url)
+        }
+    }
+}
+
+extension NewSubmissionViewModelShim: UINavigationControllerDelegate {}
+extension NewSubmissionViewModelShim: UIImagePickerControllerDelegate {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true) {
+            self.documentMenuViewModel.inputs.pickedMedia(with: info)
         }
     }
 }

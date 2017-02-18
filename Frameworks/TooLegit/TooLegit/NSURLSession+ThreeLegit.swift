@@ -48,8 +48,22 @@ extension JSONSerialization {
             let json = try jsonObject(with: data, options: .allowFragments)
             return .success((json, response))
         } catch let e as NSError {
+            if let withoutWhile = dataWithoutWhile(data) {
+                return parseData(withoutWhile, response: response)
+            }
             return .failure(e)
         }
+    }
+
+    private static func dataWithoutWhile(_ data: Data) -> Data? {
+        guard let dataString = String(data: data, encoding: .utf8) else {
+            return nil
+        }
+        let whileIndex = dataString.index(dataString.startIndex, offsetBy: 9)
+        if dataString.substring(to: whileIndex) == "while(1);" {
+            return dataString.substring(from: whileIndex).data(using: .utf8)
+        }
+        return nil
     }
 }
 

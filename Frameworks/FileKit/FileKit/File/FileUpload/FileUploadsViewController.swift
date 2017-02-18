@@ -49,9 +49,14 @@ struct FileUploadTableViewCellViewModel: TableViewCellViewModel {
     }
 }
 
-open class FileUploadsViewController: FileUpload.TableViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, FileUploadActionDelegate, FileUploadTableViewCellDelegate {
+open class FileUploadsViewController: FileUpload.TableViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, DocumentMenuController, FileUploadTableViewCellDelegate {
     fileprivate let viewModel: FileUploadsViewModelType = FileUploadsViewModel()
+    public let documentMenuViewModel: DocumentMenuViewModelType = DocumentMenuViewModel()
     public weak var delegate: FileUploadsViewControllerDelegate?
+
+    public lazy var showDocumentMenu: Signal<[String], NoError> = {
+        return self.viewModel.outputs.showDocumentMenu
+    }()
 
     open lazy var doneButton: UIBarButtonItem = {
         let title = NSLocalizedString("Done", tableName: "Localizable", bundle: .fileKit, value: "", comment: "")
@@ -83,10 +88,6 @@ open class FileUploadsViewController: FileUpload.TableViewController, UIDocument
         self.viewModel.inputs.tappedAddFile()
     }
 
-    open func add(uploadable: Uploadable) {
-        self.viewModel.inputs.add(uploadable: uploadable)
-    }
-
     open func cancel() {
         self.viewModel.inputs.tappedCancel()
     }
@@ -109,16 +110,11 @@ open class FileUploadsViewController: FileUpload.TableViewController, UIDocument
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFile))
 
         bindViewModel()
+        bindDocumentMenuViewModel()
         viewModel.inputs.viewDidLoad()
     }
 
     private func bindViewModel() {
-        self.viewModel.outputs.showDocumentMenu
-            .observe(on: UIScheduler())
-            .observeValues { [weak self] allowedUTIs, fileUploadActions in
-                self?.showDocumentMenu(allowedUTIs: allowedUTIs, fileUploadActions: fileUploadActions)
-            }
-
         self.viewModel.outputs.dismissButtonType
             .observe(on: UIScheduler())
             .observeValues { [weak self] dismissButtonType in
@@ -145,19 +141,8 @@ open class FileUploadsViewController: FileUpload.TableViewController, UIDocument
                     me.delegate?.fileUploadsViewController(me, uploaded: files)
                 }
             }
-    }
 
-    private func showDocumentMenu(allowedUTIs: [String], fileUploadActions: [FileUploadAction]) {
-        let docsMenu = UIDocumentMenuViewController(documentTypes: allowedUTIs, in: .import)
-        docsMenu.delegate = self
-        docsMenu.popoverPresentationController?.barButtonItem = navigationItem.leftBarButtonItem
-
-        for var action in fileUploadActions {
-            action.delegate = self
-            docsMenu.addOption(withTitle: action.title, image: action.icon, order: .first, handler: action.initiate)
-        }
-
-        self.present(docsMenu, animated: true, completion: nil)
+        self.bindDocumentMenuViewModel()
     }
 
     fileprivate func showDataError() {
@@ -186,39 +171,30 @@ open class FileUploadsViewController: FileUpload.TableViewController, UIDocument
         }]
     }
 
-    // MARK: - UIDocumentMenuDelegate
+    // MARK: - DocumentMenuController
 
-    open func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
-        documentPicker.delegate = self
-        self.present(documentPicker, animated: true, completion: nil)
+    public func documentMenuFinished(error: NSError) {
+        self.show(error: error.localizedDescription)
     }
 
+    public func documentMenuFinished(uploadable: Uploadable) {
+        self.viewModel.inputs.add(uploadable: uploadable)
+    }
 
-    // MARK: - UIDocumentPickerDelegate
-
-    open func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        guard let data = try? Data(contentsOf: url) else {
-            self.showDataError()
-            return
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        controller.dismiss(animated: true) {
+            self.documentMenuViewModel.inputs.pickedDocument(at: url)
         }
-
-        viewModel.inputs.add(uploadable: NewFileUpload(kind: .fileURL(url), data: data))
     }
 
-    // MARK: - FileUploadActionDelegate
-
-    func fileUploadActionDidCancel(_ fileUploadAction: FileUploadAction) {}
-
-    func fileUploadActionFailedToConvertData(_ fileUploadAction: FileUploadAction) {
-        self.showDataError()
+    public func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+        self.documentMenuViewModel.inputs.tappedDocumentPicker(documentPicker)
     }
 
-    func fileUploadAction(_ fileUploadAction: FileUploadAction, finishedWith uploadable: Uploadable) {
-        self.add(uploadable: uploadable)
-    }
-
-    func fileUploadAction(_ fileUploadAction: FileUploadAction, wantsToPresent viewController: UIViewController) {
-        self.present(viewController, animated: true, completion: nil)
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true) {
+            self.documentMenuViewModel.inputs.pickedMedia(with: info)
+        }
     }
 
     // MARK: - FileUploadTableViewCellDelegate

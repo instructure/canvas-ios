@@ -150,7 +150,8 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
                 let fileUpload = FileUpload(inContext: context, uploadable: newUpload, path: assignment.submissionsPath)
                 let predicate = NSPredicate(format: "self == %@", fileUpload)
 
-                let uploadChanges = ManagedObjectObserver<FileUpload>.object(predicate: predicate, context: context, lifetime: self.reactive.lifetime)
+                let uploadChanges = ManagedObjectObserver<FileUpload>.object(predicate: predicate, context: context)
+                    .take(during: self.reactive.lifetime)
 
                 uploadChanges
                     .filter { $0.failedAt != nil }

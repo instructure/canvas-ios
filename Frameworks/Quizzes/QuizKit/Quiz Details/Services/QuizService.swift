@@ -17,13 +17,13 @@
     
 
 import Foundation
-
 import TooLegit
-
 import Result
+import FileKit
 
 typealias QuizSubmissionsResult = Result<Page<[Submission]>, NSError>
 typealias QuizSubmissionResult = Result<Page<Submission>, NSError>
+typealias QuizSubmissionFileResult = Result<File, NSError>
 typealias QuizResult = Result<Page<Quiz>, NSError>
 
 
@@ -43,6 +43,12 @@ protocol QuizService {
     func beginNewSubmission(_ completed: @escaping (QuizSubmissionResult)->())
     
     func completeSubmission(_ submission: Submission, completed: @escaping (QuizSubmissionResult)->())
+
+    func uploadSubmissionFile(_ uploadable: Uploadable, completed: @escaping (QuizSubmissionFileResult)->())
+
+    func cancelUploadSubmissionFile()
+
+    func findFile(withID id: String) -> File?
     
     func serviceForSubmission(_ submission: Submission) -> QuizSubmissionService
     

@@ -32,8 +32,8 @@ protocol FileUploadsViewModelInputs {
 }
 
 protocol FileUploadsViewModelOutputs {
+    var showDocumentMenu: Signal<[String], NoError> { get }
     var fileUploads: Signal<FetchedCollection<FileUpload>, NoError> { get }
-    var showDocumentMenu: Signal<([String], [FileUploadAction]), NoError> { get }
     var dismissButtonType: Signal<DismissButtonType, NoError> { get }
     var files: Signal<[File], NoError> { get }
     var cancelled: Signal<Void, NoError> { get }
@@ -49,39 +49,19 @@ final class FileUploadsViewModel: FileUploadsViewModelType, FileUploadsViewModel
         let session = sessionBatch.signal.skipNil().map { session, _ in session }
         let batch = sessionBatch.signal.skipNil().map { _, batch in batch }
         let context = session.map { try! $0.filesManagedObjectContext() }
-        let fileTypes = sessionBatch.signal.skipNil().map { _, batch in batch.fileTypes }
         let apiPath = sessionBatch.signal.skipNil().map { _, batch in batch.apiPath }
 
         let token = Lifetime.Token()
         self.lifetimeToken = token
+
+        self.showDocumentMenu = batch.map { $0.fileTypes }
+            .sample(on: self.tappedAddFileProperty.signal)
 
         self.fileUploads = Signal.combineLatest(session, batch)
             .sample(on: viewDidLoadProperty.signal)
             .map { session, batch in
             return try! FileUpload.fetchCollection(session, batch: batch)
         }
-
-        let fileUploadActions = fileTypes.map { fileTypes -> [FileUploadAction] in
-            var actions: [FileUploadAction] = []
-            let allowsAll = fileTypes.contains(kUTTypeItem as String)
-            let allowsPhotos = allowsAll || fileTypes.any(isUTIPhoto)
-            let allowsVideos = allowsAll || fileTypes.any(isUTIVideo)
-            
-            if let (choosing, taking) = PhotoOrVideoUploadAction.actionsForUpload(allowsPhotos: allowsPhotos, allowsVideo: allowsVideos) {
-                actions.append(choosing)
-                actions.append(taking)
-            }
-
-            if allowsAll || fileTypes.any(isUTIAudio) {
-                let recordAudio = RecordAudioSubmissionAction()
-                actions.append(recordAudio)
-            }
-
-            return actions
-        }
-
-        self.showDocumentMenu = Signal.combineLatest(fileTypes, fileUploadActions)
-            .sample(on: tappedAddFileProperty.signal)
 
         let contextDidSave = session
             .flatMap(.latest) { session -> Signal<Notification, NoError> in
@@ -191,8 +171,8 @@ final class FileUploadsViewModel: FileUploadsViewModelType, FileUploadsViewModel
         self.tappedCancelProperty.value = ()
     }
 
+    let showDocumentMenu: Signal<[String], NoError>
     let fileUploads: Signal<FetchedCollection<FileUpload>, NoError>
-    let showDocumentMenu: Signal<([String], [FileUploadAction]), NoError>
     let files: Signal<[File], NoError>
     let dismissButtonType: Signal<DismissButtonType, NoError>
     let cancelled: Signal<Void, NoError>
@@ -201,30 +181,4 @@ final class FileUploadsViewModel: FileUploadsViewModelType, FileUploadsViewModel
 
     var inputs: FileUploadsViewModelInputs { return self }
     var outputs: FileUploadsViewModelOutputs { return self }
-}
-
-import MobileCoreServices
-
-public func toUTI(_ ext: String) -> String {
-    let cfUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as CFString, nil)
-        .map { $0.takeRetainedValue() }
-        .map { $0 as String }
-    
-    return cfUTI ?? ""
-}
-
-fileprivate func isUTIVideo(_ uti: String) -> Bool {
-    return UTTypeConformsTo(uti as CFString, kUTTypeMovie)
-}
-
-fileprivate func isUTIPhoto(_ uti: String) -> Bool {
-    return UTTypeConformsTo(uti as CFString, kUTTypeImage)
-}
-
-fileprivate func isUTIAudio(_ uti: String) -> Bool {
-    return UTTypeConformsTo(uti as CFString, kUTTypeAudio)
-}
-
-fileprivate func isUTIItem(_ uti: String) -> Bool {
-    return UTTypeConformsTo(uti as CFString, kUTTypeItem)
 }

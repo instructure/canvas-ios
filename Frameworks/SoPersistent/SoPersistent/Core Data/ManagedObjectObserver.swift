@@ -74,47 +74,56 @@ public final class ManagedObjectObserver<Object: NSManagedObject> {
         self.context = context
 
         let token = Lifetime.Token()
-        self.signal = ManagedObjectObserver<Object>.changes(predicate: predicate, context: context, lifetime: Lifetime(token))
+        self.signal = ManagedObjectObserver<Object>.changes(predicate: predicate, context: context).take(during: Lifetime(token))
         self.token = token
 
         let request: NSFetchRequest<Object> = context.fetch(predicate, sortDescriptors: nil)
         object = (try context.fetch(request)).first
     }
     
-    public static func changes(predicate: NSPredicate, context: NSManagedObjectContext, lifetime: Lifetime) -> Signal<(ManagedObjectChange, Object?), NoError> {
+    public static func changes(predicate: NSPredicate, context: NSManagedObjectContext) -> Signal<(ManagedObjectChange, Object?), NoError> {
         return NotificationCenter
             .default
             .reactive
             .notifications(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: context)
-            .take(during: lifetime)
-            .map { changeType($0, predicate: predicate) }
+            .mapChanges(matching: predicate)
             .skipNil()
     }
 
-    public static func object(predicate: NSPredicate, context: NSManagedObjectContext, lifetime: Lifetime) -> Signal<Object, NoError> {
-        return changes(predicate: predicate, context: context, lifetime: lifetime)
+    public static func object(predicate: NSPredicate, context: NSManagedObjectContext) -> Signal<Object, NoError> {
+        return changes(predicate: predicate, context: context)
             .map { _, object in object }
             .skipNil()
     }
 
-    private static func changeType(_ note: Notification, predicate: NSPredicate) -> (ManagedObjectChange, Object?)? {
-        if let inserted = note.insertedObjects.map({ $0 as? Object }).findFirst(predicate.evaluate) {
-            return (.insert, inserted)
-        }
+}
 
-        if note.invalidatedAllObjects {
-            return (.delete, nil)
-        }
+extension SignalProtocol where Value == Notification {
+    public func mapChanges<Object>(matching predicate: NSPredicate) -> Signal<(ManagedObjectChange, Object?)?, Error> {
+        return self.signal.map { note in
+            if let inserted = note.insertedObjects.map({ $0 as? Object }).findFirst(predicate.evaluate) {
+                return (.insert, inserted)
+            }
 
-        if let deleted = note.deletedObjects.union(note.invalidatedObjects).map({ $0 as? Object }).findFirst(predicate.evaluate) {
-            return (.delete, deleted)
-        }
+            if note.invalidatedAllObjects {
+                return (.delete, nil)
+            }
 
-        if let updated = note.updatedObjects.union(note.refreshedObjects).map({ $0 as? Object }).findFirst(predicate.evaluate) {
-            return (.update, updated)
-        }
+            if let deleted = note.deletedObjects.union(note.invalidatedObjects).map({ $0 as? Object }).findFirst(predicate.evaluate) {
+                return (.delete, deleted)
+            }
 
-        return nil
+            if let updated = note.updatedObjects.union(note.refreshedObjects).map({ $0 as? Object }).findFirst(predicate.evaluate) {
+                return (.update, updated)
+            }
+
+            return nil
+        }
     }
+}
 
+extension SignalProducerProtocol where Value == Notification {
+    public func mapChanges<Object>(matching predicate: NSPredicate) -> SignalProducer<(ManagedObjectChange, Object?)?, Error> {
+        return self.lift { $0.mapChanges(matching: predicate) }
+    }
 }

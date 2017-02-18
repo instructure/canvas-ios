@@ -169,7 +169,7 @@ class QuizPresentingViewController: UIViewController {
     }
     
     fileprivate func prepareSubmissionView() {
-        submissionViewController = SubmissionViewController(quiz: quizController.quiz, questions: (questionsController?.questions ?? []), whizzyBaseURL: submissionController.service.baseURL)
+        submissionViewController = SubmissionViewController(quiz: quizController.quiz, questions: (questionsController?.questions ?? []), whizzyBaseURL: submissionController.service.baseURL, quizService: quizController.service)
         submissionViewController?.submissionInteractor = questionsController
         submissionViewController?.submitAction = { [weak self] in
             if let me = self {

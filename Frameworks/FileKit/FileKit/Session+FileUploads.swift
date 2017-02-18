@@ -29,11 +29,18 @@ struct UploadTarget {
     
     static func parse(json: JSONObject) -> SignalProducer<UploadTarget, NSError> {
         return attemptProducer {
-            UploadTarget(
-                url: try json <| "upload_url",
-                parameters: try json <| "upload_params"
-            )
+            if let attachments: [JSONObject] = try json <| "attachments", let attachment = attachments.first {
+                return try parse(json: attachment)
+            }
+            return try parse(json: json)
         }
+    }
+
+    private static func parse(json: JSONObject) throws -> UploadTarget {
+        return UploadTarget(
+            url: try json <| "upload_url",
+            parameters: try json <| "upload_params"
+        )
     }
 }
 

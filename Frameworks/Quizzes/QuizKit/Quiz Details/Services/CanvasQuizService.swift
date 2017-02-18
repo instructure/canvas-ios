@@ -21,18 +21,22 @@ import Foundation
 import TooLegit
 import SoLazy
 import SoProgressive
-
+import FileKit
 import Result
+import SoPersistent
+import CoreData
 
 class CanvasQuizService: QuizService {
     init(session: Session, context: ContextID, quizID: String) {
         self.session = session
         self.context = context
         self.quizID = quizID
+        self.fileUploader = Uploader(session: session, apiPath: context.apiPath/"quizzes/\(quizID)/submissions/self/files")
     }
     
     let context: ContextID
     let quizID: String
+    let fileUploader: Uploader
     
     let session: Session
     var user: SessionUser {
@@ -101,6 +105,28 @@ class CanvasQuizService: QuizService {
             return Quiz.fromJSON(json).map {
                 return Result(value: $0)
             } ?? Result(error: NSError.quizErrorWithMessage("Error parsing the quiz response"))
+        }
+    }
+
+    func uploadSubmissionFile(_ uploadable: Uploadable, completed: @escaping (QuizSubmissionFileResult) -> ()) {
+        do {
+            try self.fileUploader.upload(uploadable, completed: completed)
+        } catch let error as NSError {
+            completed(Result(error: error))
+        }
+    }
+
+    func cancelUploadSubmissionFile() {
+        self.fileUploader.cancel()
+    }
+
+    func findFile(withID id: String) -> File? {
+        do {
+            let context = try self.session.filesManagedObjectContext()
+            let predicate = NSPredicate(format: "%K == %@", "id", id)
+            return try context.findOne(withPredicate: predicate)
+        } catch {
+            return nil
         }
     }
     

@@ -25,11 +25,17 @@ public protocol NewSubmissionViewModelInputs {
 
     /// Call when ready to submit a NewSubmission.
     func submit(newSubmission: NewSubmission)
+
+    /// Call when uploadable is selected.
+    func selected(uploadable: Uploadable)
 }
 
 public protocol NewSubmissionViewModelOutputs {
     /// Emits when to select a submission type from an actionsheet.
     var showSubmissionTypesSheet: Signal<[SubmissionType], NoError> { get }
+
+    /// Emits a list of file types when ready to start choosing files.
+    var showDocumentMenu: Signal<[String], NoError> { get }
 
     /// Emits a session, course id, and an upload batch when ready to start choosing files.
     var showFileUploads: Signal<(Session, String, FileUploadBatch), NoError> { get }
@@ -89,25 +95,31 @@ public class NewSubmissionViewModel: NSObject, NewSubmissionViewModelType, NewSu
         let selectedSubmissionType = Signal.merge(selectedOnlySubmissionType, submissionTypeButtonTappedProperty.signal.skipNil())
 
         let fileTypes = assignment.map { Assignment.allowedSubmissionUTIs($0.submissionTypes, allowedExtensions: $0.allowedExtensions) }
+
         let apiPath = Signal.combineLatest(session, assignment)
             .flatMap(.latest, transform: apiPathForFileSubmissions(in:for:))
             .materialize()
         let courseID = assignment.map { $0.courseID }
-        let batch = Signal.combineLatest(session, fileTypes, apiPath.values()).map(insertBatch(in:fileTypes:apiPath:))
-        let tappedSubmitFileUpload = selectedSubmissionType.filter { $0 == .fileUpload }.ignoreValues()
+        let selectedUploadable = selectedUploadableProperty.signal.skipNil()
+        let batch = Signal.combineLatest(session, fileTypes, apiPath.values())
+            .sample(with: selectedUploadable)
+            .map(blend)
+            .map(insertBatch(in:fileTypes:apiPath:uploadable:))
+
         self.showFileUploads = Signal.combineLatest(session, courseID, batch)
-            .sample(on: tappedSubmitFileUpload)
 
         self.showTextEntry = selectedSubmissionType.filter { $0 == .text }.ignoreValues()
 
         self.showURLPicker = selectedSubmissionType.filter { $0 == .url }.ignoreValues()
 
+        let selectedFileUploadSubmissionType = selectedSubmissionType.filter { $0 == .fileUpload }.ignoreValues()
+        self.showDocumentMenu = fileTypes.sample(on: selectedFileUploadSubmissionType)
+
         let newSubmission = self.submitNewSubmissionProperty.signal.skipNil()
         let createSubmissionEvent = sessionAssignment.signal.skipNil()
             .sample(with: newSubmission)
-            .flatMap(.latest) { sessionAssignment, newSubmission -> SignalProducer<Event<Submission, NSError>, NoError> in
-                let session = sessionAssignment.0
-                let assignment = sessionAssignment.1
+            .map(blend)
+            .flatMap(.latest) { session, assignment, newSubmission -> SignalProducer<Event<Submission, NSError>, NoError> in
                 return attemptProducer {
                     try Submission.create(newSubmission, session: session, courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
                 }
@@ -142,11 +154,17 @@ public class NewSubmissionViewModel: NSObject, NewSubmissionViewModelType, NewSu
         submitNewSubmissionProperty.value = newSubmission
     }
 
+    private let selectedUploadableProperty = MutableProperty<Uploadable?>(nil)
+    public func selected(uploadable: Uploadable) {
+        selectedUploadableProperty.value = uploadable
+    }
+
     public let showSubmissionTypesSheet: Signal<[SubmissionType], NoError>
     public let showFileUploads: Signal<(Session, String, FileUploadBatch), NoError>
     public let showError: Signal<String, NoError>
     public let showTextEntry: Signal<Void, NoError>
     public let showURLPicker: Signal<Void, NoError>
+    public let showDocumentMenu: Signal<[String], NoError>
     public let submission: Signal<Submission, NoError>
 
     public var inputs: NewSubmissionViewModelInputs { return self }
@@ -185,11 +203,12 @@ private func apiPathForFileSubmissions(in session: Session, for assignment: Assi
     return singleSubmissionPath
 }
 
-private func insertBatch(in session: Session, fileTypes: [String], apiPath: String) -> FileUploadBatch {
+private func insertBatch(in session: Session, fileTypes: [String], apiPath: String, uploadable: Uploadable) -> FileUploadBatch {
     let context = try! session.filesManagedObjectContext()
     var batch: FileUploadBatch!
     context.performAndWait {
         batch = FileUploadBatch(session: session, fileTypes: fileTypes, apiPath: apiPath)
+        FileUpload(inContext: context, uploadable: uploadable, path: apiPath, batch: batch)
     }
     context.saveOrRollback()
     return batch

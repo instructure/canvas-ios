@@ -27,6 +27,7 @@
 		5E75B6141C4D5DAE00A44160 /* UIDevice+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E75B6131C4D5DAE00A44160 /* UIDevice+Model.swift */; };
 		617BE7A71CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617BE7A61CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift */; };
 		61D6A8331C8F6A3000370117 /* Marshal+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A8321C8F6A3000370117 /* Marshal+SoLazy.swift */; };
+		B119EED01E3A80EE00343D1B /* Tuple+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119EECF1E3A80EE00343D1B /* Tuple+SoLazy.swift */; };
 		B122CDDC1E03941200F63868 /* RACHelpersSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B122CDDB1E03941200F63868 /* RACHelpersSpec.swift */; };
 		B135FEB91CB8632F0093DE0B /* NSURLSession+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B135FEB81CB8632F0093DE0B /* NSURLSession+SoLazy.swift */; };
 		B16398761DC7A82D00A5B68B /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16398741DC7A82D00A5B68B /* Nimble.framework */; };
@@ -85,11 +86,14 @@
 		5E75B6131C4D5DAE00A44160 /* UIDevice+Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Model.swift"; sourceTree = "<group>"; };
 		617BE7A61CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "❨╯°□°❩╯⌢.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		61D6A8321C8F6A3000370117 /* Marshal+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Marshal+SoLazy.swift"; sourceTree = "<group>"; };
+		B119EECF1E3A80EE00343D1B /* Tuple+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tuple+SoLazy.swift"; sourceTree = "<group>"; };
 		B122CDDB1E03941200F63868 /* RACHelpersSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACHelpersSpec.swift; sourceTree = "<group>"; };
 		B135FEB81CB8632F0093DE0B /* NSURLSession+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSession+SoLazy.swift"; sourceTree = "<group>"; };
 		B16398741DC7A82D00A5B68B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B16398751DC7A82D00A5B68B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B16398781DC7A87500A5B68B /* ArraySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraySpec.swift; sourceTree = "<group>"; };
+		B166A7EF1E0B1D7F00FA06E9 /* Uncollect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uncollect.swift; sourceTree = "<group>"; };
+		B166A7F11E0C303000FA06E9 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B16B5CB31E25485A00DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5CB81E25485B00DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5CBA1E25486E00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -128,8 +132,6 @@
 		B16B5CDB1E254A0F00DED47B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5CDC1E254A2200DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5CDD1E254A2300DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B166A7EF1E0B1D7F00FA06E9 /* Uncollect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uncollect.swift; sourceTree = "<group>"; };
-		B166A7F11E0C303000FA06E9 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B18799B41CD90906008F712A /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		B1B8CC6C1DDAB24C0095BEFA /* NSDateSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateSpec.swift; sourceTree = "<group>"; };
 		B1CAE82E1E35F2C90061D411 /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				B18799B41CD90906008F712A /* Environment.swift */,
 				2C3FB9231DA692880039201B /* ErrorReporter.swift */,
 				2C3FB9251DA696240039201B /* NSBundle+SoLazy.swift */,
+				B119EECF1E3A80EE00343D1B /* Tuple+SoLazy.swift */,
 			);
 			path = SoLazy;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				B16A8D841C99CE03009E364E /* RAC+SoLazy.swift in Sources */,
 				B166A7F21E0C303000FA06E9 /* Errors.swift in Sources */,
 				49A960A81BC315E000592D94 /* UIFont+SoLazy.swift in Sources */,
+				B119EED01E3A80EE00343D1B /* Tuple+SoLazy.swift in Sources */,
 				2C3FB9241DA692880039201B /* ErrorReporter.swift in Sources */,
 				B166A7F01E0B1D7F00FA06E9 /* Uncollect.swift in Sources */,
 			);
