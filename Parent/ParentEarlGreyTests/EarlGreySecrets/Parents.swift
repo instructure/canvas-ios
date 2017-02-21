@@ -21,287 +21,122 @@
 // swiftlint:disable type_body_length
 // swiftlint:disable file_length
 class Parents {
-    static var withNoStudentsDomainPickerPage: Parent {
-    return Parent(parentId:   "09aef9a6-1d20-4caf-a618-762544d77bca",
-                  username:   "1485880616@98c80e2f-3825-48be-9443-be5e7c6b2d96.com",
-                  password:   "13290e46f2d1fdb8",
-                  firstName:  "Morton",
-                  lastName:   "Prosacco",
-                  students:   [],
-                  thresholds: [],
-                  alerts:     [])
-    }
-
-    static var whoForgotPasswordPage: Parent {
-    return Parent(parentId:   "ae8ba2ef-2cc5-420a-b9a9-7faa0efae53a",
-                  username:   "1485880616@5b288681-3639-4145-a71a-a5a8f5492b42.com",
-                  password:   "5739e9a5aa5e48c5",
-                  firstName:  "Emmet",
-                  lastName:   "Casper",
-                  students:   [],
-                  thresholds: [],
-                  alerts:     [])
-    }
-
-    static var withNoStudentsGettingStartedPage: Parent {
-    return Parent(parentId:   "7f93bd31-afa5-4098-b036-e47c97e12d2a",
-                  username:   "1485880616@99f251b4-b1e7-469f-9dc1-05fe6735cb0e.com",
-                  password:   "bc98fe13e0e86bbd",
-                  firstName:  "Jaydon",
-                  lastName:   "Bogisich",
-                  students:   [],
-                  thresholds: [],
-                  alerts:     [])
-    }
-
-    static var withOneStudentSettingsPage: Parent {
-    return Parent(parentId:   "65f02783-2640-42db-9f5f-c13dac16aba3",
-                  username:   "1485880616@e49a0b28-bef6-4643-af0e-cbf5e5ec8970.com",
-                  password:   "e76a545075b002c4",
-                  firstName:  "Astrid",
-                  lastName:   "Kohler",
-                  students:   [Students.withNoCoursesSettingsPage],
-                  thresholds: [],
-                  alerts:     [])
-    }
-
-    static var withOneStudentDashboardPage: Parent {
-    return Parent(parentId:   "f1c719b8-48c5-47c0-8157-63c87128ed7b",
-                  username:   "1485880626@e81304c6-5935-4924-acda-9269dba6eac1.com",
-                  password:   "4800a29477debc88",
-                  firstName:  "Kasey",
-                  lastName:   "Pollich",
-                  students:   [Students.withNoCoursesDashboardPage],
-                  thresholds: [],
-                  alerts:     [])
-    }
-
-    static var withStudentWithNoCoursesCoursesTabPage: Parent {
-    return Parent(parentId:   "4cf95f70-826b-44a2-8093-15e13a1a4748",
-                  username:   "1485880696@9f91b69c-f64c-4fdf-8ae4-57b3ef92372e.com",
-                  password:   "7db18ef96b515aa1",
-                  firstName:  "Angelica",
-                  lastName:   "Kassulke",
-                  students:   [Students.withNoCoursesCoursesTabPage],
-                  thresholds: [],
-                  alerts:     [])
-    }
-
-    static var withStudentWithOneCourseCoursesTabPage: Parent {
-    return Parent(parentId:   "9c1ebec1-d31c-4230-939c-e5004cdaa805",
-                  username:   "1485880700@d53e1b1a-3dca-4b2d-860c-697418c640fd.com",
-                  password:   "8956bf4aaa17525f",
-                  firstName:  "Janiya",
-                  lastName:   "O&#39;Conner",
-                  students:   [Students.withOneCourseCoursesTabPage],
-                  thresholds: [],
-                  alerts:     [])
-    }
-
-    static var withStudentWithNoCoursesWeekTabPagee: Parent {
-    return Parent(parentId:   "1e1058ad-ebbe-4a53-8532-fbab95abbdb0",
-                  username:   "1485880704@e50aa881-85a3-4404-8a84-53071b63b2ba.com",
-                  password:   "115583fdd9895745",
-                  firstName:  "Sister",
-                  lastName:   "Hessel",
-                  students:   [Students.withNoCoursesWeekTabPage],
-                  thresholds: [],
-                  alerts:     [])
-    }
-
-    static var withStudentWithNoCoursesAlertsTabPage: Parent {
-    return Parent(parentId:   "63d18fc0-5f18-45b0-89b2-fe0f8398e46d",
-                  username:   "1485880705@1698cd14-8368-4009-a0e4-e2e4c57dba73.com",
-                  password:   "d35985516f9e1bab",
-                  firstName:  "Maxime",
-                  lastName:   "Baumbach",
-                  students:   [Students.withNoCoursesAlertsTabPage],
-                  thresholds: [],
-                  alerts:     [])
-    }
-
-    static var whoHasStudentToRemove: Parent {
-    return Parent(parentId:   "49ca07f8-1bb8-456a-880a-ba28f254a8f1",
-                  username:   "1485880707@e226236f-6416-469f-830c-1fe5fa20a325.com",
-                  password:   "28600d99223b0e71",
-                  firstName:  "Verdie",
-                  lastName:   "Stokes",
-                  students:   [Students.whenRemovedRoutesToAddStudentPage],
-                  thresholds: [],
-                  alerts:     [])
-    }
-
-    static var whoHasManyStudentsToRemove: Parent {
-    return Parent(parentId:   "c253fe00-abc8-4f7f-950f-f6216ff08990",
-                  username:   "1485880710@7b13d89a-92c0-44db-bf48-035c9747c935.com",
-                  password:   "e74f6b5e50cd2e3d",
-                  firstName:  "Orval",
-                  lastName:   "Lakin",
-                  students:   [Students.whoCanBeRemoved1,
-                               Students.whoCanBeRemoved2],
-                  thresholds: [],
-                  alerts:     [])
-    }
-
-    static var whoHasStudentWithNoThresholds: Parent {
-    return Parent(parentId:   "df92bf87-494f-4b87-8557-2d182406d8e2",
-                  username:   "1485880713@bf3c550b-7cbe-47a6-a28e-2b2d98d063ed.com",
-                  password:   "d3f419cdc8592fd1",
-                  firstName:  "Larue",
-                  lastName:   "Rowe",
-                  students:   [Students.whoHasNoThresholds],
-                  thresholds: [],
-                  alerts:     [])
-    }
-
-    static var whoHasStudentWithThresholds: Parent {
-        let thresholds: [AlertThreshold] = [AlertThreshold(student: Students.whoHasThresholds,
-                                                           alertType: "assignment_grade_high",
-                                                           threshold: "95"),
-                                            AlertThreshold(student: Students.whoHasThresholds,
-                                                           alertType: "assignment_grade_low",
-                                                           threshold: "65"),
-                                            AlertThreshold(student: Students.whoHasThresholds,
-                                                           alertType: "assignment_missing",
-                                                           threshold: ""),
-                                            AlertThreshold(student: Students.whoHasThresholds,
-                                                           alertType: "course_announcement",
-                                                           threshold: ""),
-                                            AlertThreshold(student: Students.whoHasThresholds,
-                                                           alertType: "course_grade_high",
-                                                           threshold: "90"),
-                                            AlertThreshold(student: Students.whoHasThresholds,
-                                                           alertType: "course_grade_low",
-                                                           threshold: "75"),
-                                            AlertThreshold(student: Students.whoHasThresholds,
-                                                           alertType: "institution_announcement",
-                                                           threshold: "")]
-    return Parent(parentId:   "6d98469b-08b4-40c8-a665-ce88c624e748",
-                  username:   "1485880715@d3bcb0b5-4a65-4b6f-b07c-06bd31115381.com",
-                  password:   "0d746e481abc829a",
-                  firstName:  "Sigmund",
-                  lastName:   "Muller",
-                  students:   [Students.whoHasThresholds],
-                  thresholds: thresholds,
-                  alerts:     [])
-    }
-
-    static var whoChecksThresholdsErrors: Parent {
-    return Parent(parentId:   "c008fcf2-6414-4802-a742-9d8479cfefa2",
-                  username:   "1485880719@4e5c771b-dba9-4696-bf1f-7eeec0dfc743.com",
-                  password:   "396b42a427d33f8c",
-                  firstName:  "Jessie",
-                  lastName:   "Ortiz",
-                  students:   [Students.whoChecksThresholdsErrors],
-                  thresholds: [],
-                  alerts:     [])
-    }
-
     static var testCreateAccountPage: Parent {
-    return Parent(parentId:   "ae771bbb-24a6-4e84-9575-e1aa9f9b40bb",
-                  username:   "1485880721@cca05cca-0d10-4e08-b736-1c8601a1e351.com",
-                  password:   "f2ee0ef15d4358bc",
-                  firstName:  "Norris",
-                  lastName:   "Schaden",
+    return Parent(parentId:   "df33cec5-87c1-4a74-89fa-540a91d0573e",
+                  username:   "1487711568@ecdeb345-c92f-4340-b697-6e1e247a1b56.com",
+                  password:   "a48d90c0c7b326d5",
+                  firstName:  "Seamus",
+                  lastName:   "Bayer",
                   students:   [],
                   thresholds: [],
                   alerts:     [])
     }
 
     static var testDashboardPage: Parent {
-    return Parent(parentId:   "a7c15e9e-4f9f-420d-b429-b501df6ce209",
-                  username:   "1485880721@cf41a8ec-5e01-41bd-8623-01e0ebb59b71.com",
-                  password:   "7a71ad9f0c1e4207",
-                  firstName:  "Kattie",
-                  lastName:   "Morissette",
-                  students:   [],
+    return Parent(parentId:   "f8e98bfa-b13e-4f7e-a2b1-ccad54408f89",
+                  username:   "1487711569@6452507a-67d9-4e00-8e67-f1a893491113.com",
+                  password:   "929f8a3d7682b64d",
+                  firstName:  "Casimer",
+                  lastName:   "Champlin",
+                  students:   [Students.testDashboardPage],
                   thresholds: [],
                   alerts:     [])
     }
 
     static var testForgotPasswordPage: Parent {
-    return Parent(parentId:   "d955dcc2-7dd0-4b67-b639-863929a73e1f",
-                  username:   "1485880721@192c222c-1538-4f89-b025-325a59e9cbff.com",
-                  password:   "f94a4119e0994aa0",
-                  firstName:  "Vladimir",
-                  lastName:   "Blick",
+    return Parent(parentId:   "658dce06-9b59-472d-b7c9-0f69608a77e6",
+                  username:   "1487711572@02539fde-a48b-4e9e-903d-76dd9237b2a4.com",
+                  password:   "a413b415339a71e1",
+                  firstName:  "Jordon",
+                  lastName:   "Moore",
                   students:   [],
                   thresholds: [],
                   alerts:     [])
     }
 
     static var testHelpPage: Parent {
-    return Parent(parentId:   "1930a5e0-3d3e-40f8-b4a4-2da5256d7f6f",
-                  username:   "1485880721@dabf15f0-affc-4a5c-83f0-6150e40112d9.com",
-                  password:   "022215a78e7d2955",
-                  firstName:  "Khalil",
-                  lastName:   "Lakin",
+    return Parent(parentId:   "756ebfb8-1de6-4571-a588-260fae6299d7",
+                  username:   "1487711572@6688fe8b-e8b9-465e-8358-d01a0b3b9196.com",
+                  password:   "bf8d5c86d7d2dd17",
+                  firstName:  "Guiseppe",
+                  lastName:   "Trantow",
                   students:   [Students.testHelpPage],
                   thresholds: [],
                   alerts:     [])
     }
 
+    static var testParentLoginPage: Parent {
+    return Parent(parentId:   "008d31f8-d2f6-4134-a2c7-8e0b509bbd3f",
+                  username:   "1487711574@bbd0b60c-748a-4c8b-8345-4c727bbde03b.com",
+                  password:   "597f6a782fce6863",
+                  firstName:  "Timothy",
+                  lastName:   "Ebert",
+                  students:   [],
+                  thresholds: [],
+                  alerts:     [])
+    }
+
     static var testParentLoginPageWithoutStudents: Parent {
-    return Parent(parentId:   "e92ebe2a-59b4-41aa-94a2-ef4889d4207e",
-                  username:   "1485880723@a477dccf-9697-4319-80b0-ce33babf142e.com",
-                  password:   "3a95cc0eb6a7a1d9",
-                  firstName:  "Mina",
-                  lastName:   "Keeling",
+    return Parent(parentId:   "131dc66b-b612-49b4-8a41-9f7035d7b588",
+                  username:   "1487711575@83960f73-c236-41fb-afce-4115c9fdd7c4.com",
+                  password:   "495009eb972eb133",
+                  firstName:  "Sterling",
+                  lastName:   "Kautzer",
                   students:   [],
                   thresholds: [],
                   alerts:     [])
     }
 
     static var testParentLoginPageWithStudents: Parent {
-    return Parent(parentId:   "3140d362-d7f3-42ba-a5b6-4c099b9d8f4d",
-                  username:   "1485880723@caef34de-94aa-45bf-adf4-536054991d5c.com",
-                  password:   "3d8bdee5f46aada3",
-                  firstName:  "Jeffrey",
-                  lastName:   "Huels",
+    return Parent(parentId:   "d8bde6ee-3d72-4ae6-976b-604753aeaec4",
+                  username:   "1487711575@1ab5cfe8-cd5d-449f-a9be-022a33952a5e.com",
+                  password:   "d2d6f274f67fb5c3",
+                  firstName:  "Haven",
+                  lastName:   "Emard",
                   students:   [Students.testParentLoginPage],
                   thresholds: [],
                   alerts:     [])
     }
 
     static var testSettingsPage: Parent {
-    return Parent(parentId:   "54345f9e-8cf5-4585-85db-546b017e850e",
-                  username:   "1485880725@361f74a8-e175-476c-98c5-9015f0a15182.com",
-                  password:   "487648212e9a2fd9",
-                  firstName:  "Jerrod",
-                  lastName:   "Rowe",
-                  students:   [],
+    return Parent(parentId:   "7d4a735c-720a-4229-b5c1-361f347fc4da",
+                  username:   "1487711578@f750d68b-bf0e-4f8e-8398-79c6a7a5e8b9.com",
+                  password:   "69c9227cc7b41d62",
+                  firstName:  "Winnifred",
+                  lastName:   "Rice",
+                  students:   [Students.testSettingsPage],
                   thresholds: [],
                   alerts:     [])
     }
 
     static var testSettingsPageAddStudent: Parent {
-    return Parent(parentId:   "2869d214-f93f-4597-9f8c-e4a300bf0310",
-                  username:   "1485880726@53d3ff09-adc1-455a-b45f-bf24accd6967.com",
-                  password:   "2a8cefcae0830e4d",
-                  firstName:  "Julien",
-                  lastName:   "Klein",
-                  students:   [],
+    return Parent(parentId:   "4ba5599b-24c0-4510-9e79-a127461e8a40",
+                  username:   "1487711581@f4852493-a18c-443d-a60e-bd4af79194d2.com",
+                  password:   "1ed0dd86ce08abe1",
+                  firstName:  "Celia",
+                  lastName:   "Wilderman",
+                  students:   [Students.testSettingsPageAddStudent],
                   thresholds: [],
                   alerts:     [])
     }
 
     static var testThresholdsPage: Parent {
-    return Parent(parentId:   "f8b4dbda-6b27-448c-90ee-df0e0f0227ba",
-                  username:   "1485880726@3c4a5e8c-5a62-461f-870c-3acfb1a813eb.com",
-                  password:   "1a74e6608371c134",
-                  firstName:  "Noble",
-                  lastName:   "Zulauf",
+    return Parent(parentId:   "c4222b09-4618-4e55-890e-d744701e0c74",
+                  username:   "1487711583@8522f3c2-ee08-482e-bdb5-98bf2226e72f.com",
+                  password:   "bfea0b9da09e9bb3",
+                  firstName:  "Juston",
+                  lastName:   "Leffler",
                   students:   [Students.testThresholdsPage],
                   thresholds: [],
                   alerts:     [])
     }
 
     static var testThresholdsPageSavesValues: Parent {
-    return Parent(parentId:   "5c5db19e-042c-4128-9f3f-4168071361fc",
-                  username:   "1485880728@4a9f7b16-3493-49a1-8079-deab592b6ba2.com",
-                  password:   "5935279d87cfeba4",
-                  firstName:  "Zetta",
-                  lastName:   "Wintheiser",
+    return Parent(parentId:   "4ddaa032-e87a-4bfc-b105-d3ef3b03121b",
+                  username:   "1487711585@872fd282-0ea0-4d05-a1fa-856088da2a06.com",
+                  password:   "686ac954cf410bd4",
+                  firstName:  "Sarah",
+                  lastName:   "Blick",
                   students:   [Students.testThresholdsPageSavesValues],
                   thresholds: [],
                   alerts:     [])
@@ -310,10 +145,10 @@ class Parents {
     static var testThresholdsPageLoadsValues: Parent {
         let thresholds: [AlertThreshold] = [AlertThreshold(student: Students.testThresholdsPageLoadsValues,
                                                            alertType: "assignment_grade_high",
-                                                           threshold: "95"),
+                                                           threshold: "97"),
                                             AlertThreshold(student: Students.testThresholdsPageLoadsValues,
                                                            alertType: "assignment_grade_low",
-                                                           threshold: "65"),
+                                                           threshold: "26"),
                                             AlertThreshold(student: Students.testThresholdsPageLoadsValues,
                                                            alertType: "assignment_missing",
                                                            threshold: ""),
@@ -322,53 +157,64 @@ class Parents {
                                                            threshold: ""),
                                             AlertThreshold(student: Students.testThresholdsPageLoadsValues,
                                                            alertType: "course_grade_high",
-                                                           threshold: "90"),
+                                                           threshold: "70"),
                                             AlertThreshold(student: Students.testThresholdsPageLoadsValues,
                                                            alertType: "course_grade_low",
-                                                           threshold: "75"),
+                                                           threshold: "40"),
                                             AlertThreshold(student: Students.testThresholdsPageLoadsValues,
                                                            alertType: "institution_announcement",
                                                            threshold: "")]
-    return Parent(parentId:   "f5145de9-c0b9-4cef-9976-a44c49a6e0b3",
-                  username:   "1485880730@86810ac4-33f9-445d-804a-4213b954f29f.com",
-                  password:   "9496415cf28c65c8",
-                  firstName:  "Mauricio",
-                  lastName:   "Smitham",
+    return Parent(parentId:   "1d8259c5-c838-4d03-8f5f-984acd199e06",
+                  username:   "1487711587@4e623a8d-55fd-4a0d-b5d9-a215e20b167d.com",
+                  password:   "ea2f5861438ccb88",
+                  firstName:  "Casandra",
+                  lastName:   "Welch",
                   students:   [Students.testThresholdsPageLoadsValues],
                   thresholds: thresholds,
                   alerts:     [])
     }
 
     static var testThresholdsPageRemoveOnlyStudent: Parent {
-    return Parent(parentId:   "976dd38c-cf83-4503-ae5b-ba69c99dec1c",
-                  username:   "1485880734@69030eb8-855b-48ad-99ec-cb527a1571b2.com",
-                  password:   "5073dea943419510",
-                  firstName:  "Wade",
-                  lastName:   "Trantow",
+    return Parent(parentId:   "84e2894c-2252-4191-9bbb-1b3ab006ffa0",
+                  username:   "1487711591@4ef9c17c-277a-4332-a410-42b088e76b7c.com",
+                  password:   "840a307ef1df8487",
+                  firstName:  "Sherman",
+                  lastName:   "Reilly",
                   students:   [Students.testThresholdsPageRemoveOnlyStudent],
                   thresholds: [],
                   alerts:     [])
     }
 
     static var testThresholdsPageRemoveOneStudent: Parent {
-    return Parent(parentId:   "6ab1a3b2-dd25-419c-93be-c253db78a53a",
-                  username:   "1485880736@d3a35ad9-91e0-47a9-94f9-2b03ffcf50cb.com",
-                  password:   "dabc0f884a523d6b",
-                  firstName:  "Brannon",
-                  lastName:   "Stracke",
+    return Parent(parentId:   "ed0fd3d5-cd8d-4f22-89a3-5a00ede0ab7c",
+                  username:   "1487711592@75f87483-5441-47c1-876c-74b97bba3204.com",
+                  password:   "c3421c5c010dce85",
+                  firstName:  "Nakia",
+                  lastName:   "Hahn",
                   students:   [Students.testThresholdsPageRemoveOneStudent1,
                                Students.testThresholdsPageRemoveOneStudent2],
                   thresholds: [],
                   alerts:     [])
     }
 
-    static var testThresholdsPageConstraints: Parent {
-    return Parent(parentId:   "c5ddfc65-b680-44e5-a14b-dc9b1502ada8",
-                  username:   "1485880741@9dae4b96-afcb-4eee-9176-0818cc1b3494.com",
-                  password:   "685facdf4be5c4df",
-                  firstName:  "Granville",
-                  lastName:   "Mante",
-                  students:   [Students.testThresholdsPageConstraints],
+    static var testThresholdsPageBelowConstraints: Parent {
+    return Parent(parentId:   "23ec10ec-5e39-4683-b1f9-313a24bf74ed",
+                  username:   "1487711598@b5ed33a4-4ec8-4cef-ab15-924b52a4b185.com",
+                  password:   "f6d1451ac83765e2",
+                  firstName:  "Milton",
+                  lastName:   "Veum",
+                  students:   [Students.testThresholdsPageBelowConstraints],
+                  thresholds: [],
+                  alerts:     [])
+    }
+
+    static var testThresholdsPageAboveConstraints: Parent {
+    return Parent(parentId:   "125468f1-61c3-4392-88a0-c5bff4d57018",
+                  username:   "1487711600@a832bfc7-f654-4a16-a94f-d1952148e1a2.com",
+                  password:   "0e871bf3aed57df2",
+                  firstName:  "Braeden",
+                  lastName:   "Kuhn",
+                  students:   [Students.testThresholdsPageAboveConstraints],
                   thresholds: [],
                   alerts:     [])
     }

@@ -21,11 +21,4 @@
 // swiftlint:disable type_body_length
 // swiftlint:disable file_length
 class Courses {
-    static var coursesTab: Course {
-        return Course(id:         2081317,
-        name:       "Courses Tab",
-        courseCode: "CT",
-        accountId:  106247)
-    }
-
 }

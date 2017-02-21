@@ -17,7 +17,7 @@
 class CoursesTabPageTests: LogoutBeforeEach {
 
   func testCoursesTabPage_emptyList() {
-    loginAs(Parents.withStudentWithNoCoursesCoursesTabPage)
+    loginAs(Parents.testThresholdsPageBelowConstraints)
     coursesTabPage.assertPageObjects()
   }
 }

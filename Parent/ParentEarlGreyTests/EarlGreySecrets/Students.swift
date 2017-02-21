@@ -21,172 +21,108 @@
 // swiftlint:disable type_body_length
 // swiftlint:disable file_length
 class Students {
-    static var withNoCoursesSettingsPage: CanvasUser {
-        return CanvasUser(id:       7883157,
+    static var testDashboardPage: CanvasUser {
+        return CanvasUser(id:       7896612,
             domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880617@8a28cb5a-833d-4416-8088-0de3820a16f7.com",
-            password: "7de1f58451bf6ef6",
-            name:     "withNoCoursesSettingsPage")
-    }
-
-    static var withNoCoursesDashboardPage: CanvasUser {
-        return CanvasUser(id:       7883158,
-            domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880626@25ac547c-4469-4d11-87e9-4b3dae58590a.com",
-            password: "32c63167a9ec90e7",
-            name:     "withNoCoursesDashboardPage")
-    }
-
-    static var withNoCoursesCoursesTabPage: CanvasUser {
-        return CanvasUser(id:       7883159,
-            domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880697@3f9573fe-29a1-42f7-9c9c-beec03adb0ff.com",
-            password: "b2efaa46e7c600ee",
-            name:     "withNoCoursesCoursesTabPage")
-    }
-
-    static var withOneCourseCoursesTabPage: CanvasUser {
-        return CanvasUser(id:       7883160,
-            domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880701@b5f01d26-1535-490f-a96d-0a95345672c6.com",
-            password: "5bef7d6ff0657ed0",
-            name:     "withOneCourseCoursesTabPage")
-    }
-
-    static var withNoCoursesWeekTabPage: CanvasUser {
-        return CanvasUser(id:       7883161,
-            domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880704@965cd17d-7696-496f-acb9-0fe0e2a49393.com",
-            password: "3c95c73f6897d6bd",
-            name:     "withNoCoursesWeekTabPage")
-    }
-
-    static var withNoCoursesAlertsTabPage: CanvasUser {
-        return CanvasUser(id:       7883162,
-            domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880706@f757a2ae-d5d7-4d9c-9437-db27488294f3.com",
-            password: "8d06398eae6b98ec",
-            name:     "withNoCoursesAlertsTabPage")
-    }
-
-    static var whenRemovedRoutesToAddStudentPage: CanvasUser {
-        return CanvasUser(id:       7883163,
-            domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880708@be0d8ffc-1c55-472f-a1d5-d108e8ddc34d.com",
-            password: "61dd9887076313df",
-            name:     "whenRemovedRoutesToAddStudentPage")
-    }
-
-    static var whoCanBeRemoved1: CanvasUser {
-        return CanvasUser(id:       7883164,
-            domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880710@f4d4f26d-31c9-4ca9-9232-95a16786a6e0.com",
-            password: "ed2030b0770e1f16",
-            name:     "whoCanBeRemoved_1")
-    }
-
-    static var whoCanBeRemoved2: CanvasUser {
-        return CanvasUser(id:       7883165,
-            domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880710@f41bfb38-53e6-4f3f-874a-02d0f842d898.com",
-            password: "704bc75035dead5c",
-            name:     "whoCanBeRemoved_2")
-    }
-
-    static var whoHasNoThresholds: CanvasUser {
-        return CanvasUser(id:       7883166,
-            domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880714@65d441ee-1bff-469a-8b5d-7bd392506b53.com",
-            password: "03c810f6e883e349",
-            name:     "whoHasNoThresholds")
-    }
-
-    static var whoHasThresholds: CanvasUser {
-        return CanvasUser(id:       7883167,
-            domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880716@bb7d6498-21a9-4176-b992-43186f0de63d.com",
-            password: "a15c68d5257ad3d8",
-            name:     "whoHasThresholds")
-    }
-
-    static var whoChecksThresholdsErrors: CanvasUser {
-        return CanvasUser(id:       7883168,
-            domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880719@4b787885-2801-4d73-a339-6895059c0cae.com",
-            password: "637f67e14747f5cf",
-            name:     "whoChecksThresholdsErrors")
+            loginId:  "1487711569@9c6949f5-9a0d-4fcc-a519-8505008b487d.com",
+            password: "e814535f7b72f5e0",
+            name:     "testDashboardPage")
     }
 
     static var testHelpPage: CanvasUser {
-        return CanvasUser(id:       7883169,
+        return CanvasUser(id:       7896613,
             domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880722@c1cd18df-57ed-4825-a996-0f589a6f7b47.com",
-            password: "ca3da25b75b285f1",
+            loginId:  "1487711572@40c3e45b-8f99-47f7-957c-7827b09f8659.com",
+            password: "b22cfb6b0743ca4d",
             name:     "testHelpPage")
     }
 
     static var testParentLoginPage: CanvasUser {
-        return CanvasUser(id:       7883170,
+        return CanvasUser(id:       7896614,
             domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880724@77138330-f590-447c-a49a-6adee541a17f.com",
-            password: "713a7cc3c75f0428",
+            loginId:  "1487711575@b536ba09-a24f-4dc9-9bcf-adcf2b9eaee7.com",
+            password: "0302268792bc2d9e",
             name:     "testParentLoginPage")
     }
 
-    static var testThresholdsPage: CanvasUser {
-        return CanvasUser(id:       7883171,
+    static var testSettingsPage: CanvasUser {
+        return CanvasUser(id:       7896615,
             domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880726@2faf1536-44ca-4c36-8576-ea83924f5381.com",
-            password: "4622a0afc562fe26",
+            loginId:  "1487711578@40300fa2-51fe-439b-8e5c-f5be958fc0bf.com",
+            password: "29d4334404505a4d",
+            name:     "testSettingsPage")
+    }
+
+    static var testSettingsPageAddStudent: CanvasUser {
+        return CanvasUser(id:       7896616,
+            domain:   "mobileqa.test.instructure.com",
+            loginId:  "1487711581@c43bcc9c-b6e0-4c26-9618-8b2f0a7b8d44.com",
+            password: "822270205996dd65",
+            name:     "testSettingsPageAddStudent")
+    }
+
+    static var testThresholdsPage: CanvasUser {
+        return CanvasUser(id:       7896617,
+            domain:   "mobileqa.test.instructure.com",
+            loginId:  "1487711584@e697727d-3566-4c25-94b3-0408bb0a757f.com",
+            password: "7221a676124096ec",
             name:     "testThresholdsPage")
     }
 
     static var testThresholdsPageSavesValues: CanvasUser {
-        return CanvasUser(id:       7883172,
+        return CanvasUser(id:       7896618,
             domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880728@788da2c9-7da2-4b56-aaf3-08898a93e593.com",
-            password: "3618cda93cc25fea",
+            loginId:  "1487711586@e874c42a-993b-42b7-9171-d3d466a54886.com",
+            password: "c495e3c75f159822",
             name:     "testThresholdsPageSavesValues")
     }
 
     static var testThresholdsPageLoadsValues: CanvasUser {
-        return CanvasUser(id:       7883173,
+        return CanvasUser(id:       7896619,
             domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880730@1e8f8714-aaab-44f3-94ed-6aa87f71fdab.com",
-            password: "0b38af9b13925462",
+            loginId:  "1487711588@911e7614-80e4-49ba-91b6-8a03c8a379eb.com",
+            password: "e709d62e1e554e86",
             name:     "testThresholdsPageLoadsValues")
     }
 
     static var testThresholdsPageRemoveOnlyStudent: CanvasUser {
-        return CanvasUser(id:       7883174,
+        return CanvasUser(id:       7896620,
             domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880734@bff1a2ff-424a-4e7f-a7a5-82b1162b13d6.com",
-            password: "94a797eb690efaf0",
+            loginId:  "1487711591@9b97e890-4d56-46c0-9e94-6c4891578b75.com",
+            password: "e47ccbc1957dd572",
             name:     "testThresholdsPageRemoveOnlyStudent")
     }
 
     static var testThresholdsPageRemoveOneStudent1: CanvasUser {
-        return CanvasUser(id:       7883175,
+        return CanvasUser(id:       7896621,
             domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880736@1f2a91d2-3c9b-44e8-86f7-429371a96535.com",
-            password: "118ac3911eb79cc5",
+            loginId:  "1487711593@d2e4e97b-c474-4046-9ce1-202a2ea397a2.com",
+            password: "9494683fa62b23f2",
             name:     "testThresholdsPageRemoveOneStudent1")
     }
 
     static var testThresholdsPageRemoveOneStudent2: CanvasUser {
-        return CanvasUser(id:       7883176,
+        return CanvasUser(id:       7896622,
             domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880738@26b6d00e-64b3-4c3a-ae64-76c8a2de97ee.com",
-            password: "7eeab17d75dacee4",
+            loginId:  "1487711593@4351d279-bdbb-4a87-84ad-57c7b7bfc5bb.com",
+            password: "f3ef0f6bf70151f5",
             name:     "testThresholdsPageRemoveOneStudent2")
     }
 
-    static var testThresholdsPageConstraints: CanvasUser {
-        return CanvasUser(id:       7883177,
+    static var testThresholdsPageBelowConstraints: CanvasUser {
+        return CanvasUser(id:       7896623,
             domain:   "mobileqa.test.instructure.com",
-            loginId:  "1485880741@b5657d7c-9ebc-42f0-997d-3101c795632b.com",
-            password: "537529ff29a0157f",
-            name:     "testThresholdsPageConstraints")
+            loginId:  "1487711598@24ac3f88-c838-4aea-bb1e-4c09dd62ebb8.com",
+            password: "49e05ccc7a335187",
+            name:     "testThresholdsPageBelowConstraints")
+    }
+
+    static var testThresholdsPageAboveConstraints: CanvasUser {
+        return CanvasUser(id:       7896624,
+            domain:   "mobileqa.test.instructure.com",
+            loginId:  "1487711600@32933a38-5b0c-4c48-beb8-9543d636bc1f.com",
+            password: "7e9088c0213bf065",
+            name:     "testThresholdsPageAboveConstraints")
     }
 
 }

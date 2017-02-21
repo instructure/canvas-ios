@@ -27,35 +27,35 @@ class CreateAccountPageTests: LogoutBeforeEach {
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(Parents.withNoStudentsGettingStartedPage)
+    createAccountPage.enterCredentials(Parents.testCreateAccountPage)
     createAccountPage.clearForm("firstName")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoLastName() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(Parents.withNoStudentsGettingStartedPage)
+    createAccountPage.enterCredentials(Parents.testCreateAccountPage)
     createAccountPage.clearForm("lastName")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoEmail() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(Parents.withNoStudentsGettingStartedPage)
+    createAccountPage.enterCredentials(Parents.testCreateAccountPage)
     createAccountPage.clearForm("email")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoPassword() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(Parents.withNoStudentsGettingStartedPage)
+    createAccountPage.enterCredentials(Parents.testCreateAccountPage)
     createAccountPage.clearForm("password")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(Parents.withNoStudentsGettingStartedPage)
+    createAccountPage.enterCredentials(Parents.testCreateAccountPage)
     createAccountPage.clearForm("confirmPassword")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
