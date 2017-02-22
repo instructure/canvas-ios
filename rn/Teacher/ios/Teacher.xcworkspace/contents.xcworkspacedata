@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Teacher.xcodeproj">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "Dependencies">
+      <FileRef
+         location = "group:../../../Carthage/Checkouts/Reachability/Framework/Framework.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../../Carthage/Checkouts/FXKeychain/FXKeychain.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../../Carthage/Checkouts/CocoaLumberjack/Lumberjack.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../../Carthage/Checkouts/CWStatusBarNotification/CWNotificationDemo.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../../Carthage/Checkouts/Mantle/Mantle.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../../Carthage/Checkouts/AFNetworking/AFNetworking.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../../Carthage/Checkouts/ReactiveObjC/ReactiveObjC.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../../Frameworks/CanvasKit/CanvasKit.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../../Frameworks/CanvasKeymaster/CanvasKeymaster.xcodeproj">
+      </FileRef>
+   </Group>
+</Workspace>
