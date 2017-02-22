@@ -30,7 +30,6 @@
 		0AF959D11DD511090096104D /* SettingsPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959B41DD511080096104D /* SettingsPageTests.swift */; };
 		0E586CE804E516C885D23FEE /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7D72F0B9B76A0A4384E49C /* Enrollment.swift */; };
 		276201C9D3787DD276F40BD8 /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69928727631047EFCF31CB5B /* Pages.swift */; };
-		2C0CAD871DEF6EA0008D90FA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD891DEF6EA0008D90FA /* Localizable.strings */; };
 		2C47623B1DD0FFB40003BEAE /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47623A1DD0FFB40003BEAE /* SoThankful.framework */; };
 		2C47623C1DD0FFB40003BEAE /* SoThankful.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47623A1DD0FFB40003BEAE /* SoThankful.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C61CD091D9311B400196C03 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD0B1D9311B400196C03 /* Localizable.strings */; };
@@ -294,7 +293,6 @@
 		25C961B64465FB835914D1FA /* Teachers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Teachers.swift; sourceTree = "<group>"; };
 		279DA889B4A383503254D4CC /* Quizzes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Quizzes.swift; sourceTree = "<group>"; };
 		2BB6E5A59B673384E6504E16 /* Parent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Parent.swift; sourceTree = "<group>"; };
-		2C0CAD881DEF6EA0008D90FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C0CAD8A1DEF6EC0008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CourseCell.strings"; sourceTree = "<group>"; };
 		2C0CAD8B1DEF6EC1008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CalendarEventCell.strings"; sourceTree = "<group>"; };
 		2C0CAD8C1DEF6EC2008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -305,7 +303,6 @@
 		2C0CAD911DEF6EC4008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
 		2C0CAD921DEF6EC5008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		2C0CAD931DEF6EC5008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
-		2C0CAD941DEF6EC6008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C0CAD951DEF6EC7008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		2C0CAD961DEF6EC7008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C0CAD971DEF6EC8008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CalendarEventWeekPageViewController.strings"; sourceTree = "<group>"; };
@@ -319,7 +316,6 @@
 		2C0CAD9F1DEF6ECD008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C0CADA01DEF6ECE008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/SettingsViewController.strings"; sourceTree = "<group>"; };
 		2C0CADA11DEF6ECE008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
-		2C0CADA21DEF6EEF008D90FA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C47623A1DD0FFB40003BEAE /* SoThankful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SoThankful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C61CD0A1D9311B400196C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CD0C1D9311E300196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -1379,7 +1375,6 @@
 		F96C7E6B1D108AEB008935F3 /* ParentEarlGreyTests */ = {
 			isa = PBXGroup;
 			children = (
-				2C0CAD891DEF6EA0008D90FA /* Localizable.strings */,
 				0AF959941DD511080096104D /* EarlGreyHelpers */,
 				0AF959981DD511080096104D /* EarlGreyModels */,
 				0AF9599D1DD511080096104D /* EarlGreyPages */,
@@ -1567,7 +1562,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C61CD1F1D9311E800196C03 /* InfoPlist.strings in Resources */,
-				2C0CAD871DEF6EA0008D90FA /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1722,16 +1716,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2C0CAD891DEF6EA0008D90FA /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C0CAD881DEF6EA0008D90FA /* ar */,
-				2C0CAD941DEF6EC6008D90FA /* fr-CA */,
-				2C0CADA21DEF6EEF008D90FA /* en-GB */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
 		2C61CD0B1D9311B400196C03 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
