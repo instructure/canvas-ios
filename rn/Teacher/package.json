@@ -4,15 +4,27 @@
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
+		"test": "jest",
+		"lint": "eslint *.js __tests__/*.js src",
+		"lint:fix": "eslint --fix *.js __tests__/*.js src",
+		"lint:watch": "esw -w"
 	},
 	"dependencies": {
 		"react": "~15.4.0-rc.4",
 		"react-native": "0.38.0"
 	},
 	"devDependencies": {
+		"babel-eslint": "^7.1.1",
 		"babel-jest": "19.0.0",
 		"babel-preset-react-native": "1.9.1",
+		"eslint": "^3.16.0",
+		"eslint-config-standard": "^6.2.1",
+		"eslint-plugin-flowtype": "^2.30.0",
+		"eslint-plugin-import": "^2.2.0",
+		"eslint-plugin-promise": "^3.4.2",
+		"eslint-plugin-react": "^6.10.0",
+		"eslint-plugin-standard": "^2.0.1",
+		"eslint-watch": "^3.0.0",
 		"jest": "19.0.0",
 		"jest-react-native": "18.0.0",
 		"react-test-renderer": "~15.4.0-rc.4"

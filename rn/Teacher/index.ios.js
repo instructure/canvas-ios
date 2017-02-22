@@ -4,18 +4,17 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View,
-  Button
-} from 'react-native';
+  Button,
+  NativeModules
+} from 'react-native'
 
-
-import { NativeModules } from 'react-native';
-var nativeLogin = NativeModules.NativeLogin
+const nativeLogin = NativeModules.NativeLogin
 
 export default class Teacher extends Component {
 
@@ -23,7 +22,7 @@ export default class Teacher extends Component {
     nativeLogin.logout()
   }
 
-  render() {
+  render () {
     console.log(this.props.authToken)
     console.log(this.props.user)
     return (
@@ -40,7 +39,7 @@ export default class Teacher extends Component {
         </Text>
         <Button title="Logout" onPress={this.logout} />
       </View>
-    );
+    )
   }
 }
 
@@ -49,18 +48,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#F5FCFF'
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    margin: 10
   },
   instructions: {
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5,
-  },
-});
+    marginBottom: 5
+  }
+})
 
-AppRegistry.registerComponent('Teacher', () => Teacher);
+AppRegistry.registerComponent('Teacher', () => Teacher)
