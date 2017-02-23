@@ -1,6 +1,6 @@
 /* @flow */
 
-import { it } from 'jest'
+let { it } = global
 import 'react-native'
 import React from 'react'
 import Index from '../index.android.js'
