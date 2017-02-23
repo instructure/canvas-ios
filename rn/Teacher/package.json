@@ -7,7 +7,8 @@
 		"test": "jest",
 		"lint": "eslint *.js __tests__/*.js src",
 		"lint:fix": "eslint --fix *.js __tests__/*.js src",
-		"lint:watch": "esw -w"
+		"lint:watch": "esw -w",
+		"flow": "flow"
 	},
 	"dependencies": {
 		"react": "~15.4.0-rc.4",
@@ -15,6 +16,7 @@
 	},
 	"devDependencies": {
 		"babel-eslint": "^7.1.1",
+		"flow-bin": "0.33.0",
 		"babel-jest": "19.0.0",
 		"babel-preset-react-native": "1.9.1",
 		"eslint": "^3.16.0",
