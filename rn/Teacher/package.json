@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "react": "~15.4.0-rc.4",
-    "react-native": "0.38.0"
+    "react-native": "0.41.2",
+	"react-native-navigation": "next"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -26,7 +27,7 @@
     "eslint-plugin-react": "^6.10.0",
     "eslint-plugin-standard": "^2.0.1",
     "eslint-watch": "^3.0.0",
-    "flow-bin": "0.33.0",
+    "flow-bin": "0.37.0",
     "jest": "19.0.0",
     "react-test-renderer": "~15.4.0-rc.4"
   },

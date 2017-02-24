@@ -7,10 +7,20 @@
 //
 
 #import "NativeLogin.h"
-#import "RCTLog.h"
+#import <React/RCTLog.h>
+#import "AppDelegate.h"
+#import "RCCManager.h"
+#import <React/RCTBridge.h>
+
 @import CanvasKeymaster;
 @import CocoaLumberjack;
 
+@interface NativeLogin ()
+
+@property (nonatomic) RACDisposable *loginObserver;
+@property (nonatomic) RACDisposable *logoutObserver;
+
+@end
 
 @implementation NativeLogin
 
@@ -28,6 +38,42 @@ RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(logout)
 {
   [TheKeymaster logout];
+}
+
+RCT_EXPORT_METHOD(startObserving)
+{
+  self.logoutObserver = [TheKeymaster.signalForLogout subscribeNext:^(UIViewController * _Nullable x) {
+    
+    [self sendEventWithName:@"Login" body:@{}];
+    
+    if (x) {
+      AppDelegate *d = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+      
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        d.window.rootViewController = x;
+      });
+    }
+  }];
+  
+  self.loginObserver = [TheKeymaster.signalForLogin subscribeNext:^(CKIClient *client) {
+    
+    NSDictionary *body = @{
+                            @"authToken": client.accessToken,
+                            @"user": client.currentUser.JSONDictionary
+                            };
+    
+    [self sendEventWithName:@"Login" body:body];
+  }];
+}
+
+RCT_EXPORT_METHOD(stopObserving)
+{
+  [self.loginObserver dispose];
+  [self.logoutObserver dispose];
+}
+
+- (NSArray<NSString *> *)supportedEvents {
+  return @[@"Login"];
 }
 
 #pragma MARK - CanvasKeymasterDelegate

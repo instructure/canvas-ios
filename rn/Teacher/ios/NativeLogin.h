@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RCTBridgeModule.h"
+#import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
 @import CanvasKeymaster;
 
-@interface NativeLogin : NSObject <RCTBridgeModule, CanvasKeymasterDelegate>
+@interface NativeLogin : RCTEventEmitter <CanvasKeymasterDelegate>
+
 + (instancetype)shared;
 
-- (void)logout;
 @end
