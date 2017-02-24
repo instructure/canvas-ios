@@ -27,35 +27,35 @@ class CreateAccountPageTests: LogoutBeforeEach {
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(Parents.testCreateAccountPage)
+    createAccountPage.enterCredentials(Data.getNextParent(self))
     createAccountPage.clearForm("firstName")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoLastName() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(Parents.testCreateAccountPage)
+    createAccountPage.enterCredentials(Data.getNextParent(self))
     createAccountPage.clearForm("lastName")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoEmail() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(Parents.testCreateAccountPage)
+    createAccountPage.enterCredentials(Data.getNextParent(self))
     createAccountPage.clearForm("email")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoPassword() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(Parents.testCreateAccountPage)
+    createAccountPage.enterCredentials(Data.getNextParent(self))
     createAccountPage.clearForm("password")
     createAccountPage.assertCreateAccountButtonDisabled()
   }
 
   func testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword() {
     createAccountPage.assertCreateAccountButtonDisabled()
-    createAccountPage.enterCredentials(Parents.testCreateAccountPage)
+    createAccountPage.enterCredentials(Data.getNextParent(self))
     createAccountPage.clearForm("confirmPassword")
     createAccountPage.assertCreateAccountButtonDisabled()
   }

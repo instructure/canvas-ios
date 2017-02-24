@@ -16,28 +16,31 @@
 
 class GettingStartedPageTests: LogoutBeforeEach {
 
-  override func setUp() {
-    super.setUp()
-    parentDomainPickerPage.loginAs(Parents.testParentLoginPageWithoutStudents)
-    gettingStartedPage.waitForPageToLoad()
-  }
 
   func testGettingStartedPage_displaysPageObjects() {
+    parentDomainPickerPage.loginAs(Data.getNextParent(self))
+    gettingStartedPage.waitForPageToLoad()
     gettingStartedPage.assertPageObjects()
   }
 
   func testGettingStartedPage_logoutButton() {
+    parentDomainPickerPage.loginAs(Data.getNextParent(self))
+    gettingStartedPage.waitForPageToLoad()
     gettingStartedPage.tapLogoutButton()
     logoutActionSheetPage.assertPageObjects()
   }
 
   func testGettingStartedPage_logout() {
+    parentDomainPickerPage.loginAs(Data.getNextParent(self))
+    gettingStartedPage.waitForPageToLoad()
     gettingStartedPage.tapLogoutButton()
     logoutActionSheetPage.tapLogoutButton()
     parentDomainPickerPage.assertPageObjects()
   }
 
   func testGettingStartedPage_logoutCancel() {
+    parentDomainPickerPage.loginAs(Data.getNextParent(self))
+    gettingStartedPage.waitForPageToLoad()
     gettingStartedPage.tapLogoutButton()
     logoutActionSheetPage.tapCancelButton()
     gettingStartedPage.assertPageObjects()

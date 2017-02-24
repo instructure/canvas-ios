@@ -32,26 +32,26 @@ class ParentDomainPickerPageTests: LogoutBeforeEach {
 
   func testParentDomainPickerPage_loginButtonDisabledWhenNoPassword() {
     parentDomainPickerPage.assertLoginButtonDisabled()
-    parentDomainPickerPage.enterCredentials(Parents.testParentLoginPageWithoutStudents)
+    parentDomainPickerPage.enterCredentials(Data.getNextParent(self))
     parentDomainPickerPage.clearPasswordField()
     parentDomainPickerPage.assertLoginButtonDisabled()
   }
 
   func testParentDomainPickerPage_loginButtonDisabledWhenNoEmail() {
     parentDomainPickerPage.assertLoginButtonDisabled()
-    parentDomainPickerPage.enterCredentials(Parents.testParentLoginPageWithoutStudents)
+    parentDomainPickerPage.enterCredentials(Data.getNextParent(self))
     parentDomainPickerPage.clearPasswordField()
     parentDomainPickerPage.assertLoginButtonDisabled()
   }
 
   func testParentDomainPickerPage_loginButtonEnabled() {
     parentDomainPickerPage.assertLoginButtonDisabled()
-    parentDomainPickerPage.enterCredentials(Parents.testParentLoginPageWithoutStudents)
+    parentDomainPickerPage.enterCredentials(Data.getNextParent(self))
     parentDomainPickerPage.assertLoginButtonEnabled()
   }
 
   func testParentDomainPickerPage_loginButton() {
-    parentDomainPickerPage.loginAs(Parents.testParentLoginPageWithoutStudents)
+    parentDomainPickerPage.loginAs(Data.getNextParent(self))
     gettingStartedPage.assertPageObjects()
   }
 }

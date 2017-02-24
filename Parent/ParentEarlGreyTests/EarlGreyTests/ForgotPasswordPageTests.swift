@@ -35,7 +35,7 @@ class ForgotPasswordPageTests: LogoutBeforeEach {
   }
 
   func testForgotPasswordPage_submitButtonEnabled() {
-    forgotPasswordPage.enterEmail(Parents.testParentLoginPageWithoutStudents)
+    forgotPasswordPage.enterEmail(Data.getNextParent(self))
     forgotPasswordPage.assertSubmitButtonEnabled()
   }
 }

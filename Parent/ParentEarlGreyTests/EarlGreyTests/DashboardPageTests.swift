@@ -16,13 +16,9 @@
 
 class DashboardPageTests: LogoutBeforeEach {
 
-  override func setUp() {
-    super.setUp()
-    parentDomainPickerPage.loginAs(Parents.testDashboardPage)
-    dashboardPage.waitForPageToLoad()
-  }
-
   func testLandingPage_settingsButton() {
+    parentDomainPickerPage.loginAs(Data.getNextParent(self))
+    dashboardPage.waitForPageToLoad()
     dashboardPage.tapSettingsButton()
     settingsPage.assertPageObjects()
   }

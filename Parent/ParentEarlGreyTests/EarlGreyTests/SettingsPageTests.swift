@@ -16,22 +16,22 @@
 
 class SettingsPageTests: LogoutBeforeEach {
 
-  override func setUp() {
-    super.setUp()
-    loginAs(Parents.testSettingsPage)
-    dashboardPage.tapSettingsButton()
-  }
-
   func testSettingsPage_displaysPageObjects() {
+    loginAs(Data.getNextParent(self))
+    dashboardPage.tapSettingsButton()
     settingsPage.assertPageObjects()
   }
 
   func testSettingsPage_displaysHelpMenu() {
+    loginAs(Data.getNextParent(self))
+    dashboardPage.tapSettingsButton()
     settingsPage.tapHelpButton()
     settingsPage.assertHelpMenu()
   }
 
   func testSettingsPage_displaysOberserveeCell() {
+    loginAs(Data.getNextParent(self))
+    dashboardPage.tapSettingsButton()
     settingsPage.assertObserveeCell()
   }
 }

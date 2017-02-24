@@ -53,6 +53,9 @@ open class RegionPicker: NSObject {
     override public init() {
         super.init()
 
+        // Don't ping prod when we're testing the UI.
+        if NSClassFromString("EarlGreyImpl") != nil { return }
+
         for region in RegionPicker.prodRegions {
             let pinger = SimplePing(hostName: region.host!)
             pinger.delegate = self

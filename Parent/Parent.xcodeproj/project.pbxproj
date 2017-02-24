@@ -29,11 +29,10 @@
 		0AF959D01DD511090096104D /* ParentDomainPickerPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959B31DD511080096104D /* ParentDomainPickerPageTests.swift */; };
 		0AF959D11DD511090096104D /* SettingsPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959B41DD511080096104D /* SettingsPageTests.swift */; };
 		0E586CE804E516C885D23FEE /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7D72F0B9B76A0A4384E49C /* Enrollment.swift */; };
-		276201C9D3787DD276F40BD8 /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69928727631047EFCF31CB5B /* Pages.swift */; };
+		1D4E0858596E01257BE0AD84 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3ED97A77AFC097218003E9 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift */; };
 		2C47623B1DD0FFB40003BEAE /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47623A1DD0FFB40003BEAE /* SoThankful.framework */; };
 		2C47623C1DD0FFB40003BEAE /* SoThankful.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47623A1DD0FFB40003BEAE /* SoThankful.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C61CD091D9311B400196C03 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD0B1D9311B400196C03 /* Localizable.strings */; };
-		2C61CD1F1D9311E800196C03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD211D9311E800196C03 /* InfoPlist.strings */; };
 		2C61CD301D9311EC00196C03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD321D9311EC00196C03 /* InfoPlist.strings */; };
 		2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75AB941DDF62CA00650856 /* AssetsLibrary.framework */; };
 		2C75AB971DDF62CF00650856 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75AB961DDF62CF00650856 /* CoreTelephony.framework */; };
@@ -62,6 +61,7 @@
 		2CB69BD21D91CE4D0059C5A5 /* CalendarEventWeekPageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BD41D91CE4D0059C5A5 /* CalendarEventWeekPageViewController.storyboard */; };
 		2CB69C191D92C5860059C5A5 /* DetailsAttachmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69C1B1D92C5860059C5A5 /* DetailsAttachmentCell.xib */; };
 		2CCDE2951DA7E3AB00B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2971DA7E3AB00B46D87 /* InfoPlist.strings */; };
+		356C88F96F1E90DB68DCB888 /* ForgotPasswordPageTests_testForgotPasswordPage_submitButtonEnabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49912C02D05FC77D2B15BE0C /* ForgotPasswordPageTests_testForgotPasswordPage_submitButtonEnabled.swift */; };
 		4907F9181DA80941004AB1A3 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4907F9171DA80936004AB1A3 /* SoIconic.framework */; };
 		4907F9191DA80941004AB1A3 /* SoIconic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4907F9171DA80936004AB1A3 /* SoIconic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		492246081D1C75EF0053766B /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492246061D1C75DE0053766B /* EarlGrey.framework */; };
@@ -76,6 +76,8 @@
 		49998E291E1D6B1A00C98AC2 /* CWNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49998E271E1D6B0100C98AC2 /* CWNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49DB0AE61E4E27030036D96E /* Student+AccessRemoved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DB0AE51E4E27030036D96E /* Student+AccessRemoved.swift */; };
 		49E21B081D1C66CA00B7B9B4 /* SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E21B071D1C667A00B7B9B4 /* SoGrey.framework */; };
+		4D3A76A4035E49AB13EC56DE /* GettingStartedPageTests_testGettingStartedPage_logout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F115B9E9387234AE6C7A16 /* GettingStartedPageTests_testGettingStartedPage_logout.swift */; };
+		58AD01B0D1800CAFE29B326F /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF19B1CA8E37499E9FA4ECFD /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoPassword.swift */; };
 		5E0F9A671C739E6A00BB7707 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A501C739E6A00BB7707 /* AlertCell.swift */; };
 		5E0F9A691C739E6A00BB7707 /* AlertCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A521C739E6A00BB7707 /* AlertCellViewModel.swift */; };
 		5E0F9A6A1C739E6A00BB7707 /* CalendarEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A541C739E6A00BB7707 /* CalendarEventCell.swift */; };
@@ -190,20 +192,32 @@
 		61EB8D651CF62A2100E794A4 /* NoStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EB8D631CF62A2100E794A4 /* NoStudentsViewController.swift */; };
 		61F454131CA58EC200F32B72 /* DiscussionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F454121CA58EB500F32B72 /* DiscussionKit.framework */; };
 		61F454141CA58EC200F32B72 /* DiscussionKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61F454121CA58EB500F32B72 /* DiscussionKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		69314CA725B369ACD3820C90 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA3222C210BA8D462970C66 /* Domain.swift */; };
-		6FAE9F6F4D3677779058AFE5 /* Students.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2704BFDDBCF7795293114D7 /* Students.swift */; };
-		A38C00BCD468B79D2B73F170 /* Parents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72AFA40E9940B2188BDE8BD /* Parents.swift */; };
-		A6BB9228575599D7B56D3701 /* Teachers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C961B64465FB835914D1FA /* Teachers.swift */; };
+		6D8EEB7D72701F351D68FB7A /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A3D49C21D3E86440864CC5 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButton.swift */; };
+		6FE063A489EAEBFCCF3E8CCC /* SettingsPageTests_testSettingsPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED713D4FA4FBF43B7B2484 /* SettingsPageTests_testSettingsPage_displaysPageObjects.swift */; };
+		81578F2C3E3C634FEEDE2644 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoLastName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE8FB1DBA0AB42401C39B7C /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoLastName.swift */; };
+		9A60824C7FCB49C58889D7DE /* GettingStartedPageTests_testGettingStartedPage_logoutCancel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6922852C8A6D712F08B4B5F7 /* GettingStartedPageTests_testGettingStartedPage_logoutCancel.swift */; };
+		9E693792FBC275567A506A7C /* SettingsPageTests_testSettingsPage_displaysOberserveeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7F519610C042BE02C5793 /* SettingsPageTests_testSettingsPage_displaysOberserveeCell.swift */; };
+		A767CC255CD55BB8451B2F45 /* SettingsPageTests_testSettingsPage_displaysHelpMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA29CF372AAB2318A6C107 /* SettingsPageTests_testSettingsPage_displaysHelpMenu.swift */; };
+		AA0D8C718E86B4919CDD8DBD /* GettingStartedPageTests_testGettingStartedPage_logoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA21CFA2DA8BF6852893B43 /* GettingStartedPageTests_testGettingStartedPage_logoutButton.swift */; };
 		ADA375F3E48558FED756C65E /* CanvasUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D717C1344BD77482A213EA6 /* CanvasUser.swift */; };
+		B58A7FC4C9664A1F8A3CC35B /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAE94AAC29858EE0FADD5D /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword.swift */; };
 		B5CB1B5D1DC1433800FE9C93 /* Armchair.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5CB1B5C1DC1433800FE9C93 /* Armchair.framework */; };
 		B5CB1B5E1DC1433800FE9C93 /* Armchair.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5CB1B5C1DC1433800FE9C93 /* Armchair.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5CB1B611DC15AD800FE9C93 /* ArmchairLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5CB1B631DC15AD800FE9C93 /* ArmchairLocalizable.strings */; };
-		B69EB34B0BFB87E691AEE7D8 /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4311F0CAF6BD7810E743D50D /* Courses.swift */; };
+		B823D81C914EED9D04CC1815 /* GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F82EF5D44FFB863B8A0EC /* GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift */; };
+		C78D6DEF9E48F25EC42B30ED /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9CC02E49AB422699FB45C4 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoEmail.swift */; };
 		C95E330A1A4C3F3CEF42E5FC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B1A39A8CA98A1A398F08E0 /* Alert.swift */; };
-		C9B9D13493073236EB892CE8 /* Assignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8292EE5023DD5DB24C196D12 /* Assignments.swift */; };
-		D21B2912605FF89FDF37B036 /* Quizzes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279DA889B4A383503254D4CC /* Quizzes.swift */; };
 		D45E2841BEC77CBE33B8CE5E /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC1640811F36F0B4298AD40 /* Quiz.swift */; };
+		D66BDAB3E2B74D81D967656E /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A688E0E279D033E50BE4979 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoPassword.swift */; };
 		E2E1E8E72842152E69A62412 /* AlertThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2497B7578742F19E46A2D5 /* AlertThreshold.swift */; };
+		E6D0365BFC1AD48CEC68D88E /* DashboardPageTests_testLandingPage_settingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA0CCED639CA3A93804C1B /* DashboardPageTests_testLandingPage_settingsButton.swift */; };
+		E8DB2D18E996D86ED85E1E05 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C795587926FED2BF58F7200 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName.swift */; };
+		F6BF15749E93AE81A48E996A /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F09E386EFB5838B74F4000 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoEmail.swift */; };
+		F94B9F691E5F5350003F58DD /* DataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94B9F681E5F5350003F58DD /* DataUtil.swift */; };
+		F9A0F4D91E5E27E300E8CD98 /* CoursesTabPageTests_testCoursesTabPage_emptyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A0F4D51E5E27E300E8CD98 /* CoursesTabPageTests_testCoursesTabPage_emptyList.swift */; };
+		F9A0F4DA1E5E27E300E8CD98 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A0F4D61E5E27E300E8CD98 /* Data.swift */; };
+		F9A0F4DB1E5E27E300E8CD98 /* DataMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A0F4D71E5E27E300E8CD98 /* DataMap.swift */; };
+		F9A0F4DC1E5E27E300E8CD98 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A0F4D81E5E27E300E8CD98 /* DataProvider.swift */; };
 		FFC148C541D42A39316B77DC /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DF6DC2A55F937957D3BFBF /* Page.swift */; };
 /* End PBXBuildFile section */
 
@@ -269,6 +283,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		06A3D49C21D3E86440864CC5 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParentDomainPickerPageTests_testParentDomainPickerPage_loginButton.swift; path = ParentDomainPickerPageTests/ParentDomainPickerPageTests_testParentDomainPickerPage_loginButton.swift; sourceTree = "<group>"; };
+		09EAE94AAC29858EE0FADD5D /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword.swift; path = CreateAccountPageTests/CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword.swift; sourceTree = "<group>"; };
 		0AF959961DD511080096104D /* LoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		0AF959971DD511080096104D /* LogoutBeforeEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutBeforeEach.swift; sourceTree = "<group>"; };
 		0AF9599A1DD511080096104D /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
@@ -289,9 +305,9 @@
 		0AF959B21DD511080096104D /* GettingStartedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GettingStartedTests.swift; sourceTree = "<group>"; };
 		0AF959B31DD511080096104D /* ParentDomainPickerPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentDomainPickerPageTests.swift; sourceTree = "<group>"; };
 		0AF959B41DD511080096104D /* SettingsPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPageTests.swift; sourceTree = "<group>"; };
+		0BE8FB1DBA0AB42401C39B7C /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoLastName.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoLastName.swift; path = CreateAccountPageTests/CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoLastName.swift; sourceTree = "<group>"; };
 		24B1A39A8CA98A1A398F08E0 /* Alert.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		25C961B64465FB835914D1FA /* Teachers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Teachers.swift; sourceTree = "<group>"; };
-		279DA889B4A383503254D4CC /* Quizzes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Quizzes.swift; sourceTree = "<group>"; };
+		2A3ED97A77AFC097218003E9 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift; path = ParentDomainPickerPageTests/ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift; sourceTree = "<group>"; };
 		2BB6E5A59B673384E6504E16 /* Parent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Parent.swift; sourceTree = "<group>"; };
 		2C0CAD8A1DEF6EC0008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CourseCell.strings"; sourceTree = "<group>"; };
 		2C0CAD8B1DEF6EC1008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CalendarEventCell.strings"; sourceTree = "<group>"; };
@@ -304,7 +320,6 @@
 		2C0CAD921DEF6EC5008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		2C0CAD931DEF6EC5008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
 		2C0CAD951DEF6EC7008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/AlertCell.strings"; sourceTree = "<group>"; };
-		2C0CAD961DEF6EC7008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C0CAD971DEF6EC8008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CalendarEventWeekPageViewController.strings"; sourceTree = "<group>"; };
 		2C0CAD981DEF6EC8008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C0CAD991DEF6EC9008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -329,7 +344,6 @@
 		2C61CD151D9311E600196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CD1B1D9311E700196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CD1C1D9311E700196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CD201D9311E800196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CD271D9311E900196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CD281D9311EA00196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CD291D9311EA00196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -350,7 +364,6 @@
 		2C61CD3F1D93122E00196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CD411D93122E00196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CD421D93122F00196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CD431D93122F00196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CD451D93123000196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CD461D93123000196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CD471D93123000196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -371,7 +384,6 @@
 		2C61CD581D93124400196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CD5A1D93124500196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CD5B1D93124500196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CD5C1D93124500196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CD5E1D93124600196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CD5F1D93124600196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CD601D93124600196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -392,7 +404,6 @@
 		2C61CD711D93126900196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		2C61CD731D93126A00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		2C61CD741D93126A00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
-		2C61CD751D93126B00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C61CD771D93126B00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/CalendarEventWeekPageViewController.strings"; sourceTree = "<group>"; };
 		2C61CD781D93126C00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
 		2C61CD791D93126C00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -413,7 +424,6 @@
 		2C61CD8A1D93128800196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		2C61CD8C1D93128900196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		2C61CD8D1D93128900196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
-		2C61CD8E1D93128900196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C61CD901D93128A00196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/CalendarEventWeekPageViewController.strings"; sourceTree = "<group>"; };
 		2C61CD911D93128A00196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
 		2C61CD921D93128B00196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -434,7 +444,6 @@
 		2C61CDA31D9312AD00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CDA51D9312AD00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CDA61D9312AE00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CDA71D9312AE00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CDA91D9312AE00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CDAA1D9312AF00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CDAB1D9312AF00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -455,7 +464,6 @@
 		2C61CDBC1D9312C500196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CDBE1D9312C600196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CDBF1D9312C600196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CDC01D9312C600196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CDC21D9312C700196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CDC31D9312C700196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CDC41D9312C800196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -476,7 +484,6 @@
 		2C61CDD51D9312E300196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CDD71D9312E400196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CDD81D9312E400196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CDD91D9312E400196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CDDB1D9312E500196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CDDC1D9312E500196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CDDD1D9312E600196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -497,7 +504,6 @@
 		2C61CDEE1D9312FD00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CDF01D9312FD00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CDF11D9312FE00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CDF21D9312FE00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CDF41D9312FF00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CDF51D9312FF00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CDF61D9312FF00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -518,7 +524,6 @@
 		2C61CE071D93131D00196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CE091D93131E00196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CE0A1D93131E00196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CE0B1D93131E00196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CE0D1D93131F00196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CE0E1D93131F00196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CE0F1D93132000196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -539,7 +544,6 @@
 		2C61CE201D9313BB00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CE221D9313BC00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CE231D9313BD00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CE241D9313BD00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CE261D9313BD00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CE271D9313BE00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CE281D9313BE00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -560,7 +564,6 @@
 		2C61CE391D9313ED00196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CE3B1D9313EE00196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CE3C1D9313EE00196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CE3D1D9313EE00196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CE3F1D9313EF00196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CE401D9313EF00196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CE411D9313F000196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -581,7 +584,6 @@
 		2C61CE521D93141B00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CE541D93141B00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CE551D93141C00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CE561D93141C00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CE581D93141D00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CE591D93141D00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CE5A1D93141D00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -602,7 +604,6 @@
 		2C61CE6B1D93143D00196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		2C61CE6D1D93143E00196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		2C61CE6E1D93143E00196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
-		2C61CE6F1D93144100196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C61CE711D93144200196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/CalendarEventWeekPageViewController.strings"; sourceTree = "<group>"; };
 		2C61CE721D93144200196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
 		2C61CE731D93144300196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -623,7 +624,6 @@
 		2C61CE841D93145E00196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CE861D93145E00196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CE871D93145F00196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CE881D93145F00196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CE8A1D93146000196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CE8B1D93146000196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CE8C1D93146000196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -644,7 +644,6 @@
 		2C61CE9D1D93148300196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CE9F1D93148300196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CEA01D93148400196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CEA11D93148400196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CEA31D93148500196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CEA41D93148500196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CEA51D93148500196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -665,7 +664,6 @@
 		2C61CEB61D9314AA00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CEB81D9314AB00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CEB91D9314AB00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CEBA1D9314AB00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CEBC1D9314AC00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CEBD1D9314AD00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CEBE1D9314AD00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -686,7 +684,6 @@
 		2C61CECF1D9314C900196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		2C61CED11D9314CA00196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		2C61CED21D9314CA00196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
-		2C61CED31D9314CA00196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C61CED51D9314CB00196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/CalendarEventWeekPageViewController.strings"; sourceTree = "<group>"; };
 		2C61CED61D9314CC00196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
 		2C61CED71D9314CC00196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -707,7 +704,6 @@
 		2C61CEE81D9314EB00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		2C61CEEA1D9314EB00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CEEB1D9314EC00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
-		2C61CEEC1D9314EC00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C61CEEE1D9314ED00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
 		2C61CEEF1D9314ED00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		2C61CEF01D9314EE00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -763,8 +759,9 @@
 		2CCDE2A81DA7E5BC00B46D87 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2CCDE2A91DA7E5D000B46D87 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		31DF6DC2A55F937957D3BFBF /* Page.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		37F115B9E9387234AE6C7A16 /* GettingStartedPageTests_testGettingStartedPage_logout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GettingStartedPageTests_testGettingStartedPage_logout.swift; path = GettingStartedPageTests/GettingStartedPageTests_testGettingStartedPage_logout.swift; sourceTree = "<group>"; };
 		3D717C1344BD77482A213EA6 /* CanvasUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CanvasUser.swift; sourceTree = "<group>"; };
-		4311F0CAF6BD7810E743D50D /* Courses.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
+		3EED713D4FA4FBF43B7B2484 /* SettingsPageTests_testSettingsPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SettingsPageTests_testSettingsPage_displaysPageObjects.swift; path = SettingsPageTests/SettingsPageTests_testSettingsPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		4907F9171DA80936004AB1A3 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492246061D1C75DE0053766B /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EarlGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4968E29E1DB977CF00A39703 /* Parent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Parent.entitlements; sourceTree = "<group>"; };
@@ -772,6 +769,7 @@
 		4969475E1E02EE2600EA2C30 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		496A49D81DB810620044E19C /* ParentSelectDomainDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentSelectDomainDataSource.swift; sourceTree = "<group>"; };
 		496A49DA1DB822A40044E19C /* CanvasObserverLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasObserverLoginViewController.swift; sourceTree = "<group>"; };
+		49912C02D05FC77D2B15BE0C /* ForgotPasswordPageTests_testForgotPasswordPage_submitButtonEnabled.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ForgotPasswordPageTests_testForgotPasswordPage_submitButtonEnabled.swift; path = ForgotPasswordPageTests/ForgotPasswordPageTests_testForgotPasswordPage_submitButtonEnabled.swift; sourceTree = "<group>"; };
 		49998E271E1D6B0100C98AC2 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DB0AE51E4E27030036D96E /* Student+AccessRemoved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+AccessRemoved.swift"; sourceTree = "<group>"; };
 		49E21B071D1C667A00B7B9B4 /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -798,6 +796,7 @@
 		49ED5A4C1DBFD02E009E2896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49F0888A1DF0CE7F008BB8DA /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E7D72F0B9B76A0A4384E49C /* Enrollment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Enrollment.swift; sourceTree = "<group>"; };
+		4FD7F519610C042BE02C5793 /* SettingsPageTests_testSettingsPage_displaysOberserveeCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SettingsPageTests_testSettingsPage_displaysOberserveeCell.swift; path = SettingsPageTests/SettingsPageTests_testSettingsPage_displaysOberserveeCell.swift; sourceTree = "<group>"; };
 		5E0F9A501C739E6A00BB7707 /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AlertCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5E0F9A521C739E6A00BB7707 /* AlertCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCellViewModel.swift; sourceTree = "<group>"; };
 		5E0F9A541C739E6A00BB7707 /* CalendarEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventCell.swift; sourceTree = "<group>"; };
@@ -892,12 +891,18 @@
 		61E94C5F1C873C1A00777B95 /* DetailsDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsDescriptionCell.swift; sourceTree = "<group>"; };
 		61EB8D631CF62A2100E794A4 /* NoStudentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoStudentsViewController.swift; sourceTree = "<group>"; };
 		61F454121CA58EB500F32B72 /* DiscussionKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DiscussionKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		69928727631047EFCF31CB5B /* Pages.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Pages.swift; sourceTree = "<group>"; };
+		6922852C8A6D712F08B4B5F7 /* GettingStartedPageTests_testGettingStartedPage_logoutCancel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GettingStartedPageTests_testGettingStartedPage_logoutCancel.swift; path = GettingStartedPageTests/GettingStartedPageTests_testGettingStartedPage_logoutCancel.swift; sourceTree = "<group>"; };
+		6BA21CFA2DA8BF6852893B43 /* GettingStartedPageTests_testGettingStartedPage_logoutButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GettingStartedPageTests_testGettingStartedPage_logoutButton.swift; path = GettingStartedPageTests/GettingStartedPageTests_testGettingStartedPage_logoutButton.swift; sourceTree = "<group>"; };
 		6E2497B7578742F19E46A2D5 /* AlertThreshold.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertThreshold.swift; sourceTree = "<group>"; };
 		7BC1640811F36F0B4298AD40 /* Quiz.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
-		8292EE5023DD5DB24C196D12 /* Assignments.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Assignments.swift; sourceTree = "<group>"; };
+		7C795587926FED2BF58F7200 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName.swift; path = CreateAccountPageTests/CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName.swift; sourceTree = "<group>"; };
+		80F09E386EFB5838B74F4000 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoEmail.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoEmail.swift; path = CreateAccountPageTests/CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoEmail.swift; sourceTree = "<group>"; };
+		81DA29CF372AAB2318A6C107 /* SettingsPageTests_testSettingsPage_displaysHelpMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SettingsPageTests_testSettingsPage_displaysHelpMenu.swift; path = SettingsPageTests/SettingsPageTests_testSettingsPage_displaysHelpMenu.swift; sourceTree = "<group>"; };
 		8663BB5CF599CCFC5B7D30D6 /* Assignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
-		9CA3222C210BA8D462970C66 /* Domain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
+		8F9CC02E49AB422699FB45C4 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoEmail.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoEmail.swift; path = ParentDomainPickerPageTests/ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoEmail.swift; sourceTree = "<group>"; };
+		9A688E0E279D033E50BE4979 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoPassword.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoPassword.swift; path = ParentDomainPickerPageTests/ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoPassword.swift; sourceTree = "<group>"; };
+		9FBA0CCED639CA3A93804C1B /* DashboardPageTests_testLandingPage_settingsButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DashboardPageTests_testLandingPage_settingsButton.swift; path = DashboardPageTests/DashboardPageTests_testLandingPage_settingsButton.swift; sourceTree = "<group>"; };
+		A77F82EF5D44FFB863B8A0EC /* GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift; path = GettingStartedPageTests/GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		B5CB1B5C1DC1433800FE9C93 /* Armchair.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Armchair.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CB1B621DC15AD800FE9C93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
 		B5CB1B641DC15AE000FE9C93 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
@@ -917,10 +922,14 @@
 		B5CB1B741DC15B4700FE9C93 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
 		B5CB1B751DC15B4800FE9C93 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/ArmchairLocalizable.strings"; sourceTree = "<group>"; };
 		B5CB1B761DC15B4900FE9C93 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/ArmchairLocalizable.strings; sourceTree = "<group>"; };
-		B72AFA40E9940B2188BDE8BD /* Parents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Parents.swift; sourceTree = "<group>"; };
-		F2704BFDDBCF7795293114D7 /* Students.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Students.swift; sourceTree = "<group>"; };
+		DF19B1CA8E37499E9FA4ECFD /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoPassword.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoPassword.swift; path = CreateAccountPageTests/CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoPassword.swift; sourceTree = "<group>"; };
+		F94B9F681E5F5350003F58DD /* DataUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataUtil.swift; sourceTree = "<group>"; };
 		F96C7E6A1D108AEB008935F3 /* ParentEarlGreyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParentEarlGreyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F96C7E6E1D108AEB008935F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9A0F4D51E5E27E300E8CD98 /* CoursesTabPageTests_testCoursesTabPage_emptyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesTabPageTests_testCoursesTabPage_emptyList.swift; sourceTree = "<group>"; };
+		F9A0F4D61E5E27E300E8CD98 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		F9A0F4D71E5E27E300E8CD98 /* DataMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMap.swift; sourceTree = "<group>"; };
+		F9A0F4D81E5E27E300E8CD98 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1035,21 +1044,6 @@
 			path = EarlGreyPages;
 			sourceTree = "<group>";
 		};
-		0AF959AA1DD511080096104D /* EarlGreySecrets */ = {
-			isa = PBXGroup;
-			children = (
-				9CA3222C210BA8D462970C66 /* Domain.swift */,
-				4311F0CAF6BD7810E743D50D /* Courses.swift */,
-				8292EE5023DD5DB24C196D12 /* Assignments.swift */,
-				69928727631047EFCF31CB5B /* Pages.swift */,
-				279DA889B4A383503254D4CC /* Quizzes.swift */,
-				F2704BFDDBCF7795293114D7 /* Students.swift */,
-				25C961B64465FB835914D1FA /* Teachers.swift */,
-				B72AFA40E9940B2188BDE8BD /* Parents.swift */,
-			);
-			path = EarlGreySecrets;
-			sourceTree = "<group>";
-		};
 		0AF959AC1DD511080096104D /* EarlGreyTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1062,6 +1056,25 @@
 				0AF959B41DD511080096104D /* SettingsPageTests.swift */,
 			);
 			path = EarlGreyTests;
+			sourceTree = "<group>";
+		};
+		4DDB73F012FF961B157447B3 /* ParentDomainPickerPageTests */ = {
+			isa = PBXGroup;
+			children = (
+				9A688E0E279D033E50BE4979 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoPassword.swift */,
+				8F9CC02E49AB422699FB45C4 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoEmail.swift */,
+				2A3ED97A77AFC097218003E9 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift */,
+				06A3D49C21D3E86440864CC5 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButton.swift */,
+			);
+			name = ParentDomainPickerPageTests;
+			sourceTree = "<group>";
+		};
+		5587E124EA03A90E4E940712 /* DashboardPageTests */ = {
+			isa = PBXGroup;
+			children = (
+				9FBA0CCED639CA3A93804C1B /* DashboardPageTests_testLandingPage_settingsButton.swift */,
+			);
+			name = DashboardPageTests;
 			sourceTree = "<group>";
 		};
 		5E0F9A4E1C739E6A00BB7707 /* Dashboard */ = {
@@ -1372,18 +1385,84 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		67CB07092C3DE9508FFA72D8 /* GettingStartedPageTests */ = {
+			isa = PBXGroup;
+			children = (
+				A77F82EF5D44FFB863B8A0EC /* GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift */,
+				6BA21CFA2DA8BF6852893B43 /* GettingStartedPageTests_testGettingStartedPage_logoutButton.swift */,
+				37F115B9E9387234AE6C7A16 /* GettingStartedPageTests_testGettingStartedPage_logout.swift */,
+				6922852C8A6D712F08B4B5F7 /* GettingStartedPageTests_testGettingStartedPage_logoutCancel.swift */,
+			);
+			name = GettingStartedPageTests;
+			sourceTree = "<group>";
+		};
+		7964D1B7D93BFF845E2089A9 /* ForgotPasswordPageTests */ = {
+			isa = PBXGroup;
+			children = (
+				49912C02D05FC77D2B15BE0C /* ForgotPasswordPageTests_testForgotPasswordPage_submitButtonEnabled.swift */,
+			);
+			name = ForgotPasswordPageTests;
+			sourceTree = "<group>";
+		};
+		D8F85D5CABC99F4D1CAA6C92 /* CreateAccountPageTests */ = {
+			isa = PBXGroup;
+			children = (
+				7C795587926FED2BF58F7200 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName.swift */,
+				0BE8FB1DBA0AB42401C39B7C /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoLastName.swift */,
+				80F09E386EFB5838B74F4000 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoEmail.swift */,
+				DF19B1CA8E37499E9FA4ECFD /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoPassword.swift */,
+				09EAE94AAC29858EE0FADD5D /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword.swift */,
+			);
+			name = CreateAccountPageTests;
+			sourceTree = "<group>";
+		};
+		E7E70900FD0FBB735175A850 /* SettingsPageTests */ = {
+			isa = PBXGroup;
+			children = (
+				3EED713D4FA4FBF43B7B2484 /* SettingsPageTests_testSettingsPage_displaysPageObjects.swift */,
+				81DA29CF372AAB2318A6C107 /* SettingsPageTests_testSettingsPage_displaysHelpMenu.swift */,
+				4FD7F519610C042BE02C5793 /* SettingsPageTests_testSettingsPage_displaysOberserveeCell.swift */,
+			);
+			name = SettingsPageTests;
+			sourceTree = "<group>";
+		};
 		F96C7E6B1D108AEB008935F3 /* ParentEarlGreyTests */ = {
 			isa = PBXGroup;
 			children = (
+				F9A0F4D31E5E27E300E8CD98 /* data */,
 				0AF959941DD511080096104D /* EarlGreyHelpers */,
 				0AF959981DD511080096104D /* EarlGreyModels */,
 				0AF9599D1DD511080096104D /* EarlGreyPages */,
-				0AF959AA1DD511080096104D /* EarlGreySecrets */,
 				0AF959AC1DD511080096104D /* EarlGreyTests */,
-				2C61CD211D9311E800196C03 /* InfoPlist.strings */,
 				F96C7E6E1D108AEB008935F3 /* Info.plist */,
 			);
 			path = ParentEarlGreyTests;
+			sourceTree = "<group>";
+		};
+		F9A0F4D31E5E27E300E8CD98 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				F9A0F4D41E5E27E300E8CD98 /* CoursesTabPageTests */,
+				F9A0F4D61E5E27E300E8CD98 /* Data.swift */,
+				F9A0F4D71E5E27E300E8CD98 /* DataMap.swift */,
+				F9A0F4D81E5E27E300E8CD98 /* DataProvider.swift */,
+				F94B9F681E5F5350003F58DD /* DataUtil.swift */,
+				D8F85D5CABC99F4D1CAA6C92 /* CreateAccountPageTests */,
+				5587E124EA03A90E4E940712 /* DashboardPageTests */,
+				7964D1B7D93BFF845E2089A9 /* ForgotPasswordPageTests */,
+				67CB07092C3DE9508FFA72D8 /* GettingStartedPageTests */,
+				4DDB73F012FF961B157447B3 /* ParentDomainPickerPageTests */,
+				E7E70900FD0FBB735175A850 /* SettingsPageTests */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		F9A0F4D41E5E27E300E8CD98 /* CoursesTabPageTests */ = {
+			isa = PBXGroup;
+			children = (
+				F9A0F4D51E5E27E300E8CD98 /* CoursesTabPageTests_testCoursesTabPage_emptyList.swift */,
+			);
+			path = CoursesTabPageTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1561,7 +1640,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C61CD1F1D9311E800196C03 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1663,6 +1741,7 @@
 			files = (
 				0AF959B71DD511080096104D /* LoginHelper.swift in Sources */,
 				0AF959CC1DD511080096104D /* CreateAccountPageTests.swift in Sources */,
+				F9A0F4DC1E5E27E300E8CD98 /* DataProvider.swift in Sources */,
 				0AF959D11DD511090096104D /* SettingsPageTests.swift in Sources */,
 				0AF959BA1DD511080096104D /* Course.swift in Sources */,
 				0AF959C51DD511080096104D /* PageObjects.swift in Sources */,
@@ -1674,11 +1753,13 @@
 				0AF959C21DD511080096104D /* ForgotPasswordPage.swift in Sources */,
 				0AF959C61DD511080096104D /* ParentDomainPickerPage.swift in Sources */,
 				0AF959BF1DD511080096104D /* CoursesTabPage.swift in Sources */,
+				F9A0F4DB1E5E27E300E8CD98 /* DataMap.swift in Sources */,
 				0AF959CE1DD511080096104D /* ForgotPasswordPageTests.swift in Sources */,
 				0AF959CF1DD511090096104D /* GettingStartedTests.swift in Sources */,
 				0AF959C41DD511080096104D /* LogoutActionSheetPage.swift in Sources */,
 				0AF959BE1DD511080096104D /* CoursePage.swift in Sources */,
 				0AF959B81DD511080096104D /* LogoutBeforeEach.swift in Sources */,
+				F9A0F4D91E5E27E300E8CD98 /* CoursesTabPageTests_testCoursesTabPage_emptyList.swift in Sources */,
 				0AF959C11DD511080096104D /* DashboardPage.swift in Sources */,
 				0AF959D01DD511090096104D /* ParentDomainPickerPageTests.swift in Sources */,
 				0A264186D51E6B9C9F00D779 /* Assignment.swift in Sources */,
@@ -1688,15 +1769,27 @@
 				C95E330A1A4C3F3CEF42E5FC /* Alert.swift in Sources */,
 				E2E1E8E72842152E69A62412 /* AlertThreshold.swift in Sources */,
 				ADA375F3E48558FED756C65E /* CanvasUser.swift in Sources */,
-				69314CA725B369ACD3820C90 /* Domain.swift in Sources */,
-				B69EB34B0BFB87E691AEE7D8 /* Courses.swift in Sources */,
-				C9B9D13493073236EB892CE8 /* Assignments.swift in Sources */,
-				276201C9D3787DD276F40BD8 /* Pages.swift in Sources */,
-				D21B2912605FF89FDF37B036 /* Quizzes.swift in Sources */,
-				6FAE9F6F4D3677779058AFE5 /* Students.swift in Sources */,
-				A6BB9228575599D7B56D3701 /* Teachers.swift in Sources */,
+				F94B9F691E5F5350003F58DD /* DataUtil.swift in Sources */,
+				F9A0F4DA1E5E27E300E8CD98 /* Data.swift in Sources */,
 				5E722C6269FC4E47FC0228EA /* Parent.swift in Sources */,
-				A38C00BCD468B79D2B73F170 /* Parents.swift in Sources */,
+				E8DB2D18E996D86ED85E1E05 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName.swift in Sources */,
+				81578F2C3E3C634FEEDE2644 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoLastName.swift in Sources */,
+				F6BF15749E93AE81A48E996A /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoEmail.swift in Sources */,
+				58AD01B0D1800CAFE29B326F /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoPassword.swift in Sources */,
+				B58A7FC4C9664A1F8A3CC35B /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoConfirmPassword.swift in Sources */,
+				E6D0365BFC1AD48CEC68D88E /* DashboardPageTests_testLandingPage_settingsButton.swift in Sources */,
+				356C88F96F1E90DB68DCB888 /* ForgotPasswordPageTests_testForgotPasswordPage_submitButtonEnabled.swift in Sources */,
+				B823D81C914EED9D04CC1815 /* GettingStartedPageTests_testGettingStartedPage_displaysPageObjects.swift in Sources */,
+				AA0D8C718E86B4919CDD8DBD /* GettingStartedPageTests_testGettingStartedPage_logoutButton.swift in Sources */,
+				4D3A76A4035E49AB13EC56DE /* GettingStartedPageTests_testGettingStartedPage_logout.swift in Sources */,
+				9A60824C7FCB49C58889D7DE /* GettingStartedPageTests_testGettingStartedPage_logoutCancel.swift in Sources */,
+				D66BDAB3E2B74D81D967656E /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoPassword.swift in Sources */,
+				C78D6DEF9E48F25EC42B30ED /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonDisabledWhenNoEmail.swift in Sources */,
+				1D4E0858596E01257BE0AD84 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift in Sources */,
+				6D8EEB7D72701F351D68FB7A /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButton.swift in Sources */,
+				6FE063A489EAEBFCCF3E8CCC /* SettingsPageTests_testSettingsPage_displaysPageObjects.swift in Sources */,
+				A767CC255CD55BB8451B2F45 /* SettingsPageTests_testSettingsPage_displaysHelpMenu.swift in Sources */,
+				9E693792FBC275567A506A7C /* SettingsPageTests_testSettingsPage_displaysOberserveeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1742,33 +1835,6 @@
 				2C0CAD991DEF6EC9008D90FA /* fr-CA */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		2C61CD211D9311E800196C03 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C61CD201D9311E800196C03 /* ar */,
-				2C61CD431D93122F00196C03 /* da */,
-				2C61CD5C1D93124500196C03 /* de */,
-				2C61CD751D93126B00196C03 /* en-AU */,
-				2C61CD8E1D93128900196C03 /* en-GB */,
-				2C61CDA71D9312AE00196C03 /* es */,
-				2C61CDC01D9312C600196C03 /* fr */,
-				2C61CDD91D9312E400196C03 /* ht */,
-				2C61CDF21D9312FE00196C03 /* ja */,
-				2C61CE0B1D93131E00196C03 /* mi */,
-				2C61CE241D9313BD00196C03 /* nb */,
-				2C61CE3D1D9313EE00196C03 /* nl */,
-				2C61CE561D93141C00196C03 /* pl */,
-				2C61CE6F1D93144100196C03 /* pt-BR */,
-				2C61CE881D93145F00196C03 /* pt */,
-				2C61CEA11D93148400196C03 /* ru */,
-				2C61CEBA1D9314AB00196C03 /* sv */,
-				2C61CED31D9314CA00196C03 /* zh-HK */,
-				2C61CEEC1D9314EC00196C03 /* zh */,
-				2C0CAD961DEF6EC7008D90FA /* fr-CA */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		2C61CD321D9311EC00196C03 /* InfoPlist.strings */ = {
