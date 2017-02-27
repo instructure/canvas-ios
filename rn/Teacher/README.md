@@ -1,13 +1,27 @@
 #Teacher App
 
 ### Getting started
-Ensure that you have followed all of the steps to get React Native dependencies on your machine.
+
+- Install node. You probably should use 6.x or newer.
+- Install yarn: https://yarnpkg.com/en/docs/install#mac-tab
+- Follow the installation steps in the react native getting started guide:
+
 https://facebook.github.io/react-native/docs/getting-started.html
 
-Run `brew update` then `brew install yarn`
-From the project root run `yarn install`
+- You may need to run the following after installing Xcode:
 
-Run `react-native run-ios` and it should start up the app
+```
+xcode-select --install
+sudo xcode-select -s /Applications/Xcode.app
+```
+
+- Install node dependencies: `yarn install`
+- Install carthage: `brew install carthage`
+- Run a carthage checkout at the top level of the repo:
+  `(cd ../.. ; carthage checkout --no-use-binaries)`
+- Launch the app: `react-native run-ios`
+  (note: if you already have a simulator running, kill it before running that
+   command)
 
 ### Linting
 We use the eslint config from the project http://standardjs.com/.
