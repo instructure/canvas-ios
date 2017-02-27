@@ -38,6 +38,7 @@
     ],
     "verbose": true,
     "collectCoverage": true,
+    "coveragePathIgnorePatterns": ["/node_modules/", ".android.js"],
     "coverageDirectory": "./coverage",
     "coverageReporters": ["json", "lcov", "text", "html"],
     "coverageThreshold": {
