@@ -14,5 +14,8 @@ exit_status=$?
 yarn run flow
 exit_status=$?
 
+yarn run test
+exit_status=$?
+
 exit $exit_status
 cd ios
