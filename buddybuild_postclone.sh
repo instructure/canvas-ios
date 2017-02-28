@@ -37,9 +37,9 @@ shortcircuit_build ()
   check_app_diff $EVERYTHING_BAGEL_APP_ID $FRAMEWORKS_PATTERN
 }
 
-shortcircuit_build
-
 if [ "$BUDDYBUILD_BRANCH" = "develop" ]; then
     # install the aws cli
     pip install --upgrade --user awscli
+else
+    shortcircuit_build
 fi
