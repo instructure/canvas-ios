@@ -7,10 +7,15 @@ import Profile from '../Profile.js'
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
+import explore from '../../../utils/explore'
+
 it('renders correctly', () => {
   const tree = renderer.create(
     <Profile />
-  )
-  const json = tree.toJSON()
-  expect(json.props.testID).toEqual('module.profile')
+  ).toJSON()
+
+  expect(tree).toMatchSnapshot()
+
+  const view = explore(tree).selectByID('module.profile') || {}
+  expect(view.props.accessible).toBeTruthy()
 })
