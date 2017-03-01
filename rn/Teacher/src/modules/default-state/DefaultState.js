@@ -5,7 +5,7 @@ import {
 
 export default class CourseList extends Component {
 
-  render () {
+  render (): React.Element<{}> {
     return <View />
   }
 }

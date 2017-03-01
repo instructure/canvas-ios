@@ -5,7 +5,7 @@
 	<key>keychain-access-groups</key>
 	<array>
 		<string>$(AppIdentifierPrefix)com.instructure.teacher</string>
-		<string>$(AppIdentifierPrefix)com.instructure.teacher</string>
+		<string>$(AppIdentifierPrefix)com.instructure.shared-credentials</string>
 	</array>
 </dict>
 </plist>

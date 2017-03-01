@@ -14,7 +14,7 @@ export default class Profile extends Component {
     nativeLogin.logout()
   }
 
-  render () {
+  render (): React.Element {
     return (
       <View testID="module.profile" accessible={true}>
         <Text>{i18n('This is the profile')}</Text>

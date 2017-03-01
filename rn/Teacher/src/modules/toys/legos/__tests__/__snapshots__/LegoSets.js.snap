@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`0-lego-sets 1`] = `
+<View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    Lego Sets!
+  </Text>
+  <Button
+    onPress={[Function]}
+    testID="toys.legos.buyLegos"
+    title="Buy More!"
+  />
+</View>
+`;
+
+exports[`2-lego-sets 1`] = `
+<View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    Lego Sets!
+  </Text>
+  <View
+    testID="https://legos.com/batcave"
+  >
+    <Image
+      source={
+        Object {
+          "uri": "https://legos.com/batcave",
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      The Batcave!
+    </Text>
+  </View>
+  <View
+    testID="https://lego.com/pirates"
+  >
+    <Image
+      source={
+        Object {
+          "uri": "https://lego.com/pirates",
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Epic Pirate Ship
+    </Text>
+  </View>
+  <Button
+    onPress={[Function]}
+    testID="toys.legos.buyLegos"
+    title="Buy More!"
+  />
+</View>
+`;

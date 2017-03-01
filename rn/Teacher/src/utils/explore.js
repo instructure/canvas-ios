@@ -28,7 +28,7 @@ function selectByProp (object: any, propKey: string, value: any): ?any {
 
   for (var key in object) {
     if (object[key] instanceof Array) {
-      object[key].forEach((e) => {
+      object[key].forEach((e: any) => {
         result = selectByProp(e, propKey, value)
         if (result) {
           return result
