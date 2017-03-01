@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 
 export default class Teacher extends Component {
-  render () {
+  render (): React.Element {
     return (
       <View>
         <Text>

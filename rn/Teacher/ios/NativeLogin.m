@@ -59,7 +59,8 @@ RCT_EXPORT_METHOD(startObserving)
     
     NSDictionary *body = @{
                             @"authToken": client.accessToken,
-                            @"user": client.currentUser.JSONDictionary
+                            @"user": client.currentUser.JSONDictionary,
+                            @"baseURL": client.baseURL.absoluteString
                             };
     
     [self sendEventWithName:@"Login" body:body];

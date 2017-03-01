@@ -1,2 +1,3 @@
 # Ignore Carthage builds
 ios/build/**
+coverage/

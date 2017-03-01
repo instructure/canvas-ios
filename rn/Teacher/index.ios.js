@@ -12,6 +12,7 @@ import { Navigation } from 'react-native-navigation'
 import store from './src/redux/store'
 import i18n from 'format-message'
 import setupI18n from './i18n/setup'
+import { setSession } from './src/api/session'
 import { registerScreens } from './src/modules/registerScreens'
 
 registerScreens(store)
@@ -22,8 +23,9 @@ nativeLogin.startObserving()
 setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
 
 const emitter = new NativeEventEmitter(nativeLogin)
-emitter.addListener('Login', (info: { authToken: string }) => {
+emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
   if (info.authToken) {
+    setSession(info)
     Navigation.startTabBasedApp({
       tabs: [
         {

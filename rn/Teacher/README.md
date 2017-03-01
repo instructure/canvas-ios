@@ -56,6 +56,18 @@ We use [jest](https://facebook.github.io/jest/) for testing.
 To run the tests, run `yarn run test` from the command line. To have jest watch
 for changes and intelligently run tests automatically run `yarn run jest -- --watch`.
 
+### Canvas API
+
+#### Directory Structure
+
+```
+- src/
+  - api/
+    - canvas-api/
+      - courses.js
+      - assignments.js
+```
+
 ### i18n
 
 We use [format-message](https://github.com/format-message/format-message) to do string substitutions

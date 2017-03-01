@@ -20,6 +20,7 @@
     "redux": "^3.6.0"
   },
   "devDependencies": {
+    "axios": "^0.15.3",
     "format-message-cli": "^5.1.1",
     "format-message-generate-id": "^5.1.0",
     "babel-eslint": "^7.1.1",
@@ -35,12 +36,16 @@
     "eslint-watch": "^3.0.0",
     "flow-bin": "0.37.0",
     "jest": "19.0.0",
-    "react-test-renderer": "~15.4.0-rc.4"
+    "react-test-renderer": "~15.4.0-rc.4",
+    "xhr2": "^0.1.4"
   },
   "jest": {
     "preset": "react-native",
     "transformIgnorePatterns": [
       "node_modules/(?!react-native|my-project|react-native-button)"
+    ],
+    "setupFiles": [
+      "<rootDir>/scripts/jestSetup.js"
     ],
     "verbose": true,
     "collectCoverage": true,
