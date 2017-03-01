@@ -44,7 +44,7 @@
     "collectCoverage": true,
     "coveragePathIgnorePatterns": ["/node_modules/", ".android.js"],
     "coverageDirectory": "./coverage",
-    "coverageReporters": ["json", "lcov", "text", "html"],
+    "coverageReporters": ["json", "json-summary", "lcov", "text", "html"],
     "coverageThreshold": {
       "global": {
         "branches": 50,
