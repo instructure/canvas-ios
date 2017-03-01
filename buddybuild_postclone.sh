@@ -22,7 +22,7 @@ check_app_diff ()
 
     if [[ $exit_status = 1 ]]; then
       echo "Found no changes for app ${BUDDYBUILD_APP_ID}. Cancelling build."
-      curl -X POST -H "Authorization: Bearer ${API_TOKEN}" https://api.buddybuild.com/v1/builds/$BUDDYBUILD_BUILD_ID/cancel
+      curl -X POST -H "Authorization: Bearer ${API_TOKEN}" https://api.buddybuild.com/v1/builds/$BUDDYBUILD_BUILD_ID/cancel?cancel_successfully=1
     else
       echo "Found changes for app ${BUDDYBUILD_APP_ID}. Continuing build."
     fi
