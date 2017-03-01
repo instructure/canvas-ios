@@ -1,0 +1,29 @@
+{
+  "courses_43204aae": {
+    "message": "Courses",
+    "description": "Label indicating the user is on the courses tab"
+  },
+  "inbox_bb245a60": {
+    "message": "Inbox",
+    "description": "Label indicating the user is on the inbox tab"
+  },
+  "logout_a9312e35": {
+    "message": "Logout"
+  },
+  "profile_6bd2baed": {
+    "message": "Profile",
+    "description": "Label indicating the user is on the profile tab"
+  },
+  "this_is_the_course_list_3319daf1": {
+    "message": "This is the course list"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "This is the inbox"
+  },
+  "this_is_the_profile_3c34b0b6": {
+    "message": "This is the profile"
+  },
+  "you_should_login_f99d1398": {
+    "message": "You Should Login"
+  }
+}

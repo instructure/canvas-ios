@@ -55,3 +55,19 @@ We use [jest](https://facebook.github.io/jest/) for testing.
 
 To run the tests, run `yarn run test` from the command line. To have jest watch
 for changes and intelligently run tests automatically run `yarn run jest -- --watch`.
+
+### i18n
+
+We use [format-message](https://github.com/format-message/format-message) to do string substitutions
+for internationlization. It uses ICU message formatting for formatting strings. For an interactive demo
+of how to use ICU message format see http://format-message.github.io/icu-message-format-for-translators/
+
+When we import `format-message` we put it into a variable called `i18n` to be more clear what it is doing.
+When calling `i18n` you must pass in a string literal. You can not store your string in a variable
+and then pass it into `i18n`. If you do that `format-message` cannot extract that string.
+
+To extract new strings run `yarn run extract-strings`. This will overwrite the existing `en.json` file
+in `i18n/locales/`.
+
+To add a new language just add the language strings to `<locale-code>.json` to `i18n/locales/` and then add
+that new language to `i18n/locales/index.js`

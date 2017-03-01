@@ -5,6 +5,7 @@ import {
   Button,
   NativeModules,
 } from 'react-native'
+import i18n from 'format-message'
 
 export default class Profile extends Component {
 
@@ -16,10 +17,10 @@ export default class Profile extends Component {
   render () {
     return (
       <View testID="module.profile" accessible={true}>
-        <Text>This is the profile</Text>
+        <Text>{i18n('This is the profile')}</Text>
         <Button
           onPress={this.logout.bind(this)}
-          title="Logout" />
+          title={i18n('Logout')} />
         </View>
     )
   }

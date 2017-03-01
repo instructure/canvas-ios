@@ -8,14 +8,18 @@
     "lint": "eslint *.js __tests__/*.js src",
     "lint:fix": "eslint --fix *.js __tests__/*.js src",
     "lint:watch": "esw -w",
-    "flow": "flow"
+    "flow": "flow",
+    "extract-strings": "format-message extract \"src/**/*.js\" index.ios.js -o i18n/locales/en.json"
   },
   "dependencies": {
+    "format-message": "^5.1.1",
     "react": "~15.4.0-rc.4",
     "react-native": "0.41.2",
-	"react-native-navigation": "next"
+    "react-native-navigation": "next"
   },
   "devDependencies": {
+    "format-message-cli": "^5.1.1",
+    "format-message-generate-id": "^5.1.0",
     "babel-eslint": "^7.1.1",
     "babel-jest": "19.0.0",
     "babel-preset-react-native": "1.9.1",

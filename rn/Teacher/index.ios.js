@@ -9,13 +9,18 @@ import {
   NativeEventEmitter,
 } from 'react-native'
 
+import i18n from 'format-message'
+
 import { Navigation } from 'react-native-navigation'
 
+import setupI18n from './i18n/setup'
 import { registerScreens } from './src/modules/registerScreens'
 registerScreens()
 
 const nativeLogin = NativeModules.NativeLogin
 nativeLogin.startObserving()
+
+setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
 
 const emitter = new NativeEventEmitter(nativeLogin)
 emitter.addListener('Login', (info) => {
@@ -23,19 +28,28 @@ emitter.addListener('Login', (info) => {
     Navigation.startTabBasedApp({
       tabs: [
         {
-          label: 'Courses',
+          label: i18n({
+            default: 'Courses',
+            description: 'Label indicating the user is on the courses tab',
+          }),
           screen: 'teacher.CourseList',
-          title: 'Courses',
+          title: i18n('Courses'),
         },
         {
-          label: 'Inbox',
+          label: i18n({
+            default: 'Inbox',
+            description: 'Label indicating the user is on the inbox tab',
+          }),
           screen: 'teacher.Inbox',
-          title: 'Inbox',
+          title: i18n('Inbox'),
         },
         {
-          label: 'Inbox',
+          label: i18n({
+            default: 'Profile',
+            description: 'Label indicating the user is on the profile tab',
+          }),
           screen: 'teacher.Profile',
-          title: 'Inbox',
+          title: i18n('Profile'),
         },
       ],
     })
@@ -43,7 +57,7 @@ emitter.addListener('Login', (info) => {
     Navigation.startSingleScreenApp({
       screen: {
         screen: 'teacher.DefaultState',
-        title: 'You Should Login',
+        title: i18n('You Should Login'),
       },
     })
   }
