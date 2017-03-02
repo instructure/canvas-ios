@@ -12,17 +12,15 @@
     "extract-strings": "format-message extract \"src/**/*.js\" index.ios.js -o i18n/locales/en.json"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "format-message": "^5.1.1",
     "react": "~15.4.0-rc.4",
     "react-native": "0.41.2",
-	  "react-native-navigation": "next",
+    "react-native-navigation": "next",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0"
   },
   "devDependencies": {
-    "axios": "^0.15.3",
-    "format-message-cli": "^5.1.1",
-    "format-message-generate-id": "^5.1.0",
     "babel-eslint": "^7.1.1",
     "babel-jest": "19.0.0",
     "babel-preset-react-native": "1.9.1",
@@ -35,7 +33,10 @@
     "eslint-plugin-standard": "^2.0.1",
     "eslint-watch": "^3.0.0",
     "flow-bin": "0.37.0",
+    "format-message-cli": "^5.1.1",
+    "format-message-generate-id": "^5.1.0",
     "jest": "19.0.0",
+    "parse-link-header": "^0.4.1",
     "react-test-renderer": "~15.4.0-rc.4",
     "xhr2": "^0.1.4"
   },
@@ -45,13 +46,22 @@
       "node_modules/(?!react-native|my-project|react-native-button)"
     ],
     "setupFiles": [
-      "<rootDir>/scripts/jestSetup.js"
+      "<rootDir>/test/scripts/jestSetup.js"
     ],
     "verbose": true,
     "collectCoverage": true,
-    "coveragePathIgnorePatterns": ["/node_modules/", ".android.js"],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      ".android.js"
+    ],
     "coverageDirectory": "./coverage",
-    "coverageReporters": ["json", "json-summary", "lcov", "text", "html"],
+    "coverageReporters": [
+      "json",
+      "json-summary",
+      "lcov",
+      "text",
+      "html"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 50,

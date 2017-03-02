@@ -1,5 +1,4 @@
 /* @flow */
-let { it } = global
 import 'react-native'
 import React from 'react'
 import Inbox from '../Inbox.js'

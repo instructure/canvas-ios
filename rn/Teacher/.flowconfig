@@ -22,6 +22,7 @@ node_modules/react-native/flow
 flow/
 src/api/canvas-api/flow/
 src/modules/toys/flow/
+test/flow/
 
 [options]
 module.system=haste

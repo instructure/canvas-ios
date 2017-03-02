@@ -5,7 +5,7 @@ import { DisconnectedLegoSets } from '../LegoSets'
 import 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
-import explore from '../../../../utils/explore'
+import explore from '../../../../../test/helpers/explore'
 
 declare var jest: any
 

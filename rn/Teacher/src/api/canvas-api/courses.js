@@ -1,8 +1,8 @@
 /* @flow */
 
-import httpClient from './httpClient'
-import type { ApiResponse } from './apiResponse'
+import type { ApiResponse } from '../response'
+import { paginate } from '../utils/paginate'
 
-export function getCourses (): Promise<ApiResponse<Array<Course>>> {
-  return httpClient().get('courses')
+export function getCourses (): Promise<ApiResponse<Course[]>> {
+  return paginate('courses')
 }
