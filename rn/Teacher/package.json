@@ -9,12 +9,14 @@
     "lint:fix": "eslint --fix *.js __tests__/*.js src",
     "lint:watch": "esw -w",
     "flow": "flow",
-    "extract-strings": "format-message extract \"src/**/*.js\" index.ios.js -o i18n/locales/en.json"
+    "extract-strings": "format-message extract \"src/**/*.js\" index.ios.js -o i18n/locales/en.json",
+    "danger": "danger"
   },
   "dependencies": {
     "axios": "^0.15.3",
     "flux-standard-action": "^1.2.0",
     "format-message": "^5.1.1",
+    "parse-link-header": "^0.4.1",
     "react": "~15.4.0-rc.4",
     "react-native": "0.41.2",
     "react-native-navigation": "next",
@@ -26,6 +28,7 @@
     "babel-eslint": "^7.1.1",
     "babel-jest": "19.0.0",
     "babel-preset-react-native": "1.9.1",
+    "danger": "https://github.com/benkraus/danger-js/tarball/with-distribution",
     "eslint": "^3.16.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-flowtype": "^2.30.0",
@@ -37,8 +40,7 @@
     "flow-bin": "0.37.0",
     "format-message-cli": "^5.1.1",
     "format-message-generate-id": "^5.1.0",
-    "jest": "19.0.0",
-    "parse-link-header": "^0.4.1",
+    "jest": "^19.0.2",
     "react-test-renderer": "~15.4.0-rc.4",
     "redux-mock-store": "^1.2.2",
     "xhr2": "^0.1.4"
@@ -55,7 +57,9 @@
     "collectCoverage": true,
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      ".android.js"
+      ".android.js",
+      "flow/*.js",
+      "/src/api/canvas-api/"
     ],
     "coverageDirectory": "./coverage",
     "coverageReporters": [
