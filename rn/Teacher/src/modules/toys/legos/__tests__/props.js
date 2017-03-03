@@ -11,9 +11,9 @@ test('stateToProps', () => {
   }
   const appState: AppState = {
     toys: {
-      legoSets: [airplane],
+      legoSets: { sets: [airplane], pending: 0 },
     },
   }
 
-  expect(stateToProps(appState)).toEqual({ legoSets: [airplane] })
+  expect(stateToProps(appState)).toEqual({ sets: [airplane], pending: 0 })
 })

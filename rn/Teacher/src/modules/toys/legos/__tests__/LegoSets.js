@@ -7,12 +7,14 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
 
+import { defaultState } from '../reducer'
+
 declare var jest: any
 
 jest.mock('Button', () => 'Button')
 
 it('renders 0 sets correctly', () => {
-  const props = { legoSets: [] }
+  const props = defaultState
   const tree = renderer.create(
     <DisconnectedLegoSets { ...props } />
   ).toJSON()
@@ -21,7 +23,7 @@ it('renders 0 sets correctly', () => {
 })
 
 it('renders 2 sets correctly', () => {
-  const legoSets = [
+  const sets = [
     {
       name: 'The Batcave!',
       imageURL: 'https://legos.com/batcave',
@@ -31,7 +33,7 @@ it('renders 2 sets correctly', () => {
       imageURL: 'https://lego.com/pirates',
     },
   ]
-  const props = { legoSets }
+  const props = { sets }
   const tree = renderer.create(
     <DisconnectedLegoSets { ...props } />
   ).toJSON()
@@ -43,7 +45,7 @@ it('can buy the Millenium Falcon set!', () => {
   const buyLegoSet = jest.fn()
 
   const props = {
-    legoSets: [],
+    sets: [],
     buyLegoSet,
   }
   const tree = renderer.create(

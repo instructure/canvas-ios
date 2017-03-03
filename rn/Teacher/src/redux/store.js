@@ -1,8 +1,10 @@
 // @flow
 
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import promiseMiddleware from '../utils/redux-promise'
 import rootReducer from './root-reducer'
 
 export default createStore(
-  rootReducer
+  rootReducer,
+  applyMiddleware(promiseMiddleware)
 )

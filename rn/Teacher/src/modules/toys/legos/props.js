@@ -1,20 +1,24 @@
 // @flow
 
-export type LegoSetsDataProps = {
-  +legoSets: LegoSet[],
+export type LegoState = {
+  +sets: LegoSet[],
+  +pending: number,
+  +error?: string,
 }
 
+export type LegoSetsDataProps = LegoState
+
 export type LegoSetsActionProps = {
-  +buyLegoSet: (set: LegoSet) => void,
+  +buyLegoSet: (set: LegoSet) => Promise<LegoSet>,
+  +sellAllLegos: (set: LegoSet) => Promise<void>,
 }
 
 export type LegoSetsProps = LegoSetsDataProps & LegoSetsActionProps
 
 export interface AppState {
-  toys: { legoSets: LegoSet[] },
+  toys: { legoSets: LegoState },
 }
 
 export function stateToProps (state: AppState): LegoSetsDataProps {
-  const legoSets: LegoSet[] = state.toys.legoSets
-  return { legoSets }
+  return state.toys.legoSets
 }

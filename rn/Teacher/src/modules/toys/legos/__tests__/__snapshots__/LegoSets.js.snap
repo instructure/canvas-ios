@@ -9,10 +9,25 @@ exports[`0-lego-sets 1`] = `
   >
     Lego Sets!
   </Text>
+  <View />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  />
   <Button
     onPress={[Function]}
     testID="toys.legos.buyLegos"
     title="Buy More!"
+  />
+  <Button
+    onPress={undefined}
+    title="Out of money, sell them all!"
   />
 </View>
 `;
@@ -62,10 +77,25 @@ exports[`2-lego-sets 1`] = `
       Epic Pirate Ship
     </Text>
   </View>
+  <View />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  />
   <Button
     onPress={[Function]}
     testID="toys.legos.buyLegos"
     title="Buy More!"
+  />
+  <Button
+    onPress={undefined}
+    title="Out of money, sell them all!"
   />
 </View>
 `;

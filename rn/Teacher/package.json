@@ -13,12 +13,14 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "flux-standard-action": "^1.2.0",
     "format-message": "^5.1.1",
     "react": "~15.4.0-rc.4",
     "react-native": "0.41.2",
     "react-native-navigation": "next",
     "react-redux": "^5.0.3",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-actions": "^1.2.2"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -38,6 +40,7 @@
     "jest": "19.0.0",
     "parse-link-header": "^0.4.1",
     "react-test-renderer": "~15.4.0-rc.4",
+    "redux-mock-store": "^1.2.2",
     "xhr2": "^0.1.4"
   },
   "jest": {

@@ -1,26 +1,14 @@
 // @flow
 
-import { Action } from 'redux'
+import { createAction } from 'redux-actions'
 
-export const LEGOS_BUY_MOAR: string = 'legos.buyMoar'
-export const LEGOS_ASSEMBLE: string = 'legos.assemble'
+import * as api from './api'
 
-// action creators
-export function buyLegoSet (legoSet: LegoSet): Action {
-  return {
-    type: LEGOS_BUY_MOAR,
-    sweetSweetLegoSet: legoSet,
-  }
-}
+import type { LegoSetsActionProps } from './props'
 
-export function assembleSet (legoSet: LegoSet): Action {
-  return {
-    type: LEGOS_ASSEMBLE,
-    legoSet,
-  }
-}
+export let LegoActions = (api) => ({
+  buyLegoSet: createAction('legos.buyMoar', api.buyLegoSet),
+  sellAllLegos: createAction('legos.sellAll', api.sellAllLegos),
+}: LegoSetsActionProps)
 
-export default {
-  buyLegoSet,
-  assembleSet,
-}
+export default LegoActions(api)

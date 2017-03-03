@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react'
 import {
+  ActivityIndicator,
   View,
   Text,
   Image,
@@ -32,17 +33,24 @@ export class DisconnectedLegoSets extends Component<any, LegoSetsProps, any> {
   }
 
   render (): React.Element<{}> {
-    const sets = this.props.legoSets.map(this.renderLegoSet)
+    const sets = this.props.sets.map(this.renderLegoSet)
+    const activity = this.props.pending > 0
+    const indicator = activity ? <ActivityIndicator /> : <View />
 
     return (
       <View>
         <Text>Lego Sets!</Text>
         {sets}
+        {indicator}
+        <Text style={{ color: 'red' }}>{this.props.error}</Text>
         <Button
-          testID='toys.legos.buyLegos'
+          testID={'toys.legos.buyLegos'}
           title={ i18n('Buy More!') }
           onPress={this.buyTheFalcon} />
-        </View>
+        <Button
+          title={ i18n('Out of money, sell them all!') }
+          onPress={this.props.sellAllLegos} />
+      </View>
     )
   }
 }
@@ -53,7 +61,9 @@ const legoSetShape = PropTypes.shape({
 }).isRequired
 
 DisconnectedLegoSets.propTypes = {
-  legoSets: PropTypes.arrayOf(legoSetShape).isRequired,
+  sets: PropTypes.arrayOf(legoSetShape).isRequired,
+  pending: PropTypes.number,
+  error: PropTypes.string,
 }
 
 export default connect(stateToProps, LegoActions)(DisconnectedLegoSets)
