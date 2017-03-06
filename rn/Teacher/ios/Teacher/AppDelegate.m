@@ -15,6 +15,12 @@
 
 @import CanvasKeymaster;
 
+@interface AppDelegate()
+
+@property (nonatomic) UIViewController * originalReactController;
+
+@end
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -35,6 +41,11 @@
   
   [self.window makeKeyAndVisible];
   return YES;
+}
+
+- (void)returnToReactFlow {
+  assert(self.originalReactController);
+  [UIView transitionWithView:self.window duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{ self.window.rootViewController = self.originalReactController; } completion:nil];
 }
 
 @end
