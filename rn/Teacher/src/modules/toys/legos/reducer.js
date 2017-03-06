@@ -13,9 +13,9 @@ let { buyLegoSet, sellAllLegos } = LegoActions
 const reducer: Reducer<LegoState, any> = handleActions({
   [buyLegoSet.toString()]: handleAsync({
     pending: (state) => ({ ...state, pending: state.pending + 1 }),
-    resolved: (state, legoSet) => ({
+    resolved: (state, response) => ({
       ...state,
-      sets: state.sets.concat(legoSet),
+      sets: state.sets.concat(response.data),
       pending: state.pending - 1,
     }),
     rejected: (state, error) => ({

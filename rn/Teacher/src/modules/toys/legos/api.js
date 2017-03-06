@@ -6,7 +6,7 @@ export function buyLegoSet (legoSet: LegoSet): Promise<LegoSet> {
       if (Math.random() < 0.3) {
         reject()
       } else {
-        resolve(legoSet)
+        resolve({ data: legoSet })
       }
     }
     setTimeout(action, 1000)
