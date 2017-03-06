@@ -51,7 +51,7 @@ const testFiles = danger.git.created_files.filter((path: string) => {
 })
 
 const logicalTestPaths = testFiles.map((path: string) => {
-  return path.replace(/__tests__\//, '')
+  return path.replace(/__tests__\//, '').replace(/.test.js/, '.js')
 })
 
 const sourcePaths = danger.git.created_files.filter((path: string) => {
