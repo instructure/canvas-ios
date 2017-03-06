@@ -19,6 +19,7 @@
 
 @property (nonatomic) RACDisposable *loginObserver;
 @property (nonatomic) RACDisposable *logoutObserver;
+@property(nonatomic) NSMutableDictionary *eventsSent;
 
 @end
 
@@ -33,10 +34,19 @@
   return instance;
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.eventsSent = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
 RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(logout)
 {
+  self.eventsSent = [NSMutableDictionary dictionary];
   [TheKeymaster logout];
 }
 
@@ -65,13 +75,18 @@ RCT_EXPORT_METHOD(startObserving)
                             @"user": client.currentUser.JSONDictionary,
                             @"baseURL": client.baseURL.absoluteString
                             };
-    
-    [self sendEventWithName:@"Login" body:body];
+
+    if (!self.eventsSent[client.accessToken]) {
+      self.eventsSent[client.accessToken] = body;
+      [self sendEventWithName:@"Login" body:body];
+    }
+
   }];
 }
 
 RCT_EXPORT_METHOD(stopObserving)
 {
+  self.eventsSent = [NSMutableDictionary dictionary];
   [self.loginObserver dispose];
   [self.logoutObserver dispose];
 }
