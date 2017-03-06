@@ -399,7 +399,7 @@ extension Router {
             let calendarWeekPageVC = CalendarEventWeekPageViewController.new(session: session, studentID: studentID, contextCodes: [ContextID(id: courseID.stringValue, context: .course).canvasContextID])
             calendarWeekPageVC.selectCalendarEventAction = { session, studentID, calendarEvent in
                 switch calendarEvent.type {
-                case .assignment:
+                case .assignment, .quiz:
                     guard let assignmentID = calendarEvent.assignmentID else { fallthrough }
                     self.route(calendarWeekPageVC, toURL: self.standaloneAssignmentDetailsRoute(studentID: studentID, courseID: courseID.stringValue, assignmentID: assignmentID), modal: false)
                 default:
