@@ -55,7 +55,7 @@ const logicalTestPaths = testFiles.map((path: string) => {
 })
 
 const sourcePaths = danger.git.created_files.filter((path: string) => {
-  return path.includes('src/') && !path.includes('__tests__/')
+  return path.includes('src/') && !path.includes('__tests__/') && path.includes('.js')
 })
 
 const untestedFiles = _.difference(sourcePaths, logicalTestPaths)
