@@ -1,0 +1,713 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      Object {
+        "padding": 8,
+      },
+    ]
+  }
+>
+  <View>
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "flex": 1,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-around",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "borderColor": "#e3e3e3",
+                  "borderWidth": 0.5,
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "flex": 1,
+                  "margin": 8,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "#27B9CD",
+                    "height": 80,
+                  }
+                }
+              />
+              <Image
+                source={
+                  Object {
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 80,
+                    "opacity": 0.2,
+                    "top": -80,
+                  }
+                }
+              />
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "position": "absolute",
+                    "right": 5,
+                    "top": 10,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                  "marginHorizontal": 10,
+                  "marginTop": 20,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#27B9CD",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                Biology 101
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#8B969D",
+                    "fontSize": 11,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                BIO 101
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "flex": 1,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-around",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "borderColor": "#e3e3e3",
+                  "borderWidth": 0.5,
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "flex": 1,
+                  "margin": 8,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "#8F3E97",
+                    "height": 80,
+                  }
+                }
+              />
+              <Image
+                source={
+                  Object {
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 80,
+                    "opacity": 0.2,
+                    "top": -80,
+                  }
+                }
+              />
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "position": "absolute",
+                    "right": 5,
+                    "top": 10,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                  "marginHorizontal": 10,
+                  "marginTop": 20,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#8F3E97",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                American Literature Psysicks foobar hello world 401
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#8B969D",
+                    "fontSize": 11,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                LIT 401
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "flex": 1,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-around",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "borderColor": "#e3e3e3",
+                  "borderWidth": 0.5,
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "flex": 1,
+                  "margin": 8,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "#8F3E97",
+                    "height": 80,
+                  }
+                }
+              />
+              <Image
+                source={
+                  Object {
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 80,
+                    "opacity": 0.2,
+                    "top": -80,
+                  }
+                }
+              />
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "position": "absolute",
+                    "right": 5,
+                    "top": 10,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                  "marginHorizontal": 10,
+                  "marginTop": 20,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#8F3E97",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                Foobar 102
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#8B969D",
+                    "fontSize": 11,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                FOO 102
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`renders correctly with wide device 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      Object {
+        "padding": 12,
+      },
+    ]
+  }
+>
+  <View>
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "flex": 1,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-around",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "borderColor": "#e3e3e3",
+                  "borderWidth": 0.5,
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "flex": 1,
+                  "margin": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "#27B9CD",
+                    "height": 80,
+                  }
+                }
+              />
+              <Image
+                source={
+                  Object {
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 80,
+                    "opacity": 0.2,
+                    "top": -80,
+                  }
+                }
+              />
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "position": "absolute",
+                    "right": 5,
+                    "top": 10,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                  "marginHorizontal": 10,
+                  "marginTop": 20,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#27B9CD",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                Biology 101
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#8B969D",
+                    "fontSize": 11,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                BIO 101
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "borderColor": "#e3e3e3",
+                  "borderWidth": 0.5,
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "flex": 1,
+                  "margin": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "#8F3E97",
+                    "height": 80,
+                  }
+                }
+              />
+              <Image
+                source={
+                  Object {
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 80,
+                    "opacity": 0.2,
+                    "top": -80,
+                  }
+                }
+              />
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "position": "absolute",
+                    "right": 5,
+                    "top": 10,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                  "marginHorizontal": 10,
+                  "marginTop": 20,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#8F3E97",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                American Literature Psysicks foobar hello world 401
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#8B969D",
+                    "fontSize": 11,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                LIT 401
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "borderColor": "#e3e3e3",
+                  "borderWidth": 0.5,
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "flex": 1,
+                  "margin": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "#8F3E97",
+                    "height": 80,
+                  }
+                }
+              />
+              <Image
+                source={
+                  Object {
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 80,
+                    "opacity": 0.2,
+                    "top": -80,
+                  }
+                }
+              />
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "position": "absolute",
+                    "right": 5,
+                    "top": 10,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                  "marginHorizontal": 10,
+                  "marginTop": 20,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#8F3E97",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                Foobar 102
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#8B969D",
+                    "fontSize": 11,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                FOO 102
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;

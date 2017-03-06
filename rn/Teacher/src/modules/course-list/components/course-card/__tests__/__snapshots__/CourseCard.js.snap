@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderColor": "#e3e3e3",
+        "borderWidth": 0.5,
+        "height": 160,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.2,
+        "shadowRadius": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 2,
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#333",
+          "height": 80,
+        }
+      }
+    />
+    <Image
+      source={
+        Object {
+          "uri": "http://fillmurray.com/200/200",
+        }
+      }
+      style={
+        Object {
+          "height": 80,
+          "opacity": 0.2,
+          "top": -80,
+        }
+      }
+    />
+    <Image
+      source={1}
+      style={
+        Object {
+          "position": "absolute",
+          "right": 5,
+          "top": 10,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 2,
+        "marginHorizontal": 10,
+        "marginTop": 20,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={2}
+      style={
+        Object {
+          "color": "#333",
+          "fontSize": 14,
+          "fontWeight": "500",
+        }
+      }
+    >
+      Course
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#8B969D",
+          "fontSize": 11,
+          "fontWeight": "500",
+        }
+      }
+    >
+      yo
+    </Text>
+  </View>
+</View>
+`;

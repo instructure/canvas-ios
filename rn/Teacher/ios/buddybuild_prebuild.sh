@@ -5,12 +5,9 @@ pushd ../../../
 carthage checkout --no-use-binaries
 popd
 
-cd ../
-
+pushd ../
 yarn run lint
-
 yarn run flow
-
 yarn run test
 
 if [ "$BUDDYBUILD_BASE_BRANCH" != "" ]; then
@@ -21,4 +18,4 @@ if [ "$BUDDYBUILD_BASE_BRANCH" != "" ]; then
     yarn run danger
 fi
 
-cd ios
+popd

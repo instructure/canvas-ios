@@ -20,6 +20,12 @@ registerScreens(store)
 const nativeLogin = NativeModules.NativeLogin
 nativeLogin.startObserving()
 
+const navigationStyles = {
+  navBarBackgroundColor: '#394b58',
+  navBarTextColor: '#fff',
+  navBarButtonColor: '#fff',
+}
+
 setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
 
 const emitter = new NativeEventEmitter(nativeLogin)
@@ -35,6 +41,8 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
           }),
           screen: 'teacher.CourseList',
           title: i18n('Courses'),
+          titleImage: require('./src/images/canvas-logo.png'),
+          navigatorStyle: navigationStyles,
         },
         {
           label: i18n({
@@ -42,6 +50,7 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
             description: 'Label indicating the user is on the inbox tab',
           }),
           screen: 'teacher.Inbox',
+          navigatorStyle: navigationStyles,
           title: i18n('Inbox'),
         },
         {
@@ -50,6 +59,7 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
             description: 'Label indicating the user is on the profile tab',
           }),
           screen: 'teacher.Profile',
+          navigatorStyle: navigationStyles,
           title: i18n('Profile'),
         },
       ],
