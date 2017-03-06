@@ -1,3 +1,6 @@
+/* @flow */
+
+import { Reducer } from 'redux'
 import { handleActions, createAction } from 'redux-actions'
 import handleAsync from '../../../src/utils/handleAsync'
 import { testAsyncReducer, testAsyncAction } from '../async'
