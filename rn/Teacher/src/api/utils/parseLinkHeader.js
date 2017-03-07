@@ -20,7 +20,6 @@ const META_CURRENT = 'current'
 const META_FIRST = 'first'
 const META_LAST = 'last'
 
-
 function parseLink (link: string): ?LinkHeaderRel {
   const segments = link.split(DELIM_LINKS)
   if (segments.length < 2) {

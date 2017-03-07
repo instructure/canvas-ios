@@ -14,6 +14,7 @@ import i18n from 'format-message'
 import setupI18n from './i18n/setup'
 import { setSession } from './src/api/session'
 import { registerScreens } from './src/modules/registerScreens'
+import Colors from './src/common/colors'
 
 registerScreens(store)
 
@@ -21,7 +22,7 @@ const nativeLogin = NativeModules.NativeLogin
 nativeLogin.startObserving()
 
 const navigationStyles = {
-  navBarBackgroundColor: '#394b58',
+  navBarBackgroundColor: Colors.canvasBlue,
   navBarTextColor: '#fff',
   navBarButtonColor: '#fff',
   statusBarTextColorScheme: 'light',
@@ -64,6 +65,10 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
           title: i18n('Profile'),
         },
       ],
+      tabsStyle: {
+        tabBarSelectedButtonColor: Colors.prettyBlue,
+        tabBarButtonColor: Colors.prettyGray,
+      },
     })
   } else {
     Navigation.startSingleScreenApp({
