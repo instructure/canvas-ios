@@ -77,10 +77,10 @@ const functionsCoverageDiff = coverageContent.total.functions.pct - developCover
 const linesCoverageDiff = coverageContent.total.lines.pct - developCoverageContent.total.lines.pct
 var coverageMarkdown = 'Coverage | New % | Delta\n' +
                        '---------- | ---------- | ----------\n' +
-                       'Statements |' + coverageContent.total.statements.pct + '% | ' + statementsCoverageDiff + '%\n' +
-                       'Branches |' + coverageContent.total.branches.pct + '% | ' + branchesCoverageDiff + '%\n' +
-                       'Functions |' + coverageContent.total.functions.pct + '% | ' + functionsCoverageDiff + '%\n' +
-                       'Lines |' + coverageContent.total.lines.pct + '% | ' + linesCoverageDiff + '%\n'
+                       'Statements |' + coverageContent.total.statements.pct + '% | ' + statementsCoverageDiff.toFixed(2) + '%\n' +
+                       'Branches |' + coverageContent.total.branches.pct + '% | ' + branchesCoverageDiff.toFixed(2) + '%\n' +
+                       'Functions |' + coverageContent.total.functions.pct + '% | ' + functionsCoverageDiff.toFixed(2) + '%\n' +
+                       'Lines |' + coverageContent.total.lines.pct + '% | ' + linesCoverageDiff.toFixed(2) + '%\n'
 markdown(coverageMarkdown)
 
 const coverageDropWarnThreshold = -5
