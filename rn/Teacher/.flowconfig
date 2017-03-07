@@ -20,8 +20,9 @@
 node_modules/react-native/Libraries/react-native/react-native-interface.js
 node_modules/react-native/flow
 flow/
-src/api/canvas-api/flow/
-src/modules/toys/flow/
+src/api/flow
+src/api/canvas-api/flow
+src/modules/toys/flow
 test/flow/
 
 [options]

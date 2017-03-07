@@ -1,9 +1,5 @@
 /* @flow */
 
-import type {
-  ApiResponse,
-} from '../../src/api/response'
-
 function error<T> (status: number, message: string): Promise<ApiResponse<T>> {
   return new Promise((resolve, reject) => {
     process.nextTick(() => {

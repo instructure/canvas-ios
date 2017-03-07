@@ -23,10 +23,10 @@ describe('paginate', () => {
     expect(result.status).toBe(200)
     expect(result.data).toHaveLength(0)
     expect(result.next).not.toBeNull()
-    expect(mock).toHaveBeenCalledWith('courses')
+    expect(mock).toHaveBeenCalledWith('courses', {})
 
     await result.next()
-    expect(mock).toHaveBeenCalledWith('https://example.com/items?page=2&per_page=1')
+    expect(mock).toHaveBeenCalledWith('https://example.com/items?page=2&per_page=1', {})
   })
 
   it('should set next to null on last page', async () => {
@@ -84,9 +84,24 @@ describe('paginate', () => {
     httpClient().get = mock
 
     const result = await paginate('grading_periods')
-    expect(mock).toHaveBeenCalledWith('grading_periods')
+    expect(mock).toHaveBeenCalledWith('grading_periods', {})
 
     await result.next()
-    expect(mock).toHaveBeenCalledWith('grading_periods?page=2')
+    expect(mock).toHaveBeenCalledWith('grading_periods?page=2', {})
+  })
+
+  it('should accept options', async () => {
+    const mock = apiResponse([])
+    httpClient().get = mock
+
+    let options = {
+      params: {
+        yo: 1,
+      },
+    }
+
+    await paginate('courses', options)
+
+    expect(mock).toHaveBeenCalledWith('courses', options)
   })
 })
