@@ -40,6 +40,8 @@ shortcircuit_build ()
 if [ "$BUDDYBUILD_BRANCH" = "develop" ]; then
     # install the aws cli
     pip install --upgrade --user awscli
-else
+fi
+
+if ["$BUDDYBUILD_BASE_BRANCH" = "develop"]; then
     shortcircuit_build
 fi
