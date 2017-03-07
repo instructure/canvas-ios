@@ -43,6 +43,7 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
           }),
           screen: 'teacher.CourseList',
           title: i18n('Courses'),
+          icon: require('./src/images/tab-bar/courses.png'),
           titleImage: require('./src/images/canvas-logo.png'),
           navigatorStyle: navigationStyles,
         },
@@ -54,6 +55,7 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
           screen: 'teacher.Inbox',
           navigatorStyle: navigationStyles,
           title: i18n('Inbox'),
+          icon: require('./src/images/tab-bar/inbox.png'),
         },
         {
           label: i18n({
@@ -63,6 +65,7 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
           screen: 'teacher.Profile',
           navigatorStyle: navigationStyles,
           title: i18n('Profile'),
+          icon: require('./src/images/tab-bar/profile.png'),
         },
       ],
       tabsStyle: {
