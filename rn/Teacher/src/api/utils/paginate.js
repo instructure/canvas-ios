@@ -1,4 +1,4 @@
-import parseLink from 'parse-link-header'
+import parseLink from './parseLinkHeader'
 import httpClient from '../canvas-api/httpClient'
 import type { ApiResponse } from '../apiResponse'
 

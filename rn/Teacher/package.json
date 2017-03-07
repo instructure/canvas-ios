@@ -16,7 +16,6 @@
     "axios": "^0.15.3",
     "flux-standard-action": "^1.2.0",
     "format-message": "^5.1.1",
-    "parse-link-header": "^0.4.1",
     "react": "~15.4.0-rc.4",
     "react-native": "0.41.2",
     "react-native-navigation": "next",
