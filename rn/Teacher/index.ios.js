@@ -24,6 +24,7 @@ const navigationStyles = {
   navBarBackgroundColor: '#394b58',
   navBarTextColor: '#fff',
   navBarButtonColor: '#fff',
+  statusBarTextColorScheme: 'light',
 }
 
 setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
