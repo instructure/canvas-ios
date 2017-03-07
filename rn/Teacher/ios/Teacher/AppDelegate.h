@@ -13,6 +13,4 @@
 
 @property (nonatomic, strong) UIWindow *window;
 
-- (void)returnToReactFlow;
-
 @end

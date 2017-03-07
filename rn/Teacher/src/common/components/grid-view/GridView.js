@@ -16,8 +16,10 @@ const { height } = Dimensions.get('window')
 
 // http://stackoverflow.com/questions/8495687/split-array-into-chunks
 // I don't see the reason to take lodash.chunk for this
-const chunk = (arr: Array<any>, n: number) =>
-  Array.from(Array(Math.ceil(arr.length / n)), (_, i) => arr.slice(i * n, (i * n) + n))
+const chunk = (arr: Array<any>, n: number) => {
+  if (n === 0) return [arr]
+  return Array.from(Array(Math.ceil(arr.length / n)), (_, i) => arr.slice(i * n, (i * n) + n))
+}
 
 const mapValues = (obj: any, callback: Function) => {
   const newObj = {}

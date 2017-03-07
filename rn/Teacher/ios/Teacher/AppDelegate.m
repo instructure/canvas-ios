@@ -8,16 +8,15 @@
  */
 
 #import "AppDelegate.h"
-#import "NativeLogin.h"
+
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import "RCCManager.h"
+#import "NativeLogin.h"
 
 @import CanvasKeymaster;
 
 @interface AppDelegate()
-
-@property (nonatomic) UIViewController * originalReactController;
 
 @end
 
@@ -25,27 +24,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   TheKeymaster.delegate = [NativeLogin shared];
   
-  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  self.window.backgroundColor = [UIColor blackColor];
+  [TheKeymaster.signalForLogout subscribeNext:^(UIViewController * _Nullable x) {
+    self.window.rootViewController = x;
+  }];
   
-  NSURL *jsCodeLocation;
+  [TheKeymaster.signalForLogin subscribeNext:^(CKIClient * _Nullable client) {
+    NSURL *jsCodeLocation;
 #ifdef DEBUG
-  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
+    jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
 #else
-  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
-  
-  [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation launchOptions:launchOptions];
+
+    [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation launchOptions:launchOptions];
+  }];
   
   [self.window makeKeyAndVisible];
+  
   return YES;
-}
-
-- (void)returnToReactFlow {
-  assert(self.originalReactController);
-  [UIView transitionWithView:self.window duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{ self.window.rootViewController = self.originalReactController; } completion:nil];
 }
 
 @end

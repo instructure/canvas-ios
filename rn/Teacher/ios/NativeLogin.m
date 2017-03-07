@@ -67,9 +67,6 @@ RCT_EXPORT_METHOD(startObserving)
   
   self.loginObserver = [TheKeymaster.signalForLogin subscribeNext:^(CKIClient *client) {
 
-    //  check to see if we are stuck on native login flow and restore to react if needed
-    [self restoreReactFlow];
-
      NSDictionary *body = @{
                             @"authToken": client.accessToken,
                             @"user": client.currentUser.JSONDictionary,
@@ -115,17 +112,6 @@ RCT_EXPORT_METHOD(stopObserving)
   NSString *cacheDir = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, true) firstObject] stringByAppendingPathComponent:@"InstructureLogs"];
   
   return [[DDLogFileManagerDefault alloc] initWithLogsDirectory:cacheDir].sortedLogFilePaths.firstObject;
-}
-
-#pragma mark - Helpers
-
-- (void)restoreReactFlow {
-    AppDelegate *d = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    NSString *rootViewControllerName = NSStringFromClass(d.window.rootViewController.class);
-    //  react js view is a simple UIViewController, keymaster viewController has other class name
-    if (![rootViewControllerName isEqualToString:NSStringFromClass(UIViewController.class)]) {
-        [d returnToReactFlow];
-    }
 }
 
 @end
