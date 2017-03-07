@@ -1,6 +1,6 @@
 /* @flow */
 
-function error<T> (status: number, message: string): Promise<ApiResponse<T>> {
+function error<T> (status: number, message: string): Promise<ApiError<T>> {
   return new Promise((resolve, reject) => {
     process.nextTick(() => {
       reject({
@@ -38,7 +38,7 @@ export function apiResponse<T> (data: T, opts: MockResponseOptions<T> = {}): Fun
   return jest.fn(() => mock)
 }
 
-export function apiError (status: number = 401, message: string = 'Default mock api error'): Function {
-  const mock = error(status, message)
+export function apiError (errorDetails?: { status?: number, message?: string }): Function {
+  const mock = error((errorDetails && errorDetails.status) || 401, (errorDetails && errorDetails.message) || 'Default mock api error')
   return jest.fn(() => mock)
 }

@@ -23,7 +23,7 @@ type Handlers<S, A> = {
 type Action = {
   payload: any,
   pending?: boolean,
-  error?: boolean,
+  error?: any,
 }
 
 export default <S, A: Action>(handlers: Handlers<S, A>) =>
@@ -34,7 +34,7 @@ export default <S, A: Action>(handlers: Handlers<S, A>) =>
       }
     } else if (action.error) {
       if (handlers.rejected) {
-        return handlers.rejected(state, action.error)
+        return handlers.rejected(state, action.payload)
       }
     } else {
       if (handlers.resolved) {

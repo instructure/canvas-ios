@@ -68,7 +68,7 @@ describe('apiError', async () => {
   })
 
   it('should mock custom error', async () => {
-    const fn = apiError(500, 'Server Error')
+    const fn = apiError({ status: 500, message: 'Server Error' })
     let caughtError = false
     try {
       await fn()

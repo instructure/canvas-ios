@@ -10,7 +10,12 @@ it('contains toys subreducer', () => {
   expect(state.toys).toBeDefined()
 })
 
-it('contains exactly 1 subreducers', () => {
+it('contains courses subreducer', () => {
+  const state: { courses: any } = reduce(undefined, dummyAction)
+  expect(state.courses).toBeDefined()
+})
+
+it('contains exactly 2 subreducers', () => {
   const state: {} = reduce(undefined, dummyAction)
-  expect(Object.keys(state).length).toEqual(1)
+  expect(Object.keys(state).length).toEqual(2)
 })

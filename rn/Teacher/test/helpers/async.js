@@ -1,5 +1,4 @@
 /* @flow */
-import { Reducer } from 'redux'
 import { createStore, applyMiddleware } from 'redux'
 import promiseMiddleware from '../../src/utils/redux-promise'
 import configureMockStore from 'redux-mock-store'

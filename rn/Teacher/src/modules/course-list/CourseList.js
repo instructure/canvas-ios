@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
   Dimensions,
 } from 'react-native'
 import i18n from 'format-message'
-
+import { stateToProps } from './props'
+import CoursesActions from './actions'
+import { connect } from 'react-redux'
 import CourseCard from './components/course-card/CourseCard'
 import GridView from '../../common/components/grid-view/GridView'
 
@@ -22,7 +24,7 @@ type Props = {
 const PADDING_CHANGE_WIDTH = 450
 const MAX_CARD_WIDTH = 310
 
-export default class CourseList extends Component<any, Props, State> {
+export class CourseList extends Component<any, Props, State> {
   constructor (props: Props) {
     super(props)
 
@@ -69,6 +71,10 @@ export default class CourseList extends Component<any, Props, State> {
     }
   }
 
+  componentDidMount () {
+    this.props.refreshCourses()
+  }
+
   selectCourse (course: any) {
     this.props.navigator.push({
       screen: 'teacher.CourseDetails',
@@ -77,26 +83,6 @@ export default class CourseList extends Component<any, Props, State> {
   }
 
   render (): React.Element<GridView> {
-    let courses = [{
-      color: '#27B9CD',
-      image_download_url: 'https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg',
-      name: 'Biology 101',
-      course_code: 'BIO 101',
-      id: 1,
-    }, {
-      color: '#8F3E97',
-      image_download_url: 'https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg',
-      name: 'American Literature Psysicks foobar hello world 401',
-      course_code: 'LIT 401',
-      id: 2,
-    }, {
-      color: '#8F3E97',
-      image_download_url: 'https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg',
-      name: 'Foobar 102',
-      course_code: 'FOO 102',
-      id: 3,
-    }]
-
     let cardStyles = {
       flex: 1,
       margin: this.state.padding,
@@ -107,7 +93,7 @@ export default class CourseList extends Component<any, Props, State> {
         onLayout={this.onLayout}
         style={{ padding: this.state.padding }}
         placeholderStyle={cardStyles}
-        data={courses}
+        data={this.props.courses}
         itemsPerRow={this.state.numItems}
         renderItem={(rowData: Course) =>
           <CourseCard
@@ -121,3 +107,20 @@ export default class CourseList extends Component<any, Props, State> {
     )
   }
 }
+
+const courseListShape = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  course_code: PropTypes.string.isRequired,
+  short_name: PropTypes.string,
+  color: PropTypes.string,
+  image_download_url: PropTypes.string,
+}).isRequired
+
+CourseList.propTypes = {
+  courses: PropTypes.arrayOf(courseListShape).isRequired,
+  pending: PropTypes.number,
+  error: PropTypes.string,
+}
+
+export default connect(stateToProps, CoursesActions)(CourseList)
