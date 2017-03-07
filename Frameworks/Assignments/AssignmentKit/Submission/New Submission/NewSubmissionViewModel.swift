@@ -179,12 +179,15 @@ private func apiPathForFileSubmissions(in session: Session, for assignment: Assi
     let singleSubmissionPath = SignalProducer<String, NSError>(value: "/api/v1/courses/\(assignment.courseID)/assignments/\(assignment.id)/submissions/self/files")
     
     if groupSetID != nil {
-        let overridesPath = "/api/v1/courses/\(courseID)/assignments/\(id)/overrides"
-        let request = try! session.GET(overridesPath)
+        let groupsPath = "/api/v1/users/self/groups"
+        let request = try! session.GET(groupsPath)
         
         let firstGroupID: ([JSONObject]) -> String? = { overrides in
             let groupID: (JSONObject) -> String? = {
-                return try? $0.stringID("group_id")
+                if let groupID = try? $0.stringID("id"), let groupCategoryID = try? $0.stringID("group_category_id"), groupCategoryID == groupSetID {
+                    return groupID
+                }
+                return nil
             }
             return overrides
                 .lazy

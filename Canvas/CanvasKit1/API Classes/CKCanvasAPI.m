@@ -1739,7 +1739,7 @@ static CGFloat overallProgressForDictionaries(NSArray *progressDicts) {
     return (CGFloat)( (double)totalCurrent / (double)totalExpected );
 }
 
-- (void)determinURLForUploadSubmissionForAssignment:(CKAssignment *)assignment completionBlock:(void (^)(NSError *error, BOOL isFinalValue, NSURL *url))completed {
+- (void)determineURLForUploadSubmissionForAssignment:(CKAssignment *)assignment completionBlock:(void (^)(NSError *error, BOOL isFinalValue, NSURL *url))completed {
     NSURL *selfURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@/api/v1/courses/%qu/assignments/%qu/submissions/%qu/files",
                                        self.apiProtocol, self.hostname, assignment.courseIdent, assignment.ident, self.user.ident]];
     
@@ -1748,10 +1748,10 @@ static CGFloat overallProgressForDictionaries(NSArray *progressDicts) {
         return;
     }
     
-    NSURL *overridesURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@/api/v1/courses/%qu/assignments/%qu/overrides", self.apiProtocol, self.hostname, assignment.courseIdent, assignment.ident]];
+    NSURL *groupsURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@/api/v1/users/self/groups", self.apiProtocol, self.hostname]];
     
     
-    [self runForURL:overridesURL options:@{} block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
+    [self runForURL:groupsURL options:@{} block:^(NSError *error, CKCanvasAPIResponse *apiResponse, BOOL isFinalValue) {
         if (error) {
             completed(error, YES, nil);
             return;
@@ -1762,9 +1762,10 @@ static CGFloat overallProgressForDictionaries(NSArray *progressDicts) {
             completed(nil, YES, selfURL);
             return;
         }
-        for (NSDictionary *overrideJSON in json) {
-            NSNumber *groupID = overrideJSON[@"group_id"];
-            if (groupID) {
+        for (NSDictionary *groupJSON in json) {
+            NSNumber *groupID = groupJSON[@"id"];
+            NSNumber *groupCategoryID = groupJSON[@"group_category_id"];
+            if ([groupCategoryID isEqualToNumber:assignment.groupCategoryID]) {
                 NSString *groupUploadURLString = [NSString stringWithFormat:@"%@://%@/api/v1/groups/%@/files", self.apiProtocol, self.hostname, groupID];
                 completed(nil, YES, [NSURL URLWithString:groupUploadURLString]);
                 return;
@@ -1779,7 +1780,7 @@ static CGFloat overallProgressForDictionaries(NSArray *progressDicts) {
        progressBlock:(void (^)(float))progressBlock
      completionBlock:(CKSubmissionBlock)completionBlock {
 
-    [self determinURLForUploadSubmissionForAssignment:assignment completionBlock:^(NSError *error, BOOL isFinalValue, NSURL *endpoint) {
+    [self determineURLForUploadSubmissionForAssignment:assignment completionBlock:^(NSError *error, BOOL isFinalValue, NSURL *endpoint) {
         
         [self _uploadFiles:files toEndpoint:endpoint progressBlock:progressBlock completionBlock:^(NSError *error, BOOL isFinalValue, NSArray *attachments) {
             if (error) {
