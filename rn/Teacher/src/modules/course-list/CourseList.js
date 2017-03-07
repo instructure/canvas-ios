@@ -69,6 +69,13 @@ export default class CourseList extends Component<any, Props, State> {
     }
   }
 
+  selectCourse (course: any) {
+    this.props.navigator.push({
+      screen: 'teacher.CourseDetails',
+      passProps: { course },
+    })
+  }
+
   render (): React.Element<GridView> {
     let courses = [{
       color: '#27B9CD',
@@ -107,6 +114,7 @@ export default class CourseList extends Component<any, Props, State> {
             style={cardStyles}
             course={rowData}
             key={rowData.course_code}
+            onPress={() => this.selectCourse(rowData)}
           />
         }
       />

@@ -6,11 +6,13 @@ import ReactNative, {
   StyleSheet,
   Image,
   Text,
+  TouchableHighlight,
 } from 'react-native'
 
 type Props = {
   course: Course,
   style: StyleSheet,
+  onPress: Function,
 }
 
 export default class extends Component<*, Props, *> {
@@ -30,19 +32,21 @@ export default class extends Component<*, Props, *> {
     let { course } = this.props
 
     return (
-       <View style={[styles.card, this.props.style]}>
-          <View style={styles.imageWrapper}>
-             <View style={this.createImageStyles()} />
-             {course.image_download_url &&
-               <Image source={{ uri: course.image_download_url }} style={styles.image} />
-             }
-             <Image style={styles.kabob} source={require('../../../../images/kabob.png')} />
+       <TouchableHighlight style={[styles.card, this.props.style]} onPress={this.props.onPress}>
+        <View style={styles.cardContainer}>
+            <View style={styles.imageWrapper}>
+              <View style={this.createImageStyles()} />
+              {course.image_download_url &&
+                <Image source={{ uri: course.image_download_url }} style={styles.image} />
+              }
+              <Image style={styles.kabob} source={require('../../../../images/kabob.png')} />
+            </View>
+            <View style={styles.titleWrapper}>
+              <Text numberOfLines={2} style={this.createTitleStyles()}>{course.name}</Text>
+              <Text style={styles.code}>{course.course_code}</Text>
+            </View>
           </View>
-          <View style={styles.titleWrapper}>
-            <Text numberOfLines={2} style={this.createTitleStyles()}>{course.name}</Text>
-            <Text style={styles.code}>{course.course_code}</Text>
-          </View>
-        </View>
+        </TouchableHighlight>
     )
   }
 }
@@ -59,6 +63,10 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
+  },
+  cardContainer: {
+    flex: 1,
+    backgroundColor: 'white',
   },
   imageWrapper: {
     flex: 2,

@@ -8,6 +8,7 @@ import { Store } from 'redux'
 import { Provider } from 'react-redux'
 
 import CourseList from './course-list/CourseList'
+import CourseDetails from './course-details/CourseDetails'
 import Inbox from './inbox/Inbox'
 import Profile from './profile/Profile'
 import DefaultState from './default-state/DefaultState'
@@ -16,6 +17,7 @@ import ActionFigures from './toys/action-figures/ActionFigures'
 
 export function registerScreens (store: Store) {
   Navigation.registerComponent('teacher.CourseList', () => CourseList, store, Provider)
+  Navigation.registerComponent('teacher.CourseDetails', () => CourseDetails, store, Provider)
   Navigation.registerComponent('teacher.Inbox', () => Inbox, store, Provider)
   Navigation.registerComponent('teacher.Profile', () => Profile, store, Provider)
   Navigation.registerComponent('teacher.DefaultState', () => DefaultState, store, Provider)

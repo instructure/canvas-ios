@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "height": 200,
+        "justifyContent": "center",
+        "padding": 10,
+        "paddingTop": 64,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "green",
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0.75,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            Object {
+              "backgroundColor": "white",
+            },
+          ]
+        }
+      />
+    </View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "color": "white",
+          "flex": 1,
+          "fontSize": 24,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      foo
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "color": "white",
+          "flex": 1,
+          "fontWeight": "200",
+        }
+      }
+    >
+      bio 101
+    </Text>
+  </View>
+</View>
+`;
