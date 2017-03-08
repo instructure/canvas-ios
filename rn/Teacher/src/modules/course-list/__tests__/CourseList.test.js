@@ -3,32 +3,34 @@
 import 'react-native'
 import React from 'react'
 import { CourseList } from '../CourseList.js'
+import * as courseTemplate from '../../../api/canvas-api/__templates__/course'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
-const courses: Course[] = [{
-  image_download_url: 'https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg',
-  name: 'Biology 101',
-  course_code: 'BIO 101',
-  short_name: 'BIO 101',
-  id: 1,
-  is_favorite: true,
-}, {
-  image_download_url: 'https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg',
-  name: 'American Literature Psysicks foobar hello world 401',
-  course_code: 'LIT 401',
-  short_name: 'LIT 401',
-  id: 2,
-  is_favorite: false,
-}, {
-  image_download_url: 'https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg',
-  name: 'Foobar 102',
-  course_code: 'FOO 102',
-  id: 3,
-  short_name: 'FOO 102',
-  is_favorite: true,
-}]
+const courses = [
+  courseTemplate.course({
+    name: 'Biology 101',
+    course_code: 'BIO 101',
+    short_name: 'BIO 101',
+    id: 1,
+    is_favorite: true,
+  }),
+  courseTemplate.course({
+    name: 'American Literature Psysicks foobar hello world 401',
+    course_code: 'LIT 401',
+    short_name: 'LIT 401',
+    id: 2,
+    is_favorite: false,
+  }),
+  courseTemplate.course({
+    name: 'Foobar 102',
+    course_code: 'FOO 102',
+    id: 3,
+    short_name: 'FOO 102',
+    is_favorite: true,
+  }),
+]
 
 const colors = {
   '1': '#27B9CD',

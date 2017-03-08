@@ -15,4 +15,3 @@ export type CustomColors = {
     [string]: string,
   },
 }
-

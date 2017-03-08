@@ -4,22 +4,12 @@ import { CoursesActions } from '../actions'
 import coursesReducer from '../reducer'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
+import * as courseTemplate from '../../../api/canvas-api/__templates__/course'
 
-const course: Course = {
-  id: 1,
-  name: 'foo 101',
-  course_code: 'foo101',
-  short_name: 'foo 101',
-}
-
-const customColor: CustomColors = {
-  custom_colors: {
-    course_1: '#fffff',
-  },
-}
-
-test('refresh courses  ', async () => {
-  let action = CoursesActions({ getCourses: apiResponse([course]), getCustomColors: apiResponse(customColor) }).refreshCourses()
+test('refresh courses', async () => {
+  const courses = [courseTemplate.course()]
+  const customColors = courseTemplate.customColors()
+  let action = CoursesActions({ getCourses: apiResponse(courses), getCustomColors: apiResponse(customColors) }).refreshCourses()
   let state = await testAsyncReducer(coursesReducer, action)
 
   expect(state).toEqual([
@@ -29,9 +19,9 @@ test('refresh courses  ', async () => {
     },
     {
       pending: 0,
-      courses: [course],
+      courses: courses,
       customColors: {
-        '1': '#fffff',
+        '1': '#fff',
       },
     },
   ])

@@ -43,7 +43,7 @@ exports[`renders correctly 1`] = `
               "top": 0,
             },
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": undefined,
             },
           ]
         }
@@ -64,7 +64,7 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      foo
+      Learn React Native
     </Text>
     <Text
       accessible={true}
@@ -79,7 +79,7 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      bio 101
+      rn 101
     </Text>
   </View>
 </View>

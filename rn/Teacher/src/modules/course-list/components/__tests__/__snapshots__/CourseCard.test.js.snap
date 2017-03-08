@@ -68,7 +68,7 @@ exports[`renders 1`] = `
       <Image
         source={
           Object {
-            "uri": "http://fillmurray.com/200/200",
+            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           }
         }
         style={
@@ -112,7 +112,7 @@ exports[`renders 1`] = `
           }
         }
       >
-        Course
+        Learn React Native
       </Text>
       <Text
         accessible={true}
@@ -126,7 +126,7 @@ exports[`renders 1`] = `
           }
         }
       >
-        yo
+        rn 101
       </Text>
     </View>
   </View>

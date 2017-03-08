@@ -13,7 +13,7 @@ import {
 import i18n from 'format-message'
 
 type Props = {
-  course: any,
+  course: Course,
 }
 
 export default class CourseDetails extends Component<any, Props, any> {

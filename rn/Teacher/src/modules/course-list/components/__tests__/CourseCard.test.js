@@ -1,19 +1,15 @@
 // @flow
 
-const { it, expect } = global
 import React from 'react'
 import renderer from 'react-test-renderer'
+import * as courseTemplate from '../../../../api/canvas-api/__templates__/course'
 
 import CourseCard from '../CourseCard'
 
 it('renders', () => {
   let tree = renderer.create(
     <CourseCard
-      course={{
-        name: 'Course',
-        course_code: 'yo',
-        image_download_url: 'http://fillmurray.com/200/200',
-      }}
+      course={courseTemplate.course()}
       color={'#333'}
     />
   ).toJSON()
