@@ -242,8 +242,14 @@ Sie müssen zunächst das Folgende vervollständigen";
 /* Title for the announcements view controller */
 "Announcements" = "Ankündigungen";
 
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
 /* Archive selected messages button */
 "Archive" = "Archiv";
+
+/* archive selected messages */
+"Archive Selected Messages" = "Ausgewählte Nachrichten archivieren";
 
 /* (No Commment) */
 "Archive Selected Messages Button" = "Ausgewählte-Nachrichten-archivieren-Taste";
@@ -256,6 +262,9 @@ Sie müssen zunächst das Folgende vervollständigen";
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Sind Sie bereit, sich abzumelden?";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "Sind Sie sicher, dass Sie dieses Arc-Video für diese Aufgabe einreichen wollen?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Mich später fragen";
@@ -305,7 +314,8 @@ Sie müssen zunächst das Folgende vervollständigen";
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Medien können nicht eingereicht werden";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Abbrechen";
 
 /* Cancel button title */
@@ -327,6 +337,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 Nicht-unterstützte Fragentypen schließen Adobe-Flash™-Inhalte, hochgeladene Dateien und anderes ein.
 
 Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so bearbeiten Sie dieses bitte via Laptop oder Desktop-PC. Wenn Sie genau wissen, dass das Quiz 100-prozentige Mobiltelefonunterstützung genießt, können Sie ohne Bedenken Ihr Mobilgerät verwenden.";
+
+/* button to change user's profile image */
+"Change Profile Image" = "Profilbild ändern";
 
 /* No comment provided by engineer. */
 "Change User" = "Benutzer wechseln";
@@ -382,6 +395,9 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* (No Commment) */
 "Completed" = "Abgeschlossen";
 
+/* button to compose a message */
+"Compose Message" = "Nachricht verfassen";
+
 /* (No Commment) */
 "Compose Message Button" = "Nachricht-erstellen-Taste";
 
@@ -390,6 +406,9 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 
 /* Title for Conferences tab */
 "Conferences" = "Konferenzen";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "Abgabe bestätigen";
 
 /* Alert title */
 "Confirm deletion" = "Löschen bestätigen";
@@ -490,11 +509,14 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* Shown while downloading a file */
 "Downloading..." = "Download läuft...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "Fällig:";
 
 /* (No Commment) */
 "Due: %1$@ at %2$@" = "Fällig: %1$@ um %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "Fällig: %@";
 
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
@@ -694,6 +716,9 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* No comment provided by engineer. */
 "Keep" = "Halten";
 
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "LTI-Tool";
+
 /* (No Commment) */
 "Landing Page" = "Zielseite";
 
@@ -839,7 +864,8 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* Message for attempting submission without a comment */
 "No audio was recorded." = "Es wurde kein Audio aufgezeichnet.";
 
-/* String for when assignment has no due date */
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
 "No due date" = "Kein Abgabedatum";
 
 /* Error message */
@@ -1112,7 +1138,8 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* No comment provided by engineer. */
 "Submission complete" = "Einreichung abgeschlossen";
 
-/* Submit an assignment */
+/* Submit an assignment
+   Submit Arc video as assignment button */
 "Submit" = "Einreichen";
 
 /* Submitted grouping */

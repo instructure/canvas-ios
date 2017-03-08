@@ -178,6 +178,7 @@
 		2AACDFD11D022DF1008B52A4 /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AACDFD41D022E0D008B52A4 /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DoNotShipThis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AACDFD61D022F81008B52A4 /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhizzyWig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C1CBC6D1E58B6F000D3F15A /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "FileKit/fr-CA.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		4928EBD31C84DE7C00799E04 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		495FD0691BEBE818004A91C6 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4980F9B41DE3B70600D71093 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -749,6 +750,7 @@
 				"zh-HK",
 				zh,
 				ar,
+				"fr-CA",
 			);
 			mainGroup = 49C1A78C1BE97B2E008A21B9;
 			productRefGroup = 49C1A7971BE97B2E008A21B9 /* Products */;
@@ -1032,6 +1034,7 @@
 				B564DDFF1D8CB7E600E25BDA /* zh-HK */,
 				B564DE001D8CB7E600E25BDA /* zh */,
 				B564DE011D8CB7E600E25BDA /* ar */,
+				2C1CBC6D1E58B6F000D3F15A /* fr-CA */,
 			);
 			name = Localizable.strings;
 			path = Model;

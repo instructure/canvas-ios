@@ -1,4 +1,7 @@
-/* Cancel button title */
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "حدث خطأ، يُرجى إعادة المحاولة.";
+
+/* (No Commment) */
 "Cancel" = "إلغاء";
 
 /* Pick a photo from library */
@@ -10,8 +13,11 @@
 /* Pick a video from library */
 "Choose a Video" = "اختيار فيديو";
 
-/* URL submission option */
+/* (No Commment) */
 "Choose a Webpage" = "اختيار صفحة ويب";
+
+/* File upload completed */
+"Complete" = "إكمال";
 
 /* name for upload data */
 "Data" = "بيانات";
@@ -19,20 +25,38 @@
 /* Delete button for file upload */
 "Delete" = "حذف";
 
-/* Prompt for text upload */
+/* Done recording button */
+"Done" = "تم";
+
+/* (No Commment) */
 "Enter your upload..." = "أدخل تحميلك...";
+
+/* File upload failed */
+"Failed" = "فشل";
 
 /* title for file upload errors */
 "File Upload Error" = "خطأ في تحميل الملف";
 
+/* File uploads screen title */
+"File Uploads" = "تحميلات الملفات";
+
 /* (No Commment) */
 "Files" = "ملفات";
+
+/* No comment provided by engineer. */
+"OK" = "موافق";
 
 /* name for a photo just taken */
 "Photo" = "صورة";
 
 /* Choose record audio submission */
 "Record Audio" = "تسجيل الصوت";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "حدث خطأ ما. تحقق من تنسيق الملف وأعد المحاولة.";
+
+/* File upload was stopped */
+"Stopped" = "تم الإيقاف";
 
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "التقاط صورة أو فيديو";
@@ -43,7 +67,7 @@
 /* Take a video submission choice */
 "Take a Video" = "التقاط فيديو";
 
-/* Text submission option */
+/* (No Commment) */
 "Text" = "نص";
 
 /* FileKit Database Load Failure Message */
@@ -55,12 +79,15 @@
 /* File upload error message */
 "There was a problem preparing the file for upload" = "حدثت مشكلة أثناء إعداد الملف لتحميله";
 
-/* Turn in button title */
+/* (No Commment) */
 "Turn In" = "التسليم";
 
-/* name for a video just taken for upload */
+/* (No Commment) */
 "Video" = "فيديو";
 
-/* prompt for submission upload */
+/* (No Commment) */
 "What would you like to turn in?" = "ماذا تريد أن تسلّم؟";
+
+/* File upload in progress */
+"uploading..." = "جارٍ التحميل...";
 

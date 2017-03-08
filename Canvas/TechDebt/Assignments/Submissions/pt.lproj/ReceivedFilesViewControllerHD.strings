@@ -1,1 +1,9 @@
-/* No Localized Strings */
+/* Class = "UINavigationItem"; title = "Select file(s)"; ObjectID = "11"; */
+"11.title" = "Selecionar Ficheiro(s)";
+
+/* Class = "UIBarButtonItem"; title = "Submit"; ObjectID = "13"; */
+"13.title" = "Entregar";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "16"; */
+"16.text" = "Rótulo";
+

@@ -1,4 +1,4 @@
-/* dismiss error dialog */
+/* Dismiss button for error alert */
 "Dismiss" = "رفض";
 
 /* Placeholder for URL */
@@ -7,9 +7,12 @@
 /* navigate */
 "Go" = "المتابعة";
 
+/* Turn in this url button */
+"Submit" = "إرسال";
+
 /* bad url message */
 "The text you entered is not a valid URL" = "النص الذي أصخلته ليس عنوان URL صالح";
 
-/* Turn in this url button */
+/* (No Commment) */
 "Turn In" = "التسليم";
 

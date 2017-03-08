@@ -305,6 +305,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Change User" = "變更使用者";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "選擇登入頁面";
+
 /* (No Commment) */
 "Choose Photo" = "選擇照片";
 
@@ -786,11 +789,17 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "New Folder" = "新建資料夾";
 
+/* No comment provided by engineer. */
+"New Message" = "新郵件";
+
 /* Button title for next module item. */
 "Next" = "下一個";
 
 /* (No Commment) */
 "Next 7 Days" = "隨後7天";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "明天";
 
 /* (No Commment) */
 "Next item" = "下一個項目";
@@ -864,8 +873,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "通知偏好設定";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "通知";
 
 /* OK Button Title */
@@ -943,6 +951,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button title for previous module item. */
 "Previous" = "上一個";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "昨天";
+
 /* (No Commment) */
 "Previous item" = "上一個項目";
 
@@ -990,6 +1001,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Record video" = "錄製視頻";
+
+/* Button to refresh the calendar events */
+"Refresh" = "刷新";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "刷新按鍵";

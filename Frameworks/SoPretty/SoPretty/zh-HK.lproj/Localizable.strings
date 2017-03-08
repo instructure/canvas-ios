@@ -1,4 +1,4 @@
-/* dismiss error dialog */
+/* Dismiss button for error alert */
 "Dismiss" = "取消";
 
 /* Placeholder for URL */
@@ -7,9 +7,12 @@
 /* navigate */
 "Go" = "前往";
 
+/* Turn in this url button */
+"Submit" = "提交";
+
 /* bad url message */
 "The text you entered is not a valid URL" = "您輸入的文字不是有效的 URL";
 
-/* Turn in this url button */
+/* (No Commment) */
 "Turn In" = "提交";
 

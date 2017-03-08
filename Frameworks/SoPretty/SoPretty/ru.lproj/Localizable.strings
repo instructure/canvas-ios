@@ -1,4 +1,4 @@
-/* dismiss error dialog */
+/* Dismiss button for error alert */
 "Dismiss" = "Отклонить";
 
 /* Placeholder for URL */
@@ -7,9 +7,12 @@
 /* navigate */
 "Go" = "Перейти";
 
+/* Turn in this url button */
+"Submit" = "Отправить";
+
 /* bad url message */
 "The text you entered is not a valid URL" = "Введенный текст не является допустимым URL";
 
-/* Turn in this url button */
+/* (No Commment) */
 "Turn In" = "Сдать";
 

@@ -305,6 +305,9 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* (No Commment) */
 "Change User" = "Cambiar usuario";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "Elegir la página de destino";
+
 /* (No Commment) */
 "Choose Photo" = "Elegir foto";
 
@@ -786,11 +789,17 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* (No Commment) */
 "New Folder" = "Nueva carpeta";
 
+/* No comment provided by engineer. */
+"New Message" = "Mensaje nuevo";
+
 /* Button title for next module item. */
 "Next" = "Siguiente";
 
 /* (No Commment) */
 "Next 7 Days" = "Próximos 7 días";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Día siguiente";
 
 /* (No Commment) */
 "Next item" = "Siguiente elemento";
@@ -864,8 +873,7 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Preferencias de notificación";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "Notificaciones";
 
 /* OK Button Title */
@@ -943,6 +951,9 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 /* Button title for previous module item. */
 "Previous" = "Anterior";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Día anterior";
+
 /* (No Commment) */
 "Previous item" = "Elemento anterior";
 
@@ -990,6 +1001,9 @@ Si usted cree que una evaluación incluye contenido no compatible, por favor tom
 
 /* (No Commment) */
 "Record video" = "Grabar video";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Actualizar";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Botón de actualizar";

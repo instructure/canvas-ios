@@ -1,4 +1,7 @@
 /* grade details for points based grade i.e. \"10 of 12\" */
+" of (formatter(possible))" = " 共 (formatter(可能分數))";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
 "(formatter(points)) of (formatter(possible))" = "(formatter(分數)) 共 (formatter(可能分數))";
 
 /* Title for 1 day assignment reminder */
@@ -13,6 +16,9 @@
 /* Title for 5 minutes assignment reminder */
 "5 minutes" = "5 分鐘";
 
+/* URL submission option */
+"Add Website Address" = "加入網址";
+
 /* (No Commment) */
 "Assignment" = "任務";
 
@@ -25,7 +31,7 @@
 /* This assignment hasn't been graded yet but can be graded */
 "Awaiting Grade" = "等待評分中";
 
-/* cancel button */
+/* Cancel submission option */
 "Cancel" = "取消";
 
 /* Title for reminder options for an assignment */
@@ -40,20 +46,26 @@
 /* error displayed when submitting an assignment is unavailable */
 "Could not submit assignment. Invalid assignment or session." = "無法提交任務。任務或進程無效。";
 
-/* error displayed when submitting a submission is invalid. */
+/* (No Commment) */
 "Could not submit assignment. Invalid submission." = "無法提交任務。提交件無效。";
 
 /* (No Commment) */
 "Due:" = "到期日：";
+
+/* String telling the user that the date is the due date */
+"Due: " = "到期日：";
+
+/* Text submission option */
+"Enter Text" = "輸入文字";
+
+/* Prompt for text upload */
+"Enter your submission..." = "輸入您的提交....";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "更新任務時出錯";
 
 /* This assignment is excused */
 "Excused" = "已豁免";
-
-/* Error message when submission attachment fails to load. */
-"Failed to load item. Check the allowed assignment submission types." = "未能加載項目。查閱受許可任務提交種類。";
 
 /* (No Commment) */
 "Failed to resume upload." = "恢復上載失敗。";
@@ -91,6 +103,9 @@
 /* submission title for assignment that doesn't support submissions */
 "Submissions N/A" = "提交件 N/A";
 
+/* Submit assignment button */
+"Submit" = "提交";
+
 /* title for submission button if student has never submitted */
 "Submit Assignment" = "提交任務";
 
@@ -120,6 +135,9 @@
 
 /* Upcoming assignments */
 "Upcoming" = "即將進行的";
+
+/* File upload submission option */
+"Upload File" = "上載檔案";
 
 /* Title for button to see rubric from assignment detail */
 "View Rubric" = "檢視專欄";

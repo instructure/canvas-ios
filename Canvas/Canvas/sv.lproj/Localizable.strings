@@ -305,6 +305,9 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* (No Commment) */
 "Change User" = "Byt användare";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "Välj landningssida";
+
 /* (No Commment) */
 "Choose Photo" = "Välj foto";
 
@@ -786,11 +789,17 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* (No Commment) */
 "New Folder" = "Ny mapp";
 
+/* No comment provided by engineer. */
+"New Message" = "Nytt meddelande";
+
 /* Button title for next module item. */
 "Next" = "Nästa";
 
 /* (No Commment) */
 "Next 7 Days" = "Kommande 7 dagarna";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Nästa dag";
 
 /* (No Commment) */
 "Next item" = "Nästa objekt";
@@ -864,8 +873,7 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Aviseringsinställningar";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "Aviseringar";
 
 /* OK Button Title */
@@ -943,6 +951,9 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Button title for previous module item. */
 "Previous" = "Föregående";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Föregående dag";
+
 /* (No Commment) */
 "Previous item" = "Föregående objekt";
 
@@ -990,6 +1001,9 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 
 /* (No Commment) */
 "Record video" = "Spela in video";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Uppdatera";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Uppdateringsknapp";

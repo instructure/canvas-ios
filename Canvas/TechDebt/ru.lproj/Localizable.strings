@@ -242,8 +242,14 @@ You must first complete:" = "
 /* Title for the announcements view controller */
 "Announcements" = "Объявления";
 
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
 /* Archive selected messages button */
 "Archive" = "Архив";
+
+/* archive selected messages */
+"Archive Selected Messages" = "Поместить в архив выбранные сообщения";
 
 /* (No Commment) */
 "Archive Selected Messages Button" = "Кнопка архивации выбранных сообщений ";
@@ -256,6 +262,9 @@ You must first complete:" = "
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Вы готовы выйти из системы?";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "Вы уверены, что хотите отправить этот видеоролик Arc в рамках выполнения этого задания?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Спросить меня позже";
@@ -305,7 +314,8 @@ You must first complete:" = "
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Не удается предоставить медиа";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Отменить";
 
 /* Cancel button title */
@@ -327,6 +337,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 Не поддерживаемые типы вопросов включают вопросы, содержащие контент Adobe Flash™, загрузку файлов, и другое.
 
 Если вы считаете, что тест содержит не поддерживаемый контент, пожалуйста, пройдите его на компьютере или ноутбуке. Если вы знаете, что тест содержит только допустимый контент, вы можете смело пройти его на мобильном устройстве.";
+
+/* button to change user's profile image */
+"Change Profile Image" = "Изменить изображение профиля";
 
 /* No comment provided by engineer. */
 "Change User" = "Сменить пользователя";
@@ -382,6 +395,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Completed" = "Завершено";
 
+/* button to compose a message */
+"Compose Message" = "Написать сообщение";
+
 /* (No Commment) */
 "Compose Message Button" = "Кнопка Написать сообщение";
 
@@ -390,6 +406,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* Title for Conferences tab */
 "Conferences" = "Конференции";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "Подтвердить отправку";
 
 /* Alert title */
 "Confirm deletion" = "Подтвердить удаление";
@@ -490,11 +509,14 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Shown while downloading a file */
 "Downloading..." = "Загрузка...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "Срок:";
 
 /* (No Commment) */
 "Due: %1$@ at %2$@" = "Срок: %1$@ в %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "Срок выполнения: %@";
 
 /* Link to the End User License Agreement document */
 "EULA" = "Лицензионный договор";
@@ -694,6 +716,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Keep" = "Оставить";
 
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "Инструмент LTI";
+
 /* (No Commment) */
 "Landing Page" = "Целевая страница";
 
@@ -838,7 +863,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Message for attempting submission without a comment */
 "No audio was recorded." = "Аудио не был записано.";
 
-/* String for when assignment has no due date */
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
 "No due date" = "Без срока выполнения";
 
 /* Error message */
@@ -1111,7 +1137,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Submission complete" = "Задание выполнено";
 
-/* Submit an assignment */
+/* Submit an assignment
+   Submit Arc video as assignment button */
 "Submit" = "Отправить";
 
 /* Submitted grouping */

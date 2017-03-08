@@ -1,4 +1,7 @@
-/* Cancel button title */
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "エラーが起こりました。再試行してください。";
+
+/* (No Commment) */
 "Cancel" = "キャンセル";
 
 /* Pick a photo from library */
@@ -10,8 +13,11 @@
 /* Pick a video from library */
 "Choose a Video" = "動画を選択する";
 
-/* URL submission option */
+/* (No Commment) */
 "Choose a Webpage" = "ウェブページを選択する";
+
+/* File upload completed */
+"Complete" = "完了";
 
 /* name for upload data */
 "Data" = "データ";
@@ -19,20 +25,38 @@
 /* Delete button for file upload */
 "Delete" = "消去する";
 
-/* Prompt for text upload */
+/* Done recording button */
+"Done" = "完了";
+
+/* (No Commment) */
 "Enter your upload..." = "アップロードを入力...";
+
+/* File upload failed */
+"Failed" = "失敗しました";
 
 /* title for file upload errors */
 "File Upload Error" = "ファイルアップロードエラー";
 
+/* File uploads screen title */
+"File Uploads" = "ファイルのアップロード";
+
 /* (No Commment) */
 "Files" = "ファイル";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* name for a photo just taken */
 "Photo" = "写真";
 
 /* Choose record audio submission */
 "Record Audio" = "オーディオを録音する";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "なにかが失敗しました。ファイルフォーマットを確認して、再試行してください。";
+
+/* File upload was stopped */
+"Stopped" = "停止";
 
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "写真または動画を撮影する";
@@ -43,7 +67,7 @@
 /* Take a video submission choice */
 "Take a Video" = "動画を撮影する";
 
-/* Text submission option */
+/* (No Commment) */
 "Text" = "テキスト";
 
 /* FileKit Database Load Failure Message */
@@ -55,12 +79,15 @@
 /* File upload error message */
 "There was a problem preparing the file for upload" = "アップロードのためのファイルの準備中にエラーが発生しました";
 
-/* Turn in button title */
+/* (No Commment) */
 "Turn In" = "提出";
 
-/* name for a video just taken for upload */
+/* (No Commment) */
 "Video" = "動画";
 
-/* prompt for submission upload */
+/* (No Commment) */
 "What would you like to turn in?" = "何を提出しますか？";
+
+/* File upload in progress */
+"uploading..." = "アップロード中...";
 

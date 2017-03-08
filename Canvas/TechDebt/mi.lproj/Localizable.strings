@@ -242,8 +242,14 @@ Me tuatahi whakaoti koe:";
 /* Title for the announcements view controller */
 "Announcements" = "Fanongonongó";
 
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
 /* Archive selected messages button */
 "Archive" = "Pūranga";
+
+/* archive selected messages */
+"Archive Selected Messages" = "Pūranga ngā karere kua tīpokahia";
 
 /* (No Commment) */
 "Archive Selected Messages Button" = "Pātene Pūranga Tīpakohia Karere";
@@ -256,6 +262,9 @@ Me tuatahi whakaoti koe:";
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Kei te rite ki te takiputa koe?";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "E pono ana koe kei te hiahia koe ki te tuku i tēnei Arc ataata mo tēnei taumahi?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "A ani i ahau i muri";
@@ -305,7 +314,8 @@ Me tuatahi whakaoti koe:";
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kāore e taea te tuku pāpāho";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Whakakore";
 
 /* Cancel button title */
@@ -327,6 +337,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 momo pātai tētautokohia ngā pātai kei roto Adobe Flash ™ ihirangi, tukunga kōnae, me ētahi atu.
 
 Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i runga i papamahi pona rorohiko ranei. Ki te mohio koe e te pātaitai kei roto tautoko ihirangi anake, ite noa ki te tango i te reira i runga i tō pūrere pūkoro.";
+
+/* button to change user's profile image */
+"Change Profile Image" = "Tīni i te Kōtaha Āhua";
 
 /* No comment provided by engineer. */
 "Change User" = "Huri Kaiwhakamahi";
@@ -382,6 +395,9 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* (No Commment) */
 "Completed" = "Oti";
 
+/* button to compose a message */
+"Compose Message" = "Tito Karere";
+
 /* (No Commment) */
 "Compose Message Button" = "Titoa Pātene Karere";
 
@@ -390,6 +406,9 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 
 /* Title for Conferences tab */
 "Conferences" = "ngaahi konifelenisi";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "Whakatau Tukunga";
 
 /* Alert title */
 "Confirm deletion" = "Whakaūngia te mukunga";
@@ -490,11 +509,14 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Shown while downloading a file */
 "Downloading..." = "Tikiake ana ...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "Nā:";
 
 /* (No Commment) */
 "Due: %1$@ at %2$@" = "Nā: %1$@ i %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "E tika ana: %@";
 
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
@@ -694,6 +716,9 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* No comment provided by engineer. */
 "Keep" = "Kia mau ki";
 
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "LTI Taputapu";
+
 /* (No Commment) */
 "Landing Page" = "Whārangi Tauranga";
 
@@ -838,7 +863,8 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Message for attempting submission without a comment */
 "No audio was recorded." = "I tuhia Kāore he ororongo.";
 
-/* String for when assignment has no due date */
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
 "No due date" = "Kāore he rā e tika ana";
 
 /* Error message */
@@ -1111,7 +1137,8 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* No comment provided by engineer. */
 "Submission complete" = "Tāpaetanga oti";
 
-/* Submit an assignment */
+/* Submit an assignment
+   Submit Arc video as assignment button */
 "Submit" = "Tuku";
 
 /* Submitted grouping */

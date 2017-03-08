@@ -4,10 +4,19 @@
 /* Failure reason from the JSON payload from canvas */
 " Failure reason: (reason)." = " Причина сбоя: (reason).";
 
+/* Shows the number of flagged questions */
+"%@ Flagged" = "%@ Помеченный";
+
+/* Accessiblity hint for question drawer button */
+"%@ Questions Answered" = "%@ Ответы на вопросы";
+
+/* Question number in a quiz */
+"%@." = "%@.";
+
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d вопросов не отвечено";
 
-/* Accessiblity hint for question drawer button */
+/* (No Commment) */
 "(questionsController!.flaggedCount) Questions Answered" = "(questionsController!.flaggedCount) вопросов отвечено";
 
 /* Accessiblity hint for question drawer button */
@@ -18,6 +27,9 @@
 
 /* Notification to alert the user that there is only 30 seconds left in the time quiz */
 "30 seconds remaining" = "Осталось 30 секунд";
+
+/* Shows the number questions */
+"All %@ Questions" = "Все %@ вопросы";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Разрешенные Попытки";
@@ -34,14 +46,20 @@
 /* label for quiz availability date */
 "Available Until" = "Доступно до";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel upload */
 "Cancel" = "Отменить";
+
+/* Choose a file */
+"Choose a File" = "Выбрать файл";
+
+/* Label indicating that the question is a multiple dropdown answer question and answer must be chosen. */
+"Choose your answers below" = "Выберите несколько из представленных ниже вариантов ответов";
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Продолжить тест";
 
-/* Dismiss button for error alert
-   Dismiss error dialog */
+/* Dismiss button for error alert */
 "Dismiss" = "Отклонить";
 
 /* Done button */
@@ -79,6 +97,12 @@
 Submitting" = "Достигнута дата блокирования
 Отправка";
 
+/* Title for when another tool called Lockdown Browser is required to take a quiz */
+"Lockdown Browser Required" = "Требуется браузер LockDown";
+
+/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
+"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Для просмотра ваших результатов требуется браузер LockDown Чтобы продолжить, пожалуйста, откройте контрольную работу в браузере LockDown.";
+
 /* Next button for advancing a quiz */
 "Next" = "Далее";
 
@@ -102,6 +126,9 @@ Submitting" = "Достигнута дата блокирования
 
 /* accessibility label for a quiz question */
 "Question" = "Вопрос";
+
+/* Shows question position */
+"Question %@" = "Вопрос %@";
 
 /* state for a question that has been flagged */
 "Question (questionNumber) Flagged" = "Вопрос (questionNumber) отмечен";
@@ -196,18 +223,24 @@ Submitting" = "Достигнута дата блокирования
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Неограничено";
 
+/* Message displayed while a file is being uploaded */
+"Uploading file..." = "Выполняется оправка файла...";
+
 /* a warning message */
 "Warning" = "Warning";
 
 /* Shows time limit on a quiz */
+"You have %d minutes." = "У вас есть %d минут.";
+
+/* (No Commment) */
 "You have (minuteLimit) minutes." = "У вас осталось (minuteLimit) минут.";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Вы использовали все свои попытки, доступные в этом тесте.";
 
-/* Hours label for time limit */
+/* (No Commment) */
 "hr" = "ч";
 
-/* Minutes label localized */
+/* (No Commment) */
 "min" = "мин";
 

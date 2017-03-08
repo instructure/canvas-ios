@@ -242,8 +242,14 @@ You must first complete:" = "
 /* Title for the announcements view controller */
 "Announcements" = "宣告";
 
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
 /* Archive selected messages button */
 "Archive" = "歷史檔";
+
+/* archive selected messages */
+"Archive Selected Messages" = "存取已選訊息";
 
 /* (No Commment) */
 "Archive Selected Messages Button" = "將選中郵件存入歷史檔的按鈕";
@@ -256,6 +262,9 @@ You must first complete:" = "
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "你是否要登出？";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "您確定要用這段 Arc 影片來提交作業嗎？";
 
 /* No comment provided by engineer. */
 "Ask me later" = "稍後再問我";
@@ -305,7 +314,8 @@ You must first complete:" = "
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "無法提交媒體";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "取消";
 
 /* Cancel button title */
@@ -327,6 +337,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 未獲支持的問題類型包括包含有 Adobe Flash™ 內容的問題，資料夾上載和其他內容。
 
 如果您認為測驗包含有未經支持的內容，請選用桌面電腦或膝上式電腦。如果您確定測驗僅包含已獲支持的內容，您可放心選用移動設備接受測驗。";
+
+/* button to change user's profile image */
+"Change Profile Image" = "更改檔案圖片";
 
 /* No comment provided by engineer. */
 "Change User" = "變更使用者";
@@ -382,6 +395,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Completed" = "已完成";
 
+/* button to compose a message */
+"Compose Message" = "編輯郵件";
+
 /* (No Commment) */
 "Compose Message Button" = "編輯郵件按鈕";
 
@@ -390,6 +406,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* Title for Conferences tab */
 "Conferences" = "會議";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "確定提交";
 
 /* Alert title */
 "Confirm deletion" = "確認刪除";
@@ -490,11 +509,14 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Shown while downloading a file */
 "Downloading..." = "正在下載...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "到期日：";
 
 /* (No Commment) */
 "Due: %1$@ at %2$@" = "截至: %1$@ 於 %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "截止日期：%@";
 
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
@@ -694,6 +716,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Keep" = "保存";
 
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "LTI 工具";
+
 /* (No Commment) */
 "Landing Page" = "登入頁面";
 
@@ -838,7 +863,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Message for attempting submission without a comment */
 "No audio was recorded." = "無已錄製的音頻。";
 
-/* String for when assignment has no due date */
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
 "No due date" = "無到期日期";
 
 /* Error message */
@@ -1111,7 +1137,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Submission complete" = "提交完成";
 
-/* Submit an assignment */
+/* Submit an assignment
+   Submit Arc video as assignment button */
 "Submit" = "提交";
 
 /* Submitted grouping */

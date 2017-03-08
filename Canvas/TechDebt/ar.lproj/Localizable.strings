@@ -242,8 +242,14 @@ You must first complete:" = "
 /* Title for the announcements view controller */
 "Announcements" = "إعلانات";
 
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
 /* Archive selected messages button */
 "Archive" = "أرشفة";
+
+/* archive selected messages */
+"Archive Selected Messages" = "أرشفة الرسائل التي تم تحديدها";
 
 /* (No Commment) */
 "Archive Selected Messages Button" = "زر أرشفة الرسائل المحددة";
@@ -256,6 +262,9 @@ You must first complete:" = "
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "هل أنت مستعد لتسجيل الخروج؟";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "هل تريد إرسال فيديو Arc هذا لهذه المهمة بالفعل؟";
 
 /* No comment provided by engineer. */
 "Ask me later" = "اسألني فيما بعد";
@@ -305,7 +314,8 @@ You must first complete:" = "
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "لا يمكن إرسال الوسط";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "إلغاء";
 
 /* Cancel button title */
@@ -327,6 +337,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 أنواع الأسئلة غير المدعومة يشمل أسئلة تتضمن محتويات Adobe Flash™، تحميلات الملفات وغيرها.
 
 إذا كنت تعتقد أن اختبار ما يتضمن محتويات غير مدعومة، يرجى إجراء الامتحان على كمبيوتر المكتب أو كمبيوتر محمول. إذا كنت تعلم أن الاختبار يحتوي على محتويات مدعومة فقط، لا تترد في إجرائه على جهازك المحمول.";
+
+/* button to change user's profile image */
+"Change Profile Image" = "تغيير صورة الملف التعريفي";
 
 /* No comment provided by engineer. */
 "Change User" = "تغيير المستخدم";
@@ -382,6 +395,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Completed" = "مكتمل";
 
+/* button to compose a message */
+"Compose Message" = "إنشاء رسالة";
+
 /* (No Commment) */
 "Compose Message Button" = "زر إنشاء رسالة";
 
@@ -390,6 +406,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* Title for Conferences tab */
 "Conferences" = "المؤتمرات";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "تأكيد الإرسال";
 
 /* Alert title */
 "Confirm deletion" = "تأكيد الحذف";
@@ -490,11 +509,14 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Shown while downloading a file */
 "Downloading..." = "جارٍ التنزيل...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "موعد الاستحقاق:";
 
 /* (No Commment) */
 "Due: %1$@ at %2$@" = "موعد الاستحقاق: %1$@ على الساعة %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "تاريخ الاستحقاق: %@";
 
 /* Link to the End User License Agreement document */
 "EULA" = "اتفاقية ترخيص المستخدم";
@@ -694,6 +716,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Keep" = "الإبقاء";
 
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "أداة LTI";
+
 /* (No Commment) */
 "Landing Page" = "الصفحة المقصودة";
 
@@ -838,7 +863,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Message for attempting submission without a comment */
 "No audio was recorded." = "لم يتم تسجيل أي صوت.";
 
-/* String for when assignment has no due date */
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
 "No due date" = "لا يوجد موعد استحقاق";
 
 /* Error message */
@@ -1111,7 +1137,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Submission complete" = "انتهى الإرسال";
 
-/* Submit an assignment */
+/* Submit an assignment
+   Submit Arc video as assignment button */
 "Submit" = "إرسال";
 
 /* Submitted grouping */

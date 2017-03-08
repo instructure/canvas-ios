@@ -305,6 +305,9 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* (No Commment) */
 "Change User" = "Mudar utilizador";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "Escolher página Inicial";
+
 /* (No Commment) */
 "Choose Photo" = "Escolher Fotografia";
 
@@ -786,11 +789,17 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* (No Commment) */
 "New Folder" = "Nova Pasta";
 
+/* No comment provided by engineer. */
+"New Message" = "Nova mensagem";
+
 /* Button title for next module item. */
 "Next" = "Próximo";
 
 /* (No Commment) */
 "Next 7 Days" = "Próximos 7 Dias";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Próximo dia";
 
 /* (No Commment) */
 "Next item" = "Próximo item";
@@ -864,8 +873,7 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Preferências de Notificação";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "Notificações";
 
 /* OK Button Title */
@@ -943,6 +951,9 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Button title for previous module item. */
 "Previous" = "Anterior";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Dia anterior";
+
 /* (No Commment) */
 "Previous item" = "Item anterior";
 
@@ -990,6 +1001,9 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 
 /* (No Commment) */
 "Record video" = "Gravar vídeo";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Atualizar";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Botão de atualizar";

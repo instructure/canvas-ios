@@ -1,4 +1,7 @@
-/* Cancel button title */
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "En feil har oppstått, vennligst prøv på nytt.";
+
+/* (No Commment) */
 "Cancel" = "Avbryt";
 
 /* Pick a photo from library */
@@ -10,8 +13,11 @@
 /* Pick a video from library */
 "Choose a Video" = "Velg en video";
 
-/* URL submission option */
+/* (No Commment) */
 "Choose a Webpage" = "Veld en nettside";
+
+/* File upload completed */
+"Complete" = "Fullfør";
 
 /* name for upload data */
 "Data" = "Data";
@@ -19,20 +25,38 @@
 /* Delete button for file upload */
 "Delete" = "Slett";
 
-/* Prompt for text upload */
+/* Done recording button */
+"Done" = "Utført";
+
+/* (No Commment) */
 "Enter your upload..." = "Skriv inn opplastingen din ...";
+
+/* File upload failed */
+"Failed" = "Feilet";
 
 /* title for file upload errors */
 "File Upload Error" = "Filopplastingsfeil";
 
+/* File uploads screen title */
+"File Uploads" = "Filopplastinger";
+
 /* (No Commment) */
 "Files" = "Filer";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* name for a photo just taken */
 "Photo" = "Bilde";
 
 /* Choose record audio submission */
 "Record Audio" = "Lydopptak";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "Noe gikk galt. Sjekk filformatet og prøv på nytt.";
+
+/* File upload was stopped */
+"Stopped" = "Stoppet";
 
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "Ta bilde eller video";
@@ -43,7 +67,7 @@
 /* Take a video submission choice */
 "Take a Video" = "Ta en video";
 
-/* Text submission option */
+/* (No Commment) */
 "Text" = "Tekst";
 
 /* FileKit Database Load Failure Message */
@@ -55,12 +79,15 @@
 /* File upload error message */
 "There was a problem preparing the file for upload" = "Det oppsto et problem med å forberede filen til opplasting";
 
-/* Turn in button title */
+/* (No Commment) */
 "Turn In" = "Lever inn";
 
-/* name for a video just taken for upload */
+/* (No Commment) */
 "Video" = "Video";
 
-/* prompt for submission upload */
+/* (No Commment) */
 "What would you like to turn in?" = "Hva ønsker du å innlevere?";
+
+/* File upload in progress */
+"uploading..." = "laster opp...";
 

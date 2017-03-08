@@ -305,6 +305,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* (No Commment) */
 "Change User" = "Endre bruker";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "Velg landingsside";
+
 /* (No Commment) */
 "Choose Photo" = "Velg bilde";
 
@@ -786,11 +789,17 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* (No Commment) */
 "New Folder" = "Ny mappe";
 
+/* No comment provided by engineer. */
+"New Message" = "Ny melding";
+
 /* Button title for next module item. */
 "Next" = "Neste";
 
 /* (No Commment) */
 "Next 7 Days" = "Neste 7 dager";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Neste dag";
 
 /* (No Commment) */
 "Next item" = "Neste objekt";
@@ -864,8 +873,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Varslingspreferanser";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "Varslinger";
 
 /* OK Button Title */
@@ -943,6 +951,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Button title for previous module item. */
 "Previous" = "Forrige";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Forrige dag";
+
 /* (No Commment) */
 "Previous item" = "Forrige artikkel";
 
@@ -990,6 +1001,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 
 /* (No Commment) */
 "Record video" = "Ta opp video";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Oppdater";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Oppfriskningsknapp";

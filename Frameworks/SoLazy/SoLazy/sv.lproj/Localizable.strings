@@ -19,7 +19,7 @@
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "Det uppstod ett problem när UTF8 data kodades";
 
-/* (No Commment) */
+/* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Det uppstod ett fel vid tolkning av svaret från servern.";
 
 /* SoLazy's fallback title for an unknown error */

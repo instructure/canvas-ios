@@ -242,8 +242,14 @@ You must first complete:";
 /* Title for the announcements view controller */
 "Announcements" = "Announcements";
 
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
 /* Archive selected messages button */
 "Archive" = "Archive";
+
+/* archive selected messages */
+"Archive Selected Messages" = "Archive selected messages";
 
 /* (No Commment) */
 "Archive Selected Messages Button" = "Archive Selected messages button";
@@ -256,6 +262,9 @@ You must first complete:";
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Are you ready to log out?";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "Are you sure you want to submit this Arc video for this assignment?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Ask me later";
@@ -305,7 +314,8 @@ You must first complete:";
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Cannot submit media";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Cancel";
 
 /* Cancel button title */
@@ -327,6 +337,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 Unsupported question types include questions containing Adobe Flash™ content, file uploads and others.
 
 If you believe that a quiz contains unsupported content, please take the quiz on a desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device.";
+
+/* button to change user's profile image */
+"Change Profile Image" = "Change profile image";
 
 /* No comment provided by engineer. */
 "Change User" = "Change user";
@@ -382,6 +395,9 @@ If you believe that a quiz contains unsupported content, please take the quiz on
 /* (No Commment) */
 "Completed" = "Completed";
 
+/* button to compose a message */
+"Compose Message" = "Compose message";
+
 /* (No Commment) */
 "Compose Message Button" = "Compose message button";
 
@@ -390,6 +406,9 @@ If you believe that a quiz contains unsupported content, please take the quiz on
 
 /* Title for Conferences tab */
 "Conferences" = "Conferences";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "Confirm submission";
 
 /* Alert title */
 "Confirm deletion" = "Confirm deletion";
@@ -490,11 +509,14 @@ If you believe that a quiz contains unsupported content, please take the quiz on
 /* Shown while downloading a file */
 "Downloading..." = "Downloading...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "Due:";
 
 /* (No Commment) */
 "Due: %1$@ at %2$@" = "Due: %1$@ at %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "Due: %@";
 
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
@@ -694,6 +716,9 @@ If you believe that a quiz contains unsupported content, please take the quiz on
 /* No comment provided by engineer. */
 "Keep" = "Keep";
 
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "LTI tool";
+
 /* (No Commment) */
 "Landing Page" = "Landing page";
 
@@ -838,7 +863,8 @@ If you believe that a quiz contains unsupported content, please take the quiz on
 /* Message for attempting submission without a comment */
 "No audio was recorded." = "No audio was recorded.";
 
-/* String for when assignment has no due date */
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
 "No due date" = "No due date";
 
 /* Error message */
@@ -1111,7 +1137,8 @@ If you believe that a quiz contains unsupported content, please take the quiz on
 /* No comment provided by engineer. */
 "Submission complete" = "Submission complete";
 
-/* Submit an assignment */
+/* Submit an assignment
+   Submit Arc video as assignment button */
 "Submit" = "Submit";
 
 /* Submitted grouping */

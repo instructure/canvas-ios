@@ -1,4 +1,7 @@
 /* grade details for points based grade i.e. \"10 of 12\" */
+" of (formatter(possible))" = "(格式(可能))的";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
 "(formatter(points)) of (formatter(possible))" = "(格式(可能))的(格式(点)) ";
 
 /* Title for 1 day assignment reminder */
@@ -13,6 +16,9 @@
 /* Title for 5 minutes assignment reminder */
 "5 minutes" = "5 分钟";
 
+/* URL submission option */
+"Add Website Address" = "添加网址";
+
 /* (No Commment) */
 "Assignment" = "作业";
 
@@ -25,7 +31,7 @@
 /* This assignment hasn't been graded yet but can be graded */
 "Awaiting Grade" = "等待成绩";
 
-/* cancel button */
+/* Cancel submission option */
 "Cancel" = "取消";
 
 /* Title for reminder options for an assignment */
@@ -40,20 +46,26 @@
 /* error displayed when submitting an assignment is unavailable */
 "Could not submit assignment. Invalid assignment or session." = "无法提交作业。无效作业或会话。";
 
-/* error displayed when submitting a submission is invalid. */
+/* (No Commment) */
 "Could not submit assignment. Invalid submission." = "无法提交作业。无效提交。";
 
 /* (No Commment) */
 "Due:" = "截止：";
+
+/* String telling the user that the date is the due date */
+"Due: " = "截止：";
+
+/* Text submission option */
+"Enter Text" = "输入文本";
+
+/* Prompt for text upload */
+"Enter your submission..." = "输入您的提交项……";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "更新作业错误";
 
 /* This assignment is excused */
 "Excused" = "免除";
-
-/* Error message when submission attachment fails to load. */
-"Failed to load item. Check the allowed assignment submission types." = "无法加载项目。请检查允许的作业提交项类型。";
 
 /* (No Commment) */
 "Failed to resume upload." = "继续上传失败。";
@@ -91,6 +103,9 @@
 /* submission title for assignment that doesn't support submissions */
 "Submissions N/A" = "提交不适用";
 
+/* Submit assignment button */
+"Submit" = "提交";
+
 /* title for submission button if student has never submitted */
 "Submit Assignment" = "提交作业";
 
@@ -120,6 +135,9 @@
 
 /* Upcoming assignments */
 "Upcoming" = "未来";
+
+/* File upload submission option */
+"Upload File" = "上传文件";
 
 /* Title for button to see rubric from assignment detail */
 "View Rubric" = "查看评分细则";

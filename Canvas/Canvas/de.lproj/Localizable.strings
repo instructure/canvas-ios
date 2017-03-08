@@ -305,6 +305,9 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* (No Commment) */
 "Change User" = "Benutzer wechseln";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "Zielseite wählen";
+
 /* (No Commment) */
 "Choose Photo" = "Foto wählen";
 
@@ -787,11 +790,17 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* (No Commment) */
 "New Folder" = "Neuer Ordner";
 
+/* No comment provided by engineer. */
+"New Message" = "Neue Nachricht";
+
 /* Button title for next module item. */
 "Next" = "Weiter";
 
 /* (No Commment) */
 "Next 7 Days" = "Die nächsten 7 Tage";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Nächster Tag";
 
 /* (No Commment) */
 "Next item" = "Nächstes Element";
@@ -865,8 +874,7 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Benachrichtigung - Lieblingseinstellungen";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "Benachrichtigungen";
 
 /* OK Button Title */
@@ -944,6 +952,9 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 /* Button title for previous module item. */
 "Previous" = "Vorherige/r";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Vorheriger Tag";
+
 /* (No Commment) */
 "Previous item" = "Vorheriges Element";
 
@@ -991,6 +1002,9 @@ Wenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so
 
 /* (No Commment) */
 "Record video" = "Video aufnehmen";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Aktualisieren";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Aktualisierungs-Button";

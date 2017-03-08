@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C1CBC6F1E58B97A00D3F15A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61A943461D55184300E0DEA5 /* Info.plist */; };
 		49998EAD1E1D7CD800C98AC2 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49998EA91E1D7CC100C98AC2 /* Cartography.framework */; };
 		49998EAE1E1D7CD800C98AC2 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49998EA91E1D7CC100C98AC2 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49998EAF1E1D7CD800C98AC2 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49998EAA1E1D7CC100C98AC2 /* Kingfisher.framework */; };
@@ -149,6 +150,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C1CBC6E1E58B97A00D3F15A /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "SoAnnotated/fr-CA.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		49998EA91E1D7CC100C98AC2 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49998EAA1E1D7CC100C98AC2 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49998EAB1E1D7CC100C98AC2 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,7 +184,7 @@
 		618D35771D64EE030067619F /* SoPersistent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPersistent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61A943411D55184300E0DEA5 /* SoAnnotated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoAnnotated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61A943441D55184300E0DEA5 /* SoAnnotated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoAnnotated.h; sourceTree = "<group>"; };
-		61A943461D55184300E0DEA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61A943461D55184300E0DEA5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61A9434B1D55184300E0DEA5 /* SoAnnotatedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoAnnotatedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		61A943501D55184300E0DEA5 /* SoAnnotatedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoAnnotatedTests.swift; sourceTree = "<group>"; };
 		61A943521D55184300E0DEA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 				nb,
 				nl,
 				ar,
+				"fr-CA",
 			);
 			mainGroup = 61A943371D55184300E0DEA5;
 			productRefGroup = 61A943421D55184300E0DEA5 /* Products */;
@@ -688,6 +691,7 @@
 				61B9C4D41D636AEA00BAF2F3 /* Assets.xcassets in Resources */,
 				61A943871D55298400E0DEA5 /* CommentReplyView.xib in Resources */,
 				618D35651D64D84B0067619F /* SubmitAnnotatedAssignmentViewController.storyboard in Resources */,
+				2C1CBC6F1E58B97A00D3F15A /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,6 +914,7 @@
 				B5E4856B1D8CBB050025CDCF /* nb */,
 				B5E4856C1D8CBB050025CDCF /* nl */,
 				B5E4856D1D8CBB050025CDCF /* ar */,
+				2C1CBC6E1E58B97A00D3F15A /* fr-CA */,
 			);
 			name = Localizable.strings;
 			path = Canvadocs;

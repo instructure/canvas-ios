@@ -1,4 +1,7 @@
 /* grade details for points based grade i.e. \"10 of 12\" */
+" of (formatter(possible))" = " من (formatter(possible))";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
 "(formatter(points)) of (formatter(possible))" = "(formatter(points)) من (formatter(possible))";
 
 /* Title for 1 day assignment reminder */
@@ -13,6 +16,9 @@
 /* Title for 5 minutes assignment reminder */
 "5 minutes" = "5 دقائق";
 
+/* URL submission option */
+"Add Website Address" = "إضافة عنوان موقع ويب";
+
 /* (No Commment) */
 "Assignment" = "المهمة";
 
@@ -25,7 +31,7 @@
 /* This assignment hasn't been graded yet but can be graded */
 "Awaiting Grade" = "في انتظار الدرجة";
 
-/* cancel button */
+/* Cancel submission option */
 "Cancel" = "إلغاء";
 
 /* Title for reminder options for an assignment */
@@ -40,20 +46,26 @@
 /* error displayed when submitting an assignment is unavailable */
 "Could not submit assignment. Invalid assignment or session." = "تعذر إرسال المهمة. مهمة أو جلسة غير صالحة.";
 
-/* error displayed when submitting a submission is invalid. */
+/* (No Commment) */
 "Could not submit assignment. Invalid submission." = "تعذر إرسال المهمة. إرسال غير صالح.";
 
 /* (No Commment) */
 "Due:" = "موعد الاستحقاق:";
+
+/* String telling the user that the date is the due date */
+"Due: " = "موعد الاستحقاق:";
+
+/* Text submission option */
+"Enter Text" = "إدخال نص";
+
+/* Prompt for text upload */
+"Enter your submission..." = "أدخل الإرسال الخاص بك...";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "حدث خطأ أثناء تحديث المهمة";
 
 /* This assignment is excused */
 "Excused" = "غير إجباري";
-
-/* Error message when submission attachment fails to load. */
-"Failed to load item. Check the allowed assignment submission types." = "تعذر تحميل العنصر. تفقد أنواع إرسال المهمات المسموح بها.";
 
 /* (No Commment) */
 "Failed to resume upload." = "فشل استئناف التحميل.";
@@ -91,6 +103,9 @@
 /* submission title for assignment that doesn't support submissions */
 "Submissions N/A" = "الإرسالات غير مدعومة";
 
+/* Submit assignment button */
+"Submit" = "إرسال";
+
 /* title for submission button if student has never submitted */
 "Submit Assignment" = "إرسال المهمة";
 
@@ -120,6 +135,9 @@
 
 /* Upcoming assignments */
 "Upcoming" = "القادمة";
+
+/* File upload submission option */
+"Upload File" = "تحميل ملف";
 
 /* Title for button to see rubric from assignment detail */
 "View Rubric" = "عرض العنوان";

@@ -306,6 +306,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* (No Commment) */
 "Change User" = "Gebruiker wijzigen";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "Landingspagina kiezen";
+
 /* (No Commment) */
 "Choose Photo" = "Foto kiezen";
 
@@ -787,11 +790,17 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* (No Commment) */
 "New Folder" = "Nieuwe map";
 
+/* No comment provided by engineer. */
+"New Message" = "Nieuw bericht";
+
 /* Button title for next module item. */
 "Next" = "Volgende";
 
 /* (No Commment) */
 "Next 7 Days" = "Volgende 7 dagen";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Volgende dag";
 
 /* (No Commment) */
 "Next item" = "Volgende item";
@@ -865,8 +874,7 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Voorkeuren berichtgeving";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "Berichtgevingen";
 
 /* OK Button Title */
@@ -944,6 +952,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* Button title for previous module item. */
 "Previous" = "Vorige";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Vorige dag";
+
 /* (No Commment) */
 "Previous item" = "Vorige item";
 
@@ -991,6 +1002,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 
 /* (No Commment) */
 "Record video" = "Video opnemen";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Vernieuwen";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Verversknop";

@@ -305,6 +305,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Change User" = "تغيير المستخدم";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "اختيار الصفحة المقصودة";
+
 /* (No Commment) */
 "Choose Photo" = "اختيار صورة";
 
@@ -786,11 +789,17 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "New Folder" = "مجلد جديد";
 
+/* No comment provided by engineer. */
+"New Message" = "رسالة جديدة";
+
 /* Button title for next module item. */
 "Next" = "التالي";
 
 /* (No Commment) */
 "Next 7 Days" = "الأيام السبع القادمة";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "اليوم التالي";
 
 /* (No Commment) */
 "Next item" = "العنصر التالي";
@@ -864,8 +873,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "تفضيلات الإخطار";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "الإخطارات";
 
 /* OK Button Title */
@@ -943,6 +951,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button title for previous module item. */
 "Previous" = "السابق";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "اليوم السابق";
+
 /* (No Commment) */
 "Previous item" = "العنصر السابق";
 
@@ -990,6 +1001,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Record video" = "تسجيل الفيديو";
+
+/* Button to refresh the calendar events */
+"Refresh" = "تحديث";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "زر التحديث";

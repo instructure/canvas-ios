@@ -242,8 +242,14 @@ Du må først fullføre:";
 /* Title for the announcements view controller */
 "Announcements" = "Kunngjøringer";
 
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
 /* Archive selected messages button */
 "Archive" = "Arkiv";
+
+/* archive selected messages */
+"Archive Selected Messages" = "Arkiver valgte meldinger";
 
 /* (No Commment) */
 "Archive Selected Messages Button" = "Knapp, arkivere valgte meldinger";
@@ -256,6 +262,9 @@ Du må først fullføre:";
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Er du klar til å logge ut?";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "Er du sikker på at du vil levere denne Arc-videoen for denne oppgaven?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Spør meg senere";
@@ -305,7 +314,8 @@ Du må først fullføre:";
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kan ikke sende inn media";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Avbryt";
 
 /* Cancel button title */
@@ -327,6 +337,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 Spørsmålstyper som ikke støttes inkluderer spørsmål som inneholder Adobe Flash™ innhold, filopplastinger og annet.
 
 Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på stasjonær eller bærbar datamaskin. Hvis du vet at testen inneholder kun innhold som støttes, da må du gjerne gjøre den på din mobile enhet.";
+
+/* button to change user's profile image */
+"Change Profile Image" = "Endre profilbilde";
 
 /* No comment provided by engineer. */
 "Change User" = "Endre bruker";
@@ -382,6 +395,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* (No Commment) */
 "Completed" = "Fullført";
 
+/* button to compose a message */
+"Compose Message" = "Lag melding";
+
 /* (No Commment) */
 "Compose Message Button" = "Knapp, skriv melding";
 
@@ -390,6 +406,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 
 /* Title for Conferences tab */
 "Conferences" = "Konferanser";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "Bekreft innlevering";
 
 /* Alert title */
 "Confirm deletion" = "Bekreft sletting";
@@ -490,11 +509,14 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Shown while downloading a file */
 "Downloading..." = "Laster ned ...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "Frist:";
 
 /* (No Commment) */
 "Due: %1$@ at %2$@" = "Frist: %1$@ innen %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "Frist: %@";
 
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
@@ -694,6 +716,9 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* No comment provided by engineer. */
 "Keep" = "Behold";
 
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "LTI-verktøy";
+
 /* (No Commment) */
 "Landing Page" = "Landingsside";
 
@@ -838,7 +863,8 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Message for attempting submission without a comment */
 "No audio was recorded." = "Ingen lyd ble tatt opp.";
 
-/* String for when assignment has no due date */
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
 "No due date" = "Ingen innleveringsfrist";
 
 /* Error message */
@@ -1111,7 +1137,8 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* No comment provided by engineer. */
 "Submission complete" = "Innsending fullført";
 
-/* Submit an assignment */
+/* Submit an assignment
+   Submit Arc video as assignment button */
 "Submit" = "Send inn";
 
 /* Submitted grouping */

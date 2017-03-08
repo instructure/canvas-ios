@@ -1,0 +1,72 @@
+/* option to view results for all grading periods */
+"All Grading Periods" = "Toutes les périodes de notation";
+
+/* Blue course color button */
+"Blue" = "Bleu";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "Personnaliser";
+
+/* Cyan course color button */
+"Cyan" = "Cyan";
+
+/* DeepOrange course color button */
+"DeepOrange" = "DeepOrange";
+
+/* DeepPurple course color button */
+"DeepPurple" = "DeepPurple";
+
+/* favorite courses or groups */
+"Favorites" = "Favoris";
+
+/* Title for grading periods picker */
+"Grading Periods" = "Périodes de notation";
+
+/* Green course color button */
+"Green" = "Vert";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "Masqué";
+
+/* Indigo course color button */
+"Indigo" = "Indigo";
+
+/* LightBlue course color button */
+"LightBlue" = "LightBlue";
+
+/* LightGreen course color button */
+"LightGreen" = "LightGreen";
+
+/* LightPink course color button */
+"LightPink" = "LightPink";
+
+/* Orange course color button */
+"Orange" = "Orange";
+
+/* Pink course color button */
+"Pink" = "Rose";
+
+/* Purple course color button */
+"Purple" = "Violet";
+
+/* red course color button */
+"Red" = "Rouge";
+
+/* when a button is selected */
+"Selected" = "Sélectionné";
+
+/* Teal course color button */
+"Teal" = "Bleu sarcelle";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "Un problème est survenu lors du chargement du fichier de base de données EnrollmentKit.";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "Une erreur est survenue lors de l'association d'un onglet avec un cours ou un groupe.";
+
+/* Total grade label */
+"Total Grade" = "Note totale";
+
+/* Yellow course color button */
+"Yellow" = "Jaune";
+

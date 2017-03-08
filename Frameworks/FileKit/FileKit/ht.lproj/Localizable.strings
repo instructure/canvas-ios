@@ -1,4 +1,7 @@
-/* Cancel button title */
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "Gen yon erè ki fèt, tanpri eseye ankò.";
+
+/* (No Commment) */
 "Cancel" = "Anile";
 
 /* Pick a photo from library */
@@ -10,8 +13,11 @@
 /* Pick a video from library */
 "Choose a Video" = "Chwazi yon Videyo";
 
-/* URL submission option */
+/* (No Commment) */
 "Choose a Webpage" = "Chwazi yon Paj Wèb";
+
+/* File upload completed */
+"Complete" = "Konplete";
 
 /* name for upload data */
 "Data" = "Done";
@@ -19,20 +25,38 @@
 /* Delete button for file upload */
 "Delete" = "Efase";
 
-/* Prompt for text upload */
+/* Done recording button */
+"Done" = "Fini";
+
+/* (No Commment) */
 "Enter your upload..." = "Antre chanjman ou an...";
+
+/* File upload failed */
+"Failed" = "Echèk";
 
 /* title for file upload errors */
 "File Upload Error" = "Erè Chajman Fichye";
 
+/* File uploads screen title */
+"File Uploads" = "Transfè Fichye";
+
 /* (No Commment) */
 "Files" = "Fichye";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* name for a photo just taken */
 "Photo" = "Foto";
 
 /* Choose record audio submission */
 "Record Audio" = "Anrejistre Son";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "Gen yon bagay ki mal fèt. Eseye fòma fichye a epi eseye ankò.";
+
+/* File upload was stopped */
+"Stopped" = "Kanpe";
 
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "Pran yon Foto oswa Videyo";
@@ -43,7 +67,7 @@
 /* Take a video submission choice */
 "Take a Video" = "Fè yon Videyo";
 
-/* Text submission option */
+/* (No Commment) */
 "Text" = "Tèks";
 
 /* FileKit Database Load Failure Message */
@@ -55,12 +79,15 @@
 /* File upload error message */
 "There was a problem preparing the file for upload" = "Gen yon pwoblèm nan preparasyon fichye a pou transfè";
 
-/* Turn in button title */
+/* (No Commment) */
 "Turn In" = "Soumèt";
 
-/* name for a video just taken for upload */
+/* (No Commment) */
 "Video" = "Videyo";
 
-/* prompt for submission upload */
+/* (No Commment) */
 "What would you like to turn in?" = "Kisa w ta renmen soumèt?";
+
+/* File upload in progress */
+"uploading..." = "transfè...";
 

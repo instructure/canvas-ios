@@ -1,4 +1,7 @@
 /* grade details for points based grade i.e. \"10 of 12\" */
+" of (formatter(possible))" = "из (formatter(possible))";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
 "(formatter(points)) of (formatter(possible))" = "(formatter(points)) из (formatter(possible))";
 
 /* Title for 1 day assignment reminder */
@@ -13,6 +16,9 @@
 /* Title for 5 minutes assignment reminder */
 "5 minutes" = "5 минут";
 
+/* URL submission option */
+"Add Website Address" = "Добавить адрес веб-сайта";
+
 /* (No Commment) */
 "Assignment" = "Задание";
 
@@ -25,7 +31,7 @@
 /* This assignment hasn't been graded yet but can be graded */
 "Awaiting Grade" = "Ожидает оценки";
 
-/* cancel button */
+/* Cancel submission option */
 "Cancel" = "Отменить";
 
 /* Title for reminder options for an assignment */
@@ -40,20 +46,26 @@
 /* error displayed when submitting an assignment is unavailable */
 "Could not submit assignment. Invalid assignment or session." = "Не удалось отправить задание. Неверное задание или сеанс.";
 
-/* error displayed when submitting a submission is invalid. */
+/* (No Commment) */
 "Could not submit assignment. Invalid submission." = "Не удалось отправить задание. Неверная отправка.";
 
 /* (No Commment) */
 "Due:" = "Срок:";
+
+/* String telling the user that the date is the due date */
+"Due: " = "Срок:";
+
+/* Text submission option */
+"Enter Text" = "Ввести текст";
+
+/* Prompt for text upload */
+"Enter your submission..." = "Укажите местонахождение отправляемого файла...";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Ошибка при обновлении задания";
 
 /* This assignment is excused */
 "Excused" = "По уважительной причине";
-
-/* Error message when submission attachment fails to load. */
-"Failed to load item. Check the allowed assignment submission types." = "Не удалось загрузить элемент. Проверьте типы разрешенной отправки задания.";
 
 /* (No Commment) */
 "Failed to resume upload." = "Не удалось возобновить загрузку.";
@@ -91,6 +103,9 @@
 /* submission title for assignment that doesn't support submissions */
 "Submissions N/A" = "Отправки недоступны";
 
+/* Submit assignment button */
+"Submit" = "Отправить";
+
 /* title for submission button if student has never submitted */
 "Submit Assignment" = "Отправить задание";
 
@@ -120,6 +135,9 @@
 
 /* Upcoming assignments */
 "Upcoming" = "Предстоящий";
+
+/* File upload submission option */
+"Upload File" = "Отправить файл";
 
 /* Title for button to see rubric from assignment detail */
 "View Rubric" = "Просмотр Рубрики";

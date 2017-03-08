@@ -1,4 +1,7 @@
-/* Cancel button title */
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "发生错误，请重试。";
+
+/* (No Commment) */
 "Cancel" = "取消";
 
 /* Pick a photo from library */
@@ -10,8 +13,11 @@
 /* Pick a video from library */
 "Choose a Video" = "选择视频";
 
-/* URL submission option */
+/* (No Commment) */
 "Choose a Webpage" = "选择一个网页";
+
+/* File upload completed */
+"Complete" = "完成";
 
 /* name for upload data */
 "Data" = "数据";
@@ -19,20 +25,38 @@
 /* Delete button for file upload */
 "Delete" = "删除";
 
-/* Prompt for text upload */
+/* Done recording button */
+"Done" = "完成";
+
+/* (No Commment) */
 "Enter your upload..." = "输入您的上传...";
+
+/* File upload failed */
+"Failed" = "已失败";
 
 /* title for file upload errors */
 "File Upload Error" = "文件上传错误";
 
+/* File uploads screen title */
+"File Uploads" = "文件上传";
+
 /* (No Commment) */
 "Files" = "文件";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* name for a photo just taken */
 "Photo" = "照片";
 
 /* Choose record audio submission */
 "Record Audio" = "录制音频";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "出了些问题。请检查文件格式，并重试。";
+
+/* File upload was stopped */
+"Stopped" = "已阻止";
 
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "拍摄相片或视频";
@@ -43,7 +67,7 @@
 /* Take a video submission choice */
 "Take a Video" = "拍摄视频";
 
-/* Text submission option */
+/* (No Commment) */
 "Text" = "文本";
 
 /* FileKit Database Load Failure Message */
@@ -55,12 +79,15 @@
 /* File upload error message */
 "There was a problem preparing the file for upload" = "准备上传该文件时出现问题";
 
-/* Turn in button title */
+/* (No Commment) */
 "Turn In" = "提交";
 
-/* name for a video just taken for upload */
+/* (No Commment) */
 "Video" = "视频";
 
-/* prompt for submission upload */
+/* (No Commment) */
 "What would you like to turn in?" = "您想提交什么？";
+
+/* File upload in progress */
+"uploading..." = "正在上传……";
 

@@ -1,4 +1,7 @@
 /* grade details for points based grade i.e. \"10 of 12\" */
+" of (formatter(possible))" = " af (formatter(possible))";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
 "(formatter(points)) of (formatter(possible))" = "(formatter(points)) af (formatter(possible))";
 
 /* Title for 1 day assignment reminder */
@@ -13,6 +16,9 @@
 /* Title for 5 minutes assignment reminder */
 "5 minutes" = "5 minutter";
 
+/* URL submission option */
+"Add Website Address" = "Tilføj webadresse";
+
 /* (No Commment) */
 "Assignment" = "Opgave";
 
@@ -25,7 +31,7 @@
 /* This assignment hasn't been graded yet but can be graded */
 "Awaiting Grade" = "Afventer karakter";
 
-/* cancel button */
+/* Cancel submission option */
 "Cancel" = "Annuller";
 
 /* Title for reminder options for an assignment */
@@ -40,20 +46,26 @@
 /* error displayed when submitting an assignment is unavailable */
 "Could not submit assignment. Invalid assignment or session." = "Kunne ikke indsende opgave. Ugyldig opgave eller session.";
 
-/* error displayed when submitting a submission is invalid. */
+/* (No Commment) */
 "Could not submit assignment. Invalid submission." = "Kunne ikke indsende opgave. Ugyldig indsendelse.";
 
 /* (No Commment) */
 "Due:" = "Forfald:";
+
+/* String telling the user that the date is the due date */
+"Due: " = "Forfalden:";
+
+/* Text submission option */
+"Enter Text" = "Indtast tekst";
+
+/* Prompt for text upload */
+"Enter your submission..." = "Indtast din indsendelse ...";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Fejl med opdatering af opgave";
 
 /* This assignment is excused */
 "Excused" = "Undskyldt";
-
-/* Error message when submission attachment fails to load. */
-"Failed to load item. Check the allowed assignment submission types." = "Kunne ikke indlæse element. Kontroller hvilke indsendelsestyper, der er tilladt.";
 
 /* (No Commment) */
 "Failed to resume upload." = "Mislykkedes at genoptage upload.";
@@ -91,6 +103,9 @@
 /* submission title for assignment that doesn't support submissions */
 "Submissions N/A" = "Indsendelser N/A";
 
+/* Submit assignment button */
+"Submit" = "Indsend";
+
 /* title for submission button if student has never submitted */
 "Submit Assignment" = "Indsend opgave";
 
@@ -120,6 +135,9 @@
 
 /* Upcoming assignments */
 "Upcoming" = "Kommende";
+
+/* File upload submission option */
+"Upload File" = "Overfør fil";
 
 /* Title for button to see rubric from assignment detail */
 "View Rubric" = "Se vurderingskriterie";

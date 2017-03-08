@@ -305,6 +305,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "Change User" = "Changer d'utilisateur";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "Choisir une page de renvoi";
+
 /* (No Commment) */
 "Choose Photo" = "Choisir une photo";
 
@@ -786,11 +789,17 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* (No Commment) */
 "New Folder" = "Nouveau dossier";
 
+/* No comment provided by engineer. */
+"New Message" = "Nouveau message";
+
 /* Button title for next module item. */
 "Next" = "Suivant";
 
 /* (No Commment) */
 "Next 7 Days" = "Les 7 prochains jours";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Jour suivant";
 
 /* (No Commment) */
 "Next item" = "Élément suivant";
@@ -864,8 +873,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Préférences de notification";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "Notifications";
 
 /* OK Button Title */
@@ -943,6 +951,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Button title for previous module item. */
 "Previous" = "Précédent";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Jour précédent";
+
 /* (No Commment) */
 "Previous item" = "Élément précédent";
 
@@ -990,6 +1001,9 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 
 /* (No Commment) */
 "Record video" = "Enregistrer de la vidéo";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Actualiser";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Bouton d'actualisation";

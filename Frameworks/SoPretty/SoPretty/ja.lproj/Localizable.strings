@@ -1,4 +1,4 @@
-/* dismiss error dialog */
+/* Dismiss button for error alert */
 "Dismiss" = "棄却する";
 
 /* Placeholder for URL */
@@ -7,9 +7,12 @@
 /* navigate */
 "Go" = "Go";
 
+/* Turn in this url button */
+"Submit" = "提出する";
+
 /* bad url message */
 "The text you entered is not a valid URL" = "入力したテキストは有効なURLではありません";
 
-/* Turn in this url button */
+/* (No Commment) */
 "Turn In" = "提出";
 

@@ -1,4 +1,4 @@
-/* dismiss error dialog */
+/* Dismiss button for error alert */
 "Dismiss" = "Rejte";
 
 /* Placeholder for URL */
@@ -7,9 +7,12 @@
 /* navigate */
 "Go" = "Ale";
 
+/* Turn in this url button */
+"Submit" = "Soumèt";
+
 /* bad url message */
 "The text you entered is not a valid URL" = "Tèks ou antre a pa yon URL valid";
 
-/* Turn in this url button */
+/* (No Commment) */
 "Turn In" = "Soumèt";
 

@@ -305,6 +305,9 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* (No Commment) */
 "Change User" = "Huri Kaiwhakamahi";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "Kōwhiri tauranga Whārangi";
+
 /* (No Commment) */
 "Choose Photo" = "Kōwhiri Photo";
 
@@ -786,11 +789,17 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* (No Commment) */
 "New Folder" = "Kōpaki Hou";
 
+/* No comment provided by engineer. */
+"New Message" = "Karere Hōu";
+
 /* Button title for next module item. */
 "Next" = "Muri";
 
 /* (No Commment) */
 "Next 7 Days" = "Panuku 7 ra";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Rā e heke mai nei";
 
 /* (No Commment) */
 "Next item" = "tūemi muri";
@@ -864,8 +873,7 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Manakohanga Whakamōhiotanga";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "Whakamōhiotanga";
 
 /* OK Button Title */
@@ -943,6 +951,9 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 /* Button title for previous module item. */
 "Previous" = "ō mua";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Rā o mua";
+
 /* (No Commment) */
 "Previous item" = "tūemi o mua";
 
@@ -990,6 +1001,9 @@ Ki te whakapono koe e kei he quiz ihirangi tautokona, tēnā tango i te reira i 
 
 /* (No Commment) */
 "Record video" = "Record ataata";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Whakahouhia";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Pātene Tāmata";

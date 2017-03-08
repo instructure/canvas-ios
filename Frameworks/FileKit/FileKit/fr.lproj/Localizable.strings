@@ -1,4 +1,7 @@
-/* Cancel button title */
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "Une erreur est survenue, veuillez réessayer.";
+
+/* (No Commment) */
 "Cancel" = "Annuler";
 
 /* Pick a photo from library */
@@ -10,8 +13,11 @@
 /* Pick a video from library */
 "Choose a Video" = "Choisir une vidéo";
 
-/* URL submission option */
+/* (No Commment) */
 "Choose a Webpage" = "Choisir une page en ligne";
+
+/* File upload completed */
+"Complete" = "Terminer";
 
 /* name for upload data */
 "Data" = "Données";
@@ -19,20 +25,38 @@
 /* Delete button for file upload */
 "Delete" = "Supprimer";
 
-/* Prompt for text upload */
+/* Done recording button */
+"Done" = "Terminé";
+
+/* (No Commment) */
 "Enter your upload..." = "Saisir votre téléchargement...";
+
+/* File upload failed */
+"Failed" = "Échec";
 
 /* title for file upload errors */
 "File Upload Error" = "Erreur de téléchargement du fichier";
 
+/* File uploads screen title */
+"File Uploads" = "Envoi de fichiers";
+
 /* (No Commment) */
 "Files" = "Fichiers";
+
+/* No comment provided by engineer. */
+"OK" = "D'accord";
 
 /* name for a photo just taken */
 "Photo" = "Photo";
 
 /* Choose record audio submission */
 "Record Audio" = "Enregistrer de l'audio";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "Un problème est survenu. Veuillez vérifier le format du fichier, puis réessayez.";
+
+/* File upload was stopped */
+"Stopped" = "Arrêté";
 
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "Prendre une photo ou une vidéo";
@@ -43,7 +67,7 @@
 /* Take a video submission choice */
 "Take a Video" = "Enregistrer une vidéo";
 
-/* Text submission option */
+/* (No Commment) */
 "Text" = "Texte";
 
 /* FileKit Database Load Failure Message */
@@ -55,12 +79,15 @@
 /* File upload error message */
 "There was a problem preparing the file for upload" = "Un problème est survenu lors de la préparation du fichier au téléchargement";
 
-/* Turn in button title */
+/* (No Commment) */
 "Turn In" = "Rendre";
 
-/* name for a video just taken for upload */
+/* (No Commment) */
 "Video" = "Vidéo";
 
-/* prompt for submission upload */
+/* (No Commment) */
 "What would you like to turn in?" = "Que désirez vous rendre ?";
+
+/* File upload in progress */
+"uploading..." = "envoi en cours...";
 

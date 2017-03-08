@@ -1,4 +1,7 @@
 /* grade details for points based grade i.e. \"10 of 12\" */
+" of (formatter(possible))" = "(formatter(possible)) のうち";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
 "(formatter(points)) of (formatter(possible))" = "(formatter(possible)) のうち (formatter(points)) ";
 
 /* Title for 1 day assignment reminder */
@@ -13,6 +16,9 @@
 /* Title for 5 minutes assignment reminder */
 "5 minutes" = "5 分";
 
+/* URL submission option */
+"Add Website Address" = "ウェブサイトアドレスを追加する";
+
 /* (No Commment) */
 "Assignment" = "課題";
 
@@ -25,7 +31,7 @@
 /* This assignment hasn't been graded yet but can be graded */
 "Awaiting Grade" = "採点待ち";
 
-/* cancel button */
+/* Cancel submission option */
 "Cancel" = "キャンセル";
 
 /* Title for reminder options for an assignment */
@@ -40,20 +46,26 @@
 /* error displayed when submitting an assignment is unavailable */
 "Could not submit assignment. Invalid assignment or session." = "課題を提出できませんでした。無効な提出またはセッションです。";
 
-/* error displayed when submitting a submission is invalid. */
+/* (No Commment) */
 "Could not submit assignment. Invalid submission." = "課題を提出できませんでした。無効な提出です。";
 
 /* (No Commment) */
 "Due:" = "期限：";
+
+/* String telling the user that the date is the due date */
+"Due: " = "期限：";
+
+/* Text submission option */
+"Enter Text" = "テキストを入力する";
+
+/* Prompt for text upload */
+"Enter your submission..." = "提出物を入力する...";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "課題のアップロードエラー";
 
 /* This assignment is excused */
 "Excused" = "免除";
-
-/* Error message when submission attachment fails to load. */
-"Failed to load item. Check the allowed assignment submission types." = "アイテムがロードできませんでした。許可されている課題提出タイプを確認してください。";
 
 /* (No Commment) */
 "Failed to resume upload." = "アップロード再開に失敗しました。";
@@ -91,6 +103,9 @@
 /* submission title for assignment that doesn't support submissions */
 "Submissions N/A" = "提出 N/A";
 
+/* Submit assignment button */
+"Submit" = "提出する";
+
 /* title for submission button if student has never submitted */
 "Submit Assignment" = "課題の提出";
 
@@ -120,6 +135,9 @@
 
 /* Upcoming assignments */
 "Upcoming" = "今後";
+
+/* File upload submission option */
+"Upload File" = "ファイルアップロード";
 
 /* Title for button to see rubric from assignment detail */
 "View Rubric" = "項目を見る";

@@ -242,8 +242,14 @@ Você primeiro precisa concluir:";
 /* Title for the announcements view controller */
 "Announcements" = "Anúncios";
 
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
 /* Archive selected messages button */
 "Archive" = "Arquivo";
+
+/* archive selected messages */
+"Archive Selected Messages" = "Arquivar Mensagens Selecionadas";
 
 /* (No Commment) */
 "Archive Selected Messages Button" = "Botão Arquivar Mensagens Selecionadas";
@@ -256,6 +262,9 @@ Você primeiro precisa concluir:";
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Você está pronto para sair?";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "Tem certeza de que deseja enviar este vídeo Arc para esta tarefa?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Pergunte-me mais tarde";
@@ -305,7 +314,8 @@ Você primeiro precisa concluir:";
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Não é possível enviar mídia";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Cancelar";
 
 /* Cancel button title */
@@ -327,6 +337,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 Tipos de perguntas sem suporte incluem perguntas que contenham conteúdo Adobe Flash™, carregamentos de arquivos e outros.
 
 Se você acredita que um questionário contém conteúdo sem suporte, por favor, faça-o no computador ou laptop. Se você souber que o questionário contém apenas conteúdo com suporte, sinta-se livre para fazê-lo em seu dispositivo móvel.";
+
+/* button to change user's profile image */
+"Change Profile Image" = "Alterar Imagem de Perfil";
 
 /* No comment provided by engineer. */
 "Change User" = "Trocar Usuário";
@@ -382,6 +395,9 @@ Se você acredita que um questionário contém conteúdo sem suporte, por favor,
 /* (No Commment) */
 "Completed" = "Completado";
 
+/* button to compose a message */
+"Compose Message" = "Compor Mensagem";
+
 /* (No Commment) */
 "Compose Message Button" = "Botão Compor Mensagem";
 
@@ -390,6 +406,9 @@ Se você acredita que um questionário contém conteúdo sem suporte, por favor,
 
 /* Title for Conferences tab */
 "Conferences" = "Conferências";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "Confirmar Envio";
 
 /* Alert title */
 "Confirm deletion" = "Confirmar a eliminação";
@@ -490,11 +509,14 @@ Se você acredita que um questionário contém conteúdo sem suporte, por favor,
 /* Shown while downloading a file */
 "Downloading..." = "Baixando...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "Devido:";
 
 /* (No Commment) */
 "Due: %1$@ at %2$@" = "Devido: %1$@ em %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "Vencimento: %@";
 
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
@@ -694,6 +716,9 @@ Se você acredita que um questionário contém conteúdo sem suporte, por favor,
 /* No comment provided by engineer. */
 "Keep" = "Manter";
 
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "Ferramenta de LTI";
+
 /* (No Commment) */
 "Landing Page" = "Página de Destino";
 
@@ -838,7 +863,8 @@ Se você acredita que um questionário contém conteúdo sem suporte, por favor,
 /* Message for attempting submission without a comment */
 "No audio was recorded." = "Nenhum áudio foi gravado.";
 
-/* String for when assignment has no due date */
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
 "No due date" = "Sem data limite";
 
 /* Error message */
@@ -1111,7 +1137,8 @@ Se você acredita que um questionário contém conteúdo sem suporte, por favor,
 /* No comment provided by engineer. */
 "Submission complete" = "Envio completo";
 
-/* Submit an assignment */
+/* Submit an assignment
+   Submit Arc video as assignment button */
 "Submit" = "Enviar";
 
 /* Submitted grouping */

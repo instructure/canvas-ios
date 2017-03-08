@@ -1,4 +1,7 @@
-/* Cancel button title */
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "Возникла ошибка. Пожалуйста, попробуйте еще раз.";
+
+/* (No Commment) */
 "Cancel" = "Отменить";
 
 /* Pick a photo from library */
@@ -10,8 +13,11 @@
 /* Pick a video from library */
 "Choose a Video" = "Выбрать видео";
 
-/* URL submission option */
+/* (No Commment) */
 "Choose a Webpage" = "Выбрать веб-страницу";
+
+/* File upload completed */
+"Complete" = "Завершить";
 
 /* name for upload data */
 "Data" = "Данные";
@@ -19,20 +25,38 @@
 /* Delete button for file upload */
 "Delete" = "Удалить";
 
-/* Prompt for text upload */
+/* Done recording button */
+"Done" = "Готово";
+
+/* (No Commment) */
 "Enter your upload..." = "Введите свою загрузку...";
+
+/* File upload failed */
+"Failed" = "Сбой";
 
 /* title for file upload errors */
 "File Upload Error" = "Ошибка при загрузке файла";
 
+/* File uploads screen title */
+"File Uploads" = "Отправленные файлы";
+
 /* (No Commment) */
 "Files" = "Файлы";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* name for a photo just taken */
 "Photo" = "Фото";
 
 /* Choose record audio submission */
 "Record Audio" = "Записать аудио";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "Возникла проблема. Проверьте формат файла и попробуйте еще раз.";
+
+/* File upload was stopped */
+"Stopped" = "Процесс остановлен";
 
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "Сделать фото или видео";
@@ -43,7 +67,7 @@
 /* Take a video submission choice */
 "Take a Video" = "Снять видео";
 
-/* Text submission option */
+/* (No Commment) */
 "Text" = "Текст";
 
 /* FileKit Database Load Failure Message */
@@ -55,12 +79,15 @@
 /* File upload error message */
 "There was a problem preparing the file for upload" = "Возникла проблема при подготовке файла для загрузки";
 
-/* Turn in button title */
+/* (No Commment) */
 "Turn In" = "Сдать";
 
-/* name for a video just taken for upload */
+/* (No Commment) */
 "Video" = "Видео";
 
-/* prompt for submission upload */
+/* (No Commment) */
 "What would you like to turn in?" = "Какое задание вы хотите сдать?";
+
+/* File upload in progress */
+"uploading..." = "выполняется отправка...";
 

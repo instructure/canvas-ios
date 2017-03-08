@@ -305,6 +305,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* (No Commment) */
 "Change User" = "Chanje Itilizatè";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "Chwazi Paj Dakèy";
+
 /* (No Commment) */
 "Choose Photo" = "Chwazi Foto";
 
@@ -786,11 +789,17 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* (No Commment) */
 "New Folder" = "Nouvo Dosye";
 
+/* No comment provided by engineer. */
+"New Message" = "Nouvo Mesaj";
+
 /* Button title for next module item. */
 "Next" = "Pwochen";
 
 /* (No Commment) */
 "Next 7 Days" = "7 Pwochen Jou";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Pwochen Jou";
 
 /* (No Commment) */
 "Next item" = "Pwochen atik";
@@ -864,8 +873,7 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Preferans Notifikasyon";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "Notifikasyon";
 
 /* OK Button Title */
@@ -943,6 +951,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* Button title for previous module item. */
 "Previous" = "Anvan";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Jou Anvan";
+
 /* (No Commment) */
 "Previous item" = "Atik pase";
 
@@ -990,6 +1001,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 
 /* (No Commment) */
 "Record video" = "Anrejistre videyo";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Aktyalize";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Bouton Aktyalizasyon";

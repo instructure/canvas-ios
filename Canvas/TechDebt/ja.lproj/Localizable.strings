@@ -243,8 +243,14 @@ You must first complete:" = "
 /* Title for the announcements view controller */
 "Announcements" = "アナウンスメント";
 
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
 /* Archive selected messages button */
 "Archive" = "アーカイブ";
+
+/* archive selected messages */
+"Archive Selected Messages" = "選択したメッセージをアーカイブする";
 
 /* (No Commment) */
 "Archive Selected Messages Button" = "選択されたメッセージボタンをアーカイブに保存";
@@ -257,6 +263,9 @@ You must first complete:" = "
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "ログアウトしますか？";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "この課題にこの Arc ビデオをほんとうに送信しますか?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "後ほど聞いてください";
@@ -306,7 +315,8 @@ You must first complete:" = "
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "メディアを提出できません";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "キャンセル";
 
 /* Cancel button title */
@@ -328,6 +338,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 サポートされていないクイズの形式には、Adobe Flash™のコンテンツ、ファイルのアップロードその他が含まれています。
 
 クイズにサポートされていない内容がある場合には、デスクトップやノートパソコンをご使用ください。クイズのコンテンツがすべてサポートされていることが分かっている場合には、ご自由に携帯端末を使用してください。";
+
+/* button to change user's profile image */
+"Change Profile Image" = "プロフィール画像を変更する";
 
 /* No comment provided by engineer. */
 "Change User" = "ユーザーを変更する";
@@ -383,6 +396,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Completed" = "完了済み";
 
+/* button to compose a message */
+"Compose Message" = "メッセージを作成";
+
 /* (No Commment) */
 "Compose Message Button" = "メッセージボタンを作成する";
 
@@ -391,6 +407,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* Title for Conferences tab */
 "Conferences" = "カンファレンス";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "送信を確認する";
 
 /* Alert title */
 "Confirm deletion" = "削除を確認する";
@@ -491,11 +510,14 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Shown while downloading a file */
 "Downloading..." = "ダウンロード中...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "期限：";
 
 /* (No Commment) */
 "Due: %1$@ at %2$@" = "期限: %2$@の%1$@ ";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "期限：%@";
 
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
@@ -695,6 +717,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Keep" = "保存する";
 
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "LTI ツール";
+
 /* (No Commment) */
 "Landing Page" = "ランディングページ";
 
@@ -839,7 +864,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Message for attempting submission without a comment */
 "No audio was recorded." = "音声は録音されていません。";
 
-/* String for when assignment has no due date */
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
 "No due date" = "期限日なし";
 
 /* Error message */
@@ -1112,7 +1138,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Submission complete" = "提出完了";
 
-/* Submit an assignment */
+/* Submit an assignment
+   Submit Arc video as assignment button */
 "Submit" = "提出する";
 
 /* Submitted grouping */

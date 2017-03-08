@@ -305,6 +305,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Change User" = "Change User";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "Choose Landing Page";
+
 /* (No Commment) */
 "Choose Photo" = "Choose Photo";
 
@@ -786,11 +789,17 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "New Folder" = "New Folder";
 
+/* No comment provided by engineer. */
+"New Message" = "New Message";
+
 /* Button title for next module item. */
 "Next" = "Next";
 
 /* (No Commment) */
 "Next 7 Days" = "Next 7 Days";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Next Day";
 
 /* (No Commment) */
 "Next item" = "Next item";
@@ -864,8 +873,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Notification Preferences";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "Notifications";
 
 /* OK Button Title */
@@ -943,6 +951,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button title for previous module item. */
 "Previous" = "Previous";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Previous Day";
+
 /* (No Commment) */
 "Previous item" = "Previous item";
 
@@ -990,6 +1001,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Record video" = "Record video";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Refresh";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Refresh Button";

@@ -4,10 +4,19 @@
 /* Failure reason from the JSON payload from canvas */
 " Failure reason: (reason)." = "Rasón de la falla: (razón).";
 
+/* Shows the number of flagged questions */
+"%@ Flagged" = "%@ Marcada";
+
+/* Accessiblity hint for question drawer button */
+"%@ Questions Answered" = "%@ Preguntas respondidas";
+
+/* Question number in a quiz */
+"%@." = "%@.";
+
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d preguntas no respondidas";
 
-/* Accessiblity hint for question drawer button */
+/* (No Commment) */
 "(questionsController!.flaggedCount) Questions Answered" = "(questionsController!.flaggedCount) Preguntas respondidas";
 
 /* Accessiblity hint for question drawer button */
@@ -18,6 +27,9 @@
 
 /* Notification to alert the user that there is only 30 seconds left in the time quiz */
 "30 seconds remaining" = "Quedan 30 segundos";
+
+/* Shows the number questions */
+"All %@ Questions" = "Todas las %@ preguntas";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Intentos permitidos";
@@ -34,14 +46,20 @@
 /* label for quiz availability date */
 "Available Until" = "Disponible hasta";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel upload */
 "Cancel" = "Cancelar";
+
+/* Choose a file */
+"Choose a File" = "Elija un archivo";
+
+/* Label indicating that the question is a multiple dropdown answer question and answer must be chosen. */
+"Choose your answers below" = "Elija sus respuestas a continuación";
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Continuar la evaluación";
 
-/* Dismiss button for error alert
-   Dismiss error dialog */
+/* Dismiss button for error alert */
 "Dismiss" = "Descartar";
 
 /* Done button */
@@ -79,6 +97,12 @@
 Submitting" = "Fecha de bloqueo alcanzada
 Enviando";
 
+/* Title for when another tool called Lockdown Browser is required to take a quiz */
+"Lockdown Browser Required" = "Se requiere LockDown Browser";
+
+/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
+"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Se requiere LockDown Browser para poder ver los resultados. Abra la evaluación en LockDown Browser para continuar.";
+
 /* Next button for advancing a quiz */
 "Next" = "Siguiente";
 
@@ -102,6 +126,9 @@ Enviando";
 
 /* accessibility label for a quiz question */
 "Question" = "Pregunta";
+
+/* Shows question position */
+"Question %@" = "Pregunta %@";
 
 /* state for a question that has been flagged */
 "Question (questionNumber) Flagged" = "Pregunta (questionNumber) marcada con una bandera";
@@ -196,18 +223,24 @@ Enviando";
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Ilimitada";
 
+/* Message displayed while a file is being uploaded */
+"Uploading file..." = "Cargando archivo...";
+
 /* a warning message */
 "Warning" = "Advertencia";
 
 /* Shows time limit on a quiz */
+"You have %d minutes." = "Tiene %d minutos.";
+
+/* (No Commment) */
 "You have (minuteLimit) minutes." = "Le quedan (minuteLimit) minutos.";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Ha usado todos sus intentos disponibles en esta evaluación.";
 
-/* Hours label for time limit */
+/* (No Commment) */
 "hr" = "hora";
 
-/* Minutes label localized */
+/* (No Commment) */
 "min" = "min";
 

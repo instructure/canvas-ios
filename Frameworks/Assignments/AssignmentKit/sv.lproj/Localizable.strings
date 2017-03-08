@@ -1,4 +1,7 @@
 /* grade details for points based grade i.e. \"10 of 12\" */
+" of (formatter(possible))" = " av (formatter(possible))";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
 "(formatter(points)) of (formatter(possible))" = "(formatter(points)) av (formatter(possible))";
 
 /* Title for 1 day assignment reminder */
@@ -13,6 +16,9 @@
 /* Title for 5 minutes assignment reminder */
 "5 minutes" = "5 minuter";
 
+/* URL submission option */
+"Add Website Address" = "Lägg till adress för webbsida";
+
 /* (No Commment) */
 "Assignment" = "Uppgift";
 
@@ -25,7 +31,7 @@
 /* This assignment hasn't been graded yet but can be graded */
 "Awaiting Grade" = "Väntar betyg";
 
-/* cancel button */
+/* Cancel submission option */
 "Cancel" = "Avbryt";
 
 /* Title for reminder options for an assignment */
@@ -40,20 +46,26 @@
 /* error displayed when submitting an assignment is unavailable */
 "Could not submit assignment. Invalid assignment or session." = "Kunde inte skicka in uppgiften. Ogiltig uppgift eller session.";
 
-/* error displayed when submitting a submission is invalid. */
+/* (No Commment) */
 "Could not submit assignment. Invalid submission." = "Kunde inte skicka in uppgiften. Ogiltig inlämning.";
 
 /* (No Commment) */
 "Due:" = "Förfallodatum:";
+
+/* String telling the user that the date is the due date */
+"Due: " = "Förfallodatum:";
+
+/* Text submission option */
+"Enter Text" = "Skriv in text";
+
+/* Prompt for text upload */
+"Enter your submission..." = "Skriv in ditt framlagda förslag...";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Fel när uppgiften laddades upp";
 
 /* This assignment is excused */
 "Excused" = "Befriad";
-
-/* Error message when submission attachment fails to load. */
-"Failed to load item. Check the allowed assignment submission types." = "Misslyckades att ladda post. Markera de tillåtna typerna av inlämningsuppgifter.";
 
 /* (No Commment) */
 "Failed to resume upload." = "Kunde inte återuppta uppladdning.";
@@ -91,6 +103,9 @@
 /* submission title for assignment that doesn't support submissions */
 "Submissions N/A" = "inlämningar ej tillgängliga";
 
+/* Submit assignment button */
+"Submit" = "Skicka in";
+
 /* title for submission button if student has never submitted */
 "Submit Assignment" = "Skicka in uppgift";
 
@@ -120,6 +135,9 @@
 
 /* Upcoming assignments */
 "Upcoming" = "Kommande";
+
+/* File upload submission option */
+"Upload File" = "Ladda upp fil";
 
 /* Title for button to see rubric from assignment detail */
 "View Rubric" = "Se rubrik";

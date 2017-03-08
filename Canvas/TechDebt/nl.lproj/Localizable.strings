@@ -242,8 +242,14 @@ Je moet eerst voltooien:";
 /* Title for the announcements view controller */
 "Announcements" = "Aankondigingen";
 
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
 /* Archive selected messages button */
 "Archive" = "Archiveren";
+
+/* archive selected messages */
+"Archive Selected Messages" = "Geselecteerde berichten archiveren";
 
 /* (No Commment) */
 "Archive Selected Messages Button" = "Knop om geselecteerde berichten te archiveren";
@@ -256,6 +262,9 @@ Je moet eerst voltooien:";
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Klaar om je af te melden?";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "Weet je zeker dat je deze Arc-video wilt inleveren voor deze opdracht?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Vraag het me later";
@@ -305,7 +314,8 @@ Je moet eerst voltooien:";
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kan media niet indienen";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Annuleren";
 
 /* Cancel button title */
@@ -328,6 +338,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 Niet-ondersteunde vraagsoorten zijn onder andere vragen met Adobe Flash™-content, uploads van bestanden en andere.
 
 Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een desktop of laptop. Als je weet dat de toets alleen ondersteunde content bevat, aarzel dan niet hem op je mobiele apparaat te doen.";
+
+/* button to change user's profile image */
+"Change Profile Image" = "Profielafbeelding veranderen";
 
 /* No comment provided by engineer. */
 "Change User" = "Gebruiker wijzigen";
@@ -383,6 +396,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* (No Commment) */
 "Completed" = "Voltooid";
 
+/* button to compose a message */
+"Compose Message" = "Bericht opstellen";
+
 /* (No Commment) */
 "Compose Message Button" = "Knop voor bericht opstellen";
 
@@ -391,6 +407,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 
 /* Title for Conferences tab */
 "Conferences" = "Conferenties";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "Inlevering bevestigen";
 
 /* Alert title */
 "Confirm deletion" = "Verwijdering bevestigen";
@@ -491,11 +510,14 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* Shown while downloading a file */
 "Downloading..." = "Downloaden...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "Inleverdatum:";
 
 /* (No Commment) */
 "Due: %1$@ at %2$@" = "Inleverdatum: %1$@ om %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "Inleverdatum: %@";
 
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
@@ -695,6 +717,9 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* No comment provided by engineer. */
 "Keep" = "Houden";
 
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "LTI Tool";
+
 /* (No Commment) */
 "Landing Page" = "Landingspagina";
 
@@ -839,7 +864,8 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* Message for attempting submission without a comment */
 "No audio was recorded." = "Geen audio opgenomen.";
 
-/* String for when assignment has no due date */
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
 "No due date" = "Geen inleverdatum";
 
 /* Error message */
@@ -1112,7 +1138,8 @@ Als je denkt dat een toets niet-ondersteunde content bevat, doe het dan op een d
 /* No comment provided by engineer. */
 "Submission complete" = "Indiening voltooid";
 
-/* Submit an assignment */
+/* Submit an assignment
+   Submit Arc video as assignment button */
 "Submit" = "Indienen";
 
 /* Submitted grouping */

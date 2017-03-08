@@ -242,8 +242,14 @@ Du måste först göra färdigt:";
 /* Title for the announcements view controller */
 "Announcements" = "Meddelanden";
 
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
 /* Archive selected messages button */
 "Archive" = "Arkiv";
+
+/* archive selected messages */
+"Archive Selected Messages" = "Arkivera valda meddelanden";
 
 /* (No Commment) */
 "Archive Selected Messages Button" = "Knapp för att arkivera meddelanden";
@@ -256,6 +262,9 @@ Du måste först göra färdigt:";
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Är du redo att logga ut?";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "Är du säker på att du vill skicka in denna Arc videon för den här uppgiften?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Fråga mig igen senare";
@@ -305,7 +314,8 @@ Du måste först göra färdigt:";
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kan inte skicka in media";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Avbryt";
 
 /* Cancel button title */
@@ -327,6 +337,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 Frågetyper som inte stöds omfattar frågor som innehåller Adobe Flash™ innehåll, filuppladdning, och annat.
 
 Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på stationär eller bärbar dator. Om du vet att testet bara innehåller innehåll som stöds, kan du gärna ta det på din mobila enhet.";
+
+/* button to change user's profile image */
+"Change Profile Image" = "Ändra profilbild";
 
 /* No comment provided by engineer. */
 "Change User" = "Byt användare";
@@ -382,6 +395,9 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* (No Commment) */
 "Completed" = "Färdig";
 
+/* button to compose a message */
+"Compose Message" = "Skapa ett meddelande";
+
 /* (No Commment) */
 "Compose Message Button" = "Knapp för att skapa meddelande";
 
@@ -390,6 +406,9 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 
 /* Title for Conferences tab */
 "Conferences" = "Konferenser";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "Bekräfta framlagt förslag";
 
 /* Alert title */
 "Confirm deletion" = "Bekräfta borttagning";
@@ -490,11 +509,14 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Shown while downloading a file */
 "Downloading..." = "Laddar ner...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "Förfallodatum:";
 
 /* (No Commment) */
 "Due: %1$@ at %2$@" = "Färdig den: %1$@ vid %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "Färdig: %@";
 
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
@@ -694,6 +716,9 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* No comment provided by engineer. */
 "Keep" = "Behåll";
 
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "LTI Verktyg";
+
 /* (No Commment) */
 "Landing Page" = "Landningssida";
 
@@ -838,7 +863,8 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* Message for attempting submission without a comment */
 "No audio was recorded." = "Inget ljud spelades in.";
 
-/* String for when assignment has no due date */
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
 "No due date" = "Inget förfallodatum";
 
 /* Error message */
@@ -1111,7 +1137,8 @@ Om du tror att ett quiz innefattar innehåll som inte stöds, ta det på station
 /* No comment provided by engineer. */
 "Submission complete" = "Inlämning utförd";
 
-/* Submit an assignment */
+/* Submit an assignment
+   Submit Arc video as assignment button */
 "Submit" = "Skicka in";
 
 /* Submitted grouping */

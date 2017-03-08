@@ -305,6 +305,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Change User" = "Сменить пользователя";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "Выбрать целевую страницу";
+
 /* (No Commment) */
 "Choose Photo" = "Выбрать фото";
 
@@ -786,11 +789,17 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "New Folder" = "Новая папка";
 
+/* No comment provided by engineer. */
+"New Message" = "Новое сообщение";
+
 /* Button title for next module item. */
 "Next" = "Далее";
 
 /* (No Commment) */
 "Next 7 Days" = "Следующие 7 дней";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Следующий день";
 
 /* (No Commment) */
 "Next item" = "Следующий элемент";
@@ -864,8 +873,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Настройки уведомлений";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "Уведомления";
 
 /* OK Button Title */
@@ -943,6 +951,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button title for previous module item. */
 "Previous" = "Предыдущий";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Предыдущий день";
+
 /* (No Commment) */
 "Previous item" = "Предыдущий элемент";
 
@@ -990,6 +1001,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Record video" = "Записать видео";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Обновить";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Кнопка Обновить";

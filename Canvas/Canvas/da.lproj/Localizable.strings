@@ -305,6 +305,9 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* (No Commment) */
 "Change User" = "Ændre bruger";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "Vælg Landingsside";
+
 /* (No Commment) */
 "Choose Photo" = "Vælg foto";
 
@@ -786,11 +789,17 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* (No Commment) */
 "New Folder" = "Ny mappe";
 
+/* No comment provided by engineer. */
+"New Message" = "Ny besked";
+
 /* Button title for next module item. */
 "Next" = "Næste";
 
 /* (No Commment) */
 "Next 7 Days" = "Næste 7 dage";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Næste dag";
 
 /* (No Commment) */
 "Next item" = "Næste element";
@@ -864,8 +873,7 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Notifikationsindstillinger";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "Notifikationer";
 
 /* OK Button Title */
@@ -943,6 +951,9 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 /* Button title for previous module item. */
 "Previous" = "Forrige";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Forrige dag";
+
 /* (No Commment) */
 "Previous item" = "Forrige element";
 
@@ -990,6 +1001,9 @@ Hvis du mener, at en quiz indeholder indhold, der ikke er understøttet, tag ven
 
 /* (No Commment) */
 "Record video" = "Optag video";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Opdater";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Genopfrisk knap";

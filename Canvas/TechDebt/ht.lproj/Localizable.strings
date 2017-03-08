@@ -242,8 +242,14 @@ Dabò ou dwe ranpli:";
 /* Title for the announcements view controller */
 "Announcements" = "Anons";
 
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
 /* Archive selected messages button */
 "Archive" = "Achiv";
+
+/* archive selected messages */
+"Archive Selected Messages" = "Estoke Mesaj Seleksyone";
 
 /* (No Commment) */
 "Archive Selected Messages Button" = "Bouton Stokaj Mesaj Seleksyone";
@@ -256,6 +262,9 @@ Dabò ou dwe ranpli:";
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Èske w prè pou dekonekte?";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "Êske vrèman ou vle soumèt video Arc sa a pou sesyon sa a?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Mande mwen pita";
@@ -305,7 +314,8 @@ Dabò ou dwe ranpli:";
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Enposib pou soumèt medya";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Anile";
 
 /* Cancel button title */
@@ -327,6 +337,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 Tip kesyon yo pa pran an chaj se tankou kesyon ki gen kontni, fichye transfere ak lòt bagay ki gen Adobe Flash™.
 
 Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp. SI w konnen quiz la gen kontni aparèy mobil yo sipòte, ou pa bezwen ezite pran li sou aparèy mobil ou.";
+
+/* button to change user's profile image */
+"Change Profile Image" = "Chanje Imaj Pwofil";
 
 /* No comment provided by engineer. */
 "Change User" = "Chanje Itilizatè";
@@ -382,6 +395,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* (No Commment) */
 "Completed" = "Fini";
 
+/* button to compose a message */
+"Compose Message" = "Konpoze yon Mesaj";
+
 /* (No Commment) */
 "Compose Message Button" = "Bouton Konpozisyon Mesaj";
 
@@ -390,6 +406,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 
 /* Title for Conferences tab */
 "Conferences" = "Konferans";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "Konfime Soumisyon";
 
 /* Alert title */
 "Confirm deletion" = "Konfime sipresyon";
@@ -490,11 +509,14 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* Shown while downloading a file */
 "Downloading..." = "Telechajman an kou...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "Delè:";
 
 /* (No Commment) */
 "Due: %1$@ at %2$@" = "Delè: %1$@ a %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "Delè: %@";
 
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
@@ -694,6 +716,9 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* No comment provided by engineer. */
 "Keep" = "Kenbe";
 
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "Zouti LTI";
+
 /* (No Commment) */
 "Landing Page" = "Paj Dakèy";
 
@@ -838,7 +863,8 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* Message for attempting submission without a comment */
 "No audio was recorded." = "Pa gen odyo ki anrejistre";
 
-/* String for when assignment has no due date */
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
 "No due date" = "San del";
 
 /* Error message */
@@ -1111,7 +1137,8 @@ Si w kwè yon quiz gen kontni ki pa sipòte, pran li sou òdinatè oswa laptòp.
 /* No comment provided by engineer. */
 "Submission complete" = "Soumisyon fini";
 
-/* Submit an assignment */
+/* Submit an assignment
+   Submit Arc video as assignment button */
 "Submit" = "Soumèt";
 
 /* Submitted grouping */

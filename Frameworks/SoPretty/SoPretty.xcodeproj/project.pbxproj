@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C1CBC711E58BBDE00D3F15A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49A9610E1BC31C4700592D94 /* Info.plist */; };
 		2C73C9C41E0331AE0064A19D /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73C9C31E0331AE0064A19D /* CWNotification.framework */; };
 		4909C7031C75073B00FAC8FB /* PrettyCardsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4909C7021C75073B00FAC8FB /* PrettyCardsLayout.swift */; };
 		492C4A3F1BFD3F8D00D1158A /* HairlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492C4A3E1BFD3F8D00D1158A /* HairlineView.swift */; };
@@ -120,6 +121,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C1CBC701E58BBDE00D3F15A /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "SoPretty/fr-CA.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		2C73C9C31E0331AE0064A19D /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4909C7021C75073B00FAC8FB /* PrettyCardsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrettyCardsLayout.swift; sourceTree = "<group>"; };
 		492C4A3E1BFD3F8D00D1158A /* HairlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HairlineView.swift; sourceTree = "<group>"; };
@@ -129,7 +131,7 @@
 		496947611E034E6600EA2C30 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		496E7D1E1BEA8727005C8746 /* SmallModalNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallModalNavigationController.swift; sourceTree = "<group>"; };
 		49A9610A1BC31C4700592D94 /* SoPretty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49A9610E1BC31C4700592D94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49A9610E1BC31C4700592D94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49A9610F1BC31C4700592D94 /* SoPretty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoPretty.h; sourceTree = "<group>"; };
 		49A961151BC31C4700592D94 /* SoPrettyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoPrettyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A9611B1BC31C4700592D94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -644,6 +646,7 @@
 				"en-GB",
 				da,
 				de,
+				"fr-CA",
 			);
 			mainGroup = 49A961001BC31C4700592D94;
 			productRefGroup = 49A9610B1BC31C4700592D94 /* Products */;
@@ -665,6 +668,7 @@
 				49A9615D1BC31CC900592D94 /* Panda.xcassets in Resources */,
 				B16B5E851E255F7400DED47B /* InfoPlist.strings in Resources */,
 				B5E793FF1D8CA39600D3E38B /* Localizable.strings in Resources */,
+				2C1CBC711E58BBDE00D3F15A /* Info.plist in Resources */,
 				5EA12BE41C5142F500FA2346 /* PrettyImages.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -887,6 +891,7 @@
 				B51B2E6D1D8CA4030093A7A6 /* en-GB */,
 				B51B2E6E1D8CA4090093A7A6 /* da */,
 				B51B2E6F1D8CA4090093A7A6 /* de */,
+				2C1CBC701E58BBDE00D3F15A /* fr-CA */,
 			);
 			name = Localizable.strings;
 			path = Toast;

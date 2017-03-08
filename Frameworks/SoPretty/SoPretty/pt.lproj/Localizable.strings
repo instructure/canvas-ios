@@ -1,4 +1,4 @@
-/* dismiss error dialog */
+/* Dismiss button for error alert */
 "Dismiss" = "Dispensar";
 
 /* Placeholder for URL */
@@ -7,9 +7,12 @@
 /* navigate */
 "Go" = "Avançar";
 
+/* Turn in this url button */
+"Submit" = "Entregar";
+
 /* bad url message */
 "The text you entered is not a valid URL" = "O texto que inseriu não é um URL válido.";
 
-/* Turn in this url button */
+/* (No Commment) */
 "Turn In" = "Entregar";
 

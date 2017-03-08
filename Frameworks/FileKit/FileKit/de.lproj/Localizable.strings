@@ -1,4 +1,7 @@
-/* Cancel button title */
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "Ein Fehler ist aufgetreten. Bitte versuchen Sie es noch einmal.";
+
+/* (No Commment) */
 "Cancel" = "Abbrechen";
 
 /* Pick a photo from library */
@@ -10,8 +13,11 @@
 /* Pick a video from library */
 "Choose a Video" = "Ein Video wählen";
 
-/* URL submission option */
+/* (No Commment) */
 "Choose a Webpage" = "Eine Webseite wählen";
+
+/* File upload completed */
+"Complete" = "Abschließen";
 
 /* name for upload data */
 "Data" = "Daten";
@@ -19,20 +25,38 @@
 /* Delete button for file upload */
 "Delete" = "Löschen";
 
-/* Prompt for text upload */
+/* Done recording button */
+"Done" = "Fertig";
+
+/* (No Commment) */
 "Enter your upload..." = "Was möchten Sie hochladen?";
+
+/* File upload failed */
+"Failed" = "Fehlgeschlagen";
 
 /* title for file upload errors */
 "File Upload Error" = "Fehler beim Hochladen der Datei";
 
+/* File uploads screen title */
+"File Uploads" = "Hochgeladene Dateien";
+
 /* (No Commment) */
 "Files" = "Dateien";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* name for a photo just taken */
 "Photo" = "Foto";
 
 /* Choose record audio submission */
 "Record Audio" = "Audio aufnehmen";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "Etwas ging schief. Überprüfen Sie das Dateiformat, und versuchen Sie es erneut.";
+
+/* File upload was stopped */
+"Stopped" = "Angehalten";
 
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "Foto oder Video aufnehmen";
@@ -43,7 +67,7 @@
 /* Take a video submission choice */
 "Take a Video" = "Ein Video aufnehmen";
 
-/* Text submission option */
+/* (No Commment) */
 "Text" = "Text";
 
 /* FileKit Database Load Failure Message */
@@ -55,12 +79,15 @@
 /* File upload error message */
 "There was a problem preparing the file for upload" = "Beim Vorbereiten des Hochladens der Datei ist ein Problem aufgetreten.";
 
-/* Turn in button title */
+/* (No Commment) */
 "Turn In" = "Einreichen";
 
-/* name for a video just taken for upload */
+/* (No Commment) */
 "Video" = "Video";
 
-/* prompt for submission upload */
+/* (No Commment) */
 "What would you like to turn in?" = "Was möchten Sie einreichen?";
+
+/* File upload in progress */
+"uploading..." = "Wird hochgeladen ...";
 

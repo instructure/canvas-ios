@@ -62,7 +62,7 @@
 "There was a problem loading the EnrollmentKit database file." = "Det oppsto et problem under opplasting av databasefilen til påmeldingssettet.";
 
 /* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "Det var en feil knyttet til en arkfane med et kurs eller en gruppe.";
+"There was an error associating a tab with a course or group." = "Det var en feil knyttet til en arkfane med et emne eller en gruppe.";
 
 /* Total grade label */
 "Total Grade" = "Samlet karakter";

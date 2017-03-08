@@ -306,6 +306,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "Change User" = "ユーザーを変更する";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "ランディングページを選択する";
+
 /* (No Commment) */
 "Choose Photo" = "写真を選択する";
 
@@ -787,11 +790,17 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* (No Commment) */
 "New Folder" = "新しいフォルダ";
 
+/* No comment provided by engineer. */
+"New Message" = "新しいメッセージ";
+
 /* Button title for next module item. */
 "Next" = "次へ";
 
 /* (No Commment) */
 "Next 7 Days" = "次の7日間";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "翌日";
 
 /* (No Commment) */
 "Next item" = "次のアイテム";
@@ -865,8 +874,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "通知の設定";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "通知";
 
 /* OK Button Title */
@@ -944,6 +952,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button title for previous module item. */
 "Previous" = "前";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "前日";
+
 /* (No Commment) */
 "Previous item" = "前のアイテム";
 
@@ -991,6 +1002,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 
 /* (No Commment) */
 "Record video" = "動画を録画する";
+
+/* Button to refresh the calendar events */
+"Refresh" = "更新";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "リフレッシュボタン";

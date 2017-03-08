@@ -1,4 +1,7 @@
-/* Cancel button title */
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "出現錯誤，請重試。";
+
+/* (No Commment) */
 "Cancel" = "取消";
 
 /* Pick a photo from library */
@@ -10,8 +13,11 @@
 /* Pick a video from library */
 "Choose a Video" = "選擇一個視頻";
 
-/* URL submission option */
+/* (No Commment) */
 "Choose a Webpage" = "選擇一個頁面";
+
+/* File upload completed */
+"Complete" = "完成";
 
 /* name for upload data */
 "Data" = "資料";
@@ -19,20 +25,38 @@
 /* Delete button for file upload */
 "Delete" = "刪除";
 
-/* Prompt for text upload */
+/* Done recording button */
+"Done" = "完成";
+
+/* (No Commment) */
 "Enter your upload..." = "輸入您的上載...";
+
+/* File upload failed */
+"Failed" = "失敗";
 
 /* title for file upload errors */
 "File Upload Error" = "資料夾上載錯誤";
 
+/* File uploads screen title */
+"File Uploads" = "文檔上傳";
+
 /* (No Commment) */
 "Files" = "資料夾";
+
+/* No comment provided by engineer. */
+"OK" = "是";
 
 /* name for a photo just taken */
 "Photo" = "照片";
 
 /* Choose record audio submission */
 "Record Audio" = "錄製音頻";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "似乎出問題了。請於檢查文檔格式後重試。";
+
+/* File upload was stopped */
+"Stopped" = "已停止";
 
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "拍攝照片或視頻";
@@ -43,7 +67,7 @@
 /* Take a video submission choice */
 "Take a Video" = "拍攝視頻";
 
-/* Text submission option */
+/* (No Commment) */
 "Text" = "文本";
 
 /* FileKit Database Load Failure Message */
@@ -55,12 +79,15 @@
 /* File upload error message */
 "There was a problem preparing the file for upload" = "準備用於上載的資料夾時出現問題";
 
-/* Turn in button title */
+/* (No Commment) */
 "Turn In" = "提交";
 
-/* name for a video just taken for upload */
+/* (No Commment) */
 "Video" = "視頻";
 
-/* prompt for submission upload */
+/* (No Commment) */
 "What would you like to turn in?" = "您是否要提交？";
+
+/* File upload in progress */
+"uploading..." = "上傳中......";
 

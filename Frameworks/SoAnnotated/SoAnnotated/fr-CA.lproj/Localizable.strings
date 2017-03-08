@@ -1,0 +1,30 @@
+/* No comment provided by engineer. */
+"Comments" = "Commentaires";
+
+/* Button for creating a note from text selection */
+"Create Note" = "Créer une note";
+
+/* Error when submitting an assignment */
+"Failed to Submit" = "Envoi non effectuée";
+
+/* No comment provided by engineer. */
+"Note..." = "Note...";
+
+/* No comment provided by engineer. */
+"OK" = "D'accord";
+
+/* No comment provided by engineer. */
+"Submit" = "Soumettre";
+
+/* Title for button to submit assignment */
+"Submit Assignment" = "Soumettre le tâche";
+
+/* No comment provided by engineer. */
+"Submitted!" = "Soumis!";
+
+/* No comment provided by engineer. */
+"Submitting" = "En attente de envoi";
+
+/* Message when fails to submit an assignment */
+"There was a problem submitting your assignment. Please try again later." = "Problème survenu lors de l'envoi de la tâche. Veuillez essayer de nouveau plus tard.";
+

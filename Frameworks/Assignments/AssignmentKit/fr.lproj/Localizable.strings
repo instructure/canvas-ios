@@ -1,4 +1,7 @@
 /* grade details for points based grade i.e. \"10 of 12\" */
+" of (formatter(possible))" = "sur (formatter(possible))";
+
+/* grade details for points based grade i.e. \"10 of 12\" */
 "(formatter(points)) of (formatter(possible))" = "(formatter(points)) sur (formatter(possible))";
 
 /* Title for 1 day assignment reminder */
@@ -13,6 +16,9 @@
 /* Title for 5 minutes assignment reminder */
 "5 minutes" = "5 minutes";
 
+/* URL submission option */
+"Add Website Address" = "Ajouter une adresse de site internet";
+
 /* (No Commment) */
 "Assignment" = "Travail assigné";
 
@@ -25,7 +31,7 @@
 /* This assignment hasn't been graded yet but can be graded */
 "Awaiting Grade" = "En attente du résultat";
 
-/* cancel button */
+/* Cancel submission option */
 "Cancel" = "Annuler";
 
 /* Title for reminder options for an assignment */
@@ -40,20 +46,26 @@
 /* error displayed when submitting an assignment is unavailable */
 "Could not submit assignment. Invalid assignment or session." = "Impossible de soumettre le travail assigné. Travail ou session invalide.";
 
-/* error displayed when submitting a submission is invalid. */
+/* (No Commment) */
 "Could not submit assignment. Invalid submission." = "Impossible de soumettre le travail assigné. Soumission invalide.";
 
 /* (No Commment) */
 "Due:" = "Dû : ";
+
+/* String telling the user that the date is the due date */
+"Due: " = "Dû :";
+
+/* Text submission option */
+"Enter Text" = "Entrer du texte";
+
+/* Prompt for text upload */
+"Enter your submission..." = "Entrez votre soumission...";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Erreur de mise à jour du travail assigné";
 
 /* This assignment is excused */
 "Excused" = "Exempté";
-
-/* Error message when submission attachment fails to load. */
-"Failed to load item. Check the allowed assignment submission types." = "Impossible de charger l’élément. Vérifier les types de soumission de travail assigné.";
 
 /* (No Commment) */
 "Failed to resume upload." = "Échec de reprise du téléchargement.";
@@ -91,6 +103,9 @@
 /* submission title for assignment that doesn't support submissions */
 "Submissions N/A" = "Soumissions N/A";
 
+/* Submit assignment button */
+"Submit" = "Soumettre";
+
 /* title for submission button if student has never submitted */
 "Submit Assignment" = "Soumettre le travail assigné";
 
@@ -120,6 +135,9 @@
 
 /* Upcoming assignments */
 "Upcoming" = "Prochainement";
+
+/* File upload submission option */
+"Upload File" = "Envoyer fichier";
 
 /* Title for button to see rubric from assignment detail */
 "View Rubric" = "Voir la rubrique";

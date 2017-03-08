@@ -242,8 +242,14 @@ Primeiro precisa de completar:";
 /* Title for the announcements view controller */
 "Announcements" = "Anúncios";
 
+/* Assignment submission type for selecting an Arc video */
+"Arc" = "Arc";
+
 /* Archive selected messages button */
 "Archive" = "Arquivo";
+
+/* archive selected messages */
+"Archive Selected Messages" = "Arquivar Mensagens selecionadas";
 
 /* (No Commment) */
 "Archive Selected Messages Button" = "Arquivo Selecionado no Botão de Mensagens";
@@ -256,6 +262,9 @@ Primeiro precisa de completar:";
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Está preparado para sair?";
+
+/* Confirmation alert text for submitting an Arc video for an assignment */
+"Are you sure you want to submit this Arc video for this assignment?" = "Tem certeza de que deseja enviar este vídeo Arc para esta atribuição?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Perguntar depois";
@@ -305,7 +314,8 @@ Primeiro precisa de completar:";
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Não é possível entregar multimédia";
 
-/* Cancel button title */
+/* Cancel button title
+   Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Cancelar";
 
 /* Cancel button title */
@@ -327,6 +337,9 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 Algumas questões não suportadas incluem questões que contenham Adobe Flash™, carregamento de ficheiros e outros.
 
 Se conseguir perceber que um teste tem conteúdos não suportados, por favor preencha no seu computador ou portátil. Se perceber que o teste apenas contém conteúdos suportados, sinta-se à vontade para o preencher no seu dispositivo móvel.";
+
+/* button to change user's profile image */
+"Change Profile Image" = "Mudar a imagem do perfil";
 
 /* No comment provided by engineer. */
 "Change User" = "Mudar utilizador";
@@ -382,6 +395,9 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* (No Commment) */
 "Completed" = "Terminado";
 
+/* button to compose a message */
+"Compose Message" = "Compor Mensagem";
+
 /* (No Commment) */
 "Compose Message Button" = "Compor Botão de Mensagem";
 
@@ -390,6 +406,9 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 
 /* Title for Conferences tab */
 "Conferences" = "Conferências";
+
+/* Confirm an arc video submission for an assignment */
+"Confirm Submission" = "Confirmar submissão";
 
 /* Alert title */
 "Confirm deletion" = "Confirmar apagar";
@@ -490,11 +509,14 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Shown while downloading a file */
 "Downloading..." = "Descarregando...";
 
-/* This string is prepended to the due date for an assignment */
+/* (No Commment) */
 "Due:" = "Data final:";
 
 /* (No Commment) */
 "Due: %1$@ at %2$@" = "Termina: %1$@ a %2$@";
+
+/* Due date label indicating when an assignment is due */
+"Due: %@" = "Devido: %@";
 
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
@@ -694,6 +716,9 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* No comment provided by engineer. */
 "Keep" = "Manter";
 
+/* Title for an LTI launch submitted as an assignment */
+"LTI Tool" = "Ferramenta LTI";
+
 /* (No Commment) */
 "Landing Page" = "Página Inicial";
 
@@ -838,7 +863,8 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* Message for attempting submission without a comment */
 "No audio was recorded." = "Sem audio gravado.";
 
-/* String for when assignment has no due date */
+/* Indicates an assignment does not have a due date
+   String for when assignment has no due date */
 "No due date" = "Sem data final";
 
 /* Error message */
@@ -1111,7 +1137,8 @@ Se conseguir perceber que um teste tem conteúdos não suportados, por favor pre
 /* No comment provided by engineer. */
 "Submission complete" = "Entrega completa";
 
-/* Submit an assignment */
+/* Submit an assignment
+   Submit Arc video as assignment button */
 "Submit" = "Entregar";
 
 /* Submitted grouping */

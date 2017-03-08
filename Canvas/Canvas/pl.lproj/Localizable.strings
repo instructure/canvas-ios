@@ -306,6 +306,9 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* (No Commment) */
 "Change User" = "Zmień użytkownika";
 
+/* Button to select a landing page */
+"Choose Landing Page" = "Wybierz stronę startową";
+
 /* (No Commment) */
 "Choose Photo" = "Wybierz zdjęcie";
 
@@ -787,11 +790,17 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* (No Commment) */
 "New Folder" = "Nowy folder";
 
+/* No comment provided by engineer. */
+"New Message" = "Nowa wiadomość";
+
 /* Button title for next module item. */
 "Next" = "Dalej";
 
 /* (No Commment) */
 "Next 7 Days" = "Kolejnych 7 dni";
+
+/* Button to navigate to the next day on the calendar */
+"Next Day" = "Następny dzień";
 
 /* (No Commment) */
 "Next item" = "Kolejna pozycja";
@@ -865,8 +874,7 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* Settings entry title for Notification Preferences */
 "Notification Preferences" = "Preferencje powiadomień";
 
-/* Notifications landing page title
-   Notifications tab title */
+/* Notifications tab title */
 "Notifications" = "Powiadomienia";
 
 /* OK Button Title */
@@ -944,6 +952,9 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 /* Button title for previous module item. */
 "Previous" = "Poprzednie";
 
+/* Button to navigate to the previous day on the calendar */
+"Previous Day" = "Poprzedni dzień";
+
 /* (No Commment) */
 "Previous item" = "Poprzednia pozycja";
 
@@ -991,6 +1002,9 @@ Jeśli uważasz, że test zawiera nieobsługiwane treści, należy go wykonać n
 
 /* (No Commment) */
 "Record video" = "Nagraj wideo";
+
+/* Button to refresh the calendar events */
+"Refresh" = "Odśwież";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Przycisk odświeżenia";

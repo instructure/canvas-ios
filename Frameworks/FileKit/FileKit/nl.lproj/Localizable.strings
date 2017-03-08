@@ -1,4 +1,7 @@
-/* Cancel button title */
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "Er is een fout opgetreden. Probeer het nogmaals.";
+
+/* (No Commment) */
 "Cancel" = "Annuleren";
 
 /* Pick a photo from library */
@@ -10,8 +13,11 @@
 /* Pick a video from library */
 "Choose a Video" = "Een video kiezen";
 
-/* URL submission option */
+/* (No Commment) */
 "Choose a Webpage" = "Kies een webpagina";
+
+/* File upload completed */
+"Complete" = "Voltooien";
 
 /* name for upload data */
 "Data" = "Gegevens";
@@ -19,20 +25,38 @@
 /* Delete button for file upload */
 "Delete" = "Verwijderen";
 
-/* Prompt for text upload */
+/* Done recording button */
+"Done" = "Klaar";
+
+/* (No Commment) */
 "Enter your upload..." = "Je upload invoeren...";
+
+/* File upload failed */
+"Failed" = "Mislukt";
 
 /* title for file upload errors */
 "File Upload Error" = "Fout bij uploaden bestand";
 
+/* File uploads screen title */
+"File Uploads" = "Bestanden uploaden";
+
 /* (No Commment) */
 "Files" = "Bestanden";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* name for a photo just taken */
 "Photo" = "Foto";
 
 /* Choose record audio submission */
 "Record Audio" = "Audio opnemen";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "Er is iets misgegaan. Controleer de bestandsindeling en probeer het opnieuw.";
+
+/* File upload was stopped */
+"Stopped" = "Gestopt";
 
 /* Take a photo or video submission choice */
 "Take Photo or Video" = "Foto of video maken";
@@ -43,7 +67,7 @@
 /* Take a video submission choice */
 "Take a Video" = "Maak een video";
 
-/* Text submission option */
+/* (No Commment) */
 "Text" = "Tekst";
 
 /* FileKit Database Load Failure Message */
@@ -55,12 +79,15 @@
 /* File upload error message */
 "There was a problem preparing the file for upload" = "Er was een probleem bij de voorbereiding van het uploaden van het bestand";
 
-/* Turn in button title */
+/* (No Commment) */
 "Turn In" = "Inleveren";
 
-/* name for a video just taken for upload */
+/* (No Commment) */
 "Video" = "Video";
 
-/* prompt for submission upload */
+/* (No Commment) */
 "What would you like to turn in?" = "Wat wil je inleveren?";
+
+/* File upload in progress */
+"uploading..." = "bezig met uploaden...";
 
