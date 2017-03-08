@@ -50,6 +50,11 @@
     return [NSValueTransformer valueTransformerForName:CKINumberStringTransformerName];
 }
 
++ (NSValueTransformer *)baseURLJSONTransformer
+{
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
 // Overridden to prevent NSInvalidArgumentException in cases where the API
 // is returning 'null' for integral types. Mantle does not check to see if
 // the type of the property is an object type before calling setValue:forKey:
