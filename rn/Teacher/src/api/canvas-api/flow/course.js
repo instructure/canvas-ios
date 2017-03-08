@@ -7,5 +7,12 @@ export type Course = {
   short_name: string,
   color?: ?string,
   image_download_url?: ?string,
+  is_favorite?: boolean,
+}
+
+export type CustomColors = {
+  custom_colors: {
+    [string]: string,
+  },
 }
 

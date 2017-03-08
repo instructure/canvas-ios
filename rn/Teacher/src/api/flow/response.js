@@ -1,11 +1,6 @@
 /* @flow */
 
-export type ApiResponse<T> = {
-  data: T,
-  status: number,
-  headers: {
-    link: ?string,
-  },
+export type ApiResponse<T> = AxiosResponse & {
   next: ?(() => Promise<ApiResponse<T>>),
 }
 

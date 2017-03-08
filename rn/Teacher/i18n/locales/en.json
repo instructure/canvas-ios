@@ -1,21 +1,35 @@
 {
+  "and_here_are_the_legos_6c2ac262": {
+    "message": "And here are the Legos"
+  },
+  "buy_more_ed49ba10": {
+    "message": "Buy More!"
+  },
   "courses_43204aae": {
     "message": "Courses",
     "description": "Label indicating the user is on the courses tab"
+  },
+  "edit_c5fbea07": {
+    "message": "Edit",
+    "description": "Shown at the top of the app to allow the user to edit their course list"
   },
   "inbox_bb245a60": {
     "message": "Inbox",
     "description": "Label indicating the user is on the inbox tab"
   },
+  "leave_feedback_df88476c": {
+    "message": "Leave Feedback",
+    "description": "Shown at the top of the app to allow the user to leave feedback"
+  },
   "logout_a9312e35": {
     "message": "Logout"
+  },
+  "out_of_money_sell_them_all_a4572d43": {
+    "message": "Out of money, sell them all!"
   },
   "profile_6bd2baed": {
     "message": "Profile",
     "description": "Label indicating the user is on the profile tab"
-  },
-  "this_is_the_course_list_3319daf1": {
-    "message": "This is the course list"
   },
   "this_is_the_inbox_b957d042": {
     "message": "This is the inbox"

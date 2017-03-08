@@ -27,3 +27,11 @@ export type AxiosRequestConfig = {
   proxy?: any,
   cancelToken?: any,
 }
+
+export type AxiosResponse = {
+  data: T,
+  status: number,
+  headers: {
+    link: ?string,
+  },
+}

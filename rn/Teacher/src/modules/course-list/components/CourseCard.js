@@ -11,6 +11,7 @@ import ReactNative, {
 
 type Props = {
   course: Course,
+  color: string,
   style: StyleSheet,
   onPress: Function,
 }
@@ -18,19 +19,18 @@ type Props = {
 export default class extends Component<*, Props, *> {
   createImageStyles (): ReactNative.StyleSheet {
     return StyleSheet.flatten([styles.imageColor, {
-      backgroundColor: this.props.course.color,
+      backgroundColor: this.props.color,
     }])
   }
 
   createTitleStyles (): ReactNative.StyleSheet {
     return StyleSheet.flatten([styles.title, {
-      color: this.props.course.color,
+      color: this.props.color,
     }])
   }
 
   render (): React.Element<View> {
     let { course } = this.props
-
     return (
        <TouchableHighlight style={[styles.card, this.props.style]} onPress={this.props.onPress}>
         <View style={styles.cardContainer}>
@@ -39,7 +39,7 @@ export default class extends Component<*, Props, *> {
               {course.image_download_url &&
                 <Image source={{ uri: course.image_download_url }} style={styles.image} />
               }
-              <Image style={styles.kabob} source={require('../../../../images/kabob.png')} />
+              <Image style={styles.kabob} source={require('../../../images/kabob.png')} />
             </View>
             <View style={styles.titleWrapper}>
               <Text numberOfLines={2} style={this.createTitleStyles()}>{course.name}</Text>

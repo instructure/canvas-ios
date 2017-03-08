@@ -12,8 +12,14 @@ const course: Course = {
   short_name: 'foo 101',
 }
 
-test('refresh courses', async () => {
-  let action = CoursesActions({ getCourses: apiResponse([course]) }).refreshCourses()
+const customColor: CustomColors = {
+  custom_colors: {
+    course_1: '#fffff',
+  },
+}
+
+test('refresh courses  ', async () => {
+  let action = CoursesActions({ getCourses: apiResponse([course]), getCustomColors: apiResponse(customColor) }).refreshCourses()
   let state = await testAsyncReducer(coursesReducer, action)
 
   expect(state).toEqual([
@@ -24,12 +30,15 @@ test('refresh courses', async () => {
     {
       pending: 0,
       courses: [course],
+      customColors: {
+        '1': '#fffff',
+      },
     },
   ])
 })
 
 test('refresh courses with error', async () => {
-  let action = CoursesActions({ getCourses: apiError({ message: 'no courses' }) }).refreshCourses()
+  let action = CoursesActions({ getCourses: apiError({ message: 'no courses' }), getCustomColors: apiError({ message: 'no courses' }) }).refreshCourses()
   let state = await testAsyncReducer(coursesReducer, action)
 
   expect(state).toEqual([

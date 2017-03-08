@@ -13,7 +13,13 @@ test('refresh courses workflow', async () => {
     short_name: 'foo 101',
   }
 
-  let actions = CoursesActions({ getCourses: apiResponse([course]) })
+  const colors: CustomColors = {
+    custom_colors: {
+      course_1: '#fffff',
+    },
+  }
+
+  let actions = CoursesActions({ getCourses: apiResponse([course]), getCustomColors: apiResponse(colors) })
   const result = await testAsyncAction(actions.refreshCourses(), defaultState)
 
   expect(result).toMatchObject([
@@ -23,7 +29,7 @@ test('refresh courses workflow', async () => {
     },
     {
       type: actions.refreshCourses.toString(),
-      payload: { data: [course] },
+      payload: [{ data: [course] }, { data: colors }],
     },
   ])
 })

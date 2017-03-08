@@ -6,7 +6,7 @@ import i18n from 'format-message'
 import { stateToProps } from './props'
 import CoursesActions from './actions'
 import { connect } from 'react-redux'
-import CourseCard from './components/course-card/CourseCard'
+import CourseCard from './components/CourseCard'
 import GridView from '../../common/components/grid-view/GridView'
 
 const { width: deviceWidth } = Dimensions.get('window')
@@ -93,12 +93,13 @@ export class CourseList extends Component<any, Props, State> {
         onLayout={this.onLayout}
         style={{ padding: this.state.padding }}
         placeholderStyle={cardStyles}
-        data={this.props.courses}
+        data={this.props.courses.filter(course => course.is_favorite)}
         itemsPerRow={this.state.numItems}
         renderItem={(rowData: Course) =>
           <CourseCard
             style={cardStyles}
             course={rowData}
+            color={this.props.customColors[rowData.id]}
             key={rowData.course_code}
             onPress={() => this.selectCourse(rowData)}
           />

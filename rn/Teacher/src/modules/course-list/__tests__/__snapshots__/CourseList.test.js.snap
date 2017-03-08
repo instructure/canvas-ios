@@ -235,7 +235,7 @@ exports[`refreshCourses was called 1`] = `
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#8F3E97",
+                      "backgroundColor": "#8F3E99",
                       "height": 80,
                     }
                   }
@@ -281,152 +281,7 @@ exports[`refreshCourses was called 1`] = `
                   numberOfLines={2}
                   style={
                     Object {
-                      "color": "#8F3E97",
-                      "fontSize": 14,
-                      "fontWeight": "500",
-                    }
-                  }
-                >
-                  American Literature Psysicks foobar hello world 401
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 11,
-                      "fontWeight": "500",
-                    }
-                  }
-                >
-                  LIT 401
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "alignItems": "flex-start",
-              "flex": 1,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-around",
-            }
-          }
-        >
-          <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
-            accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Array [
-                  Object {
-                    "borderColor": "#e3e3e3",
-                    "borderWidth": 0.5,
-                    "height": 160,
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "flex": 1,
-                    "margin": 8,
-                  },
-                ],
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
-          >
-            <View
-              style={
-                Object {
-                  "backgroundColor": "white",
-                  "flex": 1,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "flex": 2,
-                    "justifyContent": "space-between",
-                  }
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "backgroundColor": "#8F3E97",
-                      "height": 80,
-                    }
-                  }
-                />
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                    }
-                  }
-                  style={
-                    Object {
-                      "height": 80,
-                      "opacity": 0.2,
-                      "top": -80,
-                    }
-                  }
-                />
-                <Image
-                  source={1}
-                  style={
-                    Object {
-                      "position": "absolute",
-                      "right": 5,
-                      "top": 10,
-                    }
-                  }
-                />
-              </View>
-              <View
-                style={
-                  Object {
-                    "flex": 2,
-                    "marginHorizontal": 10,
-                    "marginTop": 20,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  numberOfLines={2}
-                  style={
-                    Object {
-                      "color": "#8F3E97",
+                      "color": "#8F3E99",
                       "fontSize": 14,
                       "fontWeight": "500",
                     }
@@ -693,7 +548,7 @@ exports[`renders correctly 1`] = `
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#8F3E97",
+                      "backgroundColor": "#8F3E99",
                       "height": 80,
                     }
                   }
@@ -739,152 +594,7 @@ exports[`renders correctly 1`] = `
                   numberOfLines={2}
                   style={
                     Object {
-                      "color": "#8F3E97",
-                      "fontSize": 14,
-                      "fontWeight": "500",
-                    }
-                  }
-                >
-                  American Literature Psysicks foobar hello world 401
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 11,
-                      "fontWeight": "500",
-                    }
-                  }
-                >
-                  LIT 401
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "alignItems": "flex-start",
-              "flex": 1,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-around",
-            }
-          }
-        >
-          <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
-            accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Array [
-                  Object {
-                    "borderColor": "#e3e3e3",
-                    "borderWidth": 0.5,
-                    "height": 160,
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "flex": 1,
-                    "margin": 8,
-                  },
-                ],
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
-          >
-            <View
-              style={
-                Object {
-                  "backgroundColor": "white",
-                  "flex": 1,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "flex": 2,
-                    "justifyContent": "space-between",
-                  }
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "backgroundColor": "#8F3E97",
-                      "height": 80,
-                    }
-                  }
-                />
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                    }
-                  }
-                  style={
-                    Object {
-                      "height": 80,
-                      "opacity": 0.2,
-                      "top": -80,
-                    }
-                  }
-                />
-                <Image
-                  source={1}
-                  style={
-                    Object {
-                      "position": "absolute",
-                      "right": 5,
-                      "top": 10,
-                    }
-                  }
-                />
-              </View>
-              <View
-                style={
-                  Object {
-                    "flex": 2,
-                    "marginHorizontal": 10,
-                    "marginTop": 20,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  numberOfLines={2}
-                  style={
-                    Object {
-                      "color": "#8F3E97",
+                      "color": "#8F3E99",
                       "fontSize": 14,
                       "fontWeight": "500",
                     }
@@ -1139,7 +849,7 @@ exports[`renders correctly with wide device 1`] = `
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#8F3E97",
+                      "backgroundColor": "#8F3E99",
                       "height": 80,
                     }
                   }
@@ -1185,140 +895,7 @@ exports[`renders correctly with wide device 1`] = `
                   numberOfLines={2}
                   style={
                     Object {
-                      "color": "#8F3E97",
-                      "fontSize": 14,
-                      "fontWeight": "500",
-                    }
-                  }
-                >
-                  American Literature Psysicks foobar hello world 401
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 11,
-                      "fontWeight": "500",
-                    }
-                  }
-                >
-                  LIT 401
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
-            accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Array [
-                  Object {
-                    "borderColor": "#e3e3e3",
-                    "borderWidth": 0.5,
-                    "height": 160,
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "flex": 1,
-                    "margin": 12,
-                  },
-                ],
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
-          >
-            <View
-              style={
-                Object {
-                  "backgroundColor": "white",
-                  "flex": 1,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "flex": 2,
-                    "justifyContent": "space-between",
-                  }
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "backgroundColor": "#8F3E97",
-                      "height": 80,
-                    }
-                  }
-                />
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                    }
-                  }
-                  style={
-                    Object {
-                      "height": 80,
-                      "opacity": 0.2,
-                      "top": -80,
-                    }
-                  }
-                />
-                <Image
-                  source={1}
-                  style={
-                    Object {
-                      "position": "absolute",
-                      "right": 5,
-                      "top": 10,
-                    }
-                  }
-                />
-              </View>
-              <View
-                style={
-                  Object {
-                    "flex": 2,
-                    "marginHorizontal": 10,
-                    "marginTop": 20,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  numberOfLines={2}
-                  style={
-                    Object {
-                      "color": "#8F3E97",
+                      "color": "#8F3E99",
                       "fontSize": 14,
                       "fontWeight": "500",
                     }
@@ -1343,6 +920,14 @@ exports[`renders correctly with wide device 1`] = `
               </View>
             </View>
           </View>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "margin": 12,
+              }
+            }
+          />
         </View>
       </View>
     </RCTScrollView>

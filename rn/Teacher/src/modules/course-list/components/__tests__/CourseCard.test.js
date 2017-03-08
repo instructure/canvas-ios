@@ -13,8 +13,8 @@ it('renders', () => {
         name: 'Course',
         course_code: 'yo',
         image_download_url: 'http://fillmurray.com/200/200',
-        color: '#333',
       }}
+      color={'#333'}
     />
   ).toJSON()
 
