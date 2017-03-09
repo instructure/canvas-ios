@@ -30,7 +30,7 @@ export default <S, A: Action>(handlers: Handlers<S, A>) =>
   (state: S, action: Action) => {
     if (action.pending) {
       if (handlers.pending) {
-        return handlers.pending(state)
+        return handlers.pending(state, action.payload)
       }
     } else if (action.error) {
       if (handlers.rejected) {
