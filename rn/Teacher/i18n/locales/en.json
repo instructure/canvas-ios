@@ -1,4 +1,12 @@
 {
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Add a few of your favorite courses to make this place your home.",
+    "description": "Body text when you do not have any courses on course list page."
+  },
+  "add_courses_fd45abf": {
+    "message": "Add Courses",
+    "description": "Button text to take action and add a course."
+  },
   "and_here_are_the_legos_6c2ac262": {
     "message": "And here are the Legos"
   },
@@ -11,7 +19,7 @@
   },
   "edit_c5fbea07": {
     "message": "Edit",
-    "description": "Shown at the top of the app to allow the user to edit their course list"
+    "description": "Shown at the top of the course details screen."
   },
   "inbox_bb245a60": {
     "message": "Inbox",
@@ -23,6 +31,9 @@
   },
   "logout_a9312e35": {
     "message": "Logout"
+  },
+  "no_courses_available_200e0c8d": {
+    "message": "No Courses Available"
   },
   "out_of_money_sell_them_all_a4572d43": {
     "message": "Out of money, sell them all!"
@@ -36,6 +47,10 @@
   },
   "this_is_the_profile_3c34b0b6": {
     "message": "This is the profile"
+  },
+  "welcome_73d18b4d": {
+    "message": "Welcome!",
+    "description": "Welcome header text when user has no courses yet."
   },
   "you_should_login_f99d1398": {
     "message": "You Should Login"

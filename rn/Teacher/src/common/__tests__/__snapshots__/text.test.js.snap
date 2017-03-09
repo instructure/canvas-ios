@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders heading1 correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {},
+      Object {
+        "color": "#032250",
+        "fontSize": 24,
+        "fontWeight": "bold",
+        "letterSpacing": -1,
+        "lineHeight": 27,
+      },
+      undefined,
+    ]
+  }
+/>
+`;
+
+exports[`renders paragraph correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {},
+      Object {
+        "color": "#7F91A7",
+        "fontSize": 16,
+        "lineHeight": 23,
+      },
+      undefined,
+    ]
+  }
+/>
+`;
+
+exports[`renders text correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {},
+      undefined,
+    ]
+  }
+/>
+`;

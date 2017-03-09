@@ -18,6 +18,7 @@
     "format-message": "^5.1.1",
     "react": "~15.4.0-rc.4",
     "react-native": "0.41.2",
+    "react-native-button": "^1.8.2",
     "react-native-navigation": "next",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",

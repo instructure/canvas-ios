@@ -8,6 +8,7 @@ import CoursesActions from './actions'
 import { connect } from 'react-redux'
 import CourseCard from './components/CourseCard'
 import GridView from '../../common/components/grid-view/GridView'
+import NoCourses from './NoCourses'
 
 const { width: deviceWidth } = Dimensions.get('window')
 
@@ -88,12 +89,18 @@ export class CourseList extends Component<any, Props, State> {
       margin: this.state.padding,
     }
 
+    let courses = this.props.courses.filter(course => course.is_favorite)
+
+    if (!this.props.pending && !courses.length) {
+      return (<NoCourses/>)
+    }
+
     return (
       <GridView
         onLayout={this.onLayout}
         style={{ padding: this.state.padding }}
         placeholderStyle={cardStyles}
-        data={this.props.courses.filter(course => course.is_favorite)}
+        data={courses}
         itemsPerRow={this.state.numItems}
         renderItem={(rowData: Course) =>
           <CourseCard

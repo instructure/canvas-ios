@@ -65,3 +65,10 @@ test('refreshCourses was called', () => {
   expect(tree).toMatchSnapshot()
   expect(didCallRefresh).toBe(true)
 })
+
+test('renders no courses', () => {
+  let tree = renderer.create(
+    <CourseList courses={ [] } refreshCourses={ refreshCourses } />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})

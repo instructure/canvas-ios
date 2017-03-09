@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders NoCourses correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+      "padding": 20,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        Object {
+          "color": "#032250",
+          "fontSize": 24,
+          "fontWeight": "bold",
+          "letterSpacing": -1,
+          "lineHeight": 27,
+        },
+        undefined,
+      ]
+    }
+  >
+    Welcome!
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        Object {
+          "color": "#7F91A7",
+          "fontSize": 16,
+          "lineHeight": 23,
+        },
+        Object {
+          "padding": 15,
+          "textAlign": "center",
+        },
+      ]
+    }
+  >
+    Add a few of your favorite courses to make this place your home.
+  </Text>
+  <View
+    accessibilityComponentType="button"
+    accessibilityLabel={undefined}
+    accessibilityTraits="button"
+    accessible={true}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#368BD8",
+        "borderRadius": 8,
+        "opacity": 1,
+        "overflow": "hidden",
+        "padding": 20,
+      }
+    }
+    testID={undefined}
+    tvParallaxProperties={undefined}
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "#007aff",
+            "fontSize": 17,
+            "fontWeight": "500",
+            "textAlign": "center",
+          },
+          null,
+          Array [
+            Object {
+              "color": "#fff",
+            },
+            undefined,
+          ],
+          null,
+        ]
+      }
+    >
+      Add Courses
+    </Text>
+  </View>
+</View>
+`;
