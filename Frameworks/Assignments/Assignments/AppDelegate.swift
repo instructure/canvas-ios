@@ -35,6 +35,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
 
+        ErrorReporter.setErrorHandler { error, presentingVC in
+            print(error.reportDescription)
+            if let deets = error.alertDetails(reportAction: { print("Yo, Support! \(error.reportDescription)") }) {
+                let alert = UIAlertController(title: deets.title, message: deets.description, preferredStyle: .alert)
+                deets.actions.forEach(alert.addAction)
+                presentingVC?.present(alert, animated: true, completion: nil)
+            }
+        }
+        
         let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         application.registerUserNotificationSettings(settings)
         

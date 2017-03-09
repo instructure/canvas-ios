@@ -175,7 +175,7 @@ class AssignmentDetailViewController: Assignment.DetailViewController {
         var turnInError: NSError?
         
         defer {
-            turnInError?.presentAlertFromViewController(self)
+            ErrorReporter.reportError(turnInError, from: self)
         }
 
         guard let assignment = observer.object, let session = session else {

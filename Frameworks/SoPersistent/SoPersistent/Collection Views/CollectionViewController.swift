@@ -29,15 +29,6 @@ public protocol CollectionViewCellViewModel {
 }
 
 open class CollectionViewController: UICollectionViewController {
-
-    open static var defaultErrorHandler: (UIViewController, NSError) -> () = { vc, error in
-        error.presentAlertFromViewController(vc)
-    }
-
-    open func handleError(_ error: NSError) {
-        CollectionViewController.defaultErrorHandler(self, error)
-    }
-
     open var dataSource: CollectionViewDataSource! {
         didSet {
             if isViewLoaded {
@@ -94,9 +85,7 @@ open class CollectionViewController: UICollectionViewController {
         }
         composite += refresher?.refreshingCompleted.observeValues { [weak self] error in
             self?.updateEmptyView()
-            if let error = error {
-                self?.handleError(error)
-            }
+            ErrorReporter.reportError(error, from: self)
         }
     }
 

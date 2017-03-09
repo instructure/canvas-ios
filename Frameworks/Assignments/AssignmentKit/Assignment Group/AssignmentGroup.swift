@@ -43,7 +43,7 @@ extension AssignmentGroup: SynchronizedModel {
         try id          = json.stringID("id")
         try name        = json <| "name"
         try position    = json <| "position"
-        try weight      = json <| "group_weight"
+        try weight      = (json <| "group_weight") ?? 0.0
 
         try updateAssignments(json, inContext: context)
         

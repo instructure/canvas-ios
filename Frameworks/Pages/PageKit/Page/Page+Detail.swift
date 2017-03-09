@@ -22,6 +22,7 @@ import SoPersistent
 import CoreData
 import ReactiveSwift
 import Marshal
+import SoLazy
 
 extension Page {
     public static func detailCacheKey(context: NSManagedObjectContext, contextID: ContextID, url: String) -> String {
@@ -189,9 +190,7 @@ extension Page {
             webView.scrollView.addSubview(refresher.refreshControl)
 
             refresher.refreshingCompleted.observeValues { [weak self] error in
-                if let me = self, let error = error {
-                    error.presentAlertFromViewController(me)
-                }
+                ErrorReporter.reportError(error, from: self)
             }
         }
 

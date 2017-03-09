@@ -46,7 +46,7 @@ class CourseSyllabusViewController: UIViewController {
             self.refresher = try Course.airwolfRefresher(session, studentID: studentID, courseID: courseID)
         } catch let error as NSError {
             self.refresher = nil
-            error.report()
+            ErrorReporter.reportError(error)
         }
         
         super.init(nibName: nil, bundle: nil)

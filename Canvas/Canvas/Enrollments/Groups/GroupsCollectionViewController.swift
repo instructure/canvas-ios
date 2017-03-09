@@ -51,7 +51,7 @@ class GroupsCollectionViewController: Group.CollectionViewController, UICollecti
                 showGrades: {_ in },
                 customize: { customize(enrollment) },
                 takeShortcut: { [weak self] url in if let me = self { route(me, url) } },
-                handleError: { [weak self] error in if let me = self { error.presentAlertFromViewController(me, alertDismissed: nil) } })
+                handleError: { [weak self] error in ErrorReporter.reportError(error, from: self) })
         }
         
         
@@ -78,7 +78,7 @@ class GroupsCollectionViewController: Group.CollectionViewController, UICollecti
             nav.popoverPresentationController?.barButtonItem = editButton
             present(nav, animated: true, completion: nil)
         } catch let e as NSError {
-            e.report(alertUserFrom: self)
+            ErrorReporter.reportError(e, from: self)
         }
     }
     

@@ -38,7 +38,7 @@
 
     self.textView.textContainerInset = UIEdgeInsetsMake(20, 20, 20, 20);
     
-    NSString *warningInfo = NSLocalizedString(@"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device.", @"mobile quze warning info");
+    NSString *warningInfo = NSLocalizedString(@"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device.", @"mobile quze warning info");
     
     self.textView.text = warningInfo;
     self.title = NSLocalizedString(@"Mobile Quiz Warning", @"Warnging for taking quizzes on a mobile device");

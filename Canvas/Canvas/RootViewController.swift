@@ -54,7 +54,7 @@ func rootViewController(_ session: Session) -> UIViewController {
         ]
     } catch let e as NSError {
         delay(0.1) {
-            e.report(alertUserFrom: tabs)
+            ErrorReporter.reportError(e, from: tabs)
         }
     }
     

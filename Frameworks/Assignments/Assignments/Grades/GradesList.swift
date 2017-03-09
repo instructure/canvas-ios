@@ -21,6 +21,7 @@ import AssignmentKit
 import SoPersistent
 import TooLegit
 import ReactiveSwift
+import SoLazy
 
 struct GradeCellViewModel: TableViewCellViewModel {
     let name: String
@@ -65,7 +66,7 @@ class GradesList: Assignment.TableViewController {
             let deets = try AssignmentDetailViewController.new(session, courseID: assignment.courseID, assignmentID: assignment.id)
             navigationController?.pushViewController(deets, animated: true)
         } catch let e as NSError {
-            e.report(alertUserFrom: self)
+            ErrorReporter.reportError(e, from: self)
         }
     }
 }

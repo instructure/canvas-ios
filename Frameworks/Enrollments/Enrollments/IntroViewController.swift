@@ -88,7 +88,7 @@ class CoursesCollectionViewController: Course.CollectionViewController {
             let nav = UINavigationController(rootViewController: edit)
             present(nav, animated: true, completion: nil)
         } catch let e as NSError {
-            e.presentAlertFromViewController(self)
+            ErrorReporter.reportError(e, from: self)
         }
     }
     
@@ -104,7 +104,7 @@ class CoursesCollectionViewController: Course.CollectionViewController {
             let tabs = try TabsTableViewController(session: session, contextID: c.contextID)
             self.navigationController?.pushViewController(tabs, animated: true)
         } catch let e as NSError {
-            e.presentAlertFromViewController(self)
+            ErrorReporter.reportError(e, from: self)
         }
     }
 }
@@ -132,7 +132,7 @@ class GroupsCollectionViewController: Group.CollectionViewController {
             let nav = UINavigationController(rootViewController: edit)
             present(nav, animated: true, completion: nil)
         } catch let e as NSError {
-            e.presentAlertFromViewController(self)
+            ErrorReporter.reportError(e, from: self)
         }
     }
     
@@ -147,7 +147,7 @@ class GroupsCollectionViewController: Group.CollectionViewController {
             let tabs = try TabsTableViewController(session: session, contextID: g.contextID)
             self.navigationController?.pushViewController(tabs, animated: true)
         } catch let e as NSError {
-            e.presentAlertFromViewController(self)
+            ErrorReporter.reportError(e, from: self)
         }
     }
 }

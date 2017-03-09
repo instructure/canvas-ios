@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16B2555" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="1.0">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="1.0">
     <entity name="Assignment" representedClassName="AssignmentKit.Assignment" syncable="YES">
         <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="assignmentGroupID" optional="YES" attributeType="String" syncable="YES"/>
@@ -43,7 +43,7 @@
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="position" attributeType="Integer 32" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="weight" attributeType="Double" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="weight" attributeType="Double" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="assignmentGroup" inverseEntity="Assignment" syncable="YES"/>
     </entity>
     <entity name="DueDateOverride" representedClassName="AssignmentKit.DueDateOverride" syncable="YES">
@@ -125,7 +125,7 @@
     </entity>
     <elements>
         <element name="Assignment" positionX="-10791" positionY="-3133" width="128" height="600"/>
-        <element name="AssignmentGroup" positionX="-10523" positionY="-3075" width="128" height="118"/>
+        <element name="AssignmentGroup" positionX="-10523" positionY="-3075" width="128" height="120"/>
         <element name="DueDateOverride" positionX="160" positionY="192" width="128" height="105"/>
         <element name="MediaComment" positionX="-10791" positionY="-2232" width="128" height="120"/>
         <element name="Rubric" positionX="-10530" positionY="-2799" width="128" height="165"/>

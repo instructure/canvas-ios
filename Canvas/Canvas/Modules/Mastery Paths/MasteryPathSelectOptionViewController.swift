@@ -22,6 +22,7 @@ import SoPretty
 import SoIconic
 import ReactiveSwift
 import EnrollmentKit
+import SoLazy
 
 extension MasteryPathAssignment {
     func colorfulViewModel(_ session: Session, courseID: String) -> ColorfulViewModel {
@@ -185,11 +186,11 @@ class MasteryPathSelectOptionViewController: UIViewController {
                     }
                 case .failure(let error):
                     self?.selectOptionButton.setTitle(String(format: NSLocalizedString("Select Option %d", comment: "Button title to select a certain assignment set option"), (self?.optionSegmentedControl.selectedSegmentIndex ?? 0)+1), for: .normal)
-                    error.report(true, alertUserFrom: self, onDismiss: nil)
+                    ErrorReporter.reportError(error, from: self)
                 }
             }
         } catch let error as NSError {
-            error.report(true, alertUserFrom: self, onDismiss: nil)
+            ErrorReporter.reportError(error, from: self)
         }
     }
 }

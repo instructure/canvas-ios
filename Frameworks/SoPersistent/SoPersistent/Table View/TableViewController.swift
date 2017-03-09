@@ -28,10 +28,6 @@ public protocol TableViewCellViewModel {
 }
 
 open class TableViewController: UITableViewController {
-    open static var defaultErrorHandler: (UIViewController, NSError) -> () = { viewController, error in
-        error.presentAlertFromViewController(viewController)
-    }
-
     open var dataSource: TableViewDataSource? {
         didSet {
             if isViewLoaded {
@@ -143,6 +139,6 @@ open class TableViewController: UITableViewController {
      Override if you wish to handle the error yourself
      */
     open func handleError(_ error: NSError) {
-        TableViewController.defaultErrorHandler(self, error)
+        ErrorReporter.reportError(error, from: self)
     }
 }

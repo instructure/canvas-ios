@@ -171,19 +171,28 @@ extension AppDelegate {
 // MARK: SoErroneous
 extension AppDelegate {
     
-    func presentErrorAlert(_ presentingViewController: UIViewController, error: NSError) {
-        error.presentAlertFromViewController(presentingViewController, reportError: {
+    func alertUser(of error: NSError, from presentingViewController: UIViewController?) {
+        guard let presentFrom = presentingViewController else { return }
+        
+        let alertDetails = error.alertDetails(reportAction: {
             let support = SupportTicketViewController.present(from: presentingViewController, supportTicketType: SupportTicketTypeProblem)
             support?.initialTicketBody = error.reportDescription
         })
+        
+        if let deets = alertDetails {
+            let alert = UIAlertController(title: deets.title, message: deets.description, preferredStyle: .alert)
+            deets.actions.forEach(alert.addAction)
+            presentFrom.present(alert, animated: true, completion: nil)
+        }
     }
     
     func setupDefaultErrorHandling() {
-        TableViewController.defaultErrorHandler = presentErrorAlert
-        CollectionViewController.defaultErrorHandler = presentErrorAlert
-        
-        SoLazy.ErrorReporter.setErrorHandler({ error, userInfo in 
-            Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: userInfo)
+        SoLazy.ErrorReporter.setErrorHandler({ error, presentingViewController in
+            self.alertUser(of: error, from: presentingViewController)
+            
+            if error.shouldRecordInCrashlytics {
+                Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: nil)
+            }
         })
     }
     
@@ -197,9 +206,7 @@ extension AppDelegate {
     }
     
     func handleError(_ error: NSError) {
-        if let vc = window?.rootViewController  {
-            presentErrorAlert(vc, error: error)
-        }
+        ErrorReporter.reportError(error, from: window?.rootViewController)
     }
 }
 

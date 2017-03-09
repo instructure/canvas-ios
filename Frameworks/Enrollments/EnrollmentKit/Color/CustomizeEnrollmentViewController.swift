@@ -99,13 +99,13 @@ open class CustomizeEnrollmentViewController: UIViewController {
         view.isUserInteractionEnabled = false
         guard let color = colorsByButtonTag[sender.tag]?.0 else { return }
         dataSource.setColor(color, inSession: session, forContextID: context)
-            .on(completed: {
-                self.setCurrentContextColorButtonSelected(true)
-                self.view.isUserInteractionEnabled = true
+            .on(completed: { [weak self] in
+                self?.setCurrentContextColorButtonSelected(true)
+                self?.view.isUserInteractionEnabled = true
             })
-            .startWithFailed { err in
-                err.presentAlertFromViewController(self)
-                self.view.isUserInteractionEnabled = true
+            .startWithFailed { [weak self] err in
+                ErrorReporter.reportError(err, from: self)
+                self?.view.isUserInteractionEnabled = true
             }
         
     }

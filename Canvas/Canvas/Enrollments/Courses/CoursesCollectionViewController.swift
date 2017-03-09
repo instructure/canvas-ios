@@ -21,6 +21,7 @@ import SoPersistent
 import TooLegit
 import ReactiveSwift
 import Cartography
+import SoLazy
 
 func courseCardViewModel(_ enrollment: Enrollment, session: Session, viewController:
     CoursesCollectionViewController?, routeGrades: @escaping (URL) -> ()) -> EnrollmentCardViewModel {
@@ -37,7 +38,7 @@ func courseCardViewModel(_ enrollment: Enrollment, session: Session, viewControl
         viewController?.present(nav, animated: true, completion: nil)
         },
        takeShortcut: { [weak viewController] url in if let me = viewController { me.route(me, url) } },
-       handleError: { [weak viewController] error in if let me = viewController { error.presentAlertFromViewController(me, alertDismissed: nil) } })
+       handleError: { [weak viewController] error in ErrorReporter.reportError(error, from: viewController) })
     
     if let courses = viewController {
         vm.showingGrades <~ courses.showingGrades
@@ -122,7 +123,7 @@ open class CoursesCollectionViewController: Course.CollectionViewController, UIC
             nav.popoverPresentationController?.barButtonItem = editButton
             present(nav, animated: true, completion: nil)
         } catch let e as NSError {
-            e.presentAlertFromViewController(self)
+            ErrorReporter.reportError(e, from: self)
         }
     }
     

@@ -145,7 +145,12 @@ extension Router {
             RouteTemplates.courseAnnouncementTemplate: courseAnnouncementHandler()
         ]
 
-        TableViewController.defaultErrorHandler = defaultErrorHandler()
+        let handler = defaultErrorHandler()
+        ErrorReporter.setErrorHandler({ error, presentingViewController in
+            if let presenter = presentingViewController {
+                handler(presenter, error)
+            }
+        })
         addRoutesWithDictionary(routeDictionary)
     }
     
@@ -285,7 +290,7 @@ extension Router {
                                                     selectDomainViewController?.navigationController?.pushViewController(addVC, animated: true)
                                                 } catch let e as NSError {
                                                     if let selectDomainViewController = selectDomainViewController {
-                                                        e.report(false, alertUserFrom: selectDomainViewController)
+                                                        ErrorReporter.reportError(e, from: selectDomainViewController)
                                                     }
                                                 }
                                             default:

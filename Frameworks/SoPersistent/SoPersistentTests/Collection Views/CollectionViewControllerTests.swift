@@ -18,6 +18,7 @@
 
 import Foundation
 import SoAutomated
+import SoLazy
 @testable import SoPersistent
 import SoLazy
 
@@ -66,36 +67,32 @@ class CollectionViewControllerTests: XCTestCase {
             }
 
             it("sets refreshCompleted to one that presents the error") {
-                class RefreshError: NSError {
-                    var presented = false
-                    fileprivate override func presentAlertFromViewController(_ viewController: UIViewController, alertDismissed: (()->())? = nil, reportError: (()->())? = nil) {
-                        presented = true
-                    }
+                var presented = false
+                ErrorReporter.setErrorHandler { _ in
+                    presented = true
                 }
-                let error = RefreshError(subdomain: "blah", description: "blah")
+                let error = NSError(subdomain: "blah", description: "blah")
 
                 let refresher = SimpleRefresher()
                 vc.refresher = refresher
                 refresher.refreshingCompletedObserver.send(value: error)
 
-                XCTAssert(error.presented)
+                XCTAssert(presented)
             }
 
             it("sets refreshCompleted to one that presents the error on init") {
-                class RefreshError: NSError {
-                    var presented = false
-                    fileprivate override func presentAlertFromViewController(_ viewController: UIViewController, alertDismissed: (()->())? = nil, reportError: (()->())? = nil) {
-                        presented = true
-                    }
+                var presented = false
+                ErrorReporter.setErrorHandler { _ in
+                    presented = true
                 }
-                let error = RefreshError(subdomain: "blah", description: "blah")
+                let error = NSError(subdomain: "blah", description: "blah")
 
                 let refresher = SimpleRefresher()
                 let vc = CollectionViewController(dataSource: dataSource, refresher: refresher)
                 vc.refresher = refresher
                 refresher.refreshingCompletedObserver.send(value: error)
 
-                XCTAssert(error.presented)
+                XCTAssert(presented)
             }
         }
     }

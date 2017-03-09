@@ -67,8 +67,7 @@ open class EditFavoriteEnrollmentsViewController<T where T: Enrollment>: TableVi
         let enrollment = collection[indexPath]
         
         enrollment.markAsFavorite(!enrollment.isFavorite, session: session).startWithFailed { [weak self] error in
-            guard let me = self else { return }
-            error.presentAlertFromViewController(me)
+            ErrorReporter.reportError(error, from: self)
         }
     }
 }

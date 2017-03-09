@@ -20,6 +20,7 @@ import Foundation
 import UIKit
 import TooLegit
 import SoPersistent
+import SoLazy
 
 open class PagesHomeViewController: UIViewController {
 
@@ -75,7 +76,7 @@ open class PagesHomeViewController: UIViewController {
                 if e.code == 404 {
                     self?.innerController = .list
                 } else {
-                    e.presentAlertFromViewController(me)
+                    ErrorReporter.reportError(e, from: me)
                 }
             } else {
                 self?.innerController = .frontPage
@@ -139,7 +140,7 @@ open class PagesHomeViewController: UIViewController {
             default: return
             }
         } catch let e as NSError {
-            e.presentAlertFromViewController(self)
+            ErrorReporter.reportError(e, from: self)
         }
 
         self.addChildViewController(innerViewController)

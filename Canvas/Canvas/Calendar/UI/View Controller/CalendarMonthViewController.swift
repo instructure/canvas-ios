@@ -58,7 +58,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
             }
             refresher?.refreshingCompleted.observeValues { [weak self] err in
                 guard let me = self else { return }
-                err?.report(alertUserFrom: me)
+                ErrorReporter.reportError(err, from: self)
                 me.calendarView?.reloadVisibleCells()
                 me.toastManager.dismissNotification()
                 me.didFinishRefreshing()

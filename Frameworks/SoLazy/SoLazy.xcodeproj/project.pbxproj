@@ -24,6 +24,7 @@
 		49C12D551DDE197600AEBA60 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C12D531DDE197600AEBA60 /* ReactiveSwift.framework */; };
 		49C12D561DDE197600AEBA60 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C12D541DDE197600AEBA60 /* Result.framework */; };
 		49C12D581DDE1CB000AEBA60 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C12D571DDE1CAB00AEBA60 /* Marshal.framework */; };
+		49E1E3431E6F61D900F73959 /* NSError+Categorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E1E3421E6F61D900F73959 /* NSError+Categorization.swift */; };
 		5E75B6141C4D5DAE00A44160 /* UIDevice+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E75B6131C4D5DAE00A44160 /* UIDevice+Model.swift */; };
 		617BE7A71CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617BE7A61CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift */; };
 		61D6A8331C8F6A3000370117 /* Marshal+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A8321C8F6A3000370117 /* Marshal+SoLazy.swift */; };
@@ -83,6 +84,7 @@
 		49C12D571DDE1CAB00AEBA60 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C12D5A1DDE5ED100AEBA60 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C12D5B1DDE5ED100AEBA60 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49E1E3421E6F61D900F73959 /* NSError+Categorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+Categorization.swift"; sourceTree = "<group>"; };
 		5E75B6131C4D5DAE00A44160 /* UIDevice+Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Model.swift"; sourceTree = "<group>"; };
 		617BE7A61CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "❨╯°□°❩╯⌢.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		61D6A8321C8F6A3000370117 /* Marshal+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Marshal+SoLazy.swift"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				49A960831BC315C600592D94 /* SoLazy.h */,
 				49A960811BC315C600592D94 /* Supporting Files */,
 				49B997141C3FF4D20068337C /* NSError+SoLazy.swift */,
+				49E1E3421E6F61D900F73959 /* NSError+Categorization.swift */,
 				49895F241C4EA8EB002A16EC /* NSData+SoLazy.swift */,
 				B53D1B3B1C90C74300303604 /* RAC+SoLazy.swift */,
 				B135FEB81CB8632F0093DE0B /* NSURLSession+SoLazy.swift */,
@@ -490,6 +493,7 @@
 				49895F251C4EA8EB002A16EC /* NSData+SoLazy.swift in Sources */,
 				617BE7A71CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift in Sources */,
 				B16A8D841C99CE03009E364E /* RAC+SoLazy.swift in Sources */,
+				49E1E3431E6F61D900F73959 /* NSError+Categorization.swift in Sources */,
 				B166A7F21E0C303000FA06E9 /* Errors.swift in Sources */,
 				49A960A81BC315E000592D94 /* UIFont+SoLazy.swift in Sources */,
 				B119EED01E3A80EE00343D1B /* Tuple+SoLazy.swift in Sources */,

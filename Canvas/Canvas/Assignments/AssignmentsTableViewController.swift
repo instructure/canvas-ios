@@ -95,7 +95,7 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
                 do {
                     try me.updateCollections(courseID, gradingPeriodID: item?.gradingPeriodID)
                 } catch let error as NSError {
-                    error.report(alertUserFrom: self)
+                    ErrorReporter.reportError(error, from: self)
                 }
             }
 
@@ -200,7 +200,7 @@ class AssignmentsTableViewController: Assignment.TableViewController, UISearchRe
         do {
             try updateCollections(courseID, gradingPeriodID: header.selectedGradingPeriod.value?.gradingPeriodID, name: fuzzySearchString)
         } catch let error as NSError {
-            error.presentAlertFromViewController(self)
+            ErrorReporter.reportError(error, from: self)
         }
     }
     

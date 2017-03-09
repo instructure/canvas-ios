@@ -16,28 +16,27 @@
     
     
 
-import Foundation
+import UIKit
 
-// The client that wishes to use the error reporter will set a block of this type on
-// the shared error reporter
-public typealias ErrorReporterBlock = (NSError, [String: AnyObject]?) -> ()
+// Error that occurred, and the reporting view controller
+public typealias ErrorReporterBlock = (NSError, UIViewController?) -> ()
 
-open class ErrorReporter {
+public class ErrorReporter {
     
-    open static let sharedErrorReporter = ErrorReporter()
+    private static let sharedErrorReporter = ErrorReporter()
     
     /// The app that wishes to use this reporter *must* set this block
-    fileprivate var reportBlock: ErrorReporterBlock?
+    private var reportBlock: ErrorReporterBlock?
     
     /// The error paramteter is an optional for ease of use
     /// This allows errors to be reported without checking for the optional
     /// nil errors will be ignored
-    open func reportError(_ error: NSError?) {
+    public static func reportError(_ error: NSError?, from reportingViewController: UIViewController? = nil) {
         guard let err = error else { return }
-        self.reportBlock?(err, nil)
+        sharedErrorReporter.reportBlock?(err, reportingViewController)
     }
     
-    open static func setErrorHandler(_ handler: @escaping ErrorReporterBlock) {
-        ErrorReporter.sharedErrorReporter.reportBlock = handler
+    public static func setErrorHandler(_ handler: @escaping ErrorReporterBlock) {
+        sharedErrorReporter.reportBlock = handler
     }
 }

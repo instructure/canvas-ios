@@ -112,8 +112,8 @@ class ModuleItemDetailViewController: UIViewController {
             .startWithValues(embed)
 
         /// handle errors
-        viewModel.errorSignal.observeValues {
-            $0.presentAlertFromViewController(self)
+        viewModel.errorSignal.observeValues { [weak self] error in
+            ErrorReporter.reportError(error, from: self)
         }
     }
 

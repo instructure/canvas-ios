@@ -37,6 +37,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if unitTesting {
             return true
         }
+        
+        ErrorReporter.setErrorHandler { error, presentingVC in
+            print(error.reportDescription)
+            if let deets = error.alertDetails(reportAction: { print("Yo, Support! \(error.reportDescription)") }) {
+                let alert = UIAlertController(title: deets.title, message: deets.description, preferredStyle: .alert)
+                deets.actions.forEach(alert.addAction)
+                presentingVC?.present(alert, animated: true, completion: nil)
+            }
+        }
 
         window = UIWindow(frame: UIScreen.main.bounds)
 
@@ -68,6 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UIViewController()
         window?.makeKeyAndVisible()
 
+        
         return true
     }
 

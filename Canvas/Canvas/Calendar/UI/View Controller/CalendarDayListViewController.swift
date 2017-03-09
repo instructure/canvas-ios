@@ -55,7 +55,7 @@ open class CalendarDayListViewController: UITableViewController {
             refresher?.refreshingCompleted.observeValues { [weak self] error in
                 if let me = self {
                     me.updateEmptyView()
-                    error?.report(alertUserFrom: me)
+                    ErrorReporter.reportError(error, from: self)
                     me.didFinishRefreshing()
                 }
             }
