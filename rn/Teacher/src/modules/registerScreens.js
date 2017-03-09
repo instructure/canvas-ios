@@ -7,7 +7,8 @@ import { Navigation } from 'react-native-navigation'
 import { Store } from 'redux'
 import { Provider } from 'react-redux'
 
-import CourseList from './course-list/CourseList'
+import FavoritedCourseList from './course-list/FavoritedCourseList'
+import AllCourseList from './course-list/AllCourseList'
 import CourseDetails from './course-details/CourseDetails'
 import Inbox from './inbox/Inbox'
 import Profile from './profile/Profile'
@@ -16,7 +17,8 @@ import LegoSets from './toys/legos/LegoSets'
 import ActionFigures from './toys/action-figures/ActionFigures'
 
 export function registerScreens (store: Store) {
-  Navigation.registerComponent('teacher.CourseList', () => CourseList, store, Provider)
+  Navigation.registerComponent('teacher.FavoritedCourseList', () => FavoritedCourseList, store, Provider)
+  Navigation.registerComponent('teacher.AllCourseList', () => AllCourseList, store, Provider)
   Navigation.registerComponent('teacher.CourseDetails', () => CourseDetails, store, Provider)
   Navigation.registerComponent('teacher.Inbox', () => Inbox, store, Provider)
   Navigation.registerComponent('teacher.Profile', () => Profile, store, Provider)

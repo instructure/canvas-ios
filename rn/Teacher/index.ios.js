@@ -41,7 +41,7 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
             default: 'Courses',
             description: 'Label indicating the user is on the courses tab',
           }),
-          screen: 'teacher.CourseList',
+          screen: 'teacher.FavoritedCourseList',
           title: i18n('Courses'),
           icon: require('./src/images/tab-bar/courses.png'),
           titleImage: require('./src/images/canvas-logo.png'),

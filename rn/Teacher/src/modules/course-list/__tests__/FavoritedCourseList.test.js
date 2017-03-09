@@ -2,8 +2,9 @@
 
 import 'react-native'
 import React from 'react'
-import { CourseList } from '../CourseList.js'
 import * as courseTemplate from '../../../api/canvas-api/__templates__/course'
+import * as navigationTemplate from '../../../__templates__/react-native-navigation'
+import { FavoritedCourseList } from '../FavoritedCourseList.js'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
@@ -38,18 +39,24 @@ const colors = {
   '3': '#8F3E99',
 }
 
-let refreshCourses = () => {}
+let defaultProps = {
+  navigator: navigationTemplate.navigator(),
+  courses,
+  customColors: colors,
+  refreshCourses: () => {},
+  pending: 0,
+}
 
 test('renders correctly', () => {
   let tree = renderer.create(
-    <CourseList width={320} refreshCourses={ refreshCourses } courses={ courses } customColors={colors} />
+    <FavoritedCourseList {...defaultProps} width={320} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('renders correctly with wide device', () => {
   let tree = renderer.create(
-    <CourseList width={768} refreshCourses={ refreshCourses } courses={ courses } customColors={colors} />
+    <FavoritedCourseList {...defaultProps} width={768} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
@@ -60,7 +67,7 @@ test('refreshCourses was called', () => {
     didCallRefresh = true
   }
   let tree = renderer.create(
-    <CourseList width={320} refreshCourses={ refresh } courses={ courses } customColors={colors} />
+    <FavoritedCourseList {...defaultProps} width={320} refreshCourses={ refresh } />
   ).toJSON()
   expect(tree).toMatchSnapshot()
   expect(didCallRefresh).toBe(true)
@@ -68,7 +75,7 @@ test('refreshCourses was called', () => {
 
 test('renders no courses', () => {
   let tree = renderer.create(
-    <CourseList courses={ [] } refreshCourses={ refreshCourses } />
+    <FavoritedCourseList {...defaultProps} courses={ [] } />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })

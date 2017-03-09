@@ -31,16 +31,24 @@ const mapValues = (obj: any, callback: Function) => {
   return newObj
 }
 
+type DefaultProps = {
+  itemsPerRow: number,
+  onEndReached: () => void,
+  itemHasChanged: (r1: any, r2: any) => boolean,
+  renderFooter: () => void,
+}
+
 type Props = {
   itemsPerRow: number,
-  onEndReached: Function,
+  onEndReached?: Function,
   itemHasChanged: Function,
   renderItem: Function,
-  renderPlaceholder: Function,
-  renderSectionHeader: Function,
+  renderPlaceholder?: Function,
+  renderSectionHeader?: Function,
   data: Array<any>,
-  renderFooter: Function,
-  sections: boolean,
+  renderFooter?: Function,
+  renderHeader?: Function,
+  sections?: boolean,
   placeholderStyle: StyleSheet,
   style: StyleSheet,
   onLayout: Function,
@@ -51,7 +59,7 @@ type State = {
 }
 
 //  Lifted from https://github.com/phil-r/react-native-grid-component/blob/master/index.js
-export default class GridView extends Component<any, Props, State> {
+export default class GridView extends Component<DefaultProps, Props, State> {
   state: State
 
   static propTypes = {
@@ -66,11 +74,11 @@ export default class GridView extends Component<any, Props, State> {
 
   static defaultProps = {
     itemsPerRow: 2,
-    onEndReached () {},
+    onEndReached: () => {},
     itemHasChanged (r1: any, r2: any): boolean {
       return r1 !== r2
     },
-    renderFooter: () => null,
+    renderFooter: () => {},
   }
 
   constructor (props: Props) {
@@ -147,6 +155,7 @@ export default class GridView extends Component<any, Props, State> {
           enableEmptySections
           onEndReached={this.props.onEndReached}
           onEndReachedThreshold={height}
+          renderHeader={this.props.renderHeader}
           renderFooter={this.props.renderFooter}
           renderSectionHeader={this.props.renderSectionHeader}
         />

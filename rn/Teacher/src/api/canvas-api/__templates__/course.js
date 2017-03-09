@@ -1,6 +1,6 @@
 /* @flow */
 
-import template from '../../utils/template'
+import template from '../../../utils/template'
 
 export const course: Template<Course> = template({
   id: 1,

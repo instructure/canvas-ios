@@ -7,15 +7,23 @@
     "message": "Add Courses",
     "description": "Button text to take action and add a course."
   },
+  "all_courses_a7dbb853": {
+    "message": "All Courses",
+    "description": "The title of the screen showing all of a teacher's courses"
+  },
   "and_here_are_the_legos_6c2ac262": {
     "message": "And here are the Legos"
+  },
+  "back_courses": {
+    "message": "Courses",
+    "description": "The back button title to go from all courses to just favorited courses"
   },
   "buy_more_ed49ba10": {
     "message": "Buy More!"
   },
   "courses_43204aae": {
     "message": "Courses",
-    "description": "Label indicating the user is on the courses tab"
+    "description": "The header for the favorited courses list"
   },
   "edit_c5fbea07": {
     "message": "Edit",
@@ -41,6 +49,10 @@
   "profile_6bd2baed": {
     "message": "Profile",
     "description": "Label indicating the user is on the profile tab"
+  },
+  "see_all_ffa422ef": {
+    "message": "See All",
+    "description": "Button to transition from favorited courses list to all courses list"
   },
   "this_is_the_inbox_b957d042": {
     "message": "This is the inbox"
