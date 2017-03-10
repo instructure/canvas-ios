@@ -7,6 +7,7 @@ import type { CoursesState } from './props'
 import handleAsync from '../../utils/handleAsync'
 import i18n from 'format-message'
 import parseContextCode from '../../utils/parse-context-code'
+import localeSort from '../../utils/locale-sort'
 
 export let defaultState: { courses: Course[], pending: number } = { courses: [], pending: 0 }
 
@@ -23,7 +24,7 @@ const reducer: Reducer<CoursesState, any> = handleActions({
       }
       return {
         ...state,
-        courses: state.courses.concat(coursesResponse.data),
+        courses: state.courses.concat(coursesResponse.data).sort((c1, c2) => localeSort(c1.name, c2.name)),
         customColors: colors,
         pending: state.pending - 1,
       }
