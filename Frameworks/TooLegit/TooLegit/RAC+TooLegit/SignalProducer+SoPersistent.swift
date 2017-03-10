@@ -25,7 +25,7 @@ public func attemptProducer<Value>(_ file: String = #file, line: UInt = #line, f
     do {
         return SignalProducer(value: try f())
     } catch let e as MarshalError {
-        return SignalProducer(error: NSError(jsonError: e, file: file, line: line))
+        return SignalProducer(error: NSError(jsonError: e, parsingObjectOfType: Value.self, file: file, line: line))
     } catch let e as NSError {
         return SignalProducer(error: e.addingInfo(file, line: line))
     }

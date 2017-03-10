@@ -217,10 +217,16 @@ extension Session {
 
     fileprivate func asArray(_ keypath: String?) -> (Any) -> SignalProducer<[JSONObject], NSError> {
         return { any in
-            guard let ns = any as? NSObject else { return SignalProducer(error: NSError(jsonError: MarshalError.typeMismatch(expected: NSObject.self, actual: type(of: any)))) }
+            guard let ns = any as? NSObject else {
+                let error = NSError(jsonError: MarshalError.typeMismatch(expected: NSObject.self, actual: type(of: any)), parsingObjectOfType: NSObject.self)
+                return SignalProducer(error: error)
+            }
 
             let atKeyPath: NSObject = (keypath.map { ns.value(forKeyPath: $0) }) as? NSObject ?? ns
-            guard let array = atKeyPath as? [JSONObject] else { return SignalProducer(error: NSError(jsonError: MarshalError.typeMismatchWithKey(key: keypath ?? "", expected: [JSONObject].self, actual: type(of: atKeyPath)))) }
+            guard let array = atKeyPath as? [JSONObject] else {
+                let error = NSError(jsonError: MarshalError.typeMismatchWithKey(key: keypath ?? "", expected: [JSONObject].self, actual: type(of: atKeyPath)), parsingObjectOfType: [JSONObject].self)
+                return SignalProducer(error: error)
+            }
 
             return SignalProducer(value: array)
         }

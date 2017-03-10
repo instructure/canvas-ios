@@ -100,17 +100,17 @@ extension NSError {
         return report
     }
     
-    public convenience init(jsonError: MarshalError, file: String = #file, line: UInt = #line) {
+    public convenience init<T>(jsonError: MarshalError, parsingObjectOfType objectType: T.Type, file: String = #file, line: UInt = #line) {
         let reason: String
         switch jsonError {
         case let .typeMismatch(expected: expected, actual: actual):
-            reason = "Expected \(expected) but found \(actual)"
+            reason = "While parsing \(objectType), expected \(expected) but found \(actual)"
         case let .typeMismatchWithKey(key: key, expected: expected, actual: actual):
-            reason = "Expected \(expected) but found \(actual) for key: \(key)"
+            reason = "While parsing \(objectType), expected \(expected) but found \(actual) for key: \(key)"
         case .keyNotFound(key: let key):
-            reason = "Expected a value for \(key)"
+            reason = "While parsing \(objectType), expected a value for \(key)"
         case .nullValue(key: let key):
-            reason = "Unexpected null value for \(key)"
+            reason = "While parsing \(objectType), unexpected null value for \(key)"
         }
 
         let errorDescription = NSLocalizedString("There was a problem interpreting a response from the server.", bundle: .soLazy(), value: "There was a problem interpreting a response from the server.", comment: "JSON Parsing error description")
@@ -131,10 +131,10 @@ extension NSError {
 
 
 // MARK: Ye Old Keys
-private let ErrorTitleKey = "YeOldeErrorTitleKey" // written before 7:15 am.
-private let ErrorFileNameKey = "YeOldeErrorFileNameKey"
-private let ErrorLineNumberKey = "YeOldeErrorLineNumberKey"
-private let ErrorSubdomainKey = "YeOldeErrorSubdomainKey"
-private let ErrorSessionIDKey = "YeOldeErrorSessionIDKey"
-private let ErrorDataKey = "YeOldeErrorDataKey"
-private let ErrorURLKey = "YeOldeErrorURLKey"
+private let ErrorTitleKey = "title" // written before 7:15 am.
+private let ErrorFileNameKey = "file_name"
+private let ErrorLineNumberKey = "line_number"
+private let ErrorSubdomainKey = "framework"
+private let ErrorSessionIDKey = "session_id"
+private let ErrorDataKey = "server_response"
+private let ErrorURLKey = "request_url"

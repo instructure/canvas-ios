@@ -31,16 +31,42 @@ static NSString * const ExtremeCriticalEmergencyValue = @"extreme_critical_emerg
     }
     
     CKIClient *client = TheKeymaster.currentClient;
-    NSDictionary *ticketDictionary =    @{@"error":
-                                            @{@"subject": self.subject,
-                                              @"url": [client.baseURL absoluteString] ? [client.baseURL absoluteString] : @"https://canvas.instructure.com",
-                                              @"email": client.currentUser.email ? client.currentUser.email : @"unknown_user@test.com",
-                                              @"comments": [self.commentBody stringByAppendingString:[self commentAdditions]],
-                                              @"user_percieved_severity": [self impactFieldValue],
-                                              @"http_env": [self environmentBody]
-                                              }
-                                          };
+    NSMutableDictionary *ticketDictionary =
+    [@{
+      @"error":
+        [@{
+            @"subject": self.subject,
+            @"url": [client.baseURL absoluteString] ? [client.baseURL absoluteString] : @"https://canvas.instructure.com",
+            @"email": client.currentUser.email ? client.currentUser.email : @"unknown_user@test.com",
+            @"comments": [self.commentBody stringByAppendingString:[self commentAdditions]],
+            @"user_percieved_severity": [self impactFieldValue],
+            @"http_env": [self environmentBody],
+            @"backtrace": [self logFileData]
+        } mutableCopy]
+    } mutableCopy];
 
+    if (_reportedError) {
+        ticketDictionary[@"error"][@"category"] = _reportedError.domain;
+        ticketDictionary[@"error"][@"code"] = @(_reportedError.code);
+        
+        // error.message is the error report that support will likely use to make the ticket
+        // so in order to prevent tons of duplicate tickets, lets use the most descriptive
+        // message from the server possible.
+        if (_reportedError.localizedFailureReason) {
+            ticketDictionary[@"error"][@"message"] = _reportedError.localizedFailureReason;
+            ticketDictionary[@"error"][@"description"] = _reportedError.localizedDescription;
+        } else if (_reportedError.localizedDescription) {
+            ticketDictionary[@"error"][@"message"] = _reportedError.localizedDescription;
+        }
+        
+        NSSet *specialKeys = [NSSet setWithArray:@[NSLocalizedDescriptionKey, NSLocalizedFailureReasonErrorKey]];
+        NSMutableSet *keys = [NSMutableSet setWithArray:_reportedError.userInfo.allKeys];
+        [keys minusSet:specialKeys];
+        for (NSString *key in keys) {
+            ticketDictionary[@"error"][[key description]] = [_reportedError.userInfo[key] description];
+        }
+    }
+    
     return ticketDictionary;
 }
 
@@ -59,8 +85,7 @@ static NSString * const ExtremeCriticalEmergencyValue = @"extreme_critical_emerg
     environmentBody[@"App Version"] = [self appVersionString];
     environmentBody[@"Platform"] = [[UIDevice currentDevice] ckm_platformString];
     environmentBody[@"OS Version"] = [[UIDevice currentDevice] systemVersion];
-    environmentBody[@"user_log"] = [self logFileData];
-    
+
     return environmentBody;
 }
 

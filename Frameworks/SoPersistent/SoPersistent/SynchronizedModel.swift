@@ -41,7 +41,7 @@ extension SynchronizedModel where Self: NSManagedObject {
                     observer.send(value: models)
                     observer.sendCompleted()
                 } catch let e as MarshalError {
-                    observer.send(error: NSError(jsonError: e))
+                    observer.send(error: NSError(jsonError: e, parsingObjectOfType: self))
                 } catch let e as NSError {
                     observer.send(error: e)
                 }

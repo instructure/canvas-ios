@@ -37,12 +37,6 @@ static float DefaultToastDuration = 1.65f;
 
 @implementation SupportTicketViewController
 
-- (void)setInitialTicketBody:(NSString *)initialTicketBody {
-    _initialTicketBody = initialTicketBody;
-    [self view]; // force view to load
-    self.bodyTextView.text = [NSLocalizedString(@"\n\n===== tell us what happened above this line =====\n\n", "prompt for a support error message") stringByAppendingString:initialTicketBody];
-}
-
 + (SupportTicketViewController *)presentFromViewController:(UIViewController *)presenter supportTicketType:(SupportTicketType)type {
     UINavigationController *nav = (UINavigationController *)[UIStoryboard storyboardWithName:@"SupportTicket" bundle:[NSBundle bundleForClass:self]].instantiateInitialViewController;
     SupportTicketViewController *support = (SupportTicketViewController *)nav.viewControllers[0];
@@ -194,6 +188,7 @@ static float DefaultToastDuration = 1.65f;
     self.ticket.subject = self.subjectTextField.text;
     self.ticket.commentBody = self.bodyTextView.text;
     self.ticket.requesterEmail = TheKeymaster.currentClient.currentUser.email;
+    self.ticket.reportedError = self.reportedError;
     if (TheKeymaster.currentClient.isLoggedIn) {
         self.ticket.requesterName = TheKeymaster.currentClient.currentUser.name;
     }

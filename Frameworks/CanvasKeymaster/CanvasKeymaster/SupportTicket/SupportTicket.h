@@ -27,6 +27,7 @@ typedef enum {
 @property (nonatomic) SupportTicketImpactLevel impactValue;
 @property (nonatomic) SupportTicketType ticketType;
 @property (nonatomic, strong) NSArray *uploadTokens;
+@property (nonatomic, strong) NSError *reportedError;
 
 - (NSDictionary *)dictionaryValue;
 - (NSString *)impactString;

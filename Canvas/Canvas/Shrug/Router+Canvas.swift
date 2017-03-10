@@ -38,7 +38,7 @@ extension Router {
                         let contextID: String = try parameters!.stringID("contextID")
                         return try handler(ContextID(id: contextID, context: context), parameters!)
                     } catch let e as MarshalError {
-                        handleError(NSError(jsonError: e, file: file, line: line))
+                        handleError(NSError(jsonError: e, parsingObjectOfType: String.self, file: file, line: line))
                     } catch let e as NSError {
                         handleError(e)
                     }

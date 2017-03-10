@@ -176,7 +176,7 @@ extension AppDelegate {
         
         let alertDetails = error.alertDetails(reportAction: {
             let support = SupportTicketViewController.present(from: presentingViewController, supportTicketType: SupportTicketTypeProblem)
-            support?.initialTicketBody = error.reportDescription
+            support?.reportedError = error
         })
         
         if let deets = alertDetails {

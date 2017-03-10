@@ -72,7 +72,12 @@ extension NSError {
             return AlertDetails(title: title, description: description, actions: reportOrDismiss)
             
         default:
-            if let description = userInfo[NSLocalizedDescriptionKey] as? String, description != "" {
+            if var description = userInfo[NSLocalizedDescriptionKey] as? String, description != "" {
+                
+                if let reason = localizedFailureReason {
+                    description += "\n\n" + reason
+                }
+                
                 let title = NSLocalizedString("Unknown Error", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.icanvas.SoLazy")!, comment: "An unknown error title")
                 return AlertDetails(title: title, description: description, actions: reportOrDismiss)
             }
