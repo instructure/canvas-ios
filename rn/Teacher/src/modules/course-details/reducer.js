@@ -6,7 +6,7 @@ import CourseDetailsActions from './actions'
 import type { TabsState } from './props'
 import handleAsync from '../../utils/handleAsync'
 import i18n from 'format-message'
-import parseContextCode from '../../utils/parse-context-code'
+import groupCustomColors from '../../api/utils/group-custom-colors'
 
 export let defaultState: { tabs: Tab[], pending: number, courseColors: {} } = { tabs: [], pending: 0, courseColors: {} }
 
@@ -17,11 +17,7 @@ const reducer: Reducer<TabsState, any> = handleActions({
   [refreshTabs.toString()]: handleAsync({
     pending: (state) => ({ ...state, pending: state.pending + 1 }),
     resolved: (state, [tabResponse, colorsResponse]) => {
-      let colors = {}
-      for (let contextCode in colorsResponse.data.custom_colors) {
-        let { id } = parseContextCode(contextCode)
-        colors[id] = colorsResponse.data.custom_colors[contextCode]
-      }
+      const colors = groupCustomColors(colorsResponse.data).custom_colors.course
       return {
         ...state,
         tabs: tabResponse.data.filter((tab) => availableCourseTabs.includes(tab.id)),

@@ -2,7 +2,7 @@
 
 import parseContextCode from '../parse-context-code'
 
-test('it parses a context string into it type and id', () => {
+test('it parses a context string into type and id', () => {
   expect(parseContextCode('course_1')).toEqual({
     type: 'course',
     id: '1',
