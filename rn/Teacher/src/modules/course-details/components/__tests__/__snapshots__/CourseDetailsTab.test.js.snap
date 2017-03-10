@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "lightgrey",
+      "borderBottomWidth": 0.5,
+      "flex": 1,
+      "height": 44,
+    }
+  }
+>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+        },
+        Object {
+          "flex": 1,
+        },
+      ]
+    }
+    testID={undefined}
+    tvParallaxProperties={undefined}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "padding": 8,
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Array [
+            Object {
+              "height": 20,
+              "marginRight": 6,
+              "resizeMode": "contain",
+              "width": 21,
+            },
+            Object {
+              "tintColor": "white",
+            },
+          ]
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Home
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "borderColor": "#c7c7cc",
+              "borderRightWidth": 1,
+              "borderTopWidth": 1,
+              "height": 10,
+              "marginLeft": 7,
+              "transform": Array [
+                Object {
+                  "rotate": "45deg",
+                },
+              ],
+              "width": 10,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;

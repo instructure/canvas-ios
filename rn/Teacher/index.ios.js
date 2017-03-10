@@ -15,6 +15,7 @@ import setupI18n from './i18n/setup'
 import { setSession } from './src/api/session'
 import { registerScreens } from './src/modules/registerScreens'
 import Colors from './src/common/colors'
+import Images from './src/images'
 
 registerScreens(store)
 
@@ -43,8 +44,8 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
           }),
           screen: 'teacher.FavoritedCourseList',
           title: i18n('Courses'),
-          icon: require('./src/images/tab-bar/courses.png'),
-          titleImage: require('./src/images/canvas-logo.png'),
+          icon: Images.tabbar.courses,
+          titleImage: Images.canvasLogo,
           navigatorStyle: navigationStyles,
         },
         {
@@ -55,7 +56,7 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
           screen: 'teacher.Inbox',
           navigatorStyle: navigationStyles,
           title: i18n('Inbox'),
-          icon: require('./src/images/tab-bar/inbox.png'),
+          icon: Images.tabbar.inbox,
         },
         {
           label: i18n({
@@ -65,7 +66,7 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
           screen: 'teacher.Profile',
           navigatorStyle: navigationStyles,
           title: i18n('Profile'),
-          icon: require('./src/images/tab-bar/profile.png'),
+          icon: Images.tabbar.profile,
         },
       ],
       tabsStyle: {

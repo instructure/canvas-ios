@@ -58,6 +58,7 @@ export class FavoritedCourseList extends Component {
     this.props.navigator.push({
       screen: 'teacher.CourseDetails',
       passProps: { course },
+      title: course.course_code,
     })
   }
 

@@ -109,48 +109,29 @@ exports[`refreshCourses was called 1`] = `
             }
           }
         >
-          <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
-            accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
+          <TouchableHighlight
+            onPress={[Function]}
             style={
               Array [
                 Object {
-                  "backgroundColor": "transparent",
+                  "borderColor": "#e3e3e3",
+                  "borderWidth": 0.5,
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
                 },
-                Array [
-                  Object {
-                    "borderColor": "#e3e3e3",
-                    "borderWidth": 0.5,
-                    "height": 160,
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "flex": 1,
-                    "margin": 12,
-                  },
-                ],
+                Object {
+                  "flex": 1,
+                  "margin": 12,
+                },
               ]
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            testID="BIO 101"
           >
             <View
               style={
@@ -241,49 +222,30 @@ exports[`refreshCourses was called 1`] = `
                 </Text>
               </View>
             </View>
-          </View>
-          <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
-            accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={[Function]}
             style={
               Array [
                 Object {
-                  "backgroundColor": "transparent",
+                  "borderColor": "#e3e3e3",
+                  "borderWidth": 0.5,
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
                 },
-                Array [
-                  Object {
-                    "borderColor": "#e3e3e3",
-                    "borderWidth": 0.5,
-                    "height": 160,
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "flex": 1,
-                    "margin": 12,
-                  },
-                ],
+                Object {
+                  "flex": 1,
+                  "margin": 12,
+                },
               ]
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            testID="FOO 102"
           >
             <View
               style={
@@ -374,7 +336,7 @@ exports[`refreshCourses was called 1`] = `
                 </Text>
               </View>
             </View>
-          </View>
+          </TouchableHighlight>
           <View
             style={
               Object {
@@ -499,48 +461,29 @@ exports[`renders correctly 1`] = `
             }
           }
         >
-          <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
-            accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
+          <TouchableHighlight
+            onPress={[Function]}
             style={
               Array [
                 Object {
-                  "backgroundColor": "transparent",
+                  "borderColor": "#e3e3e3",
+                  "borderWidth": 0.5,
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
                 },
-                Array [
-                  Object {
-                    "borderColor": "#e3e3e3",
-                    "borderWidth": 0.5,
-                    "height": 160,
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "flex": 1,
-                    "margin": 12,
-                  },
-                ],
+                Object {
+                  "flex": 1,
+                  "margin": 12,
+                },
               ]
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            testID="BIO 101"
           >
             <View
               style={
@@ -631,49 +574,30 @@ exports[`renders correctly 1`] = `
                 </Text>
               </View>
             </View>
-          </View>
-          <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
-            accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={[Function]}
             style={
               Array [
                 Object {
-                  "backgroundColor": "transparent",
+                  "borderColor": "#e3e3e3",
+                  "borderWidth": 0.5,
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
                 },
-                Array [
-                  Object {
-                    "borderColor": "#e3e3e3",
-                    "borderWidth": 0.5,
-                    "height": 160,
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "flex": 1,
-                    "margin": 12,
-                  },
-                ],
+                Object {
+                  "flex": 1,
+                  "margin": 12,
+                },
               ]
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            testID="FOO 102"
           >
             <View
               style={
@@ -764,7 +688,7 @@ exports[`renders correctly 1`] = `
                 </Text>
               </View>
             </View>
-          </View>
+          </TouchableHighlight>
           <View
             style={
               Object {
@@ -889,48 +813,29 @@ exports[`renders correctly with wide device 1`] = `
             }
           }
         >
-          <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
-            accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
+          <TouchableHighlight
+            onPress={[Function]}
             style={
               Array [
                 Object {
-                  "backgroundColor": "transparent",
+                  "borderColor": "#e3e3e3",
+                  "borderWidth": 0.5,
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
                 },
-                Array [
-                  Object {
-                    "borderColor": "#e3e3e3",
-                    "borderWidth": 0.5,
-                    "height": 160,
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "flex": 1,
-                    "margin": 12,
-                  },
-                ],
+                Object {
+                  "flex": 1,
+                  "margin": 12,
+                },
               ]
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            testID="BIO 101"
           >
             <View
               style={
@@ -1021,49 +926,30 @@ exports[`renders correctly with wide device 1`] = `
                 </Text>
               </View>
             </View>
-          </View>
-          <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
-            accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={[Function]}
             style={
               Array [
                 Object {
-                  "backgroundColor": "transparent",
+                  "borderColor": "#e3e3e3",
+                  "borderWidth": 0.5,
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
                 },
-                Array [
-                  Object {
-                    "borderColor": "#e3e3e3",
-                    "borderWidth": 0.5,
-                    "height": 160,
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "flex": 1,
-                    "margin": 12,
-                  },
-                ],
+                Object {
+                  "flex": 1,
+                  "margin": 12,
+                },
               ]
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            testID="FOO 102"
           >
             <View
               style={
@@ -1154,7 +1040,7 @@ exports[`renders correctly with wide device 1`] = `
                 </Text>
               </View>
             </View>
-          </View>
+          </TouchableHighlight>
           <View
             style={
               Object {

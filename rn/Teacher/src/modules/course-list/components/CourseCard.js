@@ -9,6 +9,8 @@ import ReactNative, {
   TouchableHighlight,
 } from 'react-native'
 
+import Images from '../../../images'
+
 type Props = {
   course: Course,
   color: string,
@@ -32,14 +34,14 @@ export default class extends Component<*, Props, *> {
   render (): React.Element<View> {
     let { course } = this.props
     return (
-       <TouchableHighlight style={[styles.card, this.props.style]} onPress={this.props.onPress}>
+       <TouchableHighlight style={[styles.card, this.props.style]} testID={course.course_code} onPress={this.props.onPress}>
         <View style={styles.cardContainer}>
             <View style={styles.imageWrapper}>
               <View style={this.createImageStyles()} />
               {course.image_download_url &&
                 <Image source={{ uri: course.image_download_url }} style={styles.image} />
               }
-              <Image style={styles.kabob} source={require('../../../images/kabob.png')} />
+              <Image style={styles.kabob} source={Images.kabob} />
             </View>
             <View style={styles.titleWrapper}>
               <Text numberOfLines={2} style={this.createTitleStyles()}>{course.name}</Text>

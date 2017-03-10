@@ -9,6 +9,8 @@ import { FavoritedCourseList } from '../FavoritedCourseList.js'
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
+jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+
 const courses = [
   courseTemplate.course({
     name: 'Biology 101',

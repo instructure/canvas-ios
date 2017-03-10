@@ -75,7 +75,7 @@ exports[`renders correctly 1`] = `
                 ],
               ]
             }
-            testID={undefined}
+            testID="BIO 101"
             tvParallaxProperties={undefined}
           >
             <View
@@ -208,7 +208,7 @@ exports[`renders correctly 1`] = `
                 ],
               ]
             }
-            testID={undefined}
+            testID="LIT 401"
             tvParallaxProperties={undefined}
           >
             <View
@@ -341,7 +341,7 @@ exports[`renders correctly 1`] = `
                 ],
               ]
             }
-            testID={undefined}
+            testID="FOO 102"
             tvParallaxProperties={undefined}
           >
             <View
@@ -516,7 +516,7 @@ exports[`renders correctly with wide device 1`] = `
                 ],
               ]
             }
-            testID={undefined}
+            testID="BIO 101"
             tvParallaxProperties={undefined}
           >
             <View
@@ -649,7 +649,7 @@ exports[`renders correctly with wide device 1`] = `
                 ],
               ]
             }
-            testID={undefined}
+            testID="LIT 401"
             tvParallaxProperties={undefined}
           >
             <View
@@ -782,7 +782,7 @@ exports[`renders correctly with wide device 1`] = `
                 ],
               ]
             }
-            testID={undefined}
+            testID="FOO 102"
             tvParallaxProperties={undefined}
           >
             <View

@@ -1,86 +1,314 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "height": 200,
-        "justifyContent": "center",
-        "padding": 10,
-        "paddingTop": 64,
-      }
-    }
-  >
+<RCTScrollView>
+  <View>
     <View
       style={
         Object {
-          "backgroundColor": "green",
-          "bottom": 0,
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
+          "alignItems": "center",
+          "height": 235,
+          "justifyContent": "center",
+          "padding": 10,
+          "paddingTop": 64,
         }
       }
     >
       <View
         style={
-          Array [
+          Object {
+            "backgroundColor": "red",
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <Image
+          source={
             Object {
-              "bottom": 0,
-              "left": 0,
-              "opacity": 0.75,
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 235,
               "position": "absolute",
-              "right": 0,
-              "top": 0,
-            },
-            Object {
-              "backgroundColor": undefined,
-            },
-          ]
+              "width": 400,
+            }
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "opacity": 0.75,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "backgroundColor": undefined,
+              },
+            ]
+          }
+        />
+      </View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontSize": 20,
+            "fontWeight": "bold",
+            "marginBottom": 2,
+            "textAlign": "center",
+          }
         }
-      />
+      >
+        Learn React Native
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "opacity": 0.75,
+          }
+        }
+      >
+        Spring 2017
+      </Text>
     </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+    <View
       style={
         Object {
-          "backgroundColor": "transparent",
-          "color": "white",
           "flex": 1,
-          "fontSize": 24,
-          "fontWeight": "bold",
-          "textAlign": "center",
+          "justifyContent": "flex-start",
         }
       }
     >
-      Learn React Native
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "backgroundColor": "transparent",
-          "color": "white",
-          "flex": 1,
-          "fontWeight": "200",
+      <View
+        style={
+          Object {
+            "borderBottomColor": "lightgrey",
+            "borderBottomWidth": 0.5,
+            "flex": 1,
+            "height": 44,
+          }
         }
-      }
-    >
-      rn 101
-    </Text>
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "flex": 1,
+              },
+            ]
+          }
+          testID={undefined}
+          tvParallaxProperties={undefined}
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "padding": 8,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Array [
+                  Object {
+                    "height": 20,
+                    "marginRight": 6,
+                    "resizeMode": "contain",
+                    "width": 21,
+                  },
+                  Object {
+                    "tintColor": undefined,
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Home
+            </Text>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 1,
+                    "borderTopWidth": 1,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                    "width": 10,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
   </View>
-</View>
+</RCTScrollView>
+`;
+
+exports[`renders correctly without tabs 1`] = `
+<RCTScrollView>
+  <View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "height": 235,
+          "justifyContent": "center",
+          "padding": 10,
+          "paddingTop": 64,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "red",
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 235,
+              "position": "absolute",
+              "width": 400,
+            }
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "opacity": 0.75,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "backgroundColor": undefined,
+              },
+            ]
+          }
+        />
+      </View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontSize": 20,
+            "fontWeight": "bold",
+            "marginBottom": 2,
+            "textAlign": "center",
+          }
+        }
+      >
+        Learn React Native
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "opacity": 0.75,
+          }
+        }
+      >
+        Spring 2017
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "justifyContent": "flex-start",
+        }
+      }
+    />
+  </View>
+</RCTScrollView>
 `;
