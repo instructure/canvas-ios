@@ -1,67 +1,125 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`Profile Tests renders correctly 1`] = `
 <View
   accessible={true}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
   testID="module.profile"
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
-    This is the profile
-  </Text>
   <View
-    accessibilityComponentType="button"
-    accessibilityLabel={undefined}
-    accessibilityTraits={
-      Array [
-        "button",
-      ]
-    }
-    accessible={true}
-    hitSlop={undefined}
-    isTVSelectable={true}
-    onLayout={undefined}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "opacity": 1,
+        "backgroundColor": "lightgrey",
+        "height": 200,
       }
     }
-    testID={undefined}
-    tvParallaxProperties={undefined}
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "top": -60,
+      }
+    }
   >
-    <View
+    <Image
+      source={
+        Object {
+          "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+        }
+      }
       style={
-        Array [
-          Object {},
-        ]
+        Object {
+          "borderColor": "white",
+          "borderRadius": 60,
+          "borderWidth": 5,
+          "height": 120,
+          "marginBottom": 8,
+          "width": 120,
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 18,
+        }
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+      Key and Peele
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "grey",
+          "fontWeight": "200",
+        }
+      }
+    >
+      keyandpeele@instructure.com
+    </Text>
+    <View
+      accessibilityComponentType="button"
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <View
         style={
           Array [
-            Object {
-              "color": "#0C42FD",
-              "fontSize": 18,
-              "padding": 8,
-              "textAlign": "center",
-            },
+            Object {},
           ]
         }
       >
-        Logout
-      </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "color": "#0C42FD",
+                "fontSize": 18,
+                "padding": 8,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          Logout
+        </Text>
+      </View>
     </View>
   </View>
 </View>
