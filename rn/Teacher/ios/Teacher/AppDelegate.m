@@ -25,6 +25,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+  self.window.rootViewController = [UIViewController new];
+  
   TheKeymaster.delegate = [NativeLogin shared];
   
   [TheKeymaster.signalForLogout subscribeNext:^(UIViewController * _Nullable x) {

@@ -70,7 +70,8 @@ RCT_EXPORT_METHOD(startObserving)
      NSDictionary *body = @{
                             @"authToken": client.accessToken,
                             @"user": client.currentUser.JSONDictionary,
-                            @"baseURL": client.baseURL.absoluteString
+                            @"baseURL": client.baseURL.absoluteString,
+                            @"branding": client.branding ? client.branding.JSONDictionary : @{},
                             };
 
     if (!self.eventsSent[client.accessToken]) {

@@ -25,6 +25,11 @@ static const NSString *CBIKeychainClients = @"CBIKeychainClients";
     dictionary[@"accessToken"] = self.accessToken;
     dictionary[@"baseURL"] = self.baseURL.absoluteString;
     dictionary[@"currentUser"] = [self.currentUser JSONDictionary];
+    
+    if (self.branding) {
+        dictionary[@"branding"] = [self.branding JSONDictionary];
+    }
+    
     if (self.actAsUserID) {
         dictionary[@"actAsUserID"] = self.actAsUserID;
     }
@@ -37,6 +42,7 @@ static const NSString *CBIKeychainClients = @"CBIKeychainClients";
     NSString *baseURLString = dictionary[@"baseURL"];
     NSURL *baseURL = [NSURL URLWithString:baseURLString];
     NSDictionary *userDictionary = dictionary[@"currentUser"];
+    NSDictionary *brandingDictionary = dictionary[@"branding"];
     NSString *actAsUserID = dictionary[@"actAsUserID"];
     CKIUser *user = [CKIUser modelFromJSONDictionary:userDictionary];
     
@@ -44,6 +50,12 @@ static const NSString *CBIKeychainClients = @"CBIKeychainClients";
     [client setValue:accessToken forKey:@"accessToken"];
     [client setValue:user forKey:@"currentUser"];
     client.actAsUserID = actAsUserID;
+
+    if (brandingDictionary) {
+        CKIBrand *branding = [CKIBrand modelFromJSONDictionary:brandingDictionary];
+        [client setValue:branding forKey:@"branding"];
+    }
+    
     return client;
 }
 

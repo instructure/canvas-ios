@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B2940161E7209AA00F2E49C /* CKIBrand.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B2940141E7209AA00F2E49C /* CKIBrand.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B2940171E7209AA00F2E49C /* CKIBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2940151E7209AA00F2E49C /* CKIBrand.m */; };
 		49369ECB1DF60265006C644F /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369ECA1DF60178006C644F /* ReactiveObjC.framework */; };
 		499D188B1C8643E6005A86D2 /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D188A1C8643E6005A86D2 /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		499D18921C8643E6005A86D2 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499D18871C8643E6005A86D2 /* CanvasKit.framework */; };
@@ -410,6 +412,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B2940141E7209AA00F2E49C /* CKIBrand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKIBrand.h; sourceTree = "<group>"; };
+		3B2940151E7209AA00F2E49C /* CKIBrand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKIBrand.m; sourceTree = "<group>"; };
 		49369ECA1DF60178006C644F /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		499D18871C8643E6005A86D2 /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		499D188A1C8643E6005A86D2 /* CanvasKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasKit.h; sourceTree = "<group>"; };
@@ -1011,6 +1015,8 @@
 				499D19221C8644A3005A86D2 /* CKIUser.m */,
 				499D19231C8644A3005A86D2 /* Live Assessments */,
 				499D19281C8644A3005A86D2 /* Rubric */,
+				3B2940141E7209AA00F2E49C /* CKIBrand.h */,
+				3B2940151E7209AA00F2E49C /* CKIBrand.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1415,6 +1421,7 @@
 				499D199B1C8644A3005A86D2 /* CKIActivityStreamItem.h in Headers */,
 				499D1A501C8644A3005A86D2 /* CKIClient.h in Headers */,
 				499D1A481C8644A3005A86D2 /* CKIClient+CKITab.h in Headers */,
+				3B2940161E7209AA00F2E49C /* CKIBrand.h in Headers */,
 				499D19FC1C8644A3005A86D2 /* CKITodoItem.h in Headers */,
 				499D1A0E1C8644A3005A86D2 /* CKIClient+CKIAssignment.h in Headers */,
 				499D19DC1C8644A3005A86D2 /* CKIPollSession.h in Headers */,
@@ -1756,6 +1763,7 @@
 				499D1A391C8644A3005A86D2 /* CKIClient+CKIPollChoice.m in Sources */,
 				499D19ED1C8644A3005A86D2 /* CKISubmission+TextEntrySubmissionHTMLFile.m in Sources */,
 				499D1A0F1C8644A3005A86D2 /* CKIClient+CKIAssignment.m in Sources */,
+				3B2940171E7209AA00F2E49C /* CKIBrand.m in Sources */,
 				499D1A4B1C8644A3005A86D2 /* CKIClient+CKITodoItem.m in Sources */,
 				499D19EF1C8644A3005A86D2 /* CKISubmission.m in Sources */,
 				499D1A251C8644A3005A86D2 /* CKIClient+CKIGroup.m in Sources */,

@@ -34,6 +34,7 @@ FOUNDATION_EXPORT const unsigned char CanvasKitVersionString[];
 #import <CanvasKit/CKIAssignment.h>
 #import <CanvasKit/CKIAssignmentGroup.h>
 #import <CanvasKit/CKIAttachment.h>
+#import <CanvasKit/CKIBrand.h>
 #import <CanvasKit/CKICalendarEvent.h>
 #import <CanvasKit/CKIConversation.h>
 #import <CanvasKit/CKIContext.h>

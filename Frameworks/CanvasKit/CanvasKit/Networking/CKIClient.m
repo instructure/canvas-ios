@@ -13,6 +13,7 @@
 #import "CKIClient+CKIUser.h"
 #import "CKIModel.h"
 #import "CKIUser.h"
+#import "CKIBrand.h"
 #import "NSHTTPURLResponse+Pagination.h"
 #import "NSDictionary+DictionaryByAddingObjectsFromDictionary.h"
 
@@ -459,8 +460,8 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
     if (self.isLoggedIn) {
         return nil;
     }
-
-    return [[[[[self authorizeWithServerUsingWebBrowserUsingAuthenticationMethod:method] flattenMap:^__kindof RACSignal * _Nullable(NSString *temporaryCode) {
+    
+    RACSignal *client = [[[[[self authorizeWithServerUsingWebBrowserUsingAuthenticationMethod:method] flattenMap:^__kindof RACSignal * _Nullable(NSString *temporaryCode) {
         return [self postAuthCode:temporaryCode];
     }] flattenMap:^__kindof RACStream * _Nullable(NSDictionary *responseObject) {
         self.accessToken = responseObject[@"access_token"];
@@ -472,6 +473,8 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
         NSLog(@"CanvasKit OAuth failed with error: %@", error);
         [self clearCookiesAndCache];
     }];
+
+    return client;
 }
 
 - (RACSignal *)authorizeWithServerUsingWebBrowserUsingAuthenticationMethod:(CKIAuthenticationMethod)method
@@ -507,5 +510,49 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
 }
 
 #endif
+
+#pragma mark - Branding
+
+- (RACSignal *)fetchBranding {
+    NSURL *branding = [self.baseURL URLByAppendingPathComponent:@"/api/v1/brand_variables"];
+    RACSignal *signal = [RACSignal createSignal:^RACDisposable * _Nullable(id < RACSubscriber >_Nonnull subscriber) {
+        NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:branding completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
+            
+            void (^handleError)(NSError *) = ^(NSError *error) {
+                [subscriber sendError:error];
+                [subscriber sendCompleted];
+            };
+            
+            if (error) {
+                handleError(error);
+                return;
+            }
+            
+            NSError *parsingError = nil;
+            id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&parsingError];
+
+            if (parsingError) {
+                handleError(parsingError);
+                return;
+            }
+
+            if (json) {
+                CKIBrand *brandModel = [MTLJSONAdapter modelOfClass:CKIBrand.class fromJSONDictionary:json error:&parsingError];
+                if (parsingError) {
+                    handleError(parsingError);
+                    return;
+                }
+                [subscriber sendNext:brandModel];
+                [subscriber sendCompleted];
+            }
+        }];
+        [task resume];
+
+        return [RACDisposable disposableWithBlock:^{
+            [task cancel];
+        }];
+    }];
+    return signal;
+}
 
 @end

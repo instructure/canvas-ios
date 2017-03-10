@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger, CKIAuthenticationMethod) {
 
 @class CKIModel;
 @class CKIUser;
+@class CKIBrand;
 @class RACSignal;
 
 extern NSString *const CKIClientAccessTokenExpiredNotification;
@@ -40,6 +41,13 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  The user that is currently logged in via this client.
  */
 @property (nonatomic, readonly) CKIUser *currentUser;
+
+
+/**
+ Branding info for current user organization.
+ */
+@property (nonatomic) CKIBrand *branding;
+
 
 /**
  The ID of the user that the current user should masquerade as
@@ -149,5 +157,7 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
 
 - (RACSignal *)loginWithAuthenticationMethod:(CKIAuthenticationMethod)method;
 #endif
+
+- (RACSignal *)fetchBranding;
 
 @end

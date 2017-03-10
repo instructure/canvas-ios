@@ -266,7 +266,13 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         return nil;
     }];
     
-    return [signalForInitialClient concat:_subjectForClientLogin];
+    return [[signalForInitialClient concat:_subjectForClientLogin] flattenMap:^__kindof RACSignal * _Nullable(CKIClient * _Nullable client) {
+        RACSignal *brandingSignal = [client fetchBranding];
+        return [brandingSignal map:^id _Nullable(CKIBrand *  _Nullable brand) {
+            client.branding = brand;
+            return client;
+        }];
+    }];
 }
 
 - (RACSignal *)signalForLoginWithDomain:(NSString *)host
