@@ -18,7 +18,8 @@ workspace_name = 'AllTheThings.xcworkspace'
 raise "This script must be run from the same directory that contains #{workspace_name}" unless File.exist?(workspace_name)
 
 targets = [workspace_name, 
-           'Canvas', 
+           'Canvas',
+           'Parent',
            'Cartfile',
            'Cartfile.resolved',
            'Frameworks',
@@ -28,14 +29,15 @@ targets = [workspace_name,
            'SpeedGrader',
            'secrets.plist',
            '.gitignore',
-           'fastlane']
+           'fastlane',
+           'Tinker.playground']
 
 destination = 'ios-open-source'
 frameworks_path = File.join(destination, 'Frameworks')
 workspace_path = File.join(destination, workspace_name)
 
 # The groups in the workspace that shouldn't be included
-groups_to_remove = %w[Teacher Parent]
+groups_to_remove = %w[Teacher]
 
 # Frameworks that should be removed as well
 frameworks_to_remove = %w[DoNotShipThis SoAutomated EverythingBagel]
