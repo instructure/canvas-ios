@@ -43,7 +43,7 @@ exports[`renders correctly 1`] = `
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
             isTVSelectable={true}
-            onLayout={undefined}
+            onLayout={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -70,6 +70,7 @@ exports[`renders correctly 1`] = `
                   },
                   Object {
                     "flex": 1,
+                    "height": 0,
                     "margin": 12,
                   },
                 ],
@@ -89,19 +90,10 @@ exports[`renders correctly 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 2,
-                    "justifyContent": "space-between",
+                    "flex": 1,
                   }
                 }
               >
-                <View
-                  style={
-                    Object {
-                      "backgroundColor": "#27B9CD",
-                      "height": 80,
-                    }
-                  }
-                />
                 <Image
                   source={
                     Object {
@@ -110,9 +102,20 @@ exports[`renders correctly 1`] = `
                   }
                   style={
                     Object {
-                      "height": 80,
-                      "opacity": 0.2,
-                      "top": -80,
+                      "flex": 1,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#27B9CD",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
                     }
                   }
                 />
@@ -130,7 +133,7 @@ exports[`renders correctly 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 2,
+                    "flex": 1,
                     "marginHorizontal": 10,
                     "marginTop": 20,
                   }
@@ -176,7 +179,7 @@ exports[`renders correctly 1`] = `
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
             isTVSelectable={true}
-            onLayout={undefined}
+            onLayout={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -203,6 +206,7 @@ exports[`renders correctly 1`] = `
                   },
                   Object {
                     "flex": 1,
+                    "height": 0,
                     "margin": 12,
                   },
                 ],
@@ -222,19 +226,10 @@ exports[`renders correctly 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 2,
-                    "justifyContent": "space-between",
+                    "flex": 1,
                   }
                 }
               >
-                <View
-                  style={
-                    Object {
-                      "backgroundColor": "#8F3E97",
-                      "height": 80,
-                    }
-                  }
-                />
                 <Image
                   source={
                     Object {
@@ -243,9 +238,20 @@ exports[`renders correctly 1`] = `
                   }
                   style={
                     Object {
-                      "height": 80,
-                      "opacity": 0.2,
-                      "top": -80,
+                      "flex": 1,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#8F3E97",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
                     }
                   }
                 />
@@ -263,7 +269,7 @@ exports[`renders correctly 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 2,
+                    "flex": 1,
                     "marginHorizontal": 10,
                     "marginTop": 20,
                   }
@@ -309,7 +315,7 @@ exports[`renders correctly 1`] = `
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
             isTVSelectable={true}
-            onLayout={undefined}
+            onLayout={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -336,6 +342,7 @@ exports[`renders correctly 1`] = `
                   },
                   Object {
                     "flex": 1,
+                    "height": 0,
                     "margin": 12,
                   },
                 ],
@@ -355,19 +362,10 @@ exports[`renders correctly 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 2,
-                    "justifyContent": "space-between",
+                    "flex": 1,
                   }
                 }
               >
-                <View
-                  style={
-                    Object {
-                      "backgroundColor": "#8F3E99",
-                      "height": 80,
-                    }
-                  }
-                />
                 <Image
                   source={
                     Object {
@@ -376,9 +374,20 @@ exports[`renders correctly 1`] = `
                   }
                   style={
                     Object {
-                      "height": 80,
-                      "opacity": 0.2,
-                      "top": -80,
+                      "flex": 1,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#8F3E99",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
                     }
                   }
                 />
@@ -396,7 +405,7 @@ exports[`renders correctly 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 2,
+                    "flex": 1,
                     "marginHorizontal": 10,
                     "marginTop": 20,
                   }
@@ -484,7 +493,7 @@ exports[`renders correctly with wide device 1`] = `
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
             isTVSelectable={true}
-            onLayout={undefined}
+            onLayout={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -511,6 +520,7 @@ exports[`renders correctly with wide device 1`] = `
                   },
                   Object {
                     "flex": 1,
+                    "height": 0,
                     "margin": 12,
                   },
                 ],
@@ -530,19 +540,10 @@ exports[`renders correctly with wide device 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 2,
-                    "justifyContent": "space-between",
+                    "flex": 1,
                   }
                 }
               >
-                <View
-                  style={
-                    Object {
-                      "backgroundColor": "#27B9CD",
-                      "height": 80,
-                    }
-                  }
-                />
                 <Image
                   source={
                     Object {
@@ -551,9 +552,20 @@ exports[`renders correctly with wide device 1`] = `
                   }
                   style={
                     Object {
-                      "height": 80,
-                      "opacity": 0.2,
-                      "top": -80,
+                      "flex": 1,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#27B9CD",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
                     }
                   }
                 />
@@ -571,7 +583,7 @@ exports[`renders correctly with wide device 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 2,
+                    "flex": 1,
                     "marginHorizontal": 10,
                     "marginTop": 20,
                   }
@@ -617,7 +629,7 @@ exports[`renders correctly with wide device 1`] = `
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
             isTVSelectable={true}
-            onLayout={undefined}
+            onLayout={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -644,6 +656,7 @@ exports[`renders correctly with wide device 1`] = `
                   },
                   Object {
                     "flex": 1,
+                    "height": 0,
                     "margin": 12,
                   },
                 ],
@@ -663,19 +676,10 @@ exports[`renders correctly with wide device 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 2,
-                    "justifyContent": "space-between",
+                    "flex": 1,
                   }
                 }
               >
-                <View
-                  style={
-                    Object {
-                      "backgroundColor": "#8F3E97",
-                      "height": 80,
-                    }
-                  }
-                />
                 <Image
                   source={
                     Object {
@@ -684,9 +688,20 @@ exports[`renders correctly with wide device 1`] = `
                   }
                   style={
                     Object {
-                      "height": 80,
-                      "opacity": 0.2,
-                      "top": -80,
+                      "flex": 1,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#8F3E97",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
                     }
                   }
                 />
@@ -704,7 +719,7 @@ exports[`renders correctly with wide device 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 2,
+                    "flex": 1,
                     "marginHorizontal": 10,
                     "marginTop": 20,
                   }
@@ -750,7 +765,7 @@ exports[`renders correctly with wide device 1`] = `
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
             isTVSelectable={true}
-            onLayout={undefined}
+            onLayout={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -777,6 +792,7 @@ exports[`renders correctly with wide device 1`] = `
                   },
                   Object {
                     "flex": 1,
+                    "height": 0,
                     "margin": 12,
                   },
                 ],
@@ -796,19 +812,10 @@ exports[`renders correctly with wide device 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 2,
-                    "justifyContent": "space-between",
+                    "flex": 1,
                   }
                 }
               >
-                <View
-                  style={
-                    Object {
-                      "backgroundColor": "#8F3E99",
-                      "height": 80,
-                    }
-                  }
-                />
                 <Image
                   source={
                     Object {
@@ -817,9 +824,20 @@ exports[`renders correctly with wide device 1`] = `
                   }
                   style={
                     Object {
-                      "height": 80,
-                      "opacity": 0.2,
-                      "top": -80,
+                      "flex": 1,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#8F3E99",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
                     }
                   }
                 />
@@ -837,7 +855,7 @@ exports[`renders correctly with wide device 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 2,
+                    "flex": 1,
                     "marginHorizontal": 10,
                     "marginTop": 20,
                   }

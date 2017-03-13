@@ -995,6 +995,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.teacher;
 				PRODUCT_NAME = Teacher;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1020,6 +1021,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.teacher;
 				PRODUCT_NAME = Teacher;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

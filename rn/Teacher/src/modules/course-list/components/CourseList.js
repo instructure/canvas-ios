@@ -22,7 +22,7 @@ type Props = {
 }
 
 const PADDING_CHANGE_WIDTH = 450
-const MAX_CARD_WIDTH = 310
+const MAX_CARD_WIDTH = 295
 
 export default class CourseList extends Component {
   props: Props

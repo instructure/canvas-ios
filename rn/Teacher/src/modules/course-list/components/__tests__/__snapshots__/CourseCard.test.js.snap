@@ -9,7 +9,7 @@ exports[`renders 1`] = `
   hasTVPreferredFocus={undefined}
   hitSlop={undefined}
   isTVSelectable={true}
-  onLayout={undefined}
+  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -34,7 +34,9 @@ exports[`renders 1`] = `
           "shadowOpacity": 0.2,
           "shadowRadius": 1,
         },
-        undefined,
+        Object {
+          "height": 100,
+        },
       ],
     ]
   }
@@ -52,19 +54,10 @@ exports[`renders 1`] = `
     <View
       style={
         Object {
-          "flex": 2,
-          "justifyContent": "space-between",
+          "flex": 1,
         }
       }
     >
-      <View
-        style={
-          Object {
-            "backgroundColor": "#333",
-            "height": 80,
-          }
-        }
-      />
       <Image
         source={
           Object {
@@ -73,9 +66,20 @@ exports[`renders 1`] = `
         }
         style={
           Object {
-            "height": 80,
-            "opacity": 0.2,
-            "top": -80,
+            "flex": 1,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "backgroundColor": "#333",
+            "bottom": 0,
+            "left": 0,
+            "opacity": 0.8,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
           }
         }
       />
@@ -93,7 +97,7 @@ exports[`renders 1`] = `
     <View
       style={
         Object {
-          "flex": 2,
+          "flex": 1,
           "marginHorizontal": 10,
           "marginTop": 20,
         }

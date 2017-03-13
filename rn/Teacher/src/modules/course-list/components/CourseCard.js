@@ -16,9 +16,25 @@ type Props = {
   color: string,
   style: StyleSheet,
   onPress: Function,
+  initialHeight?: number,
 }
 
-export default class extends Component<*, Props, *> {
+type State = {
+  height: number,
+}
+
+export default class CourseCard extends Component {
+  props: Props
+  state: State
+
+  constructor (props: Props) {
+    super(props)
+
+    this.state = {
+      height: props.initialHeight || 0,
+    }
+  }
+
   createImageStyles (): ReactNative.StyleSheet {
     return StyleSheet.flatten([styles.imageColor, {
       backgroundColor: this.props.color,
@@ -31,16 +47,26 @@ export default class extends Component<*, Props, *> {
     }])
   }
 
+  onLayout = (event: any) => {
+    this.setState({
+      height: event.nativeEvent.layout.width,
+    })
+  }
+
   render (): React.Element<View> {
     let { course } = this.props
+    let style = {
+      ...this.props.style,
+      height: this.state.height,
+    }
     return (
-       <TouchableHighlight style={[styles.card, this.props.style]} testID={course.course_code} onPress={this.props.onPress}>
+       <TouchableHighlight onLayout={this.onLayout} style={[styles.card, style]} testID={course.course_code} onPress={this.props.onPress}>
         <View style={styles.cardContainer}>
             <View style={styles.imageWrapper}>
-              <View style={this.createImageStyles()} />
               {course.image_download_url &&
                 <Image source={{ uri: course.image_download_url }} style={styles.image} />
               }
+              <View style={this.createImageStyles()} />
               <Image style={styles.kabob} source={Images.kabob} />
             </View>
             <View style={styles.titleWrapper}>
@@ -71,16 +97,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   imageWrapper: {
-    flex: 2,
-    justifyContent: 'space-between',
+    flex: 1,
   },
   image: {
-    height: 80,
-    opacity: 0.2,
-    top: -80,
+    flex: 1,
   },
   imageColor: {
-    height: 80,
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    opacity: 0.8,
   },
   kabob: {
     position: 'absolute',
@@ -88,7 +116,7 @@ const styles = StyleSheet.create({
     right: 5,
   },
   titleWrapper: {
-    flex: 2,
+    flex: 1,
     marginTop: 20,
     marginHorizontal: 10,
   },
