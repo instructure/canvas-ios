@@ -9,7 +9,7 @@ import { NoCourses } from '../NoCourses'
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
-test('renders NoCourses correctly', () => {
+test('render', () => {
   let tree = renderer.create(
     <NoCourses />
   ).toJSON()

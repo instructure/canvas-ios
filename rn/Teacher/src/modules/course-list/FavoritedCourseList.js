@@ -89,7 +89,7 @@ export class FavoritedCourseList extends Component {
             })}
           </Text>
         </View>
-        <Button onPress={this.goToAllCourses}>
+        <Button onPress={this.goToAllCourses} testID='course-list.see-all-btn'>
           <Text style={styles.seeAll}>
             {i18n({
               default: 'See All',

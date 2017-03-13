@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders NoCourses correctly 1`] = `
+exports[`render 1`] = `
 <View
   style={
     Object {

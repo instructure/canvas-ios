@@ -2,31 +2,36 @@
 
 import 'react-native'
 import React from 'react'
-import * as courseTemplate from '../../../api/canvas-api/__templates__/course'
-import * as navigationTemplate from '../../../__templates__/react-native-navigation'
 import { FavoritedCourseList } from '../FavoritedCourseList.js'
+import explore from '../../../../test/helpers/explore'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
+const template = {
+  ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../__templates__/react-native-navigation'),
+}
+
+jest.mock('TouchableOpacity', () => 'TouchableOpacity')
 jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 
 const courses = [
-  courseTemplate.course({
+  template.course({
     name: 'Biology 101',
     course_code: 'BIO 101',
     short_name: 'BIO 101',
     id: 1,
     is_favorite: true,
   }),
-  courseTemplate.course({
+  template.course({
     name: 'American Literature Psysicks foobar hello world 401',
     course_code: 'LIT 401',
     short_name: 'LIT 401',
     id: 2,
     is_favorite: false,
   }),
-  courseTemplate.course({
+  template.course({
     name: 'Foobar 102',
     course_code: 'FOO 102',
     id: 3,
@@ -42,42 +47,71 @@ const colors = {
 }
 
 let defaultProps = {
-  navigator: navigationTemplate.navigator(),
+  navigator: template.navigator(),
   courses,
   customColors: colors,
   refreshCourses: () => {},
   pending: 0,
 }
 
-test('renders correctly', () => {
+test('render', () => {
   let tree = renderer.create(
-    <FavoritedCourseList {...defaultProps} width={320} />
+    <FavoritedCourseList {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
-test('renders correctly with wide device', () => {
+test('render without courses', () => {
   let tree = renderer.create(
-    <FavoritedCourseList {...defaultProps} width={768} />
+    <FavoritedCourseList {...defaultProps} courses={[]} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
-test('refreshCourses was called', () => {
-  let didCallRefresh = false
-  let refresh = () => {
-    didCallRefresh = true
+test('refresh courses', () => {
+  const refresh = jest.fn()
+  renderer.create(
+    <FavoritedCourseList {...defaultProps} refreshCourses={refresh} />
+  )
+  expect(refresh).toHaveBeenCalled()
+})
+
+test('select course', () => {
+  const course = template.course({ is_favorite: true })
+  const props = {
+    ...defaultProps,
+    courses: [course],
+    navigator: {
+      push: jest.fn(),
+    },
   }
   let tree = renderer.create(
-    <FavoritedCourseList {...defaultProps} width={320} refreshCourses={ refresh } />
+    <FavoritedCourseList {...props} />
   ).toJSON()
-  expect(tree).toMatchSnapshot()
-  expect(didCallRefresh).toBe(true)
+
+  const courseCard = explore(tree).selectByID(course.course_code) || {}
+  courseCard.props.onPress()
+  expect(props.navigator.push).toHaveBeenCalled()
+  const pushed = props.navigator.push.mock.calls.slice(-1).pop()[0]
+  expect(pushed.screen).toEqual('teacher.CourseDetails')
 })
 
-test('renders no courses', () => {
+test('go to all courses', () => {
+  const props = {
+    ...defaultProps,
+    navigator: {
+      push: jest.fn(),
+    },
+  }
   let tree = renderer.create(
-    <FavoritedCourseList {...defaultProps} courses={ [] } />
+    <FavoritedCourseList {...props} />
   ).toJSON()
-  expect(tree).toMatchSnapshot()
+
+  const allButton = explore(tree).selectByID('course-list.see-all-btn') || {}
+  allButton.props.onPress()
+  expect(props.navigator.push).toHaveBeenCalledWith({
+    screen: 'teacher.AllCourseList',
+    title: 'All Courses',
+    backButtonTitle: 'Courses',
+  })
 })

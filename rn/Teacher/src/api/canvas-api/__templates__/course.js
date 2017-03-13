@@ -11,7 +11,7 @@ export const course: Template<Course> = template({
   is_favorite: true,
 })
 
-export const customColors: Template<Course> = template({
+export const customColors: Template<CustomColors> = template({
   custom_colors: {
     course_1: '#fff',
   },

@@ -28,7 +28,7 @@ import parseContextCode from '../../utils/parse-context-code'
  *    }
  *  }
  */
-export default function groupCustomColors (colors: CustomColors): { [string]: { [string]: string } } {
+export default function groupCustomColors (colors: CustomColors): { [string]: { [string]: { [string]: string } } } {
   let result = {}
   for (const group in colors) {
     result[group] = {}

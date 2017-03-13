@@ -2,29 +2,35 @@
 
 import 'react-native'
 import React from 'react'
-import * as courseTemplate from '../../../api/canvas-api/__templates__/course'
-import * as navigationTemplate from '../../../__templates__/react-native-navigation'
 import { AllCourseList } from '../AllCourseList.js'
+import explore from '../../../../test/helpers/explore'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
+jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+
+const template = {
+  ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../__templates__/react-native-navigation'),
+}
+
 const courses = [
-  courseTemplate.course({
+  template.course({
     name: 'Biology 101',
     course_code: 'BIO 101',
     short_name: 'BIO 101',
     id: 1,
     is_favorite: true,
   }),
-  courseTemplate.course({
+  template.course({
     name: 'American Literature Psysicks foobar hello world 401',
     course_code: 'LIT 401',
     short_name: 'LIT 401',
     id: 2,
     is_favorite: false,
   }),
-  courseTemplate.course({
+  template.course({
     name: 'Foobar 102',
     course_code: 'FOO 102',
     id: 3,
@@ -40,22 +46,35 @@ const colors = {
 }
 
 let defaultProps = {
-  navigator: navigationTemplate.navigator(),
+  navigator: template.navigator(),
   courses,
   customColors: colors,
   pending: 0,
 }
 
-test('renders correctly', () => {
+test('render', () => {
   let tree = renderer.create(
-    <AllCourseList {...defaultProps} width={320} />
+    <AllCourseList {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
-test('renders correctly with wide device', () => {
+test('select course', () => {
+  const course = template.course()
+  const props = {
+    ...defaultProps,
+    courses: [course],
+    navigator: {
+      push: jest.fn(),
+    },
+  }
   let tree = renderer.create(
-    <AllCourseList {...defaultProps} width={768} />
+    <AllCourseList {...props} />
   ).toJSON()
-  expect(tree).toMatchSnapshot()
+
+  const courseCard = explore(tree).selectByID(course.course_code) || {}
+  courseCard.props.onPress()
+  expect(props.navigator.push).toHaveBeenCalled()
+  const pushed = props.navigator.push.mock.calls.slice(-1).pop()[0]
+  expect(pushed.screen).toEqual('teacher.CourseDetails')
 })
