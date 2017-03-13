@@ -66,4 +66,6 @@
     
 }
 
+- (BOOL)allowsInlineMediaPlayback { return YES; }
+
 @end
