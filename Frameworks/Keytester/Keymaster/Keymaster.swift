@@ -20,6 +20,7 @@ import Foundation
 import SoLazy
 import TooLegit
 import Security
+import Secrets
 
 open class Keymaster {
     
@@ -27,7 +28,19 @@ open class Keymaster {
     open var useSharedCredentials = false {
         didSet {
             if useSharedCredentials {
-                keychain = FXKeychain(service: "com.instructure.shared-credentials", accessGroup: "8MKNFMCD9M.com.instructure.shared-credentials")
+                
+                let service = Secrets.fetch(.parentKeychainService)
+                let accessGroup = Secrets.fetch(.parentKeychainAccessGroup)
+                
+                if let s = service, let ag = accessGroup {
+                    
+                    keychain = FXKeychain(service: s, accessGroup: ag)
+                }
+                else {
+                    NSLog("\n\n\n**WARNING**\nKeymaster was told to use shared credentials, but none exist")
+                    keychain = FXKeychain.default()
+                }
+                
             } else {
                 keychain = FXKeychain.default()
             }

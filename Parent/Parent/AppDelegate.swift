@@ -27,6 +27,7 @@ import Fabric
 import Crashlytics
 import Airwolf
 import Armchair
+import Secrets
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -44,14 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         BuddyBuildSDK.setup()
-        
-        Armchair.appID("1097996698")
-        Armchair.shouldPromptIfRated(false)
-        Armchair.daysBeforeReminding(5)
-        Armchair.significantEventsUntilPrompt(15)
-        Armchair.daysUntilPrompt(5)
-        Armchair.usesUntilPrompt(10)
-        Armchair.useMainAppBundleForLocalizations(true)
+        self.setupRatingsPrompt()
         
         let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(notificationSettings)
@@ -98,6 +92,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func setupRatingsPrompt() {
+        guard let appID = Secrets.fetch(.parentAppStoreID) else { return }
+        
+        Armchair.appID(appID)
+        Armchair.shouldPromptIfRated(false)
+        Armchair.daysBeforeReminding(5)
+        Armchair.significantEventsUntilPrompt(15)
+        Armchair.daysUntilPrompt(5)
+        Armchair.usesUntilPrompt(10)
+        Armchair.useMainAppBundleForLocalizations(true)
+    }
+    
     func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable: Any], completionHandler: @escaping () -> Void) {
         // On, iOS 10.0b1 application:didReceiveLocalNotification is not being called when opening the app from a local notification and making it transistion from the background. Instead, this is being called. Not
         // sure if this is a bug or some change in API behavior.

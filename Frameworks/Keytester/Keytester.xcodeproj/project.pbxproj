@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C50EE1C1E7371BD0096592C /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE1B1E7371BD0096592C /* Secrets.framework */; };
 		2CCDE2CF1DA845B800B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2D11DA845B800B46D87 /* InfoPlist.strings */; };
 		2CCDE2DE1DA845BA00B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2E01DA845BA00B46D87 /* InfoPlist.strings */; };
 		2CCDE2E31DA845BB00B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2E51DA845BB00B46D87 /* InfoPlist.strings */; };
@@ -140,6 +141,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C50EE1B1E7371BD0096592C /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphonesimulator/Secrets.framework"; sourceTree = "<group>"; };
 		2CCDE2D01DA845B800B46D87 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CCDE2DF1DA845BA00B46D87 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CCDE2E41DA845BB00B46D87 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				5EB86AFE1C4ECE8400C920A2 /* SoPretty.framework in Frameworks */,
 				4928EBD61C84DEA200799E04 /* Marshal.framework in Frameworks */,
 				5EB86AFF1C4ECE8400C920A2 /* TooLegit.framework in Frameworks */,
+				2C50EE1C1E7371BD0096592C /* Secrets.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +369,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C50EE1A1E7371BC0096592C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C50EE1B1E7371BD0096592C /* Secrets.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5E1B50F21C8F44230019D764 /* AccountDomain */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +407,7 @@
 				5EB86A911C4ECC6E00C920A2 /* Keymaster */,
 				5EB86A9F1C4ECC6E00C920A2 /* KeymasterTests */,
 				5EB86A5B1C4ECC5400C920A2 /* Products */,
+				2C50EE1A1E7371BC0096592C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

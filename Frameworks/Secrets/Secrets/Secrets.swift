@@ -27,6 +27,9 @@ import SoLazy
     case canvasGoogleAnalytics
     case speedGraderGoogleAnalytics
     case canvasAppStore
+    case parentAppStoreID
+    case parentKeychainService
+    case parentKeychainAccessGroup
     
     func toString() -> String {
         switch self {
@@ -40,6 +43,12 @@ import SoLazy
             return "SpeedGraderGoogleAnalyticsKey"
         case .canvasAppStore:
             return "CanvasAppStoreLinkKey"
+        case .parentAppStoreID:
+            return "ParentAppStoreID"
+        case .parentKeychainService:
+            return "ParentKeychainService"
+        case .parentKeychainAccessGroup:
+            return "ParentKeychainAccessGroup"
         }
     }
 }
