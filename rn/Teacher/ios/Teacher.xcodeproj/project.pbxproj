@@ -21,6 +21,15 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
+		2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */; };
+		2C50EDFF1E735CB10096592C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFE1E735CB10096592C /* CoreText.framework */; };
+		2C50EE011E735CB50096592C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE001E735CB50096592C /* CoreMedia.framework */; };
+		2C50EE031E735CBB0096592C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE021E735CBB0096592C /* AVFoundation.framework */; };
+		2C50EE051E735CC00096592C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE041E735CC00096592C /* CoreVideo.framework */; };
+		2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE061E735CC60096592C /* QuartzCore.framework */; };
+		2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE081E735CCB0096592C /* SystemConfiguration.framework */; };
+		2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */; };
 		2C5AC25B1E5E3B8700DE4DEE /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5AC25A1E5E3B7B00DE4DEE /* libReactNativeNavigation.a */; };
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
 		4943ECB31E5CEFBD001DC5B5 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */; };
@@ -279,6 +288,16 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Teacher/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Teacher/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		2C50EDE01E735CA50096592C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		2C50EDFE1E735CB10096592C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		2C50EE001E735CB50096592C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		2C50EE021E735CBB0096592C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2C50EE041E735CC00096592C /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		2C50EE061E735CC60096592C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2C50EE081E735CCB0096592C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2C50EE0A1E735CDD0096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
+		2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C5AC2441E5E3B7B00DE4DEE /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -311,6 +330,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */,
+				2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */,
+				2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */,
+				2C50EE051E735CC00096592C /* CoreVideo.framework in Frameworks */,
+				2C50EE031E735CBB0096592C /* AVFoundation.framework in Frameworks */,
+				2C50EE011E735CB50096592C /* CoreMedia.framework in Frameworks */,
+				2C50EDFF1E735CB10096592C /* CoreText.framework in Frameworks */,
+				2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */,
+				2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */,
 				2C5AC25B1E5E3B8700DE4DEE /* libReactNativeNavigation.a in Frameworks */,
 				4943ECC31E5CEFBD001DC5B5 /* ReactiveObjC.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -447,6 +475,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2C50EDDF1E735CA50096592C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C50EE0A1E735CDD0096592C /* BuddyBuildSDK.framework */,
+				2C50EE081E735CCB0096592C /* SystemConfiguration.framework */,
+				2C50EE061E735CC60096592C /* QuartzCore.framework */,
+				2C50EE041E735CC00096592C /* CoreVideo.framework */,
+				2C50EE021E735CBB0096592C /* AVFoundation.framework */,
+				2C50EE001E735CB50096592C /* CoreMedia.framework */,
+				2C50EDFE1E735CB10096592C /* CoreText.framework */,
+				2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */,
+				2C50EDE01E735CA50096592C /* AssetsLibrary.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2C5AC2451E5E3B7B00DE4DEE /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +502,7 @@
 		4943EC8A1E5CEF93001DC5B5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */,
 				4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */,
 				4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */,
 				4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */,
@@ -525,6 +570,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TeacherTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				2C50EDDF1E735CA50096592C /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -981,6 +1027,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../ExternalFrameworks";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -1007,6 +1054,7 @@
 				CODE_SIGN_ENTITLEMENTS = Teacher/Teacher.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../ExternalFrameworks";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

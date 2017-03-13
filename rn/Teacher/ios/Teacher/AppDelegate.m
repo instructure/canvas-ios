@@ -9,6 +9,7 @@
 
 #import "AppDelegate.h"
 
+#import <BuddyBuildSDK/BuddyBuildSDK.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import "RCCManager.h"
@@ -24,6 +25,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [BuddyBuildSDK setup];
+  
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.window.rootViewController = [UIViewController new];
   
