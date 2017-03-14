@@ -18,8 +18,11 @@ import i18n from 'format-message'
 import CourseDetailsActions from './actions'
 import CourseDetailsTab from './components/CourseDetailsTab'
 import { stateToProps } from './props'
+import Button from 'react-native-button'
+import NavigationBackButton from '../../common/components/NavigationBackButton'
 
 type Props = {
+  navigator: ReactNavigator,
   course: Course,
   tabs: Tab[],
   courseColors: string[],
@@ -28,9 +31,7 @@ type Props = {
 
 export class CourseDetails extends Component<any, Props, any> {
   static navigatorStyle = {
-    drawUnderNavBar: true,
-    navBarTranslucent: true,
-    navBarTransparent: true,
+    navBarHidden: true,
   }
 
   static navigatorButtons = {
@@ -43,7 +44,7 @@ export class CourseDetails extends Component<any, Props, any> {
     }],
   }
 
-  editCourse () {
+  editCourse = () => {
   }
 
   componentDidMount () {
@@ -51,6 +52,10 @@ export class CourseDetails extends Component<any, Props, any> {
   }
 
   selectTab (tab: Tab) {
+  }
+
+  back = () => {
+    this.props.navigator.pop()
   }
 
   render (): React.Element<View> {
@@ -69,8 +74,20 @@ export class CourseDetails extends Component<any, Props, any> {
             <View style={[styles.headerImageOverlay, { backgroundColor: courseColor }]} />
           </View>
 
-          <Text style={styles.headerTitle}>{course.name}</Text>
-          <Text style={styles.headerSubtitle}>Spring 2017</Text>
+          <View style={styles.navigationBar}>
+            <NavigationBackButton onPress={this.back} testID='course-details.navigation-back-btn' />
+            <Text style={styles.navigationTitle}>{course.course_code}</Text>
+            <Button style={[styles.settingsButton]} onPress={this.editCourse} testID='course-details.navigation-edit-course-btn'>
+              <View style={{ paddingLeft: 20 }}>
+                <Image source={Images.course.settings} onPress={this.back} style={styles.navButtonImage} />
+              </View>
+            </Button>
+          </View>
+
+          <View style={styles.headerBottomContainer} >
+            <Text style={styles.headerTitle}>{course.name}</Text>
+            <Text style={styles.headerSubtitle}>Spring 2017</Text>
+          </View>
         </View>
         <View style={styles.tabContainer}>
           {tabs}
@@ -88,7 +105,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
-    paddingTop: 64,
+    paddingTop: 20,
     height: 235,
   },
   headerTitle: {
@@ -124,6 +141,37 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     bottom: 0,
+  },
+  headerBottomContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 44,
+  },
+  navigationBar: {
+    position: 'absolute',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingLeft: 10,
+    paddingRight: 10,
+    height: 44,
+    top: 20,
+    left: 0,
+    right: 0,
+  },
+  navigationTitle: {
+    color: 'white',
+    backgroundColor: 'transparent',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  settingsButton: {
+    width: 24,
+  },
+  navButtonImage: {
+    resizeMode: 'contain',
+    tintColor: 'white',
   },
   tabContainer: {
     flex: 1,

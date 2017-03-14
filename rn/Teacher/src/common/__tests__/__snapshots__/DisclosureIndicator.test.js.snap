@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders button correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "transparent",
+      "borderColor": "#c7c7cc",
+      "borderRightWidth": 1,
+      "borderTopWidth": 1,
+      "height": 10,
+      "marginLeft": 7,
+      "transform": Array [
+        Object {
+          "rotate": "45deg",
+        },
+      ],
+      "width": 10,
+    }
+  }
+/>
+`;

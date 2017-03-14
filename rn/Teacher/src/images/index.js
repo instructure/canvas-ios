@@ -20,6 +20,7 @@ const images = {
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),
   kabob: require('./kabob.png'),
+  backIcon: require('./Back-icon.png'),
 }
 
 export default images

@@ -14,4 +14,5 @@ export type NavigatorPushOptions = {
 
 export type ReactNavigator = {
   push: (pushOptions: NavigatorPushOptions) => void,
+  pop: () => void,
 }

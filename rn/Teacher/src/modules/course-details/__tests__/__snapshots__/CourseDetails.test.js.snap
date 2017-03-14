@@ -10,7 +10,7 @@ exports[`renders correctly 1`] = `
           "height": 235,
           "justifyContent": "center",
           "padding": 10,
-          "paddingTop": 64,
+          "paddingTop": 20,
         }
       }
     >
@@ -58,37 +58,134 @@ exports[`renders correctly 1`] = `
           }
         />
       </View>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+      <View
         style={
           Object {
-            "backgroundColor": "transparent",
-            "color": "white",
-            "fontSize": 20,
-            "fontWeight": "bold",
-            "marginBottom": 2,
-            "textAlign": "center",
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 44,
+            "justifyContent": "space-between",
+            "left": 0,
+            "paddingLeft": 10,
+            "paddingRight": 10,
+            "position": "absolute",
+            "right": 0,
+            "top": 20,
           }
         }
       >
-        Learn React Native
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+        <TouchableOpacity
+          accessibilityComponentType="button"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onLongPress={undefined}
+          onPress={[Function]}
+          onPressIn={undefined}
+          onPressOut={undefined}
+          style={undefined}
+          testID="course-details.navigation-back-btn"
+        >
+          <View
+            style={
+              Object {
+                "paddingRight": 31,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={undefined}
+            />
+          </View>
+        </TouchableOpacity>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          rn 101
+        </Text>
+        <TouchableOpacity
+          accessibilityComponentType="button"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onLongPress={undefined}
+          onPress={[Function]}
+          onPressIn={undefined}
+          onPressOut={undefined}
+          style={undefined}
+          testID="course-details.navigation-edit-course-btn"
+        >
+          <View
+            style={
+              Object {
+                "paddingLeft": 20,
+              }
+            }
+          >
+            <Image
+              onPress={[Function]}
+              source={1}
+              style={
+                Object {
+                  "resizeMode": "contain",
+                  "tintColor": "white",
+                }
+              }
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View
         style={
           Object {
-            "backgroundColor": "transparent",
-            "color": "white",
-            "opacity": 0.75,
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+            "marginTop": 44,
           }
         }
       >
-        Spring 2017
-      </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "fontSize": 20,
+              "fontWeight": "bold",
+              "marginBottom": 2,
+              "textAlign": "center",
+            }
+          }
+        >
+          Learn React Native
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "opacity": 0.75,
+            }
+          }
+        >
+          Spring 2017
+        </Text>
+      </View>
     </View>
     <View
       style={
@@ -108,33 +205,13 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+        <TouchableHighlight
+          onPress={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -204,7 +281,7 @@ exports[`renders correctly 1`] = `
               />
             </View>
           </View>
-        </View>
+        </TouchableHighlight>
       </View>
     </View>
   </View>
@@ -221,7 +298,7 @@ exports[`renders correctly without tabs 1`] = `
           "height": 235,
           "justifyContent": "center",
           "padding": 10,
-          "paddingTop": 64,
+          "paddingTop": 20,
         }
       }
     >
@@ -269,37 +346,134 @@ exports[`renders correctly without tabs 1`] = `
           }
         />
       </View>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+      <View
         style={
           Object {
-            "backgroundColor": "transparent",
-            "color": "white",
-            "fontSize": 20,
-            "fontWeight": "bold",
-            "marginBottom": 2,
-            "textAlign": "center",
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 44,
+            "justifyContent": "space-between",
+            "left": 0,
+            "paddingLeft": 10,
+            "paddingRight": 10,
+            "position": "absolute",
+            "right": 0,
+            "top": 20,
           }
         }
       >
-        Learn React Native
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+        <TouchableOpacity
+          accessibilityComponentType="button"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onLongPress={undefined}
+          onPress={[Function]}
+          onPressIn={undefined}
+          onPressOut={undefined}
+          style={undefined}
+          testID="course-details.navigation-back-btn"
+        >
+          <View
+            style={
+              Object {
+                "paddingRight": 31,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={undefined}
+            />
+          </View>
+        </TouchableOpacity>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          rn 101
+        </Text>
+        <TouchableOpacity
+          accessibilityComponentType="button"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onLongPress={undefined}
+          onPress={[Function]}
+          onPressIn={undefined}
+          onPressOut={undefined}
+          style={undefined}
+          testID="course-details.navigation-edit-course-btn"
+        >
+          <View
+            style={
+              Object {
+                "paddingLeft": 20,
+              }
+            }
+          >
+            <Image
+              onPress={[Function]}
+              source={1}
+              style={
+                Object {
+                  "resizeMode": "contain",
+                  "tintColor": "white",
+                }
+              }
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View
         style={
           Object {
-            "backgroundColor": "transparent",
-            "color": "white",
-            "opacity": 0.75,
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+            "marginTop": 44,
           }
         }
       >
-        Spring 2017
-      </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "fontSize": 20,
+              "fontWeight": "bold",
+              "marginBottom": 2,
+              "textAlign": "center",
+            }
+          }
+        >
+          Learn React Native
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "opacity": 0.75,
+            }
+          }
+        >
+          Spring 2017
+        </Text>
+      </View>
     </View>
     <View
       style={
@@ -308,7 +482,96 @@ exports[`renders correctly without tabs 1`] = `
           "justifyContent": "flex-start",
         }
       }
-    />
+    >
+      <View
+        style={
+          Object {
+            "borderBottomColor": "lightgrey",
+            "borderBottomWidth": 0.5,
+            "flex": 1,
+            "height": 44,
+          }
+        }
+      >
+        <TouchableHighlight
+          onPress={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "padding": 8,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Array [
+                  Object {
+                    "height": 20,
+                    "marginRight": 6,
+                    "resizeMode": "contain",
+                    "width": 21,
+                  },
+                  Object {
+                    "tintColor": undefined,
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Home
+            </Text>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 1,
+                    "borderTopWidth": 1,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                    "width": 10,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+    </View>
   </View>
 </RCTScrollView>
 `;

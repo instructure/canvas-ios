@@ -81,9 +81,9 @@ test('select course', () => {
   const props = {
     ...defaultProps,
     courses: [course],
-    navigator: {
+    navigator: template.navigator({
       push: jest.fn(),
-    },
+    }),
   }
   let tree = renderer.create(
     <FavoritedCourseList {...props} />
@@ -99,9 +99,9 @@ test('select course', () => {
 test('go to all courses', () => {
   const props = {
     ...defaultProps,
-    navigator: {
+    navigator: template.navigator({
       push: jest.fn(),
-    },
+    }),
   }
   let tree = renderer.create(
     <FavoritedCourseList {...props} />

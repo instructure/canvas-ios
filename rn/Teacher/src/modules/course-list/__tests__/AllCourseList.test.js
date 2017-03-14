@@ -64,9 +64,9 @@ test('select course', () => {
   const props = {
     ...defaultProps,
     courses: [course],
-    navigator: {
+    navigator: template.navigator({
       push: jest.fn(),
-    },
+    }),
   }
   let tree = renderer.create(
     <AllCourseList {...props} />
