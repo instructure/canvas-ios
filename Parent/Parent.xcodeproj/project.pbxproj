@@ -171,6 +171,8 @@
 		619FCC5D1CAC57AB003C97AA /* WebBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619FCC5B1CAC57AB003C97AA /* WebBrowserViewController.swift */; };
 		61AABCA11D6F8EB7009500C3 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AABCA01D6F8EAD009500C3 /* Reachability.framework */; };
 		61AABCA21D6F8EB7009500C3 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61AABCA01D6F8EAD009500C3 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		61B536441E7736B0000FEABB /* SoGrey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49E21B071D1C667A00B7B9B4 /* SoGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		61B536461E773868000FEABB /* EarlGrey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 492246061D1C75DE0053766B /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		61B536E11C97C25A0052B8CB /* CalendarEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E01C97C25A0052B8CB /* CalendarEventDetailsViewController.swift */; };
 		61B536F51C99E58B0052B8CB /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536F41C99E58B0052B8CB /* DatePickerViewController.swift */; };
 		61B536F71C9B77900052B8CB /* CourseSyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536F61C9B77900052B8CB /* CourseSyllabusViewController.swift */; };
@@ -278,6 +280,17 @@
 				5E75B5F41C4D4A7F00A44160 /* ReactiveCocoa.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61B536431E773687000FEABB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "$(TEST_HOST)/..";
+			dstSubfolderSpec = 0;
+			files = (
+				61B536461E773868000FEABB /* EarlGrey.framework in CopyFiles */,
+				61B536441E7736B0000FEABB /* SoGrey.framework in CopyFiles */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1512,6 +1525,7 @@
 				F96C7E661D108AEB008935F3 /* Sources */,
 				F96C7E671D108AEB008935F3 /* Frameworks */,
 				F96C7E681D108AEB008935F3 /* Resources */,
+				61B536431E773687000FEABB /* CopyFiles */,
 			);
 			buildRules = (
 			);

@@ -56,7 +56,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "DYLD_INSERT_LIBRARIES"
-            value = "@executable_path/EarlGrey.framework/EarlGrey"
+            value = "@executable_path/EarlGrey.framework/EarlGrey:@executable_path/SoGrey.framework/SoGrey"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

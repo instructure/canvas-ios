@@ -6,7 +6,6 @@ github "ReactiveCocoa/ReactiveCocoa" "5.0.0-rc.1"
 github "onevcat/Kingfisher" ~> 3.2
 github "utahiosmac/Marshal" == 1.1
 github "n8armstrong/DVR" "swift3"
-github "google/EarlGrey" "master"
 github "xmartlabs/Eureka" ~> 2.0
 github "dennisweissmann/DeviceKit" ~> 1.0
 github "nicklockwood/FXKeychain" ~> 1.5.3
