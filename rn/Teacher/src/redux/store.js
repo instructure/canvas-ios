@@ -2,9 +2,10 @@
 
 import { createStore, applyMiddleware } from 'redux'
 import promiseMiddleware from '../utils/redux-promise'
+import errorHandler from '../utils/error-handler'
 import rootReducer from './root-reducer'
 
 export default createStore(
   rootReducer,
-  applyMiddleware(promiseMiddleware)
+  applyMiddleware(promiseMiddleware, errorHandler)
 )

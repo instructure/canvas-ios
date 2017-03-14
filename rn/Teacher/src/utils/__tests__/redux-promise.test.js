@@ -1,3 +1,5 @@
+// @flow
+
 import promiseMiddleware from '../redux-promise'
 import configureMockStore from 'redux-mock-store'
 
