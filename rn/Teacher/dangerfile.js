@@ -47,7 +47,8 @@ if (packageChanged && !lockfileChanged) {
 
 // Checks for corresponding tests to js files in the commit's modified files
 const testFiles = danger.git.created_files.filter((path: string) => {
-  return path.includes('__tests__/') && !path.includes('__snapshots__/')
+  const exclude = ['__tests__/', '__snapshots__/', '__mocks__/']
+  return exclude.reduce((accl, e) => accl && !path.includes(e), true)
 })
 
 const logicalTestPaths = testFiles.map((path: string) => {
