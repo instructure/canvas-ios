@@ -36,4 +36,6 @@ const reducer: Reducer<TabsState, any> = handleActions({
   }),
 }, defaultState)
 
+export type { TabsState }
+
 export default reducer

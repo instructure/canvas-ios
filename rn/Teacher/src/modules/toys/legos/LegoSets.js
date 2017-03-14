@@ -66,4 +66,5 @@ DisconnectedLegoSets.propTypes = {
   error: PropTypes.string,
 }
 
-export default connect(stateToProps, LegoActions)(DisconnectedLegoSets)
+let LegoSets = connect(stateToProps, LegoActions)(DisconnectedLegoSets)
+export default (LegoSets: Component<any, LegoSetsProps, any>)

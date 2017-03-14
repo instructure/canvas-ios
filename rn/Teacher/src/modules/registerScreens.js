@@ -16,7 +16,7 @@ import DefaultState from './default-state/DefaultState'
 import LegoSets from './toys/legos/LegoSets'
 import ActionFigures from './toys/action-figures/ActionFigures'
 
-export function registerScreens (store: Store) {
+export function registerScreens (store: Store): void {
   Navigation.registerComponent('teacher.FavoritedCourseList', () => FavoritedCourseList, store, Provider)
   Navigation.registerComponent('teacher.AllCourseList', () => AllCourseList, store, Provider)
   Navigation.registerComponent('teacher.CourseDetails', () => CourseDetails, store, Provider)

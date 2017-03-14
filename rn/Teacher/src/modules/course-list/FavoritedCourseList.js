@@ -135,8 +135,6 @@ FavoritedCourseList.propTypes = {
   error: PropTypes.string,
 }
 
-export default connect(stateToProps, CoursesActions)(FavoritedCourseList)
-
 const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
@@ -158,3 +156,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 })
+
+let Connected = connect(stateToProps, CoursesActions)(FavoritedCourseList)
+export default (Connected: Component<any, Props, any>)

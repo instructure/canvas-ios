@@ -2,7 +2,7 @@
 
 let currentSession: ?Session = null
 
-export function setSession (session: ?Session) {
+export function setSession (session: ?Session): void {
   currentSession = session
 }
 

@@ -2,7 +2,7 @@
  * @flow
  */
 
-export default {
+export default ({
   teacherPiss: '#FFC100',
   prettyGray: '#73818C',
   prettyBlue: '#008EE2',
@@ -10,4 +10,4 @@ export default {
   canvasBlue: '#374A59',
   darkText: '#032250',
   lightText: '#7F91A7',
-}
+}: {[name: string]: string})

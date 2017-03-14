@@ -53,4 +53,5 @@ AllCourseList.propTypes = {
   error: PropTypes.string,
 }
 
-export default connect(stateToProps)(AllCourseList)
+let Connected = connect(stateToProps)(AllCourseList)
+export default (Connected: Component<any, Props, any>)

@@ -6,9 +6,9 @@ import * as api from './api'
 
 import type { LegoSetsActionProps } from './props'
 
-export let LegoActions = (api) => ({
+export let LegoActions = (api: typeof api): LegoSetsActionProps => ({
   buyLegoSet: createAction('legos.buyMoar', api.buyLegoSet),
   sellAllLegos: createAction('legos.sellAll', api.sellAllLegos),
 }: LegoSetsActionProps)
 
-export default LegoActions(api)
+export default (LegoActions(api): LegoSetsActionProps)

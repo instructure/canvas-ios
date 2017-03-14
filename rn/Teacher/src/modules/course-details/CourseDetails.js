@@ -193,4 +193,5 @@ CourseDetails.propTypes = {
   courseColors: PropTypes.objectOf(React.PropTypes.string).isRequired,
 }
 
-export default connect(stateToProps, CourseDetailsActions)(CourseDetails)
+let Connected = connect(stateToProps, CourseDetailsActions)(CourseDetails)
+export default (Connected: Component<any, Props, any>)

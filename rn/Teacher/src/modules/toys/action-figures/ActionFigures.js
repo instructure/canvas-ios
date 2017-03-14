@@ -15,4 +15,4 @@ class ActionFigures extends Component<any, string, any> {
   }
 }
 
-export default connect(stateToProps)(ActionFigures)
+export default (connect(stateToProps)(ActionFigures): Component<any, string, any>)

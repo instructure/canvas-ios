@@ -56,4 +56,5 @@ const style = StyleSheet.create({
   },
 })
 
-export default NoCourses
+// TODO - this any needs to go away.
+export default (NoCourses: any)

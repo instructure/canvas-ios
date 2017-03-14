@@ -1,5 +1,11 @@
 // @flow
 
+type Images = {
+  course: {[name: string]: any},
+  tabbar: {[name: string]: any},
+  [name: string]: any,
+}
+
 const images = {
   course: {
     announcements: require('./course/Announcements.png'),
@@ -23,4 +29,4 @@ const images = {
   backIcon: require('./Back-icon.png'),
 }
 
-export default images
+export default (images: Images)

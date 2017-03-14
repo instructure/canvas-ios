@@ -39,4 +39,6 @@ const reducer: Reducer<CoursesState, any> = handleActions({
   }),
 }, defaultState)
 
+export type { CoursesState }
+
 export default reducer

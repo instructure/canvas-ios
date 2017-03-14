@@ -12,4 +12,4 @@ export const {
     test,
     it,
     expect,
-} = global
+} = (global: any)

@@ -13,6 +13,7 @@
  */
 
 import type { Reducer } from 'redux'
+import type { Action } from './redux-promise'
 
 type Handlers<S, A> = {
   pending?: Reducer<S, A>,
@@ -20,13 +21,7 @@ type Handlers<S, A> = {
   resolved?: Reducer<S, A>,
 }
 
-type Action = {
-  payload: any,
-  pending?: boolean,
-  error?: any,
-}
-
-export default <S, A: Action>(handlers: Handlers<S, A>) =>
+export default <S, A: Action>(handlers: Handlers<S, A>): Reducer<S, A> =>
   (state: S, action: Action) => {
     if (action.pending) {
       if (handlers.pending) {

@@ -4,11 +4,11 @@ import { Alert } from 'react-native'
 import type { MiddlewareAPI } from 'redux'
 import i18n from 'format-message'
 
-export const ERROR_TITLE = i18n({
+export const ERROR_TITLE: string = i18n({
   default: 'Unexpected Error',
   description: 'The generic title of the generic error message',
 })
-export const ERROR_MESSAGE = i18n({
+export const ERROR_MESSAGE: string = i18n({
   default: 'There was an unexpected error. Please close this alert and try again.',
   description: 'A generic error message',
 })

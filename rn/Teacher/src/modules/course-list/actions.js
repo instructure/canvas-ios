@@ -1,18 +1,14 @@
 // @flow
 
 import { createAction } from 'redux-actions'
-import * as coursesApi from './../../api/canvas-api/courses'
-import * as usersApi from '../../api/canvas-api/users'
+import canvas from './../../api/canvas-api'
 import type { CoursesActionProps } from './props'
 
-export let CoursesActions: (CoursesApi: any) => CoursesActionProps = (api) => ({
+export let CoursesActions = (api: typeof canvas): CoursesActionProps => ({
   refreshCourses: createAction('courses.refresh', () => Promise.all([
     api.getCourses(),
     api.getCustomColors(),
   ])),
 })
 
-export default CoursesActions({
-  ...coursesApi,
-  ...usersApi,
-})
+export default (CoursesActions(canvas): CoursesActionProps)

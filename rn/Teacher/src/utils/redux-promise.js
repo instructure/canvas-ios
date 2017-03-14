@@ -1,7 +1,13 @@
 // @flow
 
 import { isFSA } from 'flux-standard-action'
-import type { MiddlewareAPI } from 'redux'
+import type { Middleware, MiddlewareAPI, Dispatch } from 'redux'
+
+export type Action = {
+  payload: any,
+  pending?: boolean,
+  error?: boolean,
+}
 
 function isPromise (val: any): boolean {
   return val && typeof val.then === 'function'
@@ -20,8 +26,8 @@ function isPromise (val: any): boolean {
  *     with its `payload` set to the error, and the `error: true` tag.
  *
  */
-let promiseMiddleware: MiddlewareAPI = ({ dispatch }) => {
-  return next => action => {
+let promiseMiddleware = <S, A: Action>({ dispatch }: MiddlewareAPI<S, A>): Middleware<S, A> => {
+  return (next: Dispatch<A>) => (action: A) => {
     let promise = action.payload
 
     if (action.payload && action.payload.promise) {

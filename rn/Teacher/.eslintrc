@@ -41,20 +41,7 @@
       2,
       "comma"
     ],
-    "flowtype/require-parameter-type": [
-        2,
-        {
-          "excludeArrowFunctions": true
-        }
-    ],
-    "flowtype/require-return-type": [
-      2,
-      "always",
-      {
-        "annotateUndefined": "never",
-        "excludeArrowFunctions": true
-      }
-    ],
+    "flowtype/require-export-type": 2,
     "flowtype/require-valid-file-annotation": 2,
     "flowtype/semi": [
       2,

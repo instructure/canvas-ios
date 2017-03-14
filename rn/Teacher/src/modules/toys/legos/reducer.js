@@ -6,7 +6,7 @@ import LegoActions from './actions'
 import type { LegoState } from './props'
 import handleAsync from '../../../utils/handleAsync'
 
-export let defaultState = { sets: [], pending: 0 }
+export let defaultState: LegoState = { sets: [], pending: 0 }
 
 let { buyLegoSet, sellAllLegos } = LegoActions
 

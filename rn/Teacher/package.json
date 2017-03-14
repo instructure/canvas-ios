@@ -31,7 +31,7 @@
     "danger": "https://github.com/benkraus/danger-js/tarball/with-distribution",
     "eslint": "^3.16.0",
     "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-flowtype": "^2.30.3",
+    "eslint-plugin-flowtype": "AnIrishDuck/eslint-plugin-flowtype#0a0327429590c161b72e6818ab28adbe9e6b1e55",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-promise": "^3.4.2",
     "eslint-plugin-react": "^6.10.0",
