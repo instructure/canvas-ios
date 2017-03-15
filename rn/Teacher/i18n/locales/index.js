@@ -2,6 +2,6 @@
 
 import en from './en.json'
 
-export default {
+export default ({
   en,
-}
+}: { en: { [string]: { message: string, description?: string } } })
