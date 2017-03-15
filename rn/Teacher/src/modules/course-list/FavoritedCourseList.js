@@ -145,13 +145,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerText: {
-    fontSize: 18,
-    fontWeight: '500',
+    fontSize: 20,
+    fontWeight: '600',
+    marginLeft: 6,
   },
   seeAll: {
-    fontSize: 15,
+    fontSize: 14,
     color: '#6495ed',
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
 })
 

@@ -71,7 +71,7 @@ export default class CourseCard extends Component {
             </View>
             <View style={styles.titleWrapper}>
               <Text numberOfLines={2} style={this.createTitleStyles()}>{course.name}</Text>
-              <Text style={styles.code}>{course.course_code}</Text>
+              <Text numberOfLines={1} style={styles.code}>{course.course_code}</Text>
             </View>
           </View>
         </TouchableHighlight>
@@ -91,6 +91,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
+    borderRadius: 4,
+    overflow: 'hidden',
   },
   cardContainer: {
     flex: 1,
@@ -113,21 +115,24 @@ const styles = StyleSheet.create({
   kabob: {
     position: 'absolute',
     top: 10,
-    right: 5,
+    right: 8,
+    width: 18,
+    height: 18,
   },
   titleWrapper: {
     flex: 1,
-    marginTop: 20,
-    marginHorizontal: 10,
+    paddingHorizontal: 10,
   },
   title: {
-    fontSize: 14,
-    fontWeight: '500',
+    marginTop: 8,
+    fontSize: 16,
+    fontWeight: '600',
   },
   code: {
-    fontSize: 11,
+    fontSize: 12,
     color: '#8B969D',
-    fontWeight: '500',
+    fontWeight: '600',
+    marginTop: 2,
   },
 })
 

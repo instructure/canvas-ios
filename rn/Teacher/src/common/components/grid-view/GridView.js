@@ -85,7 +85,7 @@ export default class GridView extends Component<DefaultProps, Props, State> {
     super(props)
 
     const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1.some((e, i) => props.itemHasChanged(e, r2[i])),
+      rowHasChanged: (r1, r2) => r1 !== r2,
       sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
     })
     if (props.sections === true) {
@@ -130,19 +130,22 @@ export default class GridView extends Component<DefaultProps, Props, State> {
   _renderPlaceholder = i =>
     <View key={i} style={this.props.placeholderStyle} />
 
-  _renderRow = rowData =>
-    <View style={styles.row}>
-      {rowData.map((item, i) => {
-        if (item) {
-          return this.props.renderItem(item, i)
-        }
-        // render a placeholder
-        if (this.props.renderPlaceholder) {
-          return this.props.renderPlaceholder(i)
-        }
-        return this._renderPlaceholder(i)
-      })}
-    </View>
+  _renderRow = rowData => {
+    return (
+      <View style={styles.row}>
+        {rowData.map((item, i) => {
+          if (item) {
+            return this.props.renderItem(item, i)
+          }
+          // render a placeholder
+          if (this.props.renderPlaceholder) {
+            return this.props.renderPlaceholder(i)
+          }
+          return this._renderPlaceholder(i)
+        })}
+      </View>
+    )
+  }
 
   render (): React.Element<View> {
     return (

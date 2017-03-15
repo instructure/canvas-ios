@@ -51,8 +51,9 @@ exports[`render 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
-                    "fontSize": 18,
-                    "fontWeight": "500",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "marginLeft": 6,
                   }
                 }
               >
@@ -77,8 +78,8 @@ exports[`render 1`] = `
                 style={
                   Object {
                     "color": "#6495ed",
-                    "fontSize": 15,
-                    "fontWeight": "bold",
+                    "fontSize": 14,
+                    "fontWeight": "500",
                   }
                 }
               >
@@ -105,8 +106,10 @@ exports[`render 1`] = `
               Array [
                 Object {
                   "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
                   "borderWidth": 0.5,
                   "height": 160,
+                  "overflow": "hidden",
                   "shadowColor": "#000",
                   "shadowOffset": Object {
                     "height": 1,
@@ -168,9 +171,11 @@ exports[`render 1`] = `
                   source={1}
                   style={
                     Object {
+                      "height": 18,
                       "position": "absolute",
-                      "right": 5,
+                      "right": 8,
                       "top": 10,
+                      "width": 18,
                     }
                   }
                 />
@@ -179,8 +184,7 @@ exports[`render 1`] = `
                 style={
                   Object {
                     "flex": 1,
-                    "marginHorizontal": 10,
-                    "marginTop": 20,
+                    "paddingHorizontal": 10,
                   }
                 }
               >
@@ -192,8 +196,9 @@ exports[`render 1`] = `
                   style={
                     Object {
                       "color": "#27B9CD",
-                      "fontSize": 14,
-                      "fontWeight": "500",
+                      "fontSize": 16,
+                      "fontWeight": "600",
+                      "marginTop": 8,
                     }
                   }
                 >
@@ -203,11 +208,13 @@ exports[`render 1`] = `
                   accessible={true}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
+                  numberOfLines={1}
                   style={
                     Object {
                       "color": "#8B969D",
-                      "fontSize": 11,
-                      "fontWeight": "500",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
                     }
                   }
                 >
@@ -223,8 +230,10 @@ exports[`render 1`] = `
               Array [
                 Object {
                   "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
                   "borderWidth": 0.5,
                   "height": 160,
+                  "overflow": "hidden",
                   "shadowColor": "#000",
                   "shadowOffset": Object {
                     "height": 1,
@@ -286,9 +295,11 @@ exports[`render 1`] = `
                   source={1}
                   style={
                     Object {
+                      "height": 18,
                       "position": "absolute",
-                      "right": 5,
+                      "right": 8,
                       "top": 10,
+                      "width": 18,
                     }
                   }
                 />
@@ -297,8 +308,7 @@ exports[`render 1`] = `
                 style={
                   Object {
                     "flex": 1,
-                    "marginHorizontal": 10,
-                    "marginTop": 20,
+                    "paddingHorizontal": 10,
                   }
                 }
               >
@@ -310,8 +320,9 @@ exports[`render 1`] = `
                   style={
                     Object {
                       "color": "#8F3E99",
-                      "fontSize": 14,
-                      "fontWeight": "500",
+                      "fontSize": 16,
+                      "fontWeight": "600",
+                      "marginTop": 8,
                     }
                   }
                 >
@@ -321,11 +332,13 @@ exports[`render 1`] = `
                   accessible={true}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
+                  numberOfLines={1}
                   style={
                     Object {
                       "color": "#8B969D",
-                      "fontSize": 11,
-                      "fontWeight": "500",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
                     }
                   }
                 >

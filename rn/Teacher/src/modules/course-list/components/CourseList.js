@@ -82,7 +82,7 @@ export default class CourseList extends Component {
             style={cardStyles}
             course={rowData}
             color={this.props.customColors[rowData.id.toString()]}
-            key={rowData.course_code}
+            key={`${rowData.course_code}_${rowData.id}`}
             onPress={() => this.selectCourse(rowData)}
           />
         }
