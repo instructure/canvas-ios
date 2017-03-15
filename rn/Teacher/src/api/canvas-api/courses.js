@@ -1,14 +1,15 @@
 /* @flow */
 
-import { paginate } from '../utils/paginate'
+import { paginate, exhaust } from '../utils/pagination'
 import httpClient from './httpClient'
 
 export function getCourses (): Promise<ApiResponse<Course[]>> {
-  return paginate('courses', {
+  const courses = paginate('courses', {
     params: {
       include: ['favorites', 'course_image'],
     },
   })
+  return exhaust(courses)
 }
 
 export function getCourseTabs (courseID: number): Promise<ApiResponse<Tab[]>> {

@@ -1,7 +1,7 @@
 /* @flow */
 
 import httpClient from '../../canvas-api/httpClient'
-import { paginate } from '../paginate'
+import { paginate, exhaust } from '../pagination'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 
 jest.mock('../../canvas-api/httpClient')
@@ -103,5 +103,35 @@ describe('paginate', () => {
     await paginate('courses', options)
 
     expect(mock).toHaveBeenCalledWith('courses', options)
+  })
+})
+
+describe('exhaust', () => {
+  it('should exhaust pagination', async () => {
+    const page3 = apiResponse([3])
+    const page2 = apiResponse([2], { next: page3 })
+    const page1 = apiResponse([1], { next: page2 })
+
+    const result = await exhaust(page1)
+    expect(result).toEqual({
+      data: [1, 2, 3],
+      next: null,
+    })
+  })
+
+  it('should propagate errors', async () => {
+    const page2 = apiError()
+    const page1 = apiResponse([1], { next: page2 })
+
+    let error
+    let response
+    try {
+      response = await exhaust(page1)
+    } catch (e) {
+      error = e
+    }
+
+    expect(response).toBeUndefined()
+    expect(error).toBeDefined()
   })
 })

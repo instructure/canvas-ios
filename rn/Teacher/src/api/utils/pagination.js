@@ -26,3 +26,19 @@ export function paginate<T> (url: string, config: AxiosRequestConfig = {}): Prom
     }
   })
 }
+
+export async function exhaust<T> (initial: () => Promise<ApiResponse<[T]>>): Promise<ApiResponse<[T]>> {
+  let result = []
+  let next = initial
+
+  while (next) {
+    const response = await next()
+    result = [...result, ...response.data]
+    next = response.next
+  }
+
+  return {
+    data: result,
+    next: null,
+  }
+}
