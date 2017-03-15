@@ -86,4 +86,4 @@ that new language to `i18n/locales/index.js`
 
 ### Branding
 
-[see branding page](branding.md)
+[see branding page](BRANDING.md)
