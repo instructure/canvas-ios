@@ -75,3 +75,34 @@ test('it also checks payload.promise', async () => {
     { type: 'test', payload: 'yay' },
   ])
 })
+
+test('it checks payload.promise on rejection', async () => {
+  let error = new Error()
+  let promise = Promise.reject(error)
+
+  let store = mockStore()
+  store.dispatch({ type: 'test', payload: { id: 1, promise } })
+
+  try {
+    await promise
+  } catch (e) {}
+
+  expect(store.getActions()).toMatchObject([
+    {
+      type: 'test',
+      pending: true,
+      payload: {
+        id: 1,
+        promise,
+      },
+    },
+    {
+      type: 'test',
+      payload: {
+        id: 1,
+        error,
+      },
+      error: true,
+    },
+  ])
+})

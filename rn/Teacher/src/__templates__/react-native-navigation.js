@@ -3,6 +3,9 @@
 import template from '../utils/template'
 
 export const navigator: Template<ReactNavigator> = template({
-  push: () => {},
+  showModal: () => {},
+  dismissModal: () => {},
+  setOnNavigatorEvent: () => {},
   pop: () => {},
+  push: () => {},
 })

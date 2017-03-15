@@ -1,49 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders 1`] = `
-<View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
-  accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
-  isTVSelectable={true}
+<TouchableHighlight
   onLayout={[Function]}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
+  onPress={[Function]}
   style={
     Array [
       Object {
-        "backgroundColor": "transparent",
+        "borderColor": "#e3e3e3",
+        "borderRadius": 4,
+        "borderWidth": 0.5,
+        "height": 160,
+        "overflow": "hidden",
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.2,
+        "shadowRadius": 1,
       },
-      Array [
-        Object {
-          "borderColor": "#e3e3e3",
-          "borderRadius": 4,
-          "borderWidth": 0.5,
-          "height": 160,
-          "overflow": "hidden",
-          "shadowColor": "#000",
-          "shadowOffset": Object {
-            "height": 1,
-            "width": 0,
-          },
-          "shadowOpacity": 0.2,
-          "shadowRadius": 1,
-        },
-        Object {
-          "height": 100,
-        },
-      ],
+      Object {
+        "height": 100,
+      },
     ]
   }
   testID="rn 101"
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -140,5 +122,5 @@ exports[`renders 1`] = `
       </Text>
     </View>
   </View>
-</View>
+</TouchableHighlight>
 `;

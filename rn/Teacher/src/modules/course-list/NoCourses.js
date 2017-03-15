@@ -11,7 +11,12 @@ import i18n from 'format-message'
 import { Heading1, Paragraph } from '../../common/text'
 import { Button } from '../../common/buttons'
 
+type Props = {
+  onAddCoursePressed: () => void,
+}
+
 export class NoCourses extends Component {
+  props: Props
 
   render (): React.Element<View> {
     let welcome = i18n({
@@ -34,7 +39,7 @@ export class NoCourses extends Component {
         <Heading1 style={style.header}>{welcome}</Heading1>
         <Paragraph
           style={style.paragraph}>{bodyText}</Paragraph>
-        <Button accessibilityLabel={buttonText}>
+        <Button accessibilityLabel={buttonText} testID='noCourse.addCourses' onPress={this.props.onAddCoursePressed}>
           {buttonText}
         </Button>
       </View>

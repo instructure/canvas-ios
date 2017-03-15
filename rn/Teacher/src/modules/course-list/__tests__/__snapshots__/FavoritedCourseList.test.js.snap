@@ -420,7 +420,7 @@ exports[`render without courses 1`] = `
     accessibilityTraits="button"
     activeOpacity={0.2}
     onLongPress={undefined}
-    onPress={undefined}
+    onPress={[Function]}
     onPressIn={undefined}
     onPressOut={undefined}
     style={
@@ -434,7 +434,7 @@ exports[`render without courses 1`] = `
         undefined,
       ]
     }
-    testID={undefined}
+    testID="noCourse.addCourses"
   >
     <Text
       accessible={true}

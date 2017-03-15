@@ -53,6 +53,10 @@ export default class CourseCard extends Component {
     })
   }
 
+  onPress = (event: ReactNative.NativeSyntheticEvent): void => {
+    this.props.onPress(this.props.course)
+  }
+
   render (): React.Element<View> {
     let { course } = this.props
     let style = {
@@ -60,7 +64,7 @@ export default class CourseCard extends Component {
       height: this.state.height,
     }
     return (
-       <TouchableHighlight onLayout={this.onLayout} style={[styles.card, style]} testID={course.course_code} onPress={this.props.onPress}>
+       <TouchableHighlight onLayout={this.onLayout} style={[styles.card, style]} testID={course.course_code} onPress={this.onPress}>
         <View style={styles.cardContainer}>
             <View style={styles.imageWrapper}>
               {course.image_download_url &&

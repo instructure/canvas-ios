@@ -1,6 +1,6 @@
 import parseLink from './parseLinkHeader'
 import httpClient from '../canvas-api/httpClient'
-import type { ApiResponse } from '../apiResponse'
+import type { ApiResponse } from '../response'
 
 function parseNextFromLinkHeader (response: any): ?string {
   const links = parseLink(response.headers.link)

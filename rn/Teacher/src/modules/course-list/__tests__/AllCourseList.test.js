@@ -74,7 +74,9 @@ test('select course', () => {
 
   const courseCard = explore(tree).selectByID(course.course_code) || {}
   courseCard.props.onPress()
-  expect(props.navigator.push).toHaveBeenCalled()
-  const pushed = props.navigator.push.mock.calls.slice(-1).pop()[0]
-  expect(pushed.screen).toEqual('teacher.CourseDetails')
+  expect(props.navigator.push).toHaveBeenCalledWith({
+    screen: 'teacher.CourseDetails',
+    passProps: { course: course },
+    title: course.course_code,
+  })
 })

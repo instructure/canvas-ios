@@ -18,6 +18,7 @@ const template = {
 
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')
 jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+jest.mock('TouchableOpacity', () => 'TouchableOpacity')
 
 const courses = [
   template.course({
@@ -115,8 +116,47 @@ test('go to all courses', () => {
   const allButton = explore(tree).selectByID('course-list.see-all-btn') || {}
   allButton.props.onPress()
   expect(props.navigator.push).toHaveBeenCalledWith({
-    screen: 'teacher.AllCourseList',
+    screen: screenID('/courses'),
     title: 'All Courses',
     backButtonTitle: 'Courses',
+    passProps: {},
+  })
+})
+
+test('calls navigator.push when a course is selected', () => {
+  let navigator = template.navigator({
+    push: jest.fn(),
+  })
+  let tree = renderer.create(
+    <FavoritedCourseList {...defaultProps} navigator={navigator} />
+  ).toJSON()
+
+  let button: any = explore(tree).selectByID(courses[0].course_code)
+  button.props.onPress()
+
+  expect(navigator.push).toHaveBeenLastCalledWith({
+    screen: screenID('/courses/:courseID'),
+    passProps: { courseID: courses[0].id.toString() },
+  })
+})
+
+test('calls navigator.showModal when the edit button is pressed', () => {
+  let navigator = template.navigator({
+    showModal: jest.fn(),
+  })
+  let tree = renderer.create(
+    <FavoritedCourseList {...defaultProps} navigator={navigator} />
+  )
+
+  tree._component._renderedComponent._instance.onNavigatorEvent({
+    type: 'NavBarButtonPress',
+    id: 'edit',
+  })
+
+  expect(navigator.showModal).toHaveBeenCalledWith({
+    screen: screenID('/course_favorites'),
+    animationType: 'slide-up',
+    title: 'Edit Courses',
+    passProps: {},
   })
 })

@@ -2,6 +2,7 @@
 
 export type CoursesState = {
   +courses: Course[],
+  +customColors: { [string]: string },
   +pending: number,
   +error?: string,
 }

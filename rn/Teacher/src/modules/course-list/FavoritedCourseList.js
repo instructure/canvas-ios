@@ -8,7 +8,7 @@ import {
   Image,
   StyleSheet,
 } from 'react-native'
-import Button from 'react-native-button'
+import { Link } from '../../common/buttons'
 import i18n from 'format-message'
 import { stateToProps } from './props'
 import CoursesActions from './actions'
@@ -51,8 +51,30 @@ export class FavoritedCourseList extends Component {
     }],
   }
 
-  componentDidMount () {
-    this.props.refreshCourses()
+  constructor (props: Props) {
+    super(props)
+    props.refreshCourses()
+    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
+  }
+
+  onNavigatorEvent = (event: NavigatorEvent) => {
+    if (event.type === 'NavBarButtonPress') {
+      if (event.id === 'edit') {
+        this.showFavoritesList()
+      }
+    }
+  }
+
+  showFavoritesList = () => {
+    let destination = route('/course_favorites')
+    this.props.navigator.showModal({
+      ...destination,
+      animationType: 'slide-up',
+      title: i18n({
+        default: 'Edit Courses',
+        description: 'The title of the screen enabling teachers to favorite and unfavorite their courses',
+      }),
+    })
   }
 
   selectCourse = (course: Course) => {
@@ -61,8 +83,9 @@ export class FavoritedCourseList extends Component {
   }
 
   goToAllCourses = () => {
+    let destination = route('/courses')
     this.props.navigator.push({
-      screen: 'teacher.AllCourseList',
+      ...destination,
       title: i18n({
         default: 'All Courses',
         description: `The title of the screen showing all of a teacher's courses`,
@@ -87,14 +110,14 @@ export class FavoritedCourseList extends Component {
             })}
           </Text>
         </View>
-        <Button onPress={this.goToAllCourses} testID='course-list.see-all-btn'>
+        <Link onPress={this.goToAllCourses} testID='course-list.see-all-btn'>
           <Text style={styles.seeAll}>
             {i18n({
               default: 'See All',
               description: 'Button to transition from favorited courses list to all courses list',
             })}
           </Text>
-        </Button>
+        </Link>
       </View>
     )
   }
@@ -103,7 +126,11 @@ export class FavoritedCourseList extends Component {
     let courses = this.props.courses.filter(course => course.is_favorite)
 
     if (!this.props.pending && !courses.length) {
-      return (<NoCourses/>)
+      return (
+        <NoCourses
+          onAddCoursePressed={this.showFavoritesList}
+        />
+      )
     }
 
     return (

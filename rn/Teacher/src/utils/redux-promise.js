@@ -37,7 +37,10 @@ let promiseMiddleware = <S, A: Action>({ dispatch }: MiddlewareAPI<S, A>): Middl
     if (isFSA(action) && isPromise(promise) && !action.error) {
       promise.then(
         result => dispatch({ ...action, payload: result }),
-        error => dispatch({ ...action, payload: error, error: true })
+        error => {
+          let payload = action.payload.promise ? { ...action.payload, error } : error
+          return dispatch({ ...action, payload, error: true })
+        }
       )
 
       next({

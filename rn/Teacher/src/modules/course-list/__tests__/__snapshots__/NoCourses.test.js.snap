@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render 1`] = `
+exports[`renders NoCourses correctly 1`] = `
 <View
   style={
     Object {
@@ -53,31 +53,26 @@ exports[`render 1`] = `
   >
     Add a few of your favorite courses to make this place your home.
   </Text>
-  <View
+  <TouchableOpacity
     accessibilityComponentType="button"
-    accessibilityLabel={undefined}
     accessibilityTraits="button"
-    accessible={true}
-    hitSlop={undefined}
-    isTVSelectable={true}
-    onLayout={undefined}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
+    activeOpacity={0.2}
+    onLongPress={undefined}
+    onPress={[Function]}
+    onPressIn={undefined}
+    onPressOut={undefined}
     style={
-      Object {
-        "backgroundColor": "#368BD8",
-        "borderRadius": 8,
-        "opacity": 1,
-        "overflow": "hidden",
-        "padding": 20,
-      }
+      Array [
+        Object {
+          "backgroundColor": "#368BD8",
+          "borderRadius": 8,
+          "overflow": "hidden",
+          "padding": 20,
+        },
+        undefined,
+      ]
     }
-    testID={undefined}
-    tvParallaxProperties={undefined}
+    testID="noCourse.addCourses"
   >
     <Text
       accessible={true}
@@ -104,6 +99,6 @@ exports[`render 1`] = `
     >
       Add Courses
     </Text>
-  </View>
+  </TouchableOpacity>
 </View>
 `;

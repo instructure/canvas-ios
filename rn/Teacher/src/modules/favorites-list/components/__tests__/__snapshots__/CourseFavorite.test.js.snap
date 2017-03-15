@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders favorited correctly 1`] = `
+<TouchableHighlight
+  onPress={[Function]}
+  style={
+    Object {
+      "borderBottomColor": "#e3e3e3",
+      "borderBottomWidth": 1,
+    }
+  }
+  testID="rn 101"
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flexDirection": "row",
+        "paddingHorizontal": 16,
+        "paddingVertical": 16,
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 20,
+          "marginRight": 10,
+          "tintColor": "#008EE2",
+          "width": 20,
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 16,
+          "fontWeight": "400",
+          "marginRight": 16,
+        }
+      }
+    >
+      Learn React Native
+    </Text>
+  </View>
+</TouchableHighlight>
+`;
+
+exports[`renders unfavorited correctly 1`] = `
+<TouchableHighlight
+  onPress={[Function]}
+  style={
+    Object {
+      "borderBottomColor": "#e3e3e3",
+      "borderBottomWidth": 1,
+    }
+  }
+  testID="rn 101"
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flexDirection": "row",
+        "paddingHorizontal": 16,
+        "paddingVertical": 16,
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 20,
+          "marginRight": 10,
+          "tintColor": "#008EE2",
+          "width": 20,
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 16,
+          "fontWeight": "400",
+          "marginRight": 16,
+        }
+      }
+    >
+      Learn React Native
+    </Text>
+  </View>
+</TouchableHighlight>
+`;

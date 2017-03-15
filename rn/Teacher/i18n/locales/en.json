@@ -21,13 +21,27 @@
   "buy_more_ed49ba10": {
     "message": "Buy More!"
   },
+  "could_not_get_course_information_d4e3f151": {
+    "message": "Could not get course information"
+  },
   "courses_43204aae": {
     "message": "Courses",
     "description": "The header for the favorited courses list"
   },
+  "done_54e3d4b6": {
+    "message": "Done",
+    "description": "Back button to move back a screen"
+  },
   "edit_c5fbea07": {
     "message": "Edit",
     "description": "Shown at the top of the course details screen."
+  },
+  "edit_courses_1f63340f": {
+    "message": "Edit Courses",
+    "description": "The title of the screen enabling teachers to favorite and unfavorite their courses"
+  },
+  "failed_to_toggle_favorite_c68aca56": {
+    "message": "Failed to toggle favorite"
   },
   "inbox_bb245a60": {
     "message": "Inbox",
@@ -56,9 +70,6 @@
   },
   "this_is_the_inbox_b957d042": {
     "message": "This is the inbox"
-  },
-  "this_is_the_profile_3c34b0b6": {
-    "message": "This is the profile"
   },
   "welcome_73d18b4d": {
     "message": "Welcome!",

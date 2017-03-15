@@ -15,13 +15,14 @@ import configureMockStore from 'redux-mock-store'
  *  and the state after the async action is awaited (resolved or rejected).
  */
 
-export async function testAsyncReducer<R> (reducer: R, action: any): Promise<any[]> {
+export async function testAsyncReducer<R> (reducer: R, action: any, defaultState?: any): Promise<any[]> {
   let states = []
-  const store = createStore(reducer, applyMiddleware(promiseMiddleware))
+  const store = createStore(reducer, defaultState, applyMiddleware(promiseMiddleware))
   store.dispatch(action)
   states.push(store.getState())
   try {
-    await action.payload
+    let promise = action.payload && action.payload.promise ? action.payload.promise : action.payload
+    await promise
   } catch (e) {}
   states.push(store.getState())
   return states
@@ -42,7 +43,8 @@ export async function testAsyncAction (action: any, defaultState: any): Promise<
   const store = configureMockStore([promiseMiddleware])(defaultState)
   store.dispatch(action)
   try {
-    await action.payload
+    let promise = action.payload && action.payload.promise ? action.payload.promise : action.payload
+    await promise
   } catch (e) {}
   return store.getActions()
 }
