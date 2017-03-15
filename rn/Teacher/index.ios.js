@@ -16,6 +16,7 @@ import { setSession } from './src/api/session'
 import { registerScreens } from './src/routing/register-screens'
 import { route } from './src/routing'
 import Colors from './src/common/colors'
+import { branding, setupBrandingFromNativeBrandingInfo } from './src/common/branding'
 import Images from './src/images'
 
 registerScreens(store)
@@ -23,19 +24,25 @@ registerScreens(store)
 const nativeLogin = NativeModules.NativeLogin
 nativeLogin.startObserving()
 
-const navigationStyles = {
-  navBarBackgroundColor: Colors.canvasBlue,
+let navigationStyles: { [key: string]: any } = {
+  navBarBackgroundColor: Colors.navBarBg,
   navBarTextColor: '#fff',
   navBarButtonColor: '#fff',
   statusBarTextColorScheme: 'light',
+  navBarImage: require('./src/images/canvas-logo.png'),
 }
 
 setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
 
 const emitter = new NativeEventEmitter(nativeLogin)
-emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
+emitter.addListener('Login', (info: { authToken: string, baseURL: string, branding: Object }) => {
+  if (info.branding) {
+    navigationStyles = setupBranding(info.branding)
+  }
+
   if (info.authToken) {
     setSession(info)
+
     Navigation.startTabBasedApp({
       tabs: [
         {
@@ -71,8 +78,9 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
         },
       ],
       tabsStyle: {
-        tabBarSelectedButtonColor: Colors.prettyBlue,
-        tabBarButtonColor: Colors.prettyGray,
+        tabBarSelectedButtonColor: branding.primaryButtonColor,
+        tabBarBackgroundColor: Colors.tabBarBg,
+        tabBarButtonColor: Colors.tabBarTab,
       },
     })
   } else {
@@ -84,3 +92,12 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
     })
   }
 })
+
+function setupBranding (nativeBranding: Object): Object {
+  setupBrandingFromNativeBrandingInfo(nativeBranding)
+  let style = Object.assign({}, navigationStyles)
+  style.navBarBackgroundColor = branding.navBgColor
+  style.navBarButtonColor = branding.navButtonColor
+  style.navBarImage = branding.headerImage
+  return style
+}

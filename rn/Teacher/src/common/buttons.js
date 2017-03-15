@@ -2,32 +2,56 @@
  * @flow
  */
 
-import React from 'react'
+import React, { Component } from 'react'
 import ReactNative, {
   StyleSheet,
+  Text,
 } from 'react-native'
 import BaseButton from 'react-native-button'
+import { branding } from './branding'
 import colors from './colors'
 
 export function Button ({ style, containerStyle, ...props }: Object): ReactNative.TouchableHighlight {
-  return <BaseButton style={[styles.textColor, style]} containerStyle={[styles.container, containerStyle]} {...props} />
+  let brandingContainerStyles = {
+    backgroundColor: branding.primaryButtonColor,
+  }
+  let brandingStyles = {
+    color: branding.primaryButtonTextColor,
+  }
+  return (<BaseButton style={[styles.textColor, brandingStyles, style]} containerStyle={[styles.container, brandingContainerStyles, containerStyle]} {...props} />)
 }
 
-export function Link ({ style, containerStyle, ...props }: Object): ReactNative.TouchableHighlight {
-  return <BaseButton style={[styles.linkTextColor, style]} containerStyle={containerStyle} {...props} />
+export class LinkButton extends Component {
+  render (): React.Element<any> {
+    let brandingStyles = {
+      color: branding.linkColor,
+    }
+    return (
+      <BaseButton {...this.props} ><Text style={[linkButtonStyles.textColor, brandingStyles]}>{this.props.children}</Text></BaseButton>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#368BD8',
+    backgroundColor: branding.primaryButtonColor,
     overflow: 'hidden',
     padding: 20,
     borderRadius: 8,
   },
   textColor: {
-    color: '#fff',
+    color: branding.primaryButtonTextColor,
   },
   linkTextColor: {
     color: colors.prettyBlue,
   },
 })
+
+const linkButtonStyles = StyleSheet.create({
+  textColor: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: branding.linkColor,
+  },
+})
+

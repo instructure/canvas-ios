@@ -69,6 +69,9 @@ exports[`renders NoCourses correctly 1`] = `
           "overflow": "hidden",
           "padding": 20,
         },
+        Object {
+          "backgroundColor": "#368BD8",
+        },
         undefined,
       ]
     }
@@ -88,6 +91,9 @@ exports[`renders NoCourses correctly 1`] = `
           },
           null,
           Array [
+            Object {
+              "color": "#fff",
+            },
             Object {
               "color": "#fff",
             },

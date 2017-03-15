@@ -3,11 +3,12 @@
  */
 
 export default ({
-  teacherPiss: '#FFC100',
-  prettyGray: '#73818C',
-  prettyBlue: '#008EE2',
-  prettyDarkBlue: '#2D3B45',
-  canvasBlue: '#374A59',
+  link: '#008EE2',
+  tabBarBg: '#fff',
+  tabBarTab: '#73818C',
+  navBarBg: '#374A59',
   darkText: '#032250',
   lightText: '#7F91A7',
+  primaryButton: '#368BD8',
+  primaryButtonText: '#fff',
 }: {[name: string]: string})

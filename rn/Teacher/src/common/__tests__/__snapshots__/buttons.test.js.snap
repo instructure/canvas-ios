@@ -51,5 +51,23 @@ exports[`renders link correctly 1`] = `
   }
   testID={undefined}
   tvParallaxProperties={undefined}
-/>
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#008EE2",
+          "fontSize": 14,
+          "fontWeight": "500",
+        },
+        Object {
+          "color": "#008EE2",
+        },
+      ]
+    }
+  />
+</View>
 `;

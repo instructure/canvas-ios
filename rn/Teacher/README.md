@@ -83,3 +83,7 @@ in `i18n/locales/`.
 
 To add a new language just add the language strings to `<locale-code>.json` to `i18n/locales/` and then add
 that new language to `i18n/locales/index.js`
+
+### Branding
+
+[see branding page](branding.md)

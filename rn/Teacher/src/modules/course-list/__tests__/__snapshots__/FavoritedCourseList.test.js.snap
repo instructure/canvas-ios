@@ -76,11 +76,16 @@ exports[`render 1`] = `
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
-                  Object {
-                    "color": "#6495ed",
-                    "fontSize": 14,
-                    "fontWeight": "500",
-                  }
+                  Array [
+                    Object {
+                      "color": "#008EE2",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                    },
+                    Object {
+                      "color": "#008EE2",
+                    },
+                  ]
                 }
               >
                 See All
@@ -431,6 +436,9 @@ exports[`render without courses 1`] = `
           "overflow": "hidden",
           "padding": 20,
         },
+        Object {
+          "backgroundColor": "#368BD8",
+        },
         undefined,
       ]
     }
@@ -450,6 +458,9 @@ exports[`render without courses 1`] = `
           },
           null,
           Array [
+            Object {
+              "color": "#fff",
+            },
             Object {
               "color": "#fff",
             },

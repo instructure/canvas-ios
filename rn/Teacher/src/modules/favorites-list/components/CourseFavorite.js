@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   favoritesImage: {
     marginRight: 10,
-    tintColor: colors.prettyBlue,
+    tintColor: colors.link,
     width: 20,
     height: 20,
   },

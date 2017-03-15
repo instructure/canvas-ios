@@ -8,7 +8,8 @@ import {
   Image,
   StyleSheet,
 } from 'react-native'
-import { Link } from '../../common/buttons'
+
+import { LinkButton } from '../../common/buttons'
 import i18n from 'format-message'
 import { stateToProps } from './props'
 import CoursesActions from './actions'
@@ -110,14 +111,12 @@ export class FavoritedCourseList extends Component {
             })}
           </Text>
         </View>
-        <Link onPress={this.goToAllCourses} testID='course-list.see-all-btn'>
-          <Text style={styles.seeAll}>
+        <LinkButton onPress={this.goToAllCourses} testID='course-list.see-all-btn'>
             {i18n({
               default: 'See All',
               description: 'Button to transition from favorited courses list to all courses list',
             })}
-          </Text>
-        </Link>
+        </LinkButton>
       </View>
     )
   }
