@@ -48,6 +48,7 @@ export class FavoritedCourseList extends Component {
         default: 'Leave Feedback',
         description: 'Shown at the top of the app to allow the user to leave feedback',
       }),
+      id: 'beta-feedback',
       icon: require('../../images/feedback.png'),
     }],
   }
@@ -60,8 +61,13 @@ export class FavoritedCourseList extends Component {
 
   onNavigatorEvent = (event: NavigatorEvent) => {
     if (event.type === 'NavBarButtonPress') {
-      if (event.id === 'edit') {
-        this.showFavoritesList()
+      switch (event.id) {
+        case 'edit':
+          this.showFavoritesList()
+          break
+        case 'beta-feedback':
+          this.presentBetaFeedback()
+          break
       }
     }
   }
@@ -97,6 +103,10 @@ export class FavoritedCourseList extends Component {
         description: 'The back button title to go from all courses to just favorited courses',
       }),
     })
+  }
+
+  presentBetaFeedback = () => {
+    this.props.navigator.showModal(route('/beta-feedback'))
   }
 
   renderHeader = () => {

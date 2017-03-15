@@ -3744,6 +3744,10 @@ react-native-button@^1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/react-native-button/-/react-native-button-1.8.2.tgz#49e5cadd22ee443adea52a85539d288aa2117ade"
 
+react-native-device-info@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.10.1.tgz#8eb675fa624a356a14455c97ec82590ee1d1fdd8"
+
 react-native-navigation@next:
   version "2.0.0-experimental.236"
   resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.0.0-experimental.236.tgz#d2b39c62a9dec25508c48de95d546a7f837a3bf7"

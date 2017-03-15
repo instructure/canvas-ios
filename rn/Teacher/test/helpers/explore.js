@@ -1,45 +1,14 @@
 /* @flow */
 
-function hasProp (object: any, key: string, value: any): boolean {
-  if (object instanceof Object) {
-    const props = object.props
-    if (props && props instanceof Object) {
-      for (var prop in props) {
-        if (prop === key && props[prop] === value) {
-          return true
-        }
-      }
-    }
-  }
+import { flatMap } from 'lodash'
 
-  return false
-}
+function query (node: any, match: (any) => boolean): any[] {
+  let result = []
+  let notProcessed = [node]
 
-function selectByProp (object: any, propKey: string, value: any): ?any {
-  if (!(typeof object === 'object')) {
-    return null
-  }
-
-  if (hasProp(object, propKey, value)) {
-    return object
-  }
-
-  let result = null
-
-  for (var key in object) {
-    if (object[key] instanceof Array) {
-      object[key].forEach((e: any) => {
-        result = selectByProp(e, propKey, value)
-        if (result) {
-          return result
-        }
-      })
-    }
-
-    result = selectByProp(object[key], propKey, value)
-    if (result) {
-      return result
-    }
+  while (notProcessed.length) {
+    result = [...result, ...notProcessed.filter(match)]
+    notProcessed = flatMap(notProcessed, ({ children }) => children || [])
   }
 
   return result
@@ -52,12 +21,19 @@ class ComponentExplorer {
     this.component = component
   }
 
-  selectByProp (propKey: string, value: any): ?any {
-    return selectByProp(this.component, propKey, value)
+  selectByProp (propKey: string, value: any): Array<any> {
+    return query(this.component, (item) => {
+      return item.props && item.props[propKey] === value
+    })
   }
 
   selectByID (id: string): ?any {
-    return this.selectByProp('testID', id)
+    const results = this.selectByProp('testID', id)
+    return results.length > 0 ? results[0] : null
+  }
+
+  query (match: (any) => boolean): Array<any> {
+    return query(this.component, match)
   }
 }
 

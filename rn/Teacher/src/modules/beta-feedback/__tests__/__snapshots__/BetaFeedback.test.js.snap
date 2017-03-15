@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Beta Feedback form renders a uri 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTWebView
+    allowsInlineMediaPlayback={undefined}
+    automaticallyAdjustContentInsets={undefined}
+    bounces={undefined}
+    contentInset={undefined}
+    dataDetectorTypes={undefined}
+    decelerationRate={undefined}
+    injectedJavaScript={undefined}
+    mediaPlaybackRequiresUserAction={undefined}
+    messagingEnabled={false}
+    onLoadingError={[Function]}
+    onLoadingFinish={[Function]}
+    onLoadingStart={[Function]}
+    onMessage={[Function]}
+    onShouldStartLoadWithRequest={undefined}
+    scalesPageToFit={undefined}
+    scrollEnabled={undefined}
+    source={
+      Object {
+        "uri": "https://docs.google.com/forms/d/e/1FAIpQLSeBW9mUTkwMUXpIr4LOE_jtAXzynjWExUDsfg98_ktBldq_6A/viewform?entry.1079876773=iOS&entry.1763625541=10.3&entry.50706604=iPhone+SE&entry.321299646=0.1.1992",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "flex": 1,
+        },
+        Object {
+          "backgroundColor": "#ffffff",
+        },
+        undefined,
+      ]
+    }
+  />
+</View>
+`;

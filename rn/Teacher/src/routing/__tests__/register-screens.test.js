@@ -11,7 +11,7 @@ describe('app routes', () => {
 
   // this will help us remember to test our routes
   it('has all routes declared', () => {
-    expect(routes.length).toEqual(9)
+    expect(routes.length).toEqual(10)
   })
 
   it('includes /', () => {
@@ -42,6 +42,13 @@ describe('app routes', () => {
     })
   })
 
+  it('includes /conversations', () => {
+    expect(route('/conversations')).toEqual({
+      screen: screenID('/conversations'),
+      passProps: {},
+    })
+  })
+
   it('includes /profile', () => {
     expect(route('/profile')).toEqual({
       screen: screenID('/profile'),
@@ -52,6 +59,13 @@ describe('app routes', () => {
   it('includes /default', () => {
     expect(route('/default')).toEqual({
       screen: screenID('/default'),
+      passProps: {},
+    })
+  })
+
+  it('includes /beta-feedback', () => {
+    expect(route('/beta-feedback')).toEqual({
+      screen: screenID('/beta-feedback'),
       passProps: {},
     })
   })

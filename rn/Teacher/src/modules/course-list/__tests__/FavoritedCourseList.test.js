@@ -4,9 +4,7 @@ import 'react-native'
 import React from 'react'
 import { FavoritedCourseList } from '../FavoritedCourseList.js'
 import explore from '../../../../test/helpers/explore'
-import { screenID } from '../../../routing'
-import store from '../../../redux/store'
-import { registerScreens } from '../../../routing/register-screens'
+import { route } from '../../../routing'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
@@ -18,7 +16,7 @@ const template = {
 
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')
 jest.mock('TouchableHighlight', () => 'TouchableHighlight')
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('../../../routing')
 
 const courses = [
   template.course({
@@ -81,9 +79,7 @@ test('refresh courses', () => {
 })
 
 test('select course', () => {
-  registerScreens(store)
-
-  const course = template.course({ is_favorite: true })
+  const course = template.course({ id: 1, is_favorite: true })
   const props = {
     ...defaultProps,
     courses: [course],
@@ -97,9 +93,7 @@ test('select course', () => {
 
   const courseCard = explore(tree).selectByID(course.course_code) || {}
   courseCard.props.onPress()
-  expect(props.navigator.push).toHaveBeenCalled()
-  const pushed = props.navigator.push.mock.calls.slice(-1).pop()[0]
-  expect(pushed.screen).toEqual(screenID('/courses/:courseID'))
+  expect(props.navigator.push).toHaveBeenCalledWith(route('/courses/1'))
 })
 
 test('go to all courses', () => {
@@ -116,28 +110,29 @@ test('go to all courses', () => {
   const allButton = explore(tree).selectByID('course-list.see-all-btn') || {}
   allButton.props.onPress()
   expect(props.navigator.push).toHaveBeenCalledWith({
-    screen: screenID('/courses'),
+    ...route('/courses'),
     title: 'All Courses',
     backButtonTitle: 'Courses',
-    passProps: {},
   })
 })
 
 test('calls navigator.push when a course is selected', () => {
-  let navigator = template.navigator({
-    push: jest.fn(),
-  })
+  const course = template.course({ id: 1 })
+  const props = {
+    ...defaultProps,
+    navigator: template.navigator({
+      push: jest.fn(),
+    }),
+    courses: [course],
+  }
   let tree = renderer.create(
-    <FavoritedCourseList {...defaultProps} navigator={navigator} />
+    <FavoritedCourseList {...props} />
   ).toJSON()
 
-  let button: any = explore(tree).selectByID(courses[0].course_code)
+  let button: any = explore(tree).selectByID(course.course_code)
   button.props.onPress()
 
-  expect(navigator.push).toHaveBeenLastCalledWith({
-    screen: screenID('/courses/:courseID'),
-    passProps: { courseID: courses[0].id.toString() },
-  })
+  expect(props.navigator.push).toHaveBeenLastCalledWith(route('/courses/1'))
 })
 
 test('calls navigator.showModal when the edit button is pressed', () => {
@@ -154,9 +149,38 @@ test('calls navigator.showModal when the edit button is pressed', () => {
   })
 
   expect(navigator.showModal).toHaveBeenCalledWith({
-    screen: screenID('/course_favorites'),
+    ...route('/course_favorites'),
     animationType: 'slide-up',
     title: 'Edit Courses',
-    passProps: {},
   })
+})
+
+test('beta feedback button exists', () => {
+  expect(FavoritedCourseList.navigatorButtons.leftButtons).toMatchObject([{
+    title: 'Leave Feedback',
+    id: 'beta-feedback',
+  }])
+})
+
+test('press beta feedback button presents feedback modally', () => {
+  let navHandler = () => {}
+  const event = {
+    type: 'NavBarButtonPress',
+    id: 'beta-feedback',
+  }
+  const props = {
+    ...defaultProps,
+    navigator: template.navigator({
+      showModal: jest.fn(),
+      setOnNavigatorEvent: (callback) => { navHandler = callback },
+    }),
+  }
+
+  renderer.create(
+    <FavoritedCourseList {...props} />
+  )
+
+  navHandler(event)
+
+  expect(props.navigator.showModal).toHaveBeenCalledWith(route('/beta-feedback'))
 })

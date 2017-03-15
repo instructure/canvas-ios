@@ -28,6 +28,10 @@
     "message": "Courses",
     "description": "The header for the favorited courses list"
   },
+  "done_beta_feedback": {
+    "message": "Done",
+    "description": "Button to dismiss feedback form."
+  },
   "done_54e3d4b6": {
     "message": "Done",
     "description": "Back button to move back a screen"

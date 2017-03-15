@@ -3,7 +3,6 @@
 import { Navigation } from 'react-native-navigation'
 import { Store } from 'redux'
 import { Provider } from 'react-redux'
-import { Component } from 'React'
 
 import URL from 'url-parse'
 import Route from 'route-parser'
@@ -14,13 +13,13 @@ export function screenID (path: string): string {
   return '(/api/v1)' + path
 }
 
-export function registerScreen (path: string, component: () => Component<any, any, any>, store: Store): void {
+export function registerScreen<Screen> (path: string, component: () => Screen, store: Store): void {
   const id = screenID(path)
   Navigation.registerComponent(id, component, store, Provider)
   routes.push(new Route(id))
 }
 
-export function route (url: string): NavigatorPushOptions {
+export function route (url: string): RouteOptions {
   const path = new URL(url).pathname
   for (let r of routes) {
     const params = r.match(path)
