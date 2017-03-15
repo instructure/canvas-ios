@@ -13,7 +13,8 @@ import store from './src/redux/store'
 import i18n from 'format-message'
 import setupI18n from './i18n/setup'
 import { setSession } from './src/api/session'
-import { registerScreens } from './src/modules/registerScreens'
+import { registerScreens } from './src/routing/register-screens'
+import { route } from './src/routing'
 import Colors from './src/common/colors'
 import Images from './src/images'
 
@@ -42,31 +43,31 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
             default: 'Courses',
             description: 'Label indicating the user is on the courses tab',
           }),
-          screen: 'teacher.FavoritedCourseList',
           title: i18n('Courses'),
           icon: Images.tabbar.courses,
           titleImage: Images.canvasLogo,
           navigatorStyle: navigationStyles,
+          ...route('/'),
         },
         {
           label: i18n({
             default: 'Inbox',
             description: 'Label indicating the user is on the inbox tab',
           }),
-          screen: 'teacher.Inbox',
           navigatorStyle: navigationStyles,
           title: i18n('Inbox'),
           icon: Images.tabbar.inbox,
+          ...route('/conversations'),
         },
         {
           label: i18n({
             default: 'Profile',
             description: 'Label indicating the user is on the profile tab',
           }),
-          screen: 'teacher.Profile',
           navigatorStyle: navigationStyles,
           title: i18n('Profile'),
           icon: Images.tabbar.profile,
+          ...route('/profile'),
         },
       ],
       tabsStyle: {
@@ -77,8 +78,8 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string }) => {
   } else {
     Navigation.startSingleScreenApp({
       screen: {
-        screen: 'teacher.DefaultState',
         title: i18n('You Should Login'),
+        ...route('/default'),
       },
     })
   }

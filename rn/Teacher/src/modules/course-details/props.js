@@ -15,10 +15,28 @@ export type TabsActionProps = {
 
 export type TabsProps = TabsDataProps & TabsActionProps
 
+type CoursesState = {
+  +courses: Course[],
+}
+
 export interface AppState {
+  courses: CoursesState,
   tabs: TabsState,
 }
 
-export function stateToProps (state: AppState): TabsDataProps {
-  return state.tabs
+type RoutingParams = {
+  courseID: string,
+}
+
+export function stateToProps (state: AppState, ownProps: RoutingParams): TabsDataProps {
+  let course = state.courses.courses.find((course) => {
+    return course.id.toString() === ownProps.courseID
+  })
+  if (!course) {
+    throw new Error('A Course with id ' + ownProps.courseID + ' was expected')
+  }
+  return {
+    course,
+    ...state.tabs,
+  }
 }

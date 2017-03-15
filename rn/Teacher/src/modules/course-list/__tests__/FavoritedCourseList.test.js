@@ -4,6 +4,9 @@ import 'react-native'
 import React from 'react'
 import { FavoritedCourseList } from '../FavoritedCourseList.js'
 import explore from '../../../../test/helpers/explore'
+import { screenID } from '../../../routing'
+import store from '../../../redux/store'
+import { registerScreens } from '../../../routing/register-screens'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
@@ -77,6 +80,8 @@ test('refresh courses', () => {
 })
 
 test('select course', () => {
+  registerScreens(store)
+
   const course = template.course({ is_favorite: true })
   const props = {
     ...defaultProps,
@@ -93,7 +98,7 @@ test('select course', () => {
   courseCard.props.onPress()
   expect(props.navigator.push).toHaveBeenCalled()
   const pushed = props.navigator.push.mock.calls.slice(-1).pop()[0]
-  expect(pushed.screen).toEqual('teacher.CourseDetails')
+  expect(pushed.screen).toEqual(screenID('/courses/:courseID'))
 })
 
 test('go to all courses', () => {

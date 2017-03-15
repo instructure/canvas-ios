@@ -17,7 +17,6 @@ exports[`renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "red",
             "bottom": 0,
             "left": 0,
             "position": "absolute",
@@ -305,7 +304,6 @@ exports[`renders correctly without tabs 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "red",
             "bottom": 0,
             "left": 0,
             "position": "absolute",

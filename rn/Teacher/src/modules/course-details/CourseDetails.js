@@ -70,7 +70,9 @@ export class CourseDetails extends Component<any, Props, any> {
       <ScrollView style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerImageContainer}>
-            <Image style={styles.headerImage} source={ { uri: course.image_download_url } } />
+            { course.image_download_url &&
+                <Image source={{ uri: course.image_download_url }} style={styles.headerImage} />
+            }
             <View style={[styles.headerImageOverlay, { backgroundColor: courseColor }]} />
           </View>
 
@@ -127,7 +129,6 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     bottom: 0,
-    backgroundColor: 'red',
   },
   headerImage: {
     position: 'absolute',

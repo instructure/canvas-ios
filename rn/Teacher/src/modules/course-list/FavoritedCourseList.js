@@ -15,6 +15,7 @@ import CoursesActions from './actions'
 import { connect } from 'react-redux'
 import CourseList from './components/CourseList'
 import NoCourses from './NoCourses'
+import { route } from '../../routing'
 
 const { width: deviceWidth } = Dimensions.get('window')
 
@@ -55,11 +56,8 @@ export class FavoritedCourseList extends Component {
   }
 
   selectCourse = (course: Course) => {
-    this.props.navigator.push({
-      screen: 'teacher.CourseDetails',
-      passProps: { course },
-      title: course.course_code,
-    })
+    let destination = route('/courses/' + course.id)
+    this.props.navigator.push(destination)
   }
 
   goToAllCourses = () => {
