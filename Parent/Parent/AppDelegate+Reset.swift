@@ -79,7 +79,11 @@ extension AppDelegate {
         for dirURL in [libURL, docURL] {
             let files = try! fileManager.contentsOfDirectory(at: dirURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
             for file in files {
+              let notEarlGreyScreenshot = !file.absoluteString.contains("earlgrey_screenshots")
+
+              if notEarlGreyScreenshot {
                 try? fileManager.removeItem(at: file)
+              }
             }
         } 
     }

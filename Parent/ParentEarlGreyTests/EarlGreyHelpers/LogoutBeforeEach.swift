@@ -25,6 +25,7 @@ class LogoutBeforeEach: XCTestCase {
     override func setUp() {
         super.setUp()
 
+        try! grey_setConfiguration()
         AppDelegate.logout()
         parentDomainPickerPage.waitForPageToLoad()
         AppDelegate.resetApplicationForTesting()
