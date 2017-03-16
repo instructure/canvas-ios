@@ -112,7 +112,7 @@ describe('exhaust', () => {
     const page2 = apiResponse([2], { next: page3 })
     const page1 = apiResponse([1], { next: page2 })
 
-    const result = await exhaust(page1)
+    const result = await exhaust(page1())
     expect(result).toEqual({
       data: [1, 2, 3],
       next: null,
@@ -126,7 +126,7 @@ describe('exhaust', () => {
     let error
     let response
     try {
-      response = await exhaust(page1)
+      response = await exhaust(page1())
     } catch (e) {
       error = e
     }
