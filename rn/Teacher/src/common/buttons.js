@@ -9,7 +9,6 @@ import ReactNative, {
 } from 'react-native'
 import BaseButton from 'react-native-button'
 import { branding } from './branding'
-import colors from './colors'
 
 export function Button ({ style, containerStyle, ...props }: Object): ReactNative.TouchableHighlight {
   let brandingContainerStyles = {
@@ -24,7 +23,7 @@ export function Button ({ style, containerStyle, ...props }: Object): ReactNativ
 export class LinkButton extends Component {
   render (): React.Element<any> {
     let brandingStyles = {
-      color: branding.linkColor,
+      color: branding.primaryButtonColor,
     }
     return (
       <BaseButton {...this.props} ><Text style={[linkButtonStyles.textColor, brandingStyles]}>{this.props.children}</Text></BaseButton>
@@ -42,16 +41,13 @@ const styles = StyleSheet.create({
   textColor: {
     color: branding.primaryButtonTextColor,
   },
-  linkTextColor: {
-    color: colors.prettyBlue,
-  },
 })
 
 const linkButtonStyles = StyleSheet.create({
   textColor: {
     fontSize: 14,
     fontWeight: '500',
-    color: branding.linkColor,
+    color: branding.primaryButtonColor,
   },
 })
 

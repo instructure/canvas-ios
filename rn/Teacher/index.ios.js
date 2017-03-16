@@ -78,7 +78,7 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string, brandi
         },
       ],
       tabsStyle: {
-        tabBarSelectedButtonColor: branding.primaryButtonColor,
+        tabBarSelectedButtonColor: branding.primaryBrandColor,
         tabBarBackgroundColor: Colors.tabBarBg,
         tabBarButtonColor: Colors.tabBarTab,
       },

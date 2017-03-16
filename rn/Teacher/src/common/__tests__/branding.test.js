@@ -7,19 +7,18 @@ import { branding, setupBrandingFromNativeBrandingInfo } from '../branding'
 
 test('parses native branding info', () => {
   let expected = {
-    linkColor: 'linkColor',
     navBgColor: 'navBgColor',
     primaryButtonTextColor: 'primaryButtonTextColor',
     primaryButtonColor: 'primaryButtonColor',
     fontColorDark: 'fontColorDark',
     headerImage: './src/images/canvas-logo.png',
     navButtonColor: 'navButtonColor',
+    primaryBrandColor: '#374A59',
   }
 
   let input =
     {
       id: 0,
-      'ic-link-color': 'linkColor',
       'ic-brand-global-nav-bgd': 'navBgColor',
       'ic-brand-button--primary-text': 'primaryButtonTextColor',
       'ic-brand-button--primary-bgd': 'primaryButtonColor',

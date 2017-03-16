@@ -25,12 +25,16 @@ exports[`renders favorited correctly 1`] = `
     <Image
       source={1}
       style={
-        Object {
-          "height": 20,
-          "marginRight": 10,
-          "tintColor": "#008EE2",
-          "width": 20,
-        }
+        Array [
+          Object {
+            "height": 20,
+            "marginRight": 10,
+            "width": 20,
+          },
+          Object {
+            "tintColor": "#374A59",
+          },
+        ]
       }
     />
     <Text
@@ -76,12 +80,16 @@ exports[`renders unfavorited correctly 1`] = `
     <Image
       source={1}
       style={
-        Object {
-          "height": 20,
-          "marginRight": 10,
-          "tintColor": "#008EE2",
-          "width": 20,
-        }
+        Array [
+          Object {
+            "height": 20,
+            "marginRight": 10,
+            "width": 20,
+          },
+          Object {
+            "tintColor": "#374A59",
+          },
+        ]
       }
     />
     <Text

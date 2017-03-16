@@ -78,12 +78,12 @@ exports[`render 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#008EE2",
+                      "color": "#368BD8",
                       "fontSize": 14,
                       "fontWeight": "500",
                     },
                     Object {
-                      "color": "#008EE2",
+                      "color": "#368BD8",
                     },
                   ]
                 }

@@ -8,7 +8,7 @@ import ReactNative, {
   StyleSheet,
   Image,
 } from 'react-native'
-import colors from '../../../common/colors'
+import branding from '../../../common/branding'
 
 type Props = {
   course: Course,
@@ -27,7 +27,7 @@ export default class CourseFavorite extends Component<void, Props, void> {
     return (
       <TouchableHighlight style={styles.courseRow} testID={this.props.course.course_code} onPress={this.onPress}>
         <View style={styles.courseWrapper}>
-          <Image source={this.props.course.is_favorite ? STAR_FILLED : STAR_LINED} style={styles.favoritesImage} />
+          <Image source={this.props.course.is_favorite ? STAR_FILLED : STAR_LINED} style={[styles.favoritesImage, { tintColor: branding.primaryBrandColor }]} />
           <Text style={styles.courseName}>{this.props.course.name}</Text>
         </View>
       </TouchableHighlight>
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
   },
   favoritesImage: {
     marginRight: 10,
-    tintColor: colors.link,
     width: 20,
     height: 20,
   },
