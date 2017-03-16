@@ -18,38 +18,6 @@ import EarlGrey
 import SoGrey
 import XCTest
 
-protocol PageObject {
-  static func assertPageObjects(_ file: StaticString, _ line: UInt)
-
-  // designate 1 element on each page that can be used in a wait function to ensure the page is loaded
-  static func uniquePageElement() -> GREYElementInteraction
-}
-
-extension PageObject {
-  static var page: String {
-    return String(describing: self)
-  }
-
-  static func waitForPageToLoad(_ file: StaticString = #file, _ line: UInt = #line) {
-    grey_invokedFromFile(file, line)
-
-    GREYCondition(name: "Waiting for \(page) to load", block: { _ in
-      print("waiting for \(page) to load")
-
-      var errorOrNil: NSError?
-      uniquePageElement().assert(with: grey_notNil(), error: &errorOrNil)
-      let success = errorOrNil == nil
-      return success
-    }).wait(withTimeout: 30.0)
-  }
-
-  static func dismissKeyboard(_ file: StaticString = #file, _ line: UInt = #line) {
-    grey_invokedFromFile(file, line)
-
-    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-  }
-}
-
 extension XCTestCase {
   private struct Static {
     static let parentDomainPickerPage = ParentDomainPickerPage.self

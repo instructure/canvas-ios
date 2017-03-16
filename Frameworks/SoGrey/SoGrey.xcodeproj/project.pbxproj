@@ -12,6 +12,7 @@
 		492246021D1C744A0053766B /* EarlGrey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492245FF1D1C744A0053766B /* EarlGrey.swift */; };
 		492246031D1C744A0053766B /* EarlGreyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492246001D1C744A0053766B /* EarlGreyUtils.swift */; };
 		49E21B171D1C694D00B7B9B4 /* SoGrey.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E21B161D1C694D00B7B9B4 /* SoGrey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61B536E21E784AD5000FEABB /* PageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E11E784AD5000FEABB /* PageObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		49E21B131D1C694D00B7B9B4 /* SoGrey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49E21B161D1C694D00B7B9B4 /* SoGrey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoGrey.h; sourceTree = "<group>"; };
 		49E21B181D1C694D00B7B9B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61B536E11E784AD5000FEABB /* PageObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				492245FE1D1C744A0053766B /* Class.swift */,
 				492245FF1D1C744A0053766B /* EarlGrey.swift */,
 				492246001D1C744A0053766B /* EarlGreyUtils.swift */,
+				61B536E11E784AD5000FEABB /* PageObject.swift */,
 				49E21B161D1C694D00B7B9B4 /* SoGrey.h */,
 				49E21B181D1C694D00B7B9B4 /* Info.plist */,
 			);
@@ -155,6 +158,7 @@
 				492246021D1C744A0053766B /* EarlGrey.swift in Sources */,
 				492246011D1C744A0053766B /* Class.swift in Sources */,
 				492246031D1C744A0053766B /* EarlGreyUtils.swift in Sources */,
+				61B536E21E784AD5000FEABB /* PageObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +264,7 @@
 		49E21B1C1D1C694D00B7B9B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -281,6 +286,7 @@
 		49E21B1D1D1C694D00B7B9B4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
