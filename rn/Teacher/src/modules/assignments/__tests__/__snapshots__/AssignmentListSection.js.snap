@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#f5f5f5",
+      "borderBottomColor": "lightgrey",
+      "borderBottomWidth": 0.5,
+      "flex": 1,
+      "height": 24,
+      "justifyContent": "center",
+      "paddingLeft": 8,
+      "paddingRight": 8,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "backgroundColor": "#f5f5f5",
+        "color": "#73818b",
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Learn React Native
+  </Text>
+</View>
+`;

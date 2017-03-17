@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "lightgrey",
+      "borderBottomWidth": 0.5,
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+        },
+        Object {
+          "flex": 1,
+        },
+      ]
+    }
+    testID={undefined}
+    tvParallaxProperties={undefined}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "padding": 8,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flex": 0,
+            "height": 32,
+            "width": 32,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "position": "absolute",
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 8,
+              "height": 16,
+              "justifyContent": "center",
+              "left": 12,
+              "position": "absolute",
+              "top": 12,
+              "width": 16,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 12,
+                "tintColor": "grey",
+                "width": 12,
+              }
+            }
+          />
+        </View>
+      </View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={2}
+        style={
+          Object {
+            "color": "#2d3b44",
+            "flex": 1,
+            "fontSize": 17,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        learn to write code
+      </Text>
+    </View>
+  </View>
+</View>
+`;

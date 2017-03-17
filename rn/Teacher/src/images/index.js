@@ -23,6 +23,10 @@ const images = {
     inbox: require('./tabbar/inbox.png'),
     profile: require('./tabbar/profile.png'),
   },
+  assignments: {
+    published: require('./assignments/Published.png'),
+    unpublished: require('./assignments/Unpublished.png'),
+  },
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),
   kabob: require('./kabob.png'),

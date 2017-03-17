@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders activity indicator view correctly 1`] = `
+<View
+  style={
+    Object {
+      "height": undefined,
+    }
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="#999999"
+    hidesWhenStopped={true}
+    size="small"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  />
+</View>
+`;

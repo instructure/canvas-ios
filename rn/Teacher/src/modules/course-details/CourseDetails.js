@@ -20,6 +20,7 @@ import CourseDetailsTab from './components/CourseDetailsTab'
 import { stateToProps } from './props'
 import Button from 'react-native-button'
 import NavigationBackButton from '../../common/components/NavigationBackButton'
+import { route } from '../../routing'
 
 type Props = {
   navigator: ReactNavigator,
@@ -51,7 +52,15 @@ export class CourseDetails extends Component<any, Props, any> {
     this.props.refreshTabs(this.props.course.id)
   }
 
-  selectTab (tab: Tab) {
+  selectTab = (tab: Tab) => {
+    const courseID = this.props.course.id
+    switch (tab.id) {
+      case 'assignments':
+        const destination = route(`/courses/${courseID}/assignments`)
+        this.props.navigator.push(destination)
+        break
+      default: break
+    }
   }
 
   back = () => {
@@ -75,7 +84,6 @@ export class CourseDetails extends Component<any, Props, any> {
             }
             <View style={[styles.headerImageOverlay, { backgroundColor: courseColor }]} />
           </View>
-
           <View style={styles.navigationBar}>
             <NavigationBackButton onPress={this.back} testID='course-details.navigation-back-btn' />
             <Text style={styles.navigationTitle}>{course.course_code}</Text>

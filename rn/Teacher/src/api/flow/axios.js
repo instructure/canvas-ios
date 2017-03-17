@@ -28,7 +28,7 @@ export type AxiosRequestConfig = {
   cancelToken?: any,
 }
 
-export type AxiosResponse = {
+export type AxiosResponse<T> = {
   data: T,
   status: number,
   headers: {

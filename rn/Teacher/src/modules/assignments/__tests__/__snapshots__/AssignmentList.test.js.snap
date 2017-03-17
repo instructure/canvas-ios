@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgrey",
+        "borderBottomWidth": 0.5,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2d3b44",
+          "fontSize": 22,
+          "fontWeight": "bold",
+          "marginBottom": 8,
+          "marginLeft": 8,
+          "marginTop": 16,
+        }
+      }
+    >
+      All Grading Periods
+    </Text>
+  </View>
+  <View>
+    <RCTScrollView>
+      <View>
+        <View />
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;

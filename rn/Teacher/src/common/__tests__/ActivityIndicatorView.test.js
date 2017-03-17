@@ -4,14 +4,14 @@
 
 import 'react-native'
 import React from 'react'
-import DisclosureIndicator from '../components/DisclosureIndicator'
+import ActivityIndicatorView from '../components/ActivityIndicatorView'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
-test('renders disclosure indiciator correctly', () => {
+test('renders activity indicator view correctly', () => {
   let tree = renderer.create(
-    <DisclosureIndicator />
+    <ActivityIndicatorView />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })

@@ -17,6 +17,21 @@ export function getCourseTabs (courseID: number): Promise<ApiResponse<Tab[]>> {
   return httpClient().get(url)
 }
 
+export function getCourseAssignments (courseID: number): Promise<ApiResponse<Assignment[]>> {
+  const url = `courses/${courseID}/assignments`
+  return httpClient().get(url)
+}
+
+export function getCourseAssignmentGroups (courseID: number): Promise<ApiResponse<AssignmentGroup[]>> {
+  const url = `courses/${courseID}/assignment_groups`
+  return paginate(url, {
+    params: {
+      include: ['assignments'],
+      per_page: 2,
+    },
+  })
+}
+
 export function favoriteCourse (courseId: string): Promise<AxiosResponse<Favorite>> {
   return httpClient().post(`users/self/favorites/courses/${courseId}`)
 }

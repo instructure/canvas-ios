@@ -55,3 +55,6 @@ fastlane/screenshots
 
 # Coverage directory used by tools like istanbul
 coverage
+
+# vscode
+.vscode

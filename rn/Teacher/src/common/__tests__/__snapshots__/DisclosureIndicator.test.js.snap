@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders button correctly 1`] = `
+exports[`renders disclosure indiciator correctly 1`] = `
 <View
   style={
     Object {
