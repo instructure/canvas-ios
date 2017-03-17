@@ -101,7 +101,6 @@
 		B16B5B551E2456ED00DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5B571E2456ED00DED47B /* InfoPlist.strings */; };
 		B16B5B5A1E2456EF00DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5B5C1E2456EF00DED47B /* InfoPlist.strings */; };
 		B16B5B5F1E2456F100DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5B611E2456F100DED47B /* InfoPlist.strings */; };
-		B16B60AA1E26C2ED00DED47B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B564DE021D8CB87600E25BDA /* Localizable.strings */; };
 		B181C3231CA43B7500277440 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3211CA43B7500277440 /* Cartography.framework */; };
 		B181C3241CA43B8400277440 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3211CA43B7500277440 /* Cartography.framework */; };
 		B181C3251CA43B8400277440 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B181C3211CA43B7500277440 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -195,6 +194,7 @@
 		2C1CBC6A1E58B5B300D3F15A /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C1CBC6B1E58B5B400D3F15A /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C1CBC6C1E58B65C00D3F15A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = EnrollmentKit/en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		2CA730FE1E7C301700FF23E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		490550211CAC897B009D4AD8 /* Group+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Group+Collections.swift"; sourceTree = "<group>"; };
 		490550231CAC8990009D4AD8 /* Enrollment+Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Enrollment+Favorites.swift"; sourceTree = "<group>"; };
 		4909C6FD1C73E94A00FAC8FB /* EnrollmentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -224,6 +224,7 @@
 		498400DF1C6408E600BDCE75 /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		498400E01C6408E600BDCE75 /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49998E321E1D730300C98AC2 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49BADE541E732F270077251A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49C3E68F1C6D1A37004201F9 /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DoNotShipThis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C3E6941C6D1A96004201F9 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IntroViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49EB13121C97916D00C177C8 /* Enrollment+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Enrollment+Network.swift"; sourceTree = "<group>"; };
@@ -962,7 +963,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E0D0C091C4954E9008AA96F /* Assets.xcassets in Resources */,
-				B16B60AA1E26C2ED00DED47B /* Localizable.strings in Resources */,
 				B16B5B501E2456EC00DED47B /* InfoPlist.strings in Resources */,
 				4909C7001C74D1D600FAC8FB /* EnrollmentCollectionViewCell.xib in Resources */,
 			);
@@ -1152,6 +1152,7 @@
 				B16B5BB01E2457DF00DED47B /* ru */,
 				B16B5BB51E2457EB00DED47B /* es */,
 				B16B5BBA1E2457F800DED47B /* sv */,
+				49BADE541E732F270077251A /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1179,6 +1180,7 @@
 				B16B5BB11E2457DF00DED47B /* ru */,
 				B16B5BB61E2457EC00DED47B /* es */,
 				B16B5BBB1E2457F800DED47B /* sv */,
+				2CA730FE1E7C301700FF23E7 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
