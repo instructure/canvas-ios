@@ -18,8 +18,6 @@ require 'json'
 require 'uri'
 fastlane_require 'httpclient'
 
-require 'pry'
-
 class FBSimctl
   attr_reader :video_out
 

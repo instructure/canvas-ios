@@ -21,8 +21,11 @@ fast_execute = [
     'list',
     'test_parent',
     'build_earlgrey_parent',
-    'test_earlgrey_parent'
+    'test_earlgrey_parent',
+    'seed_teacher'
 ].include?(ARGV.first)
+
+update_fastlane unless fast_execute
 
 require_relative 'fastlane_utils'
 
