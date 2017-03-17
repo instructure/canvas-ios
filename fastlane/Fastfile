@@ -14,6 +14,8 @@
 
 fastlane_version '2.8.0'
 
+require_relative 'utils/utils'
+
 # noinspection RubyLiteralArrayInspection
 fast_execute = [
     'list',
@@ -21,8 +23,6 @@ fast_execute = [
     'build_earlgrey_parent',
     'test_earlgrey_parent'
 ].include?(ARGV.first)
-
-update_fastlane unless fast_execute
 
 require_relative 'fastlane_utils'
 
@@ -227,4 +227,10 @@ brew install fbsimctl --HEAD)
       simulator.stop_server
     end
   end
-end
+
+  desc 'Seed data into Canvas LMS for testing.'
+  lane :seed_teacher do |options|
+    SoSeedy.seed(app: :teacher)
+  end
+
+end # platform :ios

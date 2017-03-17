@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 TEACHER_APP_ID=58b0b2116096900100863eb8
+TEACHER_UI_JOB_ID=58c981b73749ca0100c1abb3
 TEACHER_PATTERN='rn\/Teacher'
 
 PARENT_APP_ID=5810b402f729340100dbfd21
@@ -44,4 +45,20 @@ fi
 
 if [[ "$BUDDYBUILD_BASE_BRANCH" = "develop" ]]; then
     shortcircuit_build
+fi
+
+if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_UI_JOB_ID ]]; then
+  # list rubies (ruby-2.2.5, ruby-2.3.1)
+  chruby
+
+  # select ruby
+  chruby ruby-2.3.1
+
+  # update rubygems
+  gem update --system --no-document
+
+  # install fastlane
+  gem install fastlane --no-document
+
+  fastlane seed_teacher
 fi
