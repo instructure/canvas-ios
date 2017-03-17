@@ -1,19 +1,29 @@
-/* Message for an error alert */
-"An unexpected error occured. %@(%@)" = "حدث خطأ غير متوقع. %1$@(%2$@)";
+/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
+"(localizedDescription)
 
-/* Dismiss an error dialog */
+Check your connection or applicable carrier data limits and try again." = "(localizedDescription)
+
+تحقق من اتصالك أو حدود بيانات شبكة الجوال السارية ثم أعد المحاولة.";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "خطأ في القرص";
+
+/* Dismiss button for error messages */
 "Dismiss" = "رفض";
 
 /* Data encoding error title */
 "Encoding Error" = "خطأ في الترميز";
 
-/* Title for an error alert */
-"Error" = "خطأ";
-
-/* attached to error explanation in dialog */
+/* (No Commment) */
 "Explanation:" = "الشرح:";
 
-/* Option to report an error */
+/* Error alert title for network error */
+"Network Error" = "خطأ في الشبكة";
+
+/* Error title for push notification registration error */
+"Notification Error" = "خطأ في الإخطارات";
+
+/* Button to report an error */
 "Report" = "إنشاء تقرير";
 
 /* Data encoding error message */
@@ -22,6 +32,12 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "حدثت مشكلة أثناء تفسير إستجابة من الخادم.";
 
-/* SoLazy's fallback title for an unknown error */
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "ظهرت مشكلة في تسجيل جهازك لإرسال الإخطارات.";
+
+/* An unknown error title */
 "Unknown Error" = "خطأ غير معروف";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "لا توجد سعة تخزينية على جهازك. الرجاء تحرير مساحة ثم إعادة المحاولة.";
 

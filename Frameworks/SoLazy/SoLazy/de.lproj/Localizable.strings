@@ -1,19 +1,29 @@
-/* Message for an error alert */
-"An unexpected error occured. %@(%@)" = "Ein unerwarteter Fehler ist aufgetreten. %1$@(%2$@)";
+/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
+"(localizedDescription)
 
-/* Dismiss an error dialog */
+Check your connection or applicable carrier data limits and try again." = "(localizedDescription)
+
+Überprüfen Sie Ihre Internetverbindung oder ggf. geltende Datenlimits des Anbieters, und versuchen Sie es erneut.";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "Festplattenfehler";
+
+/* Dismiss button for error messages */
 "Dismiss" = "Ablehnen";
 
 /* Data encoding error title */
 "Encoding Error" = "Verschlüsselungsfehler";
 
-/* Title for an error alert */
-"Error" = "Fehler";
-
-/* attached to error explanation in dialog */
+/* (No Commment) */
 "Explanation:" = "Erklärung:";
 
-/* Option to report an error */
+/* Error alert title for network error */
+"Network Error" = "Netzwerkfehler";
+
+/* Error title for push notification registration error */
+"Notification Error" = "Benachrichtigungsfehler";
+
+/* Button to report an error */
 "Report" = "Bericht";
 
 /* Data encoding error message */
@@ -22,6 +32,12 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Beim Interpretieren einer Antwort des Servers ist ein Problem aufgetreten.";
 
-/* SoLazy's fallback title for an unknown error */
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "Es gab ein Problem bei der Registrierung Ihres Geräts für Push-Benachrichtigungen.";
+
+/* An unknown error title */
 "Unknown Error" = "Unbekannter Fehler";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "Der Speicher Ihres Geräts ist voll. Bitte geben Sie Speicherplatz frei, und versuchen Sie es erneut.";
 

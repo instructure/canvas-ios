@@ -1,19 +1,27 @@
-/* Message for an error alert */
-"An unexpected error occured. %@(%@)" = "En uventet feil oppstod. %1$@(%2$@)";
+/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
+"(localizedDescription)
 
-/* Dismiss an error dialog */
+Check your connection or applicable carrier data limits and try again." = "(localizedDescription)                                                                                                                                                                                                                     Sjekk internettilkobling eller eventuelle grenser for mobildata og prøv igjen.";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "Diskfeil";
+
+/* Dismiss button for error messages */
 "Dismiss" = "Avvis";
 
 /* Data encoding error title */
 "Encoding Error" = "Kodefeil";
 
-/* Title for an error alert */
-"Error" = "Feil";
-
-/* attached to error explanation in dialog */
+/* (No Commment) */
 "Explanation:" = "Forklaring:";
 
-/* Option to report an error */
+/* Error alert title for network error */
+"Network Error" = "Nettverksfeil";
+
+/* Error title for push notification registration error */
+"Notification Error" = "Varslingsfeil";
+
+/* Button to report an error */
 "Report" = "Rapporter";
 
 /* Data encoding error message */
@@ -22,6 +30,12 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Det var et problem med tolkningen av svaret fra serveren.";
 
-/* SoLazy's fallback title for an unknown error */
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "Det oppsto et problem under registreringen av push-varslinger på enheten din.";
+
+/* An unknown error title */
 "Unknown Error" = "Ukjent feil";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "Enheten din har gått tom for lagringsplass. Frigjør plass og prøv igjen.";
 

@@ -91,6 +91,9 @@
 		B119EECF1E3A80EE00343D1B /* Tuple+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tuple+SoLazy.swift"; sourceTree = "<group>"; };
 		B122CDDB1E03941200F63868 /* RACHelpersSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACHelpersSpec.swift; sourceTree = "<group>"; };
 		B135FEB81CB8632F0093DE0B /* NSURLSession+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSession+SoLazy.swift"; sourceTree = "<group>"; };
+		B159E1E81E79FEFC00762BCA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B159E1E91E79FEFC00762BCA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		B159E1EA1E79FEFD00762BCA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B16398741DC7A82D00A5B68B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B16398751DC7A82D00A5B68B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B16398781DC7A87500A5B68B /* ArraySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraySpec.swift; sourceTree = "<group>"; };
@@ -546,6 +549,7 @@
 				B16B5CD81E2549F900DED47B /* ru */,
 				B16B5CDA1E254A0E00DED47B /* es */,
 				B16B5CDC1E254A2200DED47B /* sv */,
+				B159E1E81E79FEFC00762BCA /* fr-CA */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -572,6 +576,7 @@
 				B16B5CD91E2549FA00DED47B /* ru */,
 				B16B5CDB1E254A0F00DED47B /* es */,
 				B16B5CDD1E254A2300DED47B /* sv */,
+				B159E1E91E79FEFC00762BCA /* fr-CA */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -599,6 +604,7 @@
 				B5A951151D8CABC500988A4A /* sv */,
 				B5A951161D8CABC900988A4A /* zh-HK */,
 				B5A951171D8CABCD00988A4A /* zh */,
+				B159E1EA1E79FEFD00762BCA /* fr-CA */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

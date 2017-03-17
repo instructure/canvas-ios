@@ -1,19 +1,29 @@
-/* Message for an error alert */
-"An unexpected error occured. %@(%@)" = "意外錯誤出現。%1$@(%2$@)";
+/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
+"(localizedDescription)
 
-/* Dismiss an error dialog */
+Check your connection or applicable carrier data limits and try again." = "(localizedDescription)
+
+請檢查網絡連接或適用的運營商數據限制，然後重試。";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "磁碟錯誤";
+
+/* Dismiss button for error messages */
 "Dismiss" = "取消";
 
 /* Data encoding error title */
 "Encoding Error" = "編碼錯誤";
 
-/* Title for an error alert */
-"Error" = "錯誤";
-
-/* attached to error explanation in dialog */
+/* (No Commment) */
 "Explanation:" = "解釋：";
 
-/* Option to report an error */
+/* Error alert title for network error */
+"Network Error" = "網路錯誤";
+
+/* Error title for push notification registration error */
+"Notification Error" = "通知錯誤";
+
+/* Button to report an error */
 "Report" = "報告";
 
 /* Data encoding error message */
@@ -22,6 +32,12 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "對伺服器應答內容解讀時出現問題。";
 
-/* SoLazy's fallback title for an unknown error */
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "為您的裝置設定推送通知時出現問題。";
+
+/* An unknown error title */
 "Unknown Error" = "未知問題";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "您的裝置沒有儲存空間了。請釋放儲存空間，然後重試。";
 

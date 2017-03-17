@@ -1,19 +1,29 @@
-/* Message for an error alert */
-"An unexpected error occured. %@(%@)" = "Er is een onverwachte fout opgetreden. %1$@(%2$@)";
+/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
+"(localizedDescription)
 
-/* Dismiss an error dialog */
+Check your connection or applicable carrier data limits and try again." = "(localizedDescription)
+
+Controleer je verbinding of de geldende datalimieten van je provider en probeer het opnieuw.";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "Schijffout";
+
+/* Dismiss button for error messages */
 "Dismiss" = "Verwijderen";
 
 /* Data encoding error title */
 "Encoding Error" = "Coderingsfout";
 
-/* Title for an error alert */
-"Error" = "Fout";
-
-/* attached to error explanation in dialog */
+/* (No Commment) */
 "Explanation:" = "Uitleg:";
 
-/* Option to report an error */
+/* Error alert title for network error */
+"Network Error" = "Netwerkfout";
+
+/* Error title for push notification registration error */
+"Notification Error" = "Meldingsfout";
+
+/* Button to report an error */
 "Report" = "Rapport";
 
 /* Data encoding error message */
@@ -22,6 +32,12 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Er was een probleem bij het interpreteren van een reactie van de server.";
 
-/* SoLazy's fallback title for an unknown error */
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "Er is een fout opgetreden bij het registreren van je apparaat voor pushberichten.";
+
+/* An unknown error title */
 "Unknown Error" = "Onbekende fout";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "Je apparaat beschikt over onvoldoende opslagruimte. Maak ruimte vrij en probeer het opnieuw.";
 

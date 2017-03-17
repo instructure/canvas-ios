@@ -1,19 +1,28 @@
-/* Message for an error alert */
-"An unexpected error occured. %@(%@)" = "Une erreur imprévue s’est produite. %1$@(%2$@)";
+/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
+"(localizedDescription)
 
-/* Dismiss an error dialog */
+Check your connection or applicable carrier data limits and try again." = "(LocalizedDescription) 
+Vérifiez votre connexion ou les limites de votre support de données applicables et essayez à nouveau.";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "Erreur de disque";
+
+/* Dismiss button for error messages */
 "Dismiss" = "Rejeter";
 
 /* Data encoding error title */
 "Encoding Error" = "Erreur d'encodage";
 
-/* Title for an error alert */
-"Error" = "Erreur";
-
-/* attached to error explanation in dialog */
+/* (No Commment) */
 "Explanation:" = "Explication :";
 
-/* Option to report an error */
+/* Error alert title for network error */
+"Network Error" = "Erreur de réseau";
+
+/* Error title for push notification registration error */
+"Notification Error" = "Erreur de notification";
+
+/* Button to report an error */
 "Report" = "Rapport";
 
 /* Data encoding error message */
@@ -22,6 +31,12 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Un problème est survenu lors de l'interprétation d'une réponse du serveur.";
 
-/* SoLazy's fallback title for an unknown error */
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "Un problème est survenu lors de l'enregistrement de votre appareil pour les notifications push.";
+
+/* An unknown error title */
 "Unknown Error" = "Erreur inconnue";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "Espace de stockage de votre appareil insuffisant. Veuillez libérer de l'espace et essayez à nouveau.";
 

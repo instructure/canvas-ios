@@ -1,19 +1,29 @@
-/* Message for an error alert */
-"An unexpected error occured. %@(%@)" = "En uventet fejl opstod. %1$@(%2$@)";
+/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
+"(localizedDescription)
 
-/* Dismiss an error dialog */
+Check your connection or applicable carrier data limits and try again." = "(localizedDescription)
+
+Kontroller din forbindelse eller dit teleselskabs gældende datagrænser og prøv igen.";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "Diskfejl";
+
+/* Dismiss button for error messages */
 "Dismiss" = "Afvis";
 
 /* Data encoding error title */
 "Encoding Error" = "Krypteringsfejl";
 
-/* Title for an error alert */
-"Error" = "Fejl";
-
-/* attached to error explanation in dialog */
+/* (No Commment) */
 "Explanation:" = "Forklaring:";
 
-/* Option to report an error */
+/* Error alert title for network error */
+"Network Error" = "Netværk fejl";
+
+/* Error title for push notification registration error */
+"Notification Error" = "Meddelelsesfejl";
+
+/* Button to report an error */
 "Report" = "Rapport";
 
 /* Data encoding error message */
@@ -22,6 +32,12 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Der var et problemmed fortolkningen af et svar fra serveren.";
 
-/* SoLazy's fallback title for an unknown error */
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "Der opstod et problem ved tilmelding af din enhed til push-meddelelser";
+
+/* An unknown error title */
 "Unknown Error" = "Ukendt fejl";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "Din enhed har ikke mere lagerplads. Frigør plads og prøv igen.";
 

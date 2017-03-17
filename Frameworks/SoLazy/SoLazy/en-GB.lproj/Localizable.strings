@@ -1,19 +1,29 @@
-/* Message for an error alert */
-"An unexpected error occured. %@(%@)" = "An unexpected error occurred. %1$@(%2$@)";
+/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
+"(localizedDescription)
 
-/* Dismiss an error dialog */
+Check your connection or applicable carrier data limits and try again." = "(localizedDescription)
+
+Check your connection or applicable carrier data limits and try again.";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "Disk error";
+
+/* Dismiss button for error messages */
 "Dismiss" = "Dismiss";
 
 /* Data encoding error title */
 "Encoding Error" = "Encoding error";
 
-/* Title for an error alert */
-"Error" = "Error";
-
-/* attached to error explanation in dialog */
+/* (No Commment) */
 "Explanation:" = "Explanation:";
 
-/* Option to report an error */
+/* Error alert title for network error */
+"Network Error" = "Network error";
+
+/* Error title for push notification registration error */
+"Notification Error" = "Notification error";
+
+/* Button to report an error */
 "Report" = "Report";
 
 /* Data encoding error message */
@@ -22,6 +32,12 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "There was a problem interpreting a response from the server.";
 
-/* SoLazy's fallback title for an unknown error */
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "There was a problem registering your device for push notifications.";
+
+/* An unknown error title */
 "Unknown Error" = "Unknown reror";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "Your device is out of storage space. Please free up space and try again.";
 

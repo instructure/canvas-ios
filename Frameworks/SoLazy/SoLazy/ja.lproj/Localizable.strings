@@ -1,19 +1,31 @@
-/* Message for an error alert */
-"An unexpected error occured. %@(%@)" = "予期しないエラーが発生しました。%1$@(%2$@)";
+/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
+"(localizedDescription)
 
-/* Dismiss an error dialog */
+Check your connection or applicable carrier data limits and try again." = "（localizedDescription）
+
+接続または該当する通信事業者データの制限を確認して、もう一度お試しください。";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "ディスクエラー
+";
+
+/* Dismiss button for error messages */
 "Dismiss" = "棄却する";
 
 /* Data encoding error title */
 "Encoding Error" = "エンコードエラー";
 
-/* Title for an error alert */
-"Error" = "エラー";
-
-/* attached to error explanation in dialog */
+/* (No Commment) */
 "Explanation:" = "説明：";
 
-/* Option to report an error */
+/* Error alert title for network error */
+"Network Error" = "ネットワークエラー";
+
+/* Error title for push notification registration error */
+"Notification Error" = "通知エラー
+";
+
+/* Button to report an error */
 "Report" = "報告";
 
 /* Data encoding error message */
@@ -22,6 +34,14 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "サーバーからの応答の読み取り中にエラーが発生しました。";
 
-/* SoLazy's fallback title for an unknown error */
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "デバイスにプッシュ通知を登録する際に問題が発生しました。
+";
+
+/* An unknown error title */
 "Unknown Error" = "未知のエラー";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "デバイスのストレージスペースが不足しています。
+スペースを作ってもう一度お試しください。";
 

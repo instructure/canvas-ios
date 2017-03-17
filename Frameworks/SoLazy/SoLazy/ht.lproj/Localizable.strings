@@ -1,19 +1,29 @@
-/* Message for an error alert */
-"An unexpected error occured. %@(%@)" = "Yon erè fèt sanzatann. %1$@(%2$@)";
+/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
+"(localizedDescription)
 
-/* Dismiss an error dialog */
+Check your connection or applicable carrier data limits and try again." = "(localizedDescription)
+
+Verifye koneksyon ou an oswa limit ki aplike pou done yo epi eseye ankò.";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "Erè Disk";
+
+/* Dismiss button for error messages */
 "Dismiss" = "Rejte";
 
 /* Data encoding error title */
 "Encoding Error" = "Erè Kodaj";
 
-/* Title for an error alert */
-"Error" = "Erè";
-
-/* attached to error explanation in dialog */
+/* (No Commment) */
 "Explanation:" = "Esplikasyon:";
 
-/* Option to report an error */
+/* Error alert title for network error */
+"Network Error" = "Erè Rezo";
+
+/* Error title for push notification registration error */
+"Notification Error" = "Erè Notifikasyon";
+
+/* Button to report an error */
 "Report" = "Rapòte";
 
 /* Data encoding error message */
@@ -22,6 +32,12 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Te gen yon pwoblèm nan entèpretasyon repons de sèvè a.";
 
-/* SoLazy's fallback title for an unknown error */
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "Te gen yon pwoblèm pandan anrejistreman aparèy ou a pou ka resevwa notifikasyon push.";
+
+/* An unknown error title */
 "Unknown Error" = "Erè Enkoni";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "Pa gen espas estojak sou aparèy ou a ankò. Tanpri libere kèk espas epi eseye ankò.";
 
