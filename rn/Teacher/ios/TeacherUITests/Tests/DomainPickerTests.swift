@@ -15,6 +15,8 @@ class DomainPickerTests: XCTestCase {
   }
   
   func testDomainPicker_domainFieldAllowsInput() {
+    let teacher = Data.getNextTeacher(self)
+
     domainPickerPage.enterDomain("mobiledev")
     domainPickerPage.assertDomainField(contains: "mobiledev")
   }

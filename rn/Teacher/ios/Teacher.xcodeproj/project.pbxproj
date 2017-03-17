@@ -21,6 +21,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		148DB0748C822C939D682AD0 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A31E8BEF2CAC60106F1E1 /* DataProvider.swift */; };
+		279DC42F392D254716A9F524 /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A26FAD3481B8CC4F39E20 /* Enrollment.swift */; };
+		28087A3DB76A7583688C3073 /* CanvasUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71370A64E454689407684D4 /* CanvasUser.swift */; };
 		2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
 		2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */; };
 		2C50EDFF1E735CB10096592C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFE1E735CB10096592C /* CoreText.framework */; };
@@ -32,6 +35,7 @@
 		2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */; };
 		2C5AC25B1E5E3B8700DE4DEE /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5AC25A1E5E3B7B00DE4DEE /* libReactNativeNavigation.a */; };
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
+		462B9DCCC3A10C7F30AE8168 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC2282549635CBA9EDD0B /* Course.swift */; };
 		4943ECB31E5CEFBD001DC5B5 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */; };
 		4943ECB41E5CEFBD001DC5B5 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; };
@@ -61,6 +65,13 @@
 		61B537301E786A54000FEABB /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DF1E784A4B000FEABB /* Pages.swift */; };
 		61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E31E78599D000FEABB /* DomainPickerPage.swift */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		8FA0A13649E41DE268D43A1E /* DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515879C98C3F38C08928D4C /* DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift */; };
+		952E99B216DEE7FD0BEF819D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E479910A81A38C8833E5314 /* Page.swift */; };
+		9D9AA0B303E51E7BAC1F01BC /* DataMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD38B3C05A26F2FAA4C36B /* DataMap.swift */; };
+		A45A7871AEE461283E84002D /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105261256A70B5DFD1139104 /* Quiz.swift */; };
+		A6A99147D8722993787C0994 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF3DE89359E019540B64CA /* Assignment.swift */; };
+		A95ECA0CD1D48C8E2C0C6D3E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2E6AABADA7879B06E2FBA /* Data.swift */; };
+		E95E120300F55714C77F2BB4 /* DataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E779D0FC821A88203D0C34D /* DataUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -267,6 +278,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		F95BD47D1E7C600000117939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
+			remoteInfo = RNDeviceInfo;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -312,6 +330,7 @@
 		00E356EE1AD99517003FC87E /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0456B43BE349468FA3E976BB /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
+		105261256A70B5DFD1139104 /* Quiz.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Quiz.swift; path = models/Quiz.swift; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,6 +353,8 @@
 		2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C5AC2441E5E3B7B00DE4DEE /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
+		329DC2282549635CBA9EDD0B /* Course.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Course.swift; path = models/Course.swift; sourceTree = "<group>"; };
+		3E479910A81A38C8833E5314 /* Page.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Page.swift; path = models/Page.swift; sourceTree = "<group>"; };
 		4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -346,6 +367,7 @@
 		4943ECC61E5CF16A001DC5B5 /* NativeLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeLogin.h; sourceTree = "<group>"; };
 		4943ECC71E5CF16A001DC5B5 /* NativeLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeLogin.m; sourceTree = "<group>"; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
+		5CD2E6AABADA7879B06E2FBA /* Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Data.swift; path = data/Data.swift; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		61B5365C1E7749F5000FEABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61B536A21E774B6A000FEABB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoGrey.framework; path = "../../../Frameworks/SoGrey/build/Debug-iphoneos/SoGrey.framework"; sourceTree = "<group>"; };
@@ -358,7 +380,14 @@
 		61B537201E786969000FEABB /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		86FF3DE89359E019540B64CA /* Assignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assignment.swift; path = models/Assignment.swift; sourceTree = "<group>"; };
+		9E779D0FC821A88203D0C34D /* DataUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataUtil.swift; path = data/DataUtil.swift; sourceTree = "<group>"; };
+		A515879C98C3F38C08928D4C /* DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift; path = data/DomainPickerTests/DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift; sourceTree = "<group>"; };
 		ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
+		CB4A26FAD3481B8CC4F39E20 /* Enrollment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enrollment.swift; path = models/Enrollment.swift; sourceTree = "<group>"; };
+		D24A31E8BEF2CAC60106F1E1 /* DataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataProvider.swift; path = data/DataProvider.swift; sourceTree = "<group>"; };
+		D71370A64E454689407684D4 /* CanvasUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CanvasUser.swift; path = models/CanvasUser.swift; sourceTree = "<group>"; };
+		DDFD38B3C05A26F2FAA4C36B /* DataMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataMap.swift; path = data/DataMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -555,6 +584,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3B379781808A96719F53B283 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				5CD2E6AABADA7879B06E2FBA /* Data.swift */,
+				D24A31E8BEF2CAC60106F1E1 /* DataProvider.swift */,
+				F09745A515E8F598C184EC40 /* DomainPickerTests */,
+				DDFD38B3C05A26F2FAA4C36B /* DataMap.swift */,
+				9E779D0FC821A88203D0C34D /* DataUtil.swift */,
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
 		4943EC8A1E5CEF93001DC5B5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -589,6 +630,8 @@
 				61B536DC1E78491B000FEABB /* Tests */,
 				61B536C11E783EB2000FEABB /* Pages */,
 				61B5365C1E7749F5000FEABB /* Info.plist */,
+				3B379781808A96719F53B283 /* data */,
+				A8E2B112896154A95919D6FF /* models */,
 			);
 			path = TeacherUITests;
 			sourceTree = "<group>";
@@ -669,6 +712,35 @@
 				13B07F961A680F5B00A75B9A /* Teacher.app */,
 				00E356EE1AD99517003FC87E /* TeacherTests.xctest */,
 				61B537201E786969000FEABB /* TeacherUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A8E2B112896154A95919D6FF /* models */ = {
+			isa = PBXGroup;
+			children = (
+				86FF3DE89359E019540B64CA /* Assignment.swift */,
+				D71370A64E454689407684D4 /* CanvasUser.swift */,
+				329DC2282549635CBA9EDD0B /* Course.swift */,
+				CB4A26FAD3481B8CC4F39E20 /* Enrollment.swift */,
+				3E479910A81A38C8833E5314 /* Page.swift */,
+				105261256A70B5DFD1139104 /* Quiz.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		F09745A515E8F598C184EC40 /* DomainPickerTests */ = {
+			isa = PBXGroup;
+			children = (
+				A515879C98C3F38C08928D4C /* DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift */,
+			);
+			name = DomainPickerTests;
+			sourceTree = "<group>";
+		};
+		F95BD4611E7C600000117939 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F95BD47E1E7C600000117939 /* libRNDeviceInfo.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -822,6 +894,10 @@
 				{
 					ProductGroup = 2C5AC2451E5E3B7B00DE4DEE /* Products */;
 					ProjectRef = 2C5AC2441E5E3B7B00DE4DEE /* ReactNativeNavigation.xcodeproj */;
+				},
+				{
+					ProductGroup = F95BD4611E7C600000117939 /* Products */;
+					ProjectRef = ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1016,6 +1092,13 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		F95BD47E1E7C600000117939 /* libRNDeviceInfo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNDeviceInfo.a;
+			remoteRef = F95BD47D1E7C600000117939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1087,6 +1170,17 @@
 				61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */,
 				61B537301E786A54000FEABB /* Pages.swift in Sources */,
 				61B5372F1E786A51000FEABB /* DomainPickerTests.swift in Sources */,
+				A95ECA0CD1D48C8E2C0C6D3E /* Data.swift in Sources */,
+				148DB0748C822C939D682AD0 /* DataProvider.swift in Sources */,
+				A6A99147D8722993787C0994 /* Assignment.swift in Sources */,
+				28087A3DB76A7583688C3073 /* CanvasUser.swift in Sources */,
+				462B9DCCC3A10C7F30AE8168 /* Course.swift in Sources */,
+				279DC42F392D254716A9F524 /* Enrollment.swift in Sources */,
+				952E99B216DEE7FD0BEF819D /* Page.swift in Sources */,
+				A45A7871AEE461283E84002D /* Quiz.swift in Sources */,
+				8FA0A13649E41DE268D43A1E /* DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift in Sources */,
+				9D9AA0B303E51E7BAC1F01BC /* DataMap.swift in Sources */,
+				E95E120300F55714C77F2BB4 /* DataUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
