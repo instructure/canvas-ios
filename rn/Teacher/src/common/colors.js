@@ -7,7 +7,7 @@ export default ({
   tabBarBg: '#fff',
   tabBarTab: '#73818C',
   navBarBg: '#374A59',
-  darkText: '#032250',
+  darkText: '#2D3B45',
   lightText: '#7F91A7',
   primaryButton: '#368BD8',
   primaryButtonText: '#fff',

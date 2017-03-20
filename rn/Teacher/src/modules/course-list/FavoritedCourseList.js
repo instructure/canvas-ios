@@ -17,6 +17,7 @@ import { connect } from 'react-redux'
 import CourseList from './components/CourseList'
 import NoCourses from './NoCourses'
 import { route } from '../../routing'
+import colors from '../../common/colors'
 
 const { width: deviceWidth } = Dimensions.get('window')
 
@@ -184,6 +185,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
     marginLeft: 6,
+    color: colors.darkText,
   },
   seeAll: {
     fontSize: 14,

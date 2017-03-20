@@ -73,7 +73,9 @@ export default class CourseList extends Component {
     return (
       <GridView
         onLayout={this.onLayout}
-        style={{ padding: this.state.padding }}
+        contentInset={{ top: this.state.padding, left: 0, bottom: this.state.padding, right: 0 }}
+        showsVerticalScrollIndicator={false}
+        style={{ marginHorizontal: this.state.padding, overflow: 'visible' }}
         placeholderStyle={cardStyles}
         data={this.props.courses}
         itemsPerRow={this.state.numItems}

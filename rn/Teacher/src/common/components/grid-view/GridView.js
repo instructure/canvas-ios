@@ -52,6 +52,8 @@ type Props = {
   placeholderStyle: StyleSheet,
   style: StyleSheet,
   onLayout: Function,
+  contentInset?: Object,
+  showsVerticalScrollIndicator?: boolean,
 }
 
 type State = {
@@ -70,6 +72,8 @@ export default class GridView extends Component<DefaultProps, Props, State> {
     renderPlaceholder: React.PropTypes.func,
     data: React.PropTypes.arrayOf(React.PropTypes.any).isRequired,
     renderFooter: React.PropTypes.func,
+    contentInset: React.PropTypes.object,
+    showsVerticalScrollIndicator: React.PropTypes.bool,
   }
 
   static defaultProps = {
@@ -173,6 +177,7 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
+    overflow: 'visible',
   },
   row: {
     justifyContent: 'space-around',

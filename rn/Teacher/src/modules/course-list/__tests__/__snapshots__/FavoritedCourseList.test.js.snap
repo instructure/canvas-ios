@@ -9,7 +9,8 @@ exports[`render 1`] = `
         "flex": 1,
       },
       Object {
-        "padding": 12,
+        "marginHorizontal": 12,
+        "overflow": "visible",
       },
     ]
   }
@@ -51,6 +52,7 @@ exports[`render 1`] = `
                 ellipsizeMode="tail"
                 style={
                   Object {
+                    "color": "#2D3B45",
                     "fontSize": 20,
                     "fontWeight": "600",
                     "marginLeft": 6,
@@ -110,6 +112,7 @@ exports[`render 1`] = `
             style={
               Array [
                 Object {
+                  "backgroundColor": "#000",
                   "borderColor": "#e3e3e3",
                   "borderRadius": 4,
                   "borderWidth": 0.5,
@@ -234,6 +237,7 @@ exports[`render 1`] = `
             style={
               Array [
                 Object {
+                  "backgroundColor": "#000",
                   "borderColor": "#e3e3e3",
                   "borderRadius": 4,
                   "borderWidth": 0.5,
@@ -387,7 +391,7 @@ exports[`render without courses 1`] = `
       Array [
         Object {},
         Object {
-          "color": "#032250",
+          "color": "#2D3B45",
           "fontSize": 24,
           "fontWeight": "bold",
           "letterSpacing": -1,

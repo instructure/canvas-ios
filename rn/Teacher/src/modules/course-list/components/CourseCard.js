@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     },
     borderRadius: 4,
     overflow: 'hidden',
+    backgroundColor: '#000',
   },
   cardContainer: {
     flex: 1,

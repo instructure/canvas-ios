@@ -7,6 +7,7 @@ exports[`renders 1`] = `
   style={
     Array [
       Object {
+        "backgroundColor": "#000",
         "borderColor": "#e3e3e3",
         "borderRadius": 4,
         "borderWidth": 0.5,

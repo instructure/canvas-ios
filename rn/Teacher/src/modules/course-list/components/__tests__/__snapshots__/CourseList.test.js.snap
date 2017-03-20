@@ -9,7 +9,8 @@ exports[`render courses 1`] = `
         "flex": 1,
       },
       Object {
-        "padding": 8,
+        "marginHorizontal": 8,
+        "overflow": "visible",
       },
     ]
   }
@@ -41,6 +42,7 @@ exports[`render courses 1`] = `
             style={
               Array [
                 Object {
+                  "backgroundColor": "#000",
                   "borderColor": "#e3e3e3",
                   "borderRadius": 4,
                   "borderWidth": 0.5,
@@ -183,7 +185,8 @@ exports[`render courses pending 1`] = `
         "flex": 1,
       },
       Object {
-        "padding": 8,
+        "marginHorizontal": 8,
+        "overflow": "visible",
       },
     ]
   }
@@ -215,6 +218,7 @@ exports[`render courses pending 1`] = `
             style={
               Array [
                 Object {
+                  "backgroundColor": "#000",
                   "borderColor": "#e3e3e3",
                   "borderRadius": 4,
                   "borderWidth": 0.5,
@@ -357,7 +361,8 @@ exports[`render narrow width 1`] = `
         "flex": 1,
       },
       Object {
-        "padding": 8,
+        "marginHorizontal": 8,
+        "overflow": "visible",
       },
     ]
   }
@@ -389,6 +394,7 @@ exports[`render narrow width 1`] = `
             style={
               Array [
                 Object {
+                  "backgroundColor": "#000",
                   "borderColor": "#e3e3e3",
                   "borderRadius": 4,
                   "borderWidth": 0.5,
@@ -531,7 +537,8 @@ exports[`render wide width 1`] = `
         "flex": 1,
       },
       Object {
-        "padding": 12,
+        "marginHorizontal": 12,
+        "overflow": "visible",
       },
     ]
   }
@@ -563,6 +570,7 @@ exports[`render wide width 1`] = `
             style={
               Array [
                 Object {
+                  "backgroundColor": "#000",
                   "borderColor": "#e3e3e3",
                   "borderRadius": 4,
                   "borderWidth": 0.5,

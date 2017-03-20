@@ -9,7 +9,7 @@ exports[`renders heading1 correctly 1`] = `
     Array [
       Object {},
       Object {
-        "color": "#032250",
+        "color": "#2D3B45",
         "fontSize": 24,
         "fontWeight": "bold",
         "letterSpacing": -1,
