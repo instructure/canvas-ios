@@ -34,12 +34,23 @@ exports[`renders correctly 1`] = `
       All Grading Periods
     </Text>
   </View>
-  <View>
-    <RCTScrollView>
-      <View>
-        <View />
-      </View>
-    </RCTScrollView>
-  </View>
+  <RCTScrollView
+    dataSource={
+      ListViewDataSource {
+        "items": 0,
+      }
+    }
+    enableEmptySections={true}
+    onEndReached={[Function]}
+    renderFooter={[Function]}
+    renderRow={[Function]}
+    renderScrollComponent={[Function]}
+    renderSectionHeader={[Function]}
+    testID="assignment-list.list"
+  >
+    <View>
+      <View />
+    </View>
+  </RCTScrollView>
 </View>
 `;

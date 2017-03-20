@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<RCTScrollView>
+<RCTScrollView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
   <View>
     <View
       style={
@@ -288,7 +294,13 @@ exports[`renders correctly 1`] = `
 `;
 
 exports[`renders correctly without tabs 1`] = `
-<RCTScrollView>
+<RCTScrollView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
   <View>
     <View
       style={

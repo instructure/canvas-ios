@@ -4,7 +4,7 @@
 
 import { Action } from 'redux'
 
-export default function actionFigures (state: string[] = [], action: Action): [] {
+export default function actionFigures (state: string[] = [], action: Action): string[] {
   switch (action.type) {
     default:
       return state
