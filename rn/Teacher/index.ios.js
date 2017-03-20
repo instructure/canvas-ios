@@ -52,6 +52,7 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string, brandi
           }),
           title: i18n('Courses'),
           icon: Images.tabbar.courses,
+          selectedIcon: Images.tabbar.courses,
           titleImage: Images.canvasLogo,
           navigatorStyle: navigationStyles,
           ...route('/'),
@@ -64,6 +65,7 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string, brandi
           navigatorStyle: navigationStyles,
           title: i18n('Inbox'),
           icon: Images.tabbar.inbox,
+          selectedIcon: Images.tabbar.inbox,
           ...route('/conversations'),
         },
         {
@@ -74,6 +76,7 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string, brandi
           navigatorStyle: navigationStyles,
           title: i18n('Profile'),
           icon: Images.tabbar.profile,
+          selectedIcon: Images.tabbar.profile,
           ...route('/profile'),
         },
       ],
