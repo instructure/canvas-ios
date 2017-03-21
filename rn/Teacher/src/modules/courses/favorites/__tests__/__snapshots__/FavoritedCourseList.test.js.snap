@@ -1,0 +1,666 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      Object {
+        "marginHorizontal": 12,
+        "overflow": "visible",
+      },
+    ]
+  }
+>
+  <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 12,
+        "left": 0,
+        "right": 0,
+        "top": 12,
+      }
+    }
+    data={
+      Array [
+        Object {
+          "color": "#27B9CD",
+          "course_code": "BIO 101",
+          "id": 1,
+          "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+          "is_favorite": true,
+          "name": "Biology 101",
+          "short_name": "BIO 101",
+        },
+        Object {
+          "color": "#8F3E97",
+          "course_code": "LIT 401",
+          "id": 2,
+          "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+          "is_favorite": false,
+          "name": "American Literature Psysicks foobar hello world 401",
+          "short_name": "LIT 401",
+        },
+        Object {
+          "color": "#8F3E99",
+          "course_code": "FOO 102",
+          "id": 3,
+          "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+          "is_favorite": true,
+          "name": "Foobar 102",
+          "short_name": "FOO 102",
+        },
+      ]
+    }
+    dataSource={
+      ListViewDataSource {
+        "items": 1,
+      }
+    }
+    enableEmptySections={true}
+    itemHasChanged={[Function]}
+    itemsPerRow={3}
+    onEndReached={[Function]}
+    onEndReachedThreshold={1334}
+    onLayout={[Function]}
+    placeholderStyle={
+      Object {
+        "flex": 1,
+        "margin": 12,
+      }
+    }
+    renderFooter={[Function]}
+    renderHeader={[Function]}
+    renderItem={[Function]}
+    renderRow={[Function]}
+    renderScrollComponent={[Function]}
+    renderSectionHeader={undefined}
+    showsVerticalScrollIndicator={false}
+    style={
+      Object {
+        "flex": 1,
+        "overflow": "visible",
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 12,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "flex-end",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginTop": 8,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+              }
+            }
+          >
+            <Image
+              source={1}
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 20,
+                  "fontWeight": "600",
+                  "marginLeft": 6,
+                }
+              }
+            >
+              Courses
+            </Text>
+          </View>
+          <TouchableOpacity
+            accessibilityComponentType="button"
+            accessibilityTraits="button"
+            activeOpacity={0.2}
+            onLongPress={undefined}
+            onPress={[Function]}
+            onPressIn={undefined}
+            onPressOut={undefined}
+            style={undefined}
+            testID="course-list.see-all-btn"
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "color": "#368BD8",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  },
+                  Object {
+                    "color": "#368BD8",
+                  },
+                ]
+              }
+            >
+              See All
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "flex": 1,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "space-around",
+          }
+        }
+      >
+        <TouchableHighlight
+          onLayout={[Function]}
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#000",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
+                "height": 160,
+                "overflow": "hidden",
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.2,
+                "shadowRadius": 1,
+              },
+              Object {
+                "flex": 1,
+                "height": 0,
+                "margin": 12,
+              },
+            ]
+          }
+          testID="BIO 101"
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "#27B9CD",
+                    "bottom": 0,
+                    "left": 0,
+                    "opacity": 0.8,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 18,
+                    "position": "absolute",
+                    "right": 8,
+                    "top": 10,
+                    "width": 18,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "paddingHorizontal": 10,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#27B9CD",
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                    "marginTop": 8,
+                  }
+                }
+              >
+                Biology 101
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Object {
+                    "color": "#8B969D",
+                    "fontSize": 12,
+                    "fontWeight": "600",
+                    "marginTop": 2,
+                  }
+                }
+              >
+                BIO 101
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onLayout={[Function]}
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#000",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
+                "height": 160,
+                "overflow": "hidden",
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.2,
+                "shadowRadius": 1,
+              },
+              Object {
+                "flex": 1,
+                "height": 0,
+                "margin": 12,
+              },
+            ]
+          }
+          testID="LIT 401"
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "#8F3E97",
+                    "bottom": 0,
+                    "left": 0,
+                    "opacity": 0.8,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 18,
+                    "position": "absolute",
+                    "right": 8,
+                    "top": 10,
+                    "width": 18,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "paddingHorizontal": 10,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#8F3E97",
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                    "marginTop": 8,
+                  }
+                }
+              >
+                American Literature Psysicks foobar hello world 401
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Object {
+                    "color": "#8B969D",
+                    "fontSize": 12,
+                    "fontWeight": "600",
+                    "marginTop": 2,
+                  }
+                }
+              >
+                LIT 401
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onLayout={[Function]}
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#000",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
+                "height": 160,
+                "overflow": "hidden",
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.2,
+                "shadowRadius": 1,
+              },
+              Object {
+                "flex": 1,
+                "height": 0,
+                "margin": 12,
+              },
+            ]
+          }
+          testID="FOO 102"
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "#8F3E99",
+                    "bottom": 0,
+                    "left": 0,
+                    "opacity": 0.8,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 18,
+                    "position": "absolute",
+                    "right": 8,
+                    "top": 10,
+                    "width": 18,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "paddingHorizontal": 10,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#8F3E99",
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                    "marginTop": 8,
+                  }
+                }
+              >
+                Foobar 102
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Object {
+                    "color": "#8B969D",
+                    "fontSize": 12,
+                    "fontWeight": "600",
+                    "marginTop": 2,
+                  }
+                }
+              >
+                FOO 102
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`render without courses 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+      "padding": 20,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 24,
+          "fontWeight": "bold",
+          "letterSpacing": -1,
+          "lineHeight": 27,
+        },
+        undefined,
+      ]
+    }
+  >
+    Welcome!
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        Object {
+          "color": "#7F91A7",
+          "fontSize": 16,
+          "lineHeight": 23,
+        },
+        Object {
+          "padding": 15,
+          "textAlign": "center",
+        },
+      ]
+    }
+  >
+    Add a few of your favorite courses to make this place your home.
+  </Text>
+  <TouchableOpacity
+    accessibilityComponentType="button"
+    accessibilityTraits="button"
+    activeOpacity={0.2}
+    onLongPress={undefined}
+    onPress={[Function]}
+    onPressIn={undefined}
+    onPressOut={undefined}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#368BD8",
+          "borderRadius": 8,
+          "overflow": "hidden",
+          "padding": 20,
+        },
+        Object {
+          "backgroundColor": "#368BD8",
+        },
+        undefined,
+      ]
+    }
+    testID="noCourse.addCourses"
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "#007aff",
+            "fontSize": 17,
+            "fontWeight": "500",
+            "textAlign": "center",
+          },
+          null,
+          Array [
+            Object {
+              "color": "#fff",
+            },
+            Object {
+              "color": "#fff",
+            },
+            undefined,
+          ],
+          null,
+        ]
+      }
+    >
+      Add Courses
+    </Text>
+  </TouchableOpacity>
+</View>
+`;

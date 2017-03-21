@@ -29,10 +29,20 @@ export type DismissModalOptions = {
   animationType?: string,
 }
 
+export type SetTitleOptions = {
+  title: string,
+  subtitle?: string,
+}
+
 export type ReactNavigator = {
   dismissModal: (options: ?DismissModalOptions) => void,
   setOnNavigatorEvent: (onNavigatorEvent: Function) => void,
   pop: () => void,
   push: (pushOptions: NavigatorPushOptions) => void,
   showModal: (modalOptions: NavigatorShowModalOptions) => void,
+  setTitle: (SetTitleOptions) => void,
+}
+
+export type NavProps = {
+  +navigator: ReactNavigator,
 }

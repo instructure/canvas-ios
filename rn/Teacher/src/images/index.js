@@ -31,6 +31,8 @@ const images = {
   feedback: require('./feedback.png'),
   kabob: require('./kabob.png'),
   backIcon: require('./Back-icon.png'),
+  starFilled: require('./star-filled.png'),
+  starLined: require('./star-lined.png'),
 }
 
 export default (images: Images)

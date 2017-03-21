@@ -65,14 +65,14 @@ test('it also checks payload.promise', async () => {
   let promise = new Promise((resolve) => { _resolve = resolve })
 
   let store = mockStore()
-  store.dispatch({ type: 'test', payload: { promise } })
+  store.dispatch({ type: 'test', payload: { promise, id: 1 } })
 
   _resolve('yay')
   await promise // kick the event loop
 
   expect(store.getActions()).toMatchObject([
-    { type: 'test', pending: true },
-    { type: 'test', payload: 'yay' },
+    { type: 'test', pending: true, payload: { id: 1 } },
+    { type: 'test', payload: { result: 'yay', id: 1 } },
   ])
 })
 

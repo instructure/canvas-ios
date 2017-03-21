@@ -12,9 +12,11 @@ export function getCourses (): Promise<ApiResponse<Course[]>> {
   return exhaust(courses)
 }
 
-export function getCourseTabs (courseID: number): Promise<ApiResponse<Tab[]>> {
-  const url = `courses/${courseID}/tabs`
-  return httpClient().get(url)
+export function getCourseTabs (courseID: string): Promise<ApiResponse<Tab[]>> {
+  const tabs = paginate(`courses/${courseID}/tabs`, {
+    per_page: 99,
+  })
+  return exhaust(tabs)
 }
 
 export function getCourseAssignments (courseID: number): Promise<ApiResponse<Assignment[]>> {
@@ -32,10 +34,10 @@ export function getCourseAssignmentGroups (courseID: number): Promise<ApiRespons
   })
 }
 
-export function favoriteCourse (courseId: string): Promise<AxiosResponse<Favorite>> {
-  return httpClient().post(`users/self/favorites/courses/${courseId}`)
+export function favoriteCourse (courseID: string): Promise<AxiosResponse<Favorite>> {
+  return httpClient().post(`users/self/favorites/courses/${courseID}`)
 }
 
-export function unfavoriteCourse (courseId: string): Promise<AxiosResponse<Favorite>> {
-  return httpClient().delete(`users/self/favorites/courses/${courseId}`)
+export function unfavoriteCourse (courseID: string): Promise<AxiosResponse<Favorite>> {
+  return httpClient().delete(`users/self/favorites/courses/${courseID}`)
 }
