@@ -1,9 +1,28 @@
 #!/usr/bin/env bash -e
 
+retry_command() {
+  for try_count in {1..3}; do
+    set +e
+
+    "$@"
+    command_exit_code=$?
+
+    set -e
+
+    if [[ ${command_exit_code} -ne 0 ]]; then
+      continue
+    else
+      break
+    fi
+  done
+}
+
 # react native teacher dependencies
 pushd ../../../
-carthage checkout --no-use-binaries
+retry_command carthage checkout --no-use-binaries
 popd
+
+echo "Using node: $(node -v)"
 
 pushd ../
 yarn run lint
