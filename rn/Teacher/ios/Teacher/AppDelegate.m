@@ -30,6 +30,7 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.window.rootViewController = [UIViewController new];
   
+  TheKeymaster.fetchesBranding = YES;
   TheKeymaster.delegate = [NativeLogin shared];
   
   [TheKeymaster.signalForLogout subscribeNext:^(UIViewController * _Nullable x) {

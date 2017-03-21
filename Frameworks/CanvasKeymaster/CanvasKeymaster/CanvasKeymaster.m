@@ -56,7 +56,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     if (self) {
         _subjectForClientLogin = [RACSubject new];
         _subjectForClientLogout = [RACSubject new];
-        
+        self.fetchesBranding = NO;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessTokenExpired:) name:CKIClientAccessTokenExpiredNotification object:nil];
     }
     return self;
@@ -274,6 +274,10 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         return nil;
     }];
     
+    if (self.fetchesBranding == NO) {
+        return [signalForInitialClient concat:_subjectForClientLogin];
+    }
+        
     return [[signalForInitialClient concat:_subjectForClientLogin] flattenMap:^__kindof RACSignal * _Nullable(CKIClient * _Nullable client) {
         RACSignal *brandingSignal = [client fetchBranding];
         return [brandingSignal map:^id _Nullable(CKIBrand *  _Nullable brand) {

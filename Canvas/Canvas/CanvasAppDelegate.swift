@@ -97,7 +97,7 @@ extension AppDelegate {
 extension AppDelegate {
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         if let assignmentURL = (notification.userInfo?[CBILocalNotificationAssignmentURLKey] as? String).flatMap({ URL(string: $0) }) {
-            openCanvasURL(assignmentURL)
+            _ = openCanvasURL(assignmentURL)
         }
     }
 }

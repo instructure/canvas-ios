@@ -59,6 +59,12 @@ FOUNDATION_EXPORT const unsigned char CanvasKeymasterVersionString[];
 @property (nonatomic, readonly) RACSignal<UIViewController *> *signalForLogout;
 
 /**
+ If set to YES, branding information is fetches as part of the login process.
+ Defaults to NO
+ */
+@property (nonatomic) BOOL fetchesBranding;
+
+/**
  The current client (last one delivered on
  `signalForCurrentClient`) or nil if not logged
  in
