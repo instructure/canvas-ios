@@ -67,7 +67,7 @@ export class CourseDetails extends Component<any, Props, any> {
     const courseColor = this.props.color
 
     const tabs = this.props.tabs.map((tab) => {
-      return <CourseDetailsTab tab={tab} courseColor={courseColor} onPress={this.selectTab} />
+      return <CourseDetailsTab key={tab.id} tab={tab} courseColor={courseColor} onPress={this.selectTab} />
     })
 
     return (
