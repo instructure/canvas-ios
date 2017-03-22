@@ -11,7 +11,7 @@ describe('app routes', () => {
 
   // this will help us remember to test our routes
   it('has all routes declared', () => {
-    expect(routes.length).toEqual(12)
+    expect(routes.length).toEqual(10)
   })
 
   it('includes /', () => {
@@ -80,20 +80,6 @@ describe('app routes', () => {
   it('includes /beta-feedback', () => {
     expect(route('/beta-feedback')).toEqual({
       screen: screenID('/beta-feedback'),
-      passProps: {},
-    })
-  })
-
-  it('includes /toys/legosets', () => {
-    expect(route('/toys/legosets')).toEqual({
-      screen: screenID('/toys/legosets'),
-      passProps: {},
-    })
-  })
-
-  it('includes /toys/actionfigures', () => {
-    expect(route('/toys/actionfigures')).toEqual({
-      screen: screenID('/toys/actionfigures'),
       passProps: {},
     })
   })

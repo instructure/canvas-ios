@@ -10,8 +10,6 @@ import Inbox from '../modules/inbox/Inbox'
 import Profile from '../modules/profile/Profile'
 import DefaultState from '../modules/default-state/DefaultState'
 import BetaFeedback from '../modules/beta-feedback/BetaFeedback'
-import LegoSets from '../modules/toys/legos/LegoSets'
-import ActionFigures from '../modules/toys/action-figures/ActionFigures'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -27,6 +25,4 @@ export function registerScreens (store: Store): void {
   registerScreen('/profile', () => Profile, store)
   registerScreen('/default', () => DefaultState, store)
   registerScreen('/beta-feedback', () => BetaFeedback, store)
-  registerScreen('/toys/legosets', () => LegoSets, store)
-  registerScreen('/toys/actionfigures', () => ActionFigures, store)
 }
