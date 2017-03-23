@@ -4,6 +4,4 @@ struct CanvasUser {
     let loginId: String
     let password: String
     let name: String
-    let courses: [Course]
-    let courseFavorites: [Int]
 }
