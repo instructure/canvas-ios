@@ -29,7 +29,7 @@ const newJSFiles = danger.git.created_files.filter((path: string) => path.endsWi
 const unFlowedFiles = newJSFiles.filter((filepath: string) => {
   // Navigating up two directories cuz this dangerfile isn't at the project root
   const content = fs.readFileSync('../../' + filepath)
-  return !content.includes('@flow')
+  return !_.includes(content, '@flow')
 })
 
 if (unFlowedFiles.length > 0) {
@@ -37,8 +37,8 @@ if (unFlowedFiles.length > 0) {
 }
 
 // Warns if there are changes to package.json without changes to yarn.lock.
-const packageChanged = danger.git.modified_files.includes('package.json')
-const lockfileChanged = danger.git.modified_files.includes('yarn.lock')
+const packageChanged = _.includes(danger.git.modified_files, 'package.json')
+const lockfileChanged = _.includes(danger.git.modified_files, 'yarn.lock')
 if (packageChanged && !lockfileChanged) {
   const message = 'Changes were made to package.json, but not to yarn.lock'
   const idea = 'Perhaps you need to run `yarn install`?'
@@ -48,7 +48,7 @@ if (packageChanged && !lockfileChanged) {
 // Checks for corresponding tests to js files in the commit's modified files
 const testFiles = danger.git.created_files.filter((path: string) => {
   const exclude = ['__tests__/', '__snapshots__/', '__mocks__/']
-  return exclude.reduce((accl, e) => accl && !path.includes(e), true)
+  return exclude.reduce((accl, e) => accl && !_.includes(path, e), true)
 })
 
 const logicalTestPaths = testFiles.map((path: string) => {
@@ -56,7 +56,7 @@ const logicalTestPaths = testFiles.map((path: string) => {
 })
 
 const sourcePaths = danger.git.created_files.filter((path: string) => {
-  return path.includes('src/') && !path.includes('__tests__/') && path.includes('.js') && !path.includes('src/api/')
+  return _.includes(path, 'src/') && !_.includes(path, '__tests__/') && _.includes(path, '.js') && !_.includes(path, 'src/api/')
 })
 
 const untestedFiles = _.difference(sourcePaths, logicalTestPaths)
