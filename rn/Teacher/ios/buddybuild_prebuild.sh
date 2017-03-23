@@ -17,12 +17,32 @@ retry_command() {
   done
 }
 
+# buddybuild app settings are *not respected* in custom scripts.
+# we have to manually install / retry / etc. all build commands
+
+# update carthage. will error if we're already on the latest
+set +e
+brew update &> /dev/null
+brew upgrade carthage &> /dev/null
+set -e
+
 # react native teacher dependencies
 pushd ../../../
 retry_command carthage checkout --no-use-binaries
 popd
 
-echo "Using node: $(node -v)"
+# https://github.com/tj/n
+n 7.5.0
+
+node_version_expected="v7.5.0"
+node_version="$(node -v)"
+echo "Using node: $node_version"
+echo "Using carthage: $(carthage version)"
+
+if [ "$node_version_expected" != "$node_version" ]; then
+  echo "Node version mismatch. Expected $node_version_expected Got: $node_version"
+  exit 1
+fi
 
 pushd ../
 yarn run lint
