@@ -17,7 +17,9 @@ type GoogleForm = (answers: { [string]: string }) => string
  */
 export default function googleForm (uri: string, entries: { [string]: string }): GoogleForm {
   return (answers) => {
-    const params = Object.keys(answers).map((key) => `entry.${entries[key]}=${answers[key]}`)
+    const params = Object.keys(answers)
+      .filter(key => answers[key])
+      .map((key) => `entry.${entries[key]}=${answers[key]}`)
     return [uri, params.join('&')]
       .filter((s) => s.trim() !== '')
       .join('?')

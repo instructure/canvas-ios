@@ -6,9 +6,10 @@ import renderer from 'react-test-renderer'
 
 import { BetaFeedback } from '../BetaFeedback'
 import explore from '../../../../test/helpers/explore'
-import { betaFeedbackFormURI } from '../form'
 
-jest.unmock('ScrollView')
+jest
+  .unmock('ScrollView')
+  .mock('../../../api/session')
 
 const template = {
   ...require('../../../__templates__/react-native-navigation'),
@@ -28,7 +29,7 @@ describe('Beta Feedback form', () => {
 
     expect(
       explore(tree).query(({ props }) => {
-        return props.source && props.source.uri === betaFeedbackFormURI
+        return props.source && props.source.uri
       })
     ).toHaveLength(1)
   })

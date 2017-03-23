@@ -9,7 +9,9 @@ import {
   WebView,
 } from 'react-native'
 import i18n from 'format-message'
-import { betaFeedbackFormURI } from './form'
+import { betaFeedbackForm } from './form'
+import device from 'react-native-device-info'
+import { getSession } from '../../api/session'
 
 type Props = {
   navigator: ReactNavigator,
@@ -38,9 +40,14 @@ export class BetaFeedback extends Component {
   }
 
   render (): React.Element<View> {
+    let uri
+    const session = getSession()
+    if (session) {
+      uri = betaFeedbackForm(session.user, device)
+    }
     return (
       <WebView
-        source={{ uri: betaFeedbackFormURI }}
+        source={{ uri: uri }}
         testID='beta-feedback.webview'
       />
     )

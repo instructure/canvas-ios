@@ -35,7 +35,7 @@ let navigationStyles: { [key: string]: any } = {
 setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
 
 const emitter = new NativeEventEmitter(nativeLogin)
-emitter.addListener('Login', (info: { authToken: string, baseURL: string, branding: Object }) => {
+emitter.addListener('Login', (info: { authToken: string, baseURL: string, branding: Object, user: User }) => {
   if (info.branding) {
     navigationStyles = setupBranding(info.branding)
   }
