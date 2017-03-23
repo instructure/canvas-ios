@@ -55,7 +55,7 @@ export default class CourseDetails extends Component<any, Props, any> {
     const tab = this.props.tab
     return (
         <View style={styles.tab} key={tab.id}>
-          <TouchableHighlight style={styles.tabTouchableHighlight} onPress={this.onPress}>
+          <TouchableHighlight style={styles.tabTouchableHighlight} onPress={this.onPress} testID={`courses-details.tab-touchable-row-${tab.id}`}>
             <View style={styles.tabInnerContainer}>
               <Image style={[styles.tabImage, { tintColor: this.props.courseColor }]} source={this.imageForTab(tab)} />
               <Text style={styles.tabLabel}>{tab.label}</Text>

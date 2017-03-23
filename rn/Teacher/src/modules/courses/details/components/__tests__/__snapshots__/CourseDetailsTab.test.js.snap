@@ -36,7 +36,7 @@ exports[`renders correctly 1`] = `
         },
       ]
     }
-    testID={undefined}
+    testID="courses-details.tab-touchable-row-assignments"
     tvParallaxProperties={undefined}
   >
     <View

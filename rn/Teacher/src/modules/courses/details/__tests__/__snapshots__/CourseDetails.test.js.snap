@@ -217,6 +217,7 @@ exports[`renders correctly 1`] = `
               "flex": 1,
             }
           }
+          testID="courses-details.tab-touchable-row-assignments"
         >
           <View
             style={
@@ -510,6 +511,7 @@ exports[`renders correctly without tabs 1`] = `
               "flex": 1,
             }
           }
+          testID="courses-details.tab-touchable-row-assignments"
         >
           <View
             style={

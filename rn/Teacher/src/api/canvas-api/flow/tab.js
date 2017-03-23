@@ -9,4 +9,5 @@ export type Tab = {
   hidden?: boolean, // only included if true
   visibility: TabVisibility,
   position: number,
+  html_url: string,
 }

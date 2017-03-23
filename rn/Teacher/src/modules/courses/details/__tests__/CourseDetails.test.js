@@ -4,6 +4,7 @@ import 'react-native'
 import React from 'react'
 import { CourseDetails } from '../CourseDetails.js'
 import explore from '../../../../../test/helpers/explore'
+import { route } from '../../../../routing'
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/course'),
@@ -14,54 +15,81 @@ const template = {
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+jest
+  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('../../../../routing')
 
 let defaultProps = {
   navigator: template.navigator(),
   course: template.course(),
   tabs: [template.tab()],
   courseColors: template.customColors(),
+  refreshTabs: () => {},
 }
-
-let refresh: any
-beforeEach(() => {
-  refresh = jest.fn()
-})
 
 test('renders correctly', () => {
   let tree = renderer.create(
-    <CourseDetails {...defaultProps} refreshTabs={refresh} />
+    <CourseDetails {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('renders correctly without tabs', () => {
   let tree = renderer.create(
-    <CourseDetails {...defaultProps} refreshTabs={refresh}/>
+    <CourseDetails {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('refresh on mount', () => {
+  const props = {
+    ...defaultProps,
+    refreshTabs: jest.fn(),
+  }
+
   renderer.create(
-    <CourseDetails {...defaultProps} refreshTabs={refresh}/>
+    <CourseDetails {...props} />
   )
-  expect(refresh).toHaveBeenCalled()
+  expect(props.refreshTabs).toHaveBeenCalled()
 })
 
 test('go back to course list', () => {
   const props = {
     ...defaultProps,
-    navigator: {
+    navigator: template.navigator({
       pop: jest.fn(),
-    },
+    }),
   }
   let tree = renderer.create(
-    <CourseDetails {...props} refreshTabs={refresh}/>
+    <CourseDetails {...props} />
   ).toJSON()
 
   const allButton = explore(tree).selectByID('course-details.navigation-back-btn') || {}
   allButton.props.onPress()
   expect(props.navigator.pop).toHaveBeenCalled()
+})
+
+test('select tab', () => {
+  const tab = template.tab({
+    id: 'assignments',
+    html_url: '/courses/12/assignments',
+  })
+  const props = {
+    ...defaultProps,
+    course: template.course({ id: 12 }),
+    tabs: [tab],
+    navigator: template.navigator({
+      push: jest.fn(),
+    }),
+  }
+
+  let tree = renderer.create(
+    <CourseDetails {...props} />
+  ).toJSON()
+
+  const tabRow: any = explore(tree).selectByID('courses-details.tab-touchable-row-assignments')
+  tabRow.props.onPress()
+
+  expect(props.navigator.push).toHaveBeenCalledWith(route('/courses/12/assignments'))
 })

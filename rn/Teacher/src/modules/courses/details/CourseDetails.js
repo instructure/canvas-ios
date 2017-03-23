@@ -48,14 +48,8 @@ export class CourseDetails extends Component<any, Props, any> {
   }
 
   selectTab = (tab: Tab) => {
-    const courseID = this.props.course.id
-    switch (tab.id) {
-      case 'assignments':
-        const destination = route(`/courses/${courseID}/assignments`)
-        this.props.navigator.push(destination)
-        break
-      default: break
-    }
+    const destination = route(tab.html_url)
+    this.props.navigator.push(destination)
   }
 
   back = () => {
