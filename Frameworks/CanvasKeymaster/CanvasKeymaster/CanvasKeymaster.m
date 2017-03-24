@@ -424,6 +424,17 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     }];
 }
 
+- (void)resetKeymasterForTesting {
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] removeCookiesSinceDate:[NSDate dateWithTimeIntervalSinceReferenceDate:0]];
+    BOOL shouldLogout = [[FXKeychain sharedCanvasKeychain].clients count] > 0;
+    for (CKIClient *client in [[FXKeychain sharedCanvasKeychain].clients copy]) {
+        [[FXKeychain sharedCanvasKeychain] removeClient:client];
+    }
+    if (shouldLogout) {
+        [self logout];
+    }
+}
+
 @end
 
 

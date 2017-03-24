@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CanvasKeymaster
 
 class DomainPickerTests: XCTestCase {
   
@@ -15,10 +16,9 @@ class DomainPickerTests: XCTestCase {
   }
   
   func testDomainPicker_domainFieldAllowsInput() {
-    let teacher = Data.getNextTeacher(self)
-
-    domainPickerPage.enterDomain("mobiledev")
-    domainPickerPage.assertDomainField(contains: "mobiledev")
+    let domain = "mobiledev"
+    domainPickerPage.enterDomain(domain)
+    domainPickerPage.assertDomainField(contains: domain)
+    CanvasKeymaster.the().resetKeymasterForTesting()
   }
-  
 }

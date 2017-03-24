@@ -8,7 +8,6 @@ import AssignmentList from '../modules/assignments/AssignmentList'
 import AssignmentDetails from '../modules/assignment-details/AssignmentDetails'
 import Inbox from '../modules/inbox/Inbox'
 import Profile from '../modules/profile/Profile'
-import DefaultState from '../modules/default-state/DefaultState'
 import BetaFeedback from '../modules/beta-feedback/BetaFeedback'
 
 import { Store } from 'redux'
@@ -23,6 +22,5 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/assignments/:assignmentID', () => AssignmentDetails, store)
   registerScreen('/conversations', () => Inbox, store)
   registerScreen('/profile', () => Profile, store)
-  registerScreen('/default', () => DefaultState, store)
   registerScreen('/beta-feedback', () => BetaFeedback, store)
 }

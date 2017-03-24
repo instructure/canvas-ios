@@ -99,6 +99,8 @@ FOUNDATION_EXPORT const unsigned char CanvasKeymasterVersionString[];
 
 - (void)stopMasquerading;
 
+- (void)resetKeymasterForTesting;
+
 @end
 
 @interface CKIClient (CanvasKeymaster)

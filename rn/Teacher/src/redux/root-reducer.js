@@ -5,14 +5,22 @@ import { courses } from '../modules/courses/courses-reducer'
 import { favoriteCourses } from '../modules/courses/favorites/favorite-courses-reducer'
 import assignments from '../modules/assignments/reducer'
 import assignmentDetails from '../modules/assignment-details/reducer'
+import logout from './logout-action'
 
 const entities = combineReducers({
   courses,
 })
 
-export default (combineReducers({
+const actualRootReducer: Reducer<AppState, Action> = combineReducers({
   assignments,
   assignmentDetails,
   favoriteCourses,
   entities,
-}): Reducer<AppState, any>)
+})
+
+export default function rootReducer (state: ?AppState, action: Action): AppState {
+  if (action.type === logout.type) {
+    state = undefined
+  }
+  return actualRootReducer(state, action)
+}

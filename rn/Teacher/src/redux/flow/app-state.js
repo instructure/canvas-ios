@@ -9,4 +9,4 @@ export type CoursesAppState = {
   +entities: CourseEntities,
 }
 
-export type AppState = CoursesAppState // & AssignmentsAppState
+export type AppState = CoursesAppState

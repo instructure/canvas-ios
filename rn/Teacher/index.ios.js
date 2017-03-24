@@ -18,6 +18,7 @@ import { route } from './src/routing'
 import Colors from './src/common/colors'
 import { branding, setupBrandingFromNativeBrandingInfo } from './src/common/branding'
 import Images from './src/images'
+import logout from './src/redux/logout-action'
 
 registerScreens(store)
 
@@ -40,7 +41,9 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string, brandi
     navigationStyles = setupBranding(info.branding)
   }
 
-  if (info.authToken) {
+  if (!info.authToken) {
+    store.dispatch(logout)
+  } else {
     setSession(info)
 
     Navigation.startTabBasedApp({
@@ -84,13 +87,6 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string, brandi
         tabBarSelectedButtonColor: branding.primaryBrandColor,
         tabBarBackgroundColor: Colors.tabBarBg,
         tabBarButtonColor: Colors.tabBarTab,
-      },
-    })
-  } else {
-    Navigation.startSingleScreenApp({
-      screen: {
-        title: i18n('You Should Login'),
-        ...route('/default'),
       },
     })
   }

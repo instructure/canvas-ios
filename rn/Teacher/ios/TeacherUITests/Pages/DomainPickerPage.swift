@@ -16,7 +16,11 @@ class DomainPickerPage: PageObject {
   private static var domainField: GREYElementInteraction {
     return EarlGrey.select(elementWithMatcher: grey_accessibilityID("domainPickerTextField"))
   }
-  
+
+  private static var connectButton: GREYElementInteraction {
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityLabel("Search for domain."))
+  }
+
   static func uniquePageElement() -> GREYElementInteraction {
     return domainField
   }
@@ -43,7 +47,14 @@ class DomainPickerPage: PageObject {
     
     domainField.perform(grey_replaceText(domain))
   }
-  
+
+  static func openDomain(_ domain: String, _ file: StaticString = #file, _ line: UInt = #line) {
+    grey_invokedFromFile(file, line)
+
+    enterDomain(domain)
+    connectButton.perform(grey_tap())
+  }
+
   static func clearDomain(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
     

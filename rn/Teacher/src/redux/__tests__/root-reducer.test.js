@@ -7,17 +7,17 @@ import reduce from '../root-reducer'
 const dummyAction: Action = { type: 'test.whoCares' }
 
 test('contains entities subreducer', () => {
-  const state: { entities: any } = reduce(undefined, dummyAction)
+  const state: CoursesAppState = reduce(undefined, dummyAction)
   expect(state.entities).toBeDefined()
 })
 
 test('contains entities.courses subreducer', () => {
-  const state: { entities: { courses: any } } = reduce(undefined, dummyAction)
+  const state: CoursesAppState = reduce(undefined, dummyAction)
   expect(state.entities.courses).toBeDefined()
 })
 
 test('contains favoriteCourses subreducer', () => {
-  const state: { favoriteCourses: any } = reduce(undefined, dummyAction)
+  const state: CoursesAppState = reduce(undefined, dummyAction)
   expect(state.favoriteCourses).toBeDefined()
 })
 

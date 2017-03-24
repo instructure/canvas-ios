@@ -13,7 +13,7 @@ import { getSession } from '../../api/session'
 
 export default class Profile extends Component {
 
-  logout () {
+  logout = () => {
     const nativeLogin = NativeModules.NativeLogin
     nativeLogin.logout()
   }

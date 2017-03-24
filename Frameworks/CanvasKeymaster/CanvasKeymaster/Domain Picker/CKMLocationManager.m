@@ -65,11 +65,12 @@ NSString *const CKMLocationManagerUserInfoErrorKey = @"CKMLocationManagerUserInf
 }
 
 - (void)startUpdatingLocation {
-    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager performSelector:@selector(requestWhenInUseAuthorization)];
-    }
-    
-    [self.locationManager startUpdatingLocation];
+    // Let's stop asking for user's location until we have school locations to actually justify it
+//    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+//        [self.locationManager performSelector:@selector(requestWhenInUseAuthorization)];
+//    }
+//
+//    [self.locationManager startUpdatingLocation];
 }
 
 - (CLLocationManager *)locationManager {
