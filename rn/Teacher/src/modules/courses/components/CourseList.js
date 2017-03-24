@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react'
 import { View } from 'react-native'
 import CourseCard from './CourseCard'
-import GridView from '../../../common/components/grid-view/GridView'
+import GridView from '../../../common/components/GridView'
 import type { CourseProps } from '../course-prop-types'
 
 type State = {
@@ -19,6 +19,7 @@ type Props = {
   courses: Array<CourseProps>,
   error?: string,
   pending: number,
+  onCoursePreferencesPressed: (courseId: string) => void,
 }
 
 const PADDING_CHANGE_WIDTH = 450
@@ -52,10 +53,6 @@ export default class CourseList extends Component {
     }
   }
 
-  selectCourse (course: any) {
-    this.props.selectCourse(course)
-  }
-
   renderHeader = () => {
     return (
       <View style={{ paddingHorizontal: this.state.padding }}>
@@ -85,7 +82,8 @@ export default class CourseList extends Component {
             course={rowData}
             color={rowData.color}
             key={`${rowData.course_code}_${rowData.id}`}
-            onPress={() => this.selectCourse(rowData)}
+            onPress={this.props.selectCourse}
+            onCoursePreferencesPressed={this.props.onCoursePreferencesPressed}
           />
         }
         renderHeader={this.renderHeader}

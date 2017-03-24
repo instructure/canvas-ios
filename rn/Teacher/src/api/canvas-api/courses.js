@@ -41,3 +41,7 @@ export function favoriteCourse (courseID: string): Promise<AxiosResponse<Favorit
 export function unfavoriteCourse (courseID: string): Promise<AxiosResponse<Favorite>> {
   return httpClient().delete(`users/self/favorites/courses/${courseID}`)
 }
+
+export function updateCourseColor (courseId: string, hexcode: string): Promise<AxiosResponse<UpdateCustomColorResponse>> {
+  return httpClient().put(`users/self/colors/course_${courseId}`, { hexcode })
+}

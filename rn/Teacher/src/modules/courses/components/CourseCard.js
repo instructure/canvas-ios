@@ -8,6 +8,7 @@ import ReactNative, {
   Text,
   TouchableHighlight,
 } from 'react-native'
+import i18n from 'format-message'
 
 import Images from '../../../images'
 
@@ -17,6 +18,7 @@ type Props = {
   style: StyleSheet,
   onPress: Function,
   initialHeight?: number,
+  onCoursePreferencesPressed: (courseId: string) => void,
 }
 
 type State = {
@@ -38,6 +40,7 @@ export default class CourseCard extends Component {
   createImageStyles (): ReactNative.StyleSheet {
     return StyleSheet.flatten([styles.imageColor, {
       backgroundColor: this.props.color,
+      opacity: this.props.course.image_download_url ? 0.8 : 1,
     }])
   }
 
@@ -57,6 +60,10 @@ export default class CourseCard extends Component {
     this.props.onPress(this.props.course)
   }
 
+  onCoursePreferencesPressed = (): void => {
+    this.props.onCoursePreferencesPressed(this.props.course.id.toString())
+  }
+
   render (): React.Element<View> {
     let { course } = this.props
     let style = {
@@ -71,7 +78,18 @@ export default class CourseCard extends Component {
                 <Image source={{ uri: course.image_download_url }} style={styles.image} />
               }
               <View style={this.createImageStyles()} />
-              <Image style={styles.kabob} source={Images.kabob} />
+              <TouchableHighlight
+                style={styles.kabobButton}
+                onPress={this.onCoursePreferencesPressed}
+                accessibilityLabel={i18n({
+                  default: 'Open user course preferences',
+                  description: 'Accessibility label on icon button to open course user preferences',
+                })}
+                underlayColor='#ffffff00'
+                testID={`courseCard.kabob_${course.id}`}
+              >
+                <Image style={styles.kabob} source={Images.kabob} />
+              </TouchableHighlight>
             </View>
             <View style={styles.titleWrapper}>
               <Text numberOfLines={2} style={this.createTitleStyles()}>{course.name}</Text>
@@ -115,7 +133,13 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    opacity: 0.8,
+  },
+  kabobButton: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    width: 43,
+    height: 43,
   },
   kabob: {
     position: 'absolute',

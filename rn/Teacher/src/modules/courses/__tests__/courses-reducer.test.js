@@ -22,6 +22,7 @@ describe('courses refresher', () => {
     const expected: CourseState = {
       color: '#fff',
       course: course,
+      pending: 0,
       tabs: {
         pending: 0,
         tabs: [],
@@ -38,5 +39,61 @@ describe('courses refresher', () => {
 
     // the courses store doesn't track errors or pending
     expect(state).toEqual([{}, {}])
+  })
+})
+
+describe('update custom color', () => {
+  it('should change the color on pending', async () => {
+    let action = CoursesActions({
+      updateCourseColor: apiResponse({ hexcode: '#fff' }),
+    }).updateCourseColor('1', '#fff')
+
+    let defaultState = {
+      '1': {
+        color: '#333',
+      },
+    }
+
+    let state = await testAsyncReducer(coursesReducer, action, defaultState)
+    expect(state).toMatchObject([
+      {
+        '1': {
+          color: '#fff',
+          oldColor: '#333',
+        },
+      },
+      {
+        '1': {
+          color: '#fff',
+        },
+      },
+    ])
+  })
+
+  it('reverts the color when there is an error', async () => {
+    let action = CoursesActions({
+      updateCourseColor: apiError({ message: 'There was an error yo' }),
+    }).updateCourseColor('1', '#fff')
+
+    let defaultState = {
+      '1': {
+        color: '#333',
+      },
+    }
+
+    let state = await testAsyncReducer(coursesReducer, action, defaultState)
+    expect(state).toMatchObject([
+      {
+        '1': {
+          color: '#fff',
+          oldColor: '#333',
+        },
+      },
+      {
+        '1': {
+          color: '#333',
+        },
+      },
+    ])
   })
 })

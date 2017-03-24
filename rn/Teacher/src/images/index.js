@@ -31,6 +31,7 @@ const images = {
   feedback: require('./feedback.png'),
   kabob: require('./kabob.png'),
   backIcon: require('./Back-icon.png'),
+  check: require('./check-white.png'),
   starFilled: require('./star-filled.png'),
   starLined: require('./star-lined.png'),
 }

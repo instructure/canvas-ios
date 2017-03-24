@@ -15,6 +15,10 @@ export type CustomColors = {
   },
 }
 
+export type UpdateCustomColorResponse = {
+  hexcode: string,
+}
+
 export type Favorite = {
   context_id: number,
   context_type: string,

@@ -33,6 +33,19 @@ export class AllCourseList extends Component {
   }
 
   selectCourse = (course: Course) => {
+    let destination = route(`/courses/${course.id}`)
+    this.props.navigator.push(destination)
+  }
+
+  openUserPreferences = (courseId: string) => {
+    let destination = route(`/courses/${courseId}/user_preferences`)
+    this.props.navigator.showModal({
+      ...destination,
+      animationType: 'slide-up',
+    })
+  }
+
+  selectCourse = (course: Course) => {
     this.props.navigator.push(route(`/courses/${course.id}`))
   }
 
@@ -42,6 +55,7 @@ export class AllCourseList extends Component {
         {...this.props}
         selectCourse={this.selectCourse}
         width={deviceWidth}
+        onCoursePreferencesPressed={this.openUserPreferences}
       />
     )
   }

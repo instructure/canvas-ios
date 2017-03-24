@@ -174,18 +174,34 @@ exports[`AllCourseList render 1`] = `
                   }
                 }
               />
-              <Image
-                source={1}
+              <TouchableHighlight
+                accessibilityLabel="Open user course preferences"
+                onPress={[Function]}
                 style={
                   Object {
-                    "height": 18,
+                    "height": 43,
                     "position": "absolute",
-                    "right": 8,
-                    "top": 10,
-                    "width": 18,
+                    "right": 0,
+                    "top": 0,
+                    "width": 43,
                   }
                 }
-              />
+                testID="courseCard.kabob_1"
+                underlayColor="#ffffff00"
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 18,
+                      "position": "absolute",
+                      "right": 8,
+                      "top": 10,
+                      "width": 18,
+                    }
+                  }
+                />
+              </TouchableHighlight>
             </View>
             <View
               style={
@@ -299,18 +315,34 @@ exports[`AllCourseList render 1`] = `
                   }
                 }
               />
-              <Image
-                source={1}
+              <TouchableHighlight
+                accessibilityLabel="Open user course preferences"
+                onPress={[Function]}
                 style={
                   Object {
-                    "height": 18,
+                    "height": 43,
                     "position": "absolute",
-                    "right": 8,
-                    "top": 10,
-                    "width": 18,
+                    "right": 0,
+                    "top": 0,
+                    "width": 43,
                   }
                 }
-              />
+                testID="courseCard.kabob_2"
+                underlayColor="#ffffff00"
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 18,
+                      "position": "absolute",
+                      "right": 8,
+                      "top": 10,
+                      "width": 18,
+                    }
+                  }
+                />
+              </TouchableHighlight>
             </View>
             <View
               style={
@@ -424,18 +456,34 @@ exports[`AllCourseList render 1`] = `
                   }
                 }
               />
-              <Image
-                source={1}
+              <TouchableHighlight
+                accessibilityLabel="Open user course preferences"
+                onPress={[Function]}
                 style={
                   Object {
-                    "height": 18,
+                    "height": 43,
                     "position": "absolute",
-                    "right": 8,
-                    "top": 10,
-                    "width": 18,
+                    "right": 0,
+                    "top": 0,
+                    "width": 43,
                   }
                 }
-              />
+                testID="courseCard.kabob_3"
+                underlayColor="#ffffff00"
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 18,
+                      "position": "absolute",
+                      "right": 8,
+                      "top": 10,
+                      "width": 18,
+                    }
+                  }
+                />
+              </TouchableHighlight>
             </View>
             <View
               style={

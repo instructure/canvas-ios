@@ -9,6 +9,13 @@ export let CoursesActions = (api: typeof canvas): CourseListActionProps => ({
     api.getCourses(),
     api.getCustomColors(),
   ])),
+  updateCourseColor: createAction('courses.updateColor', (courseID: string, color: string) => {
+    return {
+      courseID,
+      color,
+      promise: api.updateCourseColor(courseID, color),
+    }
+  }),
 })
 
 export default (CoursesActions(canvas): CourseListActionProps)

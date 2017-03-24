@@ -21,6 +21,7 @@ const defaultProps = {
   customColors: groupCustomColors(template.customColors()).custom_colors.course,
   courses: [{ ...template.course(), color: '#112233' }],
   pending: 0,
+  onCoursePreferencesPressed: jest.fn(),
   color: '#07f',
 }
 
@@ -66,4 +67,15 @@ test('select course', () => {
   const courseCard = explore(tree).selectByID(course.course_code) || {}
   courseCard.props.onPress()
   expect(selectCourse).toHaveBeenCalledWith(course)
+})
+
+test('calls props.onCoursePreferencesPressed when a kabob is pressed', () => {
+  let onCoursePreferencesPressed = jest.fn()
+  let tree = renderer.create(
+    <CourseList {...defaultProps} onCoursePreferencesPressed={onCoursePreferencesPressed} />
+  ).toJSON()
+
+  let kabob = explore(tree).selectByID(`courseCard.kabob_${defaultProps.courses[0].id}`) || {}
+  kabob.props.onPress()
+  expect(onCoursePreferencesPressed).toHaveBeenCalledWith(defaultProps.courses[0].id.toString())
 })

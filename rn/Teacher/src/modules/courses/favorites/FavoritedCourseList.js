@@ -27,7 +27,6 @@ type Props = {
   navigator: ReactNavigator,
   refreshCourses: () => void,
   courses: Array<CourseProps>,
-  customColors: { [string]: string },
   error?: string,
   pending?: number,
 }
@@ -77,6 +76,14 @@ export class FavoritedCourseList extends Component {
 
   showFavoritesList = () => {
     let destination = route('/course_favorites')
+    this.props.navigator.showModal({
+      ...destination,
+      animationType: 'slide-up',
+    })
+  }
+
+  showUserCoursePreferences = (courseId: string) => {
+    let destination = route(`/courses/${courseId}/user_preferences`)
     this.props.navigator.showModal({
       ...destination,
       animationType: 'slide-up',
@@ -139,6 +146,7 @@ export class FavoritedCourseList extends Component {
       <CourseList
         {...this.props}
         selectCourse={this.selectCourse}
+        onCoursePreferencesPressed={this.showUserCoursePreferences}
         width={deviceWidth}
         header={this.renderHeader()}
       />

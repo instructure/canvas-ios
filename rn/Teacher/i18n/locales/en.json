@@ -21,6 +21,14 @@
   "buy_more_ed49ba10": {
     "message": "Buy More!"
   },
+  "choose_color_11148181": {
+    "message": "Choose { color }",
+    "description": "Accessibility label to select a color"
+  },
+  "color_a363e1b0": {
+    "message": "Color",
+    "description": "Title label for the course color picker"
+  },
   "could_not_get_course_information_d4e3f151": {
     "message": "Could not get course information"
   },
@@ -28,13 +36,17 @@
     "message": "Courses",
     "description": "The header for the favorited courses list"
   },
-  "done_beta_feedback": {
-    "message": "Done",
-    "description": "Button to dismiss feedback form."
+  "customize_course_eefa9c21": {
+    "message": "Customize Course",
+    "description": "The title of the user course preferences screen"
   },
   "done_54e3d4b6": {
     "message": "Done",
     "description": "Back button to move back a screen"
+  },
+  "done_beta_feedback": {
+    "message": "Done",
+    "description": "Button to dismiss feedback form."
   },
   "edit_c5fbea07": {
     "message": "Edit",
@@ -58,8 +70,16 @@
   "logout_a9312e35": {
     "message": "Logout"
   },
+  "nickname_1e6da3ad": {
+    "message": "Nickname",
+    "description": "Text describing a nick name given to a course"
+  },
   "no_courses_available_200e0c8d": {
     "message": "No Courses Available"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "Open user course preferences",
+    "description": "Accessibility label on icon button to open course user preferences"
   },
   "out_of_money_sell_them_all_a4572d43": {
     "message": "Out of money, sell them all!"
@@ -72,8 +92,20 @@
     "message": "See All",
     "description": "Button to transition from favorited courses list to all courses list"
   },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "Set this for the default color of the course. This won’t override a personal color setting.",
+    "description": "Description of color picker shown to the user"
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "There was an unexpected error. Please close this alert and try again.",
+    "description": "A generic error message"
+  },
   "this_is_the_inbox_b957d042": {
     "message": "This is the inbox"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Unexpected Error",
+    "description": "The generic title of the generic error message"
   },
   "welcome_73d18b4d": {
     "message": "Welcome!",

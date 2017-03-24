@@ -11,14 +11,17 @@ import { tabs } from './tabs/tabs-reducer'
 // dummy's to appease combineReducers
 const course = (state) => (state || {})
 const color = (state) => (state || '#FFFFFF00')
+const pending = (state) => (state || 0)
 
 const courseContents: Reducer<CourseState, Action> = combineReducers({
   course,
   color,
   tabs,
+  oldColor: color,
+  pending,
 })
 
-const { refreshCourses } = CourseListActions
+const { refreshCourses, updateCourseColor } = CourseListActions
 
 export const defaultState: CoursesState = {}
 
@@ -33,6 +36,7 @@ export const normalizeCourse = (course: Course, colors: { [courseId: string]: st
     ...prevState,
     course,
     color,
+    pending: 0,
   }
 }
 
@@ -45,6 +49,38 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
         return [course.id, normalizeCourse(course, colors, state[course.id])]
       })
       return fromPairs(newStates)
+    },
+  }),
+  [updateCourseColor.toString()]: handleAsync({
+    pending: (state, { courseID, color }) => {
+      return {
+        ...state,
+        [courseID]: {
+          ...state[courseID],
+          color,
+          oldColor: state[courseID].color,
+          pending: state[courseID].pending + 1,
+        },
+      }
+    },
+    resolved: (state, { courseID }) => {
+      let courseState = { ...state[courseID] }
+      delete courseState.oldColor
+      courseState.pending--
+      return {
+        ...state,
+        [courseID]: courseState,
+      }
+    },
+    rejected: (state, { courseID, error }) => {
+      let courseState = { ...state[courseID] }
+      courseState.color = courseState.oldColor
+      delete courseState.oldColor
+      courseState.pending--
+      return {
+        ...state,
+        [courseID]: courseState,
+      }
     },
   }),
 }, defaultState)

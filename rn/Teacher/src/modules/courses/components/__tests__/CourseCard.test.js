@@ -15,6 +15,7 @@ let defaultProps = {
   color: '#333',
   style: {},
   initialHeight: 100,
+  onCoursePreferencesPressed: () => {},
 }
 
 it('renders', () => {
@@ -37,4 +38,16 @@ it('it calls props.onPress when it is selected', () => {
   button.props.onPress()
 
   expect(onPress).toHaveBeenCalledWith(defaultProps.course)
+})
+
+it('calls props.onCoursePreferencesPressed when the kabob is selected', () => {
+  let onCoursePreferencesPressed = jest.fn()
+  let tree = renderer.create(
+    <CourseCard {...defaultProps} onCoursePreferencesPressed={onCoursePreferencesPressed} />
+  ).toJSON()
+
+  let button = explore(tree).selectByID(`courseCard.kabob_${defaultProps.course.id}`) || {}
+  button.props.onPress()
+
+  expect(onCoursePreferencesPressed).toHaveBeenCalledWith(defaultProps.course.id.toString())
 })

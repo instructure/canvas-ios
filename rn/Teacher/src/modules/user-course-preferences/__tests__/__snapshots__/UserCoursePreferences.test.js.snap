@@ -1,0 +1,587 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserCoursePreferences renders 1`] = `
+<RCTScrollView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "minHeight": 200,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+          }
+        }
+        style={
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "flex": 1,
+            },
+            Object {
+              "backgroundColor": "#333",
+              "opacity": 0.8,
+            },
+          ]
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 2,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 54,
+            "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "fontSize": 16,
+              "fontWeight": "500",
+            }
+          }
+        >
+          Nickname
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#368BD8",
+              "fontSize": 16,
+              "fontWeight": "500",
+            }
+          }
+        >
+          Learn React Native
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "borderBottomWidth": 1,
+            "borderColor": "#C7CDD1",
+            "borderTopWidth": 1,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "fontSize": 16,
+              "fontWeight": "500",
+              "marginHorizontal": 16,
+              "marginTop": 16,
+            }
+          }
+        >
+          Color
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#8B969E",
+              "fontSize": 14,
+              "fontWeight": "500",
+              "marginHorizontal": 16,
+              "marginTop": 2,
+            }
+          }
+        >
+          Set this for the default color of the course. This won’t override a personal color setting.
+        </Text>
+        <RCTScrollView
+          contentContainerStyle={
+            Object {
+              "padding": 8,
+            }
+          }
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        >
+          <View>
+            <TouchableHighlight
+              accessibilityLabel="Choose #F26090"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#F26090"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#F26090",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #EA1661"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#EA1661"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#EA1661",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #903A99"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#903A99"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#903A99",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #65469F"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#65469F"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#65469F",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #4452A6"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#4452A6"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#4452A6",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #1482C8"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#1482C8"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#1482C8",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #2CA3DE"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#2CA3DE"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#2CA3DE",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #00BCD5"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#00BCD5"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#00BCD5",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #009788"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#009788"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#009788",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #3FA142"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#3FA142"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#3FA142",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #89C540"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#89C540"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#89C540",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #FFC100"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#FFC100"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#FFC100",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #FA9800"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#FA9800"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#FA9800",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #F2581B"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#F2581B"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#F2581B",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              accessibilityLabel="Choose #F2422E"
+              onPress={[Function]}
+              style={
+                Object {
+                  "height": 48,
+                  "margin": 8,
+                }
+              }
+              testID="colorButton.#F2422E"
+              underlayColor="#fff"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 24,
+                      "height": 48,
+                      "justifyContent": "center",
+                      "width": 48,
+                    },
+                    Object {
+                      "backgroundColor": "#F2422E",
+                    },
+                  ]
+                }
+              />
+            </TouchableHighlight>
+          </View>
+        </RCTScrollView>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;

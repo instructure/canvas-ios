@@ -97,7 +97,49 @@ test('select course', () => {
   expect(props.navigator.push).toHaveBeenCalledWith(route('/courses/1'))
 })
 
+test('opens course preferences', () => {
+  const course = template.course({ id: 1, is_favorite: true })
+  const props = {
+    ...defaultProps,
+    courses: [{ ...course, color: '#fff' }],
+    navigator: template.navigator({
+      showModal: jest.fn(),
+    }),
+  }
+  let tree = renderer.create(
+    <FavoritedCourseList {...props} />
+  ).toJSON()
+
+  const kabob = explore(tree).selectByID(`courseCard.kabob_${course.id}`) || {}
+  kabob.props.onPress()
+  expect(props.navigator.showModal).toHaveBeenCalledWith({
+    ...route('/courses/1/user_preferences'),
+    animationType: 'slide-up',
+  })
+})
+
 test('go to all courses', () => {
+  const course = template.course({ id: 1, is_favorite: true })
+  const props = {
+    ...defaultProps,
+    courses: [{ ...course, color: '#ff' }],
+    navigator: template.navigator({
+      showModal: jest.fn(),
+    }),
+  }
+  let tree = renderer.create(
+    <FavoritedCourseList {...props} />
+  ).toJSON()
+
+  const allButton = explore(tree).selectByID('course-list.see-all-btn') || {}
+  allButton.props.onPress()
+  expect(props.navigator.push).toHaveBeenCalledWith({
+    ...route('/courses'),
+    backButtonTitle: 'Courses',
+  })
+})
+
+test('calls navigator.push when a course is selected', () => {
   const props = {
     ...defaultProps,
     navigator: template.navigator({
@@ -114,25 +156,6 @@ test('go to all courses', () => {
     ...route('/courses'),
     backButtonTitle: 'Courses',
   })
-})
-
-test('calls navigator.push when a course is selected', () => {
-  const course: CourseProps = { ...template.course({ id: 1 }), color: '#112233' }
-  const props = {
-    ...defaultProps,
-    navigator: template.navigator({
-      push: jest.fn(),
-    }),
-    courses: [course],
-  }
-  let tree = renderer.create(
-    <FavoritedCourseList {...props} />
-  ).toJSON()
-
-  let button: any = explore(tree).selectByID(course.course_code)
-  button.props.onPress()
-
-  expect(props.navigator.push).toHaveBeenLastCalledWith(route('/courses/1'))
 })
 
 test('calls navigator.showModal when the edit button is pressed', () => {

@@ -12,6 +12,7 @@ export type CourseListDataProps = AsyncState & {
 
 export type CourseListActionProps = {
   +refreshCourses: () => Promise<Course[]>,
+  +updateCourseColor: () => Promise<*>,
 }
 
 export type CourseListProps = CourseListDataProps & CourseListActionProps

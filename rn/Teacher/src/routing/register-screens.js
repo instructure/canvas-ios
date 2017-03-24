@@ -2,7 +2,8 @@
 
 import FavoritedCourseList from '../modules/courses/favorites/FavoritedCourseList'
 import AllCourseList from '../modules/courses/all/AllCourseList'
-import FavoritesList from '../modules/courses/edit-favorites/EditFavorites'
+import EditFavorites from '../modules/courses/edit-favorites/EditFavorites'
+import UserCoursePreferences from '../modules/user-course-preferences/UserCoursePreferences'
 import CourseDetails from '../modules/courses/details/CourseDetails'
 import AssignmentList from '../modules/assignments/AssignmentList'
 import AssignmentDetails from '../modules/assignment-details/AssignmentDetails'
@@ -16,8 +17,9 @@ import { registerScreen } from './'
 export function registerScreens (store: Store): void {
   registerScreen('/', () => FavoritedCourseList, store)
   registerScreen('/courses', () => AllCourseList, store)
-  registerScreen('/course_favorites', () => FavoritesList, store)
+  registerScreen('/course_favorites', () => EditFavorites, store)
   registerScreen('/courses/:courseID', () => CourseDetails, store)
+  registerScreen('/courses/:courseID/user_preferences', () => UserCoursePreferences, store)
   registerScreen('/courses/:courseID/assignments', () => AssignmentList, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID', () => AssignmentDetails, store)
   registerScreen('/conversations', () => Inbox, store)
