@@ -8,6 +8,8 @@ import { connect } from 'react-redux'
 import CourseList from '../components/CourseList'
 import type { CourseProps } from '../course-prop-types'
 import { route } from '../../../routing/'
+import CoursesActions from '../actions'
+import refresh from '../../../utils/refresh'
 
 const { width: deviceWidth } = Dimensions.get('window')
 
@@ -16,6 +18,7 @@ type Props = {
   courses: Array<CourseProps>,
   error?: string,
   pending?: number,
+  refreshCourses: () => void,
 }
 
 export class AllCourseList extends Component {
@@ -76,5 +79,9 @@ AllCourseList.propTypes = {
   error: PropTypes.string,
 }
 
-let Connected = connect(mapStateToProps)(AllCourseList)
+let Refreshed = refresh(
+  props => props.refreshCourses(),
+  props => props.courses.length === 0
+)(AllCourseList)
+let Connected = connect(mapStateToProps, CoursesActions)(Refreshed)
 export default (Connected: Component<any, Props, any>)

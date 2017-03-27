@@ -11,17 +11,20 @@ import {
   Text,
   Image,
   StyleSheet,
+  ActivityIndicator,
 } from 'react-native'
 
 import Images from '../../../images'
 import i18n from 'format-message'
 import CourseDetailsActions from '../tabs/actions'
+import CourseActions from '../actions'
 import CourseDetailsTab from './components/CourseDetailsTab'
 import mapStateToProps from './map-state-to-props'
 import Button from 'react-native-button'
 import NavigationBackButton from '../../../common/components/NavigationBackButton'
 import { route } from '../../../routing'
 import type { CourseDetailsProps } from './map-state-to-props'
+import refresh from '../../../utils/refresh'
 
 type Props = CourseDetailsProps & NavProps
 
@@ -43,10 +46,6 @@ export class CourseDetails extends Component<any, Props, any> {
   editCourse = () => {
   }
 
-  componentDidMount () {
-    this.props.refreshTabs(this.props.course.id.toString())
-  }
-
   selectTab = (tab: Tab) => {
     const destination = route(tab.html_url)
     this.props.navigator.push(destination)
@@ -59,6 +58,10 @@ export class CourseDetails extends Component<any, Props, any> {
   render (): React.Element<View> {
     const course = this.props.course
     const courseColor = this.props.color
+
+    if (!course) {
+      return <ActivityIndicator />
+    }
 
     const tabs = this.props.tabs.map((tab) => {
       return <CourseDetailsTab key={tab.id} tab={tab} courseColor={courseColor} onPress={this.selectTab} />
@@ -190,5 +193,12 @@ CourseDetails.propTypes = {
   tabs: PropTypes.arrayOf(tabListShape).isRequired,
 }
 
-let Connected = connect(mapStateToProps, CourseDetailsActions)(CourseDetails)
+let Refreshed = refresh(
+  props => {
+    props.refreshCourses()
+    props.refreshTabs(props.courseID.toString())
+  },
+  props => !props.course || props.tabs.length === 0
+)(CourseDetails)
+let Connected = connect(mapStateToProps, { ...CourseDetailsActions, ...CourseActions })(Refreshed)
 export default (Connected: Component<any, Props, any>)

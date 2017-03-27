@@ -51,6 +51,7 @@ let defaultProps = {
   navigator: template.navigator(),
   courses,
   pending: 0,
+  refreshCourses: jest.fn(),
 }
 
 describe('AllCourseList', () => {

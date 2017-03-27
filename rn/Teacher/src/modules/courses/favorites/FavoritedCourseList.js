@@ -20,6 +20,7 @@ import { route } from '../../../routing'
 import colors from '../../../common/colors'
 import type { CourseProps } from '../course-prop-types'
 import Images from '../../../images/'
+import refresh from '../../../utils/refresh'
 
 const { width: deviceWidth } = Dimensions.get('window')
 
@@ -57,7 +58,6 @@ export class FavoritedCourseList extends Component {
 
   constructor (props: Props) {
     super(props)
-    props.refreshCourses()
     props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
   }
 
@@ -193,5 +193,9 @@ const styles = StyleSheet.create({
   },
 })
 
-let Connected = connect(mapStateToProps, CoursesActions)(FavoritedCourseList)
+let Refreshed = refresh(
+  (props) => props.refreshCourses(),
+  (props) => props.courses.length === 0
+)(FavoritedCourseList)
+let Connected = connect(mapStateToProps, CoursesActions)(Refreshed)
 export default (Connected: Component<any, Props, any>)

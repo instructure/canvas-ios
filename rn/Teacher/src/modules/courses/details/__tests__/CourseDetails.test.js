@@ -20,12 +20,14 @@ jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('../../../../routing')
 
+let course = template.course()
+
 let defaultProps = {
   navigator: template.navigator(),
-  course: template.course(),
+  course,
   tabs: [template.tab()],
   courseColors: template.customColors(),
-  refreshTabs: () => {},
+  courseID: course.id,
 }
 
 test('renders correctly', () => {
@@ -37,21 +39,9 @@ test('renders correctly', () => {
 
 test('renders correctly without tabs', () => {
   let tree = renderer.create(
-    <CourseDetails {...defaultProps} />
+    <CourseDetails {...defaultProps} tabs={[]} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
-})
-
-test('refresh on mount', () => {
-  const props = {
-    ...defaultProps,
-    refreshTabs: jest.fn(),
-  }
-
-  renderer.create(
-    <CourseDetails {...props} />
-  )
-  expect(props.refreshTabs).toHaveBeenCalled()
 })
 
 test('go back to course list', () => {

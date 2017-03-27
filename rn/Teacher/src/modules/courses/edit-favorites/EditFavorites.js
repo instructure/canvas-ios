@@ -10,13 +10,16 @@ import i18n from 'format-message'
 
 import CourseFavorite from './components/CourseFavorite'
 import FavoritesActions from './actions'
+import CoursesActions from '../actions'
 import mapStateToProps from './map-state-to-props'
+import refresh from '../../../utils/refresh'
 
 type Props = {
   navigator: ReactNavigator,
   courses: Array<Course>,
   favorites: Array<string>,
   toggleFavorite: (courseID: string, favorite: boolean) => Promise<*>,
+  refreshCourses: () => void,
 }
 
 type State = {
@@ -101,8 +104,12 @@ export class FavoritesList extends Component {
   }
 }
 
-let connected = connect(mapStateToProps, FavoritesActions)(FavoritesList)
-export default (connected: FavoritesList)
+let Refreshed = refresh(
+  props => props.refreshCourses(),
+  props => props.courses.length === 0
+)(FavoritesList)
+let Connected = connect(mapStateToProps, { ...CoursesActions, ...FavoritesActions })(Refreshed)
+export default (Connected: FavoritesList)
 
 const styles = StyleSheet.create({
   listStyle: {

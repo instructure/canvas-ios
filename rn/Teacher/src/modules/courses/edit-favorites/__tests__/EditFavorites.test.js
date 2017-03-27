@@ -19,6 +19,7 @@ let defaultProps = {
   courses: courses,
   favorites: [courses[0].id.toString(), courses[1].id.toString()],
   toggleFavorite: () => Promise.resolve(),
+  refreshCourses: jest.fn(),
 }
 
 test('renders correctly', () => {

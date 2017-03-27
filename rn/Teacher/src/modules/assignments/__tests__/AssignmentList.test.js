@@ -16,12 +16,6 @@ const template = {
 import renderer from 'react-test-renderer'
 
 jest.mock('TouchableHighlight', () => 'TouchableHighlight')
-
-let refresh: any
-beforeEach(() => {
-  refresh = jest.fn()
-})
-
 jest.mock('../../../routing')
 
 test('renders correctly', () => {
@@ -31,7 +25,6 @@ test('renders correctly', () => {
     <AssignmentList assignmentGroups={[group]}
                     courseID={course.id}
                     course={course}
-                    refreshAssignmentList={refresh}
                     navigator={template.navigator()} />
   )
   setProps(tree, { assignmentGroups: [group] })
@@ -48,7 +41,6 @@ test('get next page is called onEndReached', () => {
     <AssignmentList assignmentGroups={[template.assignmentGroup()]}
                     courseID={course.id}
                     course={course}
-                    refreshAssignmentList={refresh}
                     nextPage={nextPage}
                     navigator={template.navigator()} />
   )
@@ -69,7 +61,6 @@ test('selected assignment', () => {
     <AssignmentList assignmentGroups={[group]}
                     courseID={course.id}
                     course={course}
-                    refreshAssignmentList={refresh}
                     navigator={navigator} />
   )
   setProps(tree, { assignmentGroups: [group] })
@@ -84,7 +75,6 @@ test('getSectionHeaderData', () => {
     <AssignmentList assignmentGroups={[template.assignmentGroup()]}
                     courseID={course.id}
                     course={course}
-                    refreshAssignmentList={refresh}
                     navigator={template.navigator()} />
   )
 
@@ -101,7 +91,6 @@ test('getRowData', () => {
     <AssignmentList assignmentGroups={[template.assignmentGroup()]}
                     courseID={course.id}
                     course={course}
-                    refreshAssignmentList={refresh}
                     navigator={template.navigator()} />
   )
 

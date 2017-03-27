@@ -34,16 +34,3 @@ test('mapStateToProps returns the correct props', () => {
 
   expect(props).toEqual(expected)
 })
-
-test('mapStateToProps throws without course', () => {
-  const state: { [string]: any } = {
-    entities: {
-      courses: {},
-    },
-    favoriteCourses: {},
-  }
-
-  expect(() => {
-    mapStateToProps(state, { courseID: '1' })
-  }).toThrow()
-})

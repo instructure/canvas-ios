@@ -71,14 +71,6 @@ test('render without courses', () => {
   expect(tree).toMatchSnapshot()
 })
 
-test('refresh courses', () => {
-  const refresh = jest.fn()
-  renderer.create(
-    <FavoritedCourseList {...defaultProps} refreshCourses={refresh} />
-  )
-  expect(refresh).toHaveBeenCalled()
-})
-
 test('select course', () => {
   const course: CourseProps = { ...template.course({ id: 1, is_favorite: true }), color: '#112233' }
   const props = {

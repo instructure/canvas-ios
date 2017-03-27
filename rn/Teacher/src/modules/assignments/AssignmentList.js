@@ -16,6 +16,7 @@ import i18n from 'format-message'
 import AssignmentListActions from './actions'
 import { mapStateToProps, type AssignmentListProps } from './map-state-to-props'
 import { route } from '../../routing'
+import refresh from '../../utils/refresh'
 
 import AssignmentListRowView from './components/AssignmentListRow'
 import AssignmentListSectionView from './components/AssignmentListSection'
@@ -59,10 +60,6 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     this.state = {
       dataSource: dataSource.cloneWithRowsAndSections({}),
     }
-  }
-
-  componentWillMount () {
-    this.props.refreshAssignmentList(this.props.courseID)
   }
 
   componentWillReceiveProps (newProps: AssignmentListProps) {
@@ -160,5 +157,9 @@ const styles = StyleSheet.create({
   },
 })
 
-const Connected = connect(mapStateToProps, AssignmentListActions)(AssignmentList)
+const Refreshed = refresh(
+  props => props.refreshAssignmentList(props.courseID),
+  props => props.assignmentGroups.length === 0
+)(AssignmentList)
+const Connected = connect(mapStateToProps, AssignmentListActions)(Refreshed)
 export default (Connected: Component<any, AssignmentListProps, State>)
