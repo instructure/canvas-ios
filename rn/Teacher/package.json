@@ -16,12 +16,14 @@
     "axios": "^0.15.3",
     "flux-standard-action": "^1.2.0",
     "format-message": "^5.1.1",
+    "moment": "^2.18.1",
     "querystring": "^0.2.0",
     "react": "~15.4.0-rc.4",
     "react-native": "0.42.3",
     "react-native-button": "^1.8.2",
     "react-native-device-info": "^0.10.1",
     "react-native-navigation": "next",
+    "react-native-progress": "^3.2.0",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
     "redux-actions": "^1.2.2",
@@ -49,6 +51,7 @@
     "react-test-renderer": "~15.4.0-rc.4",
     "redux-mock-store": "^1.2.2",
     "xhr2": "^0.1.4",
+	"timezone-mock": "^0.0.0",
     "redux-logger": "2.10.2"
   },
   "jest": {

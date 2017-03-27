@@ -11,4 +11,5 @@ export default ({
   lightText: '#7F91A7',
   primaryButton: '#368BD8',
   primaryButtonText: '#fff',
+  checkmarkGreen: '#00AC18',
 }: {[name: string]: string})

@@ -12,7 +12,7 @@ const template = {
 import renderer from 'react-test-renderer'
 
 test('renders correctly', () => {
-  let assignment = template.assignment()
+  let assignment = template.assignment({ due_at: null })
   assignment.needs_grading_count = 0
   let tree = renderer.create(
     <AssignmentListRow assignment={assignment} tintColor='#fff' />
@@ -21,7 +21,7 @@ test('renders correctly', () => {
 })
 
 test('renders correctly with needs_grading_count', () => {
-  let assignment = template.assignment()
+  let assignment = template.assignment({ due_at: null })
   assignment.needs_grading_count = 5
   let tree = renderer.create(
     <AssignmentListRow assignment={assignment} tintColor='#fff' />

@@ -1,0 +1,627 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<RCTScrollView>
+  <View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "paddingBottom": 5,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          },
+          Object {
+            "paddingBottom": 17,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 2,
+          },
+        ]
+      }
+    >
+      <View
+        style={Object {}}
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "400",
+              "letterSpacing": -1,
+            },
+            Object {},
+          ]
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "letterSpacing": -1,
+            },
+            undefined,
+          ]
+        }
+      >
+        learn to write code
+      </Text>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "marginBottom": -15,
+            "marginTop": 10,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {},
+              Object {
+                "fontSize": 16,
+                "fontWeight": "500",
+              },
+            ]
+          }
+        >
+          20
+           
+          pts
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "marginLeft": 14,
+              },
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+              },
+            ]
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 21,
+                  "tintColor": "grey",
+                  "width": 21,
+                },
+                Object {},
+              ]
+            }
+          />
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {},
+                Array [
+                  Object {
+                    "color": "grey",
+                    "fontSize": 16,
+                    "fontWeight": "500",
+                    "marginLeft": 5,
+                  },
+                  Object {
+                    "color": "grey",
+                  },
+                ],
+              ]
+            }
+          >
+            Unpublished
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "paddingBottom": 5,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "borderTopColor": "#7F91A7",
+            "borderTopWidth": 0.5,
+            "paddingBottom": 16,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "400",
+              "letterSpacing": -1,
+            },
+            Object {
+              "color": "#7F91A7",
+              "marginBottom": 8,
+            },
+          ]
+        }
+      >
+        Due
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            undefined,
+          ]
+        }
+      >
+        Due May 31, 2017 at 10:59 PM
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "paddingBottom": 5,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "borderTopColor": "#7F91A7",
+            "borderTopWidth": 0.5,
+            "paddingBottom": 16,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "400",
+              "letterSpacing": -1,
+            },
+            Object {
+              "color": "#7F91A7",
+              "marginBottom": 8,
+            },
+          ]
+        }
+      >
+        Available
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            Object {
+              "flex": 1,
+            },
+          ]
+        }
+      >
+        March 16, 2017 - May 31, 2017
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "paddingBottom": 5,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "borderTopColor": "#7F91A7",
+            "borderTopWidth": 0.5,
+            "paddingBottom": 16,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "400",
+              "letterSpacing": -1,
+            },
+            Object {
+              "color": "#7F91A7",
+              "marginBottom": 8,
+            },
+          ]
+        }
+      >
+        Submission Types
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {},
+              Object {
+                "flex": 1,
+              },
+            ]
+          }
+        >
+          online_text_entry
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {},
+              Object {
+                "flex": 1,
+              },
+            ]
+          }
+        >
+          online_url
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {},
+              Object {
+                "flex": 1,
+              },
+            ]
+          }
+        >
+          media_recording
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {},
+              Object {
+                "flex": 1,
+              },
+            ]
+          }
+        >
+          online_upload
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "paddingBottom": 5,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "borderTopColor": "#7F91A7",
+            "borderTopWidth": 0.5,
+            "paddingBottom": 16,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "400",
+              "letterSpacing": -1,
+            },
+            Object {
+              "color": "#7F91A7",
+              "marginBottom": 8,
+            },
+          ]
+        }
+      >
+        Submissions
+      </Text>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            },
+            Object {
+              "marginRight": 40,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <Circle
+              borderWidth={0}
+              color="#00e0ff"
+              formatText={[Function]}
+              progress={0.000001}
+              showsText={true}
+              size={70}
+              textStyle={
+                Object {
+                  "color": "#2D3B45",
+                }
+              }
+              thickness={7}
+              unfilledColor="#F5F5F5"
+            />
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {},
+                Object {
+                  "flex": 1,
+                  "fontSize": 12,
+                  "marginTop": 8,
+                  "textAlign": "center",
+                },
+              ]
+            }
+          >
+            Graded
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "paddingBottom": 5,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "borderTopColor": "#7F91A7",
+            "borderTopWidth": 0.5,
+            "paddingBottom": 16,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "400",
+              "letterSpacing": -1,
+            },
+            Object {
+              "color": "#7F91A7",
+              "marginBottom": 8,
+            },
+          ]
+        }
+      >
+        Instructions
+      </Text>
+      <WebView
+        injectedJavaScript="document.body.scrollHeight;"
+        onNavigationStateChange={[Function]}
+        source={
+          Object {
+            "html": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+          }
+        }
+        style={
+          Array [
+            Object {
+              "flex": 1,
+            },
+            Object {
+              "height": 0,
+            },
+          ]
+        }
+      />
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`renders loading 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "height": 44,
+      }
+    }
+  >
+    <ActivityIndicator
+      animating={true}
+      color="#999999"
+      hidesWhenStopped={true}
+      size="small"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`renders locked 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "height": 44,
+      }
+    }
+  >
+    <ActivityIndicator
+      animating={true}
+      color="#999999"
+      hidesWhenStopped={true}
+      size="small"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    />
+  </View>
+</View>
+`;

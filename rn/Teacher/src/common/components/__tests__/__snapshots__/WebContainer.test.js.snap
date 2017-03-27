@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTWebView
+    allowsInlineMediaPlayback={undefined}
+    automaticallyAdjustContentInsets={undefined}
+    bounces={undefined}
+    contentInset={undefined}
+    dataDetectorTypes={undefined}
+    decelerationRate={undefined}
+    injectedJavaScript="document.body.scrollHeight;"
+    mediaPlaybackRequiresUserAction={undefined}
+    messagingEnabled={false}
+    onLoadingError={[Function]}
+    onLoadingFinish={[Function]}
+    onLoadingStart={[Function]}
+    onMessage={[Function]}
+    onShouldStartLoadWithRequest={undefined}
+    scalesPageToFit={undefined}
+    scrollEnabled={undefined}
+    source={
+      Object {
+        "html": undefined,
+      }
+    }
+    style={
+      Array [
+        Object {
+          "flex": 1,
+        },
+        Object {
+          "backgroundColor": "#ffffff",
+        },
+        Array [
+          undefined,
+          Object {
+            "height": 0,
+          },
+        ],
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`render html 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTWebView
+    allowsInlineMediaPlayback={undefined}
+    automaticallyAdjustContentInsets={undefined}
+    bounces={undefined}
+    contentInset={undefined}
+    dataDetectorTypes={undefined}
+    decelerationRate={undefined}
+    injectedJavaScript="document.body.scrollHeight;"
+    mediaPlaybackRequiresUserAction={undefined}
+    messagingEnabled={false}
+    onLoadingError={[Function]}
+    onLoadingFinish={[Function]}
+    onLoadingStart={[Function]}
+    onMessage={[Function]}
+    onShouldStartLoadWithRequest={undefined}
+    scalesPageToFit={undefined}
+    scrollEnabled={undefined}
+    source={
+      Object {
+        "html": "<div>hello world</div>",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "flex": 1,
+        },
+        Object {
+          "backgroundColor": "#ffffff",
+        },
+        Array [
+          undefined,
+          Object {
+            "height": 0,
+          },
+        ],
+      ]
+    }
+  />
+</View>
+`;

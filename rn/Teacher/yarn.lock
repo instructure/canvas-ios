@@ -3758,6 +3758,10 @@ react-native-navigation@next:
   optionalDependencies:
     react-redux "*"
 
+react-native-progress@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-progress/-/react-native-progress-3.2.0.tgz#86d756be5537c09936ac3d3c4e23710da590743c"
+
 react-native@0.42.3:
   version "0.42.3"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.42.3.tgz#450c8a03a5e3e991a08a426f22776dd8feb80b26"
@@ -4525,6 +4529,10 @@ through@^2.3.6:
 time-stamp@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/time-stamp/-/time-stamp-1.0.1.tgz#9f4bd23559c9365966f3302dbba2b07c6b99b151"
+
+timezone-mock@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/timezone-mock/-/timezone-mock-0.0.0.tgz#895370ea10a61fe9839ef3c40e4d0831064a4e38"
 
 tmpl@1.0.x:
   version "1.0.4"

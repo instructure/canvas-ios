@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flex": 1,
+        "paddingBottom": 5,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 16,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "borderTopColor": "#7F91A7",
+        "borderTopWidth": 0.5,
+        "paddingBottom": 16,
+      }
+    }
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+          "fontWeight": "400",
+          "letterSpacing": -1,
+        },
+        Object {
+          "color": "#7F91A7",
+          "marginBottom": 8,
+        },
+      ]
+    }
+  >
+    foo
+  </Text>
+</View>
+`;
+
+exports[`render first row 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flex": 1,
+        "paddingBottom": 5,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 16,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={Object {}}
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+          "fontWeight": "400",
+          "letterSpacing": -1,
+        },
+        Object {},
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`render no title 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flex": 1,
+        "paddingBottom": 5,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 16,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "borderTopColor": "#7F91A7",
+        "borderTopWidth": 0.5,
+        "paddingBottom": 16,
+      }
+    }
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+          "fontWeight": "400",
+          "letterSpacing": -1,
+        },
+        Object {
+          "color": "#7F91A7",
+          "marginBottom": 8,
+        },
+      ]
+    }
+  />
+</View>
+`;

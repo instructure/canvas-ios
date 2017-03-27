@@ -7,7 +7,7 @@ import type { AssignmentDetailsState } from './props'
 import handleAsync from '../../utils/handleAsync'
 import i18n from 'format-message'
 
-export let defaultState: { assignmentDetails: any, pending: number, nextPage: ?Function } = { assignmentDetails: {}, pending: 0, nextPage: null }
+export let defaultState: { pending: number, nextPage: ?Function } = { pending: 0, nextPage: null }
 
 const { refreshAssignmentDetails } = Actions
 

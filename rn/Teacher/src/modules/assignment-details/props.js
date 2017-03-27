@@ -7,7 +7,7 @@ export type AssignmentDetailsState = {
 }
 
 export type AssignmentDetailsActionProps = {
-  +refreshAssignmentDetails: () => Promise<Assignment>,
+  +refreshAssignmentDetails: (courseID: number, assignmentID: number) => Promise<Assignment>,
 }
 
 export type AssignmentProps = AssignmentDetailsState & AssignmentDetailsActionProps

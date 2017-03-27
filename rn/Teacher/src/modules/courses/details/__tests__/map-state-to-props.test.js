@@ -10,7 +10,7 @@ const template = {
 test('mapStateToProps returns the correct props', () => {
   const course = template.course({ id: 1 })
   const tabs = { tabs: [template.tab()] }
-  const state = {
+  const state: { [string]: any } = {
     entities: {
       courses: {
         '1': {
@@ -36,7 +36,7 @@ test('mapStateToProps returns the correct props', () => {
 })
 
 test('mapStateToProps throws without course', () => {
-  const state = {
+  const state: { [string]: any } = {
     entities: {
       courses: {},
     },

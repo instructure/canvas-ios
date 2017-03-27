@@ -12,17 +12,19 @@ export type AssignmentGroup = {
 }
 
 export type Assignment = {
-  id: number,
+  id: string,
   name: string,
   description: string,
   created_at: string,
   updated_at: string,
-  due_at?: ?string,
+  due_at: string,
   lock_at?: string,
   unlock_at?: string,
   has_overrides: boolean,
   course_id: number,
   published: true,
   unpublishable: false,
+  points_possible: number,
   needs_grading_count: number,
+  submission_types: string[],
 }

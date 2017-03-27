@@ -10,10 +10,9 @@ exports[`renders heading1 correctly 1`] = `
       Object {},
       Object {
         "color": "#2D3B45",
-        "fontSize": 24,
-        "fontWeight": "bold",
+        "fontSize": 20,
+        "fontWeight": "600",
         "letterSpacing": -1,
-        "lineHeight": 27,
       },
       undefined,
     ]

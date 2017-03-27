@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render 0 on graph 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Circle
+      borderWidth={0}
+      color="#00e0ff"
+      formatText={[Function]}
+      progress={0.000001}
+      showsText={true}
+      size={70}
+      textStyle={
+        Object {
+          "color": "#2D3B45",
+        }
+      }
+      thickness={7}
+      unfilledColor="#F5F5F5"
+    />
+  </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        Object {
+          "flex": 1,
+          "fontSize": 12,
+          "marginTop": 8,
+          "textAlign": "center",
+        },
+      ]
+    }
+  >
+    foo
+  </Text>
+</View>
+`;
+
+exports[`render 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Circle
+      borderWidth={0}
+      color="#00e0ff"
+      formatText={[Function]}
+      progress={0.25}
+      showsText={true}
+      size={70}
+      textStyle={
+        Object {
+          "color": "#2D3B45",
+        }
+      }
+      thickness={7}
+      unfilledColor="#F5F5F5"
+    />
+  </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        Object {
+          "flex": 1,
+          "fontSize": 12,
+          "marginTop": 8,
+          "textAlign": "center",
+        },
+      ]
+    }
+  >
+    foo
+  </Text>
+</View>
+`;
+
+exports[`render undefined label 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Circle
+      borderWidth={0}
+      color="#00e0ff"
+      formatText={[Function]}
+      progress={0.000001}
+      showsText={true}
+      size={70}
+      textStyle={
+        Object {
+          "color": "#2D3B45",
+        }
+      }
+      thickness={7}
+      unfilledColor="#F5F5F5"
+    />
+  </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        Object {
+          "flex": 1,
+          "fontSize": 12,
+          "marginTop": 8,
+          "textAlign": "center",
+        },
+      ]
+    }
+  />
+</View>
+`;

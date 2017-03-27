@@ -4,8 +4,10 @@ import i18n from 'format-message'
 import moment from 'moment'
 
 export function formattedDueDate (assignment: Assignment): string {
+  let invalidDate = i18n('No due date')
+
   if (!assignment.due_at) {
-    return i18n('No due date')
+    return invalidDate
   }
 
   let date
@@ -14,10 +16,15 @@ export function formattedDueDate (assignment: Assignment): string {
 
   try {
     date = new Date(assignment.due_at)
-    dateString = i18n.date(date, 'medium')
-    timeString = i18n.time(date, 'short')
+
+    if (!moment(date).isValid()) {
+      return invalidDate
+    }
+
+    dateString = moment(date).format('ll')
+    timeString = moment(date).format('LT')
   } catch (e) {
-    return i18n('No due date')
+    return invalidDate
   }
 
   const now = Date.now()

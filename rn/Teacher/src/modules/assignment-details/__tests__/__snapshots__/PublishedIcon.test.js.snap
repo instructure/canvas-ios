@@ -1,0 +1,160 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render larger icon size 1`] = `
+<View
+  style={
+    Array [
+      undefined,
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+      },
+    ]
+  }
+>
+  <Image
+    source={1}
+    style={
+      Array [
+        Object {
+          "height": 21,
+          "tintColor": "#00AC18",
+          "width": 21,
+        },
+        Object {
+          "height": 75,
+          "width": 75,
+        },
+      ]
+    }
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        Array [
+          Object {
+            "color": "grey",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "marginLeft": 5,
+          },
+          Object {
+            "color": "#00AC18",
+          },
+        ],
+      ]
+    }
+  >
+    Published
+  </Text>
+</View>
+`;
+
+exports[`render published 1`] = `
+<View
+  style={
+    Array [
+      undefined,
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+      },
+    ]
+  }
+>
+  <Image
+    source={1}
+    style={
+      Array [
+        Object {
+          "height": 21,
+          "tintColor": "#00AC18",
+          "width": 21,
+        },
+        Object {},
+      ]
+    }
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        Array [
+          Object {
+            "color": "grey",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "marginLeft": 5,
+          },
+          Object {
+            "color": "#00AC18",
+          },
+        ],
+      ]
+    }
+  >
+    Published
+  </Text>
+</View>
+`;
+
+exports[`render unpublished 1`] = `
+<View
+  style={
+    Array [
+      undefined,
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+      },
+    ]
+  }
+>
+  <Image
+    source={1}
+    style={
+      Array [
+        Object {
+          "height": 21,
+          "tintColor": "grey",
+          "width": 21,
+        },
+        Object {},
+      ]
+    }
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        Array [
+          Object {
+            "color": "grey",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "marginLeft": 5,
+          },
+          Object {
+            "color": "grey",
+          },
+        ],
+      ]
+    }
+  >
+    Unpublished
+  </Text>
+</View>
+`;

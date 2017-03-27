@@ -11,6 +11,14 @@
     "message": "All Courses",
     "description": "The title of the screen showing all of a teacher's courses"
   },
+  "assignment_details_bc488179": {
+    "message": "Assignment Details",
+    "description": "Title of assignemnt details screen"
+  },
+  "available_8606e40c": {
+    "message": "Available",
+    "description": "Assignemnt Details Section title for when assignment is available"
+  },
   "assignments_1e02582c": {
     "message": "Assignments",
     "description": "Title of the assignments screen for a course"
@@ -22,6 +30,10 @@
   "choose_color_11148181": {
     "message": "Choose { color }",
     "description": "Accessibility label to select a color"
+  },
+  "closed_983a96fe": {
+    "message": "Closed",
+    "description": "Assignment is closed for submissions"
   },
   "closed_datestring_at_timestring_fab7aa9d": {
     "message": "Closed • { dateString } at { timeString }"
@@ -58,6 +70,10 @@
     "message": "Done",
     "description": "Button to dismiss feedback form."
   },
+  "due_a73610f6": {
+    "message": "Due",
+    "description": "Assignemnt Details Section title for when assignment is due"
+  },
   "due_datestring_at_timestring_9fac66bd": {
     "message": "Due { dateString } at { timeString }"
   },
@@ -72,9 +88,17 @@
   "failed_to_toggle_favorite_c68aca56": {
     "message": "Failed to toggle favorite"
   },
+  "graded_25cd3fcd": {
+    "message": "Graded",
+    "description": "Assignemnt Details submissions graph `graded`"
+  },
   "inbox_bb245a60": {
     "message": "Inbox",
     "description": "Label indicating the user is on the inbox tab"
+  },
+  "instructions_2f88ee72": {
+    "message": "Instructions",
+    "description": "Assignemnt Details Section title for assignment instructions"
   },
   "leave_feedback_df88476c": {
     "message": "Leave Feedback",
@@ -90,6 +114,10 @@
   "no_courses_available_200e0c8d": {
     "message": "No Courses Available"
   },
+  "not_submitted_7d05fdb4": {
+    "message": "Not Submitted",
+    "description": "Assignemnt Details submissions graph `graded`"
+  },
   "no_due_date_1d63d13b": {
     "message": "No due date"
   },
@@ -104,6 +132,14 @@
     "message": "Profile",
     "description": "Label indicating the user is on the profile tab"
   },
+  "pts_699bd9aa": {
+    "message": "pts",
+    "description": "Assignemnt Details points for given assigment"
+  },
+  "published_4bb5209e": {
+    "message": "Published",
+    "description": "Published text"
+  },
   "published_4bb5209e": {
     "message": "Published"
   },
@@ -115,6 +151,14 @@
     "message": "Set this for the default color of the course. This won’t override a personal color setting.",
     "description": "Description of color picker shown to the user"
   },
+  "submission_types_af57bf0": {
+    "message": "Submission Types",
+    "description": "Assignemnt Details Section title for types of submission, (i.e. online, text, upload, etc)"
+  },
+  "submissions_11e96106": {
+    "message": "Submissions",
+    "description": "Assignemnt Details Section title for info on submissions"
+  },
   "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
     "message": "There was an unexpected error. Please close this alert and try again.",
     "description": "A generic error message"
@@ -125,6 +169,14 @@
   "unexpected_error_93991f40": {
     "message": "Unexpected Error",
     "description": "The generic title of the generic error message"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "Ungraded",
+    "description": "Assignemnt Details submissions graph `graded`"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Unpublished",
+    "description": "Unpublished text"
   },
   "welcome_73d18b4d": {
     "message": "Welcome!",
