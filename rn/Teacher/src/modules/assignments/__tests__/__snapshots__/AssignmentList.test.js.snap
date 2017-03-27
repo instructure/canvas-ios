@@ -23,10 +23,10 @@ exports[`renders correctly 1`] = `
       style={
         Object {
           "color": "#2d3b44",
-          "fontSize": 22,
-          "fontWeight": "bold",
+          "fontSize": 20,
+          "fontWeight": "600",
           "marginBottom": 8,
-          "marginLeft": 8,
+          "marginLeft": 16,
           "marginTop": 16,
         }
       }
@@ -49,6 +49,130 @@ exports[`renders correctly 1`] = `
     testID="assignment-list.list"
   >
     <View>
+      <View
+        style={
+          Object {
+            "borderBottomColor": "lightgrey",
+            "borderBottomWidth": 0.5,
+            "flex": 1,
+          }
+        }
+      >
+        <TouchableHighlight
+          onPress={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          testID="assignment-123455432"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "flex-start",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "padding": 12,
+                "paddingLeft": 3,
+              }
+            }
+          >
+            <View />
+            <View
+              accessibilityLabel="Not Published"
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 0,
+                  "height": 32,
+                  "width": 46,
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Array [
+                    Object {
+                      "position": "absolute",
+                    },
+                    Object {
+                      "tintColor": undefined,
+                    },
+                  ]
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 12,
+                      "tintColor": "#8B969E",
+                      "width": 12,
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Assignments
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  }
+                }
+              >
+                No due date
+              </Text>
+              <View />
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
       <View />
     </View>
   </RCTScrollView>

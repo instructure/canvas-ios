@@ -24,4 +24,5 @@ export type Assignment = {
   course_id: number,
   published: true,
   unpublishable: false,
+  needs_grading_count: number,
 }

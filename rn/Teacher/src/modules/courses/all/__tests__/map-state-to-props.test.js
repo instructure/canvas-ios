@@ -29,6 +29,7 @@ describe('all courses mapStateToProps', () => {
   const state: CoursesAppState = {
     entities: {
       courses,
+      assignmentGroups: {},
     },
     favoriteCourses: {},
   }

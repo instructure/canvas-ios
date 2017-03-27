@@ -27,6 +27,10 @@ describe('courses refresher', () => {
         pending: 0,
         tabs: [],
       },
+      assignmentGroups: {
+        pending: 0,
+        refs: [],
+      },
     }
     expect(state).toEqual([{}, {
       [course.id.toString()]: expected,

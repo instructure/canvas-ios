@@ -9,8 +9,13 @@ export type TabsState = AsyncState & {
   +tabs: Array<Tab>,
 }
 
+export type AssignmentGroupsRefState = AsyncState & {
+  refs: EntityRefs,
+}
+
 export type CourseContentState = {
   +tabs: tabs,
+  +assignmentGroups: AssignmentGroupsRefState,
 }
 
 export type CoursesState = {

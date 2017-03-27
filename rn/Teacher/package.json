@@ -26,7 +26,8 @@
     "redux": "^3.6.0",
     "redux-actions": "^1.2.2",
     "route-parser": "^0.0.5",
-    "url-parse": "^1.1.8"
+    "url-parse": "^1.1.8",
+    "moment": "2.18.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -47,7 +48,8 @@
     "jest": "^19.0.2",
     "react-test-renderer": "~15.4.0-rc.4",
     "redux-mock-store": "^1.2.2",
-    "xhr2": "^0.1.4"
+    "xhr2": "^0.1.4",
+    "redux-logger": "2.10.2"
   },
   "jest": {
     "preset": "react-native",

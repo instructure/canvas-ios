@@ -9,6 +9,7 @@ test('returns the correct props', () => {
           course: {},
         },
       },
+      assignmentGroups: {},
     },
     favoriteCourses: {
       courseRefs: ['1'],

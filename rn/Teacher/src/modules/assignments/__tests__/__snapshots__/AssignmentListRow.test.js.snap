@@ -35,35 +35,44 @@ exports[`renders correctly 1`] = `
         },
       ]
     }
-    testID={undefined}
+    testID="assignment-123456789"
     tvParallaxProperties={undefined}
   >
     <View
       style={
         Object {
-          "alignItems": "center",
+          "alignItems": "flex-start",
           "backgroundColor": "white",
           "flex": 1,
           "flexDirection": "row",
-          "padding": 8,
+          "padding": 12,
+          "paddingLeft": 3,
         }
       }
     >
+      <View />
       <View
+        accessibilityLabel="Not Published"
         style={
           Object {
+            "alignItems": "center",
             "flex": 0,
             "height": 32,
-            "width": 32,
+            "width": 46,
           }
         }
       >
         <Image
           source={1}
           style={
-            Object {
-              "position": "absolute",
-            }
+            Array [
+              Object {
+                "position": "absolute",
+              },
+              Object {
+                "tintColor": "#fff",
+              },
+            ]
           }
         />
         <View
@@ -74,9 +83,9 @@ exports[`renders correctly 1`] = `
               "borderRadius": 8,
               "height": 16,
               "justifyContent": "center",
-              "left": 12,
+              "left": 20,
               "position": "absolute",
-              "top": 12,
+              "top": 10,
               "width": 16,
             }
           }
@@ -86,29 +95,223 @@ exports[`renders correctly 1`] = `
             style={
               Object {
                 "height": 12,
-                "tintColor": "grey",
+                "tintColor": "#8B969E",
                 "width": 12,
               }
             }
           />
         </View>
       </View>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={2}
+      <View
         style={
           Object {
-            "color": "#2d3b44",
             "flex": 1,
-            "fontSize": 17,
-            "fontWeight": "bold",
           }
         }
       >
-        learn to write code
-      </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+          style={
+            Object {
+              "color": "#2D3B45",
+              "flex": 1,
+              "fontSize": 16,
+              "fontWeight": "600",
+            }
+          }
+        >
+          learn to write code
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#8B969E",
+              "fontSize": 14,
+              "marginTop": 2,
+            }
+          }
+        >
+          No due date
+        </Text>
+        <View />
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders correctly with needs_grading_count 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "lightgrey",
+      "borderBottomWidth": 0.5,
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+        },
+        Object {
+          "flex": 1,
+        },
+      ]
+    }
+    testID="assignment-123456789"
+    tvParallaxProperties={undefined}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "padding": 12,
+          "paddingLeft": 3,
+        }
+      }
+    >
+      <View />
+      <View
+        accessibilityLabel="Not Published"
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 0,
+            "height": 32,
+            "width": 46,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Array [
+              Object {
+                "position": "absolute",
+              },
+              Object {
+                "tintColor": "#fff",
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 8,
+              "height": 16,
+              "justifyContent": "center",
+              "left": 20,
+              "position": "absolute",
+              "top": 10,
+              "width": 16,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 12,
+                "tintColor": "#8B969E",
+                "width": 12,
+              }
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+          style={
+            Object {
+              "color": "#2D3B45",
+              "flex": 1,
+              "fontSize": 16,
+              "fontWeight": "600",
+            }
+          }
+        >
+          learn to write code
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#8B969E",
+              "fontSize": 14,
+              "marginTop": 2,
+            }
+          }
+        >
+          No due date
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "alignSelf": "flex-start",
+              "backgroundColor": "white",
+              "borderColor": "#008EE2",
+              "borderRadius": 9,
+              "borderWidth": 1,
+              "color": "#008EE2",
+              "flex": 0,
+              "fontSize": 11,
+              "fontWeight": "600",
+              "marginTop": 4,
+              "overflow": "hidden",
+              "paddingBottom": 1,
+              "paddingLeft": 6,
+              "paddingRight": 6,
+              "paddingTop": 3,
+            }
+          }
+        >
+          5 UNGRADED
+        </Text>
+      </View>
     </View>
   </View>
 </View>

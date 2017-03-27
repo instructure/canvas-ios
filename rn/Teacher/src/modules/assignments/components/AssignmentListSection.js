@@ -15,10 +15,6 @@ type Props = {
 }
 
 export default class AssignmentListSection extends Component<any, Props, any> {
-  onPress = () => {
-    const assignmentGroup = this.props.assignmentGroup
-    this.props.onPress(assignmentGroup)
-  }
 
   render (): Element<View> {
     const group = this.props.assignmentGroup
@@ -35,15 +31,15 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 24,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgrey',
-    backgroundColor: '#f5f5f5',
+    borderBottomColor: '#C7CDD1',
+    backgroundColor: '#F5F5F5',
     justifyContent: 'center',
-    paddingLeft: 8,
+    paddingLeft: 16,
     paddingRight: 8,
   },
   title: {
-    backgroundColor: '#f5f5f5',
-    color: '#73818b',
-    fontWeight: 'bold',
+    backgroundColor: '#F5F5F5',
+    color: '#73818C',
+    fontWeight: '600',
   },
 })

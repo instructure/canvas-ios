@@ -1369,6 +1369,10 @@ decamelize@^1.0.0, decamelize@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
+deep-diff@0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/deep-diff/-/deep-diff-0.3.4.tgz#aac5c39952236abe5f037a2349060ba01b00ae48"
+
 deep-extend@~0.4.0:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.4.1.tgz#efe4113d08085f4e6f9687759810f807469e2253"
@@ -3275,9 +3279,9 @@ minimist@^1.1.0, minimist@^1.1.1, minimist@^1.2.0:
   dependencies:
     minimist "0.0.8"
 
-moment@2.x.x:
-  version "2.17.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
+moment@2.18.0, moment@2.x.x:
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.0.tgz#6cfec6a495eca915d02600a67020ed994937252c"
 
 morgan@~1.6.1:
   version "1.6.1"
@@ -3963,6 +3967,12 @@ redux-actions@^1.2.2:
     invariant "^2.2.1"
     lodash "^4.13.1"
     reduce-reducers "^0.1.0"
+
+redux-logger@2.10.2:
+  version "2.10.2"
+  resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-2.10.2.tgz#3c5a5f0a6f32577c1deadf6655f257f82c6c3937"
+  dependencies:
+    deep-diff "0.3.4"
 
 redux-mock-store@^1.2.2:
   version "1.2.2"

@@ -2,20 +2,27 @@
 
 exports[`renders published correctly 1`] = `
 <View
+  accessibilityLabel="Published"
   style={
     Object {
+      "alignItems": "center",
       "flex": 0,
       "height": 32,
-      "width": 32,
+      "width": 46,
     }
   }
 >
   <Image
     source={1}
     style={
-      Object {
-        "position": "absolute",
-      }
+      Array [
+        Object {
+          "position": "absolute",
+        },
+        Object {
+          "tintColor": "#fff",
+        },
+      ]
     }
   />
   <View
@@ -26,9 +33,9 @@ exports[`renders published correctly 1`] = `
         "borderRadius": 8,
         "height": 16,
         "justifyContent": "center",
-        "left": 12,
+        "left": 20,
         "position": "absolute",
-        "top": 12,
+        "top": 10,
         "width": 16,
       }
     }
@@ -38,7 +45,7 @@ exports[`renders published correctly 1`] = `
       style={
         Object {
           "height": 12,
-          "tintColor": "green",
+          "tintColor": "#00AC18",
           "width": 12,
         }
       }
@@ -49,20 +56,27 @@ exports[`renders published correctly 1`] = `
 
 exports[`renders unpublished correctly 1`] = `
 <View
+  accessibilityLabel="Not Published"
   style={
     Object {
+      "alignItems": "center",
       "flex": 0,
       "height": 32,
-      "width": 32,
+      "width": 46,
     }
   }
 >
   <Image
     source={1}
     style={
-      Object {
-        "position": "absolute",
-      }
+      Array [
+        Object {
+          "position": "absolute",
+        },
+        Object {
+          "tintColor": "#fff",
+        },
+      ]
     }
   />
   <View
@@ -73,9 +87,9 @@ exports[`renders unpublished correctly 1`] = `
         "borderRadius": 8,
         "height": 16,
         "justifyContent": "center",
-        "left": 12,
+        "left": 20,
         "position": "absolute",
-        "top": 12,
+        "top": 10,
         "width": 16,
       }
     }
@@ -85,7 +99,7 @@ exports[`renders unpublished correctly 1`] = `
       style={
         Object {
           "height": 12,
-          "tintColor": "grey",
+          "tintColor": "#8B969E",
           "width": 12,
         }
       }

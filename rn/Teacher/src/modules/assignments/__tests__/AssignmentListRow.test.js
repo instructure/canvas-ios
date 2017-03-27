@@ -13,8 +13,18 @@ import renderer from 'react-test-renderer'
 
 test('renders correctly', () => {
   let assignment = template.assignment()
+  assignment.needs_grading_count = 0
   let tree = renderer.create(
-    <AssignmentListRow assignment={assignment} />
+    <AssignmentListRow assignment={assignment} tintColor='#fff' />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('renders correctly with needs_grading_count', () => {
+  let assignment = template.assignment()
+  assignment.needs_grading_count = 5
+  let tree = renderer.create(
+    <AssignmentListRow assignment={assignment} tintColor='#fff' />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })

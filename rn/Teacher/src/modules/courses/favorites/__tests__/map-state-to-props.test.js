@@ -31,6 +31,7 @@ describe('favorite courses mapStateToProps', () => {
     favoriteCourses: { courseRefs: ['3', '1', '2'] },
     entities: {
       courses,
+      assignmentGroups: {},
     },
   }
 

@@ -20,6 +20,10 @@ import { branding, setupBrandingFromNativeBrandingInfo } from './src/common/bran
 import Images from './src/images'
 import logout from './src/redux/logout-action'
 
+// Useful for demos when you don't want that annoying yellow box showing up all over the place
+// such as, when demoing
+// console.disableYellowBox = true
+
 registerScreens(store)
 
 const nativeLogin = NativeModules.NativeLogin

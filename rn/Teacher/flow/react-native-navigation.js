@@ -34,6 +34,10 @@ export type SetTitleOptions = {
   subtitle?: string,
 }
 
+export type SetStyleOptions = {
+  navBarBackgroundColor: string,
+}
+
 export type ReactNavigator = {
   dismissModal: (options: ?DismissModalOptions) => void,
   setOnNavigatorEvent: (onNavigatorEvent: Function) => void,
@@ -41,6 +45,7 @@ export type ReactNavigator = {
   push: (pushOptions: NavigatorPushOptions) => void,
   showModal: (modalOptions: NavigatorShowModalOptions) => void,
   setTitle: (SetTitleOptions) => void,
+  setStyle: (SetStyleOptions) => void,
 }
 
 export type NavProps = {

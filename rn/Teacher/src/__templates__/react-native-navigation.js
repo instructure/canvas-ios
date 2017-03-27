@@ -9,4 +9,5 @@ export const navigator: Template<ReactNavigator> = template({
   setOnNavigatorEvent: jest.fn(),
   pop: jest.fn(),
   setTitle: jest.fn(),
+  setStyle: jest.fn(),
 })

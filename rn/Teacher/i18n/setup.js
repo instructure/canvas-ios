@@ -11,7 +11,7 @@ export function sanitizeLocale (locale: string): string {
 export default function (locale: string): void {
   const sanitizedLocale = sanitizeLocale(locale)
   i18n.setup({
-    sanitizedLocale,
+    locale: sanitizedLocale,
     generateId,
     translations,
   })

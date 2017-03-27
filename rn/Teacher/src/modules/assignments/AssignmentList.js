@@ -12,28 +12,20 @@ import {
   ListView,
 } from 'react-native'
 
+import i18n from 'format-message'
 import AssignmentListActions from './actions'
-import { stateToProps } from './props'
+import { mapStateToProps, type AssignmentListProps } from './map-state-to-props'
 import { route } from '../../routing'
 
 import AssignmentListRowView from './components/AssignmentListRow'
 import AssignmentListSectionView from './components/AssignmentListSection'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 
-type Props = {
-  courseID: string,
-  assignmentGroups: AssignmentGroup[],
-  refreshAssignmentList: Function,
-  nextPage: Function,
-  pending: number,
-  navigator: ReactNavigator,
-}
-
 type State = {
   dataSource: ListView.DataSource,
 }
 
-export class AssignmentList extends Component<any, Props, State> {
+export class AssignmentList extends Component<any, AssignmentListProps, State> {
 
   state: State
 
@@ -41,8 +33,22 @@ export class AssignmentList extends Component<any, Props, State> {
     drawUnderNavBar: true,
   }
 
-  constructor (props: Props) {
+  constructor (props: AssignmentListProps) {
     super(props)
+    props.navigator.setTitle({
+      title: i18n({
+        default: 'Assignments',
+        description: 'Title of the assignments screen for a course',
+      }),
+    })
+
+    if (props.course.color) {
+      const color: string = props.course.color
+      props.navigator.setStyle({
+        navBarBackgroundColor: color,
+      })
+    }
+
     const dataSource = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
       sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
@@ -59,8 +65,8 @@ export class AssignmentList extends Component<any, Props, State> {
     this.props.refreshAssignmentList(this.props.courseID)
   }
 
-  componentWillReceiveProps (newProps: Props) {
-    const groups = newProps.assignmentGroups
+  componentWillReceiveProps (newProps: AssignmentListProps) {
+    const groups = newProps.assignmentGroups || []
     const sectionIdentities = groups.map((group) => group.id.toString())
     const assignmentIdentities = []
 
@@ -89,12 +95,12 @@ export class AssignmentList extends Component<any, Props, State> {
     return data[`${sectionID}:${rowID}`]
   }
 
-  renderRow = (assignment: Assignment) => {
-    return <AssignmentListRowView assignment={assignment} onPress={this.selectedAssignment} />
+  renderRow = (assignment: Assignment, sectionID: number, rowID: number) => {
+    return <AssignmentListRowView assignment={assignment} tintColor={this.props.course.color} onPress={this.selectedAssignment} />
   }
 
   renderSectionHeader = (group: any) => {
-    return <AssignmentListSectionView assignmentGroup={group} onPress={this.selectedAssignment} />
+    return <AssignmentListSectionView assignmentGroup={group} />
   }
 
   renderFooter = () => {
@@ -145,14 +151,14 @@ const styles = StyleSheet.create({
     borderBottomColor: 'lightgrey',
   },
   headerTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontWeight: '600',
     marginTop: 16,
-    marginLeft: 8,
+    marginLeft: 16,
     marginBottom: 8,
     color: '#2d3b44',
   },
 })
 
-const Connected = connect(stateToProps, AssignmentListActions)(AssignmentList)
-export default (Connected: Component<any, Props, State>)
+const Connected = connect(mapStateToProps, AssignmentListActions)(AssignmentList)
+export default (Connected: Component<any, AssignmentListProps, State>)

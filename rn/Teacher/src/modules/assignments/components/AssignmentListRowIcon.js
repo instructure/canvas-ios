@@ -10,9 +10,11 @@ import {
 } from 'react-native'
 
 import Images from '../../../images'
+import i18n from 'format-message'
 
 type Props = {
   published: true,
+  tintColor: string,
 }
 
 export default class AssignmentListRowIcon extends Component<any, Props, any> {
@@ -20,9 +22,10 @@ export default class AssignmentListRowIcon extends Component<any, Props, any> {
     const published = this.props.published
     const icon = published ? Images.assignments.published : Images.assignments.unpublished
     const iconStyle = published ? styles.publishedIcon : styles.unpublishedIcon
+    const accessibilityLabel = published ? i18n('Published') : i18n('Not Published')
     return (
-      <View style={styles.container}>
-        <Image source={Images.course.assignments} style={styles.assignmentIcon} />
+      <View style={styles.container} accessibilityLabel={accessibilityLabel}>
+        <Image source={Images.course.assignments} style={[styles.assignmentIcon, { tintColor: this.props.tintColor }]} />
         <View style={styles.publishedIconContainer}>
           <Image source={icon} style={iconStyle} />
         </View>
@@ -35,7 +38,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 0,
     height: 32,
-    width: 32,
+    width: 46,
+    alignItems: 'center',
   },
   assignmentIcon: {
     position: 'absolute',
@@ -44,8 +48,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 12,
-    left: 12,
+    top: 10,
+    left: 20,
     backgroundColor: 'white',
     height: 16,
     width: 16,
@@ -54,11 +58,11 @@ const styles = StyleSheet.create({
   publishedIcon: {
     height: 12,
     width: 12,
-    tintColor: 'green',
+    tintColor: '#00AC18',
   },
   unpublishedIcon: {
     height: 12,
     width: 12,
-    tintColor: 'grey',
+    tintColor: '#8B969E',
   },
 })

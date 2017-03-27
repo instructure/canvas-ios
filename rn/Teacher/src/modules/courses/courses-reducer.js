@@ -7,6 +7,7 @@ import handleAsync from '../../utils/handleAsync'
 import groupCustomColors from '../../api/utils/group-custom-colors'
 import fromPairs from 'lodash/fromPairs'
 import { tabs } from './tabs/tabs-reducer'
+import { assignmentGroupRefs } from '../assignments/assignments-reducer'
 
 // dummy's to appease combineReducers
 const course = (state) => (state || {})
@@ -17,6 +18,7 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   course,
   color,
   tabs,
+  assignmentGroups: assignmentGroupRefs,
   oldColor: color,
   pending,
 })
@@ -26,7 +28,7 @@ const { refreshCourses, updateCourseColor } = CourseListActions
 export const defaultState: CoursesState = {}
 
 const emptyCourseState: CourseContentState = {
-  tabs: { pending: 0, tabs: [] },
+  tabs: { pending: 0, tabs: [] }, assignmentGroups: { pending: 0, refs: [] },
 }
 
 export const normalizeCourse = (course: Course, colors: { [courseId: string]: string }, prevState: CourseContentState = emptyCourseState): CourseState => {

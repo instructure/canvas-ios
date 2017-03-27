@@ -11,26 +11,36 @@
     "message": "All Courses",
     "description": "The title of the screen showing all of a teacher's courses"
   },
-  "and_here_are_the_legos_6c2ac262": {
-    "message": "And here are the Legos"
+  "assignments_1e02582c": {
+    "message": "Assignments",
+    "description": "Title of the assignments screen for a course"
   },
   "back_courses": {
     "message": "Courses",
     "description": "The back button title to go from all courses to just favorited courses"
   },
-  "buy_more_ed49ba10": {
-    "message": "Buy More!"
-  },
   "choose_color_11148181": {
     "message": "Choose { color }",
     "description": "Accessibility label to select a color"
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "Closed • { dateString } at { timeString }"
   },
   "color_a363e1b0": {
     "message": "Color",
     "description": "Title label for the course color picker"
   },
+  "could_not_get_assignment_list_763b015f": {
+    "message": "Could not get assignment list"
+  },
   "could_not_get_course_information_d4e3f151": {
     "message": "Could not get course information"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Could not get list of assignments"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } ungraded"
   },
   "courses_43204aae": {
     "message": "Courses",
@@ -47,6 +57,9 @@
   "done_beta_feedback": {
     "message": "Done",
     "description": "Button to dismiss feedback form."
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "Due { dateString } at { timeString }"
   },
   "edit_c5fbea07": {
     "message": "Edit",
@@ -77,16 +90,22 @@
   "no_courses_available_200e0c8d": {
     "message": "No Courses Available"
   },
+  "no_due_date_1d63d13b": {
+    "message": "No due date"
+  },
+  "not_published_73f7079": {
+    "message": "Not Published"
+  },
   "open_user_course_preferences_32dd14a7": {
     "message": "Open user course preferences",
     "description": "Accessibility label on icon button to open course user preferences"
   },
-  "out_of_money_sell_them_all_a4572d43": {
-    "message": "Out of money, sell them all!"
-  },
   "profile_6bd2baed": {
     "message": "Profile",
     "description": "Label indicating the user is on the profile tab"
+  },
+  "published_4bb5209e": {
+    "message": "Published"
   },
   "see_all_ffa422ef": {
     "message": "See All",
@@ -110,8 +129,5 @@
   "welcome_73d18b4d": {
     "message": "Welcome!",
     "description": "Welcome header text when user has no courses yet."
-  },
-  "you_should_login_f99d1398": {
-    "message": "You Should Login"
   }
 }

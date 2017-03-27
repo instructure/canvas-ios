@@ -9,14 +9,14 @@ import renderer from 'react-test-renderer'
 
 test('renders published correctly', () => {
   let tree = renderer.create(
-    <AssignmentListRowIcon published={true} />
+    <AssignmentListRowIcon published={true} tintColor='#fff' />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('renders unpublished correctly', () => {
   let tree = renderer.create(
-    <AssignmentListRowIcon published={false} />
+    <AssignmentListRowIcon published={false} tintColor='#fff' />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
