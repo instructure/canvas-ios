@@ -24,26 +24,7 @@ type Props = {
 export default class CourseDetails extends Component<any, Props, any> {
 
   imageForTab (tab: Tab): ?any {
-    switch (tab.id) {
-      case 'announcements':
-        return Images.course.announcements
-      case 'assignments':
-        return Images.course.assignments
-      case 'discussions':
-        return Images.course.discussions
-      case 'pages':
-        return Images.course.pages
-      case 'people':
-        return Images.course.people
-      case 'quiz':
-        return Images.course.quiz
-      case 'syllabus':
-        return Images.course.syllabus
-      case 'files':
-        return Images.course.files
-      default:
-        return Images.course.files
-    }
+    return Images.course[tab.id]
   }
 
   onPress = () => {

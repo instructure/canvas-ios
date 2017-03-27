@@ -11,12 +11,28 @@ const template = {
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
+const defaultProps = {
+  tab: template.tab(),
+  courseColor: 'white',
+  onPress: () => {},
+}
+
 test('renders correctly', () => {
-  const tab = template.tab()
-  const courseColor = 'white'
-  const onPress = jest.fn()
   let tree = renderer.create(
-    <CourseDetailsTab tab={tab} courseColor={courseColor} onPress={onPress} />
+    <CourseDetailsTab {...defaultProps} />
   ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('default icon', () => {
+  const props = {
+    ...defaultProps,
+    tab: template.tab({ id: 'test default icon' }),
+  }
+
+  let tree = renderer.create(
+    <CourseDetailsTab {...props} />
+  )
+
   expect(tree).toMatchSnapshot()
 })

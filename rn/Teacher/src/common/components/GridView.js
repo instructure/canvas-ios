@@ -34,14 +34,12 @@ const mapValues = (obj: any, callback: Function) => {
 type DefaultProps = {
   itemsPerRow: number,
   onEndReached: () => void,
-  itemHasChanged: (r1: any, r2: any) => boolean,
   renderFooter: () => void,
 }
 
 type Props = {
   itemsPerRow: number,
   onEndReached?: Function,
-  itemHasChanged: Function,
   renderItem: Function,
   renderPlaceholder?: Function,
   renderSectionHeader?: Function,
@@ -67,7 +65,6 @@ export default class GridView extends Component<DefaultProps, Props, State> {
   static propTypes = {
     itemsPerRow: React.PropTypes.number,
     onEndReached: React.PropTypes.func,
-    itemHasChanged: React.PropTypes.func,
     renderItem: React.PropTypes.func.isRequired,
     renderPlaceholder: React.PropTypes.func,
     data: React.PropTypes.arrayOf(React.PropTypes.any).isRequired,
@@ -79,9 +76,6 @@ export default class GridView extends Component<DefaultProps, Props, State> {
   static defaultProps = {
     itemsPerRow: 2,
     onEndReached: () => {},
-    itemHasChanged (r1: any, r2: any): boolean {
-      return r1 !== r2
-    },
     renderFooter: () => {},
   }
 

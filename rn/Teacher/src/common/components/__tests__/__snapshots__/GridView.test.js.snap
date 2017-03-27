@@ -25,7 +25,6 @@ exports[`renders correctly 1`] = `
       }
     }
     enableEmptySections={true}
-    itemHasChanged={[Function]}
     itemsPerRow={2}
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
@@ -92,105 +91,6 @@ exports[`renders correctly with placeHolder 1`] = `
     data={
       Array [
         "a",
-        "b",
-        "c",
-      ]
-    }
-    dataSource={
-      ListViewDataSource {
-        "items": 2,
-      }
-    }
-    enableEmptySections={true}
-    itemHasChanged={[Function]}
-    itemsPerRow={2}
-    onEndReached={[Function]}
-    onEndReachedThreshold={1334}
-    onLayout={[Function]}
-    placeholderStyle={Object {}}
-    renderFooter={[Function]}
-    renderHeader={undefined}
-    renderItem={[Function]}
-    renderRow={[Function]}
-    renderScrollComponent={[Function]}
-    renderSectionHeader={undefined}
-    style={
-      Object {
-        "flex": 1,
-        "overflow": "visible",
-      }
-    }
-  >
-    <View>
-      <View
-        style={
-          Object {
-            "alignItems": "flex-start",
-            "flex": 1,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-around",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-        >
-          a
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-        >
-          b
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "flex-start",
-            "flex": 1,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-around",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-        >
-          c
-        </Text>
-        <View
-          style={Object {}}
-        />
-      </View>
-    </View>
-  </RCTScrollView>
-</View>
-`;
-
-exports[`renders correctly with placeHolder 2`] = `
-<View
-  onLayout={[Function]}
-  style={
-    Array [
-      Object {
-        "flex": 1,
-      },
-      Object {},
-    ]
-  }
->
-  <RCTScrollView
-    data={
-      Array [
-        "a",
       ]
     }
     dataSource={
@@ -199,7 +99,6 @@ exports[`renders correctly with placeHolder 2`] = `
       }
     }
     enableEmptySections={true}
-    itemHasChanged={[Function]}
     itemsPerRow={2}
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
@@ -277,7 +176,6 @@ exports[`renders correctly with sections 1`] = `
       }
     }
     enableEmptySections={true}
-    itemHasChanged={[Function]}
     itemsPerRow={2}
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
@@ -347,6 +245,211 @@ exports[`renders correctly with sections 1`] = `
         />
       </View>
     </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`renders correctly without sections 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      Object {},
+    ]
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        Array [
+          "a",
+          "b",
+          "c",
+        ],
+        Array [
+          "x",
+          "y",
+        ],
+      ]
+    }
+    dataSource={
+      ListViewDataSource {
+        "items": 1,
+      }
+    }
+    enableEmptySections={true}
+    itemsPerRow={2}
+    onEndReached={[Function]}
+    onEndReachedThreshold={1334}
+    onLayout={[Function]}
+    placeholderStyle={Object {}}
+    renderFooter={[Function]}
+    renderHeader={undefined}
+    renderItem={[Function]}
+    renderRow={[Function]}
+    renderScrollComponent={[Function]}
+    renderSectionHeader={undefined}
+    sections={false}
+    style={
+      Object {
+        "flex": 1,
+        "overflow": "visible",
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "flex": 1,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "space-around",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+        >
+          a
+          b
+          c
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+        >
+          x
+          y
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`updates list when data prop changes 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      Object {},
+    ]
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        "a",
+        "b",
+      ]
+    }
+    dataSource={
+      ListViewDataSource {
+        "items": 1,
+      }
+    }
+    enableEmptySections={true}
+    itemsPerRow={2}
+    onEndReached={[Function]}
+    onEndReachedThreshold={1334}
+    onLayout={[Function]}
+    placeholderStyle={Object {}}
+    renderFooter={[Function]}
+    renderHeader={undefined}
+    renderItem={[Function]}
+    renderRow={[Function]}
+    renderScrollComponent={[Function]}
+    renderSectionHeader={undefined}
+    style={
+      Object {
+        "flex": 1,
+        "overflow": "visible",
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "flex": 1,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "space-around",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+        >
+          data changed
+        </Text>
+        <View
+          style={Object {}}
+        />
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`updates list when data prop changes with sections 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      Object {},
+    ]
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        Array [],
+      ]
+    }
+    dataSource={
+      ListViewDataSource {
+        "items": 0,
+      }
+    }
+    enableEmptySections={true}
+    itemsPerRow={2}
+    onEndReached={[Function]}
+    onEndReachedThreshold={1334}
+    onLayout={[Function]}
+    placeholderStyle={Object {}}
+    renderFooter={[Function]}
+    renderHeader={undefined}
+    renderItem={[Function]}
+    renderRow={[Function]}
+    renderScrollComponent={[Function]}
+    renderSectionHeader={undefined}
+    sections={true}
+    style={
+      Object {
+        "flex": 1,
+        "overflow": "visible",
+      }
+    }
+  >
+    <View />
   </RCTScrollView>
 </View>
 `;

@@ -5,6 +5,7 @@ import React from 'react'
 import * as courseTemplate from '../../../../api/canvas-api/__templates__/course'
 import * as navigationTemplate from '../../../../__templates__/react-native-navigation'
 import { FavoritesList } from '../EditFavorites'
+import setProps from '../../../../../test/helpers/setProps'
 
 import renderer from 'react-test-renderer'
 
@@ -26,6 +27,25 @@ test('renders correctly', () => {
   ).toJSON()
 
   expect(tree).toMatchSnapshot()
+})
+
+it('updates when courses prop changes', () => {
+  const course = courseTemplate.course({ is_favorite: true })
+  const props = {
+    ...defaultProps,
+    courses: [course],
+  }
+
+  const component = renderer.create(
+    <FavoritesList {...props} />
+  )
+
+  expect(component.toJSON()).toMatchSnapshot()
+
+  course.is_favorite = false
+  setProps(component, { courses: [course] })
+
+  expect(component.toJSON()).toMatchSnapshot()
 })
 
 test('calls dismissModal when back button is selected', () => {

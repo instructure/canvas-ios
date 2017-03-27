@@ -1,5 +1,7 @@
 /* @flow */
 
+export const DEFAULT_ERROR_MESSAGE: string = 'Default mock api error'
+
 function error<T> (status: number, message: string): Promise<ApiError<T>> {
   return new Promise((resolve, reject) => {
     process.nextTick(() => {
@@ -39,6 +41,6 @@ export function apiResponse<T> (data: T, opts: MockResponseOptions<T> = {}): Fun
 }
 
 export function apiError (errorDetails?: { status?: number, message?: string }): Function {
-  const mock = error((errorDetails && errorDetails.status) || 401, (errorDetails && errorDetails.message) || 'Default mock api error')
+  const mock = error((errorDetails && errorDetails.status) || 401, (errorDetails && errorDetails.message) || DEFAULT_ERROR_MESSAGE)
   return jest.fn(() => mock)
 }

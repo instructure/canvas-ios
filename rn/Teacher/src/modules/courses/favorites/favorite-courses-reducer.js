@@ -5,7 +5,7 @@ import { handleActions } from 'redux-actions'
 import CourseListActions from '../actions'
 import FavoritesActions from '../edit-favorites/actions'
 import handleAsync from '../../../utils/handleAsync'
-import i18n from 'format-message'
+import { parseErrorMessage } from '../../../utils/error-handler'
 
 let { refreshCourses } = CourseListActions
 let { toggleFavorite } = FavoritesActions
@@ -52,13 +52,9 @@ export const favoriteCourses: Reducer<FavoriteCoursesState, any> = handleActions
       }
     },
     rejected: (state, response) => {
-      let errorMessage = i18n('No Courses Available')
-      if (response.data.errors && response.data.errors.length > 0) {
-        errorMessage = response.data.errors[0].message
-      }
       return {
         ...state,
-        error: errorMessage,
+        error: parseErrorMessage(response),
         pending: state.pending - 1,
       }
     },
@@ -68,13 +64,9 @@ export const favoriteCourses: Reducer<FavoriteCoursesState, any> = handleActions
     pending: (state, { courseID, markAsFavorite }) => toggleFavoriteCourse(state, courseID, markAsFavorite, +1),
     resolved: (state) => ({ ...state, pending: state.pending - 1 }),
     rejected: (state, { courseID, markAsFavorite, error }) => {
-      let errorMessage = i18n('Failed to toggle favorite')
-      if (error.data.errors && error.data.errors.length > 0) {
-        errorMessage = error.data.errors[0].message
-      }
       return {
         ...toggleFavoriteCourse(state, courseID, !markAsFavorite, -1),
-        error: errorMessage,
+        error: parseErrorMessage(error),
       }
     },
   }),

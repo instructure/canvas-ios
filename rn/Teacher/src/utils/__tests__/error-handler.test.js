@@ -1,6 +1,6 @@
 // @flow
 
-import errorHandlerMiddleware, { ERROR_TITLE, ERROR_MESSAGE } from '../error-handler'
+import errorHandlerMiddleware, { ERROR_TITLE, ERROR_MESSAGE, parseErrorMessage } from '../error-handler'
 import configureMockStore from 'redux-mock-store'
 import { Alert } from 'react-native'
 
@@ -86,3 +86,30 @@ describe('error-handler-middleware', () => {
   })
 })
 
+describe('parse error message', () => {
+  it('should parse axios response errors', () => {
+    const response = {
+      status: 500,
+      data: { errors: [{ message: 'Internal server error' }] },
+      headers: { link: null },
+    }
+    const expected = 'Internal server error'
+
+    const result = parseErrorMessage(response)
+
+    expect(result).toEqual(expected)
+  })
+
+  it('should use status code as error message if there are no messages', () => {
+    const response = {
+      status: 500,
+      data: {},
+      headers: { link: null },
+    }
+    const expected = 'An error occurred (code: 500)'
+
+    const result = parseErrorMessage(response)
+
+    expect(result).toEqual(expected)
+  })
+})

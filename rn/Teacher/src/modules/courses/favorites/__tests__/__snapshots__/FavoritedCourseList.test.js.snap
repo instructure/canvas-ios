@@ -61,7 +61,6 @@ exports[`render 1`] = `
       }
     }
     enableEmptySections={true}
-    itemHasChanged={[Function]}
     itemsPerRow={3}
     onEndReached={[Function]}
     onEndReachedThreshold={1334}

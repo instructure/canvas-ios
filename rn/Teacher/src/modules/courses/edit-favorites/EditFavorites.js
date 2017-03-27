@@ -67,12 +67,16 @@ export class FavoritesList extends Component {
   }
 
   onNavigatorEvent = (event: NavigatorEvent) => {
-    if (event.type === 'NavBarButtonPress') {
-      if (event.id === 'done') {
-        this.props.navigator.dismissModal({
-          animationType: 'slide-down',
-        })
-      }
+    switch (event.type) {
+      case 'NavBarButtonPress':
+        switch (event.id) {
+          case 'done':
+            this.props.navigator.dismissModal({
+              animationType: 'slide-down',
+            })
+            break
+        }
+        break
     }
   }
 

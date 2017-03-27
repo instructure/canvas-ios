@@ -35,3 +35,14 @@ const errorHandlerMiddleware: MiddlewareAPI = () => {
 }
 
 export default errorHandlerMiddleware
+
+export function parseErrorMessage (response: AxiosResponse<any>): string {
+  if (response.data.errors && response.data.errors.length > 0) {
+    return response.data.errors
+      .map(error => error.message)
+      .map(message => message.replace(/\.+$/, ''))
+      .join('. ')
+  }
+
+  return `An error occurred (code: ${response.status})`
+}

@@ -161,3 +161,185 @@ exports[`renders correctly 1`] = `
   </View>
 </RCTScrollView>
 `;
+
+exports[`updates when courses prop changes 1`] = `
+<RCTScrollView
+  dataSource={
+    ListViewDataSource {
+      "items": 1,
+    }
+  }
+  renderRow={[Function]}
+  renderScrollComponent={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#fff",
+    }
+  }
+>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "borderBottomColor": "#e3e3e3",
+            "borderBottomWidth": 1,
+          },
+        ]
+      }
+      testID="rn 101"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flexDirection": "row",
+            "paddingHorizontal": 16,
+            "paddingVertical": 16,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Array [
+              Object {
+                "height": 20,
+                "marginRight": 10,
+                "width": 20,
+              },
+              Object {
+                "tintColor": "#374A59",
+              },
+            ]
+          }
+        />
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "fontSize": 16,
+              "fontWeight": "400",
+              "marginRight": 16,
+            }
+          }
+        >
+          Learn React Native
+        </Text>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`updates when courses prop changes 2`] = `
+<RCTScrollView
+  dataSource={
+    ListViewDataSource {
+      "items": 1,
+    }
+  }
+  renderRow={[Function]}
+  renderScrollComponent={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#fff",
+    }
+  }
+>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "borderBottomColor": "#e3e3e3",
+            "borderBottomWidth": 1,
+          },
+        ]
+      }
+      testID="rn 101"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flexDirection": "row",
+            "paddingHorizontal": 16,
+            "paddingVertical": 16,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Array [
+              Object {
+                "height": 20,
+                "marginRight": 10,
+                "width": 20,
+              },
+              Object {
+                "tintColor": "#374A59",
+              },
+            ]
+          }
+        />
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "fontSize": 16,
+              "fontWeight": "400",
+              "marginRight": 16,
+            }
+          }
+        >
+          Learn React Native
+        </Text>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;

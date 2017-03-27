@@ -2,13 +2,13 @@
 
 import { Reducer } from 'redux'
 import { handleActions } from 'redux-actions'
-import CourseDetailsActions from './actions'
+import TabsActions from './actions'
 import handleAsync from '../../../utils/handleAsync'
-import i18n from 'format-message'
+import { parseErrorMessage } from '../../../utils/error-handler'
 
 export let defaultState: TabsState = { tabs: [], pending: 0 }
 
-let { refreshTabs } = CourseDetailsActions
+let { refreshTabs } = TabsActions
 const availableCourseTabs = ['assignments']
 
 export const tabs: Reducer<TabsState, any> = handleActions({
@@ -24,11 +24,10 @@ export const tabs: Reducer<TabsState, any> = handleActions({
         pending: state.pending - 1,
       }
     },
-    rejected: (state, response) => {
-      let errorMessage = i18n('Could not get course information')
+    rejected: (state, { error }) => {
       return {
         ...state,
-        error: errorMessage,
+        error: parseErrorMessage(error),
         pending: state.pending - 1,
       }
     },

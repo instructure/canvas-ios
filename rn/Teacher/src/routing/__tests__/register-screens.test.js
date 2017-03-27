@@ -11,7 +11,7 @@ describe('app routes', () => {
 
   // this will help us remember to test our routes
   it('has all routes declared', () => {
-    expect(routes.length).toEqual(10)
+    expect(routes.length).toEqual(9)
   })
 
   it('includes /', () => {
@@ -55,13 +55,6 @@ describe('app routes', () => {
     expect(route('/courses/686/assignments')).toEqual({
       screen: screenID('/courses/:courseID/assignments'),
       passProps: { courseID: '686' },
-    })
-  })
-
-  it('includes /courses/:courseID/assignments/:assignmentID', () => {
-    expect(route('/courses/686/assignments/999')).toEqual({
-      screen: screenID('/courses/:courseID/assignments/:assignmentID'),
-      passProps: { courseID: '686', assignmentID: '999' },
     })
   })
 
