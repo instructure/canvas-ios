@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react'
 import { Text } from '../../../common/text'
+import { SUBMISSION_TYPES } from '../../../common/submissionTypes'
 
 import {
   View,
@@ -14,7 +15,7 @@ export default class SubmissionType extends Component {
   render (): ReactElement<*> {
     return (<View style={style.vertical}>
       {this.props.data.map(item =>
-        <Text style={{ flex: 1 }} key={item}>{item}</Text>
+        <Text style={{ flex: 1 }} key={item}>{SUBMISSION_TYPES[item]}</Text>
       )}
     </View>)
   }

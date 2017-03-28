@@ -328,7 +328,7 @@ exports[`renders 1`] = `
             ]
           }
         >
-          online_text_entry
+          online text entry
         </Text>
         <Text
           accessible={true}
@@ -343,7 +343,7 @@ exports[`renders 1`] = `
             ]
           }
         >
-          online_url
+          online url
         </Text>
         <Text
           accessible={true}
@@ -358,7 +358,7 @@ exports[`renders 1`] = `
             ]
           }
         >
-          media_recording
+          media recording
         </Text>
         <Text
           accessible={true}
@@ -373,7 +373,7 @@ exports[`renders 1`] = `
             ]
           }
         >
-          online_upload
+          online upload
         </Text>
       </View>
     </View>

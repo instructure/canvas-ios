@@ -13,15 +13,15 @@
   },
   "assignment_details_bc488179": {
     "message": "Assignment Details",
-    "description": "Title of assignemnt details screen"
-  },
-  "available_8606e40c": {
-    "message": "Available",
-    "description": "Assignemnt Details Section title for when assignment is available"
+    "description": "Title of Assignment details screen"
   },
   "assignments_1e02582c": {
     "message": "Assignments",
     "description": "Title of the assignments screen for a course"
+  },
+  "available_8606e40c": {
+    "message": "Available",
+    "description": "Assignment Details Section title for when assignment is available"
   },
   "back_courses": {
     "message": "Courses",
@@ -42,12 +42,6 @@
     "message": "Color",
     "description": "Title label for the course color picker"
   },
-  "could_not_get_assignment_list_763b015f": {
-    "message": "Could not get assignment list"
-  },
-  "could_not_get_course_information_d4e3f151": {
-    "message": "Could not get course information"
-  },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "Could not get list of assignments"
   },
@@ -62,6 +56,10 @@
     "message": "Customize Course",
     "description": "The title of the user course preferences screen"
   },
+  "discussion_topic_a7bf935": {
+    "message": "discussion topic",
+    "description": "assignment submission type"
+  },
   "done_54e3d4b6": {
     "message": "Done",
     "description": "Back button to move back a screen"
@@ -72,7 +70,7 @@
   },
   "due_a73610f6": {
     "message": "Due",
-    "description": "Assignemnt Details Section title for when assignment is due"
+    "description": "Assignment Details Section title for when assignment is due"
   },
   "due_datestring_at_timestring_9fac66bd": {
     "message": "Due { dateString } at { timeString }"
@@ -85,8 +83,9 @@
     "message": "Edit Courses",
     "description": "The title of the screen enabling teachers to favorite and unfavorite their courses"
   },
-  "failed_to_toggle_favorite_c68aca56": {
-    "message": "Failed to toggle favorite"
+  "external_tool_d6eaa5c1": {
+    "message": "external tool",
+    "description": "assignment submission type"
   },
   "graded_25cd3fcd": {
     "message": "Graded",
@@ -98,7 +97,7 @@
   },
   "instructions_2f88ee72": {
     "message": "Instructions",
-    "description": "Assignemnt Details Section title for assignment instructions"
+    "description": "Assignment Details Section title for assignment instructions"
   },
   "leave_feedback_df88476c": {
     "message": "Leave Feedback",
@@ -107,22 +106,47 @@
   "logout_a9312e35": {
     "message": "Logout"
   },
+  "media_recording_7df9606f": {
+    "message": "media recording",
+    "description": "assignment submission type"
+  },
   "nickname_1e6da3ad": {
     "message": "Nickname",
     "description": "Text describing a nick name given to a course"
   },
-  "no_courses_available_200e0c8d": {
-    "message": "No Courses Available"
+  "no_due_date_1d63d13b": {
+    "message": "No due date"
+  },
+  "none_9b6c9bec": {
+    "message": "none",
+    "description": "assignment submission type"
+  },
+  "not_published_73f7079": {
+    "message": "Not Published"
   },
   "not_submitted_7d05fdb4": {
     "message": "Not Submitted",
     "description": "Assignemnt Details submissions graph `graded`"
   },
-  "no_due_date_1d63d13b": {
-    "message": "No due date"
+  "on_paper_7e67f764": {
+    "message": "on paper",
+    "description": "assignment submission type"
   },
-  "not_published_73f7079": {
-    "message": "Not Published"
+  "online_quiz_7d450a0c": {
+    "message": "online quiz",
+    "description": "assignment submission type"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "online text entry",
+    "description": "assignment submission type"
+  },
+  "online_upload_ed44db51": {
+    "message": "online upload",
+    "description": "assignment submission type"
+  },
+  "online_url_ee794b28": {
+    "message": "online url",
+    "description": "assignment submission type"
   },
   "open_user_course_preferences_32dd14a7": {
     "message": "Open user course preferences",
@@ -134,14 +158,11 @@
   },
   "pts_699bd9aa": {
     "message": "pts",
-    "description": "Assignemnt Details points for given assigment"
+    "description": "Assignment Details points for given assignment"
   },
   "published_4bb5209e": {
     "message": "Published",
     "description": "Published text"
-  },
-  "published_4bb5209e": {
-    "message": "Published"
   },
   "see_all_ffa422ef": {
     "message": "See All",
@@ -153,11 +174,11 @@
   },
   "submission_types_af57bf0": {
     "message": "Submission Types",
-    "description": "Assignemnt Details Section title for types of submission, (i.e. online, text, upload, etc)"
+    "description": "Assignment Details Section title for types of submission, (i.e. online, text, upload, etc)"
   },
   "submissions_11e96106": {
     "message": "Submissions",
-    "description": "Assignemnt Details Section title for info on submissions"
+    "description": "Assignment Details Section title for info on submissions"
   },
   "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
     "message": "There was an unexpected error. Please close this alert and try again.",
