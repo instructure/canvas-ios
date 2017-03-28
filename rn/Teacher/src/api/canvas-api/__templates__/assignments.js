@@ -29,10 +29,5 @@ export const assignmentGroup: Template<AssignmentGroup> = template({
   id: 1,
   name: 'Learn React Native',
   position: 1,
-  assignments: [
-    {
-      id: 123455432,
-      name: 'Assignments',
-    },
-  ],
+  assignments: [assignment()],
 })

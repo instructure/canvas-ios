@@ -1,7 +1,7 @@
 /* @flow */
 
 import { AssignmentListActions } from '../actions'
-import { assignmentGroups, assignmentGroupRefs } from '../assignments-reducer'
+import { assignmentGroups, assignmentGroupRefs, assignments } from '../assignments-reducer'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
 
@@ -46,5 +46,16 @@ it('assignment list with error', async () => {
     pending: 0,
     refs: [],
     error: 'Could not get list of assignments',
+  }])
+})
+
+test('refresh assignments', async () => {
+  const groups = [template.assignmentGroup()]
+  const assignment = template.assignment()
+  let action = AssignmentListActions({ getCourseAssignmentGroups: apiResponse(groups) }).refreshAssignmentList(1, 2)
+  let state = await testAsyncReducer(assignments, action)
+
+  expect(state).toEqual([{}, {
+    [assignment.id.toString()]: assignment,
   }])
 })

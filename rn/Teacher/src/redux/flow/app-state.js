@@ -10,7 +10,7 @@ export type AssignmentGroupsEntities = {
 
 export type CoursesAppState = {
   +favoriteCourses: FavoriteCoursesState,
-  +entities: CourseEntities & AssignmentGroupsEntities,
+  +entities: CourseEntities & AssignmentGroupsEntities & AssignmentDetailsState,
 }
 
 export type AppState = CoursesAppState

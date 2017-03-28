@@ -21,8 +21,6 @@ export type AssignmentListActionProps = {
   +refreshAssignmentList: () => Promise<AssignmentGroup[]>,
 }
 
-export type AssignmentProps = AssignmentListState & AssignmentListActionProps
-
 export function mapStateToProps (state: AppState, ownProps: AssignmentListProps): AssignmentListState {
   const course = state.entities.courses[ownProps.courseID]
   const assignmentGroupsState = course.assignmentGroups

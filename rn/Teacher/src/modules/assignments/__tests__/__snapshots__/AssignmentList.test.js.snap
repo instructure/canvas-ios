@@ -65,7 +65,7 @@ exports[`renders correctly 1`] = `
               "flex": 1,
             }
           }
-          testID="assignment-123455432"
+          testID="assignment-123456789"
         >
           <View
             style={
@@ -152,7 +152,7 @@ exports[`renders correctly 1`] = `
                   }
                 }
               >
-                Assignments
+                learn to write code
               </Text>
               <Text
                 accessible={true}
@@ -166,7 +166,7 @@ exports[`renders correctly 1`] = `
                   }
                 }
               >
-                No due date
+                Due May 31, 2017 at 10:59 PM
               </Text>
               <View />
             </View>

@@ -23,5 +23,5 @@ test('contains favoriteCourses subreducer', () => {
 
 test('subreducers count', () => {
   const state: {} = reduce(undefined, dummyAction)
-  expect(Object.keys(state).length).toEqual(3)
+  expect(Object.keys(state).length).toEqual(2)
 })

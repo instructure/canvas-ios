@@ -5,6 +5,7 @@ import React from 'react'
 import { AssignmentList } from '../AssignmentList'
 import setProps from '../../../../test/helpers/setProps'
 import explore from '../../../../test/helpers/explore'
+import timezoneMock from 'timezone-mock'
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
@@ -17,6 +18,14 @@ import renderer from 'react-test-renderer'
 
 jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 jest.mock('../../../routing')
+
+beforeEach(() => {
+  timezoneMock.register('US/Pacific')
+})
+
+afterEach(() => {
+  timezoneMock.unregister()
+})
 
 test('renders correctly', () => {
   let course = template.course()

@@ -4,8 +4,7 @@
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import AssignmentDetailsActions from './actions'
-import { stateToProps } from './props'
+import { mapStateToProps, type AssignmentDetailsProps } from './map-state-to-props'
 import Submission from './components/Submission'
 import SubmissionType from './components/SubmissionType'
 import AssignmentSection from './components/AssignmentSection'
@@ -22,21 +21,13 @@ import {
   ScrollView,
 } from 'react-native'
 
-type Props = {
-  assignmentDetails: Assignment,
-  navigator: any,
-  courseID: string,
-  assignmentID: string,
-  refreshAssignmentDetails: () => void,
-  error?: string,
-  pending?: number,
-}
-
-export class AssignmentDetails extends Component<any, Props, any> {
-  props: Props
+export class AssignmentDetails extends Component<any, AssignmentDetailsProps, any> {
+  props: AssignmentDetailsProps
 
   componentDidMount () {
-    this.props.refreshAssignmentDetails(this.props.courseID, this.props.assignmentID)
+    if (!this.props.pending && !this.props.assignmentDetails) {
+      this.props.refreshAssignmentDetails(this.props.courseID, this.props.assignmentID)
+    }
 
     this.props.navigator.setTitle({
       title: i18n({
@@ -189,5 +180,5 @@ AssignmentDetails.propTypes = {
   error: PropTypes.string,
 }
 
-let Connected = connect(stateToProps, AssignmentDetailsActions)(AssignmentDetails)
-export default (Connected: Component<any, Props, any>)
+let Connected = connect(mapStateToProps, undefined)(AssignmentDetails)
+export default (Connected: Component<any, AssignmentDetailsProps, any>)

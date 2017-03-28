@@ -1,6 +1,6 @@
 /* @flow */
 
-import { mapStateToProps, type AssignmentListProps } from '../map-state-to-props'
+import { mapStateToProps, type AssignmentDetailsProps } from '../map-state-to-props'
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
@@ -11,6 +11,7 @@ const template = {
 test('map state to props should work', async () => {
   let course = template.course()
   let assignmentGroup = template.assignmentGroup()
+  let assignment = template.assignment()
 
   let state: AppState = {
     entities: {
@@ -23,44 +24,25 @@ test('map state to props should work', async () => {
       assignmentGroups: {
         [assignmentGroup.id]: assignmentGroup,
       },
+      assignments: {
+        [assignment.id]: assignment,
+      },
     },
     favoriteCourses: [],
   }
 
-  let props: AssignmentListProps = {
+  let props: AssignmentDetailsProps = {
     courseID: course.id.toString(),
-    course: {
-      course,
-      color: '#fff',
-    },
-    assignmentGroups: [],
-    refreshAssignmentList: jest.fn(),
-    nextPage: jest.fn(),
+    assignmentID: assignment.id.toString(),
+    refreshAssignmentDetails: jest.fn(),
     pending: 0,
     navigator: template.navigator(),
+    assignmentDetails: assignment,
   }
 
   const result = mapStateToProps(state, props)
   expect(result).toMatchObject({
-    assignmentGroups: [{
-      assignments: assignmentGroup.assignments,
-      id: 1,
-      name: 'Learn React Native',
-      position: 1,
-    }],
-    course: {
-      assignmentGroups: {
-        refs: [1],
-      },
-      course: {
-        course_code: 'rn 101',
-        id: 1,
-        image_download_url: 'https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg',
-        is_favorite: true,
-        name: 'Learn React Native',
-        short_name: 'rn',
-      },
-    },
-    refs: [1],
+    assignmentDetails: assignment,
   })
 })
+

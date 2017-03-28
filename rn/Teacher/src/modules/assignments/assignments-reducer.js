@@ -27,6 +27,24 @@ export const assignmentGroups: Reducer<AssignmentListState, any> = handleActions
   }),
 }, defaultState)
 
+export const assignments: Reducer<AssignmentListState, any> = handleActions({
+  [refreshAssignmentList.toString()]: handleAsync({
+    resolved: (state, { result, courseID }) => {
+      let entities = state.assignments || {}
+      result.data.forEach((entity) => {
+        entity.assignments.forEach(assignment => {
+          entities[assignment.id] = assignment
+        })
+      })
+
+      return {
+        ...state,
+        ...entities,
+      }
+    },
+  }),
+}, defaultState)
+
 export let refDefaultState: AssignmentGroupsRefState = { refs: [], pending: 0 }
 
 export const assignmentGroupRefs: Reducer<AssignmentListState, any> = handleActions({
