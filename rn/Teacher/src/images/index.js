@@ -22,6 +22,8 @@ const images = {
     courses: require('./tabbar/courses.png'),
     inbox: require('./tabbar/inbox.png'),
     profile: require('./tabbar/profile.png'),
+    staging: require('./tabbar/link.png'),
+    stagingFilled: require('./tabbar/link-solid.png'),
   },
   assignments: {
     published: require('./assignments/Published.png'),

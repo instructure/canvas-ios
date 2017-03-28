@@ -669,7 +669,7 @@ exports[`render without courses 1`] = `
           "backgroundColor": "#368BD8",
           "borderRadius": 8,
           "overflow": "hidden",
-          "padding": 20,
+          "padding": 10,
         },
         Object {
           "backgroundColor": "#368BD8",

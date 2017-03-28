@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: branding.primaryButtonColor,
     overflow: 'hidden',
-    padding: 20,
+    padding: 10,
     borderRadius: 8,
   },
   textColor: {

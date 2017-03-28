@@ -21,7 +21,7 @@ exports[`renders button correctly 1`] = `
       "borderRadius": 8,
       "opacity": 1,
       "overflow": "hidden",
-      "padding": 20,
+      "padding": 10,
     }
   }
   testID={undefined}

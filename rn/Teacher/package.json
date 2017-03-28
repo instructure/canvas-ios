@@ -69,7 +69,8 @@
       "/node_modules/",
       ".android.js",
       "flow/*.js",
-      "/src/api/canvas-api/"
+      "/src/api/canvas-api/",
+      "/src/modules/staging"
     ],
     "coverageDirectory": "./coverage",
     "coverageReporters": [

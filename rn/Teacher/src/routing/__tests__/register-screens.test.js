@@ -1,17 +1,12 @@
 // @flow
 
-import { route, routes, screenID } from '../'
+import { route, screenID } from '../'
 import { registerScreens } from '../register-screens'
 import store from '../../redux/store'
 
 describe('app routes', () => {
   beforeAll(() => {
     registerScreens(store)
-  })
-
-  // this will help us remember to test our routes
-  it('has all routes declared', () => {
-    expect(routes.length).toEqual(9)
   })
 
   it('includes /', () => {
