@@ -36,7 +36,7 @@ class DomainPickerPage: PageObject {
   
   static func assertDomainField(contains string: String, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
-    
+    waitForPageToLoad()
     domainField.assert(with: grey_text(string))
   }
   
@@ -44,20 +44,20 @@ class DomainPickerPage: PageObject {
   
   static func enterDomain(_ domain: String, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
-    
+    waitForPageToLoad()
     domainField.perform(grey_replaceText(domain))
   }
 
   static func openDomain(_ domain: String, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
-
+    waitForPageToLoad()
     enterDomain(domain)
     connectButton.perform(grey_tap())
   }
 
   static func clearDomain(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
-    
+    waitForPageToLoad()
     domainField.perform(grey_replaceText(""))
   }
 }

@@ -9,16 +9,11 @@
 import XCTest
 import CanvasKeymaster
 
-class DomainPickerTests: XCTestCase {
-  
-  override func setUp() {
-    super.setUp()
-  }
+class DomainPickerTests: LogoutBeforeEach {
   
   func testDomainPicker_domainFieldAllowsInput() {
     let domain = "mobiledev"
     domainPickerPage.enterDomain(domain)
     domainPickerPage.assertDomainField(contains: domain)
-    CanvasKeymaster.the().resetKeymasterForTesting()
   }
 }

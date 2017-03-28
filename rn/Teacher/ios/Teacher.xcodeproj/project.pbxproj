@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00C302E51ABCBA2D00DB3ED1 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
-		00C302E71ABCBA2D00DB3ED1 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
-		00C302E81ABCBA2D00DB3ED1 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
-		00C302E91ABCBA2D00DB3ED1 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
-		00C302EA1ABCBA2D00DB3ED1 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
-		133E29F31AD74F7200F7D852 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
-		139105C61AF99C1200B5F7CC /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
-		139FDEF61B0652A700C62182 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
+		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
+		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
+		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
+		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
+		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
+		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
+		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
+		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		146834051AC3E58100842450 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		279DC42F392D254716A9F524 /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A26FAD3481B8CC4F39E20 /* Enrollment.swift */; };
 		28087A3DB76A7583688C3073 /* CanvasUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71370A64E454689407684D4 /* CanvasUser.swift */; };
 		2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
@@ -31,11 +31,12 @@
 		2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE061E735CC60096592C /* QuartzCore.framework */; };
 		2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE081E735CCB0096592C /* SystemConfiguration.framework */; };
 		2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */; };
-		2C5AC25B1E5E3B8700DE4DEE /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5AC25A1E5E3B7B00DE4DEE /* libReactNativeNavigation.a */; };
+		2C5AC25B1E5E3B8700DE4DEE /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5AC25A1E5E3B7B00DE4DEE /* libReactNativeNavigation.a */; };
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
-		3BEF7C101E7C96940092C864 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEF7BF51E7C96860092C864 /* libART.a */; };
+		2CEC447A1E8AABD500AF7344 /* LogoutBeforeEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC44791E8AABD500AF7344 /* LogoutBeforeEach.swift */; };
 		31C9F17B182AA3ABB965DDA2 /* DataMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EA5B9B254626D699014C44 /* DataMap.swift */; };
 		3B9D72859115B817CD00CD83 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ECA86954393EA402EE37DE /* Data.swift */; };
+		3BEF7C101E7C96940092C864 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEF7BF51E7C96860092C864 /* libART.a */; };
 		462B9DCCC3A10C7F30AE8168 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC2282549635CBA9EDD0B /* Course.swift */; };
 		4943ECB31E5CEFBD001DC5B5 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */; };
 		4943ECB41E5CEFBD001DC5B5 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -59,7 +60,7 @@
 		49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C01E8437D700828E42 /* CanvasLoginPage.swift */; };
 		49B274C31E8437D700828E42 /* CourseBrowserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C11E8437D700828E42 /* CourseBrowserPage.swift */; };
 		49B274C51E84387600828E42 /* CourseBrowserPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C41E84387600828E42 /* CourseBrowserPageTest.swift */; };
-		5E9157361DD0AC6A00FF2AA8 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		61AD9B63975E448BAF5C6F25 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0456B43BE349468FA3E976BB /* libRNDeviceInfo.a */; };
 		61B5372A1E7869EA000FEABB /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B536EC1E7860CE000FEABB /* EarlGrey.framework */; };
 		61B5372B1E7869F1000FEABB /* SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B536ED1E7860CE000FEABB /* SoGrey.framework */; };
@@ -68,7 +69,7 @@
 		61B5372F1E786A51000FEABB /* DomainPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DD1E784946000FEABB /* DomainPickerTests.swift */; };
 		61B537301E786A54000FEABB /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DF1E784A4B000FEABB /* Pages.swift */; };
 		61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E31E78599D000FEABB /* DomainPickerPage.swift */; };
-		832341BD1AAA6AB300B99B32 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8FA0A13649E41DE268D43A1E /* DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515879C98C3F38C08928D4C /* DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift */; };
 		952E99B216DEE7FD0BEF819D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E479910A81A38C8833E5314 /* Page.swift */; };
 		A45A7871AEE461283E84002D /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105261256A70B5DFD1139104 /* Quiz.swift */; };
@@ -314,8 +315,8 @@
 		61B5372C1E7869F5000FEABB /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "$(TEST_HOST)/..";
-			dstSubfolderSpec = 0;
+			dstPath = "$(TEST_HOST)";
+			dstSubfolderSpec = 10;
 			files = (
 				61B5372D1E786A27000FEABB /* EarlGrey.framework in CopyFiles */,
 				61B5372E1E786A27000FEABB /* SoGrey.framework in CopyFiles */,
@@ -356,9 +357,10 @@
 		2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C5AC2441E5E3B7B00DE4DEE /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
+		2CEC44791E8AABD500AF7344 /* LogoutBeforeEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutBeforeEach.swift; sourceTree = "<group>"; };
 		329DC2282549635CBA9EDD0B /* Course.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Course.swift; path = models/Course.swift; sourceTree = "<group>"; };
-		3BEF7BF01E7C96860092C864 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		33EA5B9B254626D699014C44 /* DataMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataMap.swift; path = data/DataMap.swift; sourceTree = "<group>"; };
+		3BEF7BF01E7C96860092C864 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		3E479910A81A38C8833E5314 /* Page.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Page.swift; path = models/Page.swift; sourceTree = "<group>"; };
 		4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -413,25 +415,25 @@
 				2C50EDFF1E735CB10096592C /* CoreText.framework in Frameworks */,
 				2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */,
 				2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */,
-				2C5AC25B1E5E3B8700DE4DEE /* ReferenceProxy in Frameworks */,
+				2C5AC25B1E5E3B8700DE4DEE /* libReactNativeNavigation.a in Frameworks */,
 				4943ECC31E5CEFBD001DC5B5 /* ReactiveObjC.framework in Frameworks */,
-				146834051AC3E58100842450 /* ReferenceProxy in Frameworks */,
-				5E9157361DD0AC6A00FF2AA8 /* ReferenceProxy in Frameworks */,
-				00C302E51ABCBA2D00DB3ED1 /* ReferenceProxy in Frameworks */,
-				00C302E71ABCBA2D00DB3ED1 /* ReferenceProxy in Frameworks */,
+				146834051AC3E58100842450 /* libReact.a in Frameworks */,
+				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
+				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
+				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				4943ECBB1E5CEFBD001DC5B5 /* CWNotification.framework in Frameworks */,
 				4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */,
-				00C302E81ABCBA2D00DB3ED1 /* ReferenceProxy in Frameworks */,
-				133E29F31AD74F7200F7D852 /* ReferenceProxy in Frameworks */,
-				00C302E91ABCBA2D00DB3ED1 /* ReferenceProxy in Frameworks */,
+				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
+				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
+				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */,
-				139105C61AF99C1200B5F7CC /* ReferenceProxy in Frameworks */,
+				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				4943ECBD1E5CEFBD001DC5B5 /* FXKeychain.framework in Frameworks */,
-				832341BD1AAA6AB300B99B32 /* ReferenceProxy in Frameworks */,
-				00C302EA1ABCBA2D00DB3ED1 /* ReferenceProxy in Frameworks */,
+				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
+				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				4943ECC11E5CEFBD001DC5B5 /* Reachability.framework in Frameworks */,
 				4943ECBF1E5CEFBD001DC5B5 /* Mantle.framework in Frameworks */,
-				139FDEF61B0652A700C62182 /* ReferenceProxy in Frameworks */,
+				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				4943ECB91E5CEFBD001DC5B5 /* CocoaLumberjack.framework in Frameworks */,
 				4943ECB31E5CEFBD001DC5B5 /* AFNetworking.framework in Frameworks */,
 				61AD9B63975E448BAF5C6F25 /* libRNDeviceInfo.a in Frameworks */,
@@ -585,6 +587,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2CEC445D1E8AABBD00AF7344 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2CEC44791E8AABD500AF7344 /* LogoutBeforeEach.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		3B379781808A96719F53B283 /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -645,6 +655,7 @@
 		61B536591E7749F5000FEABB /* TeacherUITests */ = {
 			isa = PBXGroup;
 			children = (
+				2CEC445D1E8AABBD00AF7344 /* Helpers */,
 				61B536DC1E78491B000FEABB /* Tests */,
 				61B536C11E783EB2000FEABB /* Pages */,
 				61B5365C1E7749F5000FEABB /* Info.plist */,
@@ -1162,6 +1173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CEC447A1E8AABD500AF7344 /* LogoutBeforeEach.swift in Sources */,
 				61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */,
 				61B537301E786A54000FEABB /* Pages.swift in Sources */,
 				49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */,
@@ -1272,11 +1284,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1293,12 +1307,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

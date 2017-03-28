@@ -41,12 +41,15 @@ class CanvasLoginPage: PageObject {
     // a really bad hack to get user creds into the web form
     emailField.perform(grey_tap())
     emailField.perform(grey_typeText(teacher.loginId))
+
+    // passwordField.perform(grey_typeText(teacher.password)) doesn't work reliably,
+    // this hack makes it work reliably :( 
+    logInButton.perform(grey_tap())
+    
     passwordField.perform(grey_tap())
     passwordField.perform(grey_typeText(teacher.password))
     dismissKeyboard()
 
-//    emailField.perform(grey_replaceText(teacher.loginId)) // does not work at all
-//    passwordField.perform(grey_replaceText(teacher.password)) // does not work at all
     logInButton.perform(grey_tap())
     authorizeButton.perform(grey_tap())
   }

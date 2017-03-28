@@ -22,7 +22,8 @@ fast_execute = [
     'test_parent',
     'build_earlgrey_parent',
     'test_earlgrey_parent',
-    'seed_teacher'
+    'seed_teacher',
+    'test_earlgrey_teacher'
 ].include?(ARGV.first)
 
 update_fastlane unless fast_execute
@@ -45,6 +46,8 @@ PARENT_PROJECT='Parent/Parent.xcodeproj'
 TEACHER_APP_ID='com.instructure.teacher'
 TEACHER_SCHEME='Teach'
 TEACHER_PROJECT='Teacher/Teach.xcodeproj'
+
+TEACHER_RN_WORKSPACE='rn/Teacher/ios/Teacher.xcworkspace'
 
 CANVAS_APP_ID='com.instructure.icanvas'
 CANVAS_SCHEME='Canvas'
@@ -234,6 +237,24 @@ brew install fbsimctl --HEAD)
   desc 'Seed data into Canvas LMS for testing.'
   lane :seed_teacher do |options|
     SoSeedy.seed(app: :teacher)
+  end
+
+  desc 'Test teacher app with Earl Grey,'
+  lane :test_earlgrey_teacher do |options|
+    video_out = File.expand_path(File.join(__dir__, '..', 'video.mp4'))
+    simulator = FBSimctl.new video_out: video_out
+
+    begin
+      simulator.start_server
+      simulator.start_recording
+
+      Xcode8.build_for_testing(scheme: 'Teacher', workspace: TEACHER_RN_WORKSPACE)
+      Xcode8.test_without_building(scheme: 'TeacherUITests', workspace: TEACHER_RN_WORKSPACE)
+
+      simulator.stop_recording
+    ensure
+      simulator.stop_server
+    end
   end
 
 end # platform :ios

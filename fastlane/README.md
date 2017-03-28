@@ -93,6 +93,11 @@ brew install fbsimctl --HEAD
 fastlane ios seed_teacher
 ```
 Seed data into Canvas LMS for testing.
+### ios test_earlgrey_teacher
+```
+fastlane ios test_earlgrey_teacher
+```
+Test teacher app with Earl Grey,
 
 ----
 

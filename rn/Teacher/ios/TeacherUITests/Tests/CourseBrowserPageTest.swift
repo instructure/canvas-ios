@@ -9,15 +9,11 @@
 import XCTest
 import CanvasKeymaster
 
-class CourseBrowserPageTest: XCTestCase {
-  override func setUp() {
-    super.setUp()
-  }
-
+class CourseBrowserPageTest: LogoutBeforeEach {
+  
   func testCourseBrowserPage_displaysEmptyList() {
     let teacher = Data.getNextTeacher(self)
     domainPickerPage.openDomain(teacher.domain)
     canvasLoginPage.logIn(teacher: teacher)
-    CanvasKeymaster.the().resetKeymasterForTesting()
   }
 }
