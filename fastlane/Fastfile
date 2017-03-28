@@ -244,17 +244,21 @@ brew install fbsimctl --HEAD)
     video_out = File.expand_path(File.join(__dir__, '..', 'video.mp4'))
     simulator = FBSimctl.new video_out: video_out
 
+    Xcode8.build_for_testing(scheme: 'Teacher', workspace: TEACHER_RN_WORKSPACE)
+
     begin
-      simulator.start_server
-      simulator.start_recording
+        simulator.start_server
+        simulator.start_recording
 
-      Xcode8.build_for_testing(scheme: 'Teacher', workspace: TEACHER_RN_WORKSPACE)
-      Xcode8.test_without_building(scheme: 'TeacherUITests', workspace: TEACHER_RN_WORKSPACE)
+        run = options.fetch(:run, '1').to_i
+        puts "Runnings Teacher Earl Grey Tests #{run} times."
+        1.upto(run) do |count|
+          Xcode8.test_without_building(scheme: 'TeacherUITests', workspace: TEACHER_RN_WORKSPACE)
+        end
 
-      simulator.stop_recording
-    ensure
-      simulator.stop_server
-    end
+        simulator.stop_recording
+      ensure
+        simulator.stop_server
+      end
   end
-
 end # platform :ios
