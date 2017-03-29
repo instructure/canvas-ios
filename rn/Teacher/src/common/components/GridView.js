@@ -8,9 +8,10 @@ import React, { Component } from 'react'
 import ReactNative, {
   StyleSheet,
   View,
-  ListView,
   Dimensions,
 } from 'react-native'
+
+import { RefreshableListView } from './RefreshableList'
 
 const { height } = Dimensions.get('window')
 
@@ -52,10 +53,12 @@ type Props = {
   onLayout: Function,
   contentInset?: Object,
   showsVerticalScrollIndicator?: boolean,
+  onRefresh: Function,
 }
 
 type State = {
   dataSource: ReactNative.ListViewDataSource,
+  refreshing: boolean,
 }
 
 //  Lifted from https://github.com/phil-r/react-native-grid-component/blob/master/index.js
@@ -82,26 +85,29 @@ export default class GridView extends Component<DefaultProps, Props, State> {
   constructor (props: Props) {
     super(props)
 
-    const ds = new ListView.DataSource({
+    const ds = new RefreshableListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
       sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
     })
-    if (props.sections === true) {
-      this.state = {
-        dataSource: ds.cloneWithRowsAndSections(this._prepareSectionedData(this.props.data, props)),
-      }
-    } else {
-      this.state = {
-        dataSource: ds.cloneWithRows(this._prepareData(this.props.data, props)),
-      }
+    let state = {
+      refreshing: false,
+      dataSource: null,
     }
+    if (props.sections === true) {
+      state.dataSource = ds.cloneWithRowsAndSections(this._prepareSectionedData(this.props.data, props))
+    } else {
+      state.dataSource = ds.cloneWithRows(this._prepareData(this.props.data, props))
+    }
+
+    this.state = state
   }
 
   componentWillReceiveProps (nextProps: Object) {
+    this.setState({ refreshing: false })
     if (nextProps.sections === true) {
-      this.state = {
+      this.setState({
         dataSource: this.state.dataSource.cloneWithRowsAndSections(this._prepareSectionedData(nextProps.data, nextProps)),
-      }
+      })
     } else {
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(this._prepareData(nextProps.data, nextProps)),
@@ -145,10 +151,16 @@ export default class GridView extends Component<DefaultProps, Props, State> {
     )
   }
 
+  onRefresh = () => {
+    this.setState({ refreshing: true }, () => {
+      this.props.onRefresh()
+    })
+  }
+
   render (): React.Element<View> {
     return (
       <View style={[styles.container, this.props.style]} onLayout={this.props.onLayout}>
-        <ListView
+        <RefreshableListView
           {...this.props}
           style={styles.list}
           dataSource={this.state.dataSource}
@@ -159,6 +171,8 @@ export default class GridView extends Component<DefaultProps, Props, State> {
           renderHeader={this.props.renderHeader}
           renderFooter={this.props.renderFooter}
           renderSectionHeader={this.props.renderSectionHeader}
+          refreshing={this.state.refreshing}
+          onRefresh={this.onRefresh}
         />
       </View>
     )

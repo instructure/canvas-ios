@@ -43,11 +43,12 @@ describe('refresh', () => {
   })
 
   it('passes in the refresh function as a prop to the underlying component', () => {
-    let refreshFunction = () => {}
+    let refreshFunction = jest.fn()
     let Refreshed = refresh(refreshFunction, () => true)(Text)
     let tree = renderer.create(
       <Refreshed>This is text</Refreshed>
     ).toJSON()
-    expect(tree.props.refresh).toEqual(refreshFunction)
+    tree.props.refresh()
+    expect(refreshFunction).toHaveBeenCalled()
   })
 })

@@ -4,6 +4,7 @@ import 'react-native'
 import React from 'react'
 import { CourseDetails } from '../CourseDetails.js'
 import explore from '../../../../../test/helpers/explore'
+import setProps from '../../../../../test/helpers/setProps'
 import { route } from '../../../../routing'
 
 const template = {
@@ -82,4 +83,31 @@ test('select tab', () => {
   tabRow.props.onPress()
 
   expect(props.navigator.push).toHaveBeenCalledWith(route('/courses/12/assignments'))
+})
+
+test('without course it renders a loading spinner', () => {
+  let props = { ...defaultProps }
+  delete props.course
+
+  let tree = renderer.create(
+    <CourseDetails {...props} />
+  ).toJSON()
+
+  expect(tree).toMatchSnapshot()
+})
+
+test('can be refreshed', () => {
+  let refresh = jest.fn()
+  let tree = renderer.create(
+    <CourseDetails {...defaultProps} refresh={refresh} />
+  )
+
+  let instance = tree.getInstance()
+  instance.refresh()
+
+  expect(instance.state.refreshing).toBeTruthy()
+  expect(refresh).toHaveBeenCalled()
+
+  setProps(tree, { pending: 0 })
+  expect(instance.state.refreshing).toBeFalsy()
 })

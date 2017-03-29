@@ -21,9 +21,11 @@ import refresh from '../../utils/refresh'
 import AssignmentListRowView from './components/AssignmentListRow'
 import AssignmentListSectionView from './components/AssignmentListSection'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
+import { RefreshableListView } from '../../common/components/RefreshableList'
 
 type State = {
   dataSource: ListView.DataSource,
+  refreshing: boolean,
 }
 
 export class AssignmentList extends Component<any, AssignmentListProps, State> {
@@ -59,11 +61,20 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
 
     this.state = {
       dataSource: dataSource.cloneWithRowsAndSections({}),
+      refreshing: false,
     }
   }
 
+  componentDidMount () {
+    this.updateListData(this.props)
+  }
+
   componentWillReceiveProps (newProps: AssignmentListProps) {
-    const groups = newProps.assignmentGroups || []
+    this.updateListData(newProps)
+  }
+
+  updateListData (props: AssignmentListProps) {
+    const groups = props.assignmentGroups || []
     const sectionIdentities = groups.map((group) => group.id.toString())
     const assignmentIdentities = []
 
@@ -81,6 +92,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
 
     this.setState({
       dataSource: this.state.dataSource.cloneWithRowsAndSections(groupsMap, sectionIdentities, assignmentIdentities),
+      refreshing: false,
     })
   }
 
@@ -119,13 +131,19 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     }
   }
 
+  refresh = () => {
+    this.setState({ refreshing: true }, () => {
+      this.props.refresh()
+    })
+  }
+
   render (): React.Element<View> {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.headerTitle}>All Grading Periods</Text>
         </View>
-        <ListView
+        <RefreshableListView
           testID='assignment-list.list'
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
@@ -133,6 +151,8 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
           onEndReached={this.onEndReached}
           enableEmptySections={true}
           renderFooter={this.renderFooter}
+          refreshing={this.state.refreshing}
+          onRefresh={this.refresh}
         />
       </View>
     )

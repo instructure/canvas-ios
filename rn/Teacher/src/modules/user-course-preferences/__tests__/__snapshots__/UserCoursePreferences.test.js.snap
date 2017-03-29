@@ -2,12 +2,21 @@
 
 exports[`UserCoursePreferences renders 1`] = `
 <RCTScrollView
+  onRefresh={[Function]}
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={[Function]}
+      refreshing={false}
+    />
+  }
+  refreshing={false}
   style={
     Object {
       "flex": 1,
     }
   }
 >
+  <RCTRefreshControl />
   <View>
     <View
       style={

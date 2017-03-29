@@ -47,12 +47,20 @@ exports[`render courses 1`] = `
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
     onLayout={[Function]}
+    onRefresh={[Function]}
     placeholderStyle={
       Object {
         "flex": 1,
         "margin": 8,
       }
     }
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderFooter={[Function]}
     renderHeader={[Function]}
     renderItem={[Function]}
@@ -67,6 +75,7 @@ exports[`render courses 1`] = `
       }
     }
   >
+    <RCTRefreshControl />
     <View>
       <View
         style={
@@ -288,12 +297,20 @@ exports[`render courses pending 1`] = `
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
     onLayout={[Function]}
+    onRefresh={[Function]}
     placeholderStyle={
       Object {
         "flex": 1,
         "margin": 8,
       }
     }
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderFooter={[Function]}
     renderHeader={[Function]}
     renderItem={[Function]}
@@ -308,6 +325,7 @@ exports[`render courses pending 1`] = `
       }
     }
   >
+    <RCTRefreshControl />
     <View>
       <View
         style={
@@ -529,12 +547,20 @@ exports[`render narrow width 1`] = `
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
     onLayout={[Function]}
+    onRefresh={[Function]}
     placeholderStyle={
       Object {
         "flex": 1,
         "margin": 8,
       }
     }
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderFooter={[Function]}
     renderHeader={[Function]}
     renderItem={[Function]}
@@ -549,6 +575,7 @@ exports[`render narrow width 1`] = `
       }
     }
   >
+    <RCTRefreshControl />
     <View>
       <View
         style={
@@ -770,12 +797,20 @@ exports[`render wide width 1`] = `
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
     onLayout={[Function]}
+    onRefresh={[Function]}
     placeholderStyle={
       Object {
         "flex": 1,
         "margin": 12,
       }
     }
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderFooter={[Function]}
     renderHeader={[Function]}
     renderItem={[Function]}
@@ -790,6 +825,7 @@ exports[`render wide width 1`] = `
       }
     }
   >
+    <RCTRefreshControl />
     <View>
       <View
         style={

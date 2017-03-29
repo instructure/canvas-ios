@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react'
 import ReactNative, {
-  ListView,
   StyleSheet,
 } from 'react-native'
 import { connect } from 'react-redux'
@@ -13,18 +12,21 @@ import FavoritesActions from './actions'
 import CoursesActions from '../actions'
 import mapStateToProps from './map-state-to-props'
 import refresh from '../../../utils/refresh'
+import { RefreshableListView } from '../../../common/components/RefreshableList'
 
 type Props = {
   navigator: ReactNavigator,
   courses: Array<Course>,
   favorites: Array<string>,
   toggleFavorite: (courseID: string, favorite: boolean) => Promise<*>,
-  refreshCourses: () => void,
+  refresh: Function,
+  pending: number,
 }
 
 type State = {
   ds: ReactNative.ListViewDataSource,
   dataSource: ReactNative.ListViewDataSource,
+  refreshing: boolean,
 }
 
 export class FavoritesList extends Component {
@@ -45,13 +47,14 @@ export class FavoritesList extends Component {
   constructor (props: Props) {
     super(props)
 
-    let ds = new ListView.DataSource({
+    let ds = new RefreshableListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     })
 
     this.state = {
       ds,
       dataSource: ds.cloneWithRows(this.props.courses),
+      refreshing: false,
     }
 
     props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
@@ -66,6 +69,7 @@ export class FavoritesList extends Component {
   componentWillReceiveProps (nextProps: Props) {
     this.setState({
       dataSource: this.state.ds.cloneWithRows(nextProps.courses),
+      refreshing: this.state.refreshing && Boolean(nextProps.pending),
     })
   }
 
@@ -93,12 +97,22 @@ export class FavoritesList extends Component {
     )
   }
 
-  render (): React.Element<ListView> {
+  refresh = () => {
+    this.setState({
+      refreshing: true,
+    }, () => {
+      this.props.refresh()
+    })
+  }
+
+  render (): React.Element<*> {
     return (
-      <ListView
+      <RefreshableListView
         style={styles.listStyle}
         dataSource={this.state.dataSource}
         renderRow={this.renderCourse}
+        refreshing={this.state.refreshing}
+        onRefresh={this.refresh}
       />
     )
   }

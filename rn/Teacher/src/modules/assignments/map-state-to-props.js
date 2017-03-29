@@ -12,6 +12,7 @@ export type AssignmentListProps = {
   course: CourseState,
   assignmentGroups: AssignmentGroup[],
   refreshAssignmentList: Function,
+  refresh: Function,
   nextPage: Function,
   pending: number,
   navigator: ReactNavigator,

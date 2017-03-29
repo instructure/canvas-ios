@@ -18,7 +18,7 @@ type Props = {
   courses: Array<CourseProps>,
   error?: string,
   pending?: number,
-  refreshCourses: () => void,
+  refresh: Function,
 }
 
 export class AllCourseList extends Component {
@@ -33,11 +33,6 @@ export class AllCourseList extends Component {
         description: `The title of the screen showing all of a teacher's courses`,
       }),
     })
-  }
-
-  selectCourse = (course: Course) => {
-    let destination = route(`/courses/${course.id}`)
-    this.props.navigator.push(destination)
   }
 
   openUserPreferences = (courseId: string) => {
@@ -59,6 +54,7 @@ export class AllCourseList extends Component {
         selectCourse={this.selectCourse}
         width={deviceWidth}
         onCoursePreferencesPressed={this.openUserPreferences}
+        onRefresh={this.props.refresh}
       />
     )
   }

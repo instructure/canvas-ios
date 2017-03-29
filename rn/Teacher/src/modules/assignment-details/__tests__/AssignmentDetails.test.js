@@ -6,6 +6,7 @@ import 'react-native'
 import React from 'react'
 import { AssignmentDetails } from '../AssignmentDetails'
 import timezoneMock from 'timezone-mock'
+import setProps from '../../../../test/helpers/setProps'
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
@@ -65,4 +66,20 @@ test('renders locked', () => {
     <AssignmentDetails {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+test('handles refreshing', () => {
+  let refresh = jest.fn()
+  let tree = renderer.create(
+    <AssignmentDetails {...defaultProps} refresh={refresh} />
+  )
+
+  let instance = tree.getInstance()
+  instance.refresh()
+
+  expect(refresh).toHaveBeenCalled()
+  expect(instance.state.refreshing).toBeTruthy()
+
+  setProps(tree, { pending: 0 })
+  expect(instance.state.refreshing).toBeFalsy()
 })

@@ -55,6 +55,7 @@ let defaultProps = {
   customColors: colors,
   refreshCourses: () => {},
   pending: 0,
+  refresh: jest.fn(),
 }
 
 test('render', () => {

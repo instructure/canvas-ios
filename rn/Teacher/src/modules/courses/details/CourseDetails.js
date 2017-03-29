@@ -7,7 +7,6 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import {
   View,
-  ScrollView,
   Text,
   Image,
   StyleSheet,
@@ -25,6 +24,7 @@ import NavigationBackButton from '../../../common/components/NavigationBackButto
 import { route } from '../../../routing'
 import type { CourseDetailsProps } from './map-state-to-props'
 import refresh from '../../../utils/refresh'
+import { RefreshableScrollView } from '../../../common/components/RefreshableList'
 
 type Props = CourseDetailsProps & NavProps
 
@@ -43,7 +43,13 @@ export class CourseDetails extends Component<any, Props, any> {
     }],
   }
 
+  state = { refreshing: false }
+
   editCourse = () => {
+  }
+
+  componentWillReceiveProps () {
+    this.setState({ refreshing: this.state.refreshing && Boolean(this.props.pending) })
   }
 
   selectTab = (tab: Tab) => {
@@ -53,6 +59,14 @@ export class CourseDetails extends Component<any, Props, any> {
 
   back = () => {
     this.props.navigator.pop()
+  }
+
+  refresh = () => {
+    this.setState({
+      refreshing: true,
+    }, () => {
+      this.props.refresh()
+    })
   }
 
   render (): React.Element<View> {
@@ -68,7 +82,11 @@ export class CourseDetails extends Component<any, Props, any> {
     })
 
     return (
-      <ScrollView style={styles.container}>
+      <RefreshableScrollView
+        style={styles.container}
+        refreshing={this.state.refreshing}
+        onRefresh={this.props.refresh}
+      >
         <View style={styles.header}>
           <View style={styles.headerImageContainer}>
             { course.image_download_url &&
@@ -94,7 +112,7 @@ export class CourseDetails extends Component<any, Props, any> {
         <View style={styles.tabContainer}>
           {tabs}
         </View>
-      </ScrollView>
+      </RefreshableScrollView>
     )
   }
 }

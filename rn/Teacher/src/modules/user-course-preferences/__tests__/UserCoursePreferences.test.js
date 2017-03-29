@@ -17,6 +17,8 @@ let defaultProps = {
   course: templates.course(),
   color: '#333',
   updateCourseColor: jest.fn(),
+  refresh: jest.fn(),
+  pending: 0,
 }
 
 describe('UserCoursePreferences', () => {

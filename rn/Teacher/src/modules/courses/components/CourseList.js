@@ -20,6 +20,7 @@ type Props = {
   error?: string,
   pending: number,
   onCoursePreferencesPressed: (courseId: string) => void,
+  onRefresh: Function,
 }
 
 const PADDING_CHANGE_WIDTH = 450
@@ -87,6 +88,7 @@ export default class CourseList extends Component {
           />
         }
         renderHeader={this.renderHeader}
+        onRefresh={this.props.onRefresh}
       />
     )
   }

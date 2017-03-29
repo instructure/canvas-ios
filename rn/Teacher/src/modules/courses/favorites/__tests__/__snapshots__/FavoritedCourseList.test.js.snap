@@ -65,12 +65,20 @@ exports[`render 1`] = `
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
     onLayout={[Function]}
+    onRefresh={[Function]}
     placeholderStyle={
       Object {
         "flex": 1,
         "margin": 12,
       }
     }
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderFooter={[Function]}
     renderHeader={[Function]}
     renderItem={[Function]}
@@ -85,6 +93,7 @@ exports[`render 1`] = `
       }
     }
   >
+    <RCTRefreshControl />
     <View>
       <View
         style={

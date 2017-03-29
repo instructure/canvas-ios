@@ -42,12 +42,21 @@ exports[`renders correctly 1`] = `
     }
     enableEmptySections={true}
     onEndReached={[Function]}
+    onRefresh={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderFooter={[Function]}
     renderRow={[Function]}
     renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
     testID="assignment-list.list"
   >
+    <RCTRefreshControl />
     <View>
       <View
         style={

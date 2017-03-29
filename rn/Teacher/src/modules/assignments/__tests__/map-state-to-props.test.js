@@ -35,6 +35,7 @@ test('map state to props should work', async () => {
     },
     assignmentGroups: [],
     refreshAssignmentList: jest.fn(),
+    refresh: jest.fn(),
     nextPage: jest.fn(),
     pending: 0,
     navigator: template.navigator(),

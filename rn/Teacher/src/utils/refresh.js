@@ -15,7 +15,9 @@ export default function refresh (refreshFunction: RefreshFunction, shouldRefresh
         }
       }
 
-      render = () => <TheirComponent {...this.props} refresh={refreshFunction} />
+      refresh = () => refreshFunction(this.props)
+
+      render = () => <TheirComponent {...this.props} refresh={this.refresh} />
     }
 
     return hoistStatics(Refreshed, TheirComponent)

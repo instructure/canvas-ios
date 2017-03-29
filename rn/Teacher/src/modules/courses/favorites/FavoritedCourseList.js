@@ -30,6 +30,7 @@ type Props = {
   courses: Array<CourseProps>,
   error?: string,
   pending?: number,
+  refresh: Function,
 }
 
 export class FavoritedCourseList extends Component {
@@ -149,6 +150,7 @@ export class FavoritedCourseList extends Component {
         onCoursePreferencesPressed={this.showUserCoursePreferences}
         width={deviceWidth}
         header={this.renderHeader()}
+        onRefresh={this.props.refresh}
       />
     )
   }

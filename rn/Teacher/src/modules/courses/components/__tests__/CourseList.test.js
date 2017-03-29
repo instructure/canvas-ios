@@ -23,6 +23,7 @@ const defaultProps = {
   pending: 0,
   onCoursePreferencesPressed: jest.fn(),
   color: '#07f',
+  onRefresh: jest.fn(),
 }
 
 test('render courses', () => {

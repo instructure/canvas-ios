@@ -13,7 +13,9 @@ import i18n from 'format-message'
 import stateToProps from './state-to-props'
 import { branding } from '../../common/branding'
 import ColorButton from './components/ColorButton'
-import coursesActions from '../courses/actions'
+import CoursesActions from '../courses/actions'
+import refresh from '../../utils/refresh'
+import { RefreshableScrollView } from '../../common/components/RefreshableList'
 
 const PICKER_COLORS = [
   '#F26090', '#EA1661', '#903A99', '#65469F', '#4452A6',
@@ -26,6 +28,8 @@ type Props = {
   course: Course,
   color: string,
   updateCourseColor: (string, string) => void,
+  pending: number,
+  refresh: Function,
 }
 
 export class UserCoursePreferences extends Component {
@@ -65,7 +69,11 @@ export class UserCoursePreferences extends Component {
 
   render (): React.Element<*> {
     return (
-      <ScrollView style={{ flex: 1 }}>
+      <RefreshableScrollView
+        style={{ flex: 1 }}
+        refreshing={Boolean(this.props.pending)}
+        onRefresh={this.props.refresh}
+      >
         <View style={styles.imageWrapper}>
           {this.props.course.image_download_url &&
             <Image source={{ uri: this.props.course.image_download_url }} style={styles.image} />
@@ -115,12 +123,16 @@ export class UserCoursePreferences extends Component {
             </ScrollView>
           </View>
         </View>
-      </ScrollView>
+      </RefreshableScrollView>
     )
   }
 }
 
-let connected = connect(stateToProps, coursesActions)(UserCoursePreferences)
+let Refreshed = refresh(
+  props => props.refreshCourses(),
+  props => !props.course
+)(UserCoursePreferences)
+let connected = connect(stateToProps, CoursesActions)(Refreshed)
 export default (connected: UserCoursePreferences)
 
 const styles = StyleSheet.create({

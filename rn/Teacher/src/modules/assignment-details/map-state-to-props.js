@@ -11,9 +11,9 @@ export type AssignmentDetailsProps = {
   navigator: any,
   courseID: string,
   assignmentID: string,
-  refreshAssignmentDetails: () => void,
   error?: string,
   pending?: number,
+  refresh: Function,
 }
 
 export type AssignmentDetailsActionProps = {
@@ -26,6 +26,7 @@ export function mapStateToProps (state: AppState, ownProps: AssignmentDetailsPro
   return {
     assignmentDetails: assignment,
     ...assignment,
+    pending: state.entities.courses[ownProps.courseID].assignmentGroups.pending,
   }
 }
 

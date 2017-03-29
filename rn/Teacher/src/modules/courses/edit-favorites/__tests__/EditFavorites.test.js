@@ -19,7 +19,8 @@ let defaultProps = {
   courses: courses,
   favorites: [courses[0].id.toString(), courses[1].id.toString()],
   toggleFavorite: () => Promise.resolve(),
-  refreshCourses: jest.fn(),
+  refresh: jest.fn(),
+  pending: 0,
 }
 
 test('renders correctly', () => {
@@ -66,4 +67,20 @@ test('calls dismissModal when back button is selected', () => {
   expect(navigator.dismissModal).toHaveBeenCalledWith({
     animationType: 'slide-down',
   })
+})
+
+test('refreshes properly', () => {
+  let refresh = jest.fn()
+  let tree = renderer.create(
+    <FavoritesList {...defaultProps} refresh={refresh} />
+  )
+
+  let instance = tree.getInstance()
+
+  instance.refresh()
+  expect(instance.state.refreshing).toBeTruthy()
+  expect(refresh).toHaveBeenCalled()
+
+  setProps(tree, { pending: 0 })
+  expect(instance.state.refreshing).toBeFalsy()
 })

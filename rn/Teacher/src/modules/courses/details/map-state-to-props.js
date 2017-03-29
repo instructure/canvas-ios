@@ -7,7 +7,7 @@ type RoutingParams = {
   +courseID: string,
 }
 
-export type CourseDetailsProps = TabsProps & CourseState & CourseListActionProps & RoutingParams
+export type CourseDetailsProps = TabsProps & CourseListActionProps & RoutingParams & { refresh: Function, pending: number, course?: Course, color?: ?string }
 
 export default function mapStateToProps (state: CoursesAppState, ownProps: RoutingParams): CourseDetailsProps {
   let courseState: CourseState & CourseContentState = state.entities.courses[ownProps.courseID] || { tabs: { tabs: [] } }
@@ -17,5 +17,6 @@ export default function mapStateToProps (state: CoursesAppState, ownProps: Routi
     course,
     color,
     ...tabs,
+    pending: state.favoriteCourses.pending,
   }
 }

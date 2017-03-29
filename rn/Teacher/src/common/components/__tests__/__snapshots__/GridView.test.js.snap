@@ -29,7 +29,15 @@ exports[`renders correctly 1`] = `
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
     onLayout={[Function]}
+    onRefresh={[Function]}
     placeholderStyle={Object {}}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderFooter={[Function]}
     renderHeader={undefined}
     renderItem={[Function]}
@@ -43,6 +51,7 @@ exports[`renders correctly 1`] = `
       }
     }
   >
+    <RCTRefreshControl />
     <View>
       <View
         style={
@@ -103,7 +112,15 @@ exports[`renders correctly with placeHolder 1`] = `
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
     onLayout={[Function]}
+    onRefresh={[Function]}
     placeholderStyle={Object {}}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderFooter={[Function]}
     renderHeader={undefined}
     renderItem={[Function]}
@@ -118,6 +135,7 @@ exports[`renders correctly with placeHolder 1`] = `
       }
     }
   >
+    <RCTRefreshControl />
     <View>
       <View
         style={
@@ -180,7 +198,15 @@ exports[`renders correctly with sections 1`] = `
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
     onLayout={[Function]}
+    onRefresh={[Function]}
     placeholderStyle={Object {}}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderFooter={[Function]}
     renderHeader={undefined}
     renderItem={[Function]}
@@ -195,6 +221,7 @@ exports[`renders correctly with sections 1`] = `
       }
     }
   >
+    <RCTRefreshControl />
     <View>
       <View
         style={
@@ -285,7 +312,15 @@ exports[`renders correctly without sections 1`] = `
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
     onLayout={[Function]}
+    onRefresh={[Function]}
     placeholderStyle={Object {}}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderFooter={[Function]}
     renderHeader={undefined}
     renderItem={[Function]}
@@ -300,6 +335,7 @@ exports[`renders correctly without sections 1`] = `
       }
     }
   >
+    <RCTRefreshControl />
     <View>
       <View
         style={
@@ -364,7 +400,15 @@ exports[`updates list when data prop changes 1`] = `
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
     onLayout={[Function]}
+    onRefresh={[Function]}
     placeholderStyle={Object {}}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderFooter={[Function]}
     renderHeader={undefined}
     renderItem={[Function]}
@@ -378,6 +422,7 @@ exports[`updates list when data prop changes 1`] = `
       }
     }
   >
+    <RCTRefreshControl />
     <View>
       <View
         style={
@@ -426,7 +471,7 @@ exports[`updates list when data prop changes with sections 1`] = `
     }
     dataSource={
       ListViewDataSource {
-        "items": 0,
+        "items": 1,
       }
     }
     enableEmptySections={true}
@@ -434,7 +479,15 @@ exports[`updates list when data prop changes with sections 1`] = `
     onEndReached={[Function]}
     onEndReachedThreshold={1334}
     onLayout={[Function]}
+    onRefresh={[Function]}
     placeholderStyle={Object {}}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderFooter={[Function]}
     renderHeader={undefined}
     renderItem={[Function]}
@@ -449,7 +502,31 @@ exports[`updates list when data prop changes with sections 1`] = `
       }
     }
   >
-    <View />
+    <RCTRefreshControl />
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "flex": 1,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "space-around",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+        >
+          data changed with sections
+        </Text>
+        <View
+          style={Object {}}
+        />
+      </View>
+    </View>
   </RCTScrollView>
 </View>
 `;

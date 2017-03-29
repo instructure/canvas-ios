@@ -38,6 +38,7 @@ test('map state to props should work', async () => {
     pending: 0,
     navigator: template.navigator(),
     assignmentDetails: assignment,
+    refresh: Function,
   }
 
   const result = mapStateToProps(state, props)

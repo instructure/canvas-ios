@@ -15,20 +15,20 @@ import PublishedIcon from './components/PublishedIcon'
 import { formattedDate } from '../../utils/dateUtils'
 import { formattedDueDate } from '../../common/formatters'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
+import { RefreshableScrollView } from '../../common/components/RefreshableList'
+import refresh from '../../utils/refresh'
+import AssignmentActions from '../assignments/actions'
 import {
   View,
   StyleSheet,
-  ScrollView,
 } from 'react-native'
 
 export class AssignmentDetails extends Component<any, AssignmentDetailsProps, any> {
   props: AssignmentDetailsProps
 
-  componentDidMount () {
-    if (!this.props.pending && !this.props.assignmentDetails) {
-      this.props.refreshAssignmentDetails(this.props.courseID, this.props.assignmentID)
-    }
+  state = { refreshing: false }
 
+  componentDidMount () {
     this.props.navigator.setTitle({
       title: i18n({
         default: 'Assignment Details',
@@ -42,10 +42,21 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
     })
   }
 
+  componentWillReceiveProps (nextProps: AssignmentDetailsProps) {
+    if (!nextProps.pending && this.state.refreshing) {
+      this.setState({ refreshing: false })
+    }
+  }
+
+  refresh = () => {
+    this.props.refresh()
+    this.setState({ refreshing: true })
+  }
+
   render (): React.Element<View> {
     const assignment = this.props.assignmentDetails
 
-    if (this.props.pending || !assignment) {
+    if (!this.state.refreshing && (this.props.pending || !assignment)) {
       return (<View style={style.loadingContainer}><ActivityIndicatorView height={44} /></View>)
     }
 
@@ -79,38 +90,43 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
       description: 'Assignment Details Section title for assignment instructions',
     })
 
-    return <ScrollView>
-      <AssignmentSection isFirstRow={true} style={style.topContainer}>
-      <Heading1>{assignment.name}</Heading1>
+    return (
+      <RefreshableScrollView
+        refreshing={this.state.refreshing}
+        onRefresh={this.refresh}
+      >
+        <AssignmentSection isFirstRow={true} style={style.topContainer}>
+        <Heading1>{assignment.name}</Heading1>
 
-        <View style={style.pointsContainer}>
-          <Text style={{ fontWeight: '500', fontSize: 16 }}>{assignment.points_possible} {assignmentPoints}</Text>
-          <PublishedIcon published={assignment.published} style={style.publishedIcon} />
-        </View>
+          <View style={style.pointsContainer}>
+            <Text style={{ fontWeight: '500', fontSize: 16 }}>{assignment.points_possible} {assignmentPoints}</Text>
+            <PublishedIcon published={assignment.published} style={style.publishedIcon} />
+          </View>
 
-      </AssignmentSection>
+        </AssignmentSection>
 
-      <AssignmentSection title={sectionTitleDue}>
-        <Text>{formattedDueDate(assignment)}</Text>
-      </AssignmentSection>
+        <AssignmentSection title={sectionTitleDue}>
+          <Text>{formattedDueDate(assignment)}</Text>
+        </AssignmentSection>
 
-      <AssignmentSection title={sectionTitleAvailable}>
-        <Text style={style.container}>{this.formattedAvailableDate(assignment)}</Text>
-      </AssignmentSection>
+        <AssignmentSection title={sectionTitleAvailable}>
+          <Text style={style.container}>{this.formattedAvailableDate(assignment)}</Text>
+        </AssignmentSection>
 
-      <AssignmentSection title={sectionTitleSubmissionTypes}>
-        <SubmissionType data={assignment.submission_types} />
-      </AssignmentSection>
+        <AssignmentSection title={sectionTitleSubmissionTypes}>
+          <SubmissionType data={assignment.submission_types} />
+        </AssignmentSection>
 
-      <AssignmentSection title={sectionTitleSubmissions}>
-        <Submission data={[assignment.needs_grading_count]} style={style.submission}/>
-      </AssignmentSection>
+        <AssignmentSection title={sectionTitleSubmissions}>
+          <Submission data={[assignment.needs_grading_count]} style={style.submission}/>
+        </AssignmentSection>
 
-      <AssignmentSection title={sectionTitleInstructions} >
-        <WebContainer style={{ flex: 1 }} html={assignment.description}/>
-      </AssignmentSection>
+        <AssignmentSection title={sectionTitleInstructions} >
+          <WebContainer style={{ flex: 1 }} html={assignment.description}/>
+        </AssignmentSection>
 
-    </ScrollView>
+      </RefreshableScrollView>
+    )
   }
 
   formattedAvailableDate (assignment: Assignment): string {
@@ -180,5 +196,9 @@ AssignmentDetails.propTypes = {
   error: PropTypes.string,
 }
 
-let Connected = connect(mapStateToProps, undefined)(AssignmentDetails)
+let Refreshed = refresh(
+  props => props.refreshAssignmentList(props.courseID),
+  props => !props.assignmentDetails
+)(AssignmentDetails)
+let Connected = connect(mapStateToProps, AssignmentActions)(Refreshed)
 export default (Connected: Component<any, AssignmentDetailsProps, any>)

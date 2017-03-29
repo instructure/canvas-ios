@@ -7,6 +7,14 @@ exports[`renders correctly 1`] = `
       "items": 2,
     }
   }
+  onRefresh={[Function]}
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={[Function]}
+      refreshing={false}
+    />
+  }
+  refreshing={false}
   renderRow={[Function]}
   renderScrollComponent={[Function]}
   style={
@@ -15,6 +23,7 @@ exports[`renders correctly 1`] = `
     }
   }
 >
+  <RCTRefreshControl />
   <View>
     <View
       accessibilityComponentType={undefined}
@@ -169,6 +178,14 @@ exports[`updates when courses prop changes 1`] = `
       "items": 1,
     }
   }
+  onRefresh={[Function]}
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={[Function]}
+      refreshing={false}
+    />
+  }
+  refreshing={false}
   renderRow={[Function]}
   renderScrollComponent={[Function]}
   style={
@@ -177,6 +194,7 @@ exports[`updates when courses prop changes 1`] = `
     }
   }
 >
+  <RCTRefreshControl />
   <View>
     <View
       accessibilityComponentType={undefined}
@@ -260,6 +278,14 @@ exports[`updates when courses prop changes 2`] = `
       "items": 1,
     }
   }
+  onRefresh={[Function]}
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={[Function]}
+      refreshing={false}
+    />
+  }
+  refreshing={false}
   renderRow={[Function]}
   renderScrollComponent={[Function]}
   style={
@@ -268,6 +294,7 @@ exports[`updates when courses prop changes 2`] = `
     }
   }
 >
+  <RCTRefreshControl />
   <View>
     <View
       accessibilityComponentType={undefined}

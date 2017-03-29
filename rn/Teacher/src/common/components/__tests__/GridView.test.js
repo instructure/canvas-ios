@@ -20,6 +20,7 @@ let defaultProps = {
   ),
   placeholderStyle: {},
   style: {},
+  onRefresh: jest.fn(),
 }
 
 it('renders correctly', () => {
@@ -39,6 +40,7 @@ it('renders correctly with sections', () => {
       data={[['a', 'b', 'c'], ['x', 'y']]}
       sections={true}
       renderItem={defaultProps.renderItem}
+      onRefresh={jest.fn()}
     />
   ).toJSON()
 
@@ -54,6 +56,7 @@ it('renders correctly without sections', () => {
       data={[['a', 'b', 'c'], ['x', 'y']]}
       sections={false}
       renderItem={defaultProps.renderItem}
+      onRefresh={jest.fn()}
     />
   ).toJSON()
 
@@ -94,4 +97,14 @@ it('updates list when data prop changes with sections', () => {
 
   setProps(tree, { data: [['data changed with sections']] })
   expect(tree.toJSON()).toMatchSnapshot()
+})
+
+it('calls onRefresh when refresh is called', () => {
+  let refresh = jest.fn()
+  let tree = renderer.create(
+    <GridView {...defaultProps} onRefresh={refresh} />
+  )
+  let instance = tree.getInstance()
+  instance.onRefresh()
+  expect(refresh).toHaveBeenCalled()
 })

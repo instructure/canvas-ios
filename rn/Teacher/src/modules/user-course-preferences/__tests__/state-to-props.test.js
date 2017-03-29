@@ -15,6 +15,10 @@ test('finds the correct data', () => {
           color: '#333',
         },
       },
+      assignmentGroups: {},
+    },
+    favoriteCourses: {
+      pending: 0,
     },
   }
 

@@ -12,5 +12,6 @@ export default function mapStateToProps (state: CoursesAppState): EditFavoritesP
   return {
     courses,
     favorites: state.favoriteCourses.courseRefs,
+    pending: state.favoriteCourses.pending,
   }
 }
