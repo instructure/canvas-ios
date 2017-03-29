@@ -10,7 +10,7 @@ import XCTest
 import CanvasKeymaster
 
 class CourseListEmptyPageTest: LogoutBeforeEach {
-  
+
   func testCourseListEmptyPage_displaysEmptyState() {
     let teacher = Data.getNextTeacher(self)
     domainPickerPage.openDomain(teacher.domain)

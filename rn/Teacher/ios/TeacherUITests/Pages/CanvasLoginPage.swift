@@ -43,9 +43,9 @@ class CanvasLoginPage: PageObject {
     emailField.perform(grey_typeText(teacher.loginId))
 
     // passwordField.perform(grey_typeText(teacher.password)) doesn't work reliably,
-    // this hack makes it work reliably :( 
+    // this hack makes it work reliably :(
     logInButton.perform(grey_tap())
-    
+
     passwordField.perform(grey_tap())
     passwordField.perform(grey_typeText(teacher.password))
     dismissKeyboard()
