@@ -256,7 +256,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 
 - (RACSignal *)signalForLogout
 {
-    return _subjectForClientLogout;
+    return [_subjectForClientLogout deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
 - (RACSignal *)signalForLogin
@@ -275,16 +275,16 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     }];
     
     if (self.fetchesBranding == NO) {
-        return [signalForInitialClient concat:_subjectForClientLogin];
+        return [[signalForInitialClient concat:_subjectForClientLogin] deliverOn:[RACScheduler mainThreadScheduler]];
     }
         
-    return [[signalForInitialClient concat:_subjectForClientLogin] flattenMap:^__kindof RACSignal * _Nullable(CKIClient * _Nullable client) {
+    return [[[signalForInitialClient concat:_subjectForClientLogin] flattenMap:^__kindof RACSignal * _Nullable(CKIClient * _Nullable client) {
         RACSignal *brandingSignal = [client fetchBranding];
         return [brandingSignal map:^id _Nullable(CKIBrand *  _Nullable brand) {
             client.branding = brand;
             return client;
         }];
-    }];
+    }] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
 - (RACSignal *)signalForLoginWithDomain:(NSString *)host
@@ -292,7 +292,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     // logged into the correct domain
     if ([self.currentClient.baseURL.host isEqualToString:host]) {
         //same domain, return current client as signal
-        return [RACSignal return:self.currentClient];
+        return [[RACSignal return:self.currentClient] deliverOn:[RACScheduler mainThreadScheduler]];
     }
     
     // check the keychain
@@ -306,7 +306,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     if (eligibleClients.count == 1) {
         self.currentClient = eligibleClients.firstObject;
         [_subjectForClientLogin sendNext:self.currentClient];
-        return [RACSignal return:self.currentClient];
+        return [[RACSignal return:self.currentClient] deliverOn:[RACScheduler mainThreadScheduler]];
     }
     
     //case eligibleClients.count > 1 || eligibleClients.count == 0
@@ -320,7 +320,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         }
     }];
 
-    return [_subjectForClientLogin take:1];
+    return [[_subjectForClientLogin take:1] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
 - (void)completeLogout
@@ -403,7 +403,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         [_subjectForClientLogin sendNext:newClient];
     }];
     
-    return fetchUserID;
+    return [fetchUserID deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
 - (void)stopMasquerading
