@@ -50,12 +50,12 @@ const internalStyle = StyleSheet.create({
   },
   text: {
     marginLeft: 5,
-    fontWeight: '500',
+    fontFamily: '.SFUIDisplay-medium',
     fontSize: 16,
-    color: 'grey',
+    color: colors.grey4,
   },
   publishedTextStyle: { color: colors.checkmarkGreen },
-  unPublishedTextStyle: { color: 'grey' },
+  unPublishedTextStyle: { color: colors.grey4 },
   publishedIcon: {
     height: iconSize,
     width: iconSize,
@@ -64,6 +64,6 @@ const internalStyle = StyleSheet.create({
   unpublishedIcon: {
     height: iconSize,
     width: iconSize,
-    tintColor: 'grey',
+    tintColor: colors.grey4,
   },
 })

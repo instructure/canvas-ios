@@ -7,12 +7,13 @@ exports[`renders heading1 correctly 1`] = `
   ellipsizeMode="tail"
   style={
     Array [
-      Object {},
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
       Object {
         "color": "#2D3B45",
+        "fontFamily": ".SFUIDisplay-semibold",
         "fontSize": 20,
-        "fontWeight": "600",
-        "letterSpacing": -1,
       },
       undefined,
     ]
@@ -27,7 +28,9 @@ exports[`renders paragraph correctly 1`] = `
   ellipsizeMode="tail"
   style={
     Array [
-      Object {},
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
       Object {
         "color": "#7F91A7",
         "fontSize": 16,
@@ -46,7 +49,13 @@ exports[`renders text correctly 1`] = `
   ellipsizeMode="tail"
   style={
     Array [
-      Object {},
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#2D3B45",
+        "fontSize": 16,
+      },
       undefined,
     ]
   }

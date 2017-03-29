@@ -15,9 +15,11 @@ import PublishedIcon from './components/PublishedIcon'
 import { formattedDate } from '../../utils/dateUtils'
 import { formattedDueDate } from '../../common/formatters'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
+import colors from '../../common/colors'
 import { RefreshableScrollView } from '../../common/components/RefreshableList'
 import refresh from '../../utils/refresh'
 import AssignmentActions from '../assignments/actions'
+
 import {
   View,
   StyleSheet,
@@ -98,10 +100,10 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
         <AssignmentSection isFirstRow={true} style={style.topContainer}>
         <Heading1>{assignment.name}</Heading1>
 
-          <View style={style.pointsContainer}>
-            <Text style={{ fontWeight: '500', fontSize: 16 }}>{assignment.points_possible} {assignmentPoints}</Text>
-            <PublishedIcon published={assignment.published} style={style.publishedIcon} />
-          </View>
+        <View style={style.pointsContainer}>
+          <Text style={style.points}>{assignment.points_possible} {assignmentPoints}</Text>
+          <PublishedIcon published={assignment.published} style={style.publishedIcon} />
+        </View>
 
         </AssignmentSection>
 
@@ -164,7 +166,7 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 2,
     marginBottom: -15,
   },
   publishedIcon: {
@@ -172,6 +174,11 @@ const style = StyleSheet.create({
   },
   submission: {
     marginRight: 40,
+  },
+  points: {
+    fontSize: 16,
+    fontFamily: '.SFUIDisplay-medium',
+    color: colors.grey4,
   },
 })
 

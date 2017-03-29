@@ -38,7 +38,7 @@ const assignmentSectionStyles = StyleSheet.create({
     paddingTop: PADDING,
     paddingLeft: PADDING,
     paddingRight: PADDING,
-    paddingBottom: 5,
+    paddingBottom: 0,
 
   },
 
@@ -48,7 +48,7 @@ const assignmentSectionStyles = StyleSheet.create({
     paddingBottom: PADDING,
   },
   header: {
-    color: color.lightText,
-    marginBottom: 8,
+    color: color.grey4,
+    marginBottom: 4,
   },
 })

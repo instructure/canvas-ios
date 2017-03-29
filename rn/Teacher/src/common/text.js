@@ -9,7 +9,7 @@ import ReactNative, {
 import colors from './colors'
 
 export function Text ({ style, ...props }: Object): ReactNative.Text {
-  return <ReactNative.Text style={[styles.font, style]} {...props} />
+  return <ReactNative.Text style={[styles.font, styles.text, style]} {...props} />
 }
 
 export function Heading1 ({ style, ...props }: Object): ReactNative.Text {
@@ -26,19 +26,17 @@ export function Paragraph ({ style, ...props }: Object): ReactNative.Text {
 
 const styles = StyleSheet.create({
   font: {
-    // fontFamily: require('../env').fontFamily,
+    fontFamily: '.SFUIDisplay',
   },
   h1: {
     fontSize: 20,
     color: colors.darkText,
-    fontWeight: '600',
-    letterSpacing: -1,
+    fontFamily: '.SFUIDisplay-semibold',
   },
   h2: {
     fontSize: 16,
     color: colors.darkText,
-    fontWeight: '400',
-    letterSpacing: -1,
+    fontFamily: '.SFUIDisplay-medium',
   },
   p: {
     fontSize: 16,

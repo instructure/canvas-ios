@@ -35,12 +35,18 @@ exports[`render larger icon size 1`] = `
     ellipsizeMode="tail"
     style={
       Array [
-        Object {},
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
         Array [
           Object {
-            "color": "grey",
+            "color": "#8B969E",
+            "fontFamily": ".SFUIDisplay-medium",
             "fontSize": 16,
-            "fontWeight": "500",
             "marginLeft": 5,
           },
           Object {
@@ -87,12 +93,18 @@ exports[`render published 1`] = `
     ellipsizeMode="tail"
     style={
       Array [
-        Object {},
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
         Array [
           Object {
-            "color": "grey",
+            "color": "#8B969E",
+            "fontFamily": ".SFUIDisplay-medium",
             "fontSize": 16,
-            "fontWeight": "500",
             "marginLeft": 5,
           },
           Object {
@@ -126,7 +138,7 @@ exports[`render unpublished 1`] = `
       Array [
         Object {
           "height": 21,
-          "tintColor": "grey",
+          "tintColor": "#8B969E",
           "width": 21,
         },
         Object {},
@@ -139,16 +151,22 @@ exports[`render unpublished 1`] = `
     ellipsizeMode="tail"
     style={
       Array [
-        Object {},
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
         Array [
           Object {
-            "color": "grey",
+            "color": "#8B969E",
+            "fontFamily": ".SFUIDisplay-medium",
             "fontSize": 16,
-            "fontWeight": "500",
             "marginLeft": 5,
           },
           Object {
-            "color": "grey",
+            "color": "#8B969E",
           },
         ],
       ]

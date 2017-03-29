@@ -18,7 +18,7 @@ exports[`renders 1`] = `
         Array [
           Object {
             "flex": 1,
-            "paddingBottom": 5,
+            "paddingBottom": 0,
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
@@ -41,12 +41,13 @@ exports[`renders 1`] = `
         ellipsizeMode="tail"
         style={
           Array [
-            Object {},
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
             Object {
               "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-medium",
               "fontSize": 16,
-              "fontWeight": "400",
-              "letterSpacing": -1,
             },
             Object {},
           ]
@@ -58,12 +59,13 @@ exports[`renders 1`] = `
         ellipsizeMode="tail"
         style={
           Array [
-            Object {},
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
             Object {
               "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 20,
-              "fontWeight": "600",
-              "letterSpacing": -1,
             },
             undefined,
           ]
@@ -78,7 +80,7 @@ exports[`renders 1`] = `
             "flex": 1,
             "flexDirection": "row",
             "marginBottom": -15,
-            "marginTop": 10,
+            "marginTop": 2,
           }
         }
       >
@@ -88,10 +90,17 @@ exports[`renders 1`] = `
           ellipsizeMode="tail"
           style={
             Array [
-              Object {},
               Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
                 "fontSize": 16,
-                "fontWeight": "500",
+              },
+              Object {
+                "color": "#8B969E",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
               },
             ]
           }
@@ -120,7 +129,7 @@ exports[`renders 1`] = `
               Array [
                 Object {
                   "height": 21,
-                  "tintColor": "grey",
+                  "tintColor": "#8B969E",
                   "width": 21,
                 },
                 Object {},
@@ -133,16 +142,22 @@ exports[`renders 1`] = `
             ellipsizeMode="tail"
             style={
               Array [
-                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
                 Array [
                   Object {
-                    "color": "grey",
+                    "color": "#8B969E",
+                    "fontFamily": ".SFUIDisplay-medium",
                     "fontSize": 16,
-                    "fontWeight": "500",
                     "marginLeft": 5,
                   },
                   Object {
-                    "color": "grey",
+                    "color": "#8B969E",
                   },
                 ],
               ]
@@ -158,7 +173,7 @@ exports[`renders 1`] = `
         Array [
           Object {
             "flex": 1,
-            "paddingBottom": 5,
+            "paddingBottom": 0,
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
@@ -182,16 +197,17 @@ exports[`renders 1`] = `
         ellipsizeMode="tail"
         style={
           Array [
-            Object {},
             Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "400",
-              "letterSpacing": -1,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "color": "#7F91A7",
-              "marginBottom": 8,
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-medium",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "marginBottom": 4,
             },
           ]
         }
@@ -204,7 +220,13 @@ exports[`renders 1`] = `
         ellipsizeMode="tail"
         style={
           Array [
-            Object {},
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
             undefined,
           ]
         }
@@ -217,7 +239,7 @@ exports[`renders 1`] = `
         Array [
           Object {
             "flex": 1,
-            "paddingBottom": 5,
+            "paddingBottom": 0,
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
@@ -241,16 +263,17 @@ exports[`renders 1`] = `
         ellipsizeMode="tail"
         style={
           Array [
-            Object {},
             Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "400",
-              "letterSpacing": -1,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "color": "#7F91A7",
-              "marginBottom": 8,
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-medium",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "marginBottom": 4,
             },
           ]
         }
@@ -263,7 +286,13 @@ exports[`renders 1`] = `
         ellipsizeMode="tail"
         style={
           Array [
-            Object {},
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
             Object {
               "flex": 1,
             },
@@ -278,7 +307,7 @@ exports[`renders 1`] = `
         Array [
           Object {
             "flex": 1,
-            "paddingBottom": 5,
+            "paddingBottom": 0,
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
@@ -302,16 +331,17 @@ exports[`renders 1`] = `
         ellipsizeMode="tail"
         style={
           Array [
-            Object {},
             Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "400",
-              "letterSpacing": -1,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "color": "#7F91A7",
-              "marginBottom": 8,
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-medium",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "marginBottom": 4,
             },
           ]
         }
@@ -331,7 +361,13 @@ exports[`renders 1`] = `
           ellipsizeMode="tail"
           style={
             Array [
-              Object {},
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
               Object {
                 "flex": 1,
               },
@@ -346,7 +382,13 @@ exports[`renders 1`] = `
           ellipsizeMode="tail"
           style={
             Array [
-              Object {},
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
               Object {
                 "flex": 1,
               },
@@ -361,7 +403,13 @@ exports[`renders 1`] = `
           ellipsizeMode="tail"
           style={
             Array [
-              Object {},
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
               Object {
                 "flex": 1,
               },
@@ -376,7 +424,13 @@ exports[`renders 1`] = `
           ellipsizeMode="tail"
           style={
             Array [
-              Object {},
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
               Object {
                 "flex": 1,
               },
@@ -392,7 +446,7 @@ exports[`renders 1`] = `
         Array [
           Object {
             "flex": 1,
-            "paddingBottom": 5,
+            "paddingBottom": 0,
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
@@ -416,16 +470,17 @@ exports[`renders 1`] = `
         ellipsizeMode="tail"
         style={
           Array [
-            Object {},
             Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "400",
-              "letterSpacing": -1,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "color": "#7F91A7",
-              "marginBottom": 8,
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-medium",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "marginBottom": 4,
             },
           ]
         }
@@ -486,7 +541,13 @@ exports[`renders 1`] = `
             ellipsizeMode="tail"
             style={
               Array [
-                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
                 Object {
                   "flex": 1,
                   "fontSize": 12,
@@ -506,7 +567,7 @@ exports[`renders 1`] = `
         Array [
           Object {
             "flex": 1,
-            "paddingBottom": 5,
+            "paddingBottom": 0,
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
@@ -530,16 +591,17 @@ exports[`renders 1`] = `
         ellipsizeMode="tail"
         style={
           Array [
-            Object {},
             Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "400",
-              "letterSpacing": -1,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "color": "#7F91A7",
-              "marginBottom": 8,
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-medium",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "marginBottom": 4,
             },
           ]
         }

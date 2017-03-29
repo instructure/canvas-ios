@@ -24,7 +24,13 @@ exports[`render 1`] = `
     ellipsizeMode="tail"
     style={
       Array [
-        Object {},
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
         Object {
           "flex": 1,
         },
@@ -37,7 +43,13 @@ exports[`render 1`] = `
     ellipsizeMode="tail"
     style={
       Array [
-        Object {},
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
         Object {
           "flex": 1,
         },
@@ -61,7 +73,13 @@ exports[`render single type 1`] = `
     ellipsizeMode="tail"
     style={
       Array [
-        Object {},
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
         Object {
           "flex": 1,
         },

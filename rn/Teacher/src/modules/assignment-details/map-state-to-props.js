@@ -8,7 +8,7 @@ export type AssignmentDetailsState = {
 
 export type AssignmentDetailsProps = {
   assignmentDetails: Assignment,
-  navigator: any,
+  navigator: ReactNavigator,
   courseID: string,
   assignmentID: string,
   error?: string,

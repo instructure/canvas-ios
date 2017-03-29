@@ -6,7 +6,7 @@ exports[`render 1`] = `
     Array [
       Object {
         "flex": 1,
-        "paddingBottom": 5,
+        "paddingBottom": 0,
         "paddingLeft": 16,
         "paddingRight": 16,
         "paddingTop": 16,
@@ -30,16 +30,17 @@ exports[`render 1`] = `
     ellipsizeMode="tail"
     style={
       Array [
-        Object {},
         Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-          "fontWeight": "400",
-          "letterSpacing": -1,
+          "fontFamily": ".SFUIDisplay",
         },
         Object {
-          "color": "#7F91A7",
-          "marginBottom": 8,
+          "color": "#2D3B45",
+          "fontFamily": ".SFUIDisplay-medium",
+          "fontSize": 16,
+        },
+        Object {
+          "color": "#8B969E",
+          "marginBottom": 4,
         },
       ]
     }
@@ -55,7 +56,7 @@ exports[`render first row 1`] = `
     Array [
       Object {
         "flex": 1,
-        "paddingBottom": 5,
+        "paddingBottom": 0,
         "paddingLeft": 16,
         "paddingRight": 16,
         "paddingTop": 16,
@@ -73,12 +74,13 @@ exports[`render first row 1`] = `
     ellipsizeMode="tail"
     style={
       Array [
-        Object {},
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
         Object {
           "color": "#2D3B45",
+          "fontFamily": ".SFUIDisplay-medium",
           "fontSize": 16,
-          "fontWeight": "400",
-          "letterSpacing": -1,
         },
         Object {},
       ]
@@ -93,7 +95,7 @@ exports[`render no title 1`] = `
     Array [
       Object {
         "flex": 1,
-        "paddingBottom": 5,
+        "paddingBottom": 0,
         "paddingLeft": 16,
         "paddingRight": 16,
         "paddingTop": 16,
@@ -117,16 +119,17 @@ exports[`render no title 1`] = `
     ellipsizeMode="tail"
     style={
       Array [
-        Object {},
         Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-          "fontWeight": "400",
-          "letterSpacing": -1,
+          "fontFamily": ".SFUIDisplay",
         },
         Object {
-          "color": "#7F91A7",
-          "marginBottom": 8,
+          "color": "#2D3B45",
+          "fontFamily": ".SFUIDisplay-medium",
+          "fontSize": 16,
+        },
+        Object {
+          "color": "#8B969E",
+          "marginBottom": 4,
         },
       ]
     }
