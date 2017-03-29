@@ -31,9 +31,9 @@ const emptyCourseState: CourseContentState = {
   tabs: { pending: 0, tabs: [] }, assignmentGroups: { pending: 0, refs: [] },
 }
 
-export const normalizeCourse = (course: Course, colors: { [courseId: string]: string }, prevState: CourseContentState = emptyCourseState): CourseState => {
+export const normalizeCourse = (course: Course, colors: { [courseId: string]: string } = {}, prevState: CourseContentState = emptyCourseState): CourseState => {
   const { id } = course
-  const color = colors[(id || 'none').toString()] || '#ff8'
+  const color = colors[(id || 'none').toString()] || '#ffc100'
   return {
     ...prevState,
     course,

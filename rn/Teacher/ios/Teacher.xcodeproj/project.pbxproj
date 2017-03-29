@@ -32,6 +32,9 @@
 		2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE081E735CCB0096592C /* SystemConfiguration.framework */; };
 		2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */; };
 		2C5AC25B1E5E3B8700DE4DEE /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5AC25A1E5E3B7B00DE4DEE /* libReactNativeNavigation.a */; };
+		2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */; };
+		2C62DCA61E8BF6C2006638F3 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DCA51E8BF6C2006638F3 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift */; };
+		2C62DCA91E8BF6D8006638F3 /* CourseListPageTest_testCourseListPage_displaysList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DCA81E8BF6D8006638F3 /* CourseListPageTest_testCourseListPage_displaysList.swift */; };
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
 		2CEC447A1E8AABD500AF7344 /* LogoutBeforeEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC44791E8AABD500AF7344 /* LogoutBeforeEach.swift */; };
 		31C9F17B182AA3ABB965DDA2 /* DataMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EA5B9B254626D699014C44 /* DataMap.swift */; };
@@ -58,8 +61,8 @@
 		4943ECC41E5CEFBD001DC5B5 /* ReactiveObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECC81E5CF16A001DC5B5 /* NativeLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943ECC71E5CF16A001DC5B5 /* NativeLogin.m */; };
 		49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C01E8437D700828E42 /* CanvasLoginPage.swift */; };
-		49B274C31E8437D700828E42 /* CourseBrowserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C11E8437D700828E42 /* CourseBrowserPage.swift */; };
-		49B274C51E84387600828E42 /* CourseBrowserPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C41E84387600828E42 /* CourseBrowserPageTest.swift */; };
+		49B274C31E8437D700828E42 /* CourseListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C11E8437D700828E42 /* CourseListPage.swift */; };
+		49B274C51E84387600828E42 /* CourseListEmptyPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C41E84387600828E42 /* CourseListEmptyPageTest.swift */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		61AD9B63975E448BAF5C6F25 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0456B43BE349468FA3E976BB /* libRNDeviceInfo.a */; };
 		61B5372A1E7869EA000FEABB /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B536EC1E7860CE000FEABB /* EarlGrey.framework */; };
@@ -74,7 +77,6 @@
 		952E99B216DEE7FD0BEF819D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E479910A81A38C8833E5314 /* Page.swift */; };
 		A45A7871AEE461283E84002D /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105261256A70B5DFD1139104 /* Quiz.swift */; };
 		A6A99147D8722993787C0994 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF3DE89359E019540B64CA /* Assignment.swift */; };
-		AA45E274073DF3E4EED51621 /* CourseBrowserPageTest_testCourseBrowserPage_displaysEmptyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733915EB8590D694A864561F /* CourseBrowserPageTest_testCourseBrowserPage_displaysEmptyList.swift */; };
 		C4ECC257F431783ED35CBF11 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F798127265B286008D5A43E /* DataProvider.swift */; };
 		E95E120300F55714C77F2BB4 /* DataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E779D0FC821A88203D0C34D /* DataUtil.swift */; };
 /* End PBXBuildFile section */
@@ -356,6 +358,9 @@
 		2C50EE0A1E735CDD0096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C5AC2441E5E3B7B00DE4DEE /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
+		2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPageTest.swift; sourceTree = "<group>"; };
+		2C62DCA51E8BF6C2006638F3 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListEmptyPageTest/CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
+		2C62DCA81E8BF6D8006638F3 /* CourseListPageTest_testCourseListPage_displaysList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysList.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysList.swift; sourceTree = "<group>"; };
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		2CEC44791E8AABD500AF7344 /* LogoutBeforeEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutBeforeEach.swift; sourceTree = "<group>"; };
 		329DC2282549635CBA9EDD0B /* Course.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Course.swift; path = models/Course.swift; sourceTree = "<group>"; };
@@ -375,8 +380,8 @@
 		4943ECC71E5CF16A001DC5B5 /* NativeLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeLogin.m; sourceTree = "<group>"; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
 		49B274C01E8437D700828E42 /* CanvasLoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasLoginPage.swift; sourceTree = "<group>"; };
-		49B274C11E8437D700828E42 /* CourseBrowserPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPage.swift; sourceTree = "<group>"; };
-		49B274C41E84387600828E42 /* CourseBrowserPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPageTest.swift; sourceTree = "<group>"; };
+		49B274C11E8437D700828E42 /* CourseListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPage.swift; sourceTree = "<group>"; };
+		49B274C41E84387600828E42 /* CourseListEmptyPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListEmptyPageTest.swift; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		61B5365C1E7749F5000FEABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61B536A21E774B6A000FEABB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoGrey.framework; path = "../../../Frameworks/SoGrey/build/Debug-iphoneos/SoGrey.framework"; sourceTree = "<group>"; };
@@ -388,11 +393,12 @@
 		61B536ED1E7860CE000FEABB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B537201E786969000FEABB /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F798127265B286008D5A43E /* DataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataProvider.swift; path = data/DataProvider.swift; sourceTree = "<group>"; };
-		733915EB8590D694A864561F /* CourseBrowserPageTest_testCourseBrowserPage_displaysEmptyList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseBrowserPageTest_testCourseBrowserPage_displaysEmptyList.swift; path = data/CourseBrowserPageTest/CourseBrowserPageTest_testCourseBrowserPage_displaysEmptyList.swift; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		86FF3DE89359E019540B64CA /* Assignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assignment.swift; path = models/Assignment.swift; sourceTree = "<group>"; };
+		8B32E1F4415B44FB9A38059F /* CourseListPageTest_testCourseListPage_displaysList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysList.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysList.swift; sourceTree = "<group>"; };
 		9E779D0FC821A88203D0C34D /* DataUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataUtil.swift; path = data/DataUtil.swift; sourceTree = "<group>"; };
+		A3E7A4FD4BBDC129467A9107 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListEmptyPageTest/CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
 		A515879C98C3F38C08928D4C /* DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift; path = data/DomainPickerTests/DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift; sourceTree = "<group>"; };
 		ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		B4ECA86954393EA402EE37DE /* Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Data.swift; path = data/Data.swift; sourceTree = "<group>"; };
@@ -587,6 +593,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2C62DCA71E8BF6C9006638F3 /* CourseListPageTest */ = {
+			isa = PBXGroup;
+			children = (
+				2C62DCA81E8BF6D8006638F3 /* CourseListPageTest_testCourseListPage_displaysList.swift */,
+			);
+			name = CourseListPageTest;
+			sourceTree = "<group>";
+		};
 		2CEC445D1E8AABBD00AF7344 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,12 +612,15 @@
 		3B379781808A96719F53B283 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				2C62DCA71E8BF6C9006638F3 /* CourseListPageTest */,
 				F09745A515E8F598C184EC40 /* DomainPickerTests */,
 				9E779D0FC821A88203D0C34D /* DataUtil.swift */,
-				5189271213E78F8F5B907EA6 /* CourseBrowserPageTest */,
+				5189271213E78F8F5B907EA6 /* CourseListEmptyPageTest */,
 				B4ECA86954393EA402EE37DE /* Data.swift */,
 				6F798127265B286008D5A43E /* DataProvider.swift */,
 				33EA5B9B254626D699014C44 /* DataMap.swift */,
+				D8EDF1BE4BD53131137D41FF /* CourseListEmptyPageTest */,
+				D6CB2B3015C3D12807575F2F /* CourseListPageTest */,
 			);
 			name = data;
 			sourceTree = "<group>";
@@ -635,12 +652,12 @@
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
-		5189271213E78F8F5B907EA6 /* CourseBrowserPageTest */ = {
+		5189271213E78F8F5B907EA6 /* CourseListEmptyPageTest */ = {
 			isa = PBXGroup;
 			children = (
-				733915EB8590D694A864561F /* CourseBrowserPageTest_testCourseBrowserPage_displaysEmptyList.swift */,
+				2C62DCA51E8BF6C2006638F3 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift */,
 			);
-			name = CourseBrowserPageTest;
+			name = CourseListEmptyPageTest;
 			sourceTree = "<group>";
 		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
@@ -669,7 +686,7 @@
 			isa = PBXGroup;
 			children = (
 				49B274C01E8437D700828E42 /* CanvasLoginPage.swift */,
-				49B274C11E8437D700828E42 /* CourseBrowserPage.swift */,
+				49B274C11E8437D700828E42 /* CourseListPage.swift */,
 				61B536DF1E784A4B000FEABB /* Pages.swift */,
 				61B536E31E78599D000FEABB /* DomainPickerPage.swift */,
 			);
@@ -679,7 +696,8 @@
 		61B536DC1E78491B000FEABB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				49B274C41E84387600828E42 /* CourseBrowserPageTest.swift */,
+				49B274C41E84387600828E42 /* CourseListEmptyPageTest.swift */,
+				2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */,
 				61B536DD1E784946000FEABB /* DomainPickerTests.swift */,
 			);
 			path = Tests;
@@ -759,6 +777,22 @@
 				105261256A70B5DFD1139104 /* Quiz.swift */,
 			);
 			name = models;
+			sourceTree = "<group>";
+		};
+		D6CB2B3015C3D12807575F2F /* CourseListPageTest */ = {
+			isa = PBXGroup;
+			children = (
+				8B32E1F4415B44FB9A38059F /* CourseListPageTest_testCourseListPage_displaysList.swift */,
+			);
+			name = CourseListPageTest;
+			sourceTree = "<group>";
+		};
+		D8EDF1BE4BD53131137D41FF /* CourseListEmptyPageTest */ = {
+			isa = PBXGroup;
+			children = (
+				A3E7A4FD4BBDC129467A9107 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift */,
+			);
+			name = CourseListEmptyPageTest;
 			sourceTree = "<group>";
 		};
 		F09745A515E8F598C184EC40 /* DomainPickerTests */ = {
@@ -1177,18 +1211,20 @@
 				61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */,
 				61B537301E786A54000FEABB /* Pages.swift in Sources */,
 				49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */,
-				49B274C31E8437D700828E42 /* CourseBrowserPage.swift in Sources */,
+				2C62DCA91E8BF6D8006638F3 /* CourseListPageTest_testCourseListPage_displaysList.swift in Sources */,
+				49B274C31E8437D700828E42 /* CourseListPage.swift in Sources */,
+				2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */,
 				61B5372F1E786A51000FEABB /* DomainPickerTests.swift in Sources */,
 				A6A99147D8722993787C0994 /* Assignment.swift in Sources */,
 				28087A3DB76A7583688C3073 /* CanvasUser.swift in Sources */,
+				2C62DCA61E8BF6C2006638F3 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift in Sources */,
 				462B9DCCC3A10C7F30AE8168 /* Course.swift in Sources */,
-				49B274C51E84387600828E42 /* CourseBrowserPageTest.swift in Sources */,
+				49B274C51E84387600828E42 /* CourseListEmptyPageTest.swift in Sources */,
 				279DC42F392D254716A9F524 /* Enrollment.swift in Sources */,
 				952E99B216DEE7FD0BEF819D /* Page.swift in Sources */,
 				A45A7871AEE461283E84002D /* Quiz.swift in Sources */,
 				8FA0A13649E41DE268D43A1E /* DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift in Sources */,
 				E95E120300F55714C77F2BB4 /* DataUtil.swift in Sources */,
-				AA45E274073DF3E4EED51621 /* CourseBrowserPageTest_testCourseBrowserPage_displaysEmptyList.swift in Sources */,
 				3B9D72859115B817CD00CD83 /* Data.swift in Sources */,
 				C4ECC257F431783ED35CBF11 /* DataProvider.swift in Sources */,
 				31C9F17B182AA3ABB965DDA2 /* DataMap.swift in Sources */,

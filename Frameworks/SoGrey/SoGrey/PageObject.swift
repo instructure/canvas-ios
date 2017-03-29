@@ -33,6 +33,19 @@ extension PageObject {
     }).wait(withTimeout: 30.0)
   }
 
+  public static func waitForElementToLoad(element: GREYElementInteraction, file: StaticString = #file, _ line: UInt = #line) {
+    grey_invokedFromFile(file, line)
+    
+    GREYCondition(name: "Waiting for \(element) to load", block: { _ in
+        print("waiting for \(page) to load")
+        
+        var errorOrNil: NSError?
+        element.assert(with: grey_notNil(), error: &errorOrNil)
+        let success = errorOrNil == nil
+        return success
+    }).wait(withTimeout: 30.0)
+  }
+    
   public static func dismissKeyboard(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
 
