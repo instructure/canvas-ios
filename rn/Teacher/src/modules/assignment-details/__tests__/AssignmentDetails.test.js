@@ -5,6 +5,7 @@
 import 'react-native'
 import React from 'react'
 import { AssignmentDetails } from '../AssignmentDetails'
+import { route } from '../../../routing'
 import timezoneMock from 'timezone-mock'
 import setProps from '../../../../test/helpers/setProps'
 
@@ -82,4 +83,23 @@ test('handles refreshing', () => {
 
   setProps(tree, { pending: 0 })
   expect(instance.state.refreshing).toBeFalsy()
+})
+
+test('calls navigator.showModal when the edit button is pressed', () => {
+  let navigator = template.navigator({
+    showModal: jest.fn(),
+  })
+  let tree = renderer.create(
+    <AssignmentDetails {...defaultProps} navigator={navigator} />
+  )
+
+  tree.getInstance().onNavigatorEvent({
+    type: 'NavBarButtonPress',
+    id: 'edit',
+  })
+
+  expect(navigator.showModal).toHaveBeenCalledWith({
+    ...route(`/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/edit`),
+    animationType: 'slide-up',
+  })
 })

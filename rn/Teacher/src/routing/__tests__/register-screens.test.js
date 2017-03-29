@@ -60,6 +60,13 @@ describe('app routes', () => {
     })
   })
 
+  it('includes /courses/:courseID/assignments/:assignmentID/edit', () => {
+    expect(route('/courses/686/assignments/1/edit')).toEqual({
+      screen: screenID('/courses/:courseID/assignments/:assignmentID/edit'),
+      passProps: { courseID: '686', assignmentID: '1' },
+    })
+  })
+
   it('includes /conversations', () => {
     expect(route('/conversations')).toEqual({
       screen: screenID('/conversations'),

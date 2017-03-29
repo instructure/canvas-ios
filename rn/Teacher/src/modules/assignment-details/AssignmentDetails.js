@@ -19,7 +19,7 @@ import colors from '../../common/colors'
 import { RefreshableScrollView } from '../../common/components/RefreshableList'
 import refresh from '../../utils/refresh'
 import AssignmentActions from '../assignments/actions'
-
+import { route } from '../../routing'
 import {
   View,
   StyleSheet,
@@ -27,20 +27,36 @@ import {
 
 export class AssignmentDetails extends Component<any, AssignmentDetailsProps, any> {
   props: AssignmentDetailsProps
-
   state = { refreshing: false }
 
+  static navigatorButtons = {
+    rightButtons: [
+      {
+        title: i18n({
+          default: 'Edit',
+          description: 'Shown at the top of the app to allow the user to edit',
+        }),
+        id: 'edit',
+        testID: 'e2e_rules',
+      },
+    ],
+  }
+
+  constructor (props: AssignmentDetailsProps) {
+    super(props)
+    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
+  }
+
   componentDidMount () {
+    if (!this.props.pending && !this.props.assignmentDetails) {
+      this.props.refreshAssignmentDetails(this.props.courseID, this.props.assignmentID)
+    }
+
     this.props.navigator.setTitle({
       title: i18n({
         default: 'Assignment Details',
         description: 'Title of Assignment details screen',
       }),
-      subtitle: '',
-      navigatorStyle: {
-        navBarTextColor: '#fff',
-        navBarSubtitleTextColor: '#fff',
-      },
     })
   }
 
@@ -129,6 +145,26 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
 
       </RefreshableScrollView>
     )
+  }
+
+  onNavigatorEvent = (event: NavigatorEvent) => {
+    switch (event.type) {
+      case 'NavBarButtonPress':
+        switch (event.id) {
+          case 'edit':
+            this.editAssignment()
+            break
+        }
+        break
+    }
+  }
+
+  editAssignment () {
+    let destination = route(`/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/edit`)
+    this.props.navigator.showModal({
+      ...destination,
+      animationType: 'slide-up',
+    })
   }
 
   formattedAvailableDate (assignment: Assignment): string {

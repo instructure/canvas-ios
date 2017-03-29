@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#F5F5F5",
+        "borderBottomColor": "#D8DBDE",
+        "borderBottomWidth": 0.5,
+        "borderTopColor": "#D8DBDE",
+        "borderTopWidth": 0.5,
+        "flex": 1,
+        "flexDirection": "row",
+        "height": 50,
+        "justifyContent": "flex-start",
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontFamily": ".SFUIDisplay-semibold",
+          "fontSize": 20,
+        },
+        Object {
+          "color": "#2D3B45",
+          "marginLeft": 16,
+        },
+      ]
+    }
+  >
+    foo
+  </Text>
+</View>
+`;
+
+exports[`render no title 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#F5F5F5",
+        "borderBottomColor": "#D8DBDE",
+        "borderBottomWidth": 0.5,
+        "borderTopColor": "#D8DBDE",
+        "borderTopWidth": 0.5,
+        "flex": 1,
+        "flexDirection": "row",
+        "height": 50,
+        "justifyContent": "flex-start",
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontFamily": ".SFUIDisplay-semibold",
+          "fontSize": 20,
+        },
+        Object {
+          "color": "#2D3B45",
+          "marginLeft": 16,
+        },
+      ]
+    }
+  />
+</View>
+`;

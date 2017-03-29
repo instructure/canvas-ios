@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<RCTScrollView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#F5F5F5",
+            "borderBottomColor": "#D8DBDE",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#D8DBDE",
+            "borderTopWidth": 0.5,
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "justifyContent": "flex-start",
+          },
+          undefined,
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {
+              "color": "#2D3B45",
+              "marginLeft": 16,
+            },
+          ]
+        }
+      >
+        Title
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "padding": 16,
+        }
+      }
+    >
+      <TextInput
+        editable={true}
+        multiline={true}
+        numberOfLines={4}
+        style={
+          Object {
+            "height": 100,
+          }
+        }
+        value="learn to write code"
+      />
+    </View>
+  </View>
+</RCTScrollView>
+`;
