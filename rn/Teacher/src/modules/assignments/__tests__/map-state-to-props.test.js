@@ -6,13 +6,14 @@ const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/course'),
   ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../redux/__templates__/app-state'),
 }
 
 test('map state to props should work', async () => {
   let course = template.course()
   let assignmentGroup = template.assignmentGroup()
 
-  let state: AppState = {
+  let state = template.appState({
     entities: {
       courses: {
         [course.id]: {
@@ -25,7 +26,7 @@ test('map state to props should work', async () => {
       },
     },
     favoriteCourses: [],
-  }
+  })
 
   let props: AssignmentListProps = {
     courseID: course.id.toString(),

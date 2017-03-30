@@ -5,12 +5,13 @@ import mapStateToProps from '../map-state-to-props'
 const template = {
   ...require('../../../../api/canvas-api/__templates__/course'),
   ...require('../../../../api/canvas-api/__templates__/tab'),
+  ...require('../../../../redux/__templates__/app-state'),
 }
 
 test('mapStateToProps returns the correct props', () => {
   const course = template.course({ id: 1 })
   const tabs = { tabs: [template.tab()] }
-  const state: { [string]: any } = {
+  const state = template.appState({
     entities: {
       courses: {
         '1': {
@@ -23,7 +24,7 @@ test('mapStateToProps returns the correct props', () => {
     favoriteCourses: {
       courseRefs: ['1'],
     },
-  }
+  })
   const expected = {
     course,
     ...tabs,

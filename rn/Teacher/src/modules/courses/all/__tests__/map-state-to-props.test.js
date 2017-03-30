@@ -3,6 +3,7 @@
 import mapStateToProps from '../map-state-to-props'
 import { normalizeCourse } from '../../courses-reducer'
 import * as courseTemplate from '../../../../api/canvas-api/__templates__/course'
+import { appState } from '../../../../redux/__templates__/app-state'
 import fromPairs from 'lodash/fromPairs'
 
 describe('all courses mapStateToProps', () => {
@@ -26,13 +27,11 @@ describe('all courses mapStateToProps', () => {
       .map((courseState) => ([courseState.course.id.toString(), courseState]))
   const courses: CoursesState = fromPairs(pairs)
 
-  const state: CoursesAppState = {
+  const state = appState({
     entities: {
       courses,
-      assignmentGroups: {},
     },
-    favoriteCourses: {},
-  }
+  })
 
   const props = mapStateToProps(state)
 
