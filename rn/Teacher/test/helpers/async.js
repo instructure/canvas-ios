@@ -1,7 +1,8 @@
 /* @flow */
 import { createStore, applyMiddleware } from 'redux'
 import promiseMiddleware from '../../src/utils/redux-promise'
-import configureMockStore from 'redux-mock-store'
+import freeze from 'redux-freeze'
+import mockStore from './mockStore'
 
 /*
  * Dispatches the action on a store created with the reducer and returns an
@@ -17,7 +18,7 @@ import configureMockStore from 'redux-mock-store'
 
 export async function testAsyncReducer<R> (reducer: R, action: any, defaultState?: any): Promise<any[]> {
   let states = []
-  const store = createStore(reducer, defaultState, applyMiddleware(promiseMiddleware))
+  const store = createStore(reducer, defaultState, applyMiddleware(promiseMiddleware, freeze))
   store.dispatch(action)
   states.push(store.getState())
   try {
@@ -40,7 +41,7 @@ export async function testAsyncReducer<R> (reducer: R, action: any, defaultState
  */
 
 export async function testAsyncAction (action: any, defaultState: any): Promise<any[]> {
-  const store = configureMockStore([promiseMiddleware])(defaultState)
+  const store = mockStore()
   store.dispatch(action)
   try {
     let promise = action.payload && action.payload.promise ? action.payload.promise : action.payload

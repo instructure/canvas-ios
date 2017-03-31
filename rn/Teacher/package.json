@@ -17,7 +17,7 @@
     "flux-standard-action": "^1.2.0",
     "format-message": "^5.1.1",
     "hoist-non-react-statics": "^1.2.0",
-    "moment": "^2.18.1",
+    "moment": "2.18.1",
     "querystring": "^0.2.0",
     "react": "~15.4.0-rc.4",
     "react-native": "0.42.3",
@@ -29,8 +29,7 @@
     "redux": "^3.6.0",
     "redux-actions": "^1.2.2",
     "route-parser": "^0.0.5",
-    "url-parse": "^1.1.8",
-    "moment": "2.18.0"
+    "url-parse": "^1.1.8"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -50,10 +49,11 @@
     "format-message-generate-id": "^5.1.0",
     "jest": "^19.0.2",
     "react-test-renderer": "~15.4.0-rc.4",
+    "redux-freeze": "^0.1.5",
+    "redux-logger": "2.10.2",
     "redux-mock-store": "^1.2.2",
-    "xhr2": "^0.1.4",
-	"timezone-mock": "^0.0.0",
-    "redux-logger": "2.10.2"
+    "timezone-mock": "^0.0.0",
+    "xhr2": "^0.1.4"
   },
   "jest": {
     "preset": "react-native",

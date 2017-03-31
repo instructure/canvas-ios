@@ -1,9 +1,6 @@
 // @flow
 
-import promiseMiddleware from '../redux-promise'
-import configureMockStore from 'redux-mock-store'
-
-let mockStore = configureMockStore([promiseMiddleware])
+import mockStore from '../../../test/helpers/mockStore'
 
 test('it does nothing with a "normal" payload', async () => {
   let store = mockStore()

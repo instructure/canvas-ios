@@ -1,10 +1,8 @@
 // @flow
 
-import errorHandlerMiddleware, { ERROR_TITLE, ERROR_MESSAGE, parseErrorMessage } from '../error-handler'
-import configureMockStore from 'redux-mock-store'
+import { ERROR_TITLE, ERROR_MESSAGE, parseErrorMessage } from '../error-handler'
 import { Alert } from 'react-native'
-
-let mockStore = configureMockStore([errorHandlerMiddleware])
+import mockStore from '../../../test/helpers/mockStore'
 
 jest.mock('react-native', () => ({
   Alert: {
