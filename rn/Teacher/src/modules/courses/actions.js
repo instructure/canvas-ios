@@ -16,6 +16,12 @@ export let CoursesActions = (api: typeof canvas): CourseListActionProps => ({
       promise: api.updateCourseColor(courseID, color),
     }
   }),
+  refreshGradingPeriods: createAction('courses.refreshGradingPeriods', (courseID: number) => {
+    return {
+      promise: api.getCourseGradingPeriods(courseID),
+      handlesError: true,
+    }
+  }),
 })
 
 export default (CoursesActions(canvas): CourseListActionProps)

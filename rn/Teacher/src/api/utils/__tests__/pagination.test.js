@@ -134,4 +134,15 @@ describe('exhaust', () => {
     expect(response).toBeUndefined()
     expect(error).toBeDefined()
   })
+
+  it('should only append results when there is data', async () => {
+    const page2 = apiResponse(null)
+    const page1 = apiResponse([1], { next: page2 })
+
+    const result = await exhaust(page1())
+    expect(result).toEqual({
+      data: [1],
+      next: null,
+    })
+  })
 })

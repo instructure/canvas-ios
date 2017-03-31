@@ -16,6 +16,11 @@ test('contains entities.courses subreducer', () => {
   expect(state.entities.courses).toBeDefined()
 })
 
+test('contains entities.gradingPeriods subreducer', () => {
+  const state = reduce(undefined, dummyAction)
+  expect(state.entities.gradingPeriods).toBeDefined()
+})
+
 test('contains favoriteCourses subreducer', () => {
   const state: CoursesAppState = reduce(undefined, dummyAction)
   expect(state.favoriteCourses).toBeDefined()

@@ -11,6 +11,10 @@
     "message": "All Courses",
     "description": "The title of the screen showing all of a teacher's courses"
   },
+  "all_grading_periods_77974940": {
+    "message": "All Grading Periods",
+    "description": "The header on the assignment list"
+  },
   "assignment_details_bc488179": {
     "message": "Assignment Details",
     "description": "Title of Assignment details screen"
@@ -27,9 +31,15 @@
     "message": "Courses",
     "description": "The back button title to go from all courses to just favorited courses"
   },
+  "cancel_caeb1e68": {
+    "message": "Cancel"
+  },
   "choose_color_11148181": {
     "message": "Choose { color }",
     "description": "Accessibility label to select a color"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Clear filter"
   },
   "closed_983a96fe": {
     "message": "Closed",
@@ -86,6 +96,13 @@
   "external_tool_d6eaa5c1": {
     "message": "external tool",
     "description": "assignment submission type"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Filter by:",
+    "description": "Indicates to the user that they can filter by a few options"
+  },
+  "filter_e3398407": {
+    "message": "Filter"
   },
   "graded_25cd3fcd": {
     "message": "Graded",

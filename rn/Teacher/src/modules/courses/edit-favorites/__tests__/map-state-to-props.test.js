@@ -11,6 +11,7 @@ test('returns the correct props', () => {
         },
       },
       assignmentGroups: {},
+      gradingPeriods: {},
     },
     favoriteCourses: {
       courseRefs: ['1'],

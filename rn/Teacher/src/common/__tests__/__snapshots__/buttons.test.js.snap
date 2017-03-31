@@ -61,11 +61,14 @@ exports[`renders link correctly 1`] = `
         Object {
           "color": "#368BD8",
           "fontSize": 14,
-          "fontWeight": "500",
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay-medium",
         },
         Object {
           "color": "#368BD8",
         },
+        undefined,
       ]
     }
   />

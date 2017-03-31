@@ -21,11 +21,14 @@ const errorHandlerMiddleware: MiddlewareAPI = () => {
       // 2. error is an api response error and the status code is 500 or above
       // 3. the action hasn't indicated it will handle the error itself
       let error = action.payload.error || action.payload
-      let isApiError = error.data && error.status
+      let isApiError = error.response != null
       if (!isApiError || error.status >= 500 || !action.payload.handlesError) {
         let errorMessage = error.message || ERROR_MESSAGE
-        if (error.data && error.data.errors && error.data.errors.length > 0) {
-          errorMessage = error.data.errors[0].message
+        if (error.response &&
+            error.response.data &&
+            error.response.data.errors &&
+            error.response.data.errors.length > 0) {
+          errorMessage = error.response.data.errors[0].message
         }
         Alert.alert(ERROR_TITLE, errorMessage)
       }

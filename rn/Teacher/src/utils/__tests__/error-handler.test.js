@@ -39,12 +39,14 @@ describe('error-handler-middleware', () => {
       error: true,
       payload: {
         error: {
-          data: {
-            errors: [{
-              message: errorMessage,
-            }],
+          response: {
+            data: {
+              errors: [{
+                message: errorMessage,
+              }],
+            },
+            status: 500,
           },
-          status: 500,
         },
       },
     })
@@ -75,8 +77,10 @@ describe('error-handler-middleware', () => {
       error: true,
       payload: {
         error: {
-          data: {},
-          status: 400,
+          response: {
+            data: {},
+            status: 400,
+          },
         },
         handlesError: true,
       },

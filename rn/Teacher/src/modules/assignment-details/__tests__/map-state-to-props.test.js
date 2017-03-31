@@ -28,6 +28,7 @@ test('map state to props should work', async () => {
       assignments: {
         [assignment.id]: assignment,
       },
+      gradingPeriods: {},
     },
   })
 

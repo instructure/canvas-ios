@@ -3,13 +3,17 @@
 import { CoursesActions } from '../actions'
 import { testAsyncAction } from '../../../../test/helpers/async'
 import { apiResponse } from '../../../../test/helpers/apiMock'
-import * as courseTemplate from '../../../api/canvas-api/__templates__/course'
+
+let template = {
+  ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../api/canvas-api/__templates__/grading-periods'),
+}
 
 let defaultState = {}
 
 test('refresh courses workflow', async () => {
-  const courses = [courseTemplate.course()]
-  const colors = courseTemplate.customColors()
+  const courses = [template.course()]
+  const colors = template.customColors()
   let actions = CoursesActions({ getCourses: apiResponse(courses), getCustomColors: apiResponse(colors) })
   const result = await testAsyncAction(actions.refreshCourses())
 
@@ -54,4 +58,19 @@ test('update course color workflow', async () => {
       },
     },
   ])
+})
+
+test('refreshGradingPeriods', async () => {
+  let gradingPeriod = template.gradingPeriod()
+  let response = { grading_periods: [gradingPeriod] }
+  let actions = CoursesActions({ getCourseGradingPeriods: apiResponse(response) })
+  let result = await testAsyncAction(actions.refreshGradingPeriods())
+
+  expect(result).toMatchObject([{
+    type: actions.refreshGradingPeriods.toString(),
+    pending: true,
+  }, {
+    type: actions.refreshGradingPeriods.toString(),
+    payload: { handlesError: true, result: { data: response } },
+  }])
 })

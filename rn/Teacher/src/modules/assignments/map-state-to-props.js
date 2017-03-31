@@ -1,5 +1,7 @@
 // @flow
 
+import localeSort from '../../utils/locale-sort'
+
 export type AssignmentListState = {
   +assignmentGroups: AssignmentGroup[],
   +course: Course,
@@ -10,10 +12,11 @@ export type AssignmentListState = {
 export type AssignmentListProps = {
   courseID: string,
   course: CourseState,
-  assignmentGroups: AssignmentGroup[],
   refreshAssignmentList: Function,
+  refreshGradingPeriods: Function,
+  assignmentGroups: AssignmentGroup[],
+  gradingPeriods: Array<GradingPeriod & { assignmentRefs: [number] }>,
   refresh: Function,
-  nextPage: Function,
   pending: number,
   navigator: ReactNavigator,
 }
@@ -28,9 +31,17 @@ export function mapStateToProps (state: AppState, ownProps: AssignmentListProps)
   const assignmentGroupRefs = assignmentGroupsState.refs
   const assignmentGroups = assignmentGroupRefs.map((ref) => state.entities.assignmentGroups[ref]).sort((a, b) => a.position - b.position)
 
+  let gradingPeriods = Object.keys(state.entities.gradingPeriods)
+    .map(id => ({
+      ...state.entities.gradingPeriods[id].gradingPeriod,
+      assignmentRefs: state.entities.gradingPeriods[id].assignmentRefs,
+    }))
+    .sort((gp1, gp2) => localeSort(gp1.title, gp2.title))
+
   return {
     ...assignmentGroupsState,
     assignmentGroups,
     course,
+    gradingPeriods,
   }
 }

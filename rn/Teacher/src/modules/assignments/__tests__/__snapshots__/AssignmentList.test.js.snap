@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1`] = `
 <View
   style={
     Object {
@@ -11,8 +11,14 @@ exports[`renders correctly 1`] = `
   <View
     style={
       Object {
+        "alignItems": "flex-end",
         "borderBottomColor": "lightgrey",
         "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingBottom": 8,
+        "paddingHorizontal": 16,
+        "paddingTop": 16,
       }
     }
   >
@@ -21,14 +27,493 @@ exports[`renders correctly 1`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#2d3b44",
-          "fontSize": 20,
-          "fontWeight": "600",
-          "marginBottom": 8,
-          "marginLeft": 16,
-          "marginTop": 16,
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          Object {
+            "color": "#2d3b44",
+            "fontSize": 20,
+            "fontWeight": "600",
+          },
+        ]
+      }
+    >
+      All Grading Periods
+    </Text>
+    <TouchableOpacity
+      accessibilityComponentType="button"
+      accessibilityTraits="button"
+      activeOpacity={0.2}
+      onLongPress={undefined}
+      onPress={[Function]}
+      onPressIn={undefined}
+      onPressOut={undefined}
+      style={undefined}
+      testID="assignment-list.filter"
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#368BD8",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-medium",
+            },
+            Object {
+              "color": "#368BD8",
+            },
+            Object {
+              "marginBottom": 1,
+            },
+          ]
         }
+      >
+        Filter
+      </Text>
+    </TouchableOpacity>
+  </View>
+  <RCTScrollView
+    dataSource={
+      ListViewDataSource {
+        "items": 0,
+      }
+    }
+    enableEmptySections={true}
+    onRefresh={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderFooter={[Function]}
+    renderRow={[Function]}
+    renderScrollComponent={[Function]}
+    renderSectionHeader={[Function]}
+    testID="assignment-list.list"
+  >
+    <RCTRefreshControl />
+    <View>
+      <View
+        style={
+          Object {
+            "borderBottomColor": "lightgrey",
+            "borderBottomWidth": 0.5,
+            "flex": 1,
+          }
+        }
+      >
+        <TouchableHighlight
+          onPress={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          testID="assignment-123456789"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "flex-start",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "padding": 12,
+                "paddingLeft": 3,
+              }
+            }
+          >
+            <View />
+            <View
+              accessibilityLabel="Not Published"
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 0,
+                  "height": 32,
+                  "width": 46,
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Array [
+                    Object {
+                      "position": "absolute",
+                    },
+                    Object {
+                      "tintColor": undefined,
+                    },
+                  ]
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 12,
+                      "tintColor": "#8B969E",
+                      "width": 12,
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                learn to write code
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  }
+                }
+              >
+                Due May 31, 2017 at 10:59 PM
+              </Text>
+              <View />
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View />
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`applyFilter will apply a new filter 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "borderBottomColor": "lightgrey",
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingBottom": 8,
+        "paddingHorizontal": 16,
+        "paddingTop": 16,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          Object {
+            "color": "#2d3b44",
+            "fontSize": 20,
+            "fontWeight": "600",
+          },
+        ]
+      }
+    >
+      First Block
+    </Text>
+    <TouchableOpacity
+      accessibilityComponentType="button"
+      accessibilityTraits="button"
+      activeOpacity={0.2}
+      onLongPress={undefined}
+      onPress={[Function]}
+      onPressIn={undefined}
+      onPressOut={undefined}
+      style={undefined}
+      testID="assignment-list.filter"
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#368BD8",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-medium",
+            },
+            Object {
+              "color": "#368BD8",
+            },
+            Object {
+              "marginBottom": 1,
+            },
+          ]
+        }
+      >
+        Clear filter
+      </Text>
+    </TouchableOpacity>
+  </View>
+  <RCTScrollView
+    dataSource={
+      ListViewDataSource {
+        "items": 0,
+      }
+    }
+    enableEmptySections={true}
+    onRefresh={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderFooter={[Function]}
+    renderRow={[Function]}
+    renderScrollComponent={[Function]}
+    renderSectionHeader={[Function]}
+    testID="assignment-list.list"
+  >
+    <RCTRefreshControl />
+    <View>
+      <View
+        style={
+          Object {
+            "borderBottomColor": "lightgrey",
+            "borderBottomWidth": 0.5,
+            "flex": 1,
+          }
+        }
+      >
+        <TouchableHighlight
+          onPress={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          testID="assignment-1"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "flex-start",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "padding": 12,
+                "paddingLeft": 3,
+              }
+            }
+          >
+            <View />
+            <View
+              accessibilityLabel="Not Published"
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 0,
+                  "height": 32,
+                  "width": 46,
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Array [
+                    Object {
+                      "position": "absolute",
+                    },
+                    Object {
+                      "tintColor": undefined,
+                    },
+                  ]
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 12,
+                      "tintColor": "#8B969E",
+                      "width": 12,
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                learn to write code
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  }
+                }
+              >
+                Due May 31, 2017 at 10:59 PM
+              </Text>
+              <View />
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View />
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`filter button only shows when there are grading periods 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "borderBottomColor": "lightgrey",
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingBottom": 8,
+        "paddingHorizontal": 16,
+        "paddingTop": 16,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          Object {
+            "color": "#2d3b44",
+            "fontSize": 20,
+            "fontWeight": "600",
+          },
+        ]
       }
     >
       All Grading Periods
@@ -41,7 +526,478 @@ exports[`renders correctly 1`] = `
       }
     }
     enableEmptySections={true}
-    onEndReached={[Function]}
+    onRefresh={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderFooter={[Function]}
+    renderRow={[Function]}
+    renderScrollComponent={[Function]}
+    renderSectionHeader={[Function]}
+    testID="assignment-list.list"
+  >
+    <RCTRefreshControl />
+    <View>
+      <View
+        style={
+          Object {
+            "borderBottomColor": "lightgrey",
+            "borderBottomWidth": 0.5,
+            "flex": 1,
+          }
+        }
+      >
+        <TouchableHighlight
+          onPress={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          testID="assignment-123456789"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "flex-start",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "padding": 12,
+                "paddingLeft": 3,
+              }
+            }
+          >
+            <View />
+            <View
+              accessibilityLabel="Not Published"
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 0,
+                  "height": 32,
+                  "width": 46,
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Array [
+                    Object {
+                      "position": "absolute",
+                    },
+                    Object {
+                      "tintColor": undefined,
+                    },
+                  ]
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 12,
+                      "tintColor": "#8B969E",
+                      "width": 12,
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                learn to write code
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  }
+                }
+              >
+                Due May 31, 2017 at 10:59 PM
+              </Text>
+              <View />
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View />
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "borderBottomColor": "lightgrey",
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingBottom": 8,
+        "paddingHorizontal": 16,
+        "paddingTop": 16,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          Object {
+            "color": "#2d3b44",
+            "fontSize": 20,
+            "fontWeight": "600",
+          },
+        ]
+      }
+    >
+      All Grading Periods
+    </Text>
+    <TouchableOpacity
+      accessibilityComponentType="button"
+      accessibilityTraits="button"
+      activeOpacity={0.2}
+      onLongPress={undefined}
+      onPress={[Function]}
+      onPressIn={undefined}
+      onPressOut={undefined}
+      style={undefined}
+      testID="assignment-list.filter"
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#368BD8",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-medium",
+            },
+            Object {
+              "color": "#368BD8",
+            },
+            Object {
+              "marginBottom": 1,
+            },
+          ]
+        }
+      >
+        Filter
+      </Text>
+    </TouchableOpacity>
+  </View>
+  <RCTScrollView
+    dataSource={
+      ListViewDataSource {
+        "items": 0,
+      }
+    }
+    enableEmptySections={true}
+    onRefresh={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderFooter={[Function]}
+    renderRow={[Function]}
+    renderScrollComponent={[Function]}
+    renderSectionHeader={[Function]}
+    testID="assignment-list.list"
+  >
+    <RCTRefreshControl />
+    <View>
+      <View
+        style={
+          Object {
+            "borderBottomColor": "lightgrey",
+            "borderBottomWidth": 0.5,
+            "flex": 1,
+          }
+        }
+      >
+        <TouchableHighlight
+          onPress={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          testID="assignment-123456789"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "flex-start",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "padding": 12,
+                "paddingLeft": 3,
+              }
+            }
+          >
+            <View />
+            <View
+              accessibilityLabel="Not Published"
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 0,
+                  "height": 32,
+                  "width": 46,
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Array [
+                    Object {
+                      "position": "absolute",
+                    },
+                    Object {
+                      "tintColor": undefined,
+                    },
+                  ]
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 12,
+                      "tintColor": "#8B969E",
+                      "width": 12,
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                learn to write code
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  }
+                }
+              >
+                Due May 31, 2017 at 10:59 PM
+              </Text>
+              <View />
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View />
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`selecting clear filter will remove any applied filters 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "borderBottomColor": "lightgrey",
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingBottom": 8,
+        "paddingHorizontal": 16,
+        "paddingTop": 16,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          Object {
+            "color": "#2d3b44",
+            "fontSize": 20,
+            "fontWeight": "600",
+          },
+        ]
+      }
+    >
+      All Grading Periods
+    </Text>
+    <TouchableOpacity
+      accessibilityComponentType="button"
+      accessibilityTraits="button"
+      activeOpacity={0.2}
+      onLongPress={undefined}
+      onPress={[Function]}
+      onPressIn={undefined}
+      onPressOut={undefined}
+      style={undefined}
+      testID="assignment-list.filter"
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#368BD8",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-medium",
+            },
+            Object {
+              "color": "#368BD8",
+            },
+            Object {
+              "marginBottom": 1,
+            },
+          ]
+        }
+      >
+        Filter
+      </Text>
+    </TouchableOpacity>
+  </View>
+  <RCTScrollView
+    dataSource={
+      ListViewDataSource {
+        "items": 0,
+      }
+    }
+    enableEmptySections={true}
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock

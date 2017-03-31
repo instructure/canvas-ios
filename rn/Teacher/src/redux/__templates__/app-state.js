@@ -10,6 +10,7 @@ const emptyAppState: AppState = {
   entities: {
     courses: {},
     assignmentGroups: {},
+    gradingPeriods: {},
   },
 }
 

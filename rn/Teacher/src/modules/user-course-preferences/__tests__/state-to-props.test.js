@@ -16,6 +16,7 @@ test('finds the correct data', () => {
         },
       },
       assignmentGroups: {},
+      gradingPeriods: {},
     },
     favoriteCourses: {
       pending: 0,

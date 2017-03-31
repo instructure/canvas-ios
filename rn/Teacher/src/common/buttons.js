@@ -26,7 +26,7 @@ export class LinkButton extends Component {
       color: branding.primaryButtonColor,
     }
     return (
-      <BaseButton {...this.props} ><Text style={[linkButtonStyles.textColor, brandingStyles]}>{this.props.children}</Text></BaseButton>
+      <BaseButton {...this.props}><Text style={[linkButtonStyles.textColor, linkButtonStyles.font, brandingStyles, this.props.style]}>{this.props.children}</Text></BaseButton>
     )
   }
 }
@@ -44,9 +44,11 @@ const styles = StyleSheet.create({
 })
 
 const linkButtonStyles = StyleSheet.create({
+  font: {
+    fontFamily: '.SFUIDisplay-medium',
+  },
   textColor: {
     fontSize: 14,
-    fontWeight: '500',
     color: branding.primaryButtonColor,
   },
 })

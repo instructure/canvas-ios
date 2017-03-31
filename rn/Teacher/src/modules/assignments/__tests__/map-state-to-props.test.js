@@ -5,6 +5,7 @@ import { mapStateToProps, type AssignmentListProps } from '../map-state-to-props
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../api/canvas-api/__templates__/grading-periods'),
   ...require('../../../__templates__/react-native-navigation'),
   ...require('../../../redux/__templates__/app-state'),
 }
@@ -12,6 +13,8 @@ const template = {
 test('map state to props should work', async () => {
   let course = template.course()
   let assignmentGroup = template.assignmentGroup()
+  let gradingPeriod = template.gradingPeriod({ id: 1 })
+  let gradingPeriodTwo = template.gradingPeriod({ id: 2 })
 
   let state = template.appState({
     entities: {
@@ -23,6 +26,16 @@ test('map state to props should work', async () => {
       },
       assignmentGroups: {
         [assignmentGroup.id]: assignmentGroup,
+      },
+      gradingPeriods: {
+        [gradingPeriod.id]: {
+          gradingPeriod,
+          assignmentRefs: [assignmentGroup.assignments[0].id],
+        },
+        [gradingPeriodTwo.id]: {
+          gradingPeriod: gradingPeriodTwo,
+          assignmentRefs: [],
+        },
       },
     },
     favoriteCourses: [],
@@ -36,33 +49,29 @@ test('map state to props should work', async () => {
     },
     assignmentGroups: [],
     refreshAssignmentList: jest.fn(),
+    refreshGradingPeriods: jest.fn(),
     refresh: jest.fn(),
-    nextPage: jest.fn(),
     pending: 0,
     navigator: template.navigator(),
+    gradingPeriods: [],
   }
 
   const result = mapStateToProps(state, props)
   expect(result).toMatchObject({
-    assignmentGroups: [{
-      assignments: assignmentGroup.assignments,
-      id: 1,
-      name: 'Learn React Native',
-      position: 1,
-    }],
+    assignmentGroups: [assignmentGroup],
     course: {
       assignmentGroups: {
         refs: [1],
       },
-      course: {
-        course_code: 'rn 101',
-        id: 1,
-        image_download_url: 'https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg',
-        is_favorite: true,
-        name: 'Learn React Native',
-        short_name: 'rn',
-      },
+      course: course,
     },
+    gradingPeriods: [{
+      ...gradingPeriod,
+      assignmentRefs: [assignmentGroup.assignments[0].id],
+    }, {
+      ...gradingPeriodTwo,
+      assignmentRefs: [],
+    }],
     refs: [1],
   })
 })

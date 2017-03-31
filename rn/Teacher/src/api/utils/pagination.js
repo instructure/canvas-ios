@@ -33,10 +33,11 @@ export async function exhaust<T> (initial: Promise<ApiResponse<[T]>>): Promise<A
 
   while (next) {
     const response = await next()
-    result = [...result, ...response.data]
+    if (response.data) {
+      result = [...result, ...response.data]
+    }
     next = response.next
   }
-
   return {
     data: result,
     next: null,
