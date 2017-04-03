@@ -55,10 +55,16 @@ if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_UI_JOB_ID ]]; then
   chruby ruby-2.3.1
 
   # update rubygems
+  echo "gem: --no-document" >> ~/.gemrc
   gem update --system --no-document
 
   # install fastlane
   gem install fastlane --no-document
+
+  # authorize simulator
+  # https://github.com/bootstraponline/run_loop
+  gem install run_loop_tcc --no-document
+  run-loop tcc allow -a com.instructure.teacher
 
   fastlane seed_teacher
 fi

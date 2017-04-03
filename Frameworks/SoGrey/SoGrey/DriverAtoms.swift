@@ -23,7 +23,9 @@ import EarlGrey
  */
 public struct DriverAtoms {
 
-  public static func findElement(locator:Locator, value: String) -> NSString? {
+  private static let debug:Bool = false
+
+  public static func findElement(locator:Locator, value: String) -> ElementReference? {
     let locatorJSON = self.makeLocatorJSON(locator: locator, value: value)
 
     var jsExecutionResult: NSString? = ""
@@ -36,11 +38,34 @@ public struct DriverAtoms {
     EarlGrey.select(elementWithMatcher: grey_kindOfClass(UIWebView.self))
       .perform(grey_javaScriptExecution(jsAtom, &jsExecutionResult))
 
-    print("execution result ----")
-    print(jsExecutionResult)
-    print("---- end execution result")
+    guard let jsResult = jsExecutionResult else { return nil }
+    let result = String(describing: jsResult)
 
-    return jsExecutionResult
+    if debug { print("Execution result: \(result)") }
+
+    return ElementReference(result)
+  }
+
+  public static func webKeys(element:ElementReference, value: String) {
+    var jsExecutionResult: NSString? = ""
+
+    // args
+    // [{"ELEMENT":":wdc:1490890919529"},"1490214466@c108a1f8-fb2b-4712-8790-d71d1ab06878.com"]
+
+    let escapedValue = value.replacingOccurrences(of: "\"", with: "\\\"")
+    let args = "[\(element), \"\(escapedValue)\"]"
+
+    let jsAtom = JavascriptEvaluation.atomize(script: WebDriverAtomScripts.SEND_KEYS_ANDROID,
+                                              args: args,
+                                              windowReference: nil)
+
+    EarlGrey.select(elementWithMatcher: grey_kindOfClass(UIWebView.self))
+      .perform(grey_javaScriptExecution(jsAtom, &jsExecutionResult))
+
+    guard let jsResult = jsExecutionResult else { return }
+    let result = String(describing: jsResult)
+
+    if debug { print("Execution result: \(result)") }
   }
 
   private static func makeLocatorJSON(locator:Locator, value:String) -> String {

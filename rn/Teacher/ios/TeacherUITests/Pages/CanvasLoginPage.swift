@@ -9,48 +9,40 @@
 import SoGrey
 import EarlGrey
 
-class CanvasLoginPage: PageObject {
+class CanvasLoginPage {
 
-  private static var emailField: GREYElementInteraction {
-    return EarlGrey.select(elementWithMatcher: grey_accessibilityValue("Email"))
-  }
+  // MARK: Singleton
 
-  private static var passwordField: GREYElementInteraction {
-    return EarlGrey.select(elementWithMatcher: grey_accessibilityValue("Password"))
-  }
+  static let sharedInstance = CanvasLoginPage()
+  private init() {}
 
-  private static var logInButton: GREYElementInteraction {
-    return EarlGrey.select(elementWithMatcher: grey_accessibilityLabel("Log In"))
-  }
+  // MARK: Page Elements
 
-  private static var authorizeButton: GREYElementInteraction {
-    return EarlGrey.select(elementWithMatcher: grey_accessibilityLabel("Authorize"))
-  }
+  let logInButton = e.selectBy(   label: "Log In")
+  let authorizeButton = e.selectBy(   label: "Authorize")
 
-  static func uniquePageElement() -> GREYElementInteraction {
-    return emailField
-  }
+  let EMAIL_FIELD_CSS = "input[name=\"pseudonym_session[unique_id]\"]";
+  let PASSWORD_FIELD_CSS = "input[name=\"pseudonym_session[password]\"]";
+  let LOGIN_BUTTON_CSS = "button[type=\"submit\"]";
+  let FORGOT_PASSWORD_BUTTON_CSS = "a[class=\"forgot-password flip-to-back\"]";
+  let AUTHORIZE_BUTTON_CSS = "button[type=\"submit\"]";
 
-  static func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
-    // todo
-  }
+  // Mark: - UI Actions
 
-  static func logIn(teacher: CanvasUser) {
-    waitForPageToLoad()
+  func logIn(teacher: CanvasUser, _ file: StaticString = #file, _ line: UInt = #line) {
+    grey_invokedFromFile(file, line)
 
-    // a really bad hack to get user creds into the web form
-    emailField.perform(grey_tap())
-    emailField.perform(grey_typeText(teacher.loginId))
+    logInButton.assertExists() // wait for webview to load
 
-    // passwordField.perform(grey_typeText(teacher.password)) doesn't work reliably,
-    // this hack makes it work reliably :(
-    logInButton.perform(grey_tap())
+    if let emailElement = DriverAtoms.findElement(locator: Locator.CSS_SELECTOR, value: EMAIL_FIELD_CSS) {
+      DriverAtoms.webKeys(element: emailElement, value: teacher.loginId)
+    }
 
-    passwordField.perform(grey_tap())
-    passwordField.perform(grey_typeText(teacher.password))
-    dismissKeyboard()
+    if let passwordElement = DriverAtoms.findElement(locator: Locator.CSS_SELECTOR, value: PASSWORD_FIELD_CSS) {
+      DriverAtoms.webKeys(element: passwordElement, value: teacher.password)
+    }
 
-    logInButton.perform(grey_tap())
-    authorizeButton.perform(grey_tap())
+    logInButton.tap()
+    authorizeButton.tap()
   }
 }

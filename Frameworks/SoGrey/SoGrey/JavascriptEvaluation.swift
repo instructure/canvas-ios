@@ -16,6 +16,8 @@
 
 // Note: This file contains code based on Espresso Web v2.2.2
 
+import Foundation
+
 public struct JavascriptEvaluation {
 
   private static func isFunctionDefinition(_ script:String) -> Bool {

@@ -13,11 +13,13 @@
 		492246031D1C744A0053766B /* EarlGreyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492246001D1C744A0053766B /* EarlGreyUtils.swift */; };
 		49E21B171D1C694D00B7B9B4 /* SoGrey.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E21B161D1C694D00B7B9B4 /* SoGrey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61B536E21E784AD5000FEABB /* PageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E11E784AD5000FEABB /* PageObject.swift */; };
+		F908C9631E8EBAE800C7FF1B /* dsl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F908C9621E8EBAE800C7FF1B /* dsl.swift */; };
 		F95E3D521E89555D000CE6A1 /* WebDriverAtomScripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95E3D511E89555D000CE6A1 /* WebDriverAtomScripts.swift */; };
 		F98D9BBF1E8AE18000114F59 /* EvaluationAtom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D9BBE1E8AE18000114F59 /* EvaluationAtom.swift */; };
 		F98D9BC11E8AE8E100114F59 /* JavascriptEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D9BC01E8AE8E100114F59 /* JavascriptEvaluation.swift */; };
 		F990755D1E895E40008EA980 /* Locator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F990755C1E895E40008EA980 /* Locator.swift */; };
 		F990755F1E895EE8008EA980 /* DriverAtoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = F990755E1E895EE8008EA980 /* DriverAtoms.swift */; };
+		F9FC2B881E8D481300064532 /* ElementReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FC2B871E8D481300064532 /* ElementReference.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,11 +31,13 @@
 		49E21B161D1C694D00B7B9B4 /* SoGrey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoGrey.h; sourceTree = "<group>"; };
 		49E21B181D1C694D00B7B9B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61B536E11E784AD5000FEABB /* PageObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageObject.swift; sourceTree = "<group>"; };
+		F908C9621E8EBAE800C7FF1B /* dsl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dsl.swift; sourceTree = "<group>"; };
 		F95E3D511E89555D000CE6A1 /* WebDriverAtomScripts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebDriverAtomScripts.swift; sourceTree = "<group>"; };
 		F98D9BBE1E8AE18000114F59 /* EvaluationAtom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationAtom.swift; sourceTree = "<group>"; };
 		F98D9BC01E8AE8E100114F59 /* JavascriptEvaluation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavascriptEvaluation.swift; sourceTree = "<group>"; };
 		F990755C1E895E40008EA980 /* Locator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locator.swift; sourceTree = "<group>"; };
 		F990755E1E895EE8008EA980 /* DriverAtoms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverAtoms.swift; sourceTree = "<group>"; };
+		F9FC2B871E8D481300064532 /* ElementReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementReference.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,21 +86,47 @@
 				61B536E11E784AD5000FEABB /* PageObject.swift */,
 				49E21B161D1C694D00B7B9B4 /* SoGrey.h */,
 				49E21B181D1C694D00B7B9B4 /* Info.plist */,
-				F9FC2B5B1E8C368A00064532 /* webdriver */,
+				F9FC2B5B1E8C368A00064532 /* web */,
+				F908C9621E8EBAE800C7FF1B /* dsl.swift */,
 			);
 			path = SoGrey;
 			sourceTree = "<group>";
 		};
-		F9FC2B5B1E8C368A00064532 /* webdriver */ = {
+		F9FC2B5B1E8C368A00064532 /* web */ = {
+			isa = PBXGroup;
+			children = (
+				F9FC2B851E8D46B500064532 /* webdriver */,
+				F9FC2B861E8D46D600064532 /* action */,
+				F9FC2B891E8D481B00064532 /* model */,
+			);
+			name = web;
+			sourceTree = "<group>";
+		};
+		F9FC2B851E8D46B500064532 /* webdriver */ = {
 			isa = PBXGroup;
 			children = (
 				F95E3D511E89555D000CE6A1 /* WebDriverAtomScripts.swift */,
 				F990755C1E895E40008EA980 /* Locator.swift */,
 				F990755E1E895EE8008EA980 /* DriverAtoms.swift */,
+			);
+			name = webdriver;
+			sourceTree = "<group>";
+		};
+		F9FC2B861E8D46D600064532 /* action */ = {
+			isa = PBXGroup;
+			children = (
 				F98D9BBE1E8AE18000114F59 /* EvaluationAtom.swift */,
 				F98D9BC01E8AE8E100114F59 /* JavascriptEvaluation.swift */,
 			);
-			name = webdriver;
+			name = action;
+			sourceTree = "<group>";
+		};
+		F9FC2B891E8D481B00064532 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F9FC2B871E8D481300064532 /* ElementReference.swift */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,9 +213,11 @@
 				F98D9BC11E8AE8E100114F59 /* JavascriptEvaluation.swift in Sources */,
 				492246021D1C744A0053766B /* EarlGrey.swift in Sources */,
 				492246011D1C744A0053766B /* Class.swift in Sources */,
+				F908C9631E8EBAE800C7FF1B /* dsl.swift in Sources */,
 				F990755D1E895E40008EA980 /* Locator.swift in Sources */,
 				492246031D1C744A0053766B /* EarlGreyUtils.swift in Sources */,
 				61B536E21E784AD5000FEABB /* PageObject.swift in Sources */,
+				F9FC2B881E8D481300064532 /* ElementReference.swift in Sources */,
 				F95E3D521E89555D000CE6A1 /* WebDriverAtomScripts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

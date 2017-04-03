@@ -12,6 +12,7 @@
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
+		0F9423A5F0E2CBB864FB623A /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E700B8D330A1A4CAAF983A /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -33,8 +34,6 @@
 		2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */; };
 		2C5AC25B1E5E3B8700DE4DEE /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5AC25A1E5E3B7B00DE4DEE /* libReactNativeNavigation.a */; };
 		2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */; };
-		2C62DCA61E8BF6C2006638F3 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DCA51E8BF6C2006638F3 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift */; };
-		2C62DCA91E8BF6D8006638F3 /* CourseListPageTest_testCourseListPage_displaysList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DCA81E8BF6D8006638F3 /* CourseListPageTest_testCourseListPage_displaysList.swift */; };
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
 		2CEC447A1E8AABD500AF7344 /* LogoutBeforeEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEC44791E8AABD500AF7344 /* LogoutBeforeEach.swift */; };
 		31C9F17B182AA3ABB965DDA2 /* DataMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EA5B9B254626D699014C44 /* DataMap.swift */; };
@@ -75,10 +74,14 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8FA0A13649E41DE268D43A1E /* DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515879C98C3F38C08928D4C /* DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift */; };
 		952E99B216DEE7FD0BEF819D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E479910A81A38C8833E5314 /* Page.swift */; };
+		9E80454AFF54FA3A301495CC /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE43F594F5734FBD9DF2146C /* Section.swift */; };
 		A45A7871AEE461283E84002D /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105261256A70B5DFD1139104 /* Quiz.swift */; };
 		A6A99147D8722993787C0994 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF3DE89359E019540B64CA /* Assignment.swift */; };
+		BFEF14CECBEF3577D41F7BBF /* GradingPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484C40873F5A33402D194B04 /* GradingPeriod.swift */; };
 		C4ECC257F431783ED35CBF11 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F798127265B286008D5A43E /* DataProvider.swift */; };
+		CB206CA59F21CDA6CF21EB0D /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0679F6C1793F7855CCF998AE /* Submission.swift */; };
 		E95E120300F55714C77F2BB4 /* DataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E779D0FC821A88203D0C34D /* DataUtil.swift */; };
+		FFED8940A737FAF2C8F35764 /* CourseListPageTest_testCourseListPage_displaysList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175D059690BE83471486C41 /* CourseListPageTest_testCourseListPage_displaysList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -336,6 +339,7 @@
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0456B43BE349468FA3E976BB /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
+		0679F6C1793F7855CCF998AE /* Submission.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Submission.swift; path = models/Submission.swift; sourceTree = "<group>"; };
 		105261256A70B5DFD1139104 /* Quiz.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Quiz.swift; path = models/Quiz.swift; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -359,14 +363,13 @@
 		2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C5AC2441E5E3B7B00DE4DEE /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPageTest.swift; sourceTree = "<group>"; };
-		2C62DCA51E8BF6C2006638F3 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListEmptyPageTest/CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
-		2C62DCA81E8BF6D8006638F3 /* CourseListPageTest_testCourseListPage_displaysList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysList.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysList.swift; sourceTree = "<group>"; };
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		2CEC44791E8AABD500AF7344 /* LogoutBeforeEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutBeforeEach.swift; sourceTree = "<group>"; };
 		329DC2282549635CBA9EDD0B /* Course.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Course.swift; path = models/Course.swift; sourceTree = "<group>"; };
 		33EA5B9B254626D699014C44 /* DataMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataMap.swift; path = data/DataMap.swift; sourceTree = "<group>"; };
 		3BEF7BF01E7C96860092C864 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		3E479910A81A38C8833E5314 /* Page.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Page.swift; path = models/Page.swift; sourceTree = "<group>"; };
+		484C40873F5A33402D194B04 /* GradingPeriod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GradingPeriod.swift; path = models/GradingPeriod.swift; sourceTree = "<group>"; };
 		4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -396,14 +399,15 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		86FF3DE89359E019540B64CA /* Assignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assignment.swift; path = models/Assignment.swift; sourceTree = "<group>"; };
-		8B32E1F4415B44FB9A38059F /* CourseListPageTest_testCourseListPage_displaysList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysList.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysList.swift; sourceTree = "<group>"; };
 		9E779D0FC821A88203D0C34D /* DataUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataUtil.swift; path = data/DataUtil.swift; sourceTree = "<group>"; };
-		A3E7A4FD4BBDC129467A9107 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListEmptyPageTest/CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
 		A515879C98C3F38C08928D4C /* DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift; path = data/DomainPickerTests/DomainPickerTests_testDomainPicker_domainFieldAllowsInput.swift; sourceTree = "<group>"; };
 		ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
+		AE43F594F5734FBD9DF2146C /* Section.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Section.swift; path = models/Section.swift; sourceTree = "<group>"; };
 		B4ECA86954393EA402EE37DE /* Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Data.swift; path = data/Data.swift; sourceTree = "<group>"; };
 		CB4A26FAD3481B8CC4F39E20 /* Enrollment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enrollment.swift; path = models/Enrollment.swift; sourceTree = "<group>"; };
 		D71370A64E454689407684D4 /* CanvasUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CanvasUser.swift; path = models/CanvasUser.swift; sourceTree = "<group>"; };
+		E175D059690BE83471486C41 /* CourseListPageTest_testCourseListPage_displaysList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysList.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysList.swift; sourceTree = "<group>"; };
+		F1E700B8D330A1A4CAAF983A /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListEmptyPageTest/CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -593,14 +597,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2C62DCA71E8BF6C9006638F3 /* CourseListPageTest */ = {
-			isa = PBXGroup;
-			children = (
-				2C62DCA81E8BF6D8006638F3 /* CourseListPageTest_testCourseListPage_displaysList.swift */,
-			);
-			name = CourseListPageTest;
-			sourceTree = "<group>";
-		};
 		2CEC445D1E8AABBD00AF7344 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,15 +608,13 @@
 		3B379781808A96719F53B283 /* data */ = {
 			isa = PBXGroup;
 			children = (
-				2C62DCA71E8BF6C9006638F3 /* CourseListPageTest */,
 				F09745A515E8F598C184EC40 /* DomainPickerTests */,
 				9E779D0FC821A88203D0C34D /* DataUtil.swift */,
-				5189271213E78F8F5B907EA6 /* CourseListEmptyPageTest */,
 				B4ECA86954393EA402EE37DE /* Data.swift */,
 				6F798127265B286008D5A43E /* DataProvider.swift */,
 				33EA5B9B254626D699014C44 /* DataMap.swift */,
-				D8EDF1BE4BD53131137D41FF /* CourseListEmptyPageTest */,
-				D6CB2B3015C3D12807575F2F /* CourseListPageTest */,
+				70ED9D765A7CB74FB722EE65 /* CourseListEmptyPageTest */,
+				D155DA8255FE926C1F4BE521 /* CourseListPageTest */,
 			);
 			name = data;
 			sourceTree = "<group>";
@@ -650,14 +644,6 @@
 				4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */,
 			);
 			name = Dependencies;
-			sourceTree = "<group>";
-		};
-		5189271213E78F8F5B907EA6 /* CourseListEmptyPageTest */ = {
-			isa = PBXGroup;
-			children = (
-				2C62DCA51E8BF6C2006638F3 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift */,
-			);
-			name = CourseListEmptyPageTest;
 			sourceTree = "<group>";
 		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
@@ -701,6 +687,14 @@
 				61B536DD1E784946000FEABB /* DomainPickerTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		70ED9D765A7CB74FB722EE65 /* CourseListEmptyPageTest */ = {
+			isa = PBXGroup;
+			children = (
+				F1E700B8D330A1A4CAAF983A /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift */,
+			);
+			name = CourseListEmptyPageTest;
 			sourceTree = "<group>";
 		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
@@ -775,24 +769,19 @@
 				CB4A26FAD3481B8CC4F39E20 /* Enrollment.swift */,
 				3E479910A81A38C8833E5314 /* Page.swift */,
 				105261256A70B5DFD1139104 /* Quiz.swift */,
+				484C40873F5A33402D194B04 /* GradingPeriod.swift */,
+				AE43F594F5734FBD9DF2146C /* Section.swift */,
+				0679F6C1793F7855CCF998AE /* Submission.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
 		};
-		D6CB2B3015C3D12807575F2F /* CourseListPageTest */ = {
+		D155DA8255FE926C1F4BE521 /* CourseListPageTest */ = {
 			isa = PBXGroup;
 			children = (
-				8B32E1F4415B44FB9A38059F /* CourseListPageTest_testCourseListPage_displaysList.swift */,
+				E175D059690BE83471486C41 /* CourseListPageTest_testCourseListPage_displaysList.swift */,
 			);
 			name = CourseListPageTest;
-			sourceTree = "<group>";
-		};
-		D8EDF1BE4BD53131137D41FF /* CourseListEmptyPageTest */ = {
-			isa = PBXGroup;
-			children = (
-				A3E7A4FD4BBDC129467A9107 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift */,
-			);
-			name = CourseListEmptyPageTest;
 			sourceTree = "<group>";
 		};
 		F09745A515E8F598C184EC40 /* DomainPickerTests */ = {
@@ -1211,13 +1200,11 @@
 				61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */,
 				61B537301E786A54000FEABB /* Pages.swift in Sources */,
 				49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */,
-				2C62DCA91E8BF6D8006638F3 /* CourseListPageTest_testCourseListPage_displaysList.swift in Sources */,
 				49B274C31E8437D700828E42 /* CourseListPage.swift in Sources */,
 				2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */,
 				61B5372F1E786A51000FEABB /* DomainPickerTests.swift in Sources */,
 				A6A99147D8722993787C0994 /* Assignment.swift in Sources */,
 				28087A3DB76A7583688C3073 /* CanvasUser.swift in Sources */,
-				2C62DCA61E8BF6C2006638F3 /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift in Sources */,
 				462B9DCCC3A10C7F30AE8168 /* Course.swift in Sources */,
 				49B274C51E84387600828E42 /* CourseListEmptyPageTest.swift in Sources */,
 				279DC42F392D254716A9F524 /* Enrollment.swift in Sources */,
@@ -1228,6 +1215,11 @@
 				3B9D72859115B817CD00CD83 /* Data.swift in Sources */,
 				C4ECC257F431783ED35CBF11 /* DataProvider.swift in Sources */,
 				31C9F17B182AA3ABB965DDA2 /* DataMap.swift in Sources */,
+				BFEF14CECBEF3577D41F7BBF /* GradingPeriod.swift in Sources */,
+				9E80454AFF54FA3A301495CC /* Section.swift in Sources */,
+				CB206CA59F21CDA6CF21EB0D /* Submission.swift in Sources */,
+				0F9423A5F0E2CBB864FB623A /* CourseListEmptyPageTest_testCourseListEmptyPage_displaysEmptyState.swift in Sources */,
+				FFED8940A737FAF2C8F35764 /* CourseListPageTest_testCourseListPage_displaysList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

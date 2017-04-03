@@ -17,25 +17,11 @@
 
 /* This is an auto-generated file. */
 
-struct Enrollment {
-    static let studentEnrollment = "StudentEnrollment"
-    static let teacherEnrollment = "TeacherEnrollment"
-    static let observerEnrollment = "ObserverEnrollment"
-    static let taEnrollment = "TaEnrollment"
-
+struct Section {
     let id: Int
+    let name: String
     let courseId: Int
-    let courseSectionId: Int
-    let enrollmentState: String
-    let type: String
-    let userId: Int
-    let associatedUserId: Int
-    let role: String
-    let updatedAt: String
     let startAt: String
     let endAt: String
-    let lastActivityAt: String
-    let totalActivityTime: Int
-    let htmlUrl: String
-    let grades: String
+    let totalStudents: Int
 }

@@ -9,55 +9,54 @@
 import SoGrey
 import EarlGrey
 
-class DomainPickerPage: PageObject {
-  
-  // MARK: - Page objects
-  
-  private static var domainField: GREYElementInteraction {
-    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("domainPickerTextField"))
-  }
+class DomainPickerPage {
 
-  private static var connectButton: GREYElementInteraction {
-    return EarlGrey.select(elementWithMatcher: grey_accessibilityLabel("Search for domain."))
-  }
+  // MARK: Singleton
 
-  static func uniquePageElement() -> GREYElementInteraction {
-    return domainField
-  }
+  static let sharedInstance = DomainPickerPage()
+  private init() {}
+
+  // MARK: Page Elements
+
+  let domainField = e.selectBy(id: "domainPickerTextField")
+  let connectButton = e.selectBy(label: "Search for domain.")
+
+  // MARK: - Assertions
   
-  // MARK: - Assertion helpers
-  
-  static func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
+  func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
     
-    dismissKeyboard()
-    domainField.assert(with: grey_allOfMatchers([grey_sufficientlyVisible(), grey_interactable()]))
+    grey_dismissKeyboard()
+    domainField.assertExists()
   }
   
-  static func assertDomainField(contains string: String, _ file: StaticString = #file, _ line: UInt = #line) {
+  func assertDomainField(contains string: String, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
-    waitForPageToLoad()
+
+    domainField.assertExists() // wait for element to exist. TODO: handle this in dsl.swift
     domainField.assert(with: grey_text(string))
   }
   
-  // MARK: UI actions
+  // MARK: UI Actions
   
-  static func enterDomain(_ domain: String, _ file: StaticString = #file, _ line: UInt = #line) {
+  func enterDomain(_ domain: String, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
-    waitForPageToLoad()
+
+    domainField.assertExists() // wait for element to exist. TODO: handle this in dsl.swift
     domainField.perform(grey_replaceText(domain))
   }
 
-  static func openDomain(_ domain: String, _ file: StaticString = #file, _ line: UInt = #line) {
+  func openDomain(_ domain: String, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
-    waitForPageToLoad()
+
     enterDomain(domain)
-    connectButton.perform(grey_tap())
+    connectButton.tap()
   }
 
-  static func clearDomain(_ file: StaticString = #file, _ line: UInt = #line) {
+  func clearDomain(_ file: StaticString = #file, _ line: UInt = #line) {
     grey_invokedFromFile(file, line)
-    waitForPageToLoad()
+
+    domainField.assertExists() // wait for element to exist. TODO: handle this in dsl.swift
     domainField.perform(grey_replaceText(""))
   }
 }

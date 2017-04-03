@@ -15,5 +15,6 @@ class LogoutBeforeEach: XCTestCase {
   override func setUp() {
     super.setUp()
     CanvasKeymaster.the().resetKeymasterForTesting()
+    domainPickerPage.assertPageObjects()
   }
 }

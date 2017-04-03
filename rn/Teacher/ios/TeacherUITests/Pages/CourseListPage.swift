@@ -9,30 +9,28 @@
 import SoGrey
 import EarlGrey
 
-class CourseListPage: PageObject {
-  private static var seeAllCoursesButton: GREYElementInteraction {
-    return EarlGrey.select(elementWithMatcher: grey_accessibilityID("course-list.see-all-btn"))
+class CourseListPage {
+
+  // MARK: Singleton
+
+  static let sharedInstance = CourseListPage()
+  private init() {}
+
+  let seeAllCoursesButton = e.selectBy(id: "course-list.see-all-btn")
+
+  // Mark: - Assertions
+
+  func assertCourseExists(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+    grey_invokedFromFile(file, line)
+
+    e.selectBy(id: course.courseCode).assertExists()
   }
 
-  static func uniquePageElement() -> GREYElementInteraction {
-    return seeAllCoursesButton
-  }
+  // Mark: - UI Actions
 
-  static func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
-    // todo
-  }
+  func openAllCoursesPage(_ file: StaticString = #file, _ line: UInt = #line) {
+    grey_invokedFromFile(file, line)
 
-  static func assertEmptyFavorites() {
-    // todo
-  }
-
-  static func assertCourseExists(_ course: Course) {
-    waitForPageToLoad()
-    let element = EarlGrey.select(elementWithMatcher: grey_accessibilityID(course.courseCode))
-    waitForElementToLoad(element: element)
-  }
-  
-  static func openAllCoursesPage() {
-    seeAllCoursesButton.perform(grey_tap())
+    seeAllCoursesButton.tap()
   }
 }

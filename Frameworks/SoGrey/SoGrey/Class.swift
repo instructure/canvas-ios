@@ -13,13 +13,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-    
-    
+
+import Foundation
 
 public struct Class {
-  public static let UINavigationItemButtonView = NSClassFromString("UINavigationItemButtonView")!
-  public static let UISearchBarTextFieldLabel = NSClassFromString("UISearchBarTextFieldLabel")!
-  public static let UIAlertControllerActionView = NSClassFromString("_UIAlertControllerActionView")!
-  public static let UIAlertControllerView = NSClassFromString("_UIAlertControllerView")!
-  public static let UIButtonLabel = NSClassFromString("UIButtonLabel")!
+  public static let UINavigationItemButtonView:AnyClass = NSClassFromString("UINavigationItemButtonView")!
+  public static let UISearchBarTextFieldLabel:AnyClass = NSClassFromString("UISearchBarTextFieldLabel")!
+  public static let UIAlertControllerActionView:AnyClass = NSClassFromString("_UIAlertControllerActionView")!
+  public static let UIAlertControllerView:AnyClass = NSClassFromString("_UIAlertControllerView")!
+  public static let UIButtonLabel:AnyClass = NSClassFromString("UIButtonLabel")!
 }

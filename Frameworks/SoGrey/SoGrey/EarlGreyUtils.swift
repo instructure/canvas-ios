@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+import EarlGrey
+
 // Set screenshot folder so that app reset doesn't delete the contents.
 public func grey_setConfiguration() throws {
   enum DocumentError: Error {
@@ -39,8 +41,6 @@ public func grey_setConfiguration() throws {
 // Don't set line number in EarlGreyUtils.
 // Must be invoked via the calling method inside the page object.
 
-
-import EarlGrey
 
 // Must use wrapper class to force pass by reference in block.
 // inout params won't work. http://stackoverflow.com/a/28252105
