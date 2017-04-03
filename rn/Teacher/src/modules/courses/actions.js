@@ -5,10 +5,12 @@ import canvas from './../../api/canvas-api'
 import type { CourseListActionProps } from './course-prop-types'
 
 export let CoursesActions = (api: typeof canvas): CourseListActionProps => ({
-  refreshCourses: createAction('courses.refresh', () => Promise.all([
-    api.getCourses(),
-    api.getCustomColors(),
-  ])),
+  refreshCourses: createAction('courses.refresh', () => ({
+    promise: Promise.all([
+      api.getCourses(),
+      api.getCustomColors(),
+    ]),
+  })),
   updateCourseColor: createAction('courses.updateColor', (courseID: string, color: string) => {
     return {
       courseID,

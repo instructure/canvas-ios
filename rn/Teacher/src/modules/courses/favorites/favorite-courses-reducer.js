@@ -40,7 +40,7 @@ function toggleFavoriteCourse (
 export const favoriteCourses: Reducer<FavoriteCoursesState, any> = handleActions({
   [refreshCourses.toString()]: handleAsync({
     pending: (state) => ({ ...state, pending: state.pending + 1 }),
-    resolved: (state, [coursesResponse]) => {
+    resolved: (state, { result: [coursesResponse] }) => {
       const favorites: EntityRefs = coursesResponse.data
         .filter((course) => course.is_favorite)
         .map((course) => course.id)
@@ -51,7 +51,7 @@ export const favoriteCourses: Reducer<FavoriteCoursesState, any> = handleActions
         pending: state.pending - 1,
       }
     },
-    rejected: (state, response) => {
+    rejected: (state, { error: response }) => {
       return {
         ...state,
         error: parseErrorMessage(response),

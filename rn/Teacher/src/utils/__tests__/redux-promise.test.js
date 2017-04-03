@@ -15,7 +15,7 @@ test('it immediately dispatches pending', async () => {
   let promise = new Promise(() => {})
 
   let store = mockStore()
-  store.dispatch({ type: 'test', payload: promise })
+  store.dispatch({ type: 'test', payload: { promise } })
 
   expect(store.getActions()).toMatchObject([
     { type: 'test', pending: true },
@@ -23,41 +23,6 @@ test('it immediately dispatches pending', async () => {
 })
 
 test('it dispatches on resolution', async () => {
-  let _resolve = () => {}
-  let promise = new Promise((resolve) => { _resolve = resolve })
-
-  let store = mockStore()
-  store.dispatch({ type: 'test', payload: promise })
-
-  _resolve('yay')
-  await promise // kick the event loop
-
-  expect(store.getActions()).toMatchObject([
-    { type: 'test', pending: true },
-    { type: 'test', payload: 'yay' },
-  ])
-})
-
-test('it dispatches on rejection', async () => {
-  let _reject = () => {}
-  let promise = new Promise((resolve, reject) => { _reject = reject })
-
-  let store = mockStore()
-  store.dispatch({ type: 'test', payload: promise })
-
-  let e = new Error('boooo!')
-  _reject(e)
-  try {
-    await promise // kick the event loop
-  } catch (e) {}
-
-  expect(store.getActions()).toMatchObject([
-    { type: 'test', pending: true },
-    { type: 'test', payload: e, error: true },
-  ])
-})
-
-test('it also checks payload.promise', async () => {
   let _resolve = () => {}
   let promise = new Promise((resolve) => { _resolve = resolve })
 
@@ -73,7 +38,7 @@ test('it also checks payload.promise', async () => {
   ])
 })
 
-test('it checks payload.promise on rejection', async () => {
+test('it dispatches on rejection', async () => {
   let error = new Error()
   let promise = Promise.reject(error)
 

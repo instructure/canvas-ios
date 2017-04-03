@@ -10,21 +10,21 @@ type State = {
   pending: number,
 }
 
-const resolveAction = createAction('test.async.reducer.resolved', jest.fn(() => {
-  return new Promise((resolve, reject) => {
+const resolveAction = createAction('test.async.reducer.resolved', jest.fn(() => ({
+  promise: new Promise((resolve, reject) => {
     process.nextTick(() => {
       resolve('foo')
     })
-  })
-}))
+  }),
+})))
 
-const rejectAction = createAction('test.async.reducer.rejected', jest.fn(() => {
-  return new Promise((resolve, reject) => {
+const rejectAction = createAction('test.async.reducer.rejected', jest.fn(() => ({
+  promise: new Promise((resolve, reject) => {
     process.nextTick(() => {
       reject()
     })
-  })
-}))
+  }),
+})))
 
 let defaultState: State
 let reducer: Reducer<State, any>
@@ -61,7 +61,7 @@ describe('testAsyncReducer', () => {
         pending: 1,
       },
       {
-        sets: ['foo'],
+        sets: [{ result: 'foo' }],
         pending: 0,
       },
     ])
@@ -94,7 +94,7 @@ test('testAsyncAction', async () => {
     },
     {
       type: resolveAction.toString(),
-      payload: 'foo',
+      payload: { result: 'foo' },
     },
   ])
 })

@@ -29,7 +29,7 @@ exports[`render 1`] = `
         Object {
           "color": "#27B9CD",
           "course_code": "BIO 101",
-          "id": 1,
+          "id": "1",
           "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           "is_favorite": true,
           "name": "Biology 101",
@@ -38,7 +38,7 @@ exports[`render 1`] = `
         Object {
           "color": "#8F3E97",
           "course_code": "LIT 401",
-          "id": 2,
+          "id": "2",
           "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           "is_favorite": false,
           "name": "American Literature Psysicks foobar hello world 401",
@@ -47,7 +47,7 @@ exports[`render 1`] = `
         Object {
           "color": "#8F3E99",
           "course_code": "FOO 102",
-          "id": 3,
+          "id": "3",
           "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           "is_favorite": true,
           "name": "Foobar 102",

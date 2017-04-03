@@ -28,21 +28,17 @@ function isPromise (val: any): boolean {
  */
 let promiseMiddleware = <S, A: Action>({ dispatch }: MiddlewareAPI<S, A>): Middleware<S, A> => {
   return (next: Dispatch<A>) => (action: A) => {
-    let promise = action.payload
-
-    if (action.payload && action.payload.promise) {
-      promise = action.payload.promise
-    }
+    let promise = action.payload && action.payload.promise
 
     if (isFSA(action) && isPromise(promise) && !action.error) {
       promise.then(
         result => {
-          let payload = action.payload.promise ? { ...action.payload, result } : result
+          let payload = { ...action.payload, result }
           delete payload.promise
           return dispatch({ ...action, payload })
         },
         error => {
-          let payload = action.payload.promise ? { ...action.payload, error } : error
+          let payload = { ...action.payload, error }
           return dispatch({ ...action, payload, error: true })
         }
       )

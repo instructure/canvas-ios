@@ -44,7 +44,7 @@ export const normalizeCourse = (course: Course, colors: { [courseId: string]: st
 
 const coursesData: Reducer<CoursesState, any> = handleActions({
   [refreshCourses.toString()]: handleAsync({
-    resolved: (state, [coursesResponse, colorsResponse]) => {
+    resolved: (state, { result: [coursesResponse, colorsResponse] }) => {
       const colors = groupCustomColors(colorsResponse.data).custom_colors.course
       const courses = coursesResponse.data
       const newStates = courses.map((course) => {

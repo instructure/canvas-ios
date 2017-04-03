@@ -3,7 +3,7 @@
 import template from '../../../utils/template'
 
 export const course: Template<Course> = template({
-  id: 1,
+  id: '1',
   name: 'Learn React Native',
   short_name: 'rn',
   course_code: 'rn 101',

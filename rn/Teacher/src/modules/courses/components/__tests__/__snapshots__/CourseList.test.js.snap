@@ -29,7 +29,7 @@ exports[`render courses 1`] = `
         Object {
           "color": "#112233",
           "course_code": "rn 101",
-          "id": 1,
+          "id": "1",
           "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           "is_favorite": true,
           "name": "Learn React Native",
@@ -279,7 +279,7 @@ exports[`render courses pending 1`] = `
         Object {
           "color": "#112233",
           "course_code": "rn 101",
-          "id": 1,
+          "id": "1",
           "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           "is_favorite": true,
           "name": "Learn React Native",
@@ -529,7 +529,7 @@ exports[`render narrow width 1`] = `
         Object {
           "color": "#112233",
           "course_code": "rn 101",
-          "id": 1,
+          "id": "1",
           "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           "is_favorite": true,
           "name": "Learn React Native",
@@ -779,7 +779,7 @@ exports[`render wide width 1`] = `
         Object {
           "color": "#112233",
           "course_code": "rn 101",
-          "id": 1,
+          "id": "1",
           "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           "is_favorite": true,
           "name": "Learn React Native",
