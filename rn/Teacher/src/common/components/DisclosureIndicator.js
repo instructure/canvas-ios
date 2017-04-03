@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     height: 10,
     marginLeft: 7,
     backgroundColor: 'transparent',
-    borderTopWidth: 1,
-    borderRightWidth: 1,
+    borderTopWidth: 2,
+    borderRightWidth: 2,
     borderColor: '#c7c7cc',
     transform: [{
       rotate: '45deg',

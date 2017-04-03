@@ -92,8 +92,8 @@ exports[`default icon 1`] = `
             Object {
               "backgroundColor": "transparent",
               "borderColor": "#c7c7cc",
-              "borderRightWidth": 1,
-              "borderTopWidth": 1,
+              "borderRightWidth": 2,
+              "borderTopWidth": 2,
               "height": 10,
               "marginLeft": 7,
               "transform": Array [
@@ -203,8 +203,8 @@ exports[`renders correctly 1`] = `
             Object {
               "backgroundColor": "transparent",
               "borderColor": "#c7c7cc",
-              "borderRightWidth": 1,
-              "borderTopWidth": 1,
+              "borderRightWidth": 2,
+              "borderTopWidth": 2,
               "height": 10,
               "marginLeft": 7,
               "transform": Array [

@@ -12,14 +12,14 @@ import i18n from 'format-message'
 import { Heading1, Text } from '../../common/text'
 import WebContainer from '../../common/components/WebContainer'
 import PublishedIcon from './components/PublishedIcon'
-import { formattedDate } from '../../utils/dateUtils'
-import { formattedDueDate } from '../../common/formatters'
+import AssignmentDates from './components/AssignmentDates'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 import colors from '../../common/colors'
 import { RefreshableScrollView } from '../../common/components/RefreshableList'
 import refresh from '../../utils/refresh'
 import AssignmentActions from '../assignments/actions'
 import { route } from '../../routing'
+import Images from '../../images'
 import {
   View,
   StyleSheet,
@@ -88,11 +88,6 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
       description: 'Assignment Details Section title for when assignment is due',
     })
 
-    let sectionTitleAvailable = i18n({
-      default: 'Available',
-      description: 'Assignment Details Section title for when assignment is available',
-    })
-
     let sectionTitleSubmissionTypes = i18n({
       default: 'Submission Types',
       description: 'Assignment Details Section title for types of submission, (i.e. online, text, upload, etc)',
@@ -107,6 +102,13 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
       default: 'Instructions',
       description: 'Assignment Details Section title for assignment instructions',
     })
+
+    let descriptionElement = <View />
+    if (assignment.description) {
+      descriptionElement = (<AssignmentSection title={sectionTitleInstructions} >
+                              <WebContainer style={{ flex: 1 }} html={assignment.description}/>
+                            </AssignmentSection>)
+    }
 
     return (
       <RefreshableScrollView
@@ -123,12 +125,12 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
 
         </AssignmentSection>
 
-        <AssignmentSection title={sectionTitleDue}>
-          <Text>{formattedDueDate(assignment)}</Text>
-        </AssignmentSection>
-
-        <AssignmentSection title={sectionTitleAvailable}>
-          <Text style={style.container}>{this.formattedAvailableDate(assignment)}</Text>
+        <AssignmentSection
+          title={sectionTitleDue}
+          image={Images.assignments.calendar}
+          showDisclosureIndicator={true}
+          onPress={this.viewDueDateDetails} >
+          <AssignmentDates assignment={assignment} />
         </AssignmentSection>
 
         <AssignmentSection title={sectionTitleSubmissionTypes}>
@@ -139,9 +141,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
           <Submission data={[assignment.needs_grading_count]} style={style.submission}/>
         </AssignmentSection>
 
-        <AssignmentSection title={sectionTitleInstructions} >
-          <WebContainer style={{ flex: 1 }} html={assignment.description}/>
-        </AssignmentSection>
+        {descriptionElement}
 
       </RefreshableScrollView>
     )
@@ -167,16 +167,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
     })
   }
 
-  formattedAvailableDate (assignment: Assignment): string {
-    let lockAt = new Date(assignment.lock_at)
-    let now = new Date()
-    if (lockAt <= now) {
-      return i18n({ default: 'Closed', description: 'Assignment is closed for submissions' })
-    } else {
-      let end = formattedDate(assignment.lock_at, 'LL')
-      let start = formattedDate(assignment.unlock_at, 'LL')
-      return `${start} - ${end}`
-    }
+  viewDueDateDetails = () => {
   }
 }
 
@@ -203,7 +194,6 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 2,
-    marginBottom: -15,
   },
   publishedIcon: {
     marginLeft: 14,

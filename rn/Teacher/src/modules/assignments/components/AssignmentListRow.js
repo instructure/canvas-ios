@@ -11,8 +11,9 @@ import {
 } from 'react-native'
 
 import i18n from 'format-message'
-import { formattedDueDate } from '../../../common/formatters'
+import { formattedDueDateWithStatus } from '../../../common/formatters'
 import Icon from './AssignmentListRowIcon'
+import AssignmentDates from '../../../common/AssignmentDates'
 
 type Props = {
   assignment: Assignment,
@@ -27,7 +28,13 @@ export default class AssignmentListRow extends Component<any, Props, any> {
   }
 
   dueDate (assignment: Assignment): Element<View> {
-    const formattedDate = formattedDueDate(assignment)
+    const dates = new AssignmentDates(assignment)
+
+    if (dates.hasMultipleDueDates()) {
+      return <Text style={styles.dueAtTitle}>{i18n('Multiple Due Dates')}</Text>
+    }
+
+    const formattedDate = formattedDueDateWithStatus(dates.bestDueAt())
     return <Text style={styles.dueAtTitle}>{formattedDate}</Text>
   }
 

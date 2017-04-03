@@ -3,6 +3,7 @@
 type Images = {
   course: {[name: string]: any},
   tabbar: {[name: string]: any},
+  assignments: {[name: string]: any},
   [name: string]: any,
 }
 
@@ -28,6 +29,7 @@ const images = {
   assignments: {
     published: require('./assignments/Published.png'),
     unpublished: require('./assignments/Unpublished.png'),
+    calendar: require('./assignments/Calendar.png'),
   },
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),

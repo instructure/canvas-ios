@@ -16,8 +16,10 @@ if (__DEV__) {
 }
 
 // Enable detailed logging
-const logger = createLogger()
-middleware.push(logger)
+if (__DEV__) {
+  const logger = createLogger()
+  middleware.push(logger)
+}
 
 export default (createStore(
   rootReducer,

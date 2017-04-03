@@ -2,30 +2,28 @@
 
 import i18n from 'format-message'
 import moment from 'moment'
+import { isDateValid } from '../utils/dateUtils'
 
-export function formattedDueDate (assignment: Assignment): string {
-  let invalidDate = i18n('No due date')
+const noDueDateString = i18n('No due date')
 
-  if (!assignment.due_at) {
-    return invalidDate
-  }
+export function formattedDueDate (date: ?Date): string {
+  if (!date) return noDueDateString
 
-  let date
-  let dateString
-  let timeString
+  const dateString = extractDateString(date)
+  const timeString = extractTimeString(date)
 
-  try {
-    date = new Date(assignment.due_at)
+  if (!dateString || !timeString) return noDueDateString
 
-    if (!moment(date).isValid()) {
-      return invalidDate
-    }
+  return i18n('{dateString} at {timeString}', { dateString, timeString })
+}
 
-    dateString = moment(date).format('ll')
-    timeString = moment(date).format('LT')
-  } catch (e) {
-    return invalidDate
-  }
+export function formattedDueDateWithStatus (date: ?Date): string {
+  if (!date) return noDueDateString
+
+  const dateString = extractDateString(date)
+  const timeString = extractTimeString(date)
+
+  if (!dateString || !timeString) return noDueDateString
 
   const now = Date.now()
   if (moment(now).isAfter(date)) {
@@ -33,4 +31,16 @@ export function formattedDueDate (assignment: Assignment): string {
   }
 
   return i18n('Due {dateString} at {timeString}', { dateString, timeString })
+}
+
+export function extractDateString (date: Date): ?string {
+  if (!date) return null
+  if (!isDateValid(date)) return null
+  return moment(date).format('ll')
+}
+
+export function extractTimeString (date: Date): ?string {
+  if (!date) return null
+  if (!isDateValid(date)) return null
+  return moment(date).format('LT')
 }

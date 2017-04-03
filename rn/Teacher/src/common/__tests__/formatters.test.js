@@ -1,46 +1,87 @@
 // @flow
 
-import { formattedDueDate } from '../formatters'
+import {
+  formattedDueDateWithStatus,
+  formattedDueDate,
+  extractTimeString,
+  extractDateString,
+} from '../formatters'
+
+import { extractDateFromString } from '../../utils/dateUtils'
+
 import i18n from 'format-message'
+import moment from 'moment'
 
-const template = {
-  ...require('../../api/canvas-api/__templates__/assignments'),
-}
-
-test('test assignment due date in future', () => {
-  const dueAt = '2117-03-28T15:07:56.312Z'
-  const assignment = template.assignment({
-    due_at: dueAt,
+describe('assignment due date with status', () => {
+  test('due date in future', () => {
+    const dueAt = '2117-03-28T15:07:56.312Z'
+    const date = extractDateFromString(dueAt)
+    const dueDate = formattedDueDateWithStatus(date)
+    const dateString = i18n.date(new Date(dueAt), 'medium')
+    const timeString = i18n.time(new Date(dueAt), 'short')
+    expect(dueDate).toEqual(`Due ${dateString} at ${timeString}`)
   })
-  const dueDate = formattedDueDate(assignment)
-  const date = i18n.date(new Date(dueAt), 'medium')
-  const time = i18n.time(new Date(dueAt), 'short')
-  expect(dueDate).toEqual(`Due ${date} at ${time}`)
+
+  test('due date in past', () => {
+    const dueAt = '1986-03-28T15:07:56.312Z'
+    const date = extractDateFromString(dueAt)
+    const dueDate = formattedDueDateWithStatus(date)
+    const dateString = i18n.date(new Date(dueAt), 'medium')
+    const timeString = i18n.time(new Date(dueAt), 'short')
+    expect(dueDate).toEqual(`Closed • ${dateString} at ${timeString}`)
+  })
+
+  test('due date that is missing', () => {
+    const garbage = formattedDueDateWithStatus(null)
+    expect(garbage).toEqual('No due date')
+  })
+
+  test('due date that is garbage', () => {
+    const garbage = formattedDueDateWithStatus(new Date('lkjaklsjdfljaslkdfjads'))
+    expect(garbage).toEqual('No due date')
+  })
 })
 
-test('test assignment due date in past', () => {
-  const dueAt = '1986-03-28T15:07:56.312Z'
-  const assignment = template.assignment({
-    due_at: dueAt,
+describe('due date with status', () => {
+  test('due date', () => {
+    const dueAt = '2117-03-28T15:07:56.312Z'
+    const date = extractDateFromString(dueAt)
+    const dueDate = formattedDueDate(date)
+    const dateString = i18n.date(new Date(dueAt), 'medium')
+    const timeString = i18n.time(new Date(dueAt), 'short')
+    expect(dueDate).toEqual(`${dateString} at ${timeString}`)
   })
-  const dueDate = formattedDueDate(assignment)
-  const date = i18n.date(new Date(dueAt), 'medium')
-  const time = i18n.time(new Date(dueAt), 'short')
-  expect(dueDate).toEqual(`Closed • ${date} at ${time}`)
+
+  test('test assignment due date that is garbage', () => {
+    const garbage = formattedDueDate(new Date('klaljsdflkjs'))
+    expect(garbage).toEqual('No due date')
+  })
 })
 
-test('test assignment due date that is missing', () => {
-  const assignment = template.assignment({
-    due_at: null,
+describe('util functions', () => {
+  test('extractTimeString', () => {
+    const date = new Date('2117-03-28T15:07:56.312Z')
+    const formattedTime = extractTimeString(date)
+    const timeString = moment(date).format('LT')
+    expect(formattedTime).toEqual(timeString)
   })
-  const garbage = formattedDueDate(assignment)
-  expect(garbage).toEqual('No due date')
-})
 
-test('test assignment due date that is garbage', () => {
-  const assignment = template.assignment({
-    due_at: 'kljalsjdkfljalsdjfald',
+  test('extractTimeString with garbage', () => {
+    const date = new Date('jlakjsdflkjasldkfkjalsd')
+    const formattedTime = extractTimeString(date)
+    expect(formattedTime).toEqual(null)
   })
-  const garbage = formattedDueDate(assignment)
-  expect(garbage).toEqual('No due date')
+
+  test('extractDateString', () => {
+    const date = new Date('2117-03-28T15:07:56.312Z')
+    const formattedDate = extractDateString(date)
+    const dateString = moment(date).format('ll')
+    expect(formattedDate).toEqual(dateString)
+  })
+
+  test('extractDateString with garbage', () => {
+    const date = new Date('jlakjsdflkjasldkfkjalsd')
+    const formattedTime = extractTimeString(date)
+    expect(formattedTime).toEqual(null)
+  })
 })

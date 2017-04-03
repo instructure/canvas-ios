@@ -31,3 +31,9 @@ export const assignmentGroup: Template<AssignmentGroup> = template({
   position: 1,
   assignments: [assignment()],
 })
+
+export const assignmentDueDate: Template<AssignmentDate> = template({
+  due_at: '2017-06-01T05:59:00Z',
+  unlock_at: '2017-03-17T06:00:00Z',
+  lock_at: '2017-06-01T05:59:59Z',
+})

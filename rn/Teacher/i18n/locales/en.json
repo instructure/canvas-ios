@@ -23,9 +23,23 @@
     "message": "Assignments",
     "description": "Title of the assignments screen for a course"
   },
-  "available_8606e40c": {
-    "message": "Available",
-    "description": "Assignment Details Section title for when assignment is available"
+  "availability_e415e857": {
+    "message": "Availability:",
+    "description": "Assignment due date \"Available to:\" field"
+  },
+  "available_from_f84e4611": {
+    "message": "Available from"
+  },
+  "available_from_f9e093c8": {
+    "message": "Available from:",
+    "description": "Assignment due date \"Available from:\" field"
+  },
+  "available_to_434cb9f5": {
+    "message": "Available to:",
+    "description": "Assignment due date \"Available to:\" field"
+  },
+  "available_to_b7350e02": {
+    "message": "Available to"
   },
   "back_courses": {
     "message": "Courses",
@@ -43,7 +57,7 @@
   },
   "closed_983a96fe": {
     "message": "Closed",
-    "description": "Assignment is closed for submissions"
+    "description": "Assignment due date \"Available to:\" field"
   },
   "closed_datestring_at_timestring_fab7aa9d": {
     "message": "Closed • { dateString } at { timeString }"
@@ -66,6 +80,9 @@
     "message": "Customize Course",
     "description": "The title of the user course preferences screen"
   },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } at { timeString }"
+  },
   "discussion_topic_a7bf935": {
     "message": "discussion topic",
     "description": "assignment submission type"
@@ -78,6 +95,14 @@
     "message": "Done",
     "description": "Button to dismiss feedback form."
   },
+  "done_edit_assignment": {
+    "message": "Done",
+    "description": "Button to close modal"
+  },
+  "due_5d7267be": {
+    "message": "Due:",
+    "description": "Assignment due date \"Due:\" field. Looks something like this when finished: \"Due: March 13, 2019\""
+  },
   "due_a73610f6": {
     "message": "Due",
     "description": "Assignment Details Section title for when assignment is due"
@@ -87,11 +112,14 @@
   },
   "edit_c5fbea07": {
     "message": "Edit",
-    "description": "Shown at the top of the course details screen."
+    "description": "Shown at the top of the app to allow the user to edit"
   },
   "edit_courses_1f63340f": {
     "message": "Edit Courses",
     "description": "The title of the screen enabling teachers to favorite and unfavorite their courses"
+  },
+  "everyone_854554dd": {
+    "message": "Everyone"
   },
   "external_tool_d6eaa5c1": {
     "message": "external tool",
@@ -103,6 +131,13 @@
   },
   "filter_e3398407": {
     "message": "Filter"
+  },
+  "for_974cbb84": {
+    "message": "For"
+  },
+  "for_e3490d05": {
+    "message": "For:",
+    "description": "Assignment due date \"For:\" field"
   },
   "graded_25cd3fcd": {
     "message": "Graded",
@@ -126,6 +161,10 @@
   "media_recording_7df9606f": {
     "message": "media recording",
     "description": "assignment submission type"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Multiple Due Dates",
+    "description": "Assignment details information about due dates, when there are more than one due date to display"
   },
   "nickname_1e6da3ad": {
     "message": "Nickname",
@@ -203,6 +242,10 @@
   },
   "this_is_the_inbox_b957d042": {
     "message": "This is the inbox"
+  },
+  "title_ee03d132": {
+    "message": "Title",
+    "description": "Assignment details edit title header"
   },
   "unexpected_error_93991f40": {
     "message": "Unexpected Error",

@@ -29,7 +29,7 @@ export function getCourseAssignmentGroups (courseID: string, gradingPeriodID?: s
   const url = `courses/${courseID}/assignment_groups`
   let options = {
     params: {
-      include: ['assignments'],
+      include: ['assignments', 'all_dates', 'overrides'],
       per_page: 99,
       grading_period_id: gradingPeriodID,
     },
