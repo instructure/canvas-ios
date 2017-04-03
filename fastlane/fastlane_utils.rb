@@ -61,4 +61,4 @@ def get_simulator opts={}
   device
 end
 
-TEST_SIMULATOR = get_simulator(name: 'iPhone 7 Plus', ios_version: '10.2')
+TEST_SIMULATOR = get_simulator(name: 'iPhone 7 Plus', ios_version: '10.3')
