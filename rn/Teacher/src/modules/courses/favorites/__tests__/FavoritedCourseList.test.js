@@ -47,7 +47,7 @@ const courses: Array<CourseProps> = [
     short_name: 'FOO 102',
     is_favorite: true,
   }),
-].map(course => ({ ...course, color: colors[course.id.toString()] }))
+].map(course => ({ ...course, color: colors[course.id] }))
 
 let defaultProps = {
   navigator: template.navigator(),

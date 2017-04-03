@@ -214,7 +214,7 @@ CourseDetails.propTypes = {
 let Refreshed = refresh(
   props => {
     props.refreshCourses()
-    props.refreshTabs(props.courseID.toString())
+    props.refreshTabs(props.courseID)
   },
   props => !props.course || props.tabs.length === 0
 )(CourseDetails)

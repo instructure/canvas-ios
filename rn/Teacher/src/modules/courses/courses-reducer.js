@@ -33,7 +33,7 @@ const emptyCourseState: CourseContentState = {
 
 export const normalizeCourse = (course: Course, colors: { [courseId: string]: string } = {}, prevState: CourseContentState = emptyCourseState): CourseState => {
   const { id } = course
-  const color = colors[(id || 'none').toString()] || '#ffc100'
+  const color = colors[(id || 'none')] || '#ffc100'
   return {
     ...prevState,
     course,

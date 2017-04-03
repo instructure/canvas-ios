@@ -33,8 +33,8 @@ test('map state to props should work', async () => {
   })
 
   let props: AssignmentDetailsProps = {
-    courseID: course.id.toString(),
-    assignmentID: assignment.id.toString(),
+    courseID: course.id,
+    assignmentID: assignment.id,
     refreshAssignmentDetails: jest.fn(),
     pending: 0,
     navigator: template.navigator(),

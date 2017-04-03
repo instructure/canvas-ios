@@ -1,7 +1,7 @@
 // @flow
 
 export type AssignmentGroup = {
-  id: number,
+  id: string,
   name: string,
   position: number,
   group_weight: number,
@@ -21,7 +21,7 @@ export type Assignment = {
   lock_at?: string,
   unlock_at?: string,
   has_overrides: boolean,
-  course_id: number,
+  course_id: string,
   published: true,
   unpublishable: false,
   points_possible: number,

@@ -19,7 +19,7 @@ type Props = {
 
 export default class CourseFavorite extends Component<void, Props, void> {
   onPress = (event: ReactNative.NativeSyntheticEvent<ReactNative.NativeTouchEvent>) => {
-    this.props.onPress(this.props.course.id.toString(), !this.props.isFavorite)
+    this.props.onPress(this.props.course.id, !this.props.isFavorite)
   }
 
   render (): React.Element<TouchableHighlight> {

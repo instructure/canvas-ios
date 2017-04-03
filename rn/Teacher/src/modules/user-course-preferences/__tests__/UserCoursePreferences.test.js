@@ -59,6 +59,6 @@ describe('UserCoursePreferences', () => {
     let color = explore(tree).selectByID('colorButton.#F26090') || {}
     color.props.onPress()
 
-    expect(defaultProps.updateCourseColor).toHaveBeenCalledWith(defaultProps.course.id.toString(), '#F26090')
+    expect(defaultProps.updateCourseColor).toHaveBeenCalledWith(defaultProps.course.id, '#F26090')
   })
 })

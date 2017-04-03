@@ -1,7 +1,7 @@
 // @flow
 
 export type Course = {
-  id: number,
+  id: string,
   name: string,
   course_code: string,
   short_name?: string,
@@ -20,6 +20,6 @@ export type UpdateCustomColorResponse = {
 }
 
 export type Favorite = {
-  context_id: number,
+  context_id: string,
   context_type: string,
 }

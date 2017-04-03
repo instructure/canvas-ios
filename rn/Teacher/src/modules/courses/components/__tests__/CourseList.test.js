@@ -78,5 +78,5 @@ test('calls props.onCoursePreferencesPressed when a kabob is pressed', () => {
 
   let kabob = explore(tree).selectByID(`courseCard.kabob_${defaultProps.courses[0].id}`) || {}
   kabob.props.onPress()
-  expect(onCoursePreferencesPressed).toHaveBeenCalledWith(defaultProps.courses[0].id.toString())
+  expect(onCoursePreferencesPressed).toHaveBeenCalledWith(defaultProps.courses[0].id)
 })

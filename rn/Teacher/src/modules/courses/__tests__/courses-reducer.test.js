@@ -33,7 +33,7 @@ describe('courses refresher', () => {
       },
     }
     expect(state).toEqual([{}, {
-      [course.id.toString()]: expected,
+      [course.id]: expected,
     }])
   })
 

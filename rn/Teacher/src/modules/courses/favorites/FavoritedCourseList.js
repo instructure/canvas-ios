@@ -157,7 +157,7 @@ export class FavoritedCourseList extends Component {
 }
 
 const coursePropsShape = PropTypes.shape({
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   course_code: PropTypes.string.isRequired,
   short_name: PropTypes.string,

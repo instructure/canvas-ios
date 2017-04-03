@@ -64,7 +64,7 @@ export class UserCoursePreferences extends Component {
   }
 
   updateColor = (color: string): void => {
-    this.props.updateCourseColor(this.props.course.id.toString(), color)
+    this.props.updateCourseColor(this.props.course.id, color)
   }
 
   render (): React.Element<*> {

@@ -25,7 +25,7 @@ describe('favorite courses mapStateToProps', () => {
   const courseStates: Array<CourseState> = courseTemplates
     .map((course) => normalizeCourse(course, colors))
   const pairs: Array<Array<*>> = courseStates
-      .map((courseState) => ([courseState.course.id.toString(), courseState]))
+      .map((courseState) => ([courseState.course.id, courseState]))
   const courses: CoursesState = fromPairs(pairs)
 
   const state = appState({
@@ -38,7 +38,7 @@ describe('favorite courses mapStateToProps', () => {
   const props = mapStateToProps(state)
 
   it('courses sorted alphabetically', () => {
-    const expected = [a, b, c].map(course => ({ ...course, color: colors[course.id.toString()] }))
+    const expected = [a, b, c].map(course => ({ ...course, color: colors[course.id] }))
     expect(props.courses).toEqual(expected)
   })
 

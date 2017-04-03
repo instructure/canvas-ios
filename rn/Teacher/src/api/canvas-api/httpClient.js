@@ -16,7 +16,10 @@ export default function httpClient (): any {
   return axios.create({
     baseURL: `${session.baseURL}api/v1`,
     headers: {
-      common: { 'Authorization': `Bearer ${session.authToken}` },
+      common: {
+        Authorization: `Bearer ${session.authToken}`,
+        Accept: 'application/json+canvas-string-ids',
+      },
     },
   })
 }

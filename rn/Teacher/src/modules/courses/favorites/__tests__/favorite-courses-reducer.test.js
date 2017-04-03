@@ -73,8 +73,8 @@ describe('toggleFavorite', () => {
 
 describe('refreshCourses', () => {
   it('gets favorites', async () => {
-    const yes = template.course({ id: 1, is_favorite: true })
-    const no = template.course({ id: 2, is_favorite: false })
+    const yes = template.course({ id: '1', is_favorite: true })
+    const no = template.course({ id: '2', is_favorite: false })
     const api = {
       getCourses: apiResponse([yes, no]),
       getCustomColors: apiResponse(),
@@ -90,7 +90,7 @@ describe('refreshCourses', () => {
   })
 
   it('removes favorites', async () => {
-    const fresh = template.course({ id: 2, is_favorite: true })
+    const fresh = template.course({ id: '2', is_favorite: true })
     const api = {
       getCourses: apiResponse([fresh]),
       getCustomColors: apiResponse(),

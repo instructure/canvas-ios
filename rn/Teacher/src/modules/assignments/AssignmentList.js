@@ -107,7 +107,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
       sectionIdentities.push(group.id)
       let assignments = []
       filteredAssignments.forEach((assignment) => {
-        assignments.push(assignment.id.toString())
+        assignments.push(assignment.id)
         groupsMap[`${group.id}:${assignment.id}`] = assignment
       })
 
@@ -128,7 +128,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     return data[`${sectionID}:${rowID}`]
   }
 
-  renderRow = (assignment: Assignment, sectionID: number, rowID: number) => {
+  renderRow = (assignment: Assignment, sectionID: string, rowID: string) => {
     return <AssignmentListRowView assignment={assignment} tintColor={this.props.course.color} onPress={this.selectedAssignment} />
   }
 

@@ -1,7 +1,7 @@
 // @flow
 
 export type GradingPeriod = {
-  id: number,
+  id: string,
   title: string,
   start_date: string,
   end_date: string,

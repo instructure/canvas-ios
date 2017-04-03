@@ -61,7 +61,7 @@ export default class CourseCard extends Component {
   }
 
   onCoursePreferencesPressed = (): void => {
-    this.props.onCoursePreferencesPressed(this.props.course.id.toString())
+    this.props.onCoursePreferencesPressed(this.props.course.id)
   }
 
   render (): React.Element<View> {

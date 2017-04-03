@@ -42,7 +42,7 @@ test('map state to props should work', async () => {
   })
 
   let props: AssignmentListProps = {
-    courseID: course.id.toString(),
+    courseID: course.id,
     course: {
       course,
       color: '#fff',

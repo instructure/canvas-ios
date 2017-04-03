@@ -91,7 +91,7 @@ export class FavoritesList extends Component {
     return (
       <CourseFavorite
         course={course}
-        isFavorite={this.props.favorites.includes(course.id.toString())}
+        isFavorite={this.props.favorites.includes(course.id)}
         onPress={this.props.toggleFavorite}
       />
     )

@@ -41,5 +41,5 @@ test('calls props.onPress with the course id and the toggled favorite value', ()
   let button: any = explore(tree).selectByID(defaultProps.course.course_code)
   button.props.onPress()
 
-  expect(onPress).toHaveBeenCalledWith(defaultProps.course.id.toString(), false)
+  expect(onPress).toHaveBeenCalledWith(defaultProps.course.id, false)
 })

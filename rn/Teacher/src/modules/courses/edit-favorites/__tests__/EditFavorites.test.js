@@ -17,7 +17,7 @@ let courses = [
 let defaultProps = {
   navigator: navigationTemplate.navigator(),
   courses: courses,
-  favorites: [courses[0].id.toString(), courses[1].id.toString()],
+  favorites: [courses[0].id, courses[1].id],
   toggleFavorite: () => Promise.resolve(),
   refresh: jest.fn(),
   pending: 0,

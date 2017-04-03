@@ -43,7 +43,7 @@ export const favoriteCourses: Reducer<FavoriteCoursesState, any> = handleActions
     resolved: (state, [coursesResponse]) => {
       const favorites: EntityRefs = coursesResponse.data
         .filter((course) => course.is_favorite)
-        .map((course) => course.id.toString())
+        .map((course) => course.id)
 
       return {
         ...state,

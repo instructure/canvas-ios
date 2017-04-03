@@ -17,7 +17,7 @@ export type AssignmentDetailsProps = {
 }
 
 export type AssignmentDetailsActionProps = {
-  +refreshAssignmentDetails: (courseID: number, assignmentID: string) => Promise<Assignment>,
+  +refreshAssignmentDetails: (courseID: string, assignmentID: string) => Promise<Assignment>,
 }
 
 export function mapStateToProps (state: AppState, ownProps: AssignmentDetailsProps): AssignmentDetailsState {
