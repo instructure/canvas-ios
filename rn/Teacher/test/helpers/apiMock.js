@@ -31,13 +31,19 @@ type MockResponseOptions<T> = {
 }
 
 export function apiResponse<T> (data: T, opts: MockResponseOptions<T> = {}): Function {
-  const mock = response({
+  const mock = (data) => response({
     data: data,
     status: opts.status || 200,
     headers: opts.headers || { link: null },
     next: opts.next,
   })
-  return jest.fn(() => mock)
+
+  if (typeof data === 'function') {
+    // $FlowFixMe
+    return jest.fn((...args) => mock(data.apply(null, args)))
+  }
+
+  return jest.fn(() => mock(data))
 }
 
 export function apiError (errorDetails?: { status?: number, message?: string }): Function {

@@ -50,6 +50,19 @@ describe('apiResponse', () => {
     const response = await fn()
     expect(response.headers).toEqual(expectedHeaders)
   })
+
+  it('should pass along params', async () => {
+    const options = ['foo', 'bar']
+    const fn = apiResponse((n) => {
+      return options[n]
+    })
+
+    let response = await fn(0)
+    expect(response.data).toEqual('foo')
+
+    response = await fn(1)
+    expect(response.data).toEqual('bar')
+  })
 })
 
 describe('apiError', async () => {
