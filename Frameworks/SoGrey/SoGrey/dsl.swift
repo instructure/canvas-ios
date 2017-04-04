@@ -57,7 +57,8 @@ public func grey_dismissKeyboard(_ file: StaticString = #file, _ line: UInt = #l
   UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 }
 
-let elementTimeout:TimeInterval = 30.0 // seconds
+let elementTimeout:TimeInterval = 60.0 // seconds
+let elementPoll:TimeInterval = 2.0 // seconds
 
 // MARK: Element actions
 
@@ -73,7 +74,7 @@ extension GREYInteraction {
       let success = errorOrNil == nil
 
       return success
-    }).wait(withTimeout: elementTimeout)
+    }).wait(withTimeout: elementTimeout, pollInterval: elementPoll)
 
     if (!success) { self.perform(grey_tap()) }
   }
@@ -85,7 +86,7 @@ extension GREYInteraction {
       self.assert(with: grey_notNil(), error: &errorOrNil)
       let success = errorOrNil == nil
       return success
-    }).wait(withTimeout: elementTimeout)
+    }).wait(withTimeout: elementTimeout, pollInterval: elementPoll)
 
     if (!success) { self.assert(with: grey_notNil()) }
   }
