@@ -4,6 +4,7 @@
  * @flow
  */
 
+import './src/common/global-style'
 import {
   NativeModules,
   NativeEventEmitter,

@@ -49,14 +49,12 @@ export default class AssignmentSection extends Component {
   }
 }
 
-const PADDING = 16
-
 const assignmentSectionStyles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingLeft: PADDING,
-    paddingRight: PADDING,
-    paddingBottom: PADDING,
+    paddingLeft: global.style.defaultPadding,
+    paddingRight: global.style.defaultPadding,
+    paddingBottom: global.style.defaultPadding,
     backgroundColor: 'white',
   },
   innerContainer: {
@@ -67,7 +65,7 @@ const assignmentSectionStyles = StyleSheet.create({
   divider: {
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: color.grey2,
-    paddingBottom: PADDING,
+    paddingBottom: global.style.defaultPadding,
   },
   titleContainer: {
     flexDirection: 'row',

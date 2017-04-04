@@ -8,7 +8,6 @@ import { updateMapStateToProps, type AssignmentDetailsProps } from './map-state-
 import AssignmentActions from '../assignments/actions'
 import i18n from 'format-message'
 import EditSectionHeader from './components/EditSectionHeader'
-import { PADDING } from './../../common/globalStyle'
 import { TextInput } from '../../common/text'
 import ModalActivityIndicator from '../../common/components/ModalActivityIndicator'
 import { Navigation } from 'react-native-navigation'
@@ -126,10 +125,10 @@ const style = StyleSheet.create({
     flex: 1,
   },
   row: {
-    paddingTop: PADDING / 2,
-    paddingBottom: PADDING / 2,
-    paddingLeft: PADDING,
-    paddingRight: PADDING,
+    paddingTop: global.style.defaultPadding / 2,
+    paddingBottom: global.style.defaultPadding / 2,
+    paddingLeft: global.style.defaultPadding,
+    paddingRight: global.style.defaultPadding,
   },
   title: {
     height: 45,

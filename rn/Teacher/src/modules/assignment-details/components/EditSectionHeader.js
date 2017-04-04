@@ -5,8 +5,6 @@
 import React, { Component } from 'react'
 import { Heading1 } from '../../../common/text'
 import color from '../../../common/colors'
-import { PADDING } from '../../../common/globalStyle'
-
 import {
   View,
   StyleSheet,
@@ -38,8 +36,8 @@ const style = StyleSheet.create({
   },
   header: {
     color: color.darkText,
-    marginLeft: PADDING,
-    marginTop: PADDING,
-    marginBottom: PADDING / 2,
+    marginLeft: global.style.defaultPadding,
+    marginTop: global.style.defaultPadding,
+    marginBottom: global.style.defaultPadding / 2,
   },
 })

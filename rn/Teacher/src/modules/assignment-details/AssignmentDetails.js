@@ -19,7 +19,6 @@ import { RefreshableScrollView } from '../../common/components/RefreshableList'
 import refresh from '../../utils/refresh'
 import AssignmentActions from '../assignments/actions'
 import { route } from '../../routing'
-import { PADDING } from '../../common/globalStyle'
 import Images from '../../images'
 
 import {
@@ -179,8 +178,8 @@ const style = StyleSheet.create({
   },
   topContainer: {
     paddingTop: 2,
-    paddingLeft: PADDING,
-    paddingRight: PADDING,
+    paddingLeft: global.style.defaultPadding,
+    paddingRight: global.style.defaultPadding,
     paddingBottom: 17,
   },
   loadingContainer: {
