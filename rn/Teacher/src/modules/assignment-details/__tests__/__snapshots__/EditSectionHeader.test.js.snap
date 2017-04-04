@@ -36,7 +36,9 @@ exports[`render 1`] = `
         },
         Object {
           "color": "#2D3B45",
+          "marginBottom": 8,
           "marginLeft": 16,
+          "marginTop": 16,
         },
       ]
     }
@@ -82,7 +84,9 @@ exports[`render no title 1`] = `
         },
         Object {
           "color": "#2D3B45",
+          "marginBottom": 8,
           "marginLeft": 16,
+          "marginTop": 16,
         },
       ]
     }

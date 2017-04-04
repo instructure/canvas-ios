@@ -21,6 +21,48 @@ exports[`renders heading1 correctly 1`] = `
 />
 `;
 
+exports[`renders heading2 correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#2D3B45",
+        "fontFamily": ".SFUIDisplay-medium",
+        "fontSize": 16,
+      },
+      undefined,
+    ]
+  }
+/>
+`;
+
+exports[`renders modalActivityIndicatorAlertText correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#fff",
+        "fontFamily": ".SFUIDisplay-semibold",
+        "fontSize": 24,
+      },
+      undefined,
+    ]
+  }
+/>
+`;
+
 exports[`renders paragraph correctly 1`] = `
 <Text
   accessible={true}
@@ -56,6 +98,20 @@ exports[`renders text correctly 1`] = `
         "color": "#2D3B45",
         "fontSize": 16,
       },
+      undefined,
+    ]
+  }
+/>
+`;
+
+exports[`renders textInput correctly 1`] = `
+<TextInput
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {},
       undefined,
     ]
   }

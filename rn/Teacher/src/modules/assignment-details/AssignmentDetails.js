@@ -19,7 +19,9 @@ import { RefreshableScrollView } from '../../common/components/RefreshableList'
 import refresh from '../../utils/refresh'
 import AssignmentActions from '../assignments/actions'
 import { route } from '../../routing'
+import { PADDING } from '../../common/globalStyle'
 import Images from '../../images'
+
 import {
   View,
   StyleSheet,
@@ -171,8 +173,6 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
   }
 }
 
-const PADDING = 16
-
 const style = StyleSheet.create({
   container: {
     flex: 1,
@@ -209,7 +209,7 @@ const style = StyleSheet.create({
 })
 
 const assignementDetailsShape = PropTypes.shape({
-  id: PropTypes.number,
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   created_at: PropTypes.string,
@@ -218,7 +218,7 @@ const assignementDetailsShape = PropTypes.shape({
   lock_at: PropTypes.string,
   unlock_at: PropTypes.string,
   has_overrides: PropTypes.bool,
-  course_id: PropTypes.number,
+  course_id: PropTypes.string,
   published: PropTypes.bool,
   unpublishable: PropTypes.bool,
 })

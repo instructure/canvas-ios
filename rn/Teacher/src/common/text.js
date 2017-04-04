@@ -24,6 +24,14 @@ export function Paragraph ({ style, ...props }: Object): ReactNative.Text {
   return <ReactNative.Text style={[styles.font, styles.p, style]} {...props} />
 }
 
+export function TextInput ({ style, ...props }: Object): ReactNative.Text {
+  return <ReactNative.TextInput style={[styles.font, styles.textInput, style]} {...props} />
+}
+
+export function ModalActivityIndicatorAlertText ({ style, ...props }: Object): ReactNative.Text {
+  return <ReactNative.Text style={[styles.font, styles.modalActivityIndicatorAlertText, style]} {...props} />
+}
+
 const styles = StyleSheet.create({
   font: {
     fontFamily: '.SFUIDisplay',
@@ -46,5 +54,12 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     color: colors.darkText,
+  },
+  textInput: {
+  },
+  modalActivityIndicatorAlertText: {
+    fontSize: 24,
+    color: '#fff',
+    fontFamily: '.SFUIDisplay-semibold',
   },
 })

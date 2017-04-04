@@ -1,6 +1,6 @@
 /* @flow */
 
-import { mapStateToProps, type AssignmentDetailsProps } from '../map-state-to-props'
+import { mapStateToProps, updateMapStateToProps, type AssignmentDetailsProps } from '../map-state-to-props'
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
@@ -9,7 +9,7 @@ const template = {
   ...require('../../../redux/__templates__/app-state'),
 }
 
-test('map state to props should work', async () => {
+test('map state to props assignment', async () => {
   let course = template.course()
   let assignmentGroup = template.assignmentGroup()
   let assignment = template.assignment()
@@ -26,7 +26,7 @@ test('map state to props should work', async () => {
         [assignmentGroup.id]: assignmentGroup,
       },
       assignments: {
-        [assignment.id]: assignment,
+        [assignment.id]: { assignment: assignment, pending: 0 },
       },
       gradingPeriods: {},
     },
@@ -36,10 +36,10 @@ test('map state to props should work', async () => {
     courseID: course.id,
     assignmentID: assignment.id,
     refreshAssignmentDetails: jest.fn(),
-    pending: 0,
     navigator: template.navigator(),
     assignmentDetails: assignment,
     refresh: Function,
+    updateAssignment: Function,
   }
 
   const result = mapStateToProps(state, props)
@@ -48,3 +48,31 @@ test('map state to props should work', async () => {
   })
 })
 
+test('map state to props update assignment', async () => {
+  let course = template.course()
+  let assignment = template.assignment()
+
+  let state = template.appState({
+    entities: {
+      assignments: {
+        [assignment.id]: { assignment: assignment, pending: 0 },
+      },
+    },
+  })
+
+  let props: AssignmentDetailsProps = {
+    courseID: course.id,
+    assignmentID: assignment.id,
+    refreshAssignmentDetails: jest.fn(),
+    navigator: template.navigator(),
+    assignmentDetails: assignment,
+    refresh: Function,
+    updateAssignment: Function,
+  }
+
+  const result = updateMapStateToProps(state, props)
+  expect(result).toMatchObject({
+    assignmentDetails: assignment,
+    pending: 0,
+  })
+})

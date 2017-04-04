@@ -10,7 +10,7 @@ import i18n from 'format-message'
 
 export let defaultState: AssignmentGroupsState = {}
 
-const { refreshAssignmentList } = Actions
+const { refreshAssignmentList, updateAssignment } = Actions
 const { refreshGradingPeriods } = CourseActions
 
 export const assignmentGroups: Reducer<AssignmentListState, any> = handleActions({
@@ -34,16 +34,48 @@ export const assignmentGroups: Reducer<AssignmentListState, any> = handleActions
 export const assignments: Reducer<AssignmentListState, any> = handleActions({
   [refreshAssignmentList.toString()]: handleAsync({
     resolved: (state, { result, courseID }) => {
-      let entities = state.assignments || {}
+      let entities = { ...state.assignments }
       result.data.forEach((entity) => {
         entity.assignments.forEach(assignment => {
-          entities[assignment.id] = assignment
+          entities[assignment.id] = { assignment }
         })
       })
 
       return {
         ...state,
         ...entities,
+      }
+    },
+  }),
+  [updateAssignment.toString()]: handleAsync({
+    pending: (state, { updatedAssignment, originalAssignment }) => {
+      let id = updatedAssignment.id
+      let entity = { ...state[id] }
+      entity.assignment = updatedAssignment
+      entity.pending = (entity.pending || 0) + 1
+      return {
+        ...state,
+        ...{ [id]: entity },
+      }
+    },
+    resolved: (state, { updatedAssignment, originalAssignment }) => {
+      let id = updatedAssignment.id
+      let entity = { ...state[id] }
+      entity.pending--
+      return {
+        ...state,
+        ...{ [id]: entity },
+      }
+    },
+    rejected: (state, { updatedAssignment, originalAssignment, error }) => {
+      let id = originalAssignment.id
+      let entity = { ...state[id] }
+      entity.assignment = originalAssignment
+      entity.pending = (entity.pending || 0) - 1
+      entity.error = error
+      return {
+        ...state,
+        ...{ [id]: entity },
       }
     },
   }),

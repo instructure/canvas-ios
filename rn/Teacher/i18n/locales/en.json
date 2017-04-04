@@ -110,6 +110,10 @@
   "due_datestring_at_timestring_9fac66bd": {
     "message": "Due { dateString } at { timeString }"
   },
+  "edit_assignment_details_a7c96fea": {
+    "message": "Edit Assignment Details",
+    "description": "Title of Assignment details EDIT screen"
+  },
   "edit_c5fbea07": {
     "message": "Edit",
     "description": "Shown at the top of the app to allow the user to edit"
@@ -219,6 +223,10 @@
   "published_4bb5209e": {
     "message": "Published",
     "description": "Published text"
+  },
+  "saving_2521e616": {
+    "message": "Saving",
+    "description": "Text when a request to update an assignment is made and user is waiting"
   },
   "see_all_ffa422ef": {
     "message": "See All",

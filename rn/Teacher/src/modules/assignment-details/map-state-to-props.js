@@ -14,6 +14,7 @@ export type AssignmentDetailsProps = {
   error?: string,
   pending?: number,
   refresh: Function,
+  updateAssignment: Function,
 }
 
 export type AssignmentDetailsActionProps = {
@@ -21,12 +22,21 @@ export type AssignmentDetailsActionProps = {
 }
 
 export function mapStateToProps (state: AppState, ownProps: AssignmentDetailsProps): AssignmentDetailsState {
-  const assignment = state.entities.assignments[ownProps.assignmentID]
+  const assignment = state.entities.assignments[ownProps.assignmentID].assignment
 
   return {
     assignmentDetails: assignment,
-    ...assignment,
     pending: state.entities.courses[ownProps.courseID].assignmentGroups.pending,
+  }
+}
+
+export function updateMapStateToProps (state: AppState, ownProps: AssignmentDetailsProps): AssignmentDetailsState {
+  const assignment = state.entities.assignments[ownProps.assignmentID].assignment
+
+  return {
+    assignmentDetails: assignment,
+    pending: state.entities.assignments[ownProps.assignmentID].pending,
+    error: state.entities.assignments[ownProps.assignmentID].error,
   }
 }
 

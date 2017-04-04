@@ -23,6 +23,7 @@ export type AssignmentListProps = {
 
 export type AssignmentListActionProps = {
   +refreshAssignmentList: () => Promise<AssignmentGroup[]>,
+  +updateAssignment: (courseID: string, updatedAssignment: Assignment, originalAssignment: Assignment) => Promise<Assignment>,
 }
 
 export function mapStateToProps (state: AppState, ownProps: AssignmentListProps): AssignmentListState {

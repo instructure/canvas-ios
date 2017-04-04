@@ -4,19 +4,23 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { mapStateToProps, type AssignmentDetailsProps } from './map-state-to-props'
+import { updateMapStateToProps, type AssignmentDetailsProps } from './map-state-to-props'
+import AssignmentActions from '../assignments/actions'
 import i18n from 'format-message'
 import EditSectionHeader from './components/EditSectionHeader'
 import { PADDING } from './../../common/globalStyle'
+import { TextInput } from '../../common/text'
+import ModalActivityIndicator from '../../common/components/ModalActivityIndicator'
+import { Navigation } from 'react-native-navigation'
 import {
   View,
   StyleSheet,
   ScrollView,
-  TextInput,
 } from 'react-native'
 
 export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps, any> {
   props: AssignmentDetailsProps
+  state: any = {}
 
   static navigatorButtons = {
     rightButtons: [
@@ -35,24 +39,59 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   constructor (props: AssignmentDetailsProps) {
     super(props)
     props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
+    this.state = { assignment: Object.assign({}, props.assignmentDetails) }
+  }
+
+  componentDidMount () {
+    this.props.navigator.setTitle({
+      title: i18n({
+        default: 'Edit Assignment Details',
+        description: 'Title of Assignment details EDIT screen',
+      }),
+    })
   }
 
   render (): React.Element<View> {
-    let assignment = this.props.assignmentDetails
-
     let sectionTitle = i18n({
       default: 'Title',
       description: 'Assignment details edit title header',
     })
 
+    let savingText = i18n({
+      default: 'Saving',
+      description: 'Text when a request to update an assignment is made and user is waiting',
+    })
+
+    let assignmentTitlePlaceHolder = i18n({ default: 'Title', description: 'Assignemnt details title placeholder' })
+
     return (
-      <ScrollView style={style.container}>
+      <View style={{ flex: 1 }}>
+        <ModalActivityIndicator text={savingText} visible={this.state.pending > 0}/>
+        <ScrollView style={style.container}>
         <EditSectionHeader title={sectionTitle}/>
         <View style={style.row} >
-          <TextInput style={style.title } editable = {true} value={assignment.name} multiline={true} numberOfLines={4}/>
+          <TextInput style={style.title}
+                     value={ this.defaultValueForInput('name') }
+                     multiline={ true }
+                     placeholder={assignmentTitlePlaceHolder}
+                     onChangeText={ title => this.updateFromInput('name', title) }
+                     testID='titleInput'
+          />
         </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     )
+  }
+
+  updateFromInput (key: string, value: string) {
+    const assignment = this.state.assignment
+    assignment[key] = value
+    this.setState({ assignment })
+  }
+
+  defaultValueForInput (key: string): string {
+    let assignment = this.state.assignment
+    return assignment[key].toString()
   }
 
   onNavigatorEvent = (event: NavigatorEvent) => {
@@ -60,15 +99,25 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
       case 'NavBarButtonPress':
         switch (event.id) {
           case 'dismiss':
-            this.closeModal()
+            this.actionDonePressed()
             break
         }
         break
     }
   }
 
-  closeModal () {
-    this.props.navigator.dismissModal()
+  actionDonePressed () {
+    this.setState({ pending: 1 })
+    this.props.updateAssignment(this.props.courseID, this.state.assignment, this.props.assignmentDetails)
+  }
+
+  componentWillReceiveProps (nextProps: AssignmentDetailsProps) {
+    if (this.state.pending && (nextProps.assignmentDetails && !nextProps.pending)) {
+      this.setState({ pending: 0 })
+      if (!nextProps.error) {
+        Navigation.dismissAllModals()
+      }
+    }
   }
 }
 
@@ -77,12 +126,15 @@ const style = StyleSheet.create({
     flex: 1,
   },
   row: {
-    padding: PADDING,
+    paddingTop: PADDING / 2,
+    paddingBottom: PADDING / 2,
+    paddingLeft: PADDING,
+    paddingRight: PADDING,
   },
   title: {
-    height: 100,
+    height: 45,
   },
 })
 
-let Connected = connect(mapStateToProps, undefined)(AssignmentDetailsEdit)
+let Connected = connect(updateMapStateToProps, AssignmentActions)(AssignmentDetailsEdit)
 export default (Connected: Component<any, AssignmentDetailsProps, any>)
