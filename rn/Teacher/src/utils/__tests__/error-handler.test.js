@@ -114,4 +114,13 @@ describe('parse error message', () => {
 
     expect(result).toEqual(expected)
   })
+
+  it('should parse Error types', () => {
+    const error = new Error('i am an error')
+    const expected = 'i am an error'
+
+    const result = parseErrorMessage(error)
+
+    expect(result).toEqual(expected)
+  })
 })
