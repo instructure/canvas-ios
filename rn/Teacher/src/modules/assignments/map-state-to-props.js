@@ -7,7 +7,7 @@ export type AssignmentListDataProps = {
   +error?: ?string,
   +courseColor: string,
   +assignmentGroups: AssignmentGroup[],
-  +gradingPeriods: Array<GradingPeriod & { assignmentRefs: [number] }>,
+  +gradingPeriods: Array<GradingPeriod & { assignmentRefs: [string] }>,
 }
 
 export type AssignmentListActionProps = {

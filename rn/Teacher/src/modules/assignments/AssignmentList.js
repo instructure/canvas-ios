@@ -8,8 +8,8 @@ import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
-  ListView,
   ActionSheetIOS,
+  SectionList,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -24,10 +24,8 @@ import AssignmentListSectionView from './components/AssignmentListSection'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 import { LinkButton } from '../../common/buttons'
 import { Heading1 } from '../../common/text'
-import { RefreshableListView } from '../../common/components/RefreshableList'
 
 type State = {
-  dataSource: ListView.DataSource,
   currentFilter: {
     index?: number,
     title: string,
@@ -67,57 +65,37 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
       })
     }
 
-    const dataSource = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-      sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
-      getSectionHeaderData: this.getSectionHeaderData,
-      getRowData: this.getRowData,
-    })
-
     this.state = {
-      dataSource: dataSource.cloneWithRowsAndSections({}),
       currentFilter: DEFAULT_FILTER,
       filterApplied: false,
       refreshing: false,
     }
   }
 
-  componentDidMount () {
-    this.updateListData(this.props)
+  componentWillReceiveProps (nextProps: AssignmentListProps) {
+    this.setState({
+      refreshing: this.state.refreshing ? Boolean(nextProps.pending) : false,
+    })
   }
 
-  componentWillReceiveProps (newProps: AssignmentListProps) {
-    this.updateListData(newProps)
-  }
-
-  updateListData (props: AssignmentListProps) {
-    const groupsMap = {}
-    const sectionIdentities = []
-    const assignmentIdentities = []
-
-    props.assignmentGroups.forEach((group) => {
-      let filteredAssignments = this.state.filterApplied
-        // $FlowFixMe because it doesn't like me to access index on currentFilter
-        ? group.assignments.filter(({ id }) => props.gradingPeriods[this.state.currentFilter.index].assignmentRefs.includes(id))
+  prepareListData () {
+    return this.props.assignmentGroups.map(group => {
+      let gradingPeriodFilter
+      if (this.state.currentFilter.index != null) {
+        gradingPeriodFilter = this.props.gradingPeriods[this.state.currentFilter.index]
+      }
+      let assignments = this.state.filterApplied
+        ? group.assignments.filter(({ id }) => gradingPeriodFilter.assignmentRefs.includes(id))
         : group.assignments
 
-      if (filteredAssignments.length === 0) return
-
-      groupsMap[group.id] = group
-      sectionIdentities.push(group.id)
-      let assignments = []
-      filteredAssignments.forEach((assignment) => {
-        assignments.push(assignment.id)
-        groupsMap[`${group.id}:${assignment.id}`] = assignment
-      })
-
-      assignmentIdentities.push(assignments)
-    })
-
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRowsAndSections(groupsMap, sectionIdentities, assignmentIdentities),
-      refreshing: this.state.refreshing ? Boolean(props.pending) : false,
-    })
+      if (assignments.length) {
+        return {
+          key: group.id,
+          ...group,
+          data: assignments,
+        }
+      }
+    }).filter(item => item)
   }
 
   getSectionHeaderData = (data: any, sectionID: string) => {
@@ -128,19 +106,19 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     return data[`${sectionID}:${rowID}`]
   }
 
-  renderRow = (assignment: Assignment, sectionID: string, rowID: string) => {
-    return <AssignmentListRowView assignment={assignment} tintColor={this.props.courseColor} onPress={this.selectedAssignment} />
+  renderRow = ({ item, index }: { item: Assignment, index: number }) => {
+    return <AssignmentListRowView assignment={item} tintColor={this.props.courseColor} onPress={this.selectedAssignment} key={index} />
   }
 
-  renderSectionHeader = (group: any) => {
-    return <AssignmentListSectionView assignmentGroup={group} />
+  renderSectionHeader = ({ section }: any) => {
+    return <AssignmentListSectionView assignmentGroup={section} key={section.key} />
   }
 
   renderFooter = () => {
     // we only want this to show when there are pending requests
     // that weren't started by pull to refresh
     // and only on filters that we don't already have everything for
-    if (!this.state.refreshing && this.props.pending && this.state.dataSource.getRowCount() === 0) {
+    if (!this.state.refreshing && this.props.pending) {
       return <ActivityIndicatorView height={44} />
     }
 
@@ -157,8 +135,6 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
       currentFilter: DEFAULT_FILTER,
       filterApplied: false,
       refreshing: false,
-    }, () => {
-      this.updateListData(this.props)
     })
   }
 
@@ -178,6 +154,11 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     // don't do anything if the user hits cancel
     if (index === this.props.gradingPeriods.length) return
 
+    // get assignment info for grading period only if we don't have it yet
+    if (this.props.gradingPeriods[index].assignmentRefs.length === 0) {
+      this.props.refreshAssignmentList(this.props.courseID, this.props.gradingPeriods[index].id)
+    }
+
     this.setState({
       currentFilter: {
         title: this.props.gradingPeriods[index].title,
@@ -185,14 +166,6 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
       },
       filterApplied: true,
       refreshing: false, // if the user had just pulled to refresh don't show refresh indicator
-    }, () => {
-      // after the filter is applied we need to update the list to update the list data
-      this.updateListData(this.props)
-
-      // get assignment info for grading period only if we don't have it yet
-      if (this.props.gradingPeriods[index].assignmentRefs.length === 0) {
-        this.props.refreshAssignmentList(this.props.courseID, this.props.gradingPeriods[index].id)
-      }
     })
   }
 
@@ -223,16 +196,15 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
             </LinkButton>
           }
         </View>
-        <RefreshableListView
+        <SectionList
           testID='assignment-list.list'
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow}
+          sections={this.prepareListData()}
+          renderItem={this.renderRow}
           renderSectionHeader={this.renderSectionHeader}
-          enableEmptySections={true}
-          renderFooter={this.renderFooter}
           refreshing={this.state.refreshing}
           onRefresh={this.refresh}
         />
+        {this.renderFooter()}
       </View>
     )
   }

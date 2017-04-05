@@ -29,7 +29,6 @@ export default class Submission extends Component {
     })
 
     let labels = [graded, ungraded, notSubmitted]
-    console.log(this.props.data)
     return (
       <View style={[submissionStyle.container, this.props.style]}>
         {this.props.data.map((item, index) =>

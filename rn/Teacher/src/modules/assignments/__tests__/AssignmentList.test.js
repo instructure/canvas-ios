@@ -145,7 +145,7 @@ test('applyFilter will apply a new filter', () => {
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('applyFilter will call refreshlist with the grading period id when it has no assignmentRefs', () => {
+test('applyFilter will call refreshlist with the grading period id when it has no assignmentRefs', async () => {
   let tree = renderer.create(
     <AssignmentList
       {...defaultProps}

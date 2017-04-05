@@ -100,9 +100,8 @@ export class FavoritesList extends Component {
   refresh = () => {
     this.setState({
       refreshing: true,
-    }, () => {
-      this.props.refresh()
     })
+    this.props.refresh()
   }
 
   render (): React.Element<*> {

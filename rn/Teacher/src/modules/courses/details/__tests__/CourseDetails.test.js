@@ -96,13 +96,14 @@ test('without course it renders a loading spinner', () => {
   expect(tree).toMatchSnapshot()
 })
 
-test('can be refreshed', () => {
+test('can be refreshed', async () => {
   let refresh = jest.fn()
   let tree = renderer.create(
     <CourseDetails {...defaultProps} refresh={refresh} />
   )
 
   let instance = tree.getInstance()
+  await new Promise(resolve => setTimeout(resolve, 100))
   instance.refresh()
 
   expect(instance.state.refreshing).toBeTruthy()

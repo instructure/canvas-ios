@@ -64,9 +64,8 @@ export class CourseDetails extends Component<any, Props, any> {
   refresh = () => {
     this.setState({
       refreshing: true,
-    }, () => {
-      this.props.refresh()
     })
+    this.props.refresh()
   }
 
   render (): React.Element<View> {

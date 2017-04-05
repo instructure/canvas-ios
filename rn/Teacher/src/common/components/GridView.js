@@ -152,9 +152,8 @@ export default class GridView extends Component<DefaultProps, Props, State> {
   }
 
   onRefresh = () => {
-    this.setState({ refreshing: true }, () => {
-      this.props.onRefresh()
-    })
+    this.setState({ refreshing: true })
+    this.props.onRefresh()
   }
 
   render (): React.Element<View> {
