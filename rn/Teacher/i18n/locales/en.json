@@ -23,9 +23,15 @@
     "message": "Assignments",
     "description": "Title of the assignments screen for a course"
   },
+  "availability_closed_429d1ba5": {
+    "message": "Availability: Closed"
+  },
   "availability_e415e857": {
     "message": "Availability:",
     "description": "Assignment due date \"Available to:\" field"
+  },
+  "available_from_f84e4611": {
+    "message": "Available from"
   },
   "available_from_f9e093c8": {
     "message": "Available from:",
@@ -34,6 +40,9 @@
   "available_to_434cb9f5": {
     "message": "Available to:",
     "description": "Assignment due date \"Available to:\" field"
+  },
+  "available_to_b7350e02": {
+    "message": "Available to"
   },
   "back_courses": {
     "message": "Courses",
@@ -129,6 +138,9 @@
   },
   "filter_e3398407": {
     "message": "Filter"
+  },
+  "for_974cbb84": {
+    "message": "For"
   },
   "for_e3490d05": {
     "message": "For:",

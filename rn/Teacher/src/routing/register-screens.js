@@ -7,6 +7,7 @@ import UserCoursePreferences from '../modules/user-course-preferences/UserCourse
 import CourseDetails from '../modules/courses/details/CourseDetails'
 import AssignmentList from '../modules/assignments/AssignmentList'
 import AssignmentDetails from '../modules/assignment-details/AssignmentDetails'
+import AssignmentDueDates from '../modules/assignment-due-dates/AssignmentDueDates'
 import AssignmentDetailsEdit from '../modules/assignment-details/AssignmentDetailsEdit'
 import Inbox from '../modules/inbox/Inbox'
 import Profile from '../modules/profile/Profile'
@@ -26,6 +27,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/assignments', () => AssignmentList, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID', () => AssignmentDetails, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/edit', () => AssignmentDetailsEdit, store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', () => AssignmentDueDates, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', () => SubmissionList, store)
   registerScreen('/conversations', () => Inbox, store)
   registerScreen('/profile', () => Profile, store)

@@ -5,6 +5,7 @@ import { courses } from '../modules/courses/courses-reducer'
 import { favoriteCourses } from '../modules/courses/favorites/favorite-courses-reducer'
 import { gradingPeriods } from '../modules/assignments/grading-periods-reducer'
 import { assignmentGroups, assignments } from '../modules/assignments/assignments-reducer'
+import { users } from '../modules/users/reducer'
 import logout from './logout-action'
 
 const entities = combineReducers({
@@ -12,6 +13,7 @@ const entities = combineReducers({
   assignmentGroups,
   gradingPeriods,
   assignments,
+  users,
 })
 
 const actualRootReducer: Reducer<AppState, Action> = combineReducers({

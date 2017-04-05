@@ -30,6 +30,10 @@ export default class AssignmentListRow extends Component<any, Props, any> {
   dueDate (assignment: Assignment): Element<View> {
     const dates = new AssignmentDates(assignment)
 
+    if (dates.availabilityClosed()) {
+      return <Text style={styles.dueAtTitle}>{i18n('Availability: Closed')}</Text>
+    }
+
     if (dates.hasMultipleDueDates()) {
       return <Text style={styles.dueAtTitle}>{i18n('Multiple Due Dates')}</Text>
     }

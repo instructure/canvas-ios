@@ -169,6 +169,8 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
   }
 
   viewDueDateDetails = () => {
+    let destination = route(`/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/due_dates`)
+    this.props.navigator.push(destination)
   }
 }
 

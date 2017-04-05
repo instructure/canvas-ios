@@ -13,6 +13,7 @@ const emptyAppState: AppState = {
     gradingPeriods: {},
     enrollments: {},
     assignments: {},
+    users: {},
   },
 }
 

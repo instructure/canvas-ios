@@ -36,6 +36,7 @@ export type CoursesState = { [string]: CourseState & CourseContentState }
 export type AssignmentGroupsState = { [string]: AssignmentGroup }
 export type AssignmentsState = { [string]: AssignmentState }
 export type EnrollmentsState = { [string]: Enrollment }
+export type UserProfileState = { [string]: User }
 
 export type Entities = {
   +courses: CoursesState,
@@ -43,6 +44,7 @@ export type Entities = {
   +enrollments: EnrollmentsState,
   +assignments: AssignmentsState,
   +gradingPeriods: GradingPeriodsState,
+  +users: UserProfileState,
 }
 
 export type FavoriteCoursesState = AsyncState

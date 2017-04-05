@@ -1,11 +1,12 @@
-// @flow
+/* @flow */
 
 import template from '../../../utils/template'
 
 export const user: Template<User> = template({
-  id: '32',
-  name: 'Art Artimus',
-  sortable_name: 'Artimus, Art',
-  short_name: 'Arty',
-  avatar_url: 'http://fillmurray.com/100/100',
+  id: 1,
+  name: 'Donald Trump',
+  short_name: 'The Donald',
+  sortable_name: 'Mr. President',
+  bio: 'my bio is yuuuuuuuge',
+  avatar_url: 'http://www.fillmurray.com/100/100',
 })

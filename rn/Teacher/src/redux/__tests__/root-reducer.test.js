@@ -3,6 +3,7 @@
 import 'react-native'
 import type { Action } from 'redux'
 import reduce from '../root-reducer'
+import logout from '../logout-action'
 
 const dummyAction: Action = { type: 'test.whoCares' }
 
@@ -28,5 +29,10 @@ test('contains favoriteCourses subreducer', () => {
 
 test('subreducers count', () => {
   const state: {} = reduce(undefined, dummyAction)
+  expect(Object.keys(state).length).toEqual(2)
+})
+
+test('logout action', () => {
+  const state: {} = reduce(undefined, logout)
   expect(Object.keys(state).length).toEqual(2)
 })

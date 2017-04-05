@@ -1,5 +1,8 @@
 #!/usr/bin/env bash -e
 
+sudo systemsetup -settimezone America/Denver
+sudo systemsetup -gettimezone
+
 retry_command() {
   for try_count in {1..3}; do
     set +e

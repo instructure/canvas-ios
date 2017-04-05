@@ -75,8 +75,8 @@ export default class DueDates extends Component<any, Props, any> {
 
     const availableFrom = dates.bestAvailableFrom()
     const availableTo = dates.bestAvailableTo()
-    const availableFromText = availableFrom ? formattedDueDate(availableFrom) : '-'
-    const availableToText = availableTo ? formattedDueDate(availableTo) : '-'
+    const availableFromText = availableFrom ? formattedDueDate(availableFrom) : '--'
+    const availableToText = availableTo ? formattedDueDate(availableTo) : '--'
 
     return <View>
              <Text style={styles.textContainer}>
@@ -101,12 +101,13 @@ export default class DueDates extends Component<any, Props, any> {
       description: 'Assignment due date "For:" field',
     })
 
+    const dueAtValue = dates.bestDueAt() ? formattedDueDate(dates.bestDueAt()) : '--'
     const availability = this.renderAvailability(dates)
 
     return <View style={styles.container}>
              <Text style={styles.textContainer}>
                <Text style={styles.descriptionText}>{dueTitle}</Text>
-               <Text style={styles.infoText}>{` ${formattedDueDate(dates.bestDueAt())}`}</Text>
+               <Text style={styles.infoText}>{` ${dueAtValue}`}</Text>
              </Text>
              <Text style={styles.textContainer}>
                <Text style={styles.descriptionText}>{forTitle}</Text>

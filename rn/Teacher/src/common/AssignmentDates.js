@@ -8,6 +8,7 @@
 
 import { extractDateFromString } from '../utils/dateUtils'
 import i18n from 'format-message'
+import { flatten } from 'lodash'
 
 export default class AssignmentDates {
 
@@ -65,34 +66,20 @@ export default class AssignmentDates {
     return this.allDates().length > 1
   }
 
-  // Returns true is *all* availability dates have passed
-  // If there is no lock_at field, returns false
-  availabilityClosed = (): boolean => {
-    // If there is one single lock_at, compare that against
-    // The current time. If it's before the current time, the availability is closed
-    if (this.allDates().length < 2) {
-      let lockAt = this.assignment.lock_at
+  // ids for any students that specific due dates are assigned
+  // This returns *all* studentIDs for all available dates
+  studentIDs = (): string[] => {
+    const overrides = this.assignment.overrides || []
+    const ids = overrides.map((override) => {
+      return override.student_ids || []
+    })
+    return flatten(ids)
+  }
 
-      // If the outer assignment document doesn't have a lock_at,
-      // Check in the all_dates
-      const firstDate = this.firstDate()
-      if (!lockAt && firstDate) {
-        lockAt = firstDate.lock_at
-      }
-
-      if (!lockAt) return false
-
-      const date = new Date(lockAt)
-      return Date.now() > date.getTime()
-    }
-
-    // If there are multiple due dates, ensure that they have *all* passed
-    return this.allDates()
-    .filter((date) => date.lock_at)
-    .filter((date) => {
-      const lockAt = new Date(date.lock_at)
-      return Date.now() < lockAt.getTime()
-    }).length === 0
+  overrideForID = (id: string): ?AssignmentOverride => {
+    return (this.assignment.overrides || []).find((override) => {
+      return override.id === id
+    })
   }
 
   // Private stuff, probably shouldn't use these....
@@ -112,5 +99,58 @@ export default class AssignmentDates {
     }
 
     return null
+  }
+
+  /*
+  OMG, there are so many weird edge cases with this,
+  I'm documenting them all in the tests so that all the cases can be understood
+
+  // Returns true is *all* availability dates have passed, in correlation to their due dates
+  // If there is no lock_at field, returns false
+  */
+  availabilityClosed = (): boolean => {
+    // If there is one single lock_at, compare that against the current time.
+    // If it's before the current time, the availability is closed
+    if (this.allDates().length < 2) {
+      let lockAt = this.assignment.lock_at
+
+      // If the outer assignment document doesn't have a lock_at,
+      // Check in the all_dates
+      const firstDate = this.firstDate()
+      if (!lockAt && firstDate) {
+        lockAt = firstDate.lock_at
+      }
+
+      if (!lockAt) return false
+
+      const date = new Date(lockAt)
+      return Date.now() > date.getTime()
+    }
+
+    // If there are multiple due dates, ensure that they have *all* passed
+    return this.allDates()
+    .filter((date) => {
+      const calculate = (date: Date): boolean => {
+        return Date.now() < date.getTime()
+      }
+
+      // If there is only a due date, calculate based on that alone
+      if (date.due_at && !date.lock_at) {
+        return calculate(new Date(date.due_at))
+      }
+
+      // If there is a due_at and lock_at, both must have passed
+      if (date.due_at && date.lock_at) {
+        return calculate(new Date(date.due_at)) && calculate(new Date(date.lock_at))
+      }
+
+      // If only lock at, only it needs to be in the past
+      if (!date.due_at && date.lock_at) {
+        return calculate(new Date(date.lock_at))
+      }
+
+      // I doubt this case will ever be hit, but if it is, there are no dates, so let it through
+      return true
+    }).length === 0
   }
 }

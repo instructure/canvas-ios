@@ -38,3 +38,9 @@ export const assignmentDueDate: Template<AssignmentDate> = template({
   unlock_at: '2017-03-17T06:00:00Z',
   lock_at: '2017-06-01T05:59:59Z',
 })
+
+export const assignmentOverride: Template<assignmentOverride> = template({
+  due_at: '2017-06-01T05:59:00Z',
+  unlock_at: '2017-03-17T06:00:00Z',
+  lock_at: '2017-06-01T05:59:59Z',
+})

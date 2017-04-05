@@ -130,6 +130,102 @@ it('availabilityClosed should return false if not all dates have passed', () => 
   expect(dates.availabilityClosed()).toEqual(false)
 })
 
+it('If "available to" date is there, and in the past, AND if "due" date is in the past, assignment should be marked closed.', () => {
+  const one = moment().subtract(1, 'day').format()
+  const two = moment().subtract(2, 'day').format()
+  const assignment = template.assignment({
+    lock_at: null,
+    due_at: null,
+    all_dates: [template.assignmentDueDate({ lock_at: one, due_at: one }), template.assignmentDueDate({ lock_at: two, due_at: one })],
+  })
+
+  const dates = new AssignmentDates(assignment)
+  expect(dates.availabilityClosed()).toEqual(true)
+})
+
+it('If "available to" date is not there, and if "due" date is in the past, assignment should be marked closed.', () => {
+  const one = moment().subtract(1, 'day').format()
+  const two = moment().subtract(2, 'day').format()
+  const assignment = template.assignment({
+    lock_at: null,
+    due_at: null,
+    all_dates: [template.assignmentDueDate({ due_at: one }), template.assignmentDueDate({ due_at: two })],
+  })
+
+  const dates = new AssignmentDates(assignment)
+  expect(dates.availabilityClosed()).toEqual(true)
+})
+
+// THE MOTHER OF ALL TESTS
+
+/*
+  As if today was April 4:
+
+  If there are multiple due dates, all of the above must be true to be marked as closed. Ex:
+  Due date 1
+  Due: April 1
+  Avail from: March 30
+  Avail to: April 2
+  Due date 2
+  Due: –
+  Avail from: Apr 5
+  Avail to: April 8
+  Due date 3
+  Due: Apr 7
+  Avail from: –
+  Avail to: –
+  In this scenario, we'd say "Multiple due dates" until April 8, when we would mark it "Availability: Closed"
+*/
+it('crazy due date and lock at stuff', () => {
+  const dueDate1 = template.assignmentDueDate({
+    due_at: moment().subtract(3, 'day').format(),
+    lock_at: moment().subtract(2, 'day').format(),
+    unlock_at: moment().subtract(4, 'day').format(),
+  })
+
+  const dueDate2 = template.assignmentDueDate({
+    due_at: null,
+    lock_at: moment().add(1, 'day').format(),
+    unlock_at: moment().add(4, 'day').format(),
+  })
+
+  const dueDate3 = template.assignmentDueDate({
+    due_at: moment().add(3, 'day').format(),
+    lock_at: null,
+    unlock_at: null,
+  })
+
+  const assignment = template.assignment({
+    lock_at: null,
+    due_at: null,
+    all_dates: [dueDate1, dueDate2, dueDate3],
+  })
+
+  const dates = new AssignmentDates(assignment)
+  expect(dates.availabilityClosed()).toEqual(false)
+})
+
+it('should extract override student ids if they are present', () => {
+  const studentIDs = ['123', '1234']
+  const assignment = template.assignment({
+    overrides: [template.assignmentOverride({ student_ids: studentIDs })],
+  })
+
+  const dates = new AssignmentDates(assignment)
+  expect(dates.studentIDs()).toMatchObject(studentIDs)
+})
+
+it('should extract override student ids if they are present', () => {
+  const one = ['123', '1234']
+  const two = ['9876', '9876']
+  const assignment = template.assignment({
+    overrides: [template.assignmentOverride({ student_ids: one }), template.assignmentOverride({ student_ids: two })],
+  })
+
+  const dates = new AssignmentDates(assignment)
+  expect(dates.studentIDs()).toMatchObject(one.concat(two))
+})
+
 describe('assignment extraction', () => {
   it('should extract the outer level due date', () => {
     const assignment = template.assignment()

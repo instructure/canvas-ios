@@ -1,0 +1,311 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<RCTScrollView
+  style={
+    Object {
+      "flex": 1,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+    }
+  }
+>
+  <View />
+</RCTScrollView>
+`;
+
+exports[`renders with overrides 1`] = `
+<RCTScrollView
+  style={
+    Object {
+      "flex": 1,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        Object {
+          "paddingTop": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 20,
+            "fontWeight": "600",
+          }
+        }
+      >
+        Due May 31, 2017 at 11:59 PM
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "paddingTop": 16,
+          }
+        }
+      >
+        For
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "paddingBottom": 16,
+          }
+        }
+      >
+        Everyone
+      </Text>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "paddingTop": 16,
+          }
+        }
+      >
+        Available from
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "paddingBottom": 16,
+          }
+        }
+      >
+        Mar 17, 2017 at 12:00 AM
+      </Text>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "paddingTop": 16,
+          }
+        }
+      >
+        Available to
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "paddingBottom": 16,
+          }
+        }
+      >
+        May 31, 2017 at 11:59 PM
+      </Text>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`renders with overrides and specific student ids 1`] = `
+<RCTScrollView
+  style={
+    Object {
+      "flex": 1,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        Object {
+          "paddingTop": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 20,
+            "fontWeight": "600",
+          }
+        }
+      >
+        Due May 31, 2017 at 11:59 PM
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "paddingTop": 16,
+          }
+        }
+      >
+        For
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "paddingBottom": 16,
+          }
+        }
+      >
+        Donald Trump
+      </Text>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "paddingTop": 16,
+          }
+        }
+      >
+        Available from
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "paddingBottom": 16,
+          }
+        }
+      >
+        Mar 17, 2017 at 12:00 AM
+      </Text>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "paddingTop": 16,
+          }
+        }
+      >
+        Available to
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "paddingBottom": 16,
+          }
+        }
+      >
+        May 31, 2017 at 11:59 PM
+      </Text>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+    </View>
+  </View>
+</RCTScrollView>
+`;
