@@ -3,7 +3,7 @@
 import { Reducer, Action } from 'redux'
 import { handleActions } from 'redux-actions'
 import handleAsync from '../utils/handleAsync'
-import { parseErrorMessage } from '../utils/error-handler'
+import { parseErrorMessage } from '../redux/middleware/error-handler'
 
 export const defaultRefs: AsyncRefs = { refs: [], pending: 0 }
 

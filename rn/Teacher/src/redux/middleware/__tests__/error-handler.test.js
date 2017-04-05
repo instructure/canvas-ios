@@ -2,17 +2,17 @@
 
 import { ERROR_TITLE, ERROR_MESSAGE, parseErrorMessage } from '../error-handler'
 import { Alert } from 'react-native'
-import mockStore from '../../../test/helpers/mockStore'
+import mockStore from '../../../../test/helpers/mockStore'
+import { updateStatus } from '../../../utils/online-status'
 
-jest.mock('react-native', () => ({
-  Alert: {
-    alert: jest.fn(),
-  },
+jest.mock('Alert', () => ({
+  alert: jest.fn(),
 }))
 
 describe('error-handler-middleware', () => {
   beforeEach(() => {
     jest.resetAllMocks()
+    updateStatus('wifi')
   })
 
   it('throws up an alert if the action is not an api error', () => {
@@ -23,13 +23,12 @@ describe('error-handler-middleware', () => {
       error: true,
       payload: {
         error: new Error(message),
-        handlesError: true,
       },
     })
     expect(Alert.alert).toHaveBeenCalledWith(ERROR_TITLE, message)
   })
 
-  it('throws up an alert with a custom error message when the action is an api error', () => {
+  it('throws up an alert with a custom error message when the action is an api error and the user is online', () => {
     let errorMessage = 'An error message'
     let store = mockStore()
     store.dispatch({
@@ -50,6 +49,29 @@ describe('error-handler-middleware', () => {
     })
 
     expect(Alert.alert).toHaveBeenCalledWith(ERROR_TITLE, errorMessage)
+  })
+
+  it('doesnt show an alert for api errors when the user is offline', () => {
+    updateStatus('none')
+    let store = mockStore()
+    store.dispatch({
+      type: 'test',
+      error: true,
+      payload: {
+        error: {
+          response: {
+            data: {
+              errors: [{
+                message: 'Error',
+              }],
+            },
+            status: 500,
+          },
+        },
+      },
+    })
+
+    expect(Alert.alert).not.toHaveBeenCalled()
   })
 
   it('throws up an alert when the action does not indicate it will handle its own errors', () => {

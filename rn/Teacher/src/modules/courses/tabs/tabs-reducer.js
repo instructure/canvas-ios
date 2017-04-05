@@ -4,7 +4,7 @@ import { Reducer } from 'redux'
 import { handleActions } from 'redux-actions'
 import TabsActions from './actions'
 import handleAsync from '../../../utils/handleAsync'
-import { parseErrorMessage } from '../../../utils/error-handler'
+import { parseErrorMessage } from '../../../redux/middleware/error-handler'
 
 export let defaultState: TabsState = { tabs: [], pending: 0 }
 

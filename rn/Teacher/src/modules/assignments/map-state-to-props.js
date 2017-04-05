@@ -29,6 +29,17 @@ type RoutingProps = { +courseID: string }
 
 export function mapStateToProps ({ entities }: AppState, { courseID }: RoutingProps): AssignmentListDataProps {
   const course = entities.courses[courseID]
+
+  if (!course) {
+    return {
+      assignmentGroups: [],
+      pending: 0,
+      course: null,
+      gradingPeriods: [],
+      courseColor: '',
+    }
+  }
+
   const courseColor = course.color
   const { refs, pending, error } = course.assignmentGroups
   const groupsByID: AssignmentGroupsState = entities.assignmentGroups

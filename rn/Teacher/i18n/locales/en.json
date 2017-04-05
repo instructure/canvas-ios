@@ -188,6 +188,9 @@
   "no_due_date_1d63d13b": {
     "message": "No due date"
   },
+  "no_internet_connection_9df26cf8": {
+    "message": "No internet connection"
+  },
   "no_submission_yet_709d689d": {
     "message": "No submission yet",
     "description": "No submission from the student for the given assignment"
@@ -269,6 +272,9 @@
   "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
     "message": "There was an unexpected error. Please close this alert and try again.",
     "description": "A generic error message"
+  },
+  "this_action_requires_an_internet_connection_81f6688a": {
+    "message": "This action requires an internet connection."
   },
   "this_is_the_inbox_b957d042": {
     "message": "This is the inbox"

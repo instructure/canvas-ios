@@ -8,6 +8,7 @@ import './src/common/global-style'
 import {
   NativeModules,
   NativeEventEmitter,
+  AsyncStorage,
 } from 'react-native'
 import { Navigation } from 'react-native-navigation'
 import store from './src/redux/store'
@@ -20,6 +21,7 @@ import Colors from './src/common/colors'
 import { branding, setupBrandingFromNativeBrandingInfo } from './src/common/branding'
 import Images from './src/images'
 import logout from './src/redux/logout-action'
+import hydrate from './src/redux/hydrate-action'
 
 // Useful for demos when you don't want that annoying yellow box showing up all over the place
 // such as, when demoing
@@ -43,9 +45,11 @@ let navigationStyles: { [key: string]: any } = {
 setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
 
 const emitter = new NativeEventEmitter(nativeLogin)
-emitter.addListener('Login', (info: { authToken: string, baseURL: string, branding: Object, user: SessionUser }) => {
-  // flow already thinks the id is a string but it's not so coerce ;)
-  info.user.id = info.user.id.toString()
+emitter.addListener('Login', async (info: { authToken: string, baseURL: string, branding: Object, user: SessionUser }) => {
+  if (info.user) {
+    // flow already thinks the id is a string but it's not so coerce ;)
+    info.user.id = info.user.id.toString()
+  }
 
   if (info.branding) {
     navigationStyles = setupBranding(info.branding)
@@ -55,6 +59,13 @@ emitter.addListener('Login', (info: { authToken: string, baseURL: string, brandi
     store.dispatch(logout)
   } else {
     setSession(info)
+
+    let cachedState = await AsyncStorage.getItem(`redux.state.${info.user.id}`)
+    let appState
+    try {
+      appState = JSON.parse(cachedState)
+    } catch (err) {}
+    store.dispatch(hydrate(appState))
 
     let tabs = [
       {

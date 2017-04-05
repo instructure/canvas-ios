@@ -1,15 +1,17 @@
 // @flow
 
 import { createStore, applyMiddleware, Store } from 'redux'
+import promiseMiddleware from './middleware/redux-promise'
+import errorHandler from './middleware/error-handler'
+import createPersistMiddleware from './middleware/persist'
 import freeze from 'redux-freeze'
-import promiseMiddleware from '../utils/redux-promise'
-import errorHandler from '../utils/error-handler'
 import rootReducer from './root-reducer'
 import createLogger from 'redux-logger'
+import gateKeeperMiddleware from './middleware/gate-keeper'
 
 const { __DEV__ } = global
 
-let middleware = [promiseMiddleware, errorHandler]
+let middleware = [gateKeeperMiddleware, promiseMiddleware, errorHandler, createPersistMiddleware(500)]
 
 if (__DEV__) {
   middleware.push(freeze)

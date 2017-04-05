@@ -3,6 +3,7 @@
 import { Alert } from 'react-native'
 import type { MiddlewareAPI } from 'redux'
 import i18n from 'format-message'
+import { isOnline } from '../../utils/online-status'
 
 export const ERROR_TITLE: string = i18n({
   default: 'Unexpected Error',
@@ -16,13 +17,16 @@ export const ERROR_MESSAGE: string = i18n({
 const errorHandlerMiddleware: MiddlewareAPI = () => {
   return next => action => {
     if (action.error) {
+      if (action.payload.handlesError) return next(action)
+
       // should only continue if:
       // 1. error is not an api response error
-      // 2. error is an api response error and the status code is 500 or above
-      // 3. the action hasn't indicated it will handle the error itself
-      let error = action.payload.error || action.payload
+      // 2. error is an api response error and the status code is 500 or above and the user is online
+      let error = action.payload.error
+      let isOfflineError = error.message === 'Network Error'
       let isApiError = error.response != null
-      if (!isApiError || error.status >= 500 || !action.payload.handlesError) {
+      let is500Error = isApiError && error.response.status >= 500 && isOnline()
+      if (!isOfflineError && (!isApiError || is500Error)) {
         let errorMessage = error.message || ERROR_MESSAGE
         if (error.response &&
             error.response.data &&

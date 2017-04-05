@@ -7,6 +7,8 @@ import { gradingPeriods } from '../modules/assignments/grading-periods-reducer'
 import { assignmentGroups, assignments } from '../modules/assignments/assignments-reducer'
 import { users } from '../modules/users/reducer'
 import logout from './logout-action'
+import { HYDRATE_ACTION } from './hydrate-action'
+import resetPending from '../utils/reset-pending'
 
 const entities = combineReducers({
   courses,
@@ -24,6 +26,16 @@ const actualRootReducer: Reducer<AppState, Action> = combineReducers({
 export default function rootReducer (state: ?AppState, action: Action): AppState {
   if (action.type === logout.type) {
     state = undefined
+  }
+
+  if (action.type === HYDRATE_ACTION) {
+    if (action.payload) {
+      let today = new Date()
+      let expires = new Date(action.payload.expires)
+      if (action.payload && today < expires) {
+        state = resetPending(action.payload.state)
+      }
+    }
   }
   return actualRootReducer(state, action)
 }

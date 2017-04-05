@@ -1,6 +1,6 @@
 /* @flow */
 import { createStore, applyMiddleware } from 'redux'
-import promiseMiddleware from '../../src/utils/redux-promise'
+import promiseMiddleware from '../../src/redux/middleware/redux-promise'
 import freeze from 'redux-freeze'
 import mockStore from './mockStore'
 

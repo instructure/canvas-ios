@@ -36,6 +36,10 @@ class Staging extends Component<*, NavProps, *> {
     }
   }
 
+  purgeStorage = () => {
+    AsyncStorage.clear()
+  }
+
   go = () => {
     this.navigate(screen => this.props.navigator.push(screen))
   }
@@ -77,6 +81,13 @@ class Staging extends Component<*, NavProps, *> {
             </Button>
           </View>
         </View>
+        <View style={styles.purge}>
+          <Button
+            onPress={ this.purgeStorage }
+          >
+            Purge AsyncStorage
+          </Button>
+        </View>
       </View>
     )
   }
@@ -110,6 +121,9 @@ let styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 12,
     justifyContent: 'flex-end',
+  },
+  purge: {
+    marginTop: 16,
   },
 })
 

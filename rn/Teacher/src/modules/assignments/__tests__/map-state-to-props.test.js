@@ -72,3 +72,29 @@ test('map state to props should work', async () => {
     courseColor: 'blueish',
   })
 })
+
+test('returns default props when the course is not there', () => {
+  let state = template.appState()
+
+  let props = {
+    courseID: '1',
+    refreshAssignmentList: jest.fn(),
+    refreshGradingPeriods: jest.fn(),
+    refresh: jest.fn(),
+    navigator: template.navigator(),
+    assignmentGroups: [],
+    course: {
+      course: template.course(),
+      color: '#fff',
+    },
+    gradingPeriods: [],
+    pending: 0,
+  }
+
+  let result = mapStateToProps(state, props)
+  expect(result).toMatchObject({
+    course: null,
+    assignmentGroups: [],
+    pending: 0,
+  })
+})

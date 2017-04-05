@@ -5,7 +5,7 @@ import { handleActions } from 'redux-actions'
 import CourseListActions from '../actions'
 import FavoritesActions from '../edit-favorites/actions'
 import handleAsync from '../../../utils/handleAsync'
-import { parseErrorMessage } from '../../../utils/error-handler'
+import { parseErrorMessage } from '../../../redux/middleware/error-handler'
 
 let { refreshCourses } = CourseListActions
 let { toggleFavorite } = FavoritesActions

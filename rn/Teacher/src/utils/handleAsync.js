@@ -13,7 +13,7 @@
  */
 
 import type { Reducer } from 'redux'
-import type { Action } from './redux-promise'
+import type { Action } from '../redux/middleware/redux-promise'
 
 type Handlers<S, A> = {
   pending?: Reducer<S, A>,

@@ -1,6 +1,6 @@
 // @flow
 
-import mockStore from '../../../test/helpers/mockStore'
+import mockStore from '../../../../test/helpers/mockStore'
 
 test('it does nothing with a "normal" payload', async () => {
   let store = mockStore()
