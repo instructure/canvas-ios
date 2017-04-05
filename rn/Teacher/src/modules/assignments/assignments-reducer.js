@@ -4,7 +4,6 @@ import { Reducer } from 'redux'
 import { handleActions } from 'redux-actions'
 import Actions from './actions'
 import CourseActions from '../courses/actions'
-import type { AssignmentListState } from './map-state-to-props'
 import handleAsync from '../../utils/handleAsync'
 import i18n from 'format-message'
 
@@ -13,7 +12,7 @@ export let defaultState: AssignmentGroupsState = {}
 const { refreshAssignmentList, updateAssignment } = Actions
 const { refreshGradingPeriods } = CourseActions
 
-export const assignmentGroups: Reducer<AssignmentListState, any> = handleActions({
+export const assignmentGroups: Reducer<AssignmentGroupsState, any> = handleActions({
   [refreshAssignmentList.toString()]: handleAsync({
     resolved: (state, { result, courseID, gradingPeriodID }) => {
       if (gradingPeriodID != null) return state
@@ -31,7 +30,7 @@ export const assignmentGroups: Reducer<AssignmentListState, any> = handleActions
   }),
 }, defaultState)
 
-export const assignments: Reducer<AssignmentListState, any> = handleActions({
+export const assignments: Reducer<AssignmentsState, any> = handleActions({
   [refreshAssignmentList.toString()]: handleAsync({
     resolved: (state, { result, courseID }) => {
       let entities = { ...state.assignments }
@@ -81,9 +80,7 @@ export const assignments: Reducer<AssignmentListState, any> = handleActions({
   }),
 }, defaultState)
 
-export let refDefaultState: AssignmentGroupsRefState = { refs: [], pending: 0 }
-
-export const assignmentGroupRefs: Reducer<AssignmentListState, any> = handleActions({
+export const assignmentGroupRefs: Reducer<AsyncRefs, any> = handleActions({
   [refreshAssignmentList.toString()]: handleAsync({
     pending: (state) => ({ ...state, pending: state.pending + 1 }),
     resolved: (state, { result, courseID, gradingPeriodID }) => {
@@ -112,4 +109,4 @@ export const assignmentGroupRefs: Reducer<AssignmentListState, any> = handleActi
     resolved: (state) => ({ ...state, pending: state.pending - 1 }),
     rejected: (state) => ({ ...state, pending: state.pending - 1 }),
   }),
-}, refDefaultState)
+}, { refs: [], pending: 0 })

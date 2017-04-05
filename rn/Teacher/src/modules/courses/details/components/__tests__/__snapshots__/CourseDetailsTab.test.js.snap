@@ -90,6 +90,7 @@ exports[`default icon 1`] = `
         <View
           style={
             Object {
+              "alignSelf": "center",
               "backgroundColor": "transparent",
               "borderColor": "#c7c7cc",
               "borderRightWidth": 2,
@@ -201,6 +202,7 @@ exports[`renders correctly 1`] = `
         <View
           style={
             Object {
+              "alignSelf": "center",
               "backgroundColor": "transparent",
               "borderColor": "#c7c7cc",
               "borderRightWidth": 2,

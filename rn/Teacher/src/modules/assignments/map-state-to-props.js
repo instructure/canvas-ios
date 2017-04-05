@@ -2,23 +2,12 @@
 
 import localeSort from '../../utils/locale-sort'
 
-export type AssignmentListState = {
-  +assignmentGroups: AssignmentGroup[],
-  +course: Course,
+export type AssignmentListDataProps = {
   +pending: number,
-  +error?: string,
-}
-
-export type AssignmentListProps = {
-  courseID: string,
-  course: CourseState,
-  refreshAssignmentList: Function,
-  refreshGradingPeriods: Function,
-  assignmentGroups: AssignmentGroup[],
-  gradingPeriods: Array<GradingPeriod & { assignmentRefs: [number] }>,
-  refresh: Function,
-  pending: number,
-  navigator: ReactNavigator,
+  +error?: ?string,
+  +courseColor: string,
+  +assignmentGroups: AssignmentGroup[],
+  +gradingPeriods: Array<GradingPeriod & { assignmentRefs: [number] }>,
 }
 
 export type AssignmentListActionProps = {
@@ -26,23 +15,39 @@ export type AssignmentListActionProps = {
   +updateAssignment: (courseID: string, updatedAssignment: Assignment, originalAssignment: Assignment) => Promise<Assignment>,
 }
 
-export function mapStateToProps (state: AppState, ownProps: AssignmentListProps): AssignmentListState {
-  const course = state.entities.courses[ownProps.courseID]
-  const assignmentGroupsState = course.assignmentGroups
-  const assignmentGroupRefs = assignmentGroupsState.refs
-  const assignmentGroups = assignmentGroupRefs.map((ref) => state.entities.assignmentGroups[ref]).sort((a, b) => a.position - b.position)
+type Refreshable = {
+  refresh: () => void,
+}
 
-  let gradingPeriods = Object.keys(state.entities.gradingPeriods)
+export type AssignmentListProps = AssignmentListDataProps
+  & RoutingProps
+  & AssignmentListActionProps
+  & NavProps
+  & Refreshable
+
+type RoutingProps = { +courseID: string }
+
+export function mapStateToProps ({ entities }: AppState, { courseID }: RoutingProps): AssignmentListDataProps {
+  const course = entities.courses[courseID]
+  const courseColor = course.color
+  const { refs, pending, error } = course.assignmentGroups
+  const groupsByID: AssignmentGroupsState = entities.assignmentGroups
+  const assignmentGroups = refs
+    .map((ref) => groupsByID[ref])
+    .sort((a, b) => a.position - b.position)
+
+  let gradingPeriods = Object.keys(entities.gradingPeriods)
     .map(id => ({
-      ...state.entities.gradingPeriods[id].gradingPeriod,
-      assignmentRefs: state.entities.gradingPeriods[id].assignmentRefs,
+      ...entities.gradingPeriods[id].gradingPeriod,
+      assignmentRefs: entities.gradingPeriods[id].assignmentRefs,
     }))
     .sort((gp1, gp2) => localeSort(gp1.title, gp2.title))
 
   return {
-    ...assignmentGroupsState,
+    pending,
+    error,
     assignmentGroups,
-    course,
     gradingPeriods,
+    courseColor,
   }
 }

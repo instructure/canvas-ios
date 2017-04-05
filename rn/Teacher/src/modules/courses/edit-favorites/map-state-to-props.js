@@ -3,7 +3,7 @@
 import type { EditFavoritesProps } from './prop-types'
 import localeSort from '../../../utils/locale-sort'
 
-export default function mapStateToProps (state: CoursesAppState): EditFavoritesProps {
+export default function mapStateToProps (state: AppState): EditFavoritesProps {
   let courses = Object.keys(state.entities.courses)
     .map(id => state.entities.courses[id])
     .map(({ course }) => course)

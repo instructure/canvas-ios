@@ -10,7 +10,7 @@ const template = {
 
 test('mapStateToProps returns the correct props', () => {
   const course = template.course({ id: 1 })
-  const tabs = { tabs: [template.tab()] }
+  const tabs = { tabs: [template.tab()], pending: 0 }
   const state = template.appState({
     entities: {
       courses: {
@@ -22,6 +22,7 @@ test('mapStateToProps returns the correct props', () => {
       },
     },
     favoriteCourses: {
+      pending: 0,
       courseRefs: ['1'],
     },
   })
@@ -29,6 +30,8 @@ test('mapStateToProps returns the correct props', () => {
     course,
     ...tabs,
     color: '#fff',
+    pending: 0,
+    error: undefined,
   }
 
   const props = mapStateToProps(state, { courseID: '1' })

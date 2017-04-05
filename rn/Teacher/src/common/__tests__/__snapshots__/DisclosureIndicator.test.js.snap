@@ -4,6 +4,7 @@ exports[`renders disclosure indiciator correctly 1`] = `
 <View
   style={
     Object {
+      "alignSelf": "center",
       "backgroundColor": "transparent",
       "borderColor": "#c7c7cc",
       "borderRightWidth": 2,

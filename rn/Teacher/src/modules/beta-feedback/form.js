@@ -12,7 +12,7 @@ const form = googleForm(BASE_URI, {
   email: '941918261',
 })
 
-export function betaFeedbackForm (user: User, device: DeviceInfo): string {
+export function betaFeedbackForm (user: SessionUser, device: DeviceInfo): string {
   return form({
     os: 'iOS',
     osVersion: device.getSystemVersion(),

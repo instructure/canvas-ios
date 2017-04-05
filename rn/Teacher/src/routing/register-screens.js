@@ -12,6 +12,7 @@ import Inbox from '../modules/inbox/Inbox'
 import Profile from '../modules/profile/Profile'
 import BetaFeedback from '../modules/beta-feedback/BetaFeedback'
 import Staging from '../modules/staging/Staging'
+import SubmissionList from '../modules/submissions/list/SubmissionList'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -25,6 +26,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/assignments', () => AssignmentList, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID', () => AssignmentDetails, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/edit', () => AssignmentDetailsEdit, store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', () => SubmissionList, store)
   registerScreen('/conversations', () => Inbox, store)
   registerScreen('/profile', () => Profile, store)
   registerScreen('/beta-feedback', () => BetaFeedback, store)

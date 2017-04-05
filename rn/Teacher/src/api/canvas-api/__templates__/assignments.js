@@ -23,6 +23,7 @@ export const assignment: Template<Assignment> = template({
     'media_recording',
     'online_upload' ],
   needs_grading_count: 0,
+  html_url: 'http://hostname.tld/whatever',
 })
 
 export const assignmentGroup: Template<AssignmentGroup> = template({

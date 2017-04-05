@@ -2,8 +2,12 @@
 
 import stateToProps from '../state-to-props'
 
+const templates = {
+  ...require('../../../redux/__templates__/app-state'),
+}
+
 test('finds the correct data', () => {
-  let state = {
+  let state = templates.appState({
     entities: {
       courses: {
         '1': {
@@ -21,7 +25,7 @@ test('finds the correct data', () => {
     favoriteCourses: {
       pending: 0,
     },
-  }
+  })
 
   let data = stateToProps(state, { courseID: '2' })
   expect(data).toMatchObject({

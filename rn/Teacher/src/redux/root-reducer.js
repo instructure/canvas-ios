@@ -1,6 +1,6 @@
 // @flow
 
-import { combineReducers, Reducer } from 'redux'
+import { combineReducers, Reducer, Action } from 'redux'
 import { courses } from '../modules/courses/courses-reducer'
 import { favoriteCourses } from '../modules/courses/favorites/favorite-courses-reducer'
 import { gradingPeriods } from '../modules/assignments/grading-periods-reducer'

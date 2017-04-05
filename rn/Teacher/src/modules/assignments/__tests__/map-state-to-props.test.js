@@ -22,6 +22,7 @@ test('map state to props should work', async () => {
         [course.id]: {
           assignmentGroups: { refs: [assignmentGroup.id] },
           course: course,
+          color: 'blueish',
         },
       },
       assignmentGroups: {
@@ -48,23 +49,19 @@ test('map state to props should work', async () => {
       color: '#fff',
     },
     assignmentGroups: [],
+    updateAssignment: jest.fn(),
     refreshAssignmentList: jest.fn(),
     refreshGradingPeriods: jest.fn(),
     refresh: jest.fn(),
     pending: 0,
     navigator: template.navigator(),
     gradingPeriods: [],
+    courseColor: 'greenish',
   }
 
   const result = mapStateToProps(state, props)
   expect(result).toMatchObject({
     assignmentGroups: [assignmentGroup],
-    course: {
-      assignmentGroups: {
-        refs: [1],
-      },
-      course: course,
-    },
     gradingPeriods: [{
       ...gradingPeriod,
       assignmentRefs: [assignmentGroup.assignments[0].id],
@@ -72,6 +69,6 @@ test('map state to props should work', async () => {
       ...gradingPeriodTwo,
       assignmentRefs: [],
     }],
-    refs: [1],
+    courseColor: 'blueish',
   })
 })

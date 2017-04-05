@@ -1,7 +1,6 @@
 /* @flow */
 
 import { AssignmentListActions } from '../actions'
-import { defaultState } from '../assignments-reducer'
 import { apiResponse } from '../../../../test/helpers/apiMock'
 import { testAsyncAction } from '../../../../test/helpers/async'
 
@@ -14,7 +13,7 @@ test('refresh assignment list', async () => {
   const course = template.course()
   const groups = [template.assignmentGroup()]
   let actions = AssignmentListActions({ getCourseAssignmentGroups: apiResponse(groups) })
-  const result = await testAsyncAction(actions.refreshAssignmentList(course.id), defaultState)
+  const result = await testAsyncAction(actions.refreshAssignmentList(course.id), {})
 
   expect(result).toMatchObject([{
     type: actions.refreshAssignmentList.toString(),
@@ -37,7 +36,7 @@ test('refresh assignment list can take an optional grading period id', async () 
   const course = template.course()
   const groups = [template.assignmentGroup()]
   let actions = AssignmentListActions({ getCourseAssignmentGroups: apiResponse(groups) })
-  const result = await testAsyncAction(actions.refreshAssignmentList(course.id, 1), defaultState)
+  const result = await testAsyncAction(actions.refreshAssignmentList(course.id, 1), {})
 
   expect(result).toMatchObject([{
     type: actions.refreshAssignmentList.toString(),

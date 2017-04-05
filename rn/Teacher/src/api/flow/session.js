@@ -1,6 +1,6 @@
 // @flow
 
-export type User = {
+export type SessionUser = {
   primary_email: string,
   id: string,
 }
@@ -8,5 +8,5 @@ export type User = {
 export type Session = {
   authToken: string,
   baseURL: string,
-  user: User,
+  user: SessionUser,
 }

@@ -11,6 +11,8 @@ const emptyAppState: AppState = {
     courses: {},
     assignmentGroups: {},
     gradingPeriods: {},
+    enrollments: {},
+    assignments: {},
   },
 }
 

@@ -1,22 +1,45 @@
 // @flow
 
-import type { TabsProps } from '../tabs/tabs-prop-types'
 import type { CourseListActionProps } from '../course-prop-types'
 
 type RoutingParams = {
   +courseID: string,
 }
 
-export type CourseDetailsProps = TabsProps & CourseListActionProps & RoutingParams & { refresh: Function, pending: number, course?: Course, color?: ?string }
+export type CourseDetailsDataProps = {
+  +pending: number,
+  +error?: ?string,
+  +tabs: Array<Tab>,
+  +course: Course,
+  +color: string,
+}
 
-export default function mapStateToProps (state: CoursesAppState, ownProps: RoutingParams): CourseDetailsProps {
-  let courseState: CourseState & CourseContentState = state.entities.courses[ownProps.courseID] || { tabs: { tabs: [] } }
+export type CourseDetailsProps = CourseDetailsDataProps
+  & CourseListActionProps
+  & RoutingParams
+  & {
+    refresh: Function,
+  }
 
-  const { course, color, tabs } = courseState
+export default function mapStateToProps (state: AppState, { courseID }: RoutingParams): CourseDetailsDataProps {
+  let courseState = state.entities.courses[courseID]
+
+  const {
+    course,
+    color,
+  } = courseState
+
+  const pending = state.favoriteCourses.pending +
+    courseState.tabs.pending
+  const tabs = courseState.tabs.tabs
+  const error = state.favoriteCourses.error ||
+    courseState.tabs.error
+
   return {
     course,
     color,
-    ...tabs,
-    pending: state.favoriteCourses.pending,
+    tabs,
+    pending,
+    error,
   }
 }

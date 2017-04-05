@@ -60,8 +60,8 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
       }),
     })
 
-    if (props.course.color) {
-      const color: string = props.course.color
+    if (props.courseColor) {
+      const color: string = props.courseColor
       props.navigator.setStyle({
         navBarBackgroundColor: color,
       })
@@ -129,7 +129,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
   }
 
   renderRow = (assignment: Assignment, sectionID: string, rowID: string) => {
-    return <AssignmentListRowView assignment={assignment} tintColor={this.props.course.color} onPress={this.selectedAssignment} />
+    return <AssignmentListRowView assignment={assignment} tintColor={this.props.courseColor} onPress={this.selectedAssignment} />
   }
 
   renderSectionHeader = (group: any) => {
@@ -148,7 +148,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
   }
 
   selectedAssignment = (assignment: Assignment) => {
-    const destination = route(`/courses/${this.props.courseID}/assignments/${assignment.id}`)
+    const destination = route(assignment.html_url)
     this.props.navigator.push(destination)
   }
 

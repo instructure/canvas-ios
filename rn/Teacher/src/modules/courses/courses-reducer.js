@@ -8,11 +8,12 @@ import groupCustomColors from '../../api/utils/group-custom-colors'
 import fromPairs from 'lodash/fromPairs'
 import { tabs } from './tabs/tabs-reducer'
 import { assignmentGroupRefs } from '../assignments/assignments-reducer'
+import { enrollments } from '../enrollments/enrollments-refs-reducer'
 
 // dummy's to appease combineReducers
 const course = (state) => (state || {})
 const color = (state) => (state || '#FFFFFF00')
-const pending = (state) => (state || 0)
+const pending = (state) => (state || {})
 
 const courseContents: Reducer<CourseState, Action> = combineReducers({
   course,
@@ -21,14 +22,17 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   assignmentGroups: assignmentGroupRefs,
   oldColor: color,
   pending,
+  enrollments,
 })
 
 const { refreshCourses, updateCourseColor } = CourseListActions
 
-export const defaultState: CoursesState = {}
+export const defaultState: { [courseID: string]: CourseState & CourseContentState } = {}
 
 const emptyCourseState: CourseContentState = {
-  tabs: { pending: 0, tabs: [] }, assignmentGroups: { pending: 0, refs: [] },
+  tabs: { pending: 0, tabs: [] },
+  assignmentGroups: { pending: 0, refs: [] },
+  enrollments: { pending: 0, refs: [] },
 }
 
 export const normalizeCourse = (course: Course, colors: { [courseId: string]: string } = {}, prevState: CourseContentState = emptyCourseState): CourseState => {

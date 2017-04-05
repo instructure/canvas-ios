@@ -1,0 +1,586 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`late graded row renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "lightgrey",
+      "borderBottomWidth": 0.5,
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+        },
+        Object {
+          "flex": 1,
+        },
+      ]
+    }
+    testID="submission-1"
+    tvParallaxProperties={undefined}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "paddingBottom": 10,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 10,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "https://cats.pajamas/",
+          }
+        }
+        style={
+          Object {
+            "alignSelf": "center",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "paddingLeft": 8,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+          style={
+            Object {
+              "color": "#2D3B45",
+              "flex": 1,
+              "fontSize": 16,
+              "fontWeight": "600",
+            }
+          }
+        >
+          Green Latern
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontSize": 14,
+                "paddingTop": 2,
+              },
+              Object {
+                "color": "#FC5E13",
+              },
+            ]
+          }
+        >
+          Late
+        </Text>
+      </View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#368BD8",
+              "fontSize": 14,
+            },
+            Object {
+              "alignSelf": "center",
+            },
+          ]
+        }
+      >
+        B-
+      </Text>
+      <View
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "transparent",
+            "borderColor": "#c7c7cc",
+            "borderRightWidth": 2,
+            "borderTopWidth": 2,
+            "height": 10,
+            "marginLeft": 7,
+            "transform": Array [
+              Object {
+                "rotate": "45deg",
+              },
+            ],
+            "width": 10,
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`missing ungraded row renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "lightgrey",
+      "borderBottomWidth": 0.5,
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+        },
+        Object {
+          "flex": 1,
+        },
+      ]
+    }
+    testID="submission-1"
+    tvParallaxProperties={undefined}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "paddingBottom": 10,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 10,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "https://cats.pajamas/",
+          }
+        }
+        style={
+          Object {
+            "alignSelf": "center",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "paddingLeft": 8,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+          style={
+            Object {
+              "color": "#2D3B45",
+              "flex": 1,
+              "fontSize": 16,
+              "fontWeight": "600",
+            }
+          }
+        >
+          Green Latern
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontSize": 14,
+                "paddingTop": 2,
+              },
+              Object {
+                "color": "#EE0612",
+              },
+            ]
+          }
+        >
+          Missing
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "transparent",
+            "borderColor": "#c7c7cc",
+            "borderRightWidth": 2,
+            "borderTopWidth": 2,
+            "height": 10,
+            "marginLeft": 7,
+            "transform": Array [
+              Object {
+                "rotate": "45deg",
+              },
+            ],
+            "width": 10,
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`submitted ungraded row renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "lightgrey",
+      "borderBottomWidth": 0.5,
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+        },
+        Object {
+          "flex": 1,
+        },
+      ]
+    }
+    testID="submission-1"
+    tvParallaxProperties={undefined}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "paddingBottom": 10,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 10,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "https://cats.pajamas/",
+          }
+        }
+        style={
+          Object {
+            "alignSelf": "center",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "paddingLeft": 8,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+          style={
+            Object {
+              "color": "#2D3B45",
+              "flex": 1,
+              "fontSize": 16,
+              "fontWeight": "600",
+            }
+          }
+        >
+          Green Latern
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontSize": 14,
+                "paddingTop": 2,
+              },
+              Object {
+                "color": "#07AF1F",
+              },
+            ]
+          }
+        >
+          Submitted
+        </Text>
+      </View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        color="#368BD8"
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "borderRadius": 9,
+              "borderWidth": 1,
+              "fontSize": 11,
+              "fontWeight": "600",
+              "overflow": "hidden",
+              "paddingBottom": 0,
+              "paddingLeft": 6,
+              "paddingRight": 6,
+              "paddingTop": 3,
+            },
+            Object {
+              "borderColor": "#368BD8",
+              "color": "#368BD8",
+            },
+            Object {
+              "alignSelf": "center",
+            },
+          ]
+        }
+      >
+        UNGRADED
+      </Text>
+      <View
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "transparent",
+            "borderColor": "#c7c7cc",
+            "borderRightWidth": 2,
+            "borderTopWidth": 2,
+            "height": 10,
+            "marginLeft": 7,
+            "transform": Array [
+              Object {
+                "rotate": "45deg",
+              },
+            ],
+            "width": 10,
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`unsubmitted ungraded row renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "lightgrey",
+      "borderBottomWidth": 0.5,
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+        },
+        Object {
+          "flex": 1,
+        },
+      ]
+    }
+    testID="submission-1"
+    tvParallaxProperties={undefined}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "paddingBottom": 10,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 10,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "https://cats.pajamas/",
+          }
+        }
+        style={
+          Object {
+            "alignSelf": "center",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "paddingLeft": 8,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+          style={
+            Object {
+              "color": "#2D3B45",
+              "flex": 1,
+              "fontSize": 16,
+              "fontWeight": "600",
+            }
+          }
+        >
+          Green Latern
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontSize": 14,
+                "paddingTop": 2,
+              },
+              Object {
+                "color": "#8B969E",
+              },
+            ]
+          }
+        >
+          No submission yet
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "transparent",
+            "borderColor": "#c7c7cc",
+            "borderRightWidth": 2,
+            "borderTopWidth": 2,
+            "height": 10,
+            "marginLeft": 7,
+            "transform": Array [
+              Object {
+                "rotate": "45deg",
+              },
+            ],
+            "width": 10,
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

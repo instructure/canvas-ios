@@ -3,7 +3,7 @@
 export type AssignmentDetailsState = {
   +assignmentDetails: Assignment,
   +pending: number,
-  +error?: string,
+  +error?: ?string,
 }
 
 export type AssignmentDetailsProps = {
@@ -39,4 +39,3 @@ export function updateMapStateToProps (state: AppState, ownProps: AssignmentDeta
     error: state.entities.assignments[ownProps.assignmentID].error,
   }
 }
-

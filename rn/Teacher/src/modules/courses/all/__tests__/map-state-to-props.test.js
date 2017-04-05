@@ -24,7 +24,7 @@ describe('all courses mapStateToProps', () => {
   const courseStates: Array<CourseState> = courseTemplates
     .map((course) => normalizeCourse(course, colors))
   const pairs: Array<Array<*>> = courseStates
-      .map((courseState) => ([courseState.course.id, courseState]))
+    .map((courseState) => ([courseState.course.id, courseState]))
   const courses: CoursesState = fromPairs(pairs)
 
   const state = appState({

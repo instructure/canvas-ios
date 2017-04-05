@@ -27,9 +27,6 @@
     "message": "Availability:",
     "description": "Assignment due date \"Available to:\" field"
   },
-  "available_from_f84e4611": {
-    "message": "Available from"
-  },
   "available_from_f9e093c8": {
     "message": "Available from:",
     "description": "Assignment due date \"Available from:\" field"
@@ -37,9 +34,6 @@
   "available_to_434cb9f5": {
     "message": "Available to:",
     "description": "Assignment due date \"Available to:\" field"
-  },
-  "available_to_b7350e02": {
-    "message": "Available to"
   },
   "back_courses": {
     "message": "Courses",
@@ -136,9 +130,6 @@
   "filter_e3398407": {
     "message": "Filter"
   },
-  "for_974cbb84": {
-    "message": "For"
-  },
   "for_e3490d05": {
     "message": "For:",
     "description": "Assignment due date \"For:\" field"
@@ -155,6 +146,10 @@
     "message": "Instructions",
     "description": "Assignment Details Section title for assignment instructions"
   },
+  "late_2be42b88": {
+    "message": "Late",
+    "description": "Assignment was turned in late"
+  },
   "leave_feedback_df88476c": {
     "message": "Leave Feedback",
     "description": "Shown at the top of the app to allow the user to leave feedback"
@@ -166,6 +161,10 @@
     "message": "media recording",
     "description": "assignment submission type"
   },
+  "missing_1a256b3b": {
+    "message": "Missing",
+    "description": "The assignment has not been turned in"
+  },
   "multiple_due_dates_283dd861": {
     "message": "Multiple Due Dates",
     "description": "Assignment details information about due dates, when there are more than one due date to display"
@@ -176,6 +175,10 @@
   },
   "no_due_date_1d63d13b": {
     "message": "No due date"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "No submission yet",
+    "description": "No submission from the student for the given assignment"
   },
   "none_9b6c9bec": {
     "message": "none",
@@ -244,6 +247,13 @@
     "message": "Submissions",
     "description": "Assignment Details Section title for info on submissions"
   },
+  "submitted_318fad53": {
+    "message": "Submitted",
+    "description": "The assignment has been turned in"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "There was a error loading the list of enrollments"
+  },
   "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
     "message": "There was an unexpected error. Please close this alert and try again.",
     "description": "A generic error message"
@@ -258,6 +268,10 @@
   "unexpected_error_93991f40": {
     "message": "Unexpected Error",
     "description": "The generic title of the generic error message"
+  },
+  "ungraded_147a0dce": {
+    "message": "ungraded",
+    "description": "Label for ungraded assignment submission"
   },
   "ungraded_ed0c6f98": {
     "message": "Ungraded",
