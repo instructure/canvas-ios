@@ -11,10 +11,12 @@ import EditSectionHeader from './components/EditSectionHeader'
 import { TextInput } from '../../common/text'
 import ModalActivityIndicator from '../../common/components/ModalActivityIndicator'
 import { Navigation } from 'react-native-navigation'
+import { ERROR_TITLE, parseErrorMessage } from '../../redux/middleware/error-handler'
 import {
   View,
   StyleSheet,
   ScrollView,
+  Alert,
 } from 'react-native'
 
 export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps, any> {
@@ -31,6 +33,13 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
         }),
         id: 'dismiss',
         testID: 'edit-assignment.dismiss-btn',
+      },
+    ],
+    leftButtons: [
+      {
+        title: i18n('Cancel'),
+        id: 'cancel',
+        testID: 'edit-assignment.cancel-btn',
       },
     ],
   }
@@ -65,7 +74,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
     return (
       <View style={{ flex: 1 }}>
-        <ModalActivityIndicator text={savingText} visible={this.state.pending > 0}/>
+        <ModalActivityIndicator text={savingText} visible={this.state.pending}/>
         <ScrollView style={style.container}>
         <EditSectionHeader title={sectionTitle}/>
         <View style={style.row} >
@@ -100,22 +109,43 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
           case 'dismiss':
             this.actionDonePressed()
             break
+          case 'cancel':
+            this.actionCancelPressed()
+            break
         }
         break
     }
   }
 
   actionDonePressed () {
-    this.setState({ pending: 1 })
+    this.setState({ pending: true })
     this.props.updateAssignment(this.props.courseID, this.state.assignment, this.props.assignmentDetails)
   }
 
+  actionCancelPressed () {
+    Navigation.dismissAllModals()
+  }
+
+  componentDidUpdate () {
+    if (this.state.error) {
+      this.handleError()
+    }
+  }
+
+  handleError () {
+    setTimeout(() => { Alert.alert(ERROR_TITLE, this.state.error); delete this.state.error }, 1000)
+  }
+
   componentWillReceiveProps (nextProps: AssignmentDetailsProps) {
+    if (!nextProps.pending && nextProps.error) {
+      let error = parseErrorMessage(nextProps.error.response)
+      this.setState({ pending: false, error: error, assignment: Object.assign({}, this.state.assignment) })
+      return
+    }
+
     if (this.state.pending && (nextProps.assignmentDetails && !nextProps.pending)) {
-      this.setState({ pending: 0 })
-      if (!nextProps.error) {
-        Navigation.dismissAllModals()
-      }
+      this.setState({ error: undefined })
+      Navigation.dismissAllModals()
     }
   }
 }

@@ -4,6 +4,12 @@ exports[`renders modal activity indicator 1`] = `
 <Modal
   animationType="fade"
   hardwareAccelerated={false}
+  supportedOrientations={
+    Array [
+      "portrait",
+      "landscape",
+    ]
+  }
   transparent={true}
   visible={false}
 >

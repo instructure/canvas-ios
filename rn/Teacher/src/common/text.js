@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     color: colors.darkText,
   },
   textInput: {
+    fontSize: 17,
   },
   modalActivityIndicatorAlertText: {
     fontSize: 24,

@@ -18,6 +18,7 @@ export let AssignmentListActions: (typeof canvas) => AssignmentListActionProps =
       courseID,
       updatedAssignment,
       originalAssignment,
+      handlesError: true,
     }
   }),
 })

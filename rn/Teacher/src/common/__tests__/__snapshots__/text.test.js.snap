@@ -111,7 +111,9 @@ exports[`renders textInput correctly 1`] = `
       Object {
         "fontFamily": ".SFUIDisplay",
       },
-      Object {},
+      Object {
+        "fontSize": 17,
+      },
       undefined,
     ]
   }

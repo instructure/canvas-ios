@@ -30,9 +30,6 @@
     "message": "Availability:",
     "description": "Assignment due date \"Available to:\" field"
   },
-  "available_from_f84e4611": {
-    "message": "Available from"
-  },
   "available_from_f9e093c8": {
     "message": "Available from:",
     "description": "Assignment due date \"Available from:\" field"
@@ -41,15 +38,16 @@
     "message": "Available to:",
     "description": "Assignment due date \"Available to:\" field"
   },
-  "available_to_b7350e02": {
-    "message": "Available to"
-  },
   "back_courses": {
     "message": "Courses",
     "description": "The back button title to go from all courses to just favorited courses"
   },
   "cancel_caeb1e68": {
     "message": "Cancel"
+  },
+  "cancel_edit_assignment": {
+    "message": "Cancel",
+    "description": "Button to cancel modal"
   },
   "choose_color_11148181": {
     "message": "Choose { color }",
@@ -138,9 +136,6 @@
   },
   "filter_e3398407": {
     "message": "Filter"
-  },
-  "for_974cbb84": {
-    "message": "For"
   },
   "for_e3490d05": {
     "message": "For:",

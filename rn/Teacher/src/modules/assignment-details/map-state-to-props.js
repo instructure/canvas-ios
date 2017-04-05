@@ -11,7 +11,7 @@ export type AssignmentDetailsProps = {
   navigator: ReactNavigator,
   courseID: string,
   assignmentID: string,
-  error?: string,
+  error?: any,
   pending?: number,
   refresh: Function,
   updateAssignment: Function,

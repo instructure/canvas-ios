@@ -23,7 +23,9 @@ export default class ModalActivityIndicator extends React.Component<any, Props, 
     return (
       <Modal animationType={this.props.animationType}
              transparent={this.props.transparent}
-             visible={this.props.visible}>
+             visible={this.props.visible}
+             supportedOrientations={['portrait', 'landscape']}
+      >
         <View style={[style.container]}>
           <View style={[style.background, { backgroundColor: this.props.backgroundColor }, { width: this.props.width, height: this.props.height }]}>
             <View style={style.textContainer}>

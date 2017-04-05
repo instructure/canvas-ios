@@ -32,7 +32,8 @@ let assignment: any = template.assignment()
 let defaultProps = {}
 let onNavigatorEvent = () => {}
 let doneButtonPressedProps = {}
-const navigatorEventProps = { type: 'NavBarButtonPress', id: 'dismiss' }
+const navigatorDismissEventProps = { type: 'NavBarButtonPress', id: 'dismiss' }
+const navigatorCancelEventProps = { type: 'NavBarButtonPress', id: 'cancel' }
 
 beforeEach(() => {
   jest.clearAllMocks()
@@ -43,7 +44,7 @@ beforeEach(() => {
     assignmentID: assignment.assignmentID,
     refreshAssignmentDetails: (courseID: string, assignmentID: string) => {},
     assignmentDetails: assignment,
-    pending: 0,
+    pending: false,
     stubSubmissionProgress: true,
     updateAssignment: jest.fn(),
   }
@@ -86,41 +87,61 @@ test('dismisses modal on done after assignment updates', () => {
     <AssignmentDetailsEdit {...doneButtonPressedProps} />
   )
   let updateAssignment = jest.fn(() => {
-    setProps(component, { pending: 0 })
+    setProps(component, { pending: false })
   })
   component.update(<AssignmentDetailsEdit {...doneButtonPressedProps} updateAssignment={updateAssignment}/>)
 
-  onNavigatorEvent(navigatorEventProps)
+  onNavigatorEvent(navigatorDismissEventProps)
 
   expect(Navigation.dismissAllModals).toHaveBeenCalled()
 })
 
-test('modal saving... is shown on assignment update', () => {
+test('modal saving is shown on assignment update', () => {
   let component = renderer.create(
     <AssignmentDetailsEdit {...doneButtonPressedProps} />
   )
 
   let updateAssignment = jest.fn(() => {
-    setProps(component, { pending: 1 })
+    setProps(component, { pending: true })
   })
   component.update(<AssignmentDetailsEdit {...doneButtonPressedProps} updateAssignment={updateAssignment}/>)
 
-  onNavigatorEvent(navigatorEventProps)
+  onNavigatorEvent(navigatorDismissEventProps)
 
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()
 })
 
-test('dismisses modal on done after assignment updates', () => {
+test('error occurs when done pressed', () => {
+  jest.useFakeTimers()
+
+  let component = renderer.create(
+    <AssignmentDetailsEdit {...doneButtonPressedProps} />
+  )
+
+  let updateAssignment = jest.fn(() => {
+    setProps(component, { pending: false, error: { response: { data: { errors: [{ message: 'error occurred' }] } } } })
+  })
+  component.update(<AssignmentDetailsEdit {...doneButtonPressedProps} updateAssignment={updateAssignment}/>)
+
+  onNavigatorEvent(navigatorDismissEventProps)
+
+  jest.runAllTimers()
+
+  let tree = component.toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('dismisses modal on cancel', () => {
   let component = renderer.create(
     <AssignmentDetailsEdit {...doneButtonPressedProps} />
   )
   let updateAssignment = jest.fn(() => {
-    setProps(component, { pending: 0 })
+    setProps(component, { pending: false })
   })
   component.update(<AssignmentDetailsEdit {...doneButtonPressedProps} updateAssignment={updateAssignment}/>)
 
-  onNavigatorEvent(navigatorEventProps)
+  onNavigatorEvent(navigatorCancelEventProps)
 
   expect(Navigation.dismissAllModals).toHaveBeenCalled()
 })
@@ -136,7 +157,7 @@ test('change title', () => {
   let titleField = explore(tree).selectByID('titleInput') || {}
   titleField.props.onChangeText(expectedTitle)
 
-  onNavigatorEvent(navigatorEventProps)
+  onNavigatorEvent(navigatorDismissEventProps)
 
   let expected = { ...defaultProps.assignmentDetails, name: expectedTitle }
 
