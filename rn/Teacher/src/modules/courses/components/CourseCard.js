@@ -74,7 +74,7 @@ export default class CourseCard extends Component {
        <TouchableHighlight onLayout={this.onLayout} style={[styles.card, style]} testID={course.course_code} onPress={this.onPress}>
         <View style={styles.cardContainer}>
             <View style={styles.imageWrapper}>
-              {course.image_download_url &&
+              {Boolean(course.image_download_url) &&
                 <Image source={{ uri: course.image_download_url }} style={styles.image} />
               }
               <View style={this.createImageStyles()} />

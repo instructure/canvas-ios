@@ -51,3 +51,30 @@ it('calls props.onCoursePreferencesPressed when the kabob is selected', () => {
 
   expect(onCoursePreferencesPressed).toHaveBeenCalledWith(defaultProps.course.id)
 })
+
+it('renders with image url', () => {
+  let course = courseTemplate.course({ image_download_url: 'http://www.fillmurray.com/100/100' })
+  expect(
+    renderer.create(
+      <CourseCard {...defaultProps} course={course} />
+    ).toJSON()
+  ).toMatchSnapshot()
+})
+
+it('renders without image url', () => {
+  let course = courseTemplate.course({ image_download_url: null })
+  expect(
+    renderer.create(
+      <CourseCard {...defaultProps} course={course} />
+    ).toJSON()
+  ).toMatchSnapshot()
+})
+
+it('renders with empty image url', () => {
+  let course = courseTemplate.course({ image_download_url: '' })
+  expect(
+    renderer.create(
+      <CourseCard {...defaultProps} course={course} />
+    ).toJSON()
+  ).toMatchSnapshot()
+})

@@ -141,3 +141,405 @@ exports[`renders 1`] = `
   </View>
 </TouchableHighlight>
 `;
+
+exports[`renders with empty image url 1`] = `
+<TouchableHighlight
+  onLayout={[Function]}
+  onPress={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#000",
+        "borderColor": "#e3e3e3",
+        "borderRadius": 4,
+        "borderWidth": 0.5,
+        "height": 160,
+        "overflow": "hidden",
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.2,
+        "shadowRadius": 1,
+      },
+      Object {
+        "height": 100,
+      },
+    ]
+  }
+  testID="rn 101"
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#333",
+            "bottom": 0,
+            "left": 0,
+            "opacity": 1,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <TouchableHighlight
+        accessibilityLabel="Open user course preferences"
+        onPress={[Function]}
+        style={
+          Object {
+            "height": 43,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "width": 43,
+          }
+        }
+        testID="courseCard.kabob_1"
+        underlayColor="#ffffff00"
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 18,
+              "position": "absolute",
+              "right": 8,
+              "top": 10,
+              "width": 18,
+            }
+          }
+        />
+      </TouchableHighlight>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "paddingHorizontal": 10,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={2}
+        style={
+          Object {
+            "color": "#333",
+            "fontSize": 16,
+            "fontWeight": "600",
+            "marginTop": 8,
+          }
+        }
+      >
+        Learn React Native
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#8B969D",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "marginTop": 2,
+          }
+        }
+      >
+        rn 101
+      </Text>
+    </View>
+  </View>
+</TouchableHighlight>
+`;
+
+exports[`renders with image url 1`] = `
+<TouchableHighlight
+  onLayout={[Function]}
+  onPress={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#000",
+        "borderColor": "#e3e3e3",
+        "borderRadius": 4,
+        "borderWidth": 0.5,
+        "height": 160,
+        "overflow": "hidden",
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.2,
+        "shadowRadius": 1,
+      },
+      Object {
+        "height": 100,
+      },
+    ]
+  }
+  testID="rn 101"
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "http://www.fillmurray.com/100/100",
+          }
+        }
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "backgroundColor": "#333",
+            "bottom": 0,
+            "left": 0,
+            "opacity": 0.8,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <TouchableHighlight
+        accessibilityLabel="Open user course preferences"
+        onPress={[Function]}
+        style={
+          Object {
+            "height": 43,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "width": 43,
+          }
+        }
+        testID="courseCard.kabob_1"
+        underlayColor="#ffffff00"
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 18,
+              "position": "absolute",
+              "right": 8,
+              "top": 10,
+              "width": 18,
+            }
+          }
+        />
+      </TouchableHighlight>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "paddingHorizontal": 10,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={2}
+        style={
+          Object {
+            "color": "#333",
+            "fontSize": 16,
+            "fontWeight": "600",
+            "marginTop": 8,
+          }
+        }
+      >
+        Learn React Native
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#8B969D",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "marginTop": 2,
+          }
+        }
+      >
+        rn 101
+      </Text>
+    </View>
+  </View>
+</TouchableHighlight>
+`;
+
+exports[`renders without image url 1`] = `
+<TouchableHighlight
+  onLayout={[Function]}
+  onPress={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#000",
+        "borderColor": "#e3e3e3",
+        "borderRadius": 4,
+        "borderWidth": 0.5,
+        "height": 160,
+        "overflow": "hidden",
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.2,
+        "shadowRadius": 1,
+      },
+      Object {
+        "height": 100,
+      },
+    ]
+  }
+  testID="rn 101"
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#333",
+            "bottom": 0,
+            "left": 0,
+            "opacity": 1,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <TouchableHighlight
+        accessibilityLabel="Open user course preferences"
+        onPress={[Function]}
+        style={
+          Object {
+            "height": 43,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "width": 43,
+          }
+        }
+        testID="courseCard.kabob_1"
+        underlayColor="#ffffff00"
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 18,
+              "position": "absolute",
+              "right": 8,
+              "top": 10,
+              "width": 18,
+            }
+          }
+        />
+      </TouchableHighlight>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "paddingHorizontal": 10,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={2}
+        style={
+          Object {
+            "color": "#333",
+            "fontSize": 16,
+            "fontWeight": "600",
+            "marginTop": 8,
+          }
+        }
+      >
+        Learn React Native
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#8B969D",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "marginTop": 2,
+          }
+        }
+      >
+        rn 101
+      </Text>
+    </View>
+  </View>
+</TouchableHighlight>
+`;
