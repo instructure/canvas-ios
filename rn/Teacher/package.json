@@ -71,7 +71,8 @@
       ".android.js",
       "flow/*.js",
       "/src/api/canvas-api/",
-      "/src/modules/staging"
+      "/src/modules/staging",
+      "dangerfile.js"
     ],
     "coverageDirectory": "./coverage",
     "coverageReporters": [
