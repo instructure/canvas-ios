@@ -1,0 +1,2380 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourseSettings dismisses modal activity upon save error 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.6)",
+              "borderRadius": 12,
+            },
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.8)",
+            },
+            Object {
+              "height": 170,
+              "width": 170,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#fff",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 24,
+                  },
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "color": "#fff",
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Saving
+            </Text>
+          </View>
+        </View>
+        <ActivityIndicator
+          animating={true}
+          color="#fff"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Object {
+              "flex": 1,
+              "marginTop": -40,
+            }
+          }
+        />
+      </View>
+    </View>
+  </Modal>
+  <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutoAutomaticScroll={true}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    keyboardDismissMode="interactive"
+    onScroll={[Function]}
+    scrollEventThrottle={0}
+    showsVerticalScrollIndicator={true}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 0.8,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 16,
+                "lineHeight": 54,
+              }
+            }
+          >
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#008EE2",
+                "flex": 3,
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
+              }
+            }
+            testID="nameInput"
+            value="Learn React Native"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        onPress={[Function]}
+        testID="courses.settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "height": 54,
+              "justifyContent": "center",
+              "paddingHorizontal": 16,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                }
+              }
+            >
+              Set 'Home' to...
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontFamily": ".SFUIDisplay-medium",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                }
+              }
+              testID="homePageLabel"
+            >
+              Pages Front Page
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 0,
+            },
+            Object {
+              "height": 150,
+            },
+          ]
+        }
+      />
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`CourseSettings renders 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.6)",
+              "borderRadius": 12,
+            },
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.8)",
+            },
+            Object {
+              "height": 170,
+              "width": 170,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#fff",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 24,
+                  },
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "color": "#fff",
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Saving
+            </Text>
+          </View>
+        </View>
+        <ActivityIndicator
+          animating={true}
+          color="#fff"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Object {
+              "flex": 1,
+              "marginTop": -40,
+            }
+          }
+        />
+      </View>
+    </View>
+  </Modal>
+  <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutoAutomaticScroll={true}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    keyboardDismissMode="interactive"
+    onScroll={[Function]}
+    scrollEventThrottle={0}
+    showsVerticalScrollIndicator={true}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 0.8,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 16,
+                "lineHeight": 54,
+              }
+            }
+          >
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#008EE2",
+                "flex": 3,
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
+              }
+            }
+            testID="nameInput"
+            value="Learn React Native"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        onPress={[Function]}
+        testID="courses.settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "height": 54,
+              "justifyContent": "center",
+              "paddingHorizontal": 16,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                }
+              }
+            >
+              Set 'Home' to...
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontFamily": ".SFUIDisplay-medium",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                }
+              }
+              testID="homePageLabel"
+            >
+              Pages Front Page
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 0,
+            },
+            Object {
+              "height": 150,
+            },
+          ]
+        }
+      />
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`CourseSettings renders a modal activity when saving 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    transparent={true}
+    visible={true}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.6)",
+              "borderRadius": 12,
+            },
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.8)",
+            },
+            Object {
+              "height": 170,
+              "width": 170,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#fff",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 24,
+                  },
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "color": "#fff",
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Saving
+            </Text>
+          </View>
+        </View>
+        <ActivityIndicator
+          animating={true}
+          color="#fff"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Object {
+              "flex": 1,
+              "marginTop": -40,
+            }
+          }
+        />
+      </View>
+    </View>
+  </Modal>
+  <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutoAutomaticScroll={true}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    keyboardDismissMode="interactive"
+    onScroll={[Function]}
+    scrollEventThrottle={0}
+    showsVerticalScrollIndicator={true}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 0.8,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 16,
+                "lineHeight": 54,
+              }
+            }
+          >
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#008EE2",
+                "flex": 3,
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
+              }
+            }
+            testID="nameInput"
+            value="Learn React Native"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        onPress={[Function]}
+        testID="courses.settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "height": 54,
+              "justifyContent": "center",
+              "paddingHorizontal": 16,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                }
+              }
+            >
+              Set 'Home' to...
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontFamily": ".SFUIDisplay-medium",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                }
+              }
+              testID="homePageLabel"
+            >
+              Pages Front Page
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 0,
+            },
+            Object {
+              "height": 150,
+            },
+          ]
+        }
+      />
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`CourseSettings renders with empty image url 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.6)",
+              "borderRadius": 12,
+            },
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.8)",
+            },
+            Object {
+              "height": 170,
+              "width": 170,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#fff",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 24,
+                  },
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "color": "#fff",
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Saving
+            </Text>
+          </View>
+        </View>
+        <ActivityIndicator
+          animating={true}
+          color="#fff"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Object {
+              "flex": 1,
+              "marginTop": -40,
+            }
+          }
+        />
+      </View>
+    </View>
+  </Modal>
+  <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutoAutomaticScroll={true}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    keyboardDismissMode="interactive"
+    onScroll={[Function]}
+    scrollEventThrottle={0}
+    showsVerticalScrollIndicator={true}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 1,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 16,
+                "lineHeight": 54,
+              }
+            }
+          >
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#008EE2",
+                "flex": 3,
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
+              }
+            }
+            testID="nameInput"
+            value="Learn React Native"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        onPress={[Function]}
+        testID="courses.settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "height": 54,
+              "justifyContent": "center",
+              "paddingHorizontal": 16,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                }
+              }
+            >
+              Set 'Home' to...
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontFamily": ".SFUIDisplay-medium",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                }
+              }
+              testID="homePageLabel"
+            >
+              Pages Front Page
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 0,
+            },
+            Object {
+              "height": 150,
+            },
+          ]
+        }
+      />
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`CourseSettings renders with image url 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.6)",
+              "borderRadius": 12,
+            },
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.8)",
+            },
+            Object {
+              "height": 170,
+              "width": 170,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#fff",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 24,
+                  },
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "color": "#fff",
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Saving
+            </Text>
+          </View>
+        </View>
+        <ActivityIndicator
+          animating={true}
+          color="#fff"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Object {
+              "flex": 1,
+              "marginTop": -40,
+            }
+          }
+        />
+      </View>
+    </View>
+  </Modal>
+  <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutoAutomaticScroll={true}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    keyboardDismissMode="interactive"
+    onScroll={[Function]}
+    scrollEventThrottle={0}
+    showsVerticalScrollIndicator={true}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "http://www.fillmurray.com/100/100",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 0.8,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 16,
+                "lineHeight": 54,
+              }
+            }
+          >
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#008EE2",
+                "flex": 3,
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
+              }
+            }
+            testID="nameInput"
+            value="Learn React Native"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        onPress={[Function]}
+        testID="courses.settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "height": 54,
+              "justifyContent": "center",
+              "paddingHorizontal": 16,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                }
+              }
+            >
+              Set 'Home' to...
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontFamily": ".SFUIDisplay-medium",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                }
+              }
+              testID="homePageLabel"
+            >
+              Pages Front Page
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 0,
+            },
+            Object {
+              "height": 150,
+            },
+          ]
+        }
+      />
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`CourseSettings renders without image url 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.6)",
+              "borderRadius": 12,
+            },
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.8)",
+            },
+            Object {
+              "height": 170,
+              "width": 170,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#fff",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 24,
+                  },
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "color": "#fff",
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Saving
+            </Text>
+          </View>
+        </View>
+        <ActivityIndicator
+          animating={true}
+          color="#fff"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Object {
+              "flex": 1,
+              "marginTop": -40,
+            }
+          }
+        />
+      </View>
+    </View>
+  </Modal>
+  <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutoAutomaticScroll={true}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    keyboardDismissMode="interactive"
+    onScroll={[Function]}
+    scrollEventThrottle={0}
+    showsVerticalScrollIndicator={true}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 1,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 16,
+                "lineHeight": 54,
+              }
+            }
+          >
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#008EE2",
+                "flex": 3,
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
+              }
+            }
+            testID="nameInput"
+            value="Learn React Native"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        onPress={[Function]}
+        testID="courses.settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "height": 54,
+              "justifyContent": "center",
+              "paddingHorizontal": 16,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                }
+              }
+            >
+              Set 'Home' to...
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontFamily": ".SFUIDisplay-medium",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                }
+              }
+              testID="homePageLabel"
+            >
+              Pages Front Page
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 0,
+            },
+            Object {
+              "height": 150,
+            },
+          ]
+        }
+      />
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`CourseSettings shows home view picker when home row tapped 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.6)",
+              "borderRadius": 12,
+            },
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.8)",
+            },
+            Object {
+              "height": 170,
+              "width": 170,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#fff",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 24,
+                  },
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "color": "#fff",
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Saving
+            </Text>
+          </View>
+        </View>
+        <ActivityIndicator
+          animating={true}
+          color="#fff"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Object {
+              "flex": 1,
+              "marginTop": -40,
+            }
+          }
+        />
+      </View>
+    </View>
+  </Modal>
+  <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutoAutomaticScroll={true}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    keyboardDismissMode="interactive"
+    onScroll={[Function]}
+    scrollEventThrottle={0}
+    showsVerticalScrollIndicator={true}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 0.8,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 16,
+                "lineHeight": 54,
+              }
+            }
+          >
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#008EE2",
+                "flex": 3,
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
+              }
+            }
+            testID="nameInput"
+            value="Learn React Native"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        onPress={[Function]}
+        testID="courses.settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "height": 54,
+              "justifyContent": "center",
+              "paddingHorizontal": 16,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                }
+              }
+            >
+              Set 'Home' to...
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontFamily": ".SFUIDisplay-medium",
+                  "fontSize": 16,
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                }
+              }
+              testID="homePageLabel"
+            >
+              Pages Front Page
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <PickerIOS
+        onValueChange={[Function]}
+        selectedValue="wiki"
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+        testID="homePicker"
+      >
+        <Item
+          label="Course Activity Stream"
+          value="feed"
+        />
+        <Item
+          label="Pages Front Page"
+          value="wiki"
+        />
+        <Item
+          label="Course Modules"
+          value="modules"
+        />
+        <Item
+          label="Assignments List"
+          value="assignments"
+        />
+        <Item
+          label="Syllabus"
+          value="syllabus"
+        />
+      </PickerIOS>
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 0,
+            },
+            Object {
+              "height": 0,
+            },
+          ]
+        }
+      />
+    </View>
+  </RCTScrollView>
+</View>
+`;

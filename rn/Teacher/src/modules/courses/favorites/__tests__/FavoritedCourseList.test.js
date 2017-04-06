@@ -115,7 +115,7 @@ test('go to all courses', () => {
   const course = template.course({ id: 1, is_favorite: true })
   const props = {
     ...defaultProps,
-    courses: [{ ...course, color: '#ff' }],
+    courses: [{ ...course, color: '#fff' }],
     navigator: template.navigator({
       showModal: jest.fn(),
     }),

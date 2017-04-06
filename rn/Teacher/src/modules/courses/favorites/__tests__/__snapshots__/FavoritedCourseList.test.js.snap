@@ -29,6 +29,7 @@ exports[`render 1`] = `
         Object {
           "color": "#27B9CD",
           "course_code": "BIO 101",
+          "default_view": "wiki",
           "id": "1",
           "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           "is_favorite": true,
@@ -38,6 +39,7 @@ exports[`render 1`] = `
         Object {
           "color": "#8F3E97",
           "course_code": "LIT 401",
+          "default_view": "wiki",
           "id": "2",
           "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           "is_favorite": false,
@@ -47,6 +49,7 @@ exports[`render 1`] = `
         Object {
           "color": "#8F3E99",
           "course_code": "FOO 102",
+          "default_view": "wiki",
           "id": "3",
           "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           "is_favorite": true,

@@ -1,6 +1,7 @@
 // @flow
 
 import { CoursesActions } from '../actions'
+import { CourseSettingsActions } from '../settings/actions'
 import { courses as coursesReducer } from '../courses-reducer'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
@@ -100,6 +101,95 @@ describe('update custom color', () => {
       {
         '1': {
           color: '#333',
+        },
+      },
+    ])
+  })
+})
+
+describe('update course', () => {
+  let course
+  let newCourse
+  let defaultState
+
+  beforeEach(() => {
+    course = courseTemplate.course({
+      id: '1',
+      name: 'Old Name',
+      default_view: 'wiki',
+    })
+
+    newCourse = {
+      ...course,
+      name: 'New Name',
+      default_view: 'feed',
+    }
+
+    defaultState = {
+      '1': {
+        error: 'try again',
+        course,
+      },
+    }
+  })
+
+  it('should update the course state', async () => {
+    let api = {
+      updateCourse: apiResponse(),
+    }
+    let action = CourseSettingsActions(api).updateCourse(newCourse, course)
+
+    let state = await testAsyncReducer(coursesReducer, action, defaultState)
+
+    expect(state).toMatchObject([
+      {
+        '1': {
+          pending: 1,
+          course: {
+            name: 'New Name',
+            default_view: 'feed',
+          },
+        },
+      },
+      {
+        '1': {
+          pending: 0,
+          course: {
+            name: 'New Name',
+            default_view: 'feed',
+          },
+          error: null,
+        },
+      },
+    ])
+  })
+
+  it('should revert the course state on rejected', async () => {
+    let api = {
+      updateCourse: apiError({ message: 'error' }),
+    }
+    let action = CourseSettingsActions(api).updateCourse(newCourse, course)
+
+    let state = await testAsyncReducer(coursesReducer, action, defaultState)
+
+    expect(state).toMatchObject([
+      {
+        '1': {
+          pending: 1,
+          course: {
+            name: 'New Name',
+            default_view: 'feed',
+          },
+        },
+      },
+      {
+        '1': {
+          pending: 0,
+          course: {
+            name: 'Old Name',
+            default_view: 'wiki',
+          },
+          error: 'error',
         },
       },
     ])

@@ -2,9 +2,9 @@
 
 import React from 'react'
 import { UserCoursePreferences } from '../UserCoursePreferences'
-import * as courseTemplates from '../../../api/canvas-api/__templates__/course'
-import * as navigatorTemplates from '../../../__templates__/react-native-navigation'
-import explore from '../../../../test/helpers/explore'
+import * as courseTemplates from '../../../../api/canvas-api/__templates__/course'
+import * as navigatorTemplates from '../../../../__templates__/react-native-navigation'
+import explore from '../../../../../test/helpers/explore'
 
 import renderer from 'react-test-renderer'
 

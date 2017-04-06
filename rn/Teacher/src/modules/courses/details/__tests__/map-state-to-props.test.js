@@ -28,7 +28,7 @@ test('mapStateToProps returns the correct props', () => {
   })
   const expected = {
     course,
-    ...tabs,
+    tabs: tabs.tabs,
     color: '#fff',
     pending: 0,
     error: undefined,

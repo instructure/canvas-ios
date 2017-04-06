@@ -7,7 +7,7 @@ import ReactNative, {
   Image,
 } from 'react-native'
 import i18n from 'format-message'
-import Images from '../../../images/'
+import Images from '../../../../images/'
 
 type Props = {
   color: string,

@@ -14,39 +14,25 @@ import {
 } from 'react-native'
 
 import Images from '../../../images'
-import i18n from 'format-message'
 import CourseDetailsActions from '../tabs/actions'
 import CourseActions from '../actions'
 import CourseDetailsTab from './components/CourseDetailsTab'
-import mapStateToProps from './map-state-to-props'
+import mapStateToProps, { type CourseDetailsProps } from './map-state-to-props'
 import Button from 'react-native-button'
 import NavigationBackButton from '../../../common/components/NavigationBackButton'
 import { route } from '../../../routing'
-import type { CourseDetailsProps } from './map-state-to-props'
 import refresh from '../../../utils/refresh'
 import { RefreshableScrollView } from '../../../common/components/RefreshableList'
 
 type Props = CourseDetailsProps & NavProps
 
 export class CourseDetails extends Component<any, Props, any> {
+
   static navigatorStyle = {
     navBarHidden: true,
   }
 
-  static navigatorButtons = {
-    rightButtons: [{
-      icon: Images.course.settings,
-      title: i18n({
-        default: 'Edit',
-        description: 'Shown at the top of the course details screen.',
-      }),
-    }],
-  }
-
   state = { refreshing: false }
-
-  editCourse = () => {
-  }
 
   componentWillReceiveProps () {
     this.setState({ refreshing: this.state.refreshing && Boolean(this.props.pending) })
@@ -59,6 +45,13 @@ export class CourseDetails extends Component<any, Props, any> {
 
   back = () => {
     this.props.navigator.pop()
+  }
+
+  editCourse = () => {
+    if (this.props.course) {
+      let destination = route(`/courses/${this.props.course.id}/settings`)
+      this.props.navigator.showModal(destination)
+    }
   }
 
   refresh = () => {
@@ -88,7 +81,7 @@ export class CourseDetails extends Component<any, Props, any> {
       >
         <View style={styles.header}>
           <View style={styles.headerImageContainer}>
-            { course.image_download_url &&
+            {Boolean(course.image_download_url) &&
                 <Image source={{ uri: course.image_download_url }} style={styles.headerImage} />
             }
             <View style={[styles.headerImageOverlay, { backgroundColor: courseColor }]} />
@@ -98,7 +91,7 @@ export class CourseDetails extends Component<any, Props, any> {
             <Text style={styles.navigationTitle}>{course.course_code}</Text>
             <Button style={[styles.settingsButton]} onPress={this.editCourse} testID='course-details.navigation-edit-course-btn'>
               <View style={{ paddingLeft: 20 }}>
-                <Image source={Images.course.settings} onPress={this.back} style={styles.navButtonImage} />
+                <Image source={Images.course.settings} style={styles.navButtonImage} />
               </View>
             </Button>
           </View>

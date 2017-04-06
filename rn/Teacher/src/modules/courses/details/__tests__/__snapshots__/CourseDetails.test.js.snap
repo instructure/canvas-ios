@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`render without course 1`] = `
+<ActivityIndicator
+  animating={true}
+  color="#999999"
+  hidesWhenStopped={true}
+  size="small"
+/>
+`;
+
 exports[`renders correctly 1`] = `
 <RCTScrollView
   onRefresh={undefined}
@@ -146,7 +155,6 @@ exports[`renders correctly 1`] = `
             }
           >
             <Image
-              onPress={[Function]}
               source={1}
               style={
                 Object {
@@ -450,7 +458,6 @@ exports[`renders correctly without tabs 1`] = `
             }
           >
             <Image
-              onPress={[Function]}
               source={1}
               style={
                 Object {
@@ -517,11 +524,883 @@ exports[`renders correctly without tabs 1`] = `
 </RCTScrollView>
 `;
 
-exports[`without course it renders a loading spinner 1`] = `
-<ActivityIndicator
-  animating={true}
-  color="#999999"
-  hidesWhenStopped={true}
-  size="small"
-/>
+exports[`renders with empty image url 1`] = `
+<RCTScrollView
+  onRefresh={undefined}
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={undefined}
+      refreshing={false}
+    />
+  }
+  refreshing={false}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTRefreshControl />
+  <View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "height": 235,
+          "justifyContent": "center",
+          "padding": 10,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "opacity": 0.75,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "backgroundColor": undefined,
+              },
+            ]
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 44,
+            "justifyContent": "space-between",
+            "left": 0,
+            "paddingLeft": 10,
+            "paddingRight": 10,
+            "position": "absolute",
+            "right": 0,
+            "top": 20,
+          }
+        }
+      >
+        <TouchableOpacity
+          accessibilityComponentType="button"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onLongPress={undefined}
+          onPress={[Function]}
+          onPressIn={undefined}
+          onPressOut={undefined}
+          style={undefined}
+          testID="course-details.navigation-back-btn"
+        >
+          <View
+            style={
+              Object {
+                "paddingRight": 31,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={undefined}
+            />
+          </View>
+        </TouchableOpacity>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          rn 101
+        </Text>
+        <TouchableOpacity
+          accessibilityComponentType="button"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onLongPress={undefined}
+          onPress={[Function]}
+          onPressIn={undefined}
+          onPressOut={undefined}
+          style={undefined}
+          testID="course-details.navigation-edit-course-btn"
+        >
+          <View
+            style={
+              Object {
+                "paddingLeft": 20,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "resizeMode": "contain",
+                  "tintColor": "white",
+                }
+              }
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+            "marginTop": 44,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "fontSize": 20,
+              "fontWeight": "bold",
+              "marginBottom": 2,
+              "textAlign": "center",
+            }
+          }
+        >
+          Learn React Native
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "opacity": 0.75,
+            }
+          }
+        >
+          Spring 2017
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "justifyContent": "flex-start",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "borderBottomColor": "lightgrey",
+            "borderBottomWidth": 0.5,
+            "flex": 1,
+            "height": 44,
+          }
+        }
+      >
+        <TouchableHighlight
+          onPress={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          testID="courses-details.tab-touchable-row-assignments"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "padding": 8,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Array [
+                  Object {
+                    "height": 20,
+                    "marginRight": 6,
+                    "resizeMode": "contain",
+                    "width": 21,
+                  },
+                  Object {
+                    "tintColor": undefined,
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Home
+            </Text>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                    "width": 10,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`renders with image url 1`] = `
+<RCTScrollView
+  onRefresh={undefined}
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={undefined}
+      refreshing={false}
+    />
+  }
+  refreshing={false}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTRefreshControl />
+  <View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "height": 235,
+          "justifyContent": "center",
+          "padding": 10,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "http://www.fillmurray.com/100/100",
+            }
+          }
+          style={
+            Object {
+              "height": 235,
+              "position": "absolute",
+              "width": 400,
+            }
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "opacity": 0.75,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "backgroundColor": undefined,
+              },
+            ]
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 44,
+            "justifyContent": "space-between",
+            "left": 0,
+            "paddingLeft": 10,
+            "paddingRight": 10,
+            "position": "absolute",
+            "right": 0,
+            "top": 20,
+          }
+        }
+      >
+        <TouchableOpacity
+          accessibilityComponentType="button"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onLongPress={undefined}
+          onPress={[Function]}
+          onPressIn={undefined}
+          onPressOut={undefined}
+          style={undefined}
+          testID="course-details.navigation-back-btn"
+        >
+          <View
+            style={
+              Object {
+                "paddingRight": 31,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={undefined}
+            />
+          </View>
+        </TouchableOpacity>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          rn 101
+        </Text>
+        <TouchableOpacity
+          accessibilityComponentType="button"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onLongPress={undefined}
+          onPress={[Function]}
+          onPressIn={undefined}
+          onPressOut={undefined}
+          style={undefined}
+          testID="course-details.navigation-edit-course-btn"
+        >
+          <View
+            style={
+              Object {
+                "paddingLeft": 20,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "resizeMode": "contain",
+                  "tintColor": "white",
+                }
+              }
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+            "marginTop": 44,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "fontSize": 20,
+              "fontWeight": "bold",
+              "marginBottom": 2,
+              "textAlign": "center",
+            }
+          }
+        >
+          Learn React Native
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "opacity": 0.75,
+            }
+          }
+        >
+          Spring 2017
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "justifyContent": "flex-start",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "borderBottomColor": "lightgrey",
+            "borderBottomWidth": 0.5,
+            "flex": 1,
+            "height": 44,
+          }
+        }
+      >
+        <TouchableHighlight
+          onPress={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          testID="courses-details.tab-touchable-row-assignments"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "padding": 8,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Array [
+                  Object {
+                    "height": 20,
+                    "marginRight": 6,
+                    "resizeMode": "contain",
+                    "width": 21,
+                  },
+                  Object {
+                    "tintColor": undefined,
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Home
+            </Text>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                    "width": 10,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`renders without image url 1`] = `
+<RCTScrollView
+  onRefresh={undefined}
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={undefined}
+      refreshing={false}
+    />
+  }
+  refreshing={false}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTRefreshControl />
+  <View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "height": 235,
+          "justifyContent": "center",
+          "padding": 10,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "opacity": 0.75,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "backgroundColor": undefined,
+              },
+            ]
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 44,
+            "justifyContent": "space-between",
+            "left": 0,
+            "paddingLeft": 10,
+            "paddingRight": 10,
+            "position": "absolute",
+            "right": 0,
+            "top": 20,
+          }
+        }
+      >
+        <TouchableOpacity
+          accessibilityComponentType="button"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onLongPress={undefined}
+          onPress={[Function]}
+          onPressIn={undefined}
+          onPressOut={undefined}
+          style={undefined}
+          testID="course-details.navigation-back-btn"
+        >
+          <View
+            style={
+              Object {
+                "paddingRight": 31,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={undefined}
+            />
+          </View>
+        </TouchableOpacity>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          rn 101
+        </Text>
+        <TouchableOpacity
+          accessibilityComponentType="button"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onLongPress={undefined}
+          onPress={[Function]}
+          onPressIn={undefined}
+          onPressOut={undefined}
+          style={undefined}
+          testID="course-details.navigation-edit-course-btn"
+        >
+          <View
+            style={
+              Object {
+                "paddingLeft": 20,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "resizeMode": "contain",
+                  "tintColor": "white",
+                }
+              }
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+            "marginTop": 44,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "fontSize": 20,
+              "fontWeight": "bold",
+              "marginBottom": 2,
+              "textAlign": "center",
+            }
+          }
+        >
+          Learn React Native
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "opacity": 0.75,
+            }
+          }
+        >
+          Spring 2017
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "justifyContent": "flex-start",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "borderBottomColor": "lightgrey",
+            "borderBottomWidth": 0.5,
+            "flex": 1,
+            "height": 44,
+          }
+        }
+      >
+        <TouchableHighlight
+          onPress={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          testID="courses-details.tab-touchable-row-assignments"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "padding": 8,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Array [
+                  Object {
+                    "height": 20,
+                    "marginRight": 6,
+                    "resizeMode": "contain",
+                    "width": 21,
+                  },
+                  Object {
+                    "tintColor": undefined,
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Home
+            </Text>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#c7c7cc",
+                    "borderRightWidth": 2,
+                    "borderTopWidth": 2,
+                    "height": 10,
+                    "marginLeft": 7,
+                    "transform": Array [
+                      Object {
+                        "rotate": "45deg",
+                      },
+                    ],
+                    "width": 10,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
 `;

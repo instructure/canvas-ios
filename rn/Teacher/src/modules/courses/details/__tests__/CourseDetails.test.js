@@ -45,6 +45,15 @@ test('renders correctly without tabs', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('render without course', () => {
+  const props = { ...defaultProps, course: null }
+  expect(
+    renderer.create(
+      <CourseDetails {...props} />
+    ).toJSON()
+  ).toMatchSnapshot()
+})
+
 test('go back to course list', () => {
   const props = {
     ...defaultProps,
@@ -85,15 +94,21 @@ test('select tab', () => {
   expect(props.navigator.push).toHaveBeenCalledWith(route('/courses/12/assignments'))
 })
 
-test('without course it renders a loading spinner', () => {
-  let props = { ...defaultProps }
-  delete props.course
-
+test('edit course', () => {
+  const props = {
+    ...defaultProps,
+    navigator: template.navigator({
+      showModal: jest.fn(),
+    }),
+  }
   let tree = renderer.create(
     <CourseDetails {...props} />
   ).toJSON()
 
-  expect(tree).toMatchSnapshot()
+  let editButton: any = explore(tree).selectByID('course-details.navigation-edit-course-btn')
+  editButton.props.onPress()
+
+  expect(props.navigator.showModal).toHaveBeenCalledWith(route('/courses/1/settings'))
 })
 
 test('can be refreshed', async () => {
@@ -111,4 +126,31 @@ test('can be refreshed', async () => {
 
   setProps(tree, { pending: 0 })
   expect(instance.state.refreshing).toBeFalsy()
+})
+
+it('renders with image url', () => {
+  let course = template.course({ image_download_url: 'http://www.fillmurray.com/100/100' })
+  expect(
+    renderer.create(
+      <CourseDetails {...defaultProps} course={course} />
+    ).toJSON()
+  ).toMatchSnapshot()
+})
+
+it('renders without image url', () => {
+  let course = template.course({ image_download_url: null })
+  expect(
+    renderer.create(
+      <CourseDetails {...defaultProps} course={course} />
+    ).toJSON()
+  ).toMatchSnapshot()
+})
+
+it('renders with empty image url', () => {
+  let course = template.course({ image_download_url: '' })
+  expect(
+    renderer.create(
+      <CourseDetails {...defaultProps} course={course} />
+    ).toJSON()
+  ).toMatchSnapshot()
 })

@@ -19,6 +19,14 @@ export function getCourseTabs (courseID: string): Promise<ApiResponse<Tab[]>> {
   return exhaust(tabs)
 }
 
+export function updateCourse (course: Course): Promise<ApiResponse<Course>> {
+  const safeParams = {
+    name: course.name,
+    default_view: course.default_view,
+  }
+  return httpClient().put(`/courses/${course.id}`, { course: safeParams })
+}
+
 export function getCourseAssignments (courseID: string): Promise<ApiResponse<Assignment[]>> {
   const url = `courses/${courseID}/assignments`
   return httpClient().get(url)

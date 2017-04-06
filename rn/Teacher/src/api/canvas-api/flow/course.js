@@ -1,5 +1,12 @@
 // @flow
 
+export type CourseHome =
+  | 'feed'
+  | 'wiki'
+  | 'modules'
+  | 'assignments'
+  | 'syllabus'
+
 export type Course = {
   id: string,
   name: string,
@@ -7,6 +14,7 @@ export type Course = {
   short_name?: string,
   image_download_url?: ?string,
   is_favorite?: boolean,
+  default_view: CourseHome,
 }
 
 export type CustomColors = {

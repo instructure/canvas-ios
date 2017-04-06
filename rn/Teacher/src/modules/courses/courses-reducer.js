@@ -3,7 +3,9 @@
 import { Reducer, Action, combineReducers } from 'redux'
 import { handleActions } from 'redux-actions'
 import CourseListActions from './actions'
+import CourseSettingsActions from './settings/actions'
 import handleAsync from '../../utils/handleAsync'
+import { parseErrorMessage } from '../../redux/middleware/error-handler'
 import groupCustomColors from '../../api/utils/group-custom-colors'
 import fromPairs from 'lodash/fromPairs'
 import { tabs } from './tabs/tabs-reducer'
@@ -13,7 +15,8 @@ import { enrollments } from '../enrollments/enrollments-refs-reducer'
 // dummy's to appease combineReducers
 const course = (state) => (state || {})
 const color = (state) => (state || '#FFFFFF00')
-const pending = (state) => (state || {})
+const pending = (state) => (state || 0)
+const error = (state) => (state || null)
 
 const courseContents: Reducer<CourseState, Action> = combineReducers({
   course,
@@ -22,10 +25,12 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   assignmentGroups: assignmentGroupRefs,
   oldColor: color,
   pending,
+  error,
   enrollments,
 })
 
 const { refreshCourses, updateCourseColor } = CourseListActions
+const { updateCourse } = CourseSettingsActions
 
 export const defaultState: { [courseID: string]: CourseState & CourseContentState } = {}
 
@@ -86,6 +91,39 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
       return {
         ...state,
         [courseID]: courseState,
+      }
+    },
+  }),
+  [updateCourse.toString()]: handleAsync({
+    pending: (state, { course }) => {
+      return {
+        ...state,
+        [course.id]: {
+          ...state[course.id],
+          course,
+          pending: state[course.id].pending + 1,
+        },
+      }
+    },
+    resolved: (state, { result, course }) => {
+      return {
+        ...state,
+        [course.id]: {
+          ...state[course.id],
+          pending: state[course.id].pending - 1,
+          error: null,
+        },
+      }
+    },
+    rejected: (state, { oldCourse, error }) => {
+      return {
+        ...state,
+        [oldCourse.id]: {
+          ...state[oldCourse.id],
+          course: oldCourse,
+          error: parseErrorMessage(error),
+          pending: state[oldCourse.id].pending - 1,
+        },
       }
     },
   }),

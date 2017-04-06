@@ -6,6 +6,8 @@ export default function setProps<P> (component: any, changedProps: P): void {
     ...instance.props,
     ...changedProps,
   }
-  instance.componentWillReceiveProps(nextProps)
+  if (instance.componentWillReceiveProps) {
+    instance.componentWillReceiveProps(nextProps)
+  }
   instance.props = nextProps
 }

@@ -2,7 +2,7 @@
 
 import React from 'react'
 import ColorButton from '../ColorButton'
-import explore from '../../../../../test/helpers/explore'
+import explore from '../../../../../../test/helpers/explore'
 import renderer from 'react-test-renderer'
 
 jest.mock('TouchableHighlight', () => 'TouchableHighlight')

@@ -8,7 +8,7 @@ export type AsyncState = {
 export type EntityRefs = Array<string>
 export type AsyncRefs = AsyncState & { +refs: EntityRefs }
 
-export type CourseState = {
+export type CourseState = AsyncState & {
   +color: string,
   +course: Course,
 }

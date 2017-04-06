@@ -23,6 +23,10 @@
     "message": "Assignments",
     "description": "Title of the assignments screen for a course"
   },
+  "assignments_list_fe3e54be": {
+    "message": "Assignments List",
+    "description": "Name of course default view being the assignments list when navigating into a course"
+  },
   "availability_closed_429d1ba5": {
     "message": "Availability: Closed"
   },
@@ -72,6 +76,18 @@
   },
   "count_ungraded_bc673f29": {
     "message": "{ count } ungraded"
+  },
+  "course_activity_stream_40091c17": {
+    "message": "Course Activity Stream",
+    "description": "Name of course default view being the activity stream when navigating into a course"
+  },
+  "course_modules_795cb95e": {
+    "message": "Course Modules",
+    "description": "Name of course default view being the course modules when navigating into a course"
+  },
+  "course_settings_f6d0bbf8": {
+    "message": "Course Settings",
+    "description": "Screen title for the course settings screen"
   },
   "courses_43204aae": {
     "message": "Courses",
@@ -176,6 +192,10 @@
     "message": "Multiple Due Dates",
     "description": "Assignment details information about due dates, when there are more than one due date to display"
   },
+  "name_1aed4a1b": {
+    "message": "Name",
+    "description": "Label for prompt to select course name"
+  },
   "nickname_1e6da3ad": {
     "message": "Nickname",
     "description": "Text describing a nick name given to a course"
@@ -225,6 +245,10 @@
     "message": "Open user course preferences",
     "description": "Accessibility label on icon button to open course user preferences"
   },
+  "pages_front_page_9ce5188": {
+    "message": "Pages Front Page",
+    "description": "Name of course default view being the font page when navigating into a course"
+  },
   "profile_6bd2baed": {
     "message": "Profile",
     "description": "Label indicating the user is on the profile tab"
@@ -245,6 +269,10 @@
     "message": "See All",
     "description": "Button to transition from favorited courses list to all courses list"
   },
+  "set_home_to_82ab5119": {
+    "message": "Set ''Home'' to...",
+    "description": "Label for prompt to select the course landing page"
+  },
   "set_this_for_the_default_color_of_the_course_this__d86d133": {
     "message": "Set this for the default color of the course. This won’t override a personal color setting.",
     "description": "Description of color picker shown to the user"
@@ -260,6 +288,10 @@
   "submitted_318fad53": {
     "message": "Submitted",
     "description": "The assignment has been turned in"
+  },
+  "syllabus_f191f65b": {
+    "message": "Syllabus",
+    "description": "Name of course default view being the syllabus when navigating into a course"
   },
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "There was a error loading the list of enrollments"

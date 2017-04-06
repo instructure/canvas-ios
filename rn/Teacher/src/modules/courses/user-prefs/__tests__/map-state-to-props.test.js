@@ -1,9 +1,9 @@
 // @flow
 
-import stateToProps from '../state-to-props'
+import stateToProps from '../map-state-to-props'
 
 const templates = {
-  ...require('../../../redux/__templates__/app-state'),
+  ...require('../../../../redux/__templates__/app-state'),
 }
 
 test('finds the correct data', () => {

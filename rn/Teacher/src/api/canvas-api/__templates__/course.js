@@ -9,6 +9,7 @@ export const course: Template<Course> = template({
   course_code: 'rn 101',
   image_download_url: 'https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg',
   is_favorite: true,
+  default_view: 'wiki',
 })
 
 export const customColors: Template<CustomColors> = template({

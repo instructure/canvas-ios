@@ -10,12 +10,12 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
-import stateToProps from './state-to-props'
-import { branding } from '../../common/branding'
+import stateToProps from './map-state-to-props'
+import { branding } from '../../../common/branding'
 import ColorButton from './components/ColorButton'
-import CoursesActions from '../courses/actions'
-import refresh from '../../utils/refresh'
-import { RefreshableScrollView } from '../../common/components/RefreshableList'
+import CoursesActions from '../actions'
+import refresh from '../../../utils/refresh'
+import { RefreshableScrollView } from '../../../common/components/RefreshableList'
 
 const PICKER_COLORS = [
   '#F26090', '#EA1661', '#903A99', '#65469F', '#4452A6',
