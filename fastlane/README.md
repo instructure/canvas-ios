@@ -98,6 +98,11 @@ Seed data into Canvas LMS for testing.
 fastlane ios test_earlgrey_teacher
 ```
 Test teacher app with Earl Grey,
+### ios bluepill_teacher
+```
+fastlane ios bluepill_teacher
+```
+Test teacher app with Earl Grey,
 
 ----
 

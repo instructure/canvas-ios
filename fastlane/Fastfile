@@ -12,64 +12,54 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-fastlane_version '2.8.0'
+fastlane_version '2.25.0' rescue update_fastlane
 
 require_relative 'utils/utils'
-
-# noinspection RubyLiteralArrayInspection
-fast_execute = [
-    'list',
-    'test_parent',
-    'build_earlgrey_parent',
-    'test_earlgrey_parent',
-    'seed_teacher',
-    'test_earlgrey_teacher'
-].include?(ARGV.first)
-
-update_fastlane unless fast_execute
-
 require_relative 'fastlane_utils'
+require_relative 'bluepill'
 
 default_platform :ios
-fastlane_require 'slather'
 fastlane_require 'scan'
 require_relative 'xcode_8_xctestrun'
 require_relative 'fbsimctl'
 Xcode8.runner = self.runner
 
-XC_WORKSPACE='AllTheThings.xcworkspace'
+XC_WORKSPACE = 'AllTheThings.xcworkspace'
 
-PARENT_APP_ID='com.instructure.parentapp'
-PARENT_SCHEME='Parent'
-PARENT_PROJECT='Parent/Parent.xcodeproj'
+PARENT_APP_ID  = 'com.instructure.parentapp'
+PARENT_SCHEME  = 'Parent'
+PARENT_PROJECT = 'Parent/Parent.xcodeproj'
 
-TEACHER_APP_ID='com.instructure.teacher'
-TEACHER_SCHEME='Teach'
-TEACHER_PROJECT='Teacher/Teach.xcodeproj'
+TEACHER_APP_ID  = 'com.instructure.teacher'
+TEACHER_SCHEME  = 'Teach'
+TEACHER_PROJECT = 'Teacher/Teach.xcodeproj'
 
-TEACHER_RN_WORKSPACE='rn/Teacher/ios/Teacher.xcworkspace'
+TEACHER_RN_WORKSPACE = 'rn/Teacher/ios/Teacher.xcworkspace'
 
-CANVAS_APP_ID='com.instructure.icanvas'
-CANVAS_SCHEME='Canvas'
-CANVAS_PROJECT='Canvas/Canvas.xcodeproj'
+CANVAS_APP_ID  = 'com.instructure.icanvas'
+CANVAS_SCHEME  = 'Canvas'
+CANVAS_PROJECT = 'Canvas/Canvas.xcodeproj'
 
-FRAMEWORKS_SCHEME='EverythingBagel'
-FRAMEWORKS_PROJECT='Frameworks/EverythingBagel/EverythingBagel.xcodeproj'
-
+FRAMEWORKS_SCHEME  = 'EverythingBagel'
+FRAMEWORKS_PROJECT = 'Frameworks/EverythingBagel/EverythingBagel.xcodeproj'
 
 platform :ios do
   before_all do
-    unless fast_execute
-      retry_cmd('carthage', 10) { carthage(no_build: true, use_binaries: false, use_ssh: true) }
-      retry_cmd('cocoapods', 10) { cocoapods }
+    if ENV['BUDDYBUILD_APP_ID']
+      install_native_deps
     end
+  end
+
+  def install_native_deps
+    retry_cmd('carthage', 10) { carthage(no_build: true, use_binaries: false, use_ssh: true) }
+    retry_cmd('cocoapods', 10) { cocoapods }
   end
 
   def update_build_number(xc_project)
     if ENV['BITRISE_BUILD_NUMBER']
       increment_build_number(
           build_number: ENV['BITRISE_BUILD_NUMBER'],
-          xcodeproj: xc_project
+          xcodeproj:    xc_project
       )
     end
   end
@@ -77,20 +67,20 @@ platform :ios do
   def test(xc_scheme, xc_project, coverage=true)
     retry_cmd('scan') do
       scan(
-          scheme: xc_scheme,
-          device: TEST_SIMULATOR.udid,
-          workspace: XC_WORKSPACE,
-          skip_build: true,
+          scheme:           xc_scheme,
+          device:           TEST_SIMULATOR.udid,
+          workspace:        XC_WORKSPACE,
+          skip_build:       true,
           output_directory: './artifacts',
-          skip_slack: true,
+          skip_slack:       true,
       )
     end
 
     if coverage
       slather(
-          proj: xc_project,
-          workspace: XC_WORKSPACE,
-          scheme: xc_scheme,
+          proj:             xc_project,
+          workspace:        XC_WORKSPACE,
+          scheme:           xc_scheme,
           output_directory: './artifacts'
       )
     end
@@ -99,7 +89,7 @@ platform :ios do
   def distribute_adhoc
     hockey(
         api_token: ENV['HOCKEY_API_KEY'],
-        notes: 'Sending the canary down the coalmine'
+        notes:     'Sending the canary down the coalmine'
     )
   end
 
@@ -109,14 +99,14 @@ platform :ios do
       # Fix 'module 'Masonry' not found'
       clear_derived_data
       gym(
-        scheme: xc_scheme,
-        workspace: XC_WORKSPACE,
-        clean: false,
-        output_directory: './artifacts',
-        export_team_id: 'B6333T4PXQ',
-        use_legacy_build_api: true, # required or Xcode will flake out.
-        toolchain: :swift_2_3,
-        export_method: export_method
+          scheme:               xc_scheme,
+          workspace:            XC_WORKSPACE,
+          clean:                false,
+          output_directory:     './artifacts',
+          export_team_id:       'B6333T4PXQ',
+          use_legacy_build_api: true, # required or Xcode will flake out.
+          toolchain:            :swift_2_3,
+          export_method:        export_method
       )
     end
   end
@@ -143,9 +133,9 @@ platform :ios do
 
     match(type: 'appstore', app_identifier: app_id)
     pilot(
-        app_identifier: app_id,
-        ipa: "./artifacts/#{xc_scheme}.ipa",
-        skip_submission: true,
+        app_identifier:                    app_id,
+        ipa:                               "./artifacts/#{xc_scheme}.ipa",
+        skip_submission:                   true,
         skip_waiting_for_build_processing: true
     )
   end
@@ -206,6 +196,7 @@ platform :ios do
 
   desc 'Update carthage and cocoapods dependencies'
   lane :deps do
+    install_native_deps
   end
 
   desc 'Parent.app EarlGrey build-for-testing'
@@ -247,18 +238,25 @@ brew install fbsimctl --HEAD)
     Xcode8.build_for_testing(scheme: 'Teacher', workspace: TEACHER_RN_WORKSPACE)
 
     begin
-        simulator.start_server
-        simulator.start_recording
+      simulator.start_server
+      simulator.start_recording
 
-        run = options.fetch(:run, '1').to_i
-        puts "Runnings Teacher Earl Grey Tests #{run} times."
-        1.upto(run) do |count|
-          Xcode8.test_without_building(scheme: 'TeacherUITests', workspace: TEACHER_RN_WORKSPACE)
-        end
-
-        simulator.stop_recording
-      ensure
-        simulator.stop_server
+      run = options.fetch(:run, '1').to_i
+      puts "Runnings Teacher Earl Grey Tests #{run} times."
+      1.upto(run) do |count|
+        Xcode8.test_without_building(scheme: 'TeacherUITests', workspace: TEACHER_RN_WORKSPACE)
       end
+
+      simulator.stop_recording
+    ensure
+      simulator.stop_server
+    end
+  end
+
+  desc 'Test teacher app with Earl Grey,'
+  lane :bluepill_teacher do |options|
+    Bluepill.new(app_scheme:  'Teacher',
+                 test_scheme: 'TeacherUITests',
+                 workspace:   TEACHER_RN_WORKSPACE).run
   end
 end # platform :ios
