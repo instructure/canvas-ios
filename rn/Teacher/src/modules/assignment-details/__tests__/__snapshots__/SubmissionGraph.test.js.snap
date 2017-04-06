@@ -53,6 +53,9 @@ exports[`render 0 on graph 1`] = `
           "marginTop": 8,
           "textAlign": "center",
         },
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
       ]
     }
   >
@@ -114,6 +117,9 @@ exports[`render 1`] = `
           "marginTop": 8,
           "textAlign": "center",
         },
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
       ]
     }
   >
@@ -174,6 +180,9 @@ exports[`render undefined label 1`] = `
           "fontSize": 12,
           "marginTop": 8,
           "textAlign": "center",
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
         },
       ]
     }

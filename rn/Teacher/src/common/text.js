@@ -9,7 +9,8 @@ import ReactNative, {
 import colors from './colors'
 
 export function Text ({ style, ...props }: Object): ReactNative.Text {
-  return <ReactNative.Text style={[styles.font, styles.text, style]} {...props} />
+  let font = fontFamilyFromProps(props)
+  return <ReactNative.Text style={ [ styles.font, styles.text, style, { fontFamily: font } ] } {...props} />
 }
 
 export function Heading1 ({ style, ...props }: Object): ReactNative.Text {
@@ -30,6 +31,20 @@ export function TextInput ({ style, ...props }: Object): ReactNative.Text {
 
 export function ModalActivityIndicatorAlertText ({ style, ...props }: Object): ReactNative.Text {
   return <ReactNative.Text style={[styles.font, styles.modalActivityIndicatorAlertText, style]} {...props} />
+}
+
+const FontWeight: { [string]: string } = {
+  regular: '.SFUIDisplay',
+  bold: '.SFUIDisplay-medium',        // 500 weight
+  semibold: '.SFUIDisplay-semibold',  // 600 weight
+  '600': '.SFUIDisplay-semibold',
+  '500': '.SFUIDisplay-medium',
+}
+
+function fontFamilyFromProps (props: Object): string {
+  let defaultKey = 'regular'
+  let weight = props.fontWeight || defaultKey
+  return FontWeight[weight] || FontWeight[defaultKey]
 }
 
 const styles = StyleSheet.create({

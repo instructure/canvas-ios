@@ -34,6 +34,9 @@ exports[`render 1`] = `
         Object {
           "flex": 1,
         },
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
       ]
     }
   />
@@ -52,6 +55,9 @@ exports[`render 1`] = `
         },
         Object {
           "flex": 1,
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
         },
       ]
     }
@@ -82,6 +88,9 @@ exports[`render single type 1`] = `
         },
         Object {
           "flex": 1,
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
         },
       ]
     }

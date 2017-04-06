@@ -53,6 +53,9 @@ exports[`render larger icon size 1`] = `
             "color": "#00AC18",
           },
         ],
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
       ]
     }
   >
@@ -111,6 +114,9 @@ exports[`render published 1`] = `
             "color": "#00AC18",
           },
         ],
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
       ]
     }
   >
@@ -169,6 +175,9 @@ exports[`render unpublished 1`] = `
             "color": "#8B969E",
           },
         ],
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
       ]
     }
   >

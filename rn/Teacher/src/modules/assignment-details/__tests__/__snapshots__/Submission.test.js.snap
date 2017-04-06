@@ -66,6 +66,9 @@ exports[`render 0 submissions 1`] = `
             "marginTop": 8,
             "textAlign": "center",
           },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
         ]
       }
     >
@@ -140,6 +143,9 @@ exports[`render 1`] = `
             "fontSize": 12,
             "marginTop": 8,
             "textAlign": "center",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
           },
         ]
       }
@@ -216,6 +222,9 @@ exports[`render multiple data points  1`] = `
             "marginTop": 8,
             "textAlign": "center",
           },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
         ]
       }
     >
@@ -274,6 +283,9 @@ exports[`render multiple data points  1`] = `
             "marginTop": 8,
             "textAlign": "center",
           },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
         ]
       }
     >
@@ -331,6 +343,9 @@ exports[`render multiple data points  1`] = `
             "fontSize": 12,
             "marginTop": 8,
             "textAlign": "center",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
           },
         ]
       }

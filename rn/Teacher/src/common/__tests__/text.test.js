@@ -16,6 +16,27 @@ test('renders text correctly', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('renders text with fontWeight bold', () => {
+  let tree = renderer.create(
+    <Text fontWeight="bold" />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('renders text with fontWeight semibold', () => {
+  let tree = renderer.create(
+    <Text fontWeight="semibold" />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('renders text with bad fontWeight input', () => {
+  let tree = renderer.create(
+    <Text fontWeight="foobar" />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('renders heading1 correctly', () => {
   let tree = renderer.create(
     <Heading1 />

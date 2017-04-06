@@ -153,6 +153,9 @@ exports[`renders 1`] = `
                       "fontFamily": ".SFUIDisplay-medium",
                       "fontSize": 16,
                     },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
                   ]
                 }
               >
@@ -211,6 +214,9 @@ exports[`renders 1`] = `
                           "color": "#8B969E",
                         },
                       ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
                     ]
                   }
                 >
@@ -652,6 +658,9 @@ exports[`renders 1`] = `
                     Object {
                       "flex": 1,
                     },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
                   ]
                 }
               >
@@ -672,6 +681,9 @@ exports[`renders 1`] = `
                     },
                     Object {
                       "flex": 1,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
                     },
                   ]
                 }
@@ -694,6 +706,9 @@ exports[`renders 1`] = `
                     Object {
                       "flex": 1,
                     },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
                   ]
                 }
               >
@@ -714,6 +729,9 @@ exports[`renders 1`] = `
                     },
                     Object {
                       "flex": 1,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
                     },
                   ]
                 }
@@ -890,6 +908,9 @@ exports[`renders 1`] = `
                         "fontSize": 12,
                         "marginTop": 8,
                         "textAlign": "center",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }
