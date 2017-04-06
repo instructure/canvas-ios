@@ -50,8 +50,15 @@ export function parseErrorMessage (error: any): string {
 
   if (error.data && error.data.errors && error.data.errors.length > 0) {
     return error.data.errors
-      .map(error => error.message)
-      .map(message => message.replace(/\.+$/, ''))
+        .map(error => error.message)
+        .map(message => message.replace(/\.+$/, ''))
+        .join('. ')
+  } else if (error.data.errors instanceof Object) {
+    let data = error.data.errors
+    return Object.keys(data)
+      .map((key, index) => data[key])
+      .map(obj => obj.length > 0 ? obj[0] : {})
+      .map(obj => `${obj.attribute || ''} ${obj.message || ''}`)
       .join('. ')
   }
 

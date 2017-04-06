@@ -124,6 +124,46 @@ describe('parse error message', () => {
     expect(result).toEqual(expected)
   })
 
+  it('should parse axios response errors with error object vs array', () => {
+    const response = {
+      status: 500,
+      data: {
+        errors: {
+          name: [{
+            attribute: 'name',
+            message: 'cannot be changed because this assignment is due in a closed grading period',
+          }],
+          'description': [{ attribute: 'description', message: 'is too long' }],
+        },
+      },
+      headers: { link: null },
+    }
+    const expected = 'name cannot be changed because this assignment is due in a closed grading period. description is too long'
+
+    const result = parseErrorMessage(response)
+
+    expect(result).toEqual(expected)
+  })
+
+  it('should parse axios response errors with error empty object vs array', () => {
+    const response = {
+      status: 500,
+      data: {
+        errors: {
+          name: [{
+          }],
+          'description': [{ attribute: 'description', message: 'is too long' }],
+        },
+      },
+      headers: { link: null },
+    }
+    const expected = ' . description is too long'
+
+    const result = parseErrorMessage(response)
+
+    expect(result).toEqual(expected)
+  })
+
   it('should use status code as error message if there are no messages', () => {
     const response = {
       status: 500,
