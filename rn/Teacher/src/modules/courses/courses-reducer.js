@@ -9,7 +9,7 @@ import { parseErrorMessage } from '../../redux/middleware/error-handler'
 import groupCustomColors from '../../api/utils/group-custom-colors'
 import fromPairs from 'lodash/fromPairs'
 import { tabs } from './tabs/tabs-reducer'
-import { assignmentGroupRefs } from '../assignments/assignments-reducer'
+import { assignmentGroups } from '../assignments/assignment-group-refs-reducer'
 import { enrollments } from '../enrollments/enrollments-refs-reducer'
 
 // dummy's to appease combineReducers
@@ -22,7 +22,7 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   course,
   color,
   tabs,
-  assignmentGroups: assignmentGroupRefs,
+  assignmentGroups,
   oldColor: color,
   pending,
   error,
