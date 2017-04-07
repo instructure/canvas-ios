@@ -1,0 +1,519 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render with multiple due dates 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={Object {}}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "height": 54,
+          "justifyContent": "space-between",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Assignees
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#008EE2",
+            "fontSize": 16,
+            "fontWeight": "500",
+          }
+        }
+      >
+        Everyone else
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "height": 54,
+          "justifyContent": "space-between",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Due Date
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#008EE2",
+            "fontSize": 16,
+            "fontWeight": "500",
+          }
+        }
+      >
+        May 31, 2017 at 11:59 PM
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "height": 54,
+          "justifyContent": "space-between",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Available From
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#008EE2",
+            "fontSize": 16,
+            "fontWeight": "500",
+          }
+        }
+      >
+        Mar 17, 2017 at 12:00 AM
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "height": 54,
+          "justifyContent": "space-between",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Available To
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#008EE2",
+            "fontSize": 16,
+            "fontWeight": "500",
+          }
+        }
+      >
+        May 31, 2017 at 11:59 PM
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#F5F5F5",
+          "height": 24,
+        }
+      }
+    />
+  </View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+        },
+        Object {
+          "height": 54,
+        },
+      ]
+    }
+    testID={undefined}
+    tvParallaxProperties={undefined}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#008EE2",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Add Due Date
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F5F5F5",
+        "height": 24,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`render with single due date 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={Object {}}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "height": 54,
+          "justifyContent": "space-between",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Assignees
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#008EE2",
+            "fontSize": 16,
+            "fontWeight": "500",
+          }
+        }
+      >
+        Everyone
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "height": 54,
+          "justifyContent": "space-between",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Due Date
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#008EE2",
+            "fontSize": 16,
+            "fontWeight": "500",
+          }
+        }
+      >
+        May 31, 2017 at 11:59 PM
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "height": 54,
+          "justifyContent": "space-between",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Available From
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#008EE2",
+            "fontSize": 16,
+            "fontWeight": "500",
+          }
+        }
+      >
+        Mar 17, 2017 at 12:00 AM
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "height": 54,
+          "justifyContent": "space-between",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Available To
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#008EE2",
+            "fontSize": 16,
+            "fontWeight": "500",
+          }
+        }
+      >
+        May 31, 2017 at 11:59 PM
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#F5F5F5",
+          "height": 24,
+        }
+      }
+    />
+  </View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+        },
+        Object {
+          "height": 54,
+        },
+      ]
+    }
+    testID={undefined}
+    tvParallaxProperties={undefined}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#008EE2",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Add Due Date
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F5F5F5",
+        "height": 24,
+      }
+    }
+  />
+</View>
+`;

@@ -6,7 +6,7 @@ import errorHandler from './middleware/error-handler'
 import createPersistMiddleware from './middleware/persist'
 import freeze from 'redux-freeze'
 import rootReducer from './root-reducer'
-import createLogger from 'redux-logger'
+import logger from 'redux-logger'
 import gateKeeperMiddleware from './middleware/gate-keeper'
 
 const { __DEV__ } = global
@@ -19,7 +19,6 @@ if (__DEV__) {
 
 // Enable detailed logging
 if (__DEV__) {
-  const logger = createLogger()
   middleware.push(logger)
 }
 

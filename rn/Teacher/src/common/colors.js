@@ -16,4 +16,5 @@ export default ({
   primaryButton: '#368BD8',
   primaryButtonText: '#fff',
   checkmarkGreen: '#00AC18',
+  seperatorColor: '#C7CDD1',
 }: {[name: string]: string})

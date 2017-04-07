@@ -332,6 +332,125 @@ exports[`error occurs when done pressed 1`] = `
           value="20"
         />
       </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#F5F5F5",
+              "borderBottomColor": "#D8DBDE",
+              "borderBottomWidth": 0.5,
+              "borderTopColor": "#D8DBDE",
+              "borderTopWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 50,
+              "justifyContent": "flex-start",
+            },
+            Object {
+              "marginTop": 8,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              Object {
+                "color": "#2D3B45",
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
+              },
+            ]
+          }
+        >
+          Due Dates
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "height": 54,
+              },
+            ]
+          }
+          testID={undefined}
+          tvParallaxProperties={undefined}
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingLeft": 16,
+                "paddingRight": 16,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#008EE2",
+                  "fontSize": 16,
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Add Due Date
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "height": 24,
+            }
+          }
+        />
+      </View>
     </View>
   </RCTScrollView>
 </View>
@@ -669,6 +788,125 @@ exports[`modal saving is shown on assignment update 1`] = `
           value="20"
         />
       </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#F5F5F5",
+              "borderBottomColor": "#D8DBDE",
+              "borderBottomWidth": 0.5,
+              "borderTopColor": "#D8DBDE",
+              "borderTopWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 50,
+              "justifyContent": "flex-start",
+            },
+            Object {
+              "marginTop": 8,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              Object {
+                "color": "#2D3B45",
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
+              },
+            ]
+          }
+        >
+          Due Dates
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "height": 54,
+              },
+            ]
+          }
+          testID={undefined}
+          tvParallaxProperties={undefined}
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingLeft": 16,
+                "paddingRight": 16,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#008EE2",
+                  "fontSize": 16,
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Add Due Date
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "height": 24,
+            }
+          }
+        />
+      </View>
     </View>
   </RCTScrollView>
 </View>
@@ -1004,6 +1242,125 @@ exports[`renders 1`] = `
           }
           testID="pointsInput"
           value="20"
+        />
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#F5F5F5",
+              "borderBottomColor": "#D8DBDE",
+              "borderBottomWidth": 0.5,
+              "borderTopColor": "#D8DBDE",
+              "borderTopWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 50,
+              "justifyContent": "flex-start",
+            },
+            Object {
+              "marginTop": 8,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              Object {
+                "color": "#2D3B45",
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
+              },
+            ]
+          }
+        >
+          Due Dates
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "height": 54,
+              },
+            ]
+          }
+          testID={undefined}
+          tvParallaxProperties={undefined}
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingLeft": 16,
+                "paddingRight": 16,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#008EE2",
+                  "fontSize": 16,
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Add Due Date
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "height": 24,
+            }
+          }
         />
       </View>
     </View>

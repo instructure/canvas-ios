@@ -8,6 +8,7 @@ import { updateMapStateToProps, type AssignmentDetailsProps } from './map-state-
 import AssignmentActions from '../assignments/actions'
 import i18n from 'format-message'
 import EditSectionHeader from './components/EditSectionHeader'
+import AssignmentDatesEditor from './components/AssignmentDatesEditor'
 import { TextInput, Text } from '../../common/text'
 import ModalActivityIndicator from '../../common/components/ModalActivityIndicator'
 import { Navigation } from 'react-native-navigation'
@@ -85,6 +86,11 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
       description: 'Assignment details edit details header',
     })
 
+    let dueDatesTitle = i18n({
+      default: 'Due Dates',
+      description: 'Assignment details due dates header',
+    })
+
     let savingText = i18n({
       default: 'Saving',
       description: 'Text when a request to update an assignment is made and user is waiting',
@@ -110,6 +116,10 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
             { this.renderLeftColumnLabel(pointsPlaceHolder) }
             { this.renderTextInput('points_possible', pointsPlaceHolder, 'pointsInput', style.points) }
           </View>
+
+          {/* Due Dates */}
+          <EditSectionHeader title={dueDatesTitle} style={style.sectionHeader}/>
+          <AssignmentDatesEditor assignment={this.props.assignmentDetails} />
 
         </KeyboardAwareScrollView>
       </View>
