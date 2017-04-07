@@ -114,6 +114,19 @@ exports[`error occurs when done pressed 1`] = `
     </View>
   </Modal>
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutoAutomaticScroll={true}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    keyboardDismissMode="interactive"
+    onScroll={[Function]}
+    scrollEventThrottle={0}
+    showsVerticalScrollIndicator={true}
     style={
       Object {
         "flex": 1,
@@ -136,7 +149,14 @@ exports[`error occurs when done pressed 1`] = `
               "height": 50,
               "justifyContent": "flex-start",
             },
-            undefined,
+            Array [
+              Object {
+                "marginTop": 8,
+              },
+              Object {
+                "marginTop": 0,
+              },
+            ],
           ]
         }
       >
@@ -195,6 +215,121 @@ exports[`error occurs when done pressed 1`] = `
           }
           testID="titleInput"
           value="learn to write code"
+        />
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#F5F5F5",
+              "borderBottomColor": "#D8DBDE",
+              "borderBottomWidth": 0.5,
+              "borderTopColor": "#D8DBDE",
+              "borderTopWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 50,
+              "justifyContent": "flex-start",
+            },
+            Object {
+              "marginTop": 8,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              Object {
+                "color": "#2D3B45",
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
+              },
+            ]
+          }
+        >
+          Details
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 54,
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          fontWeight="semibold"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Points
+        </Text>
+        <TextInput
+          multiline={false}
+          onChangeText={[Function]}
+          placeholder="Points"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "fontSize": 17,
+              },
+              Object {
+                "textAlign": "right",
+                "width": 50,
+              },
+            ]
+          }
+          testID="pointsInput"
+          value="20"
         />
       </View>
     </View>
@@ -316,6 +451,19 @@ exports[`modal saving is shown on assignment update 1`] = `
     </View>
   </Modal>
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutoAutomaticScroll={true}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    keyboardDismissMode="interactive"
+    onScroll={[Function]}
+    scrollEventThrottle={0}
+    showsVerticalScrollIndicator={true}
     style={
       Object {
         "flex": 1,
@@ -338,7 +486,14 @@ exports[`modal saving is shown on assignment update 1`] = `
               "height": 50,
               "justifyContent": "flex-start",
             },
-            undefined,
+            Array [
+              Object {
+                "marginTop": 8,
+              },
+              Object {
+                "marginTop": 0,
+              },
+            ],
           ]
         }
       >
@@ -397,6 +552,121 @@ exports[`modal saving is shown on assignment update 1`] = `
           }
           testID="titleInput"
           value="learn to write code"
+        />
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#F5F5F5",
+              "borderBottomColor": "#D8DBDE",
+              "borderBottomWidth": 0.5,
+              "borderTopColor": "#D8DBDE",
+              "borderTopWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 50,
+              "justifyContent": "flex-start",
+            },
+            Object {
+              "marginTop": 8,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              Object {
+                "color": "#2D3B45",
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
+              },
+            ]
+          }
+        >
+          Details
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 54,
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          fontWeight="semibold"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Points
+        </Text>
+        <TextInput
+          multiline={false}
+          onChangeText={[Function]}
+          placeholder="Points"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "fontSize": 17,
+              },
+              Object {
+                "textAlign": "right",
+                "width": 50,
+              },
+            ]
+          }
+          testID="pointsInput"
+          value="20"
         />
       </View>
     </View>
@@ -518,6 +788,19 @@ exports[`renders 1`] = `
     </View>
   </Modal>
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutoAutomaticScroll={true}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    keyboardDismissMode="interactive"
+    onScroll={[Function]}
+    scrollEventThrottle={0}
+    showsVerticalScrollIndicator={true}
     style={
       Object {
         "flex": 1,
@@ -540,7 +823,14 @@ exports[`renders 1`] = `
               "height": 50,
               "justifyContent": "flex-start",
             },
-            undefined,
+            Array [
+              Object {
+                "marginTop": 8,
+              },
+              Object {
+                "marginTop": 0,
+              },
+            ],
           ]
         }
       >
@@ -599,6 +889,121 @@ exports[`renders 1`] = `
           }
           testID="titleInput"
           value="learn to write code"
+        />
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#F5F5F5",
+              "borderBottomColor": "#D8DBDE",
+              "borderBottomWidth": 0.5,
+              "borderTopColor": "#D8DBDE",
+              "borderTopWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 50,
+              "justifyContent": "flex-start",
+            },
+            Object {
+              "marginTop": 8,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              Object {
+                "color": "#2D3B45",
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
+              },
+            ]
+          }
+        >
+          Details
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 54,
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          fontWeight="semibold"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Points
+        </Text>
+        <TextInput
+          multiline={false}
+          onChangeText={[Function]}
+          placeholder="Points"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "fontSize": 17,
+              },
+              Object {
+                "textAlign": "right",
+                "width": 50,
+              },
+            ]
+          }
+          testID="pointsInput"
+          value="20"
         />
       </View>
     </View>

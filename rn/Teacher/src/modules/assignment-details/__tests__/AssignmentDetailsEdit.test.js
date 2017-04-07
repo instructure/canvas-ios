@@ -147,20 +147,25 @@ test('dismisses modal on cancel', () => {
 })
 
 test('change title', () => {
-  let expectedTitle = 'hello world title'
+  testInputField('titleInput', 'hello world title', 'name')
+})
 
+test('change points', () => {
+  testInputField('pointsInput', 1, 'points_possible')
+})
+
+function testInputField (ref: string, input: any, assignmentField: string) {
   let component = renderer.create(
     <AssignmentDetailsEdit {...doneButtonPressedProps} />
   )
 
   let tree = component.toJSON()
-  let titleField = explore(tree).selectByID('titleInput') || {}
-  titleField.props.onChangeText(expectedTitle)
+  let field = explore(tree).selectByID(ref) || {}
+  field.props.onChangeText(input)
 
   onNavigatorEvent(navigatorDismissEventProps)
 
-  let expected = { ...defaultProps.assignmentDetails, name: expectedTitle }
+  let expected = { ...defaultProps.assignmentDetails, [assignmentField]: input }
 
   expect(defaultProps.updateAssignment).toHaveBeenCalledWith(doneButtonPressedProps.courseID, expected, defaultProps.assignmentDetails)
-})
-
+}

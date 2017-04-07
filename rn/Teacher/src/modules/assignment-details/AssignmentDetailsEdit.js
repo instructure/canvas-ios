@@ -8,14 +8,15 @@ import { updateMapStateToProps, type AssignmentDetailsProps } from './map-state-
 import AssignmentActions from '../assignments/actions'
 import i18n from 'format-message'
 import EditSectionHeader from './components/EditSectionHeader'
-import { TextInput } from '../../common/text'
+import { TextInput, Text } from '../../common/text'
 import ModalActivityIndicator from '../../common/components/ModalActivityIndicator'
 import { Navigation } from 'react-native-navigation'
 import { ERROR_TITLE, parseErrorMessage } from '../../redux/middleware/error-handler'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import color from './../../common/colors'
 import {
   View,
   StyleSheet,
-  ScrollView,
   Alert,
 } from 'react-native'
 
@@ -59,10 +60,29 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     })
   }
 
+  renderLeftColumnLabel (text: string): React.Element<*> {
+    return (<Text style={style.twoColumnRowLeftText} fontWeight={'semibold'}>{text}</Text>)
+  }
+
+  renderTextInput (fieldName: string, placeholder: string, testID: string, styleParam: Object = {}, multiline: boolean = false): React.Element<*> {
+    return (
+      <TextInput style={styleParam}
+                 value={ this.defaultValueForInput(fieldName) }
+                 multiline={ multiline }
+                 placeholder={ placeholder }
+                 onChangeText={ value => this.updateFromInput(fieldName, value) }
+                 testID={testID}/>
+    )
+  }
+
   render (): React.Element<View> {
     let sectionTitle = i18n({
       default: 'Title',
       description: 'Assignment details edit title header',
+    })
+    let sectionDetails = i18n({
+      default: 'Details',
+      description: 'Assignment details edit details header',
     })
 
     let savingText = i18n({
@@ -70,23 +90,28 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
       description: 'Text when a request to update an assignment is made and user is waiting',
     })
 
-    let assignmentTitlePlaceHolder = i18n({ default: 'Title', description: 'Assignemnt details title placeholder' })
+    let titlePlaceHolder = i18n({ default: 'Title', description: 'Assignemnt details title placeholder' })
+    let pointsPlaceHolder = i18n({ default: 'Points', description: 'Assignemnt details points placeholder' })
 
     return (
       <View style={{ flex: 1 }}>
         <ModalActivityIndicator text={savingText} visible={this.state.pending}/>
-        <ScrollView style={style.container}>
-        <EditSectionHeader title={sectionTitle}/>
-        <View style={style.row} >
-          <TextInput style={style.title}
-                     value={ this.defaultValueForInput('name') }
-                     multiline={ true }
-                     placeholder={assignmentTitlePlaceHolder}
-                     onChangeText={ title => this.updateFromInput('name', title) }
-                     testID='titleInput'
-          />
-        </View>
-        </ScrollView>
+        <KeyboardAwareScrollView style={style.container} ref='scrollView'>
+
+          {/* Title */}
+          <EditSectionHeader title={sectionTitle} style={[style.sectionHeader, { marginTop: 0 }]}/>
+          <View style={style.row}>
+            { this.renderTextInput('name', titlePlaceHolder, 'titleInput', style.title, true) }
+          </View>
+
+          {/* Points */}
+          <EditSectionHeader title={sectionDetails} style={style.sectionHeader}/>
+          <View style={[style.row, style.twoColumnRow]}>
+            { this.renderLeftColumnLabel(pointsPlaceHolder) }
+            { this.renderTextInput('points_possible', pointsPlaceHolder, 'pointsInput', style.points) }
+          </View>
+
+        </KeyboardAwareScrollView>
       </View>
     )
   }
@@ -154,14 +179,33 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
   },
+  sectionHeader: {
+    marginTop: global.style.defaultPadding / 2,
+  },
   row: {
     paddingTop: global.style.defaultPadding / 2,
     paddingBottom: global.style.defaultPadding / 2,
     paddingLeft: global.style.defaultPadding,
     paddingRight: global.style.defaultPadding,
   },
+  twoColumnRow: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 54,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: color.grey2,
+  },
+  twoColumnRowLeftText: {
+    flex: 1,
+  },
   title: {
     height: 45,
+  },
+  points: {
+    width: 50,
+    textAlign: 'right',
   },
 })
 

@@ -10,7 +10,7 @@ import colors from './colors'
 
 export function Text ({ style, ...props }: Object): ReactNative.Text {
   let font = fontFamilyFromProps(props)
-  return <ReactNative.Text style={ [ styles.font, styles.text, style, { fontFamily: font } ] } {...props} />
+  return <ReactNative.Text style={ [styles.font, styles.text, style, { fontFamily: font }] } {...props} />
 }
 
 export function Heading1 ({ style, ...props }: Object): ReactNative.Text {
