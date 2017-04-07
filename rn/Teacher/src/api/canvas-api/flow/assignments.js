@@ -31,6 +31,7 @@ export type Assignment = {
   needs_grading_count: number,
   submission_types: string[],
   html_url: string,
+  position: number,
 }
 
 export type AssignmentDate = {

@@ -92,7 +92,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
         return {
           key: group.id,
           ...group,
-          data: assignments,
+          data: assignments.slice().sort((a, b) => a.position - b.position),
         }
       }
     }).filter(item => item)
