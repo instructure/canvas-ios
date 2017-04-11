@@ -32,7 +32,7 @@ struct Assignment {
     let gradeGroupStudentIndividually: Bool
     // let gradingStandardId: Int // may be null
     let gradingType: String
-    // let groupCategoryId: Int // may be null
+    let groupCategoryId: Int
     let hasOverrides: Bool
     let htmlUrl: String
     let id: Int
