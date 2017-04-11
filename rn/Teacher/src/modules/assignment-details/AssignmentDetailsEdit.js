@@ -19,11 +19,44 @@ import {
   View,
   StyleSheet,
   Alert,
+  PickerIOS,
+  TouchableHighlight,
+  LayoutAnimation,
 } from 'react-native'
+
+var PickerItemIOS = PickerIOS.Item
+
+const GRADE_DISPLAY_OPTIONS = new Map([
+  ['percent', i18n({
+    default: 'Percentage',
+    description: 'display grade as percentage',
+  })],
+  ['pass_fail', i18n({
+    default: 'Complete/Incomplete',
+    description: 'display grade as Complete/Incomplete',
+  })],
+  ['points', i18n({
+    default: 'Points',
+    description: 'display grade as points',
+  })],
+  ['letter_grade', i18n({
+    default: 'Letter Grade',
+    description: 'display grade as letter grade',
+  })],
+  ['gpa_scale', i18n({
+    default: 'GPA Scale',
+    description: 'display grade as GPA scale',
+  })],
+  ['not_graded', i18n({
+    default: 'Not Graded',
+    description: 'display grade as not graded',
+  })],
+])
 
 export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps, any> {
   props: AssignmentDetailsProps
   state: any = {}
+  currentPickerMap: ?Map<*, *> = null
 
   static navigatorButtons = {
     rightButtons: [
@@ -49,7 +82,12 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   constructor (props: AssignmentDetailsProps) {
     super(props)
     props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
-    this.state = { assignment: Object.assign({}, props.assignmentDetails) }
+    this.state = {
+      assignment: Object.assign({}, props.assignmentDetails),
+      showPicker: false,
+      pickerSelectedValue: 'initial value set in constructor',
+      currentAssignmentKey: null,
+    }
   }
 
   componentDidMount () {
@@ -98,6 +136,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
     let titlePlaceHolder = i18n({ default: 'Title', description: 'Assignemnt details title placeholder' })
     let pointsPlaceHolder = i18n({ default: 'Points', description: 'Assignemnt details points placeholder' })
+    let displayGradeAs = i18n({ default: 'Display Grade As', description: 'Assignemnt details display grade as' })
 
     return (
       <View style={{ flex: 1 }}>
@@ -117,13 +156,52 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
             { this.renderTextInput('points_possible', pointsPlaceHolder, 'pointsInput', style.points) }
           </View>
 
+          {/* Display Grade As */}
+          <TouchableHighlight underlayColor={color.cellUnderlayColor} onPress={() => { this.togglePicker('grading_type', GRADE_DISPLAY_OPTIONS) }} testID='assignment-details.toggle-display-grade-as-picker'>
+            <View style={[style.row, style.twoColumnRow, { borderBottomWidth: 0 }]}>
+              { this.renderLeftColumnLabel(displayGradeAs) }
+              <Text>{GRADE_DISPLAY_OPTIONS.get(this.state.assignment.grading_type)}</Text>
+            </View>
+          </TouchableHighlight>
+
           {/* Due Dates */}
           <EditSectionHeader title={dueDatesTitle} style={style.sectionHeader}/>
           <AssignmentDatesEditor assignment={this.props.assignmentDetails} />
 
         </KeyboardAwareScrollView>
+
+        { this.state.showPicker && this.currentPickerMap &&
+        <PickerIOS
+          style={style.picker}
+          selectedValue={this.state.pickerSelectedValue}
+          onValueChange={this.pickerValueDidChange.bind(this)}
+          testID='assignmentPicker'>
+          {Array.from(this.currentPickerMap.keys()).map((key) => (
+            <PickerItemIOS
+              key={key}
+              value={key}
+              label={this.currentPickerMap ? this.currentPickerMap.get(key) : ''}
+            />
+          ))}
+        </PickerIOS>
+        }
+
       </View>
     )
+  }
+
+  pickerValueDidChange (value: any) {
+    if (this.state.currentAssignmentKey) {
+      this.state.assignment[this.state.currentAssignmentKey] = value
+      this.setState({ pickerSelectedValue: value, assignment: this.state.assignment })
+    }
+  }
+
+  togglePicker = (selectedField: string, map: ?Map<*, *>) => {
+    let animation = LayoutAnimation.create(250, LayoutAnimation.Types.linear, LayoutAnimation.Properties.opacity)
+    LayoutAnimation.configureNext(animation)
+    this.currentPickerMap = map
+    this.setState({ showPicker: !this.state.showPicker, currentAssignmentKey: selectedField })
   }
 
   updateFromInput (key: string, value: string) {
@@ -216,6 +294,9 @@ const style = StyleSheet.create({
   points: {
     width: 50,
     textAlign: 'right',
+  },
+  picker: {
+    flex: 1,
   },
 })
 

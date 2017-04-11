@@ -16,5 +16,6 @@ export default ({
   primaryButton: '#368BD8',
   primaryButtonText: '#fff',
   checkmarkGreen: '#00AC18',
+  cellUnderlayColor: '#eee',
   seperatorColor: '#C7CDD1',
 }: {[name: string]: string})

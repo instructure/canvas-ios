@@ -332,6 +332,84 @@ exports[`error occurs when done pressed 1`] = `
           value="20"
         />
       </View>
+      <TouchableHighlight
+        onPress={[Function]}
+        testID="assignment-details.toggle-display-grade-as-picker"
+        underlayColor="#eee"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+              },
+              Object {
+                "alignItems": "center",
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "flex": 1,
+                "flexDirection": "row",
+                "height": 54,
+                "justifyContent": "space-between",
+              },
+              Object {
+                "borderBottomWidth": 0,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            fontWeight="semibold"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 1,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Display Grade As
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                undefined,
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            Points
+          </Text>
+        </View>
+      </TouchableHighlight>
       <View
         style={
           Array [
@@ -386,33 +464,12 @@ exports[`error occurs when done pressed 1`] = `
           }
         }
       >
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+        <TouchableHighlight
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "height": 54,
-              },
-            ]
+            Object {
+              "height": 54,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -441,7 +498,7 @@ exports[`error occurs when done pressed 1`] = `
               Add Due Date
             </Text>
           </View>
-        </View>
+        </TouchableHighlight>
         <View
           style={
             Object {
@@ -788,6 +845,84 @@ exports[`modal saving is shown on assignment update 1`] = `
           value="20"
         />
       </View>
+      <TouchableHighlight
+        onPress={[Function]}
+        testID="assignment-details.toggle-display-grade-as-picker"
+        underlayColor="#eee"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+              },
+              Object {
+                "alignItems": "center",
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "flex": 1,
+                "flexDirection": "row",
+                "height": 54,
+                "justifyContent": "space-between",
+              },
+              Object {
+                "borderBottomWidth": 0,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            fontWeight="semibold"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 1,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Display Grade As
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                undefined,
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            Points
+          </Text>
+        </View>
+      </TouchableHighlight>
       <View
         style={
           Array [
@@ -842,33 +977,12 @@ exports[`modal saving is shown on assignment update 1`] = `
           }
         }
       >
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+        <TouchableHighlight
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "height": 54,
-              },
-            ]
+            Object {
+              "height": 54,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -897,7 +1011,7 @@ exports[`modal saving is shown on assignment update 1`] = `
               Add Due Date
             </Text>
           </View>
-        </View>
+        </TouchableHighlight>
         <View
           style={
             Object {
@@ -1244,6 +1358,84 @@ exports[`renders 1`] = `
           value="20"
         />
       </View>
+      <TouchableHighlight
+        onPress={[Function]}
+        testID="assignment-details.toggle-display-grade-as-picker"
+        underlayColor="#eee"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+              },
+              Object {
+                "alignItems": "center",
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "flex": 1,
+                "flexDirection": "row",
+                "height": 54,
+                "justifyContent": "space-between",
+              },
+              Object {
+                "borderBottomWidth": 0,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            fontWeight="semibold"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 1,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Display Grade As
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                undefined,
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            Points
+          </Text>
+        </View>
+      </TouchableHighlight>
       <View
         style={
           Array [
@@ -1298,33 +1490,12 @@ exports[`renders 1`] = `
           }
         }
       >
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+        <TouchableHighlight
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "height": 54,
-              },
-            ]
+            Object {
+              "height": 54,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1353,7 +1524,7 @@ exports[`renders 1`] = `
               Add Due Date
             </Text>
           </View>
-        </View>
+        </TouchableHighlight>
         <View
           style={
             Object {

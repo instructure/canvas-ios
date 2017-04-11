@@ -18,13 +18,21 @@ const template = {
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
-jest.mock('react-native-navigation', () => ({
-  Navigation: {
-    dismissAllModals: jest.fn(),
-  },
-}))
-
-jest.mock('../../../routing')
+jest
+  .mock('PickerIOS', () => require('../../../__mocks__/PickerIOS').default)
+  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('LayoutAnimation', () => ({
+    create: jest.fn(),
+    configureNext: jest.fn(),
+    Types: { linear: null },
+    Properties: { opacity: null },
+  }))
+  .mock('../../../routing')
+  .mock('react-native-navigation', () => ({
+    Navigation: {
+      dismissAllModals: jest.fn(),
+    },
+  }))
 
 let course: any = template.course()
 let assignment: any = template.assignment()
@@ -144,6 +152,24 @@ test('dismisses modal on cancel', () => {
   onNavigatorEvent(navigatorCancelEventProps)
 
   expect(Navigation.dismissAllModals).toHaveBeenCalled()
+})
+
+test('"displays grade as" can be selected using picker', () => {
+  let selectedValue = 'not_graded'
+  let component = renderer.create(
+    <AssignmentDetailsEdit {...doneButtonPressedProps} />
+  )
+
+  let row: any = explore(component.toJSON()).selectByID('assignment-details.toggle-display-grade-as-picker')
+  row.props.onPress()
+  let tree = component.toJSON()
+  let picker = explore(tree).selectByID('assignmentPicker') || {}
+  picker.props.onValueChange(selectedValue)
+
+  onNavigatorEvent(navigatorDismissEventProps)
+
+  let expected = { ...defaultProps.assignmentDetails, grading_type: selectedValue }
+  expect(defaultProps.updateAssignment).toHaveBeenCalledWith(doneButtonPressedProps.courseID, expected, defaultProps.assignmentDetails)
 })
 
 test('change title', () => {
