@@ -38,6 +38,8 @@ const images = {
   check: require('./check-white.png'),
   starFilled: require('./star-filled.png'),
   starLined: require('./star-lined.png'),
+  add: require('./Add.png'),
+  x: require('./x-icon.png'),
 }
 
 export default (images: Images)

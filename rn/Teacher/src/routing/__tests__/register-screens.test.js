@@ -101,4 +101,18 @@ describe('app routes', () => {
       passProps: {},
     })
   })
+
+  it('includes /courses/:courseID/assignee-picker', () => {
+    expect(route('/courses/686/assignee-picker')).toEqual({
+      screen: screenID('/courses/:courseID/assignee-picker'),
+      passProps: { courseID: '686' },
+    })
+  })
+
+  it('includes /courses/:courseID/assignee-search', () => {
+    expect(route('/courses/686/assignee-search')).toEqual({
+      screen: screenID('/courses/:courseID/assignee-search'),
+      passProps: { courseID: '686' },
+    })
+  })
 })

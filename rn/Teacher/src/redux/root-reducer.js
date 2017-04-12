@@ -7,6 +7,8 @@ import { gradingPeriods } from '../modules/assignments/grading-periods-reducer'
 import { assignments } from '../modules/assignments/assignment-entities-reducer'
 import { assignmentGroups } from '../modules/assignments/assignment-group-entities-reducer'
 import { users } from '../modules/users/reducer'
+import { sections } from '../modules/assignee-picker/reducer'
+import { enrollments } from '../modules/enrollments/enrollment-entities-reducer'
 import logout from './logout-action'
 import { HYDRATE_ACTION } from './hydrate-action'
 import resetPending from '../utils/reset-pending'
@@ -17,6 +19,8 @@ const entities = combineReducers({
   gradingPeriods,
   assignments,
   users,
+  sections,
+  enrollments,
 })
 
 const actualRootReducer: Reducer<AppState, Action> = combineReducers({

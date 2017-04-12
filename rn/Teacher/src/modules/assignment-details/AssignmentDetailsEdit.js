@@ -56,6 +56,7 @@ const GRADE_DISPLAY_OPTIONS = new Map([
 export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps, any> {
   props: AssignmentDetailsProps
   state: any = {}
+  datesEditor: AssignmentDatesEditor
   currentPickerMap: ?Map<*, *> = null
 
   static navigatorButtons = {
@@ -166,7 +167,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
           {/* Due Dates */}
           <EditSectionHeader title={dueDatesTitle} style={style.sectionHeader}/>
-          <AssignmentDatesEditor assignment={this.props.assignmentDetails} />
+          <AssignmentDatesEditor assignment={this.props.assignmentDetails} ref={c => { this.datesEditor = c }} />
 
         </KeyboardAwareScrollView>
 
@@ -231,6 +232,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   }
 
   actionDonePressed () {
+    if (!this.datesEditor.validate()) { return }
     this.setState({ pending: true })
     this.props.updateAssignment(this.props.courseID, this.state.assignment, this.props.assignmentDetails)
   }

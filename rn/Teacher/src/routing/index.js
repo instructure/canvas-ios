@@ -19,10 +19,13 @@ export function registerScreen<Screen> (path: string, component: () => Screen, s
   routes.push(new Route(id))
 }
 
-export function route (url: string): RouteOptions {
+export function route (url: string, additionalProps: Object = {}): RouteOptions {
   const path = new URL(url).pathname
   for (let r of routes) {
-    const params = r.match(path)
+    let params = r.match(path)
+    if (additionalProps && typeof params === 'object') {
+      params = Object.assign(params, additionalProps)
+    }
     if (params) {
       return {
         screen: r.spec,

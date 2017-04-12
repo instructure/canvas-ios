@@ -44,4 +44,15 @@ describe('route for foobars/:foobarID/baz', () => {
 
     expect(route(url)).toEqual(destination)
   })
+
+  it('handles path with extra parameters', () => {
+    const url = '/foobars/87/baz'
+    const destination = {
+      screen: screenID('/foobars/:foobarID/baz'),
+      passProps: { foobarID: '87', baz: '97' },
+    }
+
+    const result = route(url, { baz: '97' })
+    expect(result).toEqual(destination)
+  })
 })

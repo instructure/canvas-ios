@@ -53,6 +53,16 @@ export function getCourseGradingPeriods (courseID: string): Promise<ApiResponse<
   return httpClient().get(url)
 }
 
+export function getCourseSections (courseID: string): Promise<ApiResponse<Section[]>> {
+  const url = `courses/${courseID}/sections`
+  const options = {
+    params: {
+      include: ['total_students'],
+    },
+  }
+  return httpClient().get(url, options)
+}
+
 export function favoriteCourse (courseID: string): Promise<AxiosResponse<Favorite>> {
   return httpClient().post(`users/self/favorites/courses/${courseID}`)
 }

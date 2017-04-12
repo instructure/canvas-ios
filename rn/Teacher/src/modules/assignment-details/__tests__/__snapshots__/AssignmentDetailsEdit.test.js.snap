@@ -465,6 +465,7 @@ exports[`error occurs when done pressed 1`] = `
         }
       >
         <TouchableHighlight
+          onPress={[Function]}
           style={
             Object {
               "height": 54,
@@ -978,6 +979,7 @@ exports[`modal saving is shown on assignment update 1`] = `
         }
       >
         <TouchableHighlight
+          onPress={[Function]}
           style={
             Object {
               "height": 54,
@@ -1491,6 +1493,7 @@ exports[`renders 1`] = `
         }
       >
         <TouchableHighlight
+          onPress={[Function]}
           style={
             Object {
               "height": 54,

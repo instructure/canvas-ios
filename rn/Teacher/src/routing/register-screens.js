@@ -15,6 +15,8 @@ import Profile from '../modules/profile/Profile'
 import BetaFeedback from '../modules/beta-feedback/BetaFeedback'
 import Staging from '../modules/staging/Staging'
 import SubmissionList from '../modules/submissions/list/SubmissionList'
+import AssigneePicker from '../modules/assignee-picker/AssigneePicker'
+import AssigneeSearch from '../modules/assignee-picker/AssigneeSearch'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -35,4 +37,8 @@ export function registerScreens (store: Store): void {
   registerScreen('/profile', () => Profile, store)
   registerScreen('/beta-feedback', () => BetaFeedback, store)
   registerScreen('/staging', () => Staging)
+
+  // This will never actually be routed to, but this makes it really easy to debug
+  registerScreen('/courses/:courseID/assignee-picker', () => AssigneePicker, store)
+  registerScreen('/courses/:courseID/assignee-search', () => AssigneeSearch, store)
 }
