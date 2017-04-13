@@ -2,7 +2,7 @@
  * @flow
  */
 
-export default ({
+const colors: { [name: string]: string } = {
   link: '#008EE2',
   tabBarBg: '#fff',
   tabBarTab: '#73818C',
@@ -18,4 +18,12 @@ export default ({
   checkmarkGreen: '#00AC18',
   cellUnderlayColor: '#eee',
   seperatorColor: '#C7CDD1',
-}: {[name: string]: string})
+//  branding properties
+  navBgColor: '#ff0ee8',
+  navButtonColor: '#ff0ee8',
+  primaryButtonTextColor: '#ff0ee8',
+  primaryButtonColor: '#ff0ee8',
+  primaryBrandColor: '#ff0ee8',
+}
+
+export default colors

@@ -22,6 +22,7 @@ import {
   PickerIOS,
   TouchableHighlight,
   LayoutAnimation,
+  Switch,
 } from 'react-native'
 
 var PickerItemIOS = PickerIOS.Item
@@ -115,6 +116,18 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     )
   }
 
+  renderToggle (fieldName: string, testID: string, styleParam: Object = {}): React.Element<*> {
+    return (
+      <Switch style={styleParam}
+              value={ this.defaultValueForBooleanInput(fieldName) }
+              onValueChange={ value => this.updateFromInput(fieldName, value) }
+              testID={testID}
+              tintColor={ color.primaryBrandColor }
+              onTintColor={ color.primaryBrandColor }
+      />
+    )
+  }
+
   render (): React.Element<View> {
     let sectionTitle = i18n({
       default: 'Title',
@@ -138,6 +151,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     let titlePlaceHolder = i18n({ default: 'Title', description: 'Assignemnt details title placeholder' })
     let pointsPlaceHolder = i18n({ default: 'Points', description: 'Assignemnt details points placeholder' })
     let displayGradeAs = i18n({ default: 'Display Grade As', description: 'Assignemnt details display grade as' })
+    let publish = i18n({ default: 'Publish', description: 'Assignemnt details publish toggle' })
 
     return (
       <View style={{ flex: 1 }}>
@@ -159,11 +173,17 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
           {/* Display Grade As */}
           <TouchableHighlight underlayColor={color.cellUnderlayColor} onPress={() => { this.togglePicker('grading_type', GRADE_DISPLAY_OPTIONS) }} testID='assignment-details.toggle-display-grade-as-picker'>
-            <View style={[style.row, style.twoColumnRow, { borderBottomWidth: 0 }]}>
+            <View style={[style.row, style.twoColumnRow]}>
               { this.renderLeftColumnLabel(displayGradeAs) }
               <Text>{GRADE_DISPLAY_OPTIONS.get(this.state.assignment.grading_type)}</Text>
             </View>
           </TouchableHighlight>
+
+          {/* Publish */}
+          <View style={[style.row, style.twoColumnRow, { borderBottomWidth: 0 }]}>
+            { this.renderLeftColumnLabel(publish) }
+            { this.renderToggle('published', 'published') }
+          </View>
 
           {/* Due Dates */}
           <EditSectionHeader title={dueDatesTitle} style={style.sectionHeader}/>
@@ -205,7 +225,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     this.setState({ showPicker: !this.state.showPicker, currentAssignmentKey: selectedField })
   }
 
-  updateFromInput (key: string, value: string) {
+  updateFromInput (key: string, value: any) {
     const assignment = this.state.assignment
     assignment[key] = value
     this.setState({ assignment })
@@ -214,6 +234,11 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   defaultValueForInput (key: string): string {
     let assignment = this.state.assignment
     return assignment[key].toString()
+  }
+
+  defaultValueForBooleanInput (key: string): boolean {
+    let assignment = this.state.assignment
+    return assignment[key]
   }
 
   onNavigatorEvent = (event: NavigatorEvent) => {

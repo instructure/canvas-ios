@@ -355,9 +355,6 @@ exports[`error occurs when done pressed 1`] = `
                 "height": 54,
                 "justifyContent": "space-between",
               },
-              Object {
-                "borderBottomWidth": 0,
-              },
             ]
           }
         >
@@ -410,6 +407,76 @@ exports[`error occurs when done pressed 1`] = `
           </Text>
         </View>
       </TouchableHighlight>
+      <View
+        style={
+          Array [
+            Object {
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 54,
+              "justifyContent": "space-between",
+            },
+            Object {
+              "borderBottomWidth": 0,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          fontWeight="semibold"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Publish
+        </Text>
+        <RCTSwitch
+          disabled={false}
+          onChange={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onTintColor="#ff0ee8"
+          onValueChange={[Function]}
+          style={
+            Array [
+              Object {
+                "height": 31,
+                "width": 51,
+              },
+              Object {},
+            ]
+          }
+          testID="published"
+          tintColor="#ff0ee8"
+          value={false}
+        />
+      </View>
       <View
         style={
           Array [
@@ -869,9 +936,6 @@ exports[`modal saving is shown on assignment update 1`] = `
                 "height": 54,
                 "justifyContent": "space-between",
               },
-              Object {
-                "borderBottomWidth": 0,
-              },
             ]
           }
         >
@@ -924,6 +988,76 @@ exports[`modal saving is shown on assignment update 1`] = `
           </Text>
         </View>
       </TouchableHighlight>
+      <View
+        style={
+          Array [
+            Object {
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 54,
+              "justifyContent": "space-between",
+            },
+            Object {
+              "borderBottomWidth": 0,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          fontWeight="semibold"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Publish
+        </Text>
+        <RCTSwitch
+          disabled={false}
+          onChange={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onTintColor="#ff0ee8"
+          onValueChange={[Function]}
+          style={
+            Array [
+              Object {
+                "height": 31,
+                "width": 51,
+              },
+              Object {},
+            ]
+          }
+          testID="published"
+          tintColor="#ff0ee8"
+          value={false}
+        />
+      </View>
       <View
         style={
           Array [
@@ -1383,9 +1517,6 @@ exports[`renders 1`] = `
                 "height": 54,
                 "justifyContent": "space-between",
               },
-              Object {
-                "borderBottomWidth": 0,
-              },
             ]
           }
         >
@@ -1438,6 +1569,76 @@ exports[`renders 1`] = `
           </Text>
         </View>
       </TouchableHighlight>
+      <View
+        style={
+          Array [
+            Object {
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 54,
+              "justifyContent": "space-between",
+            },
+            Object {
+              "borderBottomWidth": 0,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          fontWeight="semibold"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Publish
+        </Text>
+        <RCTSwitch
+          disabled={false}
+          onChange={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onTintColor="#ff0ee8"
+          onValueChange={[Function]}
+          style={
+            Array [
+              Object {
+                "height": 31,
+                "width": 51,
+              },
+              Object {},
+            ]
+          }
+          testID="published"
+          tintColor="#ff0ee8"
+          value={false}
+        />
+      </View>
       <View
         style={
           Array [

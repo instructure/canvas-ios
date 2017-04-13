@@ -180,6 +180,10 @@ test('change points', () => {
   testInputField('pointsInput', 1, 'points_possible')
 })
 
+test('change published', () => {
+  testSwitchToggled('published', true, 'published')
+})
+
 function testInputField (ref: string, input: any, assignmentField: string) {
   let component = renderer.create(
     <AssignmentDetailsEdit {...doneButtonPressedProps} />
@@ -193,5 +197,20 @@ function testInputField (ref: string, input: any, assignmentField: string) {
 
   let expected = { ...defaultProps.assignmentDetails, [assignmentField]: input }
 
+  expect(defaultProps.updateAssignment).toHaveBeenCalledWith(doneButtonPressedProps.courseID, expected, defaultProps.assignmentDetails)
+}
+
+function testSwitchToggled (ref: string, input: any, assignmentField: string) {
+  let component = renderer.create(
+    <AssignmentDetailsEdit {...doneButtonPressedProps} />
+  )
+
+  let tree = component.toJSON()
+  let field = explore(tree).selectByID(ref) || {}
+  field.props.onValueChange(input)
+
+  onNavigatorEvent(navigatorDismissEventProps)
+
+  let expected = { ...defaultProps.assignmentDetails, [assignmentField]: input }
   expect(defaultProps.updateAssignment).toHaveBeenCalledWith(doneButtonPressedProps.courseID, expected, defaultProps.assignmentDetails)
 }

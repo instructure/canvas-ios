@@ -5,12 +5,12 @@
 import color from '../common/colors'
 
 export type BrandingConfiguration = {
-  navBgColor?: string,
-  navButtonColor?: string,
-  primaryButtonColor?: string,
-  primaryButtonTextColor?: string,
-  primaryBrandColor?: string,
-  fontColorDark?: string,
+  navBgColor: string,
+  navButtonColor: string,
+  primaryButtonColor: string,
+  primaryButtonTextColor: string,
+  primaryBrandColor: string,
+  fontColorDark: string,
   headerImage?: any,
 }
 
@@ -31,6 +31,13 @@ export function setupBrandingFromNativeBrandingInfo (obj: Object): void {
   branding.fontColorDark = obj[`ic-brand-font-color-dark`] || branding.fontColorDark
   branding.navButtonColor = obj[`ic-brand-global-nav-ic-icon-svg-fill`] || branding.navButtonColor
   branding.primaryBrandColor = obj[`ic-brand-primary`] || branding.primaryBrandColor
+
+  //  now that we have branding data, set colors object as well
+  color.navBgColor = branding.navBgColor
+  color.navButtonColor = branding.navButtonColor
+  color.primaryButtonTextColor = branding.primaryButtonTextColor
+  color.primaryButtonColor = branding.primaryButtonColor
+  color.primaryBrandColor = branding.primaryBrandColor
 }
 
 export default branding
