@@ -21,8 +21,10 @@
     "querystring": "^0.2.0",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.0",
+    "react-native-blur": "^2.0.0",
     "react-native-button": "^1.8.2",
     "react-native-device-info": "^0.10.1",
+    "react-native-interactable": "https://github.com/wix/react-native-interactable",
     "react-native-keyboard-aware-scroll-view": "^0.2.8",
     "react-native-navigation": "next",
     "react-native-progress": "^3.2.0",
@@ -82,14 +84,14 @@
       "lcov",
       "text",
       "html"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 85,
-        "functions": 80,
-        "lines": 90,
-        "statements": 90
-      }
-    }
+   ],
+   "coverageThreshold": {
+     "global": {
+       "branches": 85,
+       "functions": 80,
+       "lines": 90,
+       "statements": 90
+     }
+   }
   }
 }

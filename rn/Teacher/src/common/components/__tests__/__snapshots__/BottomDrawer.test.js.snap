@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BottomDrawer renders any children 1`] = `
+<Interactable.View
+  animatedValueY={1281}
+  initialPosition={
+    Object {
+      "y": 1281,
+    }
+  }
+  onLayout={undefined}
+  onSnap={[Function]}
+  snapPoints={
+    Array [
+      Object {
+        "y": 213.8,
+      },
+      Object {
+        "y": 747.4,
+      },
+      Object {
+        "y": 1281,
+      },
+    ]
+  }
+  style={
+    Array [
+      Object {
+        "bottom": 0,
+        "left": 0,
+        "maxWidth": 700,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      },
+      Object {
+        "left": 25,
+        "right": 25,
+      },
+    ]
+  }
+  verticalOnly={true}
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "borderTopLeftRadius": 20,
+        "borderTopRightRadius": 20,
+        "flex": 1,
+        "height": 1334,
+        "paddingBottom": 1281,
+        "paddingHorizontal": 20,
+        "paddingTop": 53,
+        "shadowColor": "#000000",
+        "shadowOffset": Object {
+          "height": 0,
+          "width": 0,
+        },
+        "shadowOpacity": 0.4,
+        "shadowRadius": 5,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Yo yo yo
+    </Text>
+  </View>
+</Interactable.View>
+`;
