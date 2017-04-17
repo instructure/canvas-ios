@@ -66,13 +66,13 @@ exports[`renders NoCourses correctly 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#368BD8",
+          "backgroundColor": "#ff0ee8",
           "borderRadius": 8,
           "overflow": "hidden",
           "padding": 10,
         },
         Object {
-          "backgroundColor": "#368BD8",
+          "backgroundColor": "#ff0ee8",
         },
         undefined,
       ]
@@ -94,10 +94,10 @@ exports[`renders NoCourses correctly 1`] = `
           null,
           Array [
             Object {
-              "color": "#fff",
+              "color": "#ff0ee8",
             },
             Object {
-              "color": "#fff",
+              "color": "#ff0ee8",
             },
             undefined,
           ],

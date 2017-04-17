@@ -8,14 +8,14 @@ import ReactNative, {
   Text,
 } from 'react-native'
 import BaseButton from 'react-native-button'
-import { branding } from './branding'
+import colors from './colors'
 
 export function Button ({ style, containerStyle, ...props }: Object): ReactNative.TouchableHighlight {
   let brandingContainerStyles = {
-    backgroundColor: branding.primaryButtonColor,
+    backgroundColor: colors.primaryButtonColor,
   }
   let brandingStyles = {
-    color: branding.primaryButtonTextColor,
+    color: colors.primaryButtonTextColor,
   }
   return (<BaseButton style={[styles.textColor, brandingStyles, style]} containerStyle={[styles.container, brandingContainerStyles, containerStyle]} {...props} />)
 }
@@ -23,7 +23,7 @@ export function Button ({ style, containerStyle, ...props }: Object): ReactNativ
 export class LinkButton extends Component {
   render (): React.Element<any> {
     let brandingStyles = {
-      color: branding.primaryButtonColor,
+      color: colors.primaryButtonColor,
     }
     return (
       <BaseButton {...this.props}><Text style={[linkButtonStyles.textColor, linkButtonStyles.font, brandingStyles, this.props.style]}>{this.props.children}</Text></BaseButton>
@@ -33,13 +33,13 @@ export class LinkButton extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: branding.primaryButtonColor,
+    backgroundColor: colors.primaryButtonColor,
     overflow: 'hidden',
     padding: 10,
     borderRadius: 8,
   },
   textColor: {
-    color: branding.primaryButtonTextColor,
+    color: colors.primaryButtonTextColor,
   },
 })
 
@@ -49,7 +49,7 @@ const linkButtonStyles = StyleSheet.create({
   },
   textColor: {
     fontSize: 14,
-    color: branding.primaryButtonColor,
+    color: colors.primaryButtonColor,
   },
 })
 

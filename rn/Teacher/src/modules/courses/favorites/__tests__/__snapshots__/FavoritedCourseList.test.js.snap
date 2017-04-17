@@ -160,14 +160,14 @@ exports[`render 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#368BD8",
+                    "color": "#ff0ee8",
                     "fontSize": 14,
                   },
                   Object {
                     "fontFamily": ".SFUIDisplay-medium",
                   },
                   Object {
-                    "color": "#368BD8",
+                    "color": "#ff0ee8",
                   },
                   undefined,
                 ]
@@ -684,13 +684,13 @@ exports[`render without courses 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#368BD8",
+          "backgroundColor": "#ff0ee8",
           "borderRadius": 8,
           "overflow": "hidden",
           "padding": 10,
         },
         Object {
-          "backgroundColor": "#368BD8",
+          "backgroundColor": "#ff0ee8",
         },
         undefined,
       ]
@@ -712,10 +712,10 @@ exports[`render without courses 1`] = `
           null,
           Array [
             Object {
-              "color": "#fff",
+              "color": "#ff0ee8",
             },
             Object {
-              "color": "#fff",
+              "color": "#ff0ee8",
             },
             undefined,
           ],

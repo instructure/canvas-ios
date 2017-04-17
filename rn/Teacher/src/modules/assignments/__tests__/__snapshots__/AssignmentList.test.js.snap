@@ -64,14 +64,14 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
         style={
           Array [
             Object {
-              "color": "#368BD8",
+              "color": "#ff0ee8",
               "fontSize": 14,
             },
             Object {
               "fontFamily": ".SFUIDisplay-medium",
             },
             Object {
-              "color": "#368BD8",
+              "color": "#ff0ee8",
             },
             Object {
               "marginBottom": 1,
@@ -481,14 +481,14 @@ exports[`applyFilter will apply a new filter 1`] = `
         style={
           Array [
             Object {
-              "color": "#368BD8",
+              "color": "#ff0ee8",
               "fontSize": 14,
             },
             Object {
               "fontFamily": ".SFUIDisplay-medium",
             },
             Object {
-              "color": "#368BD8",
+              "color": "#ff0ee8",
             },
             Object {
               "marginBottom": 1,
@@ -1279,14 +1279,14 @@ exports[`renders correctly 1`] = `
         style={
           Array [
             Object {
-              "color": "#368BD8",
+              "color": "#ff0ee8",
               "fontSize": 14,
             },
             Object {
               "fontFamily": ".SFUIDisplay-medium",
             },
             Object {
-              "color": "#368BD8",
+              "color": "#ff0ee8",
             },
             Object {
               "marginBottom": 1,
@@ -1696,14 +1696,14 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
         style={
           Array [
             Object {
-              "color": "#368BD8",
+              "color": "#ff0ee8",
               "fontSize": 14,
             },
             Object {
               "fontFamily": ".SFUIDisplay-medium",
             },
             Object {
-              "color": "#368BD8",
+              "color": "#ff0ee8",
             },
             Object {
               "marginBottom": 1,

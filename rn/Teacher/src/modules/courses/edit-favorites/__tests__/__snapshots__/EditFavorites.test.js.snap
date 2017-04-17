@@ -75,7 +75,7 @@ exports[`renders correctly 1`] = `
                 "width": 20,
               },
               Object {
-                "tintColor": "#374A59",
+                "tintColor": "#ff0ee8",
               },
             ]
           }
@@ -146,7 +146,7 @@ exports[`renders correctly 1`] = `
                 "width": 20,
               },
               Object {
-                "tintColor": "#374A59",
+                "tintColor": "#ff0ee8",
               },
             ]
           }
@@ -246,7 +246,7 @@ exports[`updates when courses prop changes 1`] = `
                 "width": 20,
               },
               Object {
-                "tintColor": "#374A59",
+                "tintColor": "#ff0ee8",
               },
             ]
           }
@@ -346,7 +346,7 @@ exports[`updates when courses prop changes 2`] = `
                 "width": 20,
               },
               Object {
-                "tintColor": "#374A59",
+                "tintColor": "#ff0ee8",
               },
             ]
           }

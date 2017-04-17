@@ -118,7 +118,7 @@ emitter.addListener('Login', async (info: { authToken: string, baseURL: string, 
     Navigation.startTabBasedApp({
       tabs,
       tabsStyle: {
-        tabBarSelectedButtonColor: branding.primaryBrandColor,
+        tabBarSelectedButtonColor: Colors.primaryBrandColor,
         tabBarBackgroundColor: Colors.tabBarBg,
         tabBarButtonColor: Colors.tabBarTab,
       },
