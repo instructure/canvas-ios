@@ -138,11 +138,6 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
       description: 'Assignment details edit details header',
     })
 
-    let dueDatesTitle = i18n({
-      default: 'Due Dates',
-      description: 'Assignment details due dates header',
-    })
-
     let savingText = i18n({
       default: 'Saving',
       description: 'Text when a request to update an assignment is made and user is waiting',
@@ -159,14 +154,14 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
         <KeyboardAwareScrollView style={style.container} ref='scrollView'>
 
           {/* Title */}
-          <EditSectionHeader title={sectionTitle} style={[style.sectionHeader, { marginTop: 0 }]}/>
-          <View style={style.row}>
+          <EditSectionHeader title={sectionTitle} />
+          <View style={[style.row, style.topRow, style.bottomRow]}>
             { this.renderTextInput('name', titlePlaceHolder, 'titleInput', style.title, true) }
           </View>
 
           {/* Points */}
-          <EditSectionHeader title={sectionDetails} style={style.sectionHeader}/>
-          <View style={[style.row, style.twoColumnRow]}>
+          <EditSectionHeader title={sectionDetails} />
+          <View style={[style.row, style.twoColumnRow, style.topRow]}>
             { this.renderLeftColumnLabel(pointsPlaceHolder) }
             { this.renderTextInput('points_possible', pointsPlaceHolder, 'pointsInput', style.points) }
           </View>
@@ -180,13 +175,12 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
           </TouchableHighlight>
 
           {/* Publish */}
-          <View style={[style.row, style.twoColumnRow, { borderBottomWidth: 0 }]}>
+          <View style={[style.row, style.twoColumnRow, style.bottomRow]}>
             { this.renderLeftColumnLabel(publish) }
             { this.renderToggle('published', 'published') }
           </View>
 
           {/* Due Dates */}
-          <EditSectionHeader title={dueDatesTitle} style={style.sectionHeader}/>
           <AssignmentDatesEditor assignment={this.props.assignmentDetails} ref={c => { this.datesEditor = c }} navigator={this.props.navigator} />
 
         </KeyboardAwareScrollView>
@@ -298,15 +292,14 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 const style = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  sectionHeader: {
-    marginTop: global.style.defaultPadding / 2,
+    backgroundColor: '#F5F5F5',
   },
   row: {
     paddingTop: global.style.defaultPadding / 2,
     paddingBottom: global.style.defaultPadding / 2,
     paddingLeft: global.style.defaultPadding,
     paddingRight: global.style.defaultPadding,
+    backgroundColor: 'white',
   },
   twoColumnRow: {
     flex: 1,
@@ -316,6 +309,14 @@ const style = StyleSheet.create({
     height: 54,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: color.grey2,
+  },
+  topRow: {
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: color.seperatorColor,
+  },
+  bottomRow: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: color.seperatorColor,
   },
   twoColumnRowLeftText: {
     flex: 1,

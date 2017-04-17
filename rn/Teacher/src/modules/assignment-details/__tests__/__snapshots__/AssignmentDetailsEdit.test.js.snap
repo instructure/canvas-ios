@@ -129,6 +129,7 @@ exports[`error occurs when done pressed 1`] = `
     showsVerticalScrollIndicator={true}
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
@@ -140,23 +141,12 @@ exports[`error occurs when done pressed 1`] = `
             Object {
               "alignItems": "center",
               "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#D8DBDE",
-              "borderBottomWidth": 0.5,
-              "borderTopColor": "#D8DBDE",
-              "borderTopWidth": 0.5,
               "flex": 1,
               "flexDirection": "row",
               "height": 50,
               "justifyContent": "flex-start",
             },
-            Array [
-              Object {
-                "marginTop": 8,
-              },
-              Object {
-                "marginTop": 0,
-              },
-            ],
+            undefined,
           ]
         }
       >
@@ -188,12 +178,23 @@ exports[`error occurs when done pressed 1`] = `
       </View>
       <View
         style={
-          Object {
-            "paddingBottom": 8,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 8,
-          }
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
         }
       >
         <TextInput
@@ -223,18 +224,12 @@ exports[`error occurs when done pressed 1`] = `
             Object {
               "alignItems": "center",
               "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#D8DBDE",
-              "borderBottomWidth": 0.5,
-              "borderTopColor": "#D8DBDE",
-              "borderTopWidth": 0.5,
               "flex": 1,
               "flexDirection": "row",
               "height": 50,
               "justifyContent": "flex-start",
             },
-            Object {
-              "marginTop": 8,
-            },
+            undefined,
           ]
         }
       >
@@ -268,6 +263,7 @@ exports[`error occurs when done pressed 1`] = `
         style={
           Array [
             Object {
+              "backgroundColor": "white",
               "paddingBottom": 8,
               "paddingLeft": 16,
               "paddingRight": 16,
@@ -281,6 +277,10 @@ exports[`error occurs when done pressed 1`] = `
               "flexDirection": "row",
               "height": 54,
               "justifyContent": "space-between",
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
             },
           ]
         }
@@ -341,6 +341,7 @@ exports[`error occurs when done pressed 1`] = `
           style={
             Array [
               Object {
+                "backgroundColor": "white",
                 "paddingBottom": 8,
                 "paddingLeft": 16,
                 "paddingRight": 16,
@@ -411,6 +412,7 @@ exports[`error occurs when done pressed 1`] = `
         style={
           Array [
             Object {
+              "backgroundColor": "white",
               "paddingBottom": 8,
               "paddingLeft": 16,
               "paddingRight": 16,
@@ -426,7 +428,8 @@ exports[`error occurs when done pressed 1`] = `
               "justifyContent": "space-between",
             },
             Object {
-              "borderBottomWidth": 0,
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
             },
           ]
         }
@@ -479,62 +482,27 @@ exports[`error occurs when done pressed 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#D8DBDE",
-              "borderBottomWidth": 0.5,
-              "borderTopColor": "#D8DBDE",
-              "borderTopWidth": 0.5,
-              "flex": 1,
-              "flexDirection": "row",
-              "height": 50,
-              "justifyContent": "flex-start",
-            },
-            Object {
-              "marginTop": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
-          }
-        >
-          Due Dates
-        </Text>
-      </View>
-      <View
-        style={
           Object {
             "flex": 1,
           }
         }
       >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "height": 24,
+            }
+          }
+        />
         <TouchableHighlight
           onPress={[Function]}
           style={
             Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
               "height": 54,
             }
           }
@@ -559,7 +527,7 @@ exports[`error occurs when done pressed 1`] = `
                 Object {
                   "color": "#008EE2",
                   "fontSize": 16,
-                  "fontWeight": "bold",
+                  "fontWeight": "600",
                 }
               }
             >
@@ -710,6 +678,7 @@ exports[`modal saving is shown on assignment update 1`] = `
     showsVerticalScrollIndicator={true}
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
@@ -721,23 +690,12 @@ exports[`modal saving is shown on assignment update 1`] = `
             Object {
               "alignItems": "center",
               "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#D8DBDE",
-              "borderBottomWidth": 0.5,
-              "borderTopColor": "#D8DBDE",
-              "borderTopWidth": 0.5,
               "flex": 1,
               "flexDirection": "row",
               "height": 50,
               "justifyContent": "flex-start",
             },
-            Array [
-              Object {
-                "marginTop": 8,
-              },
-              Object {
-                "marginTop": 0,
-              },
-            ],
+            undefined,
           ]
         }
       >
@@ -769,12 +727,23 @@ exports[`modal saving is shown on assignment update 1`] = `
       </View>
       <View
         style={
-          Object {
-            "paddingBottom": 8,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 8,
-          }
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
         }
       >
         <TextInput
@@ -804,18 +773,12 @@ exports[`modal saving is shown on assignment update 1`] = `
             Object {
               "alignItems": "center",
               "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#D8DBDE",
-              "borderBottomWidth": 0.5,
-              "borderTopColor": "#D8DBDE",
-              "borderTopWidth": 0.5,
               "flex": 1,
               "flexDirection": "row",
               "height": 50,
               "justifyContent": "flex-start",
             },
-            Object {
-              "marginTop": 8,
-            },
+            undefined,
           ]
         }
       >
@@ -849,6 +812,7 @@ exports[`modal saving is shown on assignment update 1`] = `
         style={
           Array [
             Object {
+              "backgroundColor": "white",
               "paddingBottom": 8,
               "paddingLeft": 16,
               "paddingRight": 16,
@@ -862,6 +826,10 @@ exports[`modal saving is shown on assignment update 1`] = `
               "flexDirection": "row",
               "height": 54,
               "justifyContent": "space-between",
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
             },
           ]
         }
@@ -922,6 +890,7 @@ exports[`modal saving is shown on assignment update 1`] = `
           style={
             Array [
               Object {
+                "backgroundColor": "white",
                 "paddingBottom": 8,
                 "paddingLeft": 16,
                 "paddingRight": 16,
@@ -992,6 +961,7 @@ exports[`modal saving is shown on assignment update 1`] = `
         style={
           Array [
             Object {
+              "backgroundColor": "white",
               "paddingBottom": 8,
               "paddingLeft": 16,
               "paddingRight": 16,
@@ -1007,7 +977,8 @@ exports[`modal saving is shown on assignment update 1`] = `
               "justifyContent": "space-between",
             },
             Object {
-              "borderBottomWidth": 0,
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
             },
           ]
         }
@@ -1060,62 +1031,27 @@ exports[`modal saving is shown on assignment update 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#D8DBDE",
-              "borderBottomWidth": 0.5,
-              "borderTopColor": "#D8DBDE",
-              "borderTopWidth": 0.5,
-              "flex": 1,
-              "flexDirection": "row",
-              "height": 50,
-              "justifyContent": "flex-start",
-            },
-            Object {
-              "marginTop": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
-          }
-        >
-          Due Dates
-        </Text>
-      </View>
-      <View
-        style={
           Object {
             "flex": 1,
           }
         }
       >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "height": 24,
+            }
+          }
+        />
         <TouchableHighlight
           onPress={[Function]}
           style={
             Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
               "height": 54,
             }
           }
@@ -1140,7 +1076,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                 Object {
                   "color": "#008EE2",
                   "fontSize": 16,
-                  "fontWeight": "bold",
+                  "fontWeight": "600",
                 }
               }
             >
@@ -1291,6 +1227,7 @@ exports[`renders 1`] = `
     showsVerticalScrollIndicator={true}
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
@@ -1302,23 +1239,12 @@ exports[`renders 1`] = `
             Object {
               "alignItems": "center",
               "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#D8DBDE",
-              "borderBottomWidth": 0.5,
-              "borderTopColor": "#D8DBDE",
-              "borderTopWidth": 0.5,
               "flex": 1,
               "flexDirection": "row",
               "height": 50,
               "justifyContent": "flex-start",
             },
-            Array [
-              Object {
-                "marginTop": 8,
-              },
-              Object {
-                "marginTop": 0,
-              },
-            ],
+            undefined,
           ]
         }
       >
@@ -1350,12 +1276,23 @@ exports[`renders 1`] = `
       </View>
       <View
         style={
-          Object {
-            "paddingBottom": 8,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 8,
-          }
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
         }
       >
         <TextInput
@@ -1385,18 +1322,12 @@ exports[`renders 1`] = `
             Object {
               "alignItems": "center",
               "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#D8DBDE",
-              "borderBottomWidth": 0.5,
-              "borderTopColor": "#D8DBDE",
-              "borderTopWidth": 0.5,
               "flex": 1,
               "flexDirection": "row",
               "height": 50,
               "justifyContent": "flex-start",
             },
-            Object {
-              "marginTop": 8,
-            },
+            undefined,
           ]
         }
       >
@@ -1430,6 +1361,7 @@ exports[`renders 1`] = `
         style={
           Array [
             Object {
+              "backgroundColor": "white",
               "paddingBottom": 8,
               "paddingLeft": 16,
               "paddingRight": 16,
@@ -1443,6 +1375,10 @@ exports[`renders 1`] = `
               "flexDirection": "row",
               "height": 54,
               "justifyContent": "space-between",
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
             },
           ]
         }
@@ -1503,6 +1439,7 @@ exports[`renders 1`] = `
           style={
             Array [
               Object {
+                "backgroundColor": "white",
                 "paddingBottom": 8,
                 "paddingLeft": 16,
                 "paddingRight": 16,
@@ -1573,6 +1510,7 @@ exports[`renders 1`] = `
         style={
           Array [
             Object {
+              "backgroundColor": "white",
               "paddingBottom": 8,
               "paddingLeft": 16,
               "paddingRight": 16,
@@ -1588,7 +1526,8 @@ exports[`renders 1`] = `
               "justifyContent": "space-between",
             },
             Object {
-              "borderBottomWidth": 0,
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
             },
           ]
         }
@@ -1641,62 +1580,27 @@ exports[`renders 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#D8DBDE",
-              "borderBottomWidth": 0.5,
-              "borderTopColor": "#D8DBDE",
-              "borderTopWidth": 0.5,
-              "flex": 1,
-              "flexDirection": "row",
-              "height": 50,
-              "justifyContent": "flex-start",
-            },
-            Object {
-              "marginTop": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
-          }
-        >
-          Due Dates
-        </Text>
-      </View>
-      <View
-        style={
           Object {
             "flex": 1,
           }
         }
       >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "height": 24,
+            }
+          }
+        />
         <TouchableHighlight
           onPress={[Function]}
           style={
             Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
               "height": 54,
             }
           }
@@ -1721,7 +1625,7 @@ exports[`renders 1`] = `
                 Object {
                   "color": "#008EE2",
                   "fontSize": 16,
-                  "fontWeight": "bold",
+                  "fontWeight": "600",
                 }
               }
             >

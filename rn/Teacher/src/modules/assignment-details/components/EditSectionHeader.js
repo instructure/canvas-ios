@@ -15,6 +15,7 @@ export default class AssignmentSection extends Component {
     return (
       <View style={[style.container, this.props.style]}>
         <Heading1 style={style.header}>{this.props.title}</Heading1>
+        {this.props.children}
       </View>
     )
   }
@@ -26,13 +27,8 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-
     height: 50,
     backgroundColor: '#F5F5F5',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderTopColor: '#D8DBDE',
-    borderBottomColor: '#D8DBDE',
   },
   header: {
     color: color.darkText,

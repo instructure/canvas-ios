@@ -8,7 +8,9 @@ import {
   View,
   Text,
   TouchableHighlight,
+  TouchableOpacity,
   StyleSheet,
+  Alert,
 } from 'react-native'
 import i18n from 'format-message'
 import colors from '../../../common/colors'
@@ -18,6 +20,7 @@ import { route } from '../../../routing'
 import { type Assignee } from '../../assignee-picker/map-state-to-props'
 import uuid from 'uuid/v1'
 import { cloneDeep } from 'lodash'
+import EditSectionHeader from './EditSectionHeader'
 
 type Props = {
   assignment: Assignment,
@@ -215,7 +218,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
       const aDate = {
         id: date.id,
         base: date.base,
-        isNew: date.isNew,
+        isNew: true,
         valid: true,
       }
 
@@ -258,6 +261,12 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
             const ids = student.student_ids || []
             student.student_ids = ids.concat([a.dataId])
           }
+          student.title = i18n(`{
+            count, plural,
+                =0 {0 students}
+              one {# student}
+            other {# students}
+          }`, { count: (student.student_ids || []).length })
           break
         case 'section':
           sections.push(createNewDate({
@@ -294,10 +303,41 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     }
 
     let assignees = AssignmentDatesEditor.assigneesFromDate(date)
-    console.log('kjalsdjflkajsd flkjas dlfkja sldkfj aff')
-    console.log(assignees)
     let destination = route(`/courses/${this.props.assignment.course_id}/assignee-picker`, { assignees, callback })
     this.props.navigator.showModal(destination)
+  }
+
+  removeDate = (date: StagedAssignmentDate) => {
+    if (date.base) return
+
+    let remove = () => {
+      const dates = this.state.dates.filter((d) => d.id !== date.id)
+      this.setState({
+        dates,
+      })
+    }
+
+    Alert.alert(
+      i18n('Are you sure?'),
+      i18n('You cannot undo this action'),
+      [
+        { text: i18n('Remove'), onPress: remove, style: 'destructive' },
+        { text: i18n('Cancel'), style: 'cancel' },
+      ],
+      { cancelable: false }
+    )
+  }
+
+  renderRemoveButton = (date: StagedAssignmentDate): React.Element<View> => {
+    if (date.base) return <View />
+
+    return <View style={styles.removeButtonContainer}>
+      <TouchableOpacity onPress={() => this.removeDate(date)}>
+        <View>
+          <Text style={styles.removeButton}>Remove</Text>
+        </View>
+      </TouchableOpacity>
+    </View>
   }
 
   renderDate = (date: StagedAssignmentDate): React.Element<View> => {
@@ -307,7 +347,17 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
 
     let assigneeStyle = date.valid ? styles.titleText : styles.invalidTitleText
 
+    let dueDatesTitle = i18n({
+      default: 'Assign To',
+      description: 'Assignment details due dates header',
+    })
+
+    let removeButton = this.renderRemoveButton(date)
+
     return (<View style={styles.dateContainer} key={date.id || 'base'}>
+              <EditSectionHeader title={dueDatesTitle} style={styles.headerText}>
+                {removeButton}
+              </EditSectionHeader>
               <TouchableHighlight style={styles.row} onPress={() => this.selectAssignees(date)}>
                 <View style={styles.rowContainer}>
                   <Text style={assigneeStyle}>{i18n('Assignees')}</Text>
@@ -332,7 +382,6 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
                   <Text style={styles.detailText}>{dateFormatter(date.lock_at)}</Text>
                 </View>
               </TouchableHighlight>
-              <View style={styles.space} />
             </View>)
   }
 
@@ -349,6 +398,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     const button = this.renderButton()
     return (<View style={styles.container}>
               {rows}
+              <View style={styles.space} />
               {button}
               <View style={styles.space} />
             </View>)
@@ -375,19 +425,23 @@ const styles = StyleSheet.create({
     paddingLeft: global.style.defaultPadding,
     paddingRight: global.style.defaultPadding,
   },
+  headerText: {
+    borderTopWidth: 0,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: colors.seperatorColor,
+  },
   titleText: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
     color: colors.darkText,
   },
   invalidTitleText: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
     color: 'red',
   },
   detailText: {
     fontSize: 16,
-    fontWeight: '500',
     color: '#008EE2',
   },
   space: {
@@ -396,6 +450,10 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 54,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: colors.seperatorColor,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: colors.seperatorColor,
   },
   buttonInnerContainer: {
     flex: 1,
@@ -407,7 +465,20 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
     color: '#008EE2',
+  },
+  removeButtonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    paddingRight: global.style.defaultPadding,
+    paddingTop: 14,
+  },
+  removeButton: {
+    fontSize: 12,
+    color: 'red',
+    fontWeight: '500',
   },
 })

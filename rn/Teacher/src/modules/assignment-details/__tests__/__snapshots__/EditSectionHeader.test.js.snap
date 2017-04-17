@@ -7,10 +7,6 @@ exports[`render 1`] = `
       Object {
         "alignItems": "center",
         "backgroundColor": "#F5F5F5",
-        "borderBottomColor": "#D8DBDE",
-        "borderBottomWidth": 0.5,
-        "borderTopColor": "#D8DBDE",
-        "borderTopWidth": 0.5,
         "flex": 1,
         "flexDirection": "row",
         "height": 50,
@@ -55,10 +51,6 @@ exports[`render no title 1`] = `
       Object {
         "alignItems": "center",
         "backgroundColor": "#F5F5F5",
-        "borderBottomColor": "#D8DBDE",
-        "borderBottomWidth": 0.5,
-        "borderTopColor": "#D8DBDE",
-        "borderTopWidth": 0.5,
         "flex": 1,
         "flexDirection": "row",
         "height": 50,

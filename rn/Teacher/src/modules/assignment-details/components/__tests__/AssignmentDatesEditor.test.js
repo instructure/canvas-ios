@@ -2,12 +2,18 @@
  * @flow
  */
 
-import 'react-native'
+import { Alert } from 'react-native'
 import React from 'react'
 import AssignmentDatesEditor from '../AssignmentDatesEditor'
 import renderer from 'react-test-renderer'
 
 jest.mock('../../../../routing')
+
+jest.mock('Alert', () => {
+  return {
+    alert: jest.fn(),
+  }
+})
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/assignments'),
@@ -29,6 +35,10 @@ type StagedAssignmentDate = {
   group_id?: ?string,
   valid: boolean,
 }
+
+beforeEach(() => {
+  jest.resetAllMocks()
+})
 
 describe('function tests', () => {
   it('assigneesFromDate should work', () => {
@@ -318,6 +328,29 @@ describe('function tests', () => {
       valid: true,
       group_id: '333333',
     })
+  })
+
+  test('removing dates should work', () => {
+    const assignment = template.assignment({
+      all_dates: [template.assignmentDueDate({ base: true, id: 'base' }), template.assignmentDueDate({ base: false, id: '98765' })],
+    })
+    let editor = renderer.create(
+      <AssignmentDatesEditor assignment={assignment} />
+    ).getInstance()
+
+    let onPress = jest.fn()
+    Alert.alert = jest.fn((title, message, buttons) => {
+      onPress = buttons[0].onPress
+    })
+
+    let dateOne = editor.state.dates[0]
+    let dateTwo = editor.state.dates[1]
+    editor.removeDate(dateTwo)
+    onPress()
+    expect(editor.state.dates.length).toEqual(1)
+    editor.removeDate(dateOne)
+    onPress()
+    expect(editor.state.dates.length).toEqual(1)
   })
 })
 

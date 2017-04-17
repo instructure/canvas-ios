@@ -12,6 +12,103 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
     style={Object {}}
   >
     <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#F5F5F5",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "justifyContent": "flex-start",
+          },
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopWidth": 0,
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {
+              "color": "#2D3B45",
+              "marginBottom": 8,
+              "marginLeft": 16,
+              "marginTop": 16,
+            },
+          ]
+        }
+      >
+        Assign To
+      </Text>
+      <View
+        style={
+          Object {
+            "alignItems": "flex-end",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+            "paddingRight": 16,
+            "paddingTop": 14,
+          }
+        }
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+          testID={undefined}
+          tvParallaxProperties={undefined}
+        >
+          <View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "red",
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                }
+              }
+            >
+              Remove
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
       accessibilityTraits={undefined}
@@ -62,7 +159,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
-              "fontWeight": "bold",
+              "fontWeight": "600",
             }
           }
         >
@@ -76,10 +173,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Object {
               "color": "#008EE2",
               "fontSize": 16,
-              "fontWeight": "500",
             }
           }
-        />
+        >
+          1 student
+        </Text>
       </View>
     </View>
     <View
@@ -133,7 +231,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
-              "fontWeight": "bold",
+              "fontWeight": "600",
             }
           }
         >
@@ -147,7 +245,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Object {
               "color": "#008EE2",
               "fontSize": 16,
-              "fontWeight": "500",
             }
           }
         >
@@ -206,7 +303,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
-              "fontWeight": "bold",
+              "fontWeight": "600",
             }
           }
         >
@@ -220,7 +317,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Object {
               "color": "#008EE2",
               "fontSize": 16,
-              "fontWeight": "500",
             }
           }
         >
@@ -279,7 +375,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
-              "fontWeight": "bold",
+              "fontWeight": "600",
             }
           }
         >
@@ -293,7 +389,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Object {
               "color": "#008EE2",
               "fontSize": 16,
-              "fontWeight": "500",
             }
           }
         >
@@ -301,15 +396,15 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         </Text>
       </View>
     </View>
-    <View
-      style={
-        Object {
-          "backgroundColor": "#F5F5F5",
-          "height": 24,
-        }
-      }
-    />
   </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F5F5F5",
+        "height": 24,
+      }
+    }
+  />
   <View
     accessibilityComponentType={undefined}
     accessibilityLabel={undefined}
@@ -331,6 +426,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           "backgroundColor": "transparent",
         },
         Object {
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
           "height": 54,
         },
       ]
@@ -358,7 +457,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           Object {
             "color": "#008EE2",
             "fontSize": 16,
-            "fontWeight": "bold",
+            "fontWeight": "600",
           }
         }
       >
@@ -389,6 +488,52 @@ exports[`snapshots! render with multiple due dates 1`] = `
     style={Object {}}
   >
     <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#F5F5F5",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "justifyContent": "flex-start",
+          },
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopWidth": 0,
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {
+              "color": "#2D3B45",
+              "marginBottom": 8,
+              "marginLeft": 16,
+              "marginTop": 16,
+            },
+          ]
+        }
+      >
+        Assign To
+      </Text>
+      <View />
+    </View>
+    <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
       accessibilityTraits={undefined}
@@ -439,7 +584,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
-              "fontWeight": "bold",
+              "fontWeight": "600",
             }
           }
         >
@@ -453,7 +598,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Object {
               "color": "#008EE2",
               "fontSize": 16,
-              "fontWeight": "500",
             }
           }
         >
@@ -512,7 +656,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
-              "fontWeight": "bold",
+              "fontWeight": "600",
             }
           }
         >
@@ -526,7 +670,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Object {
               "color": "#008EE2",
               "fontSize": 16,
-              "fontWeight": "500",
             }
           }
         >
@@ -585,7 +728,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
-              "fontWeight": "bold",
+              "fontWeight": "600",
             }
           }
         >
@@ -599,7 +742,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Object {
               "color": "#008EE2",
               "fontSize": 16,
-              "fontWeight": "500",
             }
           }
         >
@@ -658,7 +800,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
-              "fontWeight": "bold",
+              "fontWeight": "600",
             }
           }
         >
@@ -672,7 +814,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Object {
               "color": "#008EE2",
               "fontSize": 16,
-              "fontWeight": "500",
             }
           }
         >
@@ -680,15 +821,15 @@ exports[`snapshots! render with multiple due dates 1`] = `
         </Text>
       </View>
     </View>
-    <View
-      style={
-        Object {
-          "backgroundColor": "#F5F5F5",
-          "height": 24,
-        }
-      }
-    />
   </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F5F5F5",
+        "height": 24,
+      }
+    }
+  />
   <View
     accessibilityComponentType={undefined}
     accessibilityLabel={undefined}
@@ -710,6 +851,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
           "backgroundColor": "transparent",
         },
         Object {
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
           "height": 54,
         },
       ]
@@ -737,7 +882,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
           Object {
             "color": "#008EE2",
             "fontSize": 16,
-            "fontWeight": "bold",
+            "fontWeight": "600",
           }
         }
       >
@@ -767,6 +912,52 @@ exports[`snapshots! render with single due date 1`] = `
   <View
     style={Object {}}
   >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#F5F5F5",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "justifyContent": "flex-start",
+          },
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopWidth": 0,
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {
+              "color": "#2D3B45",
+              "marginBottom": 8,
+              "marginLeft": 16,
+              "marginTop": 16,
+            },
+          ]
+        }
+      >
+        Assign To
+      </Text>
+      <View />
+    </View>
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
@@ -818,7 +1009,7 @@ exports[`snapshots! render with single due date 1`] = `
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
-              "fontWeight": "bold",
+              "fontWeight": "600",
             }
           }
         >
@@ -832,7 +1023,6 @@ exports[`snapshots! render with single due date 1`] = `
             Object {
               "color": "#008EE2",
               "fontSize": 16,
-              "fontWeight": "500",
             }
           }
         >
@@ -891,7 +1081,7 @@ exports[`snapshots! render with single due date 1`] = `
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
-              "fontWeight": "bold",
+              "fontWeight": "600",
             }
           }
         >
@@ -905,7 +1095,6 @@ exports[`snapshots! render with single due date 1`] = `
             Object {
               "color": "#008EE2",
               "fontSize": 16,
-              "fontWeight": "500",
             }
           }
         >
@@ -964,7 +1153,7 @@ exports[`snapshots! render with single due date 1`] = `
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
-              "fontWeight": "bold",
+              "fontWeight": "600",
             }
           }
         >
@@ -978,7 +1167,6 @@ exports[`snapshots! render with single due date 1`] = `
             Object {
               "color": "#008EE2",
               "fontSize": 16,
-              "fontWeight": "500",
             }
           }
         >
@@ -1037,7 +1225,7 @@ exports[`snapshots! render with single due date 1`] = `
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
-              "fontWeight": "bold",
+              "fontWeight": "600",
             }
           }
         >
@@ -1051,7 +1239,6 @@ exports[`snapshots! render with single due date 1`] = `
             Object {
               "color": "#008EE2",
               "fontSize": 16,
-              "fontWeight": "500",
             }
           }
         >
@@ -1059,15 +1246,15 @@ exports[`snapshots! render with single due date 1`] = `
         </Text>
       </View>
     </View>
-    <View
-      style={
-        Object {
-          "backgroundColor": "#F5F5F5",
-          "height": 24,
-        }
-      }
-    />
   </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F5F5F5",
+        "height": 24,
+      }
+    }
+  />
   <View
     accessibilityComponentType={undefined}
     accessibilityLabel={undefined}
@@ -1089,6 +1276,10 @@ exports[`snapshots! render with single due date 1`] = `
           "backgroundColor": "transparent",
         },
         Object {
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
           "height": 54,
         },
       ]
@@ -1116,7 +1307,7 @@ exports[`snapshots! render with single due date 1`] = `
           Object {
             "color": "#008EE2",
             "fontSize": 16,
-            "fontWeight": "bold",
+            "fontWeight": "600",
           }
         }
       >
