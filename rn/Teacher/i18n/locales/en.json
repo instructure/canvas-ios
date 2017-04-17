@@ -3,9 +3,15 @@
     "message": "Add a few of your favorite courses to make this place your home.",
     "description": "Body text when you do not have any courses on course list page."
   },
+  "add_assignee_24ee0b71": {
+    "message": "Add Assignee"
+  },
   "add_courses_fd45abf": {
     "message": "Add Courses",
     "description": "Button text to take action and add a course."
+  },
+  "add_due_date_65b08f6c": {
+    "message": "Add Due Date"
   },
   "all_courses_a7dbb853": {
     "message": "All Courses",
@@ -14,6 +20,9 @@
   "all_grading_periods_77974940": {
     "message": "All Grading Periods",
     "description": "The header on the assignment list"
+  },
+  "assignees_314d5e55": {
+    "message": "Assignees"
   },
   "assignment_details_bc488179": {
     "message": "Assignment Details",
@@ -34,12 +43,18 @@
     "message": "Availability:",
     "description": "Assignment due date \"Available to:\" field"
   },
+  "available_from_587ce92f": {
+    "message": "Available From"
+  },
   "available_from_f84e4611": {
     "message": "Available from"
   },
   "available_from_f9e093c8": {
     "message": "Available from:",
     "description": "Assignment due date \"Available from:\" field"
+  },
+  "available_to_22b12aa0": {
+    "message": "Available To"
   },
   "available_to_434cb9f5": {
     "message": "Available to:",
@@ -73,8 +88,15 @@
     "message": "Color",
     "description": "Title label for the course color picker"
   },
+  "complete_incomplete_15b3a89c": {
+    "message": "Complete/Incomplete",
+    "description": "display grade as Complete/Incomplete"
+  },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "Could not get list of assignments"
+  },
+  "count_students_4ae780ca": {
+    "message": "{ count } students"
   },
   "count_ungraded_bc673f29": {
     "message": "{ count } ungraded"
@@ -110,6 +132,10 @@
     "message": "discussion topic",
     "description": "assignment submission type"
   },
+  "display_grade_as_7b5376a6": {
+    "message": "Display Grade As",
+    "description": "Assignemnt details display grade as"
+  },
   "done_54e3d4b6": {
     "message": "Done",
     "description": "Back button to move back a screen"
@@ -130,6 +156,13 @@
     "message": "Due",
     "description": "Assignment Details Section title for when assignment is due"
   },
+  "due_date_822625d8": {
+    "message": "Due Date"
+  },
+  "due_dates_520a6c08": {
+    "message": "Due Dates",
+    "description": "Assignment details due dates header"
+  },
   "due_datestring_at_timestring_9fac66bd": {
     "message": "Due { dateString } at { timeString }"
   },
@@ -148,6 +181,9 @@
   "everyone_854554dd": {
     "message": "Everyone"
   },
+  "everyone_else_cc5f6888": {
+    "message": "Everyone else"
+  },
   "external_tool_d6eaa5c1": {
     "message": "external tool",
     "description": "assignment submission type"
@@ -165,6 +201,10 @@
   "for_e3490d05": {
     "message": "For:",
     "description": "Assignment due date \"For:\" field"
+  },
+  "gpa_scale_a6d1cdea": {
+    "message": "GPA Scale",
+    "description": "display grade as GPA scale"
   },
   "graded_25cd3fcd": {
     "message": "Graded",
@@ -185,6 +225,10 @@
   "leave_feedback_df88476c": {
     "message": "Leave Feedback",
     "description": "Shown at the top of the app to allow the user to leave feedback"
+  },
+  "letter_grade_29ff1938": {
+    "message": "Letter Grade",
+    "description": "display grade as letter grade"
   },
   "logout_a9312e35": {
     "message": "Logout"
@@ -223,6 +267,10 @@
     "message": "none",
     "description": "assignment submission type"
   },
+  "not_graded_e027c866": {
+    "message": "Not Graded",
+    "description": "display grade as not graded"
+  },
   "not_published_73f7079": {
     "message": "Not Published"
   },
@@ -254,14 +302,17 @@
     "message": "Open user course preferences",
     "description": "Accessibility label on icon button to open course user preferences"
   },
-
   "pages_front_page_9ce5188": {
     "message": "Pages Front Page",
     "description": "Name of course default view being the font page when navigating into a course"
   },
+  "percentage_34ab7c2c": {
+    "message": "Percentage",
+    "description": "display grade as percentage"
+  },
   "points_bb475533": {
     "message": "Points",
-    "description": "Assignemnt details points placeholder"
+    "description": "display grade as points"
   },
   "profile_6bd2baed": {
     "message": "Profile",

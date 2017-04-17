@@ -12,176 +12,296 @@ exports[`render correctly 1`] = `
     style={Object {}}
   >
     <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Object {
-          "alignItems": "center",
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "flexDirection": "row",
-          "height": 54,
-          "justifyContent": "space-between",
-          "paddingLeft": 16,
-          "paddingRight": 16,
-        }
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": 54,
+          },
+        ]
       }
+      testID={undefined}
+      tvParallaxProperties={undefined}
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+      <View
         style={
           Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "fontWeight": "bold",
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingLeft": 16,
+            "paddingRight": 16,
           }
         }
       >
-        Assignees
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#008EE2",
-            "fontSize": 16,
-            "fontWeight": "500",
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
           }
-        }
-      >
-        Everyone
-      </Text>
+        >
+          Assignees
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#008EE2",
+              "fontSize": 16,
+              "fontWeight": "500",
+            }
+          }
+        >
+          Everyone
+        </Text>
+      </View>
     </View>
     <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Object {
-          "alignItems": "center",
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "flexDirection": "row",
-          "height": 54,
-          "justifyContent": "space-between",
-          "paddingLeft": 16,
-          "paddingRight": 16,
-        }
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": 54,
+          },
+        ]
       }
+      testID={undefined}
+      tvParallaxProperties={undefined}
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+      <View
         style={
           Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "fontWeight": "bold",
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingLeft": 16,
+            "paddingRight": 16,
           }
         }
       >
-        Due Date
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#008EE2",
-            "fontSize": 16,
-            "fontWeight": "500",
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
           }
-        }
-      >
-        May 31, 2017 at 11:59 PM
-      </Text>
+        >
+          Due Date
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#008EE2",
+              "fontSize": 16,
+              "fontWeight": "500",
+            }
+          }
+        >
+          May 31, 2017 at 11:59 PM
+        </Text>
+      </View>
     </View>
     <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Object {
-          "alignItems": "center",
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "flexDirection": "row",
-          "height": 54,
-          "justifyContent": "space-between",
-          "paddingLeft": 16,
-          "paddingRight": 16,
-        }
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": 54,
+          },
+        ]
       }
+      testID={undefined}
+      tvParallaxProperties={undefined}
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+      <View
         style={
           Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "fontWeight": "bold",
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingLeft": 16,
+            "paddingRight": 16,
           }
         }
       >
-        Available From
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#008EE2",
-            "fontSize": 16,
-            "fontWeight": "500",
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
           }
-        }
-      >
-        Mar 17, 2017 at 12:00 AM
-      </Text>
+        >
+          Available From
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#008EE2",
+              "fontSize": 16,
+              "fontWeight": "500",
+            }
+          }
+        >
+          Mar 17, 2017 at 12:00 AM
+        </Text>
+      </View>
     </View>
     <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Object {
-          "alignItems": "center",
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "flexDirection": "row",
-          "height": 54,
-          "justifyContent": "space-between",
-          "paddingLeft": 16,
-          "paddingRight": 16,
-        }
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": 54,
+          },
+        ]
       }
+      testID={undefined}
+      tvParallaxProperties={undefined}
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+      <View
         style={
           Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "fontWeight": "bold",
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingLeft": 16,
+            "paddingRight": 16,
           }
         }
       >
-        Available To
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#008EE2",
-            "fontSize": 16,
-            "fontWeight": "500",
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
           }
-        }
-      >
-        May 31, 2017 at 11:59 PM
-      </Text>
+        >
+          Available To
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#008EE2",
+              "fontSize": 16,
+              "fontWeight": "500",
+            }
+          }
+        >
+          May 31, 2017 at 11:59 PM
+        </Text>
+      </View>
     </View>
     <View
       style={
@@ -271,174 +391,294 @@ exports[`render correctly with overide 1`] = `
     style={Object {}}
   >
     <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Object {
-          "alignItems": "center",
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "flexDirection": "row",
-          "height": 54,
-          "justifyContent": "space-between",
-          "paddingLeft": 16,
-          "paddingRight": 16,
-        }
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": 54,
+          },
+        ]
       }
+      testID={undefined}
+      tvParallaxProperties={undefined}
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+      <View
         style={
           Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "fontWeight": "bold",
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingLeft": 16,
+            "paddingRight": 16,
           }
         }
       >
-        Assignees
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#008EE2",
-            "fontSize": 16,
-            "fontWeight": "500",
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
           }
-        }
-      />
+        >
+          Assignees
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#008EE2",
+              "fontSize": 16,
+              "fontWeight": "500",
+            }
+          }
+        />
+      </View>
     </View>
     <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Object {
-          "alignItems": "center",
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "flexDirection": "row",
-          "height": 54,
-          "justifyContent": "space-between",
-          "paddingLeft": 16,
-          "paddingRight": 16,
-        }
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": 54,
+          },
+        ]
       }
+      testID={undefined}
+      tvParallaxProperties={undefined}
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+      <View
         style={
           Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "fontWeight": "bold",
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingLeft": 16,
+            "paddingRight": 16,
           }
         }
       >
-        Due Date
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#008EE2",
-            "fontSize": 16,
-            "fontWeight": "500",
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
           }
-        }
-      >
-        May 31, 2017 at 11:59 PM
-      </Text>
+        >
+          Due Date
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#008EE2",
+              "fontSize": 16,
+              "fontWeight": "500",
+            }
+          }
+        >
+          May 31, 2017 at 11:59 PM
+        </Text>
+      </View>
     </View>
     <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Object {
-          "alignItems": "center",
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "flexDirection": "row",
-          "height": 54,
-          "justifyContent": "space-between",
-          "paddingLeft": 16,
-          "paddingRight": 16,
-        }
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": 54,
+          },
+        ]
       }
+      testID={undefined}
+      tvParallaxProperties={undefined}
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+      <View
         style={
           Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "fontWeight": "bold",
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingLeft": 16,
+            "paddingRight": 16,
           }
         }
       >
-        Available From
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#008EE2",
-            "fontSize": 16,
-            "fontWeight": "500",
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
           }
-        }
-      >
-        Mar 17, 2017 at 12:00 AM
-      </Text>
+        >
+          Available From
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#008EE2",
+              "fontSize": 16,
+              "fontWeight": "500",
+            }
+          }
+        >
+          Mar 17, 2017 at 12:00 AM
+        </Text>
+      </View>
     </View>
     <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Object {
-          "alignItems": "center",
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "flexDirection": "row",
-          "height": 54,
-          "justifyContent": "space-between",
-          "paddingLeft": 16,
-          "paddingRight": 16,
-        }
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": 54,
+          },
+        ]
       }
+      testID={undefined}
+      tvParallaxProperties={undefined}
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+      <View
         style={
           Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "fontWeight": "bold",
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingLeft": 16,
+            "paddingRight": 16,
           }
         }
       >
-        Available To
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#008EE2",
-            "fontSize": 16,
-            "fontWeight": "500",
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
           }
-        }
-      >
-        May 31, 2017 at 11:59 PM
-      </Text>
+        >
+          Available To
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#008EE2",
+              "fontSize": 16,
+              "fontWeight": "500",
+            }
+          }
+        >
+          May 31, 2017 at 11:59 PM
+        </Text>
+      </View>
     </View>
     <View
       style={

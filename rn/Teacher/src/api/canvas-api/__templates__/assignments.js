@@ -24,6 +24,7 @@ export const assignment: Template<Assignment> = template({
     'online_upload' ],
   needs_grading_count: 0,
   html_url: 'http://hostname.tld/whatever',
+  overrides: [],
 })
 
 export const assignmentGroup: Template<AssignmentGroup> = template({

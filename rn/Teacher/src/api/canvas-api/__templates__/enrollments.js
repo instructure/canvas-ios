@@ -8,4 +8,5 @@ export const enrollment: Template<Enrollment> = template({
   user_id: '5123',
   user: user(),
   type: 'StudentEnrollment',
+  enrollment_state: 'active',
 })

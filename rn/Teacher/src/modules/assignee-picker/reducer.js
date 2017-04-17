@@ -1,12 +1,12 @@
 // @flow
 
 import { Reducer } from 'redux'
-import SectionActions from './actions'
+import Actions from './actions'
 import { handleActions } from 'redux-actions'
 import handleAsync from '../../utils/handleAsync'
 import fromPairs from 'lodash/fromPairs'
 
-const { refreshSections } = SectionActions
+const { refreshSections } = Actions
 
 export const sections: Reducer<any, any> = handleActions({
   [refreshSections.toString()]: handleAsync({

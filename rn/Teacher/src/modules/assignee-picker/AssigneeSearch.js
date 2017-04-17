@@ -10,11 +10,10 @@ import {
   StyleSheet,
 } from 'react-native'
 
-import { type Assignee } from './AssigneePicker'
 import i18n from 'format-message'
 import SectionActions from './actions'
 import EnrollmentActions from '../enrollments/actions'
-import mapStateToProps, { type AssigneeSearchProps } from './map-state-to-props'
+import { searchMapStateToProps, type AssigneeSearchProps, type Assignee } from './map-state-to-props'
 import AssigneeRow from './AssigneeRow'
 
 export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
@@ -77,8 +76,8 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
 
     const enrollments = (this.props.enrollments || []).map((item) => {
       return {
-        id: 'student-' + item.id,
-        dataId: item.id,
+        id: 'student-' + item.user.id,
+        dataId: item.user.id,
         type: 'student',
         name: item.user.name,
         info: item.user.email,
@@ -125,5 +124,5 @@ const styles = StyleSheet.create({
   },
 })
 
-let Connected = connect(mapStateToProps, { ...SectionActions, ...EnrollmentActions })(AssigneeSearch)
+let Connected = connect(searchMapStateToProps, { ...SectionActions, ...EnrollmentActions })(AssigneeSearch)
 export default (Connected: Component<any, AssigneeSearchProps, any>)

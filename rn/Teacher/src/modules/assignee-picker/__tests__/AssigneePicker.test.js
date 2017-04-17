@@ -4,7 +4,8 @@
 
 import 'react-native'
 import React from 'react'
-import AssigneePicker from '../AssigneePicker'
+import { AssigneePicker } from '../AssigneePicker'
+import { type AssigneePickerProps } from '../map-state-to-props'
 import renderer from 'react-test-renderer'
 import { registerScreens } from '../../../../src/routing/register-screens'
 
@@ -16,11 +17,13 @@ const template = {
   ...require('../../../__templates__/react-native-navigation'),
 }
 
-const defaultProps = {
-  assignees: [template.assignee(), template.assignee({ imageURL: null, id: '9909342324234' })],
+const defaultProps: AssigneePickerProps = {
+  assignees: [template.enrollmentAssignee(), template.enrollmentAssignee({ imageURL: null, id: '9909342324234' })],
   courseID: template.course().id,
   navigator: template.navigator(),
   handleSelectedAssignee: jest.fn(),
+  refreshSections: jest.fn(),
+  refreshUsers: jest.fn(),
 }
 
 test('render correctly', () => {
@@ -30,7 +33,7 @@ test('render correctly', () => {
   expect(tree).toMatchSnapshot()
 })
 
-test('dismiss', () => {
+test('cancel', () => {
   const fn = jest.fn()
   const navigator = template.navigator({
     dismissModal: fn,
@@ -40,6 +43,33 @@ test('dismiss', () => {
   ).getInstance()
   picker.onNavigatorEvent({ type: 'NavBarButtonPress', id: 'cancel' })
   expect(fn).toHaveBeenCalled()
+})
+
+test('done', () => {
+  const fn = jest.fn()
+  const navigator = template.navigator({
+    dismissModal: fn,
+  })
+  const picker = renderer.create(
+    <AssigneePicker {...defaultProps} navigator={navigator} />
+  ).getInstance()
+  picker.onNavigatorEvent({ type: 'NavBarButtonPress', id: 'done' })
+  expect(fn).toHaveBeenCalled()
+})
+
+test('done with callback', () => {
+  const callback = jest.fn()
+  const fn = jest.fn(() => {
+    callback()
+  })
+  const navigator = template.navigator({
+    dismissModal: fn,
+  })
+  const picker = renderer.create(
+    <AssigneePicker {...defaultProps} navigator={navigator} callback={callback} />
+  ).getInstance()
+  picker.onNavigatorEvent({ type: 'NavBarButtonPress', id: 'done' })
+  expect(callback).toHaveBeenCalled()
 })
 
 test('add assignee function', () => {
@@ -55,12 +85,24 @@ test('add assignee function', () => {
 })
 
 test('handles adding', () => {
-  let assignee = template.assignee({
+  let assignee = template.enrollmentAssignee({
     id: '999999',
   })
   let picker = renderer.create(
     <AssigneePicker {...defaultProps} />
   ).getInstance()
+  picker.handleSelectedAssignee(assignee)
+  expect(picker.state.selected.length).toEqual(3)
+})
+
+test('cannot add the same assignee two times in a row', () => {
+  let assignee = template.enrollmentAssignee({
+    id: '999999',
+  })
+  let picker = renderer.create(
+    <AssigneePicker {...defaultProps} />
+  ).getInstance()
+  picker.handleSelectedAssignee(assignee)
   picker.handleSelectedAssignee(assignee)
   expect(picker.state.selected.length).toEqual(3)
 })

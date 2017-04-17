@@ -14,17 +14,23 @@ import i18n from 'format-message'
 import colors from '../../../common/colors'
 import { formattedDueDate } from '../../../common/formatters'
 import AssignmentDates from '../../../common/AssignmentDates'
+import { route } from '../../../routing'
+import { type Assignee } from '../../assignee-picker/map-state-to-props'
+import uuid from 'uuid/v1'
+import { cloneDeep } from 'lodash'
 
 type Props = {
   assignment: Assignment,
+  navigator: ReactNavigator,
 }
 
 // So, the data we get back from the api is a little confusing.
 // There is a big mishmash of dates and things spread across the assignment object,
 // the overrides object and the all_dates object
 // This mashes all that data together so that it's pretty easy to consume
-type StagedAssignmentDate = {
-  id: ?string, // If empty and base is true, it's a base date. If empty and base is false, this hasn't been saved to the server yet.
+export type StagedAssignmentDate = {
+  id: string, // Will be the id, or base if it's a base date for everyone. If it's a new date, will have a uuid
+  isNew?: boolean, // Is it a new date, meaning it hasn't been pushed to the server yet
   base: boolean,
   title?: string,
   due_at?: ?string,
@@ -53,7 +59,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     const allDates = dateManager.allDates()
     const dates: StagedAssignmentDate[] = allDates.map((date) => {
       let staged: StagedAssignmentDate = {
-        id: date.id,
+        id: date.id || 'base',
         base: date.base || false,
         title: date.title,
         due_at: date.due_at,
@@ -83,39 +89,215 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
 
   validate = (): boolean => {
     let valid = true
-    this.state.dates.forEach((date) => {
-      if (date.base) return
+    const dates = this.state.dates.map((date) => {
+      if (date.base) { return date }
       if (((date.student_ids && date.student_ids.length === 0) || !date.student_ids) &&
           !date.course_section_id &&
           !date.group_id) {
-        date.valid = false
+        const newDate = cloneDeep(date)
+        newDate.valid = false
         valid = false
+        return newDate
+      } else {
+        return date
       }
     })
 
-    if (!valid) {
-      this.setState({
-        dates: this.state.dates,
-      })
-    }
+    this.setState({
+      dates,
+    })
 
     return valid
   }
 
   // Once editing is complete, send the staged assignment in here for updates
   updateAssignment = (assignment: Assignment) => {
+    return AssignmentDatesEditor.updateAssignmentWithDates(assignment, this.state.dates)
   }
 
   addAdditionalDueDate = () => {
     const dates = this.state.dates.slice()
     dates.push({
-      id: null,
+      id: uuid(),
+      isNew: true,
       base: false,
       valid: true,
     })
     this.setState({
       dates,
     })
+  }
+
+  static updateAssignmentWithDates = (assignment: Assignment, dates: StagedAssignmentDate[]) => {
+    const overrides = []
+    dates.forEach((date) => {
+      if (date.base) {
+        assignment.due_at = date.due_at || null
+        assignment.lock_at = date.lock_at || null
+        assignment.unlock_at = date.unlock_at || null
+      } else {
+        // $FlowFixMe
+        const override: AssignmentOverride = {
+          due_at: date.due_at || null,
+          unlock_at: date.unlock_at || null,
+          lock_at: date.lock_at || null,
+        }
+
+        if (date.course_section_id) { override.course_section_id = date.course_section_id }
+        if (date.student_ids) { override.student_ids = date.student_ids }
+        if (date.group_id) { override.group_id = date.group_id }
+
+        if (!date.isNew) {
+          override.id = date.id
+        }
+
+        overrides.push(override)
+      }
+    })
+
+    assignment.overrides = overrides
+    return assignment
+  }
+
+  static assigneesFromDate = (date: StagedAssignmentDate) => {
+    let assignees: Assignee[] = []
+    if (date.base) {
+      assignees.push({
+        id: 'everyone',
+        dataId: 'everyone',
+        type: 'everyone',
+        name: i18n('Everyone'),
+      })
+    }
+
+    const studentIds = date.student_ids
+    if (studentIds) {
+      const studentAssignees = studentIds.map((id) => {
+        return {
+          id: `student-${id}`,
+          dataId: id,
+          type: 'student',
+          name: 'student', // TODO, hrm, where do I get this information at this point?
+        }
+      })
+      assignees = assignees.concat(studentAssignees)
+    }
+
+    const sectionId = date.course_section_id
+    if (sectionId) {
+      assignees.push({
+        id: `section-${sectionId}`,
+        dataId: sectionId,
+        type: 'section',
+        name: 'Section',
+      })
+    }
+
+    const groupId = date.group_id
+    if (groupId) {
+      assignees.push({
+        id: `group-${groupId}`,
+        dataId: groupId,
+        type: 'group',
+        name: 'Group',
+      })
+    }
+
+    return assignees
+  }
+
+  // One dates can turn into many dates, based on what the assignees are
+  // For example, if the date previously has a single section, and the user adds multiple sections,
+  // That means there is now more than one date, because only one section per date is allowed
+  // Although, one date can have multiple students
+  static updateDateWithAssignees = (date: StagedAssignmentDate, assignees: Assignee[]): StagedAssignmentDate[] => {
+    const createNewDate = (props: Object): StagedAssignmentDate => {
+      const aDate = {
+        id: date.id,
+        base: date.base,
+        isNew: date.isNew,
+        valid: true,
+      }
+
+      Object.assign(aDate, props)
+
+      return aDate
+    }
+
+    // If all assignees have been removed, it's basically completely new date again
+    if (assignees.length === 0) {
+      const newDate = createNewDate({
+        valid: false,
+        base: false,
+        id: uuid(),
+      })
+      return [newDate]
+    }
+
+    let base: ?StagedAssignmentDate = null
+    let student: ?StagedAssignmentDate = null
+    let sections: StagedAssignmentDate[] = []
+    let groups: StagedAssignmentDate[] = []
+
+    assignees.forEach((a) => {
+      switch (a.type) {
+        case 'everyone':
+          base = createNewDate({
+            id: 'base',
+            base: true,
+            title: i18n('Everyone'),
+          })
+          break
+        case 'student':
+          if (!student) {
+            student = createNewDate({
+              base: false,
+              student_ids: [a.dataId],
+            })
+          } else {
+            const ids = student.student_ids || []
+            student.student_ids = ids.concat([a.dataId])
+          }
+          break
+        case 'section':
+          sections.push(createNewDate({
+            base: false,
+            course_section_id: a.dataId,
+            title: a.name,
+          }))
+          break
+        case 'group':
+          groups.push(createNewDate({
+            base: false,
+            group_id: a.dataId,
+            title: a.name,
+          }))
+          break
+      }
+    })
+
+    let newDates: StagedAssignmentDate[] = []
+    if (base) { newDates.push(base) }
+    if (student) { newDates.push(student) }
+
+    return [...newDates, ...sections, ...groups]
+  }
+
+  selectAssignees = (date: StagedAssignmentDate) => {
+    const callback = (assignees: Assignee[]) => {
+      this.props.navigator.dismissModal()
+      const dates = (this.state.dates || []).filter((d) => d.id !== date.id)
+      const newDates = AssignmentDatesEditor.updateDateWithAssignees(date, assignees)
+      this.setState({
+        dates: [...dates, ...newDates],
+      })
+    }
+
+    let assignees = AssignmentDatesEditor.assigneesFromDate(date)
+    console.log('kjalsdjflkajsd flkjas dlfkja sldkfj aff')
+    console.log(assignees)
+    let destination = route(`/courses/${this.props.assignment.course_id}/assignee-picker`, { assignees, callback })
+    this.props.navigator.showModal(destination)
   }
 
   renderDate = (date: StagedAssignmentDate): React.Element<View> => {
@@ -126,22 +308,30 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     let assigneeStyle = date.valid ? styles.titleText : styles.invalidTitleText
 
     return (<View style={styles.dateContainer} key={date.id || 'base'}>
-              <View style={styles.row}>
-                <Text style={assigneeStyle}>{i18n('Assignees')}</Text>
-                <Text style={styles.detailText}>{date.title}</Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={styles.titleText}>{i18n('Due Date')}</Text>
-                <Text style={styles.detailText}>{dateFormatter(date.due_at)}</Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={styles.titleText}>{i18n('Available From')}</Text>
-                <Text style={styles.detailText}>{dateFormatter(date.unlock_at)}</Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={styles.titleText}>{i18n('Available To')}</Text>
-                <Text style={styles.detailText}>{dateFormatter(date.lock_at)}</Text>
-              </View>
+              <TouchableHighlight style={styles.row} onPress={() => this.selectAssignees(date)}>
+                <View style={styles.rowContainer}>
+                  <Text style={assigneeStyle}>{i18n('Assignees')}</Text>
+                  <Text style={styles.detailText}>{date.title}</Text>
+                </View>
+              </TouchableHighlight>
+              <TouchableHighlight style={styles.row}>
+                <View style={styles.rowContainer}>
+                  <Text style={styles.titleText}>{i18n('Due Date')}</Text>
+                  <Text style={styles.detailText}>{dateFormatter(date.due_at)}</Text>
+                </View>
+              </TouchableHighlight>
+              <TouchableHighlight style={styles.row}>
+                <View style={styles.rowContainer}>
+                  <Text style={styles.titleText}>{i18n('Available From')}</Text>
+                  <Text style={styles.detailText}>{dateFormatter(date.unlock_at)}</Text>
+                </View>
+              </TouchableHighlight>
+              <TouchableHighlight style={styles.row}>
+                <View style={styles.rowContainer}>
+                  <Text style={styles.titleText}>{i18n('Available To')}</Text>
+                  <Text style={styles.detailText}>{dateFormatter(date.lock_at)}</Text>
+                </View>
+              </TouchableHighlight>
               <View style={styles.space} />
             </View>)
   }
@@ -172,12 +362,16 @@ const styles = StyleSheet.create({
   dateContainer: {
   },
   row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     height: 54,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.seperatorColor,
+  },
+  rowContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'white',
     paddingLeft: global.style.defaultPadding,
     paddingRight: global.style.defaultPadding,
   },

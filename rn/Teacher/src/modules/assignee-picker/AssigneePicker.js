@@ -12,28 +12,19 @@ import {
   StyleSheet,
 } from 'react-native'
 
+import { connect } from 'react-redux'
+import { find } from 'lodash'
 import i18n from 'format-message'
 import colors from '../../common/colors'
 import { route } from '../../routing'
 import AssigneeRow from './AssigneeRow'
 import Images from '../../images'
+import { pickerMapStateToProps, type AssigneePickerProps, type Assignee } from './map-state-to-props'
+import Actions from './actions.js'
+import EnrollmentActions from '../enrollments/actions'
+import UserActions from '../users/actions'
 
-export type Props = {
-  courseID: string,
-  assignees: Assignee[],
-  navigator: ReactNavigator,
-}
-
-export type Assignee = {
-  id: string, // A combindation of dataId and type, so `student-2343` or `everyone`
-  dataId: string, // the id from the actual data, which could collide across types
-  type: 'student' | 'section' | 'everyone',
-  name: string,
-  info?: string, // Generally used as the subtitle in the AssigneeRow
-  imageURL?: ?string,
-}
-
-export default class AssigneePicker extends Component<any, Props, any> {
+export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
 
   static navigatorButtons = {
     rightButtons: [
@@ -43,7 +34,7 @@ export default class AssigneePicker extends Component<any, Props, any> {
           description: 'Button to close modal',
           id: 'done_edit_assignment',
         }),
-        id: 'dismiss',
+        id: 'done',
         testID: 'assignee-picker.dismiss-btn',
       },
     ],
@@ -56,7 +47,7 @@ export default class AssigneePicker extends Component<any, Props, any> {
     ],
   }
 
-  constructor (props: Props) {
+  constructor (props: AssigneePickerProps) {
     super(props)
 
     props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
@@ -65,11 +56,28 @@ export default class AssigneePicker extends Component<any, Props, any> {
     }
   }
 
+  componentDidMount () {
+    this.props.refreshSections(this.props.courseID)
+    const userIds = this.props.assignees.filter(a => a.type === 'student').map(a => a.dataId)
+    this.props.refreshUsers(userIds)
+  }
+
   onNavigatorEvent = (event: NavigatorEvent): void => {
-    if (event.type === 'NavBarButtonPress') {
-      if (event.id === 'cancel') {
-        this.props.navigator.dismissModal()
-      }
+    switch (event.type) {
+      case 'NavBarButtonPress':
+        switch (event.id) {
+          case 'done':
+            if (this.props.callback) {
+              this.props.callback(this.state.selected || [])
+            } else {
+              this.props.navigator.dismissModal()
+            }
+            break
+          case 'cancel':
+            this.props.navigator.dismissModal()
+            break
+        }
+        break
     }
   }
 
@@ -88,6 +96,10 @@ export default class AssigneePicker extends Component<any, Props, any> {
   }
 
   handleSelectedAssignee = (assignee: Assignee) => {
+    // If trying to add the same assignee twice, DENY
+    const existing = find(this.state.selected, (item) => assignee.id === item.id)
+    if (existing) return
+
     const selected = [...this.state.selected, assignee]
     this.setState({
       selected,
@@ -154,3 +166,6 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
 })
+
+let Connected = connect(pickerMapStateToProps, { ...Actions, ...EnrollmentActions, ...UserActions })(AssigneePicker)
+export default (Connected: Component<any, AssigneePickerProps, any>)

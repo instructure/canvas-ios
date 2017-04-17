@@ -187,7 +187,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
           {/* Due Dates */}
           <EditSectionHeader title={dueDatesTitle} style={style.sectionHeader}/>
-          <AssignmentDatesEditor assignment={this.props.assignmentDetails} ref={c => { this.datesEditor = c }} />
+          <AssignmentDatesEditor assignment={this.props.assignmentDetails} ref={c => { this.datesEditor = c }} navigator={this.props.navigator} />
 
         </KeyboardAwareScrollView>
 
@@ -258,8 +258,13 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
   actionDonePressed () {
     if (!this.datesEditor.validate()) { return }
-    this.setState({ pending: true })
-    this.props.updateAssignment(this.props.courseID, this.state.assignment, this.props.assignmentDetails)
+    const updatedAssignment = this.datesEditor.updateAssignment(this.state.assignment)
+    this.setState({
+      pending: true,
+      assignment: updatedAssignment,
+    })
+
+    this.props.updateAssignment(this.props.courseID, updatedAssignment, this.props.assignmentDetails)
   }
 
   actionCancelPressed () {

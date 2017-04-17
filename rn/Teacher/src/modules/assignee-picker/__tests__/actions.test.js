@@ -1,6 +1,6 @@
 /* @flow */
 
-import { CourseSectionActions } from '../actions'
+import { AssigneeActions } from '../actions'
 import { apiResponse } from '../../../../test/helpers/apiMock'
 import { testAsyncAction } from '../../../../test/helpers/async'
 
@@ -14,7 +14,7 @@ test('refresh assignment list', async () => {
   const section = template.section({
     course_id: course.id,
   })
-  let actions = CourseSectionActions({ getCourseSections: apiResponse([section]) })
+  let actions = AssigneeActions({ getCourseSections: apiResponse([section]) })
   const result = await testAsyncAction(actions.refreshSections(course.id), {})
 
   expect(result).toMatchObject([{

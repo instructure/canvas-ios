@@ -8,17 +8,18 @@ import { assignments } from '../modules/assignments/assignment-entities-reducer'
 import { assignmentGroups } from '../modules/assignments/assignment-group-entities-reducer'
 import { users } from '../modules/users/reducer'
 import { sections } from '../modules/assignee-picker/reducer'
-import { enrollments } from '../modules/enrollments/enrollment-entities-reducer'
+import { enrollments, enrollmentUsers } from '../modules/enrollments/enrollment-entities-reducer'
 import logout from './logout-action'
 import { HYDRATE_ACTION } from './hydrate-action'
 import resetPending from '../utils/reset-pending'
+import composeReducers from './compose-reducers'
 
 const entities = combineReducers({
   courses,
   assignmentGroups,
   gradingPeriods,
   assignments,
-  users,
+  users: composeReducers(users, enrollmentUsers),
   sections,
   enrollments,
 })

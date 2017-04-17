@@ -30,7 +30,8 @@
     "redux": "^3.6.0",
     "redux-actions": "^1.2.2",
     "route-parser": "^0.0.5",
-    "url-parse": "^1.1.8"
+    "url-parse": "^1.1.8",
+    "uuid": "3.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

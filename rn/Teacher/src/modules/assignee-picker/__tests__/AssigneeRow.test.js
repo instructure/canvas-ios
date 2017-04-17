@@ -12,7 +12,7 @@ const template = {
 }
 
 test('render correctly', () => {
-  const assignee = template.assignee()
+  const assignee = template.enrollmentAssignee()
   let tree = renderer.create(
     <AssigneeRow assignee={assignee} />
   ).toJSON()
@@ -20,7 +20,7 @@ test('render correctly', () => {
 })
 
 test('render correctly without image url', () => {
-  const assignee = template.assignee({
+  const assignee = template.enrollmentAssignee({
     imageURL: null,
   })
   let tree = renderer.create(
@@ -32,7 +32,7 @@ test('render correctly without image url', () => {
 test('callbacks get called correctly', () => {
   const onPress = jest.fn()
   const onDelete = jest.fn()
-  const assignee = template.assignee()
+  const assignee = template.enrollmentAssignee()
   let tree = renderer.create(
     <AssigneeRow assignee={assignee} onPress={onPress} onDelete={onDelete} />
   )

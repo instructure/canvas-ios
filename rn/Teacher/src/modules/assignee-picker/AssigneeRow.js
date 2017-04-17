@@ -11,7 +11,7 @@ import {
   StyleSheet,
 } from 'react-native'
 
-import { type Assignee } from './AssigneePicker'
+import { type Assignee } from './map-state-to-props'
 import Images from '../../images'
 import Button from 'react-native-button'
 import colors from '../../common/colors'

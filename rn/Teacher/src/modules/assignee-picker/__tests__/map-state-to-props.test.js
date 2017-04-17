@@ -3,7 +3,7 @@
  */
 
 import 'react-native'
-import mapStateToProps, { type AssigneeSearchProps } from '../map-state-to-props'
+import { searchMapStateToProps, pickerMapStateToProps, type AssigneeSearchProps, type AssigneePickerProps } from '../map-state-to-props'
 
 const template = {
   ...require('../__template__/Assignee.js'),
@@ -14,7 +14,70 @@ const template = {
   ...require('../../../__templates__/react-native-navigation'),
 }
 
-test('correct output from map state to props', () => {
+test('correct output from searchMapStateToProps', () => {
+  let course = template.course()
+  let enrollmentOne = template.enrollment({
+    id: '1',
+    course_id: course.id,
+  })
+  let enrollmentTwo = template.enrollment({
+    id: '2',
+    course_id: course.id,
+    type: 'TeacherEnrollment',
+  })
+  let enrollmentThree = template.enrollment({
+    id: '3',
+    course_id: course.id,
+    enrollment_state: 'inactive',
+  })
+  let enrollmentFour = template.enrollment({
+    id: '4',
+    course_id: '87987987349857394875934875',
+  })
+  let section = template.section({
+    course_id: course.id,
+  })
+
+  let state = template.appState({
+    entities: {
+      courses: {
+        [course.id]: {
+          course: course,
+        },
+      },
+      assignmentGroups: {},
+      assignments: {},
+      gradingPeriods: {},
+      enrollments: {
+        [enrollmentOne.id]: enrollmentOne,
+        [enrollmentTwo.id]: enrollmentTwo,
+        [enrollmentThree.id]: enrollmentThree,
+        [enrollmentFour.id]: enrollmentFour,
+      },
+      sections: {
+        [section.id]: section,
+      },
+    },
+  })
+
+  const props: AssigneeSearchProps = {
+    courseID: course.id,
+    sections: [],
+    enrollments: [],
+    onSelection: jest.fn(),
+    navigator: template.navigator(),
+    refreshSections: jest.fn(),
+    refreshEnrollments: jest.fn(),
+  }
+
+  const result = searchMapStateToProps(state, props)
+  expect(result).toMatchObject({
+    enrollments: [enrollmentOne],
+    sections: [section],
+  })
+})
+
+test('correct output from pickerMapStateToProps', () => {
   let course = template.course()
   let enrollment = template.enrollment({
     course_id: course.id,
@@ -39,22 +102,88 @@ test('correct output from map state to props', () => {
       sections: {
         [section.id]: section,
       },
+      users: {
+        [enrollment.user.id]: enrollment.user,
+      },
     },
   })
 
-  const props: AssigneeSearchProps = {
+  let assigneeOne = template.enrollmentAssignee({
+    dataId: enrollment.user_id,
+  })
+
+  let assigneeTwo = template.sectionAssignee({
+    dataId: section.id,
+  })
+
+  let assigneeThree = template.everyoneAssignee()
+
+  let props: AssigneePickerProps = {
     courseID: course.id,
-    sections: [],
-    enrollments: [],
-    onSelection: jest.fn(),
+    assignees: [assigneeOne, assigneeTwo, assigneeThree],
+    callback: jest.fn(),
     navigator: template.navigator(),
+    refreshUsers: jest.fn(),
     refreshSections: jest.fn(),
-    refreshEnrollments: jest.fn(),
   }
 
-  const result = mapStateToProps(state, props)
+  let result = pickerMapStateToProps(state, props)
   expect(result).toMatchObject({
-    enrollments: [enrollment],
-    sections: [section],
+    assignees: [{
+      dataId: enrollment.user_id,
+      name: 'Bill Murray',
+    },
+    {
+      name: 'the section 1',
+      dataId: section.id,
+    },
+    {
+      dataId: 'everyone',
+      name: 'Everyone else',
+    }],
+  })
+
+  props.assignees = [assigneeThree]
+  result = pickerMapStateToProps(state, props)
+  expect(result).toMatchObject({
+    assignees: [
+      {
+        dataId: 'everyone',
+        name: 'Everyone',
+      }],
+  })
+
+  state = template.appState({
+    entities: {
+      courses: {
+        [course.id]: {
+          course: course,
+        },
+      },
+      assignmentGroups: {},
+      assignments: {},
+      gradingPeriods: {},
+      enrollments: {},
+      sections: {},
+      users: {},
+    },
+  })
+
+  // This tests the cases where the data is missing in the global app state
+  props.assignees = [assigneeOne, assigneeTwo, assigneeThree]
+  result = pickerMapStateToProps(state, props)
+  expect(result).toMatchObject({
+    assignees: [{
+      dataId: enrollment.user_id,
+      name: 'Bill Murray',
+    },
+    {
+      name: 'Section 1',
+      dataId: section.id,
+    },
+    {
+      dataId: 'everyone',
+      name: 'Everyone else',
+    }],
   })
 })

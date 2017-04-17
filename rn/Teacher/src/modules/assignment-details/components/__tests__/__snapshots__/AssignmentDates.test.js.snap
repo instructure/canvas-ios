@@ -17,3 +17,130 @@ exports[`render with multiple due dates 1`] = `
   </Text>
 </View>
 `;
+
+exports[`render with multiple due dates 2`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "paddingTop": 2,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+          "fontWeight": "600",
+        }
+      }
+    >
+      Due:
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        }
+      }
+    >
+       May 31, 2017 at 11:59 PM
+    </Text>
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "paddingTop": 2,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+          "fontWeight": "600",
+        }
+      }
+    >
+      For:
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        }
+      }
+    >
+       -
+    </Text>
+  </Text>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "paddingTop": 2,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "fontWeight": "600",
+          }
+        }
+      >
+        Availability:
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          }
+        }
+      >
+         Closed
+      </Text>
+    </Text>
+  </View>
+</View>
+`;

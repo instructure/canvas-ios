@@ -63,6 +63,16 @@ export function getCourseSections (courseID: string): Promise<ApiResponse<Sectio
   return httpClient().get(url, options)
 }
 
+export function getCourseUsers (courseID: string, enrollmentType?: string = ''): Promise<ApiResponse<User[]>> {
+  const url = `courses/${courseID}/users`
+  const params = {}
+  if (enrollmentType) {
+    params.enrollment_type = [enrollmentType]
+  }
+  const options = { params }
+  return httpClient().get(url, options)
+}
+
 export function favoriteCourse (courseID: string): Promise<AxiosResponse<Favorite>> {
   return httpClient().post(`users/self/favorites/courses/${courseID}`)
 }

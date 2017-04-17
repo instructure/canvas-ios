@@ -203,6 +203,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
           renderSectionHeader={this.renderSectionHeader}
           refreshing={this.state.refreshing}
           onRefresh={this.refresh}
+          keyExtractor={(item, index) => item.id}
         />
         {this.renderFooter()}
       </View>
