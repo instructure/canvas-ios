@@ -24,6 +24,7 @@ import EditSectionHeader from './EditSectionHeader'
 
 type Props = {
   assignment: Assignment,
+  scrollTo: Function,
   navigator: ReactNavigator,
 }
 
@@ -54,6 +55,7 @@ type State = {
 // Call validate to perform validation. (validation checks to see if there are any assignees, that's all. :))
 export default class AssignmentDatesEditor extends Component<any, Props, any> {
   state: State
+  layouts: any
 
   constructor (props: Props) {
     super(props)
@@ -88,10 +90,12 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     this.state = {
       dates,
     }
+    this.layouts = {}
   }
 
-  validate = (): boolean => {
-    let valid = true
+  // If invalid, returns the position of the first element that isn't valid, in order to scroll to it
+  validate = (): ?Object => {
+    let invalidDateId: ?string = null
     const dates = this.state.dates.map((date) => {
       if (date.base) { return date }
       if (((date.student_ids && date.student_ids.length === 0) || !date.student_ids) &&
@@ -99,7 +103,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
           !date.group_id) {
         const newDate = cloneDeep(date)
         newDate.valid = false
-        valid = false
+        invalidDateId = date.id
         return newDate
       } else {
         return date
@@ -110,7 +114,15 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
       dates,
     })
 
-    return valid
+    if (invalidDateId) {
+      const layout = this.layouts[invalidDateId] || {}
+      return {
+        x: layout.x || 0,
+        y: layout.y || 0,
+      }
+    }
+
+    return null
   }
 
   // Once editing is complete, send the staged assignment in here for updates
@@ -354,7 +366,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
 
     let removeButton = this.renderRemoveButton(date)
 
-    return (<View style={styles.dateContainer} key={date.id || 'base'}>
+    return (<View style={styles.dateContainer} key={date.id || 'base'} onLayout={ (event) => { this.layouts[date.id] = event.nativeEvent.layout } } >
               <EditSectionHeader title={dueDatesTitle} style={styles.headerText}>
                 {removeButton}
               </EditSectionHeader>

@@ -57,5 +57,5 @@ test('validation should work correctly', () => {
     <AssignmentDatesEditor assignment={assignment} />
   ).getInstance()
   component.addAdditionalDueDate()
-  expect(component.validate()).toEqual(false)
+  expect(component.validate()).toMatchObject({ x: 0, y: 0 })
 })

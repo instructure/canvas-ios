@@ -58,6 +58,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   props: AssignmentDetailsProps
   state: any = {}
   datesEditor: AssignmentDatesEditor
+  scrollView: KeyboardAwareScrollView
   currentPickerMap: ?Map<*, *> = null
 
   static navigatorButtons = {
@@ -151,7 +152,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     return (
       <View style={{ flex: 1 }}>
         <ModalActivityIndicator text={savingText} visible={this.state.pending}/>
-        <KeyboardAwareScrollView style={style.container} ref='scrollView'>
+        <KeyboardAwareScrollView style={style.container} ref={ (c) => { this.scrollView = c } } >
 
           {/* Title */}
           <EditSectionHeader title={sectionTitle} />
@@ -251,7 +252,12 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   }
 
   actionDonePressed () {
-    if (!this.datesEditor.validate()) { return }
+    const invalidDatesPosition = this.datesEditor.validate()
+    if (invalidDatesPosition) {
+      this.scrollView.scrollToPosition(invalidDatesPosition.x, invalidDatesPosition.y, true)
+      return
+    }
+
     const updatedAssignment = this.datesEditor.updateAssignment(this.state.assignment)
     this.setState({
       pending: true,

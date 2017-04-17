@@ -9,6 +9,7 @@ exports[`render correctly 1`] = `
   }
 >
   <View
+    onLayout={[Function]}
     style={Object {}}
   >
     <View
@@ -485,6 +486,7 @@ exports[`render correctly with overide 1`] = `
   }
 >
   <View
+    onLayout={[Function]}
     style={Object {}}
   >
     <View
