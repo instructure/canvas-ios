@@ -57,3 +57,6 @@ coverage
 
 # vscode
 .vscode
+
+# RN
+ios/main.jsbundle
