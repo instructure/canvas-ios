@@ -15,17 +15,17 @@ export default class Submission extends Component {
   render (): ReactElement<*> {
     let graded = i18n({
       default: 'Graded',
-      description: 'Assignemnt Details submissions graph `graded`',
+      description: 'Assignment Details submissions graph `graded`',
     })
 
     let ungraded = i18n({
       default: 'Ungraded',
-      description: 'Assignemnt Details submissions graph `graded`',
+      description: 'Assignment Details submissions graph `graded`',
     })
 
     let notSubmitted = i18n({
       default: 'Not Submitted',
-      description: 'Assignemnt Details submissions graph `graded`',
+      description: 'Assignment Details submissions graph `graded`',
     })
 
     let labels = [graded, ungraded, notSubmitted]

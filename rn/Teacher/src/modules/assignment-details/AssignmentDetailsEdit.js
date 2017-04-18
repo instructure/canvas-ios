@@ -144,10 +144,10 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
       description: 'Text when a request to update an assignment is made and user is waiting',
     })
 
-    let titlePlaceHolder = i18n({ default: 'Title', description: 'Assignemnt details title placeholder' })
-    let pointsPlaceHolder = i18n({ default: 'Points', description: 'Assignemnt details points placeholder' })
-    let displayGradeAs = i18n({ default: 'Display Grade As', description: 'Assignemnt details display grade as' })
-    let publish = i18n({ default: 'Publish', description: 'Assignemnt details publish toggle' })
+    let titlePlaceHolder = i18n({ default: 'Title', description: 'Assignment details title placeholder' })
+    let pointsPlaceHolder = i18n({ default: 'Points', description: 'Assignment details points placeholder' })
+    let displayGradeAs = i18n({ default: 'Display Grade As', description: 'Assignment details display grade as' })
+    let publish = i18n({ default: 'Publish', description: 'Assignment details publish toggle' })
 
     return (
       <View style={{ flex: 1 }}>
