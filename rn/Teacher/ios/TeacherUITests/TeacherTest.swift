@@ -14,31 +14,22 @@
 // limitations under the License.
 //
 
-import SoGrey
-import EarlGrey
+import Foundation
+import XCTest
+import CanvasKeymaster
 
-class CourseListPage {
+class TeacherTest: XCTestCase {
 
-  // MARK: Singleton
-
-  static let sharedInstance = CourseListPage()
-  private init() {}
-
-  let seeAllCoursesButton = e.selectBy(id: "course-list.see-all-btn")
-
-  // Mark: - Assertions
-
-  func assertCourseExists(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-    grey_invokedFromFile(file, line)
-
-    e.selectBy(id: course.courseCode).assertExists()
+  override func setUp() {
+    super.setUp()
+    CanvasKeymaster.the().resetKeymasterForTesting()
+    domainPickerPage.assertPageObjects()
   }
 
-  // Mark: - UI Actions
-
-  func openAllCoursesPage(_ file: StaticString = #file, _ line: UInt = #line) {
-    grey_invokedFromFile(file, line)
-
-    seeAllCoursesButton.tap()
+  func logIn<T>(_ testClass:T, _ testMethod:String = #function) -> CanvasUser {
+    let teacher = Data.getNextTeacher(testClass, testMethod)
+    domainPickerPage.openDomain(teacher.domain)
+    canvasLoginPage.logIn(teacher: teacher)
+    return teacher
   }
 }

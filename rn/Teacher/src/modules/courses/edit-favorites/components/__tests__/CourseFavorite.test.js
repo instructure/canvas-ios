@@ -11,6 +11,7 @@ import renderer from 'react-test-renderer'
 jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 
 let defaultProps = {
+  id: '1',
   course: courseTemplate.course(),
   isFavorite: true,
   onPress: () => Promise.resolve(),
@@ -38,7 +39,8 @@ test('calls props.onPress with the course id and the toggled favorite value', ()
     <CourseFavorite {...defaultProps} onPress={onPress} />
   ).toJSON()
 
-  let button: any = explore(tree).selectByID(defaultProps.course.course_code)
+  let buttonTestID = 'course_favorite_active_' + defaultProps.course.id
+  let button: any = explore(tree).selectByID(buttonTestID)
   button.props.onPress()
 
   expect(onPress).toHaveBeenCalledWith(defaultProps.course.id, false)

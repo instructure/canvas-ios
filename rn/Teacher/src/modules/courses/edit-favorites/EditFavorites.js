@@ -40,7 +40,7 @@ export class FavoritesList extends Component {
         description: 'Back button to move back a screen',
       }),
       id: 'done',
-      testId: 'done_button',
+      testID: 'done_button',
     }],
   }
 

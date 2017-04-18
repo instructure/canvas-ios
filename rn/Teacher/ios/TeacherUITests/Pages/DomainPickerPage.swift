@@ -26,20 +26,20 @@ class DomainPickerPage {
 
   // MARK: Page Elements
 
-  let domainField = e.selectBy(id: "domainPickerTextField")
-  let connectButton = e.selectBy(label: "Search for domain.")
+  private let domainField = e.selectBy(id: "domainPickerTextField")
+  private let connectButton = e.selectBy(label: "Search for domain.")
 
   // MARK: - Assertions
   
   func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
-    grey_invokedFromFile(file, line)
+    grey_fromFile(file, line)
     
     grey_dismissKeyboard()
     domainField.assertExists()
   }
   
   func assertDomainField(contains string: String, _ file: StaticString = #file, _ line: UInt = #line) {
-    grey_invokedFromFile(file, line)
+    grey_fromFile(file, line)
 
     domainField.assertExists() // wait for element to exist. TODO: handle this in dsl.swift
     domainField.assert(with: grey_text(string))
@@ -48,21 +48,21 @@ class DomainPickerPage {
   // MARK: UI Actions
   
   func enterDomain(_ domain: String, _ file: StaticString = #file, _ line: UInt = #line) {
-    grey_invokedFromFile(file, line)
+    grey_fromFile(file, line)
 
     domainField.assertExists() // wait for element to exist. TODO: handle this in dsl.swift
     domainField.perform(grey_replaceText(domain))
   }
 
   func openDomain(_ domain: String, _ file: StaticString = #file, _ line: UInt = #line) {
-    grey_invokedFromFile(file, line)
+    grey_fromFile(file, line)
 
     enterDomain(domain)
     connectButton.tap()
   }
 
   func clearDomain(_ file: StaticString = #file, _ line: UInt = #line) {
-    grey_invokedFromFile(file, line)
+    grey_fromFile(file, line)
 
     domainField.assertExists() // wait for element to exist. TODO: handle this in dsl.swift
     domainField.perform(grey_replaceText(""))

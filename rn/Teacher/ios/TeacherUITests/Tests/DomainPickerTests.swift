@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-class DomainPickerTests: LogoutBeforeEach {
+class DomainPickerTests: TeacherTest {
   
   func testDomainPicker_domainFieldAllowsInput() {
     let domain = "mobiledev"

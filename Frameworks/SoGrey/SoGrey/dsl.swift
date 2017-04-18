@@ -19,6 +19,11 @@ import EarlGrey
 
 // DSL that auto waits for elements to exist. Enables react-native compatability.
 
+// MARK: Element timeout and poll
+
+public let elementTimeout:TimeInterval = 60.0 // seconds
+public let elementPoll:TimeInterval = 2.0 // seconds
+
 // MARK: Element selectors
 
 open class e {
@@ -31,6 +36,7 @@ open class e {
     return EarlGrey.select(elementWithMatcher: grey_accessibilityLabel(label), file: file, line: line)
   }
 
+  @available(*, deprecated, message: "Only you can prevent memory leaks 🔥🐻")
   open static func firstElement(_ matcher:GREYElementInteraction) -> GREYElementInteraction {
     return matcher.atIndex(0)
   }
@@ -52,17 +58,24 @@ public func waitFor(_ seconds:TimeInterval) {
 }
 
 public func grey_dismissKeyboard(_ file: StaticString = #file, _ line: UInt = #line) {
-  grey_invokedFromFile(file, line)
+  grey_fromFile(file, line)
 
   UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 }
 
-let elementTimeout:TimeInterval = 60.0 // seconds
-let elementPoll:TimeInterval = 2.0 // seconds
-
 // MARK: Element actions
 
 extension GREYInteraction {
+  public func exists(file:StaticString = #file, line:UInt = #line) -> Bool {
+    grey_fromFile(file, line)
+
+    var errorOrNil: NSError?
+    self.assert(with: grey_notNil(), error: &errorOrNil)
+    let success = errorOrNil == nil
+
+    return success
+  }
+
   public func tap(file:StaticString = #file, line:UInt = #line) {
     grey_fromFile(file, line)
     self.assertExists(file: file, line: line)
@@ -90,4 +103,17 @@ extension GREYInteraction {
 
     if (!success) { self.assert(with: grey_notNil()) }
   }
+
+  public func assertHidden(file:StaticString = #file, line:UInt = #line) {
+    grey_fromFile(file, line)
+    let success = GREYCondition(name: "Waiting for element to disappear", block: { _ in
+      var errorOrNil: NSError?
+      self.assert(with: grey_nil(), error: &errorOrNil)
+      let success = errorOrNil == nil
+      return success
+    }).wait(withTimeout: elementTimeout, pollInterval: elementPoll)
+
+    if (!success) { self.assert(with: grey_nil()) }
+  }
+
 }

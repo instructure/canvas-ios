@@ -21,5 +21,6 @@ import SoGrey
 extension XCTestCase {
   var domainPickerPage: DomainPickerPage { return DomainPickerPage.sharedInstance }
   var canvasLoginPage: CanvasLoginPage { return CanvasLoginPage.sharedInstance }
-  var courseBrowserPage: CourseListPage { return CourseListPage.sharedInstance }
+  var coursesListPage: CoursesListPage { return CoursesListPage.sharedInstance }
+  var editCoursesListPage: EditCoursesListPage { return EditCoursesListPage.sharedInstance }
 }

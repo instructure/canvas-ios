@@ -14,14 +14,14 @@
 // limitations under the License.
 //
 
-class CourseListPageTest: LogoutBeforeEach {
+class CourseListPageTest: TeacherTest {
   
   func testCourseListPage_displaysList() {
     let teacher = Data.getNextTeacher(self)
     domainPickerPage.openDomain(teacher.domain)
     canvasLoginPage.logIn(teacher: teacher)
     let course = Data.getNextCourse(self)
-    courseBrowserPage.assertCourseExists(course)
+    coursesListPage.assertCourseExists(course)
   }
 
   func testCourseListEmptyPage_displaysEmptyState() {

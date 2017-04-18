@@ -26,19 +26,19 @@ class CanvasLoginPage {
 
   // MARK: Page Elements
 
-  let logInButton = e.selectBy(   label: "Log In")
-  let authorizeButton = e.selectBy(   label: "Authorize")
+  private let logInButton = e.selectBy(   label: "Log In")
+  private let authorizeButton = e.selectBy(   label: "Authorize")
 
-  let EMAIL_FIELD_CSS = "input[name=\"pseudonym_session[unique_id]\"]";
-  let PASSWORD_FIELD_CSS = "input[name=\"pseudonym_session[password]\"]";
-  let LOGIN_BUTTON_CSS = "button[type=\"submit\"]";
-  let FORGOT_PASSWORD_BUTTON_CSS = "a[class=\"forgot-password flip-to-back\"]";
-  let AUTHORIZE_BUTTON_CSS = "button[type=\"submit\"]";
+  private let EMAIL_FIELD_CSS = "input[name=\"pseudonym_session[unique_id]\"]";
+  private let PASSWORD_FIELD_CSS = "input[name=\"pseudonym_session[password]\"]";
+  private let LOGIN_BUTTON_CSS = "button[type=\"submit\"]";
+  private let FORGOT_PASSWORD_BUTTON_CSS = "a[class=\"forgot-password flip-to-back\"]";
+  private let AUTHORIZE_BUTTON_CSS = "button[type=\"submit\"]";
 
-  // Mark: - UI Actions
+  // MARK: - UI Actions
 
   func logIn(teacher: CanvasUser, _ file: StaticString = #file, _ line: UInt = #line) {
-    grey_invokedFromFile(file, line)
+    grey_fromFile(file, line)
 
     logInButton.assertExists() // wait for webview to load
 

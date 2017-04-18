@@ -51,8 +51,11 @@ platform :ios do
   end
 
   def install_native_deps
-    retry_cmd('carthage', 10) { carthage(no_build: true, use_binaries: false, use_ssh: true) }
+    retry_cmd('carthage', 10) { _execute(command: 'carthage checkout --no-use-binaries') }
     retry_cmd('cocoapods', 10) { cocoapods }
+
+    rn_teacher = join(__dir__, '../rn/Teacher')
+    retry_cmd('yarn', 10) { _execute(dir: rn_teacher, command: 'yarn') }
   end
 
   def update_build_number(xc_project)
@@ -77,12 +80,12 @@ platform :ios do
     end
 
     if coverage
-      slather(
-          proj:             xc_project,
-          workspace:        XC_WORKSPACE,
-          scheme:           xc_scheme,
-          output_directory: './artifacts'
-      )
+      # slather(
+      #     proj:             xc_project,
+      #     workspace:        XC_WORKSPACE,
+      #     scheme:           xc_scheme,
+      #     output_directory: './artifacts'
+      # )
     end
   end
 
@@ -230,26 +233,16 @@ brew install fbsimctl --HEAD)
     SoSeedy.seed(app: :teacher)
   end
 
+  # fastlane test_earlgrey_teacher run:10
   desc 'Test teacher app with Earl Grey,'
   lane :test_earlgrey_teacher do |options|
-    video_out = File.expand_path(File.join(__dir__, '..', 'video.mp4'))
-    simulator = FBSimctl.new video_out: video_out
-
     Xcode8.build_for_testing(scheme: 'Teacher', workspace: TEACHER_RN_WORKSPACE)
 
-    begin
-      simulator.start_server
-      simulator.start_recording
-
-      run = options.fetch(:run, '1').to_i
-      puts "Runnings Teacher Earl Grey Tests #{run} times."
-      1.upto(run) do |count|
-        Xcode8.test_without_building(scheme: 'TeacherUITests', workspace: TEACHER_RN_WORKSPACE)
-      end
-
-      simulator.stop_recording
-    ensure
-      simulator.stop_server
+    run = options.fetch(:run, '1').to_i
+    puts "Runnings Teacher Earl Grey Tests #{run} times."
+    1.upto(run) do |count|
+      SoSeedy.seed(app: :teacher)
+      Xcode8.test_without_building(scheme: 'TeacherUITests', workspace: TEACHER_RN_WORKSPACE)
     end
   end
 
