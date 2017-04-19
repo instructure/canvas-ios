@@ -48,11 +48,11 @@ if [[ "$BUDDYBUILD_BASE_BRANCH" = "develop" ]]; then
 fi
 
 if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_UI_JOB_ID ]]; then
-  # list rubies (ruby-2.2.5, ruby-2.3.1)
+  # list rubies (ruby-2.2.5, ruby-2.3.1, ruby-2.4.1)
   chruby
 
   # select ruby
-  chruby ruby-2.3.1
+  chruby ruby-2.4.1
 
   # update rubygems
   echo "gem: --no-document" >> ~/.gemrc
