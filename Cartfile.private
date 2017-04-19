@@ -1,4 +1,4 @@
 github "Quick/Quick" ~> 1.0
 github "Quick/Nimble" ~> 5.1
-github "google/EarlGrey" "master"
+github "sskhandp/EarlGrey" "master"
 

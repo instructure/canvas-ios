@@ -47,6 +47,13 @@ if [ "$node_version_expected" != "$node_version" ]; then
   exit 1
 fi
 
+# Avoid flaky unit tests by skipping them on the UI job.
+TEACHER_UI_JOB_ID=58c981b73749ca0100c1abb3
+if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_UI_JOB_ID ]]; then
+  echo "Teacher UI job detected. Ending prebuild."
+  exit 0
+fi
+
 pushd ../
 yarn run lint
 yarn run flow

@@ -96,7 +96,7 @@ class EditCoursesListPage {
       let courseActive = "course_favorite_active_\(course.id)"
 
       // NOTE: Course element leak: multiple matches found
-      guard let foundCourse = EarlGrey.select(elementWithMatcher: grey_anyOfMatchers([grey_accessibilityID(courseHidden), grey_accessibilityID(courseActive)])).atIndex(0) else {
+      guard let foundCourse = EarlGrey.select(elementWithMatcher: grey_anyOf([grey_accessibilityID(courseHidden), grey_accessibilityID(courseActive)])).atIndex(0) else {
         fatalError("course not found! \(course.id)")
       }
       foundCourse.assertExists()
