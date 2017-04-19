@@ -11,6 +11,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  LayoutAnimation,
+  DatePickerIOS,
+  Image,
 } from 'react-native'
 import i18n from 'format-message'
 import colors from '../../../common/colors'
@@ -21,12 +24,17 @@ import { type Assignee } from '../../assignee-picker/map-state-to-props'
 import uuid from 'uuid/v1'
 import { cloneDeep } from 'lodash'
 import EditSectionHeader from './EditSectionHeader'
+import Button from 'react-native-button'
+import Images from '../../../images'
 
 type Props = {
   assignment: Assignment,
   scrollTo: Function,
   navigator: ReactNavigator,
 }
+
+// Which date is currently being modified, or none at all
+export type ModifyDateType = 'due_at' | 'lock_at' | 'unlock_at' | 'none'
 
 // So, the data we get back from the api is a little confusing.
 // There is a big mishmash of dates and things spread across the assignment object,
@@ -44,6 +52,7 @@ export type StagedAssignmentDate = {
   course_section_id?: ?string,
   group_id?: ?string,
   valid: boolean,
+  modifyType?: ModifyDateType,
 }
 
 type State = {
@@ -319,6 +328,55 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     this.props.navigator.showModal(destination)
   }
 
+  modifyDate = (date: StagedAssignmentDate, type: ModifyDateType) => {
+    const dates = this.state.dates.map((d) => {
+      if (date.id === d.id) {
+        if (d.modifyType === type) {
+          d.modifyType = 'none'
+        } else {
+          d.modifyType = type
+        }
+      } else {
+        d.modifyType = 'none'
+      }
+
+      return d
+    })
+
+    LayoutAnimation.easeInEaseOut()
+    this.setState({
+      dates,
+    })
+  }
+
+  removeDateType = (date: StagedAssignmentDate, type: ModifyDateType) => {
+    const dates = this.state.dates.map((d) => {
+      if (date.id === d.id && type !== 'none') {
+        d[type] = null
+      }
+
+      return d
+    })
+
+    this.setState({
+      dates,
+    })
+  }
+
+  updateDate = (date: StagedAssignmentDate, type: ModifyDateType, newDate: Date) => {
+    const dates = this.state.dates.map((d) => {
+      if (date.id === d.id && type !== 'none') {
+        d[type] = newDate.toISOString()
+      }
+
+      return d
+    })
+
+    this.setState({
+      dates,
+    })
+  }
+
   removeDate = (date: StagedAssignmentDate) => {
     if (date.base) return
 
@@ -352,14 +410,50 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     </View>
   }
 
-  renderDate = (date: StagedAssignmentDate): React.Element<View> => {
-    const dateFormatter = (stringDate: ?string): string => {
-      return stringDate ? formattedDueDate(new Date(stringDate)) : '--'
+  renderDatePicker = (date: StagedAssignmentDate, type: ModifyDateType): React.Element<View> => {
+    return <View style={styles.dateEditorContainer}>
+            <DatePickerIOS date={date.due_at ? new Date(date.due_at) : new Date()} onDateChange={(updated) => this.updateDate(date, type, updated)}/>
+          </View>
+  }
+
+  renderDateType = (date: StagedAssignmentDate, type: ModifyDateType): React.Element<View> => {
+    if (type === 'none') return <View />
+
+    const stringDate = date[type] ? formattedDueDate(new Date(date[type])) : '--'
+
+    let title = i18n('Due Date')
+    switch (type) {
+      case 'unlock_at':
+        title = i18n('Available From')
+        break
+      case 'lock_at':
+        title = i18n('Available To')
+        break
     }
 
+    const modifyFunction = () => {
+      this.modifyDate(date, type)
+    }
+
+    const removeDateTypeFunction = () => {
+      this.removeDateType(date, type)
+    }
+
+    return (<TouchableHighlight style={styles.row} onPress={modifyFunction}>
+              <View style={styles.rowContainer}>
+                <Text style={styles.titleText}>{title}</Text>
+                <View style={styles.detailsRowContainer}>
+                  <Text style={styles.detailText}>{stringDate}</Text>
+                  {date[type] && <Button onPress={removeDateTypeFunction} containerStyle={styles.deleteDateTypeButton}><Image source={Images.clear} /></Button>}
+                </View>
+              </View>
+            </TouchableHighlight>)
+  }
+
+  renderDate = (date: StagedAssignmentDate): React.Element<View> => {
     let assigneeStyle = date.valid ? styles.titleText : styles.invalidTitleText
 
-    let dueDatesTitle = i18n({
+    let title = i18n({
       default: 'Assign To',
       description: 'Assignment details due dates header',
     })
@@ -367,7 +461,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     let removeButton = this.renderRemoveButton(date)
 
     return (<View style={styles.dateContainer} key={date.id || 'base'} onLayout={ (event) => { this.layouts[date.id] = event.nativeEvent.layout } } >
-              <EditSectionHeader title={dueDatesTitle} style={styles.headerText}>
+              <EditSectionHeader title={title} style={styles.headerText}>
                 {removeButton}
               </EditSectionHeader>
               <TouchableHighlight style={styles.row} onPress={() => this.selectAssignees(date)}>
@@ -376,24 +470,12 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
                   <Text style={styles.detailText}>{date.title}</Text>
                 </View>
               </TouchableHighlight>
-              <TouchableHighlight style={styles.row}>
-                <View style={styles.rowContainer}>
-                  <Text style={styles.titleText}>{i18n('Due Date')}</Text>
-                  <Text style={styles.detailText}>{dateFormatter(date.due_at)}</Text>
-                </View>
-              </TouchableHighlight>
-              <TouchableHighlight style={styles.row}>
-                <View style={styles.rowContainer}>
-                  <Text style={styles.titleText}>{i18n('Available From')}</Text>
-                  <Text style={styles.detailText}>{dateFormatter(date.unlock_at)}</Text>
-                </View>
-              </TouchableHighlight>
-              <TouchableHighlight style={styles.row}>
-                <View style={styles.rowContainer}>
-                  <Text style={styles.titleText}>{i18n('Available To')}</Text>
-                  <Text style={styles.detailText}>{dateFormatter(date.lock_at)}</Text>
-                </View>
-              </TouchableHighlight>
+              { this.renderDateType(date, 'due_at') }
+              { date.modifyType === 'due_at' && this.renderDatePicker(date, 'due_at') }
+              { this.renderDateType(date, 'unlock_at') }
+              { date.modifyType === 'unlock_at' && this.renderDatePicker(date, 'unlock_at') }
+              { this.renderDateType(date, 'lock_at') }
+              { date.modifyType === 'lock_at' && this.renderDatePicker(date, 'lock_at') }
             </View>)
   }
 
@@ -436,6 +518,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingLeft: global.style.defaultPadding,
     paddingRight: global.style.defaultPadding,
+  },
+  detailsRowContainer: {
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   headerText: {
     borderTopWidth: 0,
@@ -492,5 +579,18 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: 'red',
     fontWeight: '500',
+  },
+  dateEditorContainer: {
+    flex: 1,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: colors.seperatorColor,
+    backgroundColor: 'white',
+  },
+  deleteDateTypeButton: {
+    paddingTop: 8,
+    paddingBottom: 8,
+    paddingLeft: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })

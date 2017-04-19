@@ -40,6 +40,7 @@ const images = {
   starLined: require('./star-lined.png'),
   add: require('./Add.png'),
   x: require('./x-icon.png'),
+  clear: require('./Clear.png'),
 }
 
 export default (images: Images)

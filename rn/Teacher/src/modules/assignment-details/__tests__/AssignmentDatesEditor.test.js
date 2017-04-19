@@ -59,3 +59,22 @@ test('validation should work correctly', () => {
   component.addAdditionalDueDate()
   expect(component.validate()).toMatchObject({ x: 0, y: 0 })
 })
+
+test('validate correctly with overides', () => {
+  let override = template.assignmentOverride({
+    id: '12345',
+    student_ids: ['12345'],
+  })
+  let dueDate = template.assignmentDueDate({
+    id: override.id,
+  })
+  let everyoneDate = template.assignmentDueDate({ base: true })
+  let assignment = template.assignment({
+    all_dates: [dueDate, everyoneDate],
+    overrides: [override],
+  })
+  let component = renderer.create(
+    <AssignmentDatesEditor assignment={assignment} />
+  ).getInstance()
+  expect(component.validate()).toBeFalsy()
+})

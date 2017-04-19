@@ -4,10 +4,11 @@
 
 import { Alert } from 'react-native'
 import React from 'react'
-import AssignmentDatesEditor from '../AssignmentDatesEditor'
+import AssignmentDatesEditor, { type StagedAssignmentDate } from '../AssignmentDatesEditor'
 import renderer from 'react-test-renderer'
 
 jest.mock('../../../../routing')
+jest.mock('LayoutAnimation')
 
 jest.mock('Alert', () => {
   return {
@@ -20,20 +21,6 @@ const template = {
   ...require('../../../../__templates__/react-native-navigation'),
   ...require('../../../assignee-picker/__template__/Assignee'),
   ...require('../__template__/StagedAssignmentDate'),
-}
-
-type StagedAssignmentDate = {
-  id: string, // Will be the id, or base if it's a base date for everyone. If it's a new date, will have a uuid
-  isNew?: boolean, // Is it a new date, meaning it hasn't been pushed to the server yet
-  base: boolean,
-  title?: string,
-  due_at?: ?string,
-  unlock_at?: ?string,
-  lock_at?: ?string,
-  student_ids?: ?string[],
-  course_section_id?: ?string,
-  group_id?: ?string,
-  valid: boolean,
 }
 
 beforeEach(() => {
@@ -351,6 +338,58 @@ describe('function tests', () => {
     editor.removeDate(dateOne)
     onPress()
     expect(editor.state.dates.length).toEqual(1)
+  })
+
+  test('modify date type should work', () => {
+    const assignment = template.assignment({
+      all_dates: [template.assignmentDueDate({ base: true, id: 'base' }), template.assignmentDueDate({ base: false, id: '98765' })],
+    })
+    const editor = renderer.create(
+      <AssignmentDatesEditor assignment={assignment} />
+    ).getInstance()
+
+    const dateOne = editor.state.dates[0]
+    // let dateTwo = editor.state.dates[1]
+    editor.modifyDate(dateOne, 'due_at')
+    expect(editor.state.dates[0]).toMatchObject({
+      modifyType: 'due_at',
+    })
+
+    editor.modifyDate(dateOne, 'due_at')
+    expect(editor.state.dates[0]).toMatchObject({
+      modifyType: 'none',
+    })
+  })
+
+  test('remove date type should work', () => {
+    const assignment = template.assignment({
+      all_dates: [template.assignmentDueDate({ base: true, id: 'base' }), template.assignmentDueDate({ base: false, id: '98765' })],
+    })
+    const editor = renderer.create(
+      <AssignmentDatesEditor assignment={assignment} />
+    ).getInstance()
+
+    const dateOne = editor.state.dates[0]
+    editor.removeDateType(dateOne, 'due_at')
+    expect(editor.state.dates[0]).toMatchObject({
+      due_at: null,
+    })
+  })
+
+  test('update date should work', () => {
+    const assignment = template.assignment({
+      all_dates: [template.assignmentDueDate({ base: true, id: 'base' }), template.assignmentDueDate({ base: false, id: '98765' })],
+    })
+    const editor = renderer.create(
+      <AssignmentDatesEditor assignment={assignment} />
+    ).getInstance()
+
+    const dateOne = editor.state.dates[0]
+    const now = new Date()
+    editor.updateDate(dateOne, 'due_at', now)
+    expect(editor.state.dates[0]).toMatchObject({
+      due_at: now.toISOString(),
+    })
   })
 })
 

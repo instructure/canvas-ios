@@ -238,19 +238,60 @@ exports[`render correctly 1`] = `
         >
           Due Date
         </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
           style={
             Object {
-              "color": "#008EE2",
-              "fontSize": 16,
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
             }
           }
         >
-          May 31, 2017 at 11:59 PM
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#008EE2",
+                "fontSize": 16,
+              }
+            }
+          >
+            May 31, 2017 at 11:59 PM
+          </Text>
+          <View
+            accessibilityComponentType="button"
+            accessibilityLabel={undefined}
+            accessibilityTraits="button"
+            accessible={true}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingBottom": 8,
+                "paddingLeft": 8,
+                "paddingTop": 8,
+              }
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={1}
+            />
+          </View>
+        </View>
       </View>
     </View>
     <View
@@ -310,19 +351,60 @@ exports[`render correctly 1`] = `
         >
           Available From
         </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
           style={
             Object {
-              "color": "#008EE2",
-              "fontSize": 16,
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
             }
           }
         >
-          Mar 17, 2017 at 12:00 AM
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#008EE2",
+                "fontSize": 16,
+              }
+            }
+          >
+            Mar 17, 2017 at 12:00 AM
+          </Text>
+          <View
+            accessibilityComponentType="button"
+            accessibilityLabel={undefined}
+            accessibilityTraits="button"
+            accessible={true}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingBottom": 8,
+                "paddingLeft": 8,
+                "paddingTop": 8,
+              }
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={1}
+            />
+          </View>
+        </View>
       </View>
     </View>
     <View
@@ -382,19 +464,60 @@ exports[`render correctly 1`] = `
         >
           Available To
         </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
           style={
             Object {
-              "color": "#008EE2",
-              "fontSize": 16,
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
             }
           }
         >
-          May 31, 2017 at 11:59 PM
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#008EE2",
+                "fontSize": 16,
+              }
+            }
+          >
+            May 31, 2017 at 11:59 PM
+          </Text>
+          <View
+            accessibilityComponentType="button"
+            accessibilityLabel={undefined}
+            accessibilityTraits="button"
+            accessible={true}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingBottom": 8,
+                "paddingLeft": 8,
+                "paddingTop": 8,
+              }
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={1}
+            />
+          </View>
+        </View>
       </View>
     </View>
   </View>
@@ -713,19 +836,60 @@ exports[`render correctly with overide 1`] = `
         >
           Due Date
         </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
           style={
             Object {
-              "color": "#008EE2",
-              "fontSize": 16,
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
             }
           }
         >
-          May 31, 2017 at 11:59 PM
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#008EE2",
+                "fontSize": 16,
+              }
+            }
+          >
+            May 31, 2017 at 11:59 PM
+          </Text>
+          <View
+            accessibilityComponentType="button"
+            accessibilityLabel={undefined}
+            accessibilityTraits="button"
+            accessible={true}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingBottom": 8,
+                "paddingLeft": 8,
+                "paddingTop": 8,
+              }
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={1}
+            />
+          </View>
+        </View>
       </View>
     </View>
     <View
@@ -785,19 +949,60 @@ exports[`render correctly with overide 1`] = `
         >
           Available From
         </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
           style={
             Object {
-              "color": "#008EE2",
-              "fontSize": 16,
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
             }
           }
         >
-          Mar 17, 2017 at 12:00 AM
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#008EE2",
+                "fontSize": 16,
+              }
+            }
+          >
+            Mar 17, 2017 at 12:00 AM
+          </Text>
+          <View
+            accessibilityComponentType="button"
+            accessibilityLabel={undefined}
+            accessibilityTraits="button"
+            accessible={true}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingBottom": 8,
+                "paddingLeft": 8,
+                "paddingTop": 8,
+              }
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={1}
+            />
+          </View>
+        </View>
       </View>
     </View>
     <View
@@ -857,19 +1062,60 @@ exports[`render correctly with overide 1`] = `
         >
           Available To
         </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
           style={
             Object {
-              "color": "#008EE2",
-              "fontSize": 16,
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
             }
           }
         >
-          May 31, 2017 at 11:59 PM
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#008EE2",
+                "fontSize": 16,
+              }
+            }
+          >
+            May 31, 2017 at 11:59 PM
+          </Text>
+          <View
+            accessibilityComponentType="button"
+            accessibilityLabel={undefined}
+            accessibilityTraits="button"
+            accessible={true}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingBottom": 8,
+                "paddingLeft": 8,
+                "paddingTop": 8,
+              }
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={1}
+            />
+          </View>
+        </View>
       </View>
     </View>
   </View>

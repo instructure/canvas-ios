@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -83,10 +84,10 @@
 		C4ECC257F431783ED35CBF11 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F798127265B286008D5A43E /* DataProvider.swift */; };
 		CB206CA59F21CDA6CF21EB0D /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0679F6C1793F7855CCF998AE /* Submission.swift */; };
 		DE7AAF9B002B30AA97A21897 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9FFEF21ECA9728122AA39D /* Group.swift */; };
+		DEBFD761CA06448195663E88 /* libInteractable.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E745A09DE28474C8094A8FB /* libInteractable.a */; };
 		E95E120300F55714C77F2BB4 /* DataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E779D0FC821A88203D0C34D /* DataUtil.swift */; };
 		FE4948A645404B267D1C81A5 /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */; };
 		FFED8940A737FAF2C8F35764 /* CourseListPageTest_testCourseListPage_displaysList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175D059690BE83471486C41 /* CourseListPageTest_testCourseListPage_displaysList.swift */; };
-		DEBFD761CA06448195663E88 /* libInteractable.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E745A09DE28474C8094A8FB /* libInteractable.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +153,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
 			remoteInfo = ReactNativeNavigation;
+		};
+		2CF5409A1EA6772800F79DB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CC0127971E3ACC3900B23C9F;
+			remoteInfo = Interactable;
 		};
 		3BEF7BF41E7C96860092C864 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -412,9 +420,11 @@
 		61B537201E786969000FEABB /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F798127265B286008D5A43E /* DataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataProvider.swift; path = data/DataProvider.swift; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = Interactable.xcodeproj; path = "../node_modules/react-native-interactable/ios/Interactable.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		86FF3DE89359E019540B64CA /* Assignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assignment.swift; path = models/Assignment.swift; sourceTree = "<group>"; };
 		9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GroupCategory.swift; path = models/GroupCategory.swift; sourceTree = "<group>"; };
+		9E745A09DE28474C8094A8FB /* libInteractable.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libInteractable.a; sourceTree = "<group>"; };
 		9E779D0FC821A88203D0C34D /* DataUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataUtil.swift; path = data/DataUtil.swift; sourceTree = "<group>"; };
 		ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		AE43F594F5734FBD9DF2146C /* Section.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Section.swift; path = models/Section.swift; sourceTree = "<group>"; };
@@ -425,8 +435,6 @@
 		D71370A64E454689407684D4 /* CanvasUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CanvasUser.swift; path = models/CanvasUser.swift; sourceTree = "<group>"; };
 		E175D059690BE83471486C41 /* CourseListPageTest_testCourseListPage_displaysList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysList.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysList.swift; sourceTree = "<group>"; };
 		F3AF41997730E9FF32CA0729 /* AssignmentOverride.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentOverride.swift; path = models/AssignmentOverride.swift; sourceTree = "<group>"; };
-		7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */ = {isa = PBXFileReference; name = "Interactable.xcodeproj"; path = "../node_modules/react-native-interactable/ios/Interactable.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		9E745A09DE28474C8094A8FB /* libInteractable.a */ = {isa = PBXFileReference; name = "libInteractable.a"; path = "libInteractable.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -624,6 +632,14 @@
 				0610738E1EA11F5300BEB914 /* TeacherTest.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		2CF540961EA6772800F79DB1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2CF5409B1EA6772800F79DB1 /* libInteractable.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		3B379781808A96719F53B283 /* data */ = {
@@ -903,6 +919,10 @@
 					ProjectRef = 3BEF7BF01E7C96860092C864 /* ART.xcodeproj */;
 				},
 				{
+					ProductGroup = 2CF540961EA6772800F79DB1 /* Products */;
+					ProjectRef = 7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
@@ -1029,6 +1049,13 @@
 			fileType = archive.ar;
 			path = libReactNativeNavigation.a;
 			remoteRef = 2C5AC2591E5E3B7B00DE4DEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2CF5409B1EA6772800F79DB1 /* libInteractable.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libInteractable.a;
+			remoteRef = 2CF5409A1EA6772800F79DB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3BEF7BF51E7C96860092C864 /* libART.a */ = {
