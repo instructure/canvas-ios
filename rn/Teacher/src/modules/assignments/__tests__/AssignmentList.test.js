@@ -35,6 +35,8 @@ let defaultProps = {
   navigator: template.navigator(),
   gradingPeriods: [gradingPeriod],
   refreshAssignmentList: jest.fn(),
+  refresh: jest.fn(),
+  refreshing: false,
 }
 
 beforeEach(() => {

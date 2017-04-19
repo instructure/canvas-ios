@@ -18,8 +18,7 @@ type Props = {
   courses: Array<CourseProps>,
   error?: string,
   pending?: number,
-  refresh: Function,
-}
+} & RefreshProps
 
 export class AllCourseList extends Component {
   props: Props
@@ -77,7 +76,8 @@ AllCourseList.propTypes = {
 
 let Refreshed = refresh(
   props => props.refreshCourses(),
-  props => props.courses.length === 0
+  props => props.courses.length === 0,
+  props => Boolean(props.pending)
 )(AllCourseList)
 let Connected = connect(mapStateToProps, CoursesActions)(Refreshed)
 export default (Connected: Component<any, Props, any>)

@@ -31,7 +31,6 @@ type State = {
     title: string,
   },
   filterApplied: boolean,
-  refreshing: boolean,
 }
 
 const DEFAULT_FILTER = {
@@ -68,14 +67,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     this.state = {
       currentFilter: DEFAULT_FILTER,
       filterApplied: false,
-      refreshing: false,
     }
-  }
-
-  componentWillReceiveProps (nextProps: AssignmentListProps) {
-    this.setState({
-      refreshing: this.state.refreshing ? Boolean(nextProps.pending) : false,
-    })
   }
 
   prepareListData () {
@@ -118,7 +110,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     // we only want this to show when there are pending requests
     // that weren't started by pull to refresh
     // and only on filters that we don't already have everything for
-    if (!this.state.refreshing && this.props.pending) {
+    if (!this.props.refreshing && this.props.pending) {
       return <ActivityIndicatorView height={44} />
     }
 
@@ -134,7 +126,6 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     this.setState({
       currentFilter: DEFAULT_FILTER,
       filterApplied: false,
-      refreshing: false,
     })
   }
 
@@ -165,7 +156,6 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
         index,
       },
       filterApplied: true,
-      refreshing: false, // if the user had just pulled to refresh don't show refresh indicator
     })
   }
 
@@ -175,12 +165,6 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     } else {
       this.applyFilter()
     }
-  }
-
-  refresh = () => {
-    this.setState({ refreshing: true }, () => {
-      this.props.refresh()
-    })
   }
 
   render (): React.Element<View> {
@@ -201,8 +185,8 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
           sections={this.prepareListData()}
           renderItem={this.renderRow}
           renderSectionHeader={this.renderSectionHeader}
-          refreshing={this.state.refreshing}
-          onRefresh={this.refresh}
+          refreshing={this.props.refreshing}
+          onRefresh={this.props.refresh}
           keyExtractor={(item, index) => item.id}
         />
         {this.renderFooter()}
@@ -240,7 +224,8 @@ const Refreshed = refresh(
     props.refreshAssignmentList(props.courseID)
     props.refreshGradingPeriods(props.courseID)
   },
-  props => props.assignmentGroups.length === 0 || props.gradingPeriods.length === 0
+  props => props.assignmentGroups.length === 0 || props.gradingPeriods.length === 0,
+  props => Boolean(props.pending)
 )(AssignmentList)
 const Connected = connect(mapStateToProps, { ...AssignmentListActions, ...CourseActions })(Refreshed)
 export default (Connected: Component<any, AssignmentListProps, State>)

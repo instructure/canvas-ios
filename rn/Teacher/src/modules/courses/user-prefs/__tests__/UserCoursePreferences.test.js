@@ -18,6 +18,7 @@ let defaultProps = {
   color: '#333',
   updateCourseColor: jest.fn(),
   refresh: jest.fn(),
+  refreshing: false,
   pending: 0,
 }
 

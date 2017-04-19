@@ -15,15 +15,11 @@ export type AssignmentListActionProps = {
   +updateAssignment: (courseID: string, updatedAssignment: Assignment, originalAssignment: Assignment) => Promise<Assignment>,
 }
 
-type Refreshable = {
-  refresh: () => void,
-}
-
 export type AssignmentListProps = AssignmentListDataProps
   & RoutingProps
   & AssignmentListActionProps
   & NavProps
-  & Refreshable
+  & RefreshProps
 
 type RoutingProps = { +courseID: string }
 

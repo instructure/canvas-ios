@@ -32,12 +32,6 @@ export class CourseDetails extends Component<any, Props, any> {
     navBarHidden: true,
   }
 
-  state = { refreshing: false }
-
-  componentWillReceiveProps () {
-    this.setState({ refreshing: this.state.refreshing && Boolean(this.props.pending) })
-  }
-
   selectTab = (tab: Tab) => {
     const destination = route(tab.html_url)
     this.props.navigator.push(destination)
@@ -52,13 +46,6 @@ export class CourseDetails extends Component<any, Props, any> {
       let destination = route(`/courses/${this.props.course.id}/settings`)
       this.props.navigator.showModal(destination)
     }
-  }
-
-  refresh = () => {
-    this.setState({
-      refreshing: true,
-    })
-    this.props.refresh()
   }
 
   render (): React.Element<View> {
@@ -76,7 +63,7 @@ export class CourseDetails extends Component<any, Props, any> {
     return (
       <RefreshableScrollView
         style={styles.container}
-        refreshing={this.state.refreshing}
+        refreshing={this.props.refreshing}
         onRefresh={this.props.refresh}
       >
         <View style={styles.header}>
@@ -208,7 +195,8 @@ let Refreshed = refresh(
     props.refreshCourses()
     props.refreshTabs(props.courseID)
   },
-  props => !props.course || props.tabs.length === 0
+  props => !props.course || props.tabs.length === 0,
+  props => Boolean(props.pending)
 )(CourseDetails)
 let Connected = connect(mapStateToProps, { ...CourseDetailsActions, ...CourseActions })(Refreshed)
 export default (Connected: Component<any, Props, any>)

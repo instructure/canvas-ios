@@ -19,14 +19,12 @@ type Props = {
   courses: Array<Course>,
   favorites: Array<string>,
   toggleFavorite: (courseID: string, favorite: boolean) => Promise<*>,
-  refresh: Function,
   pending: number,
-}
+} & RefreshProps
 
 type State = {
   ds: ReactNative.ListViewDataSource,
   dataSource: ReactNative.ListViewDataSource,
-  refreshing: boolean,
 }
 
 export class FavoritesList extends Component {
@@ -54,7 +52,6 @@ export class FavoritesList extends Component {
     this.state = {
       ds,
       dataSource: ds.cloneWithRows(this.props.courses),
-      refreshing: false,
     }
 
     props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
@@ -69,7 +66,6 @@ export class FavoritesList extends Component {
   componentWillReceiveProps (nextProps: Props) {
     this.setState({
       dataSource: this.state.ds.cloneWithRows(nextProps.courses),
-      refreshing: this.state.refreshing && Boolean(nextProps.pending),
     })
   }
 
@@ -97,21 +93,14 @@ export class FavoritesList extends Component {
     )
   }
 
-  refresh = () => {
-    this.setState({
-      refreshing: true,
-    })
-    this.props.refresh()
-  }
-
   render (): React.Element<*> {
     return (
       <RefreshableListView
         style={styles.listStyle}
         dataSource={this.state.dataSource}
         renderRow={this.renderCourse}
-        refreshing={this.state.refreshing}
-        onRefresh={this.refresh}
+        refreshing={this.props.refreshing}
+        onRefresh={this.props.refresh}
       />
     )
   }
@@ -119,7 +108,8 @@ export class FavoritesList extends Component {
 
 let Refreshed = refresh(
   props => props.refreshCourses(),
-  props => props.courses.length === 0
+  props => props.courses.length === 0,
+  props => Boolean(props.pending)
 )(FavoritesList)
 let Connected = connect(mapStateToProps, { ...CoursesActions, ...FavoritesActions })(Refreshed)
 export default (Connected: FavoritesList)

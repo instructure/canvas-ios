@@ -53,6 +53,7 @@ test('map state to props should work', async () => {
     refreshAssignmentList: jest.fn(),
     refreshGradingPeriods: jest.fn(),
     refresh: jest.fn(),
+    refreshing: false,
     pending: 0,
     navigator: template.navigator(),
     gradingPeriods: [],
@@ -81,6 +82,7 @@ test('returns default props when the course is not there', () => {
     refreshAssignmentList: jest.fn(),
     refreshGradingPeriods: jest.fn(),
     refresh: jest.fn(),
+    refreshing: false,
     navigator: template.navigator(),
     assignmentGroups: [],
     course: {

@@ -29,8 +29,7 @@ type Props = {
   color: string,
   updateCourseColor: (string, string) => void,
   pending: number,
-  refresh: Function,
-}
+} & RefreshProps
 
 export class UserCoursePreferences extends Component {
   props: Props
@@ -71,7 +70,7 @@ export class UserCoursePreferences extends Component {
     return (
       <RefreshableScrollView
         style={{ flex: 1 }}
-        refreshing={Boolean(this.props.pending)}
+        refreshing={this.props.refreshing}
         onRefresh={this.props.refresh}
       >
         <View style={styles.imageWrapper}>
@@ -130,7 +129,8 @@ export class UserCoursePreferences extends Component {
 
 let Refreshed = refresh(
   props => props.refreshCourses(),
-  props => !props.course
+  props => !props.course,
+  props => Boolean(props.pending)
 )(UserCoursePreferences)
 let connected = connect(stateToProps, CoursesActions)(Refreshed)
 export default (connected: UserCoursePreferences)

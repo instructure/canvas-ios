@@ -38,7 +38,8 @@ test('map state to props assignment', async () => {
     refreshAssignmentDetails: jest.fn(),
     navigator: template.navigator(),
     assignmentDetails: assignment,
-    refresh: Function,
+    refresh: jest.fn(),
+    refreshing: false,
     updateAssignment: Function,
   }
 
@@ -66,7 +67,8 @@ test('map state to props update assignment', async () => {
     refreshAssignmentDetails: jest.fn(),
     navigator: template.navigator(),
     assignmentDetails: assignment,
-    refresh: Function,
+    refresh: jest.fn(),
+    refreshing: false,
     updateAssignment: Function,
   }
 

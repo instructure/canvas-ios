@@ -28,7 +28,6 @@ import {
 
 export class AssignmentDetails extends Component<any, AssignmentDetailsProps, any> {
   props: AssignmentDetailsProps
-  state = { refreshing: false }
 
   static navigatorButtons = {
     rightButtons: [
@@ -61,21 +60,10 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
     })
   }
 
-  componentWillReceiveProps (nextProps: AssignmentDetailsProps) {
-    if (!nextProps.pending && this.state.refreshing) {
-      this.setState({ refreshing: false })
-    }
-  }
-
-  refresh = () => {
-    this.props.refresh()
-    this.setState({ refreshing: true })
-  }
-
   render (): React.Element<View> {
     const assignment = this.props.assignmentDetails
 
-    if (!this.state.refreshing && (this.props.pending || !assignment)) {
+    if (!this.props.refreshing && (this.props.pending || !assignment)) {
       return (<View style={style.loadingContainer}><ActivityIndicatorView height={44} /></View>)
     }
 
@@ -113,8 +101,8 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
 
     return (
       <RefreshableScrollView
-        refreshing={this.state.refreshing}
-        onRefresh={this.refresh}
+        refreshing={this.props.refreshing}
+        onRefresh={this.props.refresh}
       >
         <AssignmentSection isFirstRow={true} style={style.topContainer}>
         <Heading1>{assignment.name}</Heading1>
@@ -232,7 +220,8 @@ AssignmentDetails.propTypes = {
 
 let Refreshed = refresh(
   props => props.refreshAssignmentList(props.courseID),
-  props => !props.assignmentDetails
+  props => !props.assignmentDetails,
+  props => Boolean(props.pending)
 )(AssignmentDetails)
 let Connected = connect(mapStateToProps, AssignmentActions)(Refreshed)
 export default (Connected: Component<any, AssignmentDetailsProps, any>)

@@ -13,9 +13,8 @@ export type AssignmentDetailsProps = {
   assignmentID: string,
   error?: any,
   pending?: number,
-  refresh: Function,
   updateAssignment: Function,
-}
+} & RefreshProps
 
 export type AssignmentDetailsActionProps = {
   +refreshAssignmentDetails: (courseID: string, assignmentID: string) => Promise<Assignment>,

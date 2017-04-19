@@ -4,7 +4,6 @@ import 'react-native'
 import React from 'react'
 import { CourseDetails } from '../CourseDetails.js'
 import explore from '../../../../../test/helpers/explore'
-import setProps from '../../../../../test/helpers/setProps'
 import { route } from '../../../../routing'
 
 const template = {
@@ -29,6 +28,7 @@ let defaultProps = {
   tabs: [template.tab()],
   courseColors: template.customColors(),
   courseID: course.id,
+  refreshing: false,
 }
 
 test('renders correctly', () => {
@@ -109,23 +109,6 @@ test('edit course', () => {
   editButton.props.onPress()
 
   expect(props.navigator.showModal).toHaveBeenCalledWith(route('/courses/1/settings'))
-})
-
-test('can be refreshed', async () => {
-  let refresh = jest.fn()
-  let tree = renderer.create(
-    <CourseDetails {...defaultProps} refresh={refresh} />
-  )
-
-  let instance = tree.getInstance()
-  await new Promise(resolve => setTimeout(resolve, 100))
-  instance.refresh()
-
-  expect(instance.state.refreshing).toBeTruthy()
-  expect(refresh).toHaveBeenCalled()
-
-  setProps(tree, { pending: 0 })
-  expect(instance.state.refreshing).toBeFalsy()
 })
 
 it('renders with image url', () => {

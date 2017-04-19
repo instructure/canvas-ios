@@ -17,9 +17,7 @@ export type CourseDetailsDataProps = {
 export type CourseDetailsProps = CourseDetailsDataProps
   & CourseListActionProps
   & RoutingParams
-  & {
-    refresh: Function,
-  }
+  & RefreshProps
 
 export default function mapStateToProps (state: AppState, { courseID }: RoutingParams): CourseDetailsDataProps {
   let courseState = state.entities.courses[courseID]

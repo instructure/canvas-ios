@@ -52,6 +52,7 @@ let defaultProps = {
   courses,
   pending: 0,
   refresh: jest.fn(),
+  refreshing: false,
 }
 
 describe('AllCourseList', () => {

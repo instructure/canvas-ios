@@ -53,7 +53,8 @@ export class SubmissionList extends Component<any, Props, State> {
 
 const Refreshed = refresh(
   props => props.refreshSubmissions(props.courseID, props.assignmentID),
-  props => true
+  props => true,
+  props => true // See MBL-7333
 )(SubmissionList)
 const Connected = connect(mapStateToProps, SubmissionActions)(Refreshed)
 export default (Connected: Component<any, SubmissionListProps, any>)

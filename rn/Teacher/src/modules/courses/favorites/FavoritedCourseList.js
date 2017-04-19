@@ -30,8 +30,7 @@ type Props = {
   courses: Array<CourseProps>,
   error?: string,
   pending?: number,
-  refresh: Function,
-}
+} & RefreshProps
 
 export class FavoritedCourseList extends Component {
   props: Props
@@ -196,8 +195,9 @@ const styles = StyleSheet.create({
 })
 
 let Refreshed = refresh(
-  (props) => props.refreshCourses(),
-  (props) => props.courses.length === 0
+  props => props.refreshCourses(),
+  props => props.courses.length === 0,
+  props => Boolean(props.pending)
 )(FavoritedCourseList)
 let Connected = connect(mapStateToProps, CoursesActions)(Refreshed)
 export default (Connected: Component<any, Props, any>)

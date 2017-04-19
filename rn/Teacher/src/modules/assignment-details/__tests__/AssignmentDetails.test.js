@@ -7,7 +7,6 @@ import React from 'react'
 import { AssignmentDetails } from '../AssignmentDetails'
 import { route } from '../../../routing'
 import timezoneMock from 'timezone-mock'
-import setProps from '../../../../test/helpers/setProps'
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
@@ -32,6 +31,8 @@ let defaultProps = {
   assignmentDetails: assignment,
   pending: 0,
   stubSubmissionProgress: true,
+  refresh: jest.fn(),
+  refreshing: false,
 }
 
 beforeEach(() => {
@@ -67,22 +68,6 @@ test('renders locked', () => {
     <AssignmentDetails {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
-})
-
-test('handles refreshing', () => {
-  let refresh = jest.fn()
-  let tree = renderer.create(
-    <AssignmentDetails {...defaultProps} refresh={refresh} />
-  )
-
-  let instance = tree.getInstance()
-  instance.refresh()
-
-  expect(refresh).toHaveBeenCalled()
-  expect(instance.state.refreshing).toBeTruthy()
-
-  setProps(tree, { pending: 0 })
-  expect(instance.state.refreshing).toBeFalsy()
 })
 
 test('calls navigator.showModal when the edit button is pressed', () => {

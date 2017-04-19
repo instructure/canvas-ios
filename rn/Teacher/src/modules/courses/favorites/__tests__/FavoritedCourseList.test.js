@@ -56,6 +56,7 @@ let defaultProps = {
   refreshCourses: () => {},
   pending: 0,
   refresh: jest.fn(),
+  refreshing: false,
 }
 
 test('render', () => {
