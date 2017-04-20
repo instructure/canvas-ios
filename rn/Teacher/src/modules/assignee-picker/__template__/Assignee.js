@@ -1,6 +1,6 @@
 // @flow
 
-import template from '../../../utils/template'
+import template, { type Template } from '../../../utils/template'
 import { type Assignee } from '../map-state-to-props'
 
 export const enrollmentAssignee: Template<Assignee> = template({

@@ -1,6 +1,6 @@
 /* @flow */
 
-import template from '../../../utils/template'
+import template, { type Template } from '../../../utils/template'
 
 export const session: Template<Session> = template({
   authToken: 'iamanauthtoken',

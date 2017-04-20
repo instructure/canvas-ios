@@ -1,6 +1,5 @@
 // @flow
 
-// $FlowFixMe
 const RealComponent = require.requireActual('PickerIOS')
 const React = require('React')
 export default class PickerIOS extends React.Component {

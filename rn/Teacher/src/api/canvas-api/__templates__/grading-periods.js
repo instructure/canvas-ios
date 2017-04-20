@@ -1,6 +1,6 @@
 /* @flow */
 
-import template from '../../../utils/template'
+import template, { type Template } from '../../../utils/template'
 
 export const gradingPeriod: Template<GradingPeriod> = template({
   id: 1023,

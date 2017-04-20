@@ -1,7 +1,7 @@
 
 // @flow
 
-import template from '../../../../utils/template'
+import template, { type Template } from '../../../../utils/template'
 import { type StagedAssignmentDate } from '../AssignmentDatesEditor'
 
 export const stagedAssignmentDate: Template<StagedAssignmentDate> = template({

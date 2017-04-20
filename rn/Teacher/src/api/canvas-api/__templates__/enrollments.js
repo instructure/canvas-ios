@@ -1,6 +1,6 @@
 // @flow
 
-import template from '../../../utils/template'
+import template, { type Template } from '../../../utils/template'
 import { user } from './users'
 
 export const enrollment: Template<Enrollment> = template({

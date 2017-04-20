@@ -14,4 +14,5 @@ export type Enrollment = {
   +user: User,
   +type: EnrollmentType,
   +enrollment_state: EnrollmentState,
+  +course_id: string,
 }

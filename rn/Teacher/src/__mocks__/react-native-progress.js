@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react'
 
-// $FlowFixMe
 const RealCircle = require.requireActual('react-native-progress').Circle
 export class Circle extends Component {
   render () {
