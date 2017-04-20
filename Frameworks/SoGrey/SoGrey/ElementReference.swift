@@ -39,6 +39,8 @@ public struct ElementReference {
       }
     }
 
+    // TODO: handle null values
+    // fatal error: Unable to parse data: {"status":0,"value":null}
     if parsedRef.isEmpty {
       fatalError("Unable to parse data: \(status)")
     }
