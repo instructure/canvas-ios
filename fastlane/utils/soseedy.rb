@@ -13,6 +13,7 @@
 # limitations under the License.
 
 fastlane_require 'git'
+fastlane_require 'retriable'
 
 class SoSeedy
   @first_run = true
@@ -56,7 +57,9 @@ class SoSeedy
             FastlaneCore::UI.header(warning.yellow)
           end
         else
-          execute_action('Cloning SoSeedy') { @git = Git.clone(git_url, repo) }
+          execute_action('Cloning SoSeedy') do
+            with_retry { @git = Git.clone(git_url, repo) }
+          end
         end
 
         # always run bundle install once for people
@@ -102,6 +105,17 @@ class SoSeedy
 
     def robo_script(app)
       "bin/soseedy robo -a #{app}"
+    end
+
+    # Wrapper method for executing network requests with retires on failure.
+    # @param [Block] block of code to be wrapped with retry
+    # @example
+    #   with_retry { @git = Git.clone(git_url, repo) }
+    # @return [void]
+    def with_retry
+      Retriable.retriable(tries: 5, base_interval: 1.0, multiplier: 1.0, rand_factor: 0.0) do
+        yield
+      end
     end
   end
 end

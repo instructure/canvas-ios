@@ -241,7 +241,7 @@ brew install fbsimctl --HEAD)
     run = options.fetch(:run, '1').to_i
     puts "Runnings Teacher Earl Grey Tests #{run} times."
     1.upto(run) do |count|
-      SoSeedy.seed(app: :teacher)
+      SoSeedy.seed(options.merge(app: :teacher))
       Xcode8.test_without_building(scheme: 'TeacherUITests', workspace: TEACHER_RN_WORKSPACE)
     end
   end
