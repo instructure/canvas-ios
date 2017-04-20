@@ -21,6 +21,9 @@
     "message": "All Grading Periods",
     "description": "The header on the assignment list"
   },
+  "all_submissions_b8717440": {
+    "message": "All Submissions"
+  },
   "are_you_sure_26795d3c": {
     "message": "Are you sure?"
   },
@@ -194,6 +197,10 @@
   "everyone_else_cc5f6888": {
     "message": "Everyone else"
   },
+  "excused_cf8792eb": {
+    "message": "Excused",
+    "description": "This assignment is excused and does not affect the student's grade"
+  },
   "external_tool_d6eaa5c1": {
     "message": "external tool",
     "description": "assignment submission type"
@@ -277,8 +284,8 @@
   "no_internet_connection_9df26cf8": {
     "message": "No internet connection"
   },
-  "no_submission_yet_709d689d": {
-    "message": "No submission yet",
+  "no_submission_b44e1990": {
+    "message": "No submission",
     "description": "No submission from the student for the given assignment"
   },
   "none_3b5e34d2": {
@@ -392,6 +399,9 @@
   },
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "There was a error loading the list of enrollments"
+  },
+  "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
+    "message": "There was a problem loading the assignment submissions."
   },
   "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
     "message": "There was an unexpected error. Please close this alert and try again.",

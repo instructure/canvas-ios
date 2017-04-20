@@ -13,6 +13,7 @@ import logout from './logout-action'
 import { HYDRATE_ACTION } from './hydrate-action'
 import resetPending from '../utils/reset-pending'
 import composeReducers from './compose-reducers'
+import { submissions } from '../modules/submissions/list/submission-entities-reducer'
 
 const entities = combineReducers({
   courses,
@@ -22,6 +23,7 @@ const entities = combineReducers({
   users: composeReducers(users, enrollmentUsers),
   sections,
   enrollments,
+  submissions,
 })
 
 const actualRootReducer: Reducer<AppState, Action> = combineReducers({

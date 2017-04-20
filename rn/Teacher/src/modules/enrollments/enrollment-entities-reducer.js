@@ -13,7 +13,6 @@ const { refreshEnrollments } = Actions
 export const enrollments: Reducer<EnrollmentsState, any> = handleActions({
   [refreshEnrollments.toString()]: handleAsync({
     resolved: (state, { result }) => {
-      console.log('result:', result)
       const incoming = fromPairs(result.data
         .map(enrollment => [enrollment.id, enrollment]))
       return { ...state, ...incoming }

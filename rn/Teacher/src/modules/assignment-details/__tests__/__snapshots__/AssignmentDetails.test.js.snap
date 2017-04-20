@@ -920,6 +920,38 @@ exports[`renders 1`] = `
               </View>
             </View>
           </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+                "paddingRight": 2,
+                "width": 10,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "backgroundColor": "transparent",
+                  "borderColor": "#c7c7cc",
+                  "borderRightWidth": 2,
+                  "borderTopWidth": 2,
+                  "height": 10,
+                  "marginLeft": 7,
+                  "transform": Array [
+                    Object {
+                      "rotate": "45deg",
+                    },
+                  ],
+                  "width": 10,
+                }
+              }
+            />
+          </View>
         </View>
       </View>
     </View>

@@ -23,7 +23,7 @@ export function asyncRefsReducer (
         const pending = state.pending - 1
         return { pending, refs }
       },
-      rejected: (state, error) => {
+      rejected: (state, { error }) => {
         const pending = state.pending - 1
         let message = errorMessage
         let reason = parseErrorMessage(error)

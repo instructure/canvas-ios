@@ -36,8 +36,10 @@ describe('refs reducer', () => {
       type: 'foobar.baz',
       error: true,
       payload: {
-        data: {
-          errors: [{ message: 'Some wires got crossed' }],
+        error: {
+          data: {
+            errors: [{ message: 'Some wires got crossed' }],
+          },
         },
       },
     }

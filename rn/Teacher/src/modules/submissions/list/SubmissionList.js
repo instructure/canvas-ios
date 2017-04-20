@@ -1,24 +1,28 @@
 // @flow
 
 import React, { Component } from 'react'
-import { View, ListView, ScrollView } from 'react-native'
+import {
+  View,
+  FlatList,
+  StyleSheet,
+} from 'react-native'
 import { connect } from 'react-redux'
-import type { SubmissionListProps } from './submission-prop-types'
+import type {
+  SubmissionListProps,
+  SubmissionProps,
+} from './submission-prop-types'
 import { mapStateToProps } from './map-state-to-props'
 import i18n from 'format-message'
 import SubmissionRow from './SubmissionRow'
 import SubmissionActions from './actions'
+import EnrollmentActions from '../../enrollments/actions'
 import refresh from '../../../utils/refresh'
+import { LinkButton } from '../../../common/buttons'
+import { Heading1 } from '../../../common/text'
 
-type State = {
-  dataSource: ListView.DataSource,
-}
+type Props = SubmissionListProps & NavProps & RefreshProps
 
-type Props = SubmissionListProps & NavProps
-
-export class SubmissionList extends Component<any, Props, State> {
-  state: State
-
+export class SubmissionList extends Component<any, Props, any> {
   constructor (props: Props) {
     super(props)
 
@@ -29,32 +33,98 @@ export class SubmissionList extends Component<any, Props, State> {
       }),
     })
 
-    if (props.course.color) {
-      const color: string = props.course.color
+    if (props.courseColor) {
+      const color: string = props.courseColor
       props.navigator.setStyle({
         navBarBackgroundColor: color,
       })
     }
   }
 
+  keyExtractor = (item: SubmissionProps) => {
+    return item.userID
+  }
+
+  navigateToSubmission = (userID: string) => {
+    console.log('go to the submission for', userID)
+  }
+
+  renderRow = ({ item }: { item: SubmissionProps }) => {
+    return <SubmissionRow {...item} onPress={this.navigateToSubmission} />
+  }
+
+  chooseFilter = () => {
+    console.log('filter the submissions')
+  }
+
   render () {
-    const children = this.props.submissions.map((submission) => (
-      <SubmissionRow key={submission.userID} {...submission} />
-    ))
     return (
-      <ScrollView>
-        <View>
-          {children}
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Heading1
+            style={styles.headerTitle}
+            >
+            { i18n('All Submissions') }
+          </Heading1>
+          <LinkButton
+            testID='submission-list.filter'
+            onPress={this.chooseFilter}
+            style={styles.filterButton}
+            accessibilityLabel={i18n('Filter Submissions')}
+            >
+            { i18n('Filter') }
+          </LinkButton>
         </View>
-      </ScrollView>
+        <FlatList
+          data={this.props.submissions}
+          keyExtractor={this.keyExtractor}
+          testID='submission-list'
+          renderItem={this.renderRow}
+          refreshing={this.props.pending}
+          onRefresh={this.props.refresh}
+          />
+      </View>
     )
   }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  header: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'lightgrey',
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    paddingTop: 16,
+    paddingBottom: 12,
+    paddingHorizontal: 16,
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#2d3b44',
+  },
+  filterButton: {
+    marginBottom: 1,
+  },
+})
+
+export function refreshSubmissionList (props: SubmissionListProps): void {
+  props.refreshSubmissions(props.courseID, props.assignmentID)
+  props.refreshEnrollments(props.courseID)
+}
+
+export function shouldRefresh (props: SubmissionListProps): boolean {
+  return props.shouldRefresh
+}
+
 const Refreshed = refresh(
-  props => props.refreshSubmissions(props.courseID, props.assignmentID),
-  props => true,
-  props => true // See MBL-7333
+  refreshSubmissionList,
+  shouldRefresh,
+  props => props.pending
 )(SubmissionList)
-const Connected = connect(mapStateToProps, SubmissionActions)(Refreshed)
+const Connected = connect(mapStateToProps, { ...SubmissionActions, ...EnrollmentActions })(Refreshed)
 export default (Connected: Component<any, SubmissionListProps, any>)

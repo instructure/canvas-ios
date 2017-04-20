@@ -18,11 +18,7 @@ test('captures entities mapped by id', () => {
 
   const action = {
     type: refreshEnrollments.toString(),
-    payload: {
-      result: {
-        data,
-      },
-    },
+    payload: { result: { data } },
   }
 
   expect(enrollments({}, action)).toEqual({

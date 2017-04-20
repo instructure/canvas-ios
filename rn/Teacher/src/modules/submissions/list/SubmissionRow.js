@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react'
+import React, { Component } from 'react'
 import {
   View,
   StyleSheet,
@@ -13,35 +13,38 @@ import Token from '../../../common/components/Token'
 import i18n from 'format-message'
 import type {
   GradeProp,
-  SubmissionProp,
+  SubmissionProps,
   SubmissionStatusProp,
 } from './submission-prop-types'
 import colors from '../../../common/colors'
 
 type RowProps = {
   +testID: string,
-  +onPress?: () => void,
+  +onPress: () => void,
   +children?: Array<any>,
   +disclosure?: boolean,
-
 }
-const Row = ({ onPress, testID, children, disclosure }: RowProps): * => {
-  return (
-    <View style={styles.row}>
-      <TouchableHighlight style={styles.touchableHighlight} onPress={onPress} testID={testID}>
-        <View style={styles.container}>
-          {children}
-          {disclosure ? <DisclosureIndicator /> : undefined}
-        </View>
-      </TouchableHighlight>
-    </View>
-  )
+
+class Row extends Component<any, RowProps, any> {
+  render () {
+    const { onPress, testID, children, disclosure } = this.props
+    return (
+      <View style={styles.row}>
+        <TouchableHighlight style={styles.touchableHighlight} onPress={onPress} testID={testID}>
+          <View style={styles.container}>
+            {children}
+            {disclosure ? <DisclosureIndicator /> : undefined}
+          </View>
+        </TouchableHighlight>
+      </View>
+    )
+  }
 }
 
 const SubmissionStatus = ({ status }: { status: SubmissionStatusProp }): * => {
   let color: string = '#8B969E' // none
   let title: string = i18n({
-    default: 'No submission yet',
+    default: 'No submission',
     description: 'No submission from the student for the given assignment',
   })
 
@@ -73,34 +76,50 @@ const SubmissionStatus = ({ status }: { status: SubmissionStatusProp }): * => {
 }
 
 const Grade = ({ grade }: {grade: ?GradeProp}): * => {
-  if (!grade) {
+  if (!grade || grade === 'not_submitted') {
     return null
   }
 
-  const ungraded = i18n({
-    default: 'ungraded',
-    description: 'Label for ungraded assignment submission',
-  })
+  if (grade === 'ungraded') {
+    const ungraded = i18n({
+      default: 'ungraded',
+      description: 'Label for ungraded assignment submission',
+    })
+    return <Token style={{ alignSelf: 'center' }} color={ colors.primaryButton }>{ ungraded }</Token>
+  }
 
-  return grade === 'ungraded'
-    ? <Token style={{ alignSelf: 'center' }} color={ colors.primaryButton }>{ ungraded }</Token>
-    : <Text style={[ styles.gradeText, { alignSelf: 'center' } ]}>{ grade }</Text>
+  let gradeText = grade
+  if (grade === 'excused') {
+    gradeText = i18n({
+      default: 'Excused',
+      description: `This assignment is excused and does not affect the student's grade`,
+    })
+  }
+
+  return <Text style={[ styles.gradeText, { alignSelf: 'center' } ]}>{ gradeText }</Text>
 }
 
-const SubmissionRow = ({ userID, onPress, avatarURL, name, status, grade }: SubmissionProp): * => {
-  return (
-    <Row disclosure testID={`submission-${userID}`} onPress={onPress(userID)}>
-      <Image source={{ uri: avatarURL }} style={styles.avatar} />
-      <View style={styles.textContainer}>
-        <Text
-          style={styles.title}
-          ellipsizeMode='tail'
-          numberOfLines={2}>{name}</Text>
-        <SubmissionStatus status={status} />
-      </View>
-      <Grade grade={grade} />
-    </Row>
-  )
+class SubmissionRow extends Component<any, SubmissionProps, any> {
+  onPress = () => {
+    this.props.onPress(this.props.userID)
+  }
+
+  render (): React.Element<View> {
+    const { userID, avatarURL, name, status, grade } = this.props
+    return (
+      <Row disclosure testID={`submission-${userID}`} onPress={this.onPress}>
+        <Image source={{ uri: avatarURL }} style={styles.avatar} />
+        <View style={styles.textContainer}>
+          <Text
+            style={styles.title}
+            ellipsizeMode='tail'
+            numberOfLines={2}>{name}</Text>
+          <SubmissionStatus status={status} />
+        </View>
+        <Grade grade={grade} />
+      </Row>
+    )
+  }
 }
 
 export default SubmissionRow

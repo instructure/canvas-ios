@@ -23,21 +23,26 @@ export type CourseContentState = {
 
 export type GradingPeriodsState = {
   [string]: {
-    gradingPeriod: GradingPeriod,
-    assignmentRefs: Array<string>,
+    +gradingPeriod: GradingPeriod,
+    +assignmentRefs: Array<string>,
   },
 }
 
+export type AssignmentContentState = {
+  +submissions: AsyncRefs,
+}
+
 export type AssignmentState = AsyncState & {
-  assignment: Assignment,
+  +assignment: Assignment,
 }
 
 export type CoursesState = { [string]: CourseState & CourseContentState }
 export type AssignmentGroupsState = { [string]: AssignmentGroup }
-export type AssignmentsState = { [string]: AssignmentState }
+export type AssignmentsState = { [string]: AssignmentState & AssignmentContentState }
 export type EnrollmentsState = { [string]: Enrollment }
 export type SectionsState = { [string]: Section }
 export type UserProfileState = { [string]: User }
+export type SubmissionsState = { [string]: SubmissionWithHistory }
 
 export type Entities = {
   +courses: CoursesState,
@@ -47,6 +52,7 @@ export type Entities = {
   +gradingPeriods: GradingPeriodsState,
   +sections: SectionsState,
   +users: UserProfileState,
+  +submissions: SubmissionsState,
 }
 
 export type FavoriteCoursesState = AsyncState

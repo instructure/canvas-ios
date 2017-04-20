@@ -1,15 +1,16 @@
 // @flow
 
 export type Submission = {
-  +user: {
-    +id: string,
-    +name: string,
-    +sortable_name: string,
-    +short_name: string,
-    +avatar_url: string,
-  },
+  +id: string,
+  +user_id: string,
   +grade?: ?string,
-  +submitted_at: string,
+  +submitted_at: ?string,
+  +workflow_state: 'submitted'
+    | 'unsubmitted'
+    | 'graded'
+    | 'pending_review',
+  +excused: boolean,
+  +late: boolean,
 }
 
 export type SubmissionHistory = {

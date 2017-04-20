@@ -59,6 +59,7 @@ describe('error-handler-middleware', () => {
       error: true,
       payload: {
         error: {
+          message: 'Offline Error',
           response: {
             data: {
               errors: [{
@@ -170,7 +171,7 @@ describe('parse error message', () => {
       data: {},
       headers: { link: null },
     }
-    const expected = 'An error occurred (code: 500)'
+    const expected = ERROR_MESSAGE
 
     const result = parseErrorMessage(response)
 

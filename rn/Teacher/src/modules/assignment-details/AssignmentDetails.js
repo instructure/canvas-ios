@@ -21,6 +21,8 @@ import AssignmentActions from '../assignments/actions'
 import { route } from '../../routing'
 import Images from '../../images'
 
+const { V02 } = global
+
 import {
   View,
   StyleSheet,
@@ -126,7 +128,10 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
           <SubmissionType data={assignment.submission_types} />
         </AssignmentSection>
 
-        <AssignmentSection title={sectionTitleSubmissions}>
+        <AssignmentSection
+          title={sectionTitleSubmissions}
+          onPress={this.viewSubmissions}
+          showDisclosureIndicator>
           <Submission data={[assignment.needs_grading_count]} style={style.submission}/>
         </AssignmentSection>
 
@@ -159,6 +164,14 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
   viewDueDateDetails = () => {
     let destination = route(`/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/due_dates`)
     this.props.navigator.push(destination)
+  }
+
+  viewSubmissions = () => {
+    if (V02) {
+      const { courseID, assignmentDetails } = this.props
+      let destination = route(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`)
+      this.props.navigator.push(destination)
+    }
   }
 }
 

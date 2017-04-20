@@ -3,14 +3,13 @@
 import { Alert } from 'react-native'
 import type { MiddlewareAPI } from 'redux'
 import i18n from 'format-message'
-import { isOnline } from '../../utils/online-status'
 
 export const ERROR_TITLE: string = i18n({
   default: 'Unexpected Error',
   description: 'The generic title of the generic error message',
 })
 export const ERROR_MESSAGE: string = i18n({
-  default: 'There was an unexpected error. Please close this alert and try again.',
+  default: 'There was an unexpected error. Please try again.',
   description: 'A generic error message',
 })
 
@@ -23,17 +22,12 @@ const errorHandlerMiddleware: MiddlewareAPI = () => {
       // 1. error is not an api response error
       // 2. error is an api response error and the status code is 500 or above and the user is online
       let error = action.payload.error
-      let isOfflineError = error.message === 'Network Error'
-      let isApiError = error.response != null
-      let is500Error = isApiError && error.response.status >= 500 && isOnline()
-      if (!isOfflineError && (!isApiError || is500Error)) {
-        let errorMessage = error.message || ERROR_MESSAGE
-        if (error.response &&
-            error.response.data &&
-            error.response.data.errors &&
-            error.response.data.errors.length > 0) {
-          errorMessage = error.response.data.errors[0].message
-        }
+      let isOfflineError = error.message === 'Offline Error'
+      if (error.response != null) {
+        error = error.response
+      }
+      if (!isOfflineError) {
+        let errorMessage = parseErrorMessage(error)
         Alert.alert(ERROR_TITLE, errorMessage)
       }
     }
@@ -62,5 +56,5 @@ export function parseErrorMessage (error: any): string {
       .join('. ')
   }
 
-  return `An error occurred (code: ${error.status})`
+  return ERROR_MESSAGE
 }

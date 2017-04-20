@@ -4,9 +4,12 @@ import { AssignmentListActions } from '../actions'
 import { assignments } from '../assignment-entities-reducer'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
+import SubmissionActions from '../../submissions/list/actions'
 
+const { refreshSubmissions } = SubmissionActions
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../api/canvas-api/__templates__/submissions'),
 }
 
 test('refresh assignments', async () => {
@@ -16,7 +19,10 @@ test('refresh assignments', async () => {
   let state = await testAsyncReducer(assignments, action)
 
   expect(state).toEqual([{}, {
-    [assignment.id.toString()]: { assignment },
+    [assignment.id.toString()]: {
+      assignment,
+      submissions: { refs: [], pending: 0 },
+    },
   }])
 })
 
@@ -44,3 +50,17 @@ it('update assignments with error', async () => {
   expect(state).toEqual([a, b])
 })
 
+test('reduces assignment content', () => {
+  const data = [
+    template.submission({ id: '3' }),
+  ].map(override => template.submissionHistory([override]))
+
+  let action = {
+    type: refreshSubmissions.toString(),
+    payload: { assignmentID: '11', result: { data } },
+  }
+
+  expect(assignments({}, action)).toMatchObject({
+    '11': { submissions: { refs: ['3'] } },
+  })
+})

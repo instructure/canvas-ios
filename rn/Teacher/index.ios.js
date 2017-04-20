@@ -31,6 +31,13 @@ registerScreens(store)
 
 const { __DEV__ } = global
 
+global.V02 = true
+global.V03 = true
+global.V04 = true
+global.V05 = true
+global.V06 = true
+global.V07 = true
+
 const nativeLogin = NativeModules.NativeLogin
 nativeLogin.startObserving()
 

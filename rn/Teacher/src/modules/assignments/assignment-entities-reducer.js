@@ -1,27 +1,49 @@
 // @flow
 
-import { Reducer } from 'redux'
+import { Reducer, combineReducers } from 'redux'
 import { handleActions } from 'redux-actions'
 import Actions from './actions'
 import handleAsync from '../../utils/handleAsync'
+import { submissions } from '../submissions/list/submission-refs-reducer'
+import flatMap from 'lodash/flatMap'
+import fromPairs from 'lodash/fromPairs'
 
 export let defaultState: AssignmentGroupsState = {}
 
 const { refreshAssignmentList, updateAssignment } = Actions
 
-export const assignments: Reducer<AssignmentsState, any> = handleActions({
+const assignment = assignment => assignment || {}
+const pending = pending => pending || 0
+const error = error => error || null
+
+const assignmentContent = combineReducers({
+  assignment,
+  submissions,
+  pending,
+  error,
+})
+
+const defaultAssignmentContents: AssignmentContentState = {
+  submissions: { refs: [], pending: 0 },
+}
+
+const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
   [refreshAssignmentList.toString()]: handleAsync({
     resolved: (state, { result, courseID }) => {
-      let entities = { ...state.assignments }
-      result.data.forEach((entity) => {
-        entity.assignments.forEach(assignment => {
-          entities[assignment.id] = { assignment }
-        })
-      })
+      const assignments = flatMap(result.data, group => group.assignments)
+      const updated = fromPairs(assignments.map(assignment => {
+        return [
+          assignment.id, {
+            ...defaultAssignmentContents,
+            ...state[assignment.id],
+            assignment,
+          },
+        ]
+      }))
 
       return {
         ...state,
-        ...entities,
+        ...updated,
       }
     },
   }),
@@ -58,3 +80,17 @@ export const assignments: Reducer<AssignmentsState, any> = handleActions({
     },
   }),
 }, defaultState)
+
+export function assignments (state: AssignmentsState = {}, action: any): AssignmentsState {
+  let newState = state
+  if (action.payload && action.payload.assignmentID) {
+    const assignmentID = action.payload.assignmentID
+    const currentAssignmentState: AssignmentState = state[assignmentID] || {}
+    const assignmentState = assignmentContent(currentAssignmentState, action)
+    newState = {
+      ...state,
+      [assignmentID]: assignmentState,
+    }
+  }
+  return assignmentsData(newState, action)
+}
