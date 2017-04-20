@@ -58,7 +58,6 @@ exports[`Speedgrader renders 1`] = `
           "flex": 1,
           "height": 1334,
           "paddingBottom": 1281,
-          "paddingHorizontal": 16,
           "paddingTop": 16,
           "shadowColor": "#000000",
           "shadowOffset": Object {
@@ -94,19 +93,92 @@ exports[`Speedgrader renders 1`] = `
           }
         />
       </View>
-      <SegmentedControlIOS
-        onChange={[Function]}
-        selectedIndex={null}
-        testID="speedgrader.segment-control"
-        values={
-          Array [
-            "Grades",
-            "Comments",
-            "Files",
-          ]
+      <View
+        style={
+          Object {
+            "borderBottomColor": "lightgray",
+            "borderBottomWidth": 0.5,
+            "paddingBottom": 8,
+            "paddingHorizontal": 16,
+          }
         }
-      />
-      <View />
+      >
+        <SegmentedControlIOS
+          onChange={[Function]}
+          selectedIndex={0}
+          testID="speedgrader.segment-control"
+          values={
+            Array [
+              "Grades",
+              "Comments",
+              "Files",
+            ]
+          }
+        />
+      </View>
+      <RCTScrollView
+        style={
+          Object {
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomColor": "lightgray",
+                "borderBottomWidth": 0.5,
+                "flexDirection": "row",
+                "height": 48,
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              Grade
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              4.0
+            </Text>
+          </View>
+        </View>
+      </RCTScrollView>
     </View>
   </Interactable.View>
 </View>

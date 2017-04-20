@@ -50,7 +50,6 @@ exports[`BottomDrawer renders any children 1`] = `
         "flex": 1,
         "height": 1334,
         "paddingBottom": 1281,
-        "paddingHorizontal": 16,
         "paddingTop": 16,
         "shadowColor": "#000000",
         "shadowOffset": Object {

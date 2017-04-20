@@ -227,6 +227,9 @@
     "message": "GPA Scale",
     "description": "display grade as GPA scale"
   },
+  "grade_9c6f076d": {
+    "message": "Grade"
+  },
   "graded_25cd3fcd": {
     "message": "Graded",
     "description": "Assignment Details submissions graph `graded`"
