@@ -21,8 +21,6 @@ import AssignmentActions from '../assignments/actions'
 import { route } from '../../routing'
 import Images from '../../images'
 
-const { V02 } = global
-
 import {
   View,
   StyleSheet,
@@ -167,7 +165,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
   }
 
   viewSubmissions = () => {
-    if (V02) {
+    if (global.V02) {
       const { courseID, assignmentDetails } = this.props
       let destination = route(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`)
       this.props.navigator.push(destination)
