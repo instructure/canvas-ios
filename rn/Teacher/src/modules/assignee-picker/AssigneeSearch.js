@@ -46,7 +46,7 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
   }
 
   componentWillReceiveProps (props: AssigneeSearchProps) {
-    this.updateData()
+    this.updateData(props.sections, props.enrollments)
   }
 
   componentWillMount () {
@@ -63,8 +63,8 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
     this.props.refreshEnrollments(this.props.courseID)
   }
 
-  updateData () {
-    const sections = (this.props.sections || []).map((item) => {
+  updateData (newSections: Section[] = [], newEnrollments: Enrollment[] = []) {
+    const sections = newSections.map((item) => {
       return {
         id: 'section-' + item.id,
         dataId: item.id,
@@ -74,7 +74,7 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
       }
     })
 
-    const enrollments = (this.props.enrollments || []).map((item) => {
+    const enrollments = newEnrollments.map((item) => {
       return {
         id: 'student-' + item.user.id,
         dataId: item.user.id,

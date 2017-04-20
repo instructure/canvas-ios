@@ -26,6 +26,7 @@ import { cloneDeep } from 'lodash'
 import EditSectionHeader from './EditSectionHeader'
 import Button from 'react-native-button'
 import Images from '../../../images'
+import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 
 type Props = {
   assignment: Assignment,
@@ -201,7 +202,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
           id: `student-${id}`,
           dataId: id,
           type: 'student',
-          name: 'student', // TODO, hrm, where do I get this information at this point?
+          name: '--',
         }
       })
       assignees = assignees.concat(studentAssignees)
@@ -213,7 +214,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
         id: `section-${sectionId}`,
         dataId: sectionId,
         type: 'section',
-        name: 'Section',
+        name: '--',
       })
     }
 
@@ -223,7 +224,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
         id: `group-${groupId}`,
         dataId: groupId,
         type: 'group',
-        name: 'Group',
+        name: '--',
       })
     }
 
@@ -234,13 +235,18 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
   // For example, if the date previously has a single section, and the user adds multiple sections,
   // That means there is now more than one date, because only one section per date is allowed
   // Although, one date can have multiple students
+  // Note that this always creates completely new date StagedAssignmentDate. I talked to MDB about this, and he said it's best
+  // to just not update old overrides, but to create completely new ones
   static updateDateWithAssignees = (date: StagedAssignmentDate, assignees: Assignee[]): StagedAssignmentDate[] => {
     const createNewDate = (props: Object): StagedAssignmentDate => {
       const aDate = {
-        id: date.id,
+        id: uuid(),
         base: date.base,
         isNew: true,
         valid: true,
+        due_at: date.due_at,
+        unlock_at: date.unlock_at,
+        lock_at: date.lock_at,
       }
 
       Object.assign(aDate, props)
@@ -309,7 +315,6 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     let newDates: StagedAssignmentDate[] = []
     if (base) { newDates.push(base) }
     if (student) { newDates.push(student) }
-
     return [...newDates, ...sections, ...groups]
   }
 
@@ -411,8 +416,9 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
   }
 
   renderDatePicker = (date: StagedAssignmentDate, type: ModifyDateType): React.Element<View> => {
+    if (type === 'none') return <View />
     return <View style={styles.dateEditorContainer}>
-            <DatePickerIOS date={date.due_at ? new Date(date.due_at) : new Date()} onDateChange={(updated) => this.updateDate(date, type, updated)}/>
+            <DatePickerIOS date={date[type] ? new Date(date[type]) : new Date()} onDateChange={(updated) => this.updateDate(date, type, updated)}/>
           </View>
   }
 
@@ -459,6 +465,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     })
 
     let removeButton = this.renderRemoveButton(date)
+    let detailTextStyle = date.title ? styles.detailText : styles.detailTextMissing
 
     return (<View style={styles.dateContainer} key={date.id || 'base'} onLayout={ (event) => { this.layouts[date.id] = event.nativeEvent.layout } } >
               <EditSectionHeader title={title} style={styles.headerText}>
@@ -467,7 +474,10 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
               <TouchableHighlight style={styles.row} onPress={() => this.selectAssignees(date)}>
                 <View style={styles.rowContainer}>
                   <Text style={assigneeStyle}>{i18n('Assignees')}</Text>
-                  <Text style={styles.detailText}>{date.title}</Text>
+                  <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+                    <Text style={detailTextStyle}>{date.title || i18n('None')}</Text>
+                    <DisclosureIndicator />
+                  </View>
                 </View>
               </TouchableHighlight>
               { this.renderDateType(date, 'due_at') }
@@ -482,6 +492,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
   renderButton = (): React.Element<View> => {
     return (<TouchableHighlight style={styles.button} onPress={this.addAdditionalDueDate}>
               <View style={styles.buttonInnerContainer}>
+                <Image source={Images.add} style={styles.buttonImage} />
                 <Text style={styles.buttonText}>{i18n('Add Due Date')}</Text>
               </View>
             </TouchableHighlight>)
@@ -541,7 +552,11 @@ const styles = StyleSheet.create({
   },
   detailText: {
     fontSize: 16,
-    color: '#008EE2',
+    color: '#2D3B45',
+  },
+  detailTextMissing: {
+    fontSize: 16,
+    color: '#8B969E',
   },
   space: {
     height: 24,
@@ -567,6 +582,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#008EE2',
   },
+  buttonImage: {
+    tintColor: colors.primaryButton,
+    marginRight: 8,
+    height: 18,
+    width: 18,
+  },
   removeButtonContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -576,8 +597,8 @@ const styles = StyleSheet.create({
     paddingTop: 14,
   },
   removeButton: {
-    fontSize: 12,
-    color: 'red',
+    fontSize: 14,
+    color: '#EE0612',
     fontWeight: '500',
   },
   dateEditorContainer: {

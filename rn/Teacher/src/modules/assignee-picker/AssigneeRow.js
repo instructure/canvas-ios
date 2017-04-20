@@ -64,8 +64,8 @@ export default class AssigneeRow extends Component<any, Props, any> {
               <View style={styles.container}>
                 {image}
                 <View style={styles.textContainer}>
-                  <Text>{assignee.name}</Text>
-                  { assignee.info && <Text>{assignee.info}</Text> }
+                  <Text style={styles.assigneeName}>{assignee.name}</Text>
+                  { assignee.info && <Text style={styles.assigneeInfo}>{assignee.info}</Text> }
                 </View>
                 { this.props.onDelete && (<View style={styles.deleteButtonContainer}>
                                             <Button onPress={this.onDelete} style={styles.deleteButton}>
@@ -95,6 +95,14 @@ const styles = StyleSheet.create({
   textContainer: {
     flexDirection: 'column',
     justifyContent: 'center',
+  },
+  assigneeName: {
+    fontSize: 16,
+    color: '#2D3B45',
+  },
+  assigneeInfo: {
+    fontSize: 14,
+    color: '#2D3B45',
   },
   imageContainer: {
     height: 40,

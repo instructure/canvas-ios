@@ -281,6 +281,9 @@
     "message": "No submission yet",
     "description": "No submission from the student for the given assignment"
   },
+  "none_3b5e34d2": {
+    "message": "None"
+  },
   "none_9b6c9bec": {
     "message": "none",
     "description": "assignment submission type"

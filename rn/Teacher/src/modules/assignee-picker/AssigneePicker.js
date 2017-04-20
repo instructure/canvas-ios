@@ -49,11 +49,25 @@ export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
 
   constructor (props: AssigneePickerProps) {
     super(props)
-
     props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
     this.state = {
       selected: props.assignees || [],
     }
+  }
+
+  componentWillReceiveProps = (props: AssigneePickerProps) => {
+    const assignees = props.assignees || []
+    const selected = this.state.selected.map((item) => {
+      const previous = find(assignees, { id: item.id })
+      if (previous) {
+        Object.assign(item, previous)
+      }
+      return item
+    })
+
+    const newAssignees = assignees.filter((a) => !find(selected, { id: a.id }))
+
+    this.setState({ selected: [...selected, ...newAssignees] })
   }
 
   componentDidMount () {
@@ -97,13 +111,14 @@ export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
 
   handleSelectedAssignee = (assignee: Assignee) => {
     // If trying to add the same assignee twice, DENY
-    const existing = find(this.state.selected, (item) => assignee.id === item.id)
-    if (existing) return
+    const existing = find(this.state.selected, { id: assignee.id })
+    if (!existing) {
+      const selected = [...this.state.selected, assignee]
+      this.setState({
+        selected,
+      })
+    }
 
-    const selected = [...this.state.selected, assignee]
-    this.setState({
-      selected,
-    })
     this.props.navigator.dismissModal()
   }
 
@@ -159,11 +174,13 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.primaryButton,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
   buttonImage: {
     tintColor: colors.primaryButton,
     marginRight: 8,
+    height: 18,
+    width: 18,
   },
 })
 

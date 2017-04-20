@@ -146,6 +146,12 @@ exports[`render correctly 1`] = `
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  }
+                }
               >
                 Everyone
               </Text>
@@ -240,6 +246,12 @@ exports[`render correctly 1`] = `
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  }
+                }
               >
                 the section 1
               </Text>
@@ -247,6 +259,12 @@ exports[`render correctly 1`] = `
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 14,
+                  }
+                }
               >
                 undefined students
               </Text>
@@ -337,6 +355,12 @@ exports[`render correctly 1`] = `
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  }
+                }
               >
                 Donald Trump
               </Text>
@@ -344,6 +368,13 @@ exports[`render correctly 1`] = `
           </View>
         </View>
       </View>
+      <View
+        style={
+          Object {
+            "height": 0,
+          }
+        }
+      />
     </View>
   </RCTScrollView>
 </View>

@@ -97,8 +97,8 @@ exports[`render correctly 1`] = `
               ellipsizeMode="tail"
               style={
                 Object {
-                  "color": "red",
-                  "fontSize": 12,
+                  "color": "#EE0612",
+                  "fontSize": 14,
                   "fontWeight": "500",
                 }
               }
@@ -166,19 +166,47 @@ exports[`render correctly 1`] = `
         >
           Assignees
         </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
           style={
             Object {
-              "color": "#008EE2",
-              "fontSize": 16,
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
             }
           }
         >
-          Everyone
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              }
+            }
+          >
+            Everyone
+          </Text>
+          <View
+            style={
+              Object {
+                "alignSelf": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#c7c7cc",
+                "borderRightWidth": 2,
+                "borderTopWidth": 2,
+                "height": 10,
+                "marginLeft": 7,
+                "transform": Array [
+                  Object {
+                    "rotate": "45deg",
+                  },
+                ],
+                "width": 10,
+              }
+            }
+          />
+        </View>
       </View>
     </View>
     <View
@@ -253,7 +281,7 @@ exports[`render correctly 1`] = `
             ellipsizeMode="tail"
             style={
               Object {
-                "color": "#008EE2",
+                "color": "#2D3B45",
                 "fontSize": 16,
               }
             }
@@ -366,7 +394,7 @@ exports[`render correctly 1`] = `
             ellipsizeMode="tail"
             style={
               Object {
-                "color": "#008EE2",
+                "color": "#2D3B45",
                 "fontSize": 16,
               }
             }
@@ -479,7 +507,7 @@ exports[`render correctly 1`] = `
             ellipsizeMode="tail"
             style={
               Object {
-                "color": "#008EE2",
+                "color": "#2D3B45",
                 "fontSize": 16,
               }
             }
@@ -573,6 +601,17 @@ exports[`render correctly 1`] = `
         }
       }
     >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 18,
+            "marginRight": 8,
+            "tintColor": "#368BD8",
+            "width": 18,
+          }
+        }
+      />
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -697,8 +736,8 @@ exports[`render correctly with overide 1`] = `
               ellipsizeMode="tail"
               style={
                 Object {
-                  "color": "red",
-                  "fontSize": 12,
+                  "color": "#EE0612",
+                  "fontSize": 14,
                   "fontWeight": "500",
                 }
               }
@@ -766,17 +805,47 @@ exports[`render correctly with overide 1`] = `
         >
           Assignees
         </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
           style={
             Object {
-              "color": "#008EE2",
-              "fontSize": 16,
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
             }
           }
-        />
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#8B969E",
+                "fontSize": 16,
+              }
+            }
+          >
+            None
+          </Text>
+          <View
+            style={
+              Object {
+                "alignSelf": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#c7c7cc",
+                "borderRightWidth": 2,
+                "borderTopWidth": 2,
+                "height": 10,
+                "marginLeft": 7,
+                "transform": Array [
+                  Object {
+                    "rotate": "45deg",
+                  },
+                ],
+                "width": 10,
+              }
+            }
+          />
+        </View>
       </View>
     </View>
     <View
@@ -851,7 +920,7 @@ exports[`render correctly with overide 1`] = `
             ellipsizeMode="tail"
             style={
               Object {
-                "color": "#008EE2",
+                "color": "#2D3B45",
                 "fontSize": 16,
               }
             }
@@ -964,7 +1033,7 @@ exports[`render correctly with overide 1`] = `
             ellipsizeMode="tail"
             style={
               Object {
-                "color": "#008EE2",
+                "color": "#2D3B45",
                 "fontSize": 16,
               }
             }
@@ -1077,7 +1146,7 @@ exports[`render correctly with overide 1`] = `
             ellipsizeMode="tail"
             style={
               Object {
-                "color": "#008EE2",
+                "color": "#2D3B45",
                 "fontSize": 16,
               }
             }
@@ -1171,6 +1240,17 @@ exports[`render correctly with overide 1`] = `
         }
       }
     >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 18,
+            "marginRight": 8,
+            "tintColor": "#368BD8",
+            "width": 18,
+          }
+        }
+      />
       <Text
         accessible={true}
         allowFontScaling={true}

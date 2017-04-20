@@ -8,6 +8,8 @@ import { AssigneePicker } from '../AssigneePicker'
 import { type AssigneePickerProps } from '../map-state-to-props'
 import renderer from 'react-test-renderer'
 import { registerScreens } from '../../../../src/routing/register-screens'
+import setProps from '../../../../test/helpers/setProps'
+import { cloneDeep } from 'lodash'
 
 registerScreens({})
 
@@ -31,6 +33,24 @@ test('render correctly', () => {
     <AssigneePicker {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+test('new assignee props should update correctly', () => {
+  const props = cloneDeep(defaultProps)
+  const assignees = cloneDeep(props.assignees)
+  let picker = renderer.create(
+    <AssigneePicker {...props} />
+  )
+
+  assignees[0].name = 'Solaire of Astora'
+  delete assignees[1]
+  assignees.push(template.sectionAssignee())
+  assignees.push(template.groupAssignee())
+  setProps(picker, { assignees })
+  expect(picker.getInstance().state.selected[0]).toMatchObject({
+    name: 'Solaire of Astora',
+  })
+  expect(picker.getInstance().state.selected).toHaveLength(4)
 })
 
 test('cancel', () => {

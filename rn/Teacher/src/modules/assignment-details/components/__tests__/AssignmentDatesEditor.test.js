@@ -52,7 +52,7 @@ describe('function tests', () => {
     expect(AssignmentDatesEditor.assigneesFromDate(studentIds)).toMatchObject([{
       dataId: '34234',
       id: 'student-34234',
-      name: 'student',
+      name: '--',
       type: 'student',
     }])
 
@@ -66,7 +66,7 @@ describe('function tests', () => {
     expect(AssignmentDatesEditor.assigneesFromDate(section)).toMatchObject([{
       dataId: '23432',
       id: 'section-23432',
-      name: 'Section',
+      name: '--',
       type: 'section',
     }])
 
@@ -80,7 +80,7 @@ describe('function tests', () => {
     expect(AssignmentDatesEditor.assigneesFromDate(group)).toMatchObject([{
       dataId: '23432',
       id: 'group-23432',
-      name: 'Group',
+      name: '--',
       type: 'group',
     }])
   })
@@ -210,6 +210,9 @@ describe('function tests', () => {
       course_section_id: '1234',
       valid: true,
     }])
+
+    // Anytime there are updated dates from assignees, the ids should be different
+    expect(result[0].id).not.toEqual(date.id)
 
     result = AssignmentDatesEditor.updateDateWithAssignees(date, [group])
     expect(result).toMatchObject([{

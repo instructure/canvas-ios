@@ -519,6 +519,17 @@ exports[`error occurs when done pressed 1`] = `
               }
             }
           >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 18,
+                  "marginRight": 8,
+                  "tintColor": "#368BD8",
+                  "width": 18,
+                }
+              }
+            />
             <Text
               accessible={true}
               allowFontScaling={true}
@@ -1068,6 +1079,17 @@ exports[`modal saving is shown on assignment update 1`] = `
               }
             }
           >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 18,
+                  "marginRight": 8,
+                  "tintColor": "#368BD8",
+                  "width": 18,
+                }
+              }
+            />
             <Text
               accessible={true}
               allowFontScaling={true}
@@ -1617,6 +1639,17 @@ exports[`renders 1`] = `
               }
             }
           >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 18,
+                  "marginRight": 8,
+                  "tintColor": "#368BD8",
+                  "width": 18,
+                }
+              }
+            />
             <Text
               accessible={true}
               allowFontScaling={true}

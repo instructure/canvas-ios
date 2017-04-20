@@ -81,6 +81,12 @@ exports[`render correctly 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          }
+        }
       >
         Bill Murray
       </Text>
@@ -88,6 +94,12 @@ exports[`render correctly 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 14,
+          }
+        }
       >
         john@schimdt.com
       </Text>
@@ -181,6 +193,12 @@ exports[`render correctly without image url 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          }
+        }
       >
         Bill Murray
       </Text>
@@ -188,6 +206,12 @@ exports[`render correctly without image url 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 14,
+          }
+        }
       >
         john@schimdt.com
       </Text>
