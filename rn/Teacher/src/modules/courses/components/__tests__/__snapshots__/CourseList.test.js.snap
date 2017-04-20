@@ -208,12 +208,23 @@ exports[`render courses 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
-                  Object {
-                    "color": "#112233",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#112233",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 Learn React Native
@@ -224,12 +235,24 @@ exports[`render courses 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 rn 101
@@ -459,12 +482,23 @@ exports[`render courses pending 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
-                  Object {
-                    "color": "#112233",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#112233",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 Learn React Native
@@ -475,12 +509,24 @@ exports[`render courses pending 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 rn 101
@@ -710,12 +756,23 @@ exports[`render narrow width 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
-                  Object {
-                    "color": "#112233",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#112233",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 Learn React Native
@@ -726,12 +783,24 @@ exports[`render narrow width 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 rn 101
@@ -961,12 +1030,23 @@ exports[`render wide width 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
-                  Object {
-                    "color": "#112233",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#112233",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 Learn React Native
@@ -977,12 +1057,24 @@ exports[`render wide width 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 rn 101

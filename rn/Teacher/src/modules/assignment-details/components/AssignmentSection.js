@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react'
-import { Heading2 } from '../../../common/text'
+import { Text } from '../../../common/text'
 import color from '../../../common/colors'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 
@@ -34,7 +34,7 @@ export default class AssignmentSection extends Component {
                 {
                   this.props.image && <Image source={this.props.image} style={assignmentSectionStyles.image} />
                 }
-                <Heading2 style={headerStyle}>{this.props.title}</Heading2>
+                <Text style={headerStyle}>{this.props.title}</Text>
               </View>
               {this.props.children}
             </View>
@@ -74,6 +74,7 @@ const assignmentSectionStyles = StyleSheet.create({
   },
   header: {
     color: color.grey4,
+    fontWeight: '500',
     fontSize: 16,
     paddingTop: 2,
   },

@@ -17,14 +17,12 @@ import React, { Component } from 'react'
 
 import {
   View,
-  Text,
   StyleSheet,
 } from 'react-native'
 import i18n from 'format-message'
-
 import AssignmentDates from '../../../common/AssignmentDates'
 import { formattedDueDate } from '../../../common/formatters'
-import colors from '../../../common/colors'
+import { Text } from '../../../common/text'
 
 type Props = {
   assignment: Assignment,
@@ -136,12 +134,8 @@ const styles = StyleSheet.create({
     paddingTop: 2,
   },
   descriptionText: {
-    color: colors.darkText,
     fontWeight: '600',
-    fontSize: 16,
   },
   infoText: {
-    color: colors.darkText,
-    fontSize: 16,
   },
 })

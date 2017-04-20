@@ -6,7 +6,6 @@ import React, { Component, Element } from 'react'
 import {
   View,
   TouchableHighlight,
-  Text,
   StyleSheet,
 } from 'react-native'
 
@@ -14,6 +13,7 @@ import i18n from 'format-message'
 import { formattedDueDateWithStatus } from '../../../common/formatters'
 import Icon from './AssignmentListRowIcon'
 import AssignmentDates from '../../../common/AssignmentDates'
+import { Text } from '../../../common/text'
 
 type Props = {
   assignment: Assignment,
@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    fontSize: 16,
     fontWeight: '600',
     color: '#2D3B45',
   },

@@ -50,8 +50,7 @@ const internalStyle = StyleSheet.create({
   },
   text: {
     marginLeft: 5,
-    fontFamily: '.SFUIDisplay-medium',
-    fontSize: 16,
+    fontWeight: '500',
     color: colors.grey4,
   },
   publishedTextStyle: { color: colors.checkmarkGreen },

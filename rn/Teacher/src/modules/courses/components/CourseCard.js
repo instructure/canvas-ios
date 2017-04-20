@@ -5,11 +5,10 @@ import ReactNative, {
   View,
   StyleSheet,
   Image,
-  Text,
   TouchableHighlight,
 } from 'react-native'
 import i18n from 'format-message'
-
+import { Text } from '../../../common/text'
 import Images from '../../../images'
 
 type Props = {
@@ -154,14 +153,13 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: 8,
-    fontSize: 16,
     fontWeight: '600',
   },
   code: {
     fontSize: 12,
     color: '#8B969D',
-    fontWeight: '600',
     marginTop: 2,
+    fontWeight: '600',
   },
 })
 

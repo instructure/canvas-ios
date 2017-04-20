@@ -6,7 +6,6 @@ import React, { Component } from 'react'
 import {
   View,
   Image,
-  Text,
   TouchableHighlight,
   StyleSheet,
 } from 'react-native'
@@ -15,6 +14,7 @@ import { type Assignee } from './map-state-to-props'
 import Images from '../../images'
 import Button from 'react-native-button'
 import colors from '../../common/colors'
+import { Text } from '../../common/text'
 
 export type Props = {
   assignee: Assignee,
@@ -97,12 +97,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   assigneeName: {
-    fontSize: 16,
     color: '#2D3B45',
+    fontWeight: '600',
   },
   assigneeInfo: {
     fontSize: 14,
-    color: '#2D3B45',
+    color: colors.grey4,
   },
   imageContainer: {
     height: 40,
@@ -127,8 +127,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   altImageText: {
-    fontSize: 16,
-    fontWeight: 'bold',
   },
   deleteButtonContainer: {
     flex: 1,

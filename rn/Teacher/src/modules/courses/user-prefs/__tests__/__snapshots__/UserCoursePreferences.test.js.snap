@@ -79,10 +79,21 @@ exports[`UserCoursePreferences renders 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "fontSize": 16,
-              "fontWeight": "500",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Nickname
@@ -92,11 +103,22 @@ exports[`UserCoursePreferences renders 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#368BD8",
-              "fontSize": 16,
-              "fontWeight": "500",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#368BD8",
+                "fontWeight": "bold",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+            ]
           }
         >
           Learn React Native
@@ -116,12 +138,23 @@ exports[`UserCoursePreferences renders 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "fontSize": 16,
-              "fontWeight": "500",
-              "marginHorizontal": 16,
-              "marginTop": 16,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+                "marginHorizontal": 16,
+                "marginTop": 16,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Color
@@ -131,13 +164,24 @@ exports[`UserCoursePreferences renders 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#8B969E",
-              "fontSize": 14,
-              "fontWeight": "500",
-              "marginHorizontal": 16,
-              "marginTop": 2,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969E",
+                "fontSize": 14,
+                "marginHorizontal": 16,
+                "marginTop": 2,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
           }
         >
           Set this for the default color of the course. This won’t override a personal color setting.

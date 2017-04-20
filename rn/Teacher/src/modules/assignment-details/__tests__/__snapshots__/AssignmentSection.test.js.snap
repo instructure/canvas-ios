@@ -86,13 +86,16 @@ exports[`render 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-medium",
                   "fontSize": 16,
                 },
                 Object {
                   "color": "#8B969E",
                   "fontSize": 16,
+                  "fontWeight": "500",
                   "paddingTop": 2,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-medium",
                 },
               ]
             }
@@ -186,10 +189,12 @@ exports[`render first row 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-medium",
                   "fontSize": 16,
                 },
                 Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
               ]
             }
           />
@@ -286,13 +291,16 @@ exports[`render no title 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-medium",
                   "fontSize": 16,
                 },
                 Object {
                   "color": "#8B969E",
                   "fontSize": 16,
+                  "fontWeight": "500",
                   "paddingTop": 2,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-medium",
                 },
               ]
             }

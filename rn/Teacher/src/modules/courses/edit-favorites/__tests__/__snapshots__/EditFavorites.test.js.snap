@@ -85,11 +85,22 @@ exports[`renders correctly 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "fontSize": 16,
-              "fontWeight": "400",
-              "marginRight": 16,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "500",
+                "marginRight": 16,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
           }
         >
           Learn React Native
@@ -156,11 +167,22 @@ exports[`renders correctly 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "fontSize": 16,
-              "fontWeight": "400",
-              "marginRight": 16,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "500",
+                "marginRight": 16,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
           }
         >
           Learn React Native
@@ -256,11 +278,22 @@ exports[`updates when courses prop changes 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "fontSize": 16,
-              "fontWeight": "400",
-              "marginRight": 16,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "500",
+                "marginRight": 16,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
           }
         >
           Learn React Native
@@ -356,11 +389,22 @@ exports[`updates when courses prop changes 2`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "fontSize": 16,
-              "fontWeight": "400",
-              "marginRight": 16,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "500",
+                "marginRight": 16,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
           }
         >
           Learn React Native

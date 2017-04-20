@@ -7,9 +7,15 @@ import ReactNative, {
   StyleSheet,
 } from 'react-native'
 import colors from './colors'
+import flattenStyle from 'flattenStyle'
+
+const REGULAR_FONT = '.SFUIDisplay'
+export const MEDIUM_FONT: string = '.SFUIDisplay-medium'
+const SEMI_BOLD_FONT = '.SFUIDisplay-semibold'
+export const BOLD_FONT: string = '.SFUIDisplay-bold'
 
 export function Text ({ style, ...props }: Object): ReactNative.Text {
-  let font = fontFamilyFromProps(props)
+  let font = fontFamilyFromStyle(style)
   return <ReactNative.Text style={ [styles.font, styles.text, style, { fontFamily: font }] } {...props} />
 }
 
@@ -26,7 +32,8 @@ export function Paragraph ({ style, ...props }: Object): ReactNative.Text {
 }
 
 export function TextInput ({ style, ...props }: Object): ReactNative.Text {
-  return <ReactNative.TextInput style={[styles.font, styles.textInput, style]} {...props} />
+  let font = fontFamilyFromStyle(style)
+  return <ReactNative.TextInput style={[styles.font, styles.textInput, style, { fontFamily: font }]} {...props} />
 }
 
 export function ModalActivityIndicatorAlertText ({ style, ...props }: Object): ReactNative.Text {
@@ -34,32 +41,36 @@ export function ModalActivityIndicatorAlertText ({ style, ...props }: Object): R
 }
 
 const FontWeight: { [string]: string } = {
-  regular: '.SFUIDisplay',
-  bold: '.SFUIDisplay-medium',        // 500 weight
-  semibold: '.SFUIDisplay-semibold',  // 600 weight
-  '600': '.SFUIDisplay-semibold',
-  '500': '.SFUIDisplay-medium',
+  normal: REGULAR_FONT,
+  bold: BOLD_FONT,            // 700 weight
+  semibold: SEMI_BOLD_FONT,   // 600 weight
+  '700': BOLD_FONT,
+  '600': SEMI_BOLD_FONT,
+  '500': MEDIUM_FONT,
+  '300': REGULAR_FONT,
 }
 
-function fontFamilyFromProps (props: Object): string {
-  let defaultKey = 'regular'
-  let weight = props.fontWeight || defaultKey
+function fontFamilyFromStyle (style: Object): string {
+  let styleObj = flattenStyle(style) || {}
+  let fontWeight = styleObj.fontWeight
+  let defaultKey = 'normal'
+  let weight = fontWeight || defaultKey
   return FontWeight[weight] || FontWeight[defaultKey]
 }
 
 const styles = StyleSheet.create({
   font: {
-    fontFamily: '.SFUIDisplay',
+    fontFamily: REGULAR_FONT,
   },
   h1: {
     fontSize: 20,
     color: colors.darkText,
-    fontFamily: '.SFUIDisplay-semibold',
+    fontFamily: SEMI_BOLD_FONT,
   },
   h2: {
     fontSize: 16,
     color: colors.darkText,
-    fontFamily: '.SFUIDisplay-medium',
+    fontFamily: BOLD_FONT,
   },
   p: {
     fontSize: 16,
@@ -76,6 +87,6 @@ const styles = StyleSheet.create({
   modalActivityIndicatorAlertText: {
     fontSize: 24,
     color: '#fff',
-    fontFamily: '.SFUIDisplay-semibold',
+    fontFamily: SEMI_BOLD_FONT,
   },
 })

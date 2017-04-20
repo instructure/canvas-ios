@@ -63,11 +63,12 @@ exports[`render 0 submissions 1`] = `
           Object {
             "flex": 1,
             "fontSize": 12,
+            "fontWeight": "500",
             "marginTop": 8,
             "textAlign": "center",
           },
           Object {
-            "fontFamily": ".SFUIDisplay",
+            "fontFamily": ".SFUIDisplay-medium",
           },
         ]
       }
@@ -141,11 +142,12 @@ exports[`render 1`] = `
           Object {
             "flex": 1,
             "fontSize": 12,
+            "fontWeight": "500",
             "marginTop": 8,
             "textAlign": "center",
           },
           Object {
-            "fontFamily": ".SFUIDisplay",
+            "fontFamily": ".SFUIDisplay-medium",
           },
         ]
       }
@@ -219,11 +221,12 @@ exports[`render multiple data points  1`] = `
           Object {
             "flex": 1,
             "fontSize": 12,
+            "fontWeight": "500",
             "marginTop": 8,
             "textAlign": "center",
           },
           Object {
-            "fontFamily": ".SFUIDisplay",
+            "fontFamily": ".SFUIDisplay-medium",
           },
         ]
       }
@@ -280,11 +283,12 @@ exports[`render multiple data points  1`] = `
           Object {
             "flex": 1,
             "fontSize": 12,
+            "fontWeight": "500",
             "marginTop": 8,
             "textAlign": "center",
           },
           Object {
-            "fontFamily": ".SFUIDisplay",
+            "fontFamily": ".SFUIDisplay-medium",
           },
         ]
       }
@@ -341,11 +345,12 @@ exports[`render multiple data points  1`] = `
           Object {
             "flex": 1,
             "fontSize": 12,
+            "fontWeight": "500",
             "marginTop": 8,
             "textAlign": "center",
           },
           Object {
-            "fontFamily": ".SFUIDisplay",
+            "fontFamily": ".SFUIDisplay-medium",
           },
         ]
       }

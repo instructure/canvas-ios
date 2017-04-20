@@ -64,17 +64,29 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
         style={
           Array [
             Object {
-              "color": "#ff0ee8",
-              "fontSize": 14,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "fontFamily": ".SFUIDisplay-medium",
+              "color": "#2D3B45",
+              "fontSize": 16,
             },
+            Array [
+              Object {
+                "color": "#ff0ee8",
+                "fontSize": 14,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+              Object {
+                "color": "#ff0ee8",
+              },
+              Object {
+                "marginBottom": 1,
+              },
+            ],
             Object {
-              "color": "#ff0ee8",
-            },
-            Object {
-              "marginBottom": 1,
+              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -270,11 +282,24 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "color": "#73818C",
-                "fontWeight": "600",
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
             Learn React Native
@@ -380,12 +405,23 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 16,
-                        "fontWeight": "600",
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "flex": 1,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
                     }
                   >
                     learn to write code
@@ -395,11 +431,23 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                     allowFontScaling={true}
                     ellipsizeMode="tail"
                     style={
-                      Object {
-                        "color": "#8B969E",
-                        "fontSize": 14,
-                        "marginTop": 2,
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 14,
+                          "marginTop": 2,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
                     }
                   >
                     Due May 31, 2017 at 10:59 PM
@@ -481,17 +529,29 @@ exports[`applyFilter will apply a new filter 1`] = `
         style={
           Array [
             Object {
-              "color": "#ff0ee8",
-              "fontSize": 14,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "fontFamily": ".SFUIDisplay-medium",
+              "color": "#2D3B45",
+              "fontSize": 16,
             },
+            Array [
+              Object {
+                "color": "#ff0ee8",
+                "fontSize": 14,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+              Object {
+                "color": "#ff0ee8",
+              },
+              Object {
+                "marginBottom": 1,
+              },
+            ],
             Object {
-              "color": "#ff0ee8",
-            },
-            Object {
-              "marginBottom": 1,
+              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -687,11 +747,24 @@ exports[`applyFilter will apply a new filter 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "color": "#73818C",
-                "fontWeight": "600",
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
             Learn React Native
@@ -797,12 +870,23 @@ exports[`applyFilter will apply a new filter 1`] = `
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 16,
-                        "fontWeight": "600",
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "flex": 1,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
                     }
                   >
                     learn to write code
@@ -812,11 +896,23 @@ exports[`applyFilter will apply a new filter 1`] = `
                     allowFontScaling={true}
                     ellipsizeMode="tail"
                     style={
-                      Object {
-                        "color": "#8B969E",
-                        "fontSize": 14,
-                        "marginTop": 2,
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 14,
+                          "marginTop": 2,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
                     }
                   >
                     Due May 31, 2017 at 10:59 PM
@@ -1068,11 +1164,24 @@ exports[`filter button only shows when there are grading periods 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "color": "#73818C",
-                "fontWeight": "600",
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
             Learn React Native
@@ -1178,12 +1287,23 @@ exports[`filter button only shows when there are grading periods 1`] = `
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 16,
-                        "fontWeight": "600",
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "flex": 1,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
                     }
                   >
                     learn to write code
@@ -1193,11 +1313,23 @@ exports[`filter button only shows when there are grading periods 1`] = `
                     allowFontScaling={true}
                     ellipsizeMode="tail"
                     style={
-                      Object {
-                        "color": "#8B969E",
-                        "fontSize": 14,
-                        "marginTop": 2,
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 14,
+                          "marginTop": 2,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
                     }
                   >
                     Due May 31, 2017 at 10:59 PM
@@ -1279,17 +1411,29 @@ exports[`renders correctly 1`] = `
         style={
           Array [
             Object {
-              "color": "#ff0ee8",
-              "fontSize": 14,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "fontFamily": ".SFUIDisplay-medium",
+              "color": "#2D3B45",
+              "fontSize": 16,
             },
+            Array [
+              Object {
+                "color": "#ff0ee8",
+                "fontSize": 14,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+              Object {
+                "color": "#ff0ee8",
+              },
+              Object {
+                "marginBottom": 1,
+              },
+            ],
             Object {
-              "color": "#ff0ee8",
-            },
-            Object {
-              "marginBottom": 1,
+              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -1485,11 +1629,24 @@ exports[`renders correctly 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "color": "#73818C",
-                "fontWeight": "600",
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
             Learn React Native
@@ -1595,12 +1752,23 @@ exports[`renders correctly 1`] = `
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 16,
-                        "fontWeight": "600",
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "flex": 1,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
                     }
                   >
                     learn to write code
@@ -1610,11 +1778,23 @@ exports[`renders correctly 1`] = `
                     allowFontScaling={true}
                     ellipsizeMode="tail"
                     style={
-                      Object {
-                        "color": "#8B969E",
-                        "fontSize": 14,
-                        "marginTop": 2,
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 14,
+                          "marginTop": 2,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
                     }
                   >
                     Due May 31, 2017 at 10:59 PM
@@ -1696,17 +1876,29 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
         style={
           Array [
             Object {
-              "color": "#ff0ee8",
-              "fontSize": 14,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "fontFamily": ".SFUIDisplay-medium",
+              "color": "#2D3B45",
+              "fontSize": 16,
             },
+            Array [
+              Object {
+                "color": "#ff0ee8",
+                "fontSize": 14,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+              Object {
+                "color": "#ff0ee8",
+              },
+              Object {
+                "marginBottom": 1,
+              },
+            ],
             Object {
-              "color": "#ff0ee8",
-            },
-            Object {
-              "marginBottom": 1,
+              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -1902,11 +2094,24 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "color": "#73818C",
-                "fontWeight": "600",
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
             Learn React Native
@@ -2012,12 +2217,23 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 16,
-                        "fontWeight": "600",
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "flex": 1,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
                     }
                   >
                     learn to write code
@@ -2027,11 +2243,23 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                     allowFontScaling={true}
                     ellipsizeMode="tail"
                     style={
-                      Object {
-                        "color": "#8B969E",
-                        "fontSize": 14,
-                        "marginTop": 2,
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 14,
+                          "marginTop": 2,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
                     }
                   >
                     Due May 31, 2017 at 10:59 PM

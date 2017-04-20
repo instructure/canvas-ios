@@ -33,7 +33,7 @@ exports[`renders heading2 correctly 1`] = `
       },
       Object {
         "color": "#2D3B45",
-        "fontFamily": ".SFUIDisplay-medium",
+        "fontFamily": ".SFUIDisplay-bold",
         "fontSize": 16,
       },
       undefined,
@@ -107,36 +107,11 @@ exports[`renders text correctly 1`] = `
 />
 `;
 
-exports[`renders text with bad fontWeight input 1`] = `
-<Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
-  fontWeight="foobar"
-  style={
-    Array [
-      Object {
-        "fontFamily": ".SFUIDisplay",
-      },
-      Object {
-        "color": "#2D3B45",
-        "fontSize": 16,
-      },
-      undefined,
-      Object {
-        "fontFamily": ".SFUIDisplay",
-      },
-    ]
-  }
-/>
-`;
-
 exports[`renders text with fontWeight bold 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"
-  fontWeight="bold"
   style={
     Array [
       Object {
@@ -146,9 +121,11 @@ exports[`renders text with fontWeight bold 1`] = `
         "color": "#2D3B45",
         "fontSize": 16,
       },
-      undefined,
       Object {
-        "fontFamily": ".SFUIDisplay-medium",
+        "fontWeight": "bold",
+      },
+      Object {
+        "fontFamily": ".SFUIDisplay-bold",
       },
     ]
   }
@@ -160,7 +137,6 @@ exports[`renders text with fontWeight semibold 1`] = `
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"
-  fontWeight="semibold"
   style={
     Array [
       Object {
@@ -170,7 +146,9 @@ exports[`renders text with fontWeight semibold 1`] = `
         "color": "#2D3B45",
         "fontSize": 16,
       },
-      undefined,
+      Object {
+        "fontWeight": "600",
+      },
       Object {
         "fontFamily": ".SFUIDisplay-semibold",
       },
@@ -190,6 +168,9 @@ exports[`renders textInput correctly 1`] = `
         "fontSize": 17,
       },
       undefined,
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
     ]
   }
 />

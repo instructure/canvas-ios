@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import {
   View,
-  Text,
   Image,
   Button,
   NativeModules,
   StyleSheet,
 } from 'react-native'
 import i18n from 'format-message'
+import { Text } from '../../common/text'
 
 import { getSession } from '../../api/session'
 

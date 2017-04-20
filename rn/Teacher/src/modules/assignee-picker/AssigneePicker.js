@@ -6,7 +6,6 @@ import React, { Component } from 'react'
 import {
   View,
   ScrollView,
-  Text,
   Image,
   TouchableHighlight,
   StyleSheet,
@@ -23,6 +22,7 @@ import { pickerMapStateToProps, type AssigneePickerProps, type Assignee } from '
 import Actions from './actions.js'
 import EnrollmentActions from '../enrollments/actions'
 import UserActions from '../users/actions'
+import { Text } from '../../common/text'
 
 export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
 

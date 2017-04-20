@@ -4,7 +4,6 @@ import React, { Component, PropTypes } from 'react'
 import {
   Dimensions,
   View,
-  Text,
   Image,
   StyleSheet,
 } from 'react-native'
@@ -17,10 +16,10 @@ import { connect } from 'react-redux'
 import CourseList from '../components/CourseList'
 import NoCourses from '../components/NoCourses'
 import { route } from '../../../routing'
-import colors from '../../../common/colors'
 import type { CourseProps } from '../course-prop-types'
 import Images from '../../../images/'
 import refresh from '../../../utils/refresh'
+import { Heading1 } from '../../../common/text'
 
 const { width: deviceWidth } = Dimensions.get('window')
 
@@ -116,14 +115,14 @@ export class FavoritedCourseList extends Component {
       <View style={styles.header}>
         <View style={styles.headerTextWrapper}>
           <Image source={Images.starFilled} />
-          <Text style={styles.headerText}>
+          <Heading1 style={styles.headerText}>
             {i18n({
               default: 'Courses',
               description: 'The header for the favorited courses list',
             })}
-          </Text>
+          </Heading1>
         </View>
-        <LinkButton onPress={this.goToAllCourses} testID='course-list.see-all-btn'>
+        <LinkButton style={styles.seeAll} onPress={this.goToAllCourses} testID='course-list.see-all-btn'>
             {i18n({
               default: 'See All',
               description: 'Button to transition from favorited courses list to all courses list',
@@ -182,14 +181,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerText: {
-    fontSize: 20,
-    fontWeight: '600',
     marginLeft: 6,
-    color: colors.darkText,
   },
   seeAll: {
-    fontSize: 14,
-    color: '#6495ed',
     fontWeight: '500',
   },
 })

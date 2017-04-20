@@ -204,8 +204,7 @@ const style = StyleSheet.create({
     marginRight: 40,
   },
   points: {
-    fontSize: 16,
-    fontFamily: '.SFUIDisplay-medium',
+    fontWeight: '500',
     color: colors.grey4,
   },
 })

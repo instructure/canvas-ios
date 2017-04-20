@@ -4,12 +4,12 @@ import React, { Component } from 'react'
 import ReactNative, {
   TouchableHighlight,
   View,
-  Text,
   StyleSheet,
   Image,
 } from 'react-native'
 import colors from '../../../../common/colors'
 import Images from '../../../../images/'
+import { Text } from '../../../../common/text'
 
 type Props = {
   course: Course,
@@ -47,9 +47,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   courseName: {
-    fontSize: 16,
-    fontWeight: '400',
     marginRight: 16,
+    fontWeight: '500',
   },
   favoritesImage: {
     marginRight: 10,

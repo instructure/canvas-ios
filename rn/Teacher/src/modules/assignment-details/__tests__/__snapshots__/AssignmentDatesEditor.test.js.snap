@@ -96,11 +96,23 @@ exports[`render correctly 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#EE0612",
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#EE0612",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
               }
             >
               Remove
@@ -157,11 +169,21 @@ exports[`render correctly 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Assignees
@@ -179,10 +201,19 @@ exports[`render correctly 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             Everyone
@@ -257,11 +288,21 @@ exports[`render correctly 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Due Date
@@ -280,10 +321,19 @@ exports[`render correctly 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -370,11 +420,21 @@ exports[`render correctly 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available From
@@ -393,10 +453,19 @@ exports[`render correctly 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             Mar 17, 2017 at 12:00 AM
@@ -483,11 +552,21 @@ exports[`render correctly 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available To
@@ -506,10 +585,19 @@ exports[`render correctly 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -617,11 +705,23 @@ exports[`render correctly 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#008EE2",
-            "fontSize": 16,
-            "fontWeight": "600",
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#008EE2",
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         Add Due Date
@@ -735,11 +835,23 @@ exports[`render correctly with overide 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#EE0612",
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#EE0612",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
               }
             >
               Remove
@@ -796,11 +908,21 @@ exports[`render correctly with overide 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Assignees
@@ -818,10 +940,21 @@ exports[`render correctly with overide 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#8B969E",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#8B969E",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             None
@@ -896,11 +1029,21 @@ exports[`render correctly with overide 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Due Date
@@ -919,10 +1062,19 @@ exports[`render correctly with overide 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -1009,11 +1161,21 @@ exports[`render correctly with overide 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available From
@@ -1032,10 +1194,19 @@ exports[`render correctly with overide 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             Mar 17, 2017 at 12:00 AM
@@ -1122,11 +1293,21 @@ exports[`render correctly with overide 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available To
@@ -1145,10 +1326,19 @@ exports[`render correctly with overide 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -1256,11 +1446,23 @@ exports[`render correctly with overide 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#008EE2",
-            "fontSize": 16,
-            "fontWeight": "600",
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#008EE2",
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         Add Due Date

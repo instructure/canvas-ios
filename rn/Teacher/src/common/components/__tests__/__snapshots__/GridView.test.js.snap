@@ -68,6 +68,21 @@ exports[`renders correctly 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              undefined,
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
         >
           a
         </Text>
@@ -75,6 +90,21 @@ exports[`renders correctly 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              undefined,
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
         >
           b
         </Text>
@@ -152,6 +182,21 @@ exports[`renders correctly with placeHolder 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              undefined,
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
         >
           a
         </Text>
@@ -238,6 +283,21 @@ exports[`renders correctly with sections 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              undefined,
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
         >
           a
         </Text>
@@ -245,6 +305,21 @@ exports[`renders correctly with sections 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              undefined,
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
         >
           b
         </Text>
@@ -264,6 +339,21 @@ exports[`renders correctly with sections 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              undefined,
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
         >
           c
         </Text>
@@ -352,6 +442,21 @@ exports[`renders correctly without sections 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              undefined,
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
         >
           a
           b
@@ -361,6 +466,21 @@ exports[`renders correctly without sections 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              undefined,
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
         >
           x
           y
@@ -439,6 +559,21 @@ exports[`updates list when data prop changes 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              undefined,
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
         >
           data changed
         </Text>
@@ -519,6 +654,21 @@ exports[`updates list when data prop changes with sections 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              undefined,
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
         >
           data changed with sections
         </Text>

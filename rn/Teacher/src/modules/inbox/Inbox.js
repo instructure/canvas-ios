@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import {
   View,
-  Text,
 } from 'react-native'
 import i18n from 'format-message'
+import { Text } from '../../common/text'
 
 export default class Inbox extends Component {
 

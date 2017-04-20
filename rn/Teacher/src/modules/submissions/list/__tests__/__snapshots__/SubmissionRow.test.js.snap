@@ -62,12 +62,24 @@ exports[`excused row renders correctly 1`] = `
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
-            Object {
-              "color": "#2D3B45",
-              "flex": 1,
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#2D3B45",
+                "flex": 1,
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Green Latern
@@ -79,11 +91,23 @@ exports[`excused row renders correctly 1`] = `
           style={
             Array [
               Object {
-                "fontSize": 14,
-                "paddingTop": 2,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "color": "#EE0612",
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "fontSize": 14,
+                  "paddingTop": 2,
+                },
+                Object {
+                  "color": "#EE0612",
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -98,11 +122,23 @@ exports[`excused row renders correctly 1`] = `
         style={
           Array [
             Object {
-              "color": "#368BD8",
-              "fontSize": 14,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "alignSelf": "center",
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#368BD8",
+                "fontSize": 14,
+              },
+              Object {
+                "alignSelf": "center",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -195,12 +231,24 @@ exports[`late graded row renders correctly 1`] = `
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
-            Object {
-              "color": "#2D3B45",
-              "flex": 1,
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#2D3B45",
+                "flex": 1,
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Green Latern
@@ -212,11 +260,23 @@ exports[`late graded row renders correctly 1`] = `
           style={
             Array [
               Object {
-                "fontSize": 14,
-                "paddingTop": 2,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "color": "#FC5E13",
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "fontSize": 14,
+                  "paddingTop": 2,
+                },
+                Object {
+                  "color": "#FC5E13",
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -231,11 +291,23 @@ exports[`late graded row renders correctly 1`] = `
         style={
           Array [
             Object {
-              "color": "#368BD8",
-              "fontSize": 14,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "alignSelf": "center",
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#368BD8",
+                "fontSize": 14,
+              },
+              Object {
+                "alignSelf": "center",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -328,12 +400,24 @@ exports[`missing ungraded row renders correctly 1`] = `
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
-            Object {
-              "color": "#2D3B45",
-              "flex": 1,
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#2D3B45",
+                "flex": 1,
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Green Latern
@@ -345,11 +429,23 @@ exports[`missing ungraded row renders correctly 1`] = `
           style={
             Array [
               Object {
-                "fontSize": 14,
-                "paddingTop": 2,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "color": "#EE0612",
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "fontSize": 14,
+                  "paddingTop": 2,
+                },
+                Object {
+                  "color": "#EE0612",
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -443,12 +539,24 @@ exports[`submitted ungraded row renders correctly 1`] = `
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
-            Object {
-              "color": "#2D3B45",
-              "flex": 1,
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#2D3B45",
+                "flex": 1,
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Green Latern
@@ -460,11 +568,23 @@ exports[`submitted ungraded row renders correctly 1`] = `
           style={
             Array [
               Object {
-                "fontSize": 14,
-                "paddingTop": 2,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "color": "#07AF1F",
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "fontSize": 14,
+                  "paddingTop": 2,
+                },
+                Object {
+                  "color": "#07AF1F",
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -480,23 +600,35 @@ exports[`submitted ungraded row renders correctly 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
-              "borderRadius": 9,
-              "borderWidth": 1,
-              "fontSize": 11,
-              "fontWeight": "600",
-              "overflow": "hidden",
-              "paddingBottom": 0,
-              "paddingLeft": 6,
-              "paddingRight": 6,
-              "paddingTop": 3,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "borderColor": "#368BD8",
-              "color": "#368BD8",
+              "color": "#2D3B45",
+              "fontSize": 16,
             },
+            Array [
+              Object {
+                "backgroundColor": "white",
+                "borderRadius": 9,
+                "borderWidth": 1,
+                "fontSize": 11,
+                "fontWeight": "500",
+                "overflow": "hidden",
+                "paddingBottom": 0,
+                "paddingLeft": 6,
+                "paddingRight": 6,
+                "paddingTop": 3,
+              },
+              Object {
+                "borderColor": "#368BD8",
+                "color": "#368BD8",
+              },
+              Object {
+                "alignSelf": "center",
+              },
+            ],
             Object {
-              "alignSelf": "center",
+              "fontFamily": ".SFUIDisplay-medium",
             },
           ]
         }
@@ -589,12 +721,24 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
-            Object {
-              "color": "#2D3B45",
-              "flex": 1,
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#2D3B45",
+                "flex": 1,
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Green Latern
@@ -606,11 +750,23 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
           style={
             Array [
               Object {
-                "fontSize": 14,
-                "paddingTop": 2,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "color": "#8B969E",
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "fontSize": 14,
+                  "paddingTop": 2,
+                },
+                Object {
+                  "color": "#8B969E",
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay",
               },
             ]
           }

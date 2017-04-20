@@ -6,7 +6,6 @@ import React, { Component } from 'react'
 
 import {
   View,
-  Text,
   TouchableHighlight,
   TouchableOpacity,
   StyleSheet,
@@ -23,6 +22,7 @@ import { route } from '../../../routing'
 import { type Assignee } from '../../assignee-picker/map-state-to-props'
 import uuid from 'uuid/v1'
 import { cloneDeep } from 'lodash'
+import { Text } from '../../../common/text'
 import EditSectionHeader from './EditSectionHeader'
 import Button from 'react-native-button'
 import Images from '../../../images'
@@ -541,21 +541,15 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.seperatorColor,
   },
   titleText: {
-    fontSize: 16,
     fontWeight: '600',
-    color: colors.darkText,
   },
   invalidTitleText: {
-    fontSize: 16,
-    fontWeight: '600',
     color: 'red',
+    fontWeight: '500',
   },
   detailText: {
-    fontSize: 16,
-    color: '#2D3B45',
   },
   detailTextMissing: {
-    fontSize: 16,
     color: '#8B969E',
   },
   space: {

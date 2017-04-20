@@ -111,12 +111,23 @@ exports[`renders 1`] = `
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
-          Object {
-            "color": "#333",
-            "fontSize": 16,
-            "fontWeight": "600",
-            "marginTop": 8,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#333",
+              "fontWeight": "600",
+              "marginTop": 8,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         Learn React Native
@@ -127,12 +138,24 @@ exports[`renders 1`] = `
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
-          Object {
-            "color": "#8B969D",
-            "fontSize": 12,
-            "fontWeight": "600",
-            "marginTop": 2,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969D",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "marginTop": 2,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         rn 101
@@ -241,12 +264,23 @@ exports[`renders with empty image url 1`] = `
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
-          Object {
-            "color": "#333",
-            "fontSize": 16,
-            "fontWeight": "600",
-            "marginTop": 8,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#333",
+              "fontWeight": "600",
+              "marginTop": 8,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         Learn React Native
@@ -257,12 +291,24 @@ exports[`renders with empty image url 1`] = `
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
-          Object {
-            "color": "#8B969D",
-            "fontSize": 12,
-            "fontWeight": "600",
-            "marginTop": 2,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969D",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "marginTop": 2,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         rn 101
@@ -383,12 +429,23 @@ exports[`renders with image url 1`] = `
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
-          Object {
-            "color": "#333",
-            "fontSize": 16,
-            "fontWeight": "600",
-            "marginTop": 8,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#333",
+              "fontWeight": "600",
+              "marginTop": 8,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         Learn React Native
@@ -399,12 +456,24 @@ exports[`renders with image url 1`] = `
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
-          Object {
-            "color": "#8B969D",
-            "fontSize": 12,
-            "fontWeight": "600",
-            "marginTop": 2,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969D",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "marginTop": 2,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         rn 101
@@ -513,12 +582,23 @@ exports[`renders without image url 1`] = `
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
-          Object {
-            "color": "#333",
-            "fontSize": 16,
-            "fontWeight": "600",
-            "marginTop": 8,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#333",
+              "fontWeight": "600",
+              "marginTop": 8,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         Learn React Native
@@ -529,12 +609,24 @@ exports[`renders without image url 1`] = `
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
-          Object {
-            "color": "#8B969D",
-            "fontSize": 12,
-            "fontWeight": "600",
-            "marginTop": 2,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969D",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "marginTop": 2,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         rn 101

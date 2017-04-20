@@ -37,11 +37,17 @@ exports[`renders with overrides 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 20,
-            "fontWeight": "600",
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            undefined,
+          ]
         }
       >
         Due May 31, 2017 at 11:59 PM
@@ -51,12 +57,23 @@ exports[`renders with overrides 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#8B969E",
-            "fontSize": 16,
-            "fontWeight": "500",
-            "paddingTop": 16,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontWeight": "500",
+              "paddingTop": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-medium",
+            },
+          ]
         }
       >
         For
@@ -66,11 +83,21 @@ exports[`renders with overrides 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "paddingBottom": 16,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "paddingBottom": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
         }
       >
         Everyone
@@ -88,12 +115,23 @@ exports[`renders with overrides 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#8B969E",
-            "fontSize": 16,
-            "fontWeight": "500",
-            "paddingTop": 16,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontWeight": "500",
+              "paddingTop": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-medium",
+            },
+          ]
         }
       >
         Available from
@@ -103,11 +141,21 @@ exports[`renders with overrides 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "paddingBottom": 16,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "paddingBottom": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
         }
       >
         Mar 17, 2017 at 12:00 AM
@@ -125,12 +173,23 @@ exports[`renders with overrides 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#8B969E",
-            "fontSize": 16,
-            "fontWeight": "500",
-            "paddingTop": 16,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontWeight": "500",
+              "paddingTop": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-medium",
+            },
+          ]
         }
       >
         Available to
@@ -140,11 +199,21 @@ exports[`renders with overrides 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "paddingBottom": 16,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "paddingBottom": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
         }
       >
         May 31, 2017 at 11:59 PM
@@ -185,11 +254,17 @@ exports[`renders with overrides and specific student ids 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 20,
-            "fontWeight": "600",
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            undefined,
+          ]
         }
       >
         Due May 31, 2017 at 11:59 PM
@@ -199,12 +274,23 @@ exports[`renders with overrides and specific student ids 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#8B969E",
-            "fontSize": 16,
-            "fontWeight": "500",
-            "paddingTop": 16,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontWeight": "500",
+              "paddingTop": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-medium",
+            },
+          ]
         }
       >
         For
@@ -214,11 +300,21 @@ exports[`renders with overrides and specific student ids 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "paddingBottom": 16,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "paddingBottom": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
         }
       >
         Donald Trump
@@ -236,12 +332,23 @@ exports[`renders with overrides and specific student ids 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#8B969E",
-            "fontSize": 16,
-            "fontWeight": "500",
-            "paddingTop": 16,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontWeight": "500",
+              "paddingTop": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-medium",
+            },
+          ]
         }
       >
         Available from
@@ -251,11 +358,21 @@ exports[`renders with overrides and specific student ids 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "paddingBottom": 16,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "paddingBottom": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
         }
       >
         Mar 17, 2017 at 12:00 AM
@@ -273,12 +390,23 @@ exports[`renders with overrides and specific student ids 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#8B969E",
-            "fontSize": 16,
-            "fontWeight": "500",
-            "paddingTop": 16,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontWeight": "500",
+              "paddingTop": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-medium",
+            },
+          ]
         }
       >
         Available to
@@ -288,11 +416,21 @@ exports[`renders with overrides and specific student ids 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "paddingBottom": 16,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "paddingBottom": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
         }
       >
         May 31, 2017 at 11:59 PM

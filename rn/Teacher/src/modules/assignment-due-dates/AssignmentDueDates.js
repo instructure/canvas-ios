@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import {
   View,
   ScrollView,
-  Text,
   StyleSheet,
 } from 'react-native'
 
@@ -18,6 +17,7 @@ import { formattedDueDateWithStatus, formattedDueDate } from '../../common/forma
 import colors from '../../common/colors'
 import { extractDateFromString } from '../../utils/dateUtils'
 import i18n from 'format-message'
+import { Text, Heading1 } from '../../common/text'
 
 export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, any> {
 
@@ -61,7 +61,7 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
     const availableTo = date.lock_at ? formattedDueDate(new Date(date.lock_at)) : '--'
 
     return <View style={styles.row} key={date.id || 'base'} >
-             <Text style={styles.title}>{formattedDueDateWithStatus(dueAt)}</Text>
+             <Heading1>{formattedDueDateWithStatus(dueAt)}</Heading1>
              <Text style={styles.header}>{i18n('For')}</Text>
              <Text style={styles.content}>{title}</Text>
              <View style={styles.divider} />
@@ -95,21 +95,13 @@ const styles = StyleSheet.create({
   row: {
     paddingTop: global.style.defaultPadding,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: colors.darkText,
-  },
   header: {
     color: colors.grey4,
     paddingTop: global.style.defaultPadding,
-    fontSize: 16,
     fontWeight: '500',
   },
   content: {
-    color: colors.darkText,
     paddingBottom: global.style.defaultPadding,
-    fontSize: 16,
   },
   divider: {
     height: StyleSheet.hairlineWidth,

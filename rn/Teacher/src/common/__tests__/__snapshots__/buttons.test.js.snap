@@ -59,16 +59,28 @@ exports[`renders link correctly 1`] = `
     style={
       Array [
         Object {
-          "color": "#ff0ee8",
-          "fontSize": 14,
+          "fontFamily": ".SFUIDisplay",
         },
         Object {
-          "fontFamily": ".SFUIDisplay-medium",
+          "color": "#2D3B45",
+          "fontSize": 16,
         },
+        Array [
+          Object {
+            "color": "#ff0ee8",
+            "fontSize": 14,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-bold",
+          },
+          Object {
+            "color": "#ff0ee8",
+          },
+          undefined,
+        ],
         Object {
-          "color": "#ff0ee8",
+          "fontFamily": ".SFUIDisplay",
         },
-        undefined,
       ]
     }
   />

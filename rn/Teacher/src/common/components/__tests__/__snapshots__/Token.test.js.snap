@@ -9,22 +9,34 @@ exports[`Token renders correctly 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "white",
-        "borderRadius": 9,
-        "borderWidth": 1,
-        "fontSize": 11,
-        "fontWeight": "600",
-        "overflow": "hidden",
-        "paddingBottom": 0,
-        "paddingLeft": 6,
-        "paddingRight": 6,
-        "paddingTop": 3,
+        "fontFamily": ".SFUIDisplay",
       },
       Object {
-        "borderColor": "#0077FF",
-        "color": "#0077FF",
+        "color": "#2D3B45",
+        "fontSize": 16,
       },
-      undefined,
+      Array [
+        Object {
+          "backgroundColor": "white",
+          "borderRadius": 9,
+          "borderWidth": 1,
+          "fontSize": 11,
+          "fontWeight": "500",
+          "overflow": "hidden",
+          "paddingBottom": 0,
+          "paddingLeft": 6,
+          "paddingRight": 6,
+          "paddingTop": 3,
+        },
+        Object {
+          "borderColor": "#0077FF",
+          "color": "#0077FF",
+        },
+        undefined,
+      ],
+      Object {
+        "fontFamily": ".SFUIDisplay-medium",
+      },
     ]
   }
 >

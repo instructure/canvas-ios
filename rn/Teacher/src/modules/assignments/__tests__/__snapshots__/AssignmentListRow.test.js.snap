@@ -115,12 +115,23 @@ exports[`renders correctly 1`] = `
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
-            Object {
-              "color": "#2D3B45",
-              "flex": 1,
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#2D3B45",
+                "flex": 1,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           learn to write code
@@ -130,11 +141,23 @@ exports[`renders correctly 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#8B969E",
-              "fontSize": 14,
-              "marginTop": 2,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969E",
+                "fontSize": 14,
+                "marginTop": 2,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
           }
         >
           No due date
@@ -261,12 +284,23 @@ exports[`renders correctly with multiple closed due dates 1`] = `
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
-            Object {
-              "color": "#2D3B45",
-              "flex": 1,
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#2D3B45",
+                "flex": 1,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           learn to write code
@@ -276,11 +310,23 @@ exports[`renders correctly with multiple closed due dates 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#8B969E",
-              "fontSize": 14,
-              "marginTop": 2,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969E",
+                "fontSize": 14,
+                "marginTop": 2,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
           }
         >
           Availability: Closed
@@ -407,12 +453,23 @@ exports[`renders correctly with needs_grading_count 1`] = `
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
-            Object {
-              "color": "#2D3B45",
-              "flex": 1,
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#2D3B45",
+                "flex": 1,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           learn to write code
@@ -422,11 +479,23 @@ exports[`renders correctly with needs_grading_count 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#8B969E",
-              "fontSize": 14,
-              "marginTop": 2,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969E",
+                "fontSize": 14,
+                "marginTop": 2,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
           }
         >
           No due date
@@ -436,23 +505,35 @@ exports[`renders correctly with needs_grading_count 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "alignSelf": "flex-start",
-              "backgroundColor": "white",
-              "borderColor": "#008EE2",
-              "borderRadius": 9,
-              "borderWidth": 1,
-              "color": "#008EE2",
-              "flex": 0,
-              "fontSize": 11,
-              "fontWeight": "600",
-              "marginTop": 4,
-              "overflow": "hidden",
-              "paddingBottom": 1,
-              "paddingLeft": 6,
-              "paddingRight": 6,
-              "paddingTop": 3,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "alignSelf": "flex-start",
+                "backgroundColor": "white",
+                "borderColor": "#008EE2",
+                "borderRadius": 9,
+                "borderWidth": 1,
+                "color": "#008EE2",
+                "flex": 0,
+                "fontSize": 11,
+                "fontWeight": "600",
+                "marginTop": 4,
+                "overflow": "hidden",
+                "paddingBottom": 1,
+                "paddingLeft": 6,
+                "paddingRight": 6,
+                "paddingTop": 3,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           5 UNGRADED

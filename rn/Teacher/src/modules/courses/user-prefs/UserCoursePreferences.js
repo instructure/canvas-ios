@@ -6,7 +6,6 @@ import {
   View,
   StyleSheet,
   Image,
-  Text,
 } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
@@ -16,6 +15,7 @@ import ColorButton from './components/ColorButton'
 import CoursesActions from '../actions'
 import refresh from '../../../utils/refresh'
 import { RefreshableScrollView } from '../../../common/components/RefreshableList'
+import { Text } from '../../../common/text'
 
 const PICKER_COLORS = [
   '#F26090', '#EA1661', '#903A99', '#65469F', '#4452A6',
@@ -161,13 +161,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   nicknameLabel: {
-    fontSize: 16,
-    fontWeight: '500',
+    fontWeight: '600',
   },
   nickname: {
     color: branding.primaryButtonColor,
-    fontSize: 16,
-    fontWeight: '500',
+    fontWeight: 'bold',
   },
   colorPicker: {
     borderColor: '#C7CDD1',
@@ -177,14 +175,12 @@ const styles = StyleSheet.create({
   colorLabel: {
     marginTop: 16,
     marginHorizontal: 16,
-    fontSize: 16,
-    fontWeight: '500',
+    fontWeight: '600',
   },
   colorDescription: {
     marginTop: 2,
     marginHorizontal: 16,
     fontSize: 14,
-    fontWeight: '500',
     color: '#8B969E',
   },
   colorButtonsWrapper: {

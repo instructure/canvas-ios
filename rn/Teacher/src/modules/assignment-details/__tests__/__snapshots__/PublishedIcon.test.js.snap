@@ -45,8 +45,7 @@ exports[`render larger icon size 1`] = `
         Array [
           Object {
             "color": "#8B969E",
-            "fontFamily": ".SFUIDisplay-medium",
-            "fontSize": 16,
+            "fontWeight": "500",
             "marginLeft": 5,
           },
           Object {
@@ -54,7 +53,7 @@ exports[`render larger icon size 1`] = `
           },
         ],
         Object {
-          "fontFamily": ".SFUIDisplay",
+          "fontFamily": ".SFUIDisplay-medium",
         },
       ]
     }
@@ -106,8 +105,7 @@ exports[`render published 1`] = `
         Array [
           Object {
             "color": "#8B969E",
-            "fontFamily": ".SFUIDisplay-medium",
-            "fontSize": 16,
+            "fontWeight": "500",
             "marginLeft": 5,
           },
           Object {
@@ -115,7 +113,7 @@ exports[`render published 1`] = `
           },
         ],
         Object {
-          "fontFamily": ".SFUIDisplay",
+          "fontFamily": ".SFUIDisplay-medium",
         },
       ]
     }
@@ -167,8 +165,7 @@ exports[`render unpublished 1`] = `
         Array [
           Object {
             "color": "#8B969E",
-            "fontFamily": ".SFUIDisplay-medium",
-            "fontSize": 16,
+            "fontWeight": "500",
             "marginLeft": 5,
           },
           Object {
@@ -176,7 +173,7 @@ exports[`render unpublished 1`] = `
           },
         ],
         Object {
-          "fontFamily": ".SFUIDisplay",
+          "fontFamily": ".SFUIDisplay-medium",
         },
       ]
     }

@@ -12,6 +12,21 @@ exports[`render with multiple due dates 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
   >
     Multiple Due Dates
   </Text>
@@ -31,9 +46,21 @@ exports[`render with multiple due dates 2`] = `
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
-      Object {
-        "paddingTop": 2,
-      }
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "paddingTop": 2,
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
     }
   >
     <Text
@@ -41,11 +68,21 @@ exports[`render with multiple due dates 2`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-          "fontWeight": "600",
-        }
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontWeight": "600",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-semibold",
+          },
+        ]
       }
     >
       Due:
@@ -55,10 +92,19 @@ exports[`render with multiple due dates 2`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-        }
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {},
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
       }
     >
        May 31, 2017 at 11:59 PM
@@ -69,9 +115,21 @@ exports[`render with multiple due dates 2`] = `
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
-      Object {
-        "paddingTop": 2,
-      }
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "paddingTop": 2,
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
     }
   >
     <Text
@@ -79,11 +137,21 @@ exports[`render with multiple due dates 2`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-          "fontWeight": "600",
-        }
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontWeight": "600",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-semibold",
+          },
+        ]
       }
     >
       For:
@@ -93,10 +161,19 @@ exports[`render with multiple due dates 2`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-        }
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {},
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
       }
     >
        -
@@ -108,9 +185,21 @@ exports[`render with multiple due dates 2`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "paddingTop": 2,
-        }
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "paddingTop": 2,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
       }
     >
       <Text
@@ -118,11 +207,21 @@ exports[`render with multiple due dates 2`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "fontWeight": "600",
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         Availability:
@@ -132,10 +231,19 @@ exports[`render with multiple due dates 2`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {},
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
         }
       >
          Closed

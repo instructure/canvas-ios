@@ -8,8 +8,6 @@ import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
-  Text,
-  TextInput,
   TouchableHighlight,
   PickerIOS,
   Image,
@@ -25,6 +23,7 @@ import ModalActivityIndicator from '../../../common/components/ModalActivityIndi
 import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
 import { Navigation } from 'react-native-navigation'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { Text, TextInput } from '../../../common/text'
 
 var PickerItemIOS = PickerIOS.Item
 
@@ -250,16 +249,13 @@ const styles = StyleSheet.create({
   },
   primaryText: {
     flex: 2,
-    color: Colors.darkText,
-    fontFamily: '.SFUIDisplay-semibold',
-    fontSize: 16,
+    fontWeight: '600',
     lineHeight: 54,
   },
   actionableText: {
     flex: 3,
     color: Colors.link,
-    fontFamily: '.SFUIDisplay-medium',
-    fontSize: 16,
+    fontWeight: '600',
     textAlign: 'right',
     lineHeight: 54,
   },

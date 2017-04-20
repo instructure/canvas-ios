@@ -212,6 +212,9 @@ exports[`error occurs when done pressed 1`] = `
               Object {
                 "height": 45,
               },
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
             ]
           }
           testID="titleInput"
@@ -289,7 +292,6 @@ exports[`error occurs when done pressed 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
-          fontWeight="semibold"
           style={
             Array [
               Object {
@@ -301,6 +303,7 @@ exports[`error occurs when done pressed 1`] = `
               },
               Object {
                 "flex": 1,
+                "fontWeight": "600",
               },
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
@@ -325,6 +328,9 @@ exports[`error occurs when done pressed 1`] = `
               Object {
                 "textAlign": "right",
                 "width": 50,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -363,7 +369,6 @@ exports[`error occurs when done pressed 1`] = `
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
-            fontWeight="semibold"
             style={
               Array [
                 Object {
@@ -375,6 +380,7 @@ exports[`error occurs when done pressed 1`] = `
                 },
                 Object {
                   "flex": 1,
+                  "fontWeight": "600",
                 },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -438,7 +444,6 @@ exports[`error occurs when done pressed 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
-          fontWeight="semibold"
           style={
             Array [
               Object {
@@ -450,6 +455,7 @@ exports[`error occurs when done pressed 1`] = `
               },
               Object {
                 "flex": 1,
+                "fontWeight": "600",
               },
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
@@ -535,11 +541,23 @@ exports[`error occurs when done pressed 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#008EE2",
-                  "fontSize": 16,
-                  "fontWeight": "600",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#008EE2",
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
             >
               Add Due Date
@@ -772,6 +790,9 @@ exports[`modal saving is shown on assignment update 1`] = `
               Object {
                 "height": 45,
               },
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
             ]
           }
           testID="titleInput"
@@ -849,7 +870,6 @@ exports[`modal saving is shown on assignment update 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
-          fontWeight="semibold"
           style={
             Array [
               Object {
@@ -861,6 +881,7 @@ exports[`modal saving is shown on assignment update 1`] = `
               },
               Object {
                 "flex": 1,
+                "fontWeight": "600",
               },
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
@@ -885,6 +906,9 @@ exports[`modal saving is shown on assignment update 1`] = `
               Object {
                 "textAlign": "right",
                 "width": 50,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -923,7 +947,6 @@ exports[`modal saving is shown on assignment update 1`] = `
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
-            fontWeight="semibold"
             style={
               Array [
                 Object {
@@ -935,6 +958,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                 },
                 Object {
                   "flex": 1,
+                  "fontWeight": "600",
                 },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -998,7 +1022,6 @@ exports[`modal saving is shown on assignment update 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
-          fontWeight="semibold"
           style={
             Array [
               Object {
@@ -1010,6 +1033,7 @@ exports[`modal saving is shown on assignment update 1`] = `
               },
               Object {
                 "flex": 1,
+                "fontWeight": "600",
               },
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
@@ -1095,11 +1119,23 @@ exports[`modal saving is shown on assignment update 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#008EE2",
-                  "fontSize": 16,
-                  "fontWeight": "600",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#008EE2",
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
             >
               Add Due Date
@@ -1332,6 +1368,9 @@ exports[`renders 1`] = `
               Object {
                 "height": 45,
               },
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
             ]
           }
           testID="titleInput"
@@ -1409,7 +1448,6 @@ exports[`renders 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
-          fontWeight="semibold"
           style={
             Array [
               Object {
@@ -1421,6 +1459,7 @@ exports[`renders 1`] = `
               },
               Object {
                 "flex": 1,
+                "fontWeight": "600",
               },
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
@@ -1445,6 +1484,9 @@ exports[`renders 1`] = `
               Object {
                 "textAlign": "right",
                 "width": 50,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -1483,7 +1525,6 @@ exports[`renders 1`] = `
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
-            fontWeight="semibold"
             style={
               Array [
                 Object {
@@ -1495,6 +1536,7 @@ exports[`renders 1`] = `
                 },
                 Object {
                   "flex": 1,
+                  "fontWeight": "600",
                 },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -1558,7 +1600,6 @@ exports[`renders 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
-          fontWeight="semibold"
           style={
             Array [
               Object {
@@ -1570,6 +1611,7 @@ exports[`renders 1`] = `
               },
               Object {
                 "flex": 1,
+                "fontWeight": "600",
               },
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
@@ -1655,11 +1697,23 @@ exports[`renders 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#008EE2",
-                  "fontSize": 16,
-                  "fontWeight": "600",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#008EE2",
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
             >
               Add Due Date

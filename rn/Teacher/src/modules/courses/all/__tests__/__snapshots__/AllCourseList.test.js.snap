@@ -228,12 +228,23 @@ exports[`AllCourseList render 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
-                  Object {
-                    "color": "#27B9CD",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#27B9CD",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 Biology 101
@@ -244,12 +255,24 @@ exports[`AllCourseList render 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 BIO 101
@@ -369,12 +392,23 @@ exports[`AllCourseList render 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
-                  Object {
-                    "color": "#8F3E97",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8F3E97",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 American Literature Psysicks foobar hello world 401
@@ -385,12 +419,24 @@ exports[`AllCourseList render 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 LIT 401
@@ -510,12 +556,23 @@ exports[`AllCourseList render 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
-                  Object {
-                    "color": "#8F3E99",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8F3E99",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 Foobar 102
@@ -526,12 +583,24 @@ exports[`AllCourseList render 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  }
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
                 }
               >
                 FOO 102

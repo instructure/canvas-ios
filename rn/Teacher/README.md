@@ -84,6 +84,5 @@ in `i18n/locales/`.
 To add a new language just add the language strings to `<locale-code>.json` to `i18n/locales/` and then add
 that new language to `i18n/locales/index.js`
 
-### Branding
-
-[see branding page](BRANDING.md)
+### Custom default controls (i.e. Text, Button, TextInput)
+Please use our [custom default controls](docs/CUSTOM_DEFAULT_CONTROLS.md) vs the default `ReactNative` controls so text and inputs use the app wide font, colors and branding where available.

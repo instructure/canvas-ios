@@ -5,10 +5,10 @@
 import React, { Component } from 'react'
 import ReactNative, {
   StyleSheet,
-  Text,
 } from 'react-native'
 import BaseButton from 'react-native-button'
 import colors from './colors'
+import { Text, BOLD_FONT } from './text'
 
 export function Button ({ style, containerStyle, ...props }: Object): ReactNative.TouchableHighlight {
   let brandingContainerStyles = {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 
 const linkButtonStyles = StyleSheet.create({
   font: {
-    fontFamily: '.SFUIDisplay-medium',
+    fontFamily: BOLD_FONT,
   },
   textColor: {
     fontSize: 14,

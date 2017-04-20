@@ -103,7 +103,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   }
 
   renderLeftColumnLabel (text: string): React.Element<*> {
-    return (<Text style={style.twoColumnRowLeftText} fontWeight={'semibold'}>{text}</Text>)
+    return (<Text style={style.twoColumnRowLeftText}>{text}</Text>)
   }
 
   renderTextInput (fieldName: string, placeholder: string, testID: string, styleParam: Object = {}, multiline: boolean = false): React.Element<*> {
@@ -326,6 +326,7 @@ const style = StyleSheet.create({
   },
   twoColumnRowLeftText: {
     flex: 1,
+    fontWeight: '600',
   },
   title: {
     height: 45,

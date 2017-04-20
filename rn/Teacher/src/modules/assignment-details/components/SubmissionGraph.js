@@ -58,6 +58,7 @@ const submissionsGraphStyle = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
     marginTop: 8,
+    fontWeight: '500',
   },
   circleContainer: {
     flex: 1,

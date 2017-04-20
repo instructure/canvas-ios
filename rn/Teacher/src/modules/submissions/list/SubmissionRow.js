@@ -6,7 +6,6 @@ import {
   StyleSheet,
   TouchableHighlight,
   Image,
-  Text,
 } from 'react-native'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 import Token from '../../../common/components/Token'
@@ -17,6 +16,7 @@ import type {
   SubmissionStatusProp,
 } from './submission-prop-types'
 import colors from '../../../common/colors'
+import { Text } from '../../../common/text'
 
 type RowProps = {
   +testID: string,

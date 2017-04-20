@@ -216,13 +216,23 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "flex": 2,
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 16,
-                "lineHeight": 54,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 2,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
             Name
@@ -230,14 +240,24 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
           <TextInput
             onChangeText={[Function]}
             style={
-              Object {
-                "color": "#008EE2",
-                "flex": 3,
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-                "lineHeight": 54,
-                "textAlign": "right",
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "fontSize": 17,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
             testID="nameInput"
             value="Learn React Native"
@@ -282,13 +302,23 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 2,
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
             >
               Set 'Home' to...
@@ -298,14 +328,25 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#008EE2",
-                  "flex": 3,
-                  "fontFamily": ".SFUIDisplay-medium",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                  "textAlign": "right",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#008EE2",
+                    "flex": 3,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                    "textAlign": "right",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
               testID="homePageLabel"
             >
@@ -556,13 +597,23 @@ exports[`CourseSettings renders 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "flex": 2,
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 16,
-                "lineHeight": 54,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 2,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
             Name
@@ -570,14 +621,24 @@ exports[`CourseSettings renders 1`] = `
           <TextInput
             onChangeText={[Function]}
             style={
-              Object {
-                "color": "#008EE2",
-                "flex": 3,
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-                "lineHeight": 54,
-                "textAlign": "right",
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "fontSize": 17,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
             testID="nameInput"
             value="Learn React Native"
@@ -622,13 +683,23 @@ exports[`CourseSettings renders 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 2,
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
             >
               Set 'Home' to...
@@ -638,14 +709,25 @@ exports[`CourseSettings renders 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#008EE2",
-                  "flex": 3,
-                  "fontFamily": ".SFUIDisplay-medium",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                  "textAlign": "right",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#008EE2",
+                    "flex": 3,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                    "textAlign": "right",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
               testID="homePageLabel"
             >
@@ -896,13 +978,23 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "flex": 2,
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 16,
-                "lineHeight": 54,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 2,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
             Name
@@ -910,14 +1002,24 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
           <TextInput
             onChangeText={[Function]}
             style={
-              Object {
-                "color": "#008EE2",
-                "flex": 3,
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-                "lineHeight": 54,
-                "textAlign": "right",
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "fontSize": 17,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
             testID="nameInput"
             value="Learn React Native"
@@ -962,13 +1064,23 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 2,
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
             >
               Set 'Home' to...
@@ -978,14 +1090,25 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#008EE2",
-                  "flex": 3,
-                  "fontFamily": ".SFUIDisplay-medium",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                  "textAlign": "right",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#008EE2",
+                    "flex": 3,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                    "textAlign": "right",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
               testID="homePageLabel"
             >
@@ -1220,13 +1343,23 @@ exports[`CourseSettings renders with empty image url 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "flex": 2,
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 16,
-                "lineHeight": 54,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 2,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
             Name
@@ -1234,14 +1367,24 @@ exports[`CourseSettings renders with empty image url 1`] = `
           <TextInput
             onChangeText={[Function]}
             style={
-              Object {
-                "color": "#008EE2",
-                "flex": 3,
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-                "lineHeight": 54,
-                "textAlign": "right",
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "fontSize": 17,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
             testID="nameInput"
             value="Learn React Native"
@@ -1286,13 +1429,23 @@ exports[`CourseSettings renders with empty image url 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 2,
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
             >
               Set 'Home' to...
@@ -1302,14 +1455,25 @@ exports[`CourseSettings renders with empty image url 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#008EE2",
-                  "flex": 3,
-                  "fontFamily": ".SFUIDisplay-medium",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                  "textAlign": "right",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#008EE2",
+                    "flex": 3,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                    "textAlign": "right",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
               testID="homePageLabel"
             >
@@ -1560,13 +1724,23 @@ exports[`CourseSettings renders with image url 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "flex": 2,
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 16,
-                "lineHeight": 54,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 2,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
             Name
@@ -1574,14 +1748,24 @@ exports[`CourseSettings renders with image url 1`] = `
           <TextInput
             onChangeText={[Function]}
             style={
-              Object {
-                "color": "#008EE2",
-                "flex": 3,
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-                "lineHeight": 54,
-                "textAlign": "right",
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "fontSize": 17,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
             testID="nameInput"
             value="Learn React Native"
@@ -1626,13 +1810,23 @@ exports[`CourseSettings renders with image url 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 2,
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
             >
               Set 'Home' to...
@@ -1642,14 +1836,25 @@ exports[`CourseSettings renders with image url 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#008EE2",
-                  "flex": 3,
-                  "fontFamily": ".SFUIDisplay-medium",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                  "textAlign": "right",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#008EE2",
+                    "flex": 3,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                    "textAlign": "right",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
               testID="homePageLabel"
             >
@@ -1884,13 +2089,23 @@ exports[`CourseSettings renders without image url 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "flex": 2,
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 16,
-                "lineHeight": 54,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 2,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
             Name
@@ -1898,14 +2113,24 @@ exports[`CourseSettings renders without image url 1`] = `
           <TextInput
             onChangeText={[Function]}
             style={
-              Object {
-                "color": "#008EE2",
-                "flex": 3,
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-                "lineHeight": 54,
-                "textAlign": "right",
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "fontSize": 17,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
             testID="nameInput"
             value="Learn React Native"
@@ -1950,13 +2175,23 @@ exports[`CourseSettings renders without image url 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 2,
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
             >
               Set 'Home' to...
@@ -1966,14 +2201,25 @@ exports[`CourseSettings renders without image url 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#008EE2",
-                  "flex": 3,
-                  "fontFamily": ".SFUIDisplay-medium",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                  "textAlign": "right",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#008EE2",
+                    "flex": 3,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                    "textAlign": "right",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
               testID="homePageLabel"
             >
@@ -2224,13 +2470,23 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "flex": 2,
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 16,
-                "lineHeight": 54,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 2,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
             Name
@@ -2238,14 +2494,24 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
           <TextInput
             onChangeText={[Function]}
             style={
-              Object {
-                "color": "#008EE2",
-                "flex": 3,
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-                "lineHeight": 54,
-                "textAlign": "right",
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "fontSize": 17,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "flex": 3,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                  "textAlign": "right",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
             testID="nameInput"
             value="Learn React Native"
@@ -2290,13 +2556,23 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 2,
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
             >
               Set 'Home' to...
@@ -2306,14 +2582,25 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#008EE2",
-                  "flex": 3,
-                  "fontFamily": ".SFUIDisplay-medium",
-                  "fontSize": 16,
-                  "lineHeight": 54,
-                  "textAlign": "right",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#008EE2",
+                    "flex": 3,
+                    "fontWeight": "600",
+                    "lineHeight": 54,
+                    "textAlign": "right",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
               }
               testID="homePageLabel"
             >

@@ -6,7 +6,6 @@
 import React, { Component, Element } from 'react'
 import {
   View,
-  Text,
   Image,
   TouchableHighlight,
   StyleSheet,
@@ -14,6 +13,7 @@ import {
 
 import Images from '../../../../images'
 import DisclosureIndicator from '../../../../common/components/DisclosureIndicator'
+import { Text } from '../../../../common/text'
 
 type Props = {
   tab: Tab,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tabLabel: {
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
   tabImage: {
     height: 20,

@@ -5,9 +5,9 @@
 import React, { Component, Element } from 'react'
 import {
   View,
-  Text,
   StyleSheet,
 } from 'react-native'
+import { Text } from '../../../common/text'
 
 type Props = {
   assignmentGroup: AssignmentGroup,
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   title: {
+    fontSize: 14,
     backgroundColor: '#F5F5F5',
     color: '#73818C',
     fontWeight: '600',

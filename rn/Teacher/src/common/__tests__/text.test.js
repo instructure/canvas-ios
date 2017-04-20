@@ -18,21 +18,14 @@ test('renders text correctly', () => {
 
 test('renders text with fontWeight bold', () => {
   let tree = renderer.create(
-    <Text fontWeight="bold" />
+    <Text style={{ fontWeight: 'bold' }} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('renders text with fontWeight semibold', () => {
   let tree = renderer.create(
-    <Text fontWeight="semibold" />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
-
-test('renders text with bad fontWeight input', () => {
-  let tree = renderer.create(
-    <Text fontWeight="foobar" />
+    <Text style={{ fontWeight: '600' }} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })

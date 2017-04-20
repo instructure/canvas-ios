@@ -2,12 +2,12 @@
 
 import React from 'react'
 import {
-  Text,
   View,
 } from 'react-native'
 import renderer from 'react-test-renderer'
 import GridView from '../GridView'
 import setProps from '../../../../test/helpers/setProps'
+import { Text } from '../../../common/text'
 
 let defaultProps = {
   onLayout: () => {},

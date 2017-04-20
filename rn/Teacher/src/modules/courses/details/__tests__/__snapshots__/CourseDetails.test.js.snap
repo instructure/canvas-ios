@@ -126,12 +126,24 @@ exports[`renders correctly 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "fontSize": 18,
-              "fontWeight": "bold",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontSize": 18,
+                "fontWeight": "bold",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+            ]
           }
         >
           rn 101
@@ -181,14 +193,26 @@ exports[`renders correctly 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "fontSize": 20,
-              "fontWeight": "bold",
-              "marginBottom": 2,
-              "textAlign": "center",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "marginBottom": 2,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Learn React Native
@@ -198,11 +222,24 @@ exports[`renders correctly 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "opacity": 0.75,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontWeight": "600",
+                "opacity": 0.9,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Spring 2017
@@ -268,9 +305,21 @@ exports[`renders correctly 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "fontWeight": "bold",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontWeight": "500",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
               }
             >
               Home
@@ -429,12 +478,24 @@ exports[`renders correctly without tabs 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "fontSize": 18,
-              "fontWeight": "bold",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontSize": 18,
+                "fontWeight": "bold",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+            ]
           }
         >
           rn 101
@@ -484,14 +545,26 @@ exports[`renders correctly without tabs 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "fontSize": 20,
-              "fontWeight": "bold",
-              "marginBottom": 2,
-              "textAlign": "center",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "marginBottom": 2,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Learn React Native
@@ -501,11 +574,24 @@ exports[`renders correctly without tabs 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "opacity": 0.75,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontWeight": "600",
+                "opacity": 0.9,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Spring 2017
@@ -627,12 +713,24 @@ exports[`renders with empty image url 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "fontSize": 18,
-              "fontWeight": "bold",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontSize": 18,
+                "fontWeight": "bold",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+            ]
           }
         >
           rn 101
@@ -682,14 +780,26 @@ exports[`renders with empty image url 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "fontSize": 20,
-              "fontWeight": "bold",
-              "marginBottom": 2,
-              "textAlign": "center",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "marginBottom": 2,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Learn React Native
@@ -699,11 +809,24 @@ exports[`renders with empty image url 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "opacity": 0.75,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontWeight": "600",
+                "opacity": 0.9,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Spring 2017
@@ -769,9 +892,21 @@ exports[`renders with empty image url 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "fontWeight": "bold",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontWeight": "500",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
               }
             >
               Home
@@ -930,12 +1065,24 @@ exports[`renders with image url 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "fontSize": 18,
-              "fontWeight": "bold",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontSize": 18,
+                "fontWeight": "bold",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+            ]
           }
         >
           rn 101
@@ -985,14 +1132,26 @@ exports[`renders with image url 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "fontSize": 20,
-              "fontWeight": "bold",
-              "marginBottom": 2,
-              "textAlign": "center",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "marginBottom": 2,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Learn React Native
@@ -1002,11 +1161,24 @@ exports[`renders with image url 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "opacity": 0.75,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontWeight": "600",
+                "opacity": 0.9,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Spring 2017
@@ -1072,9 +1244,21 @@ exports[`renders with image url 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "fontWeight": "bold",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontWeight": "500",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
               }
             >
               Home
@@ -1219,12 +1403,24 @@ exports[`renders without image url 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "fontSize": 18,
-              "fontWeight": "bold",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontSize": 18,
+                "fontWeight": "bold",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+            ]
           }
         >
           rn 101
@@ -1274,14 +1470,26 @@ exports[`renders without image url 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "fontSize": 20,
-              "fontWeight": "bold",
-              "marginBottom": 2,
-              "textAlign": "center",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "marginBottom": 2,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Learn React Native
@@ -1291,11 +1499,24 @@ exports[`renders without image url 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "white",
-              "opacity": 0.75,
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontWeight": "600",
+                "opacity": 0.9,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Spring 2017
@@ -1361,9 +1582,21 @@ exports[`renders without image url 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "fontWeight": "bold",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontWeight": "500",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
               }
             >
               Home

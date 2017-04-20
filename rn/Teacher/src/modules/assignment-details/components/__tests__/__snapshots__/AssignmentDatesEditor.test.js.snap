@@ -96,11 +96,23 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#EE0612",
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#EE0612",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
               }
             >
               Remove
@@ -157,11 +169,21 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Assignees
@@ -179,10 +201,19 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             1 student
@@ -257,11 +288,21 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Due Date
@@ -280,10 +321,19 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -370,11 +420,21 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available From
@@ -393,10 +453,19 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             Mar 17, 2017 at 12:00 AM
@@ -483,11 +552,21 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available To
@@ -506,10 +585,19 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -637,11 +725,23 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#EE0612",
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#EE0612",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
               }
             >
               Remove
@@ -698,11 +798,21 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Assignees
@@ -720,10 +830,19 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             Section 1
@@ -798,11 +917,21 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Due Date
@@ -821,10 +950,19 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -911,11 +1049,21 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available From
@@ -934,10 +1082,19 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             Mar 17, 2017 at 12:00 AM
@@ -1024,11 +1181,21 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available To
@@ -1047,10 +1214,19 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -1178,11 +1354,23 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#EE0612",
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#EE0612",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-medium",
+                  },
+                ]
               }
             >
               Remove
@@ -1239,11 +1427,21 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Assignees
@@ -1261,10 +1459,19 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             Horrible Students
@@ -1339,11 +1546,21 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Due Date
@@ -1362,10 +1579,19 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -1452,11 +1678,21 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available From
@@ -1475,10 +1711,19 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             Mar 17, 2017 at 12:00 AM
@@ -1565,11 +1810,21 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available To
@@ -1588,10 +1843,19 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -1699,11 +1963,23 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#008EE2",
-            "fontSize": 16,
-            "fontWeight": "600",
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#008EE2",
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         Add Due Date
@@ -1827,11 +2103,21 @@ exports[`snapshots! render with multiple due dates 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Assignees
@@ -1849,10 +2135,19 @@ exports[`snapshots! render with multiple due dates 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             Everyone else
@@ -1927,11 +2222,21 @@ exports[`snapshots! render with multiple due dates 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Due Date
@@ -1950,10 +2255,19 @@ exports[`snapshots! render with multiple due dates 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -2040,11 +2354,21 @@ exports[`snapshots! render with multiple due dates 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available From
@@ -2063,10 +2387,19 @@ exports[`snapshots! render with multiple due dates 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             Mar 17, 2017 at 12:00 AM
@@ -2153,11 +2486,21 @@ exports[`snapshots! render with multiple due dates 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available To
@@ -2176,10 +2519,19 @@ exports[`snapshots! render with multiple due dates 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -2287,11 +2639,23 @@ exports[`snapshots! render with multiple due dates 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#008EE2",
-            "fontSize": 16,
-            "fontWeight": "600",
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#008EE2",
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         Add Due Date
@@ -2415,11 +2779,21 @@ exports[`snapshots! render with single due date 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Assignees
@@ -2437,10 +2811,19 @@ exports[`snapshots! render with single due date 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             Everyone
@@ -2515,11 +2898,21 @@ exports[`snapshots! render with single due date 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Due Date
@@ -2538,10 +2931,19 @@ exports[`snapshots! render with single due date 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -2628,11 +3030,21 @@ exports[`snapshots! render with single due date 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available From
@@ -2651,10 +3063,19 @@ exports[`snapshots! render with single due date 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             Mar 17, 2017 at 12:00 AM
@@ -2741,11 +3162,21 @@ exports[`snapshots! render with single due date 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "fontWeight": "600",
-            }
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
           }
         >
           Available To
@@ -2764,10 +3195,19 @@ exports[`snapshots! render with single due date 1`] = `
             allowFontScaling={true}
             ellipsizeMode="tail"
             style={
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {},
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
             }
           >
             May 31, 2017 at 11:59 PM
@@ -2875,11 +3315,23 @@ exports[`snapshots! render with single due date 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#008EE2",
-            "fontSize": 16,
-            "fontWeight": "600",
-          }
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#008EE2",
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
         }
       >
         Add Due Date

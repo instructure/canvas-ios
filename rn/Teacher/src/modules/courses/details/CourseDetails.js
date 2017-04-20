@@ -7,7 +7,6 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import {
   View,
-  Text,
   Image,
   StyleSheet,
   ActivityIndicator,
@@ -23,6 +22,7 @@ import NavigationBackButton from '../../../common/components/NavigationBackButto
 import { route } from '../../../routing'
 import refresh from '../../../utils/refresh'
 import { RefreshableScrollView } from '../../../common/components/RefreshableList'
+import { Text } from '../../../common/text'
 
 type Props = CourseDetailsProps & NavProps
 
@@ -110,15 +110,16 @@ const styles = StyleSheet.create({
   headerTitle: {
     backgroundColor: 'transparent',
     color: 'white',
-    fontWeight: 'bold',
-    fontSize: 20,
+    fontWeight: '600',
+    fontSize: 24,
     textAlign: 'center',
     marginBottom: 2,
   },
   headerSubtitle: {
     color: 'white',
-    opacity: 0.75,
+    opacity: 0.9,
     backgroundColor: 'transparent',
+    fontWeight: '600',
   },
   headerImageContainer: {
     position: 'absolute',
