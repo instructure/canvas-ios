@@ -34,7 +34,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/assignments/:assignmentID/edit', () => AssignmentDetailsEdit, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', () => AssignmentDueDates, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', () => SubmissionList, store)
-  registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:submissionID', () => Speedgrader, store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', () => Speedgrader, store)
   registerScreen('/conversations', () => Inbox, store)
   registerScreen('/profile', () => Profile, store)
   registerScreen('/beta-feedback', () => BetaFeedback, store)

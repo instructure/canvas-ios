@@ -116,10 +116,10 @@ describe('app routes', () => {
     })
   })
 
-  it('includes /courses/:courseID/assignments/:assignmentID/submissions/:submissionID', () => {
+  it('includes /courses/:courseID/assignments/:assignmentID/submissions/:userID', () => {
     expect(route('/courses/686/assignments/1/submissions/42')).toEqual({
-      screen: screenID('/courses/:courseID/assignments/:assignmentID/submissions/:submissionID'),
-      passProps: { courseID: '686', assignmentID: '1', submissionID: '42' },
+      screen: screenID('/courses/:courseID/assignments/:assignmentID/submissions/:userID'),
+      passProps: { courseID: '686', assignmentID: '1', userID: '42' },
     })
   })
 })
