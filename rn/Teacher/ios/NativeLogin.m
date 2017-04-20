@@ -18,7 +18,6 @@
 @interface NativeLogin ()
 
 @property (nonatomic) RACDisposable *loginObserver;
-@property (nonatomic) RACDisposable *logoutObserver;
 @property(nonatomic) NSMutableDictionary *eventsSent;
 
 @end
@@ -52,20 +51,14 @@ RCT_EXPORT_METHOD(logout)
 
 RCT_EXPORT_METHOD(startObserving)
 {
-  self.logoutObserver = [TheKeymaster.signalForLogout subscribeNext:^(UIViewController * _Nullable x) {
+  __weak NativeLogin *weakSelf = self;
+  self.loginObserver = [[RACObserve(TheKeymaster, currentClient) subscribeNext:^(CKIClient *client) {
+    __strong NativeLogin *self = weakSelf;
     
-    [self sendEventWithName:@"Login" body:@{}];
-    
-    if (x) {
-      AppDelegate *d = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-      
-      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        d.window.rootViewController = x;
-      });
+    if (client == nil) {
+      [self sendEventWithName:@"Login" body:@{}];
+      return;
     }
-  }];
-  
-  self.loginObserver = [TheKeymaster.signalForLogin subscribeNext:^(CKIClient *client) {
 
      NSDictionary *body = @{
                             @"authToken": client.accessToken,
@@ -78,15 +71,13 @@ RCT_EXPORT_METHOD(startObserving)
       self.eventsSent[client.accessToken] = body;
       [self sendEventWithName:@"Login" body:body];
     }
-
-  }];
+  }] asScopedDisposable];
 }
 
 RCT_EXPORT_METHOD(stopObserving)
 {
   self.eventsSent = [NSMutableDictionary dictionary];
   [self.loginObserver dispose];
-  [self.logoutObserver dispose];
 }
 
 - (NSArray<NSString *> *)supportedEvents {
