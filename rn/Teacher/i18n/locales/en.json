@@ -21,6 +21,13 @@
     "message": "All Grading Periods",
     "description": "The header on the assignment list"
   },
+  "are_you_sure_26795d3c": {
+    "message": "Are you sure?"
+  },
+  "assign_to_95404a83": {
+    "message": "Assign To",
+    "description": "Assignment details due dates header"
+  },
   "assignees_314d5e55": {
     "message": "Assignees"
   },
@@ -88,12 +95,19 @@
     "message": "Color",
     "description": "Title label for the course color picker"
   },
+  "comments_e07bcbe3": {
+    "message": "Comments",
+    "description": "The title of the button to switch to comments on a submission"
+  },
   "complete_incomplete_15b3a89c": {
     "message": "Complete/Incomplete",
     "description": "display grade as Complete/Incomplete"
   },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "Could not get list of assignments"
+  },
+  "count_plural_0_0_students_one_student_other_studen_801f8933": {
+    "message": "{ count, plural,\n     =0 {0 students}\n    one {# student}\n  other {# students}\n}"
   },
   "count_students_4ae780ca": {
     "message": "{ count } students"
@@ -134,7 +148,7 @@
   },
   "display_grade_as_7b5376a6": {
     "message": "Display Grade As",
-    "description": "Assignemnt details display grade as"
+    "description": "Assignment details display grade as"
   },
   "done_54e3d4b6": {
     "message": "Done",
@@ -158,10 +172,6 @@
   },
   "due_date_822625d8": {
     "message": "Due Date"
-  },
-  "due_dates_520a6c08": {
-    "message": "Due Dates",
-    "description": "Assignment details due dates header"
   },
   "due_datestring_at_timestring_9fac66bd": {
     "message": "Due { dateString } at { timeString }"
@@ -188,6 +198,10 @@
     "message": "external tool",
     "description": "assignment submission type"
   },
+  "files_c300e900": {
+    "message": "Files",
+    "description": "The title of the button to switch to the files submitted for a submission"
+  },
   "filter_by_ffcbd05b": {
     "message": "Filter by:",
     "description": "Indicates to the user that they can filter by a few options"
@@ -208,7 +222,11 @@
   },
   "graded_25cd3fcd": {
     "message": "Graded",
-    "description": "Assignemnt Details submissions graph `graded`"
+    "description": "Assignment Details submissions graph `graded`"
+  },
+  "grades_a61eba0a": {
+    "message": "Grades",
+    "description": "The title of the button to switch to grading a submission"
   },
   "inbox_bb245a60": {
     "message": "Inbox",
@@ -276,7 +294,7 @@
   },
   "not_submitted_7d05fdb4": {
     "message": "Not Submitted",
-    "description": "Assignemnt Details submissions graph `graded`"
+    "description": "Assignment Details submissions graph `graded`"
   },
   "on_paper_7e67f764": {
     "message": "on paper",
@@ -324,11 +342,14 @@
   },
   "publish_5211dca3": {
     "message": "Publish",
-    "description": "Assignemnt details publish toggle"
+    "description": "Assignment details publish toggle"
   },
   "published_4bb5209e": {
     "message": "Published",
     "description": "Published text"
+  },
+  "remove_f47dc62a": {
+    "message": "Remove"
   },
   "saving_2521e616": {
     "message": "Saving",
@@ -393,7 +414,7 @@
   },
   "ungraded_ed0c6f98": {
     "message": "Ungraded",
-    "description": "Assignemnt Details submissions graph `graded`"
+    "description": "Assignment Details submissions graph `graded`"
   },
   "unpublished_8b6107d6": {
     "message": "Unpublished",
@@ -402,5 +423,8 @@
   "welcome_73d18b4d": {
     "message": "Welcome!",
     "description": "Welcome header text when user has no courses yet."
+  },
+  "you_cannot_undo_this_action_a2dcb2ad": {
+    "message": "You cannot undo this action"
   }
 }

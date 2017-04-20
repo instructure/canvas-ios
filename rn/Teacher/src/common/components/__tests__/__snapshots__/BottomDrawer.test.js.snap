@@ -50,8 +50,8 @@ exports[`BottomDrawer renders any children 1`] = `
         "flex": 1,
         "height": 1334,
         "paddingBottom": 1281,
-        "paddingHorizontal": 20,
-        "paddingTop": 53,
+        "paddingHorizontal": 16,
+        "paddingTop": 16,
         "shadowColor": "#000000",
         "shadowOffset": Object {
           "height": 0,
@@ -62,6 +62,30 @@ exports[`BottomDrawer renders any children 1`] = `
       }
     }
   >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#e3e3e3",
+            "borderRadius": 5,
+            "height": 4,
+            "marginBottom": 8,
+            "marginTop": 4,
+            "width": 40,
+          }
+        }
+      />
+    </View>
     <Text
       accessible={true}
       allowFontScaling={true}

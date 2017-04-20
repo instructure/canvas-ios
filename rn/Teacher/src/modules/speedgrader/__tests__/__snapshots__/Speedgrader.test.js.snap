@@ -1,3 +1,113 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Speedgrader renders 1`] = `<View />`;
+exports[`Speedgrader renders 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Interactable.View
+    animatedValueY={1281}
+    initialPosition={
+      Object {
+        "y": 1281,
+      }
+    }
+    onLayout={undefined}
+    onSnap={[Function]}
+    snapPoints={
+      Array [
+        Object {
+          "y": 213.8,
+        },
+        Object {
+          "y": 747.4,
+        },
+        Object {
+          "y": 1281,
+        },
+      ]
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "maxWidth": 700,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "left": 25,
+          "right": 25,
+        },
+      ]
+    }
+    verticalOnly={true}
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fff",
+          "borderTopLeftRadius": 20,
+          "borderTopRightRadius": 20,
+          "flex": 1,
+          "height": 1334,
+          "paddingBottom": 1281,
+          "paddingHorizontal": 16,
+          "paddingTop": 16,
+          "shadowColor": "#000000",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0.4,
+          "shadowRadius": 5,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#e3e3e3",
+              "borderRadius": 5,
+              "height": 4,
+              "marginBottom": 8,
+              "marginTop": 4,
+              "width": 40,
+            }
+          }
+        />
+      </View>
+      <SegmentedControlIOS
+        onChange={[Function]}
+        selectedIndex={null}
+        testID="speedgrader.segment-control"
+        values={
+          Array [
+            "Grades",
+            "Comments",
+            "Files",
+          ]
+        }
+      />
+      <View />
+    </View>
+  </Interactable.View>
+</View>
+`;

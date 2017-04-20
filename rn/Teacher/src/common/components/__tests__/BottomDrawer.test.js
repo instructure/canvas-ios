@@ -76,7 +76,7 @@ describe('BottomDrawer', () => {
     expect(instance.drawer.snapTo).not.toHaveBeenCalled()
   })
 
-  it('returns 3 snappoints from getSnapPoints', () => {
+  it('returns 3 snap points from getSnapPoints', () => {
     let tree = renderer.create(
       <BottomDrawer>
         <Text>yo yo yo</Text>

@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
+  View,
 } from 'react-native'
 import Interactable from 'react-native-interactable'
 
@@ -91,6 +92,9 @@ export default class BottomDrawer extends Component {
             }),
           }]}
         >
+          <View style={styles.handleWrapper}>
+            <View style={styles.handle} />
+          </View>
           {this.props.children}
         </Animated.View>
       </Interactable.View>
@@ -114,10 +118,25 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 5,
     shadowOpacity: 0.4,
-    paddingHorizontal: 20,
-    paddingTop: 53,
+    paddingHorizontal: 16,
+    paddingTop: 16,
     paddingBottom: 0,
     flex: 1,
     backgroundColor: '#fff',
+  },
+  handleWrapper: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  handle: {
+    width: 40,
+    height: 4,
+    backgroundColor: '#e3e3e3',
+    borderRadius: 5,
+    marginTop: 4,
+    marginBottom: 8,
   },
 })
