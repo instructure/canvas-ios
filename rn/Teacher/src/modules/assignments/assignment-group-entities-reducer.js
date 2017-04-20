@@ -14,9 +14,12 @@ export const assignmentGroups: Reducer<AssignmentGroupsState, any> = handleActio
     resolved: (state, { result, courseID, gradingPeriodID }) => {
       if (gradingPeriodID != null) return state
 
-      let entities = state.assignmentGroupEntities || {}
-      result.data.forEach((entity) => {
-        entities[entity.id] = entity
+      let entities = {}
+      result.data.forEach((group) => {
+        let assignmentRefs = group.assignments.map((a) => { return a.id })
+        let mutableGroup = Object.assign({}, group)
+        delete mutableGroup.assignments
+        entities[group.id] = { group: mutableGroup, assignmentRefs }
       })
 
       return {

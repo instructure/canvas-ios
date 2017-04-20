@@ -19,7 +19,7 @@ export type AssignmentDueDatesActionProps = {
 }
 
 export function mapStateToProps (state: AppState, ownProps: AssignmentDueDatesProps): AssignmentDueDatesState {
-  const assignment = state.entities.assignments[ownProps.assignmentID].assignment
+  const assignment = state.entities.assignments[ownProps.assignmentID].data
   const dates = new AssignmentDates(assignment)
   const users = {}
 

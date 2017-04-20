@@ -21,7 +21,7 @@ export type AssignmentDetailsActionProps = {
 }
 
 export function mapStateToProps (state: AppState, ownProps: AssignmentDetailsProps): AssignmentDetailsState {
-  const assignment = state.entities.assignments[ownProps.assignmentID].assignment
+  const assignment = state.entities.assignments[ownProps.assignmentID].data
 
   return {
     assignmentDetails: assignment,
@@ -30,7 +30,7 @@ export function mapStateToProps (state: AppState, ownProps: AssignmentDetailsPro
 }
 
 export function updateMapStateToProps (state: AppState, ownProps: AssignmentDetailsProps): AssignmentDetailsState {
-  const assignment = state.entities.assignments[ownProps.assignmentID].assignment
+  const assignment = state.entities.assignments[ownProps.assignmentID].data
 
   return {
     assignmentDetails: assignment,

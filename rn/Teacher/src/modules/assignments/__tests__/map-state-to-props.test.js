@@ -13,6 +13,7 @@ const template = {
 test('map state to props should work', async () => {
   let course = template.course()
   let assignmentGroup = template.assignmentGroup()
+  let assignment = template.assignment()
   let gradingPeriod = template.gradingPeriod({ id: 1 })
   let gradingPeriodTwo = template.gradingPeriod({ id: 2 })
 
@@ -26,12 +27,15 @@ test('map state to props should work', async () => {
         },
       },
       assignmentGroups: {
-        [assignmentGroup.id]: assignmentGroup,
+        [assignmentGroup.id]: { group: assignmentGroup, assignmentRefs: [assignment.id] },
+      },
+      assignments: {
+        [assignment.id]: { data: assignment },
       },
       gradingPeriods: {
         [gradingPeriod.id]: {
           gradingPeriod,
-          assignmentRefs: [assignmentGroup.assignments[0].id],
+          assignmentRefs: [assignment.id],
         },
         [gradingPeriodTwo.id]: {
           gradingPeriod: gradingPeriodTwo,
@@ -65,7 +69,7 @@ test('map state to props should work', async () => {
     assignmentGroups: [assignmentGroup],
     gradingPeriods: [{
       ...gradingPeriod,
-      assignmentRefs: [assignmentGroup.assignments[0].id],
+      assignmentRefs: [assignment.id],
     }, {
       ...gradingPeriodTwo,
       assignmentRefs: [],

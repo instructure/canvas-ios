@@ -11,11 +11,14 @@ const template = {
 
 test('refresh assignment groups', async () => {
   const group = template.assignmentGroup()
+  let assignmentRefs = group.assignments.map((a) => a.id)
+
   let action = AssignmentListActions({ getCourseAssignmentGroups: apiResponse([group]) }).refreshAssignmentList(1)
   let state = await testAsyncReducer(assignmentGroups, action)
 
+  delete group.assignments
   expect(state).toEqual([{}, {
-    [group.id.toString()]: group,
+    [group.id.toString()]: { group, assignmentRefs },
   }])
 })
 

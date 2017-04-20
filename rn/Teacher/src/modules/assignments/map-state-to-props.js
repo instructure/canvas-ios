@@ -39,9 +39,15 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: RoutingPr
   const courseColor = course.color
   const { refs, pending, error } = course.assignmentGroups
   const groupsByID: AssignmentGroupsState = entities.assignmentGroups
-  const assignmentGroups = refs
+  const assignmentGroupsState = refs
     .map((ref) => groupsByID[ref])
-    .sort((a, b) => a.position - b.position)
+    .sort((a, b) => a.group.position - b.group.position)
+
+  const assignmentGroups: AssignmentGroup[] = assignmentGroupsState.map((groupState) => {
+    const groupWithAssignments = Object.assign({}, groupState.group)
+    groupWithAssignments.assignments = groupState.assignmentRefs.map((id) => entities.assignments[id].data)
+    return groupWithAssignments
+  })
 
   let gradingPeriods = Object.keys(entities.gradingPeriods)
     .map(id => ({

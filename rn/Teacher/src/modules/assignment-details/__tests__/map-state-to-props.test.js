@@ -26,7 +26,7 @@ test('map state to props assignment', async () => {
         [assignmentGroup.id]: assignmentGroup,
       },
       assignments: {
-        [assignment.id]: { assignment: assignment, pending: 0 },
+        [assignment.id]: { data: assignment, pending: 0 },
       },
       gradingPeriods: {},
     },
@@ -56,7 +56,7 @@ test('map state to props update assignment', async () => {
   let state = template.appState({
     entities: {
       assignments: {
-        [assignment.id]: { assignment: assignment, pending: 0 },
+        [assignment.id]: { data: assignment, pending: 0 },
       },
     },
   })

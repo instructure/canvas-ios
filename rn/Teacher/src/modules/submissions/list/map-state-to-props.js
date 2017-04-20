@@ -80,11 +80,11 @@ function pendingProp (assignmentContent?: AssignmentContentState, courseContent?
   return assignmentContent.submissions.pending > 0 || courseContent.enrollments.pending > 0
 }
 
-function dueDate (state: ?AssignmentState): ?string {
-  if (!state || !state.assignment) {
+function dueDate (state: ?AssignmentDetailState): ?string {
+  if (!state || !state.data) {
     return null
   }
-  return state.assignment.due_at
+  return state.data.due_at
 }
 
 function uniqueEnrollments (enrollments: Array<Enrollment>): Array<Enrollment> {

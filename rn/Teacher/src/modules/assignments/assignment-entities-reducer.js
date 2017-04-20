@@ -36,7 +36,7 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
           assignment.id, {
             ...defaultAssignmentContents,
             ...state[assignment.id],
-            assignment,
+            data: assignment,
           },
         ]
       }))
@@ -51,7 +51,7 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
     pending: (state, { updatedAssignment, originalAssignment }) => {
       let id = updatedAssignment.id
       let entity = { ...state[id] }
-      entity.assignment = updatedAssignment
+      entity.data = updatedAssignment
       entity.pending = (entity.pending || 0) + 1
       return {
         ...state,
@@ -70,7 +70,7 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
     rejected: (state, { updatedAssignment, originalAssignment, error }) => {
       let id = originalAssignment.id
       let entity = { ...state[id] }
-      entity.assignment = originalAssignment
+      entity.data = originalAssignment
       entity.pending = (entity.pending || 0) - 1
       entity.error = error
       return {
@@ -81,11 +81,11 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
   }),
 }, defaultState)
 
-export function assignments (state: AssignmentsState = {}, action: any): AssignmentsState {
+export function assignments (state: AssignmentsState = {}, action: any): AssignmentDetailState {
   let newState = state
   if (action.payload && action.payload.assignmentID) {
     const assignmentID = action.payload.assignmentID
-    const currentAssignmentState: AssignmentState = state[assignmentID] || {}
+    const currentAssignmentState: AssignmentDetailState = state[assignmentID] || {}
     const assignmentState = assignmentContent(currentAssignmentState, action)
     newState = {
       ...state,

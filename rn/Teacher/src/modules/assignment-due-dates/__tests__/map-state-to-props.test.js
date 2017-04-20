@@ -24,7 +24,7 @@ test('map state to props should work', async () => {
   let state: AppState = template.appState({
     entities: {
       assignments: {
-        [assignment.id]: { assignment },
+        [assignment.id]: { data: assignment },
       },
       users: {
         [user.id]: user,
