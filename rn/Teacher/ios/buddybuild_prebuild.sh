@@ -4,7 +4,8 @@ sudo systemsetup -settimezone America/Denver
 sudo systemsetup -gettimezone
 
 retry_command() {
-  for try_count in {1..3}; do
+  # retry up to 3 times
+  for try_count in {1..2}; do
     set +e
 
     "$@"
@@ -13,6 +14,10 @@ retry_command() {
     set -e
 
     if [[ ${command_exit_code} -ne 0 ]]; then
+      # command should error if we're on the last attempt.
+      if [[ ${try_count} = 2 ]]; then
+        "$@"
+      fi
       continue
     else
       break
