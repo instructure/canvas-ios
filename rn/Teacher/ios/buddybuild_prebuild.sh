@@ -60,8 +60,8 @@ if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_UI_JOB_ID ]]; then
 fi
 
 pushd ../
-yarn run lint
-yarn run flow
+retry_command yarn run lint
+retry_command yarn run flow
 # jest tests are flaky so we retry them.
 retry_command yarn run test
 
