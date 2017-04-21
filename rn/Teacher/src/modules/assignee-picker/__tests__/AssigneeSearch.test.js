@@ -11,6 +11,8 @@ import setProps from '../../../../test/helpers/setProps'
 
 registerScreens({})
 
+jest.mock('react-native-search-bar', () => require('../../../__mocks__/SearchBar').default)
+
 const template = {
   ...require('../__template__/Assignee.js'),
   ...require('../../../api/canvas-api/__templates__/course'),
@@ -34,6 +36,14 @@ test('render correctly', () => {
     <AssigneeSearch {...defaultProps} />
   )
   setProps(tree, { ...defaultProps })
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
+test('render correctly', () => {
+  let tree = renderer.create(
+    <AssigneeSearch {...defaultProps} />
+  )
+  tree.getInstance().updateFilterString('student')
   expect(tree.toJSON()).toMatchSnapshot()
 })
 

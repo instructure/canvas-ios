@@ -9,6 +9,7 @@ exports[`render correctly 1`] = `
   }
 >
   <RCTScrollView
+    ListHeaderComponent={[Function]}
     data={
       Array [
         Object {
@@ -59,6 +60,15 @@ exports[`render correctly 1`] = `
     windowSize={21}
   >
     <View>
+      <View
+        onLayout={[Function]}
+      >
+        <SearchBar
+          onCancelButtonPress={[Function]}
+          onChangeText={[Function]}
+          onSearchButtonPress={[Function]}
+        />
+      </View>
       <View
         onLayout={[Function]}
       >
@@ -441,6 +451,179 @@ exports[`render correctly 1`] = `
           }
         }
       />
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`render correctly 2`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    ListHeaderComponent={[Function]}
+    data={
+      Array [
+        Object {
+          "dataId": "32",
+          "id": "section-32",
+          "info": "undefined students",
+          "name": "the section 1",
+          "type": "section",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReached={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    removeClippedSubviews={true}
+    renderItem={[Function]}
+    renderScrollComponent={[Function]}
+    scrollEventThrottle={50}
+    shouldItemUpdate={[Function]}
+    testID="assignee-picker.list"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <SearchBar
+          onCancelButtonPress={[Function]}
+          onChangeText={[Function]}
+          onSearchButtonPress={[Function]}
+        />
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "flex": 1,
+                "height": 54,
+              },
+            ]
+          }
+          testID={undefined}
+          tvParallaxProperties={undefined}
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingLeft": 16,
+                "paddingRight": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "borderColor": "#C7CDD1",
+                  "borderRadius": 20,
+                  "borderWidth": 0.5,
+                  "height": 40,
+                  "justifyContent": "center",
+                  "marginRight": 16,
+                  "overflow": "hidden",
+                  "width": 40,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                TS1
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  }
+                }
+              >
+                the section 1
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 14,
+                  }
+                }
+              >
+                undefined students
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
     </View>
   </RCTScrollView>
 </View>

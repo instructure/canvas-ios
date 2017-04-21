@@ -3,6 +3,7 @@ package com.teacher;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativenavigation.NavigationReactPackage;
 import com.wix.interactable.Interactable;
 import com.cmcewen.blurview.BlurViewPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new NavigationReactPackage(),
             new Interactable(),
             new BlurViewPackage(),
             new RNDeviceInfo()

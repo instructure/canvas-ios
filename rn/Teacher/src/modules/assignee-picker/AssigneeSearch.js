@@ -15,9 +15,12 @@ import SectionActions from './actions'
 import EnrollmentActions from '../enrollments/actions'
 import { searchMapStateToProps, type AssigneeSearchProps, type Assignee } from './map-state-to-props'
 import AssigneeRow from './AssigneeRow'
+import SearchBar from 'react-native-search-bar'
+import { escapeRegExp } from 'lodash'
 
 export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
-
+  searchBar: SearchBar
+  filterString: string
   static navigatorButtons = {
     leftButtons: [
       {
@@ -35,6 +38,11 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
     this.state = {
       data: [],
     }
+  }
+
+  updateFilterString = (filterString: string) => {
+    this.filterString = filterString
+    this.updateData(this.props.sections, this.props.enrollments)
   }
 
   onNavigatorEvent = (event: NavigatorEvent): void => {
@@ -92,7 +100,17 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
       name: i18n('Everyone'),
     }
 
-    const data = [everyone, ...sections, ...enrollments]
+    let data = [everyone, ...sections, ...enrollments]
+    if (this.filterString) {
+      data = data.filter((item) => {
+        const regex = RegExp(this.filterString, 'i')
+        let result = regex.test(escapeRegExp(item.name))
+        if (item.info) {
+          result = result || regex.test(escapeRegExp(item.info))
+        }
+        return result
+      })
+    }
     this.setState({
       data,
     })
@@ -100,6 +118,15 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
 
   renderRow = ({ item, index }: {item: Assignee, index: number }) => {
     return <AssigneeRow assignee={item} onPress={this.onRowPress} />
+  }
+
+  renderSearchBar = () => {
+    return <SearchBar
+            ref={ (c) => { this.searchBar = c }}
+            onChangeText={this.updateFilterString}
+            onSearchButtonPress={() => this.searchBar.unFocus()}
+            onCancelButtonPress={() => this.searchBar.unFocus()}
+            />
   }
 
   onRowPress = (data: any) => {
@@ -113,6 +140,7 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
                 data={this.state.data}
                 renderItem={this.renderRow}
                 keyExtractor={(item) => item.id}
+                ListHeaderComponent={this.renderSearchBar}
               />
             </View>)
   }
