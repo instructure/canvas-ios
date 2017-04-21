@@ -85,3 +85,10 @@ describe('util functions', () => {
     expect(formattedTime).toEqual(null)
   })
 })
+
+describe('edge cases', () => {
+  it('should handle bad data', () => {
+    let result = formattedDueDate(null)
+    expect(result).toEqual('No due date')
+  })
+})

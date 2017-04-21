@@ -34,13 +34,11 @@ export function formattedDueDateWithStatus (date: ?Date): string {
 }
 
 export function extractDateString (date: Date): ?string {
-  if (!date) return null
   if (!isDateValid(date)) return null
   return moment(date).format('ll')
 }
 
 export function extractTimeString (date: Date): ?string {
-  if (!date) return null
   if (!isDateValid(date)) return null
   return moment(date).format('LT')
 }

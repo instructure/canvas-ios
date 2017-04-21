@@ -103,7 +103,7 @@ test('correct output from pickerMapStateToProps', () => {
         [section.id]: section,
       },
       users: {
-        [enrollment.user.id]: enrollment.user,
+        [enrollment.user_id]: enrollment.user,
       },
     },
   })
@@ -131,7 +131,7 @@ test('correct output from pickerMapStateToProps', () => {
   expect(result).toMatchObject({
     assignees: [{
       dataId: enrollment.user_id,
-      name: 'Bill Murray',
+      name: 'Donald Trump',
     },
     {
       name: 'the section 1',
@@ -186,4 +186,29 @@ test('correct output from pickerMapStateToProps', () => {
       name: 'Everyone else',
     }],
   })
+})
+
+test('pickerMapStateToProps should not explode when user data is missing', () => {
+  let course = template.course()
+  let state = template.appState()
+
+  let enrollment = template.enrollment({
+    course_id: course.id,
+  })
+
+  let assigneeOne = template.enrollmentAssignee({
+    dataId: enrollment.user_id,
+  })
+
+  let props: AssigneePickerProps = {
+    courseID: course.id,
+    assignees: [assigneeOne],
+    callback: jest.fn(),
+    navigator: template.navigator(),
+    refreshUsers: jest.fn(),
+    refreshSections: jest.fn(),
+  }
+
+  let result = pickerMapStateToProps(state, props)
+  expect(result).toMatchObject({})
 })

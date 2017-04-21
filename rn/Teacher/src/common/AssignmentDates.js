@@ -53,6 +53,10 @@ export default class AssignmentDates {
     return this.assignment.all_dates || []
   }
 
+  overrides = (): AssignmentOverride[] => {
+    return this.assignment.overrides || []
+  }
+
   // Returns the base date, if one exists
   baseDate = (): ?AssignmentDate => {
     return this.allDates().filter((date) => date.base)[0]
@@ -69,15 +73,14 @@ export default class AssignmentDates {
   // ids for any students that specific due dates are assigned
   // This returns *all* studentIDs for all available dates
   studentIDs = (): string[] => {
-    const overrides = this.assignment.overrides || []
-    const ids = overrides.map((override) => {
+    const ids = this.overrides().map((override) => {
       return override.student_ids || []
     })
     return flatten(ids)
   }
 
   overrideForID = (id: string): ?AssignmentOverride => {
-    return (this.assignment.overrides || []).find((override) => {
+    return this.overrides().find((override) => {
       return override.id === id
     })
   }

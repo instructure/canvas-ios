@@ -17,7 +17,7 @@ export default class WebContainer extends Component<any, Props, any> {
     }
   }
 
-  onNavigationStateChange (event: any) {
+  onNavigationStateChange = (event: any) => {
     let height = parseInt(event.jsEvaluationValue)
     this.setState({
       webViewHeight: height,
@@ -30,7 +30,7 @@ export default class WebContainer extends Component<any, Props, any> {
       <WebView
         style={[style, { height: this.state.webViewHeight }]}
         source={{ html: html }}
-        onNavigationStateChange={this.onNavigationStateChange.bind(this)}
+        onNavigationStateChange={this.onNavigationStateChange}
         injectedJavaScript='document.body.scrollHeight;'
       />
     )

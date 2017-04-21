@@ -46,10 +46,14 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
   }
 
   onNavigatorEvent = (event: NavigatorEvent): void => {
-    if (event.type === 'NavBarButtonPress') {
-      if (event.id === 'cancel') {
-        this.props.navigator.dismissModal()
-      }
+    switch (event.type) {
+      case 'NavBarButtonPress':
+        switch (event.id) {
+          case 'cancel':
+            this.props.navigator.dismissModal()
+            break
+        }
+        break
     }
   }
 

@@ -59,7 +59,7 @@ export type AssigneePickerProps = {
 }
 
 export function pickerMapStateToProps (state: AppState, ownProps: AssigneePickerProps): any {
-  let assignees = ownProps.assignees || []
+  let assignees = ownProps.assignees
 
   // Makes sure that we have all the right information on assignees, such as the name and image
   assignees = assignees.map((assignee) => {

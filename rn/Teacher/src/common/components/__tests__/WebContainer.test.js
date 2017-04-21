@@ -24,3 +24,11 @@ test('render html', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('navigation state change should update height', () => {
+  let html = '<div>hello world</div>'
+  let webView = renderer.create(
+    <WebContainer html={html} />
+  ).getInstance()
+  webView.onNavigationStateChange({ jsEvaluationValue: 100 })
+  expect(webView.state.webViewHeight).toEqual(100)
+})

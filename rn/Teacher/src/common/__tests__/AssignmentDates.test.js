@@ -263,3 +263,32 @@ describe('assignment extraction', () => {
     expect(date).toBeNull()
   })
 })
+
+describe('edge cases', () => {
+  it('should handle when lock_at is missing', () => {
+    const assignment = template.assignment({
+      lock_at: null,
+      all_dates: [template.assignmentDueDate({ lock_at: null })],
+    })
+
+    const dates = new AssignmentDates(assignment)
+    expect(dates.availabilityClosed()).toEqual(false)
+  })
+
+  it('should handle when basically everything is missing', () => {
+    const assignment = template.assignment({
+      lock_at: null,
+      all_dates: [
+        template.assignmentDueDate({ lock_at: null, due_at: null }),
+        template.assignmentDueDate({ lock_at: null, due_at: null })],
+    })
+
+    const dates = new AssignmentDates(assignment)
+    expect(dates.availabilityClosed()).toEqual(false)
+  })
+
+  it('should not explode if there are zero overrides', () => {
+    const dates = new AssignmentDates(template.assignment({ overrides: null }))
+    expect(dates.overrides()).toHaveLength(0)
+  })
+})

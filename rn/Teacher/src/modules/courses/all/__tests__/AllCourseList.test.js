@@ -91,5 +91,26 @@ describe('AllCourseList', () => {
       screen: '/courses/1',
     })
   })
+
+  it('open course user prefs', () => {
+    const showModal = jest.fn()
+    const course: CourseProps = { ...template.course(), color: '#112233' }
+    const props = {
+      ...defaultProps,
+      courses: [course],
+      navigator: template.navigator({
+        showModal,
+      }),
+    }
+    let tree = renderer.create(
+      <AllCourseList {...props} />
+    ).getInstance()
+
+    tree.openUserPreferences(course.id)
+    expect(props.navigator.showModal).toHaveBeenCalledWith({
+      screen: `/courses/${course.id}/user_preferences`,
+      animationType: 'slide-up',
+    })
+  })
 })
 
