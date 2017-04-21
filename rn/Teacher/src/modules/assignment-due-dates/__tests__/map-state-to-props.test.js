@@ -6,6 +6,7 @@ const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/users'),
   ...require('../../../redux/__templates__/app-state'),
+  ...require('../../../__templates__/react-native-navigation'),
 }
 
 test('map state to props should work', async () => {
@@ -37,10 +38,12 @@ test('map state to props should work', async () => {
   })
 
   const props: AssignmentDueDatesProps = {
+    courseID: '1',
     assignment,
     assignmentID: assignment.id,
     users: {},
     refreshUsers: jest.fn(),
+    navigator: template.navigator(),
   }
 
   let result = mapStateToProps(state, props)

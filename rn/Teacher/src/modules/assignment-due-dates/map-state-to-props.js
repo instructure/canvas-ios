@@ -8,10 +8,12 @@ export type AssignmentDueDatesState = {
 }
 
 export type AssignmentDueDatesProps = {
+  courseID: string,
   assignmentID: string,
   assignment: Assignment,
   users: {},
   refreshUsers: Function,
+  navigator: ReactNavigator,
 }
 
 export type AssignmentDueDatesActionProps = {

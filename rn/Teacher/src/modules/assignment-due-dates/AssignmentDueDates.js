@@ -18,6 +18,7 @@ import colors from '../../common/colors'
 import { extractDateFromString } from '../../utils/dateUtils'
 import i18n from 'format-message'
 import { Text, Heading1 } from '../../common/text'
+import { route } from '../../routing'
 
 export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, any> {
 
@@ -39,6 +40,28 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
     if (studentIDs.length) {
       this.props.refreshUsers(studentIDs)
     }
+
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
+  }
+
+  onNavigatorEvent = (event: NavigatorEvent) => {
+    switch (event.type) {
+      case 'NavBarButtonPress':
+        switch (event.id) {
+          case 'edit':
+            this.editAssignment()
+            break
+        }
+        break
+    }
+  }
+
+  editAssignment () {
+    let destination = route(`/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/edit`)
+    this.props.navigator.showModal({
+      ...destination,
+      animationType: 'slide-up',
+    })
   }
 
   renderRow (date: AssignmentDate, dates: AssignmentDates): React.Element<View> {
