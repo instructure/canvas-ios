@@ -1,24 +1,24 @@
 // @flow
 
 export type Submission = {
-  +id: string,
-  +user_id: string,
-  +grade?: ?string,
-  +submitted_at: ?string,
-  +workflow_state: 'submitted'
+  id: string,
+  user_id: string,
+  grade?: ?string,
+  submitted_at: ?string,
+  workflow_state: 'submitted'
     | 'unsubmitted'
     | 'graded'
     | 'pending_review',
-  +excused: boolean,
-  +late: boolean,
+  excused: boolean,
+  late: boolean,
 }
 
 export type SubmissionHistory = {
-  +submission_history: Submission[],
+  submission_history: Submission[],
 }
 
 export type SubmissionComments = {
-  +submission_comments: SubmissionComment[],
+  submission_comments: SubmissionComment[],
 }
 
 export type SubmissionWithHistory =
@@ -27,16 +27,16 @@ export type SubmissionWithHistory =
   SubmissionComments
 
 export type SubmissionCommentAuthor = {
-  +id: string,
-  +display_name: string,
-  +avatar_image_url: string,
-  +html_url: string,
+  id: string,
+  display_name: string,
+  avatar_image_url: string,
+  html_url: string,
 }
 
 export type SubmissionComment = {
-  +id: string,
-  +author_id: string,
-  +author_name: string,
-  +author: SubmissionCommentAuthor,
-  +comment: string,
+  id: string,
+  author_id: string,
+  author_name: string,
+  author: SubmissionCommentAuthor,
+  comment: string,
 }

@@ -14,7 +14,7 @@ export const submission: Template<Submission> = template({
   workflow_state: 'submitted',
 })
 
-export function submissionHistory (submissionOverrides: Array<Object> = [submission()], commentOverrides: Array<Object> = []): SubmissionHistory {
+export function submissionHistory (submissionOverrides: Array<Object> = [submission()], commentOverrides: Array<Object> = []): SubmissionWithHistory {
   const submissionHistory = submissionOverrides.map(submission)
 
   const comments = [] // TODO: commentOverrides.map(submissionComment)

@@ -3,7 +3,8 @@
 declare var require: typeof require & { requireActual: (string) => any }
 
 declare var jest: any
-jest
+
+declare var fail: Function
 
 export const {
     afterAll,

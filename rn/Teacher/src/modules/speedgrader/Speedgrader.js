@@ -4,29 +4,16 @@ import React, { Component } from 'react'
 import {
   View,
   StyleSheet,
-  SegmentedControlIOS,
-  Dimensions,
+  ActivityIndicator,
 } from 'react-native'
 import i18n from 'format-message'
-import BottomDrawer from '../../common/components/BottomDrawer'
-import GradeTab from './GradeTab'
+import refresh from '../../utils/refresh'
+import { connect } from 'react-redux'
+import SubmissionActions from '../submissions/list/actions'
+import SubmissionGrader from './SubmissionGrader'
 
-let { width, height } = Dimensions.get('window')
-
-type Props = {
-  navigator: ReactNavigator,
-}
-
-type State = {
-  width: number,
-  height: number,
-  selectedIndex: number,
-}
-
-export default class Speedgrader extends Component {
-  props: Props
-  state: State
-  drawer: BottomDrawer
+export class Speedgrader extends Component {
+  props: SpeedgraderProps
 
   static navigatorButtons = {
     rightButtons: [{
@@ -36,7 +23,7 @@ export default class Speedgrader extends Component {
     }],
   }
 
-  constructor (props: Props) {
+  constructor (props: SpeedgraderProps) {
     super(props)
 
     props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
@@ -46,12 +33,6 @@ export default class Speedgrader extends Component {
         description: 'Grade student submissions',
       }),
     })
-
-    this.state = {
-      width: width,
-      height: height,
-      selectedIndex: 0,
-    }
   }
 
   onNavigatorEvent = (event: NavigatorEvent): void => {
@@ -62,58 +43,14 @@ export default class Speedgrader extends Component {
     }
   }
 
-  changeTab = (e: any) => {
-    this.drawer.open()
-    this.setState({
-      selectedIndex: e.nativeEvent.selectedSegmentIndex,
-    })
-  }
-
-  onLayout = (e: any) => {
-    this.setState({
-      width: e.nativeEvent.layout.width,
-      height: e.nativeEvent.layout.height,
-    })
-  }
-
-  renderTab (tab: ?number): ?React.Element<*> {
-    switch (tab) {
-      case 0:
-        return <GradeTab />
-      case 1:
-        return <View></View>
-      case 2:
-        return <View></View>
-    }
-  }
-
   render (): React.Element<*> {
+    if (!this.props.refreshing && this.props.pending || !this.props.submissions) {
+      return <View style={styles.loadingWrapper}><ActivityIndicator /></View>
+    }
+
     return (
-      <View onLayout={this.onLayout} style={styles.speedGrader}>
-        <BottomDrawer ref={e => { this.drawer = e }} containerWidth={this.state.width} containerHeight={this.state.height}>
-          <View style={styles.controlWrapper}>
-            <SegmentedControlIOS
-              testID='speedgrader.segment-control'
-              values={[
-                i18n({
-                  default: 'Grades',
-                  description: 'The title of the button to switch to grading a submission',
-                }),
-                i18n({
-                  default: 'Comments',
-                  description: 'The title of the button to switch to comments on a submission',
-                }),
-                i18n({
-                  default: 'Files',
-                  description: 'The title of the button to switch to the files submitted for a submission',
-                }),
-              ]}
-              selectedIndex={this.state.selectedIndex}
-              onChange={this.changeTab}
-            />
-          </View>
-          {this.renderTab(this.state.selectedIndex)}
-        </BottomDrawer>
+      <View style={styles.speedGrader}>
+        <SubmissionGrader submission={this.props.submissions[0]} />
       </View>
     )
   }
@@ -123,10 +60,45 @@ const styles = StyleSheet.create({
   speedGrader: {
     flex: 1,
   },
-  controlWrapper: {
-    paddingHorizontal: 16,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgray',
-    paddingBottom: 8,
+  loadingWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
+
+export function mapStateToProps (state: AppState, ownProps: RoutingProps): SpeedgraderDataProps {
+  let assignment = state.entities.assignments[ownProps.assignmentID]
+  let submissions = null
+  if (assignment) {
+    submissions = assignment.submissions.refs.map(submissionID => state.entities.submissions[submissionID])
+  }
+
+  return {
+    pending: assignment ? Boolean(assignment.submissions.pending) : false,
+    submissions,
+  }
+}
+
+const Refreshed = refresh(
+  (props) => props.refreshSubmissions(props.courseID, props.assignmentID),
+  (props) => !props.submissions,
+  (props) => props.pending
+)(Speedgrader)
+const Connected = connect(mapStateToProps, SubmissionActions)(Refreshed)
+
+export default (Connected: React.Element<*>)
+
+type RoutingProps = {
+  courseID: string,
+  assignmentID: string,
+  userID: string,
+}
+type SpeedgraderActionProps = {
+  refreshSubmissions: Function,
+}
+type SpeedgraderDataProps = {
+  pending: boolean,
+  submissions: ?Array<SubmissionWithHistory>,
+}
+type SpeedgraderProps = RoutingProps & SpeedgraderActionProps & SpeedgraderDataProps & RefreshProps & NavProps

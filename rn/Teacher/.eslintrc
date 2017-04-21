@@ -12,7 +12,8 @@
     "import"
   ],
   "globals": {
-    "fetch": true
+    "fetch": true,
+    "fail": true
   },
   "rules": {
     "react/jsx-uses-vars": [2],
