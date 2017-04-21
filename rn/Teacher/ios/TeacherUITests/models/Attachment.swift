@@ -17,25 +17,23 @@
 
 /* This is an auto-generated file. */
 
-struct Submission {
+struct Attachment {
     let id: Int
-    let attempt: Int
-    let assignmentId: Int
-    let userId: Int
-    let graderId: Int
-    let body: String
+    let folderId: Int
+    let displayName: String
+    let filename: String
+    let contentType: String
     let url: String
-    let grade: String
+    let size: Int
+    let createdAt: String
+    let updatedAt: String
+    let unlockAt: String
+    let locked: Bool
+    let hidden: Bool
+    let lockAt: String
+    let thumbnailUrl: String
+    let modifiedAt: String
+    let mimeClass: String
+    let mediaEntryId: Int
     let previewUrl: String
-    let submissionType: String
-    let workflowState: String
-    let submittedAt: String
-    let gradedAt: String
-    let score: Double
-    let excused: Bool
-    let late: Bool
-    let gradeMatchesCurrentSubmission: Bool
-    let attachments: [Attachment]
-    let submissionHistory: [Submission]
-    let submissionComments: [SubmissionComment]
 }

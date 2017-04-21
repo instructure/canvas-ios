@@ -17,25 +17,10 @@
 
 /* This is an auto-generated file. */
 
-struct Submission {
+struct SubmissionComment {
     let id: Int
-    let attempt: Int
-    let assignmentId: Int
-    let userId: Int
-    let graderId: Int
-    let body: String
-    let url: String
-    let grade: String
-    let previewUrl: String
-    let submissionType: String
-    let workflowState: String
-    let submittedAt: String
-    let gradedAt: String
-    let score: Double
-    let excused: Bool
-    let late: Bool
-    let gradeMatchesCurrentSubmission: Bool
-    let attachments: [Attachment]
-    let submissionHistory: [Submission]
-    let submissionComments: [SubmissionComment]
+    let authorId: Int
+    let authorName: String
+    let comment: String
+    let createdAt: String
 }

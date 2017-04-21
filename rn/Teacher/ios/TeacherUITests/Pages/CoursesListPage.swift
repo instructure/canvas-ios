@@ -29,20 +29,25 @@ class CoursesListPage {
   private let seeAllCoursesButton = e.selectBy(id: "course-list.see-all-btn")
   private let coursesEditButton = e.selectBy(id: "e2e_rules")
 
+  // MARK: - Helpers
+
+  private func courseId(_ course: Course) -> String {
+    return "courseCard.kabob_\(course.id)"
+  }
+
   // MARK: - Assertions
 
   func assertCourseExists(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_fromFile(file, line)
 
-    e.selectBy(id: course.courseCode).assertExists()
+    e.selectBy(id: courseId(course)).assertExists()
   }
 
   func assertCourseHidden(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
     grey_fromFile(file, line)
 
-    e.selectBy(id: course.courseCode).assertHidden()
+    e.selectBy(id: courseId(course)).assertHidden()
   }
-
 
   // MARK: - UI Actions
 

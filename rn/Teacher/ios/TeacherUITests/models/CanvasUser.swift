@@ -23,4 +23,5 @@ struct CanvasUser {
     let loginId: String
     let password: String
     let name: String
+    let avatarUrl: String
 }
