@@ -216,6 +216,9 @@
   "filter_e3398407": {
     "message": "Filter"
   },
+  "filter_submissions_81bc50de": {
+    "message": "Filter Submissions"
+  },
   "for_974cbb84": {
     "message": "For"
   },
@@ -406,8 +409,8 @@
   "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
     "message": "There was a problem loading the assignment submissions."
   },
-  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
-    "message": "There was an unexpected error. Please close this alert and try again.",
+  "there_was_an_unexpected_error_please_try_again_5e08774e": {
+    "message": "There was an unexpected error. Please try again.",
     "description": "A generic error message"
   },
   "this_action_requires_an_internet_connection_81f6688a": {

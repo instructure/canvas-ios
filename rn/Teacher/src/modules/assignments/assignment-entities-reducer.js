@@ -17,7 +17,7 @@ const pending = pending => pending || 0
 const error = error => error || null
 
 const assignmentContent = combineReducers({
-  assignment,
+  data: assignment,
   submissions,
   pending,
   error,

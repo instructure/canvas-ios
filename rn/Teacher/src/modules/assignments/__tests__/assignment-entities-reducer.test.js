@@ -51,16 +51,31 @@ it('update assignments with error', async () => {
 })
 
 test('reduces assignment content', () => {
+  let assignment = template.assignment()
+
   const data = [
     template.submission({ id: '3' }),
   ].map(override => template.submissionHistory([override]))
 
   let action = {
     type: refreshSubmissions.toString(),
-    payload: { assignmentID: '11', result: { data } },
+    payload: { assignmentID: assignment.id, result: { data } },
   }
 
-  expect(assignments({}, action)).toMatchObject({
-    '11': { submissions: { refs: ['3'] } },
+  let state = {
+    [assignment.id]: { data: assignment },
+  }
+
+  expect(assignments(state, action)).toEqual({
+    [assignment.id]: {
+      data: assignment,
+      submissions: {
+        pending: -1,
+        refs: ['3'],
+      },
+      pending: 0,
+      error: null,
+    },
+
   })
 })
