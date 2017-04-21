@@ -32,6 +32,10 @@ export type AssignmentGroupContentState = {
   +assignmentRefs: EntityRefs,
 }
 
+export type AssignmentGroupState = {
+  +group: AssignmentGroup,
+}
+
 export type AssignmentContentState = {
   +submissions: AsyncRefs,
 }
@@ -41,7 +45,7 @@ export type AssignmentDetailState = AsyncState & {
 }
 
 export type CoursesState = { [string]: CourseState & CourseContentState }
-export type AssignmentGroupsState = { [string]: AssignmentGroup & AssignmentGroupContentState }
+export type AssignmentGroupsState = { [string]: AssignmentGroupState & AssignmentGroupContentState }
 export type AssignmentsState = { [string]: AssignmentDetailState & AssignmentContentState }
 export type EnrollmentsState = { [string]: Enrollment }
 export type SectionsState = { [string]: Section }
