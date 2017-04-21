@@ -52,7 +52,7 @@ RCT_EXPORT_METHOD(logout)
 RCT_EXPORT_METHOD(startObserving)
 {
   __weak NativeLogin *weakSelf = self;
-  self.loginObserver = [[RACObserve(TheKeymaster, currentClient) subscribeNext:^(CKIClient *client) {
+  self.loginObserver = [[[RACObserve(TheKeymaster, currentClient) subscribeOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(CKIClient *client) {
     __strong NativeLogin *self = weakSelf;
     
     if (client == nil) {
