@@ -414,6 +414,7 @@ exports[`error occurs when done pressed 1`] = `
           </Text>
         </View>
       </TouchableHighlight>
+      <View />
       <View
         style={
           Array [
@@ -992,6 +993,7 @@ exports[`modal saving is shown on assignment update 1`] = `
           </Text>
         </View>
       </TouchableHighlight>
+      <View />
       <View
         style={
           Array [
@@ -1570,6 +1572,7 @@ exports[`renders 1`] = `
           </Text>
         </View>
       </TouchableHighlight>
+      <View />
       <View
         style={
           Array [

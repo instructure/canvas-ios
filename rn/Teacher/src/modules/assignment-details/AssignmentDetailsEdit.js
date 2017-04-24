@@ -129,6 +129,26 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     )
   }
 
+  renderDataMapPicker = (): React.Element<View> => {
+    if (!this.state.showPicker) return <View/>
+
+    return <View style={style.dateEditorContainer}>
+      <PickerIOS
+        style={style.picker}
+        selectedValue={this.state.pickerSelectedValue}
+        onValueChange={this.pickerValueDidChange.bind(this)}
+        testID='assignmentPicker'>
+        {this.currentPickerMap && Array.from(this.currentPickerMap.keys()).map((key) => (
+          <PickerItemIOS
+            key={key}
+            value={key}
+            label={this.currentPickerMap ? this.currentPickerMap.get(key) : ''}
+          />
+        ))}
+      </PickerIOS>
+    </View>
+  }
+
   render (): React.Element<View> {
     let sectionTitle = i18n({
       default: 'Title',
@@ -174,6 +194,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
               <Text>{GRADE_DISPLAY_OPTIONS.get(this.state.assignment.grading_type)}</Text>
             </View>
           </TouchableHighlight>
+          {this.renderDataMapPicker()}
 
           {/* Publish */}
           <View style={[style.row, style.twoColumnRow, style.bottomRow]}>
@@ -185,23 +206,6 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
           <AssignmentDatesEditor assignment={this.props.assignmentDetails} ref={c => { this.datesEditor = c }} navigator={this.props.navigator} />
 
         </KeyboardAwareScrollView>
-
-        { this.state.showPicker && this.currentPickerMap &&
-        <PickerIOS
-          style={style.picker}
-          selectedValue={this.state.pickerSelectedValue}
-          onValueChange={this.pickerValueDidChange.bind(this)}
-          testID='assignmentPicker'>
-          {Array.from(this.currentPickerMap.keys()).map((key) => (
-            <PickerItemIOS
-              key={key}
-              value={key}
-              label={this.currentPickerMap ? this.currentPickerMap.get(key) : ''}
-            />
-          ))}
-        </PickerIOS>
-        }
-
       </View>
     )
   }
@@ -214,10 +218,9 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   }
 
   togglePicker = (selectedField: string, map: ?Map<*, *>) => {
-    let animation = LayoutAnimation.create(250, LayoutAnimation.Types.linear, LayoutAnimation.Properties.opacity)
-    LayoutAnimation.configureNext(animation)
+    LayoutAnimation.easeInEaseOut()
     this.currentPickerMap = map
-    this.setState({ showPicker: !this.state.showPicker, currentAssignmentKey: selectedField })
+    this.setState({ pickerSelectedValue: this.state.assignment[selectedField], showPicker: !this.state.showPicker, currentAssignmentKey: selectedField })
   }
 
   updateFromInput (key: string, value: any) {
@@ -336,6 +339,12 @@ const style = StyleSheet.create({
     textAlign: 'right',
   },
   picker: {
+    flex: 1,
+    backgroundColor: '#fff',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: color.seperatorColor,
+  },
+  pickerContainer: {
     flex: 1,
   },
 })

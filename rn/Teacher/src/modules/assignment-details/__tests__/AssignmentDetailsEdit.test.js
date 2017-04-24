@@ -24,6 +24,7 @@ jest
   .mock('LayoutAnimation', () => ({
     create: jest.fn(),
     configureNext: jest.fn(),
+    easeInEaseOut: jest.fn(),
     Types: { linear: null },
     Properties: { opacity: null },
   }))
