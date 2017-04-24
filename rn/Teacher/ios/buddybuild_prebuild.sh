@@ -32,6 +32,7 @@ retry_command() {
 set +e
 brew update &> /dev/null
 brew upgrade carthage &> /dev/null
+brew upgrade yarn &> /dev/null
 set -e
 
 # react native teacher dependencies
@@ -40,9 +41,9 @@ retry_command carthage checkout --no-use-binaries
 popd
 
 # https://github.com/tj/n
-n 7.5.0
+n 7.9.0
 
-node_version_expected="v7.5.0"
+node_version_expected="v7.9.0"
 node_version="$(node -v)"
 echo "Using node: $node_version"
 echo "Using carthage: $(carthage version)"
