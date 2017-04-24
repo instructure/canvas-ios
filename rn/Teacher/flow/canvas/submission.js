@@ -2,6 +2,7 @@
 
 export type Submission = {
   id: string,
+  user: User,
   user_id: string,
   grade?: ?string,
   submitted_at: ?string,
@@ -21,10 +22,10 @@ export type SubmissionComments = {
   submission_comments: SubmissionComment[],
 }
 
-export type SubmissionWithHistory =
-  Submission &
-  SubmissionHistory &
-  SubmissionComments
+export type SubmissionWithHistory
+  = Submission
+  & SubmissionHistory
+  & SubmissionComments
 
 export type SubmissionCommentAuthor = {
   id: string,

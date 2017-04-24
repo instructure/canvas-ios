@@ -19,10 +19,13 @@ type State = {
 }
 
 type SubmissionGraderProps = {
-  submissionID: string,
+  courseID: string,
+  assignmnetID: string,
+  userID: string,
+  submissionID: ?string,
 }
 
-export default class SubmissionGrader extends Component {
+export default class SubmissionGrader extends Component<any, SubmissionGraderProps, State> {
   state: State
   props: SubmissionGraderProps
   drawer: BottomDrawer

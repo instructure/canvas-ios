@@ -4,10 +4,10 @@ import { Reducer } from 'redux'
 import Actions from './actions'
 import { handleActions } from 'redux-actions'
 import handleAsync from '../../../utils/handleAsync'
-import SpeedgraderActions from '../../speedgrader/actions'
+import SpeedGraderActions from '../../speedgrader/actions'
 
 const { refreshSubmissions } = Actions
-const { excuseAssignment } = SpeedgraderActions
+const { excuseAssignment } = SpeedGraderActions
 
 export const submissionsData: Reducer<SubmissionsState, any> = handleActions({
   [refreshSubmissions.toString()]: handleAsync({
@@ -29,6 +29,7 @@ export const submissionsData: Reducer<SubmissionsState, any> = handleActions({
 export const submission: Reducer<SubmissionsState, any> = handleActions({
   [excuseAssignment.toString()]: handleAsync({
     pending: (state, { submissionID }) => {
+      if (!submissionID) { return state }
       return {
         ...state,
         submission: {
@@ -38,6 +39,7 @@ export const submission: Reducer<SubmissionsState, any> = handleActions({
       }
     },
     rejected: (state, { submissionID }) => {
+      if (!submissionID) { return state }
       return {
         ...state,
         submission: {

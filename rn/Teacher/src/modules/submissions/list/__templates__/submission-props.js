@@ -3,10 +3,16 @@
 import template, { type Template } from '../../../../utils/template'
 import type { SubmissionDataProps } from '../submission-prop-types'
 
+const templates = {
+  ...require('../../../../api/canvas-api/__templates__/submissions'),
+}
+
+const submissionWithHistory = templates.submissionHistory()
+
 export const submissionProps: Template<SubmissionDataProps> = template({
-  grade: 'not_submitted',
-  name: 'Jonny Ive',
-  status: 'none',
-  userID: '9',
-  avatarURL: 'http://www.fillmurray.com/100/100',
+  grade: 'B-',
+  name: submissionWithHistory.user.name,
+  status: 'submitted',
+  userID: submissionWithHistory.user.id,
+  avatarURL: submissionWithHistory.user.avatar_url,
 })

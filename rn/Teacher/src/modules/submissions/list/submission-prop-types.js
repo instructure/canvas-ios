@@ -16,16 +16,22 @@ export type SubmissionDataProps = {
   +name: string,
   +status: SubmissionStatusProp,
   +grade: ?GradeProp,
+  +submissionID: ?string,
 }
 
 export type SubmissionProps = SubmissionDataProps & {
   +onPress: (userID: string) => void,
 }
 
-export type SubmissionListDataProps = {
+export type AsyncSubmissionsDataProps = {
   +pending: boolean,
-  +courseColor: string,
   +submissions: Array<SubmissionDataProps>,
+}
+
+export type SubmissionListDataProps
+  = AsyncSubmissionsDataProps
+  & {
+  +courseColor: string,
   +shouldRefresh: boolean,
 }
 

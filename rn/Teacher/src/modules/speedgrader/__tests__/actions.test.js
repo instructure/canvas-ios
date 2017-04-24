@@ -1,14 +1,14 @@
 // @flow
 
-import { SpeedgraderActions } from '../actions'
+import { SpeedGraderActions } from '../actions'
 
 let api = {
   gradeSubmission: jest.fn(),
 }
 
-let actions = SpeedgraderActions(api)
+let actions = SpeedGraderActions(api)
 
-describe('SpeedgraderActions', () => {
+describe('SpeedGraderActions', () => {
   beforeEach(() => jest.resetAllMocks())
 
   describe('excuseAssignment', () => {

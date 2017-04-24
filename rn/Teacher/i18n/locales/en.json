@@ -392,8 +392,8 @@
     "message": "Set this for the default color of the course. This won’t override a personal color setting.",
     "description": "Description of color picker shown to the user"
   },
-  "speedgrader_d9a6fa90": {
-    "message": "Speedgrader",
+  "speedgrader_de0affa6": {
+    "message": "SpeedGrader",
     "description": "Grade student submissions"
   },
   "submission_types_af57bf0": {

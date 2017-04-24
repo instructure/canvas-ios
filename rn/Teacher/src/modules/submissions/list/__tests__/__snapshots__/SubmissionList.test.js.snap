@@ -181,7 +181,6 @@ exports[`SubmissionList loaded 1`] = `
             Object {
               "borderBottomColor": "lightgrey",
               "borderBottomWidth": 0.5,
-              "flex": 1,
             }
           }
         >
@@ -340,7 +339,6 @@ exports[`SubmissionList loaded 1`] = `
             Object {
               "borderBottomColor": "lightgrey",
               "borderBottomWidth": 0.5,
-              "flex": 1,
             }
           }
         >
@@ -529,7 +527,6 @@ exports[`SubmissionList loaded 1`] = `
             Object {
               "borderBottomColor": "lightgrey",
               "borderBottomWidth": 0.5,
-              "flex": 1,
             }
           }
         >
@@ -731,7 +728,6 @@ exports[`SubmissionList loaded 1`] = `
             Object {
               "borderBottomColor": "lightgrey",
               "borderBottomWidth": 0.5,
-              "flex": 1,
             }
           }
         >

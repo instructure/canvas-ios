@@ -2,10 +2,10 @@
 
 import { submissions } from '../submission-entities-reducer'
 import Actions from '../actions'
-import SpeedgraderActions from '../../../speedgrader/actions'
+import SpeedGraderActions from '../../../speedgrader/actions'
 
 const { refreshSubmissions } = Actions
-const { excuseAssignment } = SpeedgraderActions
+const { excuseAssignment } = SpeedGraderActions
 const templates = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
 }

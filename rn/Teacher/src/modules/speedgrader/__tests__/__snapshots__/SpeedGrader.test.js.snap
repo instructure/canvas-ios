@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpeedGrader renders 1`] = `
+<RCTScrollView
+  contentOffset={
+    Object {
+      "x": 0,
+      "y": 0,
+    }
+  }
+  horizontal={true}
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  pagingEnabled={true}
+  scrollEventThrottle={50}
+  showsHorizontalScrollIndicator={false}
+>
+  <View />
+</RCTScrollView>
+`;
+
+exports[`SpeedGrader renders submissions if there are some 1`] = `
+<RCTScrollView
+  contentOffset={
+    Object {
+      "x": 0,
+      "y": 0,
+    }
+  }
+  horizontal={true}
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  pagingEnabled={true}
+  scrollEventThrottle={50}
+  showsHorizontalScrollIndicator={false}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "height": 1334,
+              "width": 750,
+            },
+          ]
+        }
+      >
+        <View
+          onLayout={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Interactable.View
+            animatedValueY={1281}
+            initialPosition={
+              Object {
+                "y": 1281,
+              }
+            }
+            onLayout={undefined}
+            onSnap={[Function]}
+            snapPoints={
+              Array [
+                Object {
+                  "y": 213.8,
+                },
+                Object {
+                  "y": 747.4,
+                },
+                Object {
+                  "y": 1281,
+                },
+              ]
+            }
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "maxWidth": 700,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "left": 25,
+                  "right": 25,
+                },
+              ]
+            }
+            verticalOnly={true}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#fff",
+                  "borderTopLeftRadius": 20,
+                  "borderTopRightRadius": 20,
+                  "flex": 1,
+                  "height": 1334,
+                  "paddingBottom": 1281,
+                  "paddingTop": 16,
+                  "shadowColor": "#000000",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 5,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#e3e3e3",
+                      "borderRadius": 5,
+                      "height": 4,
+                      "marginBottom": 8,
+                      "marginTop": 4,
+                      "width": 40,
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "borderBottomColor": "lightgray",
+                    "borderBottomWidth": 0.5,
+                    "paddingBottom": 8,
+                    "paddingHorizontal": 16,
+                  }
+                }
+              >
+                <RCTSegmentedControl
+                  enabled={true}
+                  onChange={[Function]}
+                  selectedIndex={0}
+                  style={
+                    Array [
+                      Object {
+                        "height": 28,
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="speedgrader.segment-control"
+                  values={
+                    Array [
+                      "Grades",
+                      "Comments",
+                      "Files",
+                    ]
+                  }
+                />
+              </View>
+              <RCTScrollView
+                style={
+                  Object {
+                    "paddingHorizontal": 16,
+                  }
+                }
+              >
+                <View>
+                  <GradePicker
+                    assignmentID="1"
+                    courseID="1"
+                    submissionID={undefined}
+                    userID="55"
+                  />
+                </View>
+              </RCTScrollView>
+            </View>
+          </Interactable.View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`SpeedGrader shows the loading spinner when pending and not refreshing 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="#999999"
+    hidesWhenStopped={true}
+    size="small"
+  />
+</View>
+`;
+
+exports[`SpeedGrader shows the loading spinner when there are no submissions 1`] = `
+<RCTScrollView
+  contentOffset={
+    Object {
+      "x": 0,
+      "y": 0,
+    }
+  }
+  horizontal={true}
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  pagingEnabled={true}
+  scrollEventThrottle={50}
+  showsHorizontalScrollIndicator={false}
+>
+  <View />
+</RCTScrollView>
+`;

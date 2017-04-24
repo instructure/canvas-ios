@@ -6,7 +6,6 @@ exports[`excused row renders correctly 1`] = `
     Object {
       "borderBottomColor": "lightgrey",
       "borderBottomWidth": 0.5,
-      "flex": 1,
     }
   }
 >
@@ -175,7 +174,6 @@ exports[`late graded row renders correctly 1`] = `
     Object {
       "borderBottomColor": "lightgrey",
       "borderBottomWidth": 0.5,
-      "flex": 1,
     }
   }
 >
@@ -344,7 +342,6 @@ exports[`missing ungraded row renders correctly 1`] = `
     Object {
       "borderBottomColor": "lightgrey",
       "borderBottomWidth": 0.5,
-      "flex": 1,
     }
   }
 >
@@ -483,7 +480,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
     Object {
       "borderBottomColor": "lightgrey",
       "borderBottomWidth": 0.5,
-      "flex": 1,
     }
   }
 >
@@ -665,7 +661,6 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
     Object {
       "borderBottomColor": "lightgrey",
       "borderBottomWidth": 0.5,
-      "flex": 1,
     }
   }
 >

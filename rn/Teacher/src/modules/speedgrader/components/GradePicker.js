@@ -11,7 +11,7 @@ import i18n from 'format-message'
 import { Heading1 } from '../../../common/text'
 import Button from 'react-native-button'
 import { connect } from 'react-redux'
-import SpeedgraderActions, { type SpeedgraderActionsType } from '../actions'
+import SpeedGraderActions, { type SpeedGraderActionsType } from '../actions'
 import Images from '../../../images'
 import colors from '../../../common/colors'
 
@@ -27,7 +27,7 @@ export class GradePicker extends Component {
         text: i18n('Ok'),
       },
     ]
-    if (!this.props.submission.excused) {
+    if (this.props.submission && !this.props.submission.excused) {
       buttons.unshift({
         text: i18n('Excuse Student'),
         onPress: () => this.props.excuseAssignment(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID),
@@ -39,12 +39,14 @@ export class GradePicker extends Component {
       null,
       buttons,
       'plain-text',
-      this.props.submission.excused ? i18n('Excused') : ''
+      this.props.submission && this.props.submission.excused ? i18n('Excused') : ''
     )
   }
 
   renderGrade = () => {
-    if (this.props.submission.excused) {
+    if (this.props.submission == null) {
+      return <Heading1>TODO: No Submission</Heading1>
+    } else if (this.props.submission.excused) {
       return <Heading1>{i18n('Excused')}</Heading1>
     } else if (this.props.submission.grade == null) {
       return <Image source={Images.add} style={styles.gradeButton}/>
@@ -82,23 +84,26 @@ const styles = StyleSheet.create({
 })
 
 export function mapStateToProps (state: AppState, ownProps: GradePickerOwnProps): GradePickerDataProps {
+  const submission = ownProps.submissionID && state.entities.submissions[ownProps.submissionID]
+    ? state.entities.submissions[ownProps.submissionID].submission
+    : undefined
   return {
-    submission: state.entities.submissions[ownProps.submissionID].submission,
+    submission,
   }
 }
 
-const Connected = connect(mapStateToProps, SpeedgraderActions)(GradePicker)
+const Connected = connect(mapStateToProps, SpeedGraderActions)(GradePicker)
 export default (Connected: any)
 
 type GradePickerOwnProps = {
-  submissionID: string,
+  submissionID: ?string,
   courseID: string,
   assignmentID: string,
   userID: string,
 }
 
 type GradePickerDataProps = {
-  submission: SubmissionWithHistory,
+  submission: ?SubmissionWithHistory,
 }
 
-type GradePickerProps = GradePickerOwnProps & GradePickerDataProps & SpeedgraderActionsType
+type GradePickerProps = GradePickerOwnProps & GradePickerDataProps & SpeedGraderActionsType

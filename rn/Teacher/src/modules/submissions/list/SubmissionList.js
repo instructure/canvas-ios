@@ -19,6 +19,7 @@ import EnrollmentActions from '../../enrollments/actions'
 import refresh from '../../../utils/refresh'
 import { LinkButton } from '../../../common/buttons'
 import { Heading1 } from '../../../common/text'
+import { route } from '../../../routing'
 
 type Props = SubmissionListProps & NavProps & RefreshProps
 
@@ -46,7 +47,17 @@ export class SubmissionList extends Component<any, Props, any> {
   }
 
   navigateToSubmission = (userID: string) => {
-    console.log('go to the submission for', userID)
+    if (!global.V03) { return } // such features
+
+    let destination = route(`/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submissions/${userID}`)
+    this.props.navigator.showModal({
+      ...destination,
+      navigatorStyle: {
+        navBarHidden: true,
+        statusBarHidden: true,
+        statusBarHideWithNavBar: true,
+      },
+    })
   }
 
   renderRow = ({ item }: { item: SubmissionProps }) => {

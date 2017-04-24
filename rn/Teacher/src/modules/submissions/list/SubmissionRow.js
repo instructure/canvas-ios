@@ -126,7 +126,6 @@ export default SubmissionRow
 
 const styles = StyleSheet.create({
   row: {
-    flex: 1,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'lightgrey',
   },
