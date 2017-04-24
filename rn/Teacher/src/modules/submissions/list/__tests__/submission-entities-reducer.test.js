@@ -22,14 +22,26 @@ test('it captures entities', () => {
   }
 
   expect(submissions({}, action)).toEqual({
-    '1': data[0],
-    '2': data[1],
+    '1': {
+      submission: data[0],
+      pending: 0,
+      error: null,
+    },
+    '2': {
+      submission: data[1],
+      pending: 0,
+      error: null,
+    },
   })
 })
 
 test('excuseAssignment optimistically updates', () => {
   let state = {
-    '1': templates.submissionHistory([{ id: '1', excused: false }]),
+    '1': {
+      submission: templates.submissionHistory([{ id: '1', excused: false }]),
+      pending: 0,
+      error: null,
+    },
   }
   const action = {
     type: excuseAssignment.toString(),
@@ -38,12 +50,16 @@ test('excuseAssignment optimistically updates', () => {
   }
 
   let newState = submissions(state, action)
-  expect(newState['1'].excused).toBeTruthy()
+  expect(newState['1'].submission.excused).toBeTruthy()
 })
 
 test('excuseAssignment reverts on failure', () => {
   let state = {
-    '1': templates.submissionHistory([{ id: '1', excused: true }]),
+    '1': {
+      submission: templates.submissionHistory([{ id: '1', excused: true }]),
+      pending: 0,
+      error: null,
+    },
   }
 
   const action = {
@@ -53,5 +69,5 @@ test('excuseAssignment reverts on failure', () => {
   }
 
   let newState = submissions(state, action)
-  expect(newState['1'].excused).toBeFalsy()
+  expect(newState['1'].submission.excused).toBeFalsy()
 })

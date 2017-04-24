@@ -23,7 +23,7 @@ function getSubmissionsByUserID (assignmentContent?: AssignmentContentState, sub
   if (!assignmentContent) { return {} }
   return assignmentContent.submissions.refs
     .reduce((byUserID, ref) => {
-      const submission = submissions[ref]
+      const submission = submissions[ref].submission
       if (!submission) { return byUserID }
       return { ...byUserID, [submission.user_id]: submission }
     }, {})

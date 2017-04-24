@@ -9,23 +9,30 @@ import SpeedgraderActions from '../../speedgrader/actions'
 const { refreshSubmissions } = Actions
 const { excuseAssignment } = SpeedgraderActions
 
-export const submissions: Reducer<SubmissionsState, any> = handleActions({
+export const submissionsData: Reducer<SubmissionsState, any> = handleActions({
   [refreshSubmissions.toString()]: handleAsync({
     resolved: (state, { result }) => {
       const incoming = result.data
         .reduce((incoming, submission) => ({
           ...incoming,
-          [submission.id]: submission,
+          [submission.id]: {
+            submission,
+            pending: 0,
+            error: null,
+          },
         }), {})
       return { ...state, ...incoming }
     },
   }),
+}, {})
+
+export const submission: Reducer<SubmissionsState, any> = handleActions({
   [excuseAssignment.toString()]: handleAsync({
     pending: (state, { submissionID }) => {
       return {
         ...state,
-        [submissionID]: {
-          ...state[submissionID],
+        submission: {
+          ...state.submission,
           excused: true,
         },
       }
@@ -33,11 +40,25 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
     rejected: (state, { submissionID }) => {
       return {
         ...state,
-        [submissionID]: {
-          ...state[submissionID],
+        submission: {
+          ...state.submission,
           excused: false,
         },
       }
     },
   }),
-}, {})
+}, { pending: 0, error: null })
+
+export function submissions (state: SubmissionsState = {}, action: any): SubmissionsState {
+  let newState = state
+  if (action.payload && action.payload.submissionID) {
+    const submissionID = action.payload.submissionID
+    const currentSubmissionState: SubmissionState = state[submissionID] || {}
+    const submissionState = submission(currentSubmissionState, action)
+    newState = {
+      ...state,
+      [submissionID]: submissionState,
+    }
+  }
+  return submissionsData(newState, action)
+}

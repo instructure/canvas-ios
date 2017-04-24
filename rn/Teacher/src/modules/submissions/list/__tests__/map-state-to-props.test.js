@@ -52,33 +52,45 @@ test('submissions', () => {
 
   const submissions: SubmissionsState = {
     // S1 has not submitted
-    '20': t.submissionHistory([{
-      id: '20',
-      user_id: '2',
-      grade: undefined,
-      submitted_at: undefined,
-      workflow_state: 'unsubmitted',
-      excused: true,
-      late: true,
-    }]),
-    '30': t.submissionHistory([{
-      id: '30',
-      user_id: '3',
-      grade: undefined,
-      submitted_at: '2017-04-05T15:12:45Z',
-      workflow_state: 'submitted',
-      excused: false,
-      late: true,
-    }]),
-    '40': t.submissionHistory([{
-      id: '40',
-      user_id: '4',
-      grade: 'A-',
-      submitted_at: '2017-04-05T15:12:45Z',
-      workflow_state: 'submitted',
-      excused: false,
-      late: false,
-    }]),
+    '20': {
+      submission: t.submissionHistory([{
+        id: '20',
+        user_id: '2',
+        grade: undefined,
+        submitted_at: undefined,
+        workflow_state: 'unsubmitted',
+        excused: true,
+        late: true,
+      }]),
+      pending: 0,
+      error: null,
+    },
+    '30': {
+      submission: t.submissionHistory([{
+        id: '30',
+        user_id: '3',
+        grade: undefined,
+        submitted_at: '2017-04-05T15:12:45Z',
+        workflow_state: 'submitted',
+        excused: false,
+        late: true,
+      }]),
+      pending: 0,
+      error: null,
+    },
+    '40': {
+      submission: t.submissionHistory([{
+        id: '40',
+        user_id: '4',
+        grade: 'A-',
+        submitted_at: '2017-04-05T15:12:45Z',
+        workflow_state: 'submitted',
+        excused: false,
+        late: false,
+      }]),
+      pending: 0,
+      error: null,
+    },
   }
 
   const enrRefs = { pending: 0,

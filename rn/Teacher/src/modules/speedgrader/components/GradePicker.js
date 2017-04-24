@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 
 export function mapStateToProps (state: AppState, ownProps: GradePickerOwnProps): GradePickerDataProps {
   return {
-    submission: state.entities.submissions[ownProps.submissionID],
+    submission: state.entities.submissions[ownProps.submissionID].submission,
   }
 }
 

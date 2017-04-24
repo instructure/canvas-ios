@@ -44,13 +44,17 @@ export type AssignmentDetailState = AsyncState & {
   +data: Assignment,
 }
 
+export type SubmissionState = AsyncState & {
+  submission: SubmissionWithHistory,
+}
+
 export type CoursesState = { [string]: CourseState & CourseContentState }
 export type AssignmentGroupsState = { [string]: AssignmentGroupState & AssignmentGroupContentState }
 export type AssignmentsState = { [string]: AssignmentDetailState & AssignmentContentState }
 export type EnrollmentsState = { [string]: Enrollment }
 export type SectionsState = { [string]: Section }
 export type UserProfileState = { [string]: User }
-export type SubmissionsState = { [string]: SubmissionWithHistory }
+export type SubmissionsState = { [string]: SubmissionState }
 
 export type Entities = {
   +courses: CoursesState,
