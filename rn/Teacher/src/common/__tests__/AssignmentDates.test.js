@@ -93,6 +93,17 @@ it('availabilityClosed should return true if the lock_at date is in the past in 
   expect(dates.availabilityClosed()).toEqual(true)
 })
 
+it('availabilityClosed should return true if the lock_at date is in the past in the outer assignment object', () => {
+  const lockAt = moment().subtract(1, 'day').format()
+  const assignment = template.assignment({
+    lock_at: lockAt,
+    all_dates: [template.assignmentDueDate({ lock_at: lockAt }), template.assignmentDueDate({ lock_at: moment().add(1, 'day').format() })],
+  })
+
+  const dates = new AssignmentDates(assignment)
+  expect(dates.availabilityClosed()).toEqual(false)
+})
+
 it('availabilityClosed should return true if the lock_at date is in the past in all_dates', () => {
   const lockAt = moment().subtract(1, 'day').format()
   const assignment = template.assignment({
@@ -130,26 +141,13 @@ it('availabilityClosed should return false if not all dates have passed', () => 
   expect(dates.availabilityClosed()).toEqual(false)
 })
 
-it('If "available to" date is there, and in the past, AND if "due" date is in the past, assignment should be marked closed.', () => {
+it('If "available to" date is there, and in the past, assignment should be marked closed.', () => {
   const one = moment().subtract(1, 'day').format()
   const two = moment().subtract(2, 'day').format()
   const assignment = template.assignment({
     lock_at: null,
     due_at: null,
     all_dates: [template.assignmentDueDate({ lock_at: one, due_at: one }), template.assignmentDueDate({ lock_at: two, due_at: one })],
-  })
-
-  const dates = new AssignmentDates(assignment)
-  expect(dates.availabilityClosed()).toEqual(true)
-})
-
-it('If "available to" date is not there, and if "due" date is in the past, assignment should be marked closed.', () => {
-  const one = moment().subtract(1, 'day').format()
-  const two = moment().subtract(2, 'day').format()
-  const assignment = template.assignment({
-    lock_at: null,
-    due_at: null,
-    all_dates: [template.assignmentDueDate({ due_at: one }), template.assignmentDueDate({ due_at: two })],
   })
 
   const dates = new AssignmentDates(assignment)
@@ -203,6 +201,35 @@ it('crazy due date and lock at stuff', () => {
 
   const dates = new AssignmentDates(assignment)
   expect(dates.availabilityClosed()).toEqual(false)
+})
+
+it('availability should be passed when all lock_at dates are past', () => {
+  const dueDate1 = template.assignmentDueDate({
+    due_at: moment().subtract(3, 'day').format(),
+    lock_at: moment().subtract(2, 'day').format(),
+    unlock_at: moment().subtract(4, 'day').format(),
+  })
+
+  const dueDate2 = template.assignmentDueDate({
+    due_at: null,
+    lock_at: moment().subtract(1, 'day').format(),
+    unlock_at: moment().subtract(4, 'day').format(),
+  })
+
+  const dueDate3 = template.assignmentDueDate({
+    due_at: moment().subtract(3, 'day').format(),
+    lock_at: moment().subtract(3, 'day').format(),
+    unlock_at: null,
+  })
+
+  const assignment = template.assignment({
+    lock_at: null,
+    due_at: null,
+    all_dates: [dueDate1, dueDate2, dueDate3],
+  })
+
+  const dates = new AssignmentDates(assignment)
+  expect(dates.availabilityClosed()).toEqual(true)
 })
 
 it('should extract override student ids if they are present', () => {

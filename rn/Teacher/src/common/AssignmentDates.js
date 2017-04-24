@@ -133,26 +133,12 @@ export default class AssignmentDates {
     // If there are multiple due dates, ensure that they have *all* passed
     return this.allDates()
     .filter((date) => {
-      const calculate = (date: Date): boolean => {
-        return Date.now() < date.getTime()
+      if (date.lock_at) {
+        return Date.now() < (new Date(date.lock_at)).getTime()
       }
 
-      // If there is only a due date, calculate based on that alone
-      if (date.due_at && !date.lock_at) {
-        return calculate(new Date(date.due_at))
-      }
-
-      // If there is a due_at and lock_at, both must have passed
-      if (date.due_at && date.lock_at) {
-        return calculate(new Date(date.due_at)) && calculate(new Date(date.lock_at))
-      }
-
-      // If only lock at, only it needs to be in the past
-      if (!date.due_at && date.lock_at) {
-        return calculate(new Date(date.lock_at))
-      }
-
-      // I doubt this case will ever be hit, but if it is, there are no dates, so let it through
+      // This may seem odd to return true, it's because this is in the filter function.
+      // returning true means that the availibility is *not* passed
       return true
     }).length === 0
   }
