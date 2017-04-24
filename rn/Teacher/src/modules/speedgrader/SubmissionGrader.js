@@ -19,7 +19,7 @@ type State = {
 }
 
 type SubmissionGraderProps = {
-  submission: SubmissionWithHistory,
+  submissionID: string,
 }
 
 export default class SubmissionGrader extends Component {
@@ -54,7 +54,7 @@ export default class SubmissionGrader extends Component {
   renderTab (tab: ?number): ?React.Element<*> {
     switch (tab) {
       case 0:
-        return <GradeTab />
+        return <GradeTab {...this.props} />
       case 1:
         return <View></View>
       case 2:

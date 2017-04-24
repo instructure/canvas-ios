@@ -4,6 +4,8 @@ import React from 'react'
 import { Speedgrader, mapStateToProps } from '../Speedgrader'
 import renderer from 'react-test-renderer'
 
+jest.mock('../components/GradePicker')
+
 const templates = {
   ...require('../../../api/canvas-api/__templates__/submissions'),
   ...require('../../../redux/__templates__/app-state'),
@@ -23,7 +25,7 @@ let defaultProps = {
   refresh: jest.fn(),
   refreshSubmissions: jest.fn(),
   navigator: templates.navigator(),
-  submissions: [templates.submissionHistory()],
+  submissionIDs: ['1'],
 }
 
 describe('Speedgrader', () => {
@@ -75,7 +77,7 @@ describe('mapStateToProps', () => {
 
     let props = mapStateToProps(appState, ownProps)
     expect(props.pending).toBeFalsy()
-    expect(props.submissions).toBeFalsy()
+    expect(props.submissionIDs).toBeFalsy()
   })
 
   it('returns pending true when the assignment pending state indicates there are pending actions', () => {
@@ -107,15 +109,12 @@ describe('mapStateToProps', () => {
             },
           },
         },
-        submissions: {
-          '1': templates.submissionHistory(),
-        },
       },
     })
 
     let props = mapStateToProps(appState, ownProps)
-    let submissions = props.submissions || []
-    expect(submissions.length).toEqual(1)
-    expect(submissions[0]).toEqual(appState.entities.submissions['1'])
+    let submissionIDs = props.submissionIDs || []
+    expect(submissionIDs.length).toEqual(1)
+    expect(submissionIDs[0]).toEqual('1')
   })
 })

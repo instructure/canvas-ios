@@ -44,13 +44,13 @@ export class Speedgrader extends Component {
   }
 
   render (): React.Element<*> {
-    if (!this.props.refreshing && this.props.pending || !this.props.submissions) {
+    if (!this.props.refreshing && this.props.pending || !this.props.submissionIDs) {
       return <View style={styles.loadingWrapper}><ActivityIndicator /></View>
     }
 
     return (
       <View style={styles.speedGrader}>
-        <SubmissionGrader submission={this.props.submissions[0]} />
+        <SubmissionGrader submissionID={this.props.submissionIDs[0]} {...this.props} />
       </View>
     )
   }
@@ -69,20 +69,20 @@ const styles = StyleSheet.create({
 
 export function mapStateToProps (state: AppState, ownProps: RoutingProps): SpeedgraderDataProps {
   let assignment = state.entities.assignments[ownProps.assignmentID]
-  let submissions = null
+  let submissionIDs = null
   if (assignment) {
-    submissions = assignment.submissions.refs.map(submissionID => state.entities.submissions[submissionID])
+    submissionIDs = assignment.submissions.refs
   }
 
   return {
     pending: assignment ? Boolean(assignment.submissions.pending) : false,
-    submissions,
+    submissionIDs,
   }
 }
 
 const Refreshed = refresh(
   (props) => props.refreshSubmissions(props.courseID, props.assignmentID),
-  (props) => !props.submissions,
+  (props) => !props.submissionIDs || props.submissionIDs.length === 0,
   (props) => props.pending
 )(Speedgrader)
 const Connected = connect(mapStateToProps, SubmissionActions)(Refreshed)
@@ -99,6 +99,6 @@ type SpeedgraderActionProps = {
 }
 type SpeedgraderDataProps = {
   pending: boolean,
-  submissions: ?Array<SubmissionWithHistory>,
+  submissionIDs: ?Array<string>,
 }
 type SpeedgraderProps = RoutingProps & SpeedgraderActionProps & SpeedgraderDataProps & RefreshProps & NavProps

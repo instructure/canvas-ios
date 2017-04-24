@@ -138,6 +138,9 @@
     "message": "Customize Course",
     "description": "The title of the user course preferences screen"
   },
+  "customize_grade_c9d046d": {
+    "message": "Customize Grade"
+  },
   "datestring_at_timestring_183180ce": {
     "message": "{ dateString } at { timeString }"
   },
@@ -196,6 +199,9 @@
   },
   "everyone_else_cc5f6888": {
     "message": "Everyone else"
+  },
+  "excuse_student_1b60e311": {
+    "message": "Excuse Student"
   },
   "excused_cf8792eb": {
     "message": "Excused",
@@ -311,6 +317,9 @@
   "not_submitted_7d05fdb4": {
     "message": "Not Submitted",
     "description": "Assignment Details submissions graph `graded`"
+  },
+  "ok_ff1b646a": {
+    "message": "Ok"
   },
   "on_paper_7e67f764": {
     "message": "on paper",

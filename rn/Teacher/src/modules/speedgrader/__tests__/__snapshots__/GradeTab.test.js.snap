@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GradePicker renders 1`] = `
+exports[`GradeTab renders 1`] = `
 <RCTScrollView
   style={
     Object {
@@ -9,59 +9,7 @@ exports[`GradePicker renders 1`] = `
   }
 >
   <View>
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "borderBottomColor": "lightgray",
-          "borderBottomWidth": 0.5,
-          "flexDirection": "row",
-          "height": 48,
-          "justifyContent": "space-between",
-        }
-      }
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
-            },
-            undefined,
-          ]
-        }
-      >
-        Grade
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
-            },
-            undefined,
-          ]
-        }
-      >
-        4.0
-      </Text>
-    </View>
+    <GradePicker />
   </View>
 </RCTScrollView>
 `;

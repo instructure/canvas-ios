@@ -11,7 +11,7 @@ export default class GradeTab extends Component {
   render () {
     return (
       <ScrollView style={styles.gradePicker}>
-        <GradePicker />
+        <GradePicker {...this.props} />
       </ScrollView>
     )
   }

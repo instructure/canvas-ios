@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GradePicker renders 1`] = `
+exports[`GradePicker renders with excused 1`] = `
 <View
   style={
     Object {
@@ -33,6 +33,54 @@ exports[`GradePicker renders 1`] = `
   >
     Grade
   </Text>
+  <TouchableOpacity
+    accessibilityComponentType="button"
+    accessibilityTraits="button"
+    activeOpacity={0.2}
+    onLongPress={undefined}
+    onPress={[Function]}
+    onPressIn={undefined}
+    onPressOut={undefined}
+    style={undefined}
+    testID="grade-picker.button"
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          undefined,
+        ]
+      }
+    >
+      Excused
+    </Text>
+  </TouchableOpacity>
+</View>
+`;
+
+exports[`GradePicker renders with no grade 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "borderBottomColor": "lightgray",
+      "borderBottomWidth": 0.5,
+      "flexDirection": "row",
+      "height": 48,
+      "justifyContent": "space-between",
+    }
+  }
+>
   <Text
     accessible={true}
     allowFontScaling={true}
@@ -51,7 +99,27 @@ exports[`GradePicker renders 1`] = `
       ]
     }
   >
-    4.0
+    Grade
   </Text>
+  <TouchableOpacity
+    accessibilityComponentType="button"
+    accessibilityTraits="button"
+    activeOpacity={0.2}
+    onLongPress={undefined}
+    onPress={[Function]}
+    onPressIn={undefined}
+    onPressOut={undefined}
+    style={undefined}
+    testID="grade-picker.button"
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "tintColor": "#368BD8",
+        }
+      }
+    />
+  </TouchableOpacity>
 </View>
 `;

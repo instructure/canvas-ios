@@ -4,14 +4,11 @@ import React from 'react'
 import SubmissionGrader from '../SubmissionGrader'
 import renderer from 'react-test-renderer'
 
-const templates = {
-  ...require('../../../api/canvas-api/__templates__/submissions'),
-}
-
 jest.mock('SegmentedControlIOS', () => 'SegmentedControlIOS')
+jest.mock('../components/GradePicker')
 
 let defaultProps = {
-  submission: templates.submissionHistory(),
+  submissionID: '1',
 }
 
 describe('SubmissionGrader', () => {

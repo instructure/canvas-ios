@@ -124,59 +124,9 @@ exports[`SubmissionGrader renders 1`] = `
         }
       >
         <View>
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "lightgray",
-                "borderBottomWidth": 0.5,
-                "flexDirection": "row",
-                "height": 48,
-                "justifyContent": "space-between",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Grade
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              4.0
-            </Text>
-          </View>
+          <GradePicker
+            submissionID="1"
+          />
         </View>
       </RCTScrollView>
     </View>
