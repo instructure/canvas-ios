@@ -25,7 +25,7 @@ let assignment: any = template.assignment()
 
 let defaultProps = {
   navigator: template.navigator(),
-  courseID: course.courseID,
+  courseID: course.id,
   assignmentID: assignment.assignmentID,
   refreshAssignmentDetails: (courseID: string, assignmentID: string) => {},
   assignmentDetails: assignment,
@@ -58,18 +58,6 @@ test('renders loading', () => {
   expect(tree).toMatchSnapshot()
 })
 
-test('renders locked', () => {
-  let lockAt = new Date()
-  lockAt.setDate(lockAt.getDate() - 1)
-  defaultProps.assignmentDetails.lockAt = lockAt.getTime()
-  defaultProps.assignmentDetails.lockAt = '2017-01-01T05:59:59Z'
-
-  let tree = renderer.create(
-    <AssignmentDetails {...defaultProps} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
-
 test('calls navigator.showModal when the edit button is pressed', () => {
   let navigator = template.navigator({
     showModal: jest.fn(),
@@ -86,5 +74,31 @@ test('calls navigator.showModal when the edit button is pressed', () => {
   expect(navigator.showModal).toHaveBeenCalledWith({
     ...route(`/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/edit`),
     animationType: 'slide-up',
+  })
+})
+
+test('routes to the right place when due dates details is requested', () => {
+  let navigator = template.navigator({
+    push: jest.fn(),
+  })
+  let details = renderer.create(
+    <AssignmentDetails {...defaultProps} navigator={navigator} />
+  ).getInstance()
+  details.viewDueDateDetails()
+  expect(navigator.push).toHaveBeenCalledWith({
+    ...route(`/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/due_dates`),
+  })
+})
+
+test('routes to the right place when submissions is tapped', () => {
+  let navigator = template.navigator({
+    push: jest.fn(),
+  })
+  let details = renderer.create(
+    <AssignmentDetails {...defaultProps} navigator={navigator} />
+  ).getInstance()
+  details.viewSubmissions()
+  expect(navigator.push).toHaveBeenCalledWith({
+    ...route(`/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/submissions`),
   })
 })

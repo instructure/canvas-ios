@@ -40,7 +40,8 @@ test('map state to props assignment', async () => {
     assignmentDetails: assignment,
     refresh: jest.fn(),
     refreshing: false,
-    updateAssignment: Function,
+    updateAssignment: jest.fn(),
+    refreshAssignment: jest.fn(),
   }
 
   const result = mapStateToProps(state, props)
@@ -69,7 +70,8 @@ test('map state to props update assignment', async () => {
     assignmentDetails: assignment,
     refresh: jest.fn(),
     refreshing: false,
-    updateAssignment: Function,
+    updateAssignment: jest.fn(),
+    refreshAssignment: jest.fn(),
   }
 
   const result = updateMapStateToProps(state, props)

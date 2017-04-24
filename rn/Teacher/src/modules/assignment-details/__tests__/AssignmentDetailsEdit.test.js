@@ -56,6 +56,7 @@ beforeEach(() => {
     pending: false,
     stubSubmissionProgress: true,
     updateAssignment: jest.fn(),
+    refreshAssignment: jest.fn(),
   }
   onNavigatorEvent = () => {}
   doneButtonPressedProps = {

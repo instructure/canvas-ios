@@ -26,6 +26,25 @@ test('refresh assignments', async () => {
   }])
 })
 
+test('refresh single assignment', async () => {
+  const assignment = template.assignment()
+  let action = AssignmentListActions({ getAssignment: apiResponse(assignment) }).refreshAssignment(1, assignment.id)
+  let state = await testAsyncReducer(assignments, action)
+
+  expect(state).toMatchObject([
+    {
+      [assignment.id.toString()]: {
+        data: {},
+      },
+    },
+    {
+      [assignment.id.toString()]: {
+        data: assignment,
+      },
+    },
+  ])
+})
+
 test('update assignments', async () => {
   let assignment = template.assignment()
   let action = AssignmentListActions({ updateAssignment: apiResponse(assignment) }).updateAssignment('1', assignment, assignment)

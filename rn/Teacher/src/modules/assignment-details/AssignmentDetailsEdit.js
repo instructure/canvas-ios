@@ -294,6 +294,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     if (this.state.pending && (nextProps.assignmentDetails && !nextProps.pending)) {
       this.setState({ error: undefined })
       Navigation.dismissAllModals()
+      this.props.refreshAssignment(this.props.courseID, this.props.assignmentID)
     }
   }
 }

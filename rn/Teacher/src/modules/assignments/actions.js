@@ -12,6 +12,13 @@ export let AssignmentListActions: (typeof canvas) => AssignmentListActionProps =
       gradingPeriodID,
     }
   }),
+  refreshAssignment: createAction('assignment.refresh', (courseID: string, assignmentID: string) => {
+    return {
+      promise: api.getAssignment(courseID, assignmentID),
+      courseID,
+      assignmentID,
+    }
+  }),
   updateAssignment: createAction('assignment.update', (courseID, updatedAssignment, originalAssignment) => {
     return {
       promise: api.updateAssignment(courseID, updatedAssignment),

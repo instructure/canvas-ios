@@ -360,7 +360,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                           "position": "absolute",
                         },
                         Object {
-                          "tintColor": undefined,
+                          "tintColor": "#fff",
                         },
                       ]
                     }
@@ -461,7 +461,6 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
       </View>
     </View>
   </RCTScrollView>
-  <View />
 </View>
 `;
 
@@ -825,7 +824,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                           "position": "absolute",
                         },
                         Object {
-                          "tintColor": undefined,
+                          "tintColor": "#fff",
                         },
                       ]
                     }
@@ -926,7 +925,6 @@ exports[`applyFilter will apply a new filter 1`] = `
       </View>
     </View>
   </RCTScrollView>
-  <View />
 </View>
 `;
 
@@ -1242,7 +1240,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
                           "position": "absolute",
                         },
                         Object {
-                          "tintColor": undefined,
+                          "tintColor": "#fff",
                         },
                       ]
                     }
@@ -1343,7 +1341,6 @@ exports[`filter button only shows when there are grading periods 1`] = `
       </View>
     </View>
   </RCTScrollView>
-  <View />
 </View>
 `;
 
@@ -1707,7 +1704,7 @@ exports[`renders correctly 1`] = `
                           "position": "absolute",
                         },
                         Object {
-                          "tintColor": undefined,
+                          "tintColor": "#fff",
                         },
                       ]
                     }
@@ -1808,7 +1805,6 @@ exports[`renders correctly 1`] = `
       </View>
     </View>
   </RCTScrollView>
-  <View />
 </View>
 `;
 
@@ -2172,7 +2168,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                           "position": "absolute",
                         },
                         Object {
-                          "tintColor": undefined,
+                          "tintColor": "#fff",
                         },
                       ]
                     }
@@ -2280,6 +2276,5 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
       />
     </View>
   </RCTScrollView>
-  <View />
 </View>
 `;

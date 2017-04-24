@@ -56,6 +56,7 @@ test('map state to props should work', async () => {
     updateAssignment: jest.fn(),
     refreshAssignmentList: jest.fn(),
     refreshGradingPeriods: jest.fn(),
+    refreshAssignment: jest.fn(),
     refresh: jest.fn(),
     refreshing: false,
     pending: 0,

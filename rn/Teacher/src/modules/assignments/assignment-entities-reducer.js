@@ -7,10 +7,11 @@ import handleAsync from '../../utils/handleAsync'
 import { submissions } from '../submissions/list/submission-refs-reducer'
 import flatMap from 'lodash/flatMap'
 import fromPairs from 'lodash/fromPairs'
+import cloneDeep from 'lodash/cloneDeep'
 
 export let defaultState: AssignmentGroupsState = {}
 
-const { refreshAssignmentList, updateAssignment } = Actions
+const { refreshAssignmentList, updateAssignment, refreshAssignment } = Actions
 
 const assignment = assignment => assignment || {}
 const pending = pending => pending || 0
@@ -44,6 +45,18 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
       return {
         ...state,
         ...updated,
+      }
+    },
+  }),
+  [refreshAssignment.toString()]: handleAsync({
+    resolved: (state, { result, courseID, assignmentID }) => {
+      const assignmentState = cloneDeep(state[assignmentID] || {})
+      assignmentState.data = result.data
+      return {
+        ...state,
+        ...{
+          [assignmentID]: assignmentState,
+        },
       }
     },
   }),

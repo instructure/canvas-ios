@@ -32,6 +32,31 @@ test('refresh assignment list', async () => {
   ])
 })
 
+test('refresh single assignment', async () => {
+  const course = template.course()
+  const assignment = template.assignment()
+  let actions = AssignmentListActions({ getAssignment: apiResponse(assignment) })
+  const result = await testAsyncAction(actions.refreshAssignment(course.id, assignment.id), {})
+
+  expect(result).toMatchObject([{
+    type: actions.refreshAssignment.toString(),
+    pending: true,
+    payload: {
+      courseID: course.id,
+      assignmentID: assignment.id,
+    },
+  },
+  {
+    type: actions.refreshAssignment.toString(),
+    payload: {
+      result: { data: assignment },
+      courseID: course.id,
+      assignmentID: assignment.id,
+    },
+  },
+  ])
+})
+
 test('refresh assignment list can take an optional grading period id', async () => {
   const course = template.course()
   const groups = [template.assignmentGroup()]

@@ -13,7 +13,6 @@ import { Heading1, Text } from '../../common/text'
 import WebContainer from '../../common/components/WebContainer'
 import PublishedIcon from './components/PublishedIcon'
 import AssignmentDates from './components/AssignmentDates'
-import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 import colors from '../../common/colors'
 import { RefreshableScrollView } from '../../common/components/RefreshableList'
 import refresh from '../../utils/refresh'
@@ -48,10 +47,6 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
   }
 
   componentDidMount () {
-    if (!this.props.pending && !this.props.assignmentDetails) {
-      this.props.refreshAssignmentDetails(this.props.courseID, this.props.assignmentID)
-    }
-
     this.props.navigator.setTitle({
       title: i18n({
         default: 'Assignment Details',
@@ -62,10 +57,6 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
 
   render (): React.Element<View> {
     const assignment = this.props.assignmentDetails
-
-    if (!this.props.refreshing && (this.props.pending || !assignment)) {
-      return (<View style={style.loadingContainer}><ActivityIndicatorView height={44} /></View>)
-    }
 
     let assignmentPoints = i18n({
       default: 'pts',
@@ -101,7 +92,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
 
     return (
       <RefreshableScrollView
-        refreshing={this.props.refreshing}
+        refreshing={Boolean(this.props.pending)}
         onRefresh={this.props.refresh}
       >
         <AssignmentSection isFirstRow={true} style={style.topContainer}>
@@ -126,12 +117,14 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
           <SubmissionType data={assignment.submission_types} />
         </AssignmentSection>
 
-        <AssignmentSection
-          title={sectionTitleSubmissions}
-          onPress={this.viewSubmissions}
-          showDisclosureIndicator>
-          <Submission data={[assignment.needs_grading_count]} style={style.submission}/>
-        </AssignmentSection>
+        { global.V02 &&
+          <AssignmentSection
+            title={sectionTitleSubmissions}
+            onPress={this.viewSubmissions}
+            showDisclosureIndicator>
+            <Submission data={[assignment.needs_grading_count]} style={style.submission}/>
+          </AssignmentSection>
+        }
 
         {descriptionElement}
 
@@ -229,7 +222,7 @@ AssignmentDetails.propTypes = {
 }
 
 let Refreshed = refresh(
-  props => props.refreshAssignmentList(props.courseID),
+  props => props.refreshAssignment(props.courseID, props.assignmentID),
   props => !props.assignmentDetails,
   props => Boolean(props.pending)
 )(AssignmentDetails)

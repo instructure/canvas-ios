@@ -12,6 +12,7 @@ export type AssignmentListDataProps = {
 
 export type AssignmentListActionProps = {
   +refreshAssignmentList: () => Promise<AssignmentGroup[]>,
+  +refreshAssignment: () => Promise<Assignment>,
   +updateAssignment: (courseID: string, updatedAssignment: Assignment, originalAssignment: Assignment) => Promise<Assignment>,
 }
 

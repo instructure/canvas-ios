@@ -37,6 +37,7 @@ let defaultProps = {
   refreshAssignmentList: jest.fn(),
   refresh: jest.fn(),
   refreshing: false,
+  courseColor: '#fff',
 }
 
 beforeEach(() => {

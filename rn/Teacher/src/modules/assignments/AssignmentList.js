@@ -21,7 +21,6 @@ import refresh from '../../utils/refresh'
 
 import AssignmentListRowView from './components/AssignmentListRow'
 import AssignmentListSectionView from './components/AssignmentListSection'
-import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 import { LinkButton } from '../../common/buttons'
 import { Heading1 } from '../../common/text'
 
@@ -106,17 +105,6 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     return <AssignmentListSectionView assignmentGroup={section} key={section.key} />
   }
 
-  renderFooter = () => {
-    // we only want this to show when there are pending requests
-    // that weren't started by pull to refresh
-    // and only on filters that we don't already have everything for
-    if (!this.props.refreshing && this.props.pending) {
-      return <ActivityIndicatorView height={44} />
-    }
-
-    return <View />
-  }
-
   selectedAssignment = (assignment: Assignment) => {
     const destination = route(assignment.html_url)
     this.props.navigator.push(destination)
@@ -185,11 +173,10 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
           sections={this.prepareListData()}
           renderItem={this.renderRow}
           renderSectionHeader={this.renderSectionHeader}
-          refreshing={this.props.refreshing}
+          refreshing={Boolean(this.props.pending)}
           onRefresh={this.props.refresh}
           keyExtractor={(item, index) => item.id}
         />
-        {this.renderFooter()}
       </View>
     )
   }

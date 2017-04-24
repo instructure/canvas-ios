@@ -14,11 +14,8 @@ export type AssignmentDetailsProps = {
   error?: any,
   pending?: number,
   updateAssignment: Function,
+  refreshAssignment: (courseID: string, assignmentID: string) => Promise<Assignment>,
 } & RefreshProps
-
-export type AssignmentDetailsActionProps = {
-  +refreshAssignmentDetails: (courseID: string, assignmentID: string) => Promise<Assignment>,
-}
 
 export function mapStateToProps (state: AppState, ownProps: AssignmentDetailsProps): AssignmentDetailsState {
   const assignment = state.entities.assignments[ownProps.assignmentID].data
