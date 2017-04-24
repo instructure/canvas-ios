@@ -55,22 +55,27 @@ RCT_EXPORT_METHOD(startObserving)
   self.loginObserver = [[[RACObserve(TheKeymaster, currentClient) subscribeOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(CKIClient *client) {
     __strong NativeLogin *self = weakSelf;
     
-    if (client == nil) {
-      [self sendEventWithName:@"Login" body:@{}];
-      return;
-    }
-
-     NSDictionary *body = @{
-                            @"authToken": client.accessToken,
-                            @"user": client.currentUser.JSONDictionary,
-                            @"baseURL": client.baseURL.absoluteString,
-                            @"branding": client.branding ? client.branding.JSONDictionary : @{},
-                            };
-
-    if (!self.eventsSent[client.accessToken]) {
-      self.eventsSent[client.accessToken] = body;
-      [self sendEventWithName:@"Login" body:body];
-    }
+    // There is a timing issue that occurs, sometimes react native is not setup yet and we don't have a reliable way to
+    // know when it is setup
+    // This *should* be all going away though, so, don't judge
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+      if (client == nil) {
+        [self sendEventWithName:@"Login" body:@{}];
+        return;
+      }
+      
+      NSDictionary *body = @{
+                             @"authToken": client.accessToken,
+                             @"user": client.currentUser.JSONDictionary,
+                             @"baseURL": client.baseURL.absoluteString,
+                             @"branding": client.branding ? client.branding.JSONDictionary : @{},
+                             };
+      
+      if (!self.eventsSent[client.accessToken]) {
+        self.eventsSent[client.accessToken] = body;
+        [self sendEventWithName:@"Login" body:body];
+      }
+    });
   }] asScopedDisposable];
 }
 
