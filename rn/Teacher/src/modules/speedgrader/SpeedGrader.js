@@ -24,6 +24,8 @@ type State = {
   size: { width: number, height: number },
 }
 
+const PAGE_GUTTER_HALF_WIDTH = 10.0
+
 export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   props: SpeedGraderProps
   state: State
@@ -87,6 +89,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
       pagingEnabled
       showsHorizontalScrollIndicator={false}
       contentOffset={{ x, y: 0 }}
+      style={{ marginLeft: -PAGE_GUTTER_HALF_WIDTH, marginRight: -PAGE_GUTTER_HALF_WIDTH }}
     />)
   }
 
@@ -106,14 +109,15 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         renderItem={this.renderItem}
         horizontal
         renderScrollComponent={this.renderScrollView}
-        >
-      </VirtualizedList>
+        />
     )
   }
 }
 
 const styles = StyleSheet.create({
   page: {
+    paddingLeft: 10,
+    paddingRight: 10,
     overflow: 'hidden',
   },
   speedGrader: {

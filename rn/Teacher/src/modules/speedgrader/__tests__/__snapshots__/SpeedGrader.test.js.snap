@@ -16,6 +16,12 @@ exports[`SpeedGrader renders 1`] = `
   pagingEnabled={true}
   scrollEventThrottle={50}
   showsHorizontalScrollIndicator={false}
+  style={
+    Object {
+      "marginLeft": -10,
+      "marginRight": -10,
+    }
+  }
 >
   <View />
 </RCTScrollView>
@@ -37,6 +43,12 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
   pagingEnabled={true}
   scrollEventThrottle={50}
   showsHorizontalScrollIndicator={false}
+  style={
+    Object {
+      "marginLeft": -10,
+      "marginRight": -10,
+    }
+  }
 >
   <View>
     <View
@@ -47,6 +59,8 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
           Array [
             Object {
               "overflow": "hidden",
+              "paddingLeft": 10,
+              "paddingRight": 10,
             },
             Object {
               "height": 1334,
@@ -118,8 +132,8 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                     "height": 0,
                     "width": 0,
                   },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 5,
+                  "shadowOpacity": 0.3,
+                  "shadowRadius": 3,
                 }
               }
             >
@@ -239,6 +253,12 @@ exports[`SpeedGrader shows the loading spinner when there are no submissions 1`]
   pagingEnabled={true}
   scrollEventThrottle={50}
   showsHorizontalScrollIndicator={false}
+  style={
+    Object {
+      "marginLeft": -10,
+      "marginRight": -10,
+    }
+  }
 >
   <View />
 </RCTScrollView>

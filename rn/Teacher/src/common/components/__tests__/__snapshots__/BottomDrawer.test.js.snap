@@ -56,8 +56,8 @@ exports[`BottomDrawer renders any children 1`] = `
           "height": 0,
           "width": 0,
         },
-        "shadowOpacity": 0.4,
-        "shadowRadius": 5,
+        "shadowOpacity": 0.3,
+        "shadowRadius": 3,
       }
     }
   >
