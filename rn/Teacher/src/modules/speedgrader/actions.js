@@ -13,6 +13,7 @@ export const SpeedGraderActions = (api: typeof canvas): SpeedGraderActionsType =
       excuse: true,
     }),
     submissionID,
+    assignmentID,
   })),
 })
 

@@ -11,16 +11,13 @@ jest.mock('AlertIOS', () => ({
   prompt: jest.fn(),
 }))
 
-const templates = {
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
-}
-
 let defaultProps = {
   submissionID: '1',
   assignmentID: '2',
   courseID: '3',
   userID: '4',
-  submission: templates.submissionHistory([{ id: '1', grade: null }]),
+  grade: '',
+  excused: false,
   excuseAssignment: jest.fn(),
 }
 
@@ -36,9 +33,8 @@ describe('GradePicker', () => {
   })
 
   it('renders with excused', () => {
-    let submission = templates.submissionHistory([{ id: '1', excused: true }])
     let tree = renderer.create(
-      <GradePicker {...defaultProps} submission={submission} />
+      <GradePicker {...defaultProps} excused={true} />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -69,10 +65,8 @@ describe('GradePicker', () => {
   })
 
   it('doesnt show the excuse student button and has default value if the student is already excused', () => {
-    let submission = templates.submissionHistory([{ id: '1', excused: true }])
-
     let tree = renderer.create(
-      <GradePicker {...defaultProps} submission={submission} s/>
+      <GradePicker {...defaultProps} excused={true} />
     ).toJSON()
 
     let button = explore(tree).selectByID('grade-picker.button') || {}

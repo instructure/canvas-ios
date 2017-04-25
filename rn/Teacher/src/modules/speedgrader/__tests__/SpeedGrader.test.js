@@ -3,7 +3,7 @@
 import React from 'react'
 import {
   SpeedGrader,
-  refreshSubmissions,
+  refreshSpeedGrader,
   shouldRefresh,
   isRefreshing,
 } from '../SpeedGrader'
@@ -93,6 +93,7 @@ describe('refresh functions', () => {
     assignmentID: '55',
     userID: '145',
     refreshSubmissions: jest.fn(),
+    refreshEnrollments: jest.fn(),
     submissions: [],
     refresh: jest.fn(),
     refreshing: false,
@@ -100,8 +101,9 @@ describe('refresh functions', () => {
     navigator: templates.navigator(),
   }
   it('refreshSubmissions', () => {
-    refreshSubmissions(props)
+    refreshSpeedGrader(props)
     expect(props.refreshSubmissions).toHaveBeenLastCalledWith(props.courseID, props.assignmentID)
+    expect(props.refreshEnrollments).toHaveBeenLastCalledWith(props.courseID)
   })
   it('isRefreshing', () => {
     const isNot = isRefreshing(props)

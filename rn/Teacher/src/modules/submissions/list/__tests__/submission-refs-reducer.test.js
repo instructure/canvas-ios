@@ -2,8 +2,11 @@
 
 import { submissions } from '../submission-refs-reducer'
 import Actions from '../actions'
+import SpeedGraderActions from '../../../speedgrader/actions'
 
 const { refreshSubmissions } = Actions
+const { excuseAssignment } = SpeedGraderActions
+
 const templates = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
 }
@@ -29,4 +32,46 @@ test('it captures submission ids', () => {
     pending: 0,
     refs: ['1', '2'],
   })
+})
+
+test('on excuseAssignment it returns the current state when there is a submissionID', () => {
+  let state = {
+    refs: [],
+    pending: 0,
+    error: null,
+  }
+
+  const action = {
+    type: excuseAssignment.toString(),
+    payload: {
+      result: {
+        data: templates.submissionHistory([{ id: '1' }]),
+      },
+      submissionID: '1',
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState).toEqual(state)
+})
+
+test('excuseAssignment adds the new submission id to the refs', () => {
+  let state = {
+    refs: [],
+    pending: 0,
+    error: null,
+  }
+
+  const action = {
+    type: excuseAssignment.toString(),
+    payload: {
+      result: {
+        data: templates.submissionHistory([{ id: '1' }]),
+      },
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState.refs.length).toEqual(1)
+  expect(newState.refs[0]).toEqual('1')
 })

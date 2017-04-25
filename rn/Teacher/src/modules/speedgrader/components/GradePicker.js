@@ -27,7 +27,7 @@ export class GradePicker extends Component {
         text: i18n('Ok'),
       },
     ]
-    if (this.props.submission && !this.props.submission.excused) {
+    if (!this.props.excused) {
       buttons.unshift({
         text: i18n('Excuse Student'),
         onPress: () => this.props.excuseAssignment(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID),
@@ -39,16 +39,14 @@ export class GradePicker extends Component {
       null,
       buttons,
       'plain-text',
-      this.props.submission && this.props.submission.excused ? i18n('Excused') : ''
+      this.props.excused ? i18n('Excused') : ''
     )
   }
 
   renderGrade = () => {
-    if (this.props.submission == null) {
-      return <Heading1>TODO: No Submission</Heading1>
-    } else if (this.props.submission.excused) {
+    if (this.props.excused) {
       return <Heading1>{i18n('Excused')}</Heading1>
-    } else if (this.props.submission.grade == null) {
+    } else if (!this.props.grade) {
       return <Image source={Images.add} style={styles.gradeButton}/>
     }
   }
@@ -84,11 +82,17 @@ const styles = StyleSheet.create({
 })
 
 export function mapStateToProps (state: AppState, ownProps: GradePickerOwnProps): GradePickerDataProps {
-  const submission = ownProps.submissionID && state.entities.submissions[ownProps.submissionID]
-    ? state.entities.submissions[ownProps.submissionID].submission
-    : undefined
+  if (!ownProps.submissionID) {
+    return {
+      excused: false,
+      grade: '',
+    }
+  }
+
+  let submission = state.entities.submissions[ownProps.submissionID]
   return {
-    submission,
+    excused: submission.submission.excused,
+    grade: submission.submission.grade,
   }
 }
 
@@ -103,7 +107,8 @@ type GradePickerOwnProps = {
 }
 
 type GradePickerDataProps = {
-  submission: ?SubmissionWithHistory,
+  excused: boolean,
+  grade: string,
 }
 
 type GradePickerProps = GradePickerOwnProps & GradePickerDataProps & SpeedGraderActionsType

@@ -17,9 +17,10 @@ describe('SpeedGraderActions', () => {
       expect(api.gradeSubmission).toHaveBeenCalledWith('1', '2', '3', { excuse: true })
     })
 
-    it('passes the submissionID in the action payload', () => {
+    it('passes the submissionID and assignmentID in the action payload', () => {
       let { payload } = actions.excuseAssignment('1', '2', '3', '4')
       expect(payload).toHaveProperty('submissionID', '4')
+      expect(payload).toHaveProperty('assignmentID', '2')
     })
   })
 })

@@ -71,3 +71,48 @@ test('excuseAssignment reverts on failure', () => {
   let newState = submissions(state, action)
   expect(newState['1'].submission.excused).toBeFalsy()
 })
+
+test('excuseAssignment does nothing on pending when there is no submissionID', () => {
+  let state = { yo: 'yo' }
+
+  const action = {
+    type: excuseAssignment.toString(),
+    pending: true,
+    payload: {},
+  }
+
+  let newState = submissions(state, action)
+  expect(newState).toEqual(state)
+})
+
+test('excuseAssignment does nothing on error when there is no submissionID', () => {
+  let state = { yo: 'yo' }
+
+  const action = {
+    type: excuseAssignment.toString(),
+    error: true,
+    payload: {},
+  }
+
+  let newState = submissions(state, action)
+  expect(newState).toEqual(state)
+})
+
+test('excuseAssignment creates the submission entity on success when there is no submissionID', () => {
+  let state = {}
+  const action = {
+    type: excuseAssignment.toString(),
+    payload: {
+      result: {
+        data: templates.submissionHistory([{ id: '1' }]),
+      },
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1']).toMatchObject({
+    submission: action.payload.result.data,
+    pending: 0,
+    error: null,
+  })
+})

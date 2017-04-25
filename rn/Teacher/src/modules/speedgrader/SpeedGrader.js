@@ -13,6 +13,7 @@ import i18n from 'format-message'
 import refresh from '../../utils/refresh'
 import { connect } from 'react-redux'
 import SubmissionActions from '../submissions/list/actions'
+import EnrollmentActions from '../enrollments/actions'
 import SubmissionGrader from './SubmissionGrader'
 import { getSubmissionsProps } from '../submissions/list/get-submissions-props'
 import type {
@@ -134,8 +135,9 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Async
   return getSubmissionsProps(state.entities, ownProps.courseID, ownProps.assignmentID)
 }
 
-export function refreshSubmissions (props: SpeedGraderProps): void {
+export function refreshSpeedGrader (props: SpeedGraderProps): void {
   props.refreshSubmissions(props.courseID, props.assignmentID)
+  props.refreshEnrollments(props.courseID)
 }
 
 export function shouldRefresh (props: SpeedGraderProps): boolean {
@@ -147,11 +149,11 @@ export function isRefreshing (props: SpeedGraderProps): boolean {
 }
 
 const Refreshed = refresh(
-  refreshSubmissions,
+  refreshSpeedGrader,
   shouldRefresh,
   isRefreshing
 )(SpeedGrader)
-const Connected = connect(mapStateToProps, SubmissionActions)(Refreshed)
+const Connected = connect(mapStateToProps, { ...SubmissionActions, ...EnrollmentActions })(Refreshed)
 
 export default (Connected: React.Element<*>)
 
@@ -166,6 +168,7 @@ type RoutingProps = {
 }
 type SpeedGraderActionProps = {
   refreshSubmissions: Function,
+  refreshEnrollments: Function,
 }
 type SpeedGraderProps
   = RoutingProps
