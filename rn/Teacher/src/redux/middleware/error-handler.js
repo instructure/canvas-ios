@@ -47,13 +47,17 @@ export function parseErrorMessage (error: any): string {
         .map(error => error.message)
         .map(message => message.replace(/\.+$/, ''))
         .join('. ')
-  } else if (error.data.errors instanceof Object) {
+  } else if (error.data.errors instanceof Object && Object.keys(error.data.errors).length > 0) {
     let data = error.data.errors
-    return Object.keys(data)
+    let result = Object.keys(data)
       .map((key, index) => data[key])
       .map(obj => obj.length > 0 ? obj[0] : {})
       .map(obj => `${obj.attribute || ''} ${obj.message || ''}`)
       .join('. ')
+
+    if (result.trim()) {
+      return result
+    }
   }
 
   return ERROR_MESSAGE

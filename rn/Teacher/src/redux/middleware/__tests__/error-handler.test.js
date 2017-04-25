@@ -119,9 +119,7 @@ describe('parse error message', () => {
       headers: { link: null },
     }
     const expected = 'Internal server error'
-
     const result = parseErrorMessage(response)
-
     expect(result).toEqual(expected)
   })
 
@@ -140,9 +138,7 @@ describe('parse error message', () => {
       headers: { link: null },
     }
     const expected = 'name cannot be changed because this assignment is due in a closed grading period. description is too long'
-
     const result = parseErrorMessage(response)
-
     expect(result).toEqual(expected)
   })
 
@@ -159,31 +155,53 @@ describe('parse error message', () => {
       headers: { link: null },
     }
     const expected = ' . description is too long'
-
     const result = parseErrorMessage(response)
-
     expect(result).toEqual(expected)
   })
 
-  it('should use status code as error message if there are no messages', () => {
+  it('should use default error message if there are no messages', () => {
     const response = {
       status: 500,
       data: {},
       headers: { link: null },
     }
     const expected = ERROR_MESSAGE
-
     const result = parseErrorMessage(response)
+    expect(result).toEqual(expected)
+  })
 
+  it('should use default error message if there are no messages round 2', () => {
+    const response = {
+      status: 500,
+      data: {
+        errors: {},
+      },
+      headers: { link: null },
+    }
+    const expected = ERROR_MESSAGE
+    const result = parseErrorMessage(response)
+    expect(result).toEqual(expected)
+  })
+
+  it('should use default error message if there are no messages round 3', () => {
+    const response = {
+      status: 500,
+      data: {
+        errors: {
+          'blank error': [],
+        },
+      },
+      headers: { link: null },
+    }
+    const expected = ERROR_MESSAGE
+    const result = parseErrorMessage(response)
     expect(result).toEqual(expected)
   })
 
   it('should parse Error types', () => {
     const error = new Error('i am an error')
     const expected = 'i am an error'
-
     const result = parseErrorMessage(error)
-
     expect(result).toEqual(expected)
   })
 })
