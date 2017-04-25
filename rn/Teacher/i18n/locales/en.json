@@ -144,6 +144,10 @@
   "datestring_at_timestring_183180ce": {
     "message": "{ dateString } at { timeString }"
   },
+  "description_436c48d7": {
+    "message": "Description",
+    "description": "Assignment Details Section title for assignment Description"
+  },
   "details_98a31b68": {
     "message": "Details",
     "description": "Assignment details edit details header"
@@ -250,10 +254,6 @@
   "inbox_bb245a60": {
     "message": "Inbox",
     "description": "Label indicating the user is on the inbox tab"
-  },
-  "instructions_2f88ee72": {
-    "message": "Instructions",
-    "description": "Assignment Details Section title for assignment instructions"
   },
   "late_2be42b88": {
     "message": "Late",

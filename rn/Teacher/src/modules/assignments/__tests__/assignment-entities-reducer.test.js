@@ -50,8 +50,8 @@ test('update assignments', async () => {
   let action = AssignmentListActions({ updateAssignment: apiResponse(assignment) }).updateAssignment('1', assignment, assignment)
   let state = await testAsyncReducer(assignments, action)
 
-  let a = { [assignment.id]: { pending: 1, data: { ...assignment } } }
-  let b = { [assignment.id]: { pending: 0, data: { ...assignment } } }
+  let a = { [assignment.id]: { pending: 1, error: null, data: { ...assignment } } }
+  let b = { [assignment.id]: { pending: 0, error: null, data: { ...assignment } } }
 
   expect(state).toEqual([a, b])
 })
@@ -63,7 +63,7 @@ it('update assignments with error', async () => {
   let action = AssignmentListActions({ updateAssignment: apiError({ message: error }) }).updateAssignment('1', updated, original)
   let state = await testAsyncReducer(assignments, action)
 
-  let a = { [updated.id]: { data: { ...updated }, pending: 1 } }
+  let a = { [updated.id]: { data: { ...updated }, pending: 1, error: null } }
   let b = { [original.id]: { data: { ...original }, pending: 0, error: { data: { errors: [{ message: error }] }, status: 401 } } }
 
   expect(state).toEqual([a, b])
@@ -96,5 +96,26 @@ test('reduces assignment content', () => {
       error: null,
     },
 
+  })
+})
+
+test('revert assignment update', () => {
+  let assignment = template.assignment()
+
+  let action = {
+    type: AssignmentListActions().cancelAssignmentUpdate.toString(),
+    payload: { originalAssignment: assignment },
+  }
+
+  let state = {
+    [assignment.id]: { data: assignment },
+  }
+
+  let result = assignments(state, action)
+  expect(result).toEqual({
+    [assignment.id]: {
+      data: assignment,
+      error: null,
+    },
   })
 })

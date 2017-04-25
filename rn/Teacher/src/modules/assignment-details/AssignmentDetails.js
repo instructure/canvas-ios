@@ -78,14 +78,14 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
       description: 'Assignment Details Section title for info on submissions',
     })
 
-    let sectionTitleInstructions = i18n({
-      default: 'Instructions',
-      description: 'Assignment Details Section title for assignment instructions',
+    let sectionTitleDescription = i18n({
+      default: 'Description',
+      description: 'Assignment Details Section title for assignment Description',
     })
 
     let descriptionElement = <View />
     if (assignment.description) {
-      descriptionElement = (<AssignmentSection title={sectionTitleInstructions} >
+      descriptionElement = (<AssignmentSection title={sectionTitleDescription} >
                               <WebContainer style={{ flex: 1 }} html={assignment.description}/>
                             </AssignmentSection>)
     }

@@ -1188,7 +1188,7 @@ exports[`renders 1`] = `
                   ]
                 }
               >
-                Instructions
+                Description
               </Text>
             </View>
             <WebView
@@ -2406,7 +2406,7 @@ exports[`renders loading 1`] = `
                   ]
                 }
               >
-                Instructions
+                Description
               </Text>
             </View>
             <WebView

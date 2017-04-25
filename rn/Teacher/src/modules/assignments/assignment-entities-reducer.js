@@ -11,7 +11,7 @@ import cloneDeep from 'lodash/cloneDeep'
 
 export let defaultState: AssignmentGroupsState = {}
 
-const { refreshAssignmentList, updateAssignment, refreshAssignment } = Actions
+const { refreshAssignmentList, updateAssignment, refreshAssignment, cancelAssignmentUpdate } = Actions
 
 const assignment = assignment => assignment || {}
 const pending = pending => pending || 0
@@ -63,7 +63,7 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
   [updateAssignment.toString()]: handleAsync({
     pending: (state, { updatedAssignment, originalAssignment }) => {
       let id = updatedAssignment.id
-      let entity = { ...state[id] }
+      let entity = { ...state[id], error: null }
       entity.data = updatedAssignment
       entity.pending = (entity.pending || 0) + 1
       return {
@@ -73,7 +73,7 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
     },
     resolved: (state, { updatedAssignment, originalAssignment }) => {
       let id = updatedAssignment.id
-      let entity = { ...state[id] }
+      let entity = { ...state[id], error: null }
       entity.pending--
       return {
         ...state,
@@ -92,6 +92,16 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
       }
     },
   }),
+  [cancelAssignmentUpdate.toString()]: (state, { payload }) => {
+    const assignment = payload.originalAssignment
+    let id = assignment.id
+    let entity = { ...state[id], error: null }
+    entity.data = assignment
+    return {
+      ...state,
+      ...{ [id]: entity },
+    }
+  },
 }, defaultState)
 
 export function assignments (state: AssignmentsState = {}, action: any): AssignmentDetailState {

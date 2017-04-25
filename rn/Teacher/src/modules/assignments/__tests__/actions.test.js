@@ -79,3 +79,15 @@ test('refresh assignment list can take an optional grading period id', async () 
     },
   }])
 })
+
+test('cancel update assignment action', () => {
+  const assignment = template.assignment()
+  let actions = AssignmentListActions()
+  const result = actions.cancelAssignmentUpdate(assignment)
+  expect(result).toMatchObject({
+    type: 'assignment.cancel-update',
+    payload: {
+      originalAssignment: assignment,
+    },
+  })
+})

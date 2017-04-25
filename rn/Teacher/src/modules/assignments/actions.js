@@ -28,6 +28,9 @@ export let AssignmentListActions: (typeof canvas) => AssignmentListActionProps =
       handlesError: true,
     }
   }),
+  cancelAssignmentUpdate: createAction('assignment.cancel-update', (originalAssignment) => {
+    return { originalAssignment }
+  }),
 })
 
 export default (AssignmentListActions(canvas): AssignmentListActionProps)

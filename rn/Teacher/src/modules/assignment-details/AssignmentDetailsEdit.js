@@ -344,6 +344,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   }
 
   actionCancelPressed () {
+    this.props.cancelAssignmentUpdate(this.props.assignmentDetails)
     Navigation.dismissAllModals()
   }
 

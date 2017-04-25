@@ -15,6 +15,7 @@ export type AssignmentDetailsProps = {
   pending?: number,
   updateAssignment: Function,
   refreshAssignment: (courseID: string, assignmentID: string) => Promise<Assignment>,
+  cancelAssignmentUpdate: (originalAssignment: Assignment) => void,
 } & RefreshProps
 
 export function mapStateToProps (state: AppState, ownProps: AssignmentDetailsProps): AssignmentDetailsState {

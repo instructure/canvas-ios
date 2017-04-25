@@ -69,6 +69,7 @@ beforeEach(() => {
       dismissModal: jest.fn(),
       setOnNavigatorEvent: (handler) => { onNavigatorEvent = handler },
     }),
+    cancelAssignmentUpdate: jest.fn(),
   }
 })
 
