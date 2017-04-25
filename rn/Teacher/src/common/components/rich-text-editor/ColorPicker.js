@@ -1,0 +1,90 @@
+/* @flow */
+
+import React, { Component } from 'react'
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  TouchableHighlight,
+} from 'react-native'
+
+type Props = {
+  pickedColor: (color: string) => void,
+}
+
+const COLORS = [
+  'white',
+  'black',
+  '#8B969E',
+  '#EC463D',
+  '#E42565',
+  '#8E4195',
+  '#654C9B',
+  '#4656A2',
+  '#2684C2',
+  '#3BA5DA',
+  '#2EBCD1',
+  '#219588',
+  '#479F4B',
+  '#8CC152',
+  '#FBBF40',
+  '#F69637',
+  '#ED5A34',
+  '#EE6491',
+]
+
+export default class ColorPicker extends Component<any, Props, any> {
+  render () {
+    return (
+      <View style={styles.container}>
+        <ScrollView horizontal={true}>
+          <View style={styles.scrollViewContent}>
+            {COLORS.map((color) => {
+              const style = {
+                backgroundColor: color,
+                borderWidth: color === 'white' ? 1 : 0,
+                borderColor: color === 'white' ? '#E6E9EA' : 'transparent',
+              }
+              return (
+                <TouchableHighlight
+                  style={styles.optionContainer}
+                  onPress={() => this.props.pickedColor(color)}
+                  key={color}
+                  testID={`color-picker-option-${color}`}
+                  underlayColor='transparent'
+                >
+                  <View style={[styles.option, style]} />
+                </TouchableHighlight>
+              )
+            })}
+          </View>
+        </ScrollView>
+      </View>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    borderTopWidth: 1,
+    borderTopColor: '#C7CDD1',
+    height: 50,
+    backgroundColor: 'white',
+  },
+  optionContainer: {
+    width: 44,
+    height: 44,
+  },
+  option: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 6,
+    borderRadius: 19,
+  },
+  scrollViewContent: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+})

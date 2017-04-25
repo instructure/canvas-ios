@@ -4,6 +4,7 @@ type Images = {
   course: {[name: string]: any},
   tabbar: {[name: string]: any},
   assignments: {[name: string]: any},
+  rce: {[name: string]: any},
   [name: string]: any,
 }
 
@@ -30,6 +31,22 @@ const images = {
     published: require('./assignments/Published.png'),
     unpublished: require('./assignments/Unpublished.png'),
     calendar: require('./assignments/Calendar.png'),
+  },
+  rce: {
+    bold: require('./rce/bold.png'),
+    embedImage: require('./rce/embed-image.png'),
+    italic: require('./rce/italic.png'),
+    link: require('./rce/link.png'),
+    orderedList: require('./rce/ordered-list.png'),
+    unorderedList: require('./rce/unordered-list.png'),
+    redo: require('./rce/redo.png'),
+    undo: require('./rce/undo.png'),
+    active: {
+      bold: require('./rce/bold-active.png'),
+      italic: require('./rce/italic-active.png'),
+      orderedList: require('./rce/ordered-list-active.png'),
+      unorderedList: require('./rce/unordered-list-active.png'),
+    },
   },
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),

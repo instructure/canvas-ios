@@ -127,6 +127,7 @@ android {
 
 dependencies {
     compile project(':react-native-navigation')
+    compile project(':react-native-image-picker')
     compile project(':react-native-interactable')
     compile project(':react-native-blur')
     compile project(':react-native-device-info')

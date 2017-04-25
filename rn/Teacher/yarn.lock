@@ -3820,11 +3820,19 @@ react-native-device-info@^0.10.1:
   version "0.0.8"
   resolved "https://github.com/wix/react-native-interactable#6aa7bb8d7cc74640ee492f53e705085489f46a2b"
 
+react-native-image-picker@^0.26.3:
+  version "0.26.3"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.26.3.tgz#0ad2eede49501a7046d8046a73813696539c3dcd"
+
 react-native-keyboard-aware-scroll-view@^0.2.8:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.2.8.tgz#e9843c0d7467a2e6a2a737883bd9c2b7c7e38e35"
   dependencies:
     react-timer-mixin "^0.13.3"
+
+react-native-keyboard-spacer@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.3.1.tgz#9580297ebfd078202dc4c65303d29cda35de67f1"
 
 react-native-navigation@next:
   version "2.0.0-experimental.285"

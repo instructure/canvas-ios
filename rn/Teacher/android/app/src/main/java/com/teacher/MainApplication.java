@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.reactnativenavigation.NavigationReactPackage;
+import com.imagepicker.ImagePickerPackage;
 import com.wix.interactable.Interactable;
 import com.cmcewen.blurview.BlurViewPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -30,6 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new NavigationReactPackage(),
+            new ImagePickerPackage(),
             new Interactable(),
             new BlurViewPackage(),
             new RNDeviceInfo()

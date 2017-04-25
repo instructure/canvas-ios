@@ -24,8 +24,10 @@
     "react-native-blur": "^2.0.0",
     "react-native-button": "^1.8.2",
     "react-native-device-info": "^0.10.1",
+    "react-native-image-picker": "^0.26.3",
     "react-native-interactable": "https://github.com/wix/react-native-interactable",
     "react-native-keyboard-aware-scroll-view": "^0.2.8",
+    "react-native-keyboard-spacer": "^0.3.1",
     "react-native-navigation": "next",
     "react-native-progress": "^3.2.0",
     "react-redux": "^5.0.3",
@@ -68,6 +70,9 @@
     "setupFiles": [
       "<rootDir>/test/scripts/jestSetup.js"
     ],
+    "moduleNameMapper": {
+      "^.+\\.html$": "<rootDir>/test/scripts/html-mock"
+    },
     "verbose": true,
     "collectCoverage": true,
     "coveragePathIgnorePatterns": [

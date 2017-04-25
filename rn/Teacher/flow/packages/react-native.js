@@ -1,4 +1,7 @@
 // @flow
+
+declare var console: typeof console & { disableYellowBox: boolean }
+
 export type PanResponderGestureState = {
   stateID: number,
   moveX: number,
@@ -9,4 +12,13 @@ export type PanResponderGestureState = {
   dy: number,
   vx: number,
   vy: number,
+}
+
+export type KeyboardEventData = {
+  endCoordinates: {
+    width: number,
+    height: number,
+    screenX: number,
+    screenY: number,
+  },
 }

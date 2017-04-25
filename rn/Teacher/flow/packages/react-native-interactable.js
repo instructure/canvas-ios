@@ -1,10 +1,10 @@
 // @flow
 import React from 'react'
 
-export type snapToOptions = {
+export type SnapToOptions = {
   index: number,
 }
 
 export type InteractableView = React.Element<*> & {
-  snapTo: (snapToOptions) => void,
+  snapTo: (SnapToOptions) => void,
 }

@@ -17,6 +17,7 @@ import Staging from '../modules/staging/Staging'
 import SubmissionList from '../modules/submissions/list/SubmissionList'
 import AssigneePicker from '../modules/assignee-picker/AssigneePicker'
 import AssigneeSearch from '../modules/assignee-picker/AssigneeSearch'
+import AssignmentDescription from '../modules/assignment-description/AssignmentDescription'
 import SpeedGrader from '../modules/speedgrader/SpeedGrader'
 
 import { Store } from 'redux'
@@ -32,6 +33,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/assignments', () => AssignmentList, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID', () => AssignmentDetails, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/edit', () => AssignmentDetailsEdit, store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/edit/description', () => AssignmentDescription, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', () => AssignmentDueDates, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', () => SubmissionList, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', () => SpeedGrader, store)

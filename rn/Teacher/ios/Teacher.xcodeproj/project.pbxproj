@@ -75,11 +75,13 @@
 		6DB0C2A2AEC5AB57B8968B3E /* GroupCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8B83E26D393B3BB9C1813496 /* GroupMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8D0646677276C36E70E17 /* GroupMembership.swift */; };
+		9476F5B887844F7BAEBA7738 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A14A839A5EB460283B1F75B /* libRNImagePicker.a */; };
 		952E99B216DEE7FD0BEF819D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E479910A81A38C8833E5314 /* Page.swift */; };
 		9E80454AFF54FA3A301495CC /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE43F594F5734FBD9DF2146C /* Section.swift */; };
 		9F59C09C1E980384003BF661 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		A45A7871AEE461283E84002D /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105261256A70B5DFD1139104 /* Quiz.swift */; };
 		A6A99147D8722993787C0994 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF3DE89359E019540B64CA /* Assignment.swift */; };
+		B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */; };
 		A779010714254FD09112BFF7 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A08992613846128FD3E3D2 /* libRNBlur.a */; };
 		BFEF14CECBEF3577D41F7BBF /* GradingPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484C40873F5A33402D194B04 /* GradingPeriod.swift */; };
 		C31D10A45ABA434ABB185FDD /* libRNSearchBar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2411260A6CA04D6D874912A2 /* libRNSearchBar.a */; };
@@ -311,6 +313,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		B1FE61B11EA6AF5500A2A434 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
+			remoteInfo = RNImagePicker;
+		};
 		9F053B941E98360A00135AD0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */;
@@ -402,6 +411,7 @@
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		329DC2282549635CBA9EDD0B /* Course.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Course.swift; path = models/Course.swift; sourceTree = "<group>"; };
 		33EA5B9B254626D699014C44 /* DataMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataMap.swift; path = data/DataMap.swift; sourceTree = "<group>"; };
+		3A14A839A5EB460283B1F75B /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
 		3BEF7BF01E7C96860092C864 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		3E479910A81A38C8833E5314 /* Page.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Page.swift; path = models/Page.swift; sourceTree = "<group>"; };
 		484C40873F5A33402D194B04 /* GradingPeriod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GradingPeriod.swift; path = models/GradingPeriod.swift; sourceTree = "<group>"; };
@@ -438,8 +448,11 @@
 		9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GroupCategory.swift; path = models/GroupCategory.swift; sourceTree = "<group>"; };
 		9E745A09DE28474C8094A8FB /* libInteractable.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libInteractable.a; sourceTree = "<group>"; };
 		9E779D0FC821A88203D0C34D /* DataUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataUtil.swift; path = data/DataUtil.swift; sourceTree = "<group>"; };
+		A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		AE43F594F5734FBD9DF2146C /* Section.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Section.swift; path = models/Section.swift; sourceTree = "<group>"; };
+		B1B2FE5C1EA86E26003AD5AA /* WebViewHacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewHacker.h; sourceTree = "<group>"; };
+		B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewHacker.m; sourceTree = "<group>"; };
 		B4ECA86954393EA402EE37DE /* Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Data.swift; path = data/Data.swift; sourceTree = "<group>"; };
 		BB28BA928334A7C4FFA230C7 /* Attachment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Attachment.swift; path = models/Attachment.swift; sourceTree = "<group>"; };
 		C7A08992613846128FD3E3D2 /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
@@ -488,6 +501,7 @@
 				4943ECB91E5CEFBD001DC5B5 /* CocoaLumberjack.framework in Frameworks */,
 				4943ECB31E5CEFBD001DC5B5 /* AFNetworking.framework in Frameworks */,
 				61AD9B63975E448BAF5C6F25 /* libRNDeviceInfo.a in Frameworks */,
+				9476F5B887844F7BAEBA7738 /* libRNImagePicker.a in Frameworks */,
 				A779010714254FD09112BFF7 /* libRNBlur.a in Frameworks */,
 				DEBFD761CA06448195663E88 /* libInteractable.a in Frameworks */,
 				C31D10A45ABA434ABB185FDD /* libRNSearchBar.a in Frameworks */,
@@ -591,6 +605,8 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				4943ECC61E5CF16A001DC5B5 /* NativeLogin.h */,
 				4943ECC71E5CF16A001DC5B5 /* NativeLogin.m */,
+				B1B2FE5C1EA86E26003AD5AA /* WebViewHacker.h */,
+				B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -773,6 +789,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */,
+				A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */,
 				2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */,
 				7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */,
 				5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */,
@@ -841,6 +858,14 @@
 				D3A38F55FC2ABB80A92DB5C6 /* SubmissionComment.swift */,
 			);
 			name = models;
+			sourceTree = "<group>";
+		};
+		B1FE61931EA6AF5500A2A434 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1FE61B21EA6AF5500A2A434 /* libRNImagePicker.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		D155DA8255FE926C1F4BE521 /* CourseListPageTest */ = {
@@ -1008,6 +1033,10 @@
 					ProjectRef = ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */;
 				},
 				{
+					ProductGroup = B1FE61931EA6AF5500A2A434 /* Products */;
+					ProjectRef = A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */;
+				},
+                {
 					ProductGroup = 4924260C1EAEB37C0046ED43 /* Products */;
 					ProjectRef = 5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */;
 				},
@@ -1224,6 +1253,13 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		B1FE61B21EA6AF5500A2A434 /* libRNImagePicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNImagePicker.a;
+			remoteRef = B1FE61B11EA6AF5500A2A434 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9F053B951E98360A00135AD0 /* libRNBlur.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1284,6 +1320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4943ECC81E5CF16A001DC5B5 /* NativeLogin.m in Sources */,
+				B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -1367,6 +1404,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native-navigation/**",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable/**",
 					"$(SRCROOT)/../node_modules/react-native-search-bar",
@@ -1375,7 +1413,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1403,6 +1440,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native-navigation/**",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable/**",
 					"$(SRCROOT)/../node_modules/react-native-search-bar",
@@ -1411,7 +1449,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 				);
 				OTHER_LDFLAGS = (

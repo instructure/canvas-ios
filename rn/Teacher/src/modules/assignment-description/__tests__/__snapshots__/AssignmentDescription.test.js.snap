@@ -1,0 +1,242 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssignmentDescription renders 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <View
+    editorItemsChanged={undefined}
+    html="<p>This is a description</p>"
+    onFocus={undefined}
+    onInputChange={undefined}
+    onLoad={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+      }
+    }
+    testID="rich-text-editor"
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      &lt;p&gt;This is a description&lt;/p&gt;
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Triggers: 
+      
+    </Text>
+    <View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <WebView
+          onLoad={[Function]}
+          onMessage={[Function]}
+          scalesPageToFit={true}
+          scrollEnabled={false}
+          source={Object {}}
+          style={
+            Object {
+              "height": undefined,
+            }
+          }
+        />
+        <Modal
+          animationType="fade"
+          hardwareAccelerated={false}
+          transparent={true}
+          visible={true}
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgba(0, 0, 0, 0.5)",
+                "flex": 1,
+                "justifyContent": "center",
+                "padding": 50,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "backgroundColor": "#e9e9e9",
+                  "borderRadius": 8,
+                  "flexDirection": "column",
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "fontSize": 18,
+                    "paddingBottom": 15,
+                    "paddingTop": 15,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                Link to Website URL
+              </Text>
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "#fff",
+                    "borderColor": "#ddd",
+                    "borderWidth": 1,
+                    "marginBottom": 4,
+                    "marginLeft": 10,
+                    "marginRight": 10,
+                    "padding": 4,
+                  }
+                }
+              >
+                <TextInput
+                  autoCapitalize="none"
+                  autoFocus={true}
+                  defaultValue={undefined}
+                  onChangeText={[Function]}
+                  placeholder="Title"
+                  style={
+                    Object {
+                      "height": 20,
+                    }
+                  }
+                  testID="rich-text-editor.link-modal.titleInput"
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "#fff",
+                    "borderColor": "#ddd",
+                    "borderWidth": 1,
+                    "marginBottom": 4,
+                    "marginLeft": 10,
+                    "marginRight": 10,
+                    "padding": 4,
+                  }
+                }
+              >
+                <TextInput
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  defaultValue={undefined}
+                  keyboardType="url"
+                  onChangeText={[Function]}
+                  placeholder="URL"
+                  style={
+                    Object {
+                      "height": 20,
+                    }
+                  }
+                  testID="rich-text-editor.link-modal.urlInput"
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#ddd",
+                    },
+                    Object {
+                      "height": 1,
+                      "marginTop": 6,
+                    },
+                  ]
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <Button
+                    onPress={[Function]}
+                    style={undefined}
+                    testID="rich-text-editor.link-modal.cancelButton"
+                    title="Cancel"
+                  />
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#ddd",
+                      },
+                      Object {
+                        "width": 1,
+                      },
+                    ]
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <Button
+                    onPress={[Function]}
+                    style={undefined}
+                    testID="rich-text-editor.link-modal.okButton"
+                    title="OK"
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "right": 0,
+                },
+                Object {
+                  "height": 0,
+                },
+                undefined,
+              ]
+            }
+          />
+        </Modal>
+      </View>
+    </View>
+  </View>
+</View>
+`;
