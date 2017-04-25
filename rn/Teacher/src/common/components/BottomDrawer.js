@@ -8,8 +8,11 @@ import {
   View,
 } from 'react-native'
 import Interactable from 'react-native-interactable'
+import { BlurView } from 'react-native-blur'
 
 let { height, width } = Dimensions.get('window')
+
+const CLOSED_PANEL_HEIGHT = 59
 
 type Props = {
   containerWidth?: number,
@@ -37,10 +40,10 @@ export default class BottomDrawer extends Component {
       height: props.containerHeight || height,
       width: props.containerWidth || width,
       currentSnap: 2,
-      bottomPadding: height * 0.8 - 33,
+      bottomPadding: height * 0.8 - CLOSED_PANEL_HEIGHT,
     }
 
-    this._deltaY = new Animated.Value(this.state.height - 53)
+    this._deltaY = new Animated.Value(this.state.height - CLOSED_PANEL_HEIGHT)
   }
 
   componentWillReceiveProps (nextProps: Props) {
@@ -66,7 +69,10 @@ export default class BottomDrawer extends Component {
   }
 
   getSnapPoints = () => {
-    return [{ y: this.state.height * 0.2 - 53 }, { y: this.state.height * 0.6 - 53 }, { y: this.state.height - 53 }]
+    return [
+      { y: this.state.height * 0.2 - CLOSED_PANEL_HEIGHT },
+      { y: this.state.height * 0.6 - CLOSED_PANEL_HEIGHT },
+      { y: this.state.height - CLOSED_PANEL_HEIGHT }]
   }
 
   render () {
@@ -78,17 +84,22 @@ export default class BottomDrawer extends Component {
         onSnap={this.onSnap}
         verticalOnly={true}
         snapPoints={this.getSnapPoints()}
-        initialPosition={{ y: this.state.height - 53 }}
+        initialPosition={{ y: this.state.height - CLOSED_PANEL_HEIGHT }}
         animatedValueY={this._deltaY}
         style={[styles.panelContainer, { left: position, right: position }]}
         onLayout={this.onLayout}
       >
+        <View style={[styles.absolute, styles.shadow]} />
+        <BlurView
+          style={styles.absolute}
+          blurType="xlight"
+          blurAmount={10}>
         <Animated.View
           style={[styles.panel, {
             height: this.state.height,
             paddingBottom: this._deltaY.interpolate({
-              inputRange: [this.state.height * 0.2 - 53, this.state.height - 53],
-              outputRange: [this.state.height * 0.2 - 53, this.state.height - 53],
+              inputRange: [this.state.height * 0.2 - CLOSED_PANEL_HEIGHT, this.state.height - CLOSED_PANEL_HEIGHT],
+              outputRange: [this.state.height * 0.2 - CLOSED_PANEL_HEIGHT, this.state.height - CLOSED_PANEL_HEIGHT],
             }),
           }]}
         >
@@ -97,6 +108,7 @@ export default class BottomDrawer extends Component {
           </View>
           {this.props.children}
         </Animated.View>
+        </BlurView>
       </Interactable.View>
     )
   }
@@ -112,16 +124,9 @@ const styles = StyleSheet.create({
     maxWidth: 700,
   },
   panel: {
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 0 },
-    shadowRadius: 3,
-    shadowOpacity: 0.3,
     paddingTop: 16,
     paddingBottom: 0,
     flex: 1,
-    backgroundColor: '#fff',
   },
   handleWrapper: {
     position: 'absolute',
@@ -129,13 +134,31 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
+    marginVertical: 6,
   },
   handle: {
     width: 40,
     height: 4,
-    backgroundColor: '#e3e3e3',
+    backgroundColor: 'darkgray',
     borderRadius: 5,
     marginTop: 4,
     marginBottom: 8,
+  },
+  shadow: {
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 3,
+    shadowOpacity: 1,
+    backgroundColor: '#FFFFFF55',
+  },
+  absolute: {
+    borderRadius: 12,
+    position: 'absolute',
+    margin: 0,
+    padding: 0,
+    top: 0,
+    bottom: -20,
+    left: 0,
+    right: 0,
   },
 })

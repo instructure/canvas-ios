@@ -2,10 +2,10 @@
 
 exports[`BottomDrawer renders any children 1`] = `
 <Interactable.View
-  animatedValueY={1281}
+  animatedValueY={1275}
   initialPosition={
     Object {
-      "y": 1281,
+      "y": 1275,
     }
   }
   onLayout={undefined}
@@ -13,13 +13,13 @@ exports[`BottomDrawer renders any children 1`] = `
   snapPoints={
     Array [
       Object {
-        "y": 213.8,
+        "y": 207.8,
       },
       Object {
-        "y": 747.4,
+        "y": 741.4,
       },
       Object {
-        "y": 1281,
+        "y": 1275,
       },
     ]
   }
@@ -43,55 +43,94 @@ exports[`BottomDrawer renders any children 1`] = `
 >
   <View
     style={
-      Object {
-        "backgroundColor": "#fff",
-        "borderTopLeftRadius": 20,
-        "borderTopRightRadius": 20,
-        "flex": 1,
-        "height": 1334,
-        "paddingBottom": 1281,
-        "paddingTop": 16,
-        "shadowColor": "#000000",
-        "shadowOffset": Object {
-          "height": 0,
-          "width": 0,
+      Array [
+        Object {
+          "borderRadius": 12,
+          "bottom": -20,
+          "left": 0,
+          "margin": 0,
+          "padding": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
         },
-        "shadowOpacity": 0.3,
-        "shadowRadius": 3,
-      }
+        Object {
+          "backgroundColor": "#FFFFFF55",
+          "shadowColor": "#000000",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 1,
+          "shadowRadius": 3,
+        },
+      ]
+    }
+  />
+  <BlurView
+    blurAmount={10}
+    blurType="xlight"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+        },
+        Object {
+          "borderRadius": 12,
+          "bottom": -20,
+          "left": 0,
+          "margin": 0,
+          "padding": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+      ]
     }
   >
     <View
       style={
         Object {
-          "alignItems": "center",
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
+          "flex": 1,
+          "height": 1334,
+          "paddingBottom": 1275,
+          "paddingTop": 16,
         }
       }
     >
       <View
         style={
           Object {
-            "backgroundColor": "#e3e3e3",
-            "borderRadius": 5,
-            "height": 4,
-            "marginBottom": 8,
-            "marginTop": 4,
-            "width": 40,
+            "alignItems": "center",
+            "left": 0,
+            "marginVertical": 6,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
           }
         }
-      />
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "darkgray",
+              "borderRadius": 5,
+              "height": 4,
+              "marginBottom": 8,
+              "marginTop": 4,
+              "width": 40,
+            }
+          }
+        />
+      </View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        Yo yo yo
+      </Text>
     </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
-      Yo yo yo
-    </Text>
-  </View>
+  </BlurView>
 </Interactable.View>
 `;

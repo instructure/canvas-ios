@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgray',
+    borderBottomColor: 'darkgray',
   },
   pickerButton: {
     minHeight: 20,

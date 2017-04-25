@@ -78,10 +78,10 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
           }
         >
           <Interactable.View
-            animatedValueY={1281}
+            animatedValueY={1275}
             initialPosition={
               Object {
-                "y": 1281,
+                "y": 1275,
               }
             }
             onLayout={undefined}
@@ -89,13 +89,13 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             snapPoints={
               Array [
                 Object {
-                  "y": 213.8,
+                  "y": 207.8,
                 },
                 Object {
-                  "y": 747.4,
+                  "y": 741.4,
                 },
                 Object {
-                  "y": 1281,
+                  "y": 1275,
                 },
               ]
             }
@@ -119,97 +119,137 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
           >
             <View
               style={
-                Object {
-                  "backgroundColor": "#fff",
-                  "borderTopLeftRadius": 20,
-                  "borderTopRightRadius": 20,
-                  "flex": 1,
-                  "height": 1334,
-                  "paddingBottom": 1281,
-                  "paddingTop": 16,
-                  "shadowColor": "#000000",
-                  "shadowOffset": Object {
-                    "height": 0,
-                    "width": 0,
+                Array [
+                  Object {
+                    "borderRadius": 12,
+                    "bottom": -20,
+                    "left": 0,
+                    "margin": 0,
+                    "padding": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   },
-                  "shadowOpacity": 0.3,
-                  "shadowRadius": 3,
-                }
+                  Object {
+                    "backgroundColor": "#FFFFFF55",
+                    "shadowColor": "#000000",
+                    "shadowOffset": Object {
+                      "height": 0,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 1,
+                    "shadowRadius": 3,
+                  },
+                ]
+              }
+            />
+            <BlurView
+              blurAmount={10}
+              blurType="xlight"
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
+                  Object {
+                    "borderRadius": 12,
+                    "bottom": -20,
+                    "left": 0,
+                    "margin": 0,
+                    "padding": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                ]
               }
             >
               <View
                 style={
                   Object {
-                    "alignItems": "center",
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
+                    "flex": 1,
+                    "height": 1334,
+                    "paddingBottom": 1275,
+                    "paddingTop": 16,
                   }
                 }
               >
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#e3e3e3",
-                      "borderRadius": 5,
-                      "height": 4,
-                      "marginBottom": 8,
-                      "marginTop": 4,
-                      "width": 40,
+                      "alignItems": "center",
+                      "left": 0,
+                      "marginVertical": 6,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
                     }
                   }
-                />
-              </View>
-              <View
-                style={
-                  Object {
-                    "borderBottomColor": "lightgray",
-                    "borderBottomWidth": 0.5,
-                    "paddingBottom": 8,
-                    "paddingHorizontal": 16,
-                  }
-                }
-              >
-                <RCTSegmentedControl
-                  enabled={true}
-                  onChange={[Function]}
-                  selectedIndex={0}
-                  style={
-                    Array [
+                >
+                  <View
+                    style={
                       Object {
-                        "height": 28,
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID="speedgrader.segment-control"
-                  values={
-                    Array [
-                      "Grades",
-                      "Comments",
-                      "Files",
-                    ]
-                  }
-                />
-              </View>
-              <RCTScrollView
-                style={
-                  Object {
-                    "paddingHorizontal": 16,
-                  }
-                }
-              >
-                <View>
-                  <GradePicker
-                    assignmentID="1"
-                    courseID="1"
-                    submissionID={undefined}
-                    userID="55"
+                        "backgroundColor": "darkgray",
+                        "borderRadius": 5,
+                        "height": 4,
+                        "marginBottom": 8,
+                        "marginTop": 4,
+                        "width": 40,
+                      }
+                    }
                   />
                 </View>
-              </RCTScrollView>
-            </View>
+                <View
+                  style={
+                    Object {
+                      "borderBottomColor": "darkgray",
+                      "borderBottomWidth": 0.5,
+                      "paddingBottom": 8,
+                      "paddingHorizontal": 16,
+                      "paddingTop": 8,
+                    }
+                  }
+                >
+                  <RCTSegmentedControl
+                    enabled={true}
+                    onChange={[Function]}
+                    selectedIndex={0}
+                    style={
+                      Array [
+                        Object {
+                          "height": 28,
+                        },
+                        undefined,
+                      ]
+                    }
+                    testID="speedgrader.segment-control"
+                    values={
+                      Array [
+                        "Grades",
+                        "Comments",
+                        "Files",
+                      ]
+                    }
+                  />
+                </View>
+                <RCTScrollView
+                  style={
+                    Object {
+                      "paddingHorizontal": 16,
+                    }
+                  }
+                >
+                  <View>
+                    <GradePicker
+                      assignmentID="1"
+                      courseID="1"
+                      submissionID={undefined}
+                      userID="55"
+                    />
+                  </View>
+                </RCTScrollView>
+              </View>
+            </BlurView>
           </Interactable.View>
         </View>
       </View>

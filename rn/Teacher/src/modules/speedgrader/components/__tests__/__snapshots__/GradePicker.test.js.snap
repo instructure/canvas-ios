@@ -5,7 +5,7 @@ exports[`GradePicker renders with excused 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "borderBottomColor": "lightgray",
+      "borderBottomColor": "darkgray",
       "borderBottomWidth": 0.5,
       "flexDirection": "row",
       "height": 48,
@@ -73,7 +73,7 @@ exports[`GradePicker renders with no grade 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "borderBottomColor": "lightgray",
+      "borderBottomColor": "darkgray",
       "borderBottomWidth": 0.5,
       "flexDirection": "row",
       "height": 48,

@@ -104,7 +104,8 @@ const styles = StyleSheet.create({
   controlWrapper: {
     paddingHorizontal: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgray',
+    borderBottomColor: 'darkgray',
+    paddingTop: 8,
     paddingBottom: 8,
   },
 })
