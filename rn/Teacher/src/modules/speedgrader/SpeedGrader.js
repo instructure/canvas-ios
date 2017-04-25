@@ -13,6 +13,7 @@ import refresh from '../../utils/refresh'
 import { connect } from 'react-redux'
 import SubmissionActions from '../submissions/list/actions'
 import EnrollmentActions from '../enrollments/actions'
+import AssignmentActions from '../assignments/actions'
 import SubmissionGrader from './SubmissionGrader'
 import { getSubmissionsProps } from '../submissions/list/get-submissions-props'
 import type {
@@ -119,6 +120,7 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Async
 export function refreshSpeedGrader (props: SpeedGraderProps): void {
   props.refreshSubmissions(props.courseID, props.assignmentID)
   props.refreshEnrollments(props.courseID)
+  props.refreshAssignment(props.courseID, props.assignmentID)
 }
 
 export function shouldRefresh (props: SpeedGraderProps): boolean {
@@ -134,7 +136,7 @@ const Refreshed = refresh(
   shouldRefresh,
   isRefreshing
 )(SpeedGrader)
-const Connected = connect(mapStateToProps, { ...SubmissionActions, ...EnrollmentActions })(Refreshed)
+const Connected = connect(mapStateToProps, { ...SubmissionActions, ...EnrollmentActions, ...AssignmentActions })(Refreshed)
 
 export default (Connected: React.Element<*>)
 
@@ -150,6 +152,7 @@ type RoutingProps = {
 type SpeedGraderActionProps = {
   refreshSubmissions: Function,
   refreshEnrollments: Function,
+  refreshAssignment: Function,
 }
 type SpeedGraderProps
   = RoutingProps

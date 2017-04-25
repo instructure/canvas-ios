@@ -23,4 +23,17 @@ describe('SpeedGraderActions', () => {
       expect(payload).toHaveProperty('assignmentID', '2')
     })
   })
+
+  describe('gradeSubmission', () => {
+    it('calls gradeSubmission with the correct arguments', () => {
+      actions.gradeSubmission('1', '2', '3', '4', '1234')
+      expect(api.gradeSubmission).toHaveBeenCalledWith('1', '2', '3', { posted_grade: '1234' })
+    })
+
+    it('passes the submissionID and assignmentID in the action payload', () => {
+      let { payload } = actions.gradeSubmission('1', '2', '3', '4', '1234')
+      expect(payload).toHaveProperty('submissionID', '4')
+      expect(payload).toHaveProperty('assignmentID', '2')
+    })
+  })
 })

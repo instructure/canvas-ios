@@ -5,7 +5,7 @@ import Actions from '../actions'
 import SpeedGraderActions from '../../../speedgrader/actions'
 
 const { refreshSubmissions } = Actions
-const { excuseAssignment } = SpeedGraderActions
+const { excuseAssignment, gradeSubmission } = SpeedGraderActions
 const templates = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
 }
@@ -114,5 +114,122 @@ test('excuseAssignment creates the submission entity on success when there is no
     submission: action.payload.result.data,
     pending: 0,
     error: null,
+  })
+})
+
+test('gradeSubmission does nothing on pending when there is no submissionID', () => {
+  let state = { yo: 'yo' }
+
+  const action = {
+    type: gradeSubmission.toString(),
+    pending: true,
+    payload: {},
+  }
+
+  let newState = submissions(state, action)
+  expect(newState).toEqual(state)
+})
+
+test('gradeSubmission ups the pending count by one when there is a submissionID', () => {
+  let state = {
+    '1': {
+      submission: templates.submissionHistory([{ id: '1' }]),
+      pending: 0,
+      error: null,
+    },
+  }
+
+  const action = {
+    type: gradeSubmission.toString(),
+    pending: true,
+    payload: {
+      submissionID: '1',
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1'].pending).toEqual(1)
+})
+
+test('gradeSubmission does nothing on rejection when there is no submissionID', () => {
+  let state = { yo: 'yo' }
+
+  const action = {
+    type: gradeSubmission.toString(),
+    error: true,
+    payload: {},
+  }
+
+  let newState = submissions(state, action)
+  expect(newState).toEqual(state)
+})
+
+test('gradeSubmission decrements the pending count on rejection when there is a submissionID', () => {
+  let state = {
+    '1': {
+      submission: templates.submissionHistory([{ id: '1' }]),
+      pending: 1,
+      error: null,
+    },
+  }
+  const action = {
+    type: gradeSubmission.toString(),
+    error: true,
+    payload: {
+      submissionID: '1',
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1'].pending).toEqual(0)
+})
+
+test('gradeSubmission creates the submission entity when there is no submissionID', () => {
+  let state = {}
+
+  const action = {
+    type: gradeSubmission.toString(),
+    payload: {
+      result: {
+        data: templates.submission({ id: '1', grade: '1', score: 1 }),
+      },
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1']).toMatchObject({
+    submission: action.payload.result.data,
+    pending: 0,
+    error: null,
+  })
+})
+
+test('gradeSubmission updates the existing submission entity when there is a submissionID', () => {
+  let state = {
+    '1': {
+      submission: templates.submissionHistory([{ id: '1', excused: true }]),
+      pending: 1,
+      error: null,
+    },
+  }
+
+  const action = {
+    type: gradeSubmission.toString(),
+    payload: {
+      result: {
+        data: templates.submission({ id: '1', grade: '1', score: 1 }),
+      },
+      submissionID: '1',
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1']).toMatchObject({
+    submission: {
+      grade: '1',
+      score: 1,
+      excused: false,
+    },
+    pending: 0,
   })
 })

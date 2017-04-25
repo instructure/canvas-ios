@@ -7,7 +7,7 @@ import handleAsync from '../../../utils/handleAsync'
 import SpeedGraderActions from '../../speedgrader/actions'
 
 const { refreshSubmissions } = Actions
-const { excuseAssignment } = SpeedGraderActions
+const { excuseAssignment, gradeSubmission } = SpeedGraderActions
 
 export const submissions: Reducer<SubmissionsState, any> = handleActions({
   [refreshSubmissions.toString()]: handleAsync({
@@ -33,7 +33,7 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
         [submissionID]: {
           ...state[submissionID],
           submission: {
-            ...state.submission,
+            ...state[submissionID].submission,
             excused: true,
           },
         },
@@ -61,6 +61,51 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
             ...state.submission,
             excused: false,
           },
+        },
+      }
+    },
+  }),
+
+  [gradeSubmission.toString()]: handleAsync({
+    pending: (state, { submissionID }) => {
+      if (!submissionID) return state
+
+      return {
+        ...state,
+        [submissionID]: {
+          ...state[submissionID],
+          pending: state[submissionID].pending + 1,
+        },
+      }
+    },
+    resolved: (state, { submissionID, result }) => {
+      let id = submissionID || result.data.id
+      let submissionState = submissionID
+        ? state[submissionID]
+        : { pending: 1, submission: result.data, error: null }
+
+      return {
+        ...state,
+        [id]: {
+          ...submissionState,
+          submission: {
+            ...submissionState.submission,
+            grade: result.data.grade,
+            score: result.data.score,
+            excused: false,
+          },
+          pending: submissionState.pending - 1,
+        },
+      }
+    },
+    rejected: (state, { submissionID }) => {
+      if (!submissionID) return state
+
+      return {
+        ...state,
+        [submissionID]: {
+          ...state[submissionID],
+          pending: state[submissionID].pending - 1,
         },
       }
     },

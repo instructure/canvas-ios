@@ -10,7 +10,7 @@ import SpeedGraderActions from '../../speedgrader/actions'
 import i18n from 'format-message'
 
 const { refreshSubmissions } = Actions
-const { excuseAssignment } = SpeedGraderActions
+const { excuseAssignment, gradeSubmission } = SpeedGraderActions
 
 type Response = { +result: { +data: Array<SubmissionWithHistory> } }
 
@@ -24,18 +24,23 @@ export const submissionsList: Reducer<AsyncRefs, any> = asyncRefsReducer(
   submissionRefsForResponse
 )
 
-export const excuseCreate: Reducer<AsyncRefs, any> = handleActions({
-  [excuseAssignment.toString()]: handleAsync({
-    resolved: (state, { submissionID, result }) => {
-      if (submissionID) return state
+function addRef (state, { submissionID, result }) {
+  if (submissionID) return state
 
-      let refs = [...state.refs, result.data.id]
-      return {
-        ...state,
-        refs,
-      }
-    },
+  let refs = [...state.refs, result.data.id]
+  return {
+    ...state,
+    refs,
+  }
+}
+
+export const refsChanges: Reducer<AsyncRefs, any> = handleActions({
+  [excuseAssignment.toString()]: handleAsync({
+    resolved: addRef,
+  }),
+  [gradeSubmission.toString()]: handleAsync({
+    resolved: addRef,
   }),
 }, {})
 
-export const submissions: Reducer<AsyncRefs, any> = composeReducers(submissionsList, excuseCreate)
+export const submissions: Reducer<AsyncRefs, any> = composeReducers(submissionsList, refsChanges)

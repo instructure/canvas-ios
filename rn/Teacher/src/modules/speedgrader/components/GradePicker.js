@@ -6,6 +6,7 @@ import {
   StyleSheet,
   AlertIOS,
   Image,
+  ActivityIndicator,
 } from 'react-native'
 import i18n from 'format-message'
 import { Heading1 } from '../../../common/text'
@@ -25,6 +26,7 @@ export class GradePicker extends Component {
       },
       {
         text: i18n('Ok'),
+        onPress: (promptValue) => this.props.gradeSubmission(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, promptValue),
       },
     ]
     if (!this.props.excused) {
@@ -44,9 +46,18 @@ export class GradePicker extends Component {
   }
 
   renderGrade = () => {
-    if (this.props.excused) {
+    let points = `${this.props.score}/${this.props.pointsPossible}`
+    return <Heading1>{points}</Heading1>
+  }
+
+  renderField = () => {
+    if (this.props.pending) {
+      return <ActivityIndicator />
+    } else if (this.props.excused) {
       return <Heading1>{i18n('Excused')}</Heading1>
-    } else if (!this.props.grade) {
+    } else if (this.props.grade) {
+      return this.renderGrade()
+    } else {
       return <Image source={Images.add} style={styles.gradeButton}/>
     }
   }
@@ -55,8 +66,8 @@ export class GradePicker extends Component {
     return (
       <View style={styles.gradeCell}>
         <Heading1>{i18n('Grade')}</Heading1>
-        <Button testID='grade-picker.button' style={styles.pickerButton} onPress={this.openPicker} accessibilityLabel={i18n('Customize Grade')}>
-          {this.renderGrade()}
+        <Button testID='grade-picker.button' style={styles.pickerButton} onPress={this.openPicker} accessibilityLabel={i18n('Customize Grade')} disabled={this.props.pending}>
+          {this.renderField()}
         </Button>
       </View>
     )
@@ -82,17 +93,26 @@ const styles = StyleSheet.create({
 })
 
 export function mapStateToProps (state: AppState, ownProps: GradePickerOwnProps): GradePickerDataProps {
+  let assignment = state.entities.assignments[ownProps.assignmentID].data
   if (!ownProps.submissionID) {
     return {
       excused: false,
       grade: '',
+      pending: false,
+      score: 0,
+      pointsPossible: assignment.points_possible,
+      gradingType: assignment.grading_type,
     }
   }
 
-  let submission = state.entities.submissions[ownProps.submissionID]
+  let submission = state.entities.submissions[ownProps.submissionID].submission
   return {
-    excused: submission.submission.excused,
-    grade: submission.submission.grade,
+    excused: submission.excused,
+    grade: submission.grade,
+    score: submission.score,
+    pending: Boolean(state.entities.submissions[ownProps.submissionID].pending),
+    gradingType: assignment.grading_type,
+    pointsPossible: assignment.points_possible,
   }
 }
 
@@ -109,6 +129,10 @@ type GradePickerOwnProps = {
 type GradePickerDataProps = {
   excused: boolean,
   grade: string,
+  score: number,
+  pending: boolean,
+  gradingType: 'pass_fail' | 'percent' | 'letter_grade' | 'gpa_scale' | 'points',
+  pointsPossible: number,
 }
 
 type GradePickerProps = GradePickerOwnProps & GradePickerDataProps & SpeedGraderActionsType

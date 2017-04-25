@@ -72,12 +72,14 @@ describe('SpeedGrader', () => {
 })
 
 describe('refresh functions', () => {
+  beforeEach(() => jest.resetAllMocks())
   const props = {
     courseID: '12',
     assignmentID: '55',
     userID: '145',
     refreshSubmissions: jest.fn(),
     refreshEnrollments: jest.fn(),
+    refreshAssignment: jest.fn(),
     submissions: [],
     refresh: jest.fn(),
     refreshing: false,
@@ -86,8 +88,9 @@ describe('refresh functions', () => {
   }
   it('refreshSubmissions', () => {
     refreshSpeedGrader(props)
-    expect(props.refreshSubmissions).toHaveBeenLastCalledWith(props.courseID, props.assignmentID)
-    expect(props.refreshEnrollments).toHaveBeenLastCalledWith(props.courseID)
+    expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID)
+    expect(props.refreshEnrollments).toHaveBeenCalledWith(props.courseID)
+    expect(props.refreshAssignment).toHaveBeenCalledWith(props.courseID, props.assignmentID)
   })
   it('isRefreshing', () => {
     const isNot = isRefreshing(props)

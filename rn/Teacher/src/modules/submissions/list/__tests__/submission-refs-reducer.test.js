@@ -5,7 +5,7 @@ import Actions from '../actions'
 import SpeedGraderActions from '../../../speedgrader/actions'
 
 const { refreshSubmissions } = Actions
-const { excuseAssignment } = SpeedGraderActions
+const { excuseAssignment, gradeSubmission } = SpeedGraderActions
 
 const templates = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
@@ -45,7 +45,7 @@ test('on excuseAssignment it returns the current state when there is a submissio
     type: excuseAssignment.toString(),
     payload: {
       result: {
-        data: templates.submissionHistory([{ id: '1' }]),
+        data: templates.submission({ id: '1' }),
       },
       submissionID: '1',
     },
@@ -66,7 +66,49 @@ test('excuseAssignment adds the new submission id to the refs', () => {
     type: excuseAssignment.toString(),
     payload: {
       result: {
-        data: templates.submissionHistory([{ id: '1' }]),
+        data: templates.submission({ id: '1' }),
+      },
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState.refs.length).toEqual(1)
+  expect(newState.refs[0]).toEqual('1')
+})
+
+test('on gradeSubmission it returns the current state when there is a submissionID', () => {
+  let state = {
+    refs: [],
+    pending: 0,
+    error: null,
+  }
+
+  const action = {
+    type: gradeSubmission.toString(),
+    payload: {
+      result: {
+        data: templates.submission({ id: '1' }),
+      },
+      submissionID: '1',
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState).toEqual(state)
+})
+
+test('on gradeSubmission it adds the new submission id to the refs', () => {
+  let state = {
+    refs: [],
+    pending: 0,
+    error: null,
+  }
+
+  const action = {
+    type: gradeSubmission.toString(),
+    payload: {
+      result: {
+        data: templates.submission({ id: '1' }),
       },
     },
   }

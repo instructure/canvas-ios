@@ -32,6 +32,7 @@ export type Assignment = {
   submission_types: string[],
   html_url: string,
   position: number,
+  grading_type: 'pass_fail' | 'percent' | 'letter_grade' | 'gpa_scale' | 'points',
 }
 
 export type AssignmentDate = {
