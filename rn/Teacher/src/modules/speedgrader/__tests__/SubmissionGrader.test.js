@@ -6,6 +6,7 @@ import renderer from 'react-test-renderer'
 
 jest.mock('SegmentedControlIOS', () => 'SegmentedControlIOS')
 jest.mock('../components/GradePicker')
+jest.mock('../components/Header')
 
 let defaultProps = {
   submissionID: '1',

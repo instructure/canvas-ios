@@ -9,7 +9,6 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native'
-import i18n from 'format-message'
 import refresh from '../../utils/refresh'
 import { connect } from 'react-redux'
 import SubmissionActions from '../submissions/list/actions'
@@ -31,12 +30,8 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   props: SpeedGraderProps
   state: State
 
-  static navigatorButtons = {
-    rightButtons: [{
-      title: i18n('Done'),
-      id: 'done',
-      testId: 'done_button',
-    }],
+  static navigatorStyle = {
+    navBarHidden: true,
   }
 
   constructor (props: SpeedGraderProps) {
@@ -44,22 +39,6 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
     const { height, width } = Dimensions.get('window')
     this.state = { size: { width, height } }
-
-    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
-    props.navigator.setTitle({
-      title: i18n({
-        default: 'SpeedGrader',
-        description: 'Grade student submissions',
-      }),
-    })
-  }
-
-  onNavigatorEvent = (event: NavigatorEvent): void => {
-    if (event.type === 'NavBarButtonPress') {
-      if (event.id === 'done') {
-        this.props.navigator.dismissModal()
-      }
-    }
   }
 
   onLayout = (event: any) => {
@@ -78,6 +57,8 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         assignmentID={this.props.assignmentID}
         userID={item.submission.userID}
         submissionID={item.submission.submissionID}
+        closeModal={this.props.navigator.dismissModal}
+        submissionProps={item.submission}
         />
     </View>
 

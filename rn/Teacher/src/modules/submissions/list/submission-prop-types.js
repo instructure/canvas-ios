@@ -17,6 +17,7 @@ export type SubmissionDataProps = {
   +status: SubmissionStatusProp,
   +grade: ?GradeProp,
   +submissionID: ?string,
+  +submission: ?Object,
 }
 
 export type SubmissionProps = SubmissionDataProps & {

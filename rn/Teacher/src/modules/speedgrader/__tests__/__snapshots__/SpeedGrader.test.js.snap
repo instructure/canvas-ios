@@ -77,6 +77,19 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             }
           }
         >
+          <Header
+            closeModal={[Function]}
+            submissionID={undefined}
+            submissionProps={
+              Object {
+                "avatarURL": "http://www.fillmurray.com/100/100",
+                "grade": "B-",
+                "name": "Donald Trump",
+                "status": "submitted",
+                "userID": "55",
+              }
+            }
+          />
           <Interactable.View
             animatedValueY={1275}
             initialPosition={
@@ -242,8 +255,18 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   <View>
                     <GradePicker
                       assignmentID="1"
+                      closeModal={[Function]}
                       courseID="1"
                       submissionID={undefined}
+                      submissionProps={
+                        Object {
+                          "avatarURL": "http://www.fillmurray.com/100/100",
+                          "grade": "B-",
+                          "name": "Donald Trump",
+                          "status": "submitted",
+                          "userID": "55",
+                        }
+                      }
                       userID="55"
                     />
                   </View>

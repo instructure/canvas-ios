@@ -13,10 +13,10 @@ import i18n from 'format-message'
 import type {
   GradeProp,
   SubmissionProps,
-  SubmissionStatusProp,
 } from './submission-prop-types'
 import colors from '../../../common/colors'
 import { Text } from '../../../common/text'
+import SubmissionStatus from './SubmissionStatus'
 
 type RowProps = {
   +testID: string,
@@ -39,40 +39,6 @@ class Row extends Component<any, RowProps, any> {
       </View>
     )
   }
-}
-
-const SubmissionStatus = ({ status }: { status: SubmissionStatusProp }): * => {
-  let color: string = '#8B969E' // none
-  let title: string = i18n({
-    default: 'No submission',
-    description: 'No submission from the student for the given assignment',
-  })
-
-  switch (status) {
-    case 'late':
-      color = '#FC5E13'
-      title = i18n({
-        default: 'Late',
-        description: 'Assignment was turned in late',
-      })
-      break
-    case 'missing':
-      color = '#EE0612'
-      title = i18n({
-        default: 'Missing',
-        description: 'The assignment has not been turned in',
-      })
-      break
-    case 'submitted':
-      color = '#07AF1F'
-      title = i18n({
-        default: 'Submitted',
-        description: 'The assignment has been turned in',
-      })
-      break
-  }
-
-  return <Text style={[styles.statusText, { color }]}>{title}</Text>
 }
 
 const Grade = ({ grade }: {grade: ?GradeProp}): * => {
@@ -151,10 +117,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: '#2D3B45',
-  },
-  statusText: {
-    fontSize: 14,
-    paddingTop: 2,
   },
   gradeText: {
     fontSize: 14,

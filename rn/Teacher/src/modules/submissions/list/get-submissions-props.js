@@ -68,7 +68,7 @@ function submissionProps (user: User, submission: ?SubmissionWithHistory, dueDat
   if (submission) {
     submissionID = submission.id
   }
-  return { userID, avatarURL, name, status, grade, submissionID }
+  return { userID, avatarURL, name, status, grade, submissionID, submission }
 }
 
 function dueDate (state: ?AssignmentDetailState): ?string {

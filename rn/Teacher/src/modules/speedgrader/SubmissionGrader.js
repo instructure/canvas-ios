@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 import i18n from 'format-message'
 import BottomDrawer from '../../common/components/BottomDrawer'
+import Header from './components/Header'
 import GradeTab from './GradeTab'
 
 let { width, height } = Dimensions.get('window')
@@ -19,10 +20,12 @@ type State = {
 }
 
 type SubmissionGraderProps = {
+  closeModal: Function,
   courseID: string,
   assignmnetID: string,
   userID: string,
   submissionID: ?string,
+  submissionProps: Object,
 }
 
 export default class SubmissionGrader extends Component<any, SubmissionGraderProps, State> {
@@ -68,6 +71,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
   render () {
     return (
       <View onLayout={this.onLayout} style={styles.speedGrader}>
+        <Header closeModal={this.props.closeModal} submissionProps={this.props.submissionProps} submissionID={this.props.submissionID} />
         <BottomDrawer ref={e => { this.drawer = e }} containerWidth={this.state.width} containerHeight={this.state.height}>
           <View style={styles.controlWrapper}>
             <SegmentedControlIOS

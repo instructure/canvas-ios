@@ -10,6 +10,7 @@ import {
 import renderer from 'react-test-renderer'
 
 jest.mock('../components/GradePicker')
+jest.mock('../components/Header')
 
 const templates = {
   ...require('../../../api/canvas-api/__templates__/submissions'),
@@ -41,10 +42,6 @@ describe('SpeedGrader', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
-    expect(defaultProps.navigator.setTitle).toHaveBeenCalledWith({
-      title: 'SpeedGrader',
-    })
-    expect(defaultProps.navigator.setOnNavigatorEvent).toHaveBeenCalled()
   })
 
   it('shows the loading spinner when there are no submissions', () => {
@@ -61,19 +58,6 @@ describe('SpeedGrader', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
-  })
-
-  it('calls dismissModal when done is pressed', () => {
-    let tree = renderer.create(
-      <SpeedGrader {...defaultProps} />
-    )
-
-    tree.getInstance().onNavigatorEvent({
-      type: 'NavBarButtonPress',
-      id: 'done',
-    })
-
-    expect(defaultProps.navigator.dismissModal).toHaveBeenCalled()
   })
 
   it('renders submissions if there are some', () => {

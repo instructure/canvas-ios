@@ -21,6 +21,7 @@ const mockSubmission = (status: SubmissionStatusProp = 'none', grade: ?GradeProp
     status,
     grade,
     submissionID: null,
+    submission: null,
   }
 }
 

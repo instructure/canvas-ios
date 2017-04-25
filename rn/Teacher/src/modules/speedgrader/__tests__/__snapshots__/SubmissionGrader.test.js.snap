@@ -9,6 +9,11 @@ exports[`SubmissionGrader renders 1`] = `
     }
   }
 >
+  <Header
+    closeModal={undefined}
+    submissionID="1"
+    submissionProps={undefined}
+  />
   <Interactable.View
     animatedValueY={1275}
     initialPosition={
