@@ -110,11 +110,11 @@ export function getSubmissionsProps (entities: Entities, courseID: string, assig
     .filter(enrollment => {
       return enrollment.type === 'StudentEnrollment'
     })
+    .sort((e1, e2) => localeSort(e1.user.sortable_name, e2.user.sortable_name))
     .map(enrollment => {
       const submission: ?SubmissionWithHistory = submissionsByUserID[enrollment.user_id]
       return submissionProps(enrollment.user, submission, due)
     })
-    .sort((s1, s2) => localeSort(s1.name, s2.name))
 
   const pending = pendingProp(assignmentContent, courseContent)
 

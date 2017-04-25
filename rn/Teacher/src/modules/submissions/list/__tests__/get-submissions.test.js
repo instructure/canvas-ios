@@ -42,12 +42,12 @@ export const submissionProps: Array<SubmissionDataProps> = [
 test('submissions', () => {
   const enrollments: EnrollmentsState = {
     '0': t.enrollment({ id: '0', user_id: '0', type: 'TeacherEnrollment' }),
-    '1': t.enrollment({ id: '1', user_id: '1', user: t.user({ id: '1', name: 'S1' }) }),
-    '2': t.enrollment({ id: '2', user_id: '2', user: t.user({ id: '2', name: 'S2' }) }),
-    '3': t.enrollment({ id: '3', user_id: '3', user: t.user({ id: '3', name: 'S3' }) }),
-    '4': t.enrollment({ id: '4', user_id: '4', user: t.user({ id: '4', name: 'S4' }) }),
+    '1': t.enrollment({ id: '1', user_id: '1', user: t.user({ id: '1', name: 'S1', sortable_name: 'S1' }) }),
+    '2': t.enrollment({ id: '2', user_id: '2', user: t.user({ id: '2', name: 'S2', sortable_name: 'S2' }) }),
+    '3': t.enrollment({ id: '3', user_id: '3', user: t.user({ id: '3', name: 'S3', sortable_name: 'S3' }) }),
+    '4': t.enrollment({ id: '4', user_id: '4', user: t.user({ id: '4', name: 'S4', sortable_name: 'S4' }) }),
     // user in two sections or as a TA & Student
-    '5': t.enrollment({ id: '5', user_id: '4', user: t.user({ id: '4', name: 'S4' }) }),
+    '5': t.enrollment({ id: '5', user_id: '4', user: t.user({ id: '4', name: 'S4', sortable_name: 'S4' }) }),
   }
 
   const submissions: SubmissionsState = {
