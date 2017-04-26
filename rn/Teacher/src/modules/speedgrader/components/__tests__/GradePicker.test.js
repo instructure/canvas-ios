@@ -1,15 +1,21 @@
 // @flow
 
 import React from 'react'
-import { AlertIOS } from 'react-native'
+import { AlertIOS, Animated } from 'react-native'
 import { GradePicker, mapStateToProps } from '../GradePicker'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
 
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
-jest.mock('AlertIOS', () => ({
-  prompt: jest.fn(),
-}))
+jest
+  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('AlertIOS', () => ({
+    prompt: jest.fn(),
+  }))
+  .mock('Animated', () => ({
+    timing: jest.fn(),
+    View: 'Animated.View',
+    Value: jest.fn(),
+  }))
 
 const templates = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
@@ -37,7 +43,10 @@ let defaultProps = {
 }
 
 describe('GradePicker', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => {
+    jest.resetAllMocks()
+    Animated.timing.mockReturnValue({ start: jest.fn() })
+  })
 
   it('renders with no grade', () => {
     let tree = renderer.create(
@@ -142,6 +151,54 @@ describe('GradePicker', () => {
     button.props.onPress()
 
     expect(AlertIOS.prompt.mock.calls[0][4]).toEqual('80%')
+  })
+
+  it('renders the picker for pass fail assignments', () => {
+    let tree = renderer.create(
+      <GradePicker {...defaultProps} gradingType='pass_fail' />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('toggles the grade picker open and closed for pass fail assignments when the button is pressed', () => {
+    let tree = renderer.create(
+      <GradePicker {...defaultProps} gradingType='pass_fail' />
+    )
+
+    let button = explore(tree.toJSON()).selectByID('grade-picker.button') || {}
+    button.props.onPress()
+
+    expect(Animated.timing).toHaveBeenLastCalledWith(tree.getInstance().state.easeAnimation, { toValue: 192 })
+    expect(tree.getInstance().state.pickerOpen).toBeTruthy()
+
+    button = explore(tree.toJSON()).selectByID('grade-picker.button') || {}
+    button.props.onPress()
+
+    expect(Animated.timing).toHaveBeenLastCalledWith(tree.getInstance().state.easeAnimation, { toValue: 0 })
+    expect(tree.getInstance().state.pickerOpen).toBeFalsy()
+  })
+
+  it('calls excuseAssignment when the user chooses excused option in picker for pass fail assignments', () => {
+    let tree = renderer.create(
+      <GradePicker {...defaultProps} gradingType='pass_fail' />
+    )
+
+    tree.getInstance().setState({ pickerOpen: true, passFailValue: 'ex' })
+    tree.getInstance().togglePicker()
+
+    expect(defaultProps.excuseAssignment).toHaveBeenCalledWith('3', '2', '4', '1')
+  })
+
+  it('calls gradeSubmission with the pass fail value when it is not excused for pass fail assignments', () => {
+    let tree = renderer.create(
+      <GradePicker {...defaultProps} gradingType='pass_fail' />
+    )
+
+    tree.getInstance().setState({ pickerOpen: true, passFailValue: 'complete' })
+    tree.getInstance().togglePicker()
+
+    expect(defaultProps.gradeSubmission).toHaveBeenCalledWith('3', '2', '4', '1', 'complete')
   })
 })
 

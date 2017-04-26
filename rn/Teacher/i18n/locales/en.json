@@ -102,6 +102,9 @@
     "message": "Comments",
     "description": "The title of the button to switch to comments on a submission"
   },
+  "complete_fd828dea": {
+    "message": "Complete"
+  },
   "complete_incomplete_15b3a89c": {
     "message": "Complete/Incomplete",
     "description": "display grade as Complete/Incomplete"
@@ -255,6 +258,9 @@
     "message": "Inbox",
     "description": "Label indicating the user is on the inbox tab"
   },
+  "incomplete_da3c2ea2": {
+    "message": "Incomplete"
+  },
   "late_2be42b88": {
     "message": "Late",
     "description": "Assignment was turned in late"
@@ -391,10 +397,6 @@
   "set_this_for_the_default_color_of_the_course_this__d86d133": {
     "message": "Set this for the default color of the course. This won’t override a personal color setting.",
     "description": "Description of color picker shown to the user"
-  },
-  "speedgrader_de0affa6": {
-    "message": "SpeedGrader",
-    "description": "Grade student submissions"
   },
   "submission_types_af57bf0": {
     "message": "Submission Types",

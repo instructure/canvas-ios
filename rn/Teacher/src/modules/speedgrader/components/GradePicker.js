@@ -7,6 +7,8 @@ import {
   AlertIOS,
   Image,
   ActivityIndicator,
+  PickerIOS,
+  Animated,
 } from 'react-native'
 import i18n from 'format-message'
 import { Heading1 } from '../../../common/text'
@@ -15,11 +17,31 @@ import { connect } from 'react-redux'
 import SpeedGraderActions, { type SpeedGraderActionsType } from '../actions'
 import Images from '../../../images'
 import colors from '../../../common/colors'
+import branding from '../../../common/branding'
+
+const PASS_FAIL = 'pass_fail'
 
 export class GradePicker extends Component {
   props: GradePickerProps
+  state: GradePickerState
 
-  openPicker = () => {
+  constructor (props: GradePickerProps) {
+    super(props)
+
+    let state = {
+      passFailValue: '',
+      pickerOpen: false,
+      easeAnimation: new Animated.Value(0),
+    }
+
+    if (this.props.gradingType === PASS_FAIL) {
+      state.passFailValue = this.props.excused ? 'ex' : this.props.grade
+    }
+
+    this.state = state
+  }
+
+  openPrompt = () => {
     let buttons = [
       {
         text: i18n('Cancel'),
@@ -51,31 +73,94 @@ export class GradePicker extends Component {
     )
   }
 
+  togglePicker = () => {
+    this.setState((previousState: GradePickerState, props: GradePickerProps) => {
+      if (previousState.pickerOpen) {
+        if (this.state.passFailValue === 'ex') {
+          props.excuseAssignment(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID)
+        } else {
+          props.gradeSubmission(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, this.state.passFailValue)
+        }
+      }
+
+      Animated.timing(
+        this.state.easeAnimation,
+        { toValue: previousState.pickerOpen ? 0 : 192 },
+      ).start()
+
+      return { pickerOpen: !previousState.pickerOpen }
+    })
+  }
+
   renderGrade = () => {
     let points = `${this.props.score}/${this.props.pointsPossible}`
     let grade = this.props.gradingType === 'points' ? '' : `${this.props.grade} `
-    return <Heading1>{grade}{points}</Heading1>
+    return <Heading1 style={this.getButtonStyles()}>{grade}{points}</Heading1>
   }
 
   renderField = () => {
     if (this.props.pending) {
       return <ActivityIndicator />
     } else if (this.props.excused) {
-      return <Heading1>{i18n('Excused')}</Heading1>
+      return <Heading1 style={this.getButtonStyles()}>{i18n('Excused')}</Heading1>
     } else if (this.props.grade) {
       return this.renderGrade()
     } else {
-      return <Image source={Images.add} style={styles.gradeButton}/>
+      return <Image source={Images.add} style={styles.ungradedButton}/>
+    }
+  }
+
+  changePassFailValue = (value: string) => {
+    this.setState({ passFailValue: value })
+  }
+
+  getButtonStyles = () => {
+    if (this.props.gradingType === PASS_FAIL && this.state.pickerOpen) {
+      return { color: branding.primaryBrandColor }
     }
   }
 
   render () {
+    let gradeButton = this.props.gradingType === PASS_FAIL ? this.togglePicker : this.openPrompt
     return (
-      <View style={styles.gradeCell}>
-        <Heading1>{i18n('Grade')}</Heading1>
-        <Button testID='grade-picker.button' style={styles.pickerButton} onPress={this.openPicker} accessibilityLabel={i18n('Customize Grade')} disabled={this.props.pending}>
-          {this.renderField()}
-        </Button>
+      <View>
+          <View style={styles.gradeCell}>
+          <Heading1>{i18n('Grade')}</Heading1>
+          <Button testID='grade-picker.button' style={styles.gradeButton} onPress={gradeButton} accessibilityLabel={i18n('Customize Grade')} disabled={this.props.pending}>
+            {this.renderField()}
+          </Button>
+        </View>
+        {this.props.gradingType === PASS_FAIL &&
+          <Animated.View
+            style={{ height: this.state.easeAnimation, overflow: 'hidden' }}
+          >
+            <PickerIOS
+              selectedValue={this.state.passFailValue}
+              onValueChange={this.changePassFailValue}
+            >
+              <PickerIOS.Item
+                key='none'
+                value=''
+                label='---'
+              />
+              <PickerIOS.Item
+                key='pass'
+                value='complete'
+                label={i18n('Complete')}
+              />
+              <PickerIOS.Item
+                key='fail'
+                value='incomplete'
+                label={i18n('Incomplete')}
+              />
+              <PickerIOS.Item
+                key='excuse'
+                value='ex'
+                label={i18n('Excuse Student')}
+              />
+            </PickerIOS>
+          </Animated.View>
+        }
       </View>
     )
   }
@@ -83,18 +168,18 @@ export class GradePicker extends Component {
 
 const styles = StyleSheet.create({
   gradeCell: {
-    height: 48,
+    paddingVertical: 9,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'darkgray',
   },
-  pickerButton: {
+  gradeButton: {
     minHeight: 20,
     paddingHorizontal: 20,
   },
-  gradeButton: {
+  ungradedButton: {
     tintColor: colors.primaryButton,
   },
 })
@@ -143,3 +228,9 @@ type GradePickerDataProps = {
 }
 
 type GradePickerProps = GradePickerOwnProps & GradePickerDataProps & SpeedGraderActionsType
+
+type GradePickerState = {
+  passFailValue: string,
+  pickerOpen: boolean,
+  easeAnimation: Animated.Value,
+}
