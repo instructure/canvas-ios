@@ -14,198 +14,237 @@ exports[`render 0 submissions 1`] = `
     ]
   }
 >
-  <View
+  <TouchableHighlight
+    onPress={[Function]}
     style={
       Object {
-        "alignItems": "center",
         "flex": 1,
-        "flexDirection": "column",
-        "justifyContent": "center",
       }
     }
+    testID="submission_dial_0"
+    underlayColor="#eeeeee00"
   >
-    <View
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <Circle
-        borderWidth={0}
-        color="#00e0ff"
-        formatText={[Function]}
-        progress={Infinity}
-        showsText={true}
-        size={70}
-        textStyle={
+    <View>
+      <View
+        style={
           Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-medium",
-            "fontSize": 16,
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
           }
         }
-        thickness={7}
-        unfilledColor="#F5F5F5"
-      />
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            borderWidth={0}
+            color="#00e0ff"
+            formatText={[Function]}
+            progress={Infinity}
+            showsText={true}
+            size={70}
+            textStyle={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Graded
+        </Text>
+      </View>
     </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "flex": 1,
-            "fontSize": 12,
-            "fontWeight": "500",
-            "marginTop": 8,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
-          },
-        ]
-      }
-    >
-      Graded
-    </Text>
-  </View>
-  <View
+  </TouchableHighlight>
+  <TouchableHighlight
+    onPress={[Function]}
     style={
       Object {
-        "alignItems": "center",
         "flex": 1,
-        "flexDirection": "column",
-        "justifyContent": "center",
       }
     }
+    testID="submission_dial_1"
+    underlayColor="#eeeeee00"
   >
-    <View
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <Circle
-        borderWidth={0}
-        color="#00e0ff"
-        formatText={[Function]}
-        progress={Infinity}
-        showsText={true}
-        size={70}
-        textStyle={
+    <View>
+      <View
+        style={
           Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-medium",
-            "fontSize": 16,
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
           }
         }
-        thickness={7}
-        unfilledColor="#F5F5F5"
-      />
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            borderWidth={0}
+            color="#00e0ff"
+            formatText={[Function]}
+            progress={Infinity}
+            showsText={true}
+            size={70}
+            textStyle={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Ungraded
+        </Text>
+      </View>
     </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "flex": 1,
-            "fontSize": 12,
-            "fontWeight": "500",
-            "marginTop": 8,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
-          },
-        ]
-      }
-    >
-      Ungraded
-    </Text>
-  </View>
-  <View
+  </TouchableHighlight>
+  <TouchableHighlight
+    onPress={[Function]}
     style={
       Object {
-        "alignItems": "center",
         "flex": 1,
-        "flexDirection": "column",
-        "justifyContent": "center",
       }
     }
+    testID="submission_dial_2"
+    underlayColor="#eeeeee00"
   >
-    <View
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <Circle
-        borderWidth={0}
-        color="#00e0ff"
-        formatText={[Function]}
-        progress={Infinity}
-        showsText={true}
-        size={70}
-        textStyle={
+    <View>
+      <View
+        style={
           Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-medium",
-            "fontSize": 16,
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
           }
         }
-        thickness={7}
-        unfilledColor="#F5F5F5"
-      />
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            borderWidth={0}
+            color="#00e0ff"
+            formatText={[Function]}
+            progress={Infinity}
+            showsText={true}
+            size={70}
+            textStyle={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Not Submitted
+        </Text>
+      </View>
     </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "flex": 1,
-            "fontSize": 12,
-            "fontWeight": "500",
-            "marginTop": 8,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
-          },
-        ]
-      }
-    >
-      Not Submitted
-    </Text>
-  </View>
+  </TouchableHighlight>
 </View>
 `;
 
@@ -223,198 +262,237 @@ exports[`render 1`] = `
     ]
   }
 >
-  <View
+  <TouchableHighlight
+    onPress={[Function]}
     style={
       Object {
-        "alignItems": "center",
         "flex": 1,
-        "flexDirection": "column",
-        "justifyContent": "center",
       }
     }
+    testID="submission_dial_0"
+    underlayColor="#eeeeee00"
   >
-    <View
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <Circle
-        borderWidth={0}
-        color="#00e0ff"
-        formatText={[Function]}
-        progress={0.3333333333333333}
-        showsText={true}
-        size={70}
-        textStyle={
+    <View>
+      <View
+        style={
           Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-medium",
-            "fontSize": 16,
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
           }
         }
-        thickness={7}
-        unfilledColor="#F5F5F5"
-      />
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            borderWidth={0}
+            color="#00e0ff"
+            formatText={[Function]}
+            progress={0.3333333333333333}
+            showsText={true}
+            size={70}
+            textStyle={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Graded
+        </Text>
+      </View>
     </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "flex": 1,
-            "fontSize": 12,
-            "fontWeight": "500",
-            "marginTop": 8,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
-          },
-        ]
-      }
-    >
-      Graded
-    </Text>
-  </View>
-  <View
+  </TouchableHighlight>
+  <TouchableHighlight
+    onPress={[Function]}
     style={
       Object {
-        "alignItems": "center",
         "flex": 1,
-        "flexDirection": "column",
-        "justifyContent": "center",
       }
     }
+    testID="submission_dial_1"
+    underlayColor="#eeeeee00"
   >
-    <View
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <Circle
-        borderWidth={0}
-        color="#00e0ff"
-        formatText={[Function]}
-        progress={0.3333333333333333}
-        showsText={true}
-        size={70}
-        textStyle={
+    <View>
+      <View
+        style={
           Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-medium",
-            "fontSize": 16,
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
           }
         }
-        thickness={7}
-        unfilledColor="#F5F5F5"
-      />
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            borderWidth={0}
+            color="#00e0ff"
+            formatText={[Function]}
+            progress={0.3333333333333333}
+            showsText={true}
+            size={70}
+            textStyle={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Ungraded
+        </Text>
+      </View>
     </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "flex": 1,
-            "fontSize": 12,
-            "fontWeight": "500",
-            "marginTop": 8,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
-          },
-        ]
-      }
-    >
-      Ungraded
-    </Text>
-  </View>
-  <View
+  </TouchableHighlight>
+  <TouchableHighlight
+    onPress={[Function]}
     style={
       Object {
-        "alignItems": "center",
         "flex": 1,
-        "flexDirection": "column",
-        "justifyContent": "center",
       }
     }
+    testID="submission_dial_2"
+    underlayColor="#eeeeee00"
   >
-    <View
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <Circle
-        borderWidth={0}
-        color="#00e0ff"
-        formatText={[Function]}
-        progress={0.3333333333333333}
-        showsText={true}
-        size={70}
-        textStyle={
+    <View>
+      <View
+        style={
           Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-medium",
-            "fontSize": 16,
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
           }
         }
-        thickness={7}
-        unfilledColor="#F5F5F5"
-      />
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            borderWidth={0}
+            color="#00e0ff"
+            formatText={[Function]}
+            progress={0.3333333333333333}
+            showsText={true}
+            size={70}
+            textStyle={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Not Submitted
+        </Text>
+      </View>
     </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "flex": 1,
-            "fontSize": 12,
-            "fontWeight": "500",
-            "marginTop": 8,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
-          },
-        ]
-      }
-    >
-      Not Submitted
-    </Text>
-  </View>
+  </TouchableHighlight>
 </View>
 `;
 
@@ -470,197 +548,236 @@ exports[`render multiple data points  1`] = `
     ]
   }
 >
-  <View
+  <TouchableHighlight
+    onPress={[Function]}
     style={
       Object {
-        "alignItems": "center",
         "flex": 1,
-        "flexDirection": "column",
-        "justifyContent": "center",
       }
     }
+    testID="submission_dial_0"
+    underlayColor="#eeeeee00"
   >
-    <View
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <Circle
-        borderWidth={0}
-        color="#00e0ff"
-        formatText={[Function]}
-        progress={0.5}
-        showsText={true}
-        size={70}
-        textStyle={
+    <View>
+      <View
+        style={
           Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-medium",
-            "fontSize": 16,
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
           }
         }
-        thickness={7}
-        unfilledColor="#F5F5F5"
-      />
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            borderWidth={0}
+            color="#00e0ff"
+            formatText={[Function]}
+            progress={0.5}
+            showsText={true}
+            size={70}
+            textStyle={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Graded
+        </Text>
+      </View>
     </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "flex": 1,
-            "fontSize": 12,
-            "fontWeight": "500",
-            "marginTop": 8,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
-          },
-        ]
-      }
-    >
-      Graded
-    </Text>
-  </View>
-  <View
+  </TouchableHighlight>
+  <TouchableHighlight
+    onPress={[Function]}
     style={
       Object {
-        "alignItems": "center",
         "flex": 1,
-        "flexDirection": "column",
-        "justifyContent": "center",
       }
     }
+    testID="submission_dial_1"
+    underlayColor="#eeeeee00"
   >
-    <View
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <Circle
-        borderWidth={0}
-        color="#00e0ff"
-        formatText={[Function]}
-        progress={0.3333333333333333}
-        showsText={true}
-        size={70}
-        textStyle={
+    <View>
+      <View
+        style={
           Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-medium",
-            "fontSize": 16,
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
           }
         }
-        thickness={7}
-        unfilledColor="#F5F5F5"
-      />
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            borderWidth={0}
+            color="#00e0ff"
+            formatText={[Function]}
+            progress={0.3333333333333333}
+            showsText={true}
+            size={70}
+            textStyle={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Ungraded
+        </Text>
+      </View>
     </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "flex": 1,
-            "fontSize": 12,
-            "fontWeight": "500",
-            "marginTop": 8,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
-          },
-        ]
-      }
-    >
-      Ungraded
-    </Text>
-  </View>
-  <View
+  </TouchableHighlight>
+  <TouchableHighlight
+    onPress={[Function]}
     style={
       Object {
-        "alignItems": "center",
         "flex": 1,
-        "flexDirection": "column",
-        "justifyContent": "center",
       }
     }
+    testID="submission_dial_2"
+    underlayColor="#eeeeee00"
   >
-    <View
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <Circle
-        borderWidth={0}
-        color="#00e0ff"
-        formatText={[Function]}
-        progress={0.16666666666666666}
-        showsText={true}
-        size={70}
-        textStyle={
+    <View>
+      <View
+        style={
           Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-medium",
-            "fontSize": 16,
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
           }
         }
-        thickness={7}
-        unfilledColor="#F5F5F5"
-      />
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            borderWidth={0}
+            color="#00e0ff"
+            formatText={[Function]}
+            progress={0.16666666666666666}
+            showsText={true}
+            size={70}
+            textStyle={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Not Submitted
+        </Text>
+      </View>
     </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "flex": 1,
-            "fontSize": 12,
-            "fontWeight": "500",
-            "marginTop": 8,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
-          },
-        ]
-      }
-    >
-      Not Submitted
-    </Text>
-  </View>
+  </TouchableHighlight>
 </View>
 `;

@@ -16,11 +16,13 @@ import {
   StyleSheet,
   ActivityIndicator,
   LayoutAnimation,
+  TouchableHighlight,
 } from 'react-native'
 import i18n from 'format-message'
 
 type SubmissionBreakdownGraphSectionProps = {
   style: any,
+  onPress: (string) => void,
 } & SubmissionListProps
 
 export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBreakdownGraphSectionProps, any> {
@@ -64,10 +66,35 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
     return (
       <View style={[style.container, this.props.style]}>
         {data.map((item, index) =>
-          <SubmissionGraph label={labels[index]} total={totalStudents} data={data[index]} key={index}/>
+          <TouchableHighlight underlayColor='#eeeeee00' style={style.common} key={`submission_dial_highlight_${index}`}
+                              testID={`submission_dial_${index}`} onPress={() => this.onPress(index) }>
+            <View>
+              <SubmissionGraph label={labels[index]} total={totalStudents} data={data[index]} key={index}/>
+            </View>
+          </TouchableHighlight>
         )}
       </View>
     )
+  }
+
+  onPress (itemIndex: number) {
+    let graded = 0
+    let ungraded = 1
+    let notSubmitted = 2
+
+    if (!this.props.onPress) return
+
+    switch (itemIndex) {
+      case graded:
+        this.props.onPress('graded')
+        break
+      case ungraded:
+        this.props.onPress('ungraded')
+        break
+      case notSubmitted:
+        this.props.onPress('not_submitted')
+        break
+    }
   }
 }
 
@@ -82,6 +109,9 @@ const style = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  common: {
+    flex: 1,
   },
 })
 

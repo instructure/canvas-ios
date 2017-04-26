@@ -122,7 +122,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
             title={sectionTitleSubmissions}
             onPress={this.viewSubmissions}
             showDisclosureIndicator>
-            <SubmissionBreakdownGraphSection courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
+            <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress.bind(this)} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
           </AssignmentSection>
         }
 
@@ -142,6 +142,10 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
         }
         break
     }
+  }
+
+  onSubmissionDialPress (type: string) {
+    this.viewSubmissions()
   }
 
   editAssignment () {

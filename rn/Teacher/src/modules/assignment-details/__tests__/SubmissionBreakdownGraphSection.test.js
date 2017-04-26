@@ -6,6 +6,7 @@ import 'react-native'
 import React from 'react'
 import { SubmissionBreakdownGraphSection } from '../components/SubmissionBreakdownGraphSection'
 import renderer from 'react-test-renderer'
+import explore from '../../../../test/helpers/explore'
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/course'),
@@ -17,7 +18,9 @@ jest.mock('LayoutAnimation', () => ({
   easeInEaseOut: jest.fn(),
   Types: { linear: null },
   Properties: { opacity: null },
+  onPress: jest.fn(),
 }))
+jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 
 let course: any = template.course()
 let assignment: any = template.assignment()
@@ -38,6 +41,7 @@ beforeEach(() => {
     pending: 0,
     refresh: jest.fn(),
     refreshing: false,
+    onPress: jest.fn(),
   }
 })
 
@@ -86,3 +90,25 @@ test('render loading with pending set', () => {
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
+
+test('onPress is called graded dial', () => {
+  testDialOnPress('submission_dial_0', 'graded')
+})
+
+test('onPress is called ungraded dial', () => {
+  testDialOnPress('submission_dial_1', 'ungraded')
+})
+
+test('onPress is called not_submitted dial', () => {
+  testDialOnPress('submission_dial_2', 'not_submitted')
+})
+
+function testDialOnPress (expectedID: string, expectedValueParameter: string) {
+  let component = renderer.create(
+    <SubmissionBreakdownGraphSection {...defaultProps} />
+  )
+  let dial: any = explore(component.toJSON()).selectByID(expectedID)
+  dial.props.onPress()
+  expect(defaultProps.onPress).toBeCalledWith(expectedValueParameter)
+}
+
