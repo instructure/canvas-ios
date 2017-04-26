@@ -35,7 +35,7 @@ class NonNativeQuizTakingViewController: UIViewController {
     fileprivate var quizHostName = ""
     fileprivate var loggingIn: Bool = false
     fileprivate var requestForTakingQuiz: URLRequest {
-        return URLRequest(url: quiz.mobileURL as URL)
+        return URLRequest(url: quiz.mobileURL.appending(URLQueryItem(name: "platform", value: "ios")) ?? quiz.mobileURL)
     }
     
     init(session: Session, contextID: ContextID, quiz: Quiz, baseURL: URL) {

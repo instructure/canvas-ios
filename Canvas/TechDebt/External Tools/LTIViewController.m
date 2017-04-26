@@ -69,7 +69,7 @@
     }
     
     NSURLSession *session = [NSURLSession sharedSession];
-    
+
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.externalTool.url];
     [request addValue:[NSString stringWithFormat:@"Bearer %@", TheKeymaster.currentClient.accessToken] forHTTPHeaderField:@"Authorization"];
     [session.configuration.URLCache removeCachedResponseForRequest:request];
@@ -78,6 +78,9 @@
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         
         NSURL *url = [NSURL URLWithString:jsonResponse[@"url"]];
+        if (url) {
+            url = [self url:url appendingURLQuery:[NSURLQueryItem queryItemWithName:@"platform" value:@"ios"]];
+        }
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [[NSURLCache sharedURLCache] removeCachedResponseForRequest:request];
 
@@ -87,6 +90,16 @@
     }];
     [task resume];
     CBIPostModuleItemProgressUpdate([self.externalTool.url absoluteString], CKIModuleItemCompletionRequirementMustView);
+}
+
+- (NSURL *)url:(NSURL *)url appendingURLQuery:(NSURLQueryItem *)query
+{
+    NSURLComponents *components = [NSURLComponents componentsWithString:url.absoluteString];
+    NSMutableArray *queryItems = [NSMutableArray arrayWithArray:components.queryItems];
+    [queryItems addObject:query];
+    components.queryItems = queryItems;
+
+    return components.URL;
 }
 
 - (void)setExternalTool:(CKIExternalTool *)externalTool
