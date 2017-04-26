@@ -95,6 +95,32 @@ describe('GradePicker', () => {
     expect(defaultProps.excuseAssignment).toHaveBeenCalledWith('3', '2', '4', '1')
   })
 
+  it('calls gradeSubmission with the prompt value', () => {
+    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('yo'))
+
+    let tree = renderer.create(
+      <GradePicker {...defaultProps} />
+    ).toJSON()
+
+    let button = explore(tree).selectByID('grade-picker.button') || {}
+    button.props.onPress()
+
+    expect(defaultProps.gradeSubmission).toHaveBeenCalledWith('3', '2', '4', '1', 'yo')
+  })
+
+  it('calls gradeSubmission with a % at the end of the grade for percentage grading type if the user leaves it off', () => {
+    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('80'))
+
+    let tree = renderer.create(
+      <GradePicker {...defaultProps} gradingType='percent' />
+    ).toJSON()
+
+    let button = explore(tree).selectByID('grade-picker.button') || {}
+    button.props.onPress()
+
+    expect(defaultProps.gradeSubmission).toHaveBeenCalledWith('3', '2', '4', '1', '80%')
+  })
+
   it('doesnt show the excuse student button and has default value if the student is already excused', () => {
     let tree = renderer.create(
       <GradePicker {...defaultProps} excused={true} />
@@ -105,6 +131,17 @@ describe('GradePicker', () => {
 
     expect(AlertIOS.prompt.mock.calls[0][2].length).toEqual(2)
     expect(AlertIOS.prompt.mock.calls[0][4]).not.toEqual('')
+  })
+
+  it('shows the current grade as the default value of the prompt when not excused', () => {
+    let tree = renderer.create(
+      <GradePicker {...defaultProps} grade='80%' />
+    ).toJSON()
+
+    let button = explore(tree).selectByID('grade-picker.button') || {}
+    button.props.onPress()
+
+    expect(AlertIOS.prompt.mock.calls[0][4]).toEqual('80%')
   })
 })
 

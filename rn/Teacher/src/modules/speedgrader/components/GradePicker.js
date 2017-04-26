@@ -26,7 +26,13 @@ export class GradePicker extends Component {
       },
       {
         text: i18n('Ok'),
-        onPress: (promptValue) => this.props.gradeSubmission(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, promptValue),
+        onPress: (promptValue) => {
+          if (this.props.gradingType === 'percent') {
+            let hasPercentage = promptValue[-1] === '%'
+            promptValue = hasPercentage ? promptValue : promptValue + '%'
+          }
+          this.props.gradeSubmission(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, promptValue)
+        },
       },
     ]
     if (!this.props.excused) {
@@ -41,13 +47,14 @@ export class GradePicker extends Component {
       null,
       buttons,
       'plain-text',
-      this.props.excused ? i18n('Excused') : ''
+      this.props.excused ? i18n('Excused') : this.props.grade
     )
   }
 
   renderGrade = () => {
     let points = `${this.props.score}/${this.props.pointsPossible}`
-    return <Heading1>{points}</Heading1>
+    let grade = this.props.gradingType === 'points' ? '' : `${this.props.grade} `
+    return <Heading1>{grade}{points}</Heading1>
   }
 
   renderField = () => {
@@ -108,7 +115,7 @@ export function mapStateToProps (state: AppState, ownProps: GradePickerOwnProps)
   let submission = state.entities.submissions[ownProps.submissionID].submission
   return {
     excused: submission.excused,
-    grade: submission.grade,
+    grade: submission.grade || '',
     score: submission.score,
     pending: Boolean(state.entities.submissions[ownProps.submissionID].pending),
     gradingType: assignment.grading_type,

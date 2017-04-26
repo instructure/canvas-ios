@@ -62,6 +62,7 @@ exports[`GradePicker renders points based grades 1`] = `
         ]
       }
     >
+      
       5/10
     </Text>
   </TouchableOpacity>
