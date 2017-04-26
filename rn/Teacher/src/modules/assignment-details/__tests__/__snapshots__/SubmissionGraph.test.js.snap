@@ -28,6 +28,8 @@ exports[`render 0 on graph 1`] = `
       textStyle={
         Object {
           "color": "#2D3B45",
+          "fontFamily": ".SFUIDisplay-medium",
+          "fontSize": 16,
         }
       }
       thickness={7}
@@ -93,6 +95,8 @@ exports[`render 1`] = `
       textStyle={
         Object {
           "color": "#2D3B45",
+          "fontFamily": ".SFUIDisplay-medium",
+          "fontSize": 16,
         }
       }
       thickness={7}
@@ -158,6 +162,8 @@ exports[`render undefined label 1`] = `
       textStyle={
         Object {
           "color": "#2D3B45",
+          "fontFamily": ".SFUIDisplay-medium",
+          "fontSize": 16,
         }
       }
       thickness={7}

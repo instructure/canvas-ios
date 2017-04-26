@@ -10,6 +10,7 @@ import renderer from 'react-test-renderer'
 const defaultProps: { [string]: any } = {
   label: 'foo',
   data: 25,
+  total: 100,
 }
 
 test('render', () => {

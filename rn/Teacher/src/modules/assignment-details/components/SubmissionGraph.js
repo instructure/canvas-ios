@@ -5,7 +5,7 @@
 import React, { Component } from 'react'
 import color from '../../../common/colors'
 import * as Progress from 'react-native-progress'
-import { Text } from '../../../common/text'
+import { Text, MEDIUM_FONT } from '../../../common/text'
 import {
   View,
   StyleSheet,
@@ -13,7 +13,7 @@ import {
 
 export default class SubmissionGraph extends Component {
   render (): ReactElement<*> {
-    let { data, label } = this.props
+    let { data, label, total } = this.props
     let formattedData = data
     if (!data) {
       data = 0.0001
@@ -25,7 +25,7 @@ export default class SubmissionGraph extends Component {
         <View style={submissionsGraphStyle.circleContainer}>
           <Progress.Circle size={submissionCircles.size}
                            thickness={submissionCircles.thickness}
-                           progress={ data / 100}
+                           progress={ data / total }
                            borderWidth={0}
                            unfilledColor={submissionCircles.backgroundColor}
                            color={submissionCircles.tint}
@@ -65,5 +65,7 @@ const submissionsGraphStyle = StyleSheet.create({
   },
   innerText: {
     color: color.darkText,
+    fontFamily: MEDIUM_FONT,
+    fontSize: 16,
   },
 })

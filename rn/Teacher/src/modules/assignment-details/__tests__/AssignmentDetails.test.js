@@ -17,8 +17,10 @@ const template = {
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
-jest.mock('../../../routing')
-jest.mock('WebView', () => 'WebView')
+jest
+  .mock('../../../routing')
+  .mock('WebView', () => 'WebView')
+  .mock('../components/SubmissionBreakdownGraphSection')
 
 let course: any = template.course()
 let assignment: any = template.assignment()

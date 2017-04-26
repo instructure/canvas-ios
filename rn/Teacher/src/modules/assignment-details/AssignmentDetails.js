@@ -5,7 +5,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { mapStateToProps, type AssignmentDetailsProps } from './map-state-to-props'
-import Submission from './components/Submission'
+import SubmissionBreakdownGraphSection from './components/SubmissionBreakdownGraphSection'
 import SubmissionType from './components/SubmissionType'
 import AssignmentSection from './components/AssignmentSection'
 import i18n from 'format-message'
@@ -122,7 +122,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
             title={sectionTitleSubmissions}
             onPress={this.viewSubmissions}
             showDisclosureIndicator>
-            <Submission data={[assignment.needs_grading_count]} style={style.submission}/>
+            <SubmissionBreakdownGraphSection courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
           </AssignmentSection>
         }
 
@@ -193,6 +193,7 @@ const style = StyleSheet.create({
   },
   submission: {
     marginRight: 40,
+    marginTop: global.style.defaultPadding / 2,
   },
   points: {
     fontWeight: '500',
