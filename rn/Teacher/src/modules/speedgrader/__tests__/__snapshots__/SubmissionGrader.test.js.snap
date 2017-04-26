@@ -14,167 +14,47 @@ exports[`SubmissionGrader renders 1`] = `
     submissionID="1"
     submissionProps={undefined}
   />
-  <Interactable.View
-    animatedValueY={1275}
-    initialPosition={
-      Object {
-        "y": 1275,
-      }
-    }
-    onLayout={undefined}
-    onSnap={[Function]}
-    snapPoints={
-      Array [
-        Object {
-          "y": 207.8,
-        },
-        Object {
-          "y": 741.4,
-        },
-        Object {
-          "y": 1275,
-        },
-      ]
-    }
-    style={
-      Array [
-        Object {
-          "bottom": 0,
-          "left": 0,
-          "maxWidth": 700,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-        },
-        Object {
-          "left": 25,
-          "right": 25,
-        },
-      ]
-    }
-    verticalOnly={true}
+  <BottomDrawer
+    containerHeight={1334}
+    containerWidth={750}
   >
     <View
       style={
-        Array [
-          Object {
-            "borderRadius": 12,
-            "bottom": -20,
-            "left": 0,
-            "margin": 0,
-            "padding": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          },
-          Object {
-            "backgroundColor": "#FFFFFF55",
-            "shadowColor": "#000000",
-            "shadowOffset": Object {
-              "height": 0,
-              "width": 0,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 3,
-          },
-        ]
-      }
-    />
-    <BlurView
-      blurAmount={10}
-      blurType="xlight"
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "borderRadius": 12,
-            "bottom": -20,
-            "left": 0,
-            "margin": 0,
-            "padding": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          },
-        ]
+        Object {
+          "borderBottomColor": "darkgray",
+          "borderBottomWidth": 0.5,
+          "paddingBottom": 8,
+          "paddingHorizontal": 16,
+          "paddingTop": 8,
+        }
       }
     >
-      <View
-        style={
-          Object {
-            "flex": 1,
-            "height": 1334,
-            "paddingBottom": 1275,
-            "paddingTop": 16,
-          }
+      <SegmentedControlIOS
+        onChange={[Function]}
+        selectedIndex={0}
+        testID="speedgrader.segment-control"
+        values={
+          Array [
+            "Grades",
+            "Comments",
+            "Files",
+          ]
         }
-      >
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "left": 0,
-              "marginVertical": 6,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "darkgray",
-                "borderRadius": 5,
-                "height": 4,
-                "marginBottom": 8,
-                "marginTop": 4,
-                "width": 40,
-              }
-            }
-          />
-        </View>
-        <View
-          style={
-            Object {
-              "borderBottomColor": "darkgray",
-              "borderBottomWidth": 0.5,
-              "paddingBottom": 8,
-              "paddingHorizontal": 16,
-              "paddingTop": 8,
-            }
-          }
-        >
-          <SegmentedControlIOS
-            onChange={[Function]}
-            selectedIndex={0}
-            testID="speedgrader.segment-control"
-            values={
-              Array [
-                "Grades",
-                "Comments",
-                "Files",
-              ]
-            }
-          />
-        </View>
-        <RCTScrollView
-          style={
-            Object {
-              "paddingHorizontal": 16,
-            }
-          }
-        >
-          <View>
-            <GradePicker
-              submissionID="1"
-            />
-          </View>
-        </RCTScrollView>
+      />
+    </View>
+    <RCTScrollView
+      style={
+        Object {
+          "paddingHorizontal": 16,
+        }
+      }
+    >
+      <View>
+        <GradePicker
+          submissionID="1"
+        />
       </View>
-    </BlurView>
-  </Interactable.View>
+    </RCTScrollView>
+  </BottomDrawer>
 </View>
 `;

@@ -4,6 +4,7 @@ import React from 'react'
 import SubmissionGrader from '../SubmissionGrader'
 import renderer from 'react-test-renderer'
 
+jest.mock('../../../common/components/BottomDrawer', () => 'BottomDrawer')
 jest.mock('SegmentedControlIOS', () => 'SegmentedControlIOS')
 jest.mock('../components/GradePicker')
 jest.mock('../components/Header')
@@ -31,7 +32,6 @@ describe('SubmissionGrader', () => {
     )
 
     let instance = tree.getInstance()
-    instance.drawer.drawer = { snapTo: jest.fn() }
     let event = {
       nativeEvent: {
         selectedSegmentIndex: 0,
@@ -41,12 +41,10 @@ describe('SubmissionGrader', () => {
     expect(instance.state.selectedIndex).toEqual(0)
 
     event.nativeEvent.selectedSegmentIndex = 1
-    instance.drawer.drawer = { snapTo: jest.fn() }
     instance.changeTab(event)
     expect(instance.state.selectedIndex).toEqual(1)
 
     event.nativeEvent.selectedSegmentIndex = 2
-    instance.drawer.drawer = { snapTo: jest.fn() }
     instance.changeTab(event)
     expect(instance.state.selectedIndex).toEqual(2)
   })

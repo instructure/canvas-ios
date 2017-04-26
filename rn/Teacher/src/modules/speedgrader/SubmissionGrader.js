@@ -31,7 +31,7 @@ type SubmissionGraderProps = {
 export default class SubmissionGrader extends Component<any, SubmissionGraderProps, State> {
   state: State
   props: SubmissionGraderProps
-  drawer: BottomDrawer
+  drawer: typeof BottomDrawer
 
   constructor (props: SubmissionGraderProps) {
     super(props)
@@ -44,7 +44,6 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
   }
 
   changeTab = (e: any) => {
-    this.drawer.open()
     this.setState({
       selectedIndex: e.nativeEvent.selectedSegmentIndex,
     })

@@ -7,6 +7,7 @@ import {
   Animated,
   View,
 } from 'react-native'
+import { connect } from 'react-redux'
 import Interactable from 'react-native-interactable'
 import { BlurView } from 'react-native-blur'
 
@@ -14,20 +15,20 @@ let { height, width } = Dimensions.get('window')
 
 const CLOSED_PANEL_HEIGHT = 59
 
-type Props = {
+type Props = SnapState & {
   containerWidth?: number,
   containerHeight?: number,
   children?: React.Element<*>,
+  setDrawerSnap: ((snap: Snap) => void),
 }
 
 type State = {
   height: number,
   width: number,
-  currentSnap: 0 | 1 | 2,
   bottomPadding: number,
 }
 
-export default class BottomDrawer extends Component {
+export class BottomDrawer extends Component<any, Props, State> {
   props: Props
   state: State
   _deltaY: Animated.Value
@@ -49,8 +50,14 @@ export default class BottomDrawer extends Component {
   componentWillReceiveProps (nextProps: Props) {
     if (nextProps.containerHeight !== this.props.containerHeight || nextProps.containerWidth !== this.props.containerWidth) {
       this.setState({ height: nextProps.containerHeight, width: nextProps.containerWidth }, () => {
-        this.drawer.snapTo({ index: this.state.currentSnap })
+        this.drawer.snapTo({ index: this.props.currentSnap })
       })
+    }
+  }
+
+  componentDidUpdate (prevProps: Props) {
+    if (prevProps.currentSnap !== this.props.currentSnap) {
+      this.drawer.snapTo({ index: this.props.currentSnap })
     }
   }
 
@@ -61,10 +68,8 @@ export default class BottomDrawer extends Component {
   }
 
   onSnap = (e: any) => {
-    if (e.nativeEvent.index !== this.state.currentSnap) {
-      this.setState({
-        currentSnap: e.nativeEvent.index,
-      })
+    if (e.nativeEvent.index !== this.props.currentSnap) {
+      this.props.setDrawerSnap(e.nativeEvent.index)
     }
   }
 
@@ -84,7 +89,7 @@ export default class BottomDrawer extends Component {
         onSnap={this.onSnap}
         verticalOnly={true}
         snapPoints={this.getSnapPoints()}
-        initialPosition={{ y: this.state.height - CLOSED_PANEL_HEIGHT }}
+        initialPosition={this.getSnapPoints()[this.props.currentSnap]}
         animatedValueY={this._deltaY}
         style={[styles.panelContainer, { left: position, right: position }]}
         onLayout={this.onLayout}
@@ -113,6 +118,40 @@ export default class BottomDrawer extends Component {
     )
   }
 }
+
+const DRAWER_SNAP_ACTION = 'com.teacher.drawer.set-snap'
+const DRAWER_OPEN_ACTION = 'com.teacher.drawer.open'
+type DrawerAction
+  = { type: 'com.teacher.drawer.open' }
+  | { type: 'com.teacher.drawer.set-snap', snap: Snap }
+
+export const createSnapAction = (snap: Snap): DrawerAction => ({ type: DRAWER_SNAP_ACTION, snap: snap })
+
+export function drawer (state: SnapState = { currentSnap: 2 }, action: DrawerAction): SnapState {
+  switch (action.type) {
+    case DRAWER_OPEN_ACTION:
+      if (state.currentSnap === 2) {
+        return { ...state, currentSnap: 1 }
+      }
+      break
+    case DRAWER_SNAP_ACTION:
+      return { ...state, currentSnap: action.snap }
+  }
+  return state
+}
+
+export const DrawerActions: any = {
+  resetDrawer: () => createSnapAction(2),
+  setDrawerSnap: createSnapAction,
+  openDrawer: () => ({ type: DRAWER_OPEN_ACTION }),
+}
+
+export function mapStateToProps (state: AppState): SnapState {
+  return state.drawer
+}
+
+const Connected = connect(mapStateToProps, DrawerActions)(BottomDrawer)
+export default (Connected: any)
 
 const styles = StyleSheet.create({
   panelContainer: {

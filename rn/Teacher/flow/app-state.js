@@ -70,7 +70,13 @@ export type Entities = {
 export type FavoriteCoursesState = AsyncState
   & { +courseRefs: EntityRefs }
 
+export type Snap = 0 | 1 | 2
+export type SnapState = {
+  currentSnap: Snap,
+}
+
 export type AppState = {
+  +drawer: SnapState,
   +favoriteCourses: FavoriteCoursesState,
   +entities: Entities,
 }

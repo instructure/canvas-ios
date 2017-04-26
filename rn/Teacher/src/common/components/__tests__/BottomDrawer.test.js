@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import { Text } from 'react-native'
-import BottomDrawer from '../BottomDrawer'
+import { BottomDrawer } from '../BottomDrawer'
 import renderer from 'react-test-renderer'
 import setProps from '../../../../test/helpers/setProps'
 
@@ -12,7 +12,7 @@ jest.mock('react-native-interactable', () => ({
 describe('BottomDrawer', () => {
   it('renders any children', () => {
     let tree = renderer.create(
-      <BottomDrawer>
+      <BottomDrawer currentSnap={2}>
         <Text>Yo yo yo</Text>
       </BottomDrawer>
     ).toJSON()
@@ -21,8 +21,9 @@ describe('BottomDrawer', () => {
   })
 
   it('sets the new currentSnap when onSnap is called', () => {
+    const setDrawerSnap = jest.fn()
     let tree = renderer.create(
-      <BottomDrawer>
+      <BottomDrawer setDrawerSnap={setDrawerSnap}>
         <Text>yo yo yo</Text>
       </BottomDrawer>
     )
@@ -32,7 +33,7 @@ describe('BottomDrawer', () => {
         index: 1,
       },
     })
-    expect(instance.state.currentSnap).toEqual(1)
+    expect(setDrawerSnap).toHaveBeenCalledWith(1)
   })
 
   it('sets the new height and width state when props change', () => {

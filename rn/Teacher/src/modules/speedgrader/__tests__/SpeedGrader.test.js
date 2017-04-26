@@ -11,6 +11,7 @@ import renderer from 'react-test-renderer'
 
 jest.mock('../components/GradePicker')
 jest.mock('../components/Header')
+jest.mock('../../../common/components/BottomDrawer')
 
 const templates = {
   ...require('../../../api/canvas-api/__templates__/submissions'),
