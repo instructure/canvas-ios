@@ -28,6 +28,10 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
     refreshSubmissionList(this.props)
   }
 
+  componentWillUpdate () {
+    LayoutAnimation.easeInEaseOut()
+  }
+
   render (): ReactElement<*> {
     let gradedLabel = i18n({
       default: 'Graded',
@@ -57,7 +61,6 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
 
     let data = [graded, ungraded, notSubmitted]
 
-    LayoutAnimation.easeInEaseOut()
     return (
       <View style={[style.container, this.props.style]}>
         {data.map((item, index) =>
