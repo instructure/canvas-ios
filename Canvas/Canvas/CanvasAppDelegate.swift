@@ -106,6 +106,7 @@ extension AppDelegate {
 extension AppDelegate {
     func makeAWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen")
         window?.makeKeyAndVisible()
     }
     
@@ -130,7 +131,7 @@ extension AppDelegate {
 
         Session.logoutSignalProducer
             .startWithValues(didLogout)
-        
+
         Session.loginSignalProducer
             .startWithValues(didLogin)
     }
