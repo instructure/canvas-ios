@@ -17,6 +17,7 @@ type Props = {
   html?: string,
   onLoad?: () => void,
   onFocus?: () => void,
+  onBlur?: () => void,
   editorItemsChanged?: (items: [string]) => void,
 }
 
@@ -161,6 +162,9 @@ export default class RichTextEditor extends Component<any, Props, any> {
       case 'EDITOR_FOCUSED':
         this._handleFocus()
         break
+      case 'EDITOR_BLURRED':
+        this._handleBlur()
+        break
       case 'EDITOR_INPUT':
         this._handleInput(message.data)
         break
@@ -247,6 +251,12 @@ export default class RichTextEditor extends Component<any, Props, any> {
   _handleFocus () {
     if (this.props.onFocus) {
       this.props.onFocus()
+    }
+  }
+
+  _handleBlur () {
+    if (this.props.onBlur) {
+      this.props.onBlur()
     }
   }
 

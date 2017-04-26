@@ -22,6 +22,7 @@ type Props = State & {
   navigator: ReactNavigator,
   onChange: (input: string) => void,
   onFocus?: () => void,
+  onBlur?: () => void,
   editorItemsChanged?: (items: [string]) => void,
 }
 
@@ -37,6 +38,7 @@ export class AssignmentDescription extends Component<any, Props, any> {
           style={styles.editor}
           onLoad={this._onEditorLoaded}
           onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
           editorItemsChanged={this.props.editorItemsChanged}
           onInputChange={this.props.onChange}
         />

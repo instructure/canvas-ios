@@ -81,13 +81,25 @@ export default class RichTextToolbar extends Component<any, Props, any> {
   _renderItem ({ image }: Item) {
     switch (image) {
       case 'textColor':
-        return <View style={styles.textColor} />
+        const textColorKey = this.props.active && this.props.active.find((s) => s.startsWith('textColor'))
+        const textColor = textColorKey && textColorKey.split(':')[1]
+        const style = {
+          backgroundColor: textColor || 'black',
+          borderWidth: textColor && isWhite(textColor) ? 1 : 0,
+          borderColor: textColor && isWhite(textColor) ? '#E6E9EA' : 'transparent',
+        }
+        return <View style={[styles.textColor, style]} />
       default:
         const isActive = (this.props.active || []).includes(image) && images.rce.active[image]
         const icon = (isActive ? images.rce.active : images.rce)[image]
         return <Image source={icon} />
     }
   }
+}
+
+function isWhite (color: string): boolean {
+  const whites = ['white', 'rgb(255,255,255)']
+  return whites.includes(color.replace(/[ ]/g, ''))
 }
 
 const styles = StyleSheet.create({
@@ -104,7 +116,6 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   textColor: {
-    backgroundColor: 'black',
     width: 26,
     height: 26,
     borderRadius: 13,
@@ -112,7 +123,7 @@ const styles = StyleSheet.create({
   doneContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.primaryButton,
+    backgroundColor: colors.primaryButtonColor,
     margin: 10,
     borderRadius: 8,
     overflow: 'hidden',

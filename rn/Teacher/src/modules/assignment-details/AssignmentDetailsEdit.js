@@ -17,7 +17,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import color from './../../common/colors'
 import AssignmentDescription from '../assignment-description/AssignmentDescription'
 import { RichTextToolbar, ColorPicker } from '../../common/components/rich-text-editor/'
-import {
+import ReactNative, {
   View,
   StyleSheet,
   Alert,
@@ -129,8 +129,13 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
                  multiline={ multiline }
                  placeholder={ placeholder }
                  onChangeText={ value => this.updateFromInput(fieldName, value) }
+                 onFocus={(event) => this._scrollToInput(ReactNative.findNodeHandle(event.target))}
                  testID={testID}/>
     )
+  }
+
+  _scrollToInput = (input: any) => {
+    this.refs.scrollView.scrollToFocusedInput(input)
   }
 
   renderToggle (fieldName: string, testID: string, styleParam: Object = {}): React.Element<*> {
@@ -197,6 +202,8 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
           ref='scrollView'
           contentInset={{ bottom: this.state.editingDescription ? this.state.keyboardHeight + (this.state.colorPickerVisible ? 100 : 50) : 0 }}
           keyboardShouldPersistTaps='handled'
+          keyboardDismissMode={this.state.editingDescription ? 'none' : 'interactive'}
+          enableAutoAutomaticScroll={false}
         >
           {/* Title */}
           <EditSectionHeader title={sectionTitle} />
@@ -210,6 +217,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
             ref='description'
             assignmentID={this.props.assignmentDetails.id}
             onFocus={() => this.setState({ editingDescription: true })}
+            onBlur={() => this.setState({ editingDescription: false })}
             editorItemsChanged={(descriptionEditorItems) => this.setState({ descriptionEditorItems })}
             onChange={(description) => this.updateFromInput('description', description)}
           />
@@ -242,25 +250,31 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
         </KeyboardAwareScrollView>
 
         { this.state.editingDescription &&
-          <View style={[style.toolbar, { bottom: this.state.keyboardHeight }]}>
-            { this.state.colorPickerVisible &&
+          <View>
+            <View style={[style.toolbar, { bottom: this.state.keyboardHeight + (this.state.colorPickerVisible ? 55 : 0) }]}>
               <ColorPicker
-                style={style.colorPicker}
-                pickedColor={(color) => this._descriptionInstance().setTextColor(color)}
+                pickedColor={this._pickColor}
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                }}
               />
-            }
-            <RichTextToolbar
-              setBold={() => this._descriptionInstance().setBold()}
-              setItalic={() => this._descriptionInstance().setItalic()}
-              setUnorderedList={() => this._descriptionInstance().setUnorderedList()}
-              setOrderedList={() => this._descriptionInstance().setOrderedList()}
-              insertLink={() => this._descriptionInstance().insertLink()}
-              setTextColor={() => this.setState({ colorPickerVisible: !this.state.colorPickerVisible })}
-              active={this.state.descriptionEditorItems}
-              onTappedDone={this._doneEditingDescription}
-              undo={() => this._descriptionInstance().undo()}
-              redo={() => this._descriptionInstance().redo()}
-            />
+            </View>
+            <View style={[style.toolbar, { bottom: this.state.keyboardHeight }]}>
+              <RichTextToolbar
+                setBold={() => this._descriptionInstance().setBold()}
+                setItalic={() => this._descriptionInstance().setItalic()}
+                setUnorderedList={() => this._descriptionInstance().setUnorderedList()}
+                setOrderedList={() => this._descriptionInstance().setOrderedList()}
+                insertLink={() => this._descriptionInstance().insertLink()}
+                setTextColor={this._toggleColorPicker}
+                active={this.state.descriptionEditorItems}
+                onTappedDone={() => this._descriptionInstance().blurEditor()}
+                undo={() => this._descriptionInstance().undo()}
+                redo={() => this._descriptionInstance().redo()}
+              />
+            </View>
           </View>
         }
 
@@ -268,12 +282,18 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     )
   }
 
-  _descriptionInstance = () => this.refs.description.getWrappedInstance()
-
-  _doneEditingDescription = () => {
-    this._descriptionInstance().blurEditor()
-    this.setState({ editingDescription: false })
+  _toggleColorPicker = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
+    this.setState({ colorPickerVisible: !this.state.colorPickerVisible })
   }
+
+  _pickColor = (color: string) => {
+    this._descriptionInstance().setTextColor(color)
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
+    this.setState({ colorPickerVisible: false })
+  }
+
+  _descriptionInstance = () => this.refs.description.getWrappedInstance()
 
   keyboardWillShow = (event: KeyboardEventData) => {
     this.setState({ keyboardHeight: event.endCoordinates.height })
@@ -412,14 +432,10 @@ const style = StyleSheet.create({
     width: 50,
     textAlign: 'right',
   },
-  picker: {
-    flex: 1,
-    backgroundColor: '#fff',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: color.seperatorColor,
-  },
-  pickerContainer: {
-    flex: 1,
+  colorPicker: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
   },
   toolbar: {
     position: 'absolute',

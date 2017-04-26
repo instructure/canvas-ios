@@ -22,6 +22,9 @@ jest
   .mock('PickerIOS', () => require('../../../__mocks__/PickerIOS').default)
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('LayoutAnimation', () => ({
+    Presets: {
+      spring: null,
+    },
     create: jest.fn(),
     configureNext: jest.fn(),
     easeInEaseOut: jest.fn(),

@@ -120,6 +120,10 @@ zss_editor.init = function() {
         postMessage(JSON.stringify({type: 'EDITOR_FOCUSED'}));
     })
 
+    $('#zss_editor_content').blur(function() {
+        postMessage(JSON.stringify({type: 'EDITOR_BLURRED'}));
+    })
+
     // Post message on input
     // https://davidwalsh.name/javascript-debounce-function
     function debounce(func, wait, immediate) {
@@ -689,9 +693,9 @@ zss_editor.enabledEditingItems = function(e) {
             items.push('backgroundColor');
         }
         // Text Color
-        var textColor = t.css('color');
-        if (textColor.length != 0 && textColor != 'rgba(0, 0, 0, 0)' && textColor != 'rgb(0, 0, 0)' && textColor != 'transparent') {
-            items.push('textColor');
+        var textColor = (document.queryCommandEnabled('foreColor') && document.queryCommandValue('foreColor')) || t.css('color');
+        if (textColor.length != 0 && textColor != 'transparent') {
+            items.push('textColor:'+textColor);
         }
 
         //Fonts

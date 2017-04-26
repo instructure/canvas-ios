@@ -113,4 +113,14 @@ describe('RichTextEditor', () => {
 
     expect(js.mock.calls).toMatchSnapshot()
   })
+
+  it('notifies when editor blurred', () => {
+    const onBlur = jest.fn()
+    const component = renderer.create(
+      <RichTextEditor onBlur={onBlur} />
+    )
+    const webView = selectWebView(component)
+    postMessage(webView, 'EDITOR_BLURRED')
+    expect(onBlur).toHaveBeenCalled()
+  })
 })

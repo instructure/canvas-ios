@@ -12,6 +12,7 @@ exports[`AssignmentDescription renders 1`] = `
   <View
     editorItemsChanged={undefined}
     html="<p>This is a description</p>"
+    onBlur={undefined}
     onFocus={undefined}
     onInputChange={undefined}
     onLoad={[Function]}
