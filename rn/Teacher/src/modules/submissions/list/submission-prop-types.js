@@ -16,6 +16,7 @@ export type SubmissionDataProps = {
   +name: string,
   +status: SubmissionStatusProp,
   +grade: ?GradeProp,
+  +score?: ?number,
   +submissionID: ?string,
   +submission: ?Object,
 }
@@ -33,6 +34,7 @@ export type SubmissionListDataProps
   = AsyncSubmissionsDataProps
   & {
   +courseColor: string,
+  +pointsPossible?: string,
   +shouldRefresh: boolean,
 }
 
@@ -43,6 +45,7 @@ export type SubmissionListActionProps = {
 export type SubmissionListNavigationParameters = {
   +courseID: string,
   +assignmentID: string,
+  filterType?: string,
 }
 
 export type SubmissionListProps

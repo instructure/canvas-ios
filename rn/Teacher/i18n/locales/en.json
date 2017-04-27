@@ -21,6 +21,10 @@
     "message": "All Grading Periods",
     "description": "The header on the assignment list"
   },
+  "all_submissions_3eedfb97": {
+    "message": "All submissions",
+    "description": "Title for a button to show all submissions"
+  },
   "all_submissions_b8717440": {
     "message": "All Submissions"
   },
@@ -86,6 +90,12 @@
   },
   "clear_filter_5b3a182d": {
     "message": "Clear filter"
+  },
+  "clear_filter_5c961d1b": {
+    "message": "Clear Filter"
+  },
+  "clear_filter_submissions_7def30db": {
+    "message": "Clear Filter Submissions"
   },
   "closed_983a96fe": {
     "message": "Closed",
@@ -254,6 +264,14 @@
     "message": "Grades",
     "description": "The title of the button to switch to grading a submission"
   },
+  "haven_t_been_graded_1fbfda56": {
+    "message": "Haven''t been graded",
+    "description": "Title for a button to filter submissions by not graded"
+  },
+  "haven_t_submitted_yet_3a127a27": {
+    "message": "Haven''t submitted yet",
+    "description": "Title for a button to filter submissions by not submitted"
+  },
   "inbox_bb245a60": {
     "message": "Inbox",
     "description": "Label indicating the user is on the inbox tab"
@@ -351,6 +369,10 @@
     "message": "Open user course preferences",
     "description": "Accessibility label on icon button to open course user preferences"
   },
+  "out_of_count_fc1cd44d": {
+    "message": "Out of { count }",
+    "description": "Subtitle for a submission to filter by points"
+  },
   "pages_front_page_9ce5188": {
     "message": "Pages Front Page",
     "description": "Name of course default view being the font page when navigating into a course"
@@ -386,6 +408,14 @@
     "message": "Saving",
     "description": "Text when a request to update an assignment is made and user is waiting"
   },
+  "scored_less_than_93cde0d2": {
+    "message": "Scored less than…",
+    "description": "Title for a button to filter submissions by less than a value"
+  },
+  "scored_more_than_2185a818": {
+    "message": "Scored more than…",
+    "description": "Title for a button to filter submissions by more than a value"
+  },
   "see_all_ffa422ef": {
     "message": "See All",
     "description": "Button to transition from favorited courses list to all courses list"
@@ -409,6 +439,10 @@
   "submitted_318fad53": {
     "message": "Submitted",
     "description": "The assignment has been turned in"
+  },
+  "submitted_late_3741af29": {
+    "message": "Submitted late",
+    "description": "Title for a button to filter submissions by submitted late"
   },
   "syllabus_f191f65b": {
     "message": "Syllabus",

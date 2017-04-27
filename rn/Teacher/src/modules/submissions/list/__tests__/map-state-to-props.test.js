@@ -98,12 +98,12 @@ test('submissions', () => {
   }
 
   const courses = {
-    '100': { enrollments: enrRefs },
+    '100': { enrollments: enrRefs, color: '#000' },
   }
 
   const subRefs = { pending: 0, refs: ['20', '30', '40'] }
   const assignments = {
-    '1000': { submissions: subRefs },
+    '1000': { submissions: subRefs, data: { points_possible: 5 } },
   }
 
   const state = t.appState({
@@ -115,8 +115,25 @@ test('submissions', () => {
     },
   })
   expect(mapStateToProps(state, { courseID: '100', assignmentID: '1000' })).toMatchObject({
-    courseColor: '#FFFFFF',
+    courseColor: '#000',
     pending: false,
     submissions: submissionProps,
+    pointsPossible: 5,
+  })
+})
+
+test('submissions with missing data', () => {
+  const state = t.appState({
+    entities: {
+      enrollments: {},
+      submissions: {},
+      courses: {},
+      assignments: {},
+    },
+  })
+
+  expect(mapStateToProps(state, { courseID: '100', assignmentID: '1000' })).toMatchObject({
+    courseColor: '#FFFFFF',
+    pending: true,
   })
 })

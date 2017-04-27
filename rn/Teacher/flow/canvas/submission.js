@@ -5,6 +5,7 @@ export type Submission = {
   user: User,
   user_id: string,
   grade?: ?string,
+  score?: ?number,
   submitted_at: ?string,
   workflow_state: 'submitted'
     | 'unsubmitted'

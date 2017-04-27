@@ -120,9 +120,9 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
         { global.V02 &&
           <AssignmentSection
             title={sectionTitleSubmissions}
-            onPress={this.viewSubmissions}
+            onPress={() => this.viewSubmissions()}
             showDisclosureIndicator>
-            <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress.bind(this)} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
+            <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
           </AssignmentSection>
         }
 
@@ -144,8 +144,8 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
     }
   }
 
-  onSubmissionDialPress (type: string) {
-    this.viewSubmissions()
+  onSubmissionDialPress = (type: string) => {
+    this.viewSubmissions(type)
   }
 
   editAssignment () {
@@ -161,10 +161,15 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
     this.props.navigator.push(destination)
   }
 
-  viewSubmissions = () => {
+  viewSubmissions = (filterType: ?string) => {
     if (global.V02) {
       const { courseID, assignmentDetails } = this.props
-      let destination = route(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`)
+      let destination
+      if (filterType) {
+        destination = route(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`, { filterType })
+      } else {
+        destination = route(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`)
+      }
       this.props.navigator.push(destination)
     }
   }

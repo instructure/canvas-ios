@@ -20,7 +20,7 @@ jest.mock('LayoutAnimation', () => ({
   Properties: { opacity: null },
   onPress: jest.fn(),
 }))
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+jest.mock('TouchableOpacity', () => 'TouchableOpacity')
 
 let course: any = template.course()
 let assignment: any = template.assignment()
@@ -96,11 +96,11 @@ test('onPress is called graded dial', () => {
 })
 
 test('onPress is called ungraded dial', () => {
-  testDialOnPress('submission_dial_1', 'ungraded')
+  testDialOnPress('submission_dial_1', 'notgraded')
 })
 
 test('onPress is called not_submitted dial', () => {
-  testDialOnPress('submission_dial_2', 'not_submitted')
+  testDialOnPress('submission_dial_2', 'notsubmitted')
 })
 
 function testDialOnPress (expectedID: string, expectedValueParameter: string) {

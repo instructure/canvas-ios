@@ -14,7 +14,7 @@ exports[`render 0 submissions 1`] = `
     ]
   }
 >
-  <TouchableHighlight
+  <TouchableOpacity
     onPress={[Function]}
     style={
       Object {
@@ -90,8 +90,8 @@ exports[`render 0 submissions 1`] = `
         </Text>
       </View>
     </View>
-  </TouchableHighlight>
-  <TouchableHighlight
+  </TouchableOpacity>
+  <TouchableOpacity
     onPress={[Function]}
     style={
       Object {
@@ -167,8 +167,8 @@ exports[`render 0 submissions 1`] = `
         </Text>
       </View>
     </View>
-  </TouchableHighlight>
-  <TouchableHighlight
+  </TouchableOpacity>
+  <TouchableOpacity
     onPress={[Function]}
     style={
       Object {
@@ -244,7 +244,7 @@ exports[`render 0 submissions 1`] = `
         </Text>
       </View>
     </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
 </View>
 `;
 
@@ -262,7 +262,7 @@ exports[`render 1`] = `
     ]
   }
 >
-  <TouchableHighlight
+  <TouchableOpacity
     onPress={[Function]}
     style={
       Object {
@@ -338,8 +338,8 @@ exports[`render 1`] = `
         </Text>
       </View>
     </View>
-  </TouchableHighlight>
-  <TouchableHighlight
+  </TouchableOpacity>
+  <TouchableOpacity
     onPress={[Function]}
     style={
       Object {
@@ -415,8 +415,8 @@ exports[`render 1`] = `
         </Text>
       </View>
     </View>
-  </TouchableHighlight>
-  <TouchableHighlight
+  </TouchableOpacity>
+  <TouchableOpacity
     onPress={[Function]}
     style={
       Object {
@@ -492,7 +492,7 @@ exports[`render 1`] = `
         </Text>
       </View>
     </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
 </View>
 `;
 
@@ -548,7 +548,7 @@ exports[`render multiple data points  1`] = `
     ]
   }
 >
-  <TouchableHighlight
+  <TouchableOpacity
     onPress={[Function]}
     style={
       Object {
@@ -624,8 +624,8 @@ exports[`render multiple data points  1`] = `
         </Text>
       </View>
     </View>
-  </TouchableHighlight>
-  <TouchableHighlight
+  </TouchableOpacity>
+  <TouchableOpacity
     onPress={[Function]}
     style={
       Object {
@@ -701,8 +701,8 @@ exports[`render multiple data points  1`] = `
         </Text>
       </View>
     </View>
-  </TouchableHighlight>
-  <TouchableHighlight
+  </TouchableOpacity>
+  <TouchableOpacity
     onPress={[Function]}
     style={
       Object {
@@ -778,6 +778,6 @@ exports[`render multiple data points  1`] = `
         </Text>
       </View>
     </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
 </View>
 `;

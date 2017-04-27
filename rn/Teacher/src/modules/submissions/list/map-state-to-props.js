@@ -28,13 +28,23 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
     submissionCount = assignmentContent.submissions.refs.length
   }
 
+  let pointsPossible
+  if (assignmentContent && assignmentContent.data) {
+    pointsPossible = assignmentContent.data.points_possible
+  }
+
   const submissions = getSubmissionsProps(entities, courseID, assignmentID)
-  const courseColor = courseContent.color || '#FFFFFF'
   const shouldRefresh = enrollments.length === 0 || submissionCount === 0
+
+  let courseColor = '#FFFFFF'
+  if (courseContent && courseContent.color) {
+    courseColor = courseContent.color
+  }
 
   return {
     courseColor,
     shouldRefresh,
+    pointsPossible,
     ...submissions,
   }
 }

@@ -16,7 +16,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   LayoutAnimation,
-  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -66,12 +66,12 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
     return (
       <View style={[style.container, this.props.style]}>
         {data.map((item, index) =>
-          <TouchableHighlight underlayColor='#eeeeee00' style={style.common} key={`submission_dial_highlight_${index}`}
+          <TouchableOpacity underlayColor='#eeeeee00' style={style.common} key={`submission_dial_highlight_${index}`}
                               testID={`submission_dial_${index}`} onPress={() => this.onPress(index) }>
             <View>
               <SubmissionGraph label={labels[index]} total={totalStudents} data={data[index]} key={index}/>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         )}
       </View>
     )
@@ -89,10 +89,10 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
         this.props.onPress('graded')
         break
       case ungraded:
-        this.props.onPress('ungraded')
+        this.props.onPress('notgraded')
         break
       case notSubmitted:
-        this.props.onPress('not_submitted')
+        this.props.onPress('notsubmitted')
         break
     }
   }

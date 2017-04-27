@@ -64,11 +64,12 @@ function submissionProps (user: User, submission: ?SubmissionWithHistory, dueDat
   const name = user.name
   const status = statusProp(submission, dueDate)
   const grade = gradeProp(submission)
+  const score = submission ? submission.score : null
   let submissionID
   if (submission) {
     submissionID = submission.id
   }
-  return { userID, avatarURL, name, status, grade, submissionID, submission }
+  return { userID, avatarURL, name, status, grade, submissionID, submission, score }
 }
 
 function dueDate (state: ?AssignmentDetailState): ?string {
