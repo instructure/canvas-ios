@@ -20,6 +20,7 @@ import colors from '../../../common/colors'
 import branding from '../../../common/branding'
 
 const PASS_FAIL = 'pass_fail'
+const NOT_GRADED = 'not_graded'
 
 export class GradePicker extends Component {
   props: GradePickerProps
@@ -99,7 +100,9 @@ export class GradePicker extends Component {
   }
 
   renderField = () => {
-    if (this.props.pending) {
+    if (this.props.gradingType === NOT_GRADED) {
+      return <Heading1>{i18n('Not Graded')}</Heading1>
+    } else if (this.props.pending) {
       return <ActivityIndicator />
     } else if (this.props.excused) {
       return <Heading1 style={this.getButtonStyles()}>{i18n('Excused')}</Heading1>
@@ -126,7 +129,13 @@ export class GradePicker extends Component {
       <View>
           <View style={styles.gradeCell}>
           <Heading1>{i18n('Grade')}</Heading1>
-          <Button testID='grade-picker.button' style={styles.gradeButton} onPress={gradeButton} accessibilityLabel={i18n('Customize Grade')} disabled={this.props.pending}>
+          <Button
+            testID='grade-picker.button'
+            style={styles.gradeButton}
+            onPress={gradeButton}
+            accessibilityLabel={i18n('Customize Grade')}
+            disabled={this.props.pending || this.props.gradingType === 'not_graded'}
+          >
             {this.renderField()}
           </Button>
         </View>
@@ -223,7 +232,7 @@ type GradePickerDataProps = {
   grade: string,
   score: number,
   pending: boolean,
-  gradingType: 'pass_fail' | 'percent' | 'letter_grade' | 'gpa_scale' | 'points',
+  gradingType: 'pass_fail' | 'percent' | 'letter_grade' | 'gpa_scale' | 'points' | 'not_graded',
   pointsPossible: number,
 }
 

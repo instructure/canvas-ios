@@ -1,5 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`GradePicker disables the button and has correct text for not graded assignment type 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "borderBottomColor": "darkgray",
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingVertical": 9,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          undefined,
+        ]
+      }
+    >
+      Grade
+    </Text>
+    <TouchableOpacity
+      accessibilityComponentType="button"
+      accessibilityTraits="button"
+      activeOpacity={1}
+      style={undefined}
+      testID="grade-picker.button"
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            undefined,
+          ]
+        }
+      >
+        Not Graded
+      </Text>
+    </TouchableOpacity>
+  </View>
+</View>
+`;
+
 exports[`GradePicker renders points based grades 1`] = `
 <View>
   <View

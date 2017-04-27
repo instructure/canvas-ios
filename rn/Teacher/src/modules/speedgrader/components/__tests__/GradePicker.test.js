@@ -200,6 +200,14 @@ describe('GradePicker', () => {
 
     expect(defaultProps.gradeSubmission).toHaveBeenCalledWith('3', '2', '4', '1', 'complete')
   })
+
+  it('disables the button and has correct text for not graded assignment type', () => {
+    let tree = renderer.create(
+      <GradePicker {...defaultProps} gradingType='not_graded' />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
 })
 
 describe('mapStateToProps', () => {
