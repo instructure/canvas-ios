@@ -14,6 +14,10 @@ import Images from '../../../images'
 export default class RubricItem extends Component {
   props: RubricItemProps
 
+  showDescription = () => {
+    this.props.showDescription(this.props.rubricItem.id)
+  }
+
   render () {
     let { rubricItem } = this.props
     return (
@@ -29,7 +33,13 @@ export default class RubricItem extends Component {
         </View>
         <View style={styles.buttons}>
           <LinkButton style={styles.button}>{i18n('Add Comment')}</LinkButton>
-          <LinkButton style={styles.button}>{i18n('View long description')}</LinkButton>
+          <LinkButton
+            style={styles.button}
+            onPress={this.showDescription}
+            testID='rubric-item.description'
+          >
+            {i18n('View long description')}
+          </LinkButton>
         </View>
       </View>
     )
@@ -65,4 +75,5 @@ const styles = StyleSheet.create({
 
 type RubricItemProps = {
   rubricItem: Rubric,
+  showDescription: (string) => void,
 }

@@ -59,6 +59,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         userID={item.submission.userID}
         submissionID={item.submission.submissionID}
         closeModal={this.props.navigator.dismissModal}
+        showModal={this.props.navigator.showModal}
         submissionProps={item.submission}
         />
     </View>

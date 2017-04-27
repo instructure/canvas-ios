@@ -9,9 +9,15 @@ import { connect } from 'react-redux'
 import i18n from 'format-message'
 import { Heading1, Text } from '../../../common/text'
 import RubricItem from './RubricItem'
+import { route } from '../../../routing'
 
 export class RubricDetails extends Component {
   props: RubricProps
+
+  showDescriptionModal = (rubricID: string) => {
+    let { courseID, assignmentID } = this.props
+    this.props.showModal(route(`/courses/${courseID}/assignments/${assignmentID}/rubrics/${rubricID}/description`))
+  }
 
   render () {
     let settings = this.props.rubricSettings
@@ -29,7 +35,7 @@ export class RubricDetails extends Component {
             }
           </Text>
           {items.map((rubricItem: Rubric) => (
-            <RubricItem key={rubricItem.id} rubricItem={rubricItem} />
+            <RubricItem key={rubricItem.id} rubricItem={rubricItem} showDescription={this.showDescriptionModal} />
           ))}
         </View>
       )
@@ -61,7 +67,9 @@ const Connected = connect(mapStateToProps)(RubricDetails)
 export default (Connected: any)
 
 type RubricOwnProps = {
+  courseID: string,
   assignmentID: string,
+  showModal: Function,
 }
 
 type RubricDataProps = {

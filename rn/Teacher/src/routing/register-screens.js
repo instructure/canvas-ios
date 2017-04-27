@@ -19,6 +19,7 @@ import AssigneePicker from '../modules/assignee-picker/AssigneePicker'
 import AssigneeSearch from '../modules/assignee-picker/AssigneeSearch'
 import AssignmentDescription from '../modules/assignment-description/AssignmentDescription'
 import SpeedGrader from '../modules/speedgrader/SpeedGrader'
+import RubricDescription from '../modules/speedgrader/RubricDescription'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -37,6 +38,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', () => AssignmentDueDates, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', () => SubmissionList, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', () => SpeedGrader, store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/rubrics/:rubricID/description', () => RubricDescription, store)
   registerScreen('/conversations', () => Inbox, store)
   registerScreen('/profile', () => Profile, store)
   registerScreen('/beta-feedback', () => BetaFeedback, store)

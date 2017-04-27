@@ -42,27 +42,14 @@ exports[`RubricItem renders 1`] = `
       }
     }
   >
-    <View
-      accessibilityComponentType="button"
-      accessibilityLabel={undefined}
-      accessibilityTraits="button"
-      accessible={true}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+    <Button
+      on={false}
       style={
         Object {
-          "opacity": 1,
+          "marginBottom": 8,
+          "marginRight": 12,
         }
       }
-      testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -108,28 +95,15 @@ exports[`RubricItem renders 1`] = `
           10
         </Text>
       </View>
-    </View>
-    <View
-      accessibilityComponentType="button"
-      accessibilityLabel={undefined}
-      accessibilityTraits="button"
-      accessible={true}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+    </Button>
+    <Button
+      on={false}
       style={
         Object {
-          "opacity": 1,
+          "marginBottom": 8,
+          "marginRight": 12,
         }
       }
-      testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -175,28 +149,15 @@ exports[`RubricItem renders 1`] = `
           5
         </Text>
       </View>
-    </View>
-    <View
-      accessibilityComponentType="button"
-      accessibilityLabel={undefined}
-      accessibilityTraits="button"
-      accessible={true}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+    </Button>
+    <Button
+      on={false}
       style={
         Object {
-          "opacity": 1,
+          "marginBottom": 8,
+          "marginRight": 12,
         }
       }
-      testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -242,28 +203,15 @@ exports[`RubricItem renders 1`] = `
           0
         </Text>
       </View>
-    </View>
-    <View
-      accessibilityComponentType="button"
-      accessibilityLabel={undefined}
-      accessibilityTraits="button"
-      accessible={true}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+    </Button>
+    <Button
+      on={false}
       style={
         Object {
-          "opacity": 1,
+          "marginBottom": 8,
+          "marginRight": 12,
         }
       }
-      testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -289,7 +237,7 @@ exports[`RubricItem renders 1`] = `
           source={1}
         />
       </View>
-    </View>
+    </Button>
   </View>
   <View
     style={
@@ -298,27 +246,14 @@ exports[`RubricItem renders 1`] = `
       }
     }
   >
-    <View
-      accessibilityComponentType="button"
-      accessibilityLabel={undefined}
-      accessibilityTraits="button"
-      accessible={true}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+    <Button
       style={
         Object {
-          "opacity": 1,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "paddingRight": 16,
         }
       }
-      testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <Text
         accessible={true}
@@ -358,28 +293,17 @@ exports[`RubricItem renders 1`] = `
       >
         Add Comment
       </Text>
-    </View>
-    <View
-      accessibilityComponentType="button"
-      accessibilityLabel={undefined}
-      accessibilityTraits="button"
-      accessible={true}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+    </Button>
+    <Button
+      onPress={[Function]}
       style={
         Object {
-          "opacity": 1,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "paddingRight": 16,
         }
       }
-      testID={undefined}
-      tvParallaxProperties={undefined}
+      testID="rubric-item.description"
     >
       <Text
         accessible={true}
@@ -419,7 +343,7 @@ exports[`RubricItem renders 1`] = `
       >
         View long description
       </Text>
-    </View>
+    </Button>
   </View>
 </View>
 `;

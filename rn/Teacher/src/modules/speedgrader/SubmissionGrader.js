@@ -21,6 +21,7 @@ type State = {
 
 type SubmissionGraderProps = {
   closeModal: Function,
+  showModal: Function,
   courseID: string,
   assignmnetID: string,
   userID: string,
