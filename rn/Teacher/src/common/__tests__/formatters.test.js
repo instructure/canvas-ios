@@ -24,8 +24,8 @@ describe('assignment due date with status', () => {
 
   test('due date in past', () => {
     const dueAt = '1986-03-28T15:07:56.312Z'
-    const date = extractDateFromString(dueAt)
-    const dueDate = formattedDueDateWithStatus(date)
+    const lockAt = '1986-03-28T15:07:56.312Z'
+    const dueDate = formattedDueDateWithStatus(extractDateFromString(dueAt), extractDateFromString(lockAt))
     const dateString = i18n.date(new Date(dueAt), 'medium')
     const timeString = i18n.time(new Date(dueAt), 'short')
     expect(dueDate).toEqual(`Closed • ${dateString} at ${timeString}`)

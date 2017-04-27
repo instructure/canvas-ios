@@ -17,16 +17,16 @@ export function formattedDueDate (date: ?Date): string {
   return i18n('{dateString} at {timeString}', { dateString, timeString })
 }
 
-export function formattedDueDateWithStatus (date: ?Date): string {
-  if (!date) return noDueDateString
+export function formattedDueDateWithStatus (dueAt: ?Date, lockAt: ?Date): string {
+  if (!dueAt) return noDueDateString
 
-  const dateString = extractDateString(date)
-  const timeString = extractTimeString(date)
+  const dateString = extractDateString(dueAt)
+  const timeString = extractTimeString(dueAt)
 
   if (!dateString || !timeString) return noDueDateString
 
   const now = Date.now()
-  if (moment(now).isAfter(date)) {
+  if (lockAt && moment(now).isAfter(lockAt)) {
     return i18n('Closed • {dateString} at {timeString}', { dateString, timeString })
   }
 

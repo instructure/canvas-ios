@@ -84,7 +84,7 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
     const availableTo = date.lock_at ? formattedDueDate(new Date(date.lock_at)) : '--'
 
     return <View style={styles.row} key={date.id || 'base'} >
-             <Heading1>{formattedDueDateWithStatus(dueAt)}</Heading1>
+             <Heading1>{formattedDueDateWithStatus(dueAt, extractDateFromString(date.lock_at))}</Heading1>
              <Text style={styles.header}>{i18n('For')}</Text>
              <Text style={styles.content}>{title}</Text>
              <View style={styles.divider} />

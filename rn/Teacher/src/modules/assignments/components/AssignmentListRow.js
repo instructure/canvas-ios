@@ -38,7 +38,7 @@ export default class AssignmentListRow extends Component<any, Props, any> {
       return <Text style={styles.dueAtTitle}>{i18n('Multiple Due Dates')}</Text>
     }
 
-    const formattedDate = formattedDueDateWithStatus(dates.bestDueAt())
+    const formattedDate = formattedDueDateWithStatus(dates.bestDueAt(), dates.bestAvailableTo())
     return <Text style={styles.dueAtTitle}>{formattedDate}</Text>
   }
 
