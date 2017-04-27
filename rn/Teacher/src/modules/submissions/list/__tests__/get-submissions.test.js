@@ -64,6 +64,7 @@ test('submissions', () => {
       }]),
       pending: 0,
       error: null,
+      selectedIndex: null,
     },
     '30': {
       submission: t.submissionHistory([{
@@ -77,6 +78,7 @@ test('submissions', () => {
       }]),
       pending: 0,
       error: null,
+      selectedIndex: null,
     },
     '40': {
       submission: t.submissionHistory([{
@@ -90,6 +92,7 @@ test('submissions', () => {
       }]),
       pending: 0,
       error: null,
+      selectedIndex: null,
     },
   }
 

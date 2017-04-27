@@ -36,4 +36,12 @@ describe('SpeedGraderActions', () => {
       expect(payload).toHaveProperty('assignmentID', '2')
     })
   })
+
+  describe('selectSubmissionFromHistory', () => {
+    it('passes the submissionID and index in the action payload', () => {
+      let { payload } = actions.selectSubmissionFromHistory('1', 2)
+      expect(payload).toHaveProperty('submissionID', '1')
+      expect(payload).toHaveProperty('index', 2)
+    })
+  })
 })

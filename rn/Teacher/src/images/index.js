@@ -58,6 +58,7 @@ const images = {
   add: require('./Add.png'),
   x: require('./x-icon.png'),
   clear: require('./Clear.png'),
+  pickerArrow: require('./picker-arrow.png'),
 }
 
 export default (images: Images)

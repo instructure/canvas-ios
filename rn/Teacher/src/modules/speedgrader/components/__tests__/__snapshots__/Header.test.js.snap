@@ -1,11 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SpeedGraderHeader renders with a submission 1`] = `
+exports[`SpeedGraderHeader closes the picker 1`] = `
 <View
   style={
     Object {
       "flex": 0,
-      "flexDirection": "column",
       "height": 92,
     }
   }
@@ -183,45 +182,1126 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
       </TouchableOpacity>
     </View>
   </View>
+  <View>
+    <TouchableHighlight
+      onPress={[Function]}
+      testID="header.toggle-submission_history-picker"
+      underlayColor="#eee"
+    >
+      <View
+        style={
+          Object {
+            "borderBottomColor": "#D8D8D8",
+            "borderBottomWidth": 1,
+            "borderStyle": "solid",
+            "flex": 0,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
+            "paddingBottom": 4,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                },
+                false,
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Dec 31, 2015 at 5:01 PM
+        </Text>
+        <Image
+          source={1}
+          style={
+            Array [
+              Object {
+                "alignSelf": "center",
+              },
+              false,
+            ]
+          }
+        />
+      </View>
+    </TouchableHighlight>
+  </View>
+</View>
+`;
+
+exports[`SpeedGraderHeader opens the picker 1`] = `
+<View
+  style={
+    Object {
+      "flex": 0,
+      "height": 92,
+    }
+  }
+>
   <View
     style={
       Object {
-        "borderBottomColor": "#D8D8D8",
-        "borderBottomWidth": 1,
-        "borderStyle": "solid",
-        "marginLeft": 16,
-        "marginRight": 16,
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
         "marginTop": 16,
-        "paddingBottom": 4,
       }
     }
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+    <View>
+      <Image
+        source={
+          Object {
+            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+          }
+        }
+        style={
+          Object {
+            "borderRadius": 20,
+            "height": 40,
+            "marginLeft": 16,
+            "width": 40,
+          }
+        }
+      />
+    </View>
+    <View
       style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "color": "#8B969E",
-            "fontSize": 14,
-            "fontWeight": "500",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
-          },
-        ]
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "space-between",
+          "marginLeft": 12,
+        }
       }
     >
-      2017-04-05T15:12:45Z
-    </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Allura
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "fontSize": 14,
+                "paddingTop": 2,
+              },
+              Object {
+                "color": "#07AF1F",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        Submitted
+      </Text>
+    </View>
+    <View>
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onLongPress={undefined}
+        onPress={[Function]}
+        onPressIn={undefined}
+        onPressOut={undefined}
+        style={undefined}
+        testID="header.settings"
+      >
+        <View>
+          <Image
+            source={1}
+            style={
+              Object {
+                "resizeMode": "contain",
+                "tintColor": "#008EE2",
+              }
+            }
+          />
+        </View>
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "marginRight": 12,
+        }
+      }
+    >
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onLongPress={undefined}
+        onPress={[Function]}
+        onPressIn={undefined}
+        onPressOut={undefined}
+        style={undefined}
+        testID="header.navigation-done"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Done
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  </View>
+  <View>
+    <TouchableHighlight
+      onPress={[Function]}
+      testID="header.toggle-submission_history-picker"
+      underlayColor="#eee"
+    >
+      <View
+        style={
+          Object {
+            "borderBottomColor": "#D8D8D8",
+            "borderBottomWidth": 1,
+            "borderStyle": "solid",
+            "flex": 0,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
+            "paddingBottom": 4,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                },
+                false,
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Dec 31, 2015 at 5:01 PM
+        </Text>
+        <Image
+          source={1}
+          style={
+            Array [
+              Object {
+                "alignSelf": "center",
+              },
+              false,
+            ]
+          }
+        />
+      </View>
+    </TouchableHighlight>
+  </View>
+</View>
+`;
+
+exports[`SpeedGraderHeader renders the picker with a 0 index 1`] = `
+<View
+  style={
+    Object {
+      "flex": 0,
+      "height": 92,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "marginTop": 16,
+      }
+    }
+  >
+    <View>
+      <Image
+        source={
+          Object {
+            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+          }
+        }
+        style={
+          Object {
+            "borderRadius": 20,
+            "height": 40,
+            "marginLeft": 16,
+            "width": 40,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "space-between",
+          "marginLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Allura
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "fontSize": 14,
+                "paddingTop": 2,
+              },
+              Object {
+                "color": "#07AF1F",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        Submitted
+      </Text>
+    </View>
+    <View>
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onLongPress={undefined}
+        onPress={[Function]}
+        onPressIn={undefined}
+        onPressOut={undefined}
+        style={undefined}
+        testID="header.settings"
+      >
+        <View>
+          <Image
+            source={1}
+            style={
+              Object {
+                "resizeMode": "contain",
+                "tintColor": "#008EE2",
+              }
+            }
+          />
+        </View>
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "marginRight": 12,
+        }
+      }
+    >
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onLongPress={undefined}
+        onPress={[Function]}
+        onPressIn={undefined}
+        onPressOut={undefined}
+        style={undefined}
+        testID="header.navigation-done"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Done
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  </View>
+  <View>
+    <TouchableHighlight
+      onPress={[Function]}
+      testID="header.toggle-submission_history-picker"
+      underlayColor="#eee"
+    >
+      <View
+        style={
+          Object {
+            "borderBottomColor": "#D8D8D8",
+            "borderBottomWidth": 1,
+            "borderStyle": "solid",
+            "flex": 0,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
+            "paddingBottom": 4,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                },
+                Object {
+                  "color": "#008EE2",
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Apr 26, 2017 at 11:46 AM
+        </Text>
+        <Image
+          source={1}
+          style={
+            Array [
+              Object {
+                "alignSelf": "center",
+              },
+              Object {
+                "tintColor": "#008EE2",
+                "transform": Array [
+                  Object {
+                    "rotate": "180deg",
+                  },
+                ],
+              },
+            ]
+          }
+        />
+      </View>
+    </TouchableHighlight>
+    <PickerIOS
+      onValueChange={[Function]}
+      selectedValue={0}
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+      testID="header.picker"
+    >
+      <Item
+        label="Apr 26, 2017 at 11:46 AM"
+        value={0}
+      />
+      <Item
+        label="Dec 31, 2015 at 5:01 PM"
+        value={1}
+      />
+    </PickerIOS>
+  </View>
+</View>
+`;
+
+exports[`SpeedGraderHeader renders the picker with a non-zero index 1`] = `
+<View
+  style={
+    Object {
+      "flex": 0,
+      "height": 92,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "marginTop": 16,
+      }
+    }
+  >
+    <View>
+      <Image
+        source={
+          Object {
+            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+          }
+        }
+        style={
+          Object {
+            "borderRadius": 20,
+            "height": 40,
+            "marginLeft": 16,
+            "width": 40,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "space-between",
+          "marginLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Allura
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "fontSize": 14,
+                "paddingTop": 2,
+              },
+              Object {
+                "color": "#07AF1F",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        Submitted
+      </Text>
+    </View>
+    <View>
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onLongPress={undefined}
+        onPress={[Function]}
+        onPressIn={undefined}
+        onPressOut={undefined}
+        style={undefined}
+        testID="header.settings"
+      >
+        <View>
+          <Image
+            source={1}
+            style={
+              Object {
+                "resizeMode": "contain",
+                "tintColor": "#008EE2",
+              }
+            }
+          />
+        </View>
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "marginRight": 12,
+        }
+      }
+    >
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onLongPress={undefined}
+        onPress={[Function]}
+        onPressIn={undefined}
+        onPressOut={undefined}
+        style={undefined}
+        testID="header.navigation-done"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Done
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  </View>
+  <View>
+    <TouchableHighlight
+      onPress={[Function]}
+      testID="header.toggle-submission_history-picker"
+      underlayColor="#eee"
+    >
+      <View
+        style={
+          Object {
+            "borderBottomColor": "#D8D8D8",
+            "borderBottomWidth": 1,
+            "borderStyle": "solid",
+            "flex": 0,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
+            "paddingBottom": 4,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                },
+                Object {
+                  "color": "#008EE2",
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Dec 31, 2015 at 5:01 PM
+        </Text>
+        <Image
+          source={1}
+          style={
+            Array [
+              Object {
+                "alignSelf": "center",
+              },
+              Object {
+                "tintColor": "#008EE2",
+                "transform": Array [
+                  Object {
+                    "rotate": "180deg",
+                  },
+                ],
+              },
+            ]
+          }
+        />
+      </View>
+    </TouchableHighlight>
+    <PickerIOS
+      onValueChange={[Function]}
+      selectedValue={1}
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+      testID="header.picker"
+    >
+      <Item
+        label="Apr 26, 2017 at 11:46 AM"
+        value={0}
+      />
+      <Item
+        label="Dec 31, 2015 at 5:01 PM"
+        value={1}
+      />
+    </PickerIOS>
+  </View>
+</View>
+`;
+
+exports[`SpeedGraderHeader renders with a submission 1`] = `
+<View
+  style={
+    Object {
+      "flex": 0,
+      "height": 92,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "marginTop": 16,
+      }
+    }
+  >
+    <View>
+      <Image
+        source={
+          Object {
+            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+          }
+        }
+        style={
+          Object {
+            "borderRadius": 20,
+            "height": 40,
+            "marginLeft": 16,
+            "width": 40,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "space-between",
+          "marginLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Allura
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "fontSize": 14,
+                "paddingTop": 2,
+              },
+              Object {
+                "color": "#07AF1F",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        Submitted
+      </Text>
+    </View>
+    <View>
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onLongPress={undefined}
+        onPress={[Function]}
+        onPressIn={undefined}
+        onPressOut={undefined}
+        style={undefined}
+        testID="header.settings"
+      >
+        <View>
+          <Image
+            source={1}
+            style={
+              Object {
+                "resizeMode": "contain",
+                "tintColor": "#008EE2",
+              }
+            }
+          />
+        </View>
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "marginRight": 12,
+        }
+      }
+    >
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onLongPress={undefined}
+        onPress={[Function]}
+        onPressIn={undefined}
+        onPressOut={undefined}
+        style={undefined}
+        testID="header.navigation-done"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Done
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  </View>
+  <View>
+    <TouchableHighlight
+      onPress={[Function]}
+      testID="header.toggle-submission_history-picker"
+      underlayColor="#eee"
+    >
+      <View
+        style={
+          Object {
+            "borderBottomColor": "#D8D8D8",
+            "borderBottomWidth": 1,
+            "borderStyle": "solid",
+            "flex": 0,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
+            "paddingBottom": 4,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                },
+                false,
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Apr 26, 2017 at 11:46 AM
+        </Text>
+        <Image
+          source={1}
+          style={
+            Array [
+              Object {
+                "alignSelf": "center",
+              },
+              false,
+            ]
+          }
+        />
+      </View>
+    </TouchableHighlight>
   </View>
 </View>
 `;
@@ -231,7 +1311,6 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
   style={
     Object {
       "flex": 0,
-      "flexDirection": "column",
       "height": 92,
     }
   }
@@ -409,5 +1488,26 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
       </TouchableOpacity>
     </View>
   </View>
+  <View
+    style={
+      Array [
+        Object {
+          "borderBottomColor": "#D8D8D8",
+          "borderBottomWidth": 1,
+          "borderStyle": "solid",
+          "flex": 0,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginLeft": 16,
+          "marginRight": 16,
+          "marginTop": 16,
+          "paddingBottom": 4,
+        },
+        Object {
+          "paddingBottom": 21,
+        },
+      ]
+    }
+  />
 </View>
 `;

@@ -5,7 +5,7 @@ import Actions from '../actions'
 import SpeedGraderActions from '../../../speedgrader/actions'
 
 const { refreshSubmissions } = Actions
-const { excuseAssignment, gradeSubmission } = SpeedGraderActions
+const { excuseAssignment, gradeSubmission, selectSubmissionFromHistory } = SpeedGraderActions
 const templates = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
 }
@@ -231,5 +231,58 @@ test('gradeSubmission updates the existing submission entity when there is a sub
       excused: false,
     },
     pending: 0,
+  })
+})
+
+test('selectSubmissionFromHistory adds the selectedIndex to the submission', () => {
+  const state = {
+    '1': {
+      submission: {},
+      error: null,
+      pending: 0,
+    },
+  }
+
+  const action = {
+    type: selectSubmissionFromHistory.toString(),
+    payload: {
+      submissionID: '1',
+      index: 2,
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1']).toMatchObject({
+    submission: {},
+    pending: 0,
+    error: null,
+    selectedIndex: 2,
+  })
+})
+
+test('selectSubmissionFromHistory updates the existing selectedIndex', () => {
+  const state = {
+    '1': {
+      submission: {},
+      error: null,
+      pending: 0,
+      selectedIndex: 0,
+    },
+  }
+
+  const action = {
+    type: selectSubmissionFromHistory.toString(),
+    payload: {
+      submissionID: '1',
+      index: 2,
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1']).toMatchObject({
+    submission: {},
+    pending: 0,
+    error: null,
+    selectedIndex: 2,
   })
 })

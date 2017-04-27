@@ -7,7 +7,7 @@ import handleAsync from '../../../utils/handleAsync'
 import SpeedGraderActions from '../../speedgrader/actions'
 
 const { refreshSubmissions } = Actions
-const { excuseAssignment, gradeSubmission } = SpeedGraderActions
+const { excuseAssignment, selectSubmissionFromHistory, gradeSubmission } = SpeedGraderActions
 
 export const submissions: Reducer<SubmissionsState, any> = handleActions({
   [refreshSubmissions.toString()]: handleAsync({
@@ -65,7 +65,14 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
       }
     },
   }),
-
+  [selectSubmissionFromHistory.toString()]: (state, { payload }) => {
+    const id = payload.submissionID
+    let entity = { ...state[id], selectedIndex: payload.index }
+    return {
+      ...state,
+      ...{ [id]: entity },
+    }
+  },
   [gradeSubmission.toString()]: handleAsync({
     pending: (state, { submissionID }) => {
       if (!submissionID) return state

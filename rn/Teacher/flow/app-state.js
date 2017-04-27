@@ -46,6 +46,7 @@ export type AssignmentDetailState = AsyncState & {
 
 export type SubmissionState = AsyncState & {
   submission: SubmissionWithHistory,
+  selectedIndex: ?number,
 }
 
 export type CoursesState = { [string]: CourseState & CourseContentState }
