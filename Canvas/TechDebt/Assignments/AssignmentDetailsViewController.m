@@ -63,6 +63,8 @@
     }
     
     [self.webView removeShadow];
+
+    [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -75,6 +77,13 @@
 {
     [super viewDidAppear:animated];
     DDLogVerbose(@"%@ - viewDidAppear", NSStringFromClass([self class]));
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain;
 }
 
 #pragma mark - Assignment Management
@@ -105,7 +114,7 @@
             details = [assignmentInfo stringByAppendingString:details];       
         }
     }
-    
+
     NSString *htmlContents = [PageTemplateRenderer htmlStringWithTitle:self.assignment.name ?: @"" body:details ?: @""];
     NSURL *baseURL = TheKeymaster.currentClient.baseURL;
     [self.webView loadHTMLString:htmlContents baseURL:baseURL];
