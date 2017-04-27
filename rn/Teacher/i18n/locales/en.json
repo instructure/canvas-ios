@@ -6,6 +6,9 @@
   "add_assignee_24ee0b71": {
     "message": "Add Assignee"
   },
+  "add_comment_3205529f": {
+    "message": "Add Comment"
+  },
   "add_courses_fd45abf": {
     "message": "Add Courses",
     "description": "Button text to take action and add a course."
@@ -385,6 +388,9 @@
     "message": "Points",
     "description": "display grade as points"
   },
+  "points_number_out_of_totalpoints_number_291efb47": {
+    "message": "{ points, number } out of { totalPoints, number }"
+  },
   "profile_6bd2baed": {
     "message": "Profile",
     "description": "Label indicating the user is on the profile tab"
@@ -403,6 +409,9 @@
   },
   "remove_f47dc62a": {
     "message": "Remove"
+  },
+  "rubric_fc39da76": {
+    "message": "Rubric"
   },
   "saving_2521e616": {
     "message": "Saving",
@@ -483,6 +492,9 @@
   "unpublished_8b6107d6": {
     "message": "Unpublished",
     "description": "Unpublished text"
+  },
+  "view_long_description_bafad8a4": {
+    "message": "View long description"
   },
   "welcome_73d18b4d": {
     "message": "Welcome!",

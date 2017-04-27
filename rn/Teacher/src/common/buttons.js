@@ -5,10 +5,12 @@
 import React, { Component } from 'react'
 import ReactNative, {
   StyleSheet,
+  View,
 } from 'react-native'
 import BaseButton from 'react-native-button'
 import colors from './colors'
-import { Text, BOLD_FONT } from './text'
+import branding from './branding'
+import { Text, Heading1, BOLD_FONT } from './text'
 
 export function Button ({ style, containerStyle, ...props }: Object): ReactNative.TouchableHighlight {
   let brandingContainerStyles = {
@@ -27,6 +29,35 @@ export class LinkButton extends Component {
     }
     return (
       <BaseButton {...this.props}><Text style={[linkButtonStyles.textColor, linkButtonStyles.font, brandingStyles, this.props.style]}>{this.props.children}</Text></BaseButton>
+    )
+  }
+}
+
+export class CircleToggle extends Component {
+  props: { on: boolean, children?: any, style?: any }
+
+  render () {
+    let viewStyle = [circleButtonStyles.container, this.props.style]
+    let textStyle = {
+      fontWeight: '500',
+      color: 'black',
+    }
+    if (this.props.on) {
+      viewStyle.push({
+        backgroundColor: branding.primaryBrandColor,
+      })
+      textStyle.color = 'white'
+    }
+
+    return (
+      <BaseButton {...this.props}>
+        <View style={viewStyle}>
+          {typeof this.props.children === 'object'
+            ? this.props.children
+            : <Heading1 style={textStyle}>{this.props.children}</Heading1>
+          }
+        </View>
+      </BaseButton>
     )
   }
 }
@@ -53,3 +84,15 @@ const linkButtonStyles = StyleSheet.create({
   },
 })
 
+const circleButtonStyles = StyleSheet.create({
+  container: {
+    borderColor: '#C7CDD1',
+    borderWidth: StyleSheet.hairlineWidth,
+    minWidth: 48,
+    height: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 24,
+    flex: 1,
+  },
+})

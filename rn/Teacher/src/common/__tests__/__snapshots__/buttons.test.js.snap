@@ -29,6 +29,190 @@ exports[`renders button correctly 1`] = `
 />
 `;
 
+exports[`renders circle toggle correctly 1`] = `
+<View
+  accessibilityComponentType="button"
+  accessibilityLabel={undefined}
+  accessibilityTraits="button"
+  accessible={true}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderColor": "#C7CDD1",
+          "borderRadius": 24,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "height": 48,
+          "justifyContent": "center",
+          "minWidth": 48,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          Object {
+            "color": "black",
+            "fontWeight": "500",
+          },
+        ]
+      }
+    >
+      4
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`renders circle toggle when on correctly 1`] = `
+<View
+  accessibilityComponentType="button"
+  accessibilityLabel={undefined}
+  accessibilityTraits="button"
+  accessible={true}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderColor": "#C7CDD1",
+          "borderRadius": 24,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "height": 48,
+          "justifyContent": "center",
+          "minWidth": 48,
+        },
+        undefined,
+        Object {
+          "backgroundColor": "#374A59",
+        },
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          Object {
+            "color": "white",
+            "fontWeight": "500",
+          },
+        ]
+      }
+    >
+      4
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`renders circle toggle with an image 1`] = `
+<View
+  accessibilityComponentType="button"
+  accessibilityLabel={undefined}
+  accessibilityTraits="button"
+  accessible={true}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderColor": "#C7CDD1",
+          "borderRadius": 24,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "height": 48,
+          "justifyContent": "center",
+          "minWidth": 48,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Image
+      source={1}
+    />
+  </View>
+</View>
+`;
+
 exports[`renders link correctly 1`] = `
 <View
   accessibilityComponentType="button"

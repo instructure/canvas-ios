@@ -4,10 +4,12 @@ import React from 'react'
 import SubmissionGrader from '../SubmissionGrader'
 import renderer from 'react-test-renderer'
 
-jest.mock('../../../common/components/BottomDrawer', () => 'BottomDrawer')
-jest.mock('SegmentedControlIOS', () => 'SegmentedControlIOS')
-jest.mock('../components/GradePicker')
-jest.mock('../components/Header')
+jest
+  .mock('../../../common/components/BottomDrawer', () => 'BottomDrawer')
+  .mock('SegmentedControlIOS', () => 'SegmentedControlIOS')
+  .mock('../components/GradePicker')
+  .mock('../components/Header')
+  .mock('../components/RubricDetails')
 
 let defaultProps = {
   submissionID: '1',

@@ -1,5 +1,27 @@
 // @flow
 
+export type RubricRating = {
+  points: number,
+  id: string,
+  description: string,
+}
+
+export type Rubric = {
+  points: number,
+  id: string,
+  outcome_id?: string,
+  vendor_guid?: string,
+  description: string,
+  long_description: string,
+  ratings: Array<RubricRating>,
+}
+
+export type RubricSettings = {
+  id: string,
+  points_possible: number,
+  title: string,
+}
+
 export type AssignmentGroup = {
   id: string,
   name: string,
@@ -33,6 +55,8 @@ export type Assignment = {
   html_url: string,
   position: number,
   grading_type: 'pass_fail' | 'percent' | 'letter_grade' | 'gpa_scale' | 'points',
+  rubric: ?Array<Rubric>,
+  rubric_settings: ?RubricSettings,
 }
 
 export type AssignmentDate = {

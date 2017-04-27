@@ -5,6 +5,7 @@ import GradeTab from '../GradeTab'
 import renderer from 'react-test-renderer'
 
 jest.mock('../components/GradePicker')
+jest.mock('../components/RubricDetails')
 
 describe('GradeTab', () => {
   it('renders', () => {
