@@ -1,47 +1,47 @@
 // @flow
 
 export type AsyncState = {
-  +pending: number,
-  +error?: ?string,
+  pending: number,
+  error?: ?string,
 }
 
 export type EntityRefs = Array<string>
-export type AsyncRefs = AsyncState & { +refs: EntityRefs }
+export type AsyncRefs = AsyncState & { refs: EntityRefs }
 
 export type CourseState = AsyncState & {
-  +color: string,
-  +course: Course,
+  color: string,
+  course: Course,
 }
 
-export type TabsState = AsyncState & { +tabs: Array<Tab> }
+export type TabsState = AsyncState & { tabs: Array<Tab> }
 
 export type CourseContentState = {
-  +tabs: TabsState,
-  +assignmentGroups: AsyncRefs,
-  +enrollments: AsyncRefs,
+  tabs: TabsState,
+  assignmentGroups: AsyncRefs,
+  enrollments: AsyncRefs,
 }
 
 export type GradingPeriodsState = {
   [string]: {
-    +gradingPeriod: GradingPeriod,
-    +assignmentRefs: Array<string>,
+    gradingPeriod: GradingPeriod,
+    assignmentRefs: Array<string>,
   },
 }
 
 export type AssignmentGroupContentState = {
-  +assignmentRefs: EntityRefs,
+  assignmentRefs: EntityRefs,
 }
 
 export type AssignmentGroupState = {
-  +group: AssignmentGroup,
+  group: AssignmentGroup,
 }
 
 export type AssignmentContentState = {
-  +submissions: AsyncRefs,
+  submissions: AsyncRefs,
 }
 
 export type AssignmentDetailState = AsyncState & {
-  +data: Assignment,
+  data: Assignment,
 }
 
 export type SubmissionState = AsyncState & {
@@ -58,18 +58,18 @@ export type UserProfileState = { [string]: User }
 export type SubmissionsState = { [string]: SubmissionState }
 
 export type Entities = {
-  +courses: CoursesState,
-  +assignmentGroups: AssignmentGroupsState,
-  +enrollments: EnrollmentsState,
-  +assignments: AssignmentsState,
-  +gradingPeriods: GradingPeriodsState,
-  +sections: SectionsState,
-  +users: UserProfileState,
-  +submissions: SubmissionsState,
+  courses: CoursesState,
+  assignmentGroups: AssignmentGroupsState,
+  enrollments: EnrollmentsState,
+  assignments: AssignmentsState,
+  gradingPeriods: GradingPeriodsState,
+  sections: SectionsState,
+  users: UserProfileState,
+  submissions: SubmissionsState,
 }
 
 export type FavoriteCoursesState = AsyncState
-  & { +courseRefs: EntityRefs }
+  & { courseRefs: EntityRefs }
 
 export type Snap = 0 | 1 | 2
 export type SnapState = {
@@ -77,7 +77,7 @@ export type SnapState = {
 }
 
 export type AppState = {
-  +drawer: SnapState,
-  +favoriteCourses: FavoriteCoursesState,
-  +entities: Entities,
+  drawer: SnapState,
+  favoriteCourses: FavoriteCoursesState,
+  entities: Entities,
 }

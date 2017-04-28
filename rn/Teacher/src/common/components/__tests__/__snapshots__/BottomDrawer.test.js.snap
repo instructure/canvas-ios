@@ -43,49 +43,25 @@ exports[`BottomDrawer renders any children 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
-          "borderRadius": 12,
-          "bottom": -20,
-          "left": 0,
-          "margin": 0,
-          "padding": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderRadius": 12,
+        "bottom": -20,
+        "left": 0,
+        "margin": 0,
+        "padding": 0,
+        "paddingBottom": 20,
+        "position": "absolute",
+        "right": 0,
+        "shadowColor": "#000000",
+        "shadowOffset": Object {
+          "height": 0,
+          "width": 0,
         },
-        Object {
-          "backgroundColor": "#FFFFFF55",
-          "shadowColor": "#000000",
-          "shadowOffset": Object {
-            "height": 0,
-            "width": 0,
-          },
-          "shadowOpacity": 1,
-          "shadowRadius": 3,
-        },
-      ]
-    }
-  />
-  <BlurView
-    blurAmount={10}
-    blurType="xlight"
-    style={
-      Array [
-        Object {
-          "backgroundColor": "transparent",
-        },
-        Object {
-          "borderRadius": 12,
-          "bottom": -20,
-          "left": 0,
-          "margin": 0,
-          "padding": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-        },
-      ]
+        "shadowOpacity": 0.3,
+        "shadowRadius": 3,
+        "top": 0,
+      }
     }
   >
     <View
@@ -131,6 +107,6 @@ exports[`BottomDrawer renders any children 1`] = `
         Yo yo yo
       </Text>
     </View>
-  </BlurView>
+  </View>
 </Interactable.View>
 `;

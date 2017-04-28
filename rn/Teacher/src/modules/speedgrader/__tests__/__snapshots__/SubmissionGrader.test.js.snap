@@ -21,7 +21,7 @@ exports[`SubmissionGrader renders 1`] = `
     <View
       style={
         Object {
-          "borderBottomColor": "darkgray",
+          "borderBottomColor": "lightgray",
           "borderBottomWidth": 0.5,
           "paddingBottom": 8,
           "paddingHorizontal": 16,

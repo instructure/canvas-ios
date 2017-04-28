@@ -6,7 +6,7 @@ exports[`GradePicker disables the button and has correct text for not graded ass
     style={
       Object {
         "alignItems": "center",
-        "borderBottomColor": "darkgray",
+        "borderBottomColor": "lightgray",
         "borderBottomWidth": 0.5,
         "flexDirection": "row",
         "justifyContent": "space-between",
@@ -72,7 +72,7 @@ exports[`GradePicker renders points based grades 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "borderBottomColor": "darkgray",
+        "borderBottomColor": "lightgray",
         "borderBottomWidth": 0.5,
         "flexDirection": "row",
         "justifyContent": "space-between",
@@ -143,7 +143,7 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "borderBottomColor": "darkgray",
+        "borderBottomColor": "lightgray",
         "borderBottomWidth": 0.5,
         "flexDirection": "row",
         "justifyContent": "space-between",
@@ -195,7 +195,7 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "borderBottomColor": "darkgray",
+        "borderBottomColor": "lightgray",
         "borderBottomWidth": 0.5,
         "flexDirection": "row",
         "justifyContent": "space-between",
@@ -304,7 +304,7 @@ exports[`GradePicker renders with excused 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "borderBottomColor": "darkgray",
+        "borderBottomColor": "lightgray",
         "borderBottomWidth": 0.5,
         "flexDirection": "row",
         "justifyContent": "space-between",
@@ -374,7 +374,7 @@ exports[`GradePicker renders with no grade 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "borderBottomColor": "darkgray",
+        "borderBottomColor": "lightgray",
         "borderBottomWidth": 0.5,
         "flexDirection": "row",
         "justifyContent": "space-between",

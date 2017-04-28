@@ -48,6 +48,10 @@ const images = {
       unorderedList: require('./rce/unordered-list-active.png'),
     },
   },
+  speedGrader: {
+    chatBubbleMe: require('./speedgrader/bubble-me.png'),
+    chatBubbleThem: require('./speedgrader/bubble-them.png'),
+  },
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),
   kabob: require('./kabob.png'),

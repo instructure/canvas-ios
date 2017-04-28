@@ -10,6 +10,7 @@ jest
   .mock('../components/GradePicker')
   .mock('../components/Header')
   .mock('../components/RubricDetails')
+  .mock('../comments/CommentsTab')
 
 let defaultProps = {
   submissionID: '1',

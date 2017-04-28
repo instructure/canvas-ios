@@ -10,6 +10,7 @@ import i18n from 'format-message'
 import BottomDrawer from '../../common/components/BottomDrawer'
 import Header from './components/Header'
 import GradeTab from './GradeTab'
+import CommentsTab from './comments/CommentsTab'
 
 let { width, height } = Dimensions.get('window')
 
@@ -62,7 +63,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
       case 0:
         return <GradeTab {...this.props} />
       case 1:
-        return <View></View>
+        return <CommentsTab {...this.props} />
       case 2:
         return <View></View>
     }
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   controlWrapper: {
     paddingHorizontal: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'darkgray',
+    borderBottomColor: 'lightgray',
     paddingTop: 8,
     paddingBottom: 8,
   },

@@ -9,7 +9,6 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import Interactable from 'react-native-interactable'
-import { BlurView } from 'react-native-blur'
 
 let { height, width } = Dimensions.get('window')
 
@@ -94,11 +93,7 @@ export class BottomDrawer extends Component<any, Props, State> {
         style={[styles.panelContainer, { left: position, right: position }]}
         onLayout={this.onLayout}
       >
-        <View style={[styles.absolute, styles.shadow]} />
-        <BlurView
-          style={styles.absolute}
-          blurType="xlight"
-          blurAmount={10}>
+        <View style={styles.drawerBackground}>
         <Animated.View
           style={[styles.panel, {
             height: this.state.height,
@@ -113,7 +108,7 @@ export class BottomDrawer extends Component<any, Props, State> {
           </View>
           {this.props.children}
         </Animated.View>
-        </BlurView>
+        </View>
       </Interactable.View>
     )
   }
@@ -183,20 +178,19 @@ const styles = StyleSheet.create({
     marginTop: 4,
     marginBottom: 8,
   },
-  shadow: {
+  drawerBackground: {
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 3,
-    shadowOpacity: 1,
-    backgroundColor: '#FFFFFF55',
-  },
-  absolute: {
+    shadowOpacity: 0.3,
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     position: 'absolute',
     margin: 0,
     padding: 0,
     top: 0,
     bottom: -20,
+    paddingBottom: 20,
     left: 0,
     right: 0,
   },

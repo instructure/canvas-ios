@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'darkgray',
+    borderBottomColor: 'lightgray',
   },
   gradeButton: {
     minHeight: 20,

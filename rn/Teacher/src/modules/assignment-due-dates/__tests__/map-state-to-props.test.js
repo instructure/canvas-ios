@@ -54,8 +54,6 @@ test('map state to props should work', async () => {
     },
   })
 
-  // I don't know why this won't work
-  // $FlowFixMe
   state.entities.users = {}
   result = mapStateToProps(state, props)
   expect(result).toMatchObject({

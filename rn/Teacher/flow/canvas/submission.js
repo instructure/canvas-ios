@@ -41,4 +41,6 @@ export type SubmissionComment = {
   author_name: string,
   author: SubmissionCommentAuthor,
   comment: string,
+  created_at: string,
+  media_comment: ?any, // TODO media comments
 }

@@ -25,3 +25,22 @@ export function submissionHistory (submissionOverrides: Array<Object> = [submiss
     submission_comments: comments,
   }
 }
+
+export const submissionCommentAuthor: Template<submissionCommentAuthor> = template({
+  id: '55',
+  display_name: 'Severus Snape',
+  avatar_image_url: 'http://fillmurray.com/499/355',
+  html_url: 'https://hogwarts.canvaslms.com/users/55',
+})
+
+const defaultAuthor = submissionCommentAuthor()
+
+export const submissionComment: Template<SubmissionComment> = template({
+  id: '356',
+  author_id: defaultAuthor.id,
+  author_name: defaultAuthor.display_name,
+  author: submissionCommentAuthor(),
+  comment: 'a comment from Snape',
+  created_at: '2017-03-17T19:15:25Z',
+  media_comment: undefined,
+})
