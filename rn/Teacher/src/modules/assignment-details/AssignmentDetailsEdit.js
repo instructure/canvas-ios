@@ -122,12 +122,13 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     return (<Text style={style.twoColumnRowLeftText}>{text}</Text>)
   }
 
-  renderTextInput (fieldName: string, placeholder: string, testID: string, styleParam: Object = {}, multiline: boolean = false): React.Element<*> {
+  renderTextInput (fieldName: string, placeholder: string, testID: string, styleParam: Object = {}, focus: boolean = false): React.Element<*> {
     return (
       <TextInput style={styleParam}
                  value={ this.defaultValueForInput(fieldName) }
-                 multiline={ multiline }
                  placeholder={ placeholder }
+                 returnKeyType={'done'}
+                 blurOnSubmit={true}
                  onChangeText={ value => this.updateFromInput(fieldName, value) }
                  onFocus={(event) => this._scrollToInput(ReactNative.findNodeHandle(event.target))}
                  testID={testID}/>
@@ -208,7 +209,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
           {/* Title */}
           <EditSectionHeader title={sectionTitle} />
           <View style={[style.row, style.topRow, style.bottomRow]}>
-            { this.renderTextInput('name', titlePlaceHolder, 'titleInput', style.title, true) }
+            { this.renderTextInput('name', titlePlaceHolder, 'titleInput', style.title) }
           </View>
 
           {/* Description */}
@@ -230,7 +231,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
           </View>
 
           {/* Display Grade As */}
-          <TouchableHighlight underlayColor={color.cellUnderlayColor} onPress={() => { this.togglePicker('grading_type', GRADE_DISPLAY_OPTIONS) }} testID='assignment-details.toggle-display-grade-as-picker'>
+          <TouchableHighlight accessibilityTraits={'button'} underlayColor={color.cellUnderlayColor} onPress={() => { this.togglePicker('grading_type', GRADE_DISPLAY_OPTIONS) }} testID='assignment-details.toggle-display-grade-as-picker'>
             <View style={[style.row, style.twoColumnRow]}>
               { this.renderLeftColumnLabel(displayGradeAs) }
               <Text>{GRADE_DISPLAY_OPTIONS.get(this.state.assignment.grading_type)}</Text>
@@ -239,10 +240,16 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
           {this.renderDataMapPicker()}
 
           {/* Publish */}
-          <View style={[style.row, style.twoColumnRow, style.bottomRow]}>
-            { this.renderLeftColumnLabel(publish) }
-            { this.renderToggle('published', 'published') }
-          </View>
+          <TouchableHighlight
+            accessibilityTraits={'button'}
+            accessible={true}
+            accessibilityLabel={ this.defaultValueForBooleanInput('published') ? i18n('Published') : i18n('Not Published') }
+            onPress={ () => this.updateFromInput('published', !this.state.assignment.published) }>
+            <View style={[style.row, style.twoColumnRow, style.bottomRow]}>
+              { this.renderLeftColumnLabel(publish) }
+              { this.renderToggle('published', 'published') }
+            </View>
+          </TouchableHighlight>
 
           {/* Due Dates */}
           <AssignmentDatesEditor assignment={this.props.assignmentDetails} ref={c => { this.datesEditor = c }} navigator={this.props.navigator} />
