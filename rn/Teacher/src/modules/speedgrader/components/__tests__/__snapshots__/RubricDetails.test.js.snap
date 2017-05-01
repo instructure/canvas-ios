@@ -1,5 +1,419 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Rubric has the correct score 1`] = `
+<View
+  style={
+    Object {
+      "paddingVertical": 16,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontFamily": ".SFUIDisplay-semibold",
+          "fontSize": 20,
+        },
+        undefined,
+      ]
+    }
+  >
+    Rubric
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "color": "#8B969E",
+          "fontSize": 14,
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+    10 out of 100
+  </Text>
+  <View
+    style={
+      Object {
+        "paddingBottom": 8,
+        "paddingTop": 16,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontWeight": "600",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-semibold",
+          },
+        ]
+      }
+    >
+      A description
+    </Text>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "marginBottom": 8,
+          "marginTop": 12,
+        }
+      }
+    >
+      <Button
+        on={false}
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 8,
+            "marginRight": 8,
+          }
+        }
+        testID="circle-button"
+        value="3"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#C7CDD1",
+                "borderRadius": 24,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "height": 48,
+                "justifyContent": "center",
+                "minWidth": 48,
+              },
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Object {
+                  "color": "black",
+                  "fontWeight": "500",
+                },
+              ]
+            }
+          >
+            10
+          </Text>
+        </View>
+      </Button>
+      <Button
+        on={false}
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 8,
+            "marginRight": 8,
+          }
+        }
+        testID="circle-button"
+        value="2"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#C7CDD1",
+                "borderRadius": 24,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "height": 48,
+                "justifyContent": "center",
+                "minWidth": 48,
+              },
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Object {
+                  "color": "black",
+                  "fontWeight": "500",
+                },
+              ]
+            }
+          >
+            5
+          </Text>
+        </View>
+      </Button>
+      <Button
+        on={false}
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 8,
+            "marginRight": 8,
+          }
+        }
+        testID="circle-button"
+        value="1"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#C7CDD1",
+                "borderRadius": 24,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "height": 48,
+                "justifyContent": "center",
+                "minWidth": 48,
+              },
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Object {
+                  "color": "black",
+                  "fontWeight": "500",
+                },
+              ]
+            }
+          >
+            0
+          </Text>
+        </View>
+      </Button>
+      <Button
+        on={false}
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 8,
+            "marginRight": 8,
+          }
+        }
+        testID="circle-button"
+        value=""
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#C7CDD1",
+                "borderRadius": 24,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "height": 48,
+                "justifyContent": "center",
+                "minWidth": 48,
+              },
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              },
+            ]
+          }
+        >
+          <Image
+            source={1}
+          />
+        </View>
+      </Button>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Button
+        style={
+          Object {
+            "fontSize": 14,
+            "fontWeight": "500",
+            "paddingRight": 16,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#ff0ee8",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#ff0ee8",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Add Comment
+        </Text>
+      </Button>
+      <Button
+        onPress={[Function]}
+        style={
+          Object {
+            "fontSize": 14,
+            "fontWeight": "500",
+            "paddingRight": 16,
+          }
+        }
+        testID="rubric-item.description"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#ff0ee8",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#ff0ee8",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          View long description
+        </Text>
+      </Button>
+    </View>
+  </View>
+</View>
+`;
+
 exports[`Rubric renders a rubric 1`] = `
 <View
   style={
@@ -89,6 +503,7 @@ exports[`Rubric renders a rubric 1`] = `
       style={
         Object {
           "flexDirection": "row",
+          "flexWrap": "wrap",
           "marginBottom": 8,
           "marginTop": 12,
         }
@@ -96,12 +511,15 @@ exports[`Rubric renders a rubric 1`] = `
     >
       <Button
         on={false}
+        onPress={[Function]}
         style={
           Object {
             "marginBottom": 8,
-            "marginRight": 12,
+            "marginRight": 8,
           }
         }
+        testID="circle-button"
+        value="3"
       >
         <View
           style={
@@ -118,7 +536,7 @@ exports[`Rubric renders a rubric 1`] = `
               },
               Object {
                 "marginBottom": 8,
-                "marginRight": 12,
+                "marginRight": 8,
               },
             ]
           }
@@ -150,12 +568,15 @@ exports[`Rubric renders a rubric 1`] = `
       </Button>
       <Button
         on={false}
+        onPress={[Function]}
         style={
           Object {
             "marginBottom": 8,
-            "marginRight": 12,
+            "marginRight": 8,
           }
         }
+        testID="circle-button"
+        value="2"
       >
         <View
           style={
@@ -172,7 +593,7 @@ exports[`Rubric renders a rubric 1`] = `
               },
               Object {
                 "marginBottom": 8,
-                "marginRight": 12,
+                "marginRight": 8,
               },
             ]
           }
@@ -204,12 +625,15 @@ exports[`Rubric renders a rubric 1`] = `
       </Button>
       <Button
         on={false}
+        onPress={[Function]}
         style={
           Object {
             "marginBottom": 8,
-            "marginRight": 12,
+            "marginRight": 8,
           }
         }
+        testID="circle-button"
+        value="1"
       >
         <View
           style={
@@ -226,7 +650,7 @@ exports[`Rubric renders a rubric 1`] = `
               },
               Object {
                 "marginBottom": 8,
-                "marginRight": 12,
+                "marginRight": 8,
               },
             ]
           }
@@ -258,12 +682,15 @@ exports[`Rubric renders a rubric 1`] = `
       </Button>
       <Button
         on={false}
+        onPress={[Function]}
         style={
           Object {
             "marginBottom": 8,
-            "marginRight": 12,
+            "marginRight": 8,
           }
         }
+        testID="circle-button"
+        value=""
       >
         <View
           style={
@@ -280,7 +707,7 @@ exports[`Rubric renders a rubric 1`] = `
               },
               Object {
                 "marginBottom": 8,
-                "marginRight": 12,
+                "marginRight": 8,
               },
             ]
           }

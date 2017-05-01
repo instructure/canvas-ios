@@ -1,56 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders button correctly 1`] = `
-<View
-  accessibilityComponentType="button"
-  accessibilityLabel={undefined}
-  accessibilityTraits="button"
-  accessible={true}
-  hitSlop={undefined}
-  isTVSelectable={true}
-  onLayout={undefined}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Object {
-      "backgroundColor": "#ff0ee8",
-      "borderRadius": 8,
-      "opacity": 1,
-      "overflow": "hidden",
-      "padding": 10,
-    }
+<Button
+  containerStyle={
+    Array [
+      Object {
+        "backgroundColor": "#ff0ee8",
+        "borderRadius": 8,
+        "overflow": "hidden",
+        "padding": 10,
+      },
+      Object {
+        "backgroundColor": "#ff0ee8",
+      },
+      undefined,
+    ]
   }
-  testID={undefined}
-  tvParallaxProperties={undefined}
+  style={
+    Array [
+      Object {
+        "color": "#ff0ee8",
+      },
+      Object {
+        "color": "#ff0ee8",
+      },
+      undefined,
+    ]
+  }
 />
 `;
 
 exports[`renders circle toggle correctly 1`] = `
-<View
-  accessibilityComponentType="button"
-  accessibilityLabel={undefined}
-  accessibilityTraits="button"
-  accessible={true}
-  hitSlop={undefined}
-  isTVSelectable={true}
-  onLayout={undefined}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Object {
-      "opacity": 1,
-    }
-  }
-  testID={undefined}
-  tvParallaxProperties={undefined}
+<Button
+  on={false}
+  onPress={[Function]}
+  testID="circle-button"
+  value="1"
 >
   <View
     style={
@@ -93,31 +78,15 @@ exports[`renders circle toggle correctly 1`] = `
       4
     </Text>
   </View>
-</View>
+</Button>
 `;
 
 exports[`renders circle toggle when on correctly 1`] = `
-<View
-  accessibilityComponentType="button"
-  accessibilityLabel={undefined}
-  accessibilityTraits="button"
-  accessible={true}
-  hitSlop={undefined}
-  isTVSelectable={true}
-  onLayout={undefined}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Object {
-      "opacity": 1,
-    }
-  }
-  testID={undefined}
-  tvParallaxProperties={undefined}
+<Button
+  on={true}
+  onPress={[Function]}
+  testID="circle-button"
+  value="1"
 >
   <View
     style={
@@ -163,31 +132,15 @@ exports[`renders circle toggle when on correctly 1`] = `
       4
     </Text>
   </View>
-</View>
+</Button>
 `;
 
 exports[`renders circle toggle with an image 1`] = `
-<View
-  accessibilityComponentType="button"
-  accessibilityLabel={undefined}
-  accessibilityTraits="button"
-  accessible={true}
-  hitSlop={undefined}
-  isTVSelectable={true}
-  onLayout={undefined}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Object {
-      "opacity": 1,
-    }
-  }
-  testID={undefined}
-  tvParallaxProperties={undefined}
+<Button
+  on={false}
+  onPress={[Function]}
+  testID="circle-button"
+  value="1"
 >
   <View
     style={
@@ -210,32 +163,11 @@ exports[`renders circle toggle with an image 1`] = `
       source={1}
     />
   </View>
-</View>
+</Button>
 `;
 
 exports[`renders link correctly 1`] = `
-<View
-  accessibilityComponentType="button"
-  accessibilityLabel={undefined}
-  accessibilityTraits="button"
-  accessible={true}
-  hitSlop={undefined}
-  isTVSelectable={true}
-  onLayout={undefined}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Object {
-      "opacity": 1,
-    }
-  }
-  testID={undefined}
-  tvParallaxProperties={undefined}
->
+<Button>
   <Text
     accessible={true}
     allowFontScaling={true}
@@ -268,5 +200,5 @@ exports[`renders link correctly 1`] = `
       ]
     }
   />
-</View>
+</Button>
 `;

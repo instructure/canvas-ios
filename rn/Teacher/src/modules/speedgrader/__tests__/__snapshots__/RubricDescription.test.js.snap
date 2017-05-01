@@ -27,7 +27,7 @@ exports[`RubricDescription renders 1`] = `
     scrollEnabled={undefined}
     source={
       Object {
-        "html": "A satisfactory description",
+        "html": "A satisfactory description<style>body { padding: 24 16 }</style>",
       }
     }
     style={

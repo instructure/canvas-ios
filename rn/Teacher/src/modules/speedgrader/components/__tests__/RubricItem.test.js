@@ -14,6 +14,7 @@ const templates = {
 let defaultProps = {
   rubricItem: templates.rubric(),
   showDescription: jest.fn(),
+  changeRating: jest.fn(),
 }
 
 describe('RubricItem', () => {
@@ -35,5 +36,27 @@ describe('RubricItem', () => {
     button.props.onPress()
 
     expect(defaultProps.showDescription).toHaveBeenCalledWith(defaultProps.rubricItem.id)
+  })
+
+  it('changes the currently selected value when a circle is pressed', () => {
+    let tree = renderer.create(
+      <RubricItem {...defaultProps} />
+    )
+
+    let button = explore(tree.toJSON()).selectByID('circle-button') || {}
+    button.props.onPress()
+
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('calls changeRating with the id and value', () => {
+    let tree = renderer.create(
+      <RubricItem {...defaultProps} />
+    ).toJSON()
+
+    let button = explore(tree).selectByID('circle-button') || {}
+    button.props.onPress()
+
+    expect(defaultProps.changeRating).toHaveBeenCalledWith('2', 10)
   })
 })

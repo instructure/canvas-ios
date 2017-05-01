@@ -13,9 +13,24 @@ import Images from '../../../images'
 
 export default class RubricItem extends Component {
   props: RubricItemProps
+  state: RubricItemState
+
+  constructor (props: RubricItemProps) {
+    super(props)
+
+    this.state = {
+      selectedOption: null,
+    }
+  }
 
   showDescription = () => {
     this.props.showDescription(this.props.rubricItem.id)
+  }
+
+  changeSelected = (id: string) => {
+    this.setState({ selectedOption: id })
+    let rating = this.props.rubricItem.ratings.find(rating => rating.id === id) || { points: 0 }
+    this.props.changeRating(this.props.rubricItem.id, rating.points)
   }
 
   render () {
@@ -25,9 +40,23 @@ export default class RubricItem extends Component {
         <Text style={styles.description}>{rubricItem.description}</Text>
         <View style={styles.ratings}>
           {rubricItem.ratings.slice().reverse().map(rating => (
-            <CircleToggle key={rating.points} style={styles.circle} on={false}>{rating.points}</CircleToggle>
+            <CircleToggle
+              key={rating.id}
+              style={styles.circle}
+              on={this.state.selectedOption === rating.id}
+              value={rating.id}
+              onPress={this.changeSelected}
+            >
+              {rating.points}
+            </CircleToggle>
           ))}
-          <CircleToggle key='add' style={styles.circle} on={false}>
+          <CircleToggle
+            key='add'
+            style={styles.circle}
+            on={false}
+            value=''
+            onPress={this.changeSelected}
+          >
             <Image source={Images.add} />
           </CircleToggle>
         </View>
@@ -56,11 +85,12 @@ const styles = StyleSheet.create({
   },
   ratings: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     marginTop: 12,
     marginBottom: 8,
   },
   circle: {
-    marginRight: 12,
+    marginRight: 8,
     marginBottom: 8,
   },
   buttons: {
@@ -76,4 +106,9 @@ const styles = StyleSheet.create({
 type RubricItemProps = {
   rubricItem: Rubric,
   showDescription: (string) => void,
+  changeRating: (string, number) => void,
+}
+
+type RubricItemState = {
+  selectedOption: ?string,
 }

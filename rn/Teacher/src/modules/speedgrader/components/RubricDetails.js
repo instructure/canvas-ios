@@ -13,10 +13,31 @@ import { route } from '../../../routing'
 
 export class RubricDetails extends Component {
   props: RubricProps
+  state: RubricState
+
+  constructor (props: RubricProps) {
+    super(props)
+
+    this.state = { ratings: {} }
+  }
 
   showDescriptionModal = (rubricID: string) => {
     let { courseID, assignmentID } = this.props
     this.props.showModal(route(`/courses/${courseID}/assignments/${assignmentID}/rubrics/${rubricID}/description`))
+  }
+
+  updateScore = (id: string, value: number) => {
+    this.setState({
+      ratings: {
+        ...this.state.ratings,
+        [id]: value,
+      },
+    })
+  }
+
+  getCurrentScore = () => {
+    return Object.keys(this.state.ratings)
+      .reduce((sum, key) => sum + this.state.ratings[key], 0)
   }
 
   render () {
@@ -29,13 +50,13 @@ export class RubricDetails extends Component {
           <Text style={styles.pointsText}>
             {
               i18n('{points, number} out of {totalPoints, number}', {
-                points: 0,
+                points: this.getCurrentScore(),
                 totalPoints: settings.points_possible,
               })
             }
           </Text>
           {items.map((rubricItem: Rubric) => (
-            <RubricItem key={rubricItem.id} rubricItem={rubricItem} showDescription={this.showDescriptionModal} />
+            <RubricItem key={rubricItem.id} rubricItem={rubricItem} showDescription={this.showDescriptionModal} changeRating={this.updateScore} />
           ))}
         </View>
       )
@@ -78,3 +99,6 @@ type RubricDataProps = {
 }
 
 type RubricProps = RubricOwnProps & RubricDataProps
+type RubricState = {
+  ratings: { [string]: number },
+}

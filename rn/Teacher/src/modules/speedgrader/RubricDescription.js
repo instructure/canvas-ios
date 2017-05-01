@@ -37,8 +37,9 @@ export class RubricDescription extends Component {
   }
 
   render () {
+    let html = this.props.description + '<style>body { padding: 24 16 }</style>'
     return (
-      <WebContainer html={this.props.description} />
+      <WebContainer html={html} />
     )
   }
 }

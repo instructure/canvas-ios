@@ -13,7 +13,7 @@ export const rubric: Template<Rubric> = template({
   id: '2',
   description: 'A description',
   long_description: 'A long description',
-  ratings: [{ points: 0 }, { points: 5 }, { points: 10 }].map(rubricRating),
+  ratings: [{ id: '1', points: 0 }, { id: '2', points: 5 }, { id: '3', points: 10 }].map(rubricRating),
 })
 
 export const rubricSettings: Template<RubricSettings> = template({

@@ -58,4 +58,14 @@ describe('Rubric', () => {
       },
     })
   })
+
+  it('has the correct score', () => {
+    let tree = renderer.create(
+      <RubricDetails {...defaultProps} />
+    )
+
+    tree.getInstance().setState({ ratings: { '2': 10 } })
+
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
 })

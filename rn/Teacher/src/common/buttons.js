@@ -34,7 +34,17 @@ export class LinkButton extends Component {
 }
 
 export class CircleToggle extends Component {
-  props: { on: boolean, children?: any, style?: any }
+  props: {
+    on: boolean,
+    children?: any,
+    style?: any,
+    value: any,
+    onPress: Function,
+  }
+
+  onPress = () => {
+    this.props.onPress(this.props.value)
+  }
 
   render () {
     let viewStyle = [circleButtonStyles.container, this.props.style]
@@ -50,7 +60,7 @@ export class CircleToggle extends Component {
     }
 
     return (
-      <BaseButton {...this.props}>
+      <BaseButton {...this.props} onPress={this.onPress} testID='circle-button'>
         <View style={viewStyle}>
           {typeof this.props.children === 'object'
             ? this.props.children
