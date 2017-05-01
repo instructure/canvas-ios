@@ -16,6 +16,7 @@ exports[`SpeedGrader renders 1`] = `
   pagingEnabled={true}
   scrollEventThrottle={50}
   showsHorizontalScrollIndicator={false}
+  stickyHeaderIndices={Array []}
   style={
     Object {
       "marginLeft": -10,
@@ -43,6 +44,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
   pagingEnabled={true}
   scrollEventThrottle={50}
   showsHorizontalScrollIndicator={false}
+  stickyHeaderIndices={Array []}
   style={
     Object {
       "marginLeft": -10,
@@ -132,6 +134,7 @@ exports[`SpeedGrader shows the loading spinner when there are no submissions 1`]
   pagingEnabled={true}
   scrollEventThrottle={50}
   showsHorizontalScrollIndicator={false}
+  stickyHeaderIndices={Array []}
   style={
     Object {
       "marginLeft": -10,

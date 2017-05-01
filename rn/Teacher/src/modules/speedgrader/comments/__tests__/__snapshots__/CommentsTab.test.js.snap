@@ -77,8 +77,8 @@ exports[`comments render properly 1`] = `
   renderItem={[Function]}
   renderScrollComponent={[Function]}
   scrollEventThrottle={50}
-  shouldItemUpdate={[Function]}
   showsVerticalScrollIndicator={false}
+  stickyHeaderIndices={Array []}
   style={
     Object {
       "transform": Array [

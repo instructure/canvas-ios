@@ -166,7 +166,6 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
     getItemCount={[Function]}
     horizontal={false}
     initialNumToRender={10}
-    isItemSticky={[Function]}
     keyExtractor={[Function]}
     maxToRenderPerBatch={10}
     onContentSizeChange={[Function]}
@@ -253,7 +252,12 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
         },
       ]
     }
-    shouldItemUpdate={[Function]}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    stickySectionHeadersEnabled={true}
     testID="assignment-list.list"
     updateCellsBatchingPeriod={50}
     windowSize={21}
@@ -630,7 +634,6 @@ exports[`applyFilter will apply a new filter 1`] = `
     getItemCount={[Function]}
     horizontal={false}
     initialNumToRender={10}
-    isItemSticky={[Function]}
     keyExtractor={[Function]}
     maxToRenderPerBatch={10}
     onContentSizeChange={[Function]}
@@ -717,7 +720,12 @@ exports[`applyFilter will apply a new filter 1`] = `
         },
       ]
     }
-    shouldItemUpdate={[Function]}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    stickySectionHeadersEnabled={true}
     testID="assignment-list.list"
     updateCellsBatchingPeriod={50}
     windowSize={21}
@@ -1046,7 +1054,6 @@ exports[`filter button only shows when there are grading periods 1`] = `
     getItemCount={[Function]}
     horizontal={false}
     initialNumToRender={10}
-    isItemSticky={[Function]}
     keyExtractor={[Function]}
     maxToRenderPerBatch={10}
     onContentSizeChange={[Function]}
@@ -1133,7 +1140,12 @@ exports[`filter button only shows when there are grading periods 1`] = `
         },
       ]
     }
-    shouldItemUpdate={[Function]}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    stickySectionHeadersEnabled={true}
     testID="assignment-list.list"
     updateCellsBatchingPeriod={50}
     windowSize={21}
@@ -1510,7 +1522,6 @@ exports[`renders correctly 1`] = `
     getItemCount={[Function]}
     horizontal={false}
     initialNumToRender={10}
-    isItemSticky={[Function]}
     keyExtractor={[Function]}
     maxToRenderPerBatch={10}
     onContentSizeChange={[Function]}
@@ -1597,7 +1608,12 @@ exports[`renders correctly 1`] = `
         },
       ]
     }
-    shouldItemUpdate={[Function]}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    stickySectionHeadersEnabled={true}
     testID="assignment-list.list"
     updateCellsBatchingPeriod={50}
     windowSize={21}
@@ -1974,7 +1990,6 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
     getItemCount={[Function]}
     horizontal={false}
     initialNumToRender={10}
-    isItemSticky={[Function]}
     keyExtractor={[Function]}
     maxToRenderPerBatch={10}
     onContentSizeChange={[Function]}
@@ -2061,7 +2076,12 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
         },
       ]
     }
-    shouldItemUpdate={[Function]}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    stickySectionHeadersEnabled={true}
     testID="assignment-list.list"
     updateCellsBatchingPeriod={50}
     windowSize={21}
