@@ -28,7 +28,6 @@ export default class RichTextEditor extends Component<any, Props, any> {
     super(props)
 
     this.state = {
-      height: 0,
       linkModalVisible: false,
     }
   }
@@ -42,8 +41,6 @@ export default class RichTextEditor extends Component<any, Props, any> {
           onMessage={this._onMessage}
           onLoad={this._onLoad}
           scalesPageToFit={true}
-          style={{ height: this.state.height }}
-          scrollEnabled={false}
         />
         <LinkModal
           visible={this.state.linkModalVisible}
@@ -113,13 +110,6 @@ export default class RichTextEditor extends Component<any, Props, any> {
     this._trigger('zss_editor.blurEditor();')
   }
 
-  updateHeight = () => {
-    this._trigger(`
-      var height = $('#zss_editor_content').height() + 15
-      postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-    `)
-  }
-
   getHTML = () => {
     this._trigger(`setTimeout(function() { zss_editor.postInput() }, 1);`)
   }
@@ -155,9 +145,6 @@ export default class RichTextEditor extends Component<any, Props, any> {
         break
       case 'ZSS_LOADED':
         this._onZSSLoaded()
-        break
-      case 'UPDATE_HEIGHT':
-        this._handleHeight(message.data)
         break
       case 'EDITOR_FOCUSED':
         this._handleFocus()
@@ -195,7 +182,6 @@ export default class RichTextEditor extends Component<any, Props, any> {
 
   _handleInput = (value) => {
     this.props.onInputChange(value)
-    this.updateHeight()
   }
 
   _insertLink = (url, title) => {
@@ -229,7 +215,6 @@ export default class RichTextEditor extends Component<any, Props, any> {
     if (this.props.html) {
       this.updateHTML(this.props.html)
     }
-    this.updateHeight()
   }
 
   _onLoad = () => {
@@ -238,10 +223,6 @@ export default class RichTextEditor extends Component<any, Props, any> {
     if (this.props.onLoad) {
       this.props.onLoad()
     }
-  }
-
-  _handleHeight = (height) => {
-    this.setState({ height })
   }
 
   _zssInit () {

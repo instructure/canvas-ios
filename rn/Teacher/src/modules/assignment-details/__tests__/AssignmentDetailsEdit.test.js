@@ -8,6 +8,7 @@ import { Navigation } from 'react-native-navigation'
 import { AssignmentDetailsEdit } from '../AssignmentDetailsEdit'
 import setProps from '../../../../test/helpers/setProps'
 import explore from '../../../../test/helpers/explore'
+import { route } from '../../../routing'
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
@@ -38,12 +39,10 @@ jest
     },
   }))
   .mock('WebView', () => 'WebView')
-  .mock('../../assignment-description/AssignmentDescription')
-  .mock('../../../common/components/rich-text-editor/RichTextEditor')
   .mock('Button', () => 'Button')
 
-let course: any = template.course()
-let assignment: any = template.assignment()
+let course: Course
+let assignment: Assignment
 
 let defaultProps = {}
 let onNavigatorEvent = () => {}
@@ -54,10 +53,13 @@ const navigatorCancelEventProps = { type: 'NavBarButtonPress', id: 'cancel' }
 beforeEach(() => {
   jest.clearAllMocks()
 
+  course = template.course()
+  assignment = template.assignment()
+
   defaultProps = {
     navigator: template.navigator(),
-    courseID: course.courseID,
-    assignmentID: assignment.assignmentID,
+    courseID: course.id,
+    assignmentID: assignment.id,
     refreshAssignmentDetails: (courseID: string, assignmentID: string) => {},
     assignmentDetails: assignment,
     pending: false,
@@ -97,7 +99,7 @@ test('calls updateAssignment when the done button is pressed', () => {
     id: 'dismiss',
   })
 
-  expect(defaultProps.updateAssignment).toHaveBeenCalledWith(undefined, defaultProps.assignmentDetails, defaultProps.assignmentDetails)
+  expect(defaultProps.updateAssignment).toHaveBeenCalledWith(course.id, defaultProps.assignmentDetails, defaultProps.assignmentDetails)
 })
 
 test('dismisses modal on done after assignment updates', () => {
@@ -182,6 +184,19 @@ test('"displays grade as" can be selected using picker', () => {
   expect(defaultProps.updateAssignment).toHaveBeenCalledWith(doneButtonPressedProps.courseID, expected, defaultProps.assignmentDetails)
 })
 
+test('edit description', () => {
+  const navigator = template.navigator({
+    push: jest.fn(),
+  })
+  const tree = renderer.create(
+    <AssignmentDetailsEdit {...defaultProps} navigator={navigator} />
+  ).toJSON()
+  const editDescription: any = explore(tree).selectByID('edit-description')
+  editDescription.props.onPress()
+  const expected = route(`/courses/${course.id}/assignments/${assignment.id}/edit/description`)
+  expect(navigator.push).toHaveBeenCalledWith(expected)
+})
+
 test('change title', () => {
   testInputField('titleInput', 'hello world title', 'name')
 })
@@ -192,116 +207,6 @@ test('change points', () => {
 
 test('change published', () => {
   testSwitchToggled('published', true, 'published')
-})
-
-describe('editing description', () => {
-  beforeEach(() => {
-    jest.resetAllMocks()
-  })
-
-  it('sends bold action', () => {
-    expect(pressAction('bold').toJSON()).toMatchSnapshot()
-  })
-
-  it('sends italic action', () => {
-    expect(pressAction('italic').toJSON()).toMatchSnapshot()
-  })
-
-  it('sends unordered list action', () => {
-    expect(pressAction('unorderedList').toJSON()).toMatchSnapshot()
-  })
-
-  it('sends ordered list action', () => {
-    expect(pressAction('orderedList').toJSON()).toMatchSnapshot()
-  })
-
-  it('prompts to insert link', () => {
-    expect(pressAction('link').toJSON()).toMatchSnapshot()
-  })
-
-  it('shows color picker', () => {
-    expect(pressAction('textColor').toJSON()).toMatchSnapshot()
-  })
-
-  it('sends action to set text color', () => {
-    const component = pressAction('textColor')
-    const colorOption: any = explore(component.toJSON()).selectByID('color-picker-option-white')
-    colorOption.props.onPress()
-    expect(component.toJSON()).toMatchSnapshot()
-  })
-
-  it('stops editing on done', () => {
-    expect(pressAction('done').toJSON()).toMatchSnapshot()
-  })
-
-  it('sends undo action', () => {
-    expect(pressAction('undo').toJSON()).toMatchSnapshot()
-  })
-
-  it('sends redo action', () => {
-    expect(pressAction('redo').toJSON()).toMatchSnapshot()
-  })
-
-  describe('link modal', () => {
-    let component
-    let linkModal
-    beforeEach(() => {
-      component = pressAction('link')
-
-      const titleInput: any = explore(component.toJSON()).selectByID('rich-text-editor.link-modal.titleInput')
-      const urlInput: any = explore(component.toJSON()).selectByID('rich-text-editor.link-modal.urlInput')
-      const okButton: any = explore(component.toJSON()).selectByID('rich-text-editor.link-modal.okButton')
-
-      linkModal = { titleInput, urlInput, okButton }
-    })
-
-    it('inserts new links', () => {
-      postMessage(component, 'INSERT_LINK', null)
-      linkModal.titleInput.props.onChangeText('test link title')
-      linkModal.urlInput.props.onChangeText('test url title')
-      linkModal.okButton.props.onPress()
-
-      expect(component.toJSON()).toMatchSnapshot()
-    })
-
-    it('inserts link using current selection', () => {
-      postMessage(component, 'INSERT_LINK', 'this text is selected')
-      linkModal.urlInput.props.onChangeText('http://test-selected-text-link.com')
-      linkModal.okButton.props.onPress()
-      expect(component.toJSON()).toMatchSnapshot()
-    })
-
-    it('updates existing links', () => {
-      const link = {
-        url: 'http://test-update-link.com',
-        title: 'test update link',
-      }
-      postMessage(component, 'LINK_TOUCHED', link)
-      linkModal.okButton.props.onPress()
-      expect(component.toJSON()).toMatchSnapshot()
-    })
-  })
-
-  function pressAction (action: string): any {
-    const component = renderer.create(
-      <AssignmentDetailsEdit {...defaultProps} />
-    )
-
-    const editor: any = explore(component.toJSON()).selectByID('rich-text-editor')
-    editor.props.onFocus()
-
-    const item: any = explore(component.toJSON()).selectByID(`rich-text-toolbar-item-${action}`)
-    item.props.onPress()
-
-    return component
-  }
-
-  function postMessage (component: any, type: string, data: any) {
-    const webView: any = explore(component.toJSON()).query(({ type }) => type === 'WebView')[0]
-    const message = { type: type, data: data }
-    const event = { nativeEvent: { data: JSON.stringify(message) } }
-    webView.props.onMessage(event)
-  }
 })
 
 function testInputField (ref: string, input: any, assignmentField: string) {

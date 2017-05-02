@@ -15,8 +15,9 @@ import { Navigation } from 'react-native-navigation'
 import { ERROR_TITLE, parseErrorMessage } from '../../redux/middleware/error-handler'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import color from './../../common/colors'
-import AssignmentDescription from '../assignment-description/AssignmentDescription'
-import { RichTextToolbar, ColorPicker } from '../../common/components/rich-text-editor/'
+import images from '../../images/'
+import DisclosureIndicator from '../../common/components/DisclosureIndicator'
+import { route } from '../../routing'
 import ReactNative, {
   View,
   StyleSheet,
@@ -25,7 +26,7 @@ import ReactNative, {
   TouchableHighlight,
   LayoutAnimation,
   Switch,
-  Keyboard,
+  Image,
 } from 'react-native'
 
 var PickerItemIOS = PickerIOS.Item
@@ -62,8 +63,6 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   state: any = {}
   datesEditor: AssignmentDatesEditor
   currentPickerMap: ?Map<*, *> = null
-  keyboardWillShowListener: *
-  keyboardWillHideListener: *
 
   static navigatorButtons = {
     rightButtons: [
@@ -94,19 +93,11 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
       showPicker: false,
       pickerSelectedValue: 'initial value set in constructor',
       currentAssignmentKey: null,
-      keyboardHeight: 0,
     }
-  }
-
-  componentWillMount () {
-    this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow)
-    this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide)
   }
 
   componentWillUnmount () {
     this.props.refreshAssignment(this.props.courseID, this.props.assignmentID)
-    this.keyboardWillShowListener.remove()
-    this.keyboardWillHideListener.remove()
   }
 
   componentDidMount () {
@@ -201,9 +192,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
         <KeyboardAwareScrollView
           style={style.container}
           ref='scrollView'
-          contentInset={{ bottom: this.state.editingDescription ? this.state.keyboardHeight + (this.state.colorPickerVisible ? 100 : 50) : 0 }}
           keyboardShouldPersistTaps='handled'
-          keyboardDismissMode={this.state.editingDescription ? 'none' : 'interactive'}
           enableAutoAutomaticScroll={false}
         >
           {/* Title */}
@@ -214,14 +203,18 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
           {/* Description */}
           <EditSectionHeader title={sectionDescription} style={[style.sectionHeader, { marginTop: 0 }]}/>
-          <AssignmentDescription
-            ref='description'
-            assignmentID={this.props.assignmentDetails.id}
-            onFocus={() => this.setState({ editingDescription: true })}
-            onBlur={() => this.setState({ editingDescription: false })}
-            editorItemsChanged={(descriptionEditorItems) => this.setState({ descriptionEditorItems })}
-            onChange={(description) => this.updateFromInput('description', description)}
-          />
+          <TouchableHighlight
+            testID='edit-description'
+            onPress={this._editDescription}
+          >
+            <View style={[style.row, style.topRow, style.twoColumnRow]}>
+              <View style={style.buttonInnerContainer}>
+                <Image source={images.edit} style={style.buttonImage} />
+                <Text style={style.buttonText}>{i18n('Edit Description')}</Text>
+              </View>
+              <DisclosureIndicator />
+            </View>
+          </TouchableHighlight>
 
           {/* Points */}
           <EditSectionHeader title={sectionDetails} />
@@ -255,59 +248,15 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
           <AssignmentDatesEditor assignment={this.props.assignmentDetails} ref={c => { this.datesEditor = c }} navigator={this.props.navigator} />
 
         </KeyboardAwareScrollView>
-
-        { this.state.editingDescription &&
-          <View>
-            <View style={[style.toolbar, { bottom: this.state.keyboardHeight + (this.state.colorPickerVisible ? 55 : 0) }]}>
-              <ColorPicker
-                pickedColor={this._pickColor}
-                style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                }}
-              />
-            </View>
-            <View style={[style.toolbar, { bottom: this.state.keyboardHeight }]}>
-              <RichTextToolbar
-                setBold={() => this._descriptionInstance().setBold()}
-                setItalic={() => this._descriptionInstance().setItalic()}
-                setUnorderedList={() => this._descriptionInstance().setUnorderedList()}
-                setOrderedList={() => this._descriptionInstance().setOrderedList()}
-                insertLink={() => this._descriptionInstance().insertLink()}
-                setTextColor={this._toggleColorPicker}
-                active={this.state.descriptionEditorItems}
-                onTappedDone={() => this._descriptionInstance().blurEditor()}
-                undo={() => this._descriptionInstance().undo()}
-                redo={() => this._descriptionInstance().redo()}
-              />
-            </View>
-          </View>
-        }
-
       </View>
     )
   }
 
-  _toggleColorPicker = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
-    this.setState({ colorPickerVisible: !this.state.colorPickerVisible })
-  }
-
-  _pickColor = (color: string) => {
-    this._descriptionInstance().setTextColor(color)
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
-    this.setState({ colorPickerVisible: false })
-  }
-
-  _descriptionInstance = () => this.refs.description.getWrappedInstance()
-
-  keyboardWillShow = (event: KeyboardEventData) => {
-    this.setState({ keyboardHeight: event.endCoordinates.height })
-  }
-
-  keyboardWillHide = (event: KeyboardEventData) => {
-    this.setState({ keyboardHeight: 0 })
+  _editDescription = () => {
+    const courseID = this.props.courseID
+    const id = this.props.assignmentDetails.id
+    const destination = route(`/courses/${courseID}/assignments/${id}/edit/description`)
+    this.props.navigator.push(destination)
   }
 
   pickerValueDidChange (value: any) {
@@ -386,15 +335,20 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   }
 
   componentWillReceiveProps (nextProps: AssignmentDetailsProps) {
-    if (!nextProps.pending && nextProps.error) {
-      let error = parseErrorMessage(nextProps.error.response)
-      this.setState({ pending: false, error: error, assignment: Object.assign({}, this.state.assignment) })
-      return
-    }
+    if (!nextProps.pending) {
+      if (nextProps.error) {
+        let error = parseErrorMessage(nextProps.error.response)
+        this.setState({ pending: false, error: error, assignment: Object.assign({}, this.state.assignment) })
+        return
+      }
 
-    if (this.state.pending && (nextProps.assignmentDetails && !nextProps.pending)) {
-      this.setState({ error: undefined })
-      Navigation.dismissAllModals()
+      if (this.state.pending && nextProps.assignmentDetails) {
+        this.setState({ error: undefined })
+        Navigation.dismissAllModals()
+        return
+      }
+
+      this.setState({ assignment: nextProps.assignmentDetails })
     }
   }
 }
@@ -448,6 +402,23 @@ const style = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
+  },
+  buttonInnerContainer: {
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingRight: global.style.defaultPadding,
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#008EE2',
+  },
+  buttonImage: {
+    tintColor: color.primaryButton,
+    marginRight: 8,
+    height: 18,
+    width: 18,
   },
 })
 

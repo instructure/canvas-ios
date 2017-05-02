@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
   container: {
     borderTopWidth: 1,
     borderTopColor: '#C7CDD1',
-    height: 50,
     backgroundColor: 'white',
   },
   optionContainer: {

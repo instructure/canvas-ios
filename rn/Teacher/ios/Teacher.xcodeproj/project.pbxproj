@@ -81,8 +81,8 @@
 		9F59C09C1E980384003BF661 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		A45A7871AEE461283E84002D /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105261256A70B5DFD1139104 /* Quiz.swift */; };
 		A6A99147D8722993787C0994 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF3DE89359E019540B64CA /* Assignment.swift */; };
-		B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */; };
 		A779010714254FD09112BFF7 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A08992613846128FD3E3D2 /* libRNBlur.a */; };
+		B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */; };
 		BFEF14CECBEF3577D41F7BBF /* GradingPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484C40873F5A33402D194B04 /* GradingPeriod.swift */; };
 		C31D10A45ABA434ABB185FDD /* libRNSearchBar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2411260A6CA04D6D874912A2 /* libRNSearchBar.a */; };
 		C4ECC257F431783ED35CBF11 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F798127265B286008D5A43E /* DataProvider.swift */; };
@@ -313,19 +313,19 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
-		B1FE61B11EA6AF5500A2A434 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
-			remoteInfo = RNImagePicker;
-		};
 		9F053B941E98360A00135AD0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A68BD7BC1BC31318005F02DF;
 			remoteInfo = RNBlur;
+		};
+		B1FE61B11EA6AF5500A2A434 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
+			remoteInfo = RNImagePicker;
 		};
 		F95BD47D1E7C600000117939 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1036,7 +1036,7 @@
 					ProductGroup = B1FE61931EA6AF5500A2A434 /* Products */;
 					ProjectRef = A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */;
 				},
-                {
+				{
 					ProductGroup = 4924260C1EAEB37C0046ED43 /* Products */;
 					ProjectRef = 5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */;
 				},
@@ -1253,18 +1253,18 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B1FE61B21EA6AF5500A2A434 /* libRNImagePicker.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNImagePicker.a;
-			remoteRef = B1FE61B11EA6AF5500A2A434 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		9F053B951E98360A00135AD0 /* libRNBlur.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNBlur.a;
 			remoteRef = 9F053B941E98360A00135AD0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B1FE61B21EA6AF5500A2A434 /* libRNImagePicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNImagePicker.a;
+			remoteRef = B1FE61B11EA6AF5500A2A434 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		F95BD47E1E7C600000117939 /* libRNDeviceInfo.a */ = {

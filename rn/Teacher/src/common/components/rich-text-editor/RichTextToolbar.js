@@ -7,9 +7,9 @@ import {
   Image,
   ScrollView,
   View,
-  Button,
 } from 'react-native'
 
+import { ColorPicker } from './'
 import images from '../../../images'
 import colors from '../../colors'
 
@@ -47,32 +47,37 @@ const ITEMS = [
 ]
 
 export default class RichTextToolbar extends Component<any, Props, any> {
+  constructor (props: Props) {
+    super(props)
+
+    this.state = {
+      colorPickerVisible: false,
+    }
+  }
+
   render () {
+    const height = this.state.colorPickerVisible ? 100 : 50
     return (
-      <View style={styles.container}>
-        <ScrollView horizontal={true}>
-          {ITEMS.filter((item) => this.props[item.action]).map((item) => {
-            return (
-              <TouchableHighlight
-                style={styles.item}
-                onPress={this.props[item.action]}
-                underlayColor={colors.grey1}
-                key={item.image}
-                testID={`rich-text-toolbar-item-${item.image}`}
-              >
-                {this._renderItem(item)}
-              </TouchableHighlight>
-            )
-          })}
-        </ScrollView>
-        <View style={styles.doneContainer}>
-          <Button
-            style={styles.done}
-            onPress={this.props.onTappedDone}
-            title='Done'
-            color='white'
-            testID='rich-text-toolbar-item-done'
-          />
+      <View style={[styles.container, { height }]}>
+        { this.state.colorPickerVisible && this.props.setTextColor &&
+          <ColorPicker pickedColor={this._pickColor} />
+        }
+        <View style={styles.itemsContainer}>
+          <ScrollView horizontal={true}>
+            {ITEMS.filter((item) => this.props[item.action]).map((item) => {
+              return (
+                <TouchableHighlight
+                  style={styles.item}
+                  onPress={this._actionForItem(item)}
+                  underlayColor={colors.grey1}
+                  key={item.image}
+                  testID={`rich-text-toolbar-item-${item.image}`}
+                >
+                  {this._renderItem(item)}
+                </TouchableHighlight>
+              )
+            })}
+          </ScrollView>
         </View>
       </View>
     )
@@ -95,6 +100,24 @@ export default class RichTextToolbar extends Component<any, Props, any> {
         return <Image source={icon} />
     }
   }
+
+  _toggleColorPicker = () => {
+    this.setState({ colorPickerVisible: !this.state.colorPickerVisible })
+  }
+
+  _pickColor = (color: string) => {
+    this.setState({ colorPickerVisible: false })
+    this.props.setTextColor && this.props.setTextColor(color)
+  }
+
+  _actionForItem = (item: Item): Function => {
+    switch (item.action) {
+      case 'setTextColor':
+        return this._toggleColorPicker
+      default:
+        return this.props[item.action]
+    }
+  }
 }
 
 function isWhite (color: string): boolean {
@@ -104,10 +127,13 @@ function isWhite (color: string): boolean {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: 'column',
+    backgroundColor: 'white',
+    justifyContent: 'flex-end',
+  },
+  itemsContainer: {
     borderTopWidth: 1,
     borderTopColor: '#C7CDD1',
-    backgroundColor: 'white',
   },
   item: {
     width: 50,
@@ -119,13 +145,5 @@ const styles = StyleSheet.create({
     width: 26,
     height: 26,
     borderRadius: 13,
-  },
-  doneContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.primaryButtonColor,
-    margin: 10,
-    borderRadius: 8,
-    overflow: 'hidden',
   },
 })

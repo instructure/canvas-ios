@@ -5,6 +5,7 @@ import { assignments } from '../assignment-entities-reducer'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
 import SubmissionActions from '../../submissions/list/actions'
+import { updateAssignmentDescription } from '../../assignment-description/actions'
 
 const { refreshSubmissions } = SubmissionActions
 const template = {
@@ -118,4 +119,26 @@ test('revert assignment update', () => {
       error: null,
     },
   })
+})
+
+test('update assignment description', () => {
+  const assignment = template.assignment({
+    description: 'original description',
+  })
+  const action = updateAssignmentDescription(assignment.id, 'new description')
+  const state = {
+    [assignment.id]: { data: assignment },
+  }
+  const expected = {
+    [assignment.id]: {
+      data: {
+        ...assignment,
+        description: 'new description',
+      },
+    },
+  }
+
+  const result = assignments(state, action)
+
+  expect(result).toEqual(expected)
 })

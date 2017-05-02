@@ -62,6 +62,7 @@ const images = {
   add: require('./Add.png'),
   x: require('./x-icon.png'),
   clear: require('./Clear.png'),
+  edit: require('./edit.png'),
   pickerArrow: require('./picker-arrow.png'),
 }
 

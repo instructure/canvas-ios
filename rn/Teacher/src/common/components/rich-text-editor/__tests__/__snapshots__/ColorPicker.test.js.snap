@@ -7,7 +7,6 @@ exports[`ColorPicker renders 1`] = `
       "backgroundColor": "white",
       "borderTopColor": "#C7CDD1",
       "borderTopWidth": 1,
-      "height": 50,
     }
   }
 >

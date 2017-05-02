@@ -1,8 +1,10 @@
 /* @flow */
 
 import React, { Component } from 'react'
-import RichTextEditor from '../../common/components/rich-text-editor/RichTextEditor'
+import { RichTextEditor, RichTextToolbar } from '../../common/components/rich-text-editor/'
 import { connect } from 'react-redux'
+import KeyboardSpacer from 'react-native-keyboard-spacer'
+import * as Actions from './actions'
 import {
   StyleSheet,
   View,
@@ -18,7 +20,7 @@ type State = {
   description: ?string,
 }
 
-type Props = State & {
+type Props = State & typeof Actions & {
   navigator: ReactNavigator,
   onChange: (input: string) => void,
   onFocus?: () => void,
@@ -29,47 +31,92 @@ type Props = State & {
 export class AssignmentDescription extends Component<any, Props, any> {
   editor: RichTextEditor
 
+  constructor (props: Props) {
+    super(props)
+
+    this.state = {
+      description: props.description,
+      activeEditorItems: [],
+      editorFocused: false,
+    }
+  }
+
+  componentWillUnmount () {
+    this.props.updateAssignmentDescription(this.props.assignmentID, this.state.description)
+  }
+
   render (): React.Element<*> {
     return (
       <View style={styles.container}>
         <RichTextEditor
-          ref='editor'
+          ref={(editor) => { this.editor = editor }}
           html={this.props.description}
-          style={styles.editor}
-          onLoad={this._onEditorLoaded}
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-          editorItemsChanged={this.props.editorItemsChanged}
-          onInputChange={this.props.onChange}
+          onLoad={this._onLoad}
+          onFocus={this._onFocus}
+          onBlur={this._onBlur}
+          editorItemsChanged={this._onEditorItemsChanged}
+          onInputChange={this._onInputChange}
         />
+        { this.state.editorFocused &&
+          <RichTextToolbar
+            setBold={this._setBold}
+            setItalic={this._setItalic}
+            setUnorderedList={this._setUnorderedList}
+            setOrderedList={this._setOrderedList}
+            insertLink={this._insertLink}
+            setTextColor={this._setTextColor}
+            active={this.state.activeEditorItems}
+            undo={this._undo}
+            redo={this._redo}
+          />
+        }
+        <KeyboardSpacer />
       </View>
     )
   }
 
-  _onEditorLoaded = () => {
+  // EDITOR EVENTS
+
+  _onLoad = () => {
     NativeModules.WebViewHacker.removeInputAccessoryView()
     NativeModules.WebViewHacker.setKeyboardDisplayRequiresUserAction(false)
   }
 
-  setBold () { this.refs.editor.setBold() }
-  setItalic () { this.refs.editor.setItalic() }
-  setUnorderedList () { this.refs.editor.setUnorderedList() }
-  setOrderedList () { this.refs.editor.setOrderedList() }
-  insertLink () { this.refs.editor.insertLink() }
-  setTextColor (color: string) { this.refs.editor.setTextColor(color) }
-  blurEditor () { this.refs.editor.blurEditor() }
-  undo () { this.refs.editor.undo() }
-  redo () { this.refs.editor.redo() }
+  _onInputChange = (description: string) => {
+    this.setState({ description })
+  }
+
+  _onEditorItemsChanged = (activeEditorItems: string[]) => {
+    this.setState({ activeEditorItems })
+  }
+
+  _onFocus = () => {
+    this.setState({ editorFocused: true })
+  }
+
+  _onBlur = () => {
+    this.setState({ editorFocused: false })
+  }
+
+  // TOOLBAR EVENTS
+
+  _setBold = () => {
+    this.editor.setBold()
+  }
+  _setItalic = () => { this.editor.setItalic() }
+  _setUnorderedList = () => { this.editor.setUnorderedList() }
+  _setOrderedList = () => { this.editor.setOrderedList() }
+  _insertLink = () => { this.editor.insertLink() }
+  _setTextColor = (color: string) => { this.editor.setTextColor(color) }
+  _blurEditor = () => { this.editor.blurEditor() }
+  _undo = () => { this.editor.undo() }
+  _redo = () => { this.editor.redo() }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-  },
-  editor: {
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 })
 
@@ -91,5 +138,5 @@ export function mapStateToProps (state: AppState, ownProps: OwnProps): State {
   }
 }
 
-let Connected = connect(mapStateToProps, {}, null, { withRef: true })(AssignmentDescription)
+let Connected = connect(mapStateToProps, Actions, null, { withRef: true })(AssignmentDescription)
 export default (Connected: any)
