@@ -6,14 +6,10 @@
 import React, { Component, Element } from 'react'
 import {
   View,
-  Image,
-  TouchableHighlight,
-  StyleSheet,
 } from 'react-native'
 
 import Images from '../../../../images'
-import DisclosureIndicator from '../../../../common/components/DisclosureIndicator'
-import { Text } from '../../../../common/text'
+import Row from '../../../../common/components/Row'
 
 type Props = {
   tab: Tab,
@@ -23,10 +19,6 @@ type Props = {
 
 export default class CourseDetails extends Component<any, Props, any> {
 
-  imageForTab (tab: Tab): ?any {
-    return Images.course[tab.id]
-  }
-
   onPress = () => {
     const tab = this.props.tab
     this.props.onPress(tab)
@@ -34,51 +26,15 @@ export default class CourseDetails extends Component<any, Props, any> {
 
   render (): Element<View> {
     const tab = this.props.tab
-    return (
-        <View style={styles.tab} key={tab.id}>
-          <TouchableHighlight style={styles.tabTouchableHighlight} onPress={this.onPress} testID={`courses-details.tab-touchable-row-${tab.id}`}>
-            <View style={styles.tabInnerContainer}>
-              <Image style={[styles.tabImage, { tintColor: this.props.courseColor }]} source={this.imageForTab(tab)} />
-              <Text style={styles.tabLabel}>{tab.label}</Text>
-              <View style={styles.disclosureIndicatorContainer}>
-                <DisclosureIndicator />
-              </View>
-            </View>
-          </TouchableHighlight>
-        </View>
-    )
+    return (<Row
+                title={tab.label}
+                image={Images.course[tab.id]}
+                imageTint={this.props.courseColor}
+                imageSize={{ height: 20, width: 21 }}
+                onPress={this.onPress}
+                disclosureIndicator={true}
+                height={44}
+                border={'bottom'}
+                testID={`courses-details.tab-touchable-row-${tab.id}`} />)
   }
 }
-
-const styles = StyleSheet.create({
-  tab: {
-    flex: 1,
-    height: 44,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgrey',
-  },
-  tabTouchableHighlight: {
-    flex: 1,
-  },
-  tabLabel: {
-    fontWeight: '500',
-  },
-  tabImage: {
-    height: 20,
-    width: 21,
-    resizeMode: 'contain',
-    marginRight: 6,
-  },
-  tabInnerContainer: {
-    flex: 1,
-    padding: 8,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  disclosureIndicatorContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-})

@@ -254,52 +254,61 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      <View
+      <TouchableHighlight
+        onPress={[Function]}
         style={
-          Object {
-            "borderBottomColor": "lightgrey",
-            "borderBottomWidth": 0.5,
-            "flex": 1,
-            "height": 44,
-          }
+          Array [
+            Object {
+              "height": 44,
+            },
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
         }
+        testID="courses-details.tab-touchable-row-assignments"
       >
-        <TouchableHighlight
-          onPress={[Function]}
+        <View
           style={
             Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
               "flex": 1,
+              "flexDirection": "row",
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
             }
           }
-          testID="courses-details.tab-touchable-row-assignments"
         >
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "marginRight": 8,
+                  "resizeMode": "contain",
+                },
+                Object {
+                  "height": 20,
+                  "tintColor": undefined,
+                  "width": 21,
+                },
+              ]
+            }
+          />
           <View
             style={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
                 "flex": 1,
-                "flexDirection": "row",
-                "padding": 8,
+                "flexDirection": "column",
+                "justifyContent": "center",
               }
             }
           >
-            <Image
-              source={1}
-              style={
-                Array [
-                  Object {
-                    "height": 20,
-                    "marginRight": 6,
-                    "resizeMode": "contain",
-                    "width": 21,
-                  },
-                  Object {
-                    "tintColor": undefined,
-                  },
-                ]
-              }
-            />
             <Text
               accessible={true}
               allowFontScaling={true}
@@ -314,48 +323,48 @@ exports[`renders correctly 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "fontWeight": "500",
+                    "fontWeight": "600",
                   },
                   Object {
-                    "fontFamily": ".SFUIDisplay-medium",
+                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
             >
               Home
             </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
             <View
               style={
                 Object {
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
+                  "alignSelf": "center",
+                  "backgroundColor": "transparent",
+                  "borderColor": "#c7c7cc",
+                  "borderRightWidth": 2,
+                  "borderTopWidth": 2,
+                  "height": 10,
+                  "marginLeft": 7,
+                  "transform": Array [
+                    Object {
+                      "rotate": "45deg",
+                    },
+                  ],
+                  "width": 10,
                 }
               }
-            >
-              <View
-                style={
-                  Object {
-                    "alignSelf": "center",
-                    "backgroundColor": "transparent",
-                    "borderColor": "#c7c7cc",
-                    "borderRightWidth": 2,
-                    "borderTopWidth": 2,
-                    "height": 10,
-                    "marginLeft": 7,
-                    "transform": Array [
-                      Object {
-                        "rotate": "45deg",
-                      },
-                    ],
-                    "width": 10,
-                  }
-                }
-              />
-            </View>
+            />
           </View>
-        </TouchableHighlight>
-      </View>
+        </View>
+      </TouchableHighlight>
     </View>
   </View>
 </RCTScrollView>
@@ -841,52 +850,61 @@ exports[`renders with empty image url 1`] = `
         }
       }
     >
-      <View
+      <TouchableHighlight
+        onPress={[Function]}
         style={
-          Object {
-            "borderBottomColor": "lightgrey",
-            "borderBottomWidth": 0.5,
-            "flex": 1,
-            "height": 44,
-          }
+          Array [
+            Object {
+              "height": 44,
+            },
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
         }
+        testID="courses-details.tab-touchable-row-assignments"
       >
-        <TouchableHighlight
-          onPress={[Function]}
+        <View
           style={
             Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
               "flex": 1,
+              "flexDirection": "row",
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
             }
           }
-          testID="courses-details.tab-touchable-row-assignments"
         >
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "marginRight": 8,
+                  "resizeMode": "contain",
+                },
+                Object {
+                  "height": 20,
+                  "tintColor": undefined,
+                  "width": 21,
+                },
+              ]
+            }
+          />
           <View
             style={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
                 "flex": 1,
-                "flexDirection": "row",
-                "padding": 8,
+                "flexDirection": "column",
+                "justifyContent": "center",
               }
             }
           >
-            <Image
-              source={1}
-              style={
-                Array [
-                  Object {
-                    "height": 20,
-                    "marginRight": 6,
-                    "resizeMode": "contain",
-                    "width": 21,
-                  },
-                  Object {
-                    "tintColor": undefined,
-                  },
-                ]
-              }
-            />
             <Text
               accessible={true}
               allowFontScaling={true}
@@ -901,48 +919,48 @@ exports[`renders with empty image url 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "fontWeight": "500",
+                    "fontWeight": "600",
                   },
                   Object {
-                    "fontFamily": ".SFUIDisplay-medium",
+                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
             >
               Home
             </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
             <View
               style={
                 Object {
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
+                  "alignSelf": "center",
+                  "backgroundColor": "transparent",
+                  "borderColor": "#c7c7cc",
+                  "borderRightWidth": 2,
+                  "borderTopWidth": 2,
+                  "height": 10,
+                  "marginLeft": 7,
+                  "transform": Array [
+                    Object {
+                      "rotate": "45deg",
+                    },
+                  ],
+                  "width": 10,
                 }
               }
-            >
-              <View
-                style={
-                  Object {
-                    "alignSelf": "center",
-                    "backgroundColor": "transparent",
-                    "borderColor": "#c7c7cc",
-                    "borderRightWidth": 2,
-                    "borderTopWidth": 2,
-                    "height": 10,
-                    "marginLeft": 7,
-                    "transform": Array [
-                      Object {
-                        "rotate": "45deg",
-                      },
-                    ],
-                    "width": 10,
-                  }
-                }
-              />
-            </View>
+            />
           </View>
-        </TouchableHighlight>
-      </View>
+        </View>
+      </TouchableHighlight>
     </View>
   </View>
 </RCTScrollView>
@@ -1193,52 +1211,61 @@ exports[`renders with image url 1`] = `
         }
       }
     >
-      <View
+      <TouchableHighlight
+        onPress={[Function]}
         style={
-          Object {
-            "borderBottomColor": "lightgrey",
-            "borderBottomWidth": 0.5,
-            "flex": 1,
-            "height": 44,
-          }
+          Array [
+            Object {
+              "height": 44,
+            },
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
         }
+        testID="courses-details.tab-touchable-row-assignments"
       >
-        <TouchableHighlight
-          onPress={[Function]}
+        <View
           style={
             Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
               "flex": 1,
+              "flexDirection": "row",
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
             }
           }
-          testID="courses-details.tab-touchable-row-assignments"
         >
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "marginRight": 8,
+                  "resizeMode": "contain",
+                },
+                Object {
+                  "height": 20,
+                  "tintColor": undefined,
+                  "width": 21,
+                },
+              ]
+            }
+          />
           <View
             style={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
                 "flex": 1,
-                "flexDirection": "row",
-                "padding": 8,
+                "flexDirection": "column",
+                "justifyContent": "center",
               }
             }
           >
-            <Image
-              source={1}
-              style={
-                Array [
-                  Object {
-                    "height": 20,
-                    "marginRight": 6,
-                    "resizeMode": "contain",
-                    "width": 21,
-                  },
-                  Object {
-                    "tintColor": undefined,
-                  },
-                ]
-              }
-            />
             <Text
               accessible={true}
               allowFontScaling={true}
@@ -1253,48 +1280,48 @@ exports[`renders with image url 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "fontWeight": "500",
+                    "fontWeight": "600",
                   },
                   Object {
-                    "fontFamily": ".SFUIDisplay-medium",
+                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
             >
               Home
             </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
             <View
               style={
                 Object {
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
+                  "alignSelf": "center",
+                  "backgroundColor": "transparent",
+                  "borderColor": "#c7c7cc",
+                  "borderRightWidth": 2,
+                  "borderTopWidth": 2,
+                  "height": 10,
+                  "marginLeft": 7,
+                  "transform": Array [
+                    Object {
+                      "rotate": "45deg",
+                    },
+                  ],
+                  "width": 10,
                 }
               }
-            >
-              <View
-                style={
-                  Object {
-                    "alignSelf": "center",
-                    "backgroundColor": "transparent",
-                    "borderColor": "#c7c7cc",
-                    "borderRightWidth": 2,
-                    "borderTopWidth": 2,
-                    "height": 10,
-                    "marginLeft": 7,
-                    "transform": Array [
-                      Object {
-                        "rotate": "45deg",
-                      },
-                    ],
-                    "width": 10,
-                  }
-                }
-              />
-            </View>
+            />
           </View>
-        </TouchableHighlight>
-      </View>
+        </View>
+      </TouchableHighlight>
     </View>
   </View>
 </RCTScrollView>
@@ -1531,52 +1558,61 @@ exports[`renders without image url 1`] = `
         }
       }
     >
-      <View
+      <TouchableHighlight
+        onPress={[Function]}
         style={
-          Object {
-            "borderBottomColor": "lightgrey",
-            "borderBottomWidth": 0.5,
-            "flex": 1,
-            "height": 44,
-          }
+          Array [
+            Object {
+              "height": 44,
+            },
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
         }
+        testID="courses-details.tab-touchable-row-assignments"
       >
-        <TouchableHighlight
-          onPress={[Function]}
+        <View
           style={
             Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
               "flex": 1,
+              "flexDirection": "row",
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
             }
           }
-          testID="courses-details.tab-touchable-row-assignments"
         >
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "marginRight": 8,
+                  "resizeMode": "contain",
+                },
+                Object {
+                  "height": 20,
+                  "tintColor": undefined,
+                  "width": 21,
+                },
+              ]
+            }
+          />
           <View
             style={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
                 "flex": 1,
-                "flexDirection": "row",
-                "padding": 8,
+                "flexDirection": "column",
+                "justifyContent": "center",
               }
             }
           >
-            <Image
-              source={1}
-              style={
-                Array [
-                  Object {
-                    "height": 20,
-                    "marginRight": 6,
-                    "resizeMode": "contain",
-                    "width": 21,
-                  },
-                  Object {
-                    "tintColor": undefined,
-                  },
-                ]
-              }
-            />
             <Text
               accessible={true}
               allowFontScaling={true}
@@ -1591,48 +1627,48 @@ exports[`renders without image url 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "fontWeight": "500",
+                    "fontWeight": "600",
                   },
                   Object {
-                    "fontFamily": ".SFUIDisplay-medium",
+                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
             >
               Home
             </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
             <View
               style={
                 Object {
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
+                  "alignSelf": "center",
+                  "backgroundColor": "transparent",
+                  "borderColor": "#c7c7cc",
+                  "borderRightWidth": 2,
+                  "borderTopWidth": 2,
+                  "height": 10,
+                  "marginLeft": 7,
+                  "transform": Array [
+                    Object {
+                      "rotate": "45deg",
+                    },
+                  ],
+                  "width": 10,
                 }
               }
-            >
-              <View
-                style={
-                  Object {
-                    "alignSelf": "center",
-                    "backgroundColor": "transparent",
-                    "borderColor": "#c7c7cc",
-                    "borderRightWidth": 2,
-                    "borderTopWidth": 2,
-                    "height": 10,
-                    "marginLeft": 7,
-                    "transform": Array [
-                      Object {
-                        "rotate": "45deg",
-                      },
-                    ],
-                    "width": 10,
-                  }
-                }
-              />
-            </View>
+            />
           </View>
-        </TouchableHighlight>
-      </View>
+        </View>
+      </TouchableHighlight>
     </View>
   </View>
 </RCTScrollView>
