@@ -211,6 +211,7 @@ exports[`render 1`] = `
         }
       >
         <TouchableHighlight
+          accessible={false}
           onLayout={[Function]}
           onPress={[Function]}
           style={
@@ -267,6 +268,9 @@ exports[`render 1`] = `
                 }
               />
               <View
+                accessibilityLabel="Biology 101"
+                accessibilityTraits="button"
+                accessible={true}
                 style={
                   Object {
                     "backgroundColor": "#27B9CD",
@@ -280,7 +284,9 @@ exports[`render 1`] = `
                 }
               />
               <TouchableHighlight
-                accessibilityLabel="Open user course preferences"
+                accessibilityLabel="Open Biology 101 user preferences"
+                accessibilityTraits="button"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -309,6 +315,7 @@ exports[`render 1`] = `
               </TouchableHighlight>
             </View>
             <View
+              accessible={false}
               style={
                 Object {
                   "flex": 1,
@@ -317,7 +324,7 @@ exports[`render 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={2}
@@ -344,7 +351,7 @@ exports[`render 1`] = `
                 Biology 101
               </Text>
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={1}
@@ -375,6 +382,7 @@ exports[`render 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
+          accessible={false}
           onLayout={[Function]}
           onPress={[Function]}
           style={
@@ -431,6 +439,9 @@ exports[`render 1`] = `
                 }
               />
               <View
+                accessibilityLabel="American Literature Psysicks foobar hello world 401"
+                accessibilityTraits="button"
+                accessible={true}
                 style={
                   Object {
                     "backgroundColor": "#8F3E97",
@@ -444,7 +455,9 @@ exports[`render 1`] = `
                 }
               />
               <TouchableHighlight
-                accessibilityLabel="Open user course preferences"
+                accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
+                accessibilityTraits="button"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -473,6 +486,7 @@ exports[`render 1`] = `
               </TouchableHighlight>
             </View>
             <View
+              accessible={false}
               style={
                 Object {
                   "flex": 1,
@@ -481,7 +495,7 @@ exports[`render 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={2}
@@ -508,7 +522,7 @@ exports[`render 1`] = `
                 American Literature Psysicks foobar hello world 401
               </Text>
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={1}
@@ -539,6 +553,7 @@ exports[`render 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
+          accessible={false}
           onLayout={[Function]}
           onPress={[Function]}
           style={
@@ -595,6 +610,9 @@ exports[`render 1`] = `
                 }
               />
               <View
+                accessibilityLabel="Foobar 102"
+                accessibilityTraits="button"
+                accessible={true}
                 style={
                   Object {
                     "backgroundColor": "#8F3E99",
@@ -608,7 +626,9 @@ exports[`render 1`] = `
                 }
               />
               <TouchableHighlight
-                accessibilityLabel="Open user course preferences"
+                accessibilityLabel="Open Foobar 102 user preferences"
+                accessibilityTraits="button"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -637,6 +657,7 @@ exports[`render 1`] = `
               </TouchableHighlight>
             </View>
             <View
+              accessible={false}
               style={
                 Object {
                   "flex": 1,
@@ -645,7 +666,7 @@ exports[`render 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={2}
@@ -672,7 +693,7 @@ exports[`render 1`] = `
                 Foobar 102
               </Text>
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={1}

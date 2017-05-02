@@ -217,6 +217,9 @@
     "message": "Edit Courses",
     "description": "The title of the screen enabling teachers to favorite and unfavorite their courses"
   },
+  "edit_description_1206e0a8": {
+    "message": "Edit Description"
+  },
   "everyone_854554dd": {
     "message": "Everyone"
   },
@@ -371,8 +374,8 @@
     "message": "online url",
     "description": "assignment submission type"
   },
-  "open_user_course_preferences_32dd14a7": {
-    "message": "Open user course preferences",
+  "open_coursename_user_preferences_430b877e": {
+    "message": "Open { courseName } user preferences",
     "description": "Accessibility label on icon button to open course user preferences"
   },
   "out_of_count_fc1cd44d": {

@@ -70,29 +70,41 @@ export default class CourseCard extends Component {
       height: this.state.height,
     }
     return (
-       <TouchableHighlight onLayout={this.onLayout} style={[styles.card, style]} testID={course.course_code} onPress={this.onPress}>
+      <TouchableHighlight
+        onLayout={this.onLayout}
+        style={[styles.card, style]}
+        testID={course.course_code}
+        onPress={this.onPress}
+        accessible={false}
+      >
         <View style={styles.cardContainer}>
             <View style={styles.imageWrapper}>
               {Boolean(course.image_download_url) &&
                 <Image source={{ uri: course.image_download_url }} style={styles.image} />
               }
-              <View style={this.createImageStyles()} />
+              <View style={this.createImageStyles()}
+                accessible={true}
+                accessibilityTraits='button'
+                accessibilityLabel={course.name}
+              />
               <TouchableHighlight
                 style={styles.kabobButton}
                 onPress={this.onCoursePreferencesPressed}
+                accessibilityTraits='button'
+                accessible={true}
                 accessibilityLabel={i18n({
-                  default: 'Open user course preferences',
+                  default: 'Open {courseName} user preferences',
                   description: 'Accessibility label on icon button to open course user preferences',
-                })}
+                }, { courseName: course.name })}
                 underlayColor='#ffffff00'
                 testID={`courseCard.kabob_${course.id}`}
               >
                 <Image style={styles.kabob} source={Images.kabob} />
               </TouchableHighlight>
             </View>
-            <View style={styles.titleWrapper}>
-              <Text numberOfLines={2} style={this.createTitleStyles()}>{course.name}</Text>
-              <Text numberOfLines={1} style={styles.code}>{course.course_code}</Text>
+            <View style={styles.titleWrapper} accessible={false}>
+              <Text numberOfLines={2} style={this.createTitleStyles()} accessible={false}>{course.name}</Text>
+              <Text numberOfLines={1} style={styles.code} accessible={false}>{course.course_code}</Text>
             </View>
           </View>
         </TouchableHighlight>

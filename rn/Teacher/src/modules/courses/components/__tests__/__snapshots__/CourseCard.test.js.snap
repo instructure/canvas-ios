@@ -2,6 +2,7 @@
 
 exports[`renders 1`] = `
 <TouchableHighlight
+  accessible={false}
   onLayout={[Function]}
   onPress={[Function]}
   style={
@@ -56,6 +57,9 @@ exports[`renders 1`] = `
         }
       />
       <View
+        accessibilityLabel="Learn React Native"
+        accessibilityTraits="button"
+        accessible={true}
         style={
           Object {
             "backgroundColor": "#333",
@@ -69,7 +73,9 @@ exports[`renders 1`] = `
         }
       />
       <TouchableHighlight
-        accessibilityLabel="Open user course preferences"
+        accessibilityLabel="Open Learn React Native user preferences"
+        accessibilityTraits="button"
+        accessible={true}
         onPress={[Function]}
         style={
           Object {
@@ -98,6 +104,7 @@ exports[`renders 1`] = `
       </TouchableHighlight>
     </View>
     <View
+      accessible={false}
       style={
         Object {
           "flex": 1,
@@ -106,7 +113,7 @@ exports[`renders 1`] = `
       }
     >
       <Text
-        accessible={true}
+        accessible={false}
         allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
@@ -133,7 +140,7 @@ exports[`renders 1`] = `
         Learn React Native
       </Text>
       <Text
-        accessible={true}
+        accessible={false}
         allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={1}
@@ -167,6 +174,7 @@ exports[`renders 1`] = `
 
 exports[`renders with empty image url 1`] = `
 <TouchableHighlight
+  accessible={false}
   onLayout={[Function]}
   onPress={[Function]}
   style={
@@ -209,6 +217,9 @@ exports[`renders with empty image url 1`] = `
       }
     >
       <View
+        accessibilityLabel="Learn React Native"
+        accessibilityTraits="button"
+        accessible={true}
         style={
           Object {
             "backgroundColor": "#333",
@@ -222,7 +233,9 @@ exports[`renders with empty image url 1`] = `
         }
       />
       <TouchableHighlight
-        accessibilityLabel="Open user course preferences"
+        accessibilityLabel="Open Learn React Native user preferences"
+        accessibilityTraits="button"
+        accessible={true}
         onPress={[Function]}
         style={
           Object {
@@ -251,6 +264,7 @@ exports[`renders with empty image url 1`] = `
       </TouchableHighlight>
     </View>
     <View
+      accessible={false}
       style={
         Object {
           "flex": 1,
@@ -259,7 +273,7 @@ exports[`renders with empty image url 1`] = `
       }
     >
       <Text
-        accessible={true}
+        accessible={false}
         allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
@@ -286,7 +300,7 @@ exports[`renders with empty image url 1`] = `
         Learn React Native
       </Text>
       <Text
-        accessible={true}
+        accessible={false}
         allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={1}
@@ -320,6 +334,7 @@ exports[`renders with empty image url 1`] = `
 
 exports[`renders with image url 1`] = `
 <TouchableHighlight
+  accessible={false}
   onLayout={[Function]}
   onPress={[Function]}
   style={
@@ -374,6 +389,9 @@ exports[`renders with image url 1`] = `
         }
       />
       <View
+        accessibilityLabel="Learn React Native"
+        accessibilityTraits="button"
+        accessible={true}
         style={
           Object {
             "backgroundColor": "#333",
@@ -387,7 +405,9 @@ exports[`renders with image url 1`] = `
         }
       />
       <TouchableHighlight
-        accessibilityLabel="Open user course preferences"
+        accessibilityLabel="Open Learn React Native user preferences"
+        accessibilityTraits="button"
+        accessible={true}
         onPress={[Function]}
         style={
           Object {
@@ -416,6 +436,7 @@ exports[`renders with image url 1`] = `
       </TouchableHighlight>
     </View>
     <View
+      accessible={false}
       style={
         Object {
           "flex": 1,
@@ -424,7 +445,7 @@ exports[`renders with image url 1`] = `
       }
     >
       <Text
-        accessible={true}
+        accessible={false}
         allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
@@ -451,7 +472,7 @@ exports[`renders with image url 1`] = `
         Learn React Native
       </Text>
       <Text
-        accessible={true}
+        accessible={false}
         allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={1}
@@ -485,6 +506,7 @@ exports[`renders with image url 1`] = `
 
 exports[`renders without image url 1`] = `
 <TouchableHighlight
+  accessible={false}
   onLayout={[Function]}
   onPress={[Function]}
   style={
@@ -527,6 +549,9 @@ exports[`renders without image url 1`] = `
       }
     >
       <View
+        accessibilityLabel="Learn React Native"
+        accessibilityTraits="button"
+        accessible={true}
         style={
           Object {
             "backgroundColor": "#333",
@@ -540,7 +565,9 @@ exports[`renders without image url 1`] = `
         }
       />
       <TouchableHighlight
-        accessibilityLabel="Open user course preferences"
+        accessibilityLabel="Open Learn React Native user preferences"
+        accessibilityTraits="button"
+        accessible={true}
         onPress={[Function]}
         style={
           Object {
@@ -569,6 +596,7 @@ exports[`renders without image url 1`] = `
       </TouchableHighlight>
     </View>
     <View
+      accessible={false}
       style={
         Object {
           "flex": 1,
@@ -577,7 +605,7 @@ exports[`renders without image url 1`] = `
       }
     >
       <Text
-        accessible={true}
+        accessible={false}
         allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
@@ -604,7 +632,7 @@ exports[`renders without image url 1`] = `
         Learn React Native
       </Text>
       <Text
-        accessible={true}
+        accessible={false}
         allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={1}
