@@ -131,9 +131,11 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   }
 
   renderToggle (fieldName: string, testID: string, styleParam: Object = {}): React.Element<*> {
+    const value = this.defaultValueForBooleanInput(fieldName)
     return (
       <Switch style={styleParam}
-              value={ this.defaultValueForBooleanInput(fieldName) }
+              accessible={true}
+              value={value}
               onValueChange={ value => this.updateFromInput(fieldName, value) }
               testID={testID}
               tintColor={ color.primaryBrandColor }
@@ -219,7 +221,9 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
           {/* Points */}
           <EditSectionHeader title={sectionDetails} />
           <View style={[style.row, style.twoColumnRow, style.topRow]}>
-            { this.renderLeftColumnLabel(pointsPlaceHolder) }
+            <View accessible={true} accessibilityLabel={pointsPlaceHolder} style={{ flex: 0, height: 50, justifyContent: 'center' }}>
+              <Text style={[style.twoColumnRowLeftText, { flex: 0 }]}>{pointsPlaceHolder}</Text>
+            </View>
             { this.renderTextInput('points_possible', pointsPlaceHolder, 'pointsInput', style.points) }
           </View>
 
@@ -233,16 +237,12 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
           {this.renderDataMapPicker()}
 
           {/* Publish */}
-          <TouchableHighlight
-            accessibilityTraits={'button'}
-            accessible={true}
-            accessibilityLabel={ this.defaultValueForBooleanInput('published') ? i18n('Published') : i18n('Not Published') }
-            onPress={ () => this.updateFromInput('published', !this.state.assignment.published) }>
-            <View style={[style.row, style.twoColumnRow, style.bottomRow]}>
-              { this.renderLeftColumnLabel(publish) }
-              { this.renderToggle('published', 'published') }
+          <View style={[style.row, style.twoColumnRow, style.bottomRow]}>
+            <View accessible={true} accessibilityLabel={i18n('publish.')} style={{ justifyContent: 'center' }} >
+              <Text style={[style.twoColumnRowLeftText, { flex: 0 }]}>{publish}</Text>
             </View>
-          </TouchableHighlight>
+            { this.renderToggle('published', 'published') }
+          </View>
 
           {/* Due Dates */}
           <AssignmentDatesEditor assignment={this.props.assignmentDetails} ref={c => { this.datesEditor = c }} navigator={this.props.navigator} />

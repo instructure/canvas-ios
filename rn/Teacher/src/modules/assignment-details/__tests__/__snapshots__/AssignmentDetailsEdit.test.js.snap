@@ -436,31 +436,48 @@ exports[`error occurs when done pressed 1`] = `
           ]
         }
       >
-        <Text
+        <View
+          accessibilityLabel="Points"
           accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "flex": 1,
-                "fontWeight": "600",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
+            Object {
+              "flex": 0,
+              "height": 50,
+              "justifyContent": "center",
+            }
           }
         >
-          Points
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "flex": 1,
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "flex": 0,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Points
+          </Text>
+        </View>
         <TextInput
           blurOnSubmit={true}
           onChangeText={[Function]}
@@ -566,36 +583,39 @@ exports[`error occurs when done pressed 1`] = `
         </View>
       </TouchableHighlight>
       <View />
-      <TouchableHighlight
-        accessibilityLabel="Not Published"
-        accessibilityTraits="button"
-        accessible={true}
-        onPress={[Function]}
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 54,
+              "justifyContent": "space-between",
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
+        }
       >
         <View
+          accessibilityLabel="publish."
+          accessible={true}
           style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "paddingBottom": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 8,
-              },
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
+            Object {
+              "justifyContent": "center",
+            }
           }
         >
           <Text
@@ -611,10 +631,15 @@ exports[`error occurs when done pressed 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "flex": 1,
-                  "fontWeight": "600",
-                },
+                Array [
+                  Object {
+                    "flex": 1,
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "flex": 0,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -623,28 +648,29 @@ exports[`error occurs when done pressed 1`] = `
           >
             Publish
           </Text>
-          <RCTSwitch
-            disabled={false}
-            onChange={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            onTintColor="#ff0ee8"
-            onValueChange={[Function]}
-            style={
-              Array [
-                Object {
-                  "height": 31,
-                  "width": 51,
-                },
-                Object {},
-              ]
-            }
-            testID="published"
-            tintColor="#ff0ee8"
-            value={false}
-          />
         </View>
-      </TouchableHighlight>
+        <RCTSwitch
+          accessible={true}
+          disabled={false}
+          onChange={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onTintColor="#ff0ee8"
+          onValueChange={[Function]}
+          style={
+            Array [
+              Object {
+                "height": 31,
+                "width": 51,
+              },
+              Object {},
+            ]
+          }
+          testID="published"
+          tintColor="#ff0ee8"
+          value={false}
+        />
+      </View>
       <View
         style={
           Object {
@@ -1173,31 +1199,48 @@ exports[`modal saving is shown on assignment update 1`] = `
           ]
         }
       >
-        <Text
+        <View
+          accessibilityLabel="Points"
           accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "flex": 1,
-                "fontWeight": "600",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
+            Object {
+              "flex": 0,
+              "height": 50,
+              "justifyContent": "center",
+            }
           }
         >
-          Points
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "flex": 1,
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "flex": 0,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Points
+          </Text>
+        </View>
         <TextInput
           blurOnSubmit={true}
           onChangeText={[Function]}
@@ -1303,36 +1346,39 @@ exports[`modal saving is shown on assignment update 1`] = `
         </View>
       </TouchableHighlight>
       <View />
-      <TouchableHighlight
-        accessibilityLabel="Not Published"
-        accessibilityTraits="button"
-        accessible={true}
-        onPress={[Function]}
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 54,
+              "justifyContent": "space-between",
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
+        }
       >
         <View
+          accessibilityLabel="publish."
+          accessible={true}
           style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "paddingBottom": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 8,
-              },
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
+            Object {
+              "justifyContent": "center",
+            }
           }
         >
           <Text
@@ -1348,10 +1394,15 @@ exports[`modal saving is shown on assignment update 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "flex": 1,
-                  "fontWeight": "600",
-                },
+                Array [
+                  Object {
+                    "flex": 1,
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "flex": 0,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -1360,28 +1411,29 @@ exports[`modal saving is shown on assignment update 1`] = `
           >
             Publish
           </Text>
-          <RCTSwitch
-            disabled={false}
-            onChange={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            onTintColor="#ff0ee8"
-            onValueChange={[Function]}
-            style={
-              Array [
-                Object {
-                  "height": 31,
-                  "width": 51,
-                },
-                Object {},
-              ]
-            }
-            testID="published"
-            tintColor="#ff0ee8"
-            value={false}
-          />
         </View>
-      </TouchableHighlight>
+        <RCTSwitch
+          accessible={true}
+          disabled={false}
+          onChange={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onTintColor="#ff0ee8"
+          onValueChange={[Function]}
+          style={
+            Array [
+              Object {
+                "height": 31,
+                "width": 51,
+              },
+              Object {},
+            ]
+          }
+          testID="published"
+          tintColor="#ff0ee8"
+          value={false}
+        />
+      </View>
       <View
         style={
           Object {
@@ -1910,31 +1962,48 @@ exports[`renders 1`] = `
           ]
         }
       >
-        <Text
+        <View
+          accessibilityLabel="Points"
           accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "flex": 1,
-                "fontWeight": "600",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
+            Object {
+              "flex": 0,
+              "height": 50,
+              "justifyContent": "center",
+            }
           }
         >
-          Points
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "flex": 1,
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "flex": 0,
+                  },
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Points
+          </Text>
+        </View>
         <TextInput
           blurOnSubmit={true}
           onChangeText={[Function]}
@@ -2040,36 +2109,39 @@ exports[`renders 1`] = `
         </View>
       </TouchableHighlight>
       <View />
-      <TouchableHighlight
-        accessibilityLabel="Not Published"
-        accessibilityTraits="button"
-        accessible={true}
-        onPress={[Function]}
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 54,
+              "justifyContent": "space-between",
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
+        }
       >
         <View
+          accessibilityLabel="publish."
+          accessible={true}
           style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "paddingBottom": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 8,
-              },
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
+            Object {
+              "justifyContent": "center",
+            }
           }
         >
           <Text
@@ -2085,10 +2157,15 @@ exports[`renders 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "flex": 1,
-                  "fontWeight": "600",
-                },
+                Array [
+                  Object {
+                    "flex": 1,
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "flex": 0,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -2097,28 +2174,29 @@ exports[`renders 1`] = `
           >
             Publish
           </Text>
-          <RCTSwitch
-            disabled={false}
-            onChange={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            onTintColor="#ff0ee8"
-            onValueChange={[Function]}
-            style={
-              Array [
-                Object {
-                  "height": 31,
-                  "width": 51,
-                },
-                Object {},
-              ]
-            }
-            testID="published"
-            tintColor="#ff0ee8"
-            value={false}
-          />
         </View>
-      </TouchableHighlight>
+        <RCTSwitch
+          accessible={true}
+          disabled={false}
+          onChange={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onTintColor="#ff0ee8"
+          onValueChange={[Function]}
+          style={
+            Array [
+              Object {
+                "height": 31,
+                "width": 51,
+              },
+              Object {},
+            ]
+          }
+          testID="published"
+          tintColor="#ff0ee8"
+          value={false}
+        />
+      </View>
       <View
         style={
           Object {

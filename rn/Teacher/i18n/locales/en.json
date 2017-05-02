@@ -402,6 +402,9 @@
     "message": "pts",
     "description": "Assignment Details points for given assignment"
   },
+  "publish_49243817": {
+    "message": "publish."
+  },
   "publish_5211dca3": {
     "message": "Publish",
     "description": "Assignment details publish toggle"
