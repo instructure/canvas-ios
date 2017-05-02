@@ -49,6 +49,7 @@ exports[`renders circle toggle correctly 1`] = `
           "height": 48,
           "justifyContent": "center",
           "minWidth": 48,
+          "paddingHorizontal": 12,
         },
         undefined,
       ]
@@ -100,6 +101,7 @@ exports[`renders circle toggle when on correctly 1`] = `
           "height": 48,
           "justifyContent": "center",
           "minWidth": 48,
+          "paddingHorizontal": 12,
         },
         undefined,
         Object {
@@ -154,6 +156,7 @@ exports[`renders circle toggle with an image 1`] = `
           "height": 48,
           "justifyContent": "center",
           "minWidth": 48,
+          "paddingHorizontal": 12,
         },
         undefined,
       ]

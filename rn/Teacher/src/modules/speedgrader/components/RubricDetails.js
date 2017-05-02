@@ -18,7 +18,7 @@ export class RubricDetails extends Component {
   constructor (props: RubricProps) {
     super(props)
 
-    this.state = { ratings: {} }
+    this.state = { ratings: props.rubricAssessment || {} }
   }
 
   showDescriptionModal = (rubricID: string) => {
@@ -30,14 +30,16 @@ export class RubricDetails extends Component {
     this.setState({
       ratings: {
         ...this.state.ratings,
-        [id]: value,
+        [id]: {
+          points: value,
+        },
       },
     })
   }
 
   getCurrentScore = () => {
     return Object.keys(this.state.ratings)
-      .reduce((sum, key) => sum + this.state.ratings[key], 0)
+      .reduce((sum, key) => sum + (this.state.ratings[key].points || 0), 0)
   }
 
   render () {
@@ -56,7 +58,13 @@ export class RubricDetails extends Component {
             }
           </Text>
           {items.map((rubricItem: Rubric) => (
-            <RubricItem key={rubricItem.id} rubricItem={rubricItem} showDescription={this.showDescriptionModal} changeRating={this.updateScore} />
+            <RubricItem
+              key={rubricItem.id}
+              rubricItem={rubricItem}
+              showDescription={this.showDescriptionModal}
+              changeRating={this.updateScore}
+              grade={this.state.ratings[rubricItem.id]}
+            />
           ))}
         </View>
       )
@@ -77,10 +85,17 @@ const styles = StyleSheet.create({
 
 export function mapStateToProps (state: AppState, ownProps: RubricOwnProps): RubricDataProps {
   let assignment = state.entities.assignments[ownProps.assignmentID].data
+  let submission = state.entities.submissions[ownProps.submissionID]
+  let assessments = null
+
+  if (submission) {
+    assessments = submission.submission.rubric_assessment
+  }
 
   return {
     rubricItems: assignment.rubric,
     rubricSettings: assignment.rubric_settings,
+    rubricAssessment: assessments,
   }
 }
 
@@ -90,15 +105,17 @@ export default (Connected: any)
 type RubricOwnProps = {
   courseID: string,
   assignmentID: string,
+  submissionID: string,
   showModal: Function,
 }
 
 type RubricDataProps = {
   rubricItems: ?Array<Rubric>,
   rubricSettings: ?RubricSettings,
+  rubricAssessment: ?{ [string]: RubricAssessment },
 }
 
 type RubricProps = RubricOwnProps & RubricDataProps
 type RubricState = {
-  ratings: { [string]: number },
+  ratings: { [string]: RubricAssessment },
 }

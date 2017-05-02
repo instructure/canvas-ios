@@ -51,7 +51,7 @@ exports[`Rubric has the correct score 1`] = `
       ]
     }
   >
-    10 out of 100
+    0 out of 100
   </Text>
   <View
     style={
@@ -105,7 +105,7 @@ exports[`Rubric has the correct score 1`] = `
           }
         }
         testID="circle-button"
-        value="3"
+        value={10}
       >
         <View
           style={
@@ -119,6 +119,7 @@ exports[`Rubric has the correct score 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
+                "paddingHorizontal": 12,
               },
               Object {
                 "marginBottom": 8,
@@ -162,7 +163,7 @@ exports[`Rubric has the correct score 1`] = `
           }
         }
         testID="circle-button"
-        value="2"
+        value={5}
       >
         <View
           style={
@@ -176,6 +177,7 @@ exports[`Rubric has the correct score 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
+                "paddingHorizontal": 12,
               },
               Object {
                 "marginBottom": 8,
@@ -219,7 +221,7 @@ exports[`Rubric has the correct score 1`] = `
           }
         }
         testID="circle-button"
-        value="1"
+        value={0}
       >
         <View
           style={
@@ -233,6 +235,7 @@ exports[`Rubric has the correct score 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
+                "paddingHorizontal": 12,
               },
               Object {
                 "marginBottom": 8,
@@ -290,6 +293,7 @@ exports[`Rubric has the correct score 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
+                "paddingHorizontal": 12,
               },
               Object {
                 "marginBottom": 8,
@@ -465,7 +469,7 @@ exports[`Rubric renders a rubric 1`] = `
       ]
     }
   >
-    0 out of 100
+    10 out of 100
   </Text>
   <View
     style={
@@ -519,7 +523,7 @@ exports[`Rubric renders a rubric 1`] = `
           }
         }
         testID="circle-button"
-        value="3"
+        value={10}
       >
         <View
           style={
@@ -533,6 +537,7 @@ exports[`Rubric renders a rubric 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
+                "paddingHorizontal": 12,
               },
               Object {
                 "marginBottom": 8,
@@ -576,7 +581,7 @@ exports[`Rubric renders a rubric 1`] = `
           }
         }
         testID="circle-button"
-        value="2"
+        value={5}
       >
         <View
           style={
@@ -590,6 +595,7 @@ exports[`Rubric renders a rubric 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
+                "paddingHorizontal": 12,
               },
               Object {
                 "marginBottom": 8,
@@ -633,7 +639,7 @@ exports[`Rubric renders a rubric 1`] = `
           }
         }
         testID="circle-button"
-        value="1"
+        value={0}
       >
         <View
           style={
@@ -647,6 +653,7 @@ exports[`Rubric renders a rubric 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
+                "paddingHorizontal": 12,
               },
               Object {
                 "marginBottom": 8,
@@ -704,6 +711,7 @@ exports[`Rubric renders a rubric 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
+                "paddingHorizontal": 12,
               },
               Object {
                 "marginBottom": 8,

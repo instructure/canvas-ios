@@ -5,6 +5,7 @@ import {
   View,
   Image,
   StyleSheet,
+  AlertIOS,
 } from 'react-native'
 import i18n from 'format-message'
 import { Text } from '../../../common/text'
@@ -18,8 +19,10 @@ export default class RubricItem extends Component {
   constructor (props: RubricItemProps) {
     super(props)
 
+    let grade = this.props.grade && this.props.grade.points
+
     this.state = {
-      selectedOption: null,
+      selectedOption: grade,
     }
   }
 
@@ -27,14 +30,22 @@ export default class RubricItem extends Component {
     this.props.showDescription(this.props.rubricItem.id)
   }
 
-  changeSelected = (id: string) => {
-    this.setState({ selectedOption: id })
-    let rating = this.props.rubricItem.ratings.find(rating => rating.id === id) || { points: 0 }
-    this.props.changeRating(this.props.rubricItem.id, rating.points)
+  changeSelected = (value: number) => {
+    this.setState({ selectedOption: value })
+    this.props.changeRating(this.props.rubricItem.id, value)
+  }
+
+  promptCustom = () => {
+    AlertIOS.prompt(
+      i18n('Customize Grade'),
+      null,
+      (value) => this.changeSelected(+value)
+    )
   }
 
   render () {
     let { rubricItem } = this.props
+    let isCustomGrade = rubricItem.ratings.every(({ points }) => points !== this.state.selectedOption) && this.state.selectedOption != null
     return (
       <View style={styles.container}>
         <Text style={styles.description}>{rubricItem.description}</Text>
@@ -43,8 +54,8 @@ export default class RubricItem extends Component {
             <CircleToggle
               key={rating.id}
               style={styles.circle}
-              on={this.state.selectedOption === rating.id}
-              value={rating.id}
+              on={this.state.selectedOption === rating.points}
+              value={rating.points}
               onPress={this.changeSelected}
             >
               {rating.points}
@@ -53,11 +64,14 @@ export default class RubricItem extends Component {
           <CircleToggle
             key='add'
             style={styles.circle}
-            on={false}
-            value=''
-            onPress={this.changeSelected}
+            on={isCustomGrade}
+            value={isCustomGrade ? this.state.selectedOption : ''}
+            onPress={this.promptCustom}
           >
-            <Image source={Images.add} />
+            { isCustomGrade
+              ? this.state.selectedOption
+              : <Image source={Images.add} />
+            }
           </CircleToggle>
         </View>
         <View style={styles.buttons}>
@@ -105,10 +119,11 @@ const styles = StyleSheet.create({
 
 type RubricItemProps = {
   rubricItem: Rubric,
+  grade: RubricAssessment,
   showDescription: (string) => void,
   changeRating: (string, number) => void,
 }
 
 type RubricItemState = {
-  selectedOption: ?string,
+  selectedOption: ?number,
 }

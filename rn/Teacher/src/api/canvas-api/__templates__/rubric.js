@@ -21,3 +21,10 @@ export const rubricSettings: Template<RubricSettings> = template({
   points_possible: 100,
   title: 'A possible item',
 })
+
+export const rubricAssessment: Template<{ [string]: RubricAssessment }> = template({
+  '1': {
+    points: 10,
+    comments: '',
+  },
+})
