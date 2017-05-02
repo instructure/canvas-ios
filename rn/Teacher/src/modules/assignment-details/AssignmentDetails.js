@@ -120,7 +120,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
         { global.V02 &&
           <AssignmentSection
             title={sectionTitleSubmissions}
-            onPress={() => this.viewSubmissions()}
+            onPress={this.viewAllSubmissions}
             showDisclosureIndicator>
             <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
           </AssignmentSection>
@@ -159,6 +159,10 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
   viewDueDateDetails = () => {
     let destination = route(`/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/due_dates`)
     this.props.navigator.push(destination)
+  }
+
+  viewAllSubmissions = () => {
+    this.viewSubmissions()
   }
 
   viewSubmissions = (filterType: ?string) => {

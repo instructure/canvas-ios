@@ -25,3 +25,13 @@ test('Avatar renders without image', () => {
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
+
+test('Avatar renders without default canvas avatar', () => {
+  let tree = renderer.create(
+    <Avatar
+      userName="Lumpy Lumpkin"
+      avatarURL="http://www.fillmurray.com/images/dotted_pic.png"
+    />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})

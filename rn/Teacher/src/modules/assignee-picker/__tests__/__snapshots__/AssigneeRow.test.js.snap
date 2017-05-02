@@ -55,19 +55,30 @@ exports[`render correctly 1`] = `
         }
       }
     >
-      <Image
-        source={
-          Object {
-            "uri": "http://www.fillmurray.com/100/100",
-          }
-        }
+      <View
         style={
           Object {
+            "borderRadius": 20,
             "height": 40,
+            "overflow": "hidden",
             "width": 40,
           }
         }
-      />
+      >
+        <Image
+          source={
+            Object {
+              "uri": "http://www.fillmurray.com/100/100",
+            }
+          }
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
+      </View>
     </View>
     <View
       style={
@@ -179,40 +190,38 @@ exports[`render correctly without image url 1`] = `
     <View
       style={
         Object {
-          "alignItems": "center",
-          "borderColor": "#C7CDD1",
           "borderRadius": 20,
-          "borderWidth": 0.5,
           "height": 40,
-          "justifyContent": "center",
           "marginRight": 16,
           "overflow": "hidden",
           "width": 40,
         }
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
+      <View
         style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {},
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-          ]
+          Object {
+            "alignItems": "center",
+            "borderColor": "#C7CDD1",
+            "borderRadius": 20,
+            "borderWidth": 0.5,
+            "height": 40,
+            "justifyContent": "center",
+            "marginRight": 16,
+            "overflow": "hidden",
+            "width": 40,
+          }
         }
       >
-        BM
-      </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={undefined}
+        >
+          BM
+        </Text>
+      </View>
     </View>
     <View
       style={

@@ -15,12 +15,29 @@ type Props = {
 }
 
 export default class Avatar extends Component<any, Props, any> {
+
+  // Checks for the crappy default profile picture from canvas
+  // If it's one of those things, returns null
+  imageURL = () => {
+    const url = this.props.avatarURL
+    if (!url) return null
+
+    // There are a few different forms that the default picture can take
+    const defaults = ['images/dotted_pic.png', 'images%2Fmessages%2Favatar-50.png', 'images/messages/avatar-group-50.png']
+    if (defaults.filter(d => url.includes(d)).length) {
+      return null
+    }
+
+    return url
+  }
+
   render () {
-    if (this.props.avatarURL) {
+    const url = this.imageURL()
+    if (url) {
       return (
         <View style={styles.imageContainer}>
           <Image
-            source={{ uri: this.props.avatarURL }}
+            source={{ uri: url }}
             style={styles.image}
           />
         </View>

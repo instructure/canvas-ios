@@ -15,6 +15,7 @@ import Images from '../../images'
 import Button from 'react-native-button'
 import colors from '../../common/colors'
 import { Text } from '../../common/text'
+import Avatar from '../../common/components/Avatar'
 
 export type Props = {
   assignee: Assignee,
@@ -26,22 +27,13 @@ export default class AssigneeRow extends Component<any, Props, any> {
 
   renderImage (): any {
     const assignee = this.props.assignee
-    if (!assignee.imageURL) {
-      const altText = assignee.name
-      .split(' ')
-      .map((word) => word[0])
-      .filter((c) => c)
-      .reduce((m, c) => m + c)
-      .substring(0, 4)
-      .toUpperCase()
-      return (<View style={styles.altImage}>
-                <Text style={styles.altImageText}>{altText}</Text>
-              </View>)
-    } else {
-      return (<View style={styles.imageContainer}>
-                <Image source={{ uri: assignee.imageURL }} style={styles.image} />
-              </View>)
-    }
+    return (<View style={styles.imageContainer}>
+              <Avatar
+                key={assignee.id}
+                avatarURL={assignee.imageURL}
+                userName={assignee.name}
+              />
+            </View>)
   }
 
   onPress = () => {
@@ -110,23 +102,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginRight: global.style.defaultPadding,
     borderRadius: 20,
-  },
-  image: {
-    height: 40,
-    width: 40,
-  },
-  altImage: {
-    height: 40,
-    width: 40,
-    borderRadius: 20,
-    borderColor: colors.seperatorColor,
-    borderWidth: StyleSheet.hairlineWidth,
-    overflow: 'hidden',
-    marginRight: global.style.defaultPadding,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  altImageText: {
   },
   deleteButtonContainer: {
     flex: 1,

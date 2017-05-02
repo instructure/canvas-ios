@@ -99,8 +99,24 @@ test('routes to the right place when submissions is tapped', () => {
   let details = renderer.create(
     <AssignmentDetails {...defaultProps} navigator={navigator} />
   ).getInstance()
-  details.viewSubmissions()
+  details.viewAllSubmissions()
   expect(navigator.push).toHaveBeenCalledWith({
     ...route(`/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/submissions`),
+  })
+})
+
+test('routes to the right place when submissions dial is tapped', () => {
+  let navigator = template.navigator({
+    push: jest.fn(),
+  })
+  let details = renderer.create(
+    <AssignmentDetails {...defaultProps} navigator={navigator} />
+  ).getInstance()
+  details.onSubmissionDialPress('graded')
+  expect(navigator.push).toHaveBeenCalledWith({
+    ...route(`/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/submissions`),
+    passProps: {
+      filterType: 'graded',
+    },
   })
 })

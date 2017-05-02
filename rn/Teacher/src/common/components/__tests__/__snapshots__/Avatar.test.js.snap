@@ -27,6 +27,33 @@ exports[`Avatar renders with image 1`] = `
 </View>
 `;
 
+exports[`Avatar renders without default canvas avatar 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "borderColor": "#C7CDD1",
+      "borderRadius": 20,
+      "borderWidth": 0.5,
+      "height": 40,
+      "justifyContent": "center",
+      "marginRight": 16,
+      "overflow": "hidden",
+      "width": 40,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={undefined}
+  >
+    LL
+  </Text>
+</View>
+`;
+
 exports[`Avatar renders without image 1`] = `
 <View
   style={
