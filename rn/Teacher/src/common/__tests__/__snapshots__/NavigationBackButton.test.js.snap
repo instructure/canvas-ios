@@ -24,6 +24,9 @@ exports[`renders button correctly 1`] = `
   tvParallaxProperties={undefined}
 >
   <View
+    accessibilityLabel="Back"
+    accessibilityTraits="button"
+    accessible={true}
     style={
       Object {
         "paddingRight": 31,

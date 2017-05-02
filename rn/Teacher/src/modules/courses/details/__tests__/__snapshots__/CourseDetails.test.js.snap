@@ -109,6 +109,9 @@ exports[`renders correctly 1`] = `
           testID="course-details.navigation-back-btn"
         >
           <View
+            accessibilityLabel="Back"
+            accessibilityTraits="button"
+            accessible={true}
             style={
               Object {
                 "paddingRight": 31,
@@ -470,6 +473,9 @@ exports[`renders correctly without tabs 1`] = `
           testID="course-details.navigation-back-btn"
         >
           <View
+            accessibilityLabel="Back"
+            accessibilityTraits="button"
+            accessible={true}
             style={
               Object {
                 "paddingRight": 31,
@@ -705,6 +711,9 @@ exports[`renders with empty image url 1`] = `
           testID="course-details.navigation-back-btn"
         >
           <View
+            accessibilityLabel="Back"
+            accessibilityTraits="button"
+            accessible={true}
             style={
               Object {
                 "paddingRight": 31,
@@ -1066,6 +1075,9 @@ exports[`renders with image url 1`] = `
           testID="course-details.navigation-back-btn"
         >
           <View
+            accessibilityLabel="Back"
+            accessibilityTraits="button"
+            accessible={true}
             style={
               Object {
                 "paddingRight": 31,
@@ -1413,6 +1425,9 @@ exports[`renders without image url 1`] = `
           testID="course-details.navigation-back-btn"
         >
           <View
+            accessibilityLabel="Back"
+            accessibilityTraits="button"
+            accessible={true}
             style={
               Object {
                 "paddingRight": 31,

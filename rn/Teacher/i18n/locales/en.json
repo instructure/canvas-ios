@@ -80,6 +80,9 @@
   "available_to_b7350e02": {
     "message": "Available to"
   },
+  "back_button_df84cc24": {
+    "message": "Back button"
+  },
   "back_courses": {
     "message": "Courses",
     "description": "The back button title to go from all courses to just favorited courses"
