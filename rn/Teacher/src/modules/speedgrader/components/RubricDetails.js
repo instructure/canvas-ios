@@ -4,12 +4,15 @@ import React, { Component } from 'react'
 import {
   View,
   StyleSheet,
+  ActivityIndicator,
 } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
 import { Heading1, Text } from '../../../common/text'
 import RubricItem from './RubricItem'
 import { route } from '../../../routing'
+import { LinkButton } from '../../../common/buttons'
+import SpeedGraderActions from '../actions'
 
 export class RubricDetails extends Component {
   props: RubricProps
@@ -18,7 +21,10 @@ export class RubricDetails extends Component {
   constructor (props: RubricProps) {
     super(props)
 
-    this.state = { ratings: props.rubricAssessment || {} }
+    this.state = {
+      ratings: props.rubricAssessment || {},
+      hasChanges: false,
+    }
   }
 
   showDescriptionModal = (rubricID: string) => {
@@ -34,6 +40,7 @@ export class RubricDetails extends Component {
           points: value,
         },
       },
+      hasChanges: true,
     })
   }
 
@@ -42,21 +49,38 @@ export class RubricDetails extends Component {
       .reduce((sum, key) => sum + (this.state.ratings[key].points || 0), 0)
   }
 
+  saveRubricAssessment = () => {
+    this.setState({ hasChanges: false })
+    this.props.gradeSubmissionWithRubric(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, this.state.ratings)
+  }
+
   render () {
     let settings = this.props.rubricSettings
     let items = this.props.rubricItems
     if (settings && items) {
       return (
         <View style={styles.rubricContainer}>
-          <Heading1>{i18n('Rubric')}</Heading1>
-          <Text style={styles.pointsText}>
-            {
-              i18n('{points, number} out of {totalPoints, number}', {
-                points: this.getCurrentScore(),
-                totalPoints: settings.points_possible,
-              })
+          <View style={styles.rubricHeader}>
+            <View>
+              <Heading1>{i18n('Rubric')}</Heading1>
+              <Text style={styles.pointsText}>
+                {
+                  i18n('{points, number} out of {totalPoints, number}', {
+                    points: this.getCurrentScore(),
+                    totalPoints: settings.points_possible,
+                  })
+                }
+              </Text>
+            </View>
+            { this.props.rubricGradePending &&
+              <ActivityIndicator />
             }
-          </Text>
+            { this.state.hasChanges &&
+              <LinkButton testID='rubric-details.save' style={styles.saveStyles} onPress={this.saveRubricAssessment}>
+                {i18n('Save')}
+              </LinkButton>
+            }
+          </View>
           {items.map((rubricItem: Rubric) => (
             <RubricItem
               key={rubricItem.id}
@@ -77,6 +101,15 @@ const styles = StyleSheet.create({
   rubricContainer: {
     paddingVertical: 16,
   },
+  rubricHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  saveStyles: {
+    fontSize: 18,
+    fontWeight: '600',
+  },
   pointsText: {
     color: '#8B969E',
     fontSize: 14,
@@ -87,25 +120,29 @@ export function mapStateToProps (state: AppState, ownProps: RubricOwnProps): Rub
   let assignment = state.entities.assignments[ownProps.assignmentID].data
   let submission = state.entities.submissions[ownProps.submissionID]
   let assessments = null
+  let rubricGradePending = false
 
   if (submission) {
     assessments = submission.submission.rubric_assessment
+    rubricGradePending = submission.rubricGradePending
   }
 
   return {
     rubricItems: assignment.rubric,
     rubricSettings: assignment.rubric_settings,
     rubricAssessment: assessments,
+    rubricGradePending,
   }
 }
 
-const Connected = connect(mapStateToProps)(RubricDetails)
+const Connected = connect(mapStateToProps, SpeedGraderActions)(RubricDetails)
 export default (Connected: any)
 
 type RubricOwnProps = {
   courseID: string,
   assignmentID: string,
   submissionID: string,
+  userID: string,
   showModal: Function,
 }
 
@@ -113,9 +150,15 @@ type RubricDataProps = {
   rubricItems: ?Array<Rubric>,
   rubricSettings: ?RubricSettings,
   rubricAssessment: ?{ [string]: RubricAssessment },
+  rubricGradePending: boolean,
 }
 
-type RubricProps = RubricOwnProps & RubricDataProps
+type RubricActionProps = {
+  gradeSubmissionWithRubric: Function,
+}
+
+type RubricProps = RubricOwnProps & RubricDataProps & RubricActionProps
 type RubricState = {
   ratings: { [string]: RubricAssessment },
+  hasChanges: boolean,
 }

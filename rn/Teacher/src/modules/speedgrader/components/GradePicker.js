@@ -14,7 +14,7 @@ import i18n from 'format-message'
 import { Heading1 } from '../../../common/text'
 import Button from 'react-native-button'
 import { connect } from 'react-redux'
-import SpeedGraderActions, { type SpeedGraderActionsType } from '../actions'
+import SpeedGraderActions from '../actions'
 import Images from '../../../images'
 import colors from '../../../common/colors'
 import branding from '../../../common/branding'
@@ -236,7 +236,12 @@ type GradePickerDataProps = {
   pointsPossible: number,
 }
 
-type GradePickerProps = GradePickerOwnProps & GradePickerDataProps & SpeedGraderActionsType
+type GradePickerActionProps = {
+  excuseAssignment: Function,
+  gradeSubmission: Function,
+}
+
+type GradePickerProps = GradePickerOwnProps & GradePickerDataProps & GradePickerActionProps
 
 type GradePickerState = {
   passFailValue: string,

@@ -18,6 +18,7 @@ let ownProps = {
   assignmentID: '1',
   courseID: '1',
   submissionID: '1',
+  userID: '1',
   showModal: jest.fn(),
 }
 
@@ -26,6 +27,8 @@ let defaultProps = {
   rubricItems: [templates.rubric()],
   rubricSettings: templates.rubricSettings(),
   rubricAssessment: templates.rubricAssessment(),
+  gradeSubmissionWithRubric: jest.fn(),
+  rubricGradePending: false,
 }
 
 describe('Rubric', () => {
@@ -74,6 +77,46 @@ describe('Rubric', () => {
     tree.getInstance().setState({ ratings: { '2': 10 } })
 
     expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('shows the activity indicator when saving a rubric score', () => {
+    let tree = renderer.create(
+      <RubricDetails {...defaultProps} rubricGradePending={true} />
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('shows the save button when there is a change in the rubric score', () => {
+    let tree = renderer.create(
+      <RubricDetails {...defaultProps} />
+    )
+
+    let button = explore(tree.toJSON()).selectByID('circle-button') || {}
+    button.props.onPress()
+
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('calls gradeSubmissionWithRubric when the save button is pressed', () => {
+    let tree = renderer.create(
+      <RubricDetails {...defaultProps} />
+    )
+
+    let circleButton = explore(tree.toJSON()).selectByID('circle-button') || {}
+    circleButton.props.onPress()
+
+    let saveButton = explore(tree.toJSON()).selectByID('rubric-details.save') || {}
+    saveButton.props.onPress()
+
+    expect(defaultProps.gradeSubmissionWithRubric).toHaveBeenCalledWith('1', '1', '1', '1', {
+      '1': {
+        comments: '',
+        points: 10,
+      },
+      '2': {
+        points: 10,
+      },
+    })
   })
 })
 
@@ -137,5 +180,28 @@ describe('mapStateToProps', () => {
 
     let props = mapStateToProps(state, ownProps)
     expect(props.rubricAssessment).toBeNull()
+  })
+
+  it('returns the grading pending value', () => {
+    let state = templates.appState({
+      entities: {
+        assignments: {
+          '1': {
+            data: {},
+          },
+        },
+        submissions: {
+          '1': {
+            rubricGradePending: true,
+            submission: {
+              rubric_assessment: {},
+            },
+          },
+        },
+      },
+    })
+
+    let props = mapStateToProps(state, ownProps)
+    expect(props.rubricGradePending).toEqual(true)
   })
 })

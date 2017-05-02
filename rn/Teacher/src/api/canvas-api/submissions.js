@@ -21,8 +21,14 @@ type SubmissionGradeParams = {
   posted_grade?: string,
 }
 
-export function gradeSubmission (courseID: string, assignmentID: string, userID: string, submissionParams: SubmissionGradeParams): Promise<ApiResponse<string>> {
+export function gradeSubmission (courseID: string, assignmentID: string, userID: string, submissionParams: SubmissionGradeParams): Promise<ApiResponse<Submission>> {
   return httpClient().put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, {
     submission: submissionParams,
+  })
+}
+
+export function gradeSubmissionWithRubric (courseID: string, assignmentID: string, userID: string, rubricParams: { [string]: RubricAssessment }): Promise<ApiResponse<Submission>> {
+  return httpClient().put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, {
+    rubric_assessment: rubricParams,
   })
 }

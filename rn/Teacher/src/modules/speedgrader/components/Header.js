@@ -19,7 +19,7 @@ import type {
 } from '../../submissions/list/submission-prop-types'
 import SubmissionStatus from '../../submissions/list/SubmissionStatus'
 import { formattedDueDate } from '../../../common/formatters'
-import SpeedGraderActions, { type SpeedGraderActionsType } from '../actions'
+import SpeedGraderActions from '../actions'
 
 var PickerItemIOS = PickerIOS.Item
 
@@ -241,4 +241,8 @@ type HeaderDataProps = {
   selectedIndex: ?number,
 }
 
-type HeaderProps = RouterProps & HeaderDataProps & SpeedGraderActionsType
+type HeaderActionProps = {
+  selectSubmissionFromHistory: Function,
+}
+
+type HeaderProps = RouterProps & HeaderDataProps & HeaderActionProps

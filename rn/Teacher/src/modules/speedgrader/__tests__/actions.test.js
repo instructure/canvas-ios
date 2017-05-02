@@ -4,6 +4,7 @@ import { SpeedGraderActions } from '../actions'
 
 let api = {
   gradeSubmission: jest.fn(),
+  gradeSubmissionWithRubric: jest.fn(),
 }
 
 let actions = SpeedGraderActions(api)
@@ -42,6 +43,26 @@ describe('SpeedGraderActions', () => {
       let { payload } = actions.selectSubmissionFromHistory('1', 2)
       expect(payload).toHaveProperty('submissionID', '1')
       expect(payload).toHaveProperty('index', 2)
+    })
+  })
+
+  describe('gradeSubmissionWithRubric', () => {
+    it('calls gradeSubmissionWithRubric with the correct arguments', () => {
+      let params = {
+        '1': { comments: '', points: 10 },
+      }
+      actions.gradeSubmissionWithRubric('1', '2', '3', '4', params)
+      expect(api.gradeSubmissionWithRubric).toHaveBeenCalledWith('1', '2', '3', params)
+    })
+
+    it('passes the submissionID, assignmentID and params in the action payload', () => {
+      let params = {
+        '1': { comments: '', points: 10 },
+      }
+      let { payload } = actions.gradeSubmissionWithRubric('1', '2', '3', '4', params)
+      expect(payload).toHaveProperty('submissionID', '4')
+      expect(payload).toHaveProperty('assignmentID', '2')
+      expect(payload).toHaveProperty('rubricAssessment', params)
     })
   })
 })

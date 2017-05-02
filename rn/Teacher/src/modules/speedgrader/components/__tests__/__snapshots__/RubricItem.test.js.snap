@@ -67,7 +67,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -128,7 +128,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -186,7 +186,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -244,7 +244,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -435,7 +435,7 @@ exports[`RubricItem renders 1`] = `
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -493,7 +493,7 @@ exports[`RubricItem renders 1`] = `
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -551,7 +551,7 @@ exports[`RubricItem renders 1`] = `
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -609,7 +609,7 @@ exports[`RubricItem renders 1`] = `
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -800,7 +800,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -861,7 +861,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -919,7 +919,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -977,7 +977,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -1168,7 +1168,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -1226,7 +1226,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -1284,7 +1284,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,
@@ -1342,7 +1342,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
               "height": 48,
               "justifyContent": "center",
               "minWidth": 48,
-              "paddingHorizontal": 12,
+              "paddingHorizontal": 8,
             },
             Object {
               "marginBottom": 8,

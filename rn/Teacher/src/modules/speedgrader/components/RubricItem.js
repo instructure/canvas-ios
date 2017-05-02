@@ -35,17 +35,21 @@ export default class RubricItem extends Component {
     this.props.changeRating(this.props.rubricItem.id, value)
   }
 
+  isCustomGrade = () => this.props.rubricItem.ratings.every(({ points }) => points !== this.state.selectedOption) && this.state.selectedOption != null
+
   promptCustom = () => {
     AlertIOS.prompt(
       i18n('Customize Grade'),
       null,
-      (value) => this.changeSelected(+value)
+      (value) => this.changeSelected(+value),
+      'plain-text',
+      this.isCustomGrade() ? String(this.state.selectedOption) : ''
     )
   }
 
   render () {
     let { rubricItem } = this.props
-    let isCustomGrade = rubricItem.ratings.every(({ points }) => points !== this.state.selectedOption) && this.state.selectedOption != null
+    let isCustomGrade = this.isCustomGrade()
     return (
       <View style={styles.container}>
         <Text style={styles.description}>{rubricItem.description}</Text>

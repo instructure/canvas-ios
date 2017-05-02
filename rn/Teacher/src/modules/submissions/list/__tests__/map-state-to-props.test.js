@@ -65,6 +65,7 @@ test('submissions', () => {
       pending: 0,
       error: null,
       selectedIndex: null,
+      rubricGradePending: false,
     },
     '30': {
       submission: t.submissionHistory([{
@@ -79,6 +80,7 @@ test('submissions', () => {
       pending: 0,
       error: null,
       selectedIndex: null,
+      rubricGradePending: false,
     },
     '40': {
       submission: t.submissionHistory([{
@@ -93,6 +95,7 @@ test('submissions', () => {
       pending: 0,
       error: null,
       selectedIndex: null,
+      rubricGradePending: false,
     },
   }
 

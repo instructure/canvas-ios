@@ -8,51 +8,63 @@ exports[`Rubric has the correct score 1`] = `
     }
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
+  <View
     style={
-      Array [
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
-          "color": "#2D3B45",
-          "fontFamily": ".SFUIDisplay-semibold",
-          "fontSize": 20,
-        },
-        undefined,
-      ]
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
     }
   >
-    Rubric
-  </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-        },
-        Object {
-          "color": "#8B969E",
-          "fontSize": 14,
-        },
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-      ]
-    }
-  >
-    0 out of 100
-  </Text>
+    <View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            undefined,
+          ]
+        }
+      >
+        Rubric
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        0 out of 100
+      </Text>
+    </View>
+  </View>
   <View
     style={
       Object {
@@ -119,7 +131,7 @@ exports[`Rubric has the correct score 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
-                "paddingHorizontal": 12,
+                "paddingHorizontal": 8,
               },
               Object {
                 "marginBottom": 8,
@@ -177,7 +189,7 @@ exports[`Rubric has the correct score 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
-                "paddingHorizontal": 12,
+                "paddingHorizontal": 8,
               },
               Object {
                 "marginBottom": 8,
@@ -235,7 +247,7 @@ exports[`Rubric has the correct score 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
-                "paddingHorizontal": 12,
+                "paddingHorizontal": 8,
               },
               Object {
                 "marginBottom": 8,
@@ -293,7 +305,7 @@ exports[`Rubric has the correct score 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
-                "paddingHorizontal": 12,
+                "paddingHorizontal": 8,
               },
               Object {
                 "marginBottom": 8,
@@ -426,51 +438,63 @@ exports[`Rubric renders a rubric 1`] = `
     }
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
+  <View
     style={
-      Array [
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
-          "color": "#2D3B45",
-          "fontFamily": ".SFUIDisplay-semibold",
-          "fontSize": 20,
-        },
-        undefined,
-      ]
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
     }
   >
-    Rubric
-  </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-        },
-        Object {
-          "color": "#8B969E",
-          "fontSize": 14,
-        },
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-      ]
-    }
-  >
-    10 out of 100
-  </Text>
+    <View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            undefined,
+          ]
+        }
+      >
+        Rubric
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        10 out of 100
+      </Text>
+    </View>
+  </View>
   <View
     style={
       Object {
@@ -537,7 +561,7 @@ exports[`Rubric renders a rubric 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
-                "paddingHorizontal": 12,
+                "paddingHorizontal": 8,
               },
               Object {
                 "marginBottom": 8,
@@ -595,7 +619,7 @@ exports[`Rubric renders a rubric 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
-                "paddingHorizontal": 12,
+                "paddingHorizontal": 8,
               },
               Object {
                 "marginBottom": 8,
@@ -653,7 +677,7 @@ exports[`Rubric renders a rubric 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
-                "paddingHorizontal": 12,
+                "paddingHorizontal": 8,
               },
               Object {
                 "marginBottom": 8,
@@ -711,7 +735,924 @@ exports[`Rubric renders a rubric 1`] = `
                 "height": 48,
                 "justifyContent": "center",
                 "minWidth": 48,
-                "paddingHorizontal": 12,
+                "paddingHorizontal": 8,
+              },
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              },
+            ]
+          }
+        >
+          <Image
+            source={1}
+          />
+        </View>
+      </Button>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Button
+        style={
+          Object {
+            "fontSize": 14,
+            "fontWeight": "500",
+            "paddingRight": 16,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#ff0ee8",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#ff0ee8",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Add Comment
+        </Text>
+      </Button>
+      <Button
+        onPress={[Function]}
+        style={
+          Object {
+            "fontSize": 14,
+            "fontWeight": "500",
+            "paddingRight": 16,
+          }
+        }
+        testID="rubric-item.description"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#ff0ee8",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#ff0ee8",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          View long description
+        </Text>
+      </Button>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
+<View
+  style={
+    Object {
+      "paddingVertical": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            undefined,
+          ]
+        }
+      >
+        Rubric
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        10 out of 100
+      </Text>
+    </View>
+    <ActivityIndicator
+      animating={true}
+      color="#999999"
+      hidesWhenStopped={true}
+      size="small"
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "paddingBottom": 8,
+        "paddingTop": 16,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontWeight": "600",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-semibold",
+          },
+        ]
+      }
+    >
+      A description
+    </Text>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "marginBottom": 8,
+          "marginTop": 12,
+        }
+      }
+    >
+      <Button
+        on={false}
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 8,
+            "marginRight": 8,
+          }
+        }
+        testID="circle-button"
+        value={10}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#C7CDD1",
+                "borderRadius": 24,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "height": 48,
+                "justifyContent": "center",
+                "minWidth": 48,
+                "paddingHorizontal": 8,
+              },
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Object {
+                  "color": "black",
+                  "fontWeight": "500",
+                },
+              ]
+            }
+          >
+            10
+          </Text>
+        </View>
+      </Button>
+      <Button
+        on={false}
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 8,
+            "marginRight": 8,
+          }
+        }
+        testID="circle-button"
+        value={5}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#C7CDD1",
+                "borderRadius": 24,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "height": 48,
+                "justifyContent": "center",
+                "minWidth": 48,
+                "paddingHorizontal": 8,
+              },
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Object {
+                  "color": "black",
+                  "fontWeight": "500",
+                },
+              ]
+            }
+          >
+            5
+          </Text>
+        </View>
+      </Button>
+      <Button
+        on={false}
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 8,
+            "marginRight": 8,
+          }
+        }
+        testID="circle-button"
+        value={0}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#C7CDD1",
+                "borderRadius": 24,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "height": 48,
+                "justifyContent": "center",
+                "minWidth": 48,
+                "paddingHorizontal": 8,
+              },
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Object {
+                  "color": "black",
+                  "fontWeight": "500",
+                },
+              ]
+            }
+          >
+            0
+          </Text>
+        </View>
+      </Button>
+      <Button
+        on={false}
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 8,
+            "marginRight": 8,
+          }
+        }
+        testID="circle-button"
+        value=""
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#C7CDD1",
+                "borderRadius": 24,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "height": 48,
+                "justifyContent": "center",
+                "minWidth": 48,
+                "paddingHorizontal": 8,
+              },
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              },
+            ]
+          }
+        >
+          <Image
+            source={1}
+          />
+        </View>
+      </Button>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Button
+        style={
+          Object {
+            "fontSize": 14,
+            "fontWeight": "500",
+            "paddingRight": 16,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#ff0ee8",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#ff0ee8",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          Add Comment
+        </Text>
+      </Button>
+      <Button
+        onPress={[Function]}
+        style={
+          Object {
+            "fontSize": 14,
+            "fontWeight": "500",
+            "paddingRight": 16,
+          }
+        }
+        testID="rubric-item.description"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#ff0ee8",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#ff0ee8",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          View long description
+        </Text>
+      </Button>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Rubric shows the save button when there is a change in the rubric score 1`] = `
+<View
+  style={
+    Object {
+      "paddingVertical": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            undefined,
+          ]
+        }
+      >
+        Rubric
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        20 out of 100
+      </Text>
+    </View>
+    <Button
+      onPress={[Function]}
+      style={
+        Object {
+          "fontSize": 18,
+          "fontWeight": "600",
+        }
+      }
+      testID="rubric-details.save"
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#ff0ee8",
+                "fontSize": 14,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+              Object {
+                "color": "#ff0ee8",
+              },
+              Object {
+                "fontSize": 18,
+                "fontWeight": "600",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Save
+      </Text>
+    </Button>
+  </View>
+  <View
+    style={
+      Object {
+        "paddingBottom": 8,
+        "paddingTop": 16,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontWeight": "600",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-semibold",
+          },
+        ]
+      }
+    >
+      A description
+    </Text>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "marginBottom": 8,
+          "marginTop": 12,
+        }
+      }
+    >
+      <Button
+        on={true}
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 8,
+            "marginRight": 8,
+          }
+        }
+        testID="circle-button"
+        value={10}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#C7CDD1",
+                "borderRadius": 24,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "height": 48,
+                "justifyContent": "center",
+                "minWidth": 48,
+                "paddingHorizontal": 8,
+              },
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              },
+              Object {
+                "backgroundColor": "#374A59",
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Object {
+                  "color": "white",
+                  "fontWeight": "500",
+                },
+              ]
+            }
+          >
+            10
+          </Text>
+        </View>
+      </Button>
+      <Button
+        on={false}
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 8,
+            "marginRight": 8,
+          }
+        }
+        testID="circle-button"
+        value={5}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#C7CDD1",
+                "borderRadius": 24,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "height": 48,
+                "justifyContent": "center",
+                "minWidth": 48,
+                "paddingHorizontal": 8,
+              },
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Object {
+                  "color": "black",
+                  "fontWeight": "500",
+                },
+              ]
+            }
+          >
+            5
+          </Text>
+        </View>
+      </Button>
+      <Button
+        on={false}
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 8,
+            "marginRight": 8,
+          }
+        }
+        testID="circle-button"
+        value={0}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#C7CDD1",
+                "borderRadius": 24,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "height": 48,
+                "justifyContent": "center",
+                "minWidth": 48,
+                "paddingHorizontal": 8,
+              },
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Object {
+                  "color": "black",
+                  "fontWeight": "500",
+                },
+              ]
+            }
+          >
+            0
+          </Text>
+        </View>
+      </Button>
+      <Button
+        on={false}
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 8,
+            "marginRight": 8,
+          }
+        }
+        testID="circle-button"
+        value=""
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#C7CDD1",
+                "borderRadius": 24,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "height": 48,
+                "justifyContent": "center",
+                "minWidth": 48,
+                "paddingHorizontal": 8,
               },
               Object {
                 "marginBottom": 8,

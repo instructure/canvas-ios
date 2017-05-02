@@ -416,6 +416,9 @@
   "rubric_fc39da76": {
     "message": "Rubric"
   },
+  "save_11a80ec3": {
+    "message": "Save"
+  },
   "saving_2521e616": {
     "message": "Saving",
     "description": "Text when a request to update an assignment is made and user is waiting"

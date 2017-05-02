@@ -7,7 +7,7 @@ import handleAsync from '../../../utils/handleAsync'
 import SpeedGraderActions from '../../speedgrader/actions'
 
 const { refreshSubmissions } = Actions
-const { excuseAssignment, selectSubmissionFromHistory, gradeSubmission } = SpeedGraderActions
+const { excuseAssignment, selectSubmissionFromHistory, gradeSubmission, gradeSubmissionWithRubric } = SpeedGraderActions
 
 export const submissions: Reducer<SubmissionsState, any> = handleActions({
   [refreshSubmissions.toString()]: handleAsync({
@@ -113,6 +113,48 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
         [submissionID]: {
           ...state[submissionID],
           pending: state[submissionID].pending - 1,
+        },
+      }
+    },
+  }),
+  [gradeSubmissionWithRubric.toString()]: handleAsync({
+    pending: (state, { submissionID }) => {
+      if (!submissionID) return state
+
+      return {
+        ...state,
+        [submissionID]: {
+          ...state[submissionID],
+          rubricGradePending: true,
+        },
+      }
+    },
+    resolved: (state, { submissionID, rubricAssessment, result }) => {
+      let id = submissionID || result.data.id
+      let submissionState = submissionID
+        ? state[submissionID]
+        : { pending: 0, submission: result.data, error: null }
+
+      return {
+        ...state,
+        [id]: {
+          ...submissionState,
+          rubricGradePending: false,
+          submission: {
+            ...submissionState.submission,
+            rubric_assessment: rubricAssessment,
+          },
+        },
+      }
+    },
+    rejected: (state, { submissionID }) => {
+      if (!submissionID) return state
+
+      return {
+        ...state,
+        [submissionID]: {
+          ...state[submissionID],
+          rubricGradePending: false,
         },
       }
     },

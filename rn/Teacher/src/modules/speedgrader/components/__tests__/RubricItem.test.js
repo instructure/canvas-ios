@@ -8,7 +8,7 @@ import explore from '../../../../../test/helpers/explore'
 
 jest.mock('react-native-button', () => 'Button')
 jest.mock('AlertIOS', () => ({
-  prompt: jest.fn((t, m, cb) => cb('12')),
+  prompt: jest.fn(),
 }))
 
 const templates = {
@@ -103,6 +103,25 @@ describe('RubricItem', () => {
     button.props.onPress()
 
     expect(AlertIOS.prompt).toHaveBeenCalled()
+    AlertIOS.prompt.mock.calls[0][2]('12')
     expect(defaultProps.changeRating).toHaveBeenCalledWith(defaultProps.rubricItem.id, 12)
+  })
+
+  it('will call prompt with a default value if there is an existing custom grade', () => {
+    let props = {
+      ...defaultProps,
+      grade: {
+        points: 1234,
+        comments: '',
+      },
+    }
+    let tree = renderer.create(
+      <RubricItem {...props} />
+    ).toJSON()
+
+    let button = explore(tree).selectByProp('testID', 'circle-button').pop()
+    button.props.onPress()
+
+    expect(AlertIOS.prompt.mock.calls[0][4]).toEqual('1234')
   })
 })

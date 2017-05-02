@@ -46,6 +46,7 @@ export type AssignmentDetailState = AsyncState & {
 
 export type SubmissionState = AsyncState & {
   submission: SubmissionWithHistory,
+  rubricGradePending: boolean,
   selectedIndex: ?number,
 }
 

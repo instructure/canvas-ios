@@ -104,6 +104,6 @@ const circleButtonStyles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 24,
     flex: 1,
-    paddingHorizontal: 12,
+    paddingHorizontal: 8,
   },
 })

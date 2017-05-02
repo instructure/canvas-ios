@@ -5,7 +5,7 @@ import Actions from '../actions'
 import SpeedGraderActions from '../../../speedgrader/actions'
 
 const { refreshSubmissions } = Actions
-const { excuseAssignment, gradeSubmission, selectSubmissionFromHistory } = SpeedGraderActions
+const { excuseAssignment, gradeSubmission, selectSubmissionFromHistory, gradeSubmissionWithRubric } = SpeedGraderActions
 const templates = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
 }
@@ -285,4 +285,108 @@ test('selectSubmissionFromHistory updates the existing selectedIndex', () => {
     error: null,
     selectedIndex: 2,
   })
+})
+
+test('gradeSubmissionWithRubric returns current state when there is no submissionID', () => {
+  const state = { yo: 'yo' }
+  const action = {
+    type: gradeSubmissionWithRubric.toString(),
+    pending: true,
+    payload: {},
+  }
+
+  let newState = submissions(state, action)
+  expect(newState).toEqual(state)
+})
+
+test('gradeSubmissionWithRubric updates pending when there is a submissionID', () => {
+  const state = {
+    '1': {
+      rubricGradePending: false,
+    },
+  }
+  const action = {
+    type: gradeSubmissionWithRubric.toString(),
+    pending: true,
+    payload: {
+      submissionID: '1',
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1'].rubricGradePending).toEqual(true)
+})
+
+test('gradeSubmissionWithRubric creates the submission if there is no submissionID', () => {
+  let state = {}
+  const action = {
+    type: gradeSubmissionWithRubric.toString(),
+    payload: {
+      result: {
+        data: templates.submission({ id: '1' }),
+      },
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1']).toEqual({
+    submission: action.payload.result.data,
+    pending: 0,
+    error: null,
+    rubricGradePending: false,
+  })
+})
+
+test('gradeSubmissionWithRubric sets the rubricGradePending to false when there is a submissionID', () => {
+  let submission = templates.submission({ id: '1' })
+  let state = {
+    '1': {
+      submission,
+      pending: 0,
+      rubricGradePending: false,
+      error: null,
+    },
+  }
+  let action = {
+    type: gradeSubmissionWithRubric.toString(),
+    payload: {
+      result: {
+        data: submission,
+      },
+      submissionID: '1',
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1'].rubricGradePending).toEqual(false)
+})
+
+test('gradeSubmissionWithRubric returns current state if there is no submissionID', () => {
+  let state = { yo: 'yo' }
+  let action = {
+    type: gradeSubmissionWithRubric.toString(),
+    error: true,
+    payload: {},
+  }
+
+  let newState = submissions(state, action)
+  expect(newState).toEqual(state)
+})
+
+test('gradeSubmissionWithRubric returns state with rubricGradePending set to false when there is a submissionID', () => {
+  let state = {
+    '1': {
+      rubricGradePending: true,
+    },
+  }
+  let action = {
+    type: gradeSubmissionWithRubric.toString(),
+    error: true,
+    payload: {
+      submissionID: '1',
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1'].rubricGradePending).toEqual(false)
 })

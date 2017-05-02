@@ -36,7 +36,6 @@ let defaultProps = {
   excused: false,
   excuseAssignment: jest.fn(),
   gradeSubmission: jest.fn(),
-  selectSubmissionFromHistory: jest.fn(),
   score: 0,
   pointsPossible: 10,
   pending: false,

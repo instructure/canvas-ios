@@ -7,6 +7,7 @@ export type SpeedGraderActionsType = {
   excuseAssignment: (courseID: string, assignmentID: string, userID: string, submissionID: ?string) => any,
   selectSubmissionFromHistory: (submissionID: string, index: number) => any,
   gradeSubmission: (courseID: string, assignmentID: string, userID: string, submissionID: ?string, grade: string) => any,
+  gradeSubmissionWithRubric: (courseID: string, assignmentID: string, userID: string, submissionID: ?string, rubricParams: { [string]: RubricAssessment }) => any,
 }
 
 export const SpeedGraderActions = (api: typeof canvas): SpeedGraderActionsType => ({
@@ -27,6 +28,12 @@ export const SpeedGraderActions = (api: typeof canvas): SpeedGraderActionsType =
     }),
     submissionID,
     assignmentID,
+  })),
+  gradeSubmissionWithRubric: createAction('submission.gradeWithRubric', (courseID: string, assignmentID: string, userID: string, submissionID: ?string, rubricParams: { [string]: RubricAssessment }) => ({
+    promise: api.gradeSubmissionWithRubric(courseID, assignmentID, userID, rubricParams),
+    submissionID,
+    assignmentID,
+    rubricAssessment: rubricParams,
   })),
 })
 
