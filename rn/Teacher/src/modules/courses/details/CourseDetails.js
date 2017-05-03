@@ -23,6 +23,7 @@ import { route } from '../../../routing'
 import refresh from '../../../utils/refresh'
 import { RefreshableScrollView } from '../../../common/components/RefreshableList'
 import { Text } from '../../../common/text'
+import i18n from 'format-message'
 
 type Props = CourseDetailsProps & NavProps
 
@@ -77,7 +78,7 @@ export class CourseDetails extends Component<any, Props, any> {
             <NavigationBackButton onPress={this.back} testID='course-details.navigation-back-btn' />
             <Text style={styles.navigationTitle}>{course.course_code}</Text>
             <Button style={[styles.settingsButton]} onPress={this.editCourse} testID='course-details.navigation-edit-course-btn'>
-              <View style={{ paddingLeft: 20 }}>
+              <View style={{ paddingLeft: 20 }} accessible={true} accessibilityLabel={i18n('Settings')} accessibilityTraits={'button'}>
                 <Image source={Images.course.settings} style={styles.navButtonImage} />
               </View>
             </Button>

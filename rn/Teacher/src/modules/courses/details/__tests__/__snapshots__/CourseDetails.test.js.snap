@@ -163,6 +163,9 @@ exports[`renders correctly 1`] = `
           testID="course-details.navigation-edit-course-btn"
         >
           <View
+            accessibilityLabel="Settings"
+            accessibilityTraits="button"
+            accessible={true}
             style={
               Object {
                 "paddingLeft": 20,
@@ -527,6 +530,9 @@ exports[`renders correctly without tabs 1`] = `
           testID="course-details.navigation-edit-course-btn"
         >
           <View
+            accessibilityLabel="Settings"
+            accessibilityTraits="button"
+            accessible={true}
             style={
               Object {
                 "paddingLeft": 20,
@@ -765,6 +771,9 @@ exports[`renders with empty image url 1`] = `
           testID="course-details.navigation-edit-course-btn"
         >
           <View
+            accessibilityLabel="Settings"
+            accessibilityTraits="button"
+            accessible={true}
             style={
               Object {
                 "paddingLeft": 20,
@@ -1129,6 +1138,9 @@ exports[`renders with image url 1`] = `
           testID="course-details.navigation-edit-course-btn"
         >
           <View
+            accessibilityLabel="Settings"
+            accessibilityTraits="button"
+            accessible={true}
             style={
               Object {
                 "paddingLeft": 20,
@@ -1479,6 +1491,9 @@ exports[`renders without image url 1`] = `
           testID="course-details.navigation-edit-course-btn"
         >
           <View
+            accessibilityLabel="Settings"
+            accessibilityTraits="button"
+            accessible={true}
             style={
               Object {
                 "paddingLeft": 20,
