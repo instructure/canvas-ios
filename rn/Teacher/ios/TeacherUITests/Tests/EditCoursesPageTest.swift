@@ -14,15 +14,15 @@
 // limitations under the License.
 //
 
-class CourseListPageTest: TeacherTest {
-  
-  func testCourseListPage_displaysList() {
-    logIn(self)
-    let course = Data.getNextCourse(self)
-    coursesListPage.assertCourseExists(course)
-  }
+class EditCoursesPageTest: TeacherTest {
 
-  func testCourseListEmptyPage_displaysEmptyState() {
+  func test_favoriteCourse() {
+    let course = Data.getNextCourse(self)
+
     logIn(self)
+    coursesListPage.openEditFavorites()
+    editCoursesListPage.assertCourseFavorited(course)
+    editCoursesListPage.closePage()
+    coursesListPage.assertCourseExists(course)
   }
 }

@@ -26,6 +26,7 @@ class CoursesListPage {
 
   // MARK: Elements
 
+  private let coursesNavBar = e.selectBy(id: "Courses") // 'Coureses' text in the top nav bar.
   private let seeAllCoursesButton = e.selectBy(id: "course-list.see-all-btn")
   private let coursesEditButton = e.selectBy(id: "e2e_rules")
 
@@ -47,6 +48,10 @@ class CoursesListPage {
     grey_fromFile(file, line)
 
     e.selectBy(id: courseId(course)).assertHidden()
+  }
+
+  func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
+    coursesNavBar.assertExists()
   }
 
   // MARK: - UI Actions

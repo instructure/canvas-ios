@@ -26,8 +26,33 @@ class TeacherTest: XCTestCase {
     domainPickerPage.assertPageObjects()
   }
 
-  func logIn<T>(_ testClass:T, _ testMethod:String = #function) -> CanvasUser {
+  @discardableResult
+  func logIn<T>(_ testClass:T, _ testMethod:String = #function, _ file: StaticString = #file, _ line: UInt = #line) -> CanvasUser {
     let teacher = Data.getNextTeacher(testClass, testMethod)
+    domainPickerPage.openDomain(teacher.domain)
+    canvasLoginPage.logIn(teacher: teacher)
+    coursesListPage.assertPageObjects()
+    return teacher
+  }
+
+  /*
+
+   This logIn method is useful for running a test in a loop.
+
+   func testSomething {
+     let course = Data.getNextCourse(self)
+     let teacher = Data.getNextTeacher(self)
+
+     for _ in 1...1000 {
+       setUp()
+       logIn(teacher)
+       // test code
+       tearDown()
+     }
+   }
+  */
+  @discardableResult
+  func logIn(_ teacher:CanvasUser, _ file: StaticString = #file, _ line: UInt = #line) -> CanvasUser {
     domainPickerPage.openDomain(teacher.domain)
     canvasLoginPage.logIn(teacher: teacher)
     return teacher

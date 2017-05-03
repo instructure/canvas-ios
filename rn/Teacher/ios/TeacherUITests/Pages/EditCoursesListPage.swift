@@ -26,8 +26,7 @@ class EditCoursesListPage {
 
   // MARK: Elements
 
-  // NOTE: Course element leak: multiple matches found
-  private let doneButton = e.firstElement(e.selectBy(id: "done_button"))
+  private let doneButton = e.selectBy(id: "done_button")
 
   // MARK: - Assertions
 
@@ -41,14 +40,14 @@ class EditCoursesListPage {
   // NOTE: Course element leak: multiple matches found
   func selectActiveCourse(_ course:Course) -> GREYElementInteraction {
     let courseActiveId = "course_favorite_active_\(course.id)"
-    let courseActiveElement = e.firstElement(e.selectBy(id: courseActiveId))
+    let courseActiveElement = e.selectBy(id: courseActiveId)
     return courseActiveElement
   }
 
   // NOTE: Course element leak: multiple matches found
   func selectHiddenCourse(_ course:Course) -> GREYElementInteraction {
     let courseHiddenId = "course_favorite_hidden_\(course.id)"
-    let courseHiddenElement = e.firstElement(e.selectBy(id: courseHiddenId))
+    let courseHiddenElement = e.selectBy(id: courseHiddenId)
     return courseHiddenElement
   }
 
@@ -95,10 +94,7 @@ class EditCoursesListPage {
       let courseHidden = "course_favorite_hidden_\(course.id)"
       let courseActive = "course_favorite_active_\(course.id)"
 
-      // NOTE: Course element leak: multiple matches found
-      guard let foundCourse = EarlGrey.select(elementWithMatcher: grey_anyOf([grey_accessibilityID(courseHidden), grey_accessibilityID(courseActive)])).atIndex(0) else {
-        fatalError("course not found! \(course.id)")
-      }
+      let foundCourse = EarlGrey.select(elementWithMatcher: grey_anyOf([grey_accessibilityID(courseHidden), grey_accessibilityID(courseActive)]))
       foundCourse.assertExists()
     }
   }

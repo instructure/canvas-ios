@@ -74,6 +74,7 @@
 		61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E31E78599D000FEABB /* DomainPickerPage.swift */; };
 		6DB0C2A2AEC5AB57B8968B3E /* GroupCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		86C29020E44B2BDD5649AC2C /* EditCoursesPageTest_test_favoriteCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308919FB4047D3154A062BC /* EditCoursesPageTest_test_favoriteCourse.swift */; };
 		8B83E26D393B3BB9C1813496 /* GroupMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8D0646677276C36E70E17 /* GroupMembership.swift */; };
 		9476F5B887844F7BAEBA7738 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A14A839A5EB460283B1F75B /* libRNImagePicker.a */; };
 		952E99B216DEE7FD0BEF819D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E479910A81A38C8833E5314 /* Page.swift */; };
@@ -91,6 +92,7 @@
 		DEBFD761CA06448195663E88 /* libInteractable.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E745A09DE28474C8094A8FB /* libInteractable.a */; };
 		E95E120300F55714C77F2BB4 /* DataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E779D0FC821A88203D0C34D /* DataUtil.swift */; };
 		F0188C0A3AD93224BEADC600 /* SubmissionComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A38F55FC2ABB80A92DB5C6 /* SubmissionComment.swift */; };
+		F9D224691EB7C51000BB0990 /* EditCoursesPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */; };
 		FE4948A645404B267D1C81A5 /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */; };
 		FFED8940A737FAF2C8F35764 /* CourseListPageTest_testCourseListPage_displaysList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175D059690BE83471486C41 /* CourseListPageTest_testCourseListPage_displaysList.swift */; };
 /* End PBXBuildFile section */
@@ -394,6 +396,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Teacher/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Teacher/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		2308919FB4047D3154A062BC /* EditCoursesPageTest_test_favoriteCourse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_test_favoriteCourse.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_test_favoriteCourse.swift; sourceTree = "<group>"; };
 		2411260A6CA04D6D874912A2 /* libRNSearchBar.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSearchBar.a; sourceTree = "<group>"; };
 		2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
 		2C50EDE01E735CA50096592C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -462,6 +465,7 @@
 		D71370A64E454689407684D4 /* CanvasUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CanvasUser.swift; path = models/CanvasUser.swift; sourceTree = "<group>"; };
 		E175D059690BE83471486C41 /* CourseListPageTest_testCourseListPage_displaysList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysList.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysList.swift; sourceTree = "<group>"; };
 		F3AF41997730E9FF32CA0729 /* AssignmentOverride.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentOverride.swift; path = models/AssignmentOverride.swift; sourceTree = "<group>"; };
+		F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoursesPageTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -681,6 +685,7 @@
 				6F798127265B286008D5A43E /* DataProvider.swift */,
 				33EA5B9B254626D699014C44 /* DataMap.swift */,
 				D155DA8255FE926C1F4BE521 /* CourseListPageTest */,
+				5B12C57B23D2BAFEC5FBB533 /* EditCoursesPageTest */,
 			);
 			name = data;
 			sourceTree = "<group>";
@@ -720,11 +725,19 @@
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
+		5B12C57B23D2BAFEC5FBB533 /* EditCoursesPageTest */ = {
+			isa = PBXGroup;
+			children = (
+				2308919FB4047D3154A062BC /* EditCoursesPageTest_test_favoriteCourse.swift */,
+			);
+			name = EditCoursesPageTest;
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */,
-				61FCAF141E5FC0190042921A /* libRCTAnimation-tvOS.a */,
+				61FCAF141E5FC0190042921A /* libRCTAnimation.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -757,6 +770,7 @@
 		61B536DC1E78491B000FEABB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */,
 				2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */,
 				61B536DD1E784946000FEABB /* DomainPickerTests.swift */,
 			);
@@ -1162,10 +1176,10 @@
 			remoteRef = 5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		61FCAF141E5FC0190042921A /* libRCTAnimation-tvOS.a */ = {
+		61FCAF141E5FC0190042921A /* libRCTAnimation.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libRCTAnimation-tvOS.a";
+			path = libRCTAnimation.a;
 			remoteRef = 61FCAF131E5FC0190042921A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1357,8 +1371,10 @@
 				6DB0C2A2AEC5AB57B8968B3E /* GroupCategory.swift in Sources */,
 				8B83E26D393B3BB9C1813496 /* GroupMembership.swift in Sources */,
 				061073931EA11FED00BEB914 /* EditCoursesListPage.swift in Sources */,
+				F9D224691EB7C51000BB0990 /* EditCoursesPageTest.swift in Sources */,
 				2CBA46785F24A17E94700673 /* Attachment.swift in Sources */,
 				F0188C0A3AD93224BEADC600 /* SubmissionComment.swift in Sources */,
+				86C29020E44B2BDD5649AC2C /* EditCoursesPageTest_test_favoriteCourse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
