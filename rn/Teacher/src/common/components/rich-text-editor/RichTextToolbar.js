@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   View,
+  LayoutAnimation,
 } from 'react-native'
 
 import { ColorPicker } from './'
@@ -45,6 +46,19 @@ const ITEMS = [
   item('link', 'insertLink'),
   item('embedImage', 'insertImage'),
 ]
+
+const ColorPickerAnimation = {
+  duration: 200,
+  create: {
+    type: LayoutAnimation.Types.linear,
+    property: LayoutAnimation.Properties.opacity,
+    springDamping: 0.7,
+  },
+  update: {
+    type: LayoutAnimation.Types.spring,
+    springDamping: 0.7,
+  },
+}
 
 export default class RichTextToolbar extends Component<any, Props, any> {
   constructor (props: Props) {
@@ -102,6 +116,7 @@ export default class RichTextToolbar extends Component<any, Props, any> {
   }
 
   _toggleColorPicker = () => {
+    LayoutAnimation.configureNext(ColorPickerAnimation)
     this.setState({ colorPickerVisible: !this.state.colorPickerVisible })
   }
 
@@ -134,6 +149,7 @@ const styles = StyleSheet.create({
   itemsContainer: {
     borderTopWidth: 1,
     borderTopColor: '#C7CDD1',
+    backgroundColor: 'white',
   },
   item: {
     width: 50,
