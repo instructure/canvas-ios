@@ -91,13 +91,18 @@ exports[`My message rows render correctly 1`] = `
       </Text>
     </View>
     <View
+      accessibilityLabel=""
       style={
-        Object {
-          "borderRadius": 20,
-          "height": 40,
-          "overflow": "hidden",
-          "width": 40,
-        }
+        Array [
+          Object {
+            "overflow": "hidden",
+          },
+          Object {
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+        ]
       }
     >
       <Image
@@ -211,13 +216,18 @@ exports[`Their message rows render correctly 1`] = `
     }
   >
     <View
+      accessibilityLabel=""
       style={
-        Object {
-          "borderRadius": 20,
-          "height": 40,
-          "overflow": "hidden",
-          "width": 40,
-        }
+        Array [
+          Object {
+            "overflow": "hidden",
+          },
+          Object {
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+        ]
       }
     >
       <Image
@@ -459,13 +469,18 @@ exports[`my media comments render correclty 1`] = `
       </Text>
     </View>
     <View
+      accessibilityLabel=""
       style={
-        Object {
-          "borderRadius": 20,
-          "height": 40,
-          "overflow": "hidden",
-          "width": 40,
-        }
+        Array [
+          Object {
+            "overflow": "hidden",
+          },
+          Object {
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+        ]
       }
     >
       <Image
@@ -513,13 +528,18 @@ exports[`their media comments render correctly 1`] = `
     }
   >
     <View
+      accessibilityLabel=""
       style={
-        Object {
-          "borderRadius": 20,
-          "height": 40,
-          "overflow": "hidden",
-          "width": 40,
-        }
+        Array [
+          Object {
+            "overflow": "hidden",
+          },
+          Object {
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+        ]
       }
     >
       <Image
@@ -631,13 +651,18 @@ exports[`their submissions render correctly 1`] = `
     }
   >
     <View
+      accessibilityLabel=""
       style={
-        Object {
-          "borderRadius": 20,
-          "height": 40,
-          "overflow": "hidden",
-          "width": 40,
-        }
+        Array [
+          Object {
+            "overflow": "hidden",
+          },
+          Object {
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+        ]
       }
     >
       <Image

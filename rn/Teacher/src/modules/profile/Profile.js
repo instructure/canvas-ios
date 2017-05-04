@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import {
   View,
-  Image,
   Button,
   NativeModules,
   StyleSheet,
 } from 'react-native'
 import i18n from 'format-message'
 import { Text } from '../../common/text'
+import Avatar from '../../common/components/Avatar'
 
 import { getSession } from '../../api/session'
 
@@ -25,7 +25,12 @@ export default class Profile extends Component {
       <View testID="module.profile" accessible={true} style={styles.container}>
         <View style={styles.headerImage} />
         <View style={styles.bottomContainer}>
-          <Image source={ { uri: user.avatar_url } } style={styles.profileImage} />
+          <View style={styles.profileImage}>
+            <Avatar
+              avatarURL={user.avatar_url}
+              userName={user.name}
+              height={120} />
+          </View>
           <Text style={styles.nameLabel}>{user.name}</Text>
           <Text style={styles.emailLabel}>{user.primary_email}</Text>
           <Button
@@ -53,9 +58,6 @@ const styles = StyleSheet.create({
   profileImage: {
     width: 120,
     height: 120,
-    borderRadius: 60,
-    borderColor: 'white',
-    borderWidth: 5,
     marginBottom: 8,
   },
   nameLabel: {

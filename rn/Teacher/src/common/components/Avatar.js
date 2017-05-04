@@ -12,6 +12,7 @@ import colors from '../colors'
 type Props = {
   avatarURL?: string,
   userName: string,
+  height?: number, // Width will always be equal to the height
 }
 
 export default class Avatar extends Component<any, Props, any> {
@@ -33,12 +34,16 @@ export default class Avatar extends Component<any, Props, any> {
 
   render () {
     const url = this.imageURL()
+    const height = this.props.height || 40
+    const width = height
+    const borderRadius = Math.round(height / 2)
+    const fontSize = Math.round(height / 3)
     if (url) {
       return (
-        <View style={styles.imageContainer}>
+        <View style={[styles.imageContainer, { height, width, borderRadius }]} accessibilityLabel=''>
           <Image
             source={{ uri: url }}
-            style={styles.image}
+            style={{ height, width }}
           />
         </View>
       )
@@ -48,11 +53,11 @@ export default class Avatar extends Component<any, Props, any> {
       .map((word) => word[0])
       .filter((c) => c)
       .reduce((m, c) => m + c)
-      .substring(0, 4)
+      .substring(0, 3)
       .toUpperCase()
       return (
-        <View style={styles.altImage}>
-          <Text style={styles.altImageText}>{altText}</Text>
+        <View style={[styles.altImage, { height, width, borderRadius }]} accessibilityLabel=''>
+          <Text style={[styles.altImageText, { fontSize }]}>{altText}</Text>
         </View>
       )
     }
@@ -61,24 +66,18 @@ export default class Avatar extends Component<any, Props, any> {
 
 const styles = StyleSheet.create({
   imageContainer: {
-    height: 40,
-    width: 40,
     overflow: 'hidden',
-    borderRadius: 20,
-  },
-  image: {
-    height: 40,
-    width: 40,
   },
   altImage: {
-    height: 40,
-    width: 40,
-    borderRadius: 20,
     borderColor: colors.seperatorColor,
     borderWidth: StyleSheet.hairlineWidth,
     overflow: 'hidden',
     marginRight: global.style.defaultPadding,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  altImageText: {
+    fontWeight: '600',
+    backgroundColor: 'transparent',
   },
 })

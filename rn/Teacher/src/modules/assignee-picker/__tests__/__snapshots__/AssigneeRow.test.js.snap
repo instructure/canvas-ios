@@ -56,13 +56,18 @@ exports[`render correctly 1`] = `
       }
     >
       <View
+        accessibilityLabel=""
         style={
-          Object {
-            "borderRadius": 20,
-            "height": 40,
-            "overflow": "hidden",
-            "width": 40,
-          }
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 20,
+              "height": 40,
+              "width": 40,
+            },
+          ]
         }
       >
         <Image
@@ -92,6 +97,7 @@ exports[`render correctly 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {
@@ -117,6 +123,7 @@ exports[`render correctly 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {
@@ -199,25 +206,40 @@ exports[`render correctly without image url 1`] = `
       }
     >
       <View
+        accessibilityLabel=""
         style={
-          Object {
-            "alignItems": "center",
-            "borderColor": "#C7CDD1",
-            "borderRadius": 20,
-            "borderWidth": 0.5,
-            "height": 40,
-            "justifyContent": "center",
-            "marginRight": 16,
-            "overflow": "hidden",
-            "width": 40,
-          }
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderColor": "#C7CDD1",
+              "borderWidth": 0.5,
+              "justifyContent": "center",
+              "marginRight": 16,
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 20,
+              "height": 40,
+              "width": 40,
+            },
+          ]
         }
       >
         <Text
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
-          style={undefined}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "fontWeight": "600",
+              },
+              Object {
+                "fontSize": 13,
+              },
+            ]
+          }
         >
           BM
         </Text>
@@ -235,6 +257,7 @@ exports[`render correctly without image url 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {
@@ -260,6 +283,7 @@ exports[`render correctly without image url 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {

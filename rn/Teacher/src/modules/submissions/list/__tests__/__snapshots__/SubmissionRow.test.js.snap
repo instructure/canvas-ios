@@ -32,21 +32,45 @@ exports[`excused row renders correctly 1`] = `
         }
       }
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://cats.pajamas/",
-          }
-        }
+      <View
         style={
           Object {
-            "alignSelf": "center",
-            "borderRadius": 20,
             "height": 40,
+            "marginRight": 8,
             "width": 40,
           }
         }
-      />
+      >
+        <View
+          accessibilityLabel=""
+          style={
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              Object {
+                "borderRadius": 20,
+                "height": 40,
+                "width": 40,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://cats.pajamas/",
+              }
+            }
+            style={
+              Object {
+                "height": 40,
+                "width": 40,
+              }
+            }
+          />
+        </View>
+      </View>
       <View
         style={
           Object {
@@ -200,21 +224,45 @@ exports[`late graded row renders correctly 1`] = `
         }
       }
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://cats.pajamas/",
-          }
-        }
+      <View
         style={
           Object {
-            "alignSelf": "center",
-            "borderRadius": 20,
             "height": 40,
+            "marginRight": 8,
             "width": 40,
           }
         }
-      />
+      >
+        <View
+          accessibilityLabel=""
+          style={
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              Object {
+                "borderRadius": 20,
+                "height": 40,
+                "width": 40,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://cats.pajamas/",
+              }
+            }
+            style={
+              Object {
+                "height": 40,
+                "width": 40,
+              }
+            }
+          />
+        </View>
+      </View>
       <View
         style={
           Object {
@@ -368,21 +416,45 @@ exports[`missing ungraded row renders correctly 1`] = `
         }
       }
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://cats.pajamas/",
-          }
-        }
+      <View
         style={
           Object {
-            "alignSelf": "center",
-            "borderRadius": 20,
             "height": 40,
+            "marginRight": 8,
             "width": 40,
           }
         }
-      />
+      >
+        <View
+          accessibilityLabel=""
+          style={
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              Object {
+                "borderRadius": 20,
+                "height": 40,
+                "width": 40,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://cats.pajamas/",
+              }
+            }
+            style={
+              Object {
+                "height": 40,
+                "width": 40,
+              }
+            }
+          />
+        </View>
+      </View>
       <View
         style={
           Object {
@@ -506,21 +578,45 @@ exports[`submitted ungraded row renders correctly 1`] = `
         }
       }
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://cats.pajamas/",
-          }
-        }
+      <View
         style={
           Object {
-            "alignSelf": "center",
-            "borderRadius": 20,
             "height": 40,
+            "marginRight": 8,
             "width": 40,
           }
         }
-      />
+      >
+        <View
+          accessibilityLabel=""
+          style={
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              Object {
+                "borderRadius": 20,
+                "height": 40,
+                "width": 40,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://cats.pajamas/",
+              }
+            }
+            style={
+              Object {
+                "height": 40,
+                "width": 40,
+              }
+            }
+          />
+        </View>
+      </View>
       <View
         style={
           Object {
@@ -687,21 +783,45 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
         }
       }
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://cats.pajamas/",
-          }
-        }
+      <View
         style={
           Object {
-            "alignSelf": "center",
-            "borderRadius": 20,
             "height": 40,
+            "marginRight": 8,
             "width": 40,
           }
         }
-      />
+      >
+        <View
+          accessibilityLabel=""
+          style={
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              Object {
+                "borderRadius": 20,
+                "height": 40,
+                "width": 40,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://cats.pajamas/",
+              }
+            }
+            style={
+              Object {
+                "height": 40,
+                "width": 40,
+              }
+            }
+          />
+        </View>
+      </View>
       <View
         style={
           Object {

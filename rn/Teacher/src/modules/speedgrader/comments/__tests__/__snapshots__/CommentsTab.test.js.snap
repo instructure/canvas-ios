@@ -191,13 +191,18 @@ exports[`comments render properly 1`] = `
             </Text>
           </View>
           <View
+            accessibilityLabel=""
             style={
-              Object {
-                "borderRadius": 20,
-                "height": 40,
-                "overflow": "hidden",
-                "width": 40,
-              }
+              Array [
+                Object {
+                  "overflow": "hidden",
+                },
+                Object {
+                  "borderRadius": 20,
+                  "height": 40,
+                  "width": 40,
+                },
+              ]
             }
           >
             <Image
@@ -318,13 +323,18 @@ exports[`comments render properly 1`] = `
           }
         >
           <View
+            accessibilityLabel=""
             style={
-              Object {
-                "borderRadius": 20,
-                "height": 40,
-                "overflow": "hidden",
-                "width": 40,
-              }
+              Array [
+                Object {
+                  "overflow": "hidden",
+                },
+                Object {
+                  "borderRadius": 20,
+                  "height": 40,
+                  "width": 40,
+                },
+              ]
             }
           >
             <Image
@@ -573,13 +583,18 @@ exports[`comments render properly 1`] = `
             </Text>
           </View>
           <View
+            accessibilityLabel=""
             style={
-              Object {
-                "borderRadius": 20,
-                "height": 40,
-                "overflow": "hidden",
-                "width": 40,
-              }
+              Array [
+                Object {
+                  "overflow": "hidden",
+                },
+                Object {
+                  "borderRadius": 20,
+                  "height": 40,
+                  "width": 40,
+                },
+              ]
             }
           >
             <Image
@@ -634,13 +649,18 @@ exports[`comments render properly 1`] = `
           }
         >
           <View
+            accessibilityLabel=""
             style={
-              Object {
-                "borderRadius": 20,
-                "height": 40,
-                "overflow": "hidden",
-                "width": 40,
-              }
+              Array [
+                Object {
+                  "overflow": "hidden",
+                },
+                Object {
+                  "borderRadius": 20,
+                  "height": 40,
+                  "width": 40,
+                },
+              ]
             }
           >
             <Image
@@ -759,13 +779,18 @@ exports[`comments render properly 1`] = `
           }
         >
           <View
+            accessibilityLabel=""
             style={
-              Object {
-                "borderRadius": 20,
-                "height": 40,
-                "overflow": "hidden",
-                "width": 40,
-              }
+              Array [
+                Object {
+                  "overflow": "hidden",
+                },
+                Object {
+                  "borderRadius": 20,
+                  "height": 40,
+                  "width": 40,
+                },
+              ]
             }
           >
             <Image

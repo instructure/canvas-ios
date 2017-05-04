@@ -27,23 +27,45 @@ exports[`Profile Tests renders correctly 1`] = `
       }
     }
   >
-    <Image
-      source={
-        Object {
-          "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-        }
-      }
+    <View
       style={
         Object {
-          "borderColor": "white",
-          "borderRadius": 60,
-          "borderWidth": 5,
           "height": 120,
           "marginBottom": 8,
           "width": 120,
         }
       }
-    />
+    >
+      <View
+        accessibilityLabel=""
+        style={
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 60,
+              "height": 120,
+              "width": 120,
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 120,
+              "width": 120,
+            }
+          }
+        />
+      </View>
+    </View>
     <Text
       accessible={true}
       allowFontScaling={true}

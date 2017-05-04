@@ -226,21 +226,45 @@ exports[`SubmissionList loaded 1`] = `
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "http://www.fillmurray.com/100/100",
-                  }
-                }
+              <View
                 style={
                   Object {
-                    "alignSelf": "center",
-                    "borderRadius": 20,
                     "height": 40,
+                    "marginRight": 8,
                     "width": 40,
                   }
                 }
-              />
+              >
+                <View
+                  accessibilityLabel=""
+                  style={
+                    Array [
+                      Object {
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "borderRadius": 20,
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    source={
+                      Object {
+                        "uri": "http://www.fillmurray.com/100/100",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  />
+                </View>
+              </View>
               <View
                 style={
                   Object {
@@ -384,21 +408,45 @@ exports[`SubmissionList loaded 1`] = `
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "http://www.fillmurray.com/100/100",
-                  }
-                }
+              <View
                 style={
                   Object {
-                    "alignSelf": "center",
-                    "borderRadius": 20,
                     "height": 40,
+                    "marginRight": 8,
                     "width": 40,
                   }
                 }
-              />
+              >
+                <View
+                  accessibilityLabel=""
+                  style={
+                    Array [
+                      Object {
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "borderRadius": 20,
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    source={
+                      Object {
+                        "uri": "http://www.fillmurray.com/100/100",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  />
+                </View>
+              </View>
               <View
                 style={
                   Object {
@@ -572,21 +620,45 @@ exports[`SubmissionList loaded 1`] = `
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "http://www.fillmurray.com/100/100",
-                  }
-                }
+              <View
                 style={
                   Object {
-                    "alignSelf": "center",
-                    "borderRadius": 20,
                     "height": 40,
+                    "marginRight": 8,
                     "width": 40,
                   }
                 }
-              />
+              >
+                <View
+                  accessibilityLabel=""
+                  style={
+                    Array [
+                      Object {
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "borderRadius": 20,
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    source={
+                      Object {
+                        "uri": "http://www.fillmurray.com/100/100",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  />
+                </View>
+              </View>
               <View
                 style={
                   Object {
@@ -773,21 +845,45 @@ exports[`SubmissionList loaded 1`] = `
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "http://www.fillmurray.com/100/100",
-                  }
-                }
+              <View
                 style={
                   Object {
-                    "alignSelf": "center",
-                    "borderRadius": 20,
                     "height": 40,
+                    "marginRight": 8,
                     "width": 40,
                   }
                 }
-              />
+              >
+                <View
+                  accessibilityLabel=""
+                  style={
+                    Array [
+                      Object {
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "borderRadius": 20,
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    source={
+                      Object {
+                        "uri": "http://www.fillmurray.com/100/100",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  />
+                </View>
+              </View>
               <View
                 style={
                   Object {
@@ -1119,21 +1215,45 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "http://www.fillmurray.com/100/100",
-                  }
-                }
+              <View
                 style={
                   Object {
-                    "alignSelf": "center",
-                    "borderRadius": 20,
                     "height": 40,
+                    "marginRight": 8,
                     "width": 40,
                   }
                 }
-              />
+              >
+                <View
+                  accessibilityLabel=""
+                  style={
+                    Array [
+                      Object {
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "borderRadius": 20,
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    source={
+                      Object {
+                        "uri": "http://www.fillmurray.com/100/100",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  />
+                </View>
+              </View>
               <View
                 style={
                   Object {

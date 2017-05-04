@@ -5,7 +5,6 @@ import {
   View,
   StyleSheet,
   TouchableHighlight,
-  Image,
 } from 'react-native'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 import Token from '../../../common/components/Token'
@@ -17,6 +16,7 @@ import type {
 import colors from '../../../common/colors'
 import { Text } from '../../../common/text'
 import SubmissionStatus from './SubmissionStatus'
+import Avatar from '../../../common/components/Avatar'
 
 type RowProps = {
   +testID: string,
@@ -74,7 +74,12 @@ class SubmissionRow extends Component<any, SubmissionProps, any> {
     const { userID, avatarURL, name, status, grade } = this.props
     return (
       <Row disclosure testID={`submission-${userID}`} onPress={this.onPress}>
-        <Image source={{ uri: avatarURL }} style={styles.avatar} />
+        <View style={styles.avatar}>
+          <Avatar
+            key={userID}
+            avatarURL={avatarURL}
+            userName={name} />
+        </View>
         <View style={styles.textContainer}>
           <Text
             style={styles.title}
@@ -125,7 +130,6 @@ const styles = StyleSheet.create({
   avatar: {
     width: 40,
     height: 40,
-    borderRadius: 20,
-    alignSelf: 'center',
+    marginRight: 8,
   },
 })
