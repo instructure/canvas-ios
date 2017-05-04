@@ -1,0 +1,184 @@
+// @flow
+
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  FlatList,
+  Image,
+  TouchableHighlight,
+} from 'react-native'
+import { Text } from '../../../common/text'
+import Images from '../../../images'
+import SpeedGraderActions from '../actions'
+
+export class FilesTab extends Component {
+  props: FileTabProps
+
+  listOfFiles () {
+    const submission = this.props.submissionProps.submission
+    const selectedIndex = this.props.selectedIndex
+    if (!submission || !submission.attachments) return []
+    let files = submission.attachments
+    if (selectedIndex != null) {
+      if (!submission.submission_history[selectedIndex].attachments) return []
+      files = submission.submission_history[selectedIndex].attachments
+    }
+    return files
+  }
+
+  selectFile = (index: number) => {
+    if (this.props.submissionID) {
+      this.props.selectFile(this.props.submissionID, index)
+    }
+  }
+
+  renderIcon = (item: Object) => {
+    if (item.thumbnail_url) {
+      return <Image source={{ uri: item.thumbnail_url }} style={styles.thumbnails} />
+    }
+    let src = Images.speedGrader.page
+    switch (item.mime_class) {
+      case 'audio':
+        src = Images.speedGrader.audio
+        break
+      case 'video':
+        src = Images.speedGrader.video
+        break
+      case 'pdf':
+        src = Images.speedGrader.pdf
+        break
+      case 'doc':
+      default:
+        src = Images.speedGrader.page
+        break
+    }
+    return <Image source={src} style={styles.icons} />
+  }
+
+  keyExtractor = (item: Object, index: number) => index
+
+  renderRow = ({ item, index }: { item: Object, index: number }) => {
+    let selected = index === 0
+    if (this.props.selectedAttachmentIndex != null) {
+      selected = this.props.selectedAttachmentIndex === index
+    }
+    const traits = selected ? 'selected' : 'none'
+    return <View>
+      <TouchableHighlight
+        underlayColor="#eee"
+        onPress={() => this.selectFile(index)}
+        accessible={true}
+        accessibilityTraits={traits}
+        testID={`speedgrader.files.row${index}`}
+      >
+        <View style={styles.row}>
+          <View style={styles.iconContainer}>
+            {this.renderIcon(item)}
+          </View>
+          <View style={styles.filenameContainer}>
+            <Text style={styles.filename}>{item.display_name}</Text>
+          </View>
+          <View style={styles.checkmarkContainer}>
+            {selected && <Image source={Images.check} style={styles.checkmark} />}
+          </View>
+        </View>
+      </TouchableHighlight>
+    </View>
+  }
+
+  render () {
+    return (
+      <ScrollView>
+        <FlatList
+          data={this.listOfFiles()}
+          keyExtractor={this.keyExtractor}
+          testID='speedgrader.files.list'
+          renderItem={this.renderRow}
+          extraData={{ selected: this.props.selectedAttachmentIndex }}
+        />
+      </ScrollView>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  row: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'lightgrey',
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  iconContainer: {
+    marginRight: 16,
+  },
+  icons: {
+    resizeMode: 'contain',
+    width: 24,
+    tintColor: '#00BCD5',
+  },
+  thumbnails: {
+    height: 24,
+    width: 24,
+  },
+  filenameContainer: {
+    flex: -1,
+    flexGrow: 1,
+    alignSelf: 'flex-end',
+  },
+  filename: {
+    textAlign: 'left',
+    overflow: 'hidden',
+    fontWeight: '500',
+  },
+  checkmark: {
+    resizeMode: 'contain',
+    tintColor: '#008EE2',
+    height: 10,
+    width: 13,
+  },
+  checkmarkContainer: {
+    alignSelf: 'center',
+  },
+})
+
+export function mapStateToProps (state: AppState, ownProps: RouterProps): FileTabDataProps {
+  if (!ownProps.submissionID) {
+    return {
+      selectedAttachmentIndex: null,
+    }
+  }
+
+  return {
+    selectedAttachmentIndex: state.entities.submissions[ownProps.submissionID].selectedAttachmentIndex,
+  }
+}
+
+let Connected = connect(mapStateToProps, SpeedGraderActions)(FilesTab)
+export default (Connected: any)
+
+type RouterProps = {
+  closeModal: Function,
+  showModal: Function,
+  courseID: string,
+  assignmentID: string,
+  userID: string,
+  submissionID: ?string,
+  submissionProps: Object,
+  selectedIndex: ?number,
+}
+
+type FileTabDataProps = {
+  selectedAttachmentIndex: ?number,
+}
+
+type FileTabActionsProps = {
+  selectFile: Function,
+}
+
+type FileTabProps = RouterProps & FileTabDataProps & FileTabActionsProps

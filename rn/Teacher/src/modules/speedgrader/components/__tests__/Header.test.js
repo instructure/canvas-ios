@@ -40,6 +40,7 @@ let noSubProps = {
   gradeSubmission: jest.fn(),
   selectSubmissionFromHistory: jest.fn(),
   selectedIndex: null,
+  selectedAttachmentIndex: null,
 }
 
 let subProps = {

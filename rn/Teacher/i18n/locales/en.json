@@ -241,6 +241,9 @@
     "message": "Files",
     "description": "The title of the button to switch to the files submitted for a submission"
   },
+  "files_numberoffiles_66240ab2": {
+    "message": "Files ({ numberOfFiles })"
+  },
   "filter_by_ffcbd05b": {
     "message": "Filter by:",
     "description": "Indicates to the user that they can filter by a few options"

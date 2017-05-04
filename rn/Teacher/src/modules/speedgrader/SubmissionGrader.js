@@ -10,6 +10,7 @@ import i18n from 'format-message'
 import BottomDrawer from '../../common/components/BottomDrawer'
 import Header from './components/Header'
 import GradeTab from './GradeTab'
+import FilesTab from './components/FilesTab'
 import CommentsTab from './comments/CommentsTab'
 
 let { width, height } = Dimensions.get('window')
@@ -17,7 +18,7 @@ let { width, height } = Dimensions.get('window')
 type State = {
   width: number,
   height: number,
-  selectedIndex: number,
+  selectedTabIndex: number,
 }
 
 type SubmissionGraderProps = {
@@ -28,6 +29,7 @@ type SubmissionGraderProps = {
   userID: string,
   submissionID: ?string,
   submissionProps: Object,
+  selectedIndex: ?number,
 }
 
 export default class SubmissionGrader extends Component<any, SubmissionGraderProps, State> {
@@ -41,13 +43,13 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     this.state = {
       width: width,
       height: height,
-      selectedIndex: 0,
+      selectedTabIndex: 0,
     }
   }
 
   changeTab = (e: any) => {
     this.setState({
-      selectedIndex: e.nativeEvent.selectedSegmentIndex,
+      selectedTabIndex: e.nativeEvent.selectedSegmentIndex,
     })
   }
 
@@ -65,8 +67,24 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
       case 1:
         return <CommentsTab {...this.props} />
       case 2:
-        return <View></View>
+        return <FilesTab {...this.props} />
     }
+  }
+
+  filesTabLabel () {
+    const submission = this.props.submissionProps.submission
+    const selectedIndex = this.props.selectedIndex
+    let defaultLabel = i18n({
+      default: 'Files',
+      description: 'The title of the button to switch to the files submitted for a submission',
+    })
+    if (!submission || !submission.attachments) return defaultLabel
+    let numberOfFiles = submission.attachments.length
+    if (selectedIndex != null) {
+      if (!submission.submission_history[selectedIndex].attachments) return defaultLabel
+      numberOfFiles = submission.submission_history[selectedIndex].attachments.length
+    }
+    return i18n('Files ({numberOfFiles})', { numberOfFiles })
   }
 
   render () {
@@ -86,16 +104,13 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
                   default: 'Comments',
                   description: 'The title of the button to switch to comments on a submission',
                 }),
-                i18n({
-                  default: 'Files',
-                  description: 'The title of the button to switch to the files submitted for a submission',
-                }),
+                this.filesTabLabel(),
               ]}
-              selectedIndex={this.state.selectedIndex}
+              selectedIndex={this.state.selectedTabIndex}
               onChange={this.changeTab}
             />
           </View>
-          {this.renderTab(this.state.selectedIndex)}
+          {this.renderTab(this.state.selectedTabIndex)}
         </BottomDrawer>
       </View>
     )

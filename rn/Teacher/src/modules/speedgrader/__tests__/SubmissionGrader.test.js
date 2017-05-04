@@ -9,11 +9,13 @@ jest
   .mock('SegmentedControlIOS', () => 'SegmentedControlIOS')
   .mock('../components/GradePicker')
   .mock('../components/Header')
+  .mock('../components/FilesTab')
   .mock('../components/RubricDetails')
   .mock('../comments/CommentsTab')
 
 let defaultProps = {
   submissionID: '1',
+  submissionProps: {},
 }
 
 describe('SubmissionGrader', () => {
@@ -41,14 +43,14 @@ describe('SubmissionGrader', () => {
       },
     }
     instance.changeTab(event)
-    expect(instance.state.selectedIndex).toEqual(0)
+    expect(instance.state.selectedTabIndex).toEqual(0)
 
     event.nativeEvent.selectedSegmentIndex = 1
     instance.changeTab(event)
-    expect(instance.state.selectedIndex).toEqual(1)
+    expect(instance.state.selectedTabIndex).toEqual(1)
 
     event.nativeEvent.selectedSegmentIndex = 2
     instance.changeTab(event)
-    expect(instance.state.selectedIndex).toEqual(2)
+    expect(instance.state.selectedTabIndex).toEqual(2)
   })
 })

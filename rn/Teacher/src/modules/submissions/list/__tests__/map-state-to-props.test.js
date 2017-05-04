@@ -65,6 +65,7 @@ test('submissions', () => {
       pending: 0,
       error: null,
       selectedIndex: null,
+      selectedAttachmentIndex: null,
       rubricGradePending: false,
     },
     '30': {
@@ -80,6 +81,7 @@ test('submissions', () => {
       pending: 0,
       error: null,
       selectedIndex: null,
+      selectedAttachmentIndex: null,
       rubricGradePending: false,
     },
     '40': {
@@ -95,6 +97,7 @@ test('submissions', () => {
       pending: 0,
       error: null,
       selectedIndex: null,
+      selectedAttachmentIndex: null,
       rubricGradePending: false,
     },
   }

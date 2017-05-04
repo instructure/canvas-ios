@@ -12,7 +12,7 @@ exports[`SubmissionGrader renders 1`] = `
   <Header
     closeModal={undefined}
     submissionID="1"
-    submissionProps={undefined}
+    submissionProps={Object {}}
   />
   <BottomDrawer
     containerHeight={1334}
@@ -52,6 +52,7 @@ exports[`SubmissionGrader renders 1`] = `
       <View>
         <GradePicker
           submissionID="1"
+          submissionProps={Object {}}
         />
       </View>
     </RCTScrollView>

@@ -46,6 +46,14 @@ describe('SpeedGraderActions', () => {
     })
   })
 
+  describe('selectFile', () => {
+    it('passes the submissionID and index in the action payload', () => {
+      let { payload } = actions.selectFile('1', 2)
+      expect(payload).toHaveProperty('submissionID', '1')
+      expect(payload).toHaveProperty('index', 2)
+    })
+  })
+
   describe('gradeSubmissionWithRubric', () => {
     it('calls gradeSubmissionWithRubric with the correct arguments', () => {
       let params = {

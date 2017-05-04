@@ -51,6 +51,10 @@ const images = {
   speedGrader: {
     chatBubbleMe: require('./speedgrader/bubble-me.png'),
     chatBubbleThem: require('./speedgrader/bubble-them.png'),
+    audio: require('./speedgrader/icon_audio.png'),
+    video: require('./speedgrader/icon_video_clip.png'),
+    page: require('./speedgrader/page.png'),
+    pdf: require('./speedgrader/pdf-icon.png'),
   },
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),

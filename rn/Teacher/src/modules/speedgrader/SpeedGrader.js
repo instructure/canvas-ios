@@ -51,8 +51,10 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     this.props.navigator.dismissModal()
   }
 
-  renderItem = ({ item }: { item: SubmissionItem }) =>
-    <View style={[styles.page, this.state.size]}>
+  renderItem = ({ item }: { item: SubmissionItem }) => {
+    const submissionEntity = this.props.submissionEntities[item.submission.submissionID]
+    const selectedIndex = submissionEntity != null ? submissionEntity.selectedIndex : null
+    return <View style={[styles.page, this.state.size]}>
       <SubmissionGrader
         courseID={this.props.courseID}
         assignmentID={this.props.assignmentID}
@@ -61,8 +63,10 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         closeModal={this.props.navigator.dismissModal}
         showModal={this.props.navigator.showModal}
         submissionProps={item.submission}
+        selectedIndex={selectedIndex}
         />
     </View>
+  }
 
   renderScrollView = () => {
     const studentIndex = Math.max(0, this.props.submissions.findIndex(sub => sub.userID === this.props.userID))
@@ -114,8 +118,12 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps (state: AppState, ownProps: RoutingProps): AsyncSubmissionsDataProps {
-  return getSubmissionsProps(state.entities, ownProps.courseID, ownProps.assignmentID)
+export function mapStateToProps (state: AppState, ownProps: RoutingProps): SpeedGraderDataProps {
+  const props = getSubmissionsProps(state.entities, ownProps.courseID, ownProps.assignmentID)
+  return {
+    ...props,
+    submissionEntities: state.entities.submissions,
+  }
 }
 
 export function refreshSpeedGrader (props: SpeedGraderProps): void {
@@ -155,9 +163,12 @@ type SpeedGraderActionProps = {
   refreshEnrollments: Function,
   refreshAssignment: Function,
 }
+type SpeedGraderDataProps = {
+  submissionEntities: Object,
+} & AsyncSubmissionsDataProps
 type SpeedGraderProps
   = RoutingProps
   & SpeedGraderActionProps
-  & AsyncSubmissionsDataProps
+  & SpeedGraderDataProps
   & RefreshProps
   & NavProps

@@ -5,7 +5,8 @@ import Actions from '../actions'
 import SpeedGraderActions from '../../../speedgrader/actions'
 
 const { refreshSubmissions } = Actions
-const { excuseAssignment, gradeSubmission, selectSubmissionFromHistory, gradeSubmissionWithRubric } = SpeedGraderActions
+const { excuseAssignment, gradeSubmission,
+  selectSubmissionFromHistory, gradeSubmissionWithRubric, selectFile } = SpeedGraderActions
 const templates = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
 }
@@ -284,6 +285,92 @@ test('selectSubmissionFromHistory updates the existing selectedIndex', () => {
     pending: 0,
     error: null,
     selectedIndex: 2,
+  })
+})
+
+test('selectSubmissionFromHistory zeros-out the existing selectedAttachmentIndex', () => {
+  const state = {
+    '1': {
+      submission: {},
+      error: null,
+      pending: 0,
+      selectedIndex: 0,
+      selectedAttachmentIndex: 1,
+    },
+  }
+
+  const action = {
+    type: selectSubmissionFromHistory.toString(),
+    payload: {
+      submissionID: '1',
+      index: 2,
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1']).toMatchObject({
+    submission: {},
+    pending: 0,
+    error: null,
+    selectedIndex: 2,
+    selectedAttachmentIndex: 0,
+  })
+})
+
+test('selectFile adds the selectedAttachmentIndex to the submission', () => {
+  const state = {
+    '1': {
+      submission: {},
+      error: null,
+      pending: 0,
+      selectedIndex: 0,
+    },
+  }
+
+  const action = {
+    type: selectFile.toString(),
+    payload: {
+      submissionID: '1',
+      index: 2,
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1']).toMatchObject({
+    submission: {},
+    pending: 0,
+    selectedIndex: 0,
+    error: null,
+    selectedAttachmentIndex: 2,
+  })
+})
+
+test('selectFile updates the existing selectedAttachmentIndex', () => {
+  const state = {
+    '1': {
+      submission: {},
+      error: null,
+      pending: 0,
+      selectedIndex: 0,
+      selectedAttachmentIndex: 0,
+    },
+  }
+
+  const action = {
+    type: selectFile.toString(),
+    payload: {
+      submissionID: '1',
+      index: 2,
+    },
+  }
+
+  let newState = submissions(state, action)
+  expect(newState['1']).toMatchObject({
+    submission: {},
+    pending: 0,
+    selectedIndex: 0,
+    error: null,
+    selectedAttachmentIndex: 2,
   })
 })
 

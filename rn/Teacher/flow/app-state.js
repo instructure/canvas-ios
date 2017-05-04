@@ -48,6 +48,7 @@ export type SubmissionState = AsyncState & {
   submission: SubmissionWithHistory,
   rubricGradePending: boolean,
   selectedIndex: ?number,
+  selectedAttachmentIndex: ?number,
 }
 
 export type CoursesState = { [string]: CourseState & CourseContentState }
