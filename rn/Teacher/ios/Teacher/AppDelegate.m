@@ -13,11 +13,11 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import "RCCManager.h"
-#import "NativeLogin.h"
+#import "NativeLoginManager.h"
 
 @import CanvasKeymaster;
 
-@interface AppDelegate()
+@interface AppDelegate() <NativeLoginManagerDelegate>
 
 @end
 
@@ -30,27 +30,29 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.window.rootViewController = [UIViewController new];
   
+  [NativeLoginManager shared].delegate = self;
+  
   TheKeymaster.fetchesBranding = YES;
-  TheKeymaster.delegate = [NativeLogin shared];
-  
-  [TheKeymaster.signalForLogout subscribeNext:^(UIViewController * _Nullable x) {
-    self.window.rootViewController = x;
-  }];
-  
-  [TheKeymaster.signalForLogin subscribeNext:^(CKIClient * _Nullable client) {
-    NSURL *jsCodeLocation;
-#ifdef DEBUG
-    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
-#else
-    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-#endif
-
-    [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation launchOptions:launchOptions];
-  }];
+  TheKeymaster.delegate = [NativeLoginManager shared];
   
   [self.window makeKeyAndVisible];
   
   return YES;
+}
+
+- (void)didLogin {
+  NSURL *jsCodeLocation;
+#ifdef DEBUG
+  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+#else
+  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+#endif
+  
+  [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation launchOptions:nil];
+}
+
+- (void)didLogout:(UIViewController *)controller {
+  self.window.rootViewController = controller;
 }
 
 @end

@@ -18,6 +18,8 @@ import Foundation
 import XCTest
 import CanvasKeymaster
 
+@testable import Teacher
+
 class TeacherTest: XCTestCase {
 
   override func setUp() {

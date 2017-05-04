@@ -14,12 +14,27 @@
 // limitations under the License.
 //
 
+@testable import Teacher
+
 class CourseListPageTest: TeacherTest {
   
   func testCourseListPage_displaysList() {
-    logIn(self)
+//    logIn(self)
+//    let course = Data.getNextCourse(self)
+//    coursesListPage.assertCourseExists(course)
+    
+    // This is a test for the new way of testing without actually needing to login
     let course = Data.getNextCourse(self)
-    coursesListPage.assertCourseExists(course)
+    let teacher = Data.getNextTeacher(self)
+    
+    let user: [String: Any] = ["id": teacher.id, "name": teacher.name, "primary_email": teacher.loginId, "short_name": teacher.shortName, "avatar_url": teacher.avatarUrl]
+    let loginInfo: [String: Any] = ["authToken": teacher.token, "baseURL": "https://\(teacher.domain)/", "user": user]
+    
+    for _ in 1...10 {
+      NativeLoginManager.shared().injectLoginInformation(loginInfo)
+      coursesListPage.assertCourseExists(course)
+      NativeLoginManager.shared().injectLoginInformation(nil)
+    }
   }
 
   func testCourseListEmptyPage_displaysEmptyState() {

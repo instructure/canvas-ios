@@ -25,4 +25,5 @@ struct CanvasUser {
     let name: String
     let shortName: String
     let avatarUrl: String
+    let token: String
 }

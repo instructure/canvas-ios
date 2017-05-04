@@ -18,14 +18,30 @@
 /* This is an auto-generated file. */
 
 struct Quiz {
-    let id: Int
-    let title: String
-    let description: String
-    let quizType: String
-    let timeLimit: Int
-    let showCorrectAnswers: Bool
     let allowedAttempts: Int
-    let pointsPossible: Int
+    let assignmentGroupId: Int
+    let cantGoBack: Bool
+    let description: String
     let dueAt: String
+    let hideCorrectAnswersAt: String
+    let hideResults: Bool
+    let id: Int
+    let ipFilter: String
+    let lockAt: String
+    let oneQuestionAtATime: Bool
+    let oneTimeResults: Bool
+    let pointsPossible: Int
     let published: Bool
+    let questionCount: Int
+    let questionTypes: [String]
+    let quizType: String
+    let scoringPolicy: String
+    let showCorrectAnswers: Bool
+    let showCorrectAnswersAt: String
+    let showCorrectAnswersLastAttempt: Bool
+    let shuffleAnswers: Bool
+    let timeLimit: Int
+    let title: String
+    let unlockAt: String
+    let unpublishable: Bool
 }
