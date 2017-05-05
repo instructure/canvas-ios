@@ -17,6 +17,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import color from './../../common/colors'
 import images from '../../images/'
 import DisclosureIndicator from '../../common/components/DisclosureIndicator'
+import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import { route } from '../../routing'
 import ReactNative, {
   View,
@@ -25,7 +26,6 @@ import ReactNative, {
   PickerIOS,
   TouchableHighlight,
   LayoutAnimation,
-  Switch,
   Image,
 } from 'react-native'
 
@@ -130,20 +130,6 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     this.refs.scrollView.scrollToFocusedInput(input)
   }
 
-  renderToggle (fieldName: string, testID: string, styleParam: Object = {}): React.Element<*> {
-    const value = this.defaultValueForBooleanInput(fieldName)
-    return (
-      <Switch style={styleParam}
-              accessible={true}
-              value={value}
-              onValueChange={ value => this.updateFromInput(fieldName, value) }
-              testID={testID}
-              tintColor={ color.primaryBrandColor }
-              onTintColor={ color.primaryBrandColor }
-      />
-    )
-  }
-
   renderDataMapPicker = (): React.Element<View> => {
     if (!this.state.showPicker) return <View/>
 
@@ -237,12 +223,13 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
           {this.renderDataMapPicker()}
 
           {/* Publish */}
-          <View style={[style.row, style.twoColumnRow, style.bottomRow]}>
-            <View accessible={true} accessibilityLabel={i18n('publish.')} style={{ justifyContent: 'center' }} >
-              <Text style={[style.twoColumnRowLeftText, { flex: 0 }]}>{publish}</Text>
-            </View>
-            { this.renderToggle('published', 'published') }
-          </View>
+
+          <RowWithSwitch
+            title={publish}
+            border={'bottom'}
+            value={this.defaultValueForBooleanInput('published')}
+            identifier='published'
+            onValueChange={this._updateToggleValue} />
 
           {/* Due Dates */}
           <AssignmentDatesEditor assignment={this.props.assignmentDetails} ref={c => { this.datesEditor = c }} navigator={this.props.navigator} />
@@ -250,6 +237,10 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
         </KeyboardAwareScrollView>
       </View>
     )
+  }
+
+  _updateToggleValue = (value: boolean, key: string) => {
+    this.updateFromInput(key, value)
   }
 
   _editDescription = () => {

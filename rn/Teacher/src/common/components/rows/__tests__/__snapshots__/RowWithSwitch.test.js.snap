@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render the base row 1`] = `
+exports[`Render row with switch 1`] = `
 <View
   accessibilityComponentType={undefined}
   accessibilityLabel={undefined}
@@ -23,16 +23,10 @@ exports[`Render the base row 1`] = `
       },
       Array [
         Object {
-          "height": 44,
+          "height": 54,
         },
-        Object {
-          "borderTopColor": "#C7CDD1",
-          "borderTopWidth": 0.5,
-        },
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-        },
+        undefined,
+        undefined,
       ],
     ]
   }
@@ -53,22 +47,6 @@ exports[`Render the base row 1`] = `
       }
     }
   >
-    <Image
-      source={1}
-      style={
-        Array [
-          Object {
-            "marginRight": 8,
-            "resizeMode": "contain",
-          },
-          Object {
-            "height": 10,
-            "tintColor": "#fff",
-            "width": 10,
-          },
-        ]
-      }
-    />
     <View
       style={
         Object {
@@ -100,29 +78,7 @@ exports[`Render the base row 1`] = `
           ]
         }
       >
-        Title of the row
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            undefined,
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-          ]
-        }
-      >
-        Subtitle
+        Row with a switch in it!
       </Text>
     </View>
     <View
@@ -134,24 +90,27 @@ exports[`Render the base row 1`] = `
         }
       }
     >
-      <View
+      <RCTSwitch
+        disabled={false}
+        identifier="test"
+        onChange={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        onTintColor="#ff0ee8"
+        onValueChange={[Function]}
         style={
-          Object {
-            "alignSelf": "center",
-            "backgroundColor": "transparent",
-            "borderColor": "#c7c7cc",
-            "borderRightWidth": 2,
-            "borderTopWidth": 2,
-            "height": 10,
-            "marginLeft": 7,
-            "transform": Array [
-              Object {
-                "rotate": "45deg",
-              },
-            ],
-            "width": 10,
-          }
+          Array [
+            Object {
+              "height": 31,
+              "width": 51,
+            },
+            undefined,
+          ]
         }
+        testID="test"
+        tintColor="#ff0ee8"
+        title="Row with a switch in it!"
+        value={false}
       />
     </View>
   </View>

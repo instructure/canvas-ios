@@ -12,7 +12,7 @@ import color from '../../colors'
 import DisclosureIndicator from '../DisclosureIndicator'
 import { Text } from '../../text'
 
-type RowProps = {
+export type RowProps = {
   title: string,
   subtitle?: string,
   image?: string,
@@ -23,6 +23,7 @@ type RowProps = {
   border?: 'top' | 'bottom' | 'both',
   onPress?: Function,
   testID?: string,
+  accessories: any,
 }
 
 export default class Row extends Component<any, RowProps, any> {
@@ -49,6 +50,7 @@ export default class Row extends Component<any, RowProps, any> {
                   { this.props.subtitle && <Text>{this.props.subtitle}</Text> }
                 </View>
                 <View style={style.accessoryContainer}>
+                  { this.props.accessories }
                   { this.props.disclosureIndicator && <DisclosureIndicator /> }
                 </View>
               </View>

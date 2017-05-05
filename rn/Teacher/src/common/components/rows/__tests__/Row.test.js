@@ -7,7 +7,7 @@ import Images from '../../../../../src/images'
 
 import renderer from 'react-test-renderer'
 
-test('Token renders correctly', () => {
+test('Render the base row', () => {
   const onPress = jest.fn()
   let aRow = renderer.create(
     <Row
