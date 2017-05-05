@@ -15,6 +15,10 @@
 @import CanvasKeymaster;
 @import CocoaLumberjack;
 
+@interface NativeLoginManager()
+- (void)setup;
+@end
+
 // Object used to send events to React Native about login
 @interface NativeLogin : RCTEventEmitter
 
@@ -40,6 +44,10 @@ static NativeLogin *_sharedInstance;
   self.isObserving = NO;
   self.pendingEvents = [NSMutableDictionary new];
   [NativeLogin setSharedInstance:self];
+  
+  // Each time one of these gets created, we need to re-setup the observing of keymaster stuff
+  // Otherwise, the right events don't get triggered
+  [[NativeLoginManager shared] setup];
   return self;
 }
 
@@ -53,7 +61,7 @@ RCT_EXPORT_METHOD(logout)
 RCT_EXPORT_METHOD(startObserving)
 {
   self.isObserving = YES;
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     [self.pendingEvents enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL * _Nonnull stop) {
       [self sendEventWithName:key body:obj];
     }];
@@ -85,6 +93,8 @@ RCT_EXPORT_METHOD(stopObserving)
 
 @property (nonatomic) NSDictionary *injectedLoginInfo;
 @property (nonatomic) RACDisposable *loginObserver;
+@property (nonatomic) RACDisposable *logoutObserver;
+@property (nonatomic) RACDisposable *clientObserver;
 @property (nonatomic) NSMutableDictionary *eventsSent;
 
 @end
@@ -104,48 +114,54 @@ RCT_EXPORT_METHOD(stopObserving)
   
   self = [super init];
   if (self) {
-    self.eventsSent = [NSMutableDictionary dictionary];
     [self setup];
   }
   return self;
 }
 
 - (void)setup {
-  [TheKeymaster.signalForLogout subscribeNext:^(UIViewController * _Nullable x) {
+  
+  [self.logoutObserver dispose];
+  [self.loginObserver dispose];
+  [self.clientObserver dispose];
+  
+  self.eventsSent = [NSMutableDictionary dictionary];
+  
+  __weak NativeLoginManager *weakSelf = self;
+  self.logoutObserver = [TheKeymaster.signalForLogout subscribeNext:^(UIViewController * _Nullable x) {
+    __strong NativeLoginManager *self = weakSelf;
     if (self.injectedLoginInfo) { return; }
     
     [self.delegate didLogout:x];
   }];
   
-  [TheKeymaster.signalForLogin subscribeNext:^(CKIClient * _Nullable client) {
+  self.loginObserver = [TheKeymaster.signalForLogin subscribeNext:^(CKIClient * _Nullable client) {
+    __strong NativeLoginManager *self = weakSelf;
     if (self.injectedLoginInfo) { return; }
     
     [self.delegate didLogin];
   }];
   
-  __weak NativeLoginManager *weakSelf = self;
-  self.loginObserver = [[[RACObserve(TheKeymaster, currentClient) subscribeOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(CKIClient *client) {
+  self.loginObserver = [[RACObserve(TheKeymaster, currentClient) subscribeOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(CKIClient *client) {
     __strong NativeLoginManager *self = weakSelf;
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-      if (client == nil) {
-        [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:@{}];
-        return;
-      }
-      
-      NSDictionary *body = @{
-                             @"authToken": client.accessToken,
-                             @"user": client.currentUser.JSONDictionary,
-                             @"baseURL": client.baseURL.absoluteString,
-                             @"branding": client.branding ? client.branding.JSONDictionary : @{},
-                             };
-      
-      if (!self.eventsSent[client.accessToken]) {
-        self.eventsSent[client.accessToken] = body;
-        [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:body];
-      }
-    });
-  }] asScopedDisposable];
+    if (client == nil) {
+      [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:@{}];
+      return;
+    }
+    
+    NSDictionary *body = @{
+                           @"authToken": client.accessToken,
+                           @"user": client.currentUser.JSONDictionary,
+                           @"baseURL": client.baseURL.absoluteString,
+                           @"branding": client.branding ? client.branding.JSONDictionary : @{},
+                           };
+    
+    if (!self.eventsSent[client.accessToken]) {
+      self.eventsSent[client.accessToken] = body;
+      [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:body];
+    }
+  }];
 }
 
 #pragma MARK - CanvasKeymasterDelegate
@@ -187,7 +203,7 @@ RCT_EXPORT_METHOD(stopObserving)
     [self.delegate didLogin];
     
     // See the above method called startObserving to understand why we need a delay here
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
       [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:info];
     });
   }
