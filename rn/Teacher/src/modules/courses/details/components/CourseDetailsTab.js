@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 
 import Images from '../../../../images'
-import Row from '../../../../common/components/Row'
+import Row from '../../../../common/components/rows/Row'
 
 type Props = {
   tab: Tab,

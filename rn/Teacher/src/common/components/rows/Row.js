@@ -7,10 +7,10 @@ import {
   Image,
   TouchableHighlight,
 } from 'react-native'
-import color from '../colors'
+import color from '../../colors'
 
-import DisclosureIndicator from './DisclosureIndicator'
-import { Text } from '../text'
+import DisclosureIndicator from '../DisclosureIndicator'
+import { Text } from '../../text'
 
 type RowProps = {
   title: string,

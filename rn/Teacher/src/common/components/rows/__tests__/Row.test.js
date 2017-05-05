@@ -3,7 +3,7 @@
 import 'react-native'
 import React from 'react'
 import Row from '../Row'
-import Images from '../../../../src/images'
+import Images from '../../../../../src/images'
 
 import renderer from 'react-test-renderer'
 
