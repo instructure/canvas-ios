@@ -508,83 +508,106 @@ exports[`error occurs when done pressed 1`] = `
       <TouchableHighlight
         accessibilityTraits="button"
         onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "height": 54,
+            },
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
+        }
         testID="assignment-details.toggle-display-grade-as-picker"
-        underlayColor="#eee"
       >
         <View
           style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "paddingBottom": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 8,
-              },
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-              },
-            ]
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            }
           }
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
+          <View
             style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "flex": 1,
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
             }
           >
-            Display Grade As
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Display Grade As
+            </Text>
+          </View>
+          <View
             style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                undefined,
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-              ]
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
             }
           >
-            Points
-          </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              Points
+            </Text>
+          </View>
         </View>
       </TouchableHighlight>
       <View />
       <TouchableHighlight
-        onPress={undefined}
+        onPress={[Function]}
         style={
           Array [
             Object {
@@ -1282,83 +1305,106 @@ exports[`modal saving is shown on assignment update 1`] = `
       <TouchableHighlight
         accessibilityTraits="button"
         onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "height": 54,
+            },
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
+        }
         testID="assignment-details.toggle-display-grade-as-picker"
-        underlayColor="#eee"
       >
         <View
           style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "paddingBottom": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 8,
-              },
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-              },
-            ]
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            }
           }
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
+          <View
             style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "flex": 1,
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
             }
           >
-            Display Grade As
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Display Grade As
+            </Text>
+          </View>
+          <View
             style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                undefined,
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-              ]
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
             }
           >
-            Points
-          </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              Points
+            </Text>
+          </View>
         </View>
       </TouchableHighlight>
       <View />
       <TouchableHighlight
-        onPress={undefined}
+        onPress={[Function]}
         style={
           Array [
             Object {
@@ -2056,83 +2102,106 @@ exports[`renders 1`] = `
       <TouchableHighlight
         accessibilityTraits="button"
         onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "height": 54,
+            },
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
+        }
         testID="assignment-details.toggle-display-grade-as-picker"
-        underlayColor="#eee"
       >
         <View
           style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "paddingBottom": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 8,
-              },
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-              },
-            ]
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            }
           }
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
+          <View
             style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "flex": 1,
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
             }
           >
-            Display Grade As
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Display Grade As
+            </Text>
+          </View>
+          <View
             style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                undefined,
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-              ]
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
             }
           >
-            Points
-          </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              Points
+            </Text>
+          </View>
         </View>
       </TouchableHighlight>
       <View />
       <TouchableHighlight
-        onPress={undefined}
+        onPress={[Function]}
         style={
           Array [
             Object {

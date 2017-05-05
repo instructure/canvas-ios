@@ -261,6 +261,7 @@ exports[`renders correctly 1`] = `
       }
     >
       <TouchableHighlight
+        accessibilityTraits="button"
         onPress={[Function]}
         style={
           Array [
@@ -869,6 +870,7 @@ exports[`renders with empty image url 1`] = `
       }
     >
       <TouchableHighlight
+        accessibilityTraits="button"
         onPress={[Function]}
         style={
           Array [
@@ -1236,6 +1238,7 @@ exports[`renders with image url 1`] = `
       }
     >
       <TouchableHighlight
+        accessibilityTraits="button"
         onPress={[Function]}
         style={
           Array [
@@ -1589,6 +1592,7 @@ exports[`renders without image url 1`] = `
       }
     >
       <TouchableHighlight
+        accessibilityTraits="button"
         onPress={[Function]}
         style={
           Array [

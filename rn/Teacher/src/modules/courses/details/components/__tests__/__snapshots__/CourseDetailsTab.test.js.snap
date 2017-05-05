@@ -4,7 +4,7 @@ exports[`default icon 1`] = `
 <View
   accessibilityComponentType={undefined}
   accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
+  accessibilityTraits="button"
   accessible={true}
   hasTVPreferredFocus={undefined}
   hitSlop={undefined}
@@ -121,7 +121,7 @@ exports[`renders correctly 1`] = `
 <View
   accessibilityComponentType={undefined}
   accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
+  accessibilityTraits="button"
   accessible={true}
   hasTVPreferredFocus={undefined}
   hitSlop={undefined}

@@ -23,10 +23,17 @@ export type RowProps = {
   border?: 'top' | 'bottom' | 'both',
   onPress?: Function,
   testID?: string,
+  identifier: string, // Passed in as the first parameter to the onPress callback
   accessories: any,
 }
 
 export default class Row extends Component<any, RowProps, any> {
+
+  onPress = () => {
+    if (this.props.onPress) {
+      this.props.onPress(this.props.identifier)
+    }
+  }
 
   render () {
     const height = this.props.height || 54
@@ -42,7 +49,12 @@ export default class Row extends Component<any, RowProps, any> {
       bottomBorder = style.bottomHairline
     }
 
-    return (<TouchableHighlight style={[{ height }, topBorder, bottomBorder]} onPress={this.props.onPress} testID={this.props.testID}>
+    let traits = {}
+    if (this.props.onPress) {
+      traits.accessibilityTraits = 'button'
+    }
+
+    return (<TouchableHighlight style={[{ height }, topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID}>
               <View style={style.container}>
                 { this.props.image && <Image style={[style.image, { tintColor: this.props.imageTint, height: imageSize.height, width: imageSize.width }]} source={this.props.image} /> }
                 <View style={style.titlesContainer}>

@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render the base row 1`] = `
+exports[`Render row with detail label 1`] = `
 <View
   accessibilityComponentType={undefined}
   accessibilityLabel={undefined}
-  accessibilityTraits="button"
+  accessibilityTraits={undefined}
   accessible={true}
   hasTVPreferredFocus={undefined}
   hitSlop={undefined}
@@ -23,16 +23,10 @@ exports[`Render the base row 1`] = `
       },
       Array [
         Object {
-          "height": 44,
+          "height": 54,
         },
-        Object {
-          "borderTopColor": "#C7CDD1",
-          "borderTopWidth": 0.5,
-        },
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-        },
+        undefined,
+        undefined,
       ],
     ]
   }
@@ -53,22 +47,6 @@ exports[`Render the base row 1`] = `
       }
     }
   >
-    <Image
-      source={1}
-      style={
-        Array [
-          Object {
-            "marginRight": 8,
-            "resizeMode": "contain",
-          },
-          Object {
-            "height": 10,
-            "tintColor": "#fff",
-            "width": 10,
-          },
-        ]
-      }
-    />
     <View
       style={
         Object {
@@ -100,12 +78,23 @@ exports[`Render the base row 1`] = `
           ]
         }
       >
-        Title of the row
+        Row with a switch in it!
       </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+        }
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {
@@ -122,37 +111,8 @@ exports[`Render the base row 1`] = `
           ]
         }
       >
-        Subtitle
+        this is a detail label
       </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "flex": 1,
-          "flexDirection": "row",
-          "justifyContent": "flex-end",
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignSelf": "center",
-            "backgroundColor": "transparent",
-            "borderColor": "#c7c7cc",
-            "borderRightWidth": 2,
-            "borderTopWidth": 2,
-            "height": 10,
-            "marginLeft": 7,
-            "transform": Array [
-              Object {
-                "rotate": "45deg",
-              },
-            ],
-            "width": 10,
-          }
-        }
-      />
     </View>
   </View>
 </View>

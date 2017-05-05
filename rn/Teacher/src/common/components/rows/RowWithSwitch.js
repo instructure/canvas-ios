@@ -10,7 +10,6 @@ import colors from '../../colors'
 
 type RowWithSwitchProps = RowProps & {
   value: boolean,
-  identifier: string, // Used to identify the switch in the callback
   onValueChange: Function,
 }
 

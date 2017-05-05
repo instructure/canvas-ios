@@ -18,6 +18,7 @@ import color from './../../common/colors'
 import images from '../../images/'
 import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
+import RowWithDetail from '../../common/components/rows/RowWithDetail'
 import { route } from '../../routing'
 import ReactNative, {
   View,
@@ -107,10 +108,6 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
         description: 'Title of Assignment details EDIT screen',
       }),
     })
-  }
-
-  renderLeftColumnLabel (text: string): React.Element<*> {
-    return (<Text style={style.twoColumnRowLeftText}>{text}</Text>)
   }
 
   renderTextInput (fieldName: string, placeholder: string, testID: string, styleParam: Object = {}, focus: boolean = false): React.Element<*> {
@@ -214,16 +211,14 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
           </View>
 
           {/* Display Grade As */}
-          <TouchableHighlight accessibilityTraits={'button'} underlayColor={color.cellUnderlayColor} onPress={() => { this.togglePicker('grading_type', GRADE_DISPLAY_OPTIONS) }} testID='assignment-details.toggle-display-grade-as-picker'>
-            <View style={[style.row, style.twoColumnRow]}>
-              { this.renderLeftColumnLabel(displayGradeAs) }
-              <Text>{GRADE_DISPLAY_OPTIONS.get(this.state.assignment.grading_type)}</Text>
-            </View>
-          </TouchableHighlight>
+          <RowWithDetail title={displayGradeAs}
+                         detail={GRADE_DISPLAY_OPTIONS.get(this.state.assignment.grading_type)}
+                         onPress={this.toggleDisplayGradeAsPicker}
+                         border={'bottom'}
+                         testID="assignment-details.toggle-display-grade-as-picker" />
           {this.renderDataMapPicker()}
 
           {/* Publish */}
-
           <RowWithSwitch
             title={publish}
             border={'bottom'}
@@ -255,6 +250,10 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
       this.state.assignment[this.state.currentAssignmentKey] = value
       this.setState({ pickerSelectedValue: value, assignment: this.state.assignment })
     }
+  }
+
+  toggleDisplayGradeAsPicker = (identifier: string) => {
+    this.togglePicker('grading_type', GRADE_DISPLAY_OPTIONS)
   }
 
   togglePicker = (selectedField: string, map: ?Map<*, *>) => {
