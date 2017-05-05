@@ -96,6 +96,7 @@ RCT_EXPORT_METHOD(stopObserving)
 @property (nonatomic) RACDisposable *logoutObserver;
 @property (nonatomic) RACDisposable *clientObserver;
 @property (nonatomic) NSMutableDictionary *eventsSent;
+@property (nonatomic) UIViewController *domainPicker;
 
 @end
 
@@ -130,6 +131,7 @@ RCT_EXPORT_METHOD(stopObserving)
   __weak NativeLoginManager *weakSelf = self;
   self.logoutObserver = [TheKeymaster.signalForLogout subscribeNext:^(UIViewController * _Nullable x) {
     __strong NativeLoginManager *self = weakSelf;
+    self.domainPicker = x;
     if (self.injectedLoginInfo) { return; }
     
     [self.delegate didLogout:x];
@@ -192,7 +194,7 @@ RCT_EXPORT_METHOD(stopObserving)
   
   if (!info) {
     [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:@{}];
-    UIViewController *controller = [UIViewController new];
+    UIViewController *controller = self.domainPicker ?: [UIViewController new];
     [self.delegate didLogout:controller];
   }
   else {
