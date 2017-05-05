@@ -41,27 +41,9 @@ exports[`render with multiple due dates 2`] = `
     }
   }
 >
-  <Text
+  <View
+    accessibilityLabel={undefined}
     accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-        },
-        Object {
-          "paddingTop": 2,
-        },
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-      ]
-    }
   >
     <Text
       accessible={true}
@@ -77,39 +59,62 @@ exports[`render with multiple due dates 2`] = `
             "fontSize": 16,
           },
           Object {
-            "fontWeight": "600",
+            "paddingTop": 2,
           },
-          Object {
-            "fontFamily": ".SFUIDisplay-semibold",
-          },
-        ]
-      }
-    >
-      Due:
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {},
           Object {
             "fontFamily": ".SFUIDisplay",
           },
         ]
       }
     >
-       May 31, 2017 at 11:59 PM
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Due:
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {},
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+         May 31, 2017 at 11:59 PM
+      </Text>
     </Text>
-  </Text>
+  </View>
   <Text
     accessible={true}
     allowFontScaling={true}

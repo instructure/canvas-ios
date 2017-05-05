@@ -76,16 +76,37 @@ export default class DueDates extends Component<any, Props, any> {
     const availableFromText = availableFrom ? formattedDueDate(availableFrom) : '--'
     const availableToText = availableTo ? formattedDueDate(availableTo) : '--'
 
-    return <View>
-             <Text style={styles.textContainer}>
-               <Text style={styles.descriptionText}>{availableFromTitle}</Text>
-               <Text style={styles.infoText}>{` ${availableFromText}`}</Text>
-             </Text>
-             <Text style={styles.textContainer}>
-               <Text style={styles.descriptionText}>{availableToTitle}</Text>
-               <Text style={styles.infoText}>{` ${availableToText}`}</Text>
-             </Text>
-          </View>
+    let availableFromAccessibilityLabel
+    let availableToAccessibilityLabel
+
+    if (!availableFrom) {
+      availableFromAccessibilityLabel = i18n({
+        default: 'No available from date set.',
+        description: 'Accessibility label for when there is no available from date set',
+      })
+    }
+
+    if (!availableTo) {
+      availableToAccessibilityLabel = i18n({
+        default: 'No available to date set.',
+        description: 'Accessibility label for when there is no available to date set',
+      })
+    }
+
+    return (<View>
+              <View accessible={true} accessibilityLabel={availableFromAccessibilityLabel}>
+                <Text style={styles.textContainer}>
+                  <Text style={styles.descriptionText}>{availableFromTitle}</Text>
+                  <Text style={styles.infoText}>{` ${availableFromText}`}</Text>
+                </Text>
+              </View>
+              <View accessible={true} accessibilityLabel={availableToAccessibilityLabel}>
+                <Text style={styles.textContainer}>
+                  <Text style={styles.descriptionText}>{availableToTitle}</Text>
+                  <Text style={styles.infoText}>{` ${availableToText}`}</Text>
+                </Text>
+              </View>
+          </View>)
   }
 
   renderSingleDueDate (dates: AssignmentDates): ReactElement<View> {
@@ -101,18 +122,28 @@ export default class DueDates extends Component<any, Props, any> {
 
     const dueAtValue = dates.bestDueAt() ? formattedDueDate(dates.bestDueAt()) : '--'
     const availability = this.renderAvailability(dates)
+    let dueAtAccessibilityLabel
 
-    return <View style={styles.container}>
-             <Text style={styles.textContainer}>
-               <Text style={styles.descriptionText}>{dueTitle}</Text>
-               <Text style={styles.infoText}>{` ${dueAtValue}`}</Text>
-             </Text>
-             <Text style={styles.textContainer}>
-               <Text style={styles.descriptionText}>{forTitle}</Text>
-               <Text style={styles.infoText}>{` ${dates.bestDueDateTitle()}`}</Text>
-             </Text>
-             {availability}
-           </View>
+    if (!dates.bestDueAt()) {
+      dueAtAccessibilityLabel = i18n({
+        default: 'No due date set.',
+        description: 'Accessibility label for when no due date is set for an assignment',
+      })
+    }
+
+    return (<View style={styles.container}>
+              <View accessible={true} accessibilityLabel={dueAtAccessibilityLabel}>
+                <Text style={styles.textContainer}>
+                  <Text style={styles.descriptionText}>{dueTitle}</Text>
+                  <Text style={styles.infoText}>{` ${dueAtValue}`}</Text>
+                </Text>
+              </View>
+              <Text style={styles.textContainer}>
+                <Text style={styles.descriptionText}>{forTitle}</Text>
+                <Text style={styles.infoText}>{` ${dates.bestDueDateTitle()}`}</Text>
+              </Text>
+              {availability}
+           </View>)
   }
 
   render (): React.Element<View> {

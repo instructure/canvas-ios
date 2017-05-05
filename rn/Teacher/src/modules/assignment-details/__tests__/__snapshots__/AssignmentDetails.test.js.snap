@@ -78,6 +78,8 @@ exports[`renders 1`] = `
             }
           >
             <View
+              accessibilityLabel={undefined}
+              accessible={true}
               style={
                 Object {
                   "alignItems": "center",
@@ -294,6 +296,8 @@ exports[`renders 1`] = `
             }
           >
             <View
+              accessibilityLabel="Due Dates, Double tap for details."
+              accessible={true}
               style={
                 Object {
                   "alignItems": "center",
@@ -348,27 +352,9 @@ exports[`renders 1`] = `
                 }
               }
             >
-              <Text
+              <View
+                accessibilityLabel={undefined}
                 accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "paddingTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
               >
                 <Text
                   accessible={true}
@@ -384,39 +370,62 @@ exports[`renders 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "fontWeight": "600",
+                        "paddingTop": 2,
                       },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
-                      },
-                    ]
-                  }
-                >
-                  Due:
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {},
                       Object {
                         "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }
                 >
-                   May 31, 2017 at 10:59 PM
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    Due:
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {},
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                     May 31, 2017 at 10:59 PM
+                  </Text>
                 </Text>
-              </Text>
+              </View>
               <Text
                 accessible={true}
                 allowFontScaling={true}
@@ -487,27 +496,9 @@ exports[`renders 1`] = `
                 </Text>
               </Text>
               <View>
-                <Text
+                <View
+                  accessibilityLabel={undefined}
                   accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "paddingTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
                 >
                   <Text
                     accessible={true}
@@ -523,60 +514,65 @@ exports[`renders 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "fontWeight": "600",
+                          "paddingTop": 2,
                         },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Available from:
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
                       ]
                     }
                   >
-                     Mar 16, 2017 at 11:00 PM
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      Available from:
+                    </Text>
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {},
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                    >
+                       Mar 16, 2017 at 11:00 PM
+                    </Text>
                   </Text>
-                </Text>
-                <Text
+                </View>
+                <View
+                  accessibilityLabel={undefined}
                   accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "paddingTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
                 >
                   <Text
                     accessible={true}
@@ -592,39 +588,62 @@ exports[`renders 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "fontWeight": "600",
+                          "paddingTop": 2,
                         },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Available to:
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
                       ]
                     }
                   >
-                     May 31, 2017 at 10:59 PM
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      Available to:
+                    </Text>
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {},
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                    >
+                       May 31, 2017 at 10:59 PM
+                    </Text>
                   </Text>
-                </Text>
+                </View>
               </View>
             </View>
           </View>
@@ -729,6 +748,8 @@ exports[`renders 1`] = `
             }
           >
             <View
+              accessibilityLabel={undefined}
+              accessible={true}
               style={
                 Object {
                   "alignItems": "center",
@@ -939,6 +960,8 @@ exports[`renders 1`] = `
             }
           >
             <View
+              accessibilityLabel={undefined}
+              accessible={true}
               style={
                 Object {
                   "alignItems": "center",
@@ -1077,6 +1100,8 @@ exports[`renders 1`] = `
             }
           >
             <View
+              accessibilityLabel={undefined}
+              accessible={true}
               style={
                 Object {
                   "alignItems": "center",
@@ -1218,6 +1243,8 @@ exports[`renders loading 1`] = `
             }
           >
             <View
+              accessibilityLabel={undefined}
+              accessible={true}
               style={
                 Object {
                   "alignItems": "center",
@@ -1434,6 +1461,8 @@ exports[`renders loading 1`] = `
             }
           >
             <View
+              accessibilityLabel="Due Dates, Double tap for details."
+              accessible={true}
               style={
                 Object {
                   "alignItems": "center",
@@ -1488,27 +1517,9 @@ exports[`renders loading 1`] = `
                 }
               }
             >
-              <Text
+              <View
+                accessibilityLabel={undefined}
                 accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "paddingTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
               >
                 <Text
                   accessible={true}
@@ -1524,39 +1535,62 @@ exports[`renders loading 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "fontWeight": "600",
+                        "paddingTop": 2,
                       },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
-                      },
-                    ]
-                  }
-                >
-                  Due:
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {},
                       Object {
                         "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }
                 >
-                   May 31, 2017 at 10:59 PM
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    Due:
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {},
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                     May 31, 2017 at 10:59 PM
+                  </Text>
                 </Text>
-              </Text>
+              </View>
               <Text
                 accessible={true}
                 allowFontScaling={true}
@@ -1627,27 +1661,9 @@ exports[`renders loading 1`] = `
                 </Text>
               </Text>
               <View>
-                <Text
+                <View
+                  accessibilityLabel={undefined}
                   accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "paddingTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
                 >
                   <Text
                     accessible={true}
@@ -1663,60 +1679,65 @@ exports[`renders loading 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "fontWeight": "600",
+                          "paddingTop": 2,
                         },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Available from:
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
                       ]
                     }
                   >
-                     Mar 16, 2017 at 11:00 PM
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      Available from:
+                    </Text>
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {},
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                    >
+                       Mar 16, 2017 at 11:00 PM
+                    </Text>
                   </Text>
-                </Text>
-                <Text
+                </View>
+                <View
+                  accessibilityLabel={undefined}
                   accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "paddingTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
                 >
                   <Text
                     accessible={true}
@@ -1732,39 +1753,62 @@ exports[`renders loading 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "fontWeight": "600",
+                          "paddingTop": 2,
                         },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Available to:
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
                       ]
                     }
                   >
-                     May 31, 2017 at 10:59 PM
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      Available to:
+                    </Text>
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {},
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                    >
+                       May 31, 2017 at 10:59 PM
+                    </Text>
                   </Text>
-                </Text>
+                </View>
               </View>
             </View>
           </View>
@@ -1869,6 +1913,8 @@ exports[`renders loading 1`] = `
             }
           >
             <View
+              accessibilityLabel={undefined}
+              accessible={true}
               style={
                 Object {
                   "alignItems": "center",
@@ -2079,6 +2125,8 @@ exports[`renders loading 1`] = `
             }
           >
             <View
+              accessibilityLabel={undefined}
+              accessible={true}
               style={
                 Object {
                   "alignItems": "center",
@@ -2217,6 +2265,8 @@ exports[`renders loading 1`] = `
             }
           >
             <View
+              accessibilityLabel={undefined}
+              accessible={true}
               style={
                 Object {
                   "alignItems": "center",

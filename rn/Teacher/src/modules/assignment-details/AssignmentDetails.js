@@ -107,6 +107,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
 
         <AssignmentSection
           title={sectionTitleDue}
+          accessibilityLabel={i18n({ default: 'Due Dates, Double tap for details.', description: 'Accessibility label for due dates in assignment details' })}
           image={Images.assignments.calendar}
           showDisclosureIndicator={true}
           onPress={this.viewDueDateDetails} >

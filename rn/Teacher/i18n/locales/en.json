@@ -63,6 +63,10 @@
   "available_from_587ce92f": {
     "message": "Available From"
   },
+  "available_from_date_bb9d5115": {
+    "message": "Available from: { date }",
+    "description": "Accessibility label for when there is no available from date set"
+  },
   "available_from_f84e4611": {
     "message": "Available from"
   },
@@ -80,8 +84,12 @@
   "available_to_b7350e02": {
     "message": "Available to"
   },
-  "back_button_df84cc24": {
-    "message": "Back button"
+  "available_to_date_d74ed927": {
+    "message": "Available to: { date }",
+    "description": "Accessibility label for when there is no available to date set"
+  },
+  "back_2900f52a": {
+    "message": "Back"
   },
   "back_courses": {
     "message": "Courses",
@@ -201,6 +209,10 @@
   },
   "due_date_822625d8": {
     "message": "Due Date"
+  },
+  "due_dates_double_tap_for_details_36c5a7a4": {
+    "message": "Due Dates, Double tap for details.",
+    "description": "Accessibility label for due dates in assignment details"
   },
   "due_datestring_at_timestring_9fac66bd": {
     "message": "Due { dateString } at { timeString }"
@@ -326,8 +338,28 @@
     "message": "Nickname",
     "description": "Text describing a nick name given to a course"
   },
+  "no_available_from_date_set_6f659d06": {
+    "message": "No available from date set.",
+    "description": "Accessibility label for when there is no available from date set"
+  },
+  "no_available_from_date_set_db356ac3": {
+    "message": "No available from date set",
+    "description": "Accessibility label for when there is no available from date set"
+  },
+  "no_available_to_date_set_c799d15": {
+    "message": "No available to date set",
+    "description": "Accessibility label for when there is no available to date set"
+  },
+  "no_available_to_date_set_d896475": {
+    "message": "No available to date set.",
+    "description": "Accessibility label for when there is no available to date set"
+  },
   "no_due_date_1d63d13b": {
     "message": "No due date"
+  },
+  "no_due_date_set_bb3a2bf7": {
+    "message": "No due date set.",
+    "description": "Accessibility label for when no due date is set for an assignment"
   },
   "no_internet_connection_9df26cf8": {
     "message": "No internet connection"

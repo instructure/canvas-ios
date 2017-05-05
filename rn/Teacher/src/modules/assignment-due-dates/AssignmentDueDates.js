@@ -82,19 +82,55 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
     const dueAt = extractDateFromString(date.due_at)
     const availableFrom = date.unlock_at ? formattedDueDate(new Date(date.unlock_at)) : '--'
     const availableTo = date.lock_at ? formattedDueDate(new Date(date.lock_at)) : '--'
+    let availableFromAccessibilityLabel
+    let availableToAccessibiltyLabel
 
-    return <View style={styles.row} key={date.id || 'base'} >
-             <Heading1>{formattedDueDateWithStatus(dueAt, extractDateFromString(date.lock_at))}</Heading1>
-             <Text style={styles.header}>{i18n('For')}</Text>
-             <Text style={styles.content}>{title}</Text>
-             <View style={styles.divider} />
-             <Text style={styles.header}>{i18n('Available from')}</Text>
-             <Text style={styles.content}>{availableFrom}</Text>
-             <View style={styles.divider} />
-             <Text style={styles.header}>{i18n('Available to')}</Text>
-             <Text style={styles.content}>{availableTo}</Text>
-             <View style={styles.divider} />
-           </View>
+    if (date.unlock_at) {
+      availableFromAccessibilityLabel = i18n({
+        default: 'Available from: {date}',
+        description: 'Accessibility label for when there is no available from date set',
+      }, {
+        date: availableFrom,
+      })
+    } else {
+      availableFromAccessibilityLabel = i18n({
+        default: 'No available from date set',
+        description: 'Accessibility label for when there is no available from date set',
+      })
+    }
+
+    if (date.lock_at) {
+      availableToAccessibiltyLabel = i18n({
+        default: 'Available to: {date}',
+        description: 'Accessibility label for when there is no available to date set',
+      }, {
+        date: availableTo,
+      })
+    } else {
+      availableToAccessibiltyLabel = i18n({
+        default: 'No available to date set',
+        description: 'Accessibility label for when there is no available to date set',
+      })
+    }
+
+    return (<View style={styles.row} key={date.id || 'base'} >
+              <Heading1>{formattedDueDateWithStatus(dueAt, extractDateFromString(date.lock_at))}</Heading1>
+              <View accessible={true}>
+                <Text style={styles.header}>{i18n('For')}</Text>
+                <Text style={styles.content}>{title}</Text>
+              </View>
+              <View style={styles.divider} />
+              <View accessible={true} accessibilityLabel={availableFromAccessibilityLabel}>
+                <Text style={styles.header}>{i18n('Available from')}</Text>
+                <Text style={styles.content}>{availableFrom}</Text>
+              </View>
+              <View style={styles.divider} />
+              <View accessible={true} accessibilityLabel={availableToAccessibiltyLabel}>
+                <Text style={styles.header}>{i18n('Available to')}</Text>
+                <Text style={styles.content}>{availableTo}</Text>
+              </View>
+              <View style={styles.divider} />
+            </View>)
   }
 
   render (): React.Element<View> {

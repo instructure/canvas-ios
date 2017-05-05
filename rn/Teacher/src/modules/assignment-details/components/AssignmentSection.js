@@ -26,11 +26,11 @@ export default class AssignmentSection extends Component {
 
     return (
       <TouchableHighlight onPress={this.props.onPress}>
-        <View style={[assignmentSectionStyles.container, this.props.style]} >
+        <View style={[assignmentSectionStyles.container, this.props.style]}>
           <View style={dividerStyle}></View>
           <View style={assignmentSectionStyles.innerContainer}>
             <View style={{ flex: 1 }}>
-              <View style={assignmentSectionStyles.titleContainer}>
+              <View style={assignmentSectionStyles.titleContainer} accessible={true} accessibilityLabel={this.props.accessibilityLabel}>
                 {
                   this.props.image && <Image source={this.props.image} style={assignmentSectionStyles.image} />
                 }
