@@ -20,6 +20,7 @@ import type {
   AsyncSubmissionsDataProps,
   SubmissionDataProps,
 } from '../submissions/list/submission-prop-types'
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 type State = {
   size: { width: number, height: number },
@@ -90,14 +91,17 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
       .map(submission => ({ key: submission.userID, submission }))
 
     return (
-      <VirtualizedList
-        onLayout={this.onLayout}
-        windowSize={5}
-        data={items}
-        renderItem={this.renderItem}
-        horizontal
-        renderScrollComponent={this.renderScrollView}
+      <View style={{ flex: 1 }}>
+        <VirtualizedList
+          onLayout={this.onLayout}
+          windowSize={5}
+          data={items}
+          renderItem={this.renderItem}
+          horizontal
+          renderScrollComponent={this.renderScrollView}
         />
+        <KeyboardSpacer />
+      </View>
     )
   }
 }

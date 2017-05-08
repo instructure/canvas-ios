@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'lightgray',
-    paddingTop: 8,
+    paddingTop: 28,
     paddingBottom: 8,
   },
 })

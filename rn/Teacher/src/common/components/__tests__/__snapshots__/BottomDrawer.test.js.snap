@@ -2,10 +2,10 @@
 
 exports[`BottomDrawer renders any children 1`] = `
 <Interactable.View
-  animatedValueY={1275}
+  animatedValueY={1264}
   initialPosition={
     Object {
-      "y": 1275,
+      "y": 1264,
     }
   }
   onLayout={undefined}
@@ -13,20 +13,20 @@ exports[`BottomDrawer renders any children 1`] = `
   snapPoints={
     Array [
       Object {
-        "y": 207.8,
+        "y": 44,
       },
       Object {
-        "y": 741.4,
+        "y": 730.4,
       },
       Object {
-        "y": 1275,
+        "y": 1264,
       },
     ]
   }
   style={
     Array [
       Object {
-        "bottom": 0,
+        "bottom": -1024,
         "left": 0,
         "maxWidth": 700,
         "position": "absolute",
@@ -45,12 +45,12 @@ exports[`BottomDrawer renders any children 1`] = `
     style={
       Object {
         "backgroundColor": "#FFFFFF",
-        "borderRadius": 12,
-        "bottom": -20,
+        "borderTopLeftRadius": 12,
+        "borderTopRightRadius": 12,
+        "bottom": 0,
         "left": 0,
         "margin": 0,
         "padding": 0,
-        "paddingBottom": 20,
         "position": "absolute",
         "right": 0,
         "shadowColor": "#000000",
@@ -60,53 +60,52 @@ exports[`BottomDrawer renders any children 1`] = `
         },
         "shadowOpacity": 0.3,
         "shadowRadius": 3,
-        "top": 0,
+        "top": 20,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "height": 1334,
+        "paddingBottom": 1754.4,
+        "paddingTop": 6,
       }
     }
   >
     <View
       style={
         Object {
-          "flex": 1,
-          "height": 1334,
-          "paddingBottom": 1275,
-          "paddingTop": 16,
+          "alignItems": "center",
+          "left": 0,
+          "marginVertical": 3,
+          "position": "absolute",
+          "right": 0,
+          "top": 18,
         }
       }
     >
       <View
         style={
           Object {
-            "alignItems": "center",
-            "left": 0,
-            "marginVertical": 6,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
+            "backgroundColor": "darkgray",
+            "borderRadius": 5,
+            "height": 4,
+            "marginBottom": 8,
+            "marginTop": 4,
+            "width": 40,
           }
         }
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "darkgray",
-              "borderRadius": 5,
-              "height": 4,
-              "marginBottom": 8,
-              "marginTop": 4,
-              "width": 40,
-            }
-          }
-        />
-      </View>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-      >
-        Yo yo yo
-      </Text>
+      />
     </View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Yo yo yo
+    </Text>
   </View>
 </Interactable.View>
 `;

@@ -44,3 +44,6 @@ export type SubmissionComment = {
   created_at: string,
   media_comment: ?any, // TODO media comments
 }
+
+export type SubmissionCommentParams
+  = { type: 'text', message: string }

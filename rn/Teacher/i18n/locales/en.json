@@ -16,6 +16,10 @@
   "add_due_date_65b08f6c": {
     "message": "Add Due Date"
   },
+  "add_media_cfa37b54": {
+    "message": "Add Media",
+    "description": "Attach media to a message"
+  },
   "all_courses_a7dbb853": {
     "message": "All Courses",
     "description": "The title of the screen showing all of a teacher's courses"
@@ -121,6 +125,10 @@
   "color_a363e1b0": {
     "message": "Color",
     "description": "Title label for the course color picker"
+  },
+  "comment_7ef1428e": {
+    "message": "Comment",
+    "description": "Placeholder text for comment input field"
   },
   "comments_e07bcbe3": {
     "message": "Comments",
@@ -440,9 +448,6 @@
     "message": "pts",
     "description": "Assignment Details points for given assignment"
   },
-  "publish_49243817": {
-    "message": "publish."
-  },
   "publish_5211dca3": {
     "message": "Publish",
     "description": "Assignment details publish toggle"
@@ -486,6 +491,9 @@
   "set_this_for_the_default_color_of_the_course_this__d86d133": {
     "message": "Set this for the default color of the course. This won’t override a personal color setting.",
     "description": "Description of color picker shown to the user"
+  },
+  "settings_5aa0fd0c": {
+    "message": "Settings"
   },
   "submission_types_af57bf0": {
     "message": "Submission Types",

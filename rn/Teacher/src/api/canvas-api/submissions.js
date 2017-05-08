@@ -32,3 +32,15 @@ export function gradeSubmissionWithRubric (courseID: string, assignmentID: strin
     rubric_assessment: rubricParams,
   })
 }
+
+export function commentOnSubmission (courseID: string, assignmentID: string, userID: string, comment: SubmissionCommentParams): Promise<ApiResponse<any>> {
+  const data = { comment: {} }
+  switch (comment.type) {
+    case 'text':
+      data.comment.text_comment = comment.message
+      break
+  }
+
+  return httpClient().post(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, data)
+}
+

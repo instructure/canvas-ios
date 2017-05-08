@@ -15,6 +15,7 @@ const colors: { [name: string]: string } = {
   grey4: '#8B969E',   //  ash
   primaryButton: '#368BD8',
   primaryButtonText: '#fff',
+  secondaryButton: '#73818C',
   checkmarkGreen: '#00AC18',
   cellUnderlayColor: '#eee',
   seperatorColor: '#C7CDD1',

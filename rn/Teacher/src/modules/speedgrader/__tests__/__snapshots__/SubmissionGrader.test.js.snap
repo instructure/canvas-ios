@@ -25,7 +25,7 @@ exports[`SubmissionGrader renders 1`] = `
           "borderBottomWidth": 0.5,
           "paddingBottom": 8,
           "paddingHorizontal": 16,
-          "paddingTop": 8,
+          "paddingTop": 28,
         }
       }
     >

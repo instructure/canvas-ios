@@ -3,10 +3,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
+  View,
   FlatList,
 } from 'react-native'
 import { getSession } from '../../../api/session'
 import CommentRow, { type CommentRowProps } from './CommentRow'
+import CommentInput from './CommentInput'
 
 export class CommentsTab extends Component<any, Props, any> {
 
@@ -20,12 +22,15 @@ export class CommentsTab extends Component<any, Props, any> {
   render (): any {
     const rows = this.props.commentRows || []
     return (
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        style={{ transform: [{ rotate: '180deg' }] }}
-        data={rows}
-        renderItem={this.renderComment}
-      />
+      <View style={{ flex: 1 }}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          style={{ transform: [{ rotate: '180deg' }] }}
+          data={rows}
+          renderItem={this.renderComment}
+        />
+        <CommentInput />
+      </View>
     )
   }
 }

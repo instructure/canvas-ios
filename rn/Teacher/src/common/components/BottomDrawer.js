@@ -6,13 +6,15 @@ import {
   Dimensions,
   Animated,
   View,
+  Keyboard,
 } from 'react-native'
 import { connect } from 'react-redux'
 import Interactable from 'react-native-interactable'
 
 let { height, width } = Dimensions.get('window')
 
-const CLOSED_PANEL_HEIGHT = 59
+const CLOSED_PANEL_HEIGHT = 70
+const BOTTOM_FLUFF = 1024
 
 type Props = SnapState & {
   containerWidth?: number,
@@ -73,15 +75,31 @@ export class BottomDrawer extends Component<any, Props, State> {
   }
 
   getSnapPoints = () => {
-    return [
-      { y: this.state.height * 0.2 - CLOSED_PANEL_HEIGHT },
-      { y: this.state.height * 0.6 - CLOSED_PANEL_HEIGHT },
-      { y: this.state.height - CLOSED_PANEL_HEIGHT }]
+    const fullScreen = { y: 44 }
+    // open and closed must be larger than fullscreen
+    // this only occurs when the view containing the
+    // drawer is smaller than 44 + CLOSED_PANEL_HEIGHT
+    // which happens in the unit tests
+    const open = { y: Math.max(fullScreen.y + 1, this.state.height * 0.6 - CLOSED_PANEL_HEIGHT) }
+    const closed = { y: Math.max(fullScreen.y + 2, this.state.height - CLOSED_PANEL_HEIGHT) }
+
+    if (Keyboard.isVisible) {
+      return [fullScreen, closed]
+    } else {
+      return [fullScreen, open, closed]
+    }
   }
 
   render () {
     let width = Math.min(700, this.state.width)
     let position = (this.state.width - width) / 2
+
+    const snap = this.getSnapPoints().map(point => point.y)
+    const clamped = [...snap.slice(0, snap.length - 1), snap[1]].map(y => y + BOTTOM_FLUFF)
+    const clamp = this._deltaY.interpolate({
+      inputRange: snap,
+      outputRange: clamped,
+    })
     return (
       <Interactable.View
         ref={(e) => { this.drawer = e }}
@@ -93,14 +111,11 @@ export class BottomDrawer extends Component<any, Props, State> {
         style={[styles.panelContainer, { left: position, right: position }]}
         onLayout={this.onLayout}
       >
-        <View style={styles.drawerBackground}>
+        <View style={styles.drawerBackground} />
         <Animated.View
           style={[styles.panel, {
             height: this.state.height,
-            paddingBottom: this._deltaY.interpolate({
-              inputRange: [this.state.height * 0.2 - CLOSED_PANEL_HEIGHT, this.state.height - CLOSED_PANEL_HEIGHT],
-              outputRange: [this.state.height * 0.2 - CLOSED_PANEL_HEIGHT, this.state.height - CLOSED_PANEL_HEIGHT],
-            }),
+            paddingBottom: clamp,
           }]}
         >
           <View style={styles.handleWrapper}>
@@ -108,7 +123,6 @@ export class BottomDrawer extends Component<any, Props, State> {
           </View>
           {this.props.children}
         </Animated.View>
-        </View>
       </Interactable.View>
     )
   }
@@ -152,23 +166,23 @@ const styles = StyleSheet.create({
   panelContainer: {
     position: 'absolute',
     top: 0,
-    bottom: 0,
+    bottom: -BOTTOM_FLUFF,
     left: 0,
     right: 0,
     maxWidth: 700,
   },
   panel: {
-    paddingTop: 16,
+    paddingTop: 6,
     paddingBottom: 0,
     flex: 1,
   },
   handleWrapper: {
     position: 'absolute',
-    top: 0,
+    top: 18,
     left: 0,
     right: 0,
     alignItems: 'center',
-    marginVertical: 6,
+    marginVertical: 3,
   },
   handle: {
     width: 40,
@@ -184,13 +198,13 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     shadowOpacity: 0.3,
     backgroundColor: '#FFFFFF',
-    borderRadius: 12,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
     position: 'absolute',
     margin: 0,
     padding: 0,
-    top: 0,
-    bottom: -20,
-    paddingBottom: 20,
+    top: 20,
+    bottom: 0,
     left: 0,
     right: 0,
   },

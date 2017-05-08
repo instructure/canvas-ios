@@ -1,102 +1,148 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SpeedGrader renders 1`] = `
-<RCTScrollView
-  contentOffset={
-    Object {
-      "x": 0,
-      "y": 0,
-    }
-  }
-  horizontal={true}
-  onContentSizeChange={[Function]}
-  onLayout={[Function]}
-  onScroll={[Function]}
-  onScrollBeginDrag={[Function]}
-  pagingEnabled={true}
-  scrollEventThrottle={50}
-  showsHorizontalScrollIndicator={false}
-  stickyHeaderIndices={Array []}
+<View
   style={
     Object {
-      "marginLeft": -10,
-      "marginRight": -10,
+      "flex": 1,
     }
   }
 >
-  <View />
-</RCTScrollView>
+  <RCTScrollView
+    contentOffset={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
+    horizontal={true}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    pagingEnabled={true}
+    scrollEventThrottle={50}
+    showsHorizontalScrollIndicator={false}
+    stickyHeaderIndices={Array []}
+    style={
+      Object {
+        "marginLeft": -10,
+        "marginRight": -10,
+      }
+    }
+  >
+    <View />
+  </RCTScrollView>
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+        },
+        Object {
+          "height": 0,
+        },
+        undefined,
+      ]
+    }
+  />
+</View>
 `;
 
 exports[`SpeedGrader renders submissions if there are some 1`] = `
-<RCTScrollView
-  contentOffset={
-    Object {
-      "x": 0,
-      "y": 0,
-    }
-  }
-  horizontal={true}
-  onContentSizeChange={[Function]}
-  onLayout={[Function]}
-  onScroll={[Function]}
-  onScrollBeginDrag={[Function]}
-  pagingEnabled={true}
-  scrollEventThrottle={50}
-  showsHorizontalScrollIndicator={false}
-  stickyHeaderIndices={Array []}
+<View
   style={
     Object {
-      "marginLeft": -10,
-      "marginRight": -10,
+      "flex": 1,
     }
   }
 >
-  <View>
-    <View
-      onLayout={[Function]}
-    >
+  <RCTScrollView
+    contentOffset={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
+    horizontal={true}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    pagingEnabled={true}
+    scrollEventThrottle={50}
+    showsHorizontalScrollIndicator={false}
+    stickyHeaderIndices={Array []}
+    style={
+      Object {
+        "marginLeft": -10,
+        "marginRight": -10,
+      }
+    }
+  >
+    <View>
       <View
-        style={
-          Array [
-            Object {
-              "overflow": "hidden",
-              "paddingLeft": 10,
-              "paddingRight": 10,
-            },
-            Object {
-              "height": 1334,
-              "width": 750,
-            },
-          ]
-        }
+        onLayout={[Function]}
       >
         <View
-          onLayout={[Function]}
           style={
-            Object {
-              "flex": 1,
-            }
+            Array [
+              Object {
+                "overflow": "hidden",
+                "paddingLeft": 10,
+                "paddingRight": 10,
+              },
+              Object {
+                "height": 1334,
+                "width": 750,
+              },
+            ]
           }
         >
-          <Header
-            closeModal={[Function]}
-            submissionID={undefined}
-            submissionProps={
+          <View
+            onLayout={[Function]}
+            style={
               Object {
-                "avatarURL": "http://www.fillmurray.com/100/100",
-                "grade": "B-",
-                "name": "Donald Trump",
-                "status": "submitted",
-                "userID": "55",
+                "flex": 1,
               }
             }
-          />
+          >
+            <Header
+              closeModal={[Function]}
+              submissionID={undefined}
+              submissionProps={
+                Object {
+                  "avatarURL": "http://www.fillmurray.com/100/100",
+                  "grade": "B-",
+                  "name": "Donald Trump",
+                  "status": "submitted",
+                  "userID": "55",
+                }
+              }
+            />
+          </View>
         </View>
       </View>
     </View>
-  </View>
-</RCTScrollView>
+  </RCTScrollView>
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+        },
+        Object {
+          "height": 0,
+        },
+        undefined,
+      ]
+    }
+  />
+</View>
 `;
 
 exports[`SpeedGrader shows the loading spinner when pending and not refreshing 1`] = `
@@ -119,29 +165,52 @@ exports[`SpeedGrader shows the loading spinner when pending and not refreshing 1
 `;
 
 exports[`SpeedGrader shows the loading spinner when there are no submissions 1`] = `
-<RCTScrollView
-  contentOffset={
-    Object {
-      "x": 0,
-      "y": 0,
-    }
-  }
-  horizontal={true}
-  onContentSizeChange={[Function]}
-  onLayout={[Function]}
-  onScroll={[Function]}
-  onScrollBeginDrag={[Function]}
-  pagingEnabled={true}
-  scrollEventThrottle={50}
-  showsHorizontalScrollIndicator={false}
-  stickyHeaderIndices={Array []}
+<View
   style={
     Object {
-      "marginLeft": -10,
-      "marginRight": -10,
+      "flex": 1,
     }
   }
 >
-  <View />
-</RCTScrollView>
+  <RCTScrollView
+    contentOffset={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
+    horizontal={true}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    pagingEnabled={true}
+    scrollEventThrottle={50}
+    showsHorizontalScrollIndicator={false}
+    stickyHeaderIndices={Array []}
+    style={
+      Object {
+        "marginLeft": -10,
+        "marginRight": -10,
+      }
+    }
+  >
+    <View />
+  </RCTScrollView>
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+        },
+        Object {
+          "height": 0,
+        },
+        undefined,
+      ]
+    }
+  />
+</View>
 `;

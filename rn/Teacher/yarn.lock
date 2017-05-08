@@ -3841,6 +3841,10 @@ react-devtools-core@^2.0.8:
     cross-env "^3.1.4"
     ws "^2.0.3"
 
+react-native-autogrow-textinput@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-autogrow-textinput/-/react-native-autogrow-textinput-3.0.2.tgz#9d2e38f771a1340908a895880a5ad6d8847555c9"
+
 react-native-blur@^3.0.0-alpha:
   version "3.0.0-alpha"
   resolved "https://registry.yarnpkg.com/react-native-blur/-/react-native-blur-3.0.0-alpha.tgz#d1efa6fca64a56301f1ae3c052dfc07ad0e19e85"

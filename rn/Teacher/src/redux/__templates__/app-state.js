@@ -3,7 +3,7 @@
 import template, { type Template } from '../../utils/template'
 
 const emptyAppState: AppState = {
-  drawer: { currentSnap: 2 },
+  drawer: { currentSnap: 2, currentTab: -1 },
   favoriteCourses: {
     pending: 0,
     courseRefs: [],
