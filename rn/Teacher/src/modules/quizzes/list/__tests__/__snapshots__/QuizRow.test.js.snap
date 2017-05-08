@@ -1,48 +1,910 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`QuizRow renders 1`] = `
 <View>
   <View
     style={
       Object {
-        "marginLeft": -10,
+        "marginLeft": -12,
       }
     }
   >
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
+    <TouchableHighlight
       accessibilityTraits="button"
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+      onPress={[Function]}
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "height": undefined,
           },
-          Array [
-            Object {
-              "height": undefined,
-            },
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
+          undefined,
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+          },
         ]
       }
-      testID="assignment-123456789"
-      tvParallaxProperties={undefined}
+      testID="quiz-row-0"
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "paddingBottom": 8,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 8,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+                "height": 32,
+                "width": 46,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Array [
+                  Object {
+                    "position": "absolute",
+                  },
+                  Object {
+                    "tintColor": "#fff",
+                  },
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "left": 20,
+                  "position": "absolute",
+                  "top": 10,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Quiz 1
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "marginTop": 2,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            Due Jan 23, 2013 at 11:59 PM
+          </Text>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+            >
+              20 pts • 12 Questions
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignSelf": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#c7c7cc",
+                "borderRightWidth": 2,
+                "borderTopWidth": 2,
+                "height": 10,
+                "marginLeft": 7,
+                "transform": Array [
+                  Object {
+                    "rotate": "45deg",
+                  },
+                ],
+                "width": 10,
+              }
+            }
+          />
+        </View>
+      </View>
+    </TouchableHighlight>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`QuizRow renders multiple question count 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "marginLeft": -12,
+      }
+    }
+  >
+    <TouchableHighlight
+      accessibilityTraits="button"
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "height": undefined,
+          },
+          undefined,
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+          },
+        ]
+      }
+      testID="quiz-row-0"
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "paddingBottom": 8,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 8,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+                "height": 32,
+                "width": 46,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Array [
+                  Object {
+                    "position": "absolute",
+                  },
+                  Object {
+                    "tintColor": "#fff",
+                  },
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "left": 20,
+                  "position": "absolute",
+                  "top": 10,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Quiz 1
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "marginTop": 2,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            Due Jan 23, 2013 at 11:59 PM
+          </Text>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+            >
+              20 pts • 144 Questions
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignSelf": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#c7c7cc",
+                "borderRightWidth": 2,
+                "borderTopWidth": 2,
+                "height": 10,
+                "marginLeft": 7,
+                "transform": Array [
+                  Object {
+                    "rotate": "45deg",
+                  },
+                ],
+                "width": 10,
+              }
+            }
+          />
+        </View>
+      </View>
+    </TouchableHighlight>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`QuizRow renders published 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "marginLeft": -12,
+      }
+    }
+  >
+    <TouchableHighlight
+      accessibilityTraits="button"
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "height": undefined,
+          },
+          undefined,
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+          },
+        ]
+      }
+      testID="quiz-row-0"
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "paddingBottom": 8,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 8,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+                "height": 32,
+                "width": 46,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Array [
+                  Object {
+                    "position": "absolute",
+                  },
+                  Object {
+                    "tintColor": "#fff",
+                  },
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "left": 20,
+                  "position": "absolute",
+                  "top": 10,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Quiz 1
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "marginTop": 2,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            Due Jan 23, 2013 at 11:59 PM
+          </Text>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+            >
+              20 pts • 12 Questions
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignSelf": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#c7c7cc",
+                "borderRightWidth": 2,
+                "borderTopWidth": 2,
+                "height": 10,
+                "marginLeft": 7,
+                "transform": Array [
+                  Object {
+                    "rotate": "45deg",
+                  },
+                ],
+                "width": 10,
+              }
+            }
+          />
+        </View>
+      </View>
+    </TouchableHighlight>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`QuizRow renders single question count 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "marginLeft": -12,
+      }
+    }
+  >
+    <TouchableHighlight
+      accessibilityTraits="button"
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "height": undefined,
+          },
+          undefined,
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+          },
+        ]
+      }
+      testID="quiz-row-0"
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "paddingBottom": 8,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 8,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+                "height": 32,
+                "width": 46,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Array [
+                  Object {
+                    "position": "absolute",
+                  },
+                  Object {
+                    "tintColor": "#fff",
+                  },
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "left": 20,
+                  "position": "absolute",
+                  "top": 10,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Quiz 1
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "marginTop": 2,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            Due Jan 23, 2013 at 11:59 PM
+          </Text>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+            >
+              20 pts • 1 Question
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignSelf": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#c7c7cc",
+                "borderRightWidth": 2,
+                "borderTopWidth": 2,
+                "height": 10,
+                "marginLeft": 7,
+                "transform": Array [
+                  Object {
+                    "rotate": "45deg",
+                  },
+                ],
+                "width": 10,
+              }
+            }
+          />
+        </View>
+      </View>
+    </TouchableHighlight>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`QuizRow renders unpublished 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "marginLeft": -12,
+      }
+    }
+  >
+    <TouchableHighlight
+      accessibilityTraits="button"
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "height": undefined,
+          },
+          undefined,
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+          },
+        ]
+      }
+      testID="quiz-row-0"
     >
       <View
         style={
@@ -149,7 +1011,7 @@ exports[`renders correctly 1`] = `
               ]
             }
           >
-            learn to write code
+            Quiz 1
           </Text>
           <Text
             accessible={true}
@@ -175,9 +1037,23 @@ exports[`renders correctly 1`] = `
               ]
             }
           >
-            No due date
+            Due Jan 23, 2013 at 11:59 PM
           </Text>
-          <View />
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+            >
+              20 pts • 12 Questions
+            </Text>
+          </View>
         </View>
         <View
           style={
@@ -207,55 +1083,37 @@ exports[`renders correctly 1`] = `
           />
         </View>
       </View>
-    </View>
+    </TouchableHighlight>
   </View>
   <View />
 </View>
 `;
 
-exports[`renders correctly with closed due dates 1`] = `
+exports[`QuizRow renders without points possible 1`] = `
 <View>
   <View
     style={
       Object {
-        "marginLeft": -10,
+        "marginLeft": -12,
       }
     }
   >
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
+    <TouchableHighlight
       accessibilityTraits="button"
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+      onPress={[Function]}
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "height": undefined,
           },
-          Array [
-            Object {
-              "height": undefined,
-            },
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
+          undefined,
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+          },
         ]
       }
-      testID="assignment-123456789"
-      tvParallaxProperties={undefined}
+      testID="quiz-row-0"
     >
       <View
         style={
@@ -279,7 +1137,7 @@ exports[`renders correctly with closed due dates 1`] = `
           }
         >
           <View
-            accessibilityLabel="Not Published"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -322,7 +1180,7 @@ exports[`renders correctly with closed due dates 1`] = `
                 style={
                   Object {
                     "height": 12,
-                    "tintColor": "#8B969E",
+                    "tintColor": "#00AC18",
                     "width": 12,
                   }
                 }
@@ -362,7 +1220,7 @@ exports[`renders correctly with closed due dates 1`] = `
               ]
             }
           >
-            learn to write code
+            Quiz 1
           </Text>
           <Text
             accessible={true}
@@ -388,9 +1246,23 @@ exports[`renders correctly with closed due dates 1`] = `
               ]
             }
           >
-            Availability: Closed
+            Due Jan 23, 2013 at 11:59 PM
           </Text>
-          <View />
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+            >
+              12 Questions
+            </Text>
+          </View>
         </View>
         <View
           style={
@@ -420,471 +1292,19 @@ exports[`renders correctly with closed due dates 1`] = `
           />
         </View>
       </View>
-    </View>
+    </TouchableHighlight>
   </View>
-  <View />
-</View>
-`;
-
-exports[`renders correctly with needs_grading_count 1`] = `
-<View>
   <View
     style={
       Object {
-        "marginLeft": -10,
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
       }
     }
-  >
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits="button"
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Array [
-            Object {
-              "height": undefined,
-            },
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
-        ]
-      }
-      testID="assignment-123456789"
-      tvParallaxProperties={undefined}
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "flex": 1,
-            "flexDirection": "row",
-            "paddingBottom": 8,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 8,
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignSelf": "flex-start",
-            }
-          }
-        >
-          <View
-            accessibilityLabel="Not Published"
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 0,
-                "height": 32,
-                "width": 46,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
-              }
-            />
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
-              }
-            >
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
-                  }
-                }
-              />
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={2}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            learn to write code
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "marginTop": 2,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-              ]
-            }
-          >
-            No due date
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "alignSelf": "flex-start",
-                  "backgroundColor": "white",
-                  "borderColor": "#008EE2",
-                  "borderRadius": 9,
-                  "borderWidth": 1,
-                  "color": "#008EE2",
-                  "flex": 0,
-                  "fontSize": 11,
-                  "fontWeight": "600",
-                  "marginTop": 4,
-                  "overflow": "hidden",
-                  "paddingBottom": 1,
-                  "paddingLeft": 6,
-                  "paddingRight": 6,
-                  "paddingTop": 3,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            5 UNGRADED
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "flexDirection": "row",
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignSelf": "center",
-                "backgroundColor": "transparent",
-                "borderColor": "#c7c7cc",
-                "borderRightWidth": 2,
-                "borderTopWidth": 2,
-                "height": 10,
-                "marginLeft": 7,
-                "transform": Array [
-                  Object {
-                    "rotate": "45deg",
-                  },
-                ],
-                "width": 10,
-              }
-            }
-          />
-        </View>
-      </View>
-    </View>
-  </View>
-  <View />
-</View>
-`;
-
-exports[`renders correctly with open due dates 1`] = `
-<View>
-  <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
-  >
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits="button"
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Array [
-            Object {
-              "height": undefined,
-            },
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
-        ]
-      }
-      testID="assignment-123456789"
-      tvParallaxProperties={undefined}
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "flex": 1,
-            "flexDirection": "row",
-            "paddingBottom": 8,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 8,
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignSelf": "flex-start",
-            }
-          }
-        >
-          <View
-            accessibilityLabel="Not Published"
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 0,
-                "height": 32,
-                "width": 46,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
-              }
-            />
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
-              }
-            >
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
-                  }
-                }
-              />
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={2}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            learn to write code
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "marginTop": 2,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-              ]
-            }
-          >
-            Multiple Due Dates
-          </Text>
-          <View />
-        </View>
-        <View
-          style={
-            Object {
-              "flexDirection": "row",
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignSelf": "center",
-                "backgroundColor": "transparent",
-                "borderColor": "#c7c7cc",
-                "borderRightWidth": 2,
-                "borderTopWidth": 2,
-                "height": 10,
-                "marginLeft": 7,
-                "transform": Array [
-                  Object {
-                    "rotate": "45deg",
-                  },
-                ],
-                "width": 10,
-              }
-            }
-          />
-        </View>
-      </View>
-    </View>
-  </View>
-  <View />
+  />
 </View>
 `;

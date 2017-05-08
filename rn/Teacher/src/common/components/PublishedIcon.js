@@ -9,23 +9,24 @@ import {
   StyleSheet,
 } from 'react-native'
 
-import Images from '../../../images'
+import Images from '../../images'
 import i18n from 'format-message'
 
 type Props = {
   published: true,
   tintColor: string,
+  image: any,
 }
 
-export default class AssignmentListRowIcon extends Component<any, Props, any> {
+export default class PublishedIcon extends Component<any, Props, any> {
   render (): Element<View> {
     const published = this.props.published
-    const icon = published ? Images.assignments.published : Images.assignments.unpublished
+    const icon = published ? Images.published : Images.unpublished
     const iconStyle = published ? styles.publishedIcon : styles.unpublishedIcon
     const accessibilityLabel = published ? i18n('Published') : i18n('Not Published')
     return (
       <View style={styles.container} accessibilityLabel={accessibilityLabel}>
-        <Image source={Images.course.assignments} style={[styles.assignmentIcon, { tintColor: this.props.tintColor }]} />
+        <Image source={this.props.image} style={[styles.image, { tintColor: this.props.tintColor }]} />
         <View style={styles.publishedIconContainer}>
           <Image source={icon} style={iconStyle} />
         </View>
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     width: 46,
     alignItems: 'center',
   },
-  assignmentIcon: {
+  image: {
     position: 'absolute',
   },
   publishedIconContainer: {

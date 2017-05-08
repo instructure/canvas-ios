@@ -17,6 +17,7 @@ const emptyAppState: AppState = {
     assignments: {},
     users: {},
     submissions: {},
+    quizzes: {},
   },
 }
 

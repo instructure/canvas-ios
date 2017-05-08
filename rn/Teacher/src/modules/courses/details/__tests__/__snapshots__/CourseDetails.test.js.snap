@@ -319,7 +319,8 @@ exports[`renders correctly 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              ellipsizeMode="tail"
+              ellipsizeMode={null}
+              numberOfLines={0}
               style={
                 Array [
                   Object {
@@ -344,9 +345,7 @@ exports[`renders correctly 1`] = `
           <View
             style={
               Object {
-                "flex": 1,
                 "flexDirection": "row",
-                "justifyContent": "flex-end",
               }
             }
           >
@@ -928,7 +927,8 @@ exports[`renders with empty image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              ellipsizeMode="tail"
+              ellipsizeMode={null}
+              numberOfLines={0}
               style={
                 Array [
                   Object {
@@ -953,9 +953,7 @@ exports[`renders with empty image url 1`] = `
           <View
             style={
               Object {
-                "flex": 1,
                 "flexDirection": "row",
-                "justifyContent": "flex-end",
               }
             }
           >
@@ -1296,7 +1294,8 @@ exports[`renders with image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              ellipsizeMode="tail"
+              ellipsizeMode={null}
+              numberOfLines={0}
               style={
                 Array [
                   Object {
@@ -1321,9 +1320,7 @@ exports[`renders with image url 1`] = `
           <View
             style={
               Object {
-                "flex": 1,
                 "flexDirection": "row",
-                "justifyContent": "flex-end",
               }
             }
           >
@@ -1650,7 +1647,8 @@ exports[`renders without image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              ellipsizeMode="tail"
+              ellipsizeMode={null}
+              numberOfLines={0}
               style={
                 Array [
                   Object {
@@ -1675,9 +1673,7 @@ exports[`renders without image url 1`] = `
           <View
             style={
               Object {
-                "flex": 1,
                 "flexDirection": "row",
-                "justifyContent": "flex-end",
               }
             }
           >

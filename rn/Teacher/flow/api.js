@@ -5,10 +5,8 @@ export type ApiResponse<T> = AxiosResponse & {
 }
 
 export type ApiError = {
-  response: {
-    status: number,
-    data: {
-      errors: { message: string }[],
-    },
+  status: number,
+  data: {
+    errors: { message: string }[],
   },
 }

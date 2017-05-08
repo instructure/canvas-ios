@@ -15,6 +15,7 @@ import resetPending from '../utils/reset-pending'
 import composeReducers from './compose-reducers'
 import { submissions } from '../modules/submissions/list/submission-entities-reducer'
 import { drawer } from '../common/components/BottomDrawer'
+import { entities as quizzes } from '../modules/quizzes/list/reducer'
 
 const entities = combineReducers({
   courses,
@@ -25,6 +26,7 @@ const entities = combineReducers({
   sections,
   enrollments,
   submissions,
+  quizzes,
 })
 
 const actualRootReducer: Reducer<AppState, Action> = combineReducers({

@@ -9,7 +9,7 @@ import { parseErrorMessage } from '../../../redux/middleware/error-handler'
 export let defaultState: TabsState = { tabs: [], pending: 0 }
 
 let { refreshTabs } = TabsActions
-const availableCourseTabs = ['assignments']
+const availableCourseTabs = ['assignments', 'quizzes']
 
 export const tabs: Reducer<TabsState, any> = handleActions({
   [refreshTabs.toString()]: handleAsync({

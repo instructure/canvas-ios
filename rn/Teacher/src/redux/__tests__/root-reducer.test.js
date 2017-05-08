@@ -33,6 +33,11 @@ test('contains drawer subreducer', () => {
   expect(state.drawer).toBeDefined()
 })
 
+test('contains quizzes subreducer', () => {
+  const state: AppState = reduce(undefined, dummyAction)
+  expect(state.entities.quizzes).toBeDefined()
+})
+
 test('subreducers count', () => {
   const state: {} = reduce(undefined, dummyAction)
   expect(Object.keys(state).length).toEqual(3)

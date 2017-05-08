@@ -62,7 +62,8 @@ exports[`default icon 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        ellipsizeMode="tail"
+        ellipsizeMode={null}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -87,9 +88,7 @@ exports[`default icon 1`] = `
     <View
       style={
         Object {
-          "flex": 1,
           "flexDirection": "row",
-          "justifyContent": "flex-end",
         }
       }
     >
@@ -195,7 +194,8 @@ exports[`renders correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        ellipsizeMode="tail"
+        ellipsizeMode={null}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -220,9 +220,7 @@ exports[`renders correctly 1`] = `
     <View
       style={
         Object {
-          "flex": 1,
           "flexDirection": "row",
-          "justifyContent": "flex-end",
         }
       }
     >

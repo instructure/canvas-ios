@@ -147,6 +147,12 @@
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,\n     =0 {0 students}\n    one {# student}\n  other {# students}\n}"
   },
+  "count_plural_one_pt_other_pts_c5a3bced": {
+    "message": "{ count, plural,\n    one {# pt}\n  other {# pts}\n}"
+  },
+  "count_plural_one_question_other_questions_309aafa": {
+    "message": "{ count, plural,\n    one {# Question}\n  other {# Questions}\n}"
+  },
   "count_students_4ae780ca": {
     "message": "{ count } students"
   },
@@ -291,6 +297,9 @@
   "graded_25cd3fcd": {
     "message": "Graded",
     "description": "Assignment Details submissions graph `graded`"
+  },
+  "graded_survey_c0f0c395": {
+    "message": "Graded Survey"
   },
   "grades_a61eba0a": {
     "message": "Grades",
@@ -440,6 +449,9 @@
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } out of { totalPoints, number }"
   },
+  "practice_quiz_19a8505d": {
+    "message": "Practice Quiz"
+  },
   "profile_6bd2baed": {
     "message": "Profile",
     "description": "Label indicating the user is on the profile tab"
@@ -455,6 +467,10 @@
   "published_4bb5209e": {
     "message": "Published",
     "description": "Published text"
+  },
+  "quizzes_7e598f57": {
+    "message": "Quizzes",
+    "description": "Title of the quizzes screen for a course"
   },
   "remove_f47dc62a": {
     "message": "Remove"
@@ -511,6 +527,9 @@
     "message": "Submitted late",
     "description": "Title for a button to filter submissions by submitted late"
   },
+  "survey_31a240e6": {
+    "message": "Survey"
+  },
   "syllabus_f191f65b": {
     "message": "Syllabus",
     "description": "Name of course default view being the syllabus when navigating into a course"
@@ -520,6 +539,9 @@
   },
   "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
     "message": "There was a problem loading the assignment submissions."
+  },
+  "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
+    "message": "There was a problem loading the quizzes."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "There was an unexpected error. Please try again.",

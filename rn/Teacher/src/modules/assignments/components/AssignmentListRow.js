@@ -5,15 +5,16 @@
 import React, { Component, Element } from 'react'
 import {
   View,
-  TouchableHighlight,
   StyleSheet,
 } from 'react-native'
 
 import i18n from 'format-message'
 import { formattedDueDateWithStatus } from '../../../common/formatters'
-import Icon from './AssignmentListRowIcon'
+import Icon from '../../../common/components/PublishedIcon'
 import AssignmentDates from '../../../common/AssignmentDates'
 import { Text } from '../../../common/text'
+import Row from '../../../common/components/rows/Row'
+import Images from '../../../images'
 
 type Props = {
   assignment: Assignment,
@@ -27,19 +28,18 @@ export default class AssignmentListRow extends Component<any, Props, any> {
     this.props.onPress(assignment)
   }
 
-  dueDate (assignment: Assignment): Element<View> {
+  dueDate (assignment: Assignment): string {
     const dates = new AssignmentDates(assignment)
 
     if (dates.availabilityClosed()) {
-      return <Text style={styles.dueAtTitle}>{i18n('Availability: Closed')}</Text>
+      return i18n('Availability: Closed')
     }
 
     if (dates.hasMultipleDueDates()) {
-      return <Text style={styles.dueAtTitle}>{i18n('Multiple Due Dates')}</Text>
+      return i18n('Multiple Due Dates')
     }
 
-    const formattedDate = formattedDueDateWithStatus(dates.bestDueAt(), dates.bestAvailableTo())
-    return <Text style={styles.dueAtTitle}>{formattedDate}</Text>
+    return formattedDueDateWithStatus(dates.bestDueAt(), dates.bestAvailableTo())
   }
 
   ungradedBubble (assignment: Assignment): Element<View> {
@@ -56,21 +56,29 @@ export default class AssignmentListRow extends Component<any, Props, any> {
   render (): Element<View> {
     const assignment = this.props.assignment
     return (
-      <View style={styles.row} key={assignment.id}>
-        <TouchableHighlight style={styles.touchableHighlight} onPress={this.onPress} testID={`assignment-${assignment.id}`}>
-          <View style={styles.container}>
-            {assignment.published ? <View style={styles.publishedIndicatorLine} /> : <View />}
-            <Icon published={assignment.published} tintColor={this.props.tintColor} />
-            <View style={styles.textContainer}>
-              <Text
-                style={styles.title}
-                ellipsizeMode='tail'
-                numberOfLines={2}>{assignment.name}</Text>
-              {this.dueDate(assignment)}
-              {this.ungradedBubble(assignment)}
-            </View>
-          </View>
-        </TouchableHighlight>
+      <View>
+        <View style={styles.row}>
+          <Row
+            renderImage={this._renderIcon}
+            title={{ value: assignment.name, ellipsizeMode: 'tail', numberOfLines: 2 }}
+            subtitle={this.dueDate(assignment)}
+            border='bottom'
+            disclosureIndicator={true}
+            testID={`assignment-${assignment.id}`}
+            onPress={this.onPress}
+          >
+            {this.ungradedBubble(assignment)}
+          </Row>
+        </View>
+        {this.props.assignment.published ? <View style={styles.publishedIndicatorLine} /> : <View />}
+      </View>
+    )
+  }
+
+  _renderIcon = () => {
+    return (
+      <View style={styles.icon}>
+        <Icon published={this.props.assignment.published} tintColor={this.props.tintColor} style={styles.icon} image={Images.course.assignments} />
       </View>
     )
   }
@@ -78,33 +86,7 @@ export default class AssignmentListRow extends Component<any, Props, any> {
 
 const styles = StyleSheet.create({
   row: {
-    flex: 1,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgrey',
-  },
-  touchableHighlight: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    padding: 12,
-    paddingLeft: 3,
-    backgroundColor: 'white',
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-  },
-  textContainer: {
-    flex: 1,
-  },
-  title: {
-    flex: 1,
-    fontWeight: '600',
-    color: '#2D3B45',
-  },
-  dueAtTitle: {
-    color: '#8B969E',
-    fontSize: 14,
-    marginTop: 2,
+    marginLeft: -10,
   },
   ungradedText: {
     flex: 0,
@@ -130,5 +112,8 @@ const styles = StyleSheet.create({
     bottom: 4,
     left: 0,
     width: 3,
+  },
+  icon: {
+    alignSelf: 'flex-start',
   },
 })

@@ -11,6 +11,7 @@ import fromPairs from 'lodash/fromPairs'
 import { tabs } from './tabs/tabs-reducer'
 import { assignmentGroups } from '../assignments/assignment-group-refs-reducer'
 import { enrollments } from '../enrollments/enrollments-refs-reducer'
+import { refs as quizzes } from '../quizzes/list/reducer'
 
 // dummy's to appease combineReducers
 const course = (state) => (state || {})
@@ -27,6 +28,7 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   pending,
   error,
   enrollments,
+  quizzes,
 })
 
 const { refreshCourses, updateCourseColor } = CourseListActions
@@ -38,6 +40,7 @@ const emptyCourseState: CourseContentState = {
   tabs: { pending: 0, tabs: [] },
   assignmentGroups: { pending: 0, refs: [] },
   enrollments: { pending: 0, refs: [] },
+  quizzes: { pending: 0, refs: [] },
 }
 
 export const normalizeCourse = (course: Course, colors: { [courseId: string]: string } = {}, prevState: CourseContentState = emptyCourseState): CourseState => {

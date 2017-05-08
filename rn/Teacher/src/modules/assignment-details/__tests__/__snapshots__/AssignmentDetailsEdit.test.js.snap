@@ -511,7 +511,7 @@ exports[`error occurs when done pressed 1`] = `
         style={
           Array [
             Object {
-              "height": 54,
+              "height": undefined,
             },
             undefined,
             Object {
@@ -548,7 +548,8 @@ exports[`error occurs when done pressed 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              ellipsizeMode="tail"
+              ellipsizeMode={null}
+              numberOfLines={0}
               style={
                 Array [
                   Object {
@@ -573,9 +574,7 @@ exports[`error occurs when done pressed 1`] = `
           <View
             style={
               Object {
-                "flex": 1,
                 "flexDirection": "row",
-                "justifyContent": "flex-end",
               }
             }
           >
@@ -611,7 +610,7 @@ exports[`error occurs when done pressed 1`] = `
         style={
           Array [
             Object {
-              "height": 54,
+              "height": undefined,
             },
             undefined,
             Object {
@@ -648,7 +647,8 @@ exports[`error occurs when done pressed 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              ellipsizeMode="tail"
+              ellipsizeMode={null}
+              numberOfLines={0}
               style={
                 Array [
                   Object {
@@ -673,9 +673,7 @@ exports[`error occurs when done pressed 1`] = `
           <View
             style={
               Object {
-                "flex": 1,
                 "flexDirection": "row",
-                "justifyContent": "flex-end",
               }
             }
           >
@@ -1308,7 +1306,7 @@ exports[`modal saving is shown on assignment update 1`] = `
         style={
           Array [
             Object {
-              "height": 54,
+              "height": undefined,
             },
             undefined,
             Object {
@@ -1345,7 +1343,8 @@ exports[`modal saving is shown on assignment update 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              ellipsizeMode="tail"
+              ellipsizeMode={null}
+              numberOfLines={0}
               style={
                 Array [
                   Object {
@@ -1370,9 +1369,7 @@ exports[`modal saving is shown on assignment update 1`] = `
           <View
             style={
               Object {
-                "flex": 1,
                 "flexDirection": "row",
-                "justifyContent": "flex-end",
               }
             }
           >
@@ -1408,7 +1405,7 @@ exports[`modal saving is shown on assignment update 1`] = `
         style={
           Array [
             Object {
-              "height": 54,
+              "height": undefined,
             },
             undefined,
             Object {
@@ -1445,7 +1442,8 @@ exports[`modal saving is shown on assignment update 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              ellipsizeMode="tail"
+              ellipsizeMode={null}
+              numberOfLines={0}
               style={
                 Array [
                   Object {
@@ -1470,9 +1468,7 @@ exports[`modal saving is shown on assignment update 1`] = `
           <View
             style={
               Object {
-                "flex": 1,
                 "flexDirection": "row",
-                "justifyContent": "flex-end",
               }
             }
           >
@@ -2105,7 +2101,7 @@ exports[`renders 1`] = `
         style={
           Array [
             Object {
-              "height": 54,
+              "height": undefined,
             },
             undefined,
             Object {
@@ -2142,7 +2138,8 @@ exports[`renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              ellipsizeMode="tail"
+              ellipsizeMode={null}
+              numberOfLines={0}
               style={
                 Array [
                   Object {
@@ -2167,9 +2164,7 @@ exports[`renders 1`] = `
           <View
             style={
               Object {
-                "flex": 1,
                 "flexDirection": "row",
-                "justifyContent": "flex-end",
               }
             }
           >
@@ -2205,7 +2200,7 @@ exports[`renders 1`] = `
         style={
           Array [
             Object {
-              "height": 54,
+              "height": undefined,
             },
             undefined,
             Object {
@@ -2242,7 +2237,8 @@ exports[`renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              ellipsizeMode="tail"
+              ellipsizeMode={null}
+              numberOfLines={0}
               style={
                 Array [
                   Object {
@@ -2267,9 +2263,7 @@ exports[`renders 1`] = `
           <View
             style={
               Object {
-                "flex": 1,
                 "flexDirection": "row",
-                "justifyContent": "flex-end",
               }
             }
           >

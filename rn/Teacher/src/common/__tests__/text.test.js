@@ -4,7 +4,15 @@
 
 import 'react-native'
 import React from 'react'
-import { Text, Paragraph, Heading1, Heading2, TextInput, ModalActivityIndicatorAlertText } from '../text'
+import {
+  Text,
+  Paragraph,
+  Heading1,
+  Heading2,
+  TextInput,
+  ModalActivityIndicatorAlertText,
+  SectionHeader,
+} from '../text'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
@@ -63,4 +71,12 @@ test('renders modalActivityIndicatorAlertText correctly', () => {
     <ModalActivityIndicatorAlertText />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+test('render SectionHeader', () => {
+  expect(
+    renderer.create(
+      <SectionHeader>I am a section header</SectionHeader>
+    ).toJSON()
+  ).toMatchSnapshot()
 })

@@ -15,7 +15,7 @@ const images = {
     discussions: require('./course/Discussions.png'),
     pages: require('./course/Pages.png'),
     people: require('./course/People.png'),
-    quiz: require('./course/Quiz.png'),
+    quizzes: require('./course/Quiz.png'),
     syllabus: require('./course/Syllabus.png'),
     files: require('./course/Files.png'),
     settings: require('./course/Settings.png'),
@@ -28,8 +28,6 @@ const images = {
     stagingFilled: require('./tabbar/link-solid.png'),
   },
   assignments: {
-    published: require('./assignments/Published.png'),
-    unpublished: require('./assignments/Unpublished.png'),
     calendar: require('./assignments/Calendar.png'),
   },
   rce: {
@@ -68,6 +66,8 @@ const images = {
   clear: require('./Clear.png'),
   edit: require('./edit.png'),
   pickerArrow: require('./picker-arrow.png'),
+  published: require('./Published.png'),
+  unpublished: require('./Unpublished.png'),
 }
 
 export default (images: Images)

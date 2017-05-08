@@ -23,7 +23,7 @@ exports[`Render row with switch 1`] = `
       },
       Array [
         Object {
-          "height": 54,
+          "height": undefined,
         },
         undefined,
         undefined,
@@ -59,7 +59,8 @@ exports[`Render row with switch 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        ellipsizeMode="tail"
+        ellipsizeMode={null}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -84,9 +85,7 @@ exports[`Render row with switch 1`] = `
     <View
       style={
         Object {
-          "flex": 1,
           "flexDirection": "row",
-          "justifyContent": "flex-end",
         }
       }
     >

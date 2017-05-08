@@ -19,6 +19,7 @@ export type CourseContentState = {
   tabs: TabsState,
   assignmentGroups: AsyncRefs,
   enrollments: AsyncRefs,
+  quizzes: AsyncRefs,
 }
 
 export type GradingPeriodsState = {
@@ -51,6 +52,10 @@ export type SubmissionState = AsyncState & {
   selectedAttachmentIndex: ?number,
 }
 
+export type QuizState = AsyncState & {
+  data: Quiz,
+}
+
 export type CoursesState = { [string]: CourseState & CourseContentState }
 export type AssignmentGroupsState = { [string]: AssignmentGroupState & AssignmentGroupContentState }
 export type AssignmentsState = { [string]: AssignmentDetailState & AssignmentContentState }
@@ -58,6 +63,7 @@ export type EnrollmentsState = { [string]: Enrollment }
 export type SectionsState = { [string]: Section }
 export type UserProfileState = { [string]: User }
 export type SubmissionsState = { [string]: SubmissionState }
+export type QuizzesState = { [string]: QuizState }
 
 export type Entities = {
   courses: CoursesState,
@@ -68,6 +74,7 @@ export type Entities = {
   sections: SectionsState,
   users: UserProfileState,
   submissions: SubmissionsState,
+  quizzes: QuizzesState,
 }
 
 export type FavoriteCoursesState = AsyncState

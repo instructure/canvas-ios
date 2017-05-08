@@ -13,7 +13,7 @@ export default class PublishedIcon extends React.Component {
   render (): React.Element<*> {
     let { published, style, iconSize } = this.props
 
-    const publishedIcon = published ? Images.assignments.published : Images.assignments.unpublished
+    const publishedIcon = published ? Images.published : Images.unpublished
 
     let iconStyle = published ? internalStyle.publishedIcon : internalStyle.unpublishedIcon
     let customStyle = {}

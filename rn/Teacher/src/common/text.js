@@ -4,6 +4,7 @@
 
 import React from 'react'
 import ReactNative, {
+  View,
   StyleSheet,
 } from 'react-native'
 import colors from './colors'
@@ -38,6 +39,14 @@ export function TextInput ({ style, ...props }: Object): ReactNative.Text {
 
 export function ModalActivityIndicatorAlertText ({ style, ...props }: Object): ReactNative.Text {
   return <ReactNative.Text style={[styles.font, styles.modalActivityIndicatorAlertText, style]} {...props} />
+}
+
+export function SectionHeader ({ style, ...props }: Object): ReactNative.Element<View> {
+  return (
+    <View style={styles.sectionHeader} key={props.key}>
+      <Text style={styles.sectionHeaderTitle} {...props} />
+    </View>
+  )
 }
 
 const FontWeight: { [string]: string } = {
@@ -88,5 +97,21 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#fff',
     fontFamily: SEMI_BOLD_FONT,
+  },
+  sectionHeader: {
+    flex: 1,
+    height: 24,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#C7CDD1',
+    backgroundColor: '#F5F5F5',
+    justifyContent: 'center',
+    paddingLeft: 16,
+    paddingRight: 8,
+  },
+  sectionHeaderTitle: {
+    fontSize: 14,
+    backgroundColor: '#F5F5F5',
+    color: '#73818C',
+    fontWeight: '600',
   },
 })
