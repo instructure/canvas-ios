@@ -34,7 +34,7 @@ export default class AssignmentSection extends Component {
                 {
                   this.props.image && <Image source={this.props.image} style={assignmentSectionStyles.image} />
                 }
-                <Text style={headerStyle}>{this.props.title}</Text>
+                { this.props.title && <Text style={headerStyle}>{this.props.title}</Text> }
               </View>
               {this.props.children}
             </View>

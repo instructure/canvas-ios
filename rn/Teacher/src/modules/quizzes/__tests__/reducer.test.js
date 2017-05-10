@@ -1,13 +1,15 @@
 /* @flow */
 
 import { refs, entities } from '../reducer'
-import Actions from '../actions'
+import { default as ListActions } from '../list/actions'
+import { default as DetailsActions } from '../details/actions'
 
-const { refreshQuizzes } = Actions
+const { refreshQuizzes } = ListActions
+const { refreshQuiz } = DetailsActions
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/quiz'),
-  ...require('../../../../api/canvas-api/__templates__/error'),
+  ...require('../../../api/canvas-api/__templates__/quiz'),
+  ...require('../../../api/canvas-api/__templates__/error'),
 }
 
 describe('refs', () => {
@@ -84,6 +86,29 @@ describe('entities', () => {
         },
         '2': {
           data: two,
+          pending: 0,
+          error: null,
+        },
+      })
+    })
+  })
+
+  describe('refreshQuiz', () => {
+    it('handles resolved', () => {
+      const quiz = template.quiz({ id: '1' })
+      const resolved = {
+        type: refreshQuiz.toString(),
+        payload: {
+          result: { data: quiz },
+          courseID: '1',
+          quizID: quiz.id,
+        },
+      }
+      expect(
+        entities({}, resolved)
+      ).toEqual({
+        '1': {
+          data: quiz,
           pending: 0,
           error: null,
         },

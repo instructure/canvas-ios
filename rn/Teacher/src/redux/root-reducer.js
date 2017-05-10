@@ -15,7 +15,7 @@ import resetPending from '../utils/reset-pending'
 import composeReducers from './compose-reducers'
 import { submissions } from '../modules/submissions/list/submission-entities-reducer'
 import { drawer } from '../common/components/BottomDrawer'
-import { entities as quizzes } from '../modules/quizzes/list/reducer'
+import { entities as quizzes } from '../modules/quizzes/reducer'
 
 const entities = combineReducers({
   courses,

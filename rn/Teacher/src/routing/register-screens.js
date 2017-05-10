@@ -21,6 +21,7 @@ import AssignmentDescription from '../modules/assignment-description/AssignmentD
 import SpeedGrader from '../modules/speedgrader/SpeedGrader'
 import RubricDescription from '../modules/speedgrader/RubricDescription'
 import QuizzesList from '../modules/quizzes/list/QuizzesList'
+import QuizDetails from '../modules/quizzes/details/QuizDetails'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -41,6 +42,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', () => SpeedGrader, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/rubrics/:rubricID/description', () => RubricDescription, store)
   registerScreen('/courses/:courseID/quizzes', () => QuizzesList, store)
+  registerScreen('/courses/:courseID/quizzes/:quizID', () => QuizDetails, store)
   registerScreen('/conversations', () => Inbox, store)
   registerScreen('/profile', () => Profile, store)
   registerScreen('/beta-feedback', () => BetaFeedback, store)

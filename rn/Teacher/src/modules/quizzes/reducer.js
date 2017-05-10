@@ -1,13 +1,15 @@
 /* @flow */
 
 import { Reducer } from 'redux'
-import { asyncRefsReducer } from '../../../redux/async-refs-reducer'
+import { asyncRefsReducer } from '../../redux/async-refs-reducer'
 import { handleActions } from 'redux-actions'
-import handleAsync from '../../../utils/handleAsync'
-import Actions from './actions'
+import handleAsync from '../../utils/handleAsync'
+import { default as ListActions } from './list/actions'
+import { default as DetailsActions } from './details/actions'
 import i18n from 'format-message'
 
-const { refreshQuizzes } = Actions
+const { refreshQuizzes } = ListActions
+const { refreshQuiz } = DetailsActions
 
 export const refs: Reducer<AsyncRefs, any> = asyncRefsReducer(
   refreshQuizzes.toString(),
@@ -29,5 +31,16 @@ export const entities: Reducer<QuizzesState, any> = handleActions({
         }), {})
       return { ...state, ...incoming }
     },
+  }),
+  [refreshQuiz.toString()]: handleAsync({
+    resolved: (state, { result, quizID }) => ({
+      ...state,
+      [quizID]: {
+        ...state[quizID],
+        data: result.data,
+        pending: 0,
+        error: null,
+      },
+    }),
   }),
 }, {})

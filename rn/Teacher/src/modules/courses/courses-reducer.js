@@ -11,7 +11,7 @@ import fromPairs from 'lodash/fromPairs'
 import { tabs } from './tabs/tabs-reducer'
 import { assignmentGroups } from '../assignments/assignment-group-refs-reducer'
 import { enrollments } from '../enrollments/enrollments-refs-reducer'
-import { refs as quizzes } from '../quizzes/list/reducer'
+import { refs as quizzes } from '../quizzes/reducer'
 
 // dummy's to appease combineReducers
 const course = (state) => (state || {})
