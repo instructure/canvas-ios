@@ -10,8 +10,17 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import Interactable from 'react-native-interactable'
+import Button from 'react-native-button'
+import i18n from 'format-message'
 
 let { height, width } = Dimensions.get('window')
+
+const cycleText = i18n('Adjust the size of the overlay on the submission.')
+const snapPointStates = [
+  i18n('Full screen'),
+  i18n('Half screen'),
+  i18n('Closed'),
+]
 
 const CLOSED_PANEL_HEIGHT = 70
 const BOTTOM_FLUFF = 1024
@@ -26,6 +35,7 @@ type Props = SnapState & {
 type State = {
   height: number,
   width: number,
+  currentSnap: number,
 }
 
 export class BottomDrawer extends Component<any, Props, State> {
@@ -40,6 +50,7 @@ export class BottomDrawer extends Component<any, Props, State> {
     this.state = {
       height: props.containerHeight || height,
       width: props.containerWidth || width,
+      currentSnap: props.currentSnap,
     }
 
     this._deltaY = new Animated.Value(this.state.height - CLOSED_PANEL_HEIGHT)
@@ -60,14 +71,22 @@ export class BottomDrawer extends Component<any, Props, State> {
     }
   }
 
-  open () {
+  open = () => {
     if (this.props.currentSnap === 2) {
       this.drawer.snapTo({ index: 1 })
+      this.setState({ currentSnap: 1 })
     }
+  }
+
+  cycle = () => {
+    let index = this.props.currentSnap === 0 ? 2 : this.props.currentSnap - 1
+    this.drawer.snapTo({ index })
+    this.setState({ currentSnap: index })
   }
 
   onSnap = (e: any) => {
     if (e.nativeEvent.index !== this.props.currentSnap) {
+      this.setState({ currentSnap: e.nativeEvent.index })
       this.props.setDrawerSnap(e.nativeEvent.index)
     }
   }
@@ -98,6 +117,7 @@ export class BottomDrawer extends Component<any, Props, State> {
       inputRange: snap,
       outputRange: clamped,
     })
+
     return (
       <Interactable.View
         ref={(e) => { this.drawer = e }}
@@ -116,11 +136,13 @@ export class BottomDrawer extends Component<any, Props, State> {
             paddingBottom: clamp,
           }]}
         >
-          <View style={styles.handleWrapper}>
-            <View style={styles.handle} />
-          </View>
           {this.props.children}
         </Animated.View>
+        <View style={styles.handleWrapper}>
+          <Button onPress={this.cycle} testID='bottom-drawer.cycle'>
+            <View style={styles.handle} accessibilityLabel={`${cycleText} ${snapPointStates[this.state.currentSnap]}`}/>
+          </Button>
+        </View>
       </Interactable.View>
     )
   }

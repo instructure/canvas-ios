@@ -74,19 +74,32 @@ exports[`BottomDrawer renders any children 1`] = `
       }
     }
   >
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "left": 0,
-          "marginVertical": 3,
-          "position": "absolute",
-          "right": 0,
-          "top": 18,
-        }
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Yo yo yo
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "left": 0,
+        "marginVertical": 3,
+        "position": "absolute",
+        "right": 0,
+        "top": 18,
       }
+    }
+  >
+    <Button
+      onPress={[Function]}
+      testID="bottom-drawer.cycle"
     >
       <View
+        accessibilityLabel="Adjust the size of the overlay on the submission. Closed"
         style={
           Object {
             "backgroundColor": "darkgray",
@@ -98,14 +111,7 @@ exports[`BottomDrawer renders any children 1`] = `
           }
         }
       />
-    </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
-      Yo yo yo
-    </Text>
+    </Button>
   </View>
 </Interactable.View>
 `;

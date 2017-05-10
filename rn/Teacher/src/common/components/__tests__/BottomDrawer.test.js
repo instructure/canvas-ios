@@ -4,12 +4,17 @@ import { Text } from 'react-native'
 import { BottomDrawer } from '../BottomDrawer'
 import renderer from 'react-test-renderer'
 import setProps from '../../../../test/helpers/setProps'
+import explore from '../../../../test/helpers/explore'
 
-jest.mock('react-native-interactable', () => ({
-  View: 'Interactable.View',
-}))
+jest
+  .mock('react-native-interactable', () => ({
+    View: 'Interactable.View',
+  }))
+  .mock('react-native-button', () => 'Button')
 
 describe('BottomDrawer', () => {
+  beforeEach(() => jest.resetAllMocks())
+
   it('renders any children', () => {
     let tree = renderer.create(
       <BottomDrawer currentSnap={2}>
@@ -23,7 +28,7 @@ describe('BottomDrawer', () => {
   it('sets the new currentSnap when onSnap is called', () => {
     const setDrawerSnap = jest.fn()
     let tree = renderer.create(
-      <BottomDrawer setDrawerSnap={setDrawerSnap}>
+      <BottomDrawer setDrawerSnap={setDrawerSnap} currentSnap={2}>
         <Text>yo yo yo</Text>
       </BottomDrawer>
     )
@@ -59,9 +64,10 @@ describe('BottomDrawer', () => {
       </BottomDrawer>
     )
     let instance = tree.getInstance()
-    instance.drawer = { snapTo: jest.fn() }
+    let snapTo = jest.fn()
+    instance.drawer = { snapTo }
     instance.open()
-    expect(instance.drawer.snapTo).toHaveBeenCalledWith({ index: 1 })
+    expect(snapTo).toHaveBeenCalledWith({ index: 1 })
   })
 
   it('doesnt call snapTo when the currentSnap is not 2', () => {
@@ -87,5 +93,46 @@ describe('BottomDrawer', () => {
     expect(snapPoints[0].y).toBeLessThan(snapPoints[1].y)
     expect(snapPoints[1].y).toBeLessThan(snapPoints[2].y)
     expect(snapPoints.length).toEqual(3)
+  })
+
+  // because we setState after a cycle, and the drawer is a ref
+  // the drawer attribute on the instance gets wiped out after every
+  // call to cycle so we are just going to do it with 3 different trees
+  it('cycles through snaps when the handle button is pressed', () => {
+    let tree = renderer.create(
+      <BottomDrawer currentSnap={2}>
+        <Text>yo yo yo</Text>
+      </BottomDrawer>
+    )
+    let instance = tree.getInstance()
+    let button = explore(tree.toJSON()).selectByID('bottom-drawer.cycle') || {}
+    let snapTo = jest.fn()
+    instance.drawer = { snapTo }
+    button.props.onPress()
+    expect(snapTo).toHaveBeenLastCalledWith({ index: 1 })
+
+    tree = renderer.create(
+      <BottomDrawer currentSnap={1}>
+        <Text>yo yo yo</Text>
+      </BottomDrawer>
+    )
+    instance = tree.getInstance()
+    button = explore(tree.toJSON()).selectByID('bottom-drawer.cycle') || {}
+    snapTo = jest.fn()
+    instance.drawer = { snapTo }
+    button.props.onPress()
+    expect(snapTo).toHaveBeenLastCalledWith({ index: 0 })
+
+    tree = renderer.create(
+      <BottomDrawer currentSnap={0}>
+        <Text>yo yo yo</Text>
+      </BottomDrawer>
+    )
+    instance = tree.getInstance()
+    button = explore(tree.toJSON()).selectByID('bottom-drawer.cycle') || {}
+    snapTo = jest.fn()
+    instance.drawer = { snapTo }
+    button.props.onPress()
+    expect(snapTo).toHaveBeenLastCalledWith({ index: 2 })
   })
 })
