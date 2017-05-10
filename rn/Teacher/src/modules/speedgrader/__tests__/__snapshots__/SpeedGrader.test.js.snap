@@ -1,148 +1,147 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SpeedGrader renders 1`] = `
-<View
-  style={
+<RCTScrollView
+  contentOffset={
     Object {
-      "flex": 1,
+      "x": 0,
+      "y": 0,
     }
   }
+  data={Array []}
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={true}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onContentSizeChange={[Function]}
+  onEndReached={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onViewableItemsChanged={undefined}
+  pagingEnabled={true}
+  removeClippedSubviews={true}
+  renderItem={[Function]}
+  renderScrollComponent={[Function]}
+  scrollEventThrottle={50}
+  showsHorizontalScrollIndicator={false}
+  stickyHeaderIndices={Array []}
+  style={
+    Object {
+      "marginLeft": -10,
+      "marginRight": -10,
+    }
+  }
+  updateCellsBatchingPeriod={50}
+  windowSize={5}
 >
-  <RCTScrollView
-    contentOffset={
-      Object {
-        "x": 0,
-        "y": 0,
-      }
-    }
-    horizontal={true}
-    onContentSizeChange={[Function]}
-    onLayout={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    pagingEnabled={true}
-    scrollEventThrottle={50}
-    showsHorizontalScrollIndicator={false}
-    stickyHeaderIndices={Array []}
-    style={
-      Object {
-        "marginLeft": -10,
-        "marginRight": -10,
-      }
-    }
-  >
-    <View />
-  </RCTScrollView>
-  <View
-    style={
-      Array [
-        Object {
-          "bottom": 0,
-          "left": 0,
-          "right": 0,
-        },
-        Object {
-          "height": 0,
-        },
-        undefined,
-      ]
-    }
-  />
-</View>
+  <View />
+</RCTScrollView>
 `;
 
 exports[`SpeedGrader renders submissions if there are some 1`] = `
-<View
-  style={
+<RCTScrollView
+  contentOffset={
     Object {
-      "flex": 1,
+      "x": 0,
+      "y": 0,
     }
   }
+  data={
+    Array [
+      Object {
+        "key": "55",
+        "submission": Object {
+          "avatarURL": "http://www.fillmurray.com/100/100",
+          "grade": "B-",
+          "name": "Donald Trump",
+          "status": "submitted",
+          "userID": "55",
+        },
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={true}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onContentSizeChange={[Function]}
+  onEndReached={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onViewableItemsChanged={undefined}
+  pagingEnabled={true}
+  removeClippedSubviews={true}
+  renderItem={[Function]}
+  renderScrollComponent={[Function]}
+  scrollEventThrottle={50}
+  showsHorizontalScrollIndicator={false}
+  stickyHeaderIndices={Array []}
+  style={
+    Object {
+      "marginLeft": -10,
+      "marginRight": -10,
+    }
+  }
+  updateCellsBatchingPeriod={50}
+  windowSize={5}
 >
-  <RCTScrollView
-    contentOffset={
-      Object {
-        "x": 0,
-        "y": 0,
-      }
-    }
-    horizontal={true}
-    onContentSizeChange={[Function]}
-    onLayout={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    pagingEnabled={true}
-    scrollEventThrottle={50}
-    showsHorizontalScrollIndicator={false}
-    stickyHeaderIndices={Array []}
-    style={
-      Object {
-        "marginLeft": -10,
-        "marginRight": -10,
-      }
-    }
-  >
-    <View>
+  <View>
+    <View
+      onLayout={[Function]}
+    >
       <View
-        onLayout={[Function]}
+        style={
+          Array [
+            Object {
+              "overflow": "hidden",
+              "paddingLeft": 10,
+              "paddingRight": 10,
+            },
+            Object {
+              "height": 1334,
+              "width": 750,
+            },
+          ]
+        }
       >
         <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "overflow": "hidden",
-                "paddingLeft": 10,
-                "paddingRight": 10,
-              },
-              Object {
-                "height": 1334,
-                "width": 750,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         >
-          <View
-            onLayout={[Function]}
-            style={
+          <Header
+            closeModal={[Function]}
+            submissionID={undefined}
+            submissionProps={
               Object {
-                "flex": 1,
+                "avatarURL": "http://www.fillmurray.com/100/100",
+                "grade": "B-",
+                "name": "Donald Trump",
+                "status": "submitted",
+                "userID": "55",
               }
             }
-          >
-            <Header
-              closeModal={[Function]}
-              submissionID={undefined}
-              submissionProps={
-                Object {
-                  "avatarURL": "http://www.fillmurray.com/100/100",
-                  "grade": "B-",
-                  "name": "Donald Trump",
-                  "status": "submitted",
-                  "userID": "55",
-                }
-              }
-            />
-          </View>
+          />
         </View>
       </View>
     </View>
-  </RCTScrollView>
-  <View
-    style={
-      Array [
-        Object {
-          "bottom": 0,
-          "left": 0,
-          "right": 0,
-        },
-        Object {
-          "height": 0,
-        },
-        undefined,
-      ]
-    }
-  />
-</View>
+  </View>
+</RCTScrollView>
 `;
 
 exports[`SpeedGrader shows the loading spinner when pending and not refreshing 1`] = `
@@ -165,52 +164,45 @@ exports[`SpeedGrader shows the loading spinner when pending and not refreshing 1
 `;
 
 exports[`SpeedGrader shows the loading spinner when there are no submissions 1`] = `
-<View
-  style={
+<RCTScrollView
+  contentOffset={
     Object {
-      "flex": 1,
+      "x": 0,
+      "y": 0,
     }
   }
+  data={Array []}
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={true}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onContentSizeChange={[Function]}
+  onEndReached={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onViewableItemsChanged={undefined}
+  pagingEnabled={true}
+  removeClippedSubviews={true}
+  renderItem={[Function]}
+  renderScrollComponent={[Function]}
+  scrollEventThrottle={50}
+  showsHorizontalScrollIndicator={false}
+  stickyHeaderIndices={Array []}
+  style={
+    Object {
+      "marginLeft": -10,
+      "marginRight": -10,
+    }
+  }
+  updateCellsBatchingPeriod={50}
+  windowSize={5}
 >
-  <RCTScrollView
-    contentOffset={
-      Object {
-        "x": 0,
-        "y": 0,
-      }
-    }
-    horizontal={true}
-    onContentSizeChange={[Function]}
-    onLayout={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    pagingEnabled={true}
-    scrollEventThrottle={50}
-    showsHorizontalScrollIndicator={false}
-    stickyHeaderIndices={Array []}
-    style={
-      Object {
-        "marginLeft": -10,
-        "marginRight": -10,
-      }
-    }
-  >
-    <View />
-  </RCTScrollView>
-  <View
-    style={
-      Array [
-        Object {
-          "bottom": 0,
-          "left": 0,
-          "right": 0,
-        },
-        Object {
-          "height": 0,
-        },
-        undefined,
-      ]
-    }
-  />
-</View>
+  <View />
+</RCTScrollView>
 `;

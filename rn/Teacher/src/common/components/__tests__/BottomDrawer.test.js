@@ -38,7 +38,7 @@ describe('BottomDrawer', () => {
 
   it('sets the new height and width state when props change', () => {
     let tree = renderer.create(
-      <BottomDrawer containerHeight={100} containerWidth={100}>
+      <BottomDrawer containerHeight={100} containerWidth={100} currentSnap={2}>
         <Text>yo yo yo</Text>
       </BottomDrawer>
     )
@@ -54,7 +54,7 @@ describe('BottomDrawer', () => {
 
   it('calls snapTo when currentSnap is 2', () => {
     let tree = renderer.create(
-      <BottomDrawer>
+      <BottomDrawer currentSnap={2}>
         <Text>Yo yo yo</Text>
       </BottomDrawer>
     )
@@ -66,12 +66,11 @@ describe('BottomDrawer', () => {
 
   it('doesnt call snapTo when the currentSnap is not 2', () => {
     let tree = renderer.create(
-      <BottomDrawer>
+      <BottomDrawer currentSnap={1}>
         <Text>yo yo yo</Text>
       </BottomDrawer>
     )
     let instance = tree.getInstance()
-    instance.setState({ currentSnap: 0 })
     instance.drawer = { snapTo: jest.fn() }
     instance.open()
     expect(instance.drawer.snapTo).not.toHaveBeenCalled()

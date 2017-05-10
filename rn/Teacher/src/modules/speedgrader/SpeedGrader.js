@@ -5,8 +5,7 @@ import {
   View,
   StyleSheet,
   ActivityIndicator,
-  VirtualizedList,
-  ScrollView,
+  FlatList,
   Dimensions,
 } from 'react-native'
 import refresh from '../../utils/refresh'
@@ -20,7 +19,7 @@ import type {
   AsyncSubmissionsDataProps,
   SubmissionDataProps,
 } from '../submissions/list/submission-prop-types'
-import KeyboardSpacer from 'react-native-keyboard-spacer'
+import { DrawerActions } from '../../common/components/BottomDrawer'
 
 type State = {
   size: { width: number, height: number },
@@ -41,6 +40,10 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
     const { height, width } = Dimensions.get('window')
     this.state = { size: { width, height } }
+  }
+
+  componentWillUnmount () {
+    this.props.resetDrawer()
   }
 
   onLayout = (event: any) => {
@@ -65,21 +68,8 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         showModal={this.props.navigator.showModal}
         submissionProps={item.submission}
         selectedIndex={selectedIndex}
-        />
+      />
     </View>
-  }
-
-  renderScrollView = () => {
-    const studentIndex = Math.max(0, this.props.submissions.findIndex(sub => sub.userID === this.props.userID))
-    const x = this.state.size.width * studentIndex
-
-    return (<ScrollView
-      horizontal
-      pagingEnabled
-      showsHorizontalScrollIndicator={false}
-      contentOffset={{ x, y: 0 }}
-      style={{ marginLeft: -PAGE_GUTTER_HALF_WIDTH, marginRight: -PAGE_GUTTER_HALF_WIDTH }}
-    />)
   }
 
   render (): React.Element<*> {
@@ -89,19 +79,21 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
     const items: Array<SubmissionItem> = this.props.submissions
       .map(submission => ({ key: submission.userID, submission }))
+    const studentIndex = Math.max(0, this.props.submissions.findIndex(sub => sub.userID === this.props.userID))
+    const x = this.state.size.width * studentIndex
 
     return (
-      <View style={{ flex: 1 }}>
-        <VirtualizedList
-          onLayout={this.onLayout}
-          windowSize={5}
-          data={items}
-          renderItem={this.renderItem}
-          horizontal
-          renderScrollComponent={this.renderScrollView}
-        />
-        <KeyboardSpacer />
-      </View>
+      <FlatList
+        onLayout={this.onLayout}
+        data={items}
+        renderItem={this.renderItem}
+        windowSize={5}
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        contentOffset={{ x, y: 0 }}
+        style={{ marginLeft: -PAGE_GUTTER_HALF_WIDTH, marginRight: -PAGE_GUTTER_HALF_WIDTH }}
+      />
     )
   }
 }
@@ -149,7 +141,7 @@ const Refreshed = refresh(
   shouldRefresh,
   isRefreshing
 )(SpeedGrader)
-const Connected = connect(mapStateToProps, { ...SubmissionActions, ...EnrollmentActions, ...AssignmentActions })(Refreshed)
+const Connected = connect(mapStateToProps, { ...SubmissionActions, ...EnrollmentActions, ...AssignmentActions, ...DrawerActions })(Refreshed)
 
 export default (Connected: React.Element<*>)
 
@@ -166,10 +158,12 @@ type SpeedGraderActionProps = {
   refreshSubmissions: Function,
   refreshEnrollments: Function,
   refreshAssignment: Function,
+  resetDrawer: Function,
 }
 type SpeedGraderDataProps = {
   submissionEntities: Object,
 } & AsyncSubmissionsDataProps
+
 type SpeedGraderProps
   = RoutingProps
   & SpeedGraderActionProps

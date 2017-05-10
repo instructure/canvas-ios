@@ -42,20 +42,10 @@ exports[`SubmissionGrader renders 1`] = `
         }
       />
     </View>
-    <RCTScrollView
-      style={
-        Object {
-          "paddingHorizontal": 16,
-        }
-      }
-    >
-      <View>
-        <GradePicker
-          submissionID="1"
-          submissionProps={Object {}}
-        />
-      </View>
-    </RCTScrollView>
+    <GradeTab
+      submissionID="1"
+      submissionProps={Object {}}
+    />
   </BottomDrawer>
 </View>
 `;

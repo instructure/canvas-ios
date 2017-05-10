@@ -26,7 +26,6 @@ type Props = SnapState & {
 type State = {
   height: number,
   width: number,
-  bottomPadding: number,
 }
 
 export class BottomDrawer extends Component<any, Props, State> {
@@ -41,8 +40,6 @@ export class BottomDrawer extends Component<any, Props, State> {
     this.state = {
       height: props.containerHeight || height,
       width: props.containerWidth || width,
-      currentSnap: 2,
-      bottomPadding: height * 0.8 - CLOSED_PANEL_HEIGHT,
     }
 
     this._deltaY = new Animated.Value(this.state.height - CLOSED_PANEL_HEIGHT)
@@ -57,13 +54,14 @@ export class BottomDrawer extends Component<any, Props, State> {
   }
 
   componentDidUpdate (prevProps: Props) {
+    this._deltaY.setValue(this.getSnapPoints()[this.props.currentSnap].y)
     if (prevProps.currentSnap !== this.props.currentSnap) {
       this.drawer.snapTo({ index: this.props.currentSnap })
     }
   }
 
   open () {
-    if (this.state.currentSnap === 2) {
+    if (this.props.currentSnap === 2) {
       this.drawer.snapTo({ index: 1 })
     }
   }

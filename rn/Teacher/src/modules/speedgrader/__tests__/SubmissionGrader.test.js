@@ -7,10 +7,10 @@ import renderer from 'react-test-renderer'
 jest
   .mock('../../../common/components/BottomDrawer', () => 'BottomDrawer')
   .mock('SegmentedControlIOS', () => 'SegmentedControlIOS')
+  .mock('../GradeTab')
   .mock('../components/GradePicker')
   .mock('../components/Header')
   .mock('../components/FilesTab')
-  .mock('../components/RubricDetails')
   .mock('../comments/CommentsTab')
 
 let defaultProps = {

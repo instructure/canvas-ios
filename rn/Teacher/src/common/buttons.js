@@ -2,7 +2,7 @@
  * @flow
  */
 
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import ReactNative, {
   StyleSheet,
   View,
@@ -33,7 +33,7 @@ export class LinkButton extends Component {
   }
 }
 
-export class CircleToggle extends Component {
+export class CircleToggle extends PureComponent {
   props: {
     on: boolean,
     children?: any,

@@ -442,6 +442,9 @@
     "message": "Percentage",
     "description": "display grade as percentage"
   },
+  "please_enter_a_number_49c4975d": {
+    "message": "Please enter a number"
+  },
   "points_bb475533": {
     "message": "Points",
     "description": "display grade as points"

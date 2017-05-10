@@ -37,13 +37,21 @@ export default class RubricItem extends Component {
 
   isCustomGrade = () => this.props.rubricItem.ratings.every(({ points }) => points !== this.state.selectedOption) && this.state.selectedOption != null
 
-  promptCustom = () => {
+  promptCustom = (customMessage: ?string) => {
     AlertIOS.prompt(
       i18n('Customize Grade'),
-      null,
-      (value) => this.changeSelected(+value),
+      customMessage,
+      (value) => {
+        value = +value
+        if (isNaN(value)) {
+          this.promptCustom(i18n('Please enter a number'))
+        }
+
+        this.changeSelected(+value)
+      },
       'plain-text',
-      this.isCustomGrade() ? String(this.state.selectedOption) : ''
+      this.isCustomGrade() ? String(this.state.selectedOption) : '',
+      'number-pad'
     )
   }
 
@@ -71,6 +79,7 @@ export default class RubricItem extends Component {
             on={isCustomGrade}
             value={isCustomGrade ? this.state.selectedOption : ''}
             onPress={this.promptCustom}
+            accessibilityLabel={i18n('Customize Grade')}
           >
             { isCustomGrade
               ? this.state.selectedOption
@@ -97,6 +106,8 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 16,
     paddingBottom: 8,
+    paddingHorizontal: 16,
+    overflow: 'hidden',
   },
   description: {
     fontWeight: '600',

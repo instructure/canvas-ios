@@ -126,7 +126,7 @@ export class GradePicker extends Component {
   render () {
     let gradeButton = this.props.gradingType === PASS_FAIL ? this.togglePicker : this.openPrompt
     return (
-      <View>
+      <View style={styles.gradePicker}>
           <View style={styles.gradeCell}>
           <Heading1>{i18n('Grade')}</Heading1>
           <Button
@@ -176,6 +176,9 @@ export class GradePicker extends Component {
 }
 
 const styles = StyleSheet.create({
+  gradePicker: {
+    paddingHorizontal: 16,
+  },
   gradeCell: {
     paddingVertical: 9,
     flexDirection: 'row',

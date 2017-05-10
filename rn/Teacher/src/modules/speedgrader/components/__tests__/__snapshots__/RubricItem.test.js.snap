@@ -4,7 +4,9 @@ exports[`RubricItem changes the currently selected value when a circle is presse
 <View
   style={
     Object {
+      "overflow": "hidden",
       "paddingBottom": 8,
+      "paddingHorizontal": 16,
       "paddingTop": 16,
     }
   }
@@ -221,6 +223,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       </View>
     </Button>
     <Button
+      accessibilityLabel="Customize Grade"
       on={false}
       onPress={[Function]}
       style={
@@ -372,7 +375,9 @@ exports[`RubricItem renders 1`] = `
 <View
   style={
     Object {
+      "overflow": "hidden",
       "paddingBottom": 8,
+      "paddingHorizontal": 16,
       "paddingTop": 16,
     }
   }
@@ -586,6 +591,7 @@ exports[`RubricItem renders 1`] = `
       </View>
     </Button>
     <Button
+      accessibilityLabel="Customize Grade"
       on={false}
       onPress={[Function]}
       style={
@@ -737,7 +743,9 @@ exports[`RubricItem renders an already selected grade 1`] = `
 <View
   style={
     Object {
+      "overflow": "hidden",
       "paddingBottom": 8,
+      "paddingHorizontal": 16,
       "paddingTop": 16,
     }
   }
@@ -954,6 +962,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
       </View>
     </Button>
     <Button
+      accessibilityLabel="Customize Grade"
       on={false}
       onPress={[Function]}
       style={
@@ -1105,7 +1114,9 @@ exports[`RubricItem renders the selected custom grade 1`] = `
 <View
   style={
     Object {
+      "overflow": "hidden",
       "paddingBottom": 8,
+      "paddingHorizontal": 16,
       "paddingTop": 16,
     }
   }
@@ -1319,6 +1330,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       </View>
     </Button>
     <Button
+      accessibilityLabel="Customize Grade"
       on={true}
       onPress={[Function]}
       style={

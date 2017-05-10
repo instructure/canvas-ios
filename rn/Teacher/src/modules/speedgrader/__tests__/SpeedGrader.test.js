@@ -12,7 +12,6 @@ import renderer from 'react-test-renderer'
 jest.mock('../components/GradePicker')
 jest.mock('../components/Header')
 jest.mock('../components/FilesTab')
-jest.mock('../components/RubricDetails')
 jest.mock('../../../common/components/BottomDrawer')
 
 const templates = {
@@ -37,6 +36,7 @@ let defaultProps = {
   navigator: templates.navigator(),
   submissions: [],
   submissionEntities: {},
+  resetDrawer: jest.fn(),
 }
 
 describe('SpeedGrader', () => {
@@ -84,6 +84,7 @@ describe('refresh functions', () => {
     refreshSubmissions: jest.fn(),
     refreshEnrollments: jest.fn(),
     refreshAssignment: jest.fn(),
+    resetDrawer: jest.fn(),
     submissions: [],
     submissionEntities: {},
     refresh: jest.fn(),
