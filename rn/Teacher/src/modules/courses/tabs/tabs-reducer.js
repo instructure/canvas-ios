@@ -9,16 +9,15 @@ import { parseErrorMessage } from '../../../redux/middleware/error-handler'
 export let defaultState: TabsState = { tabs: [], pending: 0 }
 
 let { refreshTabs } = TabsActions
-const availableCourseTabs = ['assignments']
-
-if (global.V04) {
-  availableCourseTabs.push('quizzes')
-}
 
 export const tabs: Reducer<TabsState, any> = handleActions({
   [refreshTabs.toString()]: handleAsync({
     pending: (state) => ({ ...state, pending: state.pending + 1 }),
     resolved: (state, { result }) => {
+      const availableCourseTabs = ['assignments']
+      if (global.V04) {
+        availableCourseTabs.push('quizzes')
+      }
       const orderedTabs = result.data
         .filter((tab) => availableCourseTabs.includes(tab.id))
         .sort((t1, t2) => (t1.position - t2.position))
