@@ -138,9 +138,9 @@ export class BottomDrawer extends Component<any, Props, State> {
         >
           {this.props.children}
         </Animated.View>
-        <View style={styles.handleWrapper}>
+        <View style={styles.handleWrapper} accessible={true} accessibilityTraits={['header', 'button']}>
           <Button onPress={this.cycle} testID='bottom-drawer.cycle'>
-            <View style={styles.handle} accessibilityLabel={`${cycleText} ${snapPointStates[this.state.currentSnap]}`}/>
+            <View style={styles.handle} accessibilityLabel={`${cycleText} ${snapPointStates[this.state.currentSnap]}`} />
           </Button>
         </View>
       </Interactable.View>

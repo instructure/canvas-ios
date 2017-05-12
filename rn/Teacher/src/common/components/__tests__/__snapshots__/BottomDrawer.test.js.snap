@@ -83,6 +83,13 @@ exports[`BottomDrawer renders any children 1`] = `
     </Text>
   </View>
   <View
+    accessibilityTraits={
+      Array [
+        "header",
+        "button",
+      ]
+    }
+    accessible={true}
     style={
       Object {
         "alignItems": "center",

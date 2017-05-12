@@ -110,7 +110,7 @@ export class Header extends Component {
       <View style={styles.profileContainer}>
         <View><Image source={{ uri: sub.avatarURL }} style={styles.avatarImage} /></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.name}>{sub.name}</Text>
+          <Text style={styles.name} accessibilityTraits='header'>{sub.name}</Text>
           <SubmissionStatus status={sub.status} />
         </View>
         <View>
