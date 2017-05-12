@@ -11,9 +11,12 @@ import Button from 'react-native-button'
 import i18n from 'format-message'
 import Images from '../../../images'
 import colors from '../../../common/colors'
+import KeyboardSpacer from 'react-native-keyboard-spacer'
+import DrawerState from '../utils/drawer-state'
 
 type CommentInputProps = {
   makeComment(comment: SubmissionCommentParams): void,
+  drawerState: DrawerState,
 }
 
 type State = {
@@ -39,6 +42,12 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
     })
   }
 
+  keyboardChanged = (visible: boolean) => {
+    if (visible) {
+      this.props.drawerState.snapTo(2, true)
+    }
+  }
+
   render () {
     const placeholder = i18n({
       default: 'Comment',
@@ -51,30 +60,36 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
     })
 
     return (
-      <View style={styles.toolbar} >
-        <Button
-          containerStyle={styles.mediaButton}
-          testID='submission-comment-add-media.button'
-          onPress={this.addMedia}
-          accessibilityLabel={addMedia}
-        >
-          <Image
-            resizeMode="center"
-            source={Images.add}
-            style={styles.plus}
-          />
-        </Button>
-        <View style={styles.inputContainer} >
-          <TextInput
-            multiline={true}
-            testID='submission-comment-add-text.textInput'
-            placeholder={placeholder}
-            placeholderTextColor={colors.lightText}
-            style={styles.input}
-            maxHeight={76}
-            onSubmitEditing={this.submitComment}
-          />
+      <View>
+        <View style={styles.toolbar} >
+          <Button
+            containerStyle={styles.mediaButton}
+            testID='submission-comment.add-media'
+            onPress={this.addMedia}
+            accessible
+            accessibilityTraits={['button']}
+            accessibilityLabel={addMedia}
+          >
+            <Image
+              resizeMode="center"
+              source={Images.add}
+              style={styles.plus}
+            />
+          </Button>
+          <View style={styles.inputContainer} >
+            <TextInput
+              autoFocus
+              multiline
+              testID='submission-comment.text-input'
+              placeholder={placeholder}
+              placeholderTextColor={colors.lightText}
+              style={styles.input}
+              maxHeight={76}
+              onSubmitEditing={this.submitComment}
+            />
+          </View>
         </View>
+        <KeyboardSpacer onToggle={this.keyboardChanged} />
       </View>
     )
   }

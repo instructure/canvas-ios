@@ -1,83 +1,101 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CommentInput renders 1`] = `
-<View
-  style={
-    Object {
-      "alignItems": "flex-start",
-      "backgroundColor": "#F5F5F5",
-      "borderTopColor": "#C7CDD1",
-      "borderTopWidth": 0.5,
-      "flexDirection": "row",
-      "justifyContent": "space-between",
-      "overflow": "hidden",
-      "paddingHorizontal": 16,
-      "paddingVertical": 8,
-    }
-  }
->
-  <View
-    accessibilityComponentType="button"
-    accessibilityLabel={undefined}
-    accessibilityTraits="button"
-    accessible={true}
-    hitSlop={undefined}
-    isTVSelectable={true}
-    onLayout={undefined}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={
-      Object {
-        "alignSelf": "center",
-        "opacity": 1,
-      }
-    }
-    testID="submission-comment-add-media.button"
-    tvParallaxProperties={undefined}
-  >
-    <Image
-      resizeMode="center"
-      source={1}
-      style={
-        Object {
-          "tintColor": "#73818C",
-        }
-      }
-    />
-  </View>
+<View>
   <View
     style={
       Object {
-        "backgroundColor": "white",
-        "borderColor": "#C7CDD1",
-        "borderRadius": 20,
-        "borderWidth": 0.5,
-        "flex": 1,
-        "marginLeft": 4,
+        "alignItems": "flex-start",
+        "backgroundColor": "#F5F5F5",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 0.5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
         "overflow": "hidden",
+        "paddingHorizontal": 16,
+        "paddingVertical": 8,
       }
     }
   >
-    <TextInput
-      maxHeight={76}
-      multiline={true}
-      onSubmitEditing={[Function]}
-      placeholder="Comment"
-      placeholderTextColor="#7F91A7"
+    <View
+      accessibilityComponentType="button"
+      accessibilityLabel={undefined}
+      accessibilityTraits="button"
+      accessible={true}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "fontSize": 17,
-          "marginBottom": 4,
-          "marginHorizontal": 10,
-          "marginTop": 0,
+          "alignSelf": "center",
+          "opacity": 1,
         }
       }
-      testID="submission-comment-add-text.textInput"
-    />
+      testID="submission-comment.add-media"
+      tvParallaxProperties={undefined}
+    >
+      <Image
+        resizeMode="center"
+        source={1}
+        style={
+          Object {
+            "tintColor": "#73818C",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#C7CDD1",
+          "borderRadius": 20,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "marginLeft": 4,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <TextInput
+        autoFocus={true}
+        maxHeight={76}
+        multiline={true}
+        onSubmitEditing={[Function]}
+        placeholder="Comment"
+        placeholderTextColor="#7F91A7"
+        style={
+          Object {
+            "fontSize": 17,
+            "marginBottom": 4,
+            "marginHorizontal": 10,
+            "marginTop": 0,
+          }
+        }
+        testID="submission-comment.text-input"
+      />
+    </View>
   </View>
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+        },
+        Object {
+          "height": 0,
+        },
+        undefined,
+      ]
+    }
+  />
 </View>
 `;

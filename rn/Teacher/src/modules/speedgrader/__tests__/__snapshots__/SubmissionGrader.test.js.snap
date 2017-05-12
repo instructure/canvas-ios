@@ -17,31 +17,9 @@ exports[`SubmissionGrader renders 1`] = `
   <BottomDrawer
     containerHeight={1334}
     containerWidth={750}
+    drawerState={undefined}
+    renderHandleContent={[Function]}
   >
-    <View
-      style={
-        Object {
-          "borderBottomColor": "lightgray",
-          "borderBottomWidth": 0.5,
-          "paddingBottom": 8,
-          "paddingHorizontal": 16,
-          "paddingTop": 28,
-        }
-      }
-    >
-      <SegmentedControlIOS
-        onChange={[Function]}
-        selectedIndex={0}
-        testID="speedgrader.segment-control"
-        values={
-          Array [
-            "Grades",
-            "Comments",
-            "Files",
-          ]
-        }
-      />
-    </View>
     <GradeTab
       submissionID="1"
       submissionProps={Object {}}

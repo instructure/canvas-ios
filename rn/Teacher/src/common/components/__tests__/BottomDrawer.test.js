@@ -1,10 +1,11 @@
 // @flow
 import React from 'react'
 import { Text } from 'react-native'
-import { BottomDrawer } from '../BottomDrawer'
+import BottomDrawer from '../BottomDrawer'
 import renderer from 'react-test-renderer'
 import setProps from '../../../../test/helpers/setProps'
 import explore from '../../../../test/helpers/explore'
+import { SpeedGrader } from '../../../modules/speedgrader/SpeedGrader'
 
 jest
   .mock('react-native-interactable', () => ({
@@ -14,10 +15,11 @@ jest
 
 describe('BottomDrawer', () => {
   beforeEach(() => jest.resetAllMocks())
+  const state = SpeedGrader.drawerState
 
   it('renders any children', () => {
     let tree = renderer.create(
-      <BottomDrawer currentSnap={2}>
+      <BottomDrawer currentSnap={2} drawerState={state}>
         <Text>Yo yo yo</Text>
       </BottomDrawer>
     ).toJSON()
@@ -25,41 +27,25 @@ describe('BottomDrawer', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('sets the new currentSnap when onSnap is called', () => {
-    const setDrawerSnap = jest.fn()
-    let tree = renderer.create(
-      <BottomDrawer setDrawerSnap={setDrawerSnap} currentSnap={2}>
-        <Text>yo yo yo</Text>
-      </BottomDrawer>
-    )
-    let instance = tree.getInstance()
-    instance.onSnap({
-      nativeEvent: {
-        index: 1,
-      },
-    })
-    expect(setDrawerSnap).toHaveBeenCalledWith(1)
-  })
-
   it('sets the new height and width state when props change', () => {
     let tree = renderer.create(
-      <BottomDrawer containerHeight={100} containerWidth={100} currentSnap={2}>
+      <BottomDrawer containerHeight={200} containerWidth={100} currentSnap={2} drawerState={state}>
         <Text>yo yo yo</Text>
       </BottomDrawer>
     )
     let instance = tree.getInstance()
-    expect(instance.state.height).toEqual(100)
+    expect(instance.state.height).toEqual(200)
     expect(instance.state.width).toEqual(100)
 
-    setProps(tree, { containerHeight: 200, containerWidth: 200 })
+    setProps(tree, { containerHeight: 240, containerWidth: 200 })
     instance = tree.getInstance()
-    expect(instance.state.height).toEqual(200)
+    expect(instance.state.height).toEqual(240)
     expect(instance.state.width).toEqual(200)
   })
 
   it('calls snapTo when currentSnap is 2', () => {
     let tree = renderer.create(
-      <BottomDrawer currentSnap={2}>
+      <BottomDrawer currentSnap={2} drawerState={state}>
         <Text>Yo yo yo</Text>
       </BottomDrawer>
     )
@@ -70,9 +56,10 @@ describe('BottomDrawer', () => {
     expect(snapTo).toHaveBeenCalledWith({ index: 1 })
   })
 
-  it('doesnt call snapTo when the currentSnap is not 2', () => {
+  it('doesnt call snapTo when the currentSnap is not 0', () => {
+    state.currentSnap = 2
     let tree = renderer.create(
-      <BottomDrawer currentSnap={1}>
+      <BottomDrawer drawerState={state}>
         <Text>yo yo yo</Text>
       </BottomDrawer>
     )
@@ -84,7 +71,7 @@ describe('BottomDrawer', () => {
 
   it('returns 3 snap points from getSnapPoints', () => {
     let tree = renderer.create(
-      <BottomDrawer>
+      <BottomDrawer drawerState={state}>
         <Text>yo yo yo</Text>
       </BottomDrawer>
     )
@@ -99,8 +86,9 @@ describe('BottomDrawer', () => {
   // the drawer attribute on the instance gets wiped out after every
   // call to cycle so we are just going to do it with 3 different trees
   it('cycles through snaps when the handle button is pressed', () => {
+    state.currentSnap = 0
     let tree = renderer.create(
-      <BottomDrawer currentSnap={2}>
+      <BottomDrawer drawerState={state}>
         <Text>yo yo yo</Text>
       </BottomDrawer>
     )
@@ -111,20 +99,9 @@ describe('BottomDrawer', () => {
     button.props.onPress()
     expect(snapTo).toHaveBeenLastCalledWith({ index: 1 })
 
+    state.currentSnap = 1
     tree = renderer.create(
-      <BottomDrawer currentSnap={1}>
-        <Text>yo yo yo</Text>
-      </BottomDrawer>
-    )
-    instance = tree.getInstance()
-    button = explore(tree.toJSON()).selectByID('bottom-drawer.cycle') || {}
-    snapTo = jest.fn()
-    instance.drawer = { snapTo }
-    button.props.onPress()
-    expect(snapTo).toHaveBeenLastCalledWith({ index: 0 })
-
-    tree = renderer.create(
-      <BottomDrawer currentSnap={0}>
+      <BottomDrawer drawerState={state}>
         <Text>yo yo yo</Text>
       </BottomDrawer>
     )
@@ -134,5 +111,18 @@ describe('BottomDrawer', () => {
     instance.drawer = { snapTo }
     button.props.onPress()
     expect(snapTo).toHaveBeenLastCalledWith({ index: 2 })
+
+    state.currentSnap = 2
+    tree = renderer.create(
+      <BottomDrawer currentSnap={0} drawerState={state}>
+        <Text>yo yo yo</Text>
+      </BottomDrawer>
+    )
+    instance = tree.getInstance()
+    button = explore(tree.toJSON()).selectByID('bottom-drawer.cycle') || {}
+    snapTo = jest.fn()
+    instance.drawer = { snapTo }
+    button.props.onPress()
+    expect(snapTo).toHaveBeenLastCalledWith({ index: 0 })
   })
 })

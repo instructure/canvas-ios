@@ -28,11 +28,6 @@ test('contains favoriteCourses subreducer', () => {
   expect(state.favoriteCourses).toBeDefined()
 })
 
-test('contains drawer subreducer', () => {
-  const state: AppState = reduce(undefined, dummyAction)
-  expect(state.drawer).toBeDefined()
-})
-
 test('contains quizzes subreducer', () => {
   const state: AppState = reduce(undefined, dummyAction)
   expect(state.entities.quizzes).toBeDefined()
@@ -40,7 +35,7 @@ test('contains quizzes subreducer', () => {
 
 test('subreducers count', () => {
   const state: {} = reduce(undefined, dummyAction)
-  expect(Object.keys(state).length).toEqual(3)
+  expect(Object.keys(state).length).toEqual(2)
 })
 
 test('hydrate action will hydrate the store when the expiration is still in the future', () => {
@@ -90,5 +85,5 @@ test('hydrate action will not hydrate the store when the expiration is in the pa
 
 test('logout action', () => {
   const state: {} = reduce(undefined, logout)
-  expect(Object.keys(state).length).toEqual(3)
+  expect(Object.keys(state).length).toEqual(2)
 })

@@ -9,6 +9,7 @@ import {
 import { getSession } from '../../../api/session'
 import CommentRow, { type CommentRowProps } from './CommentRow'
 import CommentInput from './CommentInput'
+import DrawerState from '../utils/drawer-state'
 
 export class CommentsTab extends Component<any, Props, any> {
 
@@ -29,7 +30,7 @@ export class CommentsTab extends Component<any, Props, any> {
           data={rows}
           renderItem={this.renderComment}
         />
-        <CommentInput />
+        <CommentInput drawerState={this.props.drawerState} />
       </View>
     )
   }
@@ -42,10 +43,9 @@ type RoutingProps = {
   assignmentID: string,
   userID: string,
   submissionID: ?string,
+  drawerState: DrawerState,
 }
-type Props
-  = CommentRows
-  | RoutingProps
+type Props = CommentRows & RoutingProps
 
 function extractComments (submission: ?SubmissionComments): Array<CommentRowProps> {
   if (!(submission && submission.submission_comments)) {

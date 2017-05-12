@@ -3841,10 +3841,6 @@ react-devtools-core@^2.0.8:
     cross-env "^3.1.4"
     ws "^2.0.3"
 
-react-native-autogrow-textinput@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-autogrow-textinput/-/react-native-autogrow-textinput-3.0.2.tgz#9d2e38f771a1340908a895880a5ad6d8847555c9"
-
 react-native-blur@^3.0.0-alpha:
   version "3.0.0-alpha"
   resolved "https://registry.yarnpkg.com/react-native-blur/-/react-native-blur-3.0.0-alpha.tgz#d1efa6fca64a56301f1ae3c052dfc07ad0e19e85"
@@ -3861,9 +3857,9 @@ react-native-image-picker@^0.26.3:
   version "0.26.3"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.26.3.tgz#0ad2eede49501a7046d8046a73813696539c3dcd"
 
-"react-native-interactable@https://github.com/wix/react-native-interactable":
-  version "0.0.8"
-  resolved "https://github.com/wix/react-native-interactable#6aa7bb8d7cc74640ee492f53e705085489f46a2b"
+"react-native-interactable@https://github.com/derrh/react-native-interactable.git":
+  version "0.0.9"
+  resolved "https://github.com/derrh/react-native-interactable.git#098fa71e6408540b4c54ec739400b0e0d3ded6a2"
 
 react-native-keyboard-aware-scroll-view@^0.2.8:
   version "0.2.8"

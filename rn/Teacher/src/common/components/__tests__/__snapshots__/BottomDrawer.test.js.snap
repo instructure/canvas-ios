@@ -1,37 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BottomDrawer renders any children 1`] = `
-<Interactable.View
-  animatedValueY={1264}
-  initialPosition={
-    Object {
-      "y": 1264,
-    }
-  }
-  onLayout={undefined}
-  onSnap={[Function]}
-  snapPoints={
-    Array [
-      Object {
-        "y": 44,
-      },
-      Object {
-        "y": 730.4,
-      },
-      Object {
-        "y": 1264,
-      },
-    ]
-  }
+<View
   style={
     Array [
       Object {
-        "bottom": -1024,
-        "left": 0,
-        "maxWidth": 700,
+        "backgroundColor": "white",
+        "bottom": 0,
+        "height": 52,
         "position": "absolute",
-        "right": 0,
-        "top": 0,
+        "transform": Array [
+          Object {
+            "rotate": "180deg",
+          },
+        ],
       },
       Object {
         "left": 25,
@@ -39,41 +21,118 @@ exports[`BottomDrawer renders any children 1`] = `
       },
     ]
   }
-  verticalOnly={true}
 >
-  <View
-    style={
+  <Interactable.View
+    animatedValueY={0}
+    initialPosition={
       Object {
-        "backgroundColor": "#FFFFFF",
-        "borderTopLeftRadius": 12,
-        "borderTopRightRadius": 12,
-        "bottom": 0,
-        "left": 0,
-        "margin": 0,
-        "padding": 0,
-        "position": "absolute",
-        "right": 0,
-        "shadowColor": "#000000",
-        "shadowOffset": Object {
-          "height": 0,
-          "width": 0,
-        },
-        "shadowOpacity": 0.3,
-        "shadowRadius": 3,
-        "top": 20,
+        "y": 0,
       }
     }
+    onLayout={undefined}
+    onSnap={[Function]}
+    snapPoints={
+      Array [
+        Object {
+          "y": 0,
+        },
+        Object {
+          "y": 615,
+        },
+        Object {
+          "y": 1212,
+        },
+      ]
+    }
+    style={
+      Object {
+        "height": 78,
+        "left": 16,
+        "position": "absolute",
+        "right": 16,
+      }
+    }
+    verticalOnly={true}
   />
   <View
     style={
       Object {
-        "flex": 1,
-        "height": 1334,
-        "paddingBottom": 1754.4,
-        "paddingTop": 6,
+        "height": 667,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": -615,
+        "transform": Array [
+          Object {
+            "rotate": "180deg",
+          },
+        ],
       }
     }
   >
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderTopLeftRadius": 12,
+          "borderTopRightRadius": 12,
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0.3,
+          "shadowRadius": 3,
+          "top": 0,
+        }
+      }
+    />
+    <DrawerHandleView
+      style={
+        Array [
+          Object {
+            "marginTop": -16,
+          },
+        ]
+      }
+    >
+      <Button
+        accessibilityTraits={
+          Array [
+            "header",
+            "button",
+          ]
+        }
+        accessible={true}
+        onPress={[Function]}
+        testID="bottom-drawer.cycle"
+      >
+        <View
+          accessibilityLabel="Open Drawer Full screen"
+          style={
+            Object {
+              "alignSelf": "center",
+              "backgroundColor": "darkgray",
+              "borderRadius": 5,
+              "height": 4,
+              "marginTop": 22,
+              "width": 40,
+            }
+          }
+        />
+      </Button>
+      <View
+        style={
+          Object {
+            "marginTop": 6,
+          }
+        }
+      />
+    </DrawerHandleView>
     <Text
       accessible={true}
       allowFontScaling={true}
@@ -82,43 +141,5 @@ exports[`BottomDrawer renders any children 1`] = `
       Yo yo yo
     </Text>
   </View>
-  <View
-    accessibilityTraits={
-      Array [
-        "header",
-        "button",
-      ]
-    }
-    accessible={true}
-    style={
-      Object {
-        "alignItems": "center",
-        "left": 0,
-        "marginVertical": 3,
-        "position": "absolute",
-        "right": 0,
-        "top": 18,
-      }
-    }
-  >
-    <Button
-      onPress={[Function]}
-      testID="bottom-drawer.cycle"
-    >
-      <View
-        accessibilityLabel="Adjust the size of the overlay on the submission. Closed"
-        style={
-          Object {
-            "backgroundColor": "darkgray",
-            "borderRadius": 5,
-            "height": 4,
-            "marginBottom": 8,
-            "marginTop": 4,
-            "width": 40,
-          }
-        }
-      />
-    </Button>
-  </View>
-</Interactable.View>
+</View>
 `;

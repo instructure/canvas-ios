@@ -62,10 +62,10 @@
 		4943ECC21E5CEFBD001DC5B5 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB11E5CEFAC001DC5B5 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECC31E5CEFBD001DC5B5 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */; };
 		4943ECC41E5CEFBD001DC5B5 /* ReactiveObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4943ECC81E5CF16A001DC5B5 /* NativeLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943ECC71E5CF16A001DC5B5 /* NativeLogin.m */; };
-		496354ED1EB3E90100477CD9 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		4943ECC81E5CF16A001DC5B5 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943ECC71E5CF16A001DC5B5 /* NativeLoginManager.m */; };
+		496354ED1EB3E90100477CD9 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C01E8437D700828E42 /* CanvasLoginPage.swift */; };
+		49F4CE911EC3BF2800E53D67 /* DrawerHandleViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F4CE901EC3BF2800E53D67 /* DrawerHandleViewManager.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		61AD9B63975E448BAF5C6F25 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0456B43BE349468FA3E976BB /* libRNDeviceInfo.a */; };
 		61B5372A1E7869EA000FEABB /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B536EC1E7860CE000FEABB /* EarlGrey.framework */; };
@@ -76,7 +76,6 @@
 		61B537301E786A54000FEABB /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DF1E784A4B000FEABB /* Pages.swift */; };
 		61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E31E78599D000FEABB /* DomainPickerPage.swift */; };
 		6DB0C2A2AEC5AB57B8968B3E /* GroupCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */; };
-		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		86C29020E44B2BDD5649AC2C /* EditCoursesPageTest_test_favoriteCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308919FB4047D3154A062BC /* EditCoursesPageTest_test_favoriteCourse.swift */; };
 		8B83E26D393B3BB9C1813496 /* GroupMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8D0646677276C36E70E17 /* GroupMembership.swift */; };
 		9476F5B887844F7BAEBA7738 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A14A839A5EB460283B1F75B /* libRNImagePicker.a */; };
@@ -436,6 +435,8 @@
 		4943ECC71E5CF16A001DC5B5 /* NativeLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeLoginManager.m; sourceTree = "<group>"; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
 		49B274C01E8437D700828E42 /* CanvasLoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasLoginPage.swift; sourceTree = "<group>"; };
+		49F4CE8F1EC3BF2800E53D67 /* DrawerHandleViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerHandleViewManager.h; sourceTree = "<group>"; };
+		49F4CE901EC3BF2800E53D67 /* DrawerHandleViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerHandleViewManager.m; sourceTree = "<group>"; };
 		5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
 		5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSearchBar.xcodeproj; path = "../node_modules/react-native-search-bar/RNSearchBar.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -623,6 +624,8 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				2C7715261EBA75D400FB20F8 /* Teacher-Bridging-Header.h */,
+				49F4CE8F1EC3BF2800E53D67 /* DrawerHandleViewManager.h */,
+				49F4CE901EC3BF2800E53D67 /* DrawerHandleViewManager.m */,
 			);
 			name = Teacher;
 			sourceTree = "<group>";
@@ -1344,6 +1347,7 @@
 				4943ECC81E5CF16A001DC5B5 /* NativeLoginManager.m in Sources */,
 				B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				49F4CE911EC3BF2800E53D67 /* DrawerHandleViewManager.m in Sources */,
 				2C7715921EBB92B700FB20F8 /* NativeLoginManager.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);

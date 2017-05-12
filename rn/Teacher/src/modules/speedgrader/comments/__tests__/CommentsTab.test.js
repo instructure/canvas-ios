@@ -5,6 +5,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { CommentsTab, mapStateToProps } from '../CommentsTab'
 import { setSession } from '../../../../api/session'
+import DrawerState from '../../utils/drawer-state'
 
 const templates = {
   ...require('../../../../redux/__templates__/app-state'),
@@ -68,6 +69,7 @@ test('mapStateToProps returns no comments for no submissionID', () => {
     assignmentID: '245',
     userID: '55',
     submissionID: undefined,
+    drawerState: new DrawerState(),
   }
 
   let state = templates.appState()
@@ -83,6 +85,7 @@ test('mapStateToProps returns no comments for no submissionID', () => {
     assignmentID: '245',
     userID: '55',
     submissionID: undefined,
+    drawerState: new DrawerState(),
   }
 
   let state = templates.appState()
@@ -121,6 +124,7 @@ test('mapStateToProps returns comments rows', () => {
     assignmentID: '200',
     userID: student.id,
     submissionID: submission.id,
+    drawerState: new DrawerState(),
   }
 
   const session = templates.session()

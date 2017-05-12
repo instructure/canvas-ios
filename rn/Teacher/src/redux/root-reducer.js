@@ -14,7 +14,6 @@ import { HYDRATE_ACTION } from './hydrate-action'
 import resetPending from '../utils/reset-pending'
 import composeReducers from './compose-reducers'
 import { submissions } from '../modules/submissions/list/submission-entities-reducer'
-import { drawer } from '../common/components/BottomDrawer'
 import { entities as quizzes } from '../modules/quizzes/reducer'
 
 const entities = combineReducers({
@@ -30,7 +29,6 @@ const entities = combineReducers({
 })
 
 const actualRootReducer: Reducer<AppState, Action> = combineReducers({
-  drawer,
   favoriteCourses,
   entities,
 })

@@ -12,6 +12,7 @@ import Header from './components/Header'
 import GradeTab from './GradeTab'
 import FilesTab from './components/FilesTab'
 import CommentsTab from './comments/CommentsTab'
+import DrawerState from './utils/drawer-state'
 
 let { width, height } = Dimensions.get('window')
 
@@ -30,6 +31,7 @@ type SubmissionGraderProps = {
   submissionID: ?string,
   submissionProps: Object,
   selectedIndex: ?number,
+  drawerState: DrawerState,
 }
 
 export default class SubmissionGrader extends Component<any, SubmissionGraderProps, State> {
@@ -87,29 +89,39 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     return i18n('Files ({numberOfFiles})', { numberOfFiles })
   }
 
+  renderHandleContent = () => {
+    return (
+      <View style={styles.controlWrapper}>
+        <SegmentedControlIOS
+          testID='speedgrader.segment-control'
+          values={[
+            i18n({
+              default: 'Grades',
+              description: 'The title of the button to switch to grading a submission',
+            }),
+            i18n({
+              default: 'Comments',
+              description: 'The title of the button to switch to comments on a submission',
+            }),
+            this.filesTabLabel(),
+          ]}
+          selectedIndex={this.state.selectedTabIndex}
+          onChange={this.changeTab}
+        />
+      </View>
+    )
+  }
+
   render () {
     return (
       <View onLayout={this.onLayout} style={styles.speedGrader}>
         <Header closeModal={this.props.closeModal} submissionProps={this.props.submissionProps} submissionID={this.props.submissionID} />
-        <BottomDrawer ref={e => { this.drawer = e }} containerWidth={this.state.width} containerHeight={this.state.height}>
-          <View style={styles.controlWrapper}>
-            <SegmentedControlIOS
-              testID='speedgrader.segment-control'
-              values={[
-                i18n({
-                  default: 'Grades',
-                  description: 'The title of the button to switch to grading a submission',
-                }),
-                i18n({
-                  default: 'Comments',
-                  description: 'The title of the button to switch to comments on a submission',
-                }),
-                this.filesTabLabel(),
-              ]}
-              selectedIndex={this.state.selectedTabIndex}
-              onChange={this.changeTab}
-            />
-          </View>
+        <BottomDrawer
+          drawerState={this.props.drawerState}
+          containerWidth={this.state.width}
+          containerHeight={this.state.height}
+          renderHandleContent={this.renderHandleContent}
+        >
           {this.renderTab(this.state.selectedTabIndex)}
         </BottomDrawer>
       </View>
@@ -125,7 +137,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'lightgray',
-    paddingTop: 28,
     paddingBottom: 8,
   },
 })

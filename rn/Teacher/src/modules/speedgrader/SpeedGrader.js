@@ -19,7 +19,7 @@ import type {
   AsyncSubmissionsDataProps,
   SubmissionDataProps,
 } from '../submissions/list/submission-prop-types'
-import { DrawerActions } from '../../common/components/BottomDrawer'
+import DrawerState from './utils/drawer-state'
 
 type State = {
   size: { width: number, height: number },
@@ -35,6 +35,8 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     navBarHidden: true,
   }
 
+  static drawerState = new DrawerState()
+
   constructor (props: SpeedGraderProps) {
     super(props)
 
@@ -43,7 +45,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   }
 
   componentWillUnmount () {
-    this.props.resetDrawer()
+    SpeedGrader.drawerState.snapTo(0, false)
   }
 
   onLayout = (event: any) => {
@@ -60,6 +62,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     const selectedIndex = submissionEntity != null ? submissionEntity.selectedIndex : null
     return <View style={[styles.page, this.state.size]}>
       <SubmissionGrader
+        drawerState={SpeedGrader.drawerState}
         courseID={this.props.courseID}
         assignmentID={this.props.assignmentID}
         userID={item.submission.userID}
@@ -84,6 +87,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
     return (
       <FlatList
+        keyboardShouldPersistTaps='handled'
         onLayout={this.onLayout}
         data={items}
         renderItem={this.renderItem}
@@ -141,7 +145,7 @@ const Refreshed = refresh(
   shouldRefresh,
   isRefreshing
 )(SpeedGrader)
-const Connected = connect(mapStateToProps, { ...SubmissionActions, ...EnrollmentActions, ...AssignmentActions, ...DrawerActions })(Refreshed)
+const Connected = connect(mapStateToProps, { ...SubmissionActions, ...EnrollmentActions, ...AssignmentActions })(Refreshed)
 
 export default (Connected: React.Element<*>)
 
@@ -158,7 +162,6 @@ type SpeedGraderActionProps = {
   refreshSubmissions: Function,
   refreshEnrollments: Function,
   refreshAssignment: Function,
-  resetDrawer: Function,
 }
 type SpeedGraderDataProps = {
   submissionEntities: Object,
