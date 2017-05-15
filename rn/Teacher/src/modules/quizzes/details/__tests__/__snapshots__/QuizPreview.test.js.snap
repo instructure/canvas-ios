@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuizPreview renders 1`] = `
+<WebView
+  automaticallyAdjustContentInsets={false}
+  injectedJavaScript="document.getElementById('preview_quiz_button').click();"
+  source={
+    Object {
+      "uri": "http://mobiledev.instructure.com/courses/1/quizzes/take?preview=1&persist_headless=1&force_user=1",
+    }
+  }
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+/>
+`;

@@ -4,6 +4,7 @@ export type Quiz = {
   id: string,
   title: string,
   html_url: string,
+  mobile_url: string,
   description: string,
   due_at: ?string,
   lock_at: ?string,

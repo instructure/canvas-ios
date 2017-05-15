@@ -738,6 +738,110 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -1532,6 +1636,110 @@ exports[`QuizDetails renders 1`] = `
                 </Text>
               </View>
             </View>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -2334,6 +2542,110 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -3128,6 +3440,110 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                 </Text>
               </View>
             </View>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -3930,6 +4346,110 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -4724,6 +5244,110 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                 </Text>
               </View>
             </View>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -5526,6 +6150,110 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -6324,6 +7052,110 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -7062,6 +7894,110 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                 </Text>
               </View>
             </View>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -7864,6 +8800,110 @@ exports[`QuizDetails renders allowed attempts 1`] = `
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -8658,6 +9698,110 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                 </Text>
               </View>
             </View>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -9460,6 +10604,110 @@ exports[`QuizDetails renders quiz type 1`] = `
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -10254,6 +11502,110 @@ exports[`QuizDetails renders quiz type 2`] = `
                 </Text>
               </View>
             </View>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -11056,6 +12408,110 @@ exports[`QuizDetails renders scoring policy 1`] = `
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -11850,6 +13306,110 @@ exports[`QuizDetails renders scoring policy 2`] = `
                 </Text>
               </View>
             </View>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -12652,6 +14212,110 @@ exports[`QuizDetails renders scoring policy 3`] = `
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -13446,6 +15110,110 @@ exports[`QuizDetails renders show correct answers 1`] = `
                 </Text>
               </View>
             </View>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -14248,6 +16016,110 @@ exports[`QuizDetails renders show correct answers 2`] = `
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -15042,6 +16914,110 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                 </Text>
               </View>
             </View>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -15844,6 +17820,110 @@ exports[`QuizDetails renders shuffle answers 2`] = `
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -16638,6 +18718,110 @@ exports[`QuizDetails renders time limit 1`] = `
                 </Text>
               </View>
             </View>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -17440,6 +19624,110 @@ exports[`QuizDetails renders time limit 2`] = `
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -18238,6 +20526,110 @@ exports[`QuizDetails renders view responses 1`] = `
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -18980,6 +21372,110 @@ exports[`QuizDetails renders view responses 2`] = `
         </View>
       </View>
     </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
   </View>
 </RCTScrollView>
 `;
@@ -19718,6 +22214,110 @@ exports[`QuizDetails renders view responses 3`] = `
                 </Text>
               </View>
             </View>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <TouchableHighlight
+              onPress={[Function]}
+              style={
+                Object {
+                  "borderRadius": 4,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#008EE2",
+                    "borderRadius": 4,
+                    "flex": 1,
+                    "height": 51,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "white",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Preview Quiz
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>

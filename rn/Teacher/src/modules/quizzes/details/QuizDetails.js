@@ -5,9 +5,11 @@ import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
+  TouchableHighlight,
 } from 'react-native'
 import i18n from 'format-message'
 
+import { route } from '../../../routing'
 import Actions from './actions'
 import AssignmentSection from '../../assignment-details/components/AssignmentSection'
 import PublishedIcon from '../../assignment-details/components/PublishedIcon'
@@ -43,6 +45,11 @@ export class QuizDetails extends Component<any, Props, any> {
     })
   }
 
+  previewQuiz = () => {
+    const destination = route(`/courses/${this.props.courseID}/quizzes/${this.props.quizID}/preview`)
+    this.props.navigator.showModal(destination)
+  }
+
   render () {
     const quiz = this.props.quiz
     if (!quiz) {
@@ -75,6 +82,13 @@ export class QuizDetails extends Component<any, Props, any> {
 
         <AssignmentSection>
           {this._renderDetails()}
+        </AssignmentSection>
+        <AssignmentSection>
+          <TouchableHighlight onPress={this.previewQuiz} style={{ borderRadius: 4 }}>
+            <View style={style.previewQuizButton}>
+              <Text style={style.previewQuizButtonTitle}>{i18n('Preview Quiz')}</Text>
+            </View>
+          </TouchableHighlight>
         </AssignmentSection>
       </RefreshableScrollView>
     )
@@ -135,6 +149,18 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     marginBottom: 8,
+  },
+  previewQuizButton: {
+    flex: 1,
+    backgroundColor: '#008EE2',
+    height: 51,
+    borderRadius: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  previewQuizButtonTitle: {
+    color: 'white',
+    fontWeight: '600',
   },
 })
 
