@@ -4,8 +4,8 @@ exports[`SpeedGraderHeader closes the picker 1`] = `
 <View
   style={
     Object {
-      "flex": 0,
       "height": 92,
+      "overflow": "hidden",
     }
   }
 >
@@ -13,7 +13,6 @@ exports[`SpeedGraderHeader closes the picker 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "flex": 1,
         "flexDirection": "row",
         "marginTop": 16,
       }
@@ -185,6 +184,7 @@ exports[`SpeedGraderHeader closes the picker 1`] = `
   </View>
   <View>
     <TouchableHighlight
+      accessibilityTraits="button"
       onPress={[Function]}
       testID="header.toggle-submission_history-picker"
       underlayColor="#eee"
@@ -247,6 +247,29 @@ exports[`SpeedGraderHeader closes the picker 1`] = `
         />
       </View>
     </TouchableHighlight>
+    <PickerIOS
+      accessible={false}
+      onValueChange={[Function]}
+      selectedValue={1}
+      style={
+        Array [
+          undefined,
+          Object {
+            "display": true,
+          },
+        ]
+      }
+      testID="header.picker"
+    >
+      <Item
+        label="Apr 26, 2017 at 11:46 AM"
+        value={0}
+      />
+      <Item
+        label="Dec 31, 2015 at 5:01 PM"
+        value={1}
+      />
+    </PickerIOS>
   </View>
 </View>
 `;
@@ -255,8 +278,8 @@ exports[`SpeedGraderHeader opens the picker 1`] = `
 <View
   style={
     Object {
-      "flex": 0,
       "height": 92,
+      "overflow": "hidden",
     }
   }
 >
@@ -264,7 +287,6 @@ exports[`SpeedGraderHeader opens the picker 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "flex": 1,
         "flexDirection": "row",
         "marginTop": 16,
       }
@@ -436,6 +458,7 @@ exports[`SpeedGraderHeader opens the picker 1`] = `
   </View>
   <View>
     <TouchableHighlight
+      accessibilityTraits="button"
       onPress={[Function]}
       testID="header.toggle-submission_history-picker"
       underlayColor="#eee"
@@ -498,6 +521,29 @@ exports[`SpeedGraderHeader opens the picker 1`] = `
         />
       </View>
     </TouchableHighlight>
+    <PickerIOS
+      accessible={false}
+      onValueChange={[Function]}
+      selectedValue={1}
+      style={
+        Array [
+          undefined,
+          Object {
+            "display": "none",
+          },
+        ]
+      }
+      testID="header.picker"
+    >
+      <Item
+        label="Apr 26, 2017 at 11:46 AM"
+        value={0}
+      />
+      <Item
+        label="Dec 31, 2015 at 5:01 PM"
+        value={1}
+      />
+    </PickerIOS>
   </View>
 </View>
 `;
@@ -506,8 +552,8 @@ exports[`SpeedGraderHeader renders the picker with a 0 index 1`] = `
 <View
   style={
     Object {
-      "flex": 0,
       "height": 92,
+      "overflow": "hidden",
     }
   }
 >
@@ -515,7 +561,6 @@ exports[`SpeedGraderHeader renders the picker with a 0 index 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "flex": 1,
         "flexDirection": "row",
         "marginTop": 16,
       }
@@ -687,6 +732,7 @@ exports[`SpeedGraderHeader renders the picker with a 0 index 1`] = `
   </View>
   <View>
     <TouchableHighlight
+      accessibilityTraits="button"
       onPress={[Function]}
       testID="header.toggle-submission_history-picker"
       underlayColor="#eee"
@@ -759,12 +805,16 @@ exports[`SpeedGraderHeader renders the picker with a 0 index 1`] = `
       </View>
     </TouchableHighlight>
     <PickerIOS
+      accessible={false}
       onValueChange={[Function]}
       selectedValue={0}
       style={
-        Object {
-          "flex": 1,
-        }
+        Array [
+          undefined,
+          Object {
+            "display": "none",
+          },
+        ]
       }
       testID="header.picker"
     >
@@ -785,8 +835,8 @@ exports[`SpeedGraderHeader renders the picker with a non-zero index 1`] = `
 <View
   style={
     Object {
-      "flex": 0,
       "height": 92,
+      "overflow": "hidden",
     }
   }
 >
@@ -794,7 +844,6 @@ exports[`SpeedGraderHeader renders the picker with a non-zero index 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "flex": 1,
         "flexDirection": "row",
         "marginTop": 16,
       }
@@ -966,6 +1015,7 @@ exports[`SpeedGraderHeader renders the picker with a non-zero index 1`] = `
   </View>
   <View>
     <TouchableHighlight
+      accessibilityTraits="button"
       onPress={[Function]}
       testID="header.toggle-submission_history-picker"
       underlayColor="#eee"
@@ -1038,12 +1088,16 @@ exports[`SpeedGraderHeader renders the picker with a non-zero index 1`] = `
       </View>
     </TouchableHighlight>
     <PickerIOS
+      accessible={false}
       onValueChange={[Function]}
       selectedValue={1}
       style={
-        Object {
-          "flex": 1,
-        }
+        Array [
+          undefined,
+          Object {
+            "display": "none",
+          },
+        ]
       }
       testID="header.picker"
     >
@@ -1064,8 +1118,8 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
 <View
   style={
     Object {
-      "flex": 0,
       "height": 92,
+      "overflow": "hidden",
     }
   }
 >
@@ -1073,7 +1127,6 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "flex": 1,
         "flexDirection": "row",
         "marginTop": 16,
       }
@@ -1245,6 +1298,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
   </View>
   <View>
     <TouchableHighlight
+      accessibilityTraits="button"
       onPress={[Function]}
       testID="header.toggle-submission_history-picker"
       underlayColor="#eee"
@@ -1307,6 +1361,29 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
         />
       </View>
     </TouchableHighlight>
+    <PickerIOS
+      accessible={false}
+      onValueChange={[Function]}
+      selectedValue={1}
+      style={
+        Array [
+          undefined,
+          Object {
+            "display": "none",
+          },
+        ]
+      }
+      testID="header.picker"
+    >
+      <Item
+        label="Apr 26, 2017 at 11:46 AM"
+        value={0}
+      />
+      <Item
+        label="Dec 31, 2015 at 5:01 PM"
+        value={1}
+      />
+    </PickerIOS>
   </View>
 </View>
 `;
@@ -1315,8 +1392,8 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
 <View
   style={
     Object {
-      "flex": 0,
       "height": 92,
+      "overflow": "hidden",
     }
   }
 >
@@ -1324,7 +1401,6 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "flex": 1,
         "flexDirection": "row",
         "marginTop": 16,
       }

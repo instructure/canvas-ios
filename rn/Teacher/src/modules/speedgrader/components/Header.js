@@ -6,9 +6,9 @@ import {
   View,
   StyleSheet,
   Image,
-  LayoutAnimation,
   TouchableHighlight,
   PickerIOS,
+  Animated,
 } from 'react-native'
 import { Text } from '../../../common/text'
 import Images from '../../../images'
@@ -32,19 +32,29 @@ export class Header extends Component {
 
     this.state = {
       showingPicker: false,
+      easeAnimation: new Animated.Value(92),
+      display: 'none',
     }
   }
 
   _togglePicker = () => {
-    let animation = LayoutAnimation.create(250, LayoutAnimation.Types.linear, LayoutAnimation.Properties.opacity)
-    LayoutAnimation.configureNext(animation)
-    this.setState({ showingPicker: !this.state.showingPicker })
+    this.setState((previousState: State) => {
+      Animated.timing(
+        this.state.easeAnimation,
+        { toValue: previousState.showingPicker ? 92 : 284 }
+      ).start(() => previousState.showingPicker && this.setState({ display: 'none' }))
+
+      return {
+        showingPicker: !previousState.showingPicker,
+        display: previousState.showingPicker ? previousState.showingPicker : 'flex',
+      }
+    })
   }
 
   changeSelectedSubmission = (index: number) => {
     if (this.props.submissionID) {
       this.props.selectSubmissionFromHistory(this.props.submissionID, index)
-      this.setState({ showingPicker: false })
+      this._togglePicker()
     }
   }
 
@@ -70,6 +80,7 @@ export class Header extends Component {
           underlayColor="#eee"
           onPress={this._togglePicker}
           testID='header.toggle-submission_history-picker'
+          accessibilityTraits='button'
         >
           <View style={styles.submissionHistoryContainer}>
             <Text style={[styles.submissionDate, this.state.showingPicker && styles.selecting]}>
@@ -78,21 +89,20 @@ export class Header extends Component {
             <Image source={Images.pickerArrow} style={[{ alignSelf: 'center' }, this.state.showingPicker && styles.arrowSelecting]} />
           </View>
         </TouchableHighlight>
-        { this.state.showingPicker &&
-          <PickerIOS
-            style={styles.picker}
-            selectedValue={index}
-            onValueChange={this.changeSelectedSubmission}
-            testID='header.picker'>
-            {submission.submission_history.map((sub, idx) => (
-              <PickerItemIOS
-                key={sub.id}
-                value={idx}
-                label={formattedDueDate(new Date(sub.submitted_at))}
-              />
-            ))}
-          </PickerIOS>
-        }
+        <PickerIOS
+          style={[styles.picker, { display: this.state.display }]}
+          selectedValue={index}
+          onValueChange={this.changeSelectedSubmission}
+          testID='header.picker'
+          accessible={false}>
+          {submission.submission_history.map((sub, idx) => (
+            <PickerItemIOS
+              key={sub.id}
+              value={idx}
+              label={formattedDueDate(new Date(sub.submitted_at))}
+            />
+          ))}
+        </PickerIOS>
       </View>
     } else {
       if (!submission) return <View style={[styles.submissionHistoryContainer, styles.noSub]} />
@@ -106,7 +116,7 @@ export class Header extends Component {
 
   render (): React.Element<*> {
     const sub = this.props.submissionProps
-    return <View style={styles.header}>
+    return <Animated.View style={[styles.header, { height: this.state.easeAnimation }]}>
       <View style={styles.profileContainer}>
         <View><Image source={{ uri: sub.avatarURL }} style={styles.avatarImage} /></View>
         <View style={styles.nameContainer}>
@@ -131,17 +141,15 @@ export class Header extends Component {
         </View>
       </View>
       {this.renderSubmissionHistory()}
-    </View>
+    </Animated.View>
   }
 }
 
 const styles = StyleSheet.create({
   header: {
-    height: 92,
-    flex: 0,
+    overflow: 'hidden',
   },
   profileContainer: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 16,
@@ -204,9 +212,6 @@ const styles = StyleSheet.create({
      { rotate: '180deg' },
     ],
   },
-  picker: {
-    flex: 1,
-  },
 })
 
 export function mapStateToProps (state: AppState, ownProps: RouterProps): HeaderDataProps {
@@ -235,6 +240,8 @@ type RouterProps = {
 
 type State = {
   showingPicker: boolean,
+  easeAnimation: Animated.Value,
+  display: 'flex' | 'none',
 }
 
 type HeaderDataProps = {
