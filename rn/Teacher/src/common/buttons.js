@@ -60,11 +60,11 @@ export class CircleToggle extends PureComponent {
     }
 
     return (
-      <BaseButton {...this.props} onPress={this.onPress} testID='circle-button'>
+      <BaseButton {...this.props} onPress={this.onPress}>
         <View style={viewStyle}>
           {typeof this.props.children === 'object'
             ? this.props.children
-            : <Heading1 style={textStyle}>{this.props.children}</Heading1>
+            : <Heading1 style={textStyle} accessible={false}>{this.props.children}</Heading1>
           }
         </View>
       </BaseButton>

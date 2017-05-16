@@ -89,7 +89,7 @@ describe('Rubric', () => {
       <GradeTab {...defaultProps} />
     )
 
-    let button = explore(tree.toJSON()).selectByID('circle-button') || {}
+    let button = explore(tree.toJSON()).selectByID(`rubric-item.points-${defaultProps.rubricItems[0].ratings[0].id}`) || {}
     button.props.onPress()
 
     expect(tree.toJSON()).toMatchSnapshot()
@@ -100,7 +100,7 @@ describe('Rubric', () => {
       <GradeTab {...defaultProps} />
     )
 
-    let circleButton = explore(tree.toJSON()).selectByID('circle-button') || {}
+    let circleButton = explore(tree.toJSON()).selectByID(`rubric-item.points-${defaultProps.rubricItems[0].ratings[0].id}`) || {}
     circleButton.props.onPress()
 
     let saveButton = explore(tree.toJSON()).selectByID('rubric-details.save') || {}
@@ -112,7 +112,7 @@ describe('Rubric', () => {
         points: 10,
       },
       '2': {
-        points: 10,
+        points: 0,
       },
     })
   })

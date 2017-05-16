@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { AlertIOS } from 'react-native'
+import { AlertIOS, NativeModules } from 'react-native'
 import RubricItem from '../RubricItem'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
@@ -77,7 +77,7 @@ describe('RubricItem', () => {
       <RubricItem {...defaultProps} />
     )
 
-    let button = explore(tree.toJSON()).selectByID('circle-button') || {}
+    let button = explore(tree.toJSON()).selectByID(`rubric-item.points-${defaultProps.rubricItem.id}`) || {}
     button.props.onPress()
 
     expect(tree.toJSON()).toMatchSnapshot()
@@ -88,10 +88,10 @@ describe('RubricItem', () => {
       <RubricItem {...defaultProps} />
     ).toJSON()
 
-    let button = explore(tree).selectByID('circle-button') || {}
+    let button = explore(tree).selectByID(`rubric-item.points-${defaultProps.rubricItem.ratings[0].id}`) || {}
     button.props.onPress()
 
-    expect(defaultProps.changeRating).toHaveBeenCalledWith('2', 10)
+    expect(defaultProps.changeRating).toHaveBeenCalledWith('2', 0)
   })
 
   it('gets the value from prompting for a custom value', () => {
@@ -99,12 +99,26 @@ describe('RubricItem', () => {
       <RubricItem {...defaultProps} />
     ).toJSON()
 
-    let button = explore(tree).selectByProp('testID', 'circle-button').pop()
+    let button = explore(tree).selectByProp('testID', `rubric-item.customize-grade-${defaultProps.rubricItem.id}`).pop()
     button.props.onPress()
 
     expect(AlertIOS.prompt).toHaveBeenCalled()
-    AlertIOS.prompt.mock.calls[0][2]('12')
+    AlertIOS.prompt.mock.calls[0][2][1].onPress('12')
     expect(defaultProps.changeRating).toHaveBeenCalledWith(defaultProps.rubricItem.id, 12)
+    expect(NativeModules.NativeAccessibility.focusElement).toHaveBeenCalledWith(`rubric-item.customize-grade-${defaultProps.rubricItem.id}`)
+  })
+
+  it('refocuses the customize button on cancel of the prompt', () => {
+    let tree = renderer.create(
+      <RubricItem {...defaultProps} />
+    ).toJSON()
+
+    let button = explore(tree).selectByProp('testID', `rubric-item.customize-grade-${defaultProps.rubricItem.id}`).pop()
+    button.props.onPress()
+
+    expect(AlertIOS.prompt).toHaveBeenCalled()
+    AlertIOS.prompt.mock.calls[0][2][0].onPress()
+    expect(NativeModules.NativeAccessibility.focusElement).toHaveBeenCalledWith(`rubric-item.customize-grade-${defaultProps.rubricItem.id}`)
   })
 
   it('will call prompt with a default value if there is an existing custom grade', () => {
@@ -119,7 +133,7 @@ describe('RubricItem', () => {
       <RubricItem {...props} />
     ).toJSON()
 
-    let button = explore(tree).selectByProp('testID', 'circle-button').pop()
+    let button = explore(tree).selectByProp('testID', `rubric-item.customize-grade-${defaultProps.rubricItem.id}`).pop()
     button.props.onPress()
 
     expect(AlertIOS.prompt.mock.calls[0][4]).toEqual('1234')

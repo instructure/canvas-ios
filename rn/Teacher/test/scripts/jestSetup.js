@@ -1,4 +1,9 @@
 /* @flow */
+const { NativeModules } = require('react-native')
+
+NativeModules.NativeAccessibility = {
+  focusElement: jest.fn(),
+}
 
 jest.mock('NetInfo', () => ({
   addEventListener: jest.fn(),

@@ -56,7 +56,7 @@ exports[`renders circle toggle correctly 1`] = `
     }
   >
     <Text
-      accessible={true}
+      accessible={false}
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
@@ -111,7 +111,7 @@ exports[`renders circle toggle when on correctly 1`] = `
     }
   >
     <Text
-      accessible={true}
+      accessible={false}
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={

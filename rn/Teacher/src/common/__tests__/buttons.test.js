@@ -29,6 +29,7 @@ let circleToggleProps = {
   on: false,
   onPress: jest.fn(),
   value: '1',
+  testID: 'circle-button',
 }
 
 test('renders circle toggle correctly', () => {

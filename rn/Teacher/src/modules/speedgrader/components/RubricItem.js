@@ -6,11 +6,14 @@ import {
   Image,
   StyleSheet,
   AlertIOS,
+  NativeModules,
 } from 'react-native'
 import i18n from 'format-message'
 import { Text } from '../../../common/text'
 import { CircleToggle, LinkButton } from '../../../common/buttons'
 import Images from '../../../images'
+
+const { NativeAccessibility } = NativeModules
 
 export default class RubricItem extends Component {
   props: RubricItemProps
@@ -22,7 +25,7 @@ export default class RubricItem extends Component {
     let grade = this.props.grade && this.props.grade.points
 
     this.state = {
-      selectedOption: grade,
+      selectedOption: String(grade),
     }
   }
 
@@ -30,9 +33,9 @@ export default class RubricItem extends Component {
     this.props.showDescription(this.props.rubricItem.id)
   }
 
-  changeSelected = (value: number) => {
+  changeSelected = (value: string) => {
     this.setState({ selectedOption: value })
-    this.props.changeRating(this.props.rubricItem.id, value)
+    this.props.changeRating(this.props.rubricItem.id, +value)
   }
 
   isCustomGrade = () => this.props.rubricItem.ratings.every(({ points }) => points !== this.state.selectedOption) && this.state.selectedOption != null
@@ -41,16 +44,24 @@ export default class RubricItem extends Component {
     AlertIOS.prompt(
       i18n('Customize Grade'),
       customMessage,
-      (value) => {
-        value = +value
-        if (isNaN(value)) {
-          this.promptCustom(i18n('Please enter a number'))
-        }
+      [{
+        text: i18n('Cancel'),
+        style: 'cancel',
+        onPress: () => NativeAccessibility.focusElement(`rubric-item.customize-grade-${this.props.rubricItem.id}`),
+      }, {
+        text: i18n('Ok'),
+        onPress: (value) => {
+          let numValue = +value
+          if (isNaN(numValue)) {
+            this.promptCustom(i18n('Please enter a number'))
+          }
 
-        this.changeSelected(+value)
-      },
+          NativeAccessibility.focusElement(`rubric-item.customize-grade-${this.props.rubricItem.id}`)
+          this.changeSelected(value)
+        },
+      }],
       'plain-text',
-      this.isCustomGrade() ? String(this.state.selectedOption) : '',
+      this.isCustomGrade() ? this.state.selectedOption : '',
       'number-pad'
     )
   }
@@ -69,6 +80,7 @@ export default class RubricItem extends Component {
               on={this.state.selectedOption === rating.points}
               value={rating.points}
               onPress={this.changeSelected}
+              testID={`rubric-item.points-${rating.id}`}
             >
               {rating.points}
             </CircleToggle>
@@ -80,6 +92,7 @@ export default class RubricItem extends Component {
             value={isCustomGrade ? this.state.selectedOption : ''}
             onPress={this.promptCustom}
             accessibilityLabel={i18n('Customize Grade')}
+            testID={`rubric-item.customize-grade-${rubricItem.id}`}
           >
             { isCustomGrade
               ? this.state.selectedOption
@@ -140,5 +153,5 @@ type RubricItemProps = {
 }
 
 type RubricItemState = {
-  selectedOption: ?number,
+  selectedOption: ?string,
 }

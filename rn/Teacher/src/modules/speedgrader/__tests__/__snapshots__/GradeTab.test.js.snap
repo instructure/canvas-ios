@@ -234,7 +234,7 @@ exports[`Rubric has the correct score 1`] = `
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
+            testID="rubric-item.points-3"
             value={10}
           >
             <View
@@ -259,7 +259,7 @@ exports[`Rubric has the correct score 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
@@ -292,7 +292,7 @@ exports[`Rubric has the correct score 1`] = `
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
+            testID="rubric-item.points-2"
             value={5}
           >
             <View
@@ -317,7 +317,7 @@ exports[`Rubric has the correct score 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
@@ -350,7 +350,7 @@ exports[`Rubric has the correct score 1`] = `
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
+            testID="rubric-item.points-1"
             value={0}
           >
             <View
@@ -375,7 +375,7 @@ exports[`Rubric has the correct score 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
@@ -401,7 +401,7 @@ exports[`Rubric has the correct score 1`] = `
           </Button>
           <Button
             accessibilityLabel="Customize Grade"
-            on={false}
+            on={true}
             onPress={[Function]}
             style={
               Object {
@@ -409,8 +409,8 @@ exports[`Rubric has the correct score 1`] = `
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
-            value=""
+            testID="rubric-item.customize-grade-2"
+            value="undefined"
           >
             <View
               style={
@@ -430,12 +430,35 @@ exports[`Rubric has the correct score 1`] = `
                     "marginBottom": 8,
                     "marginRight": 8,
                   },
+                  Object {
+                    "backgroundColor": "#374A59",
+                  },
                 ]
               }
             >
-              <Image
-                source={1}
-              />
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontFamily": ".SFUIDisplay-semibold",
+                      "fontSize": 20,
+                    },
+                    Object {
+                      "color": "white",
+                      "fontWeight": "500",
+                    },
+                  ]
+                }
+              >
+                undefined
+              </Text>
             </View>
           </Button>
         </View>
@@ -785,7 +808,7 @@ exports[`Rubric renders a rubric 1`] = `
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
+            testID="rubric-item.points-3"
             value={10}
           >
             <View
@@ -810,7 +833,7 @@ exports[`Rubric renders a rubric 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
@@ -843,7 +866,7 @@ exports[`Rubric renders a rubric 1`] = `
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
+            testID="rubric-item.points-2"
             value={5}
           >
             <View
@@ -868,7 +891,7 @@ exports[`Rubric renders a rubric 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
@@ -901,7 +924,7 @@ exports[`Rubric renders a rubric 1`] = `
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
+            testID="rubric-item.points-1"
             value={0}
           >
             <View
@@ -926,7 +949,7 @@ exports[`Rubric renders a rubric 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
@@ -952,7 +975,7 @@ exports[`Rubric renders a rubric 1`] = `
           </Button>
           <Button
             accessibilityLabel="Customize Grade"
-            on={false}
+            on={true}
             onPress={[Function]}
             style={
               Object {
@@ -960,8 +983,8 @@ exports[`Rubric renders a rubric 1`] = `
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
-            value=""
+            testID="rubric-item.customize-grade-2"
+            value="undefined"
           >
             <View
               style={
@@ -981,12 +1004,35 @@ exports[`Rubric renders a rubric 1`] = `
                     "marginBottom": 8,
                     "marginRight": 8,
                   },
+                  Object {
+                    "backgroundColor": "#374A59",
+                  },
                 ]
               }
             >
-              <Image
-                source={1}
-              />
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontFamily": ".SFUIDisplay-semibold",
+                      "fontSize": 20,
+                    },
+                    Object {
+                      "color": "white",
+                      "fontWeight": "500",
+                    },
+                  ]
+                }
+              >
+                undefined
+              </Text>
             </View>
           </Button>
         </View>
@@ -1342,7 +1388,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
+            testID="rubric-item.points-3"
             value={10}
           >
             <View
@@ -1367,7 +1413,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
@@ -1400,7 +1446,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
+            testID="rubric-item.points-2"
             value={5}
           >
             <View
@@ -1425,7 +1471,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
@@ -1458,7 +1504,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
+            testID="rubric-item.points-1"
             value={0}
           >
             <View
@@ -1483,7 +1529,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
@@ -1509,7 +1555,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
           </Button>
           <Button
             accessibilityLabel="Customize Grade"
-            on={false}
+            on={true}
             onPress={[Function]}
             style={
               Object {
@@ -1517,8 +1563,8 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
-            value=""
+            testID="rubric-item.customize-grade-2"
+            value="undefined"
           >
             <View
               style={
@@ -1538,12 +1584,35 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                     "marginBottom": 8,
                     "marginRight": 8,
                   },
+                  Object {
+                    "backgroundColor": "#374A59",
+                  },
                 ]
               }
             >
-              <Image
-                source={1}
-              />
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontFamily": ".SFUIDisplay-semibold",
+                      "fontSize": 20,
+                    },
+                    Object {
+                      "color": "white",
+                      "fontWeight": "500",
+                    },
+                  ]
+                }
+              >
+                undefined
+              </Text>
             </View>
           </Button>
         </View>
@@ -1831,7 +1900,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                 ]
               }
             >
-              20 out of 100
+              10 out of 100
             </Text>
           </View>
           <Button
@@ -1933,6 +2002,122 @@ exports[`Rubric shows the save button when there is a change in the rubric score
           }
         >
           <Button
+            on={false}
+            onPress={[Function]}
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              }
+            }
+            testID="rubric-item.points-3"
+            value={10}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderColor": "#C7CDD1",
+                    "borderRadius": 24,
+                    "borderWidth": 0.5,
+                    "flex": 1,
+                    "height": 48,
+                    "justifyContent": "center",
+                    "minWidth": 48,
+                    "paddingHorizontal": 8,
+                  },
+                  Object {
+                    "marginBottom": 8,
+                    "marginRight": 8,
+                  },
+                ]
+              }
+            >
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontFamily": ".SFUIDisplay-semibold",
+                      "fontSize": 20,
+                    },
+                    Object {
+                      "color": "black",
+                      "fontWeight": "500",
+                    },
+                  ]
+                }
+              >
+                10
+              </Text>
+            </View>
+          </Button>
+          <Button
+            on={false}
+            onPress={[Function]}
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginRight": 8,
+              }
+            }
+            testID="rubric-item.points-2"
+            value={5}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderColor": "#C7CDD1",
+                    "borderRadius": 24,
+                    "borderWidth": 0.5,
+                    "flex": 1,
+                    "height": 48,
+                    "justifyContent": "center",
+                    "minWidth": 48,
+                    "paddingHorizontal": 8,
+                  },
+                  Object {
+                    "marginBottom": 8,
+                    "marginRight": 8,
+                  },
+                ]
+              }
+            >
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontFamily": ".SFUIDisplay-semibold",
+                      "fontSize": 20,
+                    },
+                    Object {
+                      "color": "black",
+                      "fontWeight": "500",
+                    },
+                  ]
+                }
+              >
+                5
+              </Text>
+            </View>
+          </Button>
+          <Button
             on={true}
             onPress={[Function]}
             style={
@@ -1941,8 +2126,8 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
-            value={10}
+            testID="rubric-item.points-1"
+            value={0}
           >
             <View
               style={
@@ -1969,7 +2154,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
@@ -1989,122 +2174,6 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   ]
                 }
               >
-                10
-              </Text>
-            </View>
-          </Button>
-          <Button
-            on={false}
-            onPress={[Function]}
-            style={
-              Object {
-                "marginBottom": 8,
-                "marginRight": 8,
-              }
-            }
-            testID="circle-button"
-            value={5}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "borderColor": "#C7CDD1",
-                    "borderRadius": 24,
-                    "borderWidth": 0.5,
-                    "flex": 1,
-                    "height": 48,
-                    "justifyContent": "center",
-                    "minWidth": 48,
-                    "paddingHorizontal": 8,
-                  },
-                  Object {
-                    "marginBottom": 8,
-                    "marginRight": 8,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
-                    },
-                    Object {
-                      "color": "black",
-                      "fontWeight": "500",
-                    },
-                  ]
-                }
-              >
-                5
-              </Text>
-            </View>
-          </Button>
-          <Button
-            on={false}
-            onPress={[Function]}
-            style={
-              Object {
-                "marginBottom": 8,
-                "marginRight": 8,
-              }
-            }
-            testID="circle-button"
-            value={0}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "borderColor": "#C7CDD1",
-                    "borderRadius": 24,
-                    "borderWidth": 0.5,
-                    "flex": 1,
-                    "height": 48,
-                    "justifyContent": "center",
-                    "minWidth": 48,
-                    "paddingHorizontal": 8,
-                  },
-                  Object {
-                    "marginBottom": 8,
-                    "marginRight": 8,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
-                    },
-                    Object {
-                      "color": "black",
-                      "fontWeight": "500",
-                    },
-                  ]
-                }
-              >
                 0
               </Text>
             </View>
@@ -2119,7 +2188,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                 "marginRight": 8,
               }
             }
-            testID="circle-button"
+            testID="rubric-item.customize-grade-2"
             value=""
           >
             <View
