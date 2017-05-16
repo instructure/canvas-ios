@@ -18,7 +18,6 @@ import i18n from 'format-message'
 import colors from '../../../common/colors'
 import { formattedDueDate } from '../../../common/formatters'
 import AssignmentDates from '../../../common/AssignmentDates'
-import { route } from '../../../routing'
 import { type Assignee } from '../../assignee-picker/map-state-to-props'
 import uuid from 'uuid/v1'
 import { cloneDeep } from 'lodash'
@@ -27,11 +26,12 @@ import EditSectionHeader from './EditSectionHeader'
 import Button from 'react-native-button'
 import Images from '../../../images'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
+import Navigator from '../../../routing/Navigator'
 
 type Props = {
   assignment: Assignment,
   scrollTo: Function,
-  navigator: ReactNavigator,
+  navigator: Navigator,
 }
 
 // Which date is currently being modified, or none at all
@@ -69,7 +69,6 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
 
   constructor (props: Props) {
     super(props)
-
     const dateManager = new AssignmentDates(props.assignment)
     const allDates = dateManager.allDates()
     const dates: StagedAssignmentDate[] = allDates.map((date) => {
@@ -320,7 +319,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
 
   selectAssignees = (date: StagedAssignmentDate) => {
     const callback = (assignees: Assignee[]) => {
-      this.props.navigator.dismissModal()
+      this.props.navigator.dismiss()
       const dates = (this.state.dates || []).filter((d) => d.id !== date.id)
       const newDates = AssignmentDatesEditor.updateDateWithAssignees(date, assignees)
       this.setState({
@@ -328,9 +327,9 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
       })
     }
 
-    let assignees = AssignmentDatesEditor.assigneesFromDate(date)
-    let destination = route(`/courses/${this.props.assignment.course_id}/assignee-picker`, { assignees, callback })
-    this.props.navigator.showModal(destination)
+    const assignees = AssignmentDatesEditor.assigneesFromDate(date)
+    const route = `/courses/${this.props.assignment.course_id}/assignee-picker`
+    this.props.navigator.show(route, { modal: true }, { assignees, callback })
   }
 
   modifyDate = (date: StagedAssignmentDate, type: ModifyDateType) => {

@@ -3,7 +3,7 @@
 import React from 'react'
 import { UserCoursePreferences } from '../UserCoursePreferences'
 import * as courseTemplates from '../../../../api/canvas-api/__templates__/course'
-import * as navigatorTemplates from '../../../../__templates__/react-native-navigation'
+import * as navigatorTemplates from '../../../../__templates__/helm'
 import explore from '../../../../../test/helpers/explore'
 
 import renderer from 'react-test-renderer'
@@ -33,23 +33,14 @@ describe('UserCoursePreferences', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
-    expect(defaultProps.navigator.setTitle).toHaveBeenCalledWith({
-      title: 'Customize Course',
-    })
-    expect(defaultProps.navigator.setOnNavigatorEvent).toHaveBeenCalled()
   })
 
-  it('calls dismissModal when done is pressed', () => {
+  it('calls dismiss when done is pressed', () => {
     let tree = renderer.create(
       <UserCoursePreferences {...defaultProps} />
     )
-
-    tree._component._renderedComponent._instance.onNavigatorEvent({
-      type: 'NavBarButtonPress',
-      id: 'done',
-    })
-
-    expect(defaultProps.navigator.dismissModal).toHaveBeenCalled()
+    tree.getInstance().dismiss()
+    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
   })
 
   it('calls props.updateCourseColor when a color is pressed', () => {

@@ -684,7 +684,7 @@ exports[`error occurs when done pressed 1`] = `
               onChange={[Function]}
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
-              onTintColor="#ff0ee8"
+              onTintColor="#374A59"
               onValueChange={[Function]}
               style={
                 Array [
@@ -696,7 +696,7 @@ exports[`error occurs when done pressed 1`] = `
                 ]
               }
               testID="published"
-              tintColor="#ff0ee8"
+              tintColor="#374A59"
               title="Publish"
               value={false}
             />
@@ -1479,7 +1479,7 @@ exports[`modal saving is shown on assignment update 1`] = `
               onChange={[Function]}
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
-              onTintColor="#ff0ee8"
+              onTintColor="#374A59"
               onValueChange={[Function]}
               style={
                 Array [
@@ -1491,7 +1491,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                 ]
               }
               testID="published"
-              tintColor="#ff0ee8"
+              tintColor="#374A59"
               title="Publish"
               value={false}
             />
@@ -2274,7 +2274,7 @@ exports[`renders 1`] = `
               onChange={[Function]}
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
-              onTintColor="#ff0ee8"
+              onTintColor="#374A59"
               onValueChange={[Function]}
               style={
                 Array [
@@ -2286,7 +2286,7 @@ exports[`renders 1`] = `
                 ]
               }
               testID="published"
-              tintColor="#ff0ee8"
+              tintColor="#374A59"
               title="Publish"
               value={false}
             />

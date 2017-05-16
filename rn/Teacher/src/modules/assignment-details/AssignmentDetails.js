@@ -17,8 +17,8 @@ import colors from '../../common/colors'
 import { RefreshableScrollView } from '../../common/components/RefreshableList'
 import refresh from '../../utils/refresh'
 import AssignmentActions from '../assignments/actions'
-import { route } from '../../routing'
 import Images from '../../images'
+import Screen from '../../routing/Screen'
 
 import {
   View,
@@ -27,33 +27,6 @@ import {
 
 export class AssignmentDetails extends Component<any, AssignmentDetailsProps, any> {
   props: AssignmentDetailsProps
-
-  static navigatorButtons = {
-    rightButtons: [
-      {
-        title: i18n({
-          default: 'Edit',
-          description: 'Shown at the top of the app to allow the user to edit',
-        }),
-        id: 'edit',
-        testID: 'e2e_rules',
-      },
-    ],
-  }
-
-  constructor (props: AssignmentDetailsProps) {
-    super(props)
-    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
-  }
-
-  componentDidMount () {
-    this.props.navigator.setTitle({
-      title: i18n({
-        default: 'Assignment Details',
-        description: 'Title of Assignment details screen',
-      }),
-    })
-  }
 
   render (): React.Element<View> {
     const assignment = this.props.assignmentDetails
@@ -91,58 +64,63 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
     }
 
     return (
-      <RefreshableScrollView
-        refreshing={Boolean(this.props.pending)}
-        onRefresh={this.props.refresh}
+      <Screen
+        navBarColor={this.props.courseColor}
+        navBarStyle='dark'
+        title={i18n({
+          default: 'Assignment Details',
+          description: 'Title of Assignment details screen',
+        })}
+        rightBarButtons={[
+          {
+            title: i18n({
+              default: 'Edit',
+              description: 'Shown at the top of the app to allow the user to edit',
+            }),
+            testID: 'assignment-deets.edit-btn',
+            action: this.editAssignment.bind(this),
+          },
+        ]}
       >
-        <AssignmentSection isFirstRow={true} style={style.topContainer}>
-        <Heading1>{assignment.name}</Heading1>
-
-        <View style={style.pointsContainer}>
-          <Text style={style.points}>{assignment.points_possible} {assignmentPoints}</Text>
-          <PublishedIcon published={assignment.published} style={style.publishedIcon} />
-        </View>
-
-        </AssignmentSection>
-
-        <AssignmentSection
-          title={sectionTitleDue}
-          accessibilityLabel={i18n({ default: 'Due Dates, Double tap for details.', description: 'Accessibility label for due dates in assignment details' })}
-          image={Images.assignments.calendar}
-          showDisclosureIndicator={true}
-          onPress={this.viewDueDateDetails} >
-          <AssignmentDates assignment={assignment} />
-        </AssignmentSection>
-
-        <AssignmentSection title={sectionTitleSubmissionTypes}>
-          <SubmissionType data={assignment.submission_types} />
-        </AssignmentSection>
-
-        { global.V02 &&
-          <AssignmentSection
-            title={sectionTitleSubmissions}
-            onPress={this.viewAllSubmissions}
-            showDisclosureIndicator>
-            <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
+        <RefreshableScrollView
+          refreshing={Boolean(this.props.pending)}
+          onRefresh={this.props.refresh}
+        >
+          <AssignmentSection isFirstRow={true} style={style.topContainer}>
+            <Heading1>{assignment.name}</Heading1>
+            <View style={style.pointsContainer}>
+              <Text style={style.points}>{assignment.points_possible} {assignmentPoints}</Text>
+              <PublishedIcon published={assignment.published} style={style.publishedIcon} />
+            </View>
           </AssignmentSection>
-        }
 
-        {descriptionElement}
+          <AssignmentSection
+            title={sectionTitleDue}
+            accessibilityLabel={i18n({ default: 'Due Dates, Double tap for details.', description: 'Accessibility label for due dates in assignment details' })}
+            image={Images.assignments.calendar}
+            showDisclosureIndicator={true}
+            onPress={this.viewDueDateDetails} >
+            <AssignmentDates assignment={assignment} />
+          </AssignmentSection>
 
-      </RefreshableScrollView>
+          <AssignmentSection title={sectionTitleSubmissionTypes}>
+            <SubmissionType data={assignment.submission_types} />
+          </AssignmentSection>
+
+          { global.V02 &&
+            <AssignmentSection
+              title={sectionTitleSubmissions}
+              onPress={() => this.viewSubmissions()}
+              showDisclosureIndicator>
+              <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
+            </AssignmentSection>
+          }
+
+          {descriptionElement}
+
+        </RefreshableScrollView>
+      </Screen>
     )
-  }
-
-  onNavigatorEvent = (event: NavigatorEvent) => {
-    switch (event.type) {
-      case 'NavBarButtonPress':
-        switch (event.id) {
-          case 'edit':
-            this.editAssignment()
-            break
-        }
-        break
-    }
   }
 
   onSubmissionDialPress = (type: string) => {
@@ -150,16 +128,11 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
   }
 
   editAssignment () {
-    let destination = route(`/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/edit`)
-    this.props.navigator.showModal({
-      ...destination,
-      animationType: 'slide-up',
-    })
+    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
   }
 
   viewDueDateDetails = () => {
-    let destination = route(`/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/due_dates`)
-    this.props.navigator.push(destination)
+    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/due_dates`)
   }
 
   viewAllSubmissions = () => {
@@ -169,13 +142,11 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
   viewSubmissions = (filterType: ?string) => {
     if (global.V02) {
       const { courseID, assignmentDetails } = this.props
-      let destination
       if (filterType) {
-        destination = route(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`, { filterType })
+        this.props.navigator.show(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`, { modal: false }, { filterType })
       } else {
-        destination = route(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`)
+        this.props.navigator.show(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`)
       }
-      this.props.navigator.push(destination)
     }
   }
 }

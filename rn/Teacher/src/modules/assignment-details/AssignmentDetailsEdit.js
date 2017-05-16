@@ -11,7 +11,6 @@ import EditSectionHeader from './components/EditSectionHeader'
 import AssignmentDatesEditor from './components/AssignmentDatesEditor'
 import { TextInput, Text } from '../../common/text'
 import ModalActivityIndicator from '../../common/components/ModalActivityIndicator'
-import { Navigation } from 'react-native-navigation'
 import { ERROR_TITLE, parseErrorMessage } from '../../redux/middleware/error-handler'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import color from './../../common/colors'
@@ -19,7 +18,7 @@ import images from '../../images/'
 import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../common/components/rows/RowWithDetail'
-import { route } from '../../routing'
+import Screen from '../../routing/Screen'
 import ReactNative, {
   View,
   StyleSheet,
@@ -65,30 +64,8 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   datesEditor: AssignmentDatesEditor
   currentPickerMap: ?Map<*, *> = null
 
-  static navigatorButtons = {
-    rightButtons: [
-      {
-        title: i18n({
-          default: 'Done',
-          description: 'Button to close modal',
-          id: 'done_edit_assignment',
-        }),
-        id: 'dismiss',
-        testID: 'edit-assignment.dismiss-btn',
-      },
-    ],
-    leftButtons: [
-      {
-        title: i18n('Cancel'),
-        id: 'cancel',
-        testID: 'edit-assignment.cancel-btn',
-      },
-    ],
-  }
-
   constructor (props: AssignmentDetailsProps) {
     super(props)
-    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
     this.state = {
       assignment: Object.assign({}, props.assignmentDetails),
       showPicker: false,
@@ -99,15 +76,6 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
   componentWillUnmount () {
     this.props.refreshAssignment(this.props.courseID, this.props.assignmentID)
-  }
-
-  componentDidMount () {
-    this.props.navigator.setTitle({
-      title: i18n({
-        default: 'Edit Assignment Details',
-        description: 'Title of Assignment details EDIT screen',
-      }),
-    })
   }
 
   renderTextInput (fieldName: string, placeholder: string, testID: string, styleParam: Object = {}, focus: boolean = false): React.Element<*> {
@@ -172,65 +140,94 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     let publish = i18n({ default: 'Publish', description: 'Assignment details publish toggle' })
 
     return (
-      <View style={{ flex: 1 }}>
-        <ModalActivityIndicator text={savingText} visible={this.state.pending}/>
-        <KeyboardAwareScrollView
-          style={style.container}
-          ref='scrollView'
-          keyboardShouldPersistTaps='handled'
-          enableAutoAutomaticScroll={false}
-        >
-          {/* Title */}
-          <EditSectionHeader title={sectionTitle} />
-          <View style={[style.row, style.topRow, style.bottomRow]}>
-            { this.renderTextInput('name', titlePlaceHolder, 'titleInput', style.title) }
-          </View>
-
-          {/* Description */}
-          <EditSectionHeader title={sectionDescription} style={[style.sectionHeader, { marginTop: 0 }]}/>
-          <TouchableHighlight
-            testID='edit-description'
-            onPress={this._editDescription}
+      <Screen
+        title={i18n({
+          default: 'Edit Assignment Details',
+          description: 'Title of Assignment details EDIT screen',
+        })}
+        navBarStyle='light'
+        navBarTitleColor={color.darkText}
+        navBarButtonColor={color.link}
+        rightBarButtons={[
+          {
+            title: i18n({
+              default: 'Done',
+              description: 'Button to close modal',
+              id: 'done_edit_assignment',
+            }),
+            style: 'done',
+            testID: 'edit-assignment.dismiss-btn',
+            action: this.actionDonePressed.bind(this),
+          },
+        ]}
+        leftBarButtons={[
+          {
+            title: i18n('Cancel'),
+            testID: 'edit-assignment.cancel-btn',
+            action: this.actionCancelPressed.bind(this),
+          },
+        ]}
+      >
+        <View style={{ flex: 1 }}>
+          <ModalActivityIndicator text={savingText} visible={this.state.pending}/>
+          <KeyboardAwareScrollView
+            style={style.container}
+            ref='scrollView'
+            keyboardShouldPersistTaps='handled'
+            enableAutoAutomaticScroll={false}
           >
-            <View style={[style.row, style.topRow, style.twoColumnRow]}>
-              <View style={style.buttonInnerContainer}>
-                <Image source={images.edit} style={style.buttonImage} />
-                <Text style={style.buttonText}>{i18n('Edit Description')}</Text>
+            {/* Title */}
+            <EditSectionHeader title={sectionTitle} />
+            <View style={[style.row, style.topRow, style.bottomRow]}>
+              { this.renderTextInput('name', titlePlaceHolder, 'titleInput', style.title) }
+            </View>
+
+            {/* Description */}
+            <EditSectionHeader title={sectionDescription} style={[style.sectionHeader, { marginTop: 0 }]}/>
+            <TouchableHighlight
+              testID='edit-description'
+              onPress={this._editDescription}
+            >
+              <View style={[style.row, style.topRow, style.twoColumnRow]}>
+                <View style={style.buttonInnerContainer}>
+                  <Image source={images.edit} style={style.buttonImage} />
+                  <Text style={style.buttonText}>{i18n('Edit Description')}</Text>
+                </View>
+                <DisclosureIndicator />
               </View>
-              <DisclosureIndicator />
+            </TouchableHighlight>
+
+            {/* Points */}
+            <EditSectionHeader title={sectionDetails} />
+            <View style={[style.row, style.twoColumnRow, style.topRow]}>
+              <View accessible={true} accessibilityLabel={pointsPlaceHolder} style={{ flex: 0, height: 50, justifyContent: 'center' }}>
+                <Text style={[style.twoColumnRowLeftText, { flex: 0 }]}>{pointsPlaceHolder}</Text>
+              </View>
+              { this.renderTextInput('points_possible', pointsPlaceHolder, 'pointsInput', style.points) }
             </View>
-          </TouchableHighlight>
 
-          {/* Points */}
-          <EditSectionHeader title={sectionDetails} />
-          <View style={[style.row, style.twoColumnRow, style.topRow]}>
-            <View accessible={true} accessibilityLabel={pointsPlaceHolder} style={{ flex: 0, height: 50, justifyContent: 'center' }}>
-              <Text style={[style.twoColumnRowLeftText, { flex: 0 }]}>{pointsPlaceHolder}</Text>
-            </View>
-            { this.renderTextInput('points_possible', pointsPlaceHolder, 'pointsInput', style.points) }
-          </View>
+            {/* Display Grade As */}
+            <RowWithDetail title={displayGradeAs}
+                          detail={GRADE_DISPLAY_OPTIONS.get(this.state.assignment.grading_type)}
+                          onPress={this.toggleDisplayGradeAsPicker}
+                          border={'bottom'}
+                          testID="assignment-details.toggle-display-grade-as-picker" />
+            {this.renderDataMapPicker()}
 
-          {/* Display Grade As */}
-          <RowWithDetail title={displayGradeAs}
-                         detail={GRADE_DISPLAY_OPTIONS.get(this.state.assignment.grading_type)}
-                         onPress={this.toggleDisplayGradeAsPicker}
-                         border={'bottom'}
-                         testID="assignment-details.toggle-display-grade-as-picker" />
-          {this.renderDataMapPicker()}
+            {/* Publish */}
+            <RowWithSwitch
+              title={publish}
+              border={'bottom'}
+              value={this.defaultValueForBooleanInput('published')}
+              identifier='published'
+              onValueChange={this._updateToggleValue} />
 
-          {/* Publish */}
-          <RowWithSwitch
-            title={publish}
-            border={'bottom'}
-            value={this.defaultValueForBooleanInput('published')}
-            identifier='published'
-            onValueChange={this._updateToggleValue} />
+            {/* Due Dates */}
+            <AssignmentDatesEditor assignment={this.props.assignmentDetails} ref={c => { this.datesEditor = c }} navigator={this.props.navigator} />
 
-          {/* Due Dates */}
-          <AssignmentDatesEditor assignment={this.props.assignmentDetails} ref={c => { this.datesEditor = c }} navigator={this.props.navigator} />
-
-        </KeyboardAwareScrollView>
-      </View>
+          </KeyboardAwareScrollView>
+        </View>
+      </Screen>
     )
   }
 
@@ -241,8 +238,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   _editDescription = () => {
     const courseID = this.props.courseID
     const id = this.props.assignmentDetails.id
-    const destination = route(`/courses/${courseID}/assignments/${id}/edit/description`)
-    this.props.navigator.push(destination)
+    this.props.navigator.show(`/courses/${courseID}/assignments/${id}/edit/description`)
   }
 
   pickerValueDidChange (value: any) {
@@ -269,28 +265,14 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   }
 
   defaultValueForInput (key: string): string {
-    let assignment = this.state.assignment
-    return assignment[key].toString()
+    const value = this.state.assignment[key]
+    if (!value) { return '' }
+    return value.toString()
   }
 
   defaultValueForBooleanInput (key: string): boolean {
     let assignment = this.state.assignment
     return assignment[key]
-  }
-
-  onNavigatorEvent = (event: NavigatorEvent) => {
-    switch (event.type) {
-      case 'NavBarButtonPress':
-        switch (event.id) {
-          case 'dismiss':
-            this.actionDonePressed()
-            break
-          case 'cancel':
-            this.actionCancelPressed()
-            break
-        }
-        break
-    }
   }
 
   actionDonePressed () {
@@ -311,7 +293,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
   actionCancelPressed () {
     this.props.cancelAssignmentUpdate(this.props.assignmentDetails)
-    Navigation.dismissAllModals()
+    this.props.navigator.dismissAllModals()
   }
 
   componentDidUpdate () {
@@ -334,7 +316,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
       if (this.state.pending && nextProps.assignmentDetails) {
         this.setState({ error: undefined })
-        Navigation.dismissAllModals()
+        this.props.navigator.dismissAllModals()
         return
       }
 

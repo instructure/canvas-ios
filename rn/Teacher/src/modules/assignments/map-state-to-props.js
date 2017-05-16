@@ -1,11 +1,13 @@
 // @flow
 
 import localeSort from '../../utils/locale-sort'
+import Navigator from '../../routing/Navigator'
 
 export type AssignmentListDataProps = {
   +pending: number,
   +error?: ?string,
   +courseColor: string,
+  +courseName: string,
   +assignmentGroups: AssignmentGroup[],
   +gradingPeriods: Array<GradingPeriod & { assignmentRefs: [string] }>,
 }
@@ -20,7 +22,7 @@ export type AssignmentListActionProps = {
 export type AssignmentListProps = AssignmentListDataProps
   & RoutingProps
   & AssignmentListActionProps
-  & NavProps
+  & { navigator: Navigator }
   & RefreshProps
 
 type RoutingProps = { +courseID: string }
@@ -32,13 +34,14 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: RoutingPr
     return {
       assignmentGroups: [],
       pending: 0,
-      course: null,
       gradingPeriods: [],
       courseColor: '',
+      courseName: '',
     }
   }
 
   const courseColor = course.color
+  const courseName = course.course.name
   const { refs, pending, error } = course.assignmentGroups
   const groupsByID: AssignmentGroupsState = entities.assignmentGroups
   const assignmentGroupsState = refs
@@ -64,5 +67,6 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: RoutingPr
     assignmentGroups,
     gradingPeriods,
     courseColor,
+    courseName,
   }
 }

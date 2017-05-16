@@ -3,7 +3,7 @@
 import 'react-native'
 import React from 'react'
 import * as courseTemplate from '../../../../api/canvas-api/__templates__/course'
-import * as navigationTemplate from '../../../../__templates__/react-native-navigation'
+import * as navigationTemplate from '../../../../__templates__/helm'
 import { FavoritesList } from '../EditFavorites'
 import setProps from '../../../../../test/helpers/setProps'
 
@@ -47,25 +47,17 @@ it('updates when courses prop changes', () => {
 
   course.is_favorite = false
   setProps(component, { courses: [course] })
-
   expect(component.toJSON()).toMatchSnapshot()
 })
 
-test('calls dismissModal when back button is selected', () => {
+test('calls dismiss when back button is selected', () => {
   let navigator = navigationTemplate.navigator({
-    dismissModal: jest.fn(),
+    dismiss: jest.fn(),
   })
 
   let tree = renderer.create(
     <FavoritesList {...defaultProps} navigator={navigator} />
   )
-
-  tree._component._renderedComponent._instance.onNavigatorEvent({
-    type: 'NavBarButtonPress',
-    id: 'done',
-  })
-
-  expect(navigator.dismissModal).toHaveBeenCalledWith({
-    animationType: 'slide-down',
-  })
+  tree.getInstance().dismiss()
+  expect(navigator.dismiss).toHaveBeenCalledWith()
 })

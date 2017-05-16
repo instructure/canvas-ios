@@ -18,7 +18,7 @@ jest.mock('Alert', () => {
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../../__templates__/react-native-navigation'),
+  ...require('../../../../__templates__/helm'),
   ...require('../../../assignee-picker/__template__/Assignee'),
   ...require('../__template__/StagedAssignmentDate'),
 }
@@ -419,12 +419,12 @@ describe('snapshots!', () => {
 
   test('doing stuff with selecting assignees', () => {
     let callback = () => {}
-    const showModal = jest.fn(({ passProps }) => {
-      callback = passProps.callback
+    const show = jest.fn((url, options, additionalProps) => {
+      callback = additionalProps.callback
     })
 
     const navigator = template.navigator({
-      showModal,
+      show,
     })
     const assignment = template.assignment({
       all_dates: [template.assignmentDueDate({ base: true })],
@@ -435,7 +435,7 @@ describe('snapshots!', () => {
     let editor = tree.getInstance()
     let date = editor.state.dates[0]
     editor.selectAssignees(date)
-    expect(showModal).toHaveBeenCalled()
+    expect(show).toHaveBeenCalled()
     let student = template.enrollmentAssignee()
     let section = template.sectionAssignee()
     let group = template.groupAssignee()

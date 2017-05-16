@@ -16,19 +16,20 @@ import {
 } from 'react-native'
 
 import i18n from 'format-message'
-import Colors from '../../../common/colors'
+import colors from '../../../common/colors'
 import { mapStateToProps } from './map-state-to-props'
 import CourseSettingsActions from './actions'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
-import { Navigation } from 'react-native-navigation'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Text, TextInput } from '../../../common/text'
+import Screen from '../../../routing/Screen'
+import Navigator from '../../../routing/Navigator'
 
 var PickerItemIOS = PickerIOS.Item
 
 type Props = {
-  navigator: ReactNavigator,
+  navigator: Navigator,
   course: Course,
   color: string,
   updateCourse: (Course, Course) => Course,
@@ -61,36 +62,8 @@ const DISPLAY_NAMES = new Map([
 
 export class CourseSettings extends Component<any, Props, any> {
 
-  static navigatorStyle = {
-    drawUnderNavBar: true,
-    navBarTranslucent: true,
-    navBarTextColor: Colors.darkText,
-    navBarHidden: false,
-    modalPresentationStyle: 'formSheet',
-  }
-
-  static navigatorButtons = {
-    rightButtons: [{
-      id: 'done',
-      title: i18n('Done'),
-    }],
-    leftButtons: [{
-      id: 'cancel',
-      title: i18n('Cancel'),
-    }],
-  }
-
   constructor (props: Props) {
     super(props)
-
-    this.props.navigator.setTitle({
-      title: i18n({
-        default: 'Course Settings',
-        description: 'Screen title for the course settings screen',
-      }),
-    })
-
-    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
 
     this.state = {
       name: this.props.course.name,
@@ -113,23 +86,16 @@ export class CourseSettings extends Component<any, Props, any> {
         Alert.alert(ERROR_TITLE, props.error)
       }, 100)
     }
-    this.state.pending && !props.pending && !props.error && Navigation.dismissAllModals()
+    this.state.pending && !props.pending && !props.error && this.props.navigator.dismissAllModals()
   }
 
-  onNavigatorEvent = (event: NavigatorEvent) => {
-    switch (event.type) {
-      case 'NavBarButtonPress':
-        switch (event.id) {
-          case 'done':
-            this.setState({ pending: true })
-            this.props.updateCourse(this.course(), this.props.course)
-            break
-          case 'cancel':
-            this.props.navigator.dismissModal()
-            break
-        }
-        break
-    }
+  done = () => {
+    this.setState({ pending: true })
+    this.props.updateCourse(this.course(), this.props.course)
+  }
+
+  dismiss = () => {
+    this.props.navigator.dismiss()
   }
 
   _togglePicker = () => {
@@ -140,76 +106,99 @@ export class CourseSettings extends Component<any, Props, any> {
 
   render (): React.Element<*> {
     return (
-      <View style={{ flex: 1 }}>
-        <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending} />
-        <KeyboardAwareScrollView
-          style={styles.scrollView}>
-          <View style={styles.header}>
-            <View style={styles.headerContent}>
-              {Boolean(this.props.course.image_download_url) &&
-                  <Image source={{ uri: this.props.course.image_download_url }} style={styles.headerContent} />
-              }
-              <View style={[styles.headerContent, { backgroundColor: this.props.color, opacity: this.props.course.image_download_url ? 0.8 : 1 }]} />
+      <Screen
+        title={i18n({
+          default: 'Course Settings',
+          description: 'Screen title for the course settings screen',
+        })}
+        drawUnderNavBar={true}
+        navBarTranslucent={true}
+        navBarStyle='light'
+        navBarTitleColor={colors.darkText}
+        navBarButtonColor={colors.link}
+        rightBarButtons={[{
+          style: 'done',
+          testID: 'course-settings.done-btn',
+          title: i18n('Done'),
+          action: this.done,
+        }]}
+        leftBarButtons={[{
+          testID: 'course-settings.cancel-btn',
+          title: i18n('Cancel'),
+          action: this.dismiss,
+        }]}
+      >
+        <View style={{ flex: 1 }}>
+          <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending} />
+          <KeyboardAwareScrollView
+            style={styles.scrollView}>
+            <View style={styles.header}>
+              <View style={styles.headerContent}>
+                {Boolean(this.props.course.image_download_url) &&
+                    <Image source={{ uri: this.props.course.image_download_url }} style={styles.headerContent} />
+                }
+                <View style={[styles.headerContent, { backgroundColor: this.props.color, opacity: this.props.course.image_download_url ? 0.8 : 1 }]} />
+              </View>
             </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.rowContent}>
-              <Text style={styles.primaryText}>
-                {i18n({
-                  default: 'Name',
-                  description: 'Label for prompt to select course name',
-                })}
-              </Text>
-              <TextInput
-                value={this.state.name}
-                style={styles.actionableText}
-                onChangeText={(text) => this.setState({ name: text })}
-                testID='nameInput'
-              />
-            </View>
-          </View>
-          <View style={styles.separator}/>
-          <TouchableHighlight
-            underlayColor="#eee"
-            onPress={this._togglePicker}
-            testID='courses.settings.toggle-home-picker'
-          >
             <View style={styles.row}>
-                <View style={styles.rowContent}>
-                  <Text style={styles.primaryText}>
-                    {i18n({
-                      default: `Set 'Home' to...`,
-                      description: 'Label for prompt to select the course landing page',
-                    })}
-                  </Text>
-                  <Text
-                    style={styles.actionableText}
-                    testID='homePageLabel'>
-                    { DISPLAY_NAMES.get(this.state.home) }
-                  </Text>
-                </View>
-            </View>
-          </TouchableHighlight>
-          <View style={styles.separator}/>
-          { this.state.showingPicker &&
-            <PickerIOS
-              style={styles.picker}
-              selectedValue={this.state.home}
-              onValueChange={(home) => this.setState({ home: home })}
-              testID='homePicker'>
-              {Array.from(DISPLAY_NAMES.keys()).map((key) => (
-                <PickerItemIOS
-                  key={key}
-                  value={key}
-                  label={DISPLAY_NAMES.get(key)}
+              <View style={styles.rowContent}>
+                <Text style={styles.primaryText}>
+                  {i18n({
+                    default: 'Name',
+                    description: 'Label for prompt to select course name',
+                  })}
+                </Text>
+                <TextInput
+                  value={this.state.name}
+                  style={styles.actionableText}
+                  onChangeText={(text) => this.setState({ name: text })}
+                  testID='nameInput'
                 />
-              ))}
-            </PickerIOS>
-          }
-          <View
-            style={[styles.fakePickerDrawer, { height: this.state.showingPicker ? 0 : 150 }]} />
-        </KeyboardAwareScrollView>
-      </View>
+              </View>
+            </View>
+            <View style={styles.separator}/>
+            <TouchableHighlight
+              underlayColor="#eee"
+              onPress={this._togglePicker}
+              testID='courses.settings.toggle-home-picker'
+            >
+              <View style={styles.row}>
+                  <View style={styles.rowContent}>
+                    <Text style={styles.primaryText}>
+                      {i18n({
+                        default: `Set 'Home' to...`,
+                        description: 'Label for prompt to select the course landing page',
+                      })}
+                    </Text>
+                    <Text
+                      style={styles.actionableText}
+                      testID='homePageLabel'>
+                      { DISPLAY_NAMES.get(this.state.home) }
+                    </Text>
+                  </View>
+              </View>
+            </TouchableHighlight>
+            <View style={styles.separator}/>
+            { this.state.showingPicker &&
+              <PickerIOS
+                style={styles.picker}
+                selectedValue={this.state.home}
+                onValueChange={(home) => this.setState({ home: home })}
+                testID='homePicker'>
+                {Array.from(DISPLAY_NAMES.keys()).map((key) => (
+                  <PickerItemIOS
+                    key={key}
+                    value={key}
+                    label={DISPLAY_NAMES.get(key)}
+                  />
+                ))}
+              </PickerIOS>
+            }
+            <View
+              style={[styles.fakePickerDrawer, { height: this.state.showingPicker ? 0 : 150 }]} />
+          </KeyboardAwareScrollView>
+        </View>
+      </Screen>
     )
   }
 }
@@ -254,7 +243,7 @@ const styles = StyleSheet.create({
   },
   actionableText: {
     flex: 3,
-    color: Colors.link,
+    color: colors.link,
     fontWeight: '600',
     textAlign: 'right',
     lineHeight: 54,

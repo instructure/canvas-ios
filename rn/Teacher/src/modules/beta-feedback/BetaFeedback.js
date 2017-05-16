@@ -12,31 +12,19 @@ import i18n from 'format-message'
 import { betaFeedbackForm } from './form'
 import device from 'react-native-device-info'
 import { getSession } from '../../api/session'
+import Screen from '../../routing/Screen'
+import Navigator from '../../routing/Navigator'
+import colors from '../../common/colors'
 
 type Props = {
-  navigator: ReactNavigator,
+  navigator: Navigator,
   uri: string,
 }
 
-export class BetaFeedback extends Component {
-  static navigatorButtons = {
-    rightButtons: [
-      {
-        title: i18n({
-          default: 'Done',
-          description: 'Button to dismiss feedback form.',
-          id: 'done_beta_feedback',
-        }),
-        id: 'dismiss',
-        testID: 'beta-feedback.dismiss-btn',
-      },
-    ],
-  }
+export default class BetaFeedback extends Component<any, Props, any> {
 
-  constructor (props: Props) {
-    super(props)
-
-    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
+  dismiss = () => {
+    this.props.navigator.dismiss()
   }
 
   render (): React.Element<View> {
@@ -46,20 +34,27 @@ export class BetaFeedback extends Component {
       uri = betaFeedbackForm(session.user, device)
     }
     return (
-      <WebView
-        source={{ uri: uri }}
-        testID='beta-feedback.webview'
-      />
+      <Screen
+        navBarStyle='light'
+        navBarButtonColor={colors.link}
+        rightBarButtons={[
+          {
+            title: i18n({
+              default: 'Done',
+              description: 'Button to dismiss feedback form.',
+              id: 'done_beta_feedback',
+            }),
+            style: 'done',
+            testID: 'beta-feedback.dismiss-btn',
+            action: this.dismiss,
+          },
+        ]}
+      >
+        <WebView
+          source={{ uri: uri }}
+          testID='beta-feedback.webview'
+        />
+      </Screen>
     )
   }
-
-  onNavigatorEvent = (event: any) => {
-    if (event.type === 'NavBarButtonPress') {
-      if (event.id === 'dismiss') {
-        this.props.navigator.dismissModal()
-      }
-    }
-  }
 }
-
-export default BetaFeedback

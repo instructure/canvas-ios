@@ -16,7 +16,7 @@ registerScreens({})
 const template = {
   ...require('../__template__/Assignee.js'),
   ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../__templates__/helm'),
 }
 
 const defaultProps: AssigneePickerProps = {
@@ -56,24 +56,24 @@ test('new assignee props should update correctly', () => {
 test('cancel', () => {
   const fn = jest.fn()
   const navigator = template.navigator({
-    dismissModal: fn,
+    dismiss: fn,
   })
   const picker = renderer.create(
     <AssigneePicker {...defaultProps} navigator={navigator} />
   ).getInstance()
-  picker.onNavigatorEvent({ type: 'NavBarButtonPress', id: 'cancel' })
+  picker.dismiss()
   expect(fn).toHaveBeenCalled()
 })
 
 test('done', () => {
   const fn = jest.fn()
   const navigator = template.navigator({
-    dismissModal: fn,
+    dismiss: fn,
   })
   const picker = renderer.create(
     <AssigneePicker {...defaultProps} navigator={navigator} />
   ).getInstance()
-  picker.onNavigatorEvent({ type: 'NavBarButtonPress', id: 'done' })
+  picker.done()
   expect(fn).toHaveBeenCalled()
 })
 
@@ -83,19 +83,19 @@ test('done with callback', () => {
     callback()
   })
   const navigator = template.navigator({
-    dismissModal: fn,
+    dismiss: fn,
   })
   const picker = renderer.create(
     <AssigneePicker {...defaultProps} navigator={navigator} callback={callback} />
   ).getInstance()
-  picker.onNavigatorEvent({ type: 'NavBarButtonPress', id: 'done' })
+  picker.done()
   expect(callback).toHaveBeenCalled()
 })
 
 test('add assignee function', () => {
   const fn = jest.fn()
   const navigator = template.navigator({
-    showModal: fn,
+    show: fn,
   })
   const picker = renderer.create(
     <AssigneePicker {...defaultProps} navigator={navigator} />

@@ -5,7 +5,7 @@ import { mapStateToProps, updateMapStateToProps, type AssignmentDetailsProps } f
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../__templates__/helm'),
   ...require('../../../redux/__templates__/app-state'),
 }
 
@@ -54,11 +54,18 @@ test('map state to props assignment', async () => {
 test('map state to props update assignment', async () => {
   let course = template.course()
   let assignment = template.assignment()
+  let assignmentGroup = template.assignmentGroup()
 
   let state = template.appState({
     entities: {
       assignments: {
         [assignment.id]: { data: assignment, pending: 0 },
+      },
+      courses: {
+        [course.id]: {
+          assignmentGroups: { refs: [assignmentGroup.id] },
+          course: course,
+        },
       },
     },
   })

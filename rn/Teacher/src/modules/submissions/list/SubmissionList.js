@@ -22,9 +22,10 @@ import EnrollmentActions from '../../enrollments/actions'
 import refresh from '../../../utils/refresh'
 import { LinkButton } from '../../../common/buttons'
 import { Heading1 } from '../../../common/text'
-import { route } from '../../../routing'
+import Screen from '../../../routing/Screen'
+import Navigator from '../../../routing/Navigator'
 
-type Props = SubmissionListProps & NavProps & RefreshProps
+type Props = SubmissionListProps & { navigator: Navigator } & RefreshProps
 type FilterOptionType = 'all' | 'late' | 'notsubmitted' | 'notgraded' | 'graded' | 'lessthan' | 'morethan' | 'cancel'
 type FilterOption = {
   type: FilterOptionType,
@@ -44,20 +45,6 @@ export class SubmissionList extends Component<any, Props, any> {
 
     this.state = {
       submissions: props.submissions || [],
-    }
-
-    props.navigator.setTitle({
-      title: i18n({
-        default: 'Submissions',
-        description: 'Title for the list of submissions for an assignment',
-      }),
-    })
-
-    if (props.courseColor) {
-      const color: string = props.courseColor
-      props.navigator.setStyle({
-        navBarBackgroundColor: color,
-      })
     }
 
     this.filterOptions = [
@@ -112,16 +99,7 @@ export class SubmissionList extends Component<any, Props, any> {
 
   navigateToSubmission = (userID: string) => {
     if (!global.V03) { return } // such features
-
-    let destination = route(`/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submissions/${userID}`)
-    this.props.navigator.showModal({
-      ...destination,
-      navigatorStyle: {
-        navBarHidden: true,
-        statusBarHidden: true,
-        statusBarHideWithNavBar: true,
-      },
-    })
+    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submissions/${userID}`, { modal: true })
   }
 
   renderRow = ({ item }: { item: SubmissionProps }) => {
@@ -257,24 +235,33 @@ export class SubmissionList extends Component<any, Props, any> {
 
   render () {
     return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Heading1
-            style={styles.headerTitle}
-            >
-            { i18n('All Submissions') }
-          </Heading1>
-          { this.renderFilterButton() }
+      <Screen
+        title={i18n({
+          default: 'Submissions',
+          description: 'Title for the list of submissions for an assignment',
+        })}
+        navBarColor={this.props.courseColor}
+        navBarStyle='dark'
+      >
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <Heading1
+              style={styles.headerTitle}
+              >
+              { i18n('All Submissions') }
+            </Heading1>
+            { this.renderFilterButton() }
+          </View>
+          <FlatList
+            data={this.state.submissions}
+            keyExtractor={this.keyExtractor}
+            testID='submission-list'
+            renderItem={this.renderRow}
+            refreshing={this.props.pending}
+            onRefresh={this.props.refresh}
+            />
         </View>
-        <FlatList
-          data={this.state.submissions}
-          keyExtractor={this.keyExtractor}
-          testID='submission-list'
-          renderItem={this.renderRow}
-          refreshing={this.props.pending}
-          onRefresh={this.props.refresh}
-          />
-      </View>
+      </Screen>
     )
   }
 }

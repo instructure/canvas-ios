@@ -28,7 +28,6 @@
     "react-native-interactable": "https://github.com/derrh/react-native-interactable.git",
     "react-native-keyboard-aware-scroll-view": "^0.2.8",
     "react-native-keyboard-spacer": "^0.3.1",
-    "react-native-navigation": "next",
     "react-native-progress": "^3.2.0",
     "react-native-search-bar": "3.0.0",
     "react-redux": "^5.0.3",

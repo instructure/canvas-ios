@@ -1,6 +1,7 @@
 // @flow
 
 import type { CourseListActionProps } from '../course-prop-types'
+import Navigator from '../../../routing/Navigator'
 
 type RoutingParams = {
   +courseID: string,
@@ -18,6 +19,7 @@ export type CourseDetailsProps = CourseDetailsDataProps
   & CourseListActionProps
   & RoutingParams
   & RefreshProps
+  & { navigator: Navigator }
 
 export default function mapStateToProps (state: AppState, { courseID }: RoutingParams): CourseDetailsDataProps {
   let courseState = state.entities.courses[courseID]

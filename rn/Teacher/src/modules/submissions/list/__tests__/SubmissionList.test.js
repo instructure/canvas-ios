@@ -13,7 +13,7 @@ import setProps from '../../../../../test/helpers/setProps'
 import cloneDeep from 'lodash/cloneDeep'
 
 const template = {
-  ...require('../../../../__templates__/react-native-navigation'),
+  ...require('../../../../__templates__/helm'),
   ...require('../__templates__/submission-props'),
 }
 
@@ -190,21 +190,17 @@ test('should refresh', () => {
 test('should navigate to a submission', () => {
   let submission = props.submissions[0]
   let navigator = template.navigator({
-    showModal: jest.fn(),
+    show: jest.fn(),
   })
   const tree = renderer.create(
     <SubmissionList {...props} navigator={navigator} />
   )
   tree.getInstance().navigateToSubmission(submission.userID)
 
-  expect(navigator.showModal).toHaveBeenCalledWith({
-    screen: '/courses/12/assignments/32/submissions/1',
-    navigatorStyle: {
-      navBarHidden: true,
-      statusBarHidden: true,
-      statusBarHideWithNavBar: true,
-    },
-  })
+  expect(navigator.show).toHaveBeenCalledWith(
+    '/courses/12/assignments/32/submissions/1',
+    { modal: true }
+  )
 })
 
 test('refreshSubmissionList', () => {

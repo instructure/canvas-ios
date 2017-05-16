@@ -7,7 +7,7 @@ import renderer from 'react-test-renderer'
 jest.unmock('ScrollView')
 
 const templates = {
-  ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../__templates__/helm'),
   ...require('../../../redux/__templates__/app-state'),
   ...require('../../../api/canvas-api/__templates__/rubric'),
   ...require('../../../api/canvas-api/__templates__/assignments'),
@@ -27,34 +27,13 @@ let defaultProps = {
 describe('RubricDescription', () => {
   beforeEach(() => jest.resetAllMocks())
 
-  it('properly sets navigator event callback', () => {
-    let tree = renderer.create(
-      <RubricDescription {...defaultProps} />
-    )
-
-    expect(defaultProps.navigator.setOnNavigatorEvent).toHaveBeenCalledWith(tree.getInstance().onNavigatorEvent)
-  })
-
   it('calls dismiss modal when the done button is pressed', () => {
     let tree = renderer.create(
       <RubricDescription {...defaultProps} />
     )
 
-    let instance = tree.getInstance()
-    instance.onNavigatorEvent({
-      type: 'NavBarButtonPress',
-      id: 'done',
-    })
-
-    expect(defaultProps.navigator.dismissModal).toHaveBeenCalled()
-  })
-
-  it('sets the title of the view', () => {
-    renderer.create(
-      <RubricDescription {...defaultProps} />
-    )
-
-    expect(defaultProps.navigator.setTitle).toHaveBeenCalled()
+    tree.getInstance().dismiss()
+    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
   })
 
   it('renders', () => {

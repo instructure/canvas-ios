@@ -19,10 +19,8 @@
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
-		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		279DC42F392D254716A9F524 /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A26FAD3481B8CC4F39E20 /* Enrollment.swift */; };
 		28087A3DB76A7583688C3073 /* CanvasUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71370A64E454689407684D4 /* CanvasUser.swift */; };
@@ -35,14 +33,50 @@
 		2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE061E735CC60096592C /* QuartzCore.framework */; };
 		2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE081E735CCB0096592C /* SystemConfiguration.framework */; };
 		2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */; };
-		2C5AC25B1E5E3B8700DE4DEE /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5AC25A1E5E3B7B00DE4DEE /* libReactNativeNavigation.a */; };
 		2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */; };
-		2C7715921EBB92B700FB20F8 /* NativeLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7715911EBB92B700FB20F8 /* NativeLoginManager.swift */; };
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
 		2CBA46785F24A17E94700673 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28BA928334A7C4FFA230C7 /* Attachment.swift */; };
 		31C9F17B182AA3ABB965DDA2 /* DataMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EA5B9B254626D699014C44 /* DataMap.swift */; };
+		3B2C7FC11EB7DBF000A99D44 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FBF1EB7DBF000A99D44 /* Helm.m */; };
+		3B2C7FC21EB7DBF000A99D44 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FC01EB7DBF000A99D44 /* Helm.swift */; };
+		3B3946D81EBA6DE5002F7B9C /* UISplitViewControllerHelmExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerHelmExtensions.swift */; };
+		3B5812EB1EC4F18500173C37 /* HelmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5812EA1EC4F18500173C37 /* HelmTests.swift */; };
+		3B5812EC1EC4F2BA00173C37 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FC01EB7DBF000A99D44 /* Helm.swift */; };
+		3B5812ED1EC4F32900173C37 /* HelmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */; };
+		3B5812EE1EC4F33700173C37 /* HelmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24431EB2AC0B00B61EF8 /* HelmConstants.swift */; };
+		3B5812EF1EC4F33900173C37 /* HelmNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */; };
+		3B5812F01EC4F33F00173C37 /* HelmSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */; };
+		3B5812F11EC4F34200173C37 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FBF1EB7DBF000A99D44 /* Helm.m */; };
+		3B5812F21EC4F34700173C37 /* UISplitViewControllerHelmExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerHelmExtensions.swift */; };
+		3B5813101EC4F55900173C37 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		3B748B5B1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B5A1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift */; };
+		3B748B5D1ECA538E008D6A57 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B5C1ECA538E008D6A57 /* UIColorExtensions.swift */; };
+		3B748B5F1ECA53B9008D6A57 /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B5E1ECA53B9008D6A57 /* EnrollmentSplitViewController.swift */; };
+		3B748B631ECA53E9008D6A57 /* DrawerHandleViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B621ECA53E9008D6A57 /* DrawerHandleViewManager.m */; };
+		3B748B651ECA54A7008D6A57 /* NSObject+PureEvil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B641ECA54A7008D6A57 /* NSObject+PureEvil.swift */; };
+		3B8083531EB8FC6D009380F8 /* HelmSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */; };
+		3B8B23ED1EB2AA0D00B61EF8 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8B23EC1EB2AA0D00B61EF8 /* Result.framework */; };
+		3B8B240E1EB2AAA400B61EF8 /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8B240C1EB2AA3700B61EF8 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3B8B240F1EB2AAAC00B61EF8 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8B23EC1EB2AA0D00B61EF8 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3B8B24111EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8B24101EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework */; };
+		3B8B24121EB2AB9600B61EF8 /* ReactiveObjCBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8B24101EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3B8B24461EB2AC0B00B61EF8 /* HelmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24431EB2AC0B00B61EF8 /* HelmConstants.swift */; };
+		3B8B24471EB2AC0B00B61EF8 /* HelmNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */; };
+		3B8B24481EB2AC0B00B61EF8 /* HelmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */; };
+		3B8B24531EB2AC3100B61EF8 /* courses@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B244B1EB2AC3100B61EF8 /* courses@2x.png */; };
+		3B8B24541EB2AC3100B61EF8 /* courses@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B244C1EB2AC3100B61EF8 /* courses@3x.png */; };
+		3B8B24551EB2AC3100B61EF8 /* inbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B244D1EB2AC3100B61EF8 /* inbox@2x.png */; };
+		3B8B24561EB2AC3100B61EF8 /* inbox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B244E1EB2AC3100B61EF8 /* inbox@3x.png */; };
+		3B8B24571EB2AC3100B61EF8 /* link-solid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B244F1EB2AC3100B61EF8 /* link-solid@2x.png */; };
+		3B8B24581EB2AC3100B61EF8 /* link-solid@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B24501EB2AC3100B61EF8 /* link-solid@3x.png */; };
+		3B8B24591EB2AC3100B61EF8 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B24511EB2AC3100B61EF8 /* profile@2x.png */; };
+		3B8B245A1EB2AC3100B61EF8 /* profile@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B24521EB2AC3100B61EF8 /* profile@3x.png */; };
+		3B8B245D1EB2AC7F00B61EF8 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B245C1EB2AC7F00B61EF8 /* RootTabBarController.swift */; };
 		3B9D72859115B817CD00CD83 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ECA86954393EA402EE37DE /* Data.swift */; };
 		3BEF7C101E7C96940092C864 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEF7BF51E7C96860092C864 /* libART.a */; };
+		3BF71FC91EC117BE00234D25 /* BrandingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF71FC81EC117BE00234D25 /* BrandingModel.swift */; };
+		3BF720E01EC266EB00234D25 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720DF1EC266EB00234D25 /* SDWebImage.framework */; };
+		3BF721001EC4054100234D25 /* PocketSVG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720FF1EC4054100234D25 /* PocketSVG.framework */; };
 		462B9DCCC3A10C7F30AE8168 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC2282549635CBA9EDD0B /* Course.swift */; };
 		4943ECB31E5CEFBD001DC5B5 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */; };
 		4943ECB41E5CEFBD001DC5B5 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -62,11 +96,13 @@
 		4943ECC21E5CEFBD001DC5B5 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB11E5CEFAC001DC5B5 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECC31E5CEFBD001DC5B5 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */; };
 		4943ECC41E5CEFBD001DC5B5 /* ReactiveObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4943ECC81E5CF16A001DC5B5 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943ECC71E5CF16A001DC5B5 /* NativeLoginManager.m */; };
 		496354ED1EB3E90100477CD9 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C01E8437D700828E42 /* CanvasLoginPage.swift */; };
-		49F4CE911EC3BF2800E53D67 /* DrawerHandleViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F4CE901EC3BF2800E53D67 /* DrawerHandleViewManager.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		6190DDE31EC4C66A00D3C1A9 /* PocketSVG.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720FF1EC4054100234D25 /* PocketSVG.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6190DDE41EC4C66B00D3C1A9 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720DF1EC266EB00234D25 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6190DE3B1EC4D28800D3C1A9 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190DE391EC4D28800D3C1A9 /* NativeLoginManager.m */; };
+		6190DE3C1EC4D28800D3C1A9 /* NativeLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190DE3A1EC4D28800D3C1A9 /* NativeLoginManager.swift */; };
 		61AD9B63975E448BAF5C6F25 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0456B43BE349468FA3E976BB /* libRNDeviceInfo.a */; };
 		61B5372A1E7869EA000FEABB /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B536EC1E7860CE000FEABB /* EarlGrey.framework */; };
 		61B5372B1E7869F1000FEABB /* SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B536ED1E7860CE000FEABB /* SoGrey.framework */; };
@@ -75,6 +111,8 @@
 		61B5372F1E786A51000FEABB /* DomainPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DD1E784946000FEABB /* DomainPickerTests.swift */; };
 		61B537301E786A54000FEABB /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DF1E784A4B000FEABB /* Pages.swift */; };
 		61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E31E78599D000FEABB /* DomainPickerPage.swift */; };
+		61BD85F71EB291A2005A09A5 /* LoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */; };
+		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
 		6DB0C2A2AEC5AB57B8968B3E /* GroupCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */; };
 		86C29020E44B2BDD5649AC2C /* EditCoursesPageTest_test_favoriteCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308919FB4047D3154A062BC /* EditCoursesPageTest_test_favoriteCourse.swift */; };
 		8B83E26D393B3BB9C1813496 /* GroupMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8D0646677276C36E70E17 /* GroupMembership.swift */; };
@@ -156,19 +194,19 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
-		2C5AC2591E5E3B7B00DE4DEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2C5AC2441E5E3B7B00DE4DEE /* ReactNativeNavigation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
-			remoteInfo = ReactNativeNavigation;
-		};
 		2CF5409A1EA6772800F79DB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CC0127971E3ACC3900B23C9F;
 			remoteInfo = Interactable;
+		};
+		3B5812C61EC4F15900173C37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = Teacher;
 		};
 		3BEF7BF41E7C96860092C864 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -347,6 +385,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				6190DDE31EC4C66A00D3C1A9 /* PocketSVG.framework in Embed Frameworks */,
+				6190DDE41EC4C66B00D3C1A9 /* SDWebImage.framework in Embed Frameworks */,
+				3B8B24121EB2AB9600B61EF8 /* ReactiveObjCBridge.framework in Embed Frameworks */,
+				3B8B240F1EB2AAAC00B61EF8 /* Result.framework in Embed Frameworks */,
+				3B8B240E1EB2AAA400B61EF8 /* ReactiveSwift.framework in Embed Frameworks */,
 				4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */,
 				4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */,
 				4943ECC01E5CEFBD001DC5B5 /* Mantle.framework in Embed Frameworks */,
@@ -391,12 +434,9 @@
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Teacher/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Teacher/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Teacher/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Teacher/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Teacher/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2308919FB4047D3154A062BC /* EditCoursesPageTest_test_favoriteCourse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_test_favoriteCourse.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_test_favoriteCourse.swift; sourceTree = "<group>"; };
 		2411260A6CA04D6D874912A2 /* libRNSearchBar.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSearchBar.a; sourceTree = "<group>"; };
@@ -411,15 +451,45 @@
 		2C50EE081E735CCB0096592C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2C50EE0A1E735CDD0096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
-		2C5AC2441E5E3B7B00DE4DEE /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPageTest.swift; sourceTree = "<group>"; };
-		2C7715261EBA75D400FB20F8 /* Teacher-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Teacher-Bridging-Header.h"; sourceTree = "<group>"; };
-		2C7715911EBB92B700FB20F8 /* NativeLoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeLoginManager.swift; sourceTree = "<group>"; };
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		329DC2282549635CBA9EDD0B /* Course.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Course.swift; path = models/Course.swift; sourceTree = "<group>"; };
 		33EA5B9B254626D699014C44 /* DataMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataMap.swift; path = data/DataMap.swift; sourceTree = "<group>"; };
 		3A14A839A5EB460283B1F75B /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
+		3B2C7FBF1EB7DBF000A99D44 /* Helm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Helm.m; path = Teacher/Helm.m; sourceTree = "<group>"; };
+		3B2C7FC01EB7DBF000A99D44 /* Helm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helm.swift; path = Teacher/Helm.swift; sourceTree = "<group>"; };
+		3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerHelmExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISplitViewControllerHelmExtensions.swift; path = Teacher/UISplitViewControllerHelmExtensions.swift; sourceTree = "<group>"; };
+		3B5812C11EC4F15900173C37 /* TeacherUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B5812C51EC4F15900173C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B5812EA1EC4F18500173C37 /* HelmTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelmTests.swift; sourceTree = "<group>"; };
+		3B5813121EC4F64400173C37 /* bridging-header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bridging-header.h"; sourceTree = "<group>"; };
+		3B748B5A1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIUserInterfaceSizeClassExtensions.swift; path = Teacher/UIUserInterfaceSizeClassExtensions.swift; sourceTree = "<group>"; };
+		3B748B5C1ECA538E008D6A57 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = Teacher/UIColorExtensions.swift; sourceTree = "<group>"; };
+		3B748B5E1ECA53B9008D6A57 /* EnrollmentSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnrollmentSplitViewController.swift; path = Teacher/EnrollmentSplitViewController.swift; sourceTree = "<group>"; };
+		3B748B611ECA53E9008D6A57 /* DrawerHandleViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawerHandleViewManager.h; path = Teacher/DrawerHandleViewManager.h; sourceTree = "<group>"; };
+		3B748B621ECA53E9008D6A57 /* DrawerHandleViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrawerHandleViewManager.m; path = Teacher/DrawerHandleViewManager.m; sourceTree = "<group>"; };
+		3B748B641ECA54A7008D6A57 /* NSObject+PureEvil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+PureEvil.swift"; path = "Teacher/NSObject+PureEvil.swift"; sourceTree = "<group>"; };
+		3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmSplitViewController.swift; path = Teacher/HelmSplitViewController.swift; sourceTree = "<group>"; };
+		3B8B23EC1EB2AA0D00B61EF8 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B8B240C1EB2AA3700B61EF8 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B8B24101EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjCBridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B8B24431EB2AC0B00B61EF8 /* HelmConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmConstants.swift; path = Teacher/HelmConstants.swift; sourceTree = "<group>"; };
+		3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmNavigationViewController.swift; path = Teacher/HelmNavigationViewController.swift; sourceTree = "<group>"; };
+		3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmViewController.swift; path = Teacher/HelmViewController.swift; sourceTree = "<group>"; };
+		3B8B244B1EB2AC3100B61EF8 /* courses@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "courses@2x.png"; path = "../src/images/tabbar/courses@2x.png"; sourceTree = "<group>"; };
+		3B8B244C1EB2AC3100B61EF8 /* courses@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "courses@3x.png"; path = "../src/images/tabbar/courses@3x.png"; sourceTree = "<group>"; };
+		3B8B244D1EB2AC3100B61EF8 /* inbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "inbox@2x.png"; path = "../src/images/tabbar/inbox@2x.png"; sourceTree = "<group>"; };
+		3B8B244E1EB2AC3100B61EF8 /* inbox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "inbox@3x.png"; path = "../src/images/tabbar/inbox@3x.png"; sourceTree = "<group>"; };
+		3B8B244F1EB2AC3100B61EF8 /* link-solid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-solid@2x.png"; path = "../src/images/tabbar/link-solid@2x.png"; sourceTree = "<group>"; };
+		3B8B24501EB2AC3100B61EF8 /* link-solid@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-solid@3x.png"; path = "../src/images/tabbar/link-solid@3x.png"; sourceTree = "<group>"; };
+		3B8B24511EB2AC3100B61EF8 /* profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile@2x.png"; path = "../src/images/tabbar/profile@2x.png"; sourceTree = "<group>"; };
+		3B8B24521EB2AC3100B61EF8 /* profile@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile@3x.png"; path = "../src/images/tabbar/profile@3x.png"; sourceTree = "<group>"; };
+		3B8B245C1EB2AC7F00B61EF8 /* RootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = Teacher/RootTabBarController.swift; sourceTree = "<group>"; };
+		3BDF53A71EC507C100956C1B /* libSDWebImage iOS static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSDWebImage iOS static.a"; path = "../../../Carthage/Checkouts/SDWebImage/build/Debug-iphoneos/libSDWebImage iOS static.a"; sourceTree = "<group>"; };
 		3BEF7BF01E7C96860092C864 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
+		3BF71FC81EC117BE00234D25 /* BrandingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandingModel.swift; sourceTree = "<group>"; };
+		3BF720DF1EC266EB00234D25 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BF720FF1EC4054100234D25 /* PocketSVG.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PocketSVG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E479910A81A38C8833E5314 /* Page.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Page.swift; path = models/Page.swift; sourceTree = "<group>"; };
 		484C40873F5A33402D194B04 /* GradingPeriod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GradingPeriod.swift; path = models/GradingPeriod.swift; sourceTree = "<group>"; };
 		4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -431,15 +501,14 @@
 		4943ECB01E5CEFAC001DC5B5 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECB11E5CEFAC001DC5B5 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4943ECC61E5CF16A001DC5B5 /* NativeLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeLoginManager.h; sourceTree = "<group>"; };
-		4943ECC71E5CF16A001DC5B5 /* NativeLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeLoginManager.m; sourceTree = "<group>"; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
 		49B274C01E8437D700828E42 /* CanvasLoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasLoginPage.swift; sourceTree = "<group>"; };
-		49F4CE8F1EC3BF2800E53D67 /* DrawerHandleViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerHandleViewManager.h; sourceTree = "<group>"; };
-		49F4CE901EC3BF2800E53D67 /* DrawerHandleViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerHandleViewManager.m; sourceTree = "<group>"; };
 		5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
 		5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSearchBar.xcodeproj; path = "../node_modules/react-native-search-bar/RNSearchBar.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		6190DE381EC4D28800D3C1A9 /* NativeLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeLoginManager.h; sourceTree = "<group>"; };
+		6190DE391EC4D28800D3C1A9 /* NativeLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeLoginManager.m; sourceTree = "<group>"; };
+		6190DE3A1EC4D28800D3C1A9 /* NativeLoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeLoginManager.swift; sourceTree = "<group>"; };
 		61B5365C1E7749F5000FEABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61B536A21E774B6A000FEABB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoGrey.framework; path = "../../../Frameworks/SoGrey/build/Debug-iphoneos/SoGrey.framework"; sourceTree = "<group>"; };
 		61B536A41E774B70000FEABB /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "../../../Carthage/Checkouts/EarlGrey/build/Debug-iphoneos/EarlGrey.framework"; sourceTree = "<group>"; };
@@ -449,6 +518,9 @@
 		61B536EC1E7860CE000FEABB /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EarlGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B536ED1E7860CE000FEABB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B537201E786969000FEABB /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConfiguration.swift; sourceTree = "<group>"; };
+		61BD85FA1EB29270005A09A5 /* bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "bridging-header.h"; path = "Teacher/bridging-header.h"; sourceTree = "<group>"; };
+		61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Teacher/AppDelegate.swift; sourceTree = "<group>"; };
 		6F798127265B286008D5A43E /* DataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataProvider.swift; path = data/DataProvider.swift; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = Interactable.xcodeproj; path = "../node_modules/react-native-interactable/ios/Interactable.xcodeproj"; sourceTree = "<group>"; };
@@ -460,8 +532,8 @@
 		A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		AE43F594F5734FBD9DF2146C /* Section.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Section.swift; path = models/Section.swift; sourceTree = "<group>"; };
-		B1B2FE5C1EA86E26003AD5AA /* WebViewHacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewHacker.h; sourceTree = "<group>"; };
-		B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewHacker.m; sourceTree = "<group>"; };
+		B1B2FE5C1EA86E26003AD5AA /* WebViewHacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewHacker.h; path = Teacher/WebViewHacker.h; sourceTree = "<group>"; };
+		B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewHacker.m; path = Teacher/WebViewHacker.m; sourceTree = "<group>"; };
 		B4ECA86954393EA402EE37DE /* Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Data.swift; path = data/Data.swift; sourceTree = "<group>"; };
 		BB28BA928334A7C4FFA230C7 /* Attachment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Attachment.swift; path = models/Attachment.swift; sourceTree = "<group>"; };
 		C7A08992613846128FD3E3D2 /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
@@ -483,6 +555,7 @@
 				3BEF7C101E7C96940092C864 /* libART.a in Frameworks */,
 				2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */,
 				2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */,
+				3B8B23ED1EB2AA0D00B61EF8 /* Result.framework in Frameworks */,
 				2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */,
 				2C50EE051E735CC00096592C /* CoreVideo.framework in Frameworks */,
 				2C50EE031E735CBB0096592C /* AVFoundation.framework in Frameworks */,
@@ -490,24 +563,26 @@
 				2C50EDFF1E735CB10096592C /* CoreText.framework in Frameworks */,
 				2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */,
 				2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */,
-				2C5AC25B1E5E3B8700DE4DEE /* libReactNativeNavigation.a in Frameworks */,
 				4943ECC31E5CEFBD001DC5B5 /* ReactiveObjC.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
+				3BF720E01EC266EB00234D25 /* SDWebImage.framework in Frameworks */,
 				4943ECBB1E5CEFBD001DC5B5 /* CWNotification.framework in Frameworks */,
 				4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */,
+				3BF721001EC4054100234D25 /* PocketSVG.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				4943ECBD1E5CEFBD001DC5B5 /* FXKeychain.framework in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				4943ECC11E5CEFBD001DC5B5 /* Reachability.framework in Frameworks */,
 				4943ECBF1E5CEFBD001DC5B5 /* Mantle.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				3B8B24111EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework in Frameworks */,
 				4943ECB91E5CEFBD001DC5B5 /* CocoaLumberjack.framework in Frameworks */,
 				4943ECB31E5CEFBD001DC5B5 /* AFNetworking.framework in Frameworks */,
 				61AD9B63975E448BAF5C6F25 /* libRNDeviceInfo.a in Frameworks */,
@@ -515,6 +590,14 @@
 				A779010714254FD09112BFF7 /* libRNBlur.a in Frameworks */,
 				DEBFD761CA06448195663E88 /* libInteractable.a in Frameworks */,
 				C31D10A45ABA434ABB185FDD /* libRNSearchBar.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B5812BE1EC4F15900173C37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B5813101EC4F55900173C37 /* libReact.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,23 +692,22 @@
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				3B748B601ECA53D4008D6A57 /* react native modules */,
+				3BF71FC71EC117A500234D25 /* models */,
+				3B8083331EB8F91F009380F8 /* extensions */,
+				3B8B245E1EB2AC8E00B61EF8 /* views */,
+				3B8B245B1EB2AC7100B61EF8 /* viewcontrollers */,
+				3B8B24491EB2AC0F00B61EF8 /* images */,
+				3B8B24241EB2ABF900B61EF8 /* Helm */,
+				61BD856A1EB290C0005A09A5 /* Login */,
 				4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
-				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				4943ECC61E5CF16A001DC5B5 /* NativeLoginManager.h */,
-				4943ECC71E5CF16A001DC5B5 /* NativeLoginManager.m */,
-				2C7715911EBB92B700FB20F8 /* NativeLoginManager.swift */,
-				B1B2FE5C1EA86E26003AD5AA /* WebViewHacker.h */,
-				B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
-				13B07FB71A68108700A75B9A /* main.m */,
-				2C7715261EBA75D400FB20F8 /* Teacher-Bridging-Header.h */,
-				49F4CE8F1EC3BF2800E53D67 /* DrawerHandleViewManager.h */,
-				49F4CE901EC3BF2800E53D67 /* DrawerHandleViewManager.m */,
+				61BD85FA1EB29270005A09A5 /* bridging-header.h */,
+				61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */,
 			);
 			name = Teacher;
 			sourceTree = "<group>";
@@ -648,6 +730,7 @@
 		2C50EDDF1E735CA50096592C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BDF53A71EC507C100956C1B /* libSDWebImage iOS static.a */,
 				61B536A41E774B70000FEABB /* EarlGrey.framework */,
 				61B536A21E774B6A000FEABB /* SoGrey.framework */,
 				2C50EE0A1E735CDD0096592C /* BuddyBuildSDK.framework */,
@@ -661,14 +744,6 @@
 				2C50EDE01E735CA50096592C /* AssetsLibrary.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2C5AC2451E5E3B7B00DE4DEE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2C5AC25A1E5E3B7B00DE4DEE /* libReactNativeNavigation.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		2CEC445D1E8AABBD00AF7344 /* Helpers */ = {
@@ -700,12 +775,112 @@
 			name = data;
 			sourceTree = "<group>";
 		};
+		3B3946B81EBA6DD2002F7B9C /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3B748B641ECA54A7008D6A57 /* NSObject+PureEvil.swift */,
+				3B748B5A1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift */,
+				3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerHelmExtensions.swift */,
+			);
+			name = extensions;
+			sourceTree = "<group>";
+		};
+		3B5812C21EC4F15900173C37 /* TeacherUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				3B5812C51EC4F15900173C37 /* Info.plist */,
+				3B5812EA1EC4F18500173C37 /* HelmTests.swift */,
+				3B5813121EC4F64400173C37 /* bridging-header.h */,
+			);
+			path = TeacherUnitTests;
+			sourceTree = "<group>";
+		};
+		3B748B601ECA53D4008D6A57 /* react native modules */ = {
+			isa = PBXGroup;
+			children = (
+				B1B2FE5C1EA86E26003AD5AA /* WebViewHacker.h */,
+				B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */,
+				3B748B611ECA53E9008D6A57 /* DrawerHandleViewManager.h */,
+				3B748B621ECA53E9008D6A57 /* DrawerHandleViewManager.m */,
+			);
+			name = "react native modules";
+			sourceTree = "<group>";
+		};
+		3B8083331EB8F91F009380F8 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3B748B5C1ECA538E008D6A57 /* UIColorExtensions.swift */,
+			);
+			name = extensions;
+			sourceTree = "<group>";
+		};
+		3B8B24241EB2ABF900B61EF8 /* Helm */ = {
+			isa = PBXGroup;
+			children = (
+				3B3946B81EBA6DD2002F7B9C /* extensions */,
+				3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */,
+				3B2C7FBF1EB7DBF000A99D44 /* Helm.m */,
+				3B2C7FC01EB7DBF000A99D44 /* Helm.swift */,
+				3B8B24431EB2AC0B00B61EF8 /* HelmConstants.swift */,
+				3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */,
+				3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */,
+			);
+			name = Helm;
+			sourceTree = "<group>";
+		};
+		3B8B24491EB2AC0F00B61EF8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				3B8B244A1EB2AC1300B61EF8 /* tabbar */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		3B8B244A1EB2AC1300B61EF8 /* tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				3B8B244B1EB2AC3100B61EF8 /* courses@2x.png */,
+				3B8B244C1EB2AC3100B61EF8 /* courses@3x.png */,
+				3B8B244D1EB2AC3100B61EF8 /* inbox@2x.png */,
+				3B8B244E1EB2AC3100B61EF8 /* inbox@3x.png */,
+				3B8B244F1EB2AC3100B61EF8 /* link-solid@2x.png */,
+				3B8B24501EB2AC3100B61EF8 /* link-solid@3x.png */,
+				3B8B24511EB2AC3100B61EF8 /* profile@2x.png */,
+				3B8B24521EB2AC3100B61EF8 /* profile@3x.png */,
+			);
+			name = tabbar;
+			sourceTree = "<group>";
+		};
+		3B8B245B1EB2AC7100B61EF8 /* viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				3B748B5E1ECA53B9008D6A57 /* EnrollmentSplitViewController.swift */,
+				3B8B245C1EB2AC7F00B61EF8 /* RootTabBarController.swift */,
+			);
+			name = viewcontrollers;
+			sourceTree = "<group>";
+		};
+		3B8B245E1EB2AC8E00B61EF8 /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 		3BEF7BF11E7C96860092C864 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				3BEF7BF51E7C96860092C864 /* libART.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		3BF71FC71EC117A500234D25 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				3BF71FC81EC117BE00234D25 /* BrandingModel.swift */,
+			);
+			name = models;
 			sourceTree = "<group>";
 		};
 		4924260C1EAEB37C0046ED43 /* Products */ = {
@@ -719,6 +894,11 @@
 		4943EC8A1E5CEF93001DC5B5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				3BF720FF1EC4054100234D25 /* PocketSVG.framework */,
+				3BF720DF1EC266EB00234D25 /* SDWebImage.framework */,
+				3B8B24101EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework */,
+				3B8B240C1EB2AA3700B61EF8 /* ReactiveSwift.framework */,
+				3B8B23EC1EB2AA0D00B61EF8 /* Result.framework */,
 				61B536EC1E7860CE000FEABB /* EarlGrey.framework */,
 				61B536ED1E7860CE000FEABB /* SoGrey.framework */,
 				2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */,
@@ -787,6 +967,18 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		61BD856A1EB290C0005A09A5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				6190DE381EC4D28800D3C1A9 /* NativeLoginManager.h */,
+				6190DE391EC4D28800D3C1A9 /* NativeLoginManager.m */,
+				6190DE3A1EC4D28800D3C1A9 /* NativeLoginManager.swift */,
+				61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */,
+			);
+			name = Login;
+			path = Teacher/Login;
+			sourceTree = "<group>";
+		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -800,7 +992,6 @@
 			isa = PBXGroup;
 			children = (
 				3BEF7BF01E7C96860092C864 /* ART.xcodeproj */,
-				2C5AC2441E5E3B7B00DE4DEE /* ReactNativeNavigation.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -838,18 +1029,20 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TeacherTests */,
 				61B536591E7749F5000FEABB /* TeacherUITests */,
+				3B5812C21EC4F15900173C37 /* TeacherUnitTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2C50EDDF1E735CA50096592C /* Frameworks */,
 			);
-			indentWidth = 2;
+			indentWidth = 4;
 			sourceTree = "<group>";
-			tabWidth = 2;
+			tabWidth = 4;
 		};
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* Teacher.app */,
 				61B537201E786969000FEABB /* TeacherUITests.xctest */,
+				3B5812C11EC4F15900173C37 /* TeacherUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -931,6 +1124,24 @@
 			productReference = 13B07F961A680F5B00A75B9A /* Teacher.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3B5812C01EC4F15900173C37 /* TeacherUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B5812E81EC4F15900173C37 /* Build configuration list for PBXNativeTarget "TeacherUnitTests" */;
+			buildPhases = (
+				3B5812BD1EC4F15900173C37 /* Sources */,
+				3B5812BE1EC4F15900173C37 /* Frameworks */,
+				3B5812BF1EC4F15900173C37 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B5812C71EC4F15900173C37 /* PBXTargetDependency */,
+			);
+			name = TeacherUnitTests;
+			productName = TeacherUnitTests;
+			productReference = 3B5812C11EC4F15900173C37 /* TeacherUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		61B5371F1E786969000FEABB /* TeacherUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61B537271E78696A000FEABB /* Build configuration list for PBXNativeTarget "TeacherUITests" */;
@@ -957,7 +1168,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 820;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 820;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
@@ -972,6 +1183,11 @@
 								enabled = 1;
 							};
 						};
+					};
+					3B5812C01EC4F15900173C37 = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					61B5371F1E786969000FEABB = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1046,10 +1262,6 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-					ProductGroup = 2C5AC2451E5E3B7B00DE4DEE /* Products */;
-					ProjectRef = 2C5AC2441E5E3B7B00DE4DEE /* ReactNativeNavigation.xcodeproj */;
-				},
-				{
 					ProductGroup = 9F053B761E98360A00135AD0 /* Products */;
 					ProjectRef = 2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */;
 				},
@@ -1070,6 +1282,7 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* Teacher */,
 				61B5371F1E786969000FEABB /* TeacherUITests */,
+				3B5812C01EC4F15900173C37 /* TeacherUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1129,13 +1342,6 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2C5AC25A1E5E3B7B00DE4DEE /* libReactNativeNavigation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReactNativeNavigation.a;
-			remoteRef = 2C5AC2591E5E3B7B00DE4DEE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2CF5409B1EA6772800F79DB1 /* libInteractable.a */ = {
@@ -1306,10 +1512,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B8B24551EB2AC3100B61EF8 /* inbox@2x.png in Resources */,
+				3B8B24581EB2AC3100B61EF8 /* link-solid@3x.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				3B8B24561EB2AC3100B61EF8 /* inbox@3x.png in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				3B8B24591EB2AC3100B61EF8 /* profile@2x.png in Resources */,
+				3B8B24541EB2AC3100B61EF8 /* courses@3x.png in Resources */,
+				3B8B24571EB2AC3100B61EF8 /* link-solid@2x.png in Resources */,
 				2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */,
+				3B8B245A1EB2AC3100B61EF8 /* profile@3x.png in Resources */,
 				9F59C09C1E980384003BF661 /* main.jsbundle in Resources */,
+				3B8B24531EB2AC3100B61EF8 /* courses@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B5812BF1EC4F15900173C37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1344,12 +1565,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4943ECC81E5CF16A001DC5B5 /* NativeLoginManager.m in Sources */,
+				3B8B24481EB2AC0B00B61EF8 /* HelmViewController.swift in Sources */,
+				3B8B245D1EB2AC7F00B61EF8 /* RootTabBarController.swift in Sources */,
+				6190DE3C1EC4D28800D3C1A9 /* NativeLoginManager.swift in Sources */,
+				3B3946D81EBA6DE5002F7B9C /* UISplitViewControllerHelmExtensions.swift in Sources */,
+				6190DE3B1EC4D28800D3C1A9 /* NativeLoginManager.m in Sources */,
+				3B2C7FC11EB7DBF000A99D44 /* Helm.m in Sources */,
+				3B748B5D1ECA538E008D6A57 /* UIColorExtensions.swift in Sources */,
+				3B748B5B1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
+				3B748B631ECA53E9008D6A57 /* DrawerHandleViewManager.m in Sources */,
+				3BF71FC91EC117BE00234D25 /* BrandingModel.swift in Sources */,
 				B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */,
-				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				49F4CE911EC3BF2800E53D67 /* DrawerHandleViewManager.m in Sources */,
-				2C7715921EBB92B700FB20F8 /* NativeLoginManager.swift in Sources */,
-				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				3B748B651ECA54A7008D6A57 /* NSObject+PureEvil.swift in Sources */,
+				3B8B24471EB2AC0B00B61EF8 /* HelmNavigationViewController.swift in Sources */,
+				3B748B5F1ECA53B9008D6A57 /* EnrollmentSplitViewController.swift in Sources */,
+				3B8B24461EB2AC0B00B61EF8 /* HelmConstants.swift in Sources */,
+				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
+				3B8083531EB8FC6D009380F8 /* HelmSplitViewController.swift in Sources */,
+				3B2C7FC21EB7DBF000A99D44 /* Helm.swift in Sources */,
+				61BD85F71EB291A2005A09A5 /* LoginConfiguration.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B5812BD1EC4F15900173C37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B5812F21EC4F34700173C37 /* UISplitViewControllerHelmExtensions.swift in Sources */,
+				3B5812ED1EC4F32900173C37 /* HelmViewController.swift in Sources */,
+				3B5812EE1EC4F33700173C37 /* HelmConstants.swift in Sources */,
+				3B5812EB1EC4F18500173C37 /* HelmTests.swift in Sources */,
+				3B5812F01EC4F33F00173C37 /* HelmSplitViewController.swift in Sources */,
+				3B5812EF1EC4F33900173C37 /* HelmNavigationViewController.swift in Sources */,
+				3B5812EC1EC4F2BA00173C37 /* Helm.swift in Sources */,
+				3B5812F11EC4F34200173C37 /* Helm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1394,6 +1643,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3B5812C71EC4F15900173C37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* Teacher */;
+			targetProxy = 3B5812C61EC4F15900173C37 /* PBXContainerItemProxy */;
+		};
 		611BDFA11E7B16AC008FD321 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = React;
@@ -1433,13 +1687,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/../node_modules/react-native-navigation/**",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable/**",
 					"$(SRCROOT)/../node_modules/react-native-search-bar",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1450,9 +1704,10 @@
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.teacher;
 				PRODUCT_NAME = Teacher;
-				SWIFT_OBJC_BRIDGING_HEADER = "Teacher-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Teacher/bridging-header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1473,13 +1728,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/../node_modules/react-native-navigation/**",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable/**",
 					"$(SRCROOT)/../node_modules/react-native-search-bar",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1492,10 +1747,51 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.teacher;
 				PRODUCT_NAME = Teacher;
-				SWIFT_OBJC_BRIDGING_HEADER = "Teacher-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Teacher/bridging-header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		3B5812C81EC4F15900173C37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = TeacherUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "TeacherUnitTests/bridging-header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teacher.app/Teacher";
+			};
+			name = Debug;
+		};
+		3B5812C91EC4F15900173C37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = TeacherUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TeacherUnitTests/bridging-header.h";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teacher.app/Teacher";
 			};
 			name = Release;
 		};
@@ -1636,6 +1932,15 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B5812E81EC4F15900173C37 /* Build configuration list for PBXNativeTarget "TeacherUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B5812C81EC4F15900173C37 /* Debug */,
+				3B5812C91EC4F15900173C37 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

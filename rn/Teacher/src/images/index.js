@@ -19,6 +19,7 @@ const images = {
     syllabus: require('./course/Syllabus.png'),
     files: require('./course/Files.png'),
     settings: require('./course/Settings.png'),
+    placeholder: require('./course/Placeholder.png'),
   },
   tabbar: {
     courses: require('./tabbar/courses.png'),

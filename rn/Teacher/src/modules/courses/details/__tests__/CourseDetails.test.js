@@ -4,12 +4,11 @@ import 'react-native'
 import React from 'react'
 import { CourseDetails } from '../CourseDetails.js'
 import explore from '../../../../../test/helpers/explore'
-import { route } from '../../../../routing'
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/course'),
   ...require('../../../../api/canvas-api/__templates__/tab'),
-  ...require('../../../../__templates__/react-native-navigation'),
+  ...require('../../../../__templates__/helm'),
 }
 
 // Note: test renderer must be required after react-native.
@@ -80,7 +79,7 @@ test('select tab', () => {
     course: template.course({ id: 12 }),
     tabs: [tab],
     navigator: template.navigator({
-      push: jest.fn(),
+      show: jest.fn(),
     }),
   }
 
@@ -91,14 +90,14 @@ test('select tab', () => {
   const tabRow: any = explore(tree).selectByID('courses-details.tab-touchable-row-assignments')
   tabRow.props.onPress()
 
-  expect(props.navigator.push).toHaveBeenCalledWith(route('/courses/12/assignments'))
+  expect(props.navigator.show).toHaveBeenCalledWith('/courses/12/assignments')
 })
 
 test('edit course', () => {
   const props = {
     ...defaultProps,
     navigator: template.navigator({
-      showModal: jest.fn(),
+      show: jest.fn(),
     }),
   }
   let tree = renderer.create(
@@ -108,7 +107,10 @@ test('edit course', () => {
   let editButton: any = explore(tree).selectByID('course-details.navigation-edit-course-btn')
   editButton.props.onPress()
 
-  expect(props.navigator.showModal).toHaveBeenCalledWith(route('/courses/1/settings'))
+  expect(props.navigator.show).toHaveBeenCalledWith(
+    '/courses/1/settings',
+    { modal: true, modalPresentationStyle: 'formsheet' }
+  )
 })
 
 it('renders with image url', () => {

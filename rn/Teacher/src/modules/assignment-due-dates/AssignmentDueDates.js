@@ -18,50 +18,19 @@ import colors from '../../common/colors'
 import { extractDateFromString } from '../../utils/dateUtils'
 import i18n from 'format-message'
 import { Text, Heading1 } from '../../common/text'
-import { route } from '../../routing'
+import Screen from '../../routing/Screen'
 
 export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, any> {
-
-  static navigatorButtons = {
-    rightButtons: [
-      {
-        title: i18n({
-          default: 'Edit',
-          description: 'Shown at the top of the app to allow the user to edit',
-        }),
-        id: 'edit',
-        testID: 'e2e_rules',
-      },
-    ],
-  }
 
   componentWillMount () {
     const studentIDs = new AssignmentDates(this.props.assignment).studentIDs()
     if (studentIDs.length) {
       this.props.refreshUsers(studentIDs)
     }
-
-    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
   }
 
-  onNavigatorEvent = (event: NavigatorEvent) => {
-    switch (event.type) {
-      case 'NavBarButtonPress':
-        switch (event.id) {
-          case 'edit':
-            this.editAssignment()
-            break
-        }
-        break
-    }
-  }
-
-  editAssignment () {
-    let destination = route(`/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/edit`)
-    this.props.navigator.showModal({
-      ...destination,
-      animationType: 'slide-up',
-    })
+  editAssignment = () => {
+    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/edit`, { modal: true })
   }
 
   renderRow (date: AssignmentDate, dates: AssignmentDates): React.Element<View> {
@@ -139,9 +108,26 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
       return this.renderRow(date, dates)
     })
 
-    return <ScrollView style={styles.container}>
-             {rows}
-           </ScrollView>
+    return (
+      <Screen
+        navBarColor={this.props.courseColor}
+        navBarStyle='dark'
+        rightBarButtons={[
+          {
+            title: i18n({
+              default: 'Edit',
+              description: 'Shown at the top of the app to allow the user to edit',
+            }),
+            testID: 'assignment-due-dates.edit-btn',
+            action: this.editAssignment,
+          },
+        ]}
+      >
+        <ScrollView style={styles.container}>
+          {rows}
+        </ScrollView>
+      </Screen>
+    )
   }
 }
 

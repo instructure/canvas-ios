@@ -6,7 +6,7 @@ const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/course'),
   ...require('../../../api/canvas-api/__templates__/grading-periods'),
-  ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../__templates__/helm'),
   ...require('../../../redux/__templates__/app-state'),
 }
 
@@ -64,6 +64,7 @@ test('map state to props should work', async () => {
     navigator: template.navigator(),
     gradingPeriods: [],
     courseColor: 'greenish',
+    courseName: 'blah blah',
   }
 
   const result = mapStateToProps(state, props)
@@ -101,7 +102,8 @@ test('returns default props when the course is not there', () => {
 
   let result = mapStateToProps(state, props)
   expect(result).toMatchObject({
-    course: null,
+    courseName: '',
+    courseColor: '',
     assignmentGroups: [],
     pending: 0,
   })

@@ -9,7 +9,6 @@ import {
 } from 'react-native'
 import i18n from 'format-message'
 
-import { route } from '../../../routing'
 import Actions from './actions'
 import AssignmentSection from '../../assignment-details/components/AssignmentSection'
 import PublishedIcon from '../../assignment-details/components/PublishedIcon'
@@ -22,6 +21,8 @@ import {
 import colors from '../../../common/colors'
 import refresh from '../../../utils/refresh'
 import formatter from '../formatter'
+import Screen from '../../../routing/Screen'
+import Navigator from '../../../routing/Navigator'
 
 type OwnProps = {
   quizID: string,
@@ -33,64 +34,61 @@ type State = {
 }
 
 export type Props = State & RefreshProps & Actions & {
-  navigator: ReactNavigator,
+  navigator: Navigator,
 }
 
 export class QuizDetails extends Component<any, Props, any> {
-  constructor (props: Props) {
-    super(props)
-
-    this.props.navigator.setTitle({
-      title: i18n('Quiz Details'),
-    })
-  }
 
   previewQuiz = () => {
-    const destination = route(`/courses/${this.props.courseID}/quizzes/${this.props.quizID}/preview`)
-    this.props.navigator.showModal(destination)
+    this.props.navigator.show(`/courses/${this.props.courseID}/quizzes/${this.props.quizID}/preview`, { modal: true })
   }
 
   render () {
     const quiz = this.props.quiz
+    let content
     if (!quiz) {
-      return <View />
+      content = <View />
+    } else {
+      content = <RefreshableScrollView
+                  refreshing={this.props.refreshing}
+                  onRefresh={this.props.refresh}>
+                  <AssignmentSection isFirstRow={true} style={style.topContainer}>
+                    <Heading1>{quiz.title}</Heading1>
+                    <View style={style.pointsContainer}>
+                      { Boolean(quiz.points_possible) &&
+                        <Text style={style.points}>{`${quiz.points_possible} ${i18n('pts')}`}</Text>
+                      }
+                      <PublishedIcon published={true} />
+                  </View>
+                  </AssignmentSection>
+
+                  <AssignmentSection title={i18n('Description')}>
+                    { Boolean(quiz.description) &&
+                        <WebContainer style={{ flex: 1 }} html={quiz.description} />
+                    }
+                    { !quiz.description &&
+                      <Text>{i18n('No description')}</Text>
+                    }
+                  </AssignmentSection>
+
+                  <AssignmentSection>
+                    {this._renderDetails()}
+                  </AssignmentSection>
+                  <AssignmentSection>
+                    <TouchableHighlight onPress={this.previewQuiz} style={{ borderRadius: 4 }}>
+                      <View style={style.previewQuizButton}>
+                        <Text style={style.previewQuizButtonTitle}>{i18n('Preview Quiz')}</Text>
+                      </View>
+                    </TouchableHighlight>
+                  </AssignmentSection>
+                </RefreshableScrollView>
     }
 
     return (
-      <RefreshableScrollView
-        refreshing={this.props.refreshing}
-        onRefresh={this.props.refresh}
-      >
-        <AssignmentSection isFirstRow={true} style={style.topContainer}>
-          <Heading1>{quiz.title}</Heading1>
-          <View style={style.pointsContainer}>
-            { Boolean(quiz.points_possible) &&
-              <Text style={style.points}>{`${quiz.points_possible} ${i18n('pts')}`}</Text>
-            }
-            <PublishedIcon published={true} />
-        </View>
-        </AssignmentSection>
-
-        <AssignmentSection title={i18n('Description')}>
-          { Boolean(quiz.description) &&
-              <WebContainer style={{ flex: 1 }} html={quiz.description} />
-          }
-          { !quiz.description &&
-            <Text>{i18n('No description')}</Text>
-          }
-        </AssignmentSection>
-
-        <AssignmentSection>
-          {this._renderDetails()}
-        </AssignmentSection>
-        <AssignmentSection>
-          <TouchableHighlight onPress={this.previewQuiz} style={{ borderRadius: 4 }}>
-            <View style={style.previewQuizButton}>
-              <Text style={style.previewQuizButtonTitle}>{i18n('Preview Quiz')}</Text>
-            </View>
-          </TouchableHighlight>
-        </AssignmentSection>
-      </RefreshableScrollView>
+      <Screen
+        title={i18n('Quiz Details')}>
+        {content}
+      </Screen>
     )
   }
 

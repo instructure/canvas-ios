@@ -18,7 +18,7 @@ const template = {
   ...require('../../../api/canvas-api/__templates__/course'),
   ...require('../../../api/canvas-api/__templates__/enrollments'),
   ...require('../../../api/canvas-api/__templates__/section'),
-  ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../__templates__/helm'),
 }
 
 const defaultProps = {
@@ -59,11 +59,11 @@ test('handles selection', () => {
 test('dismiss', () => {
   const fn = jest.fn()
   const navigator = template.navigator({
-    dismissModal: fn,
+    dismiss: fn,
   })
   const picker = renderer.create(
     <AssigneeSearch {...defaultProps} navigator={navigator} />
   ).getInstance()
-  picker.onNavigatorEvent({ type: 'NavBarButtonPress', id: 'cancel' })
+  picker.dismiss()
   expect(fn).toHaveBeenCalled()
 })

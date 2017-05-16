@@ -19,6 +19,8 @@ import type {
   AsyncSubmissionsDataProps,
   SubmissionDataProps,
 } from '../submissions/list/submission-prop-types'
+import Screen from '../../routing/Screen'
+import Navigator from '../../routing/Navigator'
 import DrawerState from './utils/drawer-state'
 
 type State = {
@@ -30,10 +32,6 @@ const PAGE_GUTTER_HALF_WIDTH = 10.0
 export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   props: SpeedGraderProps
   state: State
-
-  static navigatorStyle = {
-    navBarHidden: true,
-  }
 
   static drawerState = new DrawerState()
 
@@ -54,7 +52,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   }
 
   dismiss = () => {
-    this.props.navigator.dismissModal()
+    this.props.navigator.dismiss()
   }
 
   renderItem = ({ item }: { item: SubmissionItem }) => {
@@ -67,15 +65,14 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         assignmentID={this.props.assignmentID}
         userID={item.submission.userID}
         submissionID={item.submission.submissionID}
-        closeModal={this.props.navigator.dismissModal}
-        showModal={this.props.navigator.showModal}
+        closeModal={this.props.navigator.dismiss}
         submissionProps={item.submission}
         selectedIndex={selectedIndex}
       />
     </View>
   }
 
-  render (): React.Element<*> {
+  renderBody = () => {
     if (!this.props.refreshing && this.props.pending || !this.props.submissions) {
       return <View style={styles.loadingWrapper}><ActivityIndicator /></View>
     }
@@ -98,6 +95,17 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         contentOffset={{ x, y: 0 }}
         style={{ marginLeft: -PAGE_GUTTER_HALF_WIDTH, marginRight: -PAGE_GUTTER_HALF_WIDTH }}
       />
+    )
+  }
+
+  render (): React.Element<*> {
+    return (
+      <Screen
+        navBarHidden={true}
+        statusBarHidden={true}
+      >
+        { this.renderBody() }
+      </Screen>
     )
   }
 }
@@ -147,7 +155,7 @@ const Refreshed = refresh(
 )(SpeedGrader)
 const Connected = connect(mapStateToProps, { ...SubmissionActions, ...EnrollmentActions, ...AssignmentActions })(Refreshed)
 
-export default (Connected: React.Element<*>)
+export default (Connected: any)
 
 type SubmissionItem = {
   key: string,
@@ -172,4 +180,4 @@ type SpeedGraderProps
   & SpeedGraderActionProps
   & SpeedGraderDataProps
   & RefreshProps
-  & NavProps
+  & { navigator: Navigator }

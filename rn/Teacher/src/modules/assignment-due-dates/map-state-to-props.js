@@ -1,10 +1,12 @@
 // @flow
 
 import AssignmentDates from '../../common/AssignmentDates'
+import Navigator from '../../routing/Navigator'
 
 export type AssignmentDueDatesState = {
   +assignment: Assignment,
   +users: {},
+  +courseColor: string,
 }
 
 export type AssignmentDueDatesProps = {
@@ -13,7 +15,8 @@ export type AssignmentDueDatesProps = {
   assignment: Assignment,
   users: {},
   refreshUsers: Function,
-  navigator: ReactNavigator,
+  navigator: Navigator,
+  courseColor: string,
 }
 
 export type AssignmentDueDatesActionProps = {
@@ -24,6 +27,7 @@ export function mapStateToProps (state: AppState, ownProps: AssignmentDueDatesPr
   const assignment = state.entities.assignments[ownProps.assignmentID].data
   const dates = new AssignmentDates(assignment)
   const users = {}
+  const courseColor = state.entities.courses[ownProps.courseID].color
 
   dates.studentIDs().forEach((id) => {
     const user = state.entities.users[id]
@@ -35,5 +39,6 @@ export function mapStateToProps (state: AppState, ownProps: AssignmentDueDatesPr
   return {
     assignment,
     users,
+    courseColor,
   }
 }

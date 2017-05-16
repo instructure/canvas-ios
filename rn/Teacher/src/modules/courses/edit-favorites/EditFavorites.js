@@ -13,9 +13,12 @@ import CoursesActions from '../actions'
 import mapStateToProps from './map-state-to-props'
 import refresh from '../../../utils/refresh'
 import { RefreshableListView } from '../../../common/components/RefreshableList'
+import Screen from '../../../routing/Screen'
+import Navigator from '../../../routing/Navigator'
+import colors from '../../../common/colors'
 
 type Props = {
-  navigator: ReactNavigator,
+  navigator: Navigator,
   courses: Array<Course>,
   favorites: Array<string>,
   toggleFavorite: (courseID: string, favorite: boolean) => Promise<*>,
@@ -31,17 +34,6 @@ export class FavoritesList extends Component {
   props: Props
   state: State
 
-  static navigatorButtons = {
-    rightButtons: [{
-      title: i18n({
-        default: 'Done',
-        description: 'Back button to move back a screen',
-      }),
-      id: 'done',
-      testID: 'done_button',
-    }],
-  }
-
   constructor (props: Props) {
     super(props)
 
@@ -53,14 +45,6 @@ export class FavoritesList extends Component {
       ds,
       dataSource: ds.cloneWithRows(this.props.courses),
     }
-
-    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
-    props.navigator.setTitle({
-      title: i18n({
-        default: 'Edit Courses',
-        description: 'The title of the screen enabling teachers to favorite and unfavorite their courses',
-      }),
-    })
   }
 
   componentWillReceiveProps (nextProps: Props) {
@@ -69,18 +53,8 @@ export class FavoritesList extends Component {
     })
   }
 
-  onNavigatorEvent = (event: NavigatorEvent) => {
-    switch (event.type) {
-      case 'NavBarButtonPress':
-        switch (event.id) {
-          case 'done':
-            this.props.navigator.dismissModal({
-              animationType: 'slide-down',
-            })
-            break
-        }
-        break
-    }
+  dismiss = () => {
+    this.props.navigator.dismiss()
   }
 
   renderCourse = (course: Course) => {
@@ -95,13 +69,34 @@ export class FavoritesList extends Component {
 
   render (): React.Element<*> {
     return (
-      <RefreshableListView
-        style={styles.listStyle}
-        dataSource={this.state.dataSource}
-        renderRow={this.renderCourse}
-        refreshing={this.props.refreshing}
-        onRefresh={this.props.refresh}
-      />
+      <Screen
+        navBarStyle='light'
+        navBarTitleColor={colors.darkText}
+        navBarButtonColor={colors.link}
+        title={i18n({
+          default: 'Edit Courses',
+          description: 'The title of the screen enabling teachers to favorite and unfavorite their courses',
+        })}
+        rightBarButtons={[
+          {
+            title: i18n({
+              default: 'Done',
+              description: 'Back button to move back a screen',
+            }),
+            style: 'done',
+            testID: 'done_button',
+            action: this.dismiss,
+          },
+        ]}
+      >
+        <RefreshableListView
+          style={styles.listStyle}
+          dataSource={this.state.dataSource}
+          renderRow={this.renderCourse}
+          refreshing={this.props.refreshing}
+          onRefresh={this.props.refresh}
+        />
+      </Screen>
     )
   }
 }

@@ -4,13 +4,15 @@ import { mapStateToProps, type AssignmentDueDatesProps } from '../map-state-to-p
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../api/canvas-api/__templates__/course'),
   ...require('../../../api/canvas-api/__templates__/users'),
   ...require('../../../redux/__templates__/app-state'),
-  ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../__templates__/helm'),
 }
 
 test('map state to props should work', async () => {
   const user = template.user()
+  const course = template.course()
   const dateID = '123344556666'
   const date = template.assignmentDueDate({ id: dateID })
   const override = template.assignmentOverride({
@@ -30,7 +32,9 @@ test('map state to props should work', async () => {
       users: {
         [user.id]: user,
       },
-      courses: {},
+      courses: {
+        [course.id]: course,
+      },
       assignmentGroups: {},
       gradingPeriods: {},
     },
@@ -38,12 +42,13 @@ test('map state to props should work', async () => {
   })
 
   const props: AssignmentDueDatesProps = {
-    courseID: '1',
+    courseID: course.id,
     assignment,
     assignmentID: assignment.id,
     users: {},
     refreshUsers: jest.fn(),
     navigator: template.navigator(),
+    courseColor: '',
   }
 
   let result = mapStateToProps(state, props)

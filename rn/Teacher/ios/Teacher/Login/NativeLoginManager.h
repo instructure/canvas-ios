@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol NativeLoginManagerDelegate <NSObject>
 
 // Called when a login event occurred
-- (void)didLogin;
+- (void)didLogin:(CKIClient *)client;
 
 // Called when a logout event occurred
 // The view controller passed in will be a login view controller

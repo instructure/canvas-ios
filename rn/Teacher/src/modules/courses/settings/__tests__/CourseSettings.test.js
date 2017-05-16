@@ -3,11 +3,10 @@
 import React from 'react'
 import { CourseSettings } from '../CourseSettings.js'
 import * as courseTemplates from '../../../../api/canvas-api/__templates__/course'
-import * as navigatorTemplates from '../../../../__templates__/react-native-navigation'
+import * as navigatorTemplates from '../../../../__templates__/helm'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
 import { Alert } from 'react-native'
-import { Navigation } from 'react-native-navigation'
 
 import renderer from 'react-test-renderer'
 
@@ -22,11 +21,6 @@ jest
   }))
   .mock('Alert', () => ({
     alert: jest.fn(),
-  }))
-  .mock('react-native-navigation', () => ({
-    Navigation: {
-      dismissAllModals: jest.fn(),
-    },
   }))
 
 let templates = { ...courseTemplates, ...navigatorTemplates }
@@ -54,29 +48,20 @@ describe('CourseSettings', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
-    expect(defaultProps.navigator.setTitle).toHaveBeenCalledWith({
-      title: 'Course Settings',
-    })
-    expect(defaultProps.navigator.setOnNavigatorEvent).toHaveBeenCalled()
   })
 
   it('renders a modal activity when saving', () => {
-    let onNavigatorEvent = () => {}
     const props = {
       ...defaultProps,
       navigator: templates.navigator({
-        setOnNavigatorEvent: (handler) => { onNavigatorEvent = handler },
+        show: jest.fn(),
       }),
     }
     let component = renderer.create(
       <CourseSettings {...props} />
     )
 
-    onNavigatorEvent({
-      type: 'NavBarButtonPress',
-      id: 'done',
-    })
-
+    component.getInstance().done()
     expect(component.toJSON()).toMatchSnapshot()
   })
 
@@ -93,11 +78,10 @@ describe('CourseSettings', () => {
   })
 
   it('dismisses modal activity upon save error', () => {
-    let onNavigatorEvent = () => {}
     const props = {
       ...defaultProps,
       navigator: templates.navigator({
-        setOnNavigatorEvent: (handler) => { onNavigatorEvent = handler },
+        dismiss: jest.fn(),
       }),
     }
     let component = renderer.create(
@@ -107,12 +91,7 @@ describe('CourseSettings', () => {
       setProps(component, { pending: 0, error: 'error' })
     })
     component.update(<CourseSettings {...props} updateCourse={updateCourse} />)
-
-    onNavigatorEvent({
-      type: 'NavBarButtonPress',
-      id: 'done',
-    })
-
+    component.getInstance().done()
     expect(component.toJSON()).toMatchSnapshot()
   })
 
@@ -127,12 +106,11 @@ describe('CourseSettings', () => {
   })
 
   it('calls update with new course values on done', () => {
-    let onNavigatorEvent = () => {}
     const props = {
       ...defaultProps,
       updateCourse: jest.fn(),
       navigator: templates.navigator({
-        setOnNavigatorEvent: (handler) => { onNavigatorEvent = handler },
+        dismiss: jest.fn(),
       }),
     }
     let component = renderer.create(
@@ -145,10 +123,7 @@ describe('CourseSettings', () => {
     let homePicker = explore(tree).selectByID('homePicker') || {}
     homePicker.props.onValueChange('syllabus')
 
-    onNavigatorEvent({
-      type: 'NavBarButtonPress',
-      id: 'done',
-    })
+    component.getInstance().done()
 
     let updated = {
       ...props.course,
@@ -159,11 +134,10 @@ describe('CourseSettings', () => {
   })
 
   it('dismisses modal on done after course updates', () => {
-    let onNavigatorEvent = () => {}
     const props = {
       ...defaultProps,
       navigator: templates.navigator({
-        setOnNavigatorEvent: (handler) => { onNavigatorEvent = handler },
+        dismissAllModals: jest.fn(),
       }),
     }
     let component = renderer.create(
@@ -173,43 +147,30 @@ describe('CourseSettings', () => {
       setProps(component, { pending: 0 })
     })
     component.update(<CourseSettings {...props} updateCourse={updateCourse} />)
-
-    onNavigatorEvent({
-      type: 'NavBarButtonPress',
-      id: 'done',
-    })
-
-    expect(Navigation.dismissAllModals).toHaveBeenCalled()
+    component.getInstance().done()
+    expect(props.navigator.dismissAllModals).toHaveBeenCalled()
   })
 
   it('dismisses on cancel', () => {
-    let onNavigatorEvent = () => {}
     const props = {
       ...defaultProps,
       navigator: templates.navigator({
-        dismissModal: jest.fn(),
-        setOnNavigatorEvent: (handler) => { onNavigatorEvent = handler },
+        dismissAllM: jest.fn(),
       }),
     }
-    renderer.create(
+    const tree = renderer.create(
       <CourseSettings {...props} />
     )
 
-    onNavigatorEvent({
-      type: 'NavBarButtonPress',
-      id: 'cancel',
-    })
-
-    expect(props.navigator.dismissModal).toHaveBeenCalled()
+    tree.getInstance().dismiss()
+    expect(props.navigator.dismiss).toHaveBeenCalled()
   })
 
   it('does not dismiss if there was an error', () => {
-    let onNavigatorEvent = () => {}
     const props = {
       ...defaultProps,
       navigator: templates.navigator({
-        dismissModal: jest.fn(),
-        setOnNavigatorEvent: (handler) => { onNavigatorEvent = handler },
+        dismissAllModals: jest.fn(),
       }),
     }
 
@@ -220,13 +181,8 @@ describe('CourseSettings', () => {
       setProps(component, { pending: 0, error: 'there was an error' })
     })
     component.update(<CourseSettings {...props} updateCourse={updateCourse} />)
-
-    onNavigatorEvent({
-      type: 'NavBarButtonPress',
-      id: 'done',
-    })
-
-    expect(Navigation.dismissAllModals).not.toHaveBeenCalled()
+    component.getInstance().done()
+    expect(props.navigator.dismissAllModals).not.toHaveBeenCalled()
   })
 
   it('shows correct label based on course home', () => {

@@ -32,7 +32,7 @@ exports[`renders favorited correctly 1`] = `
             "width": 20,
           },
           Object {
-            "tintColor": "#ff0ee8",
+            "tintColor": "#374A59",
           },
         ]
       }
@@ -98,7 +98,7 @@ exports[`renders unfavorited correctly 1`] = `
             "width": 20,
           },
           Object {
-            "tintColor": "#ff0ee8",
+            "tintColor": "#374A59",
           },
         ]
       }

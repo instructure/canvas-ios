@@ -20,11 +20,11 @@ const colors: { [name: string]: string } = {
   cellUnderlayColor: '#eee',
   seperatorColor: '#C7CDD1',
 //  branding properties
-  navBgColor: '#ff0ee8',
-  navButtonColor: '#ff0ee8',
-  primaryButtonTextColor: '#ff0ee8',
-  primaryButtonColor: '#ff0ee8',
-  primaryBrandColor: '#ff0ee8',
+  navBarColor: '#374A59',
+  navBarButtonColor: '#374A59',
+  primaryButtonTextColor: '#374A59',
+  primaryButtonColor: '#374A59',
+  primaryBrandColor: '#374A59',
 }
 
 export default colors

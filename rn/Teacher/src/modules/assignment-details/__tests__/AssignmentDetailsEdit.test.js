@@ -4,16 +4,14 @@
 
 import 'react-native'
 import React from 'react'
-import { Navigation } from 'react-native-navigation'
 import { AssignmentDetailsEdit } from '../AssignmentDetailsEdit'
 import setProps from '../../../../test/helpers/setProps'
 import explore from '../../../../test/helpers/explore'
-import { route } from '../../../routing'
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../__templates__/helm'),
 }
 
 // Note: test renderer must be required after react-native.
@@ -32,12 +30,6 @@ jest
     Types: { linear: null },
     Properties: { opacity: null },
   }))
-  .mock('../../../routing')
-  .mock('react-native-navigation', () => ({
-    Navigation: {
-      dismissAllModals: jest.fn(),
-    },
-  }))
   .mock('WebView', () => 'WebView')
   .mock('Button', () => 'Button')
 
@@ -45,10 +37,7 @@ let course: Course
 let assignment: Assignment
 
 let defaultProps = {}
-let onNavigatorEvent = () => {}
 let doneButtonPressedProps = {}
-const navigatorDismissEventProps = { type: 'NavBarButtonPress', id: 'dismiss' }
-const navigatorCancelEventProps = { type: 'NavBarButtonPress', id: 'cancel' }
 
 beforeEach(() => {
   jest.clearAllMocks()
@@ -67,12 +56,10 @@ beforeEach(() => {
     updateAssignment: jest.fn(),
     refreshAssignment: jest.fn(),
   }
-  onNavigatorEvent = () => {}
   doneButtonPressedProps = {
     ...defaultProps,
     navigator: template.navigator({
-      dismissModal: jest.fn(),
-      setOnNavigatorEvent: (handler) => { onNavigatorEvent = handler },
+      dismiss: jest.fn(),
     }),
     cancelAssignmentUpdate: jest.fn(),
   }
@@ -87,18 +74,14 @@ test('renders', () => {
 
 test('calls updateAssignment when the done button is pressed', () => {
   let navigator = template.navigator({
-    dismissModal: jest.fn(),
+    dismiss: jest.fn(),
   })
 
   let tree = renderer.create(
     <AssignmentDetailsEdit {...defaultProps} navigator={navigator} />
   )
 
-  tree.getInstance().onNavigatorEvent({
-    type: 'NavBarButtonPress',
-    id: 'dismiss',
-  })
-
+  tree.getInstance().actionDonePressed()
   expect(defaultProps.updateAssignment).toHaveBeenCalledWith(course.id, defaultProps.assignmentDetails, defaultProps.assignmentDetails)
 })
 
@@ -111,9 +94,9 @@ test('dismisses modal on done after assignment updates', () => {
   })
   component.update(<AssignmentDetailsEdit {...doneButtonPressedProps} updateAssignment={updateAssignment}/>)
 
-  onNavigatorEvent(navigatorDismissEventProps)
+  component.getInstance().actionDonePressed()
 
-  expect(Navigation.dismissAllModals).toHaveBeenCalled()
+  expect(doneButtonPressedProps.navigator.dismissAllModals).toHaveBeenCalled()
 })
 
 test('modal saving is shown on assignment update', () => {
@@ -126,7 +109,7 @@ test('modal saving is shown on assignment update', () => {
   })
   component.update(<AssignmentDetailsEdit {...doneButtonPressedProps} updateAssignment={updateAssignment}/>)
 
-  onNavigatorEvent(navigatorDismissEventProps)
+  component.getInstance().actionDonePressed()
 
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()
@@ -144,7 +127,7 @@ test('error occurs when done pressed', () => {
   })
   component.update(<AssignmentDetailsEdit {...doneButtonPressedProps} updateAssignment={updateAssignment}/>)
 
-  onNavigatorEvent(navigatorDismissEventProps)
+  component.getInstance().actionDonePressed()
 
   jest.runAllTimers()
 
@@ -160,10 +143,8 @@ test('dismisses modal on cancel', () => {
     setProps(component, { pending: false })
   })
   component.update(<AssignmentDetailsEdit {...doneButtonPressedProps} updateAssignment={updateAssignment}/>)
-
-  onNavigatorEvent(navigatorCancelEventProps)
-
-  expect(Navigation.dismissAllModals).toHaveBeenCalled()
+  component.getInstance().actionCancelPressed()
+  expect(doneButtonPressedProps.navigator.dismissAllModals).toHaveBeenCalled()
 })
 
 test('"displays grade as" can be selected using picker', () => {
@@ -178,7 +159,7 @@ test('"displays grade as" can be selected using picker', () => {
   let picker = explore(tree).selectByID('assignmentPicker') || {}
   picker.props.onValueChange(selectedValue)
 
-  onNavigatorEvent(navigatorDismissEventProps)
+  component.getInstance().actionDonePressed()
 
   let expected = { ...defaultProps.assignmentDetails, grading_type: selectedValue }
   expect(defaultProps.updateAssignment).toHaveBeenCalledWith(doneButtonPressedProps.courseID, expected, defaultProps.assignmentDetails)
@@ -186,15 +167,15 @@ test('"displays grade as" can be selected using picker', () => {
 
 test('edit description', () => {
   const navigator = template.navigator({
-    push: jest.fn(),
+    show: jest.fn(),
   })
   const tree = renderer.create(
     <AssignmentDetailsEdit {...defaultProps} navigator={navigator} />
   ).toJSON()
   const editDescription: any = explore(tree).selectByID('edit-description')
   editDescription.props.onPress()
-  const expected = route(`/courses/${course.id}/assignments/${assignment.id}/edit/description`)
-  expect(navigator.push).toHaveBeenCalledWith(expected)
+  const expected = `/courses/${course.id}/assignments/${assignment.id}/edit/description`
+  expect(navigator.show).toHaveBeenCalledWith(expected)
 })
 
 test('change title', () => {
@@ -218,7 +199,7 @@ function testInputField (ref: string, input: any, assignmentField: string) {
   let field = explore(tree).selectByID(ref) || {}
   field.props.onChangeText(input)
 
-  onNavigatorEvent(navigatorDismissEventProps)
+  component.getInstance().actionDonePressed()
 
   let expected = { ...defaultProps.assignmentDetails, [assignmentField]: input }
 
@@ -234,7 +215,7 @@ function testSwitchToggled (ref: string, input: any, assignmentField: string) {
   let field = explore(tree).selectByID(ref) || {}
   field.props.onValueChange(input)
 
-  onNavigatorEvent(navigatorDismissEventProps)
+  component.getInstance().actionDonePressed()
 
   let expected = { ...defaultProps.assignmentDetails, [assignmentField]: input }
   expect(defaultProps.updateAssignment).toHaveBeenCalledWith(doneButtonPressedProps.courseID, expected, defaultProps.assignmentDetails)

@@ -15,16 +15,19 @@ import CoursesActions from '../actions'
 import { connect } from 'react-redux'
 import CourseList from '../components/CourseList'
 import NoCourses from '../components/NoCourses'
-import { route } from '../../../routing'
 import type { CourseProps } from '../course-prop-types'
 import Images from '../../../images/'
 import refresh from '../../../utils/refresh'
 import { Heading1 } from '../../../common/text'
+import Navigator from '../../../routing/Navigator'
+import Screen from '../../../routing/Screen'
+import branding from '../../../common/branding'
+import color from '../../../common/colors'
 
 const { width: deviceWidth } = Dimensions.get('window')
 
 type Props = {
-  navigator: ReactNavigator,
+  navigator: Navigator,
   refreshCourses: () => void,
   courses: Array<CourseProps>,
   error?: string,
@@ -34,80 +37,24 @@ type Props = {
 export class FavoritedCourseList extends Component {
   props: Props
 
-  static navigatorButtons = {
-    rightButtons: [
-      {
-        title: i18n({
-          default: 'Edit',
-          description: 'Shown at the top of the app to allow the user to edit their course list',
-        }),
-        id: 'edit',
-        testID: 'e2e_rules',
-      },
-    ],
-    leftButtons: [{
-      title: i18n({
-        default: 'Leave Feedback',
-        description: 'Shown at the top of the app to allow the user to leave feedback',
-      }),
-      id: 'beta-feedback',
-      icon: Images.feedback,
-    }],
-  }
-
-  constructor (props: Props) {
-    super(props)
-    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
-  }
-
-  onNavigatorEvent = (event: NavigatorEvent) => {
-    if (event.type === 'NavBarButtonPress') {
-      switch (event.id) {
-        case 'edit':
-          this.showFavoritesList()
-          break
-        case 'beta-feedback':
-          this.presentBetaFeedback()
-          break
-      }
-    }
-  }
-
   showFavoritesList = () => {
-    let destination = route('/course_favorites')
-    this.props.navigator.showModal({
-      ...destination,
-      animationType: 'slide-up',
-    })
+    this.props.navigator.show('/course_favorites', { modal: true, modalPresentationStyle: 'formsheet' })
   }
 
   showUserCoursePreferences = (courseId: string) => {
-    let destination = route(`/courses/${courseId}/user_preferences`)
-    this.props.navigator.showModal({
-      ...destination,
-      animationType: 'slide-up',
-    })
+    this.props.navigator.show(`/courses/${courseId}/user_preferences`, { modal: true, modalPresentationStyle: 'formsheet' })
   }
 
   selectCourse = (course: Course) => {
-    let destination = route('/courses/' + course.id)
-    this.props.navigator.push(destination)
+    this.props.navigator.show(`/courses/${course.id}`)
   }
 
   goToAllCourses = () => {
-    let destination = route('/courses')
-    this.props.navigator.push({
-      ...destination,
-      backButtonTitle: i18n({
-        id: 'back_courses',
-        default: 'Courses',
-        description: 'The back button title to go from all courses to just favorited courses',
-      }),
-    })
+    this.props.navigator.show('/courses')
   }
 
   presentBetaFeedback = () => {
-    this.props.navigator.showModal(route('/beta-feedback'))
+    this.props.navigator.show('/beta-feedback', { modal: true })
   }
 
   renderHeader = () => {
@@ -140,16 +87,44 @@ export class FavoritedCourseList extends Component {
         />
       )
     }
-
     return (
-      <CourseList
-        {...this.props}
-        selectCourse={this.selectCourse}
-        onCoursePreferencesPressed={this.showUserCoursePreferences}
-        width={deviceWidth}
-        header={this.renderHeader()}
-        onRefresh={this.props.refresh}
-      />
+      <Screen
+        navBarTranslucent={true}
+        navBarHidden={false}
+        navBarImage={branding.headerImage}
+        navBarColor={color.navBarColor}
+        navBarStyle='dark'
+        rightBarButtons={[
+          {
+            title: i18n({
+              default: 'Edit',
+              description: 'Shown at the top of the app to allow the user to edit their course list',
+            }),
+            testID: 'fav-courses.edit-btn',
+            action: this.showFavoritesList,
+          },
+        ]}
+        leftBarButtons={[
+          {
+            accessibilityLabel: i18n({
+              default: 'Leave Feedback',
+              description: 'Shown at the top of the app to allow the user to leave feedback',
+            }),
+            testID: 'fav-courses.feedback-btn',
+            image: Images.feedback,
+            action: this.presentBetaFeedback,
+          },
+        ]}
+        >
+        <CourseList
+          {...this.props}
+          selectCourse={this.selectCourse}
+          onCoursePreferencesPressed={this.showUserCoursePreferences}
+          width={deviceWidth}
+          header={this.renderHeader()}
+          onRefresh={this.props.refresh}
+        />
+      </Screen>
     )
   }
 }

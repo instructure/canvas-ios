@@ -5,13 +5,12 @@
 import 'react-native'
 import React from 'react'
 import { AssignmentDetails } from '../AssignmentDetails'
-import { route } from '../../../routing'
 import timezoneMock from 'timezone-mock'
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../__templates__/helm'),
 }
 
 // Note: test renderer must be required after react-native.
@@ -60,7 +59,7 @@ test('renders loading', () => {
   expect(tree).toMatchSnapshot()
 })
 
-test('calls navigator.showModal when the edit button is pressed', () => {
+test('calls navigator.show when the edit button is pressed', () => {
   let navigator = template.navigator({
     showModal: jest.fn(),
   })
@@ -68,15 +67,12 @@ test('calls navigator.showModal when the edit button is pressed', () => {
     <AssignmentDetails {...defaultProps} navigator={navigator} />
   )
 
-  tree.getInstance().onNavigatorEvent({
-    type: 'NavBarButtonPress',
-    id: 'edit',
-  })
+  tree.getInstance().editAssignment()
 
-  expect(navigator.showModal).toHaveBeenCalledWith({
-    ...route(`/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/edit`),
-    animationType: 'slide-up',
-  })
+  expect(navigator.show).toHaveBeenCalledWith(
+    `/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/edit`,
+    { modal: true, modalPresentationStyle: 'formsheet' }
+  )
 })
 
 test('routes to the right place when due dates details is requested', () => {
@@ -87,9 +83,9 @@ test('routes to the right place when due dates details is requested', () => {
     <AssignmentDetails {...defaultProps} navigator={navigator} />
   ).getInstance()
   details.viewDueDateDetails()
-  expect(navigator.push).toHaveBeenCalledWith({
-    ...route(`/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/due_dates`),
-  })
+  expect(navigator.show).toHaveBeenCalledWith(
+    `/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/due_dates`
+  )
 })
 
 test('routes to the right place when submissions is tapped', () => {
@@ -100,9 +96,9 @@ test('routes to the right place when submissions is tapped', () => {
     <AssignmentDetails {...defaultProps} navigator={navigator} />
   ).getInstance()
   details.viewAllSubmissions()
-  expect(navigator.push).toHaveBeenCalledWith({
-    ...route(`/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/submissions`),
-  })
+  expect(navigator.show).toHaveBeenCalledWith(
+    `/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/submissions`
+  )
 })
 
 test('routes to the right place when submissions dial is tapped', () => {
@@ -113,10 +109,9 @@ test('routes to the right place when submissions dial is tapped', () => {
     <AssignmentDetails {...defaultProps} navigator={navigator} />
   ).getInstance()
   details.onSubmissionDialPress('graded')
-  expect(navigator.push).toHaveBeenCalledWith({
-    ...route(`/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/submissions`),
-    passProps: {
-      filterType: 'graded',
-    },
-  })
+  expect(navigator.show).toHaveBeenCalledWith(
+    `/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/submissions`,
+    { modal: false },
+    { filterType: 'graded' }
+  )
 })

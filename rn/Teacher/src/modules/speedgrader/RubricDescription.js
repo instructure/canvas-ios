@@ -4,42 +4,28 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
 import WebContainer from '../../common/components/WebContainer'
+import Navigator from '../../routing/Navigator'
+import Screen from '../../routing/Screen'
 
 export class RubricDescription extends Component {
 
-  static navigatorButtons = {
-    rightButtons: [
-      {
-        title: i18n('Done'),
-        id: 'done',
-        testID: 'rubric-description.done',
-      },
-    ],
-  }
-
-  constructor (props: RubricDescriptionProps) {
-    super(props)
-
-    props.navigator.setTitle({
-      title: i18n('Rubric Description'),
-    })
-    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
-  }
-
-  onNavigatorEvent = (event: NavigatorEvent) => {
-    if (event.type === 'NavBarButtonPress') {
-      switch (event.id) {
-        case 'done':
-          this.props.navigator.dismissModal()
-          break
-      }
-    }
+  dismiss = () => {
+    this.props.navigator.dismiss()
   }
 
   render () {
     let html = this.props.description + '<style>body { padding: 24 16 }</style>'
     return (
-      <WebContainer html={html} />
+      <Screen
+        title={i18n('Rubric Description')}
+        rightBarButtons={[{
+          title: i18n('Done'),
+          style: 'done',
+          testID: 'rubric-description.done',
+          action: this.dismiss,
+        }]}>
+        <WebContainer html={html} />
+      </Screen>
     )
   }
 }
@@ -61,11 +47,9 @@ export default (Connected: any)
 type RubricDescriptionOwnProps = {
   assignmentID: string,
   rubricID: string,
-  navigator: ReactNavigator,
+  navigator: Navigator,
 }
 
 type RubricDescriptionDataProps = {
   description: string,
 }
-
-type RubricDescriptionProps = RubricDescriptionOwnProps

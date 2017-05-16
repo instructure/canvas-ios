@@ -119,7 +119,7 @@ export function assignments (state: AssignmentsState = {}, action: any): Assignm
   let newState = state
   if (action.payload && action.payload.assignmentID) {
     const assignmentID = action.payload.assignmentID
-    const currentAssignmentState: AssignmentDetailState = state[assignmentID] || {}
+    const currentAssignmentState: AssignmentDetailState = state[assignmentID] || { pending: 0, data: {} }
     const assignmentState = assignmentContent(currentAssignmentState, action)
     newState = {
       ...state,

@@ -5,7 +5,6 @@ import 'react-native'
 import renderer from 'react-test-renderer'
 
 import { QuizzesList, mapStateToProps, type Props } from '../QuizzesList'
-import { route } from '../../../../routing'
 import explore from '../../../../../test/helpers/explore'
 
 jest
@@ -15,7 +14,7 @@ jest
   .mock('../../../../routing')
 
 const template = {
-  ...require('../../../../__templates__/react-native-navigation'),
+  ...require('../../../../__templates__/helm'),
   ...require('../../../../api/canvas-api/__templates__/quiz'),
   ...require('../../../../redux/__templates__/app-state'),
 }
@@ -49,8 +48,7 @@ describe('QuizzesList', () => {
     const row: any = explore(tree).selectByID('quiz-row-0')
     row.props.onPress()
 
-    const expectedDestination = route(quiz.html_url)
-    expect(props.navigator.push).toHaveBeenCalledWith(expectedDestination)
+    expect(props.navigator.show).toHaveBeenCalledWith(quiz.html_url)
   })
 
   it('renders in correct order', () => {

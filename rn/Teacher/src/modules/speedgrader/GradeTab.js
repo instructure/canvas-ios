@@ -11,7 +11,6 @@ import { connect } from 'react-redux'
 import i18n from 'format-message'
 import { Heading1, Text } from '../../common/text'
 import RubricItem from './components/RubricItem'
-import { route } from '../../routing'
 import { LinkButton } from '../../common/buttons'
 import SpeedGraderActions from './actions'
 import GradePicker from './components/GradePicker'
@@ -30,8 +29,9 @@ export class GradeTab extends Component {
   }
 
   showDescriptionModal = (rubricID: string) => {
-    let { courseID, assignmentID } = this.props
-    this.props.showModal(route(`/courses/${courseID}/assignments/${assignmentID}/rubrics/${rubricID}/description`))
+    const { courseID, assignmentID } = this.props
+    const url = `/courses/${courseID}/assignments/${assignmentID}/rubrics/${rubricID}/description`
+    this.props.navigator.show(url, { modal: true })
   }
 
   updateScore = (id: string, value: number) => {
@@ -159,7 +159,7 @@ type RubricOwnProps = {
   assignmentID: string,
   submissionID: string,
   userID: string,
-  showModal: Function,
+  navigator: Navigator,
 }
 
 type RubricDataProps = {

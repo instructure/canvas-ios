@@ -11,7 +11,7 @@ const template = {
   ...require('../../../api/canvas-api/__templates__/enrollments'),
   ...require('../../../api/canvas-api/__templates__/section'),
   ...require('../../../redux/__templates__/app-state'),
-  ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../__templates__/helm'),
 }
 
 test('correct output from searchMapStateToProps', () => {

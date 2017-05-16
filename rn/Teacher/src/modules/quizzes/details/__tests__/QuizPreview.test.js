@@ -3,14 +3,13 @@
 import React from 'react'
 import 'react-native'
 import renderer from 'react-test-renderer'
-import cloneDeep from 'lodash/cloneDeep'
 
 import { QuizPreview, mapStateToProps } from '../QuizPreview'
 
 jest.mock('WebView', () => 'WebView')
 
 const template = {
-  ...require('../../../../__templates__/react-native-navigation'),
+  ...require('../../../../__templates__/helm'),
   ...require('../../../../api/canvas-api/__templates__/quiz'),
   ...require('../../../../redux/__templates__/app-state'),
 }
@@ -23,21 +22,6 @@ describe('QuizPreview', () => {
 
   it('renders', () => {
     testRender(props)
-  })
-
-  it('calls navigation functions', () => {
-    const ownProps = cloneDeep(props)
-    const dismissModal = jest.fn()
-    ownProps.navigator = template.navigator({
-      dismissModal,
-    })
-    const preview = render(ownProps)
-    preview.getInstance().onNavigatorEvent({
-      type: 'NavBarButtonPress',
-      id: 'dismiss',
-    })
-
-    expect(dismissModal).toHaveBeenCalled()
   })
 
   function testRender (props: any) {

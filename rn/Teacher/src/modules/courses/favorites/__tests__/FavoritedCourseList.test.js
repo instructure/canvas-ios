@@ -4,7 +4,6 @@ import 'react-native'
 import React from 'react'
 import { FavoritedCourseList } from '../FavoritedCourseList.js'
 import explore from '../../../../../test/helpers/explore'
-import { route } from '../../../../routing'
 import type { CourseProps } from '../../course-prop-types'
 
 // Note: test renderer must be required after react-native.
@@ -12,7 +11,7 @@ import renderer from 'react-test-renderer'
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/course'),
-  ...require('../../../../__templates__/react-native-navigation'),
+  ...require('../../../../__templates__/helm'),
 }
 
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')
@@ -79,7 +78,7 @@ test('select course', () => {
     ...defaultProps,
     courses: [course],
     navigator: template.navigator({
-      push: jest.fn(),
+      show: jest.fn(),
     }),
   }
   let tree = renderer.create(
@@ -88,7 +87,7 @@ test('select course', () => {
 
   const courseCard = explore(tree).selectByID(course.course_code) || {}
   courseCard.props.onPress()
-  expect(props.navigator.push).toHaveBeenCalledWith(route('/courses/1'))
+  expect(props.navigator.show).toHaveBeenCalledWith('/courses/1')
 })
 
 test('opens course preferences', () => {
@@ -97,7 +96,7 @@ test('opens course preferences', () => {
     ...defaultProps,
     courses: [{ ...course, color: '#fff' }],
     navigator: template.navigator({
-      showModal: jest.fn(),
+      show: jest.fn(),
     }),
   }
   let tree = renderer.create(
@@ -106,10 +105,10 @@ test('opens course preferences', () => {
 
   const kabob = explore(tree).selectByID(`courseCard.kabob_${course.id}`) || {}
   kabob.props.onPress()
-  expect(props.navigator.showModal).toHaveBeenCalledWith({
-    ...route('/courses/1/user_preferences'),
-    animationType: 'slide-up',
-  })
+  expect(props.navigator.show).toHaveBeenCalledWith(
+    '/courses/1/user_preferences',
+    { modal: true, modalPresentationStyle: 'formsheet' },
+  )
 })
 
 test('go to all courses', () => {
@@ -118,7 +117,7 @@ test('go to all courses', () => {
     ...defaultProps,
     courses: [{ ...course, color: '#fff' }],
     navigator: template.navigator({
-      showModal: jest.fn(),
+      show: jest.fn(),
     }),
   }
   let tree = renderer.create(
@@ -127,17 +126,14 @@ test('go to all courses', () => {
 
   const allButton = explore(tree).selectByID('course-list.see-all-btn') || {}
   allButton.props.onPress()
-  expect(props.navigator.push).toHaveBeenCalledWith({
-    ...route('/courses'),
-    backButtonTitle: 'Courses',
-  })
+  expect(props.navigator.show).toHaveBeenCalledWith('/courses')
 })
 
 test('calls navigator.push when a course is selected', () => {
   const props = {
     ...defaultProps,
     navigator: template.navigator({
-      push: jest.fn(),
+      show: jest.fn(),
     }),
   }
   let tree = renderer.create(
@@ -146,57 +142,39 @@ test('calls navigator.push when a course is selected', () => {
 
   const allButton = explore(tree).selectByID('course-list.see-all-btn') || {}
   allButton.props.onPress()
-  expect(props.navigator.push).toHaveBeenCalledWith({
-    ...route('/courses'),
-    backButtonTitle: 'Courses',
-  })
+  expect(props.navigator.show).toHaveBeenCalledWith('/courses')
 })
 
-test('calls navigator.showModal when the edit button is pressed', () => {
+test('calls navigator.show when the edit button is pressed', () => {
   let navigator = template.navigator({
-    showModal: jest.fn(),
+    show: jest.fn(),
   })
   let tree = renderer.create(
     <FavoritedCourseList {...defaultProps} navigator={navigator} />
   )
 
-  tree._component._renderedComponent._instance.onNavigatorEvent({
-    type: 'NavBarButtonPress',
-    id: 'edit',
-  })
-
-  expect(navigator.showModal).toHaveBeenCalledWith({
-    ...route('/course_favorites'),
-    animationType: 'slide-up',
-  })
-})
-
-test('beta feedback button exists', () => {
-  expect(FavoritedCourseList.navigatorButtons.leftButtons).toMatchObject([{
-    title: 'Leave Feedback',
-    id: 'beta-feedback',
-  }])
+  tree.getInstance().showFavoritesList()
+  expect(navigator.show).toHaveBeenCalledWith(
+    '/course_favorites',
+    { modal: true, modalPresentationStyle: 'formsheet' }
+  )
 })
 
 test('press beta feedback button presents feedback modally', () => {
-  let navHandler = () => {}
-  const event = {
-    type: 'NavBarButtonPress',
-    id: 'beta-feedback',
-  }
   const props = {
     ...defaultProps,
     navigator: template.navigator({
-      showModal: jest.fn(),
-      setOnNavigatorEvent: (callback) => { navHandler = callback },
+      show: jest.fn(),
     }),
   }
 
-  renderer.create(
+  let tree = renderer.create(
     <FavoritedCourseList {...props} />
   )
 
-  navHandler(event)
-
-  expect(props.navigator.showModal).toHaveBeenCalledWith(route('/beta-feedback'))
+  tree.getInstance().presentBetaFeedback()
+  expect(props.navigator.show).toHaveBeenCalledWith(
+    '/beta-feedback',
+    { modal: true }
+  )
 })

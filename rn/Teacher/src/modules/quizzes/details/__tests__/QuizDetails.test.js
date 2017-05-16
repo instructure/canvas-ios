@@ -14,7 +14,7 @@ jest
   .mock('WebView', () => 'WebView')
 
 const template = {
-  ...require('../../../../__templates__/react-native-navigation'),
+  ...require('../../../../__templates__/helm'),
   ...require('../../../../api/canvas-api/__templates__/quiz'),
   ...require('../../../../redux/__templates__/app-state'),
 }
@@ -32,13 +32,6 @@ describe('QuizDetails', () => {
 
   it('renders', () => {
     testRender(props)
-  })
-
-  it('sets title', () => {
-    render(props)
-    expect(props.navigator.setTitle).toHaveBeenCalledWith({
-      title: 'Quiz Details',
-    })
   })
 
   it('renders quiz type', () => {

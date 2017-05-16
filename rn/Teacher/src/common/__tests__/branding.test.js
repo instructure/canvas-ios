@@ -14,22 +14,22 @@ describe('setupBrandingFromNativeBrandingInfo', () => {
 
   it('parses native branding info', () => {
     let expected = {
-      navBgColor: 'navBgColor',
+      navBarColor: 'navBarColor',
       primaryButtonTextColor: 'primaryButtonTextColor',
       primaryButtonColor: 'primaryButtonColor',
       fontColorDark: 'fontColorDark',
       headerImage: './src/images/canvas-logo.png',
-      navButtonColor: 'navButtonColor',
+      navBarButtonColor: 'navBarButtonColor',
       primaryBrandColor: '#374A59',
     }
 
     let input = {
-      'ic-brand-global-nav-bgd': 'navBgColor',
+      'ic-brand-global-nav-bgd': 'navBarColor',
       'ic-brand-button--primary-text': 'primaryButtonTextColor',
       'ic-brand-button--primary-bgd': 'primaryButtonColor',
       'ic-brand-font-color-dark': 'fontColorDark',
-      'ic-brand-header-image': 'headerImage',
-      'ic-brand-global-nav-ic-icon-svg-fill': 'navButtonColor',
+      'ic-brand-header-image': './src/images/canvas-logo.png',
+      'ic-brand-global-nav-ic-icon-svg-fill': 'navBarButtonColor',
     }
     setupBrandingFromNativeBrandingInfo(input)
 

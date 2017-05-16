@@ -16,13 +16,13 @@ import i18n from 'format-message'
 import AssignmentListActions from './actions'
 import CourseActions from '../courses/actions'
 import { mapStateToProps, type AssignmentListProps } from './map-state-to-props'
-import { route } from '../../routing'
 import refresh from '../../utils/refresh'
 
 import AssignmentListRowView from './components/AssignmentListRow'
 import AssignmentListSectionView from './components/AssignmentListSection'
 import { LinkButton } from '../../common/buttons'
 import { Heading1 } from '../../common/text'
+import Screen from '../../routing/Screen'
 
 type State = {
   currentFilter: {
@@ -40,28 +40,10 @@ const DEFAULT_FILTER = {
 }
 
 export class AssignmentList extends Component<any, AssignmentListProps, State> {
-
   state: State
-
-  static navigatorStyle = {
-    drawUnderNavBar: true,
-  }
 
   constructor (props: AssignmentListProps) {
     super(props)
-    props.navigator.setTitle({
-      title: i18n({
-        default: 'Assignments',
-        description: 'Title of the assignments screen for a course',
-      }),
-    })
-
-    if (props.courseColor) {
-      const color: string = props.courseColor
-      props.navigator.setStyle({
-        navBarBackgroundColor: color,
-      })
-    }
 
     this.state = {
       currentFilter: DEFAULT_FILTER,
@@ -106,8 +88,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
   }
 
   selectedAssignment = (assignment: Assignment) => {
-    const destination = route(assignment.html_url)
-    this.props.navigator.push(destination)
+    this.props.navigator.show(assignment.html_url)
   }
 
   clearFilter = () => {
@@ -157,27 +138,37 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
 
   render (): React.Element<View> {
     return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Heading1 style={styles.headerTitle}>{this.state.currentFilter.title}</Heading1>
-          {this.props.gradingPeriods.length > 0 &&
-            <LinkButton testID='assignment-list.filter' onPress={this.toggleFilter} style={styles.filterButton}>
-              {this.state.filterApplied
-                ? i18n('Clear filter')
-                : i18n('Filter')}
-            </LinkButton>
-          }
+      <Screen
+        title={i18n({
+          default: 'Assignments',
+          description: 'Title of the assignments screen for a course',
+        })}
+        subtitle={this.props.courseName}
+        navBarStyle='dark'
+        navBarColor={this.props.courseColor}
+        >
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <Heading1 style={styles.headerTitle}>{this.state.currentFilter.title}</Heading1>
+            {this.props.gradingPeriods.length > 0 &&
+              <LinkButton testID='assignment-list.filter' onPress={this.toggleFilter} style={styles.filterButton}>
+                {this.state.filterApplied
+                  ? i18n('Clear filter')
+                  : i18n('Filter')}
+              </LinkButton>
+            }
+          </View>
+          <SectionList
+            testID='assignment-list.list'
+            sections={this.prepareListData()}
+            renderItem={this.renderRow}
+            renderSectionHeader={this.renderSectionHeader}
+            refreshing={Boolean(this.props.pending)}
+            onRefresh={this.props.refresh}
+            keyExtractor={(item, index) => item.id}
+          />
         </View>
-        <SectionList
-          testID='assignment-list.list'
-          sections={this.prepareListData()}
-          renderItem={this.renderRow}
-          renderSectionHeader={this.renderSectionHeader}
-          refreshing={Boolean(this.props.pending)}
-          onRefresh={this.props.refresh}
-          keyExtractor={(item, index) => item.id}
-        />
-      </View>
+      </Screen>
     )
   }
 }

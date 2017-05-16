@@ -76,6 +76,7 @@ exports[`renders correctly 1`] = `
               },
               Object {
                 "backgroundColor": undefined,
+                "opacity": 0.8,
               },
             ]
           }
@@ -443,6 +444,7 @@ exports[`renders correctly without tabs 1`] = `
               },
               Object {
                 "backgroundColor": undefined,
+                "opacity": 0.8,
               },
             ]
           }
@@ -684,6 +686,7 @@ exports[`renders with empty image url 1`] = `
               },
               Object {
                 "backgroundColor": undefined,
+                "opacity": 1,
               },
             ]
           }
@@ -1051,6 +1054,7 @@ exports[`renders with image url 1`] = `
               },
               Object {
                 "backgroundColor": undefined,
+                "opacity": 0.8,
               },
             ]
           }
@@ -1404,6 +1408,7 @@ exports[`renders without image url 1`] = `
               },
               Object {
                 "backgroundColor": undefined,
+                "opacity": 1,
               },
             ]
           }

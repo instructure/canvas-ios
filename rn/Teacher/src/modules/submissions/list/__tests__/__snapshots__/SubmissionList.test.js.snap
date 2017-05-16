@@ -83,14 +83,14 @@ exports[`SubmissionList loaded 1`] = `
             },
             Array [
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
                 "fontSize": 14,
               },
               Object {
                 "fontFamily": ".SFUIDisplay-bold",
               },
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
               },
               Object {
                 "marginBottom": 1,
@@ -1092,14 +1092,14 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
             },
             Array [
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
                 "fontSize": 14,
               },
               Object {
                 "fontFamily": ".SFUIDisplay-bold",
               },
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
               },
               Object {
                 "marginBottom": 1,

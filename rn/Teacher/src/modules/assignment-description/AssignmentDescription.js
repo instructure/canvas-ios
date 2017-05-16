@@ -5,6 +5,7 @@ import { RichTextEditor, RichTextToolbar } from '../../common/components/rich-te
 import { connect } from 'react-redux'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import * as Actions from './actions'
+import Screen from '../../routing/Screen'
 import {
   StyleSheet,
   View,
@@ -21,11 +22,12 @@ type State = {
 }
 
 type Props = State & typeof Actions & {
-  navigator: ReactNavigator,
+  navigator: Navigator,
   onChange: (input: string) => void,
   onFocus?: () => void,
   onBlur?: () => void,
   editorItemsChanged?: (items: [string]) => void,
+  assignmentID: string,
 }
 
 export class AssignmentDescription extends Component<any, Props, any> {
@@ -47,6 +49,7 @@ export class AssignmentDescription extends Component<any, Props, any> {
 
   render (): React.Element<*> {
     return (
+      <Screen>
       <View style={styles.container}>
         <RichTextEditor
           ref={(editor) => { this.editor = editor }}
@@ -72,6 +75,7 @@ export class AssignmentDescription extends Component<any, Props, any> {
         }
         <KeyboardSpacer />
       </View>
+      </Screen>
     )
   }
 

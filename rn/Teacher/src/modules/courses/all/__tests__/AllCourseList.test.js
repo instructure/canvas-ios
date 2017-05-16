@@ -14,7 +14,7 @@ jest.mock('../../../../routing')
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/course'),
-  ...require('../../../../__templates__/react-native-navigation'),
+  ...require('../../../../__templates__/helm'),
 }
 
 const colors = {
@@ -65,13 +65,6 @@ describe('AllCourseList', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('sets its own title', () => {
-    renderer.create(
-      <AllCourseList {...defaultProps} />
-    )
-    expect(defaultProps.navigator.setTitle).toHaveBeenCalled()
-  })
-
   it('select course', () => {
     const course: CourseProps = { ...template.course(), color: '#112233' }
     const props = {
@@ -87,9 +80,7 @@ describe('AllCourseList', () => {
 
     const courseCard = explore(tree).selectByID(course.course_code) || {}
     courseCard.props.onPress()
-    expect(props.navigator.push).toHaveBeenCalledWith({
-      screen: '/courses/1',
-    })
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1')
   })
 
   it('open course user prefs', () => {
@@ -107,10 +98,10 @@ describe('AllCourseList', () => {
     ).getInstance()
 
     tree.openUserPreferences(course.id)
-    expect(props.navigator.showModal).toHaveBeenCalledWith({
-      screen: `/courses/${course.id}/user_preferences`,
-      animationType: 'slide-up',
-    })
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      `/courses/${course.id}/user_preferences`,
+      { modal: true }
+    )
   })
 })
 

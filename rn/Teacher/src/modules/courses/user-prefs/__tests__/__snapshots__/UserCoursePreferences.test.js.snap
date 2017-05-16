@@ -22,7 +22,7 @@ exports[`UserCoursePreferences renders 1`] = `
       style={
         Object {
           "flex": 1,
-          "minHeight": 200,
+          "minHeight": 235,
         }
       }
     >
@@ -127,12 +127,12 @@ exports[`UserCoursePreferences renders 1`] = `
       <View
         style={
           Object {
-            "borderBottomWidth": 1,
-            "borderColor": "#C7CDD1",
-            "borderTopWidth": 1,
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
           }
         }
-      >
+      />
+      <View>
         <Text
           accessible={true}
           allowFontScaling={true}
@@ -634,6 +634,14 @@ exports[`UserCoursePreferences renders 1`] = `
           </View>
         </RCTScrollView>
       </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
     </View>
   </View>
 </RCTScrollView>

@@ -293,14 +293,14 @@ exports[`RubricItem changes the currently selected value when a circle is presse
             },
             Array [
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
                 "fontSize": 14,
               },
               Object {
                 "fontFamily": ".SFUIDisplay-bold",
               },
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
               },
               Object {
                 "fontSize": 14,
@@ -343,14 +343,14 @@ exports[`RubricItem changes the currently selected value when a circle is presse
             },
             Array [
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
                 "fontSize": 14,
               },
               Object {
                 "fontFamily": ".SFUIDisplay-bold",
               },
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
               },
               Object {
                 "fontSize": 14,
@@ -661,14 +661,14 @@ exports[`RubricItem renders 1`] = `
             },
             Array [
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
                 "fontSize": 14,
               },
               Object {
                 "fontFamily": ".SFUIDisplay-bold",
               },
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
               },
               Object {
                 "fontSize": 14,
@@ -711,14 +711,14 @@ exports[`RubricItem renders 1`] = `
             },
             Array [
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
                 "fontSize": 14,
               },
               Object {
                 "fontFamily": ".SFUIDisplay-bold",
               },
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
               },
               Object {
                 "fontSize": 14,
@@ -1032,14 +1032,14 @@ exports[`RubricItem renders an already selected grade 1`] = `
             },
             Array [
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
                 "fontSize": 14,
               },
               Object {
                 "fontFamily": ".SFUIDisplay-bold",
               },
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
               },
               Object {
                 "fontSize": 14,
@@ -1082,14 +1082,14 @@ exports[`RubricItem renders an already selected grade 1`] = `
             },
             Array [
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
                 "fontSize": 14,
               },
               Object {
                 "fontFamily": ".SFUIDisplay-bold",
               },
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
               },
               Object {
                 "fontSize": 14,
@@ -1423,14 +1423,14 @@ exports[`RubricItem renders the selected custom grade 1`] = `
             },
             Array [
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
                 "fontSize": 14,
               },
               Object {
                 "fontFamily": ".SFUIDisplay-bold",
               },
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
               },
               Object {
                 "fontSize": 14,
@@ -1473,14 +1473,14 @@ exports[`RubricItem renders the selected custom grade 1`] = `
             },
             Array [
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
                 "fontSize": 14,
               },
               Object {
                 "fontFamily": ".SFUIDisplay-bold",
               },
               Object {
-                "color": "#ff0ee8",
+                "color": "#374A59",
               },
               Object {
                 "fontSize": 14,

@@ -17,7 +17,7 @@ jest.mock('../../../common/components/BottomDrawer')
 const templates = {
   ...require('../../../api/canvas-api/__templates__/submissions'),
   ...require('../../../redux/__templates__/app-state'),
-  ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../__templates__/helm'),
   ...require('../../submissions/list/__templates__/submission-props'),
 }
 

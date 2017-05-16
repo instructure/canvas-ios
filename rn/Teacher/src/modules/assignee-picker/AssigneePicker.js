@@ -15,7 +15,6 @@ import { connect } from 'react-redux'
 import { find } from 'lodash'
 import i18n from 'format-message'
 import colors from '../../common/colors'
-import { route } from '../../routing'
 import AssigneeRow from './AssigneeRow'
 import Images from '../../images'
 import { pickerMapStateToProps, type AssigneePickerProps, type Assignee } from './map-state-to-props'
@@ -23,33 +22,12 @@ import Actions from './actions.js'
 import EnrollmentActions from '../enrollments/actions'
 import UserActions from '../users/actions'
 import { Text } from '../../common/text'
+import Screen from '../../routing/Screen'
 
 export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
 
-  static navigatorButtons = {
-    rightButtons: [
-      {
-        title: i18n({
-          default: 'Done',
-          description: 'Button to close modal',
-          id: 'done_edit_assignment',
-        }),
-        id: 'done',
-        testID: 'assignee-picker.dismiss-btn',
-      },
-    ],
-    leftButtons: [
-      {
-        title: i18n('Cancel'),
-        id: 'cancel',
-        testID: 'assignee-picker.cancel-btn',
-      },
-    ],
-  }
-
   constructor (props: AssigneePickerProps) {
     super(props)
-    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
     this.state = {
       selected: props.assignees || [],
     }
@@ -76,37 +54,20 @@ export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
     this.props.refreshUsers(userIds)
   }
 
-  onNavigatorEvent = (event: NavigatorEvent): void => {
-    switch (event.type) {
-      case 'NavBarButtonPress':
-        switch (event.id) {
-          case 'done':
-            if (this.props.callback) {
-              this.props.callback(this.state.selected || [])
-            } else {
-              this.props.navigator.dismissModal()
-            }
-            break
-          case 'cancel':
-            this.props.navigator.dismissModal()
-            break
-        }
-        break
+  done = () => {
+    if (this.props.callback) {
+      this.props.callback(this.state.selected || [])
+    } else {
+      this.props.navigator.dismiss()
     }
   }
 
-  addAssignee = (animationStyle: ?string = 'slide-up') => {
-    let destination = route(`/courses/${this.props.courseID}/assignee-search`, { onSelection: this.handleSelectedAssignee })
-    this.props.navigator.showModal({
-      ...destination,
-      animationStyle,
-    })
+  dismiss = () => {
+    this.props.navigator.dismiss()
   }
 
-  componentWillMount = () => {
-    this.props.navigator.setTitle({
-      title: i18n('Assignees'),
-    })
+  addAssignee = () => {
+    this.props.navigator.show(`/courses/${this.props.courseID}/assignee-search`, { modal: true }, { onSelection: this.handleSelectedAssignee })
   }
 
   handleSelectedAssignee = (assignee: Assignee) => {
@@ -119,7 +80,7 @@ export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
       })
     }
 
-    this.props.navigator.dismissModal()
+    this.props.navigator.dismiss()
   }
 
   deleteAssignee = (assignee: Assignee) => {
@@ -133,17 +94,41 @@ export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
   }
 
   render (): React.Element<View> {
-    return (<ScrollView style={styles.container}>
-              { this.state.selected.length > 0 && <View style={styles.space} /> }
-              { this.state.selected.map((assignee: Assignee) => <AssigneeRow assignee={assignee} onDelete={this.deleteAssignee} key={assignee.id}/>) }
-              <View style={styles.space} />
-              <TouchableHighlight style={styles.button} onPress={this.addAssignee}>
-                <View style={styles.buttonContainer}>
-                  <Image source={Images.add} style={styles.buttonImage} />
-                  <Text style={styles.buttonText}>Add Assignee</Text>
-                </View>
-              </TouchableHighlight>
-            </ScrollView>)
+    return (
+      <Screen
+        title={i18n('Assignees')}
+        rightBarButtons={[
+          {
+            title: i18n({
+              default: 'Done',
+              description: 'Button to close modal',
+              id: 'done_edit_assignment',
+            }),
+            style: 'done',
+            testID: 'assignee-picker.dismiss-btn',
+            action: this.done,
+          },
+        ]}
+        leftBarButtons={[
+          {
+            title: i18n('Cancel'),
+            testID: 'assignee-picker.cancel-btn',
+            action: this.dismiss,
+          },
+        ]}>
+        <ScrollView style={styles.container}>
+          { this.state.selected.length > 0 && <View style={styles.space} /> }
+          { this.state.selected.map((assignee: Assignee) => <AssigneeRow assignee={assignee} onDelete={this.deleteAssignee} key={assignee.id}/>) }
+          <View style={styles.space} />
+          <TouchableHighlight style={styles.button} onPress={this.addAssignee}>
+            <View style={styles.buttonContainer}>
+              <Image source={Images.add} style={styles.buttonImage} />
+              <Text style={styles.buttonText}>Add Assignee</Text>
+            </View>
+          </TouchableHighlight>
+        </ScrollView>
+      </Screen>
+    )
   }
 }
 

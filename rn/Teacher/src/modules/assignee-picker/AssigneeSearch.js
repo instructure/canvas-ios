@@ -17,24 +17,15 @@ import { searchMapStateToProps, type AssigneeSearchProps, type Assignee } from '
 import AssigneeRow from './AssigneeRow'
 import SearchBar from 'react-native-search-bar'
 import { escapeRegExp } from 'lodash'
+import Screen from '../../routing/Screen'
 
 export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
   searchBar: SearchBar
   filterString: string
-  static navigatorButtons = {
-    leftButtons: [
-      {
-        title: i18n('Cancel'),
-        id: 'cancel',
-        testID: 'assignee-picker.cancel-btn',
-      },
-    ],
-  }
 
   constructor (props: AssigneeSearchProps) {
     super(props)
 
-    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
     this.state = {
       data: [],
     }
@@ -45,18 +36,6 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
     this.updateData(this.props.sections, this.props.enrollments)
   }
 
-  onNavigatorEvent = (event: NavigatorEvent): void => {
-    switch (event.type) {
-      case 'NavBarButtonPress':
-        switch (event.id) {
-          case 'cancel':
-            this.props.navigator.dismissModal()
-            break
-        }
-        break
-    }
-  }
-
   componentWillReceiveProps (props: AssigneeSearchProps) {
     this.updateData(props.sections, props.enrollments)
   }
@@ -64,10 +43,10 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
   componentWillMount () {
     this.refreshData()
     this.updateData()
+  }
 
-    this.props.navigator.setTitle({
-      title: i18n('Add Assignee'),
-    })
+  dismiss = () => {
+    this.props.navigator.dismiss()
   }
 
   refreshData () {
@@ -138,15 +117,28 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
   }
 
   render (): React.Element<View> {
-    return (<View style={styles.container}>
-              <FlatList
-                testID='assignee-picker.list'
-                data={this.state.data}
-                renderItem={this.renderRow}
-                keyExtractor={(item) => item.id}
-                ListHeaderComponent={this.renderSearchBar}
-              />
-            </View>)
+    return (
+      <Screen
+        title={i18n('Add Assignee')}
+        leftBarButtons={[
+          {
+            title: i18n('Cancel'),
+            testID: 'assignee-picker.cancel-btn',
+            action: this.dismiss,
+          },
+        ]}
+      >
+        <View style={styles.container}>
+          <FlatList
+            testID='assignee-picker.list'
+            data={this.state.data}
+            renderItem={this.renderRow}
+            keyExtractor={(item) => item.id}
+            ListHeaderComponent={this.renderSearchBar}
+          />
+        </View>
+      </Screen>
+    )
   }
 }
 

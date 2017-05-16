@@ -13,6 +13,7 @@ jest.mock('react-native-button', () => 'Button')
 const templates = {
   ...require('../../../api/canvas-api/__templates__/rubric'),
   ...require('../../../redux/__templates__/app-state'),
+  ...require('../../../__templates__/helm'),
 }
 
 let ownProps = {
@@ -20,7 +21,7 @@ let ownProps = {
   courseID: '1',
   submissionID: '1',
   userID: '1',
-  showModal: jest.fn(),
+  navigator: templates.navigator(),
 }
 
 let defaultProps = {
@@ -52,7 +53,7 @@ describe('Rubric', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('calls showModal with the proper route when a view description is pressed', () => {
+  it('calls show with the proper route when a view description is pressed', () => {
     let tree = renderer.create(
       <GradeTab {...defaultProps} />
     ).toJSON()
@@ -60,14 +61,10 @@ describe('Rubric', () => {
     let button = explore(tree).selectByID('rubric-item.description') || {}
     button.props.onPress()
 
-    expect(defaultProps.showModal).toHaveBeenCalledWith({
-      screen: '(/api/v1)/courses/:courseID/assignments/:assignmentID/rubrics/:rubricID/description',
-      passProps: {
-        courseID: '1',
-        assignmentID: '1',
-        rubricID: defaultProps.rubricItems[0].id,
-      },
-    })
+    expect(defaultProps.navigator.show).toHaveBeenCalledWith(
+      `/courses/1/assignments/1/rubrics/${defaultProps.rubricItems[0].id}/description`,
+      { modal: true },
+    )
   })
 
   it('has the correct score', () => {

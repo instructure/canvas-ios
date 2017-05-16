@@ -9,7 +9,7 @@ import timezoneMock from 'timezone-mock'
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../__templates__/helm'),
   ...require('../../../api/canvas-api/__templates__/grading-periods'),
 }
 
@@ -61,7 +61,7 @@ test('renders correctly', () => {
 
 test('selected assignment', () => {
   const navigator = template.navigator({
-    push: jest.fn(),
+    show: jest.fn(),
   })
   const assignment = group.assignments[0]
   const tree = renderer.create(
@@ -69,7 +69,7 @@ test('selected assignment', () => {
   )
   const row: any = explore(tree.toJSON()).selectByID(`assignment-${assignment.id}`)
   row.props.onPress()
-  expect(navigator.push).toHaveBeenCalled()
+  expect(navigator.show).toHaveBeenCalled()
 })
 
 test('getSectionHeaderData', () => {

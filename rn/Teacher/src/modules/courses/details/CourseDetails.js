@@ -11,31 +11,31 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native'
+import Button from 'react-native-button'
 
 import Images from '../../../images'
 import CourseDetailsActions from '../tabs/actions'
 import CourseActions from '../actions'
 import CourseDetailsTab from './components/CourseDetailsTab'
 import mapStateToProps, { type CourseDetailsProps } from './map-state-to-props'
-import Button from 'react-native-button'
 import NavigationBackButton from '../../../common/components/NavigationBackButton'
-import { route } from '../../../routing'
 import refresh from '../../../utils/refresh'
 import { RefreshableScrollView } from '../../../common/components/RefreshableList'
 import { Text } from '../../../common/text'
+import Screen from '../../../routing/Screen'
 import i18n from 'format-message'
+import Navigator from '../../../routing/Navigator'
 
-type Props = CourseDetailsProps & NavProps
+export class CourseDetails extends Component<any, CourseDetailsProps, any> {
 
-export class CourseDetails extends Component<any, Props, any> {
+  placeholderDidShow: boolean = false
 
-  static navigatorStyle = {
-    navBarHidden: true,
+  componentDidMount () {
+    this.showPlaceholder()
   }
 
   selectTab = (tab: Tab) => {
-    const destination = route(tab.html_url)
-    this.props.navigator.push(destination)
+    this.props.navigator.show(tab.html_url)
   }
 
   back = () => {
@@ -44,9 +44,18 @@ export class CourseDetails extends Component<any, Props, any> {
 
   editCourse = () => {
     if (this.props.course) {
-      let destination = route(`/courses/${this.props.course.id}/settings`)
-      this.props.navigator.showModal(destination)
+      this.props.navigator.show(`/courses/${this.props.course.id}/settings`, { modal: true, modalPresentationStyle: 'formsheet' })
     }
+  }
+
+  showPlaceholder () {
+    let navigator: Navigator = this.props.navigator
+    navigator.traitCollection((traits) => {
+      if (traits.horizontal !== 'compact' && !this.placeholderDidShow && this.props.course) {
+        this.placeholderDidShow = true
+        this.props.navigator.show(`/courses/${this.props.course.id}/placeholder`, {}, { courseColor: this.props.color, course: this.props.course })
+      }
+    })
   }
 
   render (): React.Element<View> {
@@ -62,7 +71,12 @@ export class CourseDetails extends Component<any, Props, any> {
     })
 
     return (
-      <RefreshableScrollView
+      <Screen
+        statusBarStyle='light'
+        navBarHidden={true}
+        navBarColor={courseColor}
+        >
+        <RefreshableScrollView
         style={styles.container}
         refreshing={this.props.refreshing}
         onRefresh={this.props.refresh}
@@ -72,7 +86,7 @@ export class CourseDetails extends Component<any, Props, any> {
             {Boolean(course.image_download_url) &&
                 <Image source={{ uri: course.image_download_url }} style={styles.headerImage} />
             }
-            <View style={[styles.headerImageOverlay, { backgroundColor: courseColor }]} />
+            <View style={[styles.headerImageOverlay, { backgroundColor: courseColor, opacity: this.props.course.image_download_url ? 0.8 : 1 }]} />
           </View>
           <View style={styles.navigationBar}>
             <NavigationBackButton onPress={this.back} testID='course-details.navigation-back-btn' />
@@ -93,6 +107,7 @@ export class CourseDetails extends Component<any, Props, any> {
           {tabs}
         </View>
       </RefreshableScrollView>
+      </Screen>
     )
   }
 }
@@ -201,4 +216,4 @@ let Refreshed = refresh(
   props => Boolean(props.pending)
 )(CourseDetails)
 let Connected = connect(mapStateToProps, { ...CourseDetailsActions, ...CourseActions })(Refreshed)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<any, CourseDetailsProps, any>)

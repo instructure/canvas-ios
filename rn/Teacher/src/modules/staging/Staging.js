@@ -9,21 +9,26 @@ import {
   AsyncStorage,
  } from 'react-native'
 import { Button } from '../../common/buttons'
-import { route } from '../../routing'
+import { route, type RouteOptions } from '../../routing'
+import Navigator from '../../routing/Navigator'
 
 const stagingKey = 'teacher.staging.path'
 
-class Staging extends Component<*, NavProps, *> {
+type StagingProps = {
+  navigator: Navigator,
+}
+
+export default class Staging extends Component<any, StagingProps, any> {
   componentDidMount = () => {
     AsyncStorage.getItem(stagingKey)
       .then(path => this.setState({ path }))
   }
 
-  navigate = (nav: (screen: any) => void) => {
+  navigate = (nav: (route: RouteOptions) => void) => {
     let path = this.state && this.state.path || ''
     try {
-      let screen = route(path)
-      nav(screen)
+      let r = route(path)
+      nav(r)
       AsyncStorage.setItem(stagingKey, path)
     } catch (e) {
       Alert.alert(
@@ -41,11 +46,11 @@ class Staging extends Component<*, NavProps, *> {
   }
 
   go = () => {
-    this.navigate(screen => this.props.navigator.push(screen))
+    this.navigate(route => this.props.navigator.show(route.screen, {}, route.passProps))
   }
 
   modal = () => {
-    this.navigate(screen => this.props.navigator.showModal(screen))
+    this.navigate(route => this.props.navigator.show(route.screen, { modal: true }, route.passProps))
   }
 
   render () {
@@ -126,5 +131,3 @@ let styles = StyleSheet.create({
     marginTop: 16,
   },
 })
-
-export default Staging

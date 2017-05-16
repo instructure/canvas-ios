@@ -8,6 +8,21 @@
       location = "container:"
       name = "Dependencies">
       <FileRef
+         location = "group:../../../Carthage/Checkouts/SDWebImage/SDWebImage.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../../Carthage/Checkouts/PocketSVG/PocketSVG.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../../Carthage/Checkouts/Result/Result.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../../Carthage/Checkouts/ReactiveObjCBridge/ReactiveObjCBridge.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../../Carthage/Checkouts/ReactiveSwift/ReactiveSwift.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:../../../Carthage/Checkouts/EarlGrey/EarlGrey.xcodeproj">
       </FileRef>
       <FileRef

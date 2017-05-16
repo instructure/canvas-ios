@@ -63,6 +63,14 @@ exports[`Rubric has the correct score 1`] = `
           assignmentID="1"
           courseID="1"
           gradeSubmissionWithRubric={[Function]}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
           rubricAssessment={
             Object {
               "1": Object {
@@ -106,7 +114,6 @@ exports[`Rubric has the correct score 1`] = `
               "title": "A possible item",
             }
           }
-          showModal={[Function]}
           submissionID="1"
           userID="1"
         />
@@ -463,14 +470,14 @@ exports[`Rubric has the correct score 1`] = `
                   },
                   Array [
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                       "fontSize": 14,
                     },
                     Object {
                       "fontFamily": ".SFUIDisplay-bold",
                     },
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                     },
                     Object {
                       "fontSize": 14,
@@ -513,14 +520,14 @@ exports[`Rubric has the correct score 1`] = `
                   },
                   Array [
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                       "fontSize": 14,
                     },
                     Object {
                       "fontFamily": ".SFUIDisplay-bold",
                     },
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                     },
                     Object {
                       "fontSize": 14,
@@ -607,6 +614,14 @@ exports[`Rubric renders a rubric 1`] = `
           assignmentID="1"
           courseID="1"
           gradeSubmissionWithRubric={[Function]}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
           rubricAssessment={
             Object {
               "1": Object {
@@ -650,7 +665,6 @@ exports[`Rubric renders a rubric 1`] = `
               "title": "A possible item",
             }
           }
-          showModal={[Function]}
           submissionID="1"
           userID="1"
         />
@@ -1007,14 +1021,14 @@ exports[`Rubric renders a rubric 1`] = `
                   },
                   Array [
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                       "fontSize": 14,
                     },
                     Object {
                       "fontFamily": ".SFUIDisplay-bold",
                     },
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                     },
                     Object {
                       "fontSize": 14,
@@ -1057,14 +1071,14 @@ exports[`Rubric renders a rubric 1`] = `
                   },
                   Array [
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                       "fontSize": 14,
                     },
                     Object {
                       "fontFamily": ".SFUIDisplay-bold",
                     },
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                     },
                     Object {
                       "fontSize": 14,
@@ -1151,6 +1165,14 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
           assignmentID="1"
           courseID="1"
           gradeSubmissionWithRubric={[Function]}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
           rubricAssessment={
             Object {
               "1": Object {
@@ -1194,7 +1216,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               "title": "A possible item",
             }
           }
-          showModal={[Function]}
           submissionID="1"
           userID="1"
         />
@@ -1557,14 +1578,14 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   },
                   Array [
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                       "fontSize": 14,
                     },
                     Object {
                       "fontFamily": ".SFUIDisplay-bold",
                     },
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                     },
                     Object {
                       "fontSize": 14,
@@ -1607,14 +1628,14 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   },
                   Array [
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                       "fontSize": 14,
                     },
                     Object {
                       "fontFamily": ".SFUIDisplay-bold",
                     },
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                     },
                     Object {
                       "fontSize": 14,
@@ -1701,6 +1722,14 @@ exports[`Rubric shows the save button when there is a change in the rubric score
           assignmentID="1"
           courseID="1"
           gradeSubmissionWithRubric={[Function]}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
           rubricAssessment={
             Object {
               "1": Object {
@@ -1744,7 +1773,6 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               "title": "A possible item",
             }
           }
-          showModal={[Function]}
           submissionID="1"
           userID="1"
         />
@@ -1831,14 +1859,14 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   },
                   Array [
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                       "fontSize": 14,
                     },
                     Object {
                       "fontFamily": ".SFUIDisplay-bold",
                     },
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                     },
                     Object {
                       "fontSize": 18,
@@ -2152,14 +2180,14 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   },
                   Array [
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                       "fontSize": 14,
                     },
                     Object {
                       "fontFamily": ".SFUIDisplay-bold",
                     },
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                     },
                     Object {
                       "fontSize": 14,
@@ -2202,14 +2230,14 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   },
                   Array [
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                       "fontSize": 14,
                     },
                     Object {
                       "fontFamily": ".SFUIDisplay-bold",
                     },
                     Object {
-                      "color": "#ff0ee8",
+                      "color": "#374A59",
                     },
                     Object {
                       "fontSize": 14,

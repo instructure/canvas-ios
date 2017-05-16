@@ -13,10 +13,10 @@ import {
 import i18n from 'format-message'
 
 import Actions from './actions'
-import { route } from '../../../routing'
 import refresh from '../../../utils/refresh'
 import QuizRow from './QuizRow'
 import { SectionHeader } from '../../../common/text'
+import Screen from '../../../routing/Screen'
 
 type OwnProps = {
   courseID: string,
@@ -28,7 +28,7 @@ type State = {
 }
 
 export type Props = State & typeof Actions & {
-  navigator: ReactNavigator,
+  navigator: Navigator,
 }
 
 const HEADERS = {
@@ -39,26 +39,6 @@ const HEADERS = {
 }
 
 export class QuizzesList extends Component<any, Props, any> {
-
-  static navigatorStyle = {
-    drawUnderNavBar: true,
-  }
-
-  constructor (props: Props) {
-    super(props)
-    props.navigator.setTitle({
-      title: i18n({
-        default: 'Quizzes',
-        description: 'Title of the quizzes screen for a course',
-      }),
-    })
-
-    if (props.courseColor) {
-      props.navigator.setStyle({
-        navBarBackgroundColor: props.courseColor,
-      })
-    }
-  }
 
   renderRow = ({ item, index }: { item: Quiz, index: number }) => {
     return (
@@ -76,8 +56,7 @@ export class QuizzesList extends Component<any, Props, any> {
   }
 
   _selectedQuiz = (quiz: Quiz) => {
-    const destination = route(quiz.html_url)
-    this.props.navigator.push(destination)
+    this.props.navigator.show(quiz.html_url)
   }
 
   _getData = () => {
@@ -115,17 +94,25 @@ export class QuizzesList extends Component<any, Props, any> {
 
   render (): React.Element<View> {
     return (
-      <View style={styles.container}>
-        <SectionList
-          sections={this._getData()}
-          renderSectionHeader={this.renderSectionHeader}
-          renderItem={this.renderRow}
-          refreshing={Boolean(this.props.pending)}
-          onRefresh={this.props.refresh}
-          keyExtractor={(item, index) => item.id}
-          testID='quiz-list.list'
-        />
-      </View>
+      <Screen
+        navBarColor={this.props.courseColor}
+        drawUnderNavBar={true}
+        title={i18n({
+          default: 'Quizzes',
+          description: 'Title of the quizzes screen for a course',
+        })}>
+        <View style={styles.container}>
+          <SectionList
+            sections={this._getData()}
+            renderSectionHeader={this.renderSectionHeader}
+            renderItem={this.renderRow}
+            refreshing={Boolean(this.props.pending)}
+            onRefresh={this.props.refresh}
+            keyExtractor={(item, index) => item.id}
+            testID='quiz-list.list'
+          />
+        </View>
+      </Screen>
     )
   }
 }

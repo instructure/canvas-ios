@@ -95,7 +95,7 @@ exports[`Render row with switch 1`] = `
         onChange={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        onTintColor="#ff0ee8"
+        onTintColor="#374A59"
         onValueChange={[Function]}
         style={
           Array [
@@ -107,7 +107,7 @@ exports[`Render row with switch 1`] = `
           ]
         }
         testID="test"
-        tintColor="#ff0ee8"
+        tintColor="#374A59"
         title="Row with a switch in it!"
         value={false}
       />

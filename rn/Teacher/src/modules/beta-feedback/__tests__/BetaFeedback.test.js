@@ -4,7 +4,7 @@ import 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import { BetaFeedback } from '../BetaFeedback'
+import BetaFeedback from '../BetaFeedback'
 import explore from '../../../../test/helpers/explore'
 
 jest
@@ -12,7 +12,7 @@ jest
   .mock('../../../api/session')
 
 const template = {
-  ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../__templates__/helm'),
 }
 
 const defaultProps = {
@@ -34,34 +34,17 @@ describe('Beta Feedback form', () => {
     ).toHaveLength(1)
   })
 
-  it('should have a dismiss button', () => {
-    expect(BetaFeedback.navigatorButtons.rightButtons).toMatchObject([{
-      title: 'Done',
-      id: 'dismiss',
-      testID: 'beta-feedback.dismiss-btn',
-    }])
-  })
-
   it('should have a way to be dismissed', () => {
-    let navHandler = () => {}
-    const event = {
-      type: 'NavBarButtonPress',
-      id: 'dismiss',
-    }
     const props = {
       ...defaultProps,
       navigator: template.navigator({
-        dismissModal: jest.fn(),
-        setOnNavigatorEvent: (callback) => { navHandler = callback },
+        dismiss: jest.fn(),
       }),
     }
-
-    renderer.create(
+    const tree = renderer.create(
       <BetaFeedback {...props} />
     )
-
-    navHandler(event)
-
-    expect(props.navigator.dismissModal).toHaveBeenCalled()
+    tree.getInstance().dismiss()
+    expect(props.navigator.dismiss).toHaveBeenCalled()
   })
 })

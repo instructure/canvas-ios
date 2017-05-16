@@ -2,13 +2,14 @@
 
 import { cloneDeep } from 'lodash'
 import i18n from 'format-message'
+import Navigator from '../../routing/Navigator'
 
 export type AssigneeSearchProps = {
   courseID: string,
   sections: Section[],
   enrollments: Enrollment[],
   onSelection: Function,
-  navigator: ReactNavigator,
+  navigator: Navigator,
   refreshSections: Function,
   refreshEnrollments: Function,
 }
@@ -52,7 +53,7 @@ export type Assignee = {
 export type AssigneePickerProps = {
   courseID: string,
   assignees: Assignee[],
-  navigator: ReactNavigator,
+  navigator: Navigator,
   callback?: Function, // Called when finished picking assignees. Will send the new list of assignees as the first parameter
   refreshSections: Function,
   refreshUsers: Function,

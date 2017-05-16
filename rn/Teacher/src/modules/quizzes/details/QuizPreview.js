@@ -7,6 +7,7 @@ import {
 
 import { connect } from 'react-redux'
 import i18n from 'format-message'
+import Screen from '../../../routing/Screen'
 
 type Props = {
   quizID: string,
@@ -14,49 +15,31 @@ type Props = {
 
 type LocalProps = Props & {
   quiz: Quiz,
-  navigator: ReactNavigator,
+  navigator: Navigator,
 }
 
 export class QuizPreview extends Component<any, LocalProps, any> {
-  constructor (props: LocalProps) {
-    super(props)
-
-    props.navigator.setTitle({
-      title: i18n('Quiz Preview'),
-    })
-
-    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
-  }
-
-  static navigatorButtons = {
-    leftButtons: [
-      {
-        title: i18n('Done'),
-        id: 'dismiss',
-        testID: 'quiz-preview.dismiss-btn',
-      },
-    ],
-  }
-
-  onNavigatorEvent = (event: NavigatorEvent) => {
-    switch (event.type) {
-      case 'NavBarButtonPress':
-        switch (event.id) {
-          case 'dismiss':
-            this.props.navigator.dismissModal()
-            break
-        }
-        break
-    }
-  }
-
   render () {
     const javascript = "document.getElementById('preview_quiz_button').click();"
     const uri = `${this.props.quiz.html_url}/take?preview=1&persist_headless=1&force_user=1`
-    return (<WebView style={style.webView}
-                     source={{ uri }}
-                     injectedJavaScript={javascript}
-                     automaticallyAdjustContentInsets={false} />)
+    return (
+      <Screen
+        title={i18n('Quiz Preview')}
+        leftBarButtons={[
+          {
+            title: i18n('Done'),
+            style: 'done',
+            testID: 'quiz-preview.dismiss-btn',
+            action: this.props.navigator.dismiss.bind(this),
+          },
+        ]}
+      >
+        <WebView style={style.webView}
+                        source={{ uri }}
+                        injectedJavaScript={javascript}
+                        automaticallyAdjustContentInsets={false} />
+      </Screen>
+    )
   }
 }
 

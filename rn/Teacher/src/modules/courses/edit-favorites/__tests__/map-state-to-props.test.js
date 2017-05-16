@@ -7,17 +7,24 @@ test('returns the correct props', () => {
     entities: {
       courses: {
         '1': {
-          course: {},
+          course: {
+            name: 'trump university',
+          },
+        },
+        '2': {
+          course: {
+            name: 'harvard',
+          },
         },
       },
       assignmentGroups: {},
       gradingPeriods: {},
     },
     favoriteCourses: {
-      courseRefs: ['1'],
+      courseRefs: ['1', '2'],
     },
   })
   let props = mapStateToProps(state)
-  expect(props.courses).toEqual([state.entities.courses['1'].course])
+  expect(props.courses).toEqual([state.entities.courses['2'].course, state.entities.courses['1'].course])
   expect(props.favorites).toEqual(state.favoriteCourses.courseRefs)
 })

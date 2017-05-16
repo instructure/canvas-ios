@@ -7,14 +7,16 @@ import mapStateToProps from './map-state-to-props'
 import { connect } from 'react-redux'
 import CourseList from '../components/CourseList'
 import type { CourseProps } from '../course-prop-types'
-import { route } from '../../../routing/'
 import CoursesActions from '../actions'
 import refresh from '../../../utils/refresh'
+import Navigator from '../../../routing/Navigator'
+import Screen from '../../../routing/Screen'
+import branding from '../../../common/branding'
 
 const { width: deviceWidth } = Dimensions.get('window')
 
 type Props = {
-  navigator: ReactNavigator,
+  navigator: Navigator,
   courses: Array<CourseProps>,
   error?: string,
   pending?: number,
@@ -23,38 +25,32 @@ type Props = {
 export class AllCourseList extends Component {
   props: Props
 
-  constructor (props: Props) {
-    super(props)
-
-    props.navigator.setTitle({
-      title: i18n({
-        default: 'All Courses',
-        description: `The title of the screen showing all of a teacher's courses`,
-      }),
-    })
-  }
-
   openUserPreferences = (courseId: string) => {
-    let destination = route(`/courses/${courseId}/user_preferences`)
-    this.props.navigator.showModal({
-      ...destination,
-      animationType: 'slide-up',
-    })
+    this.props.navigator.show(`/courses/${courseId}/user_preferences`, { modal: true })
   }
 
   selectCourse = (course: Course) => {
-    this.props.navigator.push(route(`/courses/${course.id}`))
+    this.props.navigator.show(`/courses/${course.id}`)
   }
 
   render (): React.Element<*> {
     return (
-      <CourseList
-        {...this.props}
-        selectCourse={this.selectCourse}
-        width={deviceWidth}
-        onCoursePreferencesPressed={this.openUserPreferences}
-        onRefresh={this.props.refresh}
-      />
+      <Screen
+        navBarTranslucent={true}
+        navBarColor={branding.navBarColor}
+        navBarStyle='dark'
+        title={i18n({
+          default: 'All Courses',
+          description: `The title of the screen showing all of a teacher's courses`,
+        })}>
+        <CourseList
+          {...this.props}
+          selectCourse={this.selectCourse}
+          width={deviceWidth}
+          onCoursePreferencesPressed={this.openUserPreferences}
+          onRefresh={this.props.refresh}
+        />
+      </Screen>
     )
   }
 }

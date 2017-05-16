@@ -19,7 +19,7 @@ jest
 const template = {
   ...require('../../../redux/__templates__/app-state'),
   ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../__templates__/react-native-navigation'),
+  ...require('../../../__templates__/helm'),
 }
 
 describe('AssignmentDescription', () => {
