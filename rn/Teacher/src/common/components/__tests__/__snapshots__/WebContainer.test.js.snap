@@ -1,101 +1,301 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render 1`] = `
-<View
-  style={
+<WebView
+  injectedJavaScript="
+  var height = document.getElementById('whizzy_content').clientHeight;
+  postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
+"
+  onMessage={[Function]}
+  source={
     Object {
-      "flex": 1,
+      "html": "
+    <html>
+        <head>
+            <meta name=\\"viewport\\" content=\\"width={{content-width}},
+                initial-scale = 1.0, user-scalable = no\\" />
+            <style>
+                body {
+                    font: -apple-system-body;
+                    margin: 0;
+                    padding: 0;
+                    color: {{font-color}};
+                    background-color: {{background-color}};
+                }
+                img {
+                    width: auto;
+                    height: auto;
+                    max-width: 100%;
+                }
+                video {
+                    width: auto;
+                    height: auto;
+                    max-width: 100%;
+                }
+                #whizzy_content {
+                    padding: {{padding}};
+                    margin: 0;
+                }
+            </style>
+        </head>
+    <body>
+        <div id='whizzy_content'>
+        undefined
+        </div>
+    </body>
+    
+    <script type=\\"text/javascript\\">
+        function onLoadAllImages(callback) {
+            var images = document.getElementsByTagName('img');
+    
+            for (var i = 0; i < images.length; i++) {
+                if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
+                    images[i].parentNode.removeChild(images[i]);
+                }
+            }
+    
+            images = document.getElementsByTagName('img');
+    
+            var loadedImageCount = 0;
+    
+            if (images.length > 0) {
+                for(var i = 0; i < images.length; i++) {
+                    images[i].onload=checkIfImagesLoaded;
+                    images[i].onerror=checkIfImagesLoaded;
+                }
+            }
+            else {
+                callback();
+            }
+    
+            function checkIfImagesLoaded() {
+                loadedImageCount++;
+                if(loadedImageCount == images.length) {
+                    callback();
+                }
+            }
+        }
+    
+        onLoadAllImages(function () {
+            // Inform the DiscussionEntryCell that all the images are loaded
+            var iframe = document.createElement(\\"iframe\\");
+            iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
+            document.documentElement.appendChild(iframe);
+            iframe.parentNode.removeChild(iframe);
+            iframe = null;
+        });
+    </script>
+    </html>
+    ",
     }
   }
->
-  <RCTWebView
-    allowsInlineMediaPlayback={undefined}
-    automaticallyAdjustContentInsets={undefined}
-    bounces={undefined}
-    contentInset={undefined}
-    dataDetectorTypes={undefined}
-    decelerationRate={undefined}
-    injectedJavaScript="document.body.scrollHeight;"
-    mediaPlaybackRequiresUserAction={undefined}
-    messagingEnabled={false}
-    onLoadingError={[Function]}
-    onLoadingFinish={[Function]}
-    onLoadingStart={[Function]}
-    onMessage={[Function]}
-    onShouldStartLoadWithRequest={undefined}
-    scalesPageToFit={undefined}
-    scrollEnabled={undefined}
-    source={
+  style={
+    Array [
+      undefined,
       Object {
-        "html": undefined,
-      }
-    }
-    style={
-      Array [
-        Object {
-          "flex": 1,
-        },
-        Object {
-          "backgroundColor": "#ffffff",
-        },
-        Array [
-          undefined,
-          Object {
-            "height": 0,
-          },
-        ],
-      ]
-    }
-  />
-</View>
+        "height": 0,
+      },
+    ]
+  }
+/>
 `;
 
 exports[`render html 1`] = `
-<View
-  style={
+<WebView
+  injectedJavaScript="
+  var height = document.getElementById('whizzy_content').clientHeight;
+  postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
+"
+  onMessage={[Function]}
+  source={
     Object {
-      "flex": 1,
+      "html": "
+    <html>
+        <head>
+            <meta name=\\"viewport\\" content=\\"width={{content-width}},
+                initial-scale = 1.0, user-scalable = no\\" />
+            <style>
+                body {
+                    font: -apple-system-body;
+                    margin: 0;
+                    padding: 0;
+                    color: {{font-color}};
+                    background-color: {{background-color}};
+                }
+                img {
+                    width: auto;
+                    height: auto;
+                    max-width: 100%;
+                }
+                video {
+                    width: auto;
+                    height: auto;
+                    max-width: 100%;
+                }
+                #whizzy_content {
+                    padding: {{padding}};
+                    margin: 0;
+                }
+            </style>
+        </head>
+    <body>
+        <div id='whizzy_content'>
+        <div>hello world</div>
+        </div>
+    </body>
+    
+    <script type=\\"text/javascript\\">
+        function onLoadAllImages(callback) {
+            var images = document.getElementsByTagName('img');
+    
+            for (var i = 0; i < images.length; i++) {
+                if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
+                    images[i].parentNode.removeChild(images[i]);
+                }
+            }
+    
+            images = document.getElementsByTagName('img');
+    
+            var loadedImageCount = 0;
+    
+            if (images.length > 0) {
+                for(var i = 0; i < images.length; i++) {
+                    images[i].onload=checkIfImagesLoaded;
+                    images[i].onerror=checkIfImagesLoaded;
+                }
+            }
+            else {
+                callback();
+            }
+    
+            function checkIfImagesLoaded() {
+                loadedImageCount++;
+                if(loadedImageCount == images.length) {
+                    callback();
+                }
+            }
+        }
+    
+        onLoadAllImages(function () {
+            // Inform the DiscussionEntryCell that all the images are loaded
+            var iframe = document.createElement(\\"iframe\\");
+            iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
+            document.documentElement.appendChild(iframe);
+            iframe.parentNode.removeChild(iframe);
+            iframe = null;
+        });
+    </script>
+    </html>
+    ",
     }
   }
->
-  <RCTWebView
-    allowsInlineMediaPlayback={undefined}
-    automaticallyAdjustContentInsets={undefined}
-    bounces={undefined}
-    contentInset={undefined}
-    dataDetectorTypes={undefined}
-    decelerationRate={undefined}
-    injectedJavaScript="document.body.scrollHeight;"
-    mediaPlaybackRequiresUserAction={undefined}
-    messagingEnabled={false}
-    onLoadingError={[Function]}
-    onLoadingFinish={[Function]}
-    onLoadingStart={[Function]}
-    onMessage={[Function]}
-    onShouldStartLoadWithRequest={undefined}
-    scalesPageToFit={undefined}
-    scrollEnabled={undefined}
-    source={
+  style={
+    Array [
+      undefined,
       Object {
-        "html": "<div>hello world</div>",
-      }
+        "height": 0,
+      },
+    ]
+  }
+/>
+`;
+
+exports[`updates height from js 1`] = `
+<WebView
+  injectedJavaScript="
+  var height = document.getElementById('whizzy_content').clientHeight;
+  postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
+"
+  onMessage={[Function]}
+  source={
+    Object {
+      "html": "
+    <html>
+        <head>
+            <meta name=\\"viewport\\" content=\\"width={{content-width}},
+                initial-scale = 1.0, user-scalable = no\\" />
+            <style>
+                body {
+                    font: -apple-system-body;
+                    margin: 0;
+                    padding: 0;
+                    color: {{font-color}};
+                    background-color: {{background-color}};
+                }
+                img {
+                    width: auto;
+                    height: auto;
+                    max-width: 100%;
+                }
+                video {
+                    width: auto;
+                    height: auto;
+                    max-width: 100%;
+                }
+                #whizzy_content {
+                    padding: {{padding}};
+                    margin: 0;
+                }
+            </style>
+        </head>
+    <body>
+        <div id='whizzy_content'>
+        <div>hello world</div>
+        </div>
+    </body>
+    
+    <script type=\\"text/javascript\\">
+        function onLoadAllImages(callback) {
+            var images = document.getElementsByTagName('img');
+    
+            for (var i = 0; i < images.length; i++) {
+                if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
+                    images[i].parentNode.removeChild(images[i]);
+                }
+            }
+    
+            images = document.getElementsByTagName('img');
+    
+            var loadedImageCount = 0;
+    
+            if (images.length > 0) {
+                for(var i = 0; i < images.length; i++) {
+                    images[i].onload=checkIfImagesLoaded;
+                    images[i].onerror=checkIfImagesLoaded;
+                }
+            }
+            else {
+                callback();
+            }
+    
+            function checkIfImagesLoaded() {
+                loadedImageCount++;
+                if(loadedImageCount == images.length) {
+                    callback();
+                }
+            }
+        }
+    
+        onLoadAllImages(function () {
+            // Inform the DiscussionEntryCell that all the images are loaded
+            var iframe = document.createElement(\\"iframe\\");
+            iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
+            document.documentElement.appendChild(iframe);
+            iframe.parentNode.removeChild(iframe);
+            iframe = null;
+        });
+    </script>
+    </html>
+    ",
     }
-    style={
-      Array [
-        Object {
-          "flex": 1,
-        },
-        Object {
-          "backgroundColor": "#ffffff",
-        },
-        Array [
-          undefined,
-          Object {
-            "height": 0,
-          },
-        ],
-      ]
-    }
-  />
-</View>
+  }
+  style={
+    Array [
+      undefined,
+      Object {
+        "height": 10,
+      },
+    ]
+  }
+/>
 `;

@@ -6,8 +6,11 @@ import 'react-native'
 import React from 'react'
 import WebContainer from '../WebContainer'
 import renderer from 'react-test-renderer'
+import explore from '../../../../test/helpers/explore'
 
-jest.unmock('ScrollView')
+jest
+  .unmock('ScrollView')
+  .mock('WebView', () => 'WebView')
 
 test('render', () => {
   let tree = renderer.create(
@@ -24,11 +27,16 @@ test('render html', () => {
   expect(tree).toMatchSnapshot()
 })
 
-test('navigation state change should update height', () => {
+test('updates height from js', () => {
   let html = '<div>hello world</div>'
-  let webView = renderer.create(
+  let component = renderer.create(
     <WebContainer html={html} />
-  ).getInstance()
-  webView.onNavigationStateChange({ jsEvaluationValue: 100 })
-  expect(webView.state.webViewHeight).toEqual(100)
+  )
+  const webView: any = explore(component.toJSON()).query(({ type }) => type === 'WebView')[0]
+  const data = JSON.stringify({ type: 'UPDATE_HEIGHT', data: 10 })
+  const message = {
+    nativeEvent: { data },
+  }
+  webView.props.onMessage(message)
+  expect(component.toJSON()).toMatchSnapshot()
 })
