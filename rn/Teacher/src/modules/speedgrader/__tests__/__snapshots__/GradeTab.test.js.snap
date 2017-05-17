@@ -1148,6 +1148,76 @@ exports[`Rubric renders a rubric 1`] = `
 </RCTScrollView>
 `;
 
+exports[`Rubric renders the grade picker when there is no rubric 1`] = `
+<RCTScrollView
+  ListHeaderComponent={[Function]}
+  data={Array []}
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={2}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onContentSizeChange={[Function]}
+  onEndReached={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onViewableItemsChanged={undefined}
+  removeClippedSubviews={true}
+  renderItem={[Function]}
+  renderScrollComponent={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+    >
+      <View>
+        <GradePicker
+          assignmentID="1"
+          courseID="1"
+          gradeSubmissionWithRubric={[Function]}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+          rubricAssessment={
+            Object {
+              "1": Object {
+                "comments": "",
+                "points": 10,
+              },
+            }
+          }
+          rubricGradePending={false}
+          rubricItems={null}
+          rubricSettings={
+            Object {
+              "id": "1",
+              "points_possible": 100,
+              "title": "A possible item",
+            }
+          }
+          submissionID="1"
+          userID="1"
+        />
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
 exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
 <RCTScrollView
   ListHeaderComponent={[Function]}

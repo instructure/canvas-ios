@@ -34,7 +34,7 @@ let defaultProps = {
 }
 
 describe('Rubric', () => {
-  it('doesnt render anything when there is no rubric', () => {
+  it('renders the grade picker when there is no rubric', () => {
     let props = {
       ...defaultProps,
       rubricItems: null,
@@ -43,7 +43,7 @@ describe('Rubric', () => {
       <GradeTab {...props} />
     ).toJSON()
 
-    expect(tree).toBeNull()
+    expect(tree).toMatchSnapshot()
   })
 
   it('renders a rubric', () => {

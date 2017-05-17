@@ -61,27 +61,29 @@ export class GradeTab extends Component {
     return (
       <View>
         <GradePicker {...this.props} />
-        <View style={styles.rubricHeader}>
-          <View>
-            <Heading1>{i18n('Rubric')}</Heading1>
-            <Text style={styles.pointsText}>
-              {
-                i18n('{points, number} out of {totalPoints, number}', {
-                  points: this.getCurrentScore(),
-                  totalPoints: settings && settings.points_possible,
-                })
-              }
-            </Text>
+        {this.props.rubricItems &&
+          <View style={styles.rubricHeader}>
+            <View>
+              <Heading1>{i18n('Rubric')}</Heading1>
+              <Text style={styles.pointsText}>
+                {
+                  i18n('{points, number} out of {totalPoints, number}', {
+                    points: this.getCurrentScore(),
+                    totalPoints: settings && settings.points_possible,
+                  })
+                }
+              </Text>
+            </View>
+            {this.props.rubricGradePending &&
+              <ActivityIndicator />
+            }
+            {this.state.hasChanges &&
+              <LinkButton testID='rubric-details.save' style={styles.saveStyles} onPress={this.saveRubricAssessment}>
+                {i18n('Save')}
+              </LinkButton>
+            }
           </View>
-          {this.props.rubricGradePending &&
-            <ActivityIndicator />
-          }
-          {this.state.hasChanges &&
-            <LinkButton testID='rubric-details.save' style={styles.saveStyles} onPress={this.saveRubricAssessment}>
-              {i18n('Save')}
-            </LinkButton>
-          }
-        </View>
+        }
       </View>
     )
   }
@@ -99,18 +101,15 @@ export class GradeTab extends Component {
   }
 
   render () {
-    let items = this.props.rubricItems
-    if (items) {
-      return (
-        <FlatList
-          ListHeaderComponent={this.renderHeader}
-          data={items.map(item => ({ ...item, key: item.id }))}
-          renderItem={this.renderRubricItem}
-          initialNumToRender={2}
-        />
-      )
-    }
-    return null
+    let items = this.props.rubricItems || []
+    return (
+      <FlatList
+        ListHeaderComponent={this.renderHeader}
+        data={items.map(item => ({ ...item, key: item.id }))}
+        renderItem={this.renderRubricItem}
+        initialNumToRender={2}
+      />
+    )
   }
 }
 
