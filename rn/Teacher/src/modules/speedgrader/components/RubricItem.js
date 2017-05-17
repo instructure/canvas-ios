@@ -12,6 +12,7 @@ import i18n from 'format-message'
 import { Text } from '../../../common/text'
 import { CircleToggle, LinkButton } from '../../../common/buttons'
 import Images from '../../../images'
+import ChatBubble from '../comments/ChatBubble'
 
 const { NativeAccessibility } = NativeModules
 
@@ -66,9 +67,14 @@ export default class RubricItem extends Component {
     )
   }
 
+  openKeyboard = () => {
+    this.props.openCommentKeyboard(this.props.rubricItem.id)
+  }
+
   render () {
     let { rubricItem } = this.props
     let isCustomGrade = this.isCustomGrade()
+    let hasComment = this.props.grade && !!this.props.grade.comments
     return (
       <View style={styles.container}>
         <Text style={styles.description}>{rubricItem.description}</Text>
@@ -101,7 +107,11 @@ export default class RubricItem extends Component {
           </CircleToggle>
         </View>
         <View style={styles.buttons}>
-          <LinkButton style={styles.button}>{i18n('Add Comment')}</LinkButton>
+          {!hasComment &&
+            <LinkButton style={styles.button} onPress={this.openKeyboard} testID={`rubric-item.add-comment-${rubricItem.id}`}>
+              {i18n('Add Comment')}
+            </LinkButton>
+          }
           <LinkButton
             style={styles.button}
             onPress={this.showDescription}
@@ -110,6 +120,17 @@ export default class RubricItem extends Component {
             {i18n('View long description')}
           </LinkButton>
         </View>
+        {hasComment &&
+          <View style={styles.chatBubble}>
+            <ChatBubble from='them' message={this.props.grade.comments} />
+            <LinkButton
+              style={styles.editButton}
+              testID='rubric-item.comment-edit'
+            >
+              {i18n('Edit')}
+            </LinkButton>
+          </View>
+        }
       </View>
     )
   }
@@ -143,6 +164,17 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     paddingRight: 16,
   },
+  chatBubble: {
+    paddingTop: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  editButton: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#73818C',
+  },
 })
 
 type RubricItemProps = {
@@ -150,6 +182,7 @@ type RubricItemProps = {
   grade: RubricAssessment,
   showDescription: (string) => void,
   changeRating: (string, number) => void,
+  openCommentKeyboard: (string) => void,
 }
 
 type RubricItemState = {

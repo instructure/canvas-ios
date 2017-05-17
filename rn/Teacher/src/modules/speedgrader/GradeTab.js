@@ -14,6 +14,7 @@ import RubricItem from './components/RubricItem'
 import { LinkButton } from '../../common/buttons'
 import SpeedGraderActions from './actions'
 import GradePicker from './components/GradePicker'
+import CommentInput from './comments/CommentInput'
 
 export class GradeTab extends Component {
   props: GradeTabProps
@@ -25,6 +26,7 @@ export class GradeTab extends Component {
     this.state = {
       ratings: props.rubricAssessment || {},
       hasChanges: false,
+      criterionCommentInput: null,
     }
   }
 
@@ -39,6 +41,7 @@ export class GradeTab extends Component {
       ratings: {
         ...this.state.ratings,
         [id]: {
+          ...this.state.ratings[id],
           points: value,
         },
       },
@@ -54,6 +57,25 @@ export class GradeTab extends Component {
   saveRubricAssessment = () => {
     this.setState({ hasChanges: false })
     this.props.gradeSubmissionWithRubric(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, this.state.ratings)
+  }
+
+  openCommentKeyboard = (criterionID: string) => {
+    this.setState({ criterionCommentInput: criterionID })
+  }
+
+  submitRubricComment = ({ message }: { message: string }) => {
+    if (!this.state.criterionCommentInput) return
+    let id = this.state.criterionCommentInput
+    this.setState({
+      criterionCommentInput: null,
+      ratings: {
+        ...this.state.ratings,
+        [id]: {
+          ...this.state.ratings[id],
+          comments: message,
+        },
+      },
+    }, () => this.saveRubricAssessment())
   }
 
   renderHeader = () => {
@@ -96,6 +118,7 @@ export class GradeTab extends Component {
         showDescription={this.showDescriptionModal}
         changeRating={this.updateScore}
         grade={this.state.ratings[item.id]}
+        openCommentKeyboard={this.openCommentKeyboard}
       />
     )
   }
@@ -103,12 +126,17 @@ export class GradeTab extends Component {
   render () {
     let items = this.props.rubricItems || []
     return (
-      <FlatList
-        ListHeaderComponent={this.renderHeader}
-        data={items.map(item => ({ ...item, key: item.id }))}
-        renderItem={this.renderRubricItem}
-        initialNumToRender={2}
-      />
+      <View style={{ flex: 1 }}>
+        <FlatList
+          ListHeaderComponent={this.renderHeader}
+          data={items.map(item => ({ ...item, key: item.id }))}
+          renderItem={this.renderRubricItem}
+          initialNumToRender={2}
+        />
+        { this.state.criterionCommentInput &&
+          <CommentInput makeComment={this.submitRubricComment} allowMediaComments={false} />
+        }
+      </View>
     )
   }
 }
@@ -176,4 +204,5 @@ type GradeTabProps = RubricOwnProps & RubricDataProps & RubricActionProps
 type GradeTabState = {
   ratings: { [string]: RubricAssessment },
   hasChanges: boolean,
+  criterionCommentInput: ?string,
 }

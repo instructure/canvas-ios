@@ -17,28 +17,21 @@ exports[`CommentInput renders 1`] = `
       }
     }
   >
-    <View
-      accessibilityComponentType="button"
-      accessibilityLabel={undefined}
-      accessibilityTraits="button"
+    <Button
+      accessibilityLabel="Add Media"
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
       accessible={true}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
+      containerStyle={
         Object {
           "alignSelf": "center",
-          "opacity": 1,
         }
       }
-      testID="submission-comment.add-media"
-      tvParallaxProperties={undefined}
+      onPress={[Function]}
+      testID="submission-comment-add-media.button"
     >
       <Image
         resizeMode="center"
@@ -49,15 +42,18 @@ exports[`CommentInput renders 1`] = `
           }
         }
       />
-    </View>
+    </Button>
     <View
       style={
         Object {
+          "alignItems": "flex-start",
           "backgroundColor": "white",
           "borderColor": "#C7CDD1",
           "borderRadius": 20,
           "borderWidth": 0.5,
           "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
           "marginLeft": 4,
           "overflow": "hidden",
         }
@@ -67,19 +63,147 @@ exports[`CommentInput renders 1`] = `
         autoFocus={true}
         maxHeight={76}
         multiline={true}
-        onSubmitEditing={[Function]}
+        onChangeText={[Function]}
         placeholder="Comment"
         placeholderTextColor="#7F91A7"
         style={
           Object {
-            "fontSize": 17,
-            "marginBottom": 4,
+            "flex": 1,
+            "fontSize": 16,
+            "lineHeight": 19,
+            "marginBottom": 6,
             "marginHorizontal": 10,
-            "marginTop": 0,
+            "marginTop": 2,
           }
         }
         testID="submission-comment.text-input"
+        value=""
       />
+      <Button
+        containerStyle={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#374A59",
+            "borderRadius": 12,
+            "flex": 0,
+            "height": 24,
+            "justifyContent": "center",
+            "marginRight": 4,
+            "marginTop": 4,
+            "width": 24,
+          }
+        }
+        onPress={[Function]}
+        testID="submit-comment"
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "tintColor": "white",
+            }
+          }
+        />
+      </Button>
+    </View>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+        },
+        Object {
+          "height": 0,
+        },
+        undefined,
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`Wont render the media buttons when allowMediaInputs is set to false 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "backgroundColor": "#F5F5F5",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 0.5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "overflow": "hidden",
+        "paddingHorizontal": 16,
+        "paddingVertical": 8,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "white",
+          "borderColor": "#C7CDD1",
+          "borderRadius": 20,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginLeft": 4,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <TextInput
+        autoFocus={true}
+        maxHeight={76}
+        multiline={true}
+        onChangeText={[Function]}
+        placeholder="Comment"
+        placeholderTextColor="#7F91A7"
+        style={
+          Object {
+            "flex": 1,
+            "fontSize": 16,
+            "lineHeight": 19,
+            "marginBottom": 6,
+            "marginHorizontal": 10,
+            "marginTop": 2,
+          }
+        }
+        testID="submission-comment.text-input"
+        value=""
+      />
+      <Button
+        containerStyle={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#374A59",
+            "borderRadius": 12,
+            "flex": 0,
+            "height": 24,
+            "justifyContent": "center",
+            "marginRight": 4,
+            "marginTop": 4,
+            "width": 24,
+          }
+        }
+        onPress={[Function]}
+        testID="submit-comment"
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "tintColor": "white",
+            }
+          }
+        />
+      </Button>
     </View>
   </View>
   <View

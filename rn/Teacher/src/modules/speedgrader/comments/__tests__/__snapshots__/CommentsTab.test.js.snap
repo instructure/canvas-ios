@@ -919,7 +919,7 @@ exports[`comments render properly 1`] = `
             "opacity": 1,
           }
         }
-        testID="submission-comment.add-media"
+        testID="submission-comment-add-media.button"
         tvParallaxProperties={undefined}
       >
         <Image
@@ -935,11 +935,14 @@ exports[`comments render properly 1`] = `
       <View
         style={
           Object {
+            "alignItems": "flex-start",
             "backgroundColor": "white",
             "borderColor": "#C7CDD1",
             "borderRadius": 20,
             "borderWidth": 0.5,
             "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
             "marginLeft": 4,
             "overflow": "hidden",
           }
@@ -949,19 +952,62 @@ exports[`comments render properly 1`] = `
           autoFocus={true}
           maxHeight={76}
           multiline={true}
-          onSubmitEditing={[Function]}
+          onChangeText={[Function]}
           placeholder="Comment"
           placeholderTextColor="#7F91A7"
           style={
             Object {
-              "fontSize": 17,
-              "marginBottom": 4,
+              "flex": 1,
+              "fontSize": 16,
+              "lineHeight": 19,
+              "marginBottom": 6,
               "marginHorizontal": 10,
-              "marginTop": 0,
+              "marginTop": 2,
             }
           }
           testID="submission-comment.text-input"
+          value=""
         />
+        <View
+          accessibilityComponentType="button"
+          accessibilityLabel={undefined}
+          accessibilityTraits="button"
+          accessible={true}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#374A59",
+              "borderRadius": 12,
+              "flex": 0,
+              "height": 24,
+              "justifyContent": "center",
+              "marginRight": 4,
+              "marginTop": 4,
+              "opacity": 1,
+              "width": 24,
+            }
+          }
+          testID="submit-comment"
+          tvParallaxProperties={undefined}
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "tintColor": "white",
+              }
+            }
+          />
+        </View>
       </View>
     </View>
     <View

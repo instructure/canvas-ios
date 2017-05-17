@@ -1,4 +1,4 @@
-// @flow
+  // @flow
 
 import React, { Component } from 'react'
 import {
@@ -17,6 +17,7 @@ import DrawerState from '../utils/drawer-state'
 type CommentInputProps = {
   makeComment(comment: SubmissionCommentParams): void,
   drawerState: DrawerState,
+  allowMediaComments: boolean,
 }
 
 type State = {
@@ -48,6 +49,10 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
     }
   }
 
+  onChangeText = (text: string) => {
+    this.setState({ textComment: text })
+  }
+
   render () {
     const placeholder = i18n({
       default: 'Comment',
@@ -61,22 +66,24 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
 
     return (
       <View>
-        <View style={styles.toolbar} >
-          <Button
-            containerStyle={styles.mediaButton}
-            testID='submission-comment.add-media'
-            onPress={this.addMedia}
-            accessible
-            accessibilityTraits={['button']}
-            accessibilityLabel={addMedia}
-          >
-            <Image
-              resizeMode="center"
-              source={Images.add}
-              style={styles.plus}
-            />
-          </Button>
-          <View style={styles.inputContainer} >
+        <View style={styles.toolbar}>
+          {this.props.allowMediaComments &&
+            <Button
+              containerStyle={styles.mediaButton}
+              testID='submission-comment-add-media.button'
+              onPress={this.addMedia}
+              accessible
+              accessibilityLabel={addMedia}
+              accessibilityTraits={['button']}
+            >
+              <Image
+                resizeMode="center"
+                source={Images.add}
+                style={styles.plus}
+              />
+            </Button>
+          }
+          <View style={styles.inputContainer}>
             <TextInput
               autoFocus
               multiline
@@ -85,14 +92,22 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
               placeholderTextColor={colors.lightText}
               style={styles.input}
               maxHeight={76}
-              onSubmitEditing={this.submitComment}
+              onChangeText={this.onChangeText}
+              value={this.state.textComment}
             />
+            <Button onPress={this.submitComment} containerStyle={styles.sendButton} testID='submit-comment'>
+              <Image style={styles.sendButtonArrow} source={Images.upArrow} />
+            </Button>
           </View>
         </View>
         <KeyboardSpacer onToggle={this.keyboardChanged} />
-      </View>
+    </View>
     )
   }
+}
+
+CommentInput.defaultProps = {
+  allowMediaComments: true,
 }
 
 const styles = StyleSheet.create({
@@ -122,11 +137,30 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: 'white',
     marginLeft: 4,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
   },
   input: {
-    fontSize: 17,
+    fontSize: 16,
+    lineHeight: 19,
     marginHorizontal: 10,
-    marginTop: 0,
-    marginBottom: 4,
+    marginTop: 2,
+    marginBottom: 6,
+    flex: 1,
+  },
+  sendButton: {
+    backgroundColor: colors.primaryButtonColor,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 0,
+    marginTop: 4,
+    marginRight: 4,
+  },
+  sendButtonArrow: {
+    tintColor: 'white',
   },
 })

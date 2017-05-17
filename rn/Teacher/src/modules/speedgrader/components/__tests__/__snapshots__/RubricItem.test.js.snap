@@ -270,6 +270,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
     }
   >
     <Button
+      onPress={[Function]}
       style={
         Object {
           "fontSize": 14,
@@ -277,6 +278,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
           "paddingRight": 16,
         }
       }
+      testID="rubric-item.add-comment-2"
     >
       <Text
         accessible={true}
@@ -661,6 +663,7 @@ exports[`RubricItem renders 1`] = `
     }
   >
     <Button
+      onPress={[Function]}
       style={
         Object {
           "fontSize": 14,
@@ -668,6 +671,7 @@ exports[`RubricItem renders 1`] = `
           "paddingRight": 16,
         }
       }
+      testID="rubric-item.add-comment-2"
     >
       <Text
         accessible={true}
@@ -1052,6 +1056,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
     }
   >
     <Button
+      onPress={[Function]}
       style={
         Object {
           "fontSize": 14,
@@ -1059,6 +1064,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
           "paddingRight": 16,
         }
       }
+      testID="rubric-item.add-comment-2"
     >
       <Text
         accessible={true}
@@ -1443,6 +1449,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
     }
   >
     <Button
+      onPress={[Function]}
       style={
         Object {
           "fontSize": 14,
@@ -1450,6 +1457,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
           "paddingRight": 16,
         }
       }
+      testID="rubric-item.add-comment-2"
     >
       <Text
         accessible={true}
@@ -1538,6 +1546,475 @@ exports[`RubricItem renders the selected custom grade 1`] = `
         }
       >
         View long description
+      </Text>
+    </Button>
+  </View>
+</View>
+`;
+
+exports[`RubricItem will not show the add comment button and will show the comment if there is one 1`] = `
+<View
+  style={
+    Object {
+      "overflow": "hidden",
+      "paddingBottom": 8,
+      "paddingHorizontal": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "fontWeight": "600",
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay-semibold",
+        },
+      ]
+    }
+  >
+    A description
+  </Text>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "marginBottom": 8,
+        "marginTop": 12,
+      }
+    }
+  >
+    <Button
+      on={false}
+      onPress={[Function]}
+      style={
+        Object {
+          "marginBottom": 8,
+          "marginRight": 8,
+        }
+      }
+      testID="rubric-item.points-3"
+      value={10}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderColor": "#C7CDD1",
+              "borderRadius": 24,
+              "borderWidth": 0.5,
+              "flex": 1,
+              "height": 48,
+              "justifyContent": "center",
+              "minWidth": 48,
+              "paddingHorizontal": 8,
+            },
+            Object {
+              "marginBottom": 8,
+              "marginRight": 8,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              Object {
+                "color": "black",
+                "fontWeight": "500",
+              },
+            ]
+          }
+        >
+          10
+        </Text>
+      </View>
+    </Button>
+    <Button
+      on={false}
+      onPress={[Function]}
+      style={
+        Object {
+          "marginBottom": 8,
+          "marginRight": 8,
+        }
+      }
+      testID="rubric-item.points-2"
+      value={5}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderColor": "#C7CDD1",
+              "borderRadius": 24,
+              "borderWidth": 0.5,
+              "flex": 1,
+              "height": 48,
+              "justifyContent": "center",
+              "minWidth": 48,
+              "paddingHorizontal": 8,
+            },
+            Object {
+              "marginBottom": 8,
+              "marginRight": 8,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              Object {
+                "color": "black",
+                "fontWeight": "500",
+              },
+            ]
+          }
+        >
+          5
+        </Text>
+      </View>
+    </Button>
+    <Button
+      on={false}
+      onPress={[Function]}
+      style={
+        Object {
+          "marginBottom": 8,
+          "marginRight": 8,
+        }
+      }
+      testID="rubric-item.points-1"
+      value={0}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderColor": "#C7CDD1",
+              "borderRadius": 24,
+              "borderWidth": 0.5,
+              "flex": 1,
+              "height": 48,
+              "justifyContent": "center",
+              "minWidth": 48,
+              "paddingHorizontal": 8,
+            },
+            Object {
+              "marginBottom": 8,
+              "marginRight": 8,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              Object {
+                "color": "black",
+                "fontWeight": "500",
+              },
+            ]
+          }
+        >
+          0
+        </Text>
+      </View>
+    </Button>
+    <Button
+      accessibilityLabel="Customize Grade"
+      on={true}
+      onPress={[Function]}
+      style={
+        Object {
+          "marginBottom": 8,
+          "marginRight": 8,
+        }
+      }
+      testID="rubric-item.customize-grade-2"
+      value="undefined"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderColor": "#C7CDD1",
+              "borderRadius": 24,
+              "borderWidth": 0.5,
+              "flex": 1,
+              "height": 48,
+              "justifyContent": "center",
+              "minWidth": 48,
+              "paddingHorizontal": 8,
+            },
+            Object {
+              "marginBottom": 8,
+              "marginRight": 8,
+            },
+            Object {
+              "backgroundColor": "#374A59",
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              Object {
+                "color": "white",
+                "fontWeight": "500",
+              },
+            ]
+          }
+        >
+          undefined
+        </Text>
+      </View>
+    </Button>
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Button
+      onPress={[Function]}
+      style={
+        Object {
+          "fontSize": 14,
+          "fontWeight": "500",
+          "paddingRight": 16,
+        }
+      }
+      testID="rubric-item.description"
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#374A59",
+                "fontSize": 14,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+              Object {
+                "color": "#374A59",
+              },
+              Object {
+                "fontSize": 14,
+                "fontWeight": "500",
+                "paddingRight": 16,
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay-medium",
+            },
+          ]
+        }
+      >
+        View long description
+      </Text>
+    </Button>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingTop": 16,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignSelf": "flex-start",
+          "maxWidth": 300,
+        }
+      }
+    >
+      <Image
+        capInsets={
+          Object {
+            "bottom": 16,
+            "left": 18,
+            "right": 18,
+            "top": 24,
+          }
+        }
+        resizeMode="stretch"
+        source={1}
+        style={
+          Object {
+            "bottom": 0,
+            "height": null,
+            "left": 0,
+            "margin": 0,
+            "padding": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": -4,
+            "width": null,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "paddingBottom": 8,
+                "paddingHorizontal": 12,
+                "paddingTop": 12,
+              },
+              Object {
+                "color": "#2D3B45",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        A comment
+      </Text>
+    </View>
+    <Button
+      style={
+        Object {
+          "color": "#73818C",
+          "fontSize": 16,
+          "fontWeight": "600",
+        }
+      }
+      testID="rubric-item.comment-edit"
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#374A59",
+                "fontSize": 14,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+              Object {
+                "color": "#374A59",
+              },
+              Object {
+                "color": "#73818C",
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Edit
       </Text>
     </Button>
   </View>

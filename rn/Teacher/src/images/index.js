@@ -69,6 +69,7 @@ const images = {
   pickerArrow: require('./picker-arrow.png'),
   published: require('./Published.png'),
   unpublished: require('./Unpublished.png'),
+  upArrow: require('./mini-arrow-up.png'),
 }
 
 export default (images: Images)

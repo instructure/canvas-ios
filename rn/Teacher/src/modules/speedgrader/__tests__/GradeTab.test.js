@@ -34,6 +34,8 @@ let defaultProps = {
 }
 
 describe('Rubric', () => {
+  beforeEach(() => jest.resetAllMocks())
+
   it('renders the grade picker when there is no rubric', () => {
     let props = {
       ...defaultProps,
@@ -115,6 +117,35 @@ describe('Rubric', () => {
         points: 0,
       },
     })
+  })
+
+  it('renders the comment input when openCommentKeyboard is called', () => {
+    let tree = renderer.create(
+      <GradeTab {...defaultProps} />
+    )
+
+    tree.getInstance().openCommentKeyboard('1')
+    expect(tree.getInstance().state.criterionCommentInput).toEqual('1')
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('returns null when submitRubricComment is called with an empty message', () => {
+    let tree = renderer.create(
+      <GradeTab {...defaultProps} />
+    )
+
+    tree.getInstance().submitRubricComment({ message: '' })
+    expect(defaultProps.gradeSubmissionWithRubric).not.toHaveBeenCalled()
+  })
+
+  it('adds the comment to state when submitRubricComment is called', () => {
+    let tree = renderer.create(
+      <GradeTab {...defaultProps} />
+    )
+
+    tree.getInstance().openCommentKeyboard('1')
+    tree.getInstance().submitRubricComment({ message: 'A Message' })
+    expect(tree.getInstance().state.ratings['1'].comments).toEqual('A Message')
   })
 })
 

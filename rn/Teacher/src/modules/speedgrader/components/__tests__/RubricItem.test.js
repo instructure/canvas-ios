@@ -20,6 +20,7 @@ let defaultProps = {
   grade: { comments: '' },
   showDescription: jest.fn(),
   changeRating: jest.fn(),
+  openCommentKeyboard: jest.fn(),
 }
 
 describe('RubricItem', () => {
@@ -137,5 +138,29 @@ describe('RubricItem', () => {
     button.props.onPress()
 
     expect(AlertIOS.prompt.mock.calls[0][4]).toEqual('1234')
+  })
+
+  it('will call openCommentKeyboard when the add comment button is pressed', () => {
+    let tree = renderer.create(
+      <RubricItem {...defaultProps} />
+    ).toJSON()
+
+    let button = explore(tree).selectByID(`rubric-item.add-comment-${defaultProps.rubricItem.id}`) || {}
+    button.props.onPress()
+
+    expect(defaultProps.openCommentKeyboard).toHaveBeenCalledWith(defaultProps.rubricItem.id)
+  })
+
+  it('will not show the add comment button and will show the comment if there is one', () => {
+    let props = {
+      ...defaultProps,
+      grade: { comments: 'A comment' },
+    }
+
+    let tree = renderer.create(
+      <RubricItem {...props} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
   })
 })
