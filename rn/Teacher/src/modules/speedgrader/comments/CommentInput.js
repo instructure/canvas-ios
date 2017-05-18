@@ -26,6 +26,7 @@ type State = {
 
 export default class CommentInput extends Component<any, CommentInputProps, any> {
   state: State
+  _textInput: TextInput
 
   constructor (props: CommentInputProps) {
     super(props)
@@ -36,11 +37,17 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
     console.log('Add some media!')
   }
 
-  submitComment = () => {
+  makeComment = () => {
+    if (!this.state.textComment || this.state.textComment.length === 0) {
+      return
+    }
+
     this.props.makeComment({
       type: 'text',
       message: this.state.textComment,
     })
+    this.setState({ textComment: '' })
+    this._textInput.blur()
   }
 
   keyboardChanged = (visible: boolean) => {
@@ -49,8 +56,12 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
     }
   }
 
-  onChangeText = (text: string) => {
+  textChanged = (text: string) => {
     this.setState({ textComment: text })
+  }
+
+  captureTextInput = (textInput: TextInput) => {
+    this._textInput = textInput
   }
 
   render () {
@@ -64,13 +75,20 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
       description: 'Attach media to a message',
     })
 
+    const send = i18n({
+      default: 'Send',
+      description: 'Send a message',
+    })
+
+    const disableSend = !this.state.textComment || this.state.textComment.length === 0
+
     return (
       <View>
         <View style={styles.toolbar}>
           {this.props.allowMediaComments &&
             <Button
               containerStyle={styles.mediaButton}
-              testID='submission-comment-add-media.button'
+              testID='comment-input.add-media'
               onPress={this.addMedia}
               accessible
               accessibilityLabel={addMedia}
@@ -87,15 +105,22 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
             <TextInput
               autoFocus
               multiline
-              testID='submission-comment.text-input'
+              testID='comment-input.comment'
               placeholder={placeholder}
               placeholderTextColor={colors.lightText}
               style={styles.input}
               maxHeight={76}
-              onChangeText={this.onChangeText}
+              onChangeText={this.textChanged}
+              ref={this.captureTextInput}
               value={this.state.textComment}
             />
-            <Button onPress={this.submitComment} containerStyle={styles.sendButton} testID='submit-comment'>
+            <Button
+              containerStyle={styles.sendButton}
+              testID='comment-input.send'
+              onPress={this.makeComment}
+              accessibilityLabel={send}
+              disabled={disableSend}
+            >
               <Image style={styles.sendButtonArrow} source={Images.upArrow} />
             </Button>
           </View>
@@ -112,7 +137,6 @@ CommentInput.defaultProps = {
 
 const styles = StyleSheet.create({
   mediaButton: {
-    // paddingTop: 6,
     alignSelf: 'center',
   },
   plus: {
@@ -144,7 +168,8 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 16,
     lineHeight: 19,
-    marginHorizontal: 10,
+    marginLeft: 10,
+    marginRight: 24,
     marginTop: 2,
     marginBottom: 6,
     flex: 1,
@@ -162,5 +187,6 @@ const styles = StyleSheet.create({
   },
   sendButtonArrow: {
     tintColor: 'white',
+    marginBottom: 1,
   },
 })

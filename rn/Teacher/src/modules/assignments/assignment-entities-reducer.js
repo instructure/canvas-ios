@@ -9,6 +9,7 @@ import flatMap from 'lodash/flatMap'
 import fromPairs from 'lodash/fromPairs'
 import cloneDeep from 'lodash/cloneDeep'
 import { updateAssignmentDescription } from '../assignment-description/actions'
+import pendingComments from '../speedgrader/comments/pending-comments-reducer'
 
 export let defaultState: AssignmentGroupsState = {}
 
@@ -23,10 +24,12 @@ const assignmentContent = combineReducers({
   submissions,
   pending,
   error,
+  pendingComments,
 })
 
 const defaultAssignmentContents: AssignmentContentState = {
   submissions: { refs: [], pending: 0 },
+  pendingComments: {},
 }
 
 const assignmentsData: Reducer<AssignmentsState, any> = handleActions({

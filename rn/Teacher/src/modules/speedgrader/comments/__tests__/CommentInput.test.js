@@ -9,7 +9,7 @@ import explore from '../../../../../test/helpers/explore'
 jest.mock('react-native-button', () => 'Button')
 
 test('CommentInput renders', () => {
-  let tree = renderer.create(
+  const tree = renderer.create(
     <CommentInput makeComment={jest.fn()} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
@@ -22,18 +22,30 @@ test('Wont render the media buttons when allowMediaInputs is set to false', () =
   expect(tree).toMatchSnapshot()
 })
 
-test('Calls props.makeComment when the submit button is pressed', () => {
-  let makeComment = jest.fn()
-  let tree = renderer.create(
+test('makeComment sends the comment', () => {
+  const makeComment = jest.fn()
+  const component = renderer.create(
     <CommentInput makeComment={makeComment} />
   )
+  const tree = component.toJSON()
 
-  tree.getInstance().setState({ textComment: 'text' })
-  let button = explore(tree.toJSON()).selectByID('submit-comment') || {}
-  button.props.onPress()
+  // mock _textInput stuff
+  const blur = jest.fn()
+  component.getInstance()._textInput.blur = blur
 
-  expect(makeComment).toHaveBeenCalledWith({
-    type: 'text',
-    message: 'text',
-  })
+  const send = explore(tree)
+    .selectByID('comment-input.send') || {}
+
+  const input = explore(tree)
+    .selectByID('comment-input.comment') || {}
+
+  send.props.onPress()
+  expect(blur).not.toHaveBeenCalled()
+
+  input.props.onChangeText('Hello!')
+
+  send.props.onPress()
+
+  expect(makeComment).toHaveBeenCalledWith({ type: 'text', message: 'Hello!' })
+  expect(blur).toHaveBeenCalled()
 })

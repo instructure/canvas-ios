@@ -17,7 +17,7 @@ export const submission: Template<Submission> = template({
 export function submissionHistory (submissionOverrides: Array<Object> = [submission()], commentOverrides: Array<Object> = []): SubmissionWithHistory {
   const submissionHistory = submissionOverrides.map(submission)
 
-  const comments = [] // TODO: commentOverrides.map(submissionComment)
+  const comments = commentOverrides.map(submissionComment)
 
   return {
     ...submissionHistory[0],

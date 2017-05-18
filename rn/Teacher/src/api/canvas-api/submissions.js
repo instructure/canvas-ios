@@ -41,6 +41,6 @@ export function commentOnSubmission (courseID: string, assignmentID: string, use
       break
   }
 
-  return httpClient().post(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, data)
+  return httpClient().put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, data)
 }
 

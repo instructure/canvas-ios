@@ -100,7 +100,6 @@ export default class BottomDrawer extends Component<any, Props, State> {
   }
 
   snapTo = (snap: Snap, animated: boolean = true) => {
-    console.log('Snapped!!!')
     if (this.drawer) {
       this.drawer.snapTo({ index: snap, animated: animated })
     }
@@ -108,11 +107,11 @@ export default class BottomDrawer extends Component<any, Props, State> {
 
   getSnapPoints = () => {
     // for testing...
-    const heights = Math.max(this.state.height, 120)
+    const minHeight = Math.max(this.state.height, 140)
 
     const closed = 0
-    const open = heights * 0.5 - HANDLE_PADDING_BOTTOM
-    const fullscreen = heights - HANDLE_HEIGHT - DRAWER_MIN_TOP_PADDING
+    const open = minHeight * 0.5 - HANDLE_PADDING_BOTTOM
+    const fullscreen = minHeight - HANDLE_HEIGHT - DRAWER_MIN_TOP_PADDING
     return [{ y: closed }, { y: open }, { y: fullscreen }]
   }
 

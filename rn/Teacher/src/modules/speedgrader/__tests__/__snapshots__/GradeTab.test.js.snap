@@ -1794,14 +1794,16 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               "fontSize": 16,
               "lineHeight": 19,
               "marginBottom": 6,
-              "marginHorizontal": 10,
+              "marginLeft": 10,
+              "marginRight": 24,
               "marginTop": 2,
             }
           }
-          testID="submission-comment.text-input"
+          testID="comment-input.comment"
           value=""
         />
         <Button
+          accessibilityLabel="Send"
           containerStyle={
             Object {
               "alignItems": "center",
@@ -1815,13 +1817,15 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               "width": 24,
             }
           }
+          disabled={true}
           onPress={[Function]}
-          testID="submit-comment"
+          testID="comment-input.send"
         >
           <Image
             source={1}
             style={
               Object {
+                "marginBottom": 1,
                 "tintColor": "white",
               }
             }

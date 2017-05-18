@@ -53,7 +53,7 @@ export default class CommentRow extends Component<any, CommentRowProps, any> {
   renderContents = () => {
     const { contents, from } = this.props
     switch (contents.type) {
-      case 'comment':
+      case 'text':
         return <ChatBubble from={from} message={contents.message} />
       default:
         return undefined // TODO: other message content types
@@ -106,13 +106,12 @@ const styles = StyleSheet.create({
 })
 
 export type CommentRowProps = {
+  error?: string,
   style?: Object,
   key: string,
   name: string,
   date: Date,
   avatarURL: string,
   from: 'me' | 'them',
-  contents: { type: 'comment', message: string }
-          | { type: 'media_comment' } // TODO
-          | { type: 'submission' }, // TODO
+  contents: SubmissionCommentParams,
 }

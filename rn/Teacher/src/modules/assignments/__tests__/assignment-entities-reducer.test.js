@@ -23,6 +23,7 @@ test('refresh assignments', async () => {
     [assignment.id.toString()]: {
       data: assignment,
       submissions: { refs: [], pending: 0 },
+      pendingComments: {},
     },
   }])
 })
@@ -95,8 +96,8 @@ test('reduces assignment content', () => {
       },
       pending: 0,
       error: null,
+      pendingComments: {},
     },
-
   })
 })
 

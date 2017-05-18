@@ -11,7 +11,7 @@ const testComment: CommentRowProps = {
   date: new Date('2017-03-17T19:15:25Z'),
   avatarURL: 'http://fillmurray.com/200/300',
   from: 'them',
-  contents: { type: 'comment', message: 'I just need more time!?' },
+  contents: { type: 'text', message: 'I just need more time!?' },
 }
 
 test('Their message rows render correctly', () => {
@@ -25,7 +25,7 @@ test('My message rows render correctly', () => {
   const comment = {
     ...testComment,
     from: 'me',
-    contents: { type: 'comment', message: `You're too late!` },
+    contents: { type: 'text', message: `You're too late!` },
   }
   let tree = renderer.create(
     <CommentRow {...comment} />

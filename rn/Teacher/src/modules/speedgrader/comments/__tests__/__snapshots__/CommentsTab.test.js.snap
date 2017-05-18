@@ -15,7 +15,7 @@ exports[`comments render properly 1`] = `
           "avatarURL": "http://fillmurray.com/332/555",
           "contents": Object {
             "message": "Well?!",
-            "type": "comment",
+            "type": "text",
           },
           "date": 2017-03-17T19:15:25.000Z,
           "from": "me",
@@ -26,7 +26,7 @@ exports[`comments render properly 1`] = `
           "avatarURL": "http://fillmurray.com/220/400",
           "contents": Object {
             "message": "…",
-            "type": "comment",
+            "type": "text",
           },
           "date": 2017-03-17T19:23:25.000Z,
           "from": "them",
@@ -919,7 +919,7 @@ exports[`comments render properly 1`] = `
             "opacity": 1,
           }
         }
-        testID="submission-comment-add-media.button"
+        testID="comment-input.add-media"
         tvParallaxProperties={undefined}
       >
         <Image
@@ -961,11 +961,12 @@ exports[`comments render properly 1`] = `
               "fontSize": 16,
               "lineHeight": 19,
               "marginBottom": 6,
-              "marginHorizontal": 10,
+              "marginLeft": 10,
+              "marginRight": 24,
               "marginTop": 2,
             }
           }
-          testID="submission-comment.text-input"
+          testID="comment-input.comment"
           value=""
         />
         <View
@@ -996,13 +997,14 @@ exports[`comments render properly 1`] = `
               "width": 24,
             }
           }
-          testID="submit-comment"
+          testID="comment-input.send"
           tvParallaxProperties={undefined}
         >
           <Image
             source={1}
             style={
               Object {
+                "marginBottom": 1,
                 "tintColor": "white",
               }
             }

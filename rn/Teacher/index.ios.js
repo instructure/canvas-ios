@@ -35,7 +35,12 @@ const nativeLogin = NativeModules.NativeLogin
 setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
 
 const emitter = new NativeEventEmitter(nativeLogin)
-emitter.addListener('Login', async (info: { authToken: string, baseURL: string, branding: Object, user: SessionUser }) => {
+emitter.addListener('Login', async (info: {
+  authToken: string,
+  baseURL: string,
+  branding: Object,
+  user: SessionUser,
+}) => {
   if (info.user) {
     // flow already thinks the id is a string but it's not so coerce ;)
     info.user.id = info.user.id.toString()

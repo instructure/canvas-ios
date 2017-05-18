@@ -20,7 +20,7 @@ const comments = [
     date: new Date('2017-03-17T19:15:25Z'),
     avatarURL: 'http://fillmurray.com/332/555',
     from: 'me',
-    contents: { type: 'comment', message: 'Well?!' },
+    contents: { type: 'text', message: 'Well?!' },
   },
   {
     key: 'comment-2',
@@ -28,7 +28,7 @@ const comments = [
     date: new Date('2017-03-17T19:23:25Z'),
     avatarURL: 'http://fillmurray.com/220/400',
     from: 'them',
-    contents: { type: 'comment', message: '…' },
+    contents: { type: 'text', message: '…' },
   },
   {
     key: 'comment-3',
@@ -139,7 +139,7 @@ test('mapStateToProps returns comments rows', () => {
         date: new Date(studentComment.created_at),
         avatarURL: 'http://fillmurray.com/499/355',
         from: 'them',
-        contents: { type: 'comment', message: studentComment.comment },
+        contents: { type: 'text', message: studentComment.comment },
       },
       {
         key: 'comment-' + teacherComment.id,
@@ -147,7 +147,7 @@ test('mapStateToProps returns comments rows', () => {
         date: new Date(teacherComment.created_at),
         avatarURL: 'http://fillmurray.com/499/355',
         from: 'me',
-        contents: { type: 'comment', message: teacherComment.comment },
+        contents: { type: 'text', message: teacherComment.comment },
       },
     ],
   })

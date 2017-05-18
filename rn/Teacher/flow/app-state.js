@@ -37,8 +37,21 @@ export type AssignmentGroupState = {
   group: AssignmentGroup,
 }
 
+export type PendingCommentState = AsyncState & {
+  timestamp: string,
+  localID: string, // a uuid assigned for a new comment
+  commentID?: string,
+  comment: SubmissionCommentParams,
+}
+
+export type PendingCommentsState = {
+  // by userID since we may not have a submission
+  [string]: Array<PendingCommentState>,
+}
+
 export type AssignmentContentState = {
   submissions: AsyncRefs,
+  pendingComments: PendingCommentsState,
 }
 
 export type AssignmentDetailState = AsyncState & {
