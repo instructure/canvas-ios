@@ -13,6 +13,8 @@ export type Submission = {
     | 'pending_review',
   excused: boolean,
   late: boolean,
+  submission_type: ?string,
+  body: ?string,
 }
 
 export type SubmissionHistory = {

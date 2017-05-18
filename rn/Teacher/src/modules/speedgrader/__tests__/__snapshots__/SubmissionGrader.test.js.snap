@@ -14,6 +14,23 @@ exports[`SubmissionGrader renders 1`] = `
     submissionID="1"
     submissionProps={Object {}}
   />
+  <View
+    style={
+      Object {
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 16,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      No Submission
+    </Text>
+  </View>
   <BottomDrawer
     containerHeight={1334}
     containerWidth={750}

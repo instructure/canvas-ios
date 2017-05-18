@@ -46,7 +46,7 @@ export class Header extends Component {
 
       return {
         showingPicker: !previousState.showingPicker,
-        display: previousState.showingPicker ? previousState.showingPicker : 'flex',
+        display: previousState.showingPicker ? previousState.display : 'flex',
       }
     })
   }
@@ -147,7 +147,7 @@ export class Header extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    overflow: 'hidden',
+    marginBottom: 18,
   },
   profileContainer: {
     flexDirection: 'row',

@@ -139,6 +139,23 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               }
             }
           />
+          <View
+            style={
+              Object {
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+            >
+              No Submission
+            </Text>
+          </View>
         </View>
       </View>
     </View>

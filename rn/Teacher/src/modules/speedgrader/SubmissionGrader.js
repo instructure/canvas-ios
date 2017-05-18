@@ -13,6 +13,7 @@ import GradeTab from './GradeTab'
 import FilesTab from './components/FilesTab'
 import CommentsTab from './comments/CommentsTab'
 import DrawerState from './utils/drawer-state'
+import SubmissionViewer from './SubmissionViewer'
 
 let { width, height } = Dimensions.get('window')
 
@@ -30,6 +31,7 @@ type SubmissionGraderProps = {
   submissionID: ?string,
   submissionProps: Object,
   selectedIndex: ?number,
+  selectedAttachmentIndex: ?number,
   drawerState: DrawerState,
 }
 
@@ -115,6 +117,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     return (
       <View onLayout={this.onLayout} style={styles.speedGrader}>
         <Header closeModal={this.props.closeModal} submissionProps={this.props.submissionProps} submissionID={this.props.submissionID} />
+        <SubmissionViewer {...this.props} />
         <BottomDrawer
           drawerState={this.props.drawerState}
           containerWidth={this.state.width}

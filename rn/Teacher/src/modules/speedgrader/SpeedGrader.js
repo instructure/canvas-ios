@@ -58,6 +58,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   renderItem = ({ item }: { item: SubmissionItem }) => {
     const submissionEntity = this.props.submissionEntities[item.submission.submissionID]
     const selectedIndex = submissionEntity != null ? submissionEntity.selectedIndex : null
+    const selectedAttachmentIndex = submissionEntity != null ? submissionEntity.selectedAttachmentIndex : null
     return <View style={[styles.page, this.state.size]}>
       <SubmissionGrader
         drawerState={SpeedGrader.drawerState}
@@ -68,6 +69,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         closeModal={this.props.navigator.dismiss}
         submissionProps={item.submission}
         selectedIndex={selectedIndex}
+        selectedAttachmentIndex={selectedAttachmentIndex}
       />
     </View>
   }
