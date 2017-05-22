@@ -111,3 +111,52 @@ exports[`SubmissionViewer renders an online_text_entry submission 1`] = `
   />
 </View>
 `;
+
+exports[`SubmissionViewer renders no submission 1`] = `
+<View
+  style={
+    Object {
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 0,
+        "height": "84%",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+            "textAlign": "center",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      This student does not have a submission for this assignment.
+    </Text>
+  </View>
+</View>
+`;

@@ -3,9 +3,10 @@
 import React, { Component } from 'react'
 import {
   View,
-  Text,
   StyleSheet,
 } from 'react-native'
+import i18n from 'format-message'
+import { Text, MEDIUM_FONT } from '../../common/text'
 import type {
   SubmissionDataProps,
 } from '../submissions/list/submission-prop-types'
@@ -50,8 +51,12 @@ export default class SubmissionViewer extends Component {
         return this.renderSubmission(submission)
       }
     } else {
-      // TODO: no submission (MBL-7562)
-      return <View style={styles.container}><Text>No Submission</Text></View>
+      const text = i18n('This student does not have a submission for this assignment.')
+      return <View style={styles.container}>
+        <View style={styles.centeredText}>
+          <Text style={styles.noSubText}>{text}</Text>
+        </View>
+      </View>
     }
   }
 }
@@ -64,5 +69,15 @@ const styles = StyleSheet.create({
   },
   webContainer: {
     flex: 0,
+  },
+  centeredText: {
+    height: '84%',
+    flex: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noSubText: {
+    textAlign: 'center',
+    fontFamily: MEDIUM_FONT,
   },
 })

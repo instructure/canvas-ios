@@ -6,7 +6,6 @@ import renderer from 'react-test-renderer'
 
 jest
   .mock('WebView', () => 'Webview')
-  .mock('ScrollView', () => 'ScrollView')
 
 let defaultSelections = {
   selectedIndex: null,
@@ -36,6 +35,19 @@ describe('SubmissionViewer', () => {
     let props = {
       ...defaultSelections,
       submissionProps: sub,
+    }
+
+    let tree = renderer.create(
+      <SubmissionViewer {...props} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders no submission', () => {
+    let props = {
+      ...defaultSelections,
+      submissionProps: defaultSub,
     }
 
     let tree = renderer.create(
