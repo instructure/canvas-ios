@@ -48,7 +48,7 @@ test('refresh quiz', () => {
   const resolved = {
     type: refreshQuiz.toString(),
     payload: {
-      result: [{ data: [refreshedGroup] }, { data: quiz }],
+      result: [{}, { data: [refreshedGroup] }],
       courseID: '1',
       quizID: quiz.id,
     },

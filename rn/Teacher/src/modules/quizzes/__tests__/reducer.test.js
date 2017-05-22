@@ -98,11 +98,10 @@ describe('entities', () => {
   describe('refreshQuiz', () => {
     it('handles resolved', () => {
       const quiz = template.quiz({ id: '1' })
-      const assignmentGroups = []
       const resolved = {
         type: refreshQuiz.toString(),
         payload: {
-          result: [{ data: assignmentGroups }, { data: quiz }],
+          result: [{ data: quiz }],
           courseID: '1',
           quizID: quiz.id,
         },

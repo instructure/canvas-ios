@@ -44,7 +44,7 @@ export const assignmentGroups: Reducer<AsyncRefs, any> = handleActions({
     rejected: (state) => ({ ...state, pending: state.pending - 1 }),
   }),
   [refreshQuiz.toString()]: handleAsync({
-    resolved: (state, { result: [assignmentGroups] }) => ({
+    resolved: (state, { result: [quiz, assignmentGroups] }) => ({
       ...state,
       refs: assignmentGroups.data.map(a => a.id),
     }),

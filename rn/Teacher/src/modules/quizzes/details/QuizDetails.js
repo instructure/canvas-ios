@@ -32,6 +32,7 @@ type OwnProps = {
 type State = {
   quiz: ?Quiz,
   assignmentGroup: ?AssignmentGroup,
+  assignment: ?Assignment,
 }
 
 export type Props = State & OwnProps & RefreshProps & Actions & {
@@ -205,6 +206,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
   let pending = 0
   let error = null
   let assignmentGroup = null
+  let assignment = null
 
   if (entities.quizzes &&
     entities.quizzes[quizID] &&
@@ -219,6 +221,12 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
       entities.assignmentGroups[quiz.assignment_group_id]) {
       assignmentGroup = entities.assignmentGroups[quiz.assignment_group_id].group
     }
+
+    if (quiz.assignment_id &&
+      entities.assignments &&
+      entities.assignments[quiz.assignment_id]) {
+      assignment = entities.assignments[quiz.assignment_id].data
+    }
   }
 
   return {
@@ -228,12 +236,13 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
     courseID,
     quizID,
     assignmentGroup,
+    assignment,
   }
 }
 
 let Refreshed = refresh(
   props => props.refreshQuiz(props.courseID, props.quizID),
-  props => !props.quiz || !props.assignmentGroup,
+  props => !props.quiz || !props.assignmentGroup || !props.assignment,
   props => Boolean(props.pending)
 )(QuizDetails)
 let Connected = connect(mapStateToProps, Actions)(Refreshed)

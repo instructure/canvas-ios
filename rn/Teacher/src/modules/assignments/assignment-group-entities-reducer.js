@@ -31,7 +31,7 @@ export const assignmentGroups: Reducer<AssignmentGroupsState, any> = handleActio
     },
   }),
   [refreshQuiz.toString()]: handleAsync({
-    resolved: (state, { result: [assignmentGroups] }) => {
+    resolved: (state, { result: [quiz, assignmentGroups] }) => {
       const incoming = assignmentGroups.data
         .reduce((incoming, group) => ({
           ...incoming,

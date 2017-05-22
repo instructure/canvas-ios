@@ -198,7 +198,11 @@ describe('QuizDetails', () => {
 
 describe('mapStateToProps', () => {
   it('maps state to props', () => {
-    const quiz = template.quiz({ id: '1', assignment_group_id: null })
+    const quiz = template.quiz({
+      id: '1',
+      assignment_group_id: null,
+      assignment_id: null,
+    })
     const state: AppState = template.appState({
       entities: {
         ...template.appState().entities,
@@ -221,11 +225,16 @@ describe('mapStateToProps', () => {
       courseID: '1',
       quizID: '1',
       assignmentGroup: null,
+      assignment: null,
     })
   })
 
   it('maps assignment group id to assignment group prop', () => {
-    const quiz = template.quiz({ id: '1', assignment_group_id: '2' })
+    const quiz = template.quiz({
+      id: '1',
+      assignment_group_id: '2',
+      assignment_id: null,
+    })
     const ag1 = template.assignmentGroup({ id: '1', name: 'AG 1' })
     const ag2 = template.assignmentGroup({ id: '2', name: 'AG 2' })
     const state: AppState = template.appState({
@@ -265,6 +274,45 @@ describe('mapStateToProps', () => {
       courseID: '1',
       quizID: '1',
       assignmentGroup: ag2,
+      assignment: null,
+    })
+  })
+
+  it('maps assignment_id to assignment prop', () => {
+    const quiz = template.quiz({
+      id: '1',
+      assignment_group_id: null,
+      assignment_id: '2',
+    })
+    const assignment = template.assignment({ id: '2' })
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        assignments: {
+          '2': {
+            data: assignment,
+          },
+        },
+        quizzes: {
+          '1': {
+            data: quiz,
+            pending: 1,
+            error: null,
+          },
+        },
+      },
+    })
+
+    expect(
+      mapStateToProps(state, { courseID: '1', quizID: '1' })
+    ).toMatchObject({
+      quiz,
+      pending: 1,
+      error: null,
+      courseID: '1',
+      quizID: '1',
+      assignmentGroup: null,
+      assignment: assignment,
     })
   })
 })

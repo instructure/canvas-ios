@@ -36,7 +36,7 @@ export const entities: Reducer<QuizzesState, any> = handleActions({
     },
   }),
   [refreshQuiz.toString()]: handleAsync({
-    resolved: (state, { result: [assignmentGroups, quiz], quizID }) => ({
+    resolved: (state, { result: [quiz], quizID }) => ({
       ...state,
       [quizID]: {
         ...state[quizID],
