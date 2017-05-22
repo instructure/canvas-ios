@@ -22,4 +22,7 @@ export type Quiz = {
   hide_correct_answers_at: ?string,
   one_question_at_a_time: boolean,
   scoring_policy: 'keep_average' | 'keep_latest' | 'keep_highest',
+  cant_go_back: boolean,
+  access_code: ?string,
+  assignment_group_id: ?string,
 }

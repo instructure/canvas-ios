@@ -142,6 +142,7 @@ exports[`comments render properly 1`] = `
               }
             >
               <Text
+                accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
@@ -367,6 +368,7 @@ exports[`comments render properly 1`] = `
               }
             >
               <Text
+                accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
@@ -534,6 +536,7 @@ exports[`comments render properly 1`] = `
               }
             >
               <Text
+                accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
@@ -693,6 +696,7 @@ exports[`comments render properly 1`] = `
               }
             >
               <Text
+                accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
@@ -823,6 +827,7 @@ exports[`comments render properly 1`] = `
               }
             >
               <Text
+                accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"

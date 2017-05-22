@@ -6,13 +6,16 @@ import { testAsyncAction } from '../../../../../test/helpers/async'
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/quiz'),
+  ...require('../../../../api/canvas-api/__templates__/assignments'),
 }
 
 describe('refreshQuiz', () => {
   it('should refresh quiz', async () => {
     const quiz = template.quiz({ title: 'refreshed' })
+    const assignmentGroups = [template.assignmentGroup()]
     const api = {
       getQuiz: apiResponse(quiz),
+      getAssignmentGroups: apiResponse(assignmentGroups),
     }
     const actions = Actions(api)
     const action = actions.refreshQuiz('21', '11509')
@@ -25,7 +28,7 @@ describe('refreshQuiz', () => {
       {
         type: actions.refreshQuiz.toString(),
         payload: {
-          result: { data: quiz },
+          result: [{ data: assignmentGroups }, { data: quiz }],
           courseID: '21',
           quizID: '11509',
         },

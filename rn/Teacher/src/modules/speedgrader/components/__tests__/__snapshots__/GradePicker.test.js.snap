@@ -21,6 +21,7 @@ exports[`GradePicker disables the button and has correct text for not graded ass
     }
   >
     <Text
+      accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
@@ -48,6 +49,7 @@ exports[`GradePicker disables the button and has correct text for not graded ass
       testID="grade-picker.button"
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -93,6 +95,7 @@ exports[`GradePicker renders points based grades 1`] = `
     }
   >
     <Text
+      accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
@@ -124,6 +127,7 @@ exports[`GradePicker renders points based grades 1`] = `
       testID="grade-picker.button"
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -170,6 +174,7 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
     }
   >
     <Text
+      accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
@@ -228,6 +233,7 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
     }
   >
     <Text
+      accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
@@ -343,6 +349,7 @@ exports[`GradePicker renders with excused 1`] = `
     }
   >
     <Text
+      accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
@@ -374,6 +381,7 @@ exports[`GradePicker renders with excused 1`] = `
       testID="grade-picker.button"
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -419,6 +427,7 @@ exports[`GradePicker renders with no grade 1`] = `
     }
   >
     <Text
+      accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"

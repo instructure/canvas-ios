@@ -23,6 +23,7 @@ exports[`SubmissionList loaded 1`] = `
     }
   >
     <Text
+      accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
@@ -1032,6 +1033,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
     }
   >
     <Text
+      accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"

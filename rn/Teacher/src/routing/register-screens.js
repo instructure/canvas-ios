@@ -17,11 +17,12 @@ import Staging from '../modules/staging/Staging'
 import SubmissionList from '../modules/submissions/list/SubmissionList'
 import AssigneePicker from '../modules/assignee-picker/AssigneePicker'
 import AssigneeSearch from '../modules/assignee-picker/AssigneeSearch'
-import AssignmentDescription from '../modules/assignment-description/AssignmentDescription'
 import SpeedGrader from '../modules/speedgrader/SpeedGrader'
 import RubricDescription from '../modules/speedgrader/RubricDescription'
 import QuizzesList from '../modules/quizzes/list/QuizzesList'
 import QuizDetails from '../modules/quizzes/details/QuizDetails'
+import QuizEdit from '../modules/quizzes/edit/QuizEdit'
+import RichTextEditor from '../common/components/rich-text-editor/RichTextEditor'
 import QuizPreview from '../modules/quizzes/details/QuizPreview'
 import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/components/CourseDetailsSplitViewPlaceholder'
 
@@ -38,7 +39,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/assignments', () => AssignmentList, store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/assignments/:assignmentID', () => AssignmentDetails, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/edit', () => AssignmentDetailsEdit, store)
-  registerScreen('/courses/:courseID/assignments/:assignmentID/edit/description', () => AssignmentDescription, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', () => AssignmentDueDates, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', () => SubmissionList, store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', () => SpeedGrader, store)
@@ -46,10 +46,12 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/quizzes', () => QuizzesList, store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/quizzes/:quizID', () => QuizDetails, store)
   registerScreen('/courses/:courseID/quizzes/:quizID/preview', () => QuizPreview, store)
+  registerScreen('/courses/:courseID/quizzes/:quizID/edit', () => QuizEdit, store)
   registerScreen('/conversations', () => Inbox, store)
   registerScreen('/profile', () => Profile, store)
   registerScreen('/beta-feedback', () => BetaFeedback, store)
   registerScreen('/staging', () => Staging)
+  registerScreen('/rich-text-editor', () => RichTextEditor)
   registerScreen('/courses/:courseID/placeholder', () => CourseDetailsSplitViewPlaceholder, store)
 
   // This will never actually be routed to, but this makes it really easy to debug

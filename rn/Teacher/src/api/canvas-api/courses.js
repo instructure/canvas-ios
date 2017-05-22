@@ -32,22 +32,6 @@ export function getCourseAssignments (courseID: string): Promise<ApiResponse<Ass
   return httpClient().get(url)
 }
 
-// Exhausting pagination here because it's easier. I am not a horrible person
-export function getCourseAssignmentGroups (courseID: string, gradingPeriodID?: string): Promise<ApiResponse<AssignmentGroup[]>> {
-  const url = `courses/${courseID}/assignment_groups`
-  let options = {
-    params: {
-      include: ['assignments', 'all_dates', 'overrides'],
-      per_page: 99,
-      grading_period_id: gradingPeriodID,
-    },
-  }
-
-  const groups = paginate(url, options)
-
-  return exhaust(groups)
-}
-
 export function getCourseGradingPeriods (courseID: string): Promise<ApiResponse<GradingPeriodResponse>> {
   const url = `courses/${courseID}/grading_periods`
   return httpClient().get(url)

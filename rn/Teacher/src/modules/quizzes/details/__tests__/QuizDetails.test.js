@@ -12,10 +12,13 @@ jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('WebView', () => 'WebView')
+  .mock('../../../../routing')
+  .mock('../../../../routing/Screen')
 
 const template = {
   ...require('../../../../__templates__/helm'),
   ...require('../../../../api/canvas-api/__templates__/quiz'),
+  ...require('../../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../../redux/__templates__/app-state'),
 }
 
@@ -25,8 +28,11 @@ describe('QuizDetails', () => {
     jest.clearAllMocks()
     props = {
       refresh: jest.fn(),
-      quiz: template.quiz(),
+      quiz: template.quiz({ id: '1' }),
       navigator: template.navigator(),
+      quizID: '1',
+      courseID: '1',
+      assignmentGroup: null,
     }
   })
 
@@ -149,6 +155,36 @@ describe('QuizDetails', () => {
     expect(props.refresh).toHaveBeenCalled()
   })
 
+  it('navigates to edit screen', () => {
+    props.navigator.show = jest.fn()
+    const tree = render(props).toJSON()
+    const editButton: any = explore(tree).selectRightBarButton('quizzes.details.editButton')
+    editButton.action()
+    expect(props.navigator.show).toHaveBeenCalledWith(`/courses/${props.courseID}/quizzes/${props.quizID}/edit`, { 'modal': true, 'modalPresentationStyle': 'formsheet' })
+  })
+
+  it('renders assignment group', () => {
+    // $FlowFixMe
+    props.assignmentGroup = template.assignmentGroup({ name: 'AG Name' })
+    testRender(props)
+  })
+
+  it('displays access code', () => {
+    props.quiz.access_code = 'abracadabra'
+    testRender(props)
+  })
+
+  it('displays "Lock Questions After Answering"', () => {
+    props.quiz.one_question_at_a_time = true
+    props.quiz.cant_go_back = true
+    testRender(props)
+  })
+
+  it('renders without a description', () => {
+    props.quiz.description = ''
+    testRender(props)
+  })
+
   function testRender (props: any) {
     expect(render(props).toJSON()).toMatchSnapshot()
   }
@@ -162,7 +198,7 @@ describe('QuizDetails', () => {
 
 describe('mapStateToProps', () => {
   it('maps state to props', () => {
-    const quiz = template.quiz({ id: '1' })
+    const quiz = template.quiz({ id: '1', assignment_group_id: null })
     const state: AppState = template.appState({
       entities: {
         ...template.appState().entities,
@@ -182,6 +218,53 @@ describe('mapStateToProps', () => {
       quiz,
       pending: 1,
       error: null,
+      courseID: '1',
+      quizID: '1',
+      assignmentGroup: null,
+    })
+  })
+
+  it('maps assignment group id to assignment group prop', () => {
+    const quiz = template.quiz({ id: '1', assignment_group_id: '2' })
+    const ag1 = template.assignmentGroup({ id: '1', name: 'AG 1' })
+    const ag2 = template.assignmentGroup({ id: '2', name: 'AG 2' })
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        courses: {
+          '1': {
+            assignmentGroups: {
+              refs: ['1', '2'],
+            },
+          },
+        },
+        assignmentGroups: {
+          '1': {
+            group: ag1,
+          },
+          '2': {
+            group: ag2,
+          },
+        },
+        quizzes: {
+          '1': {
+            data: quiz,
+            pending: 1,
+            error: null,
+          },
+        },
+      },
+    })
+
+    expect(
+      mapStateToProps(state, { courseID: '1', quizID: '1' })
+    ).toMatchObject({
+      quiz,
+      pending: 1,
+      error: null,
+      courseID: '1',
+      quizID: '1',
+      assignmentGroup: ag2,
     })
   })
 })

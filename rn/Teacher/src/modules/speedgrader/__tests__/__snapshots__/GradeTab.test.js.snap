@@ -137,6 +137,7 @@ exports[`Rubric has the correct score 1`] = `
           >
             <View>
               <Text
+                accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
@@ -266,6 +267,7 @@ exports[`Rubric has the correct score 1`] = `
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -324,6 +326,7 @@ exports[`Rubric has the correct score 1`] = `
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -382,6 +385,7 @@ exports[`Rubric has the correct score 1`] = `
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -444,6 +448,7 @@ exports[`Rubric has the correct score 1`] = `
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -721,6 +726,7 @@ exports[`Rubric renders a rubric 1`] = `
           >
             <View>
               <Text
+                accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
@@ -850,6 +856,7 @@ exports[`Rubric renders a rubric 1`] = `
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -908,6 +915,7 @@ exports[`Rubric renders a rubric 1`] = `
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -966,6 +974,7 @@ exports[`Rubric renders a rubric 1`] = `
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -1028,6 +1037,7 @@ exports[`Rubric renders a rubric 1`] = `
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -1305,6 +1315,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           >
             <View>
               <Text
+                accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
@@ -1434,6 +1445,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -1492,6 +1504,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -1550,6 +1563,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -1612,6 +1626,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -2067,6 +2082,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
           >
             <View>
               <Text
+                accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
@@ -2202,6 +2218,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -2260,6 +2277,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -2318,6 +2336,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -2380,6 +2399,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -2657,6 +2677,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
           >
             <View>
               <Text
+                accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
@@ -2834,6 +2855,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -2892,6 +2914,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"
@@ -2953,6 +2976,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                 }
               >
                 <Text
+                  accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
                   ellipsizeMode="tail"

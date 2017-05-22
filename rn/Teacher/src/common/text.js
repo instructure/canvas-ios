@@ -21,7 +21,7 @@ export function Text ({ style, ...props }: Object): ReactNative.Text {
 }
 
 export function Heading1 ({ style, ...props }: Object): ReactNative.Text {
-  return <ReactNative.Text style={[styles.font, styles.h1, style]} {...props} />
+  return <ReactNative.Text style={[styles.font, styles.h1, style]} {...props} accessibilityTraits='header' />
 }
 
 export function Heading2 ({ style, ...props }: Object): ReactNative.Text {
@@ -44,9 +44,34 @@ export function ModalActivityIndicatorAlertText ({ style, ...props }: Object): R
 export function SectionHeader ({ style, ...props }: Object): ReactNative.Element<View> {
   return (
     <View style={styles.sectionHeader} key={props.key}>
-      <Text style={styles.sectionHeaderTitle} {...props} />
+      <Text style={styles.sectionHeaderTitle} {...props} accessibilityTraits='header' />
     </View>
   )
+}
+
+export function Separated (props: Object): ReactNative.Element<View> {
+  const separator = (
+    <Text
+      style={[props.style, { fontSize: props.separatorFontSize || 10, alignSelf: 'center' }]}
+    >
+      {props.separator}
+    </Text>
+  )
+  const result = props.separated
+    .slice(1)
+    .reduce((incoming, value) => incoming.concat([
+      separator,
+      <Text {...props}>{value}</Text>,
+    ]), [<Text {...props}>{props.separated[0]}</Text>])
+  return (
+    <View style={{ flexDirection: 'row' }}>
+      {result}
+    </View>
+  )
+}
+
+export function DotSeparated (props: Object): ReactNative.Element<*> {
+  return <Separated {...props} separator={'  •  '} />
 }
 
 const FontWeight: { [string]: string } = {

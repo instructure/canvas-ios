@@ -79,6 +79,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -140,6 +141,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -198,6 +200,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -452,6 +455,7 @@ exports[`RubricItem renders 1`] = `
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -510,6 +514,7 @@ exports[`RubricItem renders 1`] = `
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -568,6 +573,7 @@ exports[`RubricItem renders 1`] = `
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -630,6 +636,7 @@ exports[`RubricItem renders 1`] = `
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -845,6 +852,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -903,6 +911,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -961,6 +970,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -1023,6 +1033,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -1238,6 +1249,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -1296,6 +1308,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -1354,6 +1367,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -1416,6 +1430,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -1631,6 +1646,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -1689,6 +1705,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -1747,6 +1764,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
@@ -1809,6 +1827,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
         }
       >
         <Text
+          accessibilityTraits="header"
           accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"

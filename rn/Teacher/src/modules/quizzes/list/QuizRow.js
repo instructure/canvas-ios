@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import {
   StyleSheet,
   View,
-  Text,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -13,6 +12,7 @@ import PublishedIcon from '../../../common/components/PublishedIcon'
 import { formattedDueDateWithStatus } from '../../../common/formatters'
 import { extractDateFromString } from '../../../utils/dateUtils'
 import Images from '../../../images/'
+import { DotSeparated } from '../../../common/text'
 
 export type Props = {
   quiz: Quiz,
@@ -29,15 +29,17 @@ export default class QuizRow extends Component<any, Props, any> {
         <View style={{ marginLeft: -12 }}>
           <Row
             renderImage={this._renderIcon}
-            title={{ value: quiz.title, ellipsizeMode: 'tail', numberOfLines: 2 }}
-            subtitle={this._dueDate(quiz)}
+            title={quiz.title}
+            titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
             border='bottom'
             disclosureIndicator={true}
             testID={`quiz-row-${this.props.index}`}
             onPress={this._onPress}
+            height='auto'
           >
+            <DotSeparated style={style.subtitle} separated={this._dueDate(quiz)} />
             <View style={style.details}>
-              <Text>{this._details()}</Text>
+              {this._details()}
             </View>
           </Row>
         </View>
@@ -80,10 +82,7 @@ export default class QuizRow extends Component<any, Props, any> {
       one {# Question}
       other {# Questions}
     }`, { count: quiz.question_count })
-    return [
-      pointsPossible,
-      questionCount,
-    ].filter(s => s).join(' • ')
+    return <DotSeparated separated={[pointsPossible, questionCount].filter(v => v)} />
   }
 }
 
@@ -101,5 +100,10 @@ const style = StyleSheet.create({
   },
   icon: {
     alignSelf: 'flex-start',
+  },
+  subtitle: {
+    color: '#8B969E',
+    fontSize: 14,
+    marginTop: 2,
   },
 })

@@ -1,0 +1,258 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ZSSRichTextEditor link modal triggers insert link with selection 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <WebView
+    onLoad={[Function]}
+    onMessage={[Function]}
+    scalesPageToFit={true}
+    source={Object {}}
+  />
+  <LinkModal
+    linkCreated={[Function]}
+    linkUpdated={[Function]}
+    onCancel={[Function]}
+    title="selection"
+    url={null}
+    visible={true}
+  />
+</View>
+`;
+
+exports[`ZSSRichTextEditor link modal triggers insert new link 1`] = `
+Array [
+  Array [
+    "
+      var selection = getSelection().toString();
+      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
+    ",
+  ],
+  Array [
+    "zss_editor.prepareInsert();",
+  ],
+  Array [
+    "zss_editor.insertLink(\\"url\\", \\"title\\");",
+  ],
+  Array [
+    "setTimeout(function() { zss_editor.postInput() }, 1);",
+  ],
+  Array [
+    "zss_editor.focusEditor();",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor link modal triggers update link 1`] = `
+Array [
+  Array [
+    "
+      var selection = getSelection().toString();
+      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
+    ",
+  ],
+  Array [
+    "zss_editor.prepareInsert();",
+  ],
+  Array [
+    "zss_editor.updateLink(\\"url\\", \\"title\\");",
+  ],
+  Array [
+    "zss_editor.focusEditor();",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor notifies when editor focused 1`] = `Array []`;
+
+exports[`ZSSRichTextEditor renders 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <WebView
+    onLoad={[Function]}
+    onMessage={[Function]}
+    scalesPageToFit={true}
+    source={Object {}}
+  />
+  <LinkModal
+    linkCreated={[Function]}
+    linkUpdated={[Function]}
+    onCancel={[Function]}
+    title={undefined}
+    url={undefined}
+    visible={false}
+  />
+</View>
+`;
+
+exports[`ZSSRichTextEditor responds when zss editor loads 1`] = `Array []`;
+
+exports[`ZSSRichTextEditor sends input changes 1`] = `Array []`;
+
+exports[`ZSSRichTextEditor sets custom css on web view loaded 1`] = `
+Array [
+  Array [
+    "zss_editor.init();",
+  ],
+  Array [
+    "zss_editor.setCustomCSS('img { max-width: 100%; } ');",
+  ],
+  Array [
+    "setTimeout(function() { zss_editor.postInput() }, 1);",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor shows link modal 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <WebView
+    onLoad={[Function]}
+    onMessage={[Function]}
+    scalesPageToFit={true}
+    source={Object {}}
+  />
+  <LinkModal
+    linkCreated={[Function]}
+    linkUpdated={[Function]}
+    onCancel={[Function]}
+    title={undefined}
+    url={null}
+    visible={true}
+  />
+</View>
+`;
+
+exports[`ZSSRichTextEditor shows link modal when link touched 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <WebView
+    onLoad={[Function]}
+    onMessage={[Function]}
+    scalesPageToFit={true}
+    source={Object {}}
+  />
+  <LinkModal
+    linkCreated={[Function]}
+    linkUpdated={[Function]}
+    onCancel={[Function]}
+    title="test update link"
+    url="http://test-update-link.com"
+    visible={true}
+  />
+</View>
+`;
+
+exports[`ZSSRichTextEditor triggers blur 1`] = `
+Array [
+  Array [
+    "zss_editor.blurEditor();",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor triggers bold 1`] = `
+Array [
+  Array [
+    "zss_editor.setBold();",
+  ],
+  Array [
+    "setTimeout(function() { zss_editor.postInput() }, 1);",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor triggers focus 1`] = `
+Array [
+  Array [
+    "zss_editor.focusEditor();",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor triggers italic 1`] = `
+Array [
+  Array [
+    "zss_editor.setItalic();",
+  ],
+  Array [
+    "setTimeout(function() { zss_editor.postInput() }, 1);",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor triggers ordered list 1`] = `
+Array [
+  Array [
+    "zss_editor.setOrderedList();",
+  ],
+  Array [
+    "setTimeout(function() { zss_editor.postInput() }, 1);",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor triggers redo 1`] = `
+Array [
+  Array [
+    "zss_editor.redo();",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor triggers text color 1`] = `
+Array [
+  Array [
+    "zss_editor.prepareInsert();",
+  ],
+  Array [
+    "zss_editor.setTextColor('white');",
+  ],
+  Array [
+    "setTimeout(function() { zss_editor.postInput() }, 1);",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor triggers undo 1`] = `
+Array [
+  Array [
+    "zss_editor.undo();",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor triggers unordered list 1`] = `
+Array [
+  Array [
+    "zss_editor.setUnorderedList();",
+  ],
+  Array [
+    "setTimeout(function() { zss_editor.postInput() }, 1);",
+  ],
+]
+`;

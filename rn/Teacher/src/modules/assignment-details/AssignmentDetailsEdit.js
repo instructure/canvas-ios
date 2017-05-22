@@ -66,6 +66,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
   constructor (props: AssignmentDetailsProps) {
     super(props)
+
     this.state = {
       assignment: Object.assign({}, props.assignmentDetails),
       showPicker: false,
@@ -236,9 +237,10 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   }
 
   _editDescription = () => {
-    const courseID = this.props.courseID
-    const id = this.props.assignmentDetails.id
-    this.props.navigator.show(`/courses/${courseID}/assignments/${id}/edit/description`)
+    this.props.navigator.show('/rich-text-editor', { modal: false }, {
+      onChangeValue: (value) => { this.updateFromInput('description', value) },
+      defaultValue: this.state.assignment.description,
+    })
   }
 
   pickerValueDidChange (value: any) {

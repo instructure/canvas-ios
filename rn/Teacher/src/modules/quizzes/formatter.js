@@ -1,7 +1,11 @@
 /* @flow */
 
 import i18n from 'format-message'
-import { formattedDueDate } from '../../common/formatters'
+import {
+  formattedDueDate,
+  extractDateString,
+  extractTimeString,
+} from '../../common/formatters'
 import { extractDateFromString } from '../../utils/dateUtils'
 
 type HumanReadableQuiz = {
@@ -13,16 +17,25 @@ type HumanReadableQuiz = {
   showCorrectAnswers: ?string,
   oneQuestionAtATime: string,
   scoringPolicy: string,
+  cantGoBack: string,
+}
+
+export const SCORING_POLICIES: { [policy: string]: string } = {
+  keep_average: i18n('Average'),
+  keep_latest: i18n('Latest'),
+  keep_highest: i18n('Highest'),
+}
+
+export const QUIZ_TYPES: { [type: string]: string } = {
+  practice_quiz: i18n('Practice Quiz'),
+  assignment: i18n('Graded Quiz'),
+  graded_survey: i18n('Graded Survey'),
+  survey: i18n('Ungraded Survey'),
 }
 
 export default function formatter (quiz: Quiz): HumanReadableQuiz {
   return {
-    quizType: {
-      practice_quiz: i18n('Practice Quiz'),
-      assignment: i18n('Graded Quiz'),
-      graded_survey: i18n('Graded Survey'),
-      survey: i18n('Ungraded Survey'),
-    }[quiz.quiz_type],
+    quizType: QUIZ_TYPES[quiz.quiz_type],
     shuffleAnswers: quiz.shuffle_answers ? i18n('Yes') : i18n('No'),
     timeLimit: quiz.time_limit
       ? i18n(`{
@@ -60,11 +73,20 @@ export default function formatter (quiz: Quiz): HumanReadableQuiz {
 
       return quiz.hide_results ? null : i18n('No')
     })(),
+    showCorrectAnswersAt: quiz.show_correct_answers_at ? [
+      // $FlowFixMe
+      extractDateString(extractDateFromString(quiz.show_correct_answers_at)),
+      // $FlowFixMe
+      extractTimeString(extractDateFromString(quiz.show_correct_answers_at)),
+    ].filter(d => d).join('  ') : null,
+    hideCorrectAnswersAt: quiz.hide_correct_answers_at ? [
+      // $FlowFixMe
+      extractDateString(extractDateFromString(quiz.hide_correct_answers_at)),
+      // $FlowFixMe
+      extractTimeString(extractDateFromString(quiz.hide_correct_answers_at)),
+    ].filter(d => d).join('  ') : null,
     oneQuestionAtATime: quiz.one_question_at_a_time ? i18n('Yes') : i18n('No'),
-    scoringPolicy: {
-      keep_average: i18n('Average'),
-      keep_latest: i18n('Latest'),
-      keep_highest: i18n('Highest'),
-    }[quiz.scoring_policy],
+    scoringPolicy: SCORING_POLICIES[quiz.scoring_policy],
+    cantGoBack: quiz.cant_go_back ? i18n('Yes') : i18n('No'),
   }
 }

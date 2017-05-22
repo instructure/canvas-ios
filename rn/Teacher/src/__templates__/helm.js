@@ -1,9 +1,8 @@
 // @flow
 
 import template, { type Template } from '../utils/template'
-import Navigator from '../routing/Navigator'
 
-export const navigator: Template<Navigator> = template({
+export const navigator: Template<any> = template({
   show: jest.fn(),
   dismiss: jest.fn(),
   dismissAllModals: jest.fn(),

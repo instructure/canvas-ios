@@ -1,10 +1,10 @@
 /* @flow */
 
-import 'react-native'
+import { NativeModules } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import { RichTextEditor } from '../'
+import RichTextEditor from '../RichTextEditor'
 import explore from '../../../../../test/helpers/explore'
 
 jest
@@ -12,226 +12,117 @@ jest
   .mock('ScrollView', () => 'ScrollView')
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('Button', () => 'Button')
-  .mock('../LinkModal', () => 'LinkModal')
+  .mock('../ZSSRichTextEditor')
+  .mock('../RichTextToolbar')
 
 describe('RichTextEditor', () => {
-  let js
+  let props
   beforeEach(() => {
-    js = jest.fn()
+    props = {
+      onChangeValue: jest.fn(),
+      defaultValue: '',
+    }
   })
-
-  const options = {
-    createNodeMock: (element) => {
-      if (element.type === 'WebView') {
-        return {
-          injectJavaScript: js,
-        }
-      }
-    },
-  }
-
-  const webView = (component) => {
-    return explore(component.toJSON()).query(({ type }) => type === 'WebView')[0]
-  }
-
-  const linkModal = (component) => {
-    return explore(component.toJSON()).query(({ type }) => type === 'LinkModal')[0]
-  }
 
   it('renders', () => {
-    expect(
-      renderer.create(
-        <RichTextEditor />
-      )
-    ).toMatchSnapshot()
+    testRender(props)
   })
 
-  it('provides unique active editor items', () => {
-    const items = jest.fn()
-    const component = renderer.create(
-      <RichTextEditor editorItemsChanged={items} />
-    )
-    const web = webView(component)
-    postMessage(web, 'CALLBACK', ['link'])
-
-    expect(items).toHaveBeenCalledWith(['link'])
-
-    postMessage(web, 'CALLBACK', ['link'])
-    expect(items).toHaveBeenCalledTimes(1)
-  })
-
-  it('sends input changes', () => {
-    const input = jest.fn()
-    const component = renderer.create(
-      <RichTextEditor onInputChange={input} />, options
-    )
-
-    const web = webView(component)
-    postMessage(web, 'EDITOR_INPUT', '<p>sends input changes</p>')
-
-    expect(input).toHaveBeenCalledWith('<p>sends input changes</p>')
-    expect(js.mock.calls).toMatchSnapshot()
-  })
-
-  it('notifies when editor focused', () => {
-    const onFocus = jest.fn()
-    const component = renderer.create(
-      <RichTextEditor onFocus={onFocus} />, options
-    )
-
-    const web = webView(component)
-    postMessage(web, 'EDITOR_FOCUSED')
-
-    expect(onFocus).toHaveBeenCalled()
-    expect(js.mock.calls).toMatchSnapshot()
-  })
-
-  it('responds when zss editor loads', () => {
-    const component = renderer.create(
-      <RichTextEditor />, options
-    )
-
-    const web = webView(component)
-    postMessage(web, 'ZSS_LOADED')
-
-    expect(js.mock.calls).toMatchSnapshot()
-  })
-
-  it('triggers undo', () => {
-    testTrigger((editor) => editor.undo())
-  })
-
-  it('triggers redo', () => {
-    testTrigger((editor) => editor.redo())
-  })
-
-  it('triggers bold', () => {
-    testTrigger((editor) => editor.setBold())
-  })
-
-  it('triggers italic', () => {
-    testTrigger((editor) => editor.setItalic())
-  })
-
-  it('shows link modal', () => {
-    const component = renderer.create(
-      <RichTextEditor />, options
-    )
-    component.getInstance().insertLink()
-    const web = webView(component)
-    postMessage(web, 'INSERT_LINK')
+  it('renders toolbar when editor focused', () => {
+    const component = render(props)
+    const editor: any = explore(component.toJSON()).query(({ type }) => type === 'ZSSRichTextEditor')[0]
+    editor.props.onFocus()
     expect(component.toJSON()).toMatchSnapshot()
   })
 
-  it('shows link modal when link touched', () => {
-    const link = {
-      url: 'http://test-update-link.com',
-      title: 'test update link',
+  it('hides toolbar when editor blurs', () => {
+    const component = render(props)
+    const editor: any = explore(component.toJSON()).query(({ type }) => type === 'ZSSRichTextEditor')[0]
+    editor.props.onFocus()
+    editor.props.onBlur()
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+
+  it('notifies when editor value changes', () => {
+    props.onChangeValue = jest.fn()
+    const tree = render(props).toJSON()
+    const editor: any = explore(tree).query(({ type }) => type === 'ZSSRichTextEditor')[0]
+    editor.props.onInputChange('text!')
+    expect(props.onChangeValue).toHaveBeenCalledWith('text!')
+  })
+
+  describe('toolbar actions', () => {
+    it('should set bold', () => {
+      testToolbarAction('setBold')
+    })
+
+    it('should set italic', () => {
+      testToolbarAction('setItalic')
+    })
+
+    it('should set unorderd list', () => {
+      testToolbarAction('setUnorderedList')
+    })
+
+    it('should set orderd list', () => {
+      testToolbarAction('setOrderedList')
+    })
+
+    it('should insert link', () => {
+      testToolbarAction('insertLink')
+    })
+
+    it('should set text color', () => {
+      testToolbarAction('setTextColor')
+    })
+
+    it('should set undo', () => {
+      testToolbarAction('undo')
+    })
+
+    it('should set redo', () => {
+      testToolbarAction('redo')
+    })
+  })
+
+  it('should update active editor items in toolbar', () => {
+    const component = render(props)
+    const editor: any = explore(component.toJSON()).query(({ type }) => type === 'ZSSRichTextEditor')[0]
+    editor.props.onFocus()
+    editor.props.editorItemsChanged(['italic'])
+    expect(component.toJSON()).toMatchSnapshot()
+    editor.props.editorItemsChanged(['bold'])
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+
+  it('hacks the webview on load', () => {
+    NativeModules.WebViewHacker = {
+      removeInputAccessoryView: jest.fn(),
+      setKeyboardDisplayRequiresUserAction: jest.fn(),
     }
-    const component = renderer.create(
-      <RichTextEditor />, options
-    )
-    component.getInstance().insertLink()
-    const web = webView(component)
-    postMessage(web, 'LINK_TOUCHED', link)
-    expect(component.toJSON()).toMatchSnapshot()
+    const component = render(props)
+    const editor: any = explore(component.toJSON()).query(({ type }) => type === 'ZSSRichTextEditor')[0]
+    editor.props.onLoad()
+    expect(NativeModules.WebViewHacker.removeInputAccessoryView).toHaveBeenCalled()
+    expect(NativeModules.WebViewHacker.setKeyboardDisplayRequiresUserAction).toHaveBeenCalledWith(false)
   })
 
-  describe('link modal', () => {
-    it('triggers insert new link', () => {
-      const component = renderer.create(
-        <RichTextEditor />, options
-      )
-      component.getInstance().insertLink()
-      postMessage(webView(component), 'INSERT_LINK')
-      linkModal(component).props.linkCreated('url', 'title')
-
-      expect(js.mock.calls).toMatchSnapshot()
-    })
-
-    it('triggers insert link with selection', () => {
-      const component = renderer.create(
-        <RichTextEditor />, options
-      )
-      component.getInstance().insertLink()
-      postMessage(webView(component), 'INSERT_LINK', 'selection')
-      expect(component).toMatchSnapshot()
-    })
-
-    it('triggers update link', () => {
-      const component = renderer.create(
-        <RichTextEditor />, options
-      )
-      component.getInstance().insertLink()
-      postMessage(webView(component), 'INSERT_LINK')
-      linkModal(component).props.linkUpdated('url', 'title')
-
-      expect(js.mock.calls).toMatchSnapshot()
-    })
-  })
-
-  it('triggers text color', () => {
-    testTrigger((editor) => editor.setTextColor('white'))
-  })
-
-  it('triggers unordered list', () => {
-    testTrigger((editor) => editor.setUnorderedList())
-  })
-
-  it('triggers ordered list', () => {
-    testTrigger((editor) => editor.setOrderedList())
-  })
-
-  it('triggers focus', () => {
-    testTrigger((editor) => editor.focusEditor())
-  })
-
-  it('triggers blur', () => {
-    testTrigger((editor) => editor.blurEditor())
-  })
-
-  it('sets custom css on web view loaded', () => {
-    const component = renderer.create(
-      <RichTextEditor />, options
-    )
-    const web = webView(component)
-    web.props.onLoad()
-    expect(js.mock.calls).toMatchSnapshot()
-  })
-
-  it('notifies when editor loaded', () => {
-    const onLoad = jest.fn()
-    const component = renderer.create(
-      <RichTextEditor onLoad={onLoad} />, options
-    )
-    const web = webView(component)
-    expect(onLoad).not.toHaveBeenCalled()
-    web.props.onLoad()
-    expect(onLoad).toHaveBeenCalled()
-  })
-
-  it('notifies when editor blurred', () => {
-    const onBlur = jest.fn()
-    const component = renderer.create(
-      <RichTextEditor onBlur={onBlur} />
-    )
-    const web = webView(component)
-    postMessage(web, 'EDITOR_BLURRED')
-    expect(onBlur).toHaveBeenCalled()
-  })
-
-  function testTrigger (trigger: (editor: any) => void): any {
-    const component = renderer.create(
-      <RichTextEditor />, options
-    )
-    trigger(component.getInstance())
-    expect(js.mock.calls).toMatchSnapshot()
-    return component
+  function render (props): any {
+    return renderer.create(<RichTextEditor {...props} />)
   }
 
-  function postMessage (webView: any, type: string, data: any) {
-    const message = { type: type, data: data }
-    const event = { nativeEvent: { data: JSON.stringify(message) } }
-    webView.props.onMessage(event)
+  function testRender (props) {
+    expect(render(props)).toMatchSnapshot()
+  }
+
+  function testToolbarAction (action: string) {
+    const mock = jest.fn()
+    const component = render(props)
+    const editor: any = explore(component.toJSON()).query(({ type }) => type === 'ZSSRichTextEditor')[0]
+    editor.props.onFocus()
+    editor.props._setMock(action, mock)
+    const toolbar: any = explore(component.toJSON()).query(({ type }) => type === 'RichTextToolbar')[0]
+    toolbar.props[action]()
+    expect(mock).toHaveBeenCalled()
   }
 })

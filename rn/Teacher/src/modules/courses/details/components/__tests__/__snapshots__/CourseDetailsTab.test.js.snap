@@ -4,7 +4,11 @@ exports[`default icon 1`] = `
 <View
   accessibilityComponentType={undefined}
   accessibilityLabel={undefined}
-  accessibilityTraits="button"
+  accessibilityTraits={
+    Array [
+      "button",
+    ]
+  }
   accessible={true}
   hasTVPreferredFocus={undefined}
   hitSlop={undefined}
@@ -23,7 +27,7 @@ exports[`default icon 1`] = `
       },
       Array [
         Object {
-          "height": 44,
+          "height": 54,
         },
         undefined,
         Object {
@@ -62,7 +66,7 @@ exports[`default icon 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        ellipsizeMode={null}
+        ellipsizeMode="tail"
         numberOfLines={0}
         style={
           Array [
@@ -88,29 +92,40 @@ exports[`default icon 1`] = `
     <View
       style={
         Object {
-          "flexDirection": "row",
+          "flex": 0,
         }
       }
     >
       <View
         style={
           Object {
-            "alignSelf": "center",
-            "backgroundColor": "transparent",
-            "borderColor": "#c7c7cc",
-            "borderRightWidth": 2,
-            "borderTopWidth": 2,
-            "height": 10,
-            "marginLeft": 7,
-            "transform": Array [
-              Object {
-                "rotate": "45deg",
-              },
-            ],
-            "width": 10,
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
           }
         }
-      />
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "center",
+              "backgroundColor": "transparent",
+              "borderColor": "#c7c7cc",
+              "borderRightWidth": 2,
+              "borderTopWidth": 2,
+              "height": 10,
+              "marginLeft": 7,
+              "transform": Array [
+                Object {
+                  "rotate": "45deg",
+                },
+              ],
+              "width": 10,
+            }
+          }
+        />
+      </View>
     </View>
   </View>
 </View>
@@ -120,7 +135,11 @@ exports[`renders correctly 1`] = `
 <View
   accessibilityComponentType={undefined}
   accessibilityLabel={undefined}
-  accessibilityTraits="button"
+  accessibilityTraits={
+    Array [
+      "button",
+    ]
+  }
   accessible={true}
   hasTVPreferredFocus={undefined}
   hitSlop={undefined}
@@ -139,7 +158,7 @@ exports[`renders correctly 1`] = `
       },
       Array [
         Object {
-          "height": 44,
+          "height": 54,
         },
         undefined,
         Object {
@@ -194,7 +213,7 @@ exports[`renders correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        ellipsizeMode={null}
+        ellipsizeMode="tail"
         numberOfLines={0}
         style={
           Array [
@@ -220,29 +239,40 @@ exports[`renders correctly 1`] = `
     <View
       style={
         Object {
-          "flexDirection": "row",
+          "flex": 0,
         }
       }
     >
       <View
         style={
           Object {
-            "alignSelf": "center",
-            "backgroundColor": "transparent",
-            "borderColor": "#c7c7cc",
-            "borderRightWidth": 2,
-            "borderTopWidth": 2,
-            "height": 10,
-            "marginLeft": 7,
-            "transform": Array [
-              Object {
-                "rotate": "45deg",
-              },
-            ],
-            "width": 10,
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
           }
         }
-      />
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "center",
+              "backgroundColor": "transparent",
+              "borderColor": "#c7c7cc",
+              "borderRightWidth": 2,
+              "borderTopWidth": 2,
+              "height": 10,
+              "marginLeft": 7,
+              "transform": Array [
+                Object {
+                  "rotate": "45deg",
+                },
+              ],
+              "width": 10,
+            }
+          }
+        />
+      </View>
     </View>
   </View>
 </View>

@@ -35,6 +35,7 @@ exports[`My message rows render correctly 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -253,6 +254,7 @@ exports[`Their message rows render correctly 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -413,6 +415,7 @@ exports[`my media comments render correclty 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -565,6 +568,7 @@ exports[`their media comments render correctly 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -688,6 +692,7 @@ exports[`their submissions render correctly 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"

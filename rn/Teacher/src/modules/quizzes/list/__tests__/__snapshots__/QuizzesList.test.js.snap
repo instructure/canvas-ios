@@ -59,7 +59,10 @@ exports[`QuizzesList renders in correct order 1`] = `
         Object {
           "data": Array [
             Object {
+              "access_code": null,
               "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
               "description": "This is quiz 1",
               "due_at": "2117-03-28T15:07:56.312Z",
               "hide_correct_answers_at": null,
@@ -81,7 +84,10 @@ exports[`QuizzesList renders in correct order 1`] = `
               "title": "Second",
             },
             Object {
+              "access_code": null,
               "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
               "description": "This is quiz 1",
               "due_at": "2118-03-28T15:07:56.312Z",
               "hide_correct_answers_at": null,
@@ -133,7 +139,10 @@ exports[`QuizzesList renders in correct order 1`] = `
         Object {
           "data": Array [
             Object {
+              "access_code": null,
               "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
               "description": "This is quiz 1",
               "due_at": "2117-03-28T15:07:56.312Z",
               "hide_correct_answers_at": null,
@@ -155,7 +164,10 @@ exports[`QuizzesList renders in correct order 1`] = `
               "title": "Second",
             },
             Object {
+              "access_code": null,
               "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
               "description": "This is quiz 1",
               "due_at": "2118-03-28T15:07:56.312Z",
               "hide_correct_answers_at": null,
@@ -210,6 +222,7 @@ exports[`QuizzesList renders in correct order 1`] = `
           }
         >
           <Text
+            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -251,7 +264,12 @@ exports[`QuizzesList renders in correct order 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityTraits="button"
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
                 onPress={[Function]}
                 style={
                   Array [
@@ -374,32 +392,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                     >
                       Second
                     </Text>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      Due Mar 28, 2117 at 9:07 AM
-                    </Text>
                     <View
                       style={
                         Object {
@@ -411,37 +403,175 @@ exports[`QuizzesList renders in correct order 1`] = `
                         accessible={true}
                         allowFontScaling={true}
                         ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Due Mar 28, 2117 at 9:07 AM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
                       >
-                        20 pts • 12 Questions
+                        Due Mar 28, 2117 at 9:07 AM
                       </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          20 pts
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                undefined,
+                                Object {
+                                  "alignSelf": "center",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          12 Questions
+                        </Text>
+                      </View>
                     </View>
                   </View>
                   <View
                     style={
                       Object {
-                        "flexDirection": "row",
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
               </TouchableHighlight>
@@ -474,7 +604,12 @@ exports[`QuizzesList renders in correct order 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityTraits="button"
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
                 onPress={[Function]}
                 style={
                   Array [
@@ -597,32 +732,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                     >
                       First
                     </Text>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      Due Mar 28, 2118 at 9:07 AM
-                    </Text>
                     <View
                       style={
                         Object {
@@ -634,37 +743,175 @@ exports[`QuizzesList renders in correct order 1`] = `
                         accessible={true}
                         allowFontScaling={true}
                         ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Due Mar 28, 2118 at 9:07 AM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
                       >
-                        20 pts • 12 Questions
+                        Due Mar 28, 2118 at 9:07 AM
                       </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          20 pts
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                undefined,
+                                Object {
+                                  "alignSelf": "center",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          12 Questions
+                        </Text>
+                      </View>
                     </View>
                   </View>
                   <View
                     style={
                       Object {
-                        "flexDirection": "row",
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
               </TouchableHighlight>
@@ -704,7 +951,10 @@ exports[`QuizzesList renders quizzes 1`] = `
         Object {
           "data": Array [
             Object {
+              "access_code": null,
               "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
               "description": "This is quiz 1",
               "due_at": "2013-01-23T23:59:00-07:00",
               "hide_correct_answers_at": null,
@@ -726,7 +976,10 @@ exports[`QuizzesList renders quizzes 1`] = `
               "title": "Quiz 2",
             },
             Object {
+              "access_code": null,
               "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
               "description": "This is quiz 1",
               "due_at": "2013-01-23T23:59:00-07:00",
               "hide_correct_answers_at": null,
@@ -778,7 +1031,10 @@ exports[`QuizzesList renders quizzes 1`] = `
         Object {
           "data": Array [
             Object {
+              "access_code": null,
               "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
               "description": "This is quiz 1",
               "due_at": "2013-01-23T23:59:00-07:00",
               "hide_correct_answers_at": null,
@@ -800,7 +1056,10 @@ exports[`QuizzesList renders quizzes 1`] = `
               "title": "Quiz 2",
             },
             Object {
+              "access_code": null,
               "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
               "description": "This is quiz 1",
               "due_at": "2013-01-23T23:59:00-07:00",
               "hide_correct_answers_at": null,
@@ -855,6 +1114,7 @@ exports[`QuizzesList renders quizzes 1`] = `
           }
         >
           <Text
+            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -896,7 +1156,12 @@ exports[`QuizzesList renders quizzes 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityTraits="button"
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
                 onPress={[Function]}
                 style={
                   Array [
@@ -1019,32 +1284,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                     >
                       Quiz 2
                     </Text>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      Due Jan 23, 2013 at 11:59 PM
-                    </Text>
                     <View
                       style={
                         Object {
@@ -1056,37 +1295,175 @@ exports[`QuizzesList renders quizzes 1`] = `
                         accessible={true}
                         allowFontScaling={true}
                         ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Due Jan 23, 2013 at 11:59 PM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
                       >
-                        20 pts • 12 Questions
+                        Due Jan 23, 2013 at 11:59 PM
                       </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          20 pts
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                undefined,
+                                Object {
+                                  "alignSelf": "center",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          12 Questions
+                        </Text>
+                      </View>
                     </View>
                   </View>
                   <View
                     style={
                       Object {
-                        "flexDirection": "row",
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
               </TouchableHighlight>
@@ -1119,7 +1496,12 @@ exports[`QuizzesList renders quizzes 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityTraits="button"
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
                 onPress={[Function]}
                 style={
                   Array [
@@ -1242,32 +1624,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                     >
                       Quiz 1
                     </Text>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      Due Jan 23, 2013 at 11:59 PM
-                    </Text>
                     <View
                       style={
                         Object {
@@ -1279,37 +1635,175 @@ exports[`QuizzesList renders quizzes 1`] = `
                         accessible={true}
                         allowFontScaling={true}
                         ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Due Jan 23, 2013 at 11:59 PM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
                       >
-                        20 pts • 12 Questions
+                        Due Jan 23, 2013 at 11:59 PM
                       </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          20 pts
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                undefined,
+                                Object {
+                                  "alignSelf": "center",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          12 Questions
+                        </Text>
+                      </View>
                     </View>
                   </View>
                   <View
                     style={
                       Object {
-                        "flexDirection": "row",
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
               </TouchableHighlight>

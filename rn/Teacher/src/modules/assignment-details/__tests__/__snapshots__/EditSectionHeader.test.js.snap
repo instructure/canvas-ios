@@ -17,6 +17,7 @@ exports[`render 1`] = `
   }
 >
   <Text
+    accessibilityTraits="header"
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
@@ -61,6 +62,7 @@ exports[`render no title 1`] = `
   }
 >
   <Text
+    accessibilityTraits="header"
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"

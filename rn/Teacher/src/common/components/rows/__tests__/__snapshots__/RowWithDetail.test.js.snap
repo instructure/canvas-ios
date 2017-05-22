@@ -3,8 +3,8 @@
 exports[`Render row with detail label 1`] = `
 <View
   accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
+  accessibilityLabel="Row with a switch in it!, this is a detail label"
+  accessibilityTraits={Array []}
   accessible={true}
   hasTVPreferredFocus={undefined}
   hitSlop={undefined}
@@ -23,7 +23,7 @@ exports[`Render row with detail label 1`] = `
       },
       Array [
         Object {
-          "height": undefined,
+          "height": 54,
         },
         undefined,
         undefined,
@@ -59,7 +59,7 @@ exports[`Render row with detail label 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        ellipsizeMode={null}
+        ellipsizeMode="tail"
         numberOfLines={0}
         style={
           Array [
@@ -85,33 +85,53 @@ exports[`Render row with detail label 1`] = `
     <View
       style={
         Object {
-          "flexDirection": "row",
+          "flex": 0,
         }
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={1}
+      <View
         style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            undefined,
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-          ]
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+          }
         }
       >
-        this is a detail label
-      </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                undefined,
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            this is a detail label
+          </Text>
+        </View>
+      </View>
     </View>
   </View>
 </View>

@@ -23,6 +23,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
     }
   >
     <Text
+      accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
@@ -323,7 +324,12 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
               }
             >
               <TouchableHighlight
-                accessibilityTraits="button"
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
                 onPress={[Function]}
                 style={
                   Array [
@@ -477,29 +483,40 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   <View
                     style={
                       Object {
-                        "flexDirection": "row",
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
               </TouchableHighlight>
@@ -536,6 +553,7 @@ exports[`applyFilter will apply a new filter 1`] = `
     }
   >
     <Text
+      accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
@@ -836,7 +854,12 @@ exports[`applyFilter will apply a new filter 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityTraits="button"
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
                 onPress={[Function]}
                 style={
                   Array [
@@ -990,29 +1013,40 @@ exports[`applyFilter will apply a new filter 1`] = `
                   <View
                     style={
                       Object {
-                        "flexDirection": "row",
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
               </TouchableHighlight>
@@ -1049,6 +1083,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
     }
   >
     <Text
+      accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
@@ -1301,7 +1336,12 @@ exports[`filter button only shows when there are grading periods 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityTraits="button"
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
                 onPress={[Function]}
                 style={
                   Array [
@@ -1455,29 +1495,40 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   <View
                     style={
                       Object {
-                        "flexDirection": "row",
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
               </TouchableHighlight>
@@ -1514,6 +1565,7 @@ exports[`renders correctly 1`] = `
     }
   >
     <Text
+      accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
@@ -1814,7 +1866,12 @@ exports[`renders correctly 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityTraits="button"
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
                 onPress={[Function]}
                 style={
                   Array [
@@ -1968,29 +2025,40 @@ exports[`renders correctly 1`] = `
                   <View
                     style={
                       Object {
-                        "flexDirection": "row",
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
               </TouchableHighlight>
@@ -2027,6 +2095,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
     }
   >
     <Text
+      accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
@@ -2327,7 +2396,12 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityTraits="button"
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
                 onPress={[Function]}
                 style={
                   Array [
@@ -2481,29 +2555,40 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   <View
                     style={
                       Object {
-                        "flexDirection": "row",
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
               </TouchableHighlight>

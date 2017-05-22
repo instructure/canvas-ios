@@ -1,4 +1,7 @@
 {
+  "access_code_74f4864f": {
+    "message": "Access Code"
+  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Add a few of your favorite courses to make this place your home.",
     "description": "Body text when you do not have any courses on course list page."
@@ -41,6 +44,9 @@
   "all_submissions_b8717440": {
     "message": "All Submissions"
   },
+  "allow_multiple_attempts_e67a0a37": {
+    "message": "Allow Multiple Attempts"
+  },
   "allowed_attempts_4e229caa": {
     "message": "Allowed Attempts"
   },
@@ -60,6 +66,9 @@
   "assignment_details_bc488179": {
     "message": "Assignment Details",
     "description": "Title of Assignment details screen"
+  },
+  "assignment_group_1a781505": {
+    "message": "Assignment Group"
   },
   "assignments_1e02582c": {
     "message": "Assignments",
@@ -129,9 +138,6 @@
   "closed_983a96fe": {
     "message": "Closed",
     "description": "Assignment due date \"Available to:\" field"
-  },
-  "closed_datestring_at_timestring_fab7aa9d": {
-    "message": "Closed • { dateString } at { timeString }"
   },
   "color_a363e1b0": {
     "message": "Color",
@@ -239,9 +245,6 @@
     "message": "Due Dates, Double tap for details.",
     "description": "Accessibility label for due dates in assignment details"
   },
-  "due_datestring_at_timestring_9fac66bd": {
-    "message": "Due { dateString } at { timeString }"
-  },
   "edit_assignment_details_a7c96fea": {
     "message": "Edit Assignment Details",
     "description": "Title of Assignment details EDIT screen"
@@ -256,6 +259,12 @@
   },
   "edit_description_1206e0a8": {
     "message": "Edit Description"
+  },
+  "edit_quiz_details_72cd055": {
+    "message": "Edit Quiz Details"
+  },
+  "enter_code_c7ab5104": {
+    "message": "Enter code"
   },
   "everyone_854554dd": {
     "message": "Everyone"
@@ -333,6 +342,9 @@
     "message": "Haven''t submitted yet",
     "description": "Title for a button to filter submissions by not submitted"
   },
+  "hide_correct_answers_at_b1a59408": {
+    "message": "Hide Correct Answers At"
+  },
   "highest_28ad71e6": {
     "message": "Highest"
   },
@@ -350,9 +362,21 @@
     "message": "Leave Feedback",
     "description": "Shown at the top of the app to allow the user to leave feedback"
   },
+  "length_in_minutes_eca69868": {
+    "message": "Length in minutes"
+  },
+  "let_students_see_the_correct_answer_a4da886e": {
+    "message": "Let Students See the Correct Answer"
+  },
+  "let_students_see_their_quiz_responses_fbc07d14": {
+    "message": "Let Students See Their Quiz Responses"
+  },
   "letter_grade_29ff1938": {
     "message": "Letter Grade",
     "description": "display grade as letter grade"
+  },
+  "lock_questions_after_answering_e0f61d7c": {
+    "message": "Lock Questions After Answering"
   },
   "logout_a9312e35": {
     "message": "Logout"
@@ -360,6 +384,9 @@
   "media_recording_7df9606f": {
     "message": "media recording",
     "description": "assignment submission type"
+  },
+  "minutes_4aee5a41": {
+    "message": "Minutes"
   },
   "missing_1a256b3b": {
     "message": "Missing",
@@ -437,8 +464,14 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minute}\n  other {# Minutes}\n}"
   },
+  "off_5385ef3f": {
+    "message": "Off"
+  },
   "ok_ff1b646a": {
     "message": "Ok"
+  },
+  "on_8f7190e5": {
+    "message": "On"
   },
   "on_paper_7e67f764": {
     "message": "on paper",
@@ -462,6 +495,9 @@
   "online_url_ee794b28": {
     "message": "online url",
     "description": "assignment submission type"
+  },
+  "only_once_after_each_attempt_cc842738": {
+    "message": "Only Once After Each Attempt"
   },
   "open_coursename_user_preferences_430b877e": {
     "message": "Open { courseName } user preferences",
@@ -516,6 +552,9 @@
   "quiz_preview_a7e75769": {
     "message": "Quiz Preview"
   },
+  "quiz_score_to_keep_d1f7c4b1": {
+    "message": "Quiz Score to Keep"
+  },
   "quiz_type_be1633db": {
     "message": "Quiz Type"
   },
@@ -523,8 +562,14 @@
     "message": "Quizzes",
     "description": "Title of the quizzes screen for a course"
   },
+  "remove_date_edf2f565": {
+    "message": "Remove date"
+  },
   "remove_f47dc62a": {
     "message": "Remove"
+  },
+  "require_an_access_code_46a02601": {
+    "message": "Require an Access Code"
   },
   "rubric_description_3567cf16": {
     "message": "Rubric Description"
@@ -571,6 +616,12 @@
   },
   "show_correct_answers_a4b957e4": {
     "message": "Show Correct Answers"
+  },
+  "show_correct_answers_at_a5475aa3": {
+    "message": "Show Correct Answers At"
+  },
+  "show_one_question_at_a_time_52f5b1a0": {
+    "message": "Show One Question at a Time"
   },
   "show_to_hide_2c0b6d39": {
     "message": "{ show } to { hide }"

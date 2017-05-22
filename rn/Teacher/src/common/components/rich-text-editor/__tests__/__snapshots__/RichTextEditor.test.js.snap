@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RichTextEditor link modal triggers insert link with selection 1`] = `
+exports[`RichTextEditor hides toolbar when editor blurs 1`] = `
 <View
   style={
     Object {
@@ -9,67 +9,32 @@ exports[`RichTextEditor link modal triggers insert link with selection 1`] = `
     }
   }
 >
-  <WebView
+  <ZSSRichTextEditor
+    _setMock={[Function]}
+    editorItemsChanged={[Function]}
+    html=""
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onInputChange={[Function]}
     onLoad={[Function]}
-    onMessage={[Function]}
-    scalesPageToFit={true}
-    source={Object {}}
   />
-  <LinkModal
-    linkCreated={[Function]}
-    linkUpdated={[Function]}
-    onCancel={[Function]}
-    title="selection"
-    url={null}
-    visible={true}
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+        },
+        Object {
+          "height": 0,
+        },
+        undefined,
+      ]
+    }
   />
 </View>
 `;
-
-exports[`RichTextEditor link modal triggers insert new link 1`] = `
-Array [
-  Array [
-    "
-      var selection = getSelection().toString();
-      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
-    ",
-  ],
-  Array [
-    "zss_editor.prepareInsert();",
-  ],
-  Array [
-    "zss_editor.insertLink(\\"url\\", \\"title\\");",
-  ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
-  ],
-  Array [
-    "zss_editor.focusEditor();",
-  ],
-]
-`;
-
-exports[`RichTextEditor link modal triggers update link 1`] = `
-Array [
-  Array [
-    "
-      var selection = getSelection().toString();
-      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
-    ",
-  ],
-  Array [
-    "zss_editor.prepareInsert();",
-  ],
-  Array [
-    "zss_editor.updateLink(\\"url\\", \\"title\\");",
-  ],
-  Array [
-    "zss_editor.focusEditor();",
-  ],
-]
-`;
-
-exports[`RichTextEditor notifies when editor focused 1`] = `Array []`;
 
 exports[`RichTextEditor renders 1`] = `
 <View
@@ -80,42 +45,34 @@ exports[`RichTextEditor renders 1`] = `
     }
   }
 >
-  <WebView
+  <ZSSRichTextEditor
+    _setMock={[Function]}
+    editorItemsChanged={[Function]}
+    html=""
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onInputChange={[Function]}
     onLoad={[Function]}
-    onMessage={[Function]}
-    scalesPageToFit={true}
-    source={Object {}}
   />
-  <LinkModal
-    linkCreated={[Function]}
-    linkUpdated={[Function]}
-    onCancel={[Function]}
-    title={undefined}
-    url={undefined}
-    visible={false}
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+        },
+        Object {
+          "height": 0,
+        },
+        undefined,
+      ]
+    }
   />
 </View>
 `;
 
-exports[`RichTextEditor responds when zss editor loads 1`] = `Array []`;
-
-exports[`RichTextEditor sends input changes 1`] = `Array []`;
-
-exports[`RichTextEditor sets custom css on web view loaded 1`] = `
-Array [
-  Array [
-    "zss_editor.init();",
-  ],
-  Array [
-    "zss_editor.setCustomCSS('img { max-width: 100%; } ');",
-  ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
-  ],
-]
-`;
-
-exports[`RichTextEditor shows link modal 1`] = `
+exports[`RichTextEditor renders toolbar when editor focused 1`] = `
 <View
   style={
     Object {
@@ -124,24 +81,45 @@ exports[`RichTextEditor shows link modal 1`] = `
     }
   }
 >
-  <WebView
+  <ZSSRichTextEditor
+    _setMock={[Function]}
+    editorItemsChanged={[Function]}
+    html=""
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onInputChange={[Function]}
     onLoad={[Function]}
-    onMessage={[Function]}
-    scalesPageToFit={true}
-    source={Object {}}
   />
-  <LinkModal
-    linkCreated={[Function]}
-    linkUpdated={[Function]}
-    onCancel={[Function]}
-    title={undefined}
-    url={null}
-    visible={true}
+  <RichTextToolbar
+    active={Array []}
+    insertLink={[Function]}
+    redo={[Function]}
+    setBold={[Function]}
+    setItalic={[Function]}
+    setOrderedList={[Function]}
+    setTextColor={[Function]}
+    setUnorderedList={[Function]}
+    undo={[Function]}
+  />
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+        },
+        Object {
+          "height": 0,
+        },
+        undefined,
+      ]
+    }
   />
 </View>
 `;
 
-exports[`RichTextEditor shows link modal when link touched 1`] = `
+exports[`RichTextEditor should update active editor items in toolbar 1`] = `
 <View
   style={
     Object {
@@ -150,109 +128,95 @@ exports[`RichTextEditor shows link modal when link touched 1`] = `
     }
   }
 >
-  <WebView
+  <ZSSRichTextEditor
+    _setMock={[Function]}
+    editorItemsChanged={[Function]}
+    html=""
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onInputChange={[Function]}
     onLoad={[Function]}
-    onMessage={[Function]}
-    scalesPageToFit={true}
-    source={Object {}}
   />
-  <LinkModal
-    linkCreated={[Function]}
-    linkUpdated={[Function]}
-    onCancel={[Function]}
-    title="test update link"
-    url="http://test-update-link.com"
-    visible={true}
+  <RichTextToolbar
+    active={
+      Array [
+        "italic",
+      ]
+    }
+    insertLink={[Function]}
+    redo={[Function]}
+    setBold={[Function]}
+    setItalic={[Function]}
+    setOrderedList={[Function]}
+    setTextColor={[Function]}
+    setUnorderedList={[Function]}
+    undo={[Function]}
+  />
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+        },
+        Object {
+          "height": 0,
+        },
+        undefined,
+      ]
+    }
   />
 </View>
 `;
 
-exports[`RichTextEditor triggers blur 1`] = `
-Array [
-  Array [
-    "zss_editor.blurEditor();",
-  ],
-]
-`;
-
-exports[`RichTextEditor triggers bold 1`] = `
-Array [
-  Array [
-    "zss_editor.setBold();",
-  ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
-  ],
-]
-`;
-
-exports[`RichTextEditor triggers focus 1`] = `
-Array [
-  Array [
-    "zss_editor.focusEditor();",
-  ],
-]
-`;
-
-exports[`RichTextEditor triggers italic 1`] = `
-Array [
-  Array [
-    "zss_editor.setItalic();",
-  ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
-  ],
-]
-`;
-
-exports[`RichTextEditor triggers ordered list 1`] = `
-Array [
-  Array [
-    "zss_editor.setOrderedList();",
-  ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
-  ],
-]
-`;
-
-exports[`RichTextEditor triggers redo 1`] = `
-Array [
-  Array [
-    "zss_editor.redo();",
-  ],
-]
-`;
-
-exports[`RichTextEditor triggers text color 1`] = `
-Array [
-  Array [
-    "zss_editor.prepareInsert();",
-  ],
-  Array [
-    "zss_editor.setTextColor('white');",
-  ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
-  ],
-]
-`;
-
-exports[`RichTextEditor triggers undo 1`] = `
-Array [
-  Array [
-    "zss_editor.undo();",
-  ],
-]
-`;
-
-exports[`RichTextEditor triggers unordered list 1`] = `
-Array [
-  Array [
-    "zss_editor.setUnorderedList();",
-  ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
-  ],
-]
+exports[`RichTextEditor should update active editor items in toolbar 2`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <ZSSRichTextEditor
+    _setMock={[Function]}
+    editorItemsChanged={[Function]}
+    html=""
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onInputChange={[Function]}
+    onLoad={[Function]}
+  />
+  <RichTextToolbar
+    active={
+      Array [
+        "bold",
+      ]
+    }
+    insertLink={[Function]}
+    redo={[Function]}
+    setBold={[Function]}
+    setItalic={[Function]}
+    setOrderedList={[Function]}
+    setTextColor={[Function]}
+    setUnorderedList={[Function]}
+    undo={[Function]}
+  />
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+        },
+        Object {
+          "height": 0,
+        },
+        undefined,
+      ]
+    }
+  />
+</View>
 `;

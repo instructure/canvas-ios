@@ -143,6 +143,30 @@ test('scoringPolicy', () => {
   testFormatter(quiz, 'scoringPolicy', 'Highest')
 })
 
+test('showCorrectAnswersAt', () => {
+  quiz.show_correct_answers_at = '2013-01-23T23:59:00-07:00'
+  testFormatter(quiz, 'showCorrectAnswersAt', 'Jan 23, 2013  11:59 PM')
+
+  quiz.show_correct_answers_at = null
+  testFormatter(quiz, 'showCorrectAnswersAt', null)
+})
+
+test('hideCorrectAnswersAt', () => {
+  quiz.hide_correct_answers_at = '2013-01-23T23:59:00-07:00'
+  testFormatter(quiz, 'hideCorrectAnswersAt', 'Jan 23, 2013  11:59 PM')
+
+  quiz.hide_correct_answers_at = null
+  testFormatter(quiz, 'hideCorrectAnswersAt', null)
+})
+
+test('cantGoBack', () => {
+  quiz.cant_go_back = false
+  testFormatter(quiz, 'cantGoBack', 'No')
+
+  quiz.cant_go_back = true
+  testFormatter(quiz, 'cantGoBack', 'Yes')
+})
+
 function testFormatter (quiz: Quiz, property: string, value: ?string | ?number) {
   expect(formatter(quiz)[property]).toEqual(value)
 }

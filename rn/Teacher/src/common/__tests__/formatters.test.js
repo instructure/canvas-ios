@@ -19,7 +19,7 @@ describe('assignment due date with status', () => {
     const dueDate = formattedDueDateWithStatus(date)
     const dateString = i18n.date(new Date(dueAt), 'medium')
     const timeString = i18n.time(new Date(dueAt), 'short')
-    expect(dueDate).toEqual(`Due ${dateString} at ${timeString}`)
+    expect(dueDate).toEqual([`Due ${dateString} at ${timeString}`])
   })
 
   test('due date in past', () => {
@@ -28,17 +28,17 @@ describe('assignment due date with status', () => {
     const dueDate = formattedDueDateWithStatus(extractDateFromString(dueAt), extractDateFromString(lockAt))
     const dateString = i18n.date(new Date(dueAt), 'medium')
     const timeString = i18n.time(new Date(dueAt), 'short')
-    expect(dueDate).toEqual(`Closed • ${dateString} at ${timeString}`)
+    expect(dueDate).toEqual(['Closed', `${dateString} at ${timeString}`])
   })
 
   test('due date that is missing', () => {
     const garbage = formattedDueDateWithStatus(null)
-    expect(garbage).toEqual('No due date')
+    expect(garbage).toEqual(['No due date'])
   })
 
   test('due date that is garbage', () => {
     const garbage = formattedDueDateWithStatus(new Date('lkjaklsjdfljaslkdfjads'))
-    expect(garbage).toEqual('No due date')
+    expect(garbage).toEqual(['No due date'])
   })
 })
 

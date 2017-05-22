@@ -5,6 +5,7 @@ import {
   Switch,
 } from 'react-native'
 import Row, { type RowProps } from './Row'
+import i18n from 'format-message'
 
 import colors from '../../colors'
 
@@ -25,6 +26,13 @@ export default class RowWithSwitch extends Component<any, RowWithSwitchProps, an
                                 onValueChange={this.onValueChange}
                                 tintColor={ colors.primaryBrandColor}
                                 onTintColor={ colors.primaryBrandColor} />
-    return <Row {...this.props} accessories={accessories} />
+    const accessibilityLabel = this.props.accessibilityLabel || `${this.props.title}, ${this.props.value ? i18n('On') : i18n('Off')}`
+    return (
+      <Row {...this.props}
+        accessories={accessories}
+        accessibilityLabel={accessibilityLabel}
+        onPress={() => { this.onValueChange(!this.props.value) }}
+      />
+    )
   }
 }

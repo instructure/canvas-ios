@@ -40,7 +40,7 @@ test('refresh grading periods should keep any existing assignmentRefs', async ()
 
 test('refresh assignment groups list', async () => {
   let group = template.assignmentGroup()
-  let action = AssignmentListActions({ getCourseAssignmentGroups: apiResponse([group]) }).refreshAssignmentList(1, 1)
+  let action = AssignmentListActions({ getAssignmentGroups: apiResponse([group]) }).refreshAssignmentList(1, 1)
   let state = await testAsyncReducer(gradingPeriods, action)
 
   expect(state).toEqual([{}, {

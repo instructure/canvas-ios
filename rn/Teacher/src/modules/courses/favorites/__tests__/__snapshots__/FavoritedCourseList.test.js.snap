@@ -127,6 +127,7 @@ exports[`render 1`] = `
               source={1}
             />
             <Text
+              accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
@@ -742,6 +743,7 @@ exports[`render without courses 1`] = `
   }
 >
   <Text
+    accessibilityTraits="header"
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"

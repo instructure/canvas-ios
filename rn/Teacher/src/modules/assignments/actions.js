@@ -6,8 +6,9 @@ import type { AssignmentListActionProps } from './map-state-to-props'
 
 export let AssignmentListActions: (typeof canvas) => AssignmentListActionProps = (api) => ({
   refreshAssignmentList: createAction('assignmentList.refresh', (courseID: string, gradingPeriodID?: string) => {
+    const include = ['assignments', 'all_dates', 'overrides']
     return {
-      promise: api.getCourseAssignmentGroups(courseID, gradingPeriodID),
+      promise: api.getAssignmentGroups(courseID, gradingPeriodID, include),
       courseID,
       gradingPeriodID,
     }

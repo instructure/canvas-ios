@@ -33,6 +33,7 @@ exports[`renders with overrides 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -264,6 +265,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -480,6 +482,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -696,6 +699,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -912,6 +916,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"

@@ -13,13 +13,13 @@ import DisclosureIndicator from '../DisclosureIndicator'
 import { Text } from '../../text'
 
 export type RowProps = {
-  title: string | { value: string, ellipsizeMode?: string, numberOfLines?: number },
+  title: string,
   subtitle?: string,
   image?: string,
   imageTint?: string,
   imageSize?: { height: number, width: number }, // Defaults to 20 x 20 if not supplied
   disclosureIndicator?: boolean,
-  height?: number,
+  height?: number | string, // number or 'auto' which will not set the height. Default is 54
   border?: 'top' | 'bottom' | 'both',
   onPress?: Function,
   testID?: string,
@@ -27,6 +27,9 @@ export type RowProps = {
   renderImage?: Function,
   identifier: string, // Passed in as the first parameter to the onPress callback
   accessories: any,
+  accessibilityLabel: ?string,
+  accessibilityTraits: ?string | ?string[],
+  titleProps?: { ellipsizeMode?: string, numberOfLines?: number },
 }
 
 export default class Row extends Component<any, RowProps, any> {
@@ -38,9 +41,15 @@ export default class Row extends Component<any, RowProps, any> {
   }
 
   render () {
-    const height = this.props.height
+    let height = this.props.height
+    if (typeof height === 'string' && height === 'auto') {
+      height = undefined
+    } else {
+      height = 54
+    }
     const imageSize = this.props.imageSize || { height: 20, width: 20 }
-    const title = this.props.title && typeof this.props.title === 'object' ? this.props.title : { value: this.props.title, ellipsizeMode: null, numberOfLines: 0 }
+    const title = this.props.title
+
     let topBorder
     let bottomBorder
 
@@ -52,9 +61,14 @@ export default class Row extends Component<any, RowProps, any> {
       bottomBorder = style.bottomHairline
     }
 
-    let traits = {}
-    if (this.props.onPress) {
-      traits.accessibilityTraits = 'button'
+    let accessibilityTraits = typeof this.props.accessibilityTraits === 'string' ? [this.props.accessibilityTraits] : (this.props.accessibilityTraits || [])
+    if (this.props.onPress && !accessibilityTraits.includes('button')) {
+      accessibilityTraits.push('button')
+    }
+
+    let traits = {
+      accessibilityTraits,
+      accessibilityLabel: this.props.accessibilityLabel,
     }
 
     return (<TouchableHighlight style={[{ height }, topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID}>
@@ -62,22 +76,26 @@ export default class Row extends Component<any, RowProps, any> {
                 { this.props.renderImage && this.props.renderImage() }
                 { this.props.image && <Image style={[style.image, { tintColor: this.props.imageTint, height: imageSize.height, width: imageSize.width }]} source={this.props.image} /> }
                 <View style={style.titlesContainer}>
-                  { title &&
+                  { Boolean(title) &&
                     <Text
                       style={style.title}
-                      ellipsizeMode={title.ellipsizeMode}
-                      numberOfLines={title.numberOfLines}
+                      ellipsizeMode={(this.props.titleProps && this.props.titleProps.ellipsizeMode) || 'tail'}
+                      numberOfLines={(this.props.titleProps && this.props.titleProps.numberOfLines) || 0}
                     >
-                      {title.value}
+                      {title}
                     </Text>
                   }
-                  { this.props.subtitle && <Text style={style.subtitle}>{this.props.subtitle}</Text> }
+                  { Boolean(this.props.subtitle) && <Text style={style.subtitle}>{this.props.subtitle}</Text> }
                   { this.props.children }
                 </View>
-                <View style={style.accessoryContainer}>
-                  { this.props.accessories }
-                  { this.props.disclosureIndicator && <DisclosureIndicator /> }
-                </View>
+                { Boolean(this.props.accessories || this.props.disclosureIndicator) &&
+                  <View style={style.accessoryContainer}>
+                    <View style={style.accessories}>
+                      { this.props.accessories }
+                      { this.props.disclosureIndicator && <DisclosureIndicator /> }
+                    </View>
+                  </View>
+                }
               </View>
             </TouchableHighlight>)
   }
@@ -100,7 +118,13 @@ const style = StyleSheet.create({
     justifyContent: 'center',
   },
   accessoryContainer: {
+    flex: 0,
+  },
+  accessories: {
+    flex: 1,
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
   },
   topHairline: {
     borderTopWidth: StyleSheet.hairlineWidth,

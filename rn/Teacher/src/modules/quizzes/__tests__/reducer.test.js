@@ -3,9 +3,11 @@
 import { refs, entities } from '../reducer'
 import { default as ListActions } from '../list/actions'
 import { default as DetailsActions } from '../details/actions'
+import { default as EditActions } from '../edit/actions'
 
 const { refreshQuizzes } = ListActions
 const { refreshQuiz } = DetailsActions
+const { updateQuiz } = EditActions
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/quiz'),
@@ -96,10 +98,11 @@ describe('entities', () => {
   describe('refreshQuiz', () => {
     it('handles resolved', () => {
       const quiz = template.quiz({ id: '1' })
+      const assignmentGroups = []
       const resolved = {
         type: refreshQuiz.toString(),
         payload: {
-          result: { data: quiz },
+          result: [{ data: assignmentGroups }, { data: quiz }],
           courseID: '1',
           quizID: quiz.id,
         },
@@ -110,6 +113,92 @@ describe('entities', () => {
         '1': {
           data: quiz,
           pending: 0,
+          error: null,
+        },
+      })
+    })
+  })
+
+  describe('updateQuiz', () => {
+    it('handles pending', () => {
+      const quiz = template.quiz({ id: '1' })
+      const pending = {
+        type: updateQuiz.toString(),
+        pending: true,
+        payload: {
+          originalQuiz: quiz,
+          updatedQuiz: quiz,
+        },
+      }
+
+      expect(
+        entities({}, pending)
+      ).toEqual({
+        '1': {
+          pending: 1,
+        },
+      })
+    })
+
+    it('handles rejected', () => {
+      const original = template.quiz({ id: '1' })
+      const updated = {
+        ...original,
+        description: 'changed description',
+      }
+      const rejected = {
+        type: updateQuiz.toString(),
+        error: true,
+        payload: {
+          originalQuiz: original,
+          updatedQuiz: updated,
+          error: template.error('User not authorized'),
+        },
+      }
+      const pendingState = {
+        '1': {
+          pending: 1,
+          data: original,
+          error: null,
+        },
+      }
+      expect(
+        entities(pendingState, rejected)
+      ).toEqual({
+        '1': {
+          pending: 0,
+          data: original,
+          error: 'User not authorized',
+        },
+      })
+    })
+
+    it('handles resolved', () => {
+      const original = template.quiz({ id: '1' })
+      const updated = {
+        ...original,
+        description: 'changed description',
+      }
+      const pendingState = {
+        '1': {
+          pending: 1,
+          data: original,
+          error: null,
+        },
+      }
+      const resolved = {
+        type: updateQuiz.toString(),
+        payload: {
+          originalQuiz: original,
+          updatedQuiz: updated,
+        },
+      }
+      expect(
+        entities(pendingState, resolved)
+      ).toEqual({
+        '1': {
+          pending: 0,
+          data: updated,
           error: null,
         },
       })

@@ -53,7 +53,7 @@ exports[`renders 1`] = `
               "paddingBottom": 17,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 2,
+              "paddingTop": 14,
             },
           ]
         }
@@ -79,7 +79,7 @@ exports[`renders 1`] = `
           >
             <View
               accessibilityLabel={undefined}
-              accessible={true}
+              accessible={false}
               style={
                 Object {
                   "alignItems": "center",
@@ -89,6 +89,7 @@ exports[`renders 1`] = `
               }
             />
             <Text
+              accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
@@ -728,7 +729,7 @@ exports[`renders 1`] = `
           >
             <View
               accessibilityLabel={undefined}
-              accessible={true}
+              accessible={false}
               style={
                 Object {
                   "alignItems": "center",
@@ -940,7 +941,7 @@ exports[`renders 1`] = `
           >
             <View
               accessibilityLabel={undefined}
-              accessible={true}
+              accessible={false}
               style={
                 Object {
                   "alignItems": "center",
@@ -1080,7 +1081,7 @@ exports[`renders 1`] = `
           >
             <View
               accessibilityLabel={undefined}
-              accessible={true}
+              accessible={false}
               style={
                 Object {
                   "alignItems": "center",
@@ -1277,7 +1278,7 @@ exports[`renders loading 1`] = `
               "paddingBottom": 17,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 2,
+              "paddingTop": 14,
             },
           ]
         }
@@ -1303,7 +1304,7 @@ exports[`renders loading 1`] = `
           >
             <View
               accessibilityLabel={undefined}
-              accessible={true}
+              accessible={false}
               style={
                 Object {
                   "alignItems": "center",
@@ -1313,6 +1314,7 @@ exports[`renders loading 1`] = `
               }
             />
             <Text
+              accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
@@ -1952,7 +1954,7 @@ exports[`renders loading 1`] = `
           >
             <View
               accessibilityLabel={undefined}
-              accessible={true}
+              accessible={false}
               style={
                 Object {
                   "alignItems": "center",
@@ -2164,7 +2166,7 @@ exports[`renders loading 1`] = `
           >
             <View
               accessibilityLabel={undefined}
-              accessible={true}
+              accessible={false}
               style={
                 Object {
                   "alignItems": "center",
@@ -2304,7 +2306,7 @@ exports[`renders loading 1`] = `
           >
             <View
               accessibilityLabel={undefined}
-              accessible={true}
+              accessible={false}
               style={
                 Object {
                   "alignItems": "center",

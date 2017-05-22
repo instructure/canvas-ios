@@ -68,7 +68,7 @@ exports[`render 1`] = `
       >
         <View
           accessibilityLabel={undefined}
-          accessible={true}
+          accessible={false}
           style={
             Object {
               "alignItems": "center",
@@ -173,7 +173,7 @@ exports[`render first row 1`] = `
       >
         <View
           accessibilityLabel={undefined}
-          accessible={true}
+          accessible={false}
           style={
             Object {
               "alignItems": "center",
@@ -256,7 +256,7 @@ exports[`render no title 1`] = `
       >
         <View
           accessibilityLabel={undefined}
-          accessible={true}
+          accessible={false}
           style={
             Object {
               "alignItems": "center",

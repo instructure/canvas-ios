@@ -83,7 +83,7 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
     }
 
     return (<View style={styles.row} key={date.id || 'base'} >
-              <Heading1>{formattedDueDateWithStatus(dueAt, extractDateFromString(date.lock_at))}</Heading1>
+              <Heading1>{formattedDueDateWithStatus(dueAt, extractDateFromString(date.lock_at)).join('  •  ')}</Heading1>
               <View accessible={true}>
                 <Text style={styles.header}>{i18n('For')}</Text>
                 <Text style={styles.content}>{title}</Text>

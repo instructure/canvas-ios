@@ -166,6 +166,7 @@ test('"displays grade as" can be selected using picker', () => {
 })
 
 test('edit description', () => {
+  defaultProps.assignmentDetails.description = 'i am a description'
   const navigator = template.navigator({
     show: jest.fn(),
   })
@@ -174,8 +175,10 @@ test('edit description', () => {
   ).toJSON()
   const editDescription: any = explore(tree).selectByID('edit-description')
   editDescription.props.onPress()
-  const expected = `/courses/${course.id}/assignments/${assignment.id}/edit/description`
-  expect(navigator.show).toHaveBeenCalledWith(expected)
+  expect(navigator.show).toHaveBeenCalledWith('/rich-text-editor', { modal: false }, {
+    defaultValue: 'i am a description',
+    onChangeValue: expect.any(Function),
+  })
 })
 
 test('change title', () => {

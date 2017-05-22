@@ -13,6 +13,7 @@ exports[`renders NoCourses correctly 1`] = `
   }
 >
   <Text
+    accessibilityTraits="header"
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"

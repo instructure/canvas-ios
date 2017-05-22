@@ -39,7 +39,7 @@ export default class AssignmentListRow extends Component<any, Props, any> {
       return i18n('Multiple Due Dates')
     }
 
-    return formattedDueDateWithStatus(dates.bestDueAt(), dates.bestAvailableTo())
+    return formattedDueDateWithStatus(dates.bestDueAt(), dates.bestAvailableTo()).join('  •  ')
   }
 
   ungradedBubble (assignment: Assignment): Element<View> {
@@ -60,12 +60,14 @@ export default class AssignmentListRow extends Component<any, Props, any> {
         <View style={styles.row}>
           <Row
             renderImage={this._renderIcon}
-            title={{ value: assignment.name, ellipsizeMode: 'tail', numberOfLines: 2 }}
+            title={assignment.name}
+            titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
             subtitle={this.dueDate(assignment)}
             border='bottom'
             disclosureIndicator={true}
             testID={`assignment-${assignment.id}`}
             onPress={this.onPress}
+            height='auto'
           >
             {this.ungradedBubble(assignment)}
           </Row>

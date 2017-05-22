@@ -6,7 +6,10 @@ import canvas from '../../../api/canvas-api'
 export let Actions: (typeof canvas) => any = (api) => ({
   refreshQuiz: createAction('quizDetails.refresh', (courseID: string, quizID: string) => {
     return {
-      promise: api.getQuiz(courseID, quizID),
+      promise: Promise.all([
+        api.getAssignmentGroups(courseID),
+        api.getQuiz(courseID, quizID),
+      ]),
       courseID,
       quizID,
     }

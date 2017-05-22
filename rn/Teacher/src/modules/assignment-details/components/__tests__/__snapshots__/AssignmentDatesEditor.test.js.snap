@@ -32,6 +32,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -661,6 +662,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -1290,6 +1292,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -2029,6 +2032,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
@@ -2705,6 +2709,7 @@ exports[`snapshots! render with single due date 1`] = `
       }
     >
       <Text
+        accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"

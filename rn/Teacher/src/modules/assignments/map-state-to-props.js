@@ -50,7 +50,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: RoutingPr
 
   const assignmentGroups: AssignmentGroup[] = assignmentGroupsState.map((groupState) => {
     const groupWithAssignments = Object.assign({}, groupState.group)
-    groupWithAssignments.assignments = groupState.assignmentRefs.map((id) => entities.assignments[id].data)
+    groupWithAssignments.assignments = (groupState.assignmentRefs || []).map((id) => entities.assignments[id].data)
     return groupWithAssignments
   })
 

@@ -156,7 +156,7 @@ const style = StyleSheet.create({
     flex: 1,
   },
   topContainer: {
-    paddingTop: 2,
+    paddingTop: 14,
     paddingLeft: global.style.defaultPadding,
     paddingRight: global.style.defaultPadding,
     paddingBottom: 17,

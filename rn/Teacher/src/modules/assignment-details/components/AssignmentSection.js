@@ -30,7 +30,7 @@ export default class AssignmentSection extends Component {
           <View style={dividerStyle}></View>
           <View style={assignmentSectionStyles.innerContainer}>
             <View style={{ flex: 1 }}>
-              <View style={assignmentSectionStyles.titleContainer} accessible={true} accessibilityLabel={this.props.accessibilityLabel}>
+              <View style={assignmentSectionStyles.titleContainer} accessible={Boolean(this.props.accessibilityLabel)} accessibilityLabel={this.props.accessibilityLabel}>
                 {
                   this.props.image && <Image source={this.props.image} style={assignmentSectionStyles.image} />
                 }

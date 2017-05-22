@@ -3,8 +3,12 @@
 exports[`Render row with switch 1`] = `
 <View
   accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
+  accessibilityLabel="Row with a switch in it!, Off"
+  accessibilityTraits={
+    Array [
+      "button",
+    ]
+  }
   accessible={true}
   hasTVPreferredFocus={undefined}
   hitSlop={undefined}
@@ -23,7 +27,7 @@ exports[`Render row with switch 1`] = `
       },
       Array [
         Object {
-          "height": undefined,
+          "height": 54,
         },
         undefined,
         undefined,
@@ -59,7 +63,7 @@ exports[`Render row with switch 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        ellipsizeMode={null}
+        ellipsizeMode="tail"
         numberOfLines={0}
         style={
           Array [
@@ -85,32 +89,43 @@ exports[`Render row with switch 1`] = `
     <View
       style={
         Object {
-          "flexDirection": "row",
+          "flex": 0,
         }
       }
     >
-      <RCTSwitch
-        disabled={false}
-        identifier="test"
-        onChange={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        onTintColor="#374A59"
-        onValueChange={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "height": 31,
-              "width": 51,
-            },
-            undefined,
-          ]
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+          }
         }
-        testID="test"
-        tintColor="#374A59"
-        title="Row with a switch in it!"
-        value={false}
-      />
+      >
+        <RCTSwitch
+          disabled={false}
+          identifier="test"
+          onChange={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onTintColor="#374A59"
+          onValueChange={[Function]}
+          style={
+            Array [
+              Object {
+                "height": 31,
+                "width": 51,
+              },
+              undefined,
+            ]
+          }
+          testID="test"
+          tintColor="#374A59"
+          title="Row with a switch in it!"
+          value={false}
+        />
+      </View>
     </View>
   </View>
 </View>

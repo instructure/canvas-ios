@@ -16,6 +16,7 @@ exports[`render SectionHeader 1`] = `
   }
 >
   <Text
+    accessibilityTraits="header"
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
@@ -47,6 +48,7 @@ exports[`render SectionHeader 1`] = `
 
 exports[`renders heading1 correctly 1`] = `
 <Text
+  accessibilityTraits="header"
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"

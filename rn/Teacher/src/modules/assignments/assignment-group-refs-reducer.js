@@ -3,6 +3,7 @@
 import { Reducer } from 'redux'
 import { handleActions } from 'redux-actions'
 import Actions from './actions'
+import { default as QuizDetailsActions } from '../quizzes/details/actions'
 import CourseActions from '../courses/actions'
 import handleAsync from '../../utils/handleAsync'
 import i18n from 'format-message'
@@ -11,6 +12,7 @@ export let defaultState: AssignmentGroupsState = {}
 
 const { refreshAssignmentList } = Actions
 const { refreshGradingPeriods } = CourseActions
+const { refreshQuiz } = QuizDetailsActions
 
 export const assignmentGroups: Reducer<AsyncRefs, any> = handleActions({
   [refreshAssignmentList.toString()]: handleAsync({
@@ -40,5 +42,11 @@ export const assignmentGroups: Reducer<AsyncRefs, any> = handleActions({
     pending: (state) => ({ ...state, pending: state.pending + 1 }),
     resolved: (state) => ({ ...state, pending: state.pending - 1 }),
     rejected: (state) => ({ ...state, pending: state.pending - 1 }),
+  }),
+  [refreshQuiz.toString()]: handleAsync({
+    resolved: (state, { result: [assignmentGroups] }) => ({
+      ...state,
+      refs: assignmentGroups.data.map(a => a.id),
+    }),
   }),
 }, { refs: [], pending: 0 })

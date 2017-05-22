@@ -8,7 +8,6 @@ import { submissions } from '../submissions/list/submission-refs-reducer'
 import flatMap from 'lodash/flatMap'
 import fromPairs from 'lodash/fromPairs'
 import cloneDeep from 'lodash/cloneDeep'
-import { updateAssignmentDescription } from '../assignment-description/actions'
 import pendingComments from '../speedgrader/comments/pending-comments-reducer'
 
 export let defaultState: AssignmentGroupsState = {}
@@ -106,16 +105,6 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
       ...{ [id]: entity },
     }
   },
-  [updateAssignmentDescription.toString()]: (state, { payload }) => ({
-    ...state,
-    [payload.id]: {
-      ...state[payload.id],
-      data: {
-        ...(state[payload.id] || {}).data,
-        description: payload.description,
-      },
-    },
-  }),
 }, defaultState)
 
 export function assignments (state: AssignmentsState = {}, action: any): AssignmentDetailState {

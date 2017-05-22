@@ -35,6 +35,20 @@ class ComponentExplorer {
   query (match: (any) => boolean): Array<any> {
     return query(this.component, match)
   }
+
+  selectRightBarButton (id: string): ?any {
+    return this._selectBarButton('right', id)
+  }
+
+  selectLeftBarButton (id: string): ?any {
+    return this._selectBarButton('left', id)
+  }
+
+  _selectBarButton (side: string, id: string): ?any {
+    const prop = side === 'right' ? 'rightBarButtons' : 'leftBarButtons'
+    return this.query(({ type }) => type === 'Screen')[0].props[prop]
+      .find(({ testID }) => testID === id)
+  }
 }
 
 export default function explore (component: any): ComponentExplorer {

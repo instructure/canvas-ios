@@ -23,4 +23,7 @@ export const quiz: Template<Quiz> = template({
   hide_correct_answers_at: null,
   one_question_at_a_time: false,
   scoring_policy: 'keep_latest',
+  cant_go_back: false,
+  access_code: null,
+  assignment_group_id: null,
 })
