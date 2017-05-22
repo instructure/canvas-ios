@@ -142,9 +142,9 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
           <View
             style={
               Object {
+                "flex": 1,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 16,
               }
             }
           >

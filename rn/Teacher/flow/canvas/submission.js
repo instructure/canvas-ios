@@ -15,6 +15,7 @@ export type Submission = {
   late: boolean,
   submission_type: ?string,
   body: ?string,
+  preview_url: string,
 }
 
 export type SubmissionHistory = {

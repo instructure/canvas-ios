@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import {
   View,
   StyleSheet,
+  WebView,
 } from 'react-native'
 import i18n from 'format-message'
 import { Text, MEDIUM_FONT } from '../../common/text'
@@ -36,8 +37,14 @@ export default class SubmissionViewer extends Component {
   renderSubmission (submission: SubmissionWithHistory) {
     let body = <View></View>
     // TODO: submissions not allowed (MBL-7561)
-    if (submission.submission_type === 'online_text_entry') {
-      body = <WebContainer style={styles.webContainer} html={submission.body} />
+    switch (submission.submission_type) {
+      case 'online_text_entry':
+        body = <WebContainer style={styles.webContainer} html={submission.body} />
+        break
+      case 'online_quiz':
+      case 'discussion_topic':
+        body = <WebView style={styles.webContainer} source={{ uri: submission.preview_url }} />
+        break
     }
     return <View style={styles.container}>{body}</View>
   }
@@ -65,10 +72,10 @@ const styles = StyleSheet.create({
   container: {
     paddingLeft: 16,
     paddingRight: 16,
-    paddingTop: 16,
+    flex: 1,
   },
   webContainer: {
-    flex: 0,
+    flex: 1,
   },
   centeredText: {
     height: '84%',

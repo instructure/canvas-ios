@@ -44,6 +44,48 @@ describe('SubmissionViewer', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('renders an online_quiz submission', () => {
+    let sub = {
+      ...defaultSub,
+      submission: {
+        submission_type: 'online_quiz',
+        preview_url: 'https://google.com',
+      },
+    }
+
+    let props = {
+      ...defaultSelections,
+      submissionProps: sub,
+    }
+
+    let tree = renderer.create(
+      <SubmissionViewer {...props} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders a discussion_topic submission', () => {
+    let sub = {
+      ...defaultSub,
+      submission: {
+        submission_type: 'discussion_topic',
+        preview_url: 'https://google.com',
+      },
+    }
+
+    let props = {
+      ...defaultSelections,
+      submissionProps: sub,
+    }
+
+    let tree = renderer.create(
+      <SubmissionViewer {...props} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   it('renders no submission', () => {
     let props = {
       ...defaultSelections,

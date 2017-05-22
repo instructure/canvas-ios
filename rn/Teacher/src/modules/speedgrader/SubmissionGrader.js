@@ -38,7 +38,7 @@ type SubmissionGraderProps = {
 export default class SubmissionGrader extends Component<any, SubmissionGraderProps, State> {
   state: State
   props: SubmissionGraderProps
-  drawer: typeof BottomDrawer
+  drawer: BottomDrawer
 
   constructor (props: SubmissionGraderProps) {
     super(props)

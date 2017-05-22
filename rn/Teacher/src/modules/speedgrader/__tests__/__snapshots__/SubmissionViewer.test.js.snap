@@ -1,12 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SubmissionViewer renders a discussion_topic submission 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+    }
+  }
+>
+  <Webview
+    source={
+      Object {
+        "uri": "https://google.com",
+      }
+    }
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`SubmissionViewer renders an online_quiz submission 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+    }
+  }
+>
+  <Webview
+    source={
+      Object {
+        "uri": "https://google.com",
+      }
+    }
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  />
+</View>
+`;
+
 exports[`SubmissionViewer renders an online_text_entry submission 1`] = `
 <View
   style={
     Object {
+      "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
-      "paddingTop": 16,
     }
   }
 >
@@ -101,7 +151,7 @@ exports[`SubmissionViewer renders an online_text_entry submission 1`] = `
     style={
       Array [
         Object {
-          "flex": 0,
+          "flex": 1,
         },
         Object {
           "height": 0,
@@ -116,9 +166,9 @@ exports[`SubmissionViewer renders no submission 1`] = `
 <View
   style={
     Object {
+      "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
-      "paddingTop": 16,
     }
   }
 >
