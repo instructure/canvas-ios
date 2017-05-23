@@ -14,7 +14,8 @@ import { HYDRATE_ACTION } from './hydrate-action'
 import resetPending from '../utils/reset-pending'
 import composeReducers from './compose-reducers'
 import { submissions } from '../modules/submissions/list/submission-entities-reducer'
-import { entities as quizzes } from '../modules/quizzes/reducer'
+import { quizzes } from '../modules/quizzes/reducer'
+import { quizSubmissions, quizAssignmentSubmissions } from '../modules/quizzes/submissions/reducer'
 
 const entities = combineReducers({
   courses,
@@ -24,8 +25,9 @@ const entities = combineReducers({
   users: composeReducers(users, enrollmentUsers),
   sections,
   enrollments,
-  submissions,
+  submissions: composeReducers(submissions, quizAssignmentSubmissions),
   quizzes,
+  quizSubmissions,
 })
 
 const actualRootReducer: Reducer<AppState, Action> = combineReducers({

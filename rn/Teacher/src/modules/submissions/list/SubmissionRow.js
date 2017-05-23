@@ -11,7 +11,7 @@ import Token from '../../../common/components/Token'
 import i18n from 'format-message'
 import type {
   GradeProp,
-  SubmissionProps,
+  SubmissionStatusProp,
 } from './submission-prop-types'
 import colors from '../../../common/colors'
 import { Text } from '../../../common/text'
@@ -25,6 +25,20 @@ type RowProps = {
   +disclosure?: boolean,
 }
 
+export type SubmissionRowDataProps = {
+  userID: string,
+  avatarURL: string,
+  name: string,
+  status: SubmissionStatusProp,
+  grade: GradeProp,
+  score: ?number,
+  disclosure?: boolean,
+}
+
+export type SubmissionRowProps = {
+  onPress: () => void,
+} & SubmissionRowDataProps
+
 class Row extends Component<any, RowProps, any> {
   render () {
     const { onPress, testID, children, disclosure } = this.props
@@ -33,7 +47,7 @@ class Row extends Component<any, RowProps, any> {
         <TouchableHighlight style={styles.touchableHighlight} onPress={onPress} testID={testID}>
           <View style={styles.container}>
             {children}
-            {disclosure ? <DisclosureIndicator /> : undefined}
+            {disclosure && <DisclosureIndicator />}
           </View>
         </TouchableHighlight>
       </View>
@@ -65,15 +79,18 @@ const Grade = ({ grade }: {grade: ?GradeProp}): * => {
   return <Text style={[ styles.gradeText, { alignSelf: 'center' } ]}>{ gradeText }</Text>
 }
 
-class SubmissionRow extends Component<any, SubmissionProps, any> {
+class SubmissionRow extends Component<any, SubmissionRowProps, any> {
   onPress = () => {
     this.props.onPress(this.props.userID)
   }
 
   render (): React.Element<View> {
-    const { userID, avatarURL, name, status, grade } = this.props
+    let { userID, avatarURL, name, status, grade, disclosure } = this.props
+    if (disclosure === undefined) {
+      disclosure = true
+    }
     return (
-      <Row disclosure testID={`submission-${userID}`} onPress={this.onPress}>
+      <Row disclosure={disclosure} testID={`submission-${userID}`} onPress={this.onPress}>
         <View style={styles.avatar}>
           <Avatar
             key={userID}

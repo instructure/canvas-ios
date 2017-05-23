@@ -12,6 +12,7 @@ jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('WebView', () => 'WebView')
+  .mock('../../submissions/components/QuizSubmissionBreakdownGraphSection.js')
   .mock('../../../../routing')
   .mock('../../../../routing/Screen')
 

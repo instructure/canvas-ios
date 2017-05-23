@@ -3,20 +3,26 @@
  */
 
 import React, { Component } from 'react'
-import color from '../../../common/colors'
+import color from '../../common/colors'
 import * as Progress from 'react-native-progress'
-import { Text, MEDIUM_FONT } from '../../../common/text'
+import { Text, MEDIUM_FONT } from '../../common/text'
 import {
   View,
   StyleSheet,
 } from 'react-native'
 
-export default class SubmissionGraph extends Component {
+export type SubmissionGraphProps = {
+  total: number,
+  current: number,
+  label: string,
+}
+
+export default class SubmissionGraph extends Component<any, SubmissionGraphProps, any> {
   render (): ReactElement<*> {
-    let { data, label, total } = this.props
-    let formattedData = data
-    if (!data) {
-      data = 0.0001
+    let { current, label, total } = this.props
+    let formattedData = current
+    if (!current) {
+      current = 0.0001
       formattedData = 0
     }
 
@@ -25,7 +31,7 @@ export default class SubmissionGraph extends Component {
         <View style={submissionsGraphStyle.circleContainer}>
           <Progress.Circle size={submissionCircles.size}
                            thickness={submissionCircles.thickness}
-                           progress={ data / total }
+                           progress={ current / total }
                            borderWidth={0}
                            unfilledColor={submissionCircles.backgroundColor}
                            color={submissionCircles.tint}

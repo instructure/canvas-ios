@@ -2,6 +2,7 @@
 
 export type Quiz = {
   id: string,
+  assignment_id?: ?string,
   title: string,
   html_url: string,
   mobile_url: string,
@@ -25,4 +26,26 @@ export type Quiz = {
   cant_go_back: boolean,
   access_code: ?string,
   assignment_group_id: ?string,
+}
+
+export type QuizSubmission = {
+  id: string,
+  quiz_id: string,
+  user_id: string,
+  submission_id: string,
+  started_at: ?string,
+  finished_at: ?string,
+  end_at: ?string,
+  attempt: number,
+  extra_attempts: number,
+  extra_time: number, // minutes
+  manually_unlocked: boolean,
+  time_spent: ?number, // seconds
+  score: ?number, // The score of the quiz submission, if graded.
+  score_before_regrade: number,
+  kept_score: number,
+  fudge_points: number,
+  has_seen_results: boolean,
+  workflow_state: 'untaken' | 'pending_review' | 'complete' | 'settings_only' | 'preview',
+  overdue_and_needs_submission: boolean,
 }

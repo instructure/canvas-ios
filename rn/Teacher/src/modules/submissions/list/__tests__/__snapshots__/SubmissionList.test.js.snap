@@ -1055,7 +1055,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
         ]
       }
     >
-      All Submissions
+      Graded
     </Text>
     <View
       accessibilityComponentType="button"

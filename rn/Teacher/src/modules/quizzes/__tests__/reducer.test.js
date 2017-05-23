@@ -1,6 +1,6 @@
 /* @flow */
 
-import { refs, entities } from '../reducer'
+import { refs, quizData } from '../reducer'
 import { default as ListActions } from '../list/actions'
 import { default as DetailsActions } from '../details/actions'
 import { default as EditActions } from '../edit/actions'
@@ -69,7 +69,7 @@ User not authorized`,
   })
 })
 
-describe('entities', () => {
+describe('quizData', () => {
   describe('refreshQuizzes', () => {
     it('handles resolved', () => {
       const one = template.quiz({ id: '1' })
@@ -78,18 +78,35 @@ describe('entities', () => {
         type: refreshQuizzes.toString(),
         payload: { result: { data: [one, two] } },
       }
+
       expect(
-        entities({}, resolved)
+        quizData({}, resolved)
       ).toEqual({
         '1': {
           data: one,
           pending: 0,
           error: null,
+          quizSubmissions: {
+            pending: 0,
+            refs: [],
+          },
+          submissions: {
+            pending: 0,
+            refs: [],
+          },
         },
         '2': {
           data: two,
           pending: 0,
           error: null,
+          quizSubmissions: {
+            pending: 0,
+            refs: [],
+          },
+          submissions: {
+            pending: 0,
+            refs: [],
+          },
         },
       })
     })
@@ -107,7 +124,7 @@ describe('entities', () => {
         },
       }
       expect(
-        entities({}, resolved)
+        quizData({}, resolved)
       ).toEqual({
         '1': {
           data: quiz,
@@ -131,7 +148,7 @@ describe('entities', () => {
       }
 
       expect(
-        entities({}, pending)
+        quizData({}, pending)
       ).toEqual({
         '1': {
           pending: 1,
@@ -162,7 +179,7 @@ describe('entities', () => {
         },
       }
       expect(
-        entities(pendingState, rejected)
+        quizData(pendingState, rejected)
       ).toEqual({
         '1': {
           pending: 0,
@@ -193,7 +210,7 @@ describe('entities', () => {
         },
       }
       expect(
-        entities(pendingState, resolved)
+        quizData(pendingState, resolved)
       ).toEqual({
         '1': {
           pending: 0,

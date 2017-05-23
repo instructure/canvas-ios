@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react'
-import SubmissionGraph from './SubmissionGraph'
+import SubmissionGraph from '../../submissions/SubmissionGraph'
 import { connect } from 'react-redux'
 import { mapStateToProps } from '../../submissions/list/map-state-to-props'
 import type {
@@ -69,7 +69,7 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
           <TouchableOpacity underlayColor='#eeeeee00' style={style.common} key={`submission_dial_highlight_${index}`}
                               testID={`submission_dial_${index}`} onPress={() => this.onPress(index) }>
             <View>
-              <SubmissionGraph label={labels[index]} total={totalStudents} data={data[index]} key={index}/>
+              <SubmissionGraph label={labels[index]} total={totalStudents} current={data[index]} key={index}/>
             </View>
           </TouchableOpacity>
         )}

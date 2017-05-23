@@ -1,6 +1,5 @@
 // @flow
 
-import { ActionSheetIOS, AlertIOS } from 'react-native'
 import React from 'react'
 import {
   SubmissionList,
@@ -18,12 +17,6 @@ const template = {
 }
 
 jest.mock('../../../../routing')
-jest.mock('ActionSheetIOS', () => ({
-  showActionSheetWithOptions: jest.fn(),
-}))
-jest.mock('AlertIOS', () => ({
-  prompt: jest.fn(),
-}))
 
 const props = {
   submissions: submissionProps,
@@ -55,27 +48,6 @@ test('SubmissionList loaded with nothing and it should not explode, and then pro
 })
 
 test('SubmissionList select filter function', () => {
-  const instance = renderer.create(
-    <SubmissionList navigator={template.navigator()} />
-  ).getInstance()
-  instance.chooseFilter()
-
-  expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalledWith({
-    options: [
-      'All submissions',
-      'Submitted late',
-      "Haven't submitted yet",
-      "Haven't been graded",
-      'Scored less than…',
-      'Scored more than…',
-      'Cancel',
-    ],
-    cancelButtonIndex: 6,
-    title: 'Filter by:',
-  }, instance.updateFilter)
-})
-
-test('SubmissionList select filter function', () => {
   const expandedProps = cloneDeep(props)
   expandedProps.submissions = expandedProps.submissions.concat([
     template.submissionProps({
@@ -98,42 +70,42 @@ test('SubmissionList select filter function', () => {
     <SubmissionList { ...expandedProps } navigator={template.navigator()} />
   ).getInstance()
 
-  // All submissions
-  instance.updateFilter(0)
+  instance.updateFilter({
+    filter: instance.filterOptions[0],
+  })
   expect(instance.state.submissions).toMatchObject(expandedProps.submissions)
 
-  // Late
-  instance.updateFilter(1)
+  instance.updateFilter({
+    filter: instance.filterOptions[1],
+  })
   expect(instance.state.submissions).toMatchObject([
     {
       status: 'late',
     },
   ])
 
-  // Have not submitted
-  instance.updateFilter(2)
+  instance.updateFilter({
+    filter: instance.filterOptions[2],
+  })
   expect(instance.state.submissions).toMatchObject([
     {
       grade: 'not_submitted',
     },
   ])
 
-  // Have not been graded
-  instance.updateFilter(3)
+  instance.updateFilter({
+    filter: instance.filterOptions[3],
+  })
   expect(instance.state.submissions).toMatchObject([
     {
       grade: 'ungraded',
     },
   ])
 
-  const prompt = jest.fn((title, message, callback) => {
-    callback(50)
+  instance.updateFilter({
+    filter: instance.filterOptions[5],
+    metadata: 50,
   })
-
-  AlertIOS.prompt = prompt
-
-  // Scored less than…
-  instance.updateFilter(4)
   expect(instance.state.submissions).toMatchObject([
     {
       score: 30,
@@ -142,7 +114,10 @@ test('SubmissionList select filter function', () => {
   ])
 
   // Scored more than…
-  instance.updateFilter(5)
+  instance.updateFilter({
+    filter: instance.filterOptions[6],
+    metadata: 50,
+  })
   expect(instance.state.submissions).toMatchObject([
     {
       score: 60,
@@ -153,7 +128,9 @@ test('SubmissionList select filter function', () => {
   // Cancel
   instance.clearFilter()
   expect(instance.state.submissions).toMatchObject(expandedProps.submissions)
-  instance.updateFilter(6)
+  instance.updateFilter({
+    filter: instance.filterOptions[7],
+  })
   expect(instance.state.submissions).toMatchObject(expandedProps.submissions)
 })
 

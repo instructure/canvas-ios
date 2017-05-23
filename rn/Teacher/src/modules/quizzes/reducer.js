@@ -1,17 +1,19 @@
 /* @flow */
 
-import { Reducer } from 'redux'
+import { Reducer, combineReducers } from 'redux'
 import { asyncRefsReducer } from '../../redux/async-refs-reducer'
 import { handleActions } from 'redux-actions'
 import handleAsync from '../../utils/handleAsync'
 import { default as ListActions } from './list/actions'
 import { default as DetailsActions } from './details/actions'
+import { default as QuizSubmissionActions } from './submissions/actions'
 import { default as EditActions } from './edit/actions'
 import i18n from 'format-message'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
 const { refreshQuizzes } = ListActions
 const { refreshQuiz } = DetailsActions
+const { refreshQuizSubmissions } = QuizSubmissionActions
 const { updateQuiz } = EditActions
 
 export const refs: Reducer<AsyncRefs, any> = asyncRefsReducer(
@@ -20,13 +22,43 @@ export const refs: Reducer<AsyncRefs, any> = asyncRefsReducer(
   ({ result }) => result.data.map(quiz => quiz.id)
 )
 
-export const entities: Reducer<QuizzesState, any> = handleActions({
+export const quizSubmissions: Reducer<AsyncRefs, any> = asyncRefsReducer(
+  refreshQuizSubmissions.toString(),
+  i18n('There was a problem loading the quiz submissions.'),
+  ({ result }) => result.data.quiz_submissions.map(qs => qs.id)
+)
+
+export const submissions: Reducer<AsyncRefs, any> = asyncRefsReducer(
+  refreshQuizSubmissions.toString(),
+  i18n('There was a problem loading the quiz submissions.'),
+  ({ result }) => result.data.submissions.map(s => s.id)
+)
+
+const quiz = quiz => quiz || {}
+const pending = pending => pending || 0
+const error = error => error || null
+
+const quizContent = combineReducers({
+  data: quiz,
+  quizSubmissions,
+  submissions,
+  pending,
+  error,
+})
+
+const defaultQuizContents = {
+  quizSubmissions: { refs: [], pending: 0 },
+  submissions: { refs: [], pending: 0 },
+}
+
+export const quizData: Reducer<QuizzesState, any> = handleActions({
   [refreshQuizzes.toString()]: handleAsync({
     resolved: (state, { result }) => {
       const incoming = result.data
         .reduce((incoming, quiz) => ({
           ...incoming,
           [quiz.id]: {
+            ...defaultQuizContents,
             data: quiz,
             pending: 0,
             error: null,
@@ -74,3 +106,17 @@ export const entities: Reducer<QuizzesState, any> = handleActions({
     }),
   }),
 }, {})
+
+export function quizzes (state: any = {}, action: any): any {
+  let newState = state
+  if (action.payload && action.payload.quizID) {
+    const quizID = action.payload.quizID
+    const currentQuizState: any = state[quizID] || { pending: 0, data: {} }
+    const quizState = quizContent(currentQuizState, action)
+    newState = {
+      ...state,
+      [quizID]: quizState,
+    }
+  }
+  return quizData(newState, action)
+}

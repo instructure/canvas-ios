@@ -24,6 +24,7 @@ import QuizDetails from '../modules/quizzes/details/QuizDetails'
 import QuizEdit from '../modules/quizzes/edit/QuizEdit'
 import RichTextEditor from '../common/components/rich-text-editor/RichTextEditor'
 import QuizPreview from '../modules/quizzes/details/QuizPreview'
+import QuizSubmissions from '../modules/quizzes/submissions/QuizSubmissionList'
 import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/components/CourseDetailsSplitViewPlaceholder'
 
 import { Store } from 'redux'
@@ -47,6 +48,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/quizzes/:quizID', () => QuizDetails, store)
   registerScreen('/courses/:courseID/quizzes/:quizID/preview', () => QuizPreview, store)
   registerScreen('/courses/:courseID/quizzes/:quizID/edit', () => QuizEdit, store)
+  registerScreen('/courses/:courseID/quizzes/:quizID/submissions', () => QuizSubmissions, store)
   registerScreen('/conversations', () => Inbox, store)
   registerScreen('/profile', () => Profile, store)
   registerScreen('/beta-feedback', () => BetaFeedback, store)

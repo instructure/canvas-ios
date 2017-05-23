@@ -19,6 +19,16 @@ export function getQuiz (courseID: string, quizID: string): Promise<ApiResponse<
   return httpClient().get(url)
 }
 
+export function getQuizSubmissions (courseID: string, quizID: string): Promise<ApiResponse<QuizSubmission>> {
+  const url = `courses/${courseID}/quizzes/${quizID}/submissions`
+  let options = {
+    params: {
+      include: 'submission',
+    },
+  }
+  return httpClient().get(url, options)
+}
+
 export function updateQuiz (quiz: Quiz, courseID: string): Promise<ApiResponse<Quiz>> {
   const params = {
     ...quiz,

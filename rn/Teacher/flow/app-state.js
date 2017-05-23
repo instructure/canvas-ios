@@ -67,6 +67,12 @@ export type SubmissionState = AsyncState & {
 
 export type QuizState = AsyncState & {
   data: Quiz,
+  quizSubmissions: AsyncRefs,
+  submissions: AsyncRefs,
+}
+
+export type QuizSubmissionState = AsyncState & {
+  data: QuizSubmission,
 }
 
 export type CoursesState = { [string]: CourseState & CourseContentState }
@@ -77,6 +83,7 @@ export type SectionsState = { [string]: Section }
 export type UserProfileState = { [string]: User }
 export type SubmissionsState = { [string]: SubmissionState }
 export type QuizzesState = { [string]: QuizState }
+export type QuizSubmissionsState = { [string]: QuizSubmissionState }
 
 export type Entities = {
   courses: CoursesState,
@@ -88,6 +95,7 @@ export type Entities = {
   users: UserProfileState,
   submissions: SubmissionsState,
   quizzes: QuizzesState,
+  quizSubmissions: QuizSubmissionsState,
 }
 
 export type FavoriteCoursesState = AsyncState

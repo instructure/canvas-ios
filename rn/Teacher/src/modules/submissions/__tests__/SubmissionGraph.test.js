@@ -4,7 +4,7 @@
 
 import 'react-native'
 import React from 'react'
-import SubmissionGraph from '../components/SubmissionGraph'
+import SubmissionGraph from '../SubmissionGraph'
 import renderer from 'react-test-renderer'
 
 const defaultProps: { [string]: any } = {

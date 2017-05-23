@@ -24,7 +24,7 @@ function getSubmissionsByUserID (assignmentContent?: AssignmentContentState, sub
     }, {})
 }
 
-function statusProp (submission: ?Submission, dueDate: ?string): SubmissionStatusProp {
+export function statusProp (submission: ?Submission, dueDate: ?string): SubmissionStatusProp {
   if (!submission || submission.workflow_state === 'unsubmitted') {
     if (dueDate && (new Date(dueDate) < new Date())) {
       return 'missing'
@@ -40,7 +40,7 @@ function statusProp (submission: ?Submission, dueDate: ?string): SubmissionStatu
   }
 }
 
-function gradeProp (submission: ?Submission): GradeProp {
+export function gradeProp (submission: ?Submission): GradeProp {
   if (!submission ||
     (submission.workflow_state === 'unsubmitted' &&
      !submission.excused)) {

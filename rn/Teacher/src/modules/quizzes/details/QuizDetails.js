@@ -23,6 +23,7 @@ import refresh from '../../../utils/refresh'
 import formatter from '../formatter'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
+import QuizSubmissionBreakdownGraphSection from '../submissions/components/QuizSubmissionBreakdownGraphSection'
 
 type OwnProps = {
   quizID: string,
@@ -43,6 +44,25 @@ export class QuizDetails extends Component<any, Props, any> {
 
   previewQuiz = () => {
     this.props.navigator.show(`/courses/${this.props.courseID}/quizzes/${this.props.quizID}/preview`, { modal: true })
+  }
+
+  viewAllSubmissions = () => {
+    this.props.navigator.show(`/courses/${this.props.courseID}/quizzes/${this.props.quizID}/submissions`)
+  }
+
+  onSubmissionDialPress = (type: string) => {
+    this.viewSubmissions(type)
+  }
+
+  viewSubmissions = (filterType: ?string) => {
+    if (global.V02) {
+      const { courseID, quizID } = this.props
+      if (filterType) {
+        this.props.navigator.show(`/courses/${courseID}/quizzes/${quizID}/submissions`, { modal: false }, { filterType })
+      } else {
+        this.props.navigator.show(`/courses/${courseID}/quizzes/${quizID}/submissions`)
+      }
+    }
   }
 
   render () {
@@ -72,6 +92,13 @@ export class QuizDetails extends Component<any, Props, any> {
             { !quiz.description &&
               <Text>{i18n('No description')}</Text>
             }
+          </AssignmentSection>
+
+          <AssignmentSection
+            title={i18n('Submissions')}
+            onPress={this.viewAllSubmissions}
+            showDisclosureIndicator>
+            <QuizSubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} quizID={this.props.quizID} />
           </AssignmentSection>
 
           {this._renderDetails()}
